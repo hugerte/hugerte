@@ -1,24 +1,24 @@
-# TinyMCE
+# HugeMCE
 
-The world's #1 open source rich text editor.
+The 100% free fork of the world's #1 open source rich text editor.
 
-**Using an old version of TinyMCE?** We recommend you to upgrade to TinyMCE 7 to continue receiving security updates, or consider [TinyMCE 5 LTS](https://www.tiny.cloud/long-term-support/) if you need more time to upgrade.
+Used and trusted by millions of developers, [TinyMCE](https://github.com/tinymce/tinymce) (the original project I've forked) is the world’s most customizable, scalable, and flexible rich text editor. They’ve helped launch the likes of Atlassian, Medium, Evernote (and lots more they can’t tell you), by empowering them to create exceptional content and experiences for their users.
 
-Used and trusted by millions of developers, TinyMCE is the world’s most customizable, scalable, and flexible rich text editor. We’ve helped launch the likes of Atlassian, Medium, Evernote (and lots more that we can’t tell you), by empowering them to create exceptional content and experiences for their users.
+With more than 350M+ downloads every year, they’re also one of the most trusted enterprise-grade open source HTML editors on the internet. There’s currently more than 100M+ products worldwide, powered by Tiny. As a high powered WYSIWYG editor, TinyMCE is built to scale, designed to innovate, and thrives on delivering results to difficult edge-cases.
 
-With more than 350M+ downloads every year, we’re also one of the most trusted enterprise-grade open source HTML editors on the internet. There’s currently more than 100M+ products worldwide, powered by Tiny. As a high powered WYSIWYG editor, TinyMCE is built to scale, designed to innovate, and thrives on delivering results to difficult edge-cases.
+Now, why do we need HugeMCE? Why can't we just continue using TinyMCE?
 
-You can access a [full featured demo of TinyMCE](https://www.tiny.cloud/docs/tinymce/6/premium-full-featured/) in the docs on the TinyMCE website.
+Well, TinyMCE's second-latest version (6), was licensed under the MIT license, which permits free use for everybody. But its latest version 7 is licensed under the GPL, which only permits use in open-source projects, and only in GPL-licensed ones at that. That's not what we want. Therefore, I've forked the 6.x version and will (hopefully, with a team soon) continue providing fixes and new features for it under the MIT license.
 
 <p align="center">
   <img alt="Screenshot of the TinyMCE Editor" src="https://www.tiny.cloud/storage/github-readme-images/tinymce-editor-6x.png"\>
 </p>
 
-## Get started with TinyMCE
+## Get started with HugeMCE
+
+HugeMCE is a new project, just some days old. It's not yet available on NPM or anywhere. Information about installing it will be provided here as soon as it's ready. In the meantime, the rest of this document will provide you instructions to install the official 6.x version of TinyMCE. It will hopefully be trivial changing to HugeMCE later as soon as it's ready.
 
 Getting started with the TinyMCE rich text editor is easy, and for simple configurations can be done in less than 5 minutes.
-
-[TinyMCE Cloud Deployment Quick Start Guide](https://www.tiny.cloud/docs/tinymce/6/cloud-quick-start/)
 
 [TinyMCE Self-hosted Deployment Guide](https://www.tiny.cloud/docs/tinymce/6/npm-projects/)
 
@@ -55,12 +55,6 @@ Realizing the full power of most plugins requires only a few lines more.
 Sometimes your editor requirements can be quite unique, and you need the freedom and flexibility to innovate. Thanks to TinyMCE being open source, you can view the source code and develop your own extensions for custom functionality to meet your own requirements.
 
 The TinyMCE [API](https://www.tiny.cloud/docs/tinymce/6/apis/tinymce.root/) is exposed to make it easier for you to write custom functionality that fits within the existing framework of TinyMCE [UI components](https://www.tiny.cloud/docs/tinymce/6/custom-ui-components/).
-
-### Extended Features and Support
-
-For the professional software teams that require more in-depth efficiency, compliance or collaborative features built to enterprise-grade standards, please [get in touch with our team](https://www.tiny.cloud/contact/).
-
-Tiny also offers dedicated SLAs and support for professional development teams.
 
 ## Compiling and contributing
 
