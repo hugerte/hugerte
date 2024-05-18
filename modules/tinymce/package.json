@@ -1,6 +1,6 @@
 {
   "name": "tinymce",
-  "version": "6.8.3",
+  "version": "7.0.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "scripts": {
     "build": "grunt",
     "test": "grunt test",
+    "test-manual": "grunt test-manual",
     "lint": "grunt eslint",
     "silver-test": "grunt bedrock-auto:silver",
     "silver-test-manual": "grunt bedrock-manual:silver"

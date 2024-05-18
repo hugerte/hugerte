@@ -110,11 +110,11 @@ const getSpec = (editor: Editor): SelectSpec => {
 };
 
 const createFontFamilyButton = (editor: Editor, backstage: UiFactoryBackstage): SketchSpec =>
-  createSelectButton(editor, backstage, getSpec(editor), btnTooltip, 'FontFamilyTextUpdate');
+  createSelectButton(editor, backstage, getSpec(editor), btnTooltip, 'FontFamilyTextUpdate', 'fontfamily');
 
 // TODO: Test this!
 const createFontFamilyMenu = (editor: Editor, backstage: UiFactoryBackstage): void => {
-  const menuItems = createMenuItems(editor, backstage, getSpec(editor));
+  const menuItems = createMenuItems(backstage, getSpec(editor));
   editor.ui.registry.addNestedMenuItem('fontfamily', {
     text: backstage.shared.providers.translate(menuTitle),
     onSetup: onSetupEditableToggle(editor),

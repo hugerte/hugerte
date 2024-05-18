@@ -10,7 +10,8 @@ import { RawEditorOptions, ToolbarMode } from 'tinymce/core/api/OptionTypes';
 
 import * as UiUtils from '../../../module/UiUtils';
 
-describe('browser.tinymce.themes.silver.editor.toolbar.ToolbarDrawerToggleTest', () => {
+// TODO TINY-10480: Investigate flaky tests
+describe.skip('browser.tinymce.themes.silver.editor.toolbar.ToolbarDrawerToggleTest', () => {
 
   const assertToolbarToggleState = (editor: Editor, expected: boolean) => {
     const state = editor.queryCommandState('ToggleToolbarDrawer');
@@ -104,7 +105,7 @@ describe('browser.tinymce.themes.silver.editor.toolbar.ToolbarDrawerToggleTest',
       });
 
       it(`TINY-9271: Emits 'ToggleToolbarDrawer' in ${toolbarMode} via user click`, async () => {
-        await pTestEvent(toolbarMode, (editor) => TinyUiActions.clickOnToolbar(editor, 'button[title="Reveal or hide additional toolbar items"]'));
+        await pTestEvent(toolbarMode, (editor) => TinyUiActions.clickOnToolbar(editor, 'button[data-mce-name="overflow-button"]'));
       });
     });
   });

@@ -12,6 +12,7 @@ describe('webdriver.tinymce.core.content.PlaceholderTest', () => {
   const hook = TinyHooks.bddSetupLight<Editor>({
     base_url: '/project/tinymce/js/tinymce',
     toolbar: 'undo redo | bold',
+    plugins: [ 'lists' ],
     placeholder,
     setup: (editor: Editor) => {
       editor.on('PlaceholderToggle', () => {
@@ -35,10 +36,8 @@ describe('webdriver.tinymce.core.content.PlaceholderTest', () => {
   const pAssertPlaceholder = (editor: Editor, expected: boolean) => Waiter.pTryUntil('Wait for placeholder to update', () => {
     const body = editor.getBody();
     const dataPlaceholder = editor.dom.getAttrib(body, 'data-mce-placeholder');
-    const ariaPlaceholder = editor.dom.getAttrib(body, 'aria-placeholder');
     const expectedPlaceholder = expected ? placeholder : '';
     assert.equal(dataPlaceholder, expectedPlaceholder, 'Check data-mce-placeholder attribute');
-    assert.equal(ariaPlaceholder, expectedPlaceholder, 'Check aria-placeholder attribute');
   });
 
   const pAssertPlaceholderExists = (editor: Editor) => pAssertPlaceholder(editor, true);
@@ -87,9 +86,9 @@ describe('webdriver.tinymce.core.content.PlaceholderTest', () => {
     await pAssertPlaceholderExists(editor);
     await RealKeys.pSendKeysOn('iframe => body => p', [ RealKeys.text('t') ]);
     await pAssertPlaceholderNotExists(editor);
-    TinyUiActions.clickOnToolbar(editor, '.tox-tbtn[title="Undo"]');
+    TinyUiActions.clickOnToolbar(editor, '.tox-tbtn[data-mce-name="undo"]');
     await pAssertPlaceholderExists(editor);
-    TinyUiActions.clickOnToolbar(editor, '.tox-tbtn[title="Redo"]');
+    TinyUiActions.clickOnToolbar(editor, '.tox-tbtn[data-mce-name="redo"]');
     await pAssertPlaceholderNotExists(editor);
     assertCount(3);
   });
@@ -98,7 +97,7 @@ describe('webdriver.tinymce.core.content.PlaceholderTest', () => {
     const editor = hook.editor();
     setContent(editor, '<p></p>');
     await pAssertPlaceholderExists(editor);
-    TinyUiActions.clickOnToolbar(editor, '.tox-tbtn[title="Bold"]');
+    TinyUiActions.clickOnToolbar(editor, '.tox-tbtn[data-mce-name="bold"]');
     await pAssertPlaceholderExists(editor);
     await pTypeTextAndDelete(editor);
     assertCount(2);

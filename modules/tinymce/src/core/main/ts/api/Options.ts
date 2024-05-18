@@ -356,7 +356,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('event_root', {
-    processor: 'object'
+    processor: 'string'
   });
 
   registerOption('service_message', {
@@ -609,7 +609,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('custom_elements', {
-    processor: 'string'
+    processor: stringOrObjectProcessor
   });
 
   registerOption('extended_valid_elements', {
@@ -677,6 +677,10 @@ const register = (editor: Editor): void => {
     processor: 'string'
   });
 
+  registerOption('license_key', {
+    processor: 'string'
+  });
+
   registerOption('paste_block_drop', {
     processor: 'boolean',
     default: false
@@ -737,15 +741,17 @@ const register = (editor: Editor): void => {
     default: [
       { start: '*', end: '*', format: 'italic' },
       { start: '**', end: '**', format: 'bold' },
-      { start: '#', format: 'h1' },
-      { start: '##', format: 'h2' },
-      { start: '###', format: 'h3' },
-      { start: '####', format: 'h4' },
-      { start: '#####', format: 'h5' },
-      { start: '######', format: 'h6' },
-      { start: '1. ', cmd: 'InsertOrderedList' },
-      { start: '* ', cmd: 'InsertUnorderedList' },
-      { start: '- ', cmd: 'InsertUnorderedList' }
+      { start: '#', format: 'h1', trigger: 'space' },
+      { start: '##', format: 'h2', trigger: 'space' },
+      { start: '###', format: 'h3', trigger: 'space' },
+      { start: '####', format: 'h4', trigger: 'space' },
+      { start: '#####', format: 'h5', trigger: 'space' },
+      { start: '######', format: 'h6', trigger: 'space' },
+      { start: '1.', cmd: 'InsertOrderedList', trigger: 'space' },
+      { start: '*', cmd: 'InsertUnorderedList', trigger: 'space' },
+      { start: '-', cmd: 'InsertUnorderedList', trigger: 'space' },
+      { start: '>', cmd: 'mceBlockQuote', trigger: 'space' },
+      { start: '---', cmd: 'InsertHorizontalRule', trigger: 'space' },
     ]
   });
 
@@ -793,7 +799,7 @@ const register = (editor: Editor): void => {
 
   registerOption('highlight_on_focus', {
     processor: 'boolean',
-    default: false
+    default: true
   });
 
   registerOption('xss_sanitization', {
@@ -838,12 +844,24 @@ const register = (editor: Editor): void => {
 
   registerOption('sandbox_iframes', {
     processor: 'boolean',
-    default: false
+    default: true
+  });
+
+  registerOption('sandbox_iframes_exclusions', {
+    processor: 'string[]',
+    default: [
+      'youtube.com',
+      'youtu.be',
+      'vimeo.com',
+      'dailymotion.com',
+      'dai.ly',
+      'codepen.io'
+    ]
   });
 
   registerOption('convert_unsafe_embeds', {
     processor: 'boolean',
-    default: false
+    default: true
   });
 
   // These options must be registered later in the init sequence due to their default values
@@ -964,7 +982,10 @@ const getDetailsInitialState = option('details_initial_state');
 const getDetailsSerializedState = option('details_serialized_state');
 const shouldForceHexColor = option('force_hex_color');
 const shouldSandboxIframes = option('sandbox_iframes');
+const getSandboxIframesExclusions = (editor: Editor): string[] => editor.options.get('sandbox_iframes_exclusions');
 const shouldConvertUnsafeEmbeds = option('convert_unsafe_embeds');
+const getLicenseKey = option('license_key');
+const getApiKey = option('api_key');
 
 export {
   register,
@@ -1072,5 +1093,8 @@ export {
   shouldUseDocumentWrite,
   shouldForceHexColor,
   shouldSandboxIframes,
-  shouldConvertUnsafeEmbeds
+  getLicenseKey,
+  getSandboxIframesExclusions,
+  shouldConvertUnsafeEmbeds,
+  getApiKey
 };

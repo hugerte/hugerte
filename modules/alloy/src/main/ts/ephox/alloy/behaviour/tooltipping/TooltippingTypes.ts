@@ -17,8 +17,9 @@ export interface TooltippingConfig extends BehaviourConfigDetail {
   tooltipDom: RawDomSchema;
   tooltipComponents: AlloySpec[];
   exclusive: boolean;
-  mode: 'normal' | 'follow-highlight';
-  delay: number;
+  mode: 'normal' | 'follow-highlight' | 'children-keyboard-focus' | 'children-normal';
+  delayForShow: () => number;
+  delayForHide: () => number;
   anchor: (comp: AlloyComponent) => AnchorSpec;
   onShow: (comp: AlloyComponent, tooltip: AlloyComponent) => void;
   onHide: (comp: AlloyComponent, tooltip: AlloyComponent) => void;
@@ -29,8 +30,9 @@ export interface TooltippingConfigSpec extends BehaviourConfigSpec {
   tooltipDom: RawDomSchema;
   tooltipComponents?: AlloySpec[];
   exclusive?: boolean;
-  mode?: 'normal' | 'follow-highlight';
-  delay?: number;
+  mode?: 'normal' | 'follow-highlight' | 'children-keyboard-focus' | 'children-normal';
+  delayForShow?: () => number;
+  delayForHide?: () => number;
   anchor?: (comp: AlloyComponent) => AnchorSpec;
   onShow?: (comp: AlloyComponent, tooltip: AlloyComponent) => void;
   onHide?: (comp: AlloyComponent, tooltip: AlloyComponent) => void;

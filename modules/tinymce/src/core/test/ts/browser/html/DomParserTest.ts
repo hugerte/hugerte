@@ -530,63 +530,6 @@ describe('browser.tinymce.core.html.DomParserTest', () => {
         );
       });
 
-      it('Remove redundant br elements', () => {
-        const schema = Schema();
-
-        const parser = DomParser({ remove_trailing_brs: true, ...scenario.settings }, schema);
-        const root = parser.parse(
-          '<p>a<br></p>' +
-          '<p>a<br>b<br></p>' +
-          '<p>a<br><br></p><p>a<br><span data-mce-type="bookmark"></span><br></p>' +
-          '<p>a<span data-mce-type="bookmark"></span><br></p>'
-        );
-        assert.equal(
-          serializer.serialize(root),
-          '<p>a</p><p>a<br>b</p><p>a<br><br></p><p>a<br><br></p><p>a</p>',
-          'Remove traling br elements.'
-        );
-      });
-
-      it('Replace br with nbsp when wrapped in two inline elements and one block', () => {
-        const schema = Schema();
-
-        const parser = DomParser({ remove_trailing_brs: true, ...scenario.settings }, schema);
-        const root = parser.parse('<p><strong><em><br /></em></strong></p>');
-        assert.equal(serializer.serialize(root), '<p><strong><em>\u00a0</em></strong></p>');
-      });
-
-      it('Replace br with nbsp when wrapped in an inline element and placed in the root', () => {
-        const schema = Schema();
-
-        const parser = DomParser({ remove_trailing_brs: true, ...scenario.settings }, schema);
-        const root = parser.parse('<strong><br /></strong>');
-        assert.equal(serializer.serialize(root), '<strong>\u00a0</strong>');
-      });
-
-      it(`Don't replace br inside root element when there is multiple brs`, () => {
-        const schema = Schema();
-
-        const parser = DomParser({ remove_trailing_brs: true, ...scenario.settings }, schema);
-        const root = parser.parse('<strong><br /><br /></strong>');
-        assert.equal(serializer.serialize(root), '<strong><br><br></strong>');
-      });
-
-      it(`Don't replace br inside root element when there is siblings`, () => {
-        const schema = Schema();
-
-        const parser = DomParser({ remove_trailing_brs: true, ...scenario.settings }, schema);
-        const root = parser.parse('<strong><br /></strong><em>x</em>');
-        assert.equal(serializer.serialize(root), '<strong><br></strong><em>x</em>');
-      });
-
-      it('Remove br in invalid parent bug', () => {
-        const schema = Schema({ valid_elements: 'br' });
-
-        const parser = DomParser({ remove_trailing_brs: true, ...scenario.settings }, schema);
-        const root = parser.parse('<br>');
-        assert.equal(serializer.serialize(root), '', 'Remove traling br elements.');
-      });
-
       it('Forced root blocks', () => {
         const schema = Schema();
 
@@ -1533,16 +1476,43 @@ describe('browser.tinymce.core.html.DomParserTest', () => {
       });
 
       context('Sandboxing iframes', () => {
-        const serializeIframeHtml = (sandbox: boolean): string => {
-          const parser = DomParser({ ...scenario.settings, sandbox_iframes: sandbox });
-          return serializer.serialize(parser.parse('<iframe src="about:blank"></iframe>'));
-        };
+        context('sandbox_iframes', () => {
+          const testSandboxIframe = (sandbox: boolean, expected: string) => () => {
+            const parser = DomParser({ ...scenario.settings, sandbox_iframes: sandbox });
+            const serialized = serializer.serialize(parser.parse('<iframe src="about:blank"></iframe>'));
+            assert.equal(serialized, expected);
+          };
 
-        it('TINY-10348: iframes should be sandboxed when sandbox_iframes: false', () =>
-          assert.equal(serializeIframeHtml(false), '<iframe src="about:blank"></iframe>'));
+          it('TINY-10348: iframes should be sandboxed when sandbox_iframes: false',
+            testSandboxIframe(false, '<iframe src="about:blank"></iframe>'));
 
-        it('TINY-10348: iframes should be sandboxed when sandbox_iframes: true', () =>
-          assert.equal(serializeIframeHtml(true), '<iframe src="about:blank" sandbox=""></iframe>'));
+          it('TINY-10348: iframes should be sandboxed when sandbox_iframes: true',
+            testSandboxIframe(true, '<iframe src="about:blank" sandbox=""></iframe>'));
+        });
+
+        context('sandbox_iframes_exclusions', () => {
+          const exclusions = [ 'tiny.cloud' ];
+          const parser = DomParser({ ...scenario.settings, sandbox_iframes: true, sandbox_iframes_exclusions: exclusions });
+
+          const testSandboxIframeExclusions = (src: string, expected: string) => () => {
+            const serialized = serializer.serialize(parser.parse(`<iframe src="${src}"></iframe>`));
+            assert.equal(serialized, expected);
+          };
+
+          it('TINY-10350: iframes should be sandboxed when sandbox_iframes: true and host is not excluded',
+            testSandboxIframeExclusions('https://www.example.com', '<iframe src="https://www.example.com" sandbox=""></iframe>'));
+
+          it('TINY-10350: iframes should not be sandboxed when sandbox_iframes: true and host is excluded',
+            testSandboxIframeExclusions('https://www.tiny.cloud', '<iframe src="https://www.tiny.cloud"></iframe>'));
+
+          it('TINY-10350: iframes with non-URL src should be sandboxed when sandbox_iframes: true',
+            testSandboxIframeExclusions('abc', '<iframe src="abc" sandbox=""></iframe>'));
+
+          it('TINY-10350: iframes with no src should be sandboxed when sandbox_iframes: true', () => {
+            const serialized = serializer.serialize(parser.parse('<iframe></iframe>'));
+            assert.equal(serialized, '<iframe sandbox=""></iframe>');
+          });
+        });
       });
 
       context('Convert unsafe embeds', () => {

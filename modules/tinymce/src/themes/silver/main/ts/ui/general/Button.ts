@@ -4,10 +4,11 @@ import {
   AlloyComponent, AlloyEvents,
   FormField as AlloyFormField,
   AlloySpec, AlloyTriggers, Behaviour,
-  GuiFactory, Memento, RawDomSchema, Replacing, SimpleOrSketchSpec, SketchSpec, Tabstopping
+  GuiFactory, Memento,
+  RawDomSchema, Replacing, SimpleOrSketchSpec, SketchSpec, Tabstopping, Tooltipping
 } from '@ephox/alloy';
 import { Dialog, Toolbar } from '@ephox/bridge';
-import { Fun, Merger, Optional } from '@ephox/katamari';
+import { Fun, Merger, Optional, Type } from '@ephox/katamari';
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import * as ReadOnly from '../../ReadOnly';
@@ -38,6 +39,7 @@ export const renderCommonSpec = (
   extraBehaviours: Behaviours = [],
   dom: RawDomSchema,
   components: AlloySpec[],
+  tooltip: Optional<string>,
   providersBackstage: UiFactoryBackstageProviders
 ): AlloyButtonSpec => {
   const action = actionOpt.fold(() => ({}), (action) => ({
@@ -49,6 +51,13 @@ export const renderCommonSpec = (
       DisablingConfigs.button(() => !spec.enabled || providersBackstage.isDisabled()),
       ReadOnly.receivingConfig(),
       Tabstopping.config({}),
+      ...tooltip.map(
+        (t) => Tooltipping.config(
+          providersBackstage.tooltips.getConfig({
+            tooltipText: providersBackstage.translate(t)
+          })
+        )
+      ).toArray(),
       AddEventsBehaviour.config('button press', [
         AlloyEvents.preventDefault('click'),
         AlloyEvents.preventDefault('mousedown')
@@ -64,36 +73,28 @@ export const renderCommonSpec = (
   return Merger.deepMerge(domFinal, { components });
 };
 
+// An IconButton just seems to be a button that *cannot* have text, but
+// can have a tooltip. It's only used for the More Drawer button at the moment.
 export const renderIconButtonSpec = (
   spec: IconButtonWrapper,
   action: Optional<(comp: AlloyComponent) => void>,
   providersBackstage: UiFactoryBackstageProviders,
-  extraBehaviours: Behaviours = []
+  extraBehaviours: Behaviours = [],
+  btnName: string
 ): AlloyButtonSpec => {
   const tooltipAttributes = spec.tooltip.map<{}>((tooltip) => ({
     'aria-label': providersBackstage.translate(tooltip),
-    'title': providersBackstage.translate(tooltip)
   })).getOr({});
   const dom = {
     tag: 'button',
     classes: [ ToolbarButtonClasses.Button ],
-    attributes: tooltipAttributes
+    attributes: { ...tooltipAttributes, 'data-mce-name': btnName }
   };
   const icon = spec.icon.map((iconName) => renderIconFromPack(iconName, providersBackstage.icons));
   const components = componentRenderPipeline([
     icon
   ]);
-  return renderCommonSpec(spec, action, extraBehaviours, dom, components, providersBackstage);
-};
-
-export const renderIconButton = (
-  spec: IconButtonWrapper,
-  action: (comp: AlloyComponent) => void,
-  providersBackstage: UiFactoryBackstageProviders,
-  extraBehaviours: Behaviours = []
-): SketchSpec => {
-  const iconButtonSpec = renderIconButtonSpec(spec, Optional.some(action), providersBackstage, extraBehaviours);
-  return AlloyButton.sketch(iconButtonSpec);
+  return renderCommonSpec(spec, action, extraBehaviours, dom, components, spec.tooltip, providersBackstage);
 };
 
 export const calculateClassesFromButtonType = (buttonType: 'primary' | 'secondary' | 'toolbar'): string[] => {
@@ -110,13 +111,15 @@ export const calculateClassesFromButtonType = (buttonType: 'primary' | 'secondar
 
 // Maybe the list of extraBehaviours is better than doing a Merger.deepMerge that
 // we do elsewhere? Not sure.
-export const renderButtonSpec = (
+const renderButtonSpec = (
   spec: ButtonSpec,
   action: Optional<(comp: AlloyComponent) => void>,
   providersBackstage: UiFactoryBackstageProviders,
   extraBehaviours: Behaviours = [],
   extraClasses: string[] = []
 ): AlloyButtonSpec => {
+  // It's a bit confusing that this is called text. It seems to be a tooltip. Although I can see
+  // that it's used if there is no icon
   const translatedText = providersBackstage.translate(spec.text);
 
   const icon = spec.icon.map((iconName) => renderIconFromPack(iconName, providersBackstage.icons));
@@ -138,12 +141,27 @@ export const renderButtonSpec = (
     tag: 'button',
     classes,
     attributes: {
-      title: translatedText // TODO: tooltips AP-213
+      'aria-label': translatedText,
+      'data-mce-name': spec.text
     }
   };
-  return renderCommonSpec(spec, action, extraBehaviours, dom, components, providersBackstage);
+
+  // Only provide a tooltip if we are using an icon. This is because above, a button is only an icon
+  // or text, and not both.
+  const optTooltip = spec.icon.map(Fun.constant(translatedText));
+
+  return renderCommonSpec(
+    spec,
+    action,
+    extraBehaviours,
+    dom,
+    components,
+    optTooltip,
+    providersBackstage
+  );
 };
 
+// This actually seems to be a button on the dialog for UrlInput only (browse). Interesting.
 export const renderButton = (
   spec: ButtonSpec,
   action: (comp: AlloyComponent) => void,
@@ -177,7 +195,7 @@ const isNormalFooterButtonSpec = (spec: FooterButtonSpec, buttonType: string): s
 
 const isToggleButtonSpec = (spec: FooterButtonSpec, buttonType: string): spec is Dialog.DialogFooterToggleButton => buttonType === 'togglebutton';
 
-const renderToggleButton = (spec: FooterToggleButtonSpec, providers: UiFactoryBackstageProviders): SimpleOrSketchSpec => {
+const renderToggleButton = (spec: FooterToggleButtonSpec, providers: UiFactoryBackstageProviders, btnName?: string): SimpleOrSketchSpec => {
   const optMemIcon = spec.icon
     .map((memIcon) => renderReplaceableIconFromPack(memIcon, providers.icons))
     .map(Memento.record);
@@ -204,14 +222,13 @@ const renderToggleButton = (spec: FooterToggleButtonSpec, providers: UiFactoryBa
     ...spec,
     name: spec.name ?? '',
     primary: buttonType === 'primary',
-    tooltip: Optional.from(spec.tooltip),
+    tooltip: spec.tooltip,
     enabled: spec.enabled ?? false,
     borderless: false
   };
 
   const tooltipAttributes = buttonSpec.tooltip.map<{}>((tooltip) => ({
     'aria-label': providers.translate(tooltip),
-    'title': providers.translate(tooltip)
   })).getOr({});
 
   const buttonTypeClasses = calculateClassesFromButtonType(buttonType ?? 'secondary');
@@ -223,7 +240,10 @@ const renderToggleButton = (spec: FooterToggleButtonSpec, providers: UiFactoryBa
       ...(spec.active ? [ ViewButtonClasses.Ticked ] : []),
       ...(showIconAndText ? [ 'tox-button--icon-and-text' ] : [])
     ],
-    attributes: tooltipAttributes
+    attributes: {
+      ...tooltipAttributes,
+      ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {} )
+    }
   };
   const extraBehaviours: Behaviours = [];
 
@@ -236,7 +256,7 @@ const renderToggleButton = (spec: FooterToggleButtonSpec, providers: UiFactoryBa
     ...(spec.text.isSome() ? [ translatedTextComponed ] : [])
   ];
 
-  const iconButtonSpec = renderCommonSpec(buttonSpec, Optional.some(action), extraBehaviours, dom, components, providers);
+  const iconButtonSpec = renderCommonSpec(buttonSpec, Optional.some(action), extraBehaviours, dom, components, spec.tooltip, providers);
   return AlloyButton.sketch(iconButtonSpec);
 };
 
@@ -258,7 +278,7 @@ export const renderFooterButton = (spec: FooterButtonSpec, buttonType: string, b
       fetch: getFetch(menuButtonSpec.items, getButton, backstage)
     };
 
-    const memButton = Memento.record(renderMenuButton(fixedSpec, ToolbarButtonClasses.Button, backstage, Optional.none()));
+    const memButton = Memento.record(renderMenuButton(fixedSpec, ToolbarButtonClasses.Button, backstage, Optional.none(), true, spec.text.or(spec.tooltip).getOrUndefined()));
 
     return memButton.asSpec();
   } else if (isNormalFooterButtonSpec(spec, buttonType)) {
@@ -269,7 +289,7 @@ export const renderFooterButton = (spec: FooterButtonSpec, buttonType: string, b
     };
     return renderButton(buttonSpec, action, backstage.shared.providers, [ ]);
   } else if (isToggleButtonSpec(spec, buttonType)) {
-    return renderToggleButton(spec, backstage.shared.providers);
+    return renderToggleButton(spec, backstage.shared.providers, spec.text.or(spec.tooltip).getOrUndefined());
   } else {
     // eslint-disable-next-line no-console
     console.error('Unknown footer button type: ', buttonType);

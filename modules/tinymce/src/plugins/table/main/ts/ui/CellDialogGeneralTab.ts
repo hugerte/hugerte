@@ -7,29 +7,20 @@ import * as Options from '../api/Options';
 import { verticalAlignValues } from './CellAlignValues';
 import * as UiUtils from './UiUtils';
 
-const getClassList = (editor: Editor): Optional<Dialog.ListBoxSpec> => {
-  const classes = UiUtils.buildListItems(Options.getCellClassList(editor));
-  if (classes.length > 0) {
-    return Optional.some({
+const getClassList = (editor: Editor): Optional<Dialog.ListBoxSpec> =>
+  UiUtils.buildClassList(Options.getCellClassList(editor))
+    .map((items) => ({
       name: 'class',
       type: 'listbox',
       label: 'Class',
-      items: classes
-    });
-  }
-  return Optional.none();
-};
+      items
+    }));
 
 const children: Dialog.BodyComponentSpec[] = [
   {
     name: 'width',
     type: 'input',
     label: 'Width'
-  },
-  {
-    name: 'height',
-    type: 'input',
-    label: 'Height'
   },
   {
     name: 'celltype',

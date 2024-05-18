@@ -1,5 +1,5 @@
-import { AlloyComponent, Disabling, SketchSpec, TieredData } from '@ephox/alloy';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { AlloyComponent, Disabling, SketchSpec, TieredData, Tooltipping } from '@ephox/alloy';
+import { Arr, Cell, Fun, Optional } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
@@ -69,6 +69,11 @@ export interface SelectSpec {
   readonly isInvalid: (item: FormatterFormatItem) => boolean;
 
   readonly dataset: SelectDataset;
+}
+
+export interface BespokeSelectTooltip {
+  tooltip: string;
+  hasPlaceholder: boolean;
 }
 
 interface BespokeSelectApi {
@@ -163,7 +168,7 @@ const generateSelectItems = (backstage: UiFactoryBackstage, spec: SelectSpec) =>
   };
 };
 
-const createMenuItems = (editor: Editor, backstage: UiFactoryBackstage, spec: SelectSpec): BespokeMenuItems => {
+const createMenuItems = (backstage: UiFactoryBackstage, spec: SelectSpec): BespokeMenuItems => {
   const dataset = spec.dataset; // needs to be a var for tsc to understand the ternary
   const getStyleItems = dataset.type === 'basic' ?
     () => Arr.map(dataset.data, (d) => FormatRegister.processBasic(d, spec.isSelectedFor, spec.getPreviewFor)) :
@@ -174,14 +179,16 @@ const createMenuItems = (editor: Editor, backstage: UiFactoryBackstage, spec: Se
   };
 };
 
-const createSelectButton = (editor: Editor, backstage: UiFactoryBackstage, spec: SelectSpec, tooltipWithPlaceholder: string, textUpdateEventName: string): SketchSpec => {
-  const { items, getStyleItems } = createMenuItems(editor, backstage, spec);
+const createSelectButton = (editor: Editor, backstage: UiFactoryBackstage, spec: SelectSpec, tooltipWithPlaceholder: string, textUpdateEventName: string, btnName: string): SketchSpec => {
+  const { items, getStyleItems } = createMenuItems(backstage, spec);
+  const tooltipString = Cell<string>(spec.tooltip);
 
   const getApi = (comp: AlloyComponent): BespokeSelectApi => ({
     getComponent: Fun.constant(comp),
     setTooltip: (tooltip: string) => {
       const translatedTooltip = backstage.shared.providers.translate(tooltip);
-      Attribute.setAll(comp.element, { 'aria-label': translatedTooltip, 'title': translatedTooltip });
+      Attribute.set(comp.element, 'aria-label', translatedTooltip);
+      tooltipString.set(tooltip);
     }
   });
 
@@ -204,7 +211,8 @@ const createSelectButton = (editor: Editor, backstage: UiFactoryBackstage, spec:
     {
       text: spec.icon.isSome() ? Optional.none() : spec.text,
       icon: spec.icon,
-      tooltip: Optional.from(spec.tooltip),
+      ariaLabel: Optional.some(spec.tooltip),
+      tooltip: Optional.none(), // TINY-10474 - Using own tooltip config
       role: Optional.none(),
       fetch: items.getFetch(backstage, getStyleItems),
       onSetup,
@@ -212,10 +220,25 @@ const createSelectButton = (editor: Editor, backstage: UiFactoryBackstage, spec:
       columns: 1,
       presets: 'normal',
       classes: spec.icon.isSome() ? [] : [ 'bespoke' ],
-      dropdownBehaviours: []
+      dropdownBehaviours: [
+        Tooltipping.config({
+          ...backstage.shared.providers.tooltips.getConfig({
+            tooltipText: backstage.shared.providers.translate(spec.tooltip),
+            onShow: (comp) => {
+              if (spec.tooltip !== tooltipString.get()) {
+                const translatedTooltip = backstage.shared.providers.translate(tooltipString.get());
+                Tooltipping.setComponents(comp,
+                  backstage.shared.providers.tooltips.getComponents({ tooltipText: translatedTooltip })
+                );
+              }
+            }
+          }),
+        })
+      ]
     },
     ToolbarButtonClasses.Button,
-    backstage.shared
+    backstage.shared,
+    btnName
   );
 };
 

@@ -1,5 +1,5 @@
 import { Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
-import { AlloyComponent, Behaviour, GuiFactory, ModalDialog, Positioning, TestHelpers } from '@ephox/alloy';
+import { AlloyComponent, Behaviour, GuiFactory, ModalDialog, Positioning, TestHelpers, TooltippingTypes } from '@ephox/alloy';
 import { before, beforeEach, describe, it } from '@ephox/bedrock-client';
 import { ValueType } from '@ephox/boulder';
 import { DialogManager } from '@ephox/bridge';
@@ -7,7 +7,7 @@ import { Fun, Optional, Result } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 
 import I18n from 'tinymce/core/api/util/I18n';
-import { UiFactoryBackstage } from 'tinymce/themes/silver/backstage/Backstage';
+import { UiFactoryBackstage, UiFactoryBackstageProviders } from 'tinymce/themes/silver/backstage/Backstage';
 import { renderDialog } from 'tinymce/themes/silver/ui/window/SilverDialog';
 
 describe('headless.tinymce.themes.silver.window.SilverDialogEventTest', () => {
@@ -71,6 +71,17 @@ describe('headless.tinymce.themes.silver.window.SilverDialogEventTest', () => {
 
   let dialog: AlloyComponent;
   before(() => {
+    const getTooltipComponents = () => [
+      {
+        dom: {
+          tag: 'div',
+        },
+        components: [
+          GuiFactory.text('Test')
+        ]
+      }
+    ];
+
     const store = hook.store();
     const sink = hook.component();
     const dialogStuff = renderDialog(
@@ -88,8 +99,18 @@ describe('headless.tinymce.themes.silver.window.SilverDialogEventTest', () => {
             menuItems: () => ({}),
             translate: I18n.translate,
             isDisabled: Fun.never,
-            getOption: (_settingName: string) => undefined
-          }
+            getOption: (_settingName: string) => undefined,
+            tooltips: {
+              getConfig: (): TooltippingTypes.TooltippingConfigSpec => {
+                return {
+                  lazySink: () => Result.value(hook.component()),
+                  tooltipDom: { tag: 'div' },
+                  tooltipComponents: getTooltipComponents()
+                };
+              },
+              getComponents: getTooltipComponents,
+            }
+          } as UiFactoryBackstageProviders
         },
         dialog: {
           isDraggableModal: Fun.never

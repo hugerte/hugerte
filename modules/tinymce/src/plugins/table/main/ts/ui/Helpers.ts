@@ -54,7 +54,6 @@ export type RowData = {
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export type CellData = {
   readonly width: string;
-  readonly height: string;
   readonly scope: string;
   readonly celltype: 'td' | 'th';
   readonly class: string;
@@ -92,7 +91,7 @@ const getSharedValues = <T extends Record<string, string>>(data: T[]): T => {
         const comparisonValue = baseData[key];
         if (comparisonValue !== '' && key === itemKey) {
           if (comparisonValue !== itemValue) {
-            baseData[key] = '';
+            baseData[key] = key === 'class' ? 'mce-no-match' : '';
           }
         }
       });
@@ -224,7 +223,6 @@ const extractDataFromCellElement = (editor: Editor, cell: HTMLTableCellElement, 
 
   return {
     width: getStyle(colElm, 'width'),
-    height: getStyle(cell, 'height'),
     scope: dom.getAttrib(cell, 'scope'),
     celltype: Utils.getNodeName(cell) as 'td' | 'th',
     class: dom.getAttrib(cell, 'class', ''),

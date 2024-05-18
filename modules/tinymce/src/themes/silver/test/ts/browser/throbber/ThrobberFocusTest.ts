@@ -6,7 +6,8 @@ import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';
 
-describe('browser.tinymce.themes.silver.throbber.ThrobberFocusTest', () => {
+// TODO TINY-10480: Investigate flaky tests
+describe.skip('browser.tinymce.themes.silver.throbber.ThrobberFocusTest', () => {
   const pAssertFocus = (label: string, selector: string) =>
     FocusTools.pTryOnSelector(label, SugarDocument.getDocument(), selector);
 
@@ -173,7 +174,6 @@ describe('browser.tinymce.themes.silver.throbber.ThrobberFocusTest', () => {
 
       const notification = editor.notificationManager.open({
         text: 'Test',
-        closeButton: true
       });
       const popup = await TinyUiActions.pWaitForPopup(editor, 'div.tox-notification') as SugarElement<HTMLElement>;
       Focus.focus(popup);

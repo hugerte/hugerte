@@ -60,10 +60,10 @@ const getSpec = (editor: Editor): SelectSpec => {
 };
 
 const createAlignButton = (editor: Editor, backstage: UiFactoryBackstage): SketchSpec =>
-  createSelectButton(editor, backstage, getSpec(editor), btnTooltip, 'AlignTextUpdate');
+  createSelectButton(editor, backstage, getSpec(editor), btnTooltip, 'AlignTextUpdate', 'align');
 
 const createAlignMenu = (editor: Editor, backstage: UiFactoryBackstage): void => {
-  const menuItems = createMenuItems(editor, backstage, getSpec(editor));
+  const menuItems = createMenuItems(backstage, getSpec(editor));
   editor.ui.registry.addNestedMenuItem('align', {
     text: backstage.shared.providers.translate(menuTitle),
     onSetup: onSetupEditableToggle(editor),

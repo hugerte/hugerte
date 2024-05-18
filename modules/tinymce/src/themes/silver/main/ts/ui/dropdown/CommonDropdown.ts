@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, CustomEvent, Dropdown as AlloyDropdown, Focusing, GuiFactory, Highlighting,
-  Keying, MaxHeight, Memento, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, TieredData, Unselecting
+  Keying, MaxHeight, Memento, NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, TieredData, Tooltipping, Unselecting
 } from '@ephox/alloy';
 import { Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Future, Id, Merger, Optional } from '@ephox/katamari';
+import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@ephox/katamari';
 import { EventArgs, SugarElement } from '@ephox/sugar';
 
 import { toolbarButtonEventOrder } from 'tinymce/themes/silver/ui/toolbar/button/ButtonEvents';
@@ -46,13 +46,15 @@ export interface CommonDropdownSpec<T> {
   readonly classes: string[];
   readonly dropdownBehaviours: Behaviour.NamedConfiguredBehaviour<any, any, any>[];
   readonly searchable?: boolean;
+  readonly ariaLabel: Optional<string>;
 }
 
 // TODO: Use renderCommonStructure here.
 const renderCommonDropdown = <T>(
   spec: CommonDropdownSpec<T>,
   prefix: string,
-  sharedBackstage: UiFactoryBackstageShared
+  sharedBackstage: UiFactoryBackstageShared,
+  btnName?: string
 ): SketchSpec => {
   const editorOffCell = Cell(Fun.noop);
 
@@ -104,14 +106,12 @@ const renderCommonDropdown = <T>(
 
   const role = spec.role.fold(() => ({}), (role) => ({ role }));
 
-  const tooltipAttributes = spec.tooltip.fold(
+  const ariaLabelAttribute = spec.ariaLabel.fold(
     () => ({}),
-    (tooltip) => {
-      const translatedTooltip = sharedBackstage.providers.translate(tooltip);
+    (ariaLabel) => {
+      const translatedAriaLabel = sharedBackstage.providers.translate(ariaLabel);
       return {
-        // TODO: AP-213 Implement tooltips manually, rather than relying on title
-        'title': translatedTooltip,
-        'aria-label': translatedTooltip
+        'aria-label': translatedAriaLabel
       };
     }
   );
@@ -122,6 +122,8 @@ const renderCommonDropdown = <T>(
   }, sharedBackstage.providers.icons);
 
   const fixWidthBehaviourName = Id.generate('common-button-display-events');
+  // Should we use Id.generate here?
+  const customEventsName = 'dropdown-events';
 
   const memDropdown = Memento.record(
     AlloyDropdown.sketch({
@@ -131,7 +133,8 @@ const renderCommonDropdown = <T>(
         tag: 'button',
         classes: [ prefix, `${prefix}--select` ].concat(Arr.map(spec.classes, (c) => `${prefix}--${c}`)),
         attributes: {
-          ...tooltipAttributes
+          ...ariaLabelAttribute,
+          ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {})
         }
       },
       components: componentRenderPipeline([
@@ -159,9 +162,15 @@ const renderCommonDropdown = <T>(
         Unselecting.config({}),
         Replacing.config({}),
 
+        ...(spec.tooltip.map((t) => Tooltipping.config(
+          sharedBackstage.providers.tooltips.getConfig({
+            tooltipText: sharedBackstage.providers.translate(t)
+          })
+        ))).toArray(),
+
         // This is the generic way to make onSetup and onDestroy call as the component is attached /
         // detached from the page/DOM.
-        AddEventsBehaviour.config('dropdown-events', [
+        AddEventsBehaviour.config(customEventsName, [
           onControlAttached(spec, editorOffCell),
           onControlDetached(spec, editorOffCell)
         ]),
@@ -189,11 +198,12 @@ const renderCommonDropdown = <T>(
         // INVESTIGATE (TINY-9014): Explain why we need the events in this order.
         // Ideally, have a test that fails when they are in a different order if order
         // is important
-        mousedown: [ 'focusing', 'alloy.base.behaviour', 'item-type-events', 'normal-dropdown-events' ],
+        [NativeEvents.mousedown()]: [ 'focusing', 'alloy.base.behaviour', 'item-type-events', 'normal-dropdown-events' ],
         [SystemEvents.attachedToDom()]: [
           'toolbar-button-events',
-          'dropdown-events',
-          fixWidthBehaviourName
+          Tooltipping.name(),
+          customEventsName,
+          fixWidthBehaviourName,
         ]
       }),
 

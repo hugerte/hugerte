@@ -31,6 +31,7 @@ describe('browser.tinymce.themes.silver.editor.autocomplete.AutocompleteTest', (
   const store = TestStore();
   const hook = TinyHooks.bddSetupLight<Editor>({
     base_url: '/project/tinymce/js/tinymce',
+    text_patterns: [], // Since we define # that is used by text pattern we get a conflict
     setup: (ed: Editor) => {
       ed.ui.registry.addAutocompleter('Plus1', {
         trigger: '+',
@@ -310,12 +311,18 @@ describe('browser.tinymce.themes.silver.editor.autocomplete.AutocompleteTest', (
     } else {
       TinySelections.setCursor(editor, [ 0, 0 ], initialContent.length);
     }
-    TinyContentActions.keypress(editor, triggerOverride || details.triggerChar.charCodeAt(0));
-    // Wait 50ms for the keypress to process
-    await Waiter.pWait(50);
+
+    if (triggerOverride) {
+      TinyContentActions.keystroke(editor, triggerOverride);
+    } else {
+      editor.dispatch('input');
+      // Wait 50ms for the input to process
+      await Waiter.pWait(50);
+    }
+
     if (Type.isNonNullable(additionalContent)) {
       editor.execCommand('mceInsertContent', false, additionalContent);
-      TinyContentActions.keypress(editor, additionalContent.charCodeAt(additionalContent.length - 1));
+      editor.dispatch('input');
     }
   };
 
@@ -631,7 +638,7 @@ describe('browser.tinymce.themes.silver.editor.autocomplete.AutocompleteTest', (
     await pSetContentAndTrigger(editor, {
       triggerChar: '=',
       initialContent: 'test=tw'
-    }, 'w'.charCodeAt(0));
+    });
     await pAssertAutocompleterStructure({
       type: 'grid',
       groups: [
@@ -645,7 +652,7 @@ describe('browser.tinymce.themes.silver.editor.autocomplete.AutocompleteTest', (
     await pSetContentAndTrigger(editor, {
       triggerChar: '=',
       initialContent: 'test=twe'
-    }, 'e'.charCodeAt(0));
+    });
     await pWaitForAutocompleteToClose();
     TinyAssertions.assertContent(editor, '<p>test=twe</p>');
     // Check the autocompleter is shown again when deleting a char
@@ -678,7 +685,7 @@ describe('browser.tinymce.themes.silver.editor.autocomplete.AutocompleteTest', (
           (s, str, arr) => s.element('div', {
             classes: [ arr.has('tox-collection__item') ],
             attrs: {
-              title: str.is('equals sign')
+              'aria-label': str.is('equals sign')
             },
             children: [
               s.element('div', {

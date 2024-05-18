@@ -12,7 +12,8 @@ describe('browser.tinymce.plugins.media.ContentFormatsTest', () => {
     media_live_embeds: false,
     document_base_url: '/tinymce/tinymce/trunk/tests/',
     extended_valid_elements: 'script[src|type]',
-    allow_conditional_comments: true
+    allow_conditional_comments: true,
+    convert_unsafe_embeds: false
   };
   const hook = TinyHooks.bddSetupLight<Editor>(settings, [ Plugin ]);
 
@@ -85,7 +86,7 @@ describe('browser.tinymce.plugins.media.ContentFormatsTest', () => {
       '<iframe src="320x240.ogg" allowfullscreen>text<a href="#">link</a></iframe>'
     );
     TinyAssertions.assertContent(editor,
-      '<p><iframe src="320x240.ogg" width="300" height="150" allowfullscreen="allowfullscreen">text<a href="#">link</a></iframe></p>'
+      '<p><iframe src="320x240.ogg" width="300" height="150" sandbox="" allowfullscreen="allowfullscreen">text<a href="#">link</a></iframe></p>'
     );
     McEditor.remove(editor);
   });

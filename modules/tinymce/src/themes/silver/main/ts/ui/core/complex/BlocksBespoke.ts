@@ -60,11 +60,11 @@ const getSpec = (editor: Editor): SelectSpec => {
 };
 
 const createBlocksButton = (editor: Editor, backstage: UiFactoryBackstage): SketchSpec =>
-  createSelectButton(editor, backstage, getSpec(editor), btnTooltip, 'BlocksTextUpdate');
+  createSelectButton(editor, backstage, getSpec(editor), btnTooltip, 'BlocksTextUpdate', 'blocks');
 
 // FIX: Test this!
 const createBlocksMenu = (editor: Editor, backstage: UiFactoryBackstage): void => {
-  const menuItems = createMenuItems(editor, backstage, getSpec(editor));
+  const menuItems = createMenuItems(backstage, getSpec(editor));
   editor.ui.registry.addNestedMenuItem('blocks', {
     text: menuTitle,
     onSetup: onSetupEditableToggle(editor),

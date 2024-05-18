@@ -67,8 +67,9 @@ export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, 
         uid: sketchSpec.uid,
         text: initialItem.map((item) => item.text),
         icon: Optional.none(),
-        tooltip: spec.label,
+        tooltip: Optional.none(),
         role: Optional.none(),
+        ariaLabel: spec.label,
         fetch: (comp, callback) => {
           const items = fetchItems(comp, spec.name, spec.items, Representing.getValue(comp));
           callback(

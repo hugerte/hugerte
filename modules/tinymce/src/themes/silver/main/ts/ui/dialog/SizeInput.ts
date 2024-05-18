@@ -1,7 +1,7 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, CustomEvent, Disabling,
   FormCoupledInputs as AlloyFormCoupledInputs,
-  FormField as AlloyFormField, GuiFactory, Input as AlloyInput, NativeEvents, Representing, SketchSpec, Tabstopping
+  FormField as AlloyFormField, GuiFactory, Input as AlloyInput, NativeEvents, Representing, SketchSpec, Tabstopping, Tooltipping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
 import { Id, Unicode } from '@ephox/katamari';
@@ -27,12 +27,15 @@ export const renderSizeInput = (spec: SizeInputSpec, providersBackstage: UiFacto
   const makeIcon = (iconName: string) =>
     Icons.render(iconName, { tag: 'span', classes: [ 'tox-icon', 'tox-lock-icon__' + iconName ] }, providersBackstage.icons);
 
+  const label = spec.label.getOr('Constrain proportions');
+  const translatedLabel = providersBackstage.translate(label);
   const pLock = AlloyFormCoupledInputs.parts.lock({
     dom: {
       tag: 'button',
       classes: [ 'tox-lock', 'tox-button', 'tox-button--naked', 'tox-button--icon' ],
       attributes: {
-        title: providersBackstage.translate(spec.label.getOr('Constrain proportions'))  // TODO: tooltips AP-213
+        'aria-label': translatedLabel,
+        'data-mce-name': label
       }
     },
     components: [
@@ -44,7 +47,12 @@ export const renderSizeInput = (spec: SizeInputSpec, providersBackstage: UiFacto
         disabled: () => !spec.enabled || providersBackstage.isDisabled()
       }),
       ReadOnly.receivingConfig(),
-      Tabstopping.config({})
+      Tabstopping.config({}),
+      Tooltipping.config(
+        providersBackstage.tooltips.getConfig({
+          tooltipText: translatedLabel
+        })
+      )
     ])
   });
 
