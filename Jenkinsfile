@@ -170,7 +170,18 @@ timestamps {
       gitMerge(primaryBranch)
     }
 
-    stage('Install') {
+    def platforms = [
+      [ os: "windows", browser: "chrome" ],
+      [ os: "windows", browser: "firefox" ]
+      // [ os: "windows", browser: "MicrosoftEdge" ],
+      // [ os: "macos", browser: "safari" ],
+      // [ os: "macos", browser: "chrome" ],
+      // [ os: "macos", browser: "firefox" ]
+    ]
+
+    def cleanAndInstall = {
+      echo "Installing tools"
+      exec("git clean -fdx modules scratch js dist")
       yarnInstall()
     }
 
