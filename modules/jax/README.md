@@ -124,4 +124,4 @@ Ajax.get(
 
 `$ yarn test`
 
-These tests require [bedrock](https://www.npmjs.com/package/@hugemce/bedrock) and chrome.
+These tests require [bedrock](https://www.npmjs.com/package/@ephox/bedrock) and chrome.

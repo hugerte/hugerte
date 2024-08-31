@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock';
+import { UnitTest } from '@ephox/bedrock';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
 import { XXX } from 'hugemce/alloy/api/behaviour/XXX';

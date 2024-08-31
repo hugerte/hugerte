@@ -1,4 +1,4 @@
-import { Failure } from '@hugemce/bedrock-common';
+import { Failure } from '@ephox/bedrock-common';
 import { Arr, Fun, Result } from '@hugemce/katamari';
 
 import * as AsyncActions from '../pipe/AsyncActions';

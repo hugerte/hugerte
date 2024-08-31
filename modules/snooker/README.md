@@ -23,7 +23,7 @@
 `TableRender`: Creates a table.
 `TableResize`: Provides resize events for the resize bars.
 # Tests
-`snooker` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run tests.
+`snooker` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run tests.
 ## Running Tests
 `$ yarn test-manual`
 `$ yarn test`

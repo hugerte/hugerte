@@ -1,4 +1,4 @@
-import { Failure } from '@hugemce/bedrock-common';
+import { Failure } from '@ephox/bedrock-common';
 
 import * as AsyncActions from '../pipe/AsyncActions';
 import * as GeneralActions from '../pipe/GeneralActions';

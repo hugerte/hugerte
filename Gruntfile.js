@@ -219,6 +219,6 @@ Top-level grunt has been replaced by 'yarn build', and the output has moved from
   require('load-grunt-tasks')(grunt, {
     requireResolution: true,
     config: 'package.json',
-    pattern: ['@hugemce/bedrock-server', 'grunt-shell']
+    pattern: ['@ephox/bedrock-server', 'grunt-shell']
   });
 };
