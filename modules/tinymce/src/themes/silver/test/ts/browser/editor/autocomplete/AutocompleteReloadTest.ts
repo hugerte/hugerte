@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Arr, Obj } from '@hugemce/katamari';
 import { TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 

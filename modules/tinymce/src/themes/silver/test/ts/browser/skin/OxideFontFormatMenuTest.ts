@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keys } from '@hugemce/agar';
 import { TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { SugarDocument } from '@hugemce/sugar';
 import { TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 

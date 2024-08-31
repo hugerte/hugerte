@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import fc from 'fast-check';
 
 import * as Arr from 'hugemce/katamari/api/Arr';

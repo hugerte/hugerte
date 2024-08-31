@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Waiter } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Cell } from '@hugemce/katamari';
 import { TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

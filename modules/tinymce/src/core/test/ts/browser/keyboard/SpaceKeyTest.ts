@@ -1,5 +1,5 @@
 import { Keys } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

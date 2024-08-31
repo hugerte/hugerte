@@ -1,5 +1,5 @@
 import { Keys } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';

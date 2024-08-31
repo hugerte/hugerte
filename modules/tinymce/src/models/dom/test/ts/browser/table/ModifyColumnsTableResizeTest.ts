@@ -1,4 +1,4 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { SelectorFind, Width } from '@hugemce/sugar';
 import { TinyAssertions, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

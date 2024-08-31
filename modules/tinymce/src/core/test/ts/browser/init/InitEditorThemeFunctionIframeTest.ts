@@ -1,5 +1,5 @@
 import { Assertions } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Insert, SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
 import { TinyAssertions, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 

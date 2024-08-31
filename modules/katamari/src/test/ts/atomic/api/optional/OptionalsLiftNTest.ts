@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 
 import * as Fun from 'hugemce/katamari/api/Fun';
 import { Optional } from 'hugemce/katamari/api/Optional';

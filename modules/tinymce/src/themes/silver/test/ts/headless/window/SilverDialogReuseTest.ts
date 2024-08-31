@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, FocusTools, StructAssert, TestStore, UiFinder } from '@hugemce/agar';
-import { afterEach, before, describe, it } from '@hugemce/bedrock-client';
+import { afterEach, before, describe, it } from '@ephox/bedrock-client';
 import { Dialog as BridgeSpec } from '@hugemce/bridge';
 import { Optional } from '@hugemce/katamari';
 import { SugarBody, SugarDocument } from '@hugemce/sugar';

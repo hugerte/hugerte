@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
 import * as Binder from 'hugemce/porkbun/Binder';
 import { Event } from 'hugemce/porkbun/Event';

@@ -1,5 +1,5 @@
 import { Assertions, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Focus, Value } from '@hugemce/sugar';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';

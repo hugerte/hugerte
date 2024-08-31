@@ -1,4 +1,4 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { DomEvent, Insert, Remove, SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 

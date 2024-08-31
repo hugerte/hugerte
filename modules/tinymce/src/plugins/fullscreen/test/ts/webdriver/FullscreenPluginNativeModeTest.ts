@@ -1,5 +1,5 @@
 import { RealMouse, Waiter } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
+import { before, describe, it } from '@ephox/bedrock-client';
 import { TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';

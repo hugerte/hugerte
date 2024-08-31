@@ -1,5 +1,5 @@
 import { Assertions } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Fun, Optional } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { Hierarchy, SugarElement } from '@hugemce/sugar';

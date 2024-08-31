@@ -1,4 +1,4 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 
 import * as TinyLoader from 'hugemce/mcagar/api/pipeline/TinyLoader';
 

@@ -1,5 +1,5 @@
 import { Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { FieldSchema, StructureSchema } from '@hugemce/boulder';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';

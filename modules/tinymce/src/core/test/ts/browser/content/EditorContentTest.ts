@@ -1,5 +1,5 @@
 import { Waiter } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Type } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { TinyApis, TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';

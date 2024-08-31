@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
 import { GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 
 import { renderAlertBanner } from 'tinymce/themes/silver/ui/general/AlertBanner';
 

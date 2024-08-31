@@ -1,5 +1,5 @@
 import { Assertions, Cursors, Waiter } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Cell } from '@hugemce/katamari';
 import { Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

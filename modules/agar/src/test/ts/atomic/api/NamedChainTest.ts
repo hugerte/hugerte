@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Result } from '@hugemce/katamari';
 
 import { Chain } from 'hugemce/agar/api/Chain';

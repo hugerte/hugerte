@@ -1,5 +1,5 @@
 import { FocusTools } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';

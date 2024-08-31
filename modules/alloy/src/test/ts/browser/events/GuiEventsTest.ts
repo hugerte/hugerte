@@ -1,5 +1,5 @@
 import { Chain, Cleaner, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Pipeline, Step, TestStore, Touch, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Attribute, DomEvent, EventArgs, Insert, Remove, SugarElement, SugarNode, SugarText } from '@hugemce/sugar';
 
 import * as GuiEvents from 'hugemce/alloy/events/GuiEvents';

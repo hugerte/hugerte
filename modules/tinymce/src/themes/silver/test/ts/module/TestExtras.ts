@@ -1,5 +1,5 @@
 import { Attachment, Behaviour, DomFactory, Gui, GuiFactory, Positioning } from '@hugemce/alloy';
-import { after, afterEach, before } from '@hugemce/bedrock-client';
+import { after, afterEach, before } from '@ephox/bedrock-client';
 import { Fun, Optional } from '@hugemce/katamari';
 import { Class, SugarBody, SugarElement } from '@hugemce/sugar';
 

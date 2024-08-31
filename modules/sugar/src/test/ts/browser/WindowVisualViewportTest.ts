@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 
 import * as WindowVisualViewport from 'hugemce/sugar/api/view/WindowVisualViewport';

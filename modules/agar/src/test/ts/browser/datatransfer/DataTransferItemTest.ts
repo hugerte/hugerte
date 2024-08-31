@@ -1,4 +1,4 @@
-import { Assert, describe, it } from '@hugemce/bedrock-client';
+import { Assert, describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { KAssert } from '@hugemce/katamari-assertions';
 

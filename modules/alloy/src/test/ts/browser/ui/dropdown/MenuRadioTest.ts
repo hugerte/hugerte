@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, StructAssert, TestStore, UiFinder } from '@hugemce/agar';
-import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 

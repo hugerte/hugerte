@@ -1,4 +1,4 @@
-import { after, before, describe, it } from '@hugemce/bedrock-client';
+import { after, before, describe, it } from '@ephox/bedrock-client';
 import { Arr, Fun } from '@hugemce/katamari';
 import { Attribute, ContentEditable, Css, Html, Insert, SelectorFilter, SelectorFind, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
 import { assert } from 'chai';

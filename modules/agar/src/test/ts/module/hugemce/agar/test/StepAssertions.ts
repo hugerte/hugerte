@@ -1,4 +1,4 @@
-import { Assert } from '@hugemce/bedrock-client';
+import { Assert } from '@ephox/bedrock-client';
 import { Pprint } from '@hugemce/dispute';
 import { Arr, Fun, Result } from '@hugemce/katamari';
 

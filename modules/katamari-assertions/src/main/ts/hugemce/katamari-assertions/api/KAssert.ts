@@ -1,4 +1,4 @@
-import { Assert, TestLabel } from '@hugemce/bedrock-client';
+import { Assert, TestLabel } from '@ephox/bedrock-client';
 import { Testable } from '@hugemce/dispute';
 import { Optional, OptionalInstances, Result, ResultInstances } from '@hugemce/katamari';
 

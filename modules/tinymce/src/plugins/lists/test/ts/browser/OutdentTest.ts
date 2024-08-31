@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { LegacyUnit, TinyAssertions, TinySelections, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 

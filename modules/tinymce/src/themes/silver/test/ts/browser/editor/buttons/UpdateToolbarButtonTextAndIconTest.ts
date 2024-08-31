@@ -1,5 +1,5 @@
 import { Mouse } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Css, SugarElement } from '@hugemce/sugar';
 import { TinyHooks, TinyUi, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

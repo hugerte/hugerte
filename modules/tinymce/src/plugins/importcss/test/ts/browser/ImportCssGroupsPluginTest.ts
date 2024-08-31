@@ -1,5 +1,5 @@
 import { Assertions, Keys } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
+import { before, describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarDocument } from '@hugemce/sugar';
 import { McEditor, TinyDom, TinyUiActions } from '@hugemce/wrap-mcagar';

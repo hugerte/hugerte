@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Step, StructAssert, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Css } from '@hugemce/sugar';
 

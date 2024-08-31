@@ -1,5 +1,5 @@
 import { ApproxStructure, Keys } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Unicode } from '@hugemce/katamari';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 

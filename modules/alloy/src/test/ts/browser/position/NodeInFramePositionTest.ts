@@ -1,5 +1,5 @@
 import { Chain, Cursors, Guard, NamedChain } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Optional, Result } from '@hugemce/katamari';
 import { Css, DomEvent, SelectorFind, SimRange, SugarElement, WindowSelection } from '@hugemce/sugar';
 

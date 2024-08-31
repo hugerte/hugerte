@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { SugarBody } from '@hugemce/sugar';
 import { McEditor } from '@hugemce/wrap-mcagar';

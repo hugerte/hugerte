@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { ApproxStructure, Assertions, Keys, UiFinder } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Cell, Fun } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { SugarBody } from '@hugemce/sugar';

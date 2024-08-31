@@ -1,5 +1,5 @@
 import { ApproxStructure, DragnDrop } from '@hugemce/agar';
-import { before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { SelectorFind } from '@hugemce/sugar';
 import { TinyAssertions, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

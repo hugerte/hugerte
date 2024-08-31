@@ -1,6 +1,6 @@
 import { Mouse, UiFinder, Waiter } from '@hugemce/agar';
 import { Boxes } from '@hugemce/alloy';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { Html, SelectorFilter, SelectorFind, SimSelection, SugarBody, SugarElement, WindowSelection } from '@hugemce/sugar';

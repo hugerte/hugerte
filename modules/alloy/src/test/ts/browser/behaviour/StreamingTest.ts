@@ -1,5 +1,5 @@
 import { GeneralSteps, Mouse, Step, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
 import { Streaming } from 'hugemce/alloy/api/behaviour/Streaming';

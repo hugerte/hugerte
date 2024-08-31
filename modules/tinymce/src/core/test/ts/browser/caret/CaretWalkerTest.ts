@@ -1,4 +1,4 @@
-import { before, describe, it } from '@hugemce/bedrock-client';
+import { before, describe, it } from '@ephox/bedrock-client';
 
 import CaretPosition from 'tinymce/core/caret/CaretPosition';
 import { CaretWalker } from 'tinymce/core/caret/CaretWalker';

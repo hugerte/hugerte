@@ -1,5 +1,5 @@
 import { Chain, NamedChain } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 
 import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';

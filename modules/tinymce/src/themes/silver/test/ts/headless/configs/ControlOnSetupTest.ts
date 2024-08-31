@@ -1,5 +1,5 @@
 import { Behaviour, GuiFactory, Replacing, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Cell, Fun } from '@hugemce/katamari';
 
 import { SimpleBehaviours } from 'tinymce/themes/silver/ui/alien/SimpleBehaviours';

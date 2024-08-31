@@ -1,5 +1,5 @@
 import { Logger, Step, StepSequence } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 
 import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
 import { AllowBubbling } from 'hugemce/alloy/api/behaviour/AllowBubbling';

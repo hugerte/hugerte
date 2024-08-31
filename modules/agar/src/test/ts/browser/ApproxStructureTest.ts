@@ -1,4 +1,4 @@
-import { Assert, describe, it } from '@hugemce/bedrock-client';
+import { Assert, describe, it } from '@ephox/bedrock-client';
 import { InsertAll, SugarElement } from '@hugemce/sugar';
 
 import * as ApproxStructure from 'hugemce/agar/api/ApproxStructure';

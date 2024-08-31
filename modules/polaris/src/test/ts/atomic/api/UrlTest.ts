@@ -1,4 +1,4 @@
-import { Assert, context, describe, it } from '@hugemce/bedrock-client';
+import { Assert, context, describe, it } from '@ephox/bedrock-client';
 import { Obj } from '@hugemce/katamari';
 
 import * as Url from 'hugemce/polaris/api/Url';

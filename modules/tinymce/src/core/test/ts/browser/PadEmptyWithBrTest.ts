@@ -1,4 +1,4 @@
-import { describe, context, it } from '@hugemce/bedrock-client';
+import { describe, context, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { TinyAssertions, TinySelections, TinyHooks } from '@hugemce/wrap-mcagar';
 

@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Chain, Logger, Step, StructAssert, UiFinder, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Future, Optional } from '@hugemce/katamari';
 import { Class, SugarElement } from '@hugemce/sugar';
 

@@ -1,4 +1,4 @@
-import { after, afterEach, before } from '@hugemce/bedrock-client';
+import { after, afterEach, before } from '@ephox/bedrock-client';
 import { Arr, Fun, Optional } from '@hugemce/katamari';
 import { Insert, Remove, SugarBody, SugarElement, SugarShadowDom } from '@hugemce/sugar';
 

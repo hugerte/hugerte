@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
 import * as InsertAll from 'hugemce/sugar/api/dom/InsertAll';
 import * as Remove from 'hugemce/sugar/api/dom/Remove';

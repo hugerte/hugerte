@@ -1,5 +1,5 @@
 import { Chain, Guard, Mouse, NamedChain, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Optional, Result } from '@hugemce/katamari';
 import { Css, Scroll, SugarPosition } from '@hugemce/sugar';
 

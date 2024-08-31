@@ -1,5 +1,5 @@
 import { Assertions, Logger, Pipeline, Step, TestLogs } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { SugarShadowDom } from '@hugemce/sugar';
 
 import { Editor } from 'hugemce/mcagar/alien/EditorTypes';

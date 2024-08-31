@@ -1,5 +1,5 @@
 import { Chain, FocusTools, GeneralSteps, Logger, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 
 import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';

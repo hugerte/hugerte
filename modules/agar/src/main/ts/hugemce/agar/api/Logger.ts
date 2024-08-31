@@ -1,4 +1,4 @@
-import { TestLabel } from '@hugemce/bedrock-client';
+import { TestLabel } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 
 import * as ErrorTypes from '../alien/ErrorTypes';

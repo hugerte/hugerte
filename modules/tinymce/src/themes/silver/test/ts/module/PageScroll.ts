@@ -1,4 +1,4 @@
-import { after, before } from '@hugemce/bedrock-client';
+import { after, before } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { Insert, Remove, SugarElement } from '@hugemce/sugar';
 import { TinyDom } from '@hugemce/wrap-mcagar';

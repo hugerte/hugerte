@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Css, Dimension, SelectorFilter, SelectorFind, SugarElement } from '@hugemce/sugar';
 import { TinyDom, TinyHooks, TinyState } from '@hugemce/wrap-mcagar';

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Waiter } from '@hugemce/agar';
 import { AlloyComponent, Composing, Container, GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, context, it } from '@hugemce/bedrock-client';
+import { describe, context, it } from '@ephox/bedrock-client';
 import { Arr, Fun, Optional } from '@hugemce/katamari';
 import { assert } from 'chai';
 

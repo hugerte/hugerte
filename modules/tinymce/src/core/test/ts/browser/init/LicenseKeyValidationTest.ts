@@ -1,5 +1,5 @@
 
-import { after, afterEach, before, context, describe, it } from '@hugemce/bedrock-client';
+import { after, afterEach, before, context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Fun, Global } from '@hugemce/katamari';
 import { TinyHooks } from '@hugemce/mcagar';
 import { assert } from 'chai';

@@ -1,5 +1,5 @@
 import { Mouse } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Cell } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { TableGridSize } from '@hugemce/snooker';

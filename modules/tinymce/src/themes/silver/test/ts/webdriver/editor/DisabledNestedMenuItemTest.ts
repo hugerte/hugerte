@@ -1,5 +1,5 @@
 import { Keys, Mouse, RealKeys, UiFinder, Waiter } from '@hugemce/agar';
-import { afterEach, describe, it } from '@hugemce/bedrock-client';
+import { afterEach, describe, it } from '@ephox/bedrock-client';
 import { SugarBody } from '@hugemce/sugar';
 import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 

@@ -1,4 +1,4 @@
-import { before, describe, it } from '@hugemce/bedrock-client';
+import { before, describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { Class } from '@hugemce/sugar';
 import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';

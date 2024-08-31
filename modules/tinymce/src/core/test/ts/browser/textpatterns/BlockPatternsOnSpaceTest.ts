@@ -1,4 +1,4 @@
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';

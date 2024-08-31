@@ -1,5 +1,5 @@
 import { Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { afterEach, context, describe, it } from '@hugemce/bedrock-client';
+import { afterEach, context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Cell } from '@hugemce/katamari';
 import { Attribute, Height, Hierarchy, SelectorFind, SugarElement, Width } from '@hugemce/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

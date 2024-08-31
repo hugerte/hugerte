@@ -1,5 +1,5 @@
 import { Cursors } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Type } from '@hugemce/katamari';
 import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
 

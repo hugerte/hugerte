@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
 import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
 import { AttributeProperty } from 'hugemce/sugar/api/properties/AttributeProperty';

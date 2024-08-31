@@ -1,4 +1,4 @@
-import { Assert } from '@hugemce/bedrock-client';
+import { Assert } from '@ephox/bedrock-client';
 import { Arr, Result } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 

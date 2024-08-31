@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@hugemce/agar';
 import { AlloyComponent, Disabling, GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 import { Attribute } from '@hugemce/sugar';
 import { assert } from 'chai';

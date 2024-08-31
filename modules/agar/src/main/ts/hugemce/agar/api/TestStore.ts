@@ -1,4 +1,4 @@
-import { Assert } from '@hugemce/bedrock-client';
+import { Assert } from '@ephox/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 
 import { Chain } from './Chain';

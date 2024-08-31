@@ -1,5 +1,5 @@
 import { Assertions, Cursors, Mouse } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Hierarchy, Html, Remove, Replication, SelectorFilter, SugarElement, Insert, SugarBody, DomEvent } from '@hugemce/sugar';
 import { McEditor, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

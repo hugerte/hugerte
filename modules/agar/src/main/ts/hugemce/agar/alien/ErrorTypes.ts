@@ -1,4 +1,4 @@
-import { TestLabel } from '@hugemce/bedrock-client';
+import { TestLabel } from '@ephox/bedrock-client';
 import { Type } from '@hugemce/katamari';
 
 // TODO: tighten param and return type

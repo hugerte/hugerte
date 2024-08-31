@@ -1,5 +1,5 @@
 import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 
 import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';

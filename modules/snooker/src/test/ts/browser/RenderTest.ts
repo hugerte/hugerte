@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Logger, Pipeline, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 
 import * as Render from 'hugemce/snooker/operate/Render';
 

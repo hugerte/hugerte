@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Singleton } from '@hugemce/katamari';
 import { Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 

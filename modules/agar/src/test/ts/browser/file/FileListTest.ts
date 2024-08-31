@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Type } from '@hugemce/katamari';
 
 import { createFile } from 'hugemce/agar/api/Files';

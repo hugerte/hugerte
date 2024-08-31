@@ -1,5 +1,5 @@
 import { Assertions, Guard, Step } from '@hugemce/agar';
-import { Assert } from '@hugemce/bedrock-client';
+import { Assert } from '@ephox/bedrock-client';
 
 const sAssertFailIs = <T>(label: string, expected: string, f: () => void): Step<T, T> =>
   Step.control(

@@ -1,4 +1,4 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 import { Class, Css, Html, Insert, Remove, SugarElement } from '@hugemce/sugar';
 

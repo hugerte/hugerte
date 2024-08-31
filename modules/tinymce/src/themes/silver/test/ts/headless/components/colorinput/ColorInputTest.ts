@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@hugemce/agar';
 import { AlloyComponent, AlloyTriggers, Container, GuiFactory, Invalidating, NativeEvents, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Fun, Optional } from '@hugemce/katamari';
 import { SelectorFind, SugarDocument, Traverse } from '@hugemce/sugar';
 import { assert } from 'chai';

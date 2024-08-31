@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Testable } from '@hugemce/dispute';
 import fc from 'fast-check';
 

@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional, Optionals } from '@hugemce/katamari';
 
 import { WordScope } from 'hugemce/robin/data/WordScope';

@@ -1,6 +1,6 @@
 import { Mouse, TestStore, UiFinder, Waiter } from '@hugemce/agar';
 import { AlloyComponent, Behaviour, GuiFactory, ModalDialog, Positioning, TestHelpers, TooltippingTypes } from '@hugemce/alloy';
-import { before, beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { before, beforeEach, describe, it } from '@ephox/bedrock-client';
 import { ValueType } from '@hugemce/boulder';
 import { DialogManager } from '@hugemce/bridge';
 import { Fun, Optional, Result } from '@hugemce/katamari';

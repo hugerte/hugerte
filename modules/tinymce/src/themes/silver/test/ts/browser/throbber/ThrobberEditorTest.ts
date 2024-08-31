@@ -1,5 +1,5 @@
 import { UiFinder } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { SugarBody } from '@hugemce/sugar';
 import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

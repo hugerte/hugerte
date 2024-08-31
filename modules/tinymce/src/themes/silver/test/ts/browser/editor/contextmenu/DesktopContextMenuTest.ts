@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarDocument } from '@hugemce/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

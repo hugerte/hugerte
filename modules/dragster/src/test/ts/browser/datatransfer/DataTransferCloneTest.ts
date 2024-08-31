@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { KAssert } from '@hugemce/katamari-assertions';
 import { PlatformDetection } from '@hugemce/sand';
 import { assert } from 'chai';

@@ -1,5 +1,5 @@
 import { FocusTools, TestStore } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { SugarDocument, SugarElement } from '@hugemce/sugar';
 

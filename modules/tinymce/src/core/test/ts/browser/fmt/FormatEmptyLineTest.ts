@@ -1,5 +1,5 @@
 import { Keys } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Type, Unicode } from '@hugemce/katamari';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 

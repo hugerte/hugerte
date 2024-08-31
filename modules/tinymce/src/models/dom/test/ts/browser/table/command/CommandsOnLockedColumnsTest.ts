@@ -1,5 +1,5 @@
 import { ApproxStructure, Cursors } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarElement, SugarNode } from '@hugemce/sugar';
 import { TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

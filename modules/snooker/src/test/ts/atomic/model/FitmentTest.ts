@@ -1,4 +1,4 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 

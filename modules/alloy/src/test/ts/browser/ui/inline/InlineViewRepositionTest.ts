@@ -1,5 +1,5 @@
 import { Assertions, GeneralSteps, Logger, Step, UiFinder, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Optional, Result } from '@hugemce/katamari';
 import { Css, SugarElement } from '@hugemce/sugar';
 

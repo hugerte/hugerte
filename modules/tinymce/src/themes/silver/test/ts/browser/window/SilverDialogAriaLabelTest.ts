@@ -1,6 +1,6 @@
 import { UiFinder } from '@hugemce/agar';
 import { TestHelpers } from '@hugemce/alloy';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Attribute, SugarBody, SugarDocument, SugarElement } from '@hugemce/sugar';
 import { TinyHooks } from '@hugemce/wrap-mcagar';

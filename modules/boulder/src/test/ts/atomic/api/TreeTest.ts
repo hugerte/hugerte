@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
 import * as FieldPresence from 'hugemce/boulder/api/FieldPresence';
 import * as FieldSchema from 'hugemce/boulder/api/FieldSchema';

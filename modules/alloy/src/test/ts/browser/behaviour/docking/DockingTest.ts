@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Waiter } from '@hugemce/agar';
-import { after, before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { DomEvent, EventUnbinder, SugarElement } from '@hugemce/sugar';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';

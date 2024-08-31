@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Value } from '@hugemce/sugar';
 
 import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';

@@ -1,5 +1,5 @@
 import { ApproxStructure } from '@hugemce/agar';
-import { before, context, describe, it } from '@hugemce/bedrock-client';
+import { before, context, describe, it } from '@ephox/bedrock-client';
 import { Obj } from '@hugemce/katamari';
 import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 

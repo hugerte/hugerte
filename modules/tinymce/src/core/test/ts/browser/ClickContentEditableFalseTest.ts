@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Hierarchy } from '@hugemce/sugar';
 import { TinyAssertions, TinyContentActions, TinySelections, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 

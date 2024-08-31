@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Hierarchy, Html, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, UiFinder, Waiter } from '@hugemce/agar';
 import { Boxes } from '@hugemce/alloy';
-import { after, before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Strings } from '@hugemce/katamari';
 import { Class, Css, Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement, Traverse } from '@hugemce/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

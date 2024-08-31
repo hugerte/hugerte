@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { FieldSchema } from '@hugemce/boulder';
 import { Cell, Fun, Obj } from '@hugemce/katamari';
 

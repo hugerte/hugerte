@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
 import { Gene } from 'hugemce/boss/api/Gene';
 import { TestUniverse } from 'hugemce/boss/api/TestUniverse';

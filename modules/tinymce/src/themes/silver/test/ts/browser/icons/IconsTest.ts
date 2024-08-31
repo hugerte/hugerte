@@ -1,5 +1,5 @@
 import { SimpleOrSketchSpec } from '@hugemce/alloy';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 import { TinyHooks } from '@hugemce/wrap-mcagar';
 import { getAll as getAllOxide } from '@tinymce/oxide-icons-default';

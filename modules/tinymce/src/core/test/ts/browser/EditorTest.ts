@@ -1,5 +1,5 @@
 import { UiFinder } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { Attribute, Class, SugarBody } from '@hugemce/sugar';

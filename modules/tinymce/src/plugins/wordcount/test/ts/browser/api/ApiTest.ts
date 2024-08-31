@@ -1,4 +1,4 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Type } from '@hugemce/katamari';
 import { TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

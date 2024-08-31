@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { DomUniverse, Universe } from '@hugemce/boss';
 import { Arr, Fun } from '@hugemce/katamari';
 import { SugarElement, Traverse } from '@hugemce/sugar';

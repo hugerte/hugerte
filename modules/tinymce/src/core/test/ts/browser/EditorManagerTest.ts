@@ -1,4 +1,4 @@
-import { after, afterEach, before, describe, it } from '@hugemce/bedrock-client';
+import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
 import { Remove, Selectors } from '@hugemce/sugar';
 import { assert } from 'chai';
 import 'tinymce';

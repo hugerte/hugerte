@@ -1,5 +1,5 @@
 import { UiFinder } from '@hugemce/agar';
-import { Assert, describe, it } from '@hugemce/bedrock-client';
+import { Assert, describe, it } from '@ephox/bedrock-client';
 import { SugarBody } from '@hugemce/sugar';
 import { McEditor } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

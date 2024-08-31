@@ -1,5 +1,5 @@
 import { FocusTools, RealKeys, RealMouse } from '@hugemce/agar';
-import { after, afterEach, before, context, describe, it } from '@hugemce/bedrock-client';
+import { after, afterEach, before, context, describe, it } from '@ephox/bedrock-client';
 import { Class, SugarDocument } from '@hugemce/sugar';
 import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

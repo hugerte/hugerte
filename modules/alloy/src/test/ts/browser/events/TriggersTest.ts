@@ -1,5 +1,5 @@
 import { Assertions, Logger, Pipeline, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Obj } from '@hugemce/katamari';
 import { Attribute, EventArgs, Html, Insert, SelectorFind, SugarElement } from '@hugemce/sugar';
 

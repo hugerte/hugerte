@@ -1,5 +1,5 @@
 import { RealKeys } from '@hugemce/agar';
-import { before, context, describe, it } from '@hugemce/bedrock-client';
+import { before, context, describe, it } from '@ephox/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 

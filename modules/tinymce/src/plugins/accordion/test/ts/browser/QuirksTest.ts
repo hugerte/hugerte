@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 

@@ -1,5 +1,5 @@
 import { Chain, Logger, Mouse, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Classes, EventArgs, SelectorFind } from '@hugemce/sugar';
 
 import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';

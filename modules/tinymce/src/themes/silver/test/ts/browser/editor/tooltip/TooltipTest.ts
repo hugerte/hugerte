@@ -1,5 +1,5 @@
 import { Waiter } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Fun } from '@hugemce/katamari';
 import { SugarElement, TextContent } from '@hugemce/sugar';
 import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';

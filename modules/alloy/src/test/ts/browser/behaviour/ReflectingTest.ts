@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Chain, Step, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Optional } from '@hugemce/katamari';
 
 import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';

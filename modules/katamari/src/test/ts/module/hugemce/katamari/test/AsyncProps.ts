@@ -1,5 +1,5 @@
 /* eslint-disable @tinymce/no-unimported-promise */
-import { Assert } from '@hugemce/bedrock-client';
+import { Assert } from '@ephox/bedrock-client';
 import { Testable } from '@hugemce/dispute';
 
 type Testable<A> = Testable.Testable<A>;

@@ -1,5 +1,5 @@
 import { Assertions, Chain, Pipeline, Step, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 
 import { Editor as EditorType } from 'hugemce/mcagar/alien/EditorTypes';
 import * as McEditor from 'hugemce/mcagar/api/McEditor';

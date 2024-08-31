@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, TestStore } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Fun, Optional } from '@hugemce/katamari';
 import { Focus, SugarElement } from '@hugemce/sugar';
 

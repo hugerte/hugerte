@@ -1,5 +1,5 @@
 import { FocusTools, Keys, Waiter } from '@hugemce/agar';
-import { describe, it, before, afterEach, context } from '@hugemce/bedrock-client';
+import { describe, it, before, afterEach, context } from '@ephox/bedrock-client';
 import { SugarDocument } from '@hugemce/sugar';
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 

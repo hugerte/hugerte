@@ -1,5 +1,5 @@
 import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Future, Optional, Result } from '@hugemce/katamari';
 import { Focus } from '@hugemce/sugar';
 

@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder, Waiter } from '@hugemce/agar';
-import { before, context, describe, it } from '@hugemce/bedrock-client';
+import { before, context, describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';

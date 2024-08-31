@@ -1,5 +1,5 @@
 import { UiFinder } from '@hugemce/agar';
-import { afterEach, context, describe, it } from '@hugemce/bedrock-client';
+import { afterEach, context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Type } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { Attribute, Classes, Css, Html, SelectorFind, SugarBody, SugarDocument, SugarElement, SugarShadowDom, Traverse } from '@hugemce/sugar';

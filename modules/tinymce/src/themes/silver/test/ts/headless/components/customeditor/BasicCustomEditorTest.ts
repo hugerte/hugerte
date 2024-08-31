@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Waiter } from '@hugemce/agar';
 import { GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { after, before, describe, it } from '@hugemce/bedrock-client';
+import { after, before, describe, it } from '@ephox/bedrock-client';
 import { Cell, Fun, Global, Optional } from '@hugemce/katamari';
 import { Class, SugarElement } from '@hugemce/sugar';
 

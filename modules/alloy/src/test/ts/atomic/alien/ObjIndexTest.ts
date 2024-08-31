@@ -1,5 +1,5 @@
 import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Obj } from '@hugemce/katamari';
 
 import * as ObjIndex from 'hugemce/alloy/alien/ObjIndex';

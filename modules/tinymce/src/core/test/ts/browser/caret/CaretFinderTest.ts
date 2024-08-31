@@ -1,5 +1,5 @@
 import { Assertions } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 import { Hierarchy, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';

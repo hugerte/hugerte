@@ -1,4 +1,4 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 
 import { Chain } from 'hugemce/agar/api/Chain';
 import { Pipeline } from 'hugemce/agar/api/Pipeline';

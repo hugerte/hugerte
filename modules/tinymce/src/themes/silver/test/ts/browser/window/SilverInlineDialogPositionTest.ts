@@ -1,6 +1,6 @@
 import { Mouse, UiFinder, Waiter } from '@hugemce/agar';
 import { Boxes } from '@hugemce/alloy';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Class, Css, Height, Insert, Remove, Scroll, SugarBody, SugarElement, Traverse } from '@hugemce/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';

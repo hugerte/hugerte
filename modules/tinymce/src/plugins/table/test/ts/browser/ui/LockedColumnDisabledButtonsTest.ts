@@ -1,5 +1,5 @@
 import { Keys, Waiter } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 

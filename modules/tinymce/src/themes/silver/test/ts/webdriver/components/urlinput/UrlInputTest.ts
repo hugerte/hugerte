@@ -1,6 +1,6 @@
 import { RealKeys, UiControls } from '@hugemce/agar';
 import { GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Future, Optional } from '@hugemce/katamari';
 import { SelectorFind, SugarDocument, Value } from '@hugemce/sugar';
 import { assert } from 'chai';

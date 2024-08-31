@@ -1,5 +1,5 @@
 import { FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiControls, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Future, Optional, Result, Strings } from '@hugemce/katamari';
 import { Value } from '@hugemce/sugar';
 

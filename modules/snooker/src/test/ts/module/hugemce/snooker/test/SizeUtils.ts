@@ -1,4 +1,4 @@
-import { Assert } from '@hugemce/bedrock-client';
+import { Assert } from '@ephox/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Css, Insert, Remove, SelectorFilter, SugarElement, SugarHead } from '@hugemce/sugar';
 

@@ -1,5 +1,5 @@
 import { Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { Menu } from '@hugemce/bridge';
 import { Arr, Fun } from '@hugemce/katamari';
 import { Class, Css, Insert, Remove, SugarBody, SugarElement, SugarShadowDom, Traverse } from '@hugemce/sugar';

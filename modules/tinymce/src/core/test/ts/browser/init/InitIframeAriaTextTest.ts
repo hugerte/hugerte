@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Attribute, SugarElement } from '@hugemce/sugar';
 import { McEditor, TinyDom } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

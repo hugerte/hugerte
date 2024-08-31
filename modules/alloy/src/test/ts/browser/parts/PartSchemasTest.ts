@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { StructureSchema } from '@hugemce/boulder';
 import { Fun } from '@hugemce/katamari';
 import * as fc from 'fast-check';

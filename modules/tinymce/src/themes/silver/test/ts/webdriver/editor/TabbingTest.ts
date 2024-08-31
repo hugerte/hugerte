@@ -1,5 +1,5 @@
 import { RealKeys } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Focus, Insert, Remove, SugarElement } from '@hugemce/sugar';
 import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

@@ -1,4 +1,4 @@
-import { afterEach, describe, it } from '@hugemce/bedrock-client';
+import { afterEach, describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
 import { Menu } from 'tinymce/core/api/ui/Ui';

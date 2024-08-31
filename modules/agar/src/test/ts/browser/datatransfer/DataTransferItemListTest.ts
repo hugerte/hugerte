@@ -1,4 +1,4 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { Type } from '@hugemce/katamari';
 import { assert } from 'chai';
 

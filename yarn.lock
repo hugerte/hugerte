@@ -631,17 +631,17 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@hugemce/bedrock-client@11 || 12 || 13":
+"@ephox/bedrock-client@11 || 12 || 13":
   version "13.0.0"
-  resolved "https://registry.yarnpkg.com/@hugemce/bedrock-client/-/bedrock-client-13.0.0.tgz#e9af3747257eebf7026f2b8177f2fd15bffb005f"
+  resolved "https://registry.yarnpkg.com/@ephox/bedrock-client/-/bedrock-client-13.0.0.tgz#e9af3747257eebf7026f2b8177f2fd15bffb005f"
   integrity sha512-Zah4+o7wFmYO6x3AHiQ1fIYdWIKMAlgszFqKp+JYrmkmqQG9h25wk2izPvTvJ+UGrORU6W90PrDWuksE1XhcUw==
   dependencies:
     "@hugemce/bedrock-common" "^13.0.0"
     "@hugemce/dispute" "^1.0.3"
 
-"@hugemce/bedrock-client@^14.1.0", "@hugemce/bedrock-client@^14.1.1":
+"@ephox/bedrock-client@^14.1.0", "@ephox/bedrock-client@^14.1.1":
   version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@hugemce/bedrock-client/-/bedrock-client-14.1.1.tgz#0688ac5aceee661b3f00f7587478b97e76421e7c"
+  resolved "https://registry.yarnpkg.com/@ephox/bedrock-client/-/bedrock-client-14.1.1.tgz#0688ac5aceee661b3f00f7587478b97e76421e7c"
   integrity sha512-j9i1JMgtTgLsAze1lqrxPePFKC+9d/Du4CU3x+N008YdAlja1dEU86j/4aGD6GWHDNmhJgbJEPJ4ZLQiD/5t7g==
   dependencies:
     "@hugemce/bedrock-common" "^14.1.1"
@@ -677,7 +677,7 @@
   integrity sha512-0i69zfGgGT6N+sojXjaGroTiifVCD7aSzwQKGQZA2xB5BppOLN4HQBem3Gb8dc98PqPv9l282tIXjb91UXpdPQ==
   dependencies:
     "@aws-sdk/client-device-farm" "^3.354.0"
-    "@hugemce/bedrock-client" "^14.1.1"
+    "@ephox/bedrock-client" "^14.1.1"
     "@hugemce/bedrock-common" "^14.1.1"
     "@hugemce/bedrock-runner" "^14.1.1"
     "@jsdevtools/coverage-istanbul-loader" "^3.0.5"

@@ -1,5 +1,5 @@
 import { ApproxStructure } from '@hugemce/agar';
-import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, describe, it } from '@ephox/bedrock-client';
 import { SugarElements, SugarFragment } from '@hugemce/sugar';
 import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 

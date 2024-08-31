@@ -1,6 +1,6 @@
 import { FocusTools, RealMouse } from '@hugemce/agar';
 import { TestHelpers } from '@hugemce/alloy';
-import { before, describe, it } from '@hugemce/bedrock-client';
+import { before, describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { SugarDocument } from '@hugemce/sugar';

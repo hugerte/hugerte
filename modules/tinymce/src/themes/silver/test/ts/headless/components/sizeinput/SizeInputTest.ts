@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder } from '@hugemce/agar';
 import { AlloyComponent, GuiFactory, NativeEvents, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 
 import { renderSizeInput } from 'tinymce/themes/silver/ui/dialog/SizeInput';

@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { afterEach, beforeEach, describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
 import EditorManager from 'tinymce/core/api/EditorManager';

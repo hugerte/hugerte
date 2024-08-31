@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Mouse, Waiter } from '@hugemce/agar';
 import { AlloyComponent, GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { afterEach, describe, it } from '@hugemce/bedrock-client';
+import { afterEach, describe, it } from '@ephox/bedrock-client';
 import { Menu, Toolbar } from '@hugemce/bridge';
 import { Cell, Fun, Optional } from '@hugemce/katamari';
 import { Attribute, Class, SelectorFind } from '@hugemce/sugar';

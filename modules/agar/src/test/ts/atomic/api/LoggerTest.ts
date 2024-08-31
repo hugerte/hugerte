@@ -1,4 +1,4 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
 import * as Logger from 'hugemce/agar/api/Logger';

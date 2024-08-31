@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 
 import * as TableOperations from 'hugemce/snooker/api/TableOperations';
 import * as Assertions from 'hugemce/snooker/test/Assertions';
