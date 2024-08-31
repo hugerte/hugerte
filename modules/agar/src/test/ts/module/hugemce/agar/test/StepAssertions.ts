@@ -1,5 +1,5 @@
 import { Assert } from '@ephox/bedrock-client';
-import { Pprint } from '@hugemce/dispute';
+import { Pprint } from '@ephox/dispute';
 import { Arr, Fun, Result } from '@hugemce/katamari';
 
 import { Chain } from 'hugemce/agar/api/Chain';

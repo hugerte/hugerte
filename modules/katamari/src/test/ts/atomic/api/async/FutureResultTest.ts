@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Testable } from '@hugemce/dispute';
+import { Testable } from '@ephox/dispute';
 import fc from 'fast-check';
 
 import * as Fun from 'hugemce/katamari/api/Fun';

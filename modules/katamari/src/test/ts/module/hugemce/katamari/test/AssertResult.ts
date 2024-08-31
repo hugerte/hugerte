@@ -1,4 +1,4 @@
-import { Testable } from '@hugemce/dispute';
+import { Testable } from '@ephox/dispute';
 import { assert } from 'chai';
 
 import { Result } from 'hugemce/katamari/api/Result';

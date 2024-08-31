@@ -1,5 +1,5 @@
 import { Assert, TestError, TestLabel } from '@ephox/bedrock-client';
-import { Testable } from '@hugemce/dispute';
+import { Testable } from '@ephox/dispute';
 import { Obj, Optional } from '@hugemce/katamari';
 import { Compare, SugarElement, Truncate } from '@hugemce/sugar';
 

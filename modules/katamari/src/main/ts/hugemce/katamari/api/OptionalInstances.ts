@@ -1,4 +1,4 @@
-import { Eq, Pnode, Pprint, Testable } from '@hugemce/dispute';
+import { Eq, Pnode, Pprint, Testable } from '@ephox/dispute';
 
 import { Optional } from './Optional';
 import * as Optionals from './Optionals';

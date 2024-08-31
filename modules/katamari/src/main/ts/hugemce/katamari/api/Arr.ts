@@ -1,4 +1,4 @@
-import { Eq } from '@hugemce/dispute';
+import { Eq } from '@ephox/dispute';
 
 import * as Fun from './Fun';
 import { Optional } from './Optional';
