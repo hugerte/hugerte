@@ -1,12 +1,12 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as Resize from 'ephox/sugar/api/events/Resize';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Monitors from 'ephox/sugar/impl/Monitors';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as Resize from 'hugemce/sugar/api/events/Resize';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Monitors from 'hugemce/sugar/impl/Monitors';
 
 UnitTest.asynctest('ResizeRaceTest', (success, failure) => {
 

@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { KAssert } from '@hugemce/katamari-assertions';
 
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Checked from 'ephox/sugar/api/properties/Checked';
-import * as Value from 'ephox/sugar/api/properties/Value';
+import * as InsertAll from 'hugemce/sugar/api/dom/InsertAll';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Checked from 'hugemce/sugar/api/properties/Checked';
+import * as Value from 'hugemce/sugar/api/properties/Value';
 
 UnitTest.test('CheckedTest', () => {
   const container = SugarElement.fromTag('div');

@@ -1,7 +1,7 @@
-import { Behaviour, GuiFactory, ItemTypes, MaxHeight, Tooltipping } from '@ephox/alloy';
-import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Fun, Obj, Optional, Regex } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Behaviour, GuiFactory, ItemTypes, MaxHeight, Tooltipping } from '@hugemce/alloy';
+import { InlineContent, Toolbar } from '@hugemce/bridge';
+import { Fun, Obj, Optional, Regex } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import I18n from 'tinymce/core/api/util/I18n';

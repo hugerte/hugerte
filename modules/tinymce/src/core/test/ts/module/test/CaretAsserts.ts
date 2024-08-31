@@ -1,5 +1,5 @@
-import { Assert } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+import { Assert } from '@hugemce/bedrock-client';
+import { Type } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

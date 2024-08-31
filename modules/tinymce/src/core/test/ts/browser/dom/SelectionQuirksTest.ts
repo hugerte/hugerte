@@ -1,6 +1,6 @@
-import { Keys, Monitor, Mouse } from '@ephox/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Keys, Monitor, Mouse } from '@hugemce/agar';
+import { before, describe, it } from '@hugemce/bedrock-client';
+import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

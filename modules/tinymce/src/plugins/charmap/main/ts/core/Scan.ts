@@ -1,4 +1,4 @@
-import { Arr, Strings } from '@ephox/katamari';
+import { Arr, Strings } from '@hugemce/katamari';
 
 import { CharMap, Char } from './CharMap';
 

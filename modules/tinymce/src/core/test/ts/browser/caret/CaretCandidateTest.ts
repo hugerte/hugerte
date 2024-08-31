@@ -1,6 +1,6 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SelectorFind, SugarElement } from '@ephox/sugar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { SelectorFind, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import * as CaretCandidate from 'tinymce/core/caret/CaretCandidate';

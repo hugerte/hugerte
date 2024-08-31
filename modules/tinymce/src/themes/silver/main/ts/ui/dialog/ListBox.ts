@@ -1,10 +1,10 @@
 import {
   AlloyComponent, AlloySpec, AlloyTriggers, Behaviour, Disabling, Focusing, FormField as AlloyFormField, Representing, SimpleSpec, SketchSpec,
   Tabstopping
-} from '@ephox/alloy';
-import { Dialog, Menu as BridgeMenu } from '@ephox/bridge';
-import { Arr, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+} from '@hugemce/alloy';
+import { Dialog, Menu as BridgeMenu } from '@hugemce/bridge';
+import { Arr, Fun, Obj, Optional, Optionals } from '@hugemce/katamari';
+import { Attribute } from '@hugemce/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderLabel } from '../alien/FieldLabeller';

@@ -1,24 +1,24 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, StructAssert, TestStore, UiFinder } from '@ephox/agar';
-import { after, afterEach, before, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Result } from '@ephox/katamari';
-import { Attribute, Class, Compare, SugarBody, SugarDocument } from '@ephox/sugar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, StructAssert, TestStore, UiFinder } from '@hugemce/agar';
+import { after, afterEach, before, beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Result } from '@hugemce/katamari';
+import { Attribute, Class, Compare, SugarBody, SugarDocument } from '@hugemce/sugar';
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { ModalDialog } from 'ephox/alloy/api/ui/ModalDialog';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
+import { Tabstopping } from 'hugemce/alloy/api/behaviour/Tabstopping';
+import { Toggling } from 'hugemce/alloy/api/behaviour/Toggling';
+import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as SystemEvents from 'hugemce/alloy/api/events/SystemEvents';
+import * as Attachment from 'hugemce/alloy/api/system/Attachment';
+import * as Gui from 'hugemce/alloy/api/system/Gui';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { ModalDialog } from 'hugemce/alloy/api/ui/ModalDialog';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
 
 describe('browser.alloy.ui.dialog.ModalDialogTest', () => {
   const focusAndTab = Behaviour.derive([

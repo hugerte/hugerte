@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from '@hugemce/katamari';
 
 import * as ExpandRange from '../../fmt/ExpandRange';
 import * as CaretRangeFromPoint from '../../selection/CaretRangeFromPoint';

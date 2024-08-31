@@ -1,15 +1,15 @@
-import { after, Assert, before, describe, it, UnitTest } from '@ephox/bedrock-client';
-import { Cell } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Attribute, Class, Css, DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { after, Assert, before, describe, it, UnitTest } from '@hugemce/bedrock-client';
+import { Cell } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Attribute, Class, Css, DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { Chain } from 'ephox/agar/api/Chain';
-import * as Guard from 'ephox/agar/api/Guard';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import * as RealMouse from 'ephox/agar/api/RealMouse';
-import { Step } from 'ephox/agar/api/Step';
-import * as UiFinder from 'ephox/agar/api/UiFinder';
+import * as Assertions from 'hugemce/agar/api/Assertions';
+import { Chain } from 'hugemce/agar/api/Chain';
+import * as Guard from 'hugemce/agar/api/Guard';
+import { Pipeline } from 'hugemce/agar/api/Pipeline';
+import * as RealMouse from 'hugemce/agar/api/RealMouse';
+import { Step } from 'hugemce/agar/api/Step';
+import * as UiFinder from 'hugemce/agar/api/UiFinder';
 
 UnitTest.asynctest('RealMouseTest', (success, failure) => {
 

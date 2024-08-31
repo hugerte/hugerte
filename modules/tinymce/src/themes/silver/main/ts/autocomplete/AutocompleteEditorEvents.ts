@@ -1,5 +1,5 @@
-import { AlloyComponent, AlloyTriggers, Highlighting, NativeEvents } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+import { AlloyComponent, AlloyTriggers, Highlighting, NativeEvents } from '@hugemce/alloy';
+import { Optional } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorEvent } from 'tinymce/core/api/util/EventDispatcher';

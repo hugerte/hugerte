@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "ephox/polaris/test/*": ["src/test/ts/module/ephox/polaris/test/*"],
-      "ephox/polaris/demo/*": ["src/demo/ts/ephox/polaris/demo/*"],
-      "ephox/polaris/*": ["src/main/ts/ephox/polaris/*"]
+      "hugemce/polaris/test/*": ["src/test/ts/module/hugemce/polaris/test/*"],
+      "hugemce/polaris/demo/*": ["src/demo/ts/hugemce/polaris/demo/*"],
+      "hugemce/polaris/*": ["src/main/ts/hugemce/polaris/*"]
     }
   },
   "include": [

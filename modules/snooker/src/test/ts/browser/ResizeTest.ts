@@ -1,12 +1,12 @@
-import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { after, before, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Css, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Deltas from 'ephox/snooker/calc/Deltas';
+import * as ResizeBehaviour from 'hugemce/snooker/api/ResizeBehaviour';
+import { TableSize } from 'hugemce/snooker/api/TableSize';
+import { Warehouse } from 'hugemce/snooker/api/Warehouse';
+import * as Deltas from 'hugemce/snooker/calc/Deltas';
 
 describe('ResizeTest', () => {
   const resizing = ResizeBehaviour.preserveTable();

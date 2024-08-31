@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from '@hugemce/katamari';
 
 const guess = (url: string): string => {
   const mimes: Record<string, string> = {

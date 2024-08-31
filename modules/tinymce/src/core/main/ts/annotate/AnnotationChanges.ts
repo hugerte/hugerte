@@ -1,5 +1,5 @@
-import { Arr, Cell, Obj, Optional, Optionals, Singleton, Throttler } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { Arr, Cell, Obj, Optional, Optionals, Singleton, Throttler } from '@hugemce/katamari';
+import { Attribute } from '@hugemce/sugar';
 
 import Editor from '../api/Editor';
 import { AnnotationsRegistry } from './AnnotationsRegistry';

@@ -1,4 +1,4 @@
-import { Fun, Optional, Optionals, Type } from '@ephox/katamari';
+import { Fun, Optional, Optionals, Type } from '@hugemce/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import EditorSelection from '../api/dom/Selection';

@@ -1,6 +1,6 @@
-import { AlloyParts, AlloySpec, FormTypes, SimpleOrSketchSpec } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge/';
-import { Fun, Merger, Obj, Optional } from '@ephox/katamari';
+import { AlloyParts, AlloySpec, FormTypes, SimpleOrSketchSpec } from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge/';
+import { Fun, Merger, Obj, Optional } from '@hugemce/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderBar } from '../dialog/Bar';

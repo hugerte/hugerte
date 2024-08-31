@@ -1,5 +1,5 @@
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import ListsPlugin from 'tinymce/plugins/lists/Plugin';

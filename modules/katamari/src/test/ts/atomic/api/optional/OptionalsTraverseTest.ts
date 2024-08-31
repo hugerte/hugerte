@@ -1,8 +1,8 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 
-import { Optional } from 'ephox/katamari/api/Optional';
-import * as Optionals from 'ephox/katamari/api/Optionals';
-import { assertNone, assertSome } from 'ephox/katamari/test/AssertOptional';
+import { Optional } from 'hugemce/katamari/api/Optional';
+import * as Optionals from 'hugemce/katamari/api/Optionals';
+import { assertNone, assertSome } from 'hugemce/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.optional.OptionalsTraverseTest', () => {
   it('Optionals.traverse - unit tests', () => {

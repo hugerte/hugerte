@@ -1,7 +1,7 @@
-import { KeyingConfigSpec, MenuTypes } from '@ephox/alloy';
-import { Toolbar } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
-import { SelectorFind } from '@ephox/sugar';
+import { KeyingConfigSpec, MenuTypes } from '@hugemce/alloy';
+import { Toolbar } from '@hugemce/bridge';
+import { Optional } from '@hugemce/katamari';
+import { SelectorFind } from '@hugemce/sugar';
 
 import { colorClass, selectableClass } from '../item/ItemClasses';
 import { markers as getMenuMarkers } from './MenuParts';

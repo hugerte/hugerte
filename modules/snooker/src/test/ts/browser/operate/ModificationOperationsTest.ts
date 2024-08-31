@@ -1,12 +1,12 @@
-import { Assertions } from '@ephox/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Html, SugarElement, SugarNode } from '@ephox/sugar';
+import { Assertions } from '@hugemce/agar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Fun } from '@hugemce/katamari';
+import { Html, SugarElement, SugarNode } from '@hugemce/sugar';
 
-import { Generators } from 'ephox/snooker/api/Generators';
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as ModificationOperations from 'ephox/snooker/operate/ModificationOperations';
-import BrowserTestGenerator from 'ephox/snooker/test/BrowserTestGenerator';
+import { Generators } from 'hugemce/snooker/api/Generators';
+import * as Structs from 'hugemce/snooker/api/Structs';
+import * as ModificationOperations from 'hugemce/snooker/operate/ModificationOperations';
+import BrowserTestGenerator from 'hugemce/snooker/test/BrowserTestGenerator';
 
 type Grid = Structs.ElementNew<HTMLTableCellElement>[][];
 

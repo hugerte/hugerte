@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Type } from '@ephox/katamari';
+import { Arr, Cell, Obj, Type } from '@hugemce/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import RangeUtils from '../api/dom/RangeUtils';

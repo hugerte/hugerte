@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Logger } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { ApproxStructure, Assertions, Logger } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as ToggleModes from 'ephox/alloy/behaviour/toggling/ToggleModes';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as ToggleModes from 'hugemce/alloy/behaviour/toggling/ToggleModes';
 
 UnitTest.test('Browser Test: behaviour.ToggleModesTest', () => {
   const mTag = (name: string) => ({

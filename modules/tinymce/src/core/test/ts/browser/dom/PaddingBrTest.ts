@@ -1,6 +1,6 @@
-import { Assertions } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Html, SugarElement } from '@ephox/sugar';
+import { Assertions } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Html, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import Schema from 'tinymce/core/api/html/Schema';

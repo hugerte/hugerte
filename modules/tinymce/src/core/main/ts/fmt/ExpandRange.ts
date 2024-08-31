@@ -1,4 +1,4 @@
-import { Optional, Strings, Type } from '@ephox/katamari';
+import { Optional, Strings, Type } from '@hugemce/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import TextSeeker from '../api/dom/TextSeeker';

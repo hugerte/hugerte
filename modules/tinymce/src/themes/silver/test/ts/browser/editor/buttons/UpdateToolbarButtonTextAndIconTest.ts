@@ -1,7 +1,7 @@
-import { Mouse } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Css, SugarElement } from '@ephox/sugar';
-import { TinyHooks, TinyUi, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Mouse } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Css, SugarElement } from '@hugemce/sugar';
+import { TinyHooks, TinyUi, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

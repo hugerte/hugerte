@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from '@hugemce/katamari';
 
 type CharMap = Record<string, string>;
 

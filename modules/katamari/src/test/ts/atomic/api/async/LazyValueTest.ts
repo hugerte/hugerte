@@ -1,13 +1,13 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
-import { LazyValue } from 'ephox/katamari/api/LazyValue';
-import * as LazyValues from 'ephox/katamari/api/LazyValues';
-import { Optional } from 'ephox/katamari/api/Optional';
-import { tOptional } from 'ephox/katamari/api/OptionalInstances';
-import { eqAsync } from 'ephox/katamari/test/AsyncProps';
+import * as Arr from 'hugemce/katamari/api/Arr';
+import * as Fun from 'hugemce/katamari/api/Fun';
+import { LazyValue } from 'hugemce/katamari/api/LazyValue';
+import * as LazyValues from 'hugemce/katamari/api/LazyValues';
+import { Optional } from 'hugemce/katamari/api/Optional';
+import { tOptional } from 'hugemce/katamari/api/OptionalInstances';
+import { eqAsync } from 'hugemce/katamari/test/AsyncProps';
 
 const lazyCounter = () => {
   let counter = 0;

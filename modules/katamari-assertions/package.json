@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/katamari-assertions",
+  "name": "@hugemce/katamari-assertions",
   "version": "4.0.10",
   "description": "Bedrock test assertions for Katamari",
   "repository": {
@@ -17,9 +17,9 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@ephox/bedrock-client": "11 || 12 || 13",
-    "@ephox/dispute": "^1.0.3",
-    "@ephox/katamari": "^9.1.6"
+    "@hugemce/bedrock-client": "11 || 12 || 13",
+    "@hugemce/dispute": "^1.0.3",
+    "@hugemce/katamari": "^9.1.6"
   },
   "files": [
     "lib/main",
@@ -32,9 +32,9 @@
     "CHANGELOG.txt",
     "LICENSE.txt"
   ],
-  "main": "./lib/main/ts/ephox/katamari-assertions/api/Main.js",
-  "module": "./lib/main/ts/ephox/katamari-assertions/api/Main.js",
-  "types": "./lib/main/ts/ephox/katamari-assertions/api/Main.d.ts",
+  "main": "./lib/main/ts/hugemce/katamari-assertions/api/Main.js",
+  "module": "./lib/main/ts/hugemce/katamari-assertions/api/Main.js",
+  "types": "./lib/main/ts/hugemce/katamari-assertions/api/Main.d.ts",
   "publishConfig": {
     "access": "public"
   }

@@ -1,14 +1,14 @@
-import { Assert, describe, it } from '@ephox/bedrock-client';
-import { InsertAll, SugarElement } from '@ephox/sugar';
+import { Assert, describe, it } from '@hugemce/bedrock-client';
+import { InsertAll, SugarElement } from '@hugemce/sugar';
 
-import * as ApproxStructure from 'ephox/agar/api/ApproxStructure';
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { StructAssert } from 'ephox/agar/assertions/ApproxStructures';
+import * as ApproxStructure from 'hugemce/agar/api/ApproxStructure';
+import * as Assertions from 'hugemce/agar/api/Assertions';
+import { StructAssert } from 'hugemce/agar/assertions/ApproxStructures';
 
 describe('browser.agar.ApproxStructureTest', () => {
   const html = '<div data-key="test-1" selected="double" class="test1 root" style="display: block;">' +
     '<div selected="true">' +
-    '<span data-ephox-id="blah" class="disabled">span</span>' +
+    '<span data-hugemce-id="blah" class="disabled">span</span>' +
     '</div>' +
     'words' +
     '<span></span>' +
@@ -48,7 +48,7 @@ describe('browser.agar.ApproxStructureTest', () => {
             children: [
               s.element('span', {
                 attrs: {
-                  'data-ephox-id': str.startsWith('bl')
+                  'data-hugemce-id': str.startsWith('bl')
                 },
                 classes: [
                   arr.not('enabled'),
@@ -173,7 +173,7 @@ describe('browser.agar.ApproxStructureTest', () => {
             children: [
               s.element('span', {
                 attrs: {
-                  'data-ephox-id': str.startsWith('bl')
+                  'data-hugemce-id': str.startsWith('bl')
                 },
                 classes: [ arr.has('disabled') ],
                 html: str.is('span')

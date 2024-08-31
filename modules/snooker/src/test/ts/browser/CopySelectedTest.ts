@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Type } from '@ephox/katamari';
-import { Attribute, Class, Html, InsertAll, SugarElement } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Obj, Type } from '@hugemce/katamari';
+import { Attribute, Class, Html, InsertAll, SugarElement } from '@hugemce/sugar';
 
-import * as CopySelected from 'ephox/snooker/api/CopySelected';
-import { LOCKED_COL_ATTR } from 'ephox/snooker/util/LockedColumnUtils';
+import * as CopySelected from 'hugemce/snooker/api/CopySelected';
+import { LOCKED_COL_ATTR } from 'hugemce/snooker/util/LockedColumnUtils';
 
 interface TestDataCell {
   readonly type: 'cell';

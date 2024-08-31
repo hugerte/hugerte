@@ -1,6 +1,6 @@
-import { Mouse, UiFinder } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Mouse, UiFinder } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

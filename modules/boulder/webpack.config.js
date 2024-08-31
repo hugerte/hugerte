@@ -3,7 +3,7 @@ const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/main/ts/ephox/boulder/api/Main.ts',
+  entry: './src/main/ts/hugemce/boulder/api/Main.ts',
   devtool: 'source-map',
   mode: 'development',
   target: ['web'],

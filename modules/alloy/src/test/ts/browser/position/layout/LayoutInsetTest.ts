@@ -1,14 +1,14 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Strings } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Strings } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import * as Bubble from 'ephox/alloy/positioning/layout/Bubble';
-import * as LayoutInset from 'ephox/alloy/positioning/layout/LayoutInset';
-import { Placement, setPlacement } from 'ephox/alloy/positioning/layout/Placement';
-import { boxArb, boundsArb } from 'ephox/alloy/test/BoundsUtils';
+import * as Boxes from 'hugemce/alloy/alien/Boxes';
+import * as Bubble from 'hugemce/alloy/positioning/layout/Bubble';
+import * as LayoutInset from 'hugemce/alloy/positioning/layout/LayoutInset';
+import { Placement, setPlacement } from 'hugemce/alloy/positioning/layout/Placement';
+import { boxArb, boundsArb } from 'hugemce/alloy/test/BoundsUtils';
 
 describe('LayoutInsetTest', () => {
   const placements = [

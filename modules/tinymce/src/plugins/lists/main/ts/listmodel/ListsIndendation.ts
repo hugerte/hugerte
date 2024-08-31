@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
-import { InsertAll, Remove, SugarElement, SugarFragment } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals } from '@hugemce/katamari';
+import { InsertAll, Remove, SugarElement, SugarFragment } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

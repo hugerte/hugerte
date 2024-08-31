@@ -1,11 +1,11 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { DomUniverse, Universe } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
-import { SugarElement, Traverse } from '@ephox/sugar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { DomUniverse, Universe } from '@hugemce/boss';
+import { Arr, Fun } from '@hugemce/katamari';
+import { SugarElement, Traverse } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import * as TextZones from 'ephox/robin/api/general/TextZones';
-import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
+import * as TextZones from 'hugemce/robin/api/general/TextZones';
+import { ZoneViewports } from 'hugemce/robin/api/general/ZoneViewports';
 
 // Strip out the bits of an actual Zone that aren't compatible with assert.deepEqual
 interface AssertableZone {

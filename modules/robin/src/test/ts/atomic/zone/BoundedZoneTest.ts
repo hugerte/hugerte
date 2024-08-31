@@ -1,11 +1,11 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
 
-import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
-import { arbRangeIds } from 'ephox/robin/test/Arbitraries';
-import * as PropertyAssertions from 'ephox/robin/test/PropertyAssertions';
-import { assertProps, assertZones, RawZone } from 'ephox/robin/test/ZoneObjects';
-import * as TextZones from 'ephox/robin/zone/TextZones';
+import { ZoneViewports } from 'hugemce/robin/api/general/ZoneViewports';
+import { arbRangeIds } from 'hugemce/robin/test/Arbitraries';
+import * as PropertyAssertions from 'hugemce/robin/test/PropertyAssertions';
+import { assertProps, assertZones, RawZone } from 'hugemce/robin/test/ZoneObjects';
+import * as TextZones from 'hugemce/robin/zone/TextZones';
 
 UnitTest.test('BoundedZoneTest', () => {
   const check = (universe: TestUniverse, expected: RawZone[], id: string) => {

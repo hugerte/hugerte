@@ -1,10 +1,10 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Jam from 'ephox/katamari/api/Jam';
-import { arbNegativeInteger } from 'ephox/katamari/test/arb/ArbDataTypes';
+import * as Arr from 'hugemce/katamari/api/Arr';
+import * as Jam from 'hugemce/katamari/api/Jam';
+import { arbNegativeInteger } from 'hugemce/katamari/test/arb/ArbDataTypes';
 
 describe('atomic.katamari.api.arr.IntersperseTest', () => {
   it('unit tests', () => {

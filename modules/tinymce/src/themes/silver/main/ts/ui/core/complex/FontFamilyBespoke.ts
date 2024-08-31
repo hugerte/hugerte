@@ -1,5 +1,5 @@
-import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
+import { AlloyComponent, AlloyTriggers, SketchSpec } from '@hugemce/alloy';
+import { Arr, Fun, Optional, Optionals } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

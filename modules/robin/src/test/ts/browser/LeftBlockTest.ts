@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { DomUniverse, Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
-import { Hierarchy, Insert, InsertAll, Remove, Replication, SugarBody, SugarElement } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { DomUniverse, Universe } from '@hugemce/boss';
+import { Arr } from '@hugemce/katamari';
+import { Hierarchy, Insert, InsertAll, Remove, Replication, SugarBody, SugarElement } from '@hugemce/sugar';
 
-import * as LeftBlock from 'ephox/robin/api/general/LeftBlock';
+import * as LeftBlock from 'hugemce/robin/api/general/LeftBlock';
 
 UnitTest.test('LeftBlockTest', () => {
   const universe = DomUniverse();

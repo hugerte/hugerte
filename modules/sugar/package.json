@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/sugar",
+  "name": "@hugemce/sugar",
   "version": "9.3.1",
   "description": "Basic DOM manipulation",
   "repository": {
@@ -23,11 +23,11 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@ephox/katamari": "^9.1.6",
-    "@ephox/sand": "^6.0.10"
+    "@hugemce/katamari": "^9.1.6",
+    "@hugemce/sand": "^6.0.10"
   },
   "devDependencies": {
-    "@ephox/katamari-assertions": "^4.0.10"
+    "@hugemce/katamari-assertions": "^4.0.10"
   },
   "files": [
     "lib/main",
@@ -40,7 +40,7 @@
     "CHANGELOG.txt",
     "LICENSE.txt"
   ],
-  "main": "./lib/main/ts/ephox/sugar/api/Main.js",
-  "module": "./lib/main/ts/ephox/sugar/api/Main.js",
-  "types": "./lib/main/ts/ephox/sugar/api/Main.d.ts"
+  "main": "./lib/main/ts/hugemce/sugar/api/Main.js",
+  "module": "./lib/main/ts/hugemce/sugar/api/Main.js",
+  "types": "./lib/main/ts/hugemce/sugar/api/Main.d.ts"
 }

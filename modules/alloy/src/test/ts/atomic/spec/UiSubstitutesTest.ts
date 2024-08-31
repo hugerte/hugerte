@@ -1,10 +1,10 @@
-import { Logger } from '@ephox/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Logger } from '@hugemce/agar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
 
-import { CompositeSketchDetail } from 'ephox/alloy/api/ui/Sketcher';
-import { ConfiguredPart } from 'ephox/alloy/parts/AlloyParts';
-import * as UiSubstitutes from 'ephox/alloy/spec/UiSubstitutes';
+import { CompositeSketchDetail } from 'hugemce/alloy/api/ui/Sketcher';
+import { ConfiguredPart } from 'hugemce/alloy/parts/AlloyParts';
+import * as UiSubstitutes from 'hugemce/alloy/spec/UiSubstitutes';
 
 interface SubstitutedPart extends ConfiguredPart {
   components: any[];

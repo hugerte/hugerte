@@ -1,4 +1,4 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
 import * as HtmlToData from 'tinymce/plugins/media/core/HtmlToData';
@@ -10,11 +10,11 @@ describe('atomic.tinymce.plugins.media.core.HtmlToDataTest', () => {
     assert.deepEqual(actual, expected);
   };
 
-  context('ephox embeds', () => {
-    it('Convert ephox embed to data', () => testHtmlToData(
-      '<div data-ephox-embed-iri="a"></div>',
+  context('hugemce embeds', () => {
+    it('Convert hugemce embed to data', () => testHtmlToData(
+      '<div data-hugemce-embed-iri="a"></div>',
       {
-        type: 'ephox-embed-iri',
+        type: 'hugemce-embed-iri',
         source: 'a',
         altsource: '',
         poster: '',
@@ -23,10 +23,10 @@ describe('atomic.tinymce.plugins.media.core.HtmlToDataTest', () => {
       }
     ));
 
-    it('Convert ephox embed with styles to data', () => testHtmlToData(
-      '<div data-ephox-embed-iri="a" style="max-width: 300px; max-height: 200px"></div>',
+    it('Convert hugemce embed with styles to data', () => testHtmlToData(
+      '<div data-hugemce-embed-iri="a" style="max-width: 300px; max-height: 200px"></div>',
       {
-        type: 'ephox-embed-iri',
+        type: 'hugemce-embed-iri',
         source: 'a',
         altsource: '',
         poster: '',

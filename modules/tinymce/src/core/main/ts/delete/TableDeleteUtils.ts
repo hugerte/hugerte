@@ -1,5 +1,5 @@
-import { Optional, Optionals } from '@ephox/katamari';
-import { Compare, PredicateExists, SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Optional, Optionals } from '@hugemce/katamari';
+import { Compare, PredicateExists, SelectorFilter, SugarElement } from '@hugemce/sugar';
 
 import * as TableCellSelection from '../selection/TableCellSelection';
 

@@ -1,12 +1,12 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Direction from 'ephox/sugar/api/properties/Direction';
-import EphoxElement from 'ephox/sugar/test/EphoxElement';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
+import * as Direction from 'hugemce/sugar/api/properties/Direction';
+import EphoxElement from 'hugemce/sugar/test/EphoxElement';
 
 UnitTest.test('DirectionTest', () => {
   const el = EphoxElement('div');

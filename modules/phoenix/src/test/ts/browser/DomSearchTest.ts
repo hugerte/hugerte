@@ -1,9 +1,9 @@
-import { after, Assert, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Attribute, Html, Insert, InsertAll, Remove, SugarElement } from '@ephox/sugar';
+import { after, Assert, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Fun } from '@hugemce/katamari';
+import { Attribute, Html, Insert, InsertAll, Remove, SugarElement } from '@hugemce/sugar';
 
-import * as DomSearch from 'ephox/phoenix/api/dom/DomSearch';
-import * as DomWrapping from 'ephox/phoenix/api/dom/DomWrapping';
+import * as DomSearch from 'hugemce/phoenix/api/dom/DomSearch';
+import * as DomWrapping from 'hugemce/phoenix/api/dom/DomWrapping';
 
 interface EntitiesMap {
   readonly [name: string]: string;

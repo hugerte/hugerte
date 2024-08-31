@@ -2,10 +2,10 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Button, Disabling,
   FormField as AlloyFormField, GuiFactory, Memento, NativeEvents, Representing, SimpleSpec, SimulatedEvent, SketchSpec,
   SystemEvents, Tabstopping, Toggling
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Optional, Strings } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+} from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
+import { Arr, Optional, Strings } from '@hugemce/katamari';
+import { EventArgs } from '@hugemce/sugar';
 
 import Tools from 'tinymce/core/api/util/Tools';
 

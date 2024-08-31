@@ -7,9 +7,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "ephox/agar/test/*": ["src/test/ts/module/ephox/agar/test/*"],
-      "ephox/agar/demo/*": ["src/demo/ts/ephox/agar/demo/*"],
-      "ephox/agar/*": ["src/main/ts/ephox/agar/*"]
+      "hugemce/agar/test/*": ["src/test/ts/module/hugemce/agar/test/*"],
+      "hugemce/agar/demo/*": ["src/demo/ts/hugemce/agar/demo/*"],
+      "hugemce/agar/*": ["src/main/ts/hugemce/agar/*"]
     }
   },
   "include": [

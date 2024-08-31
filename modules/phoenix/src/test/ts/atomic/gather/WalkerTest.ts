@@ -1,11 +1,11 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse } from '@ephox/boss';
-import { KAssert } from '@ephox/katamari-assertions';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse } from '@hugemce/boss';
+import { KAssert } from '@hugemce/katamari-assertions';
 
-import { Direction, Transition } from 'ephox/phoenix/api/data/Types';
-import * as Walker from 'ephox/phoenix/gather/Walker';
-import { Walkers } from 'ephox/phoenix/gather/Walkers';
-import * as Finder from 'ephox/phoenix/test/Finder';
+import { Direction, Transition } from 'hugemce/phoenix/api/data/Types';
+import * as Walker from 'hugemce/phoenix/gather/Walker';
+import { Walkers } from 'hugemce/phoenix/gather/Walkers';
+import * as Finder from 'hugemce/phoenix/test/Finder';
 
 UnitTest.test('WalkerTest', () => {
   const universe = TestUniverse(

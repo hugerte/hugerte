@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Replication, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr } from '@hugemce/katamari';
+import { Replication, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

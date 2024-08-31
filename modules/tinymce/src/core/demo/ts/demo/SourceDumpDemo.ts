@@ -1,4 +1,4 @@
-import { Checked, SelectorFind, SugarBody, Value } from '@ephox/sugar';
+import { Checked, SelectorFind, SugarBody, Value } from '@hugemce/sugar';
 
 import { Editor, TinyMCE } from 'tinymce/core/api/PublicApi';
 

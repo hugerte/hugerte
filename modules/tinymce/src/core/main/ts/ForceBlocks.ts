@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
-import { Insert, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Obj } from '@hugemce/katamari';
+import { Insert, SugarElement } from '@hugemce/sugar';
 
 import Editor from './api/Editor';
 import Schema, { SchemaMap } from './api/html/Schema';

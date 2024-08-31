@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Disabling, Focusing, FormField as AlloyFormField, GuiFactory, Keying, Memento,
   NativeEvents, SimpleSpec, Tabstopping, Unselecting
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Fun, Optional } from '@ephox/katamari';
-import { Checked, Class, Traverse } from '@ephox/sugar';
+} from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
+import { Fun, Optional } from '@hugemce/katamari';
+import { Checked, Class, Traverse } from '@hugemce/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import * as ReadOnly from '../../ReadOnly';

@@ -1,5 +1,5 @@
-import { AlloyComponent, InlineView } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+import { AlloyComponent, InlineView } from '@hugemce/alloy';
+import { Optional } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorEvent } from 'tinymce/core/api/util/EventDispatcher';

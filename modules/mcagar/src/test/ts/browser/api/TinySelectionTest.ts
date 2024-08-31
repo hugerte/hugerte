@@ -1,8 +1,8 @@
-import { Pipeline } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { Pipeline } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';
-import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
+import { TinyApis } from 'hugemce/mcagar/api/pipeline/TinyApis';
+import * as TinyLoader from 'hugemce/mcagar/api/pipeline/TinyLoader';
 
 UnitTest.asynctest('TinySelectionTest', (success, failure) => {
   TinyLoader.setupLight((editor, loadSuccess, loadFailure) => {

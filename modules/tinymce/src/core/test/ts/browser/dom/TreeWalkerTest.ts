@@ -1,4 +1,4 @@
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
 import DomTreeWalker from 'tinymce/core/api/dom/TreeWalker';

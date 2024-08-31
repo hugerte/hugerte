@@ -5,10 +5,10 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { TableSelection } from '@ephox/darwin';
-import { Arr, Fun } from '@ephox/katamari';
-import { TableLookup } from '@ephox/snooker';
-import { SelectorFind, Selectors, SugarElement, SugarElements, SugarNode } from '@ephox/sugar';
+import { TableSelection } from '@hugemce/darwin';
+import { Arr, Fun } from '@hugemce/katamari';
+import { TableLookup } from '@hugemce/snooker';
+import { SelectorFind, Selectors, SugarElement, SugarElements, SugarNode } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

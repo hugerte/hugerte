@@ -1,4 +1,4 @@
-import { Arr, Optional, Type } from '@ephox/katamari';
+import { Arr, Optional, Type } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { NodeChangeEvent } from 'tinymce/core/api/EventTypes';

@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
-import { SugarBody } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Mouse, TestStore, UiFinder, Waiter } from '@hugemce/agar';
+import { before, describe, it } from '@hugemce/bedrock-client';
+import { SugarBody } from '@hugemce/sugar';
 
 import { Dialog } from 'tinymce/core/api/ui/Ui';
 import { WindowManagerImpl } from 'tinymce/core/api/WindowManager';

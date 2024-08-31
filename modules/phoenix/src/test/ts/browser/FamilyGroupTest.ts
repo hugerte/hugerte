@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { DomUniverse } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
-import { SugarElement, SugarText } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { DomUniverse } from '@hugemce/boss';
+import { Arr, Fun } from '@hugemce/katamari';
+import { SugarElement, SugarText } from '@hugemce/sugar';
 
-import { TypedItem } from 'ephox/phoenix/api/data/TypedItem';
-import * as Family from 'ephox/phoenix/api/general/Family';
+import { TypedItem } from 'hugemce/phoenix/api/data/TypedItem';
+import * as Family from 'hugemce/phoenix/api/general/Family';
 
 UnitTest.test('FamilyGroupTest', () => {
   const universe = DomUniverse();

@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarElement, SugarText, Traverse } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { SugarElement, SugarText, Traverse } from '@hugemce/sugar';
 
-import * as DomSplit from 'ephox/phoenix/api/dom/DomSplit';
+import * as DomSplit from 'hugemce/phoenix/api/dom/DomSplit';
 
-import { Page } from '../module/ephox/phoenix/test/Page';
+import { Page } from '../module/hugemce/phoenix/test/Page';
 
 UnitTest.test('DomSplitTest', () => {
   /*

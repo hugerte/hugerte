@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional } from '@hugemce/katamari';
 
 import * as SchemaUtils from './SchemaUtils';
 

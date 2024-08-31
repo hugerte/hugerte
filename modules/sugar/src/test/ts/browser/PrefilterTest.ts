@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as Hierarchy from 'ephox/sugar/api/dom/Hierarchy';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import { Situ } from 'ephox/sugar/api/selection/Situ';
-import * as Prefilter from 'ephox/sugar/selection/quirks/Prefilter';
+import * as Hierarchy from 'hugemce/sugar/api/dom/Hierarchy';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Html from 'hugemce/sugar/api/properties/Html';
+import { Situ } from 'hugemce/sugar/api/selection/Situ';
+import * as Prefilter from 'hugemce/sugar/selection/quirks/Prefilter';
 
 UnitTest.test('Browser Test: PrefilterTest', () => {
   const root = SugarElement.fromHtml(

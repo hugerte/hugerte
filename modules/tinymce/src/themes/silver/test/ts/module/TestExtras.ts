@@ -1,7 +1,7 @@
-import { Attachment, Behaviour, DomFactory, Gui, GuiFactory, Positioning } from '@ephox/alloy';
-import { after, afterEach, before } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { Class, SugarBody, SugarElement } from '@ephox/sugar';
+import { Attachment, Behaviour, DomFactory, Gui, GuiFactory, Positioning } from '@hugemce/alloy';
+import { after, afterEach, before } from '@hugemce/bedrock-client';
+import { Fun, Optional } from '@hugemce/katamari';
+import { Class, SugarBody, SugarElement } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { UiFactoryBackstagePair } from 'tinymce/themes/silver/backstage/Backstage';

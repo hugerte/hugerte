@@ -1,7 +1,7 @@
-import { FocusTools, Keys } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { TinyHooks, TinyUiActions } from '@ephox/mcagar';
-import { Attribute, SugarDocument } from '@ephox/sugar';
+import { FocusTools, Keys } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { TinyHooks, TinyUiActions } from '@hugemce/mcagar';
+import { Attribute, SugarDocument } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

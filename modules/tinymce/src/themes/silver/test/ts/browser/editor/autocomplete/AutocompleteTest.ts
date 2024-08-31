@@ -1,8 +1,8 @@
-import { Keys, UiFinder, TestStore, Waiter } from '@ephox/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Throttler, Type } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Keys, UiFinder, TestStore, Waiter } from '@hugemce/agar';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Throttler, Type } from '@hugemce/katamari';
+import { SugarBody } from '@hugemce/sugar';
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

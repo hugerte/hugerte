@@ -1,7 +1,7 @@
-import { ItemTypes, MenuTypes } from '@ephox/alloy';
-import { StructureSchema } from '@ephox/boulder';
-import { InlineContent, Menu, Toolbar } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
+import { ItemTypes, MenuTypes } from '@hugemce/alloy';
+import { StructureSchema } from '@hugemce/boulder';
+import { InlineContent, Menu, Toolbar } from '@hugemce/bridge';
+import { Arr, Optional } from '@hugemce/katamari';
 
 import { components as menuComponents, dom as menuDom } from './MenuParts';
 import { forCollection, forCollectionWithSearchField, forCollectionWithSearchResults, forHorizontalCollection, forSwatch, forToolbar, StructureSpec } from './MenuStructures';

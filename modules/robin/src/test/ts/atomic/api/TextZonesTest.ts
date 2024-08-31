@@ -1,13 +1,13 @@
-import { Logger } from '@ephox/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Fun } from '@ephox/katamari';
+import { Logger } from '@hugemce/agar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Fun } from '@hugemce/katamari';
 
-import * as TextZones from 'ephox/robin/api/general/TextZones';
-import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
-import { ArbIds, arbIds, ArbRangeIds, arbRangeIds } from 'ephox/robin/test/Arbitraries';
-import * as PropertyAssertions from 'ephox/robin/test/PropertyAssertions';
-import { assertProps, raw } from 'ephox/robin/test/ZoneObjects';
+import * as TextZones from 'hugemce/robin/api/general/TextZones';
+import { ZoneViewports } from 'hugemce/robin/api/general/ZoneViewports';
+import { ArbIds, arbIds, ArbRangeIds, arbRangeIds } from 'hugemce/robin/test/Arbitraries';
+import * as PropertyAssertions from 'hugemce/robin/test/PropertyAssertions';
+import { assertProps, raw } from 'hugemce/robin/test/ZoneObjects';
 
 UnitTest.test('TextZonesTest', () => {
   const doc1 = TestUniverse(Gene('root', 'root', [

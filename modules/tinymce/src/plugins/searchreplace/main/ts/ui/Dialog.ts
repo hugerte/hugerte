@@ -1,4 +1,4 @@
-import { Arr, Cell, Singleton } from '@ephox/katamari';
+import { Arr, Cell, Singleton } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import Env from 'tinymce/core/api/Env';

@@ -1,6 +1,6 @@
-import { AlloyComponent, Attachment, Boxes, Disabling, Docking } from '@ephox/alloy';
-import { Cell, Singleton, Throttler } from '@ephox/katamari';
-import { DomEvent, Scroll, SugarElement } from '@ephox/sugar';
+import { AlloyComponent, Attachment, Boxes, Disabling, Docking } from '@hugemce/alloy';
+import { Cell, Singleton, Throttler } from '@hugemce/katamari';
+import { DomEvent, Scroll, SugarElement } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { NodeChangeEvent } from 'tinymce/core/api/EventTypes';

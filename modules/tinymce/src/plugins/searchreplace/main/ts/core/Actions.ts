@@ -1,5 +1,5 @@
-import { Cell } from '@ephox/katamari';
-import { Pattern as PolarisPattern } from '@ephox/polaris';
+import { Cell } from '@hugemce/katamari';
+import { Pattern as PolarisPattern } from '@hugemce/polaris';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import Editor from 'tinymce/core/api/Editor';

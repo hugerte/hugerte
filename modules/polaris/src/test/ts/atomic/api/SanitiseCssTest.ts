@@ -1,6 +1,6 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as Sanitise from 'ephox/polaris/string/Sanitise';
+import * as Sanitise from 'hugemce/polaris/string/Sanitise';
 
 UnitTest.test('api.Sanitise.css', () => {
   const check = (expected: string, input: string) => {

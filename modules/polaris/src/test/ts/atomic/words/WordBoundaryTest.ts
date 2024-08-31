@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as StringMapper from 'ephox/polaris/words/StringMapper';
-import * as WordBoundary from 'ephox/polaris/words/WordBoundary';
+import * as StringMapper from 'hugemce/polaris/words/StringMapper';
+import * as WordBoundary from 'hugemce/polaris/words/WordBoundary';
 
 UnitTest.test('Words.WordBoundaryTest', () => {
   const iwb = (str: string, index: number) => {

@@ -1,8 +1,8 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import * as TableOperations from 'ephox/snooker/api/TableOperations';
-import * as Assertions from 'ephox/snooker/test/Assertions';
-import { generateTestTable } from 'ephox/snooker/test/CreateTableUtils';
+import * as TableOperations from 'hugemce/snooker/api/TableOperations';
+import * as Assertions from 'hugemce/snooker/test/Assertions';
+import { generateTestTable } from 'hugemce/snooker/test/CreateTableUtils';
 
 UnitTest.test('PasteRowOperationsTest', () => {
   Assertions.checkPaste(

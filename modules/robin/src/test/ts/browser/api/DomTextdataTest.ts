@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
-import { SugarElement } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
+import { SugarElement } from '@hugemce/sugar';
 
-import * as DomTextdata from 'ephox/robin/api/dom/DomTextdata';
+import * as DomTextdata from 'hugemce/robin/api/dom/DomTextdata';
 
 UnitTest.test('DomTextdataTest', () => {
   const a = SugarElement.fromText('alpha');

@@ -1,20 +1,20 @@
-import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
-import { Focus } from '@ephox/sugar';
+import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Future, Optional, Result } from '@hugemce/katamari';
+import { Focus } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { Typeahead } from 'ephox/alloy/api/ui/Typeahead';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as Sinks from 'ephox/alloy/test/Sinks';
-import * as TestBroadcasts from 'ephox/alloy/test/TestBroadcasts';
-import TestTypeaheadSteps from 'ephox/alloy/test/typeahead/TestTypeaheadSteps';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
+import { Typeahead } from 'hugemce/alloy/api/ui/Typeahead';
+import { TestItem } from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
+import * as TestBroadcasts from 'hugemce/alloy/test/TestBroadcasts';
+import TestTypeaheadSteps from 'hugemce/alloy/test/typeahead/TestTypeaheadSteps';
 
 UnitTest.asynctest('Browser Test: .ui.typeahead.TypeaheadNoBlurTest', (success, failure) => {
 

@@ -1,8 +1,8 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Thunk from 'ephox/katamari/api/Thunk';
+import * as Thunk from 'hugemce/katamari/api/Thunk';
 
 describe('atomic.katamari.api.fun.ThunkTest', () => {
 

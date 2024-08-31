@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Merger } from '@ephox/katamari';
+import { Merger } from '@hugemce/katamari';
 
 import { RawEditorOptions, TinyMCE } from 'tinymce/core/api/PublicApi';
 

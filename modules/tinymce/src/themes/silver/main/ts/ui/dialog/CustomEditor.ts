@@ -1,6 +1,6 @@
-import { AddEventsBehaviour, AlloyEvents, Behaviour, Focusing, Memento, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Obj, Optional, Singleton } from '@ephox/katamari';
+import { AddEventsBehaviour, AlloyEvents, Behaviour, Focusing, Memento, SimpleSpec, Tabstopping } from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
+import { Obj, Optional, Singleton } from '@hugemce/katamari';
 
 import Resource from 'tinymce/core/api/Resource';
 

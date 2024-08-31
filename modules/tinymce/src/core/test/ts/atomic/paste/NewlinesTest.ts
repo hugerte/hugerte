@@ -1,5 +1,5 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import * as Newlines from 'tinymce/core/paste/Newlines';

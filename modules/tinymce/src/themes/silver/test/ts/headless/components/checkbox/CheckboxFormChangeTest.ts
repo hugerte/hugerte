@@ -1,7 +1,7 @@
-import { FocusTools, Keyboard, Keys, TestStore } from '@ephox/agar';
-import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, TestHelpers } from '@ephox/alloy';
-import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { FocusTools, Keyboard, Keys, TestStore } from '@hugemce/agar';
+import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, TestHelpers } from '@hugemce/alloy';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
 
 import { renderCheckbox } from 'tinymce/themes/silver/ui/general/Checkbox';
 import { FormChangeEvent, formChangeEvent } from 'tinymce/themes/silver/ui/general/FormEvents';

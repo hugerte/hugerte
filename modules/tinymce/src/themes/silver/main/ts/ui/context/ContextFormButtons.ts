@@ -1,9 +1,9 @@
 import {
   AlloyComponent, AlloyEvents, AlloyTriggers, Disabling, Memento, MementoRecord, Representing, SimpleOrSketchSpec, SystemEvents
-} from '@ephox/alloy';
-import { StructureSchema } from '@ephox/boulder';
-import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+} from '@hugemce/alloy';
+import { StructureSchema } from '@hugemce/boulder';
+import { InlineContent, Toolbar } from '@hugemce/bridge';
+import { Arr, Fun, Optional } from '@hugemce/katamari';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { internalToolbarButtonExecute, InternalToolbarButtonExecuteEvent } from '../toolbar/button/ButtonEvents';

@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "ephox/boss/test/*": ["src/test/ts/module/ephox/boss/test/*"],
-      "ephox/boss/demo/*": ["src/demo/ts/ephox/boss/demo/*"],
-      "ephox/boss/*": ["src/main/ts/ephox/boss/*"]
+      "hugemce/boss/test/*": ["src/test/ts/module/hugemce/boss/test/*"],
+      "hugemce/boss/demo/*": ["src/demo/ts/hugemce/boss/demo/*"],
+      "hugemce/boss/*": ["src/main/ts/hugemce/boss/*"]
     }
   },
   "include": [

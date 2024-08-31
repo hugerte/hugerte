@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { Toolbar } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+import { Toolbar } from '@hugemce/bridge';
+import { Arr } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

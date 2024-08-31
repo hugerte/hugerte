@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
+import { Pipeline } from 'hugemce/agar/api/Pipeline';
+import { Step } from 'hugemce/agar/api/Step';
 
 UnitTest.asynctest('PipelineSuite Test', (success, failure) => {
 

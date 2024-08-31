@@ -1,6 +1,6 @@
-import { RealMouse, Waiter } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { RealMouse, Waiter } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

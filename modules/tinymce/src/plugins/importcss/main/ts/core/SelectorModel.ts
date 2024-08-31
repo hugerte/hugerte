@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from '@hugemce/katamari';
 
 export interface SelectorFormatItem {
   readonly title: string;

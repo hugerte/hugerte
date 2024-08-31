@@ -1,7 +1,7 @@
-import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyParts, Receiving, Reflecting } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Id, Obj, Optional, Singleton, Type } from '@ephox/katamari';
-import { DomEvent, EventUnbinder, SelectorFind, SugarElement } from '@ephox/sugar';
+import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyParts, Receiving, Reflecting } from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
+import { Id, Obj, Optional, Singleton, Type } from '@hugemce/katamari';
+import { DomEvent, EventUnbinder, SelectorFind, SugarElement } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import URI from 'tinymce/core/api/util/URI';

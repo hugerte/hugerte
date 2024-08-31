@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
-import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun, Global, Optional } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Waiter } from '@hugemce/agar';
+import { GuiFactory, TestHelpers } from '@hugemce/alloy';
+import { after, before, describe, it } from '@hugemce/bedrock-client';
+import { Cell, Fun, Global, Optional } from '@hugemce/katamari';
+import { Class, SugarElement } from '@hugemce/sugar';
 
 import Resource from 'tinymce/core/api/Resource';
 import { TinyMCE } from 'tinymce/core/api/Tinymce';

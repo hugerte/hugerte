@@ -1,6 +1,6 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Css, Scroll } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Css, Scroll } from '@hugemce/sugar';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

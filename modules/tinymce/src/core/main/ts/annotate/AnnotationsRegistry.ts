@@ -1,4 +1,4 @@
-import { Obj, Optional } from '@ephox/katamari';
+import { Obj, Optional } from '@hugemce/katamari';
 
 import { Decorator } from './Wrapping';
 

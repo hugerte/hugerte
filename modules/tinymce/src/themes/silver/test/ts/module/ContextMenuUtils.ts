@@ -1,6 +1,6 @@
-import { UiFinder, Waiter } from '@ephox/agar';
-import { Css, SugarBody } from '@ephox/sugar';
-import { TinyUiActions } from '@ephox/wrap-mcagar';
+import { UiFinder, Waiter } from '@hugemce/agar';
+import { Css, SugarBody } from '@hugemce/sugar';
+import { TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

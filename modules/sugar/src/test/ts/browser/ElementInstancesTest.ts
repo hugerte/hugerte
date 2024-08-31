@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional, OptionalInstances } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Optional, OptionalInstances } from '@hugemce/katamari';
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import { eqElement, tElement } from 'ephox/sugar/api/node/SugarElementInstances';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import { eqElement, tElement } from 'hugemce/sugar/api/node/SugarElementInstances';
 
 const tOptional = OptionalInstances.tOptional;
 

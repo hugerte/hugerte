@@ -1,16 +1,16 @@
-import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step, UiFinder } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Attribute, Focus, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step, UiFinder } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Attribute, Focus, SelectorFind, SugarElement } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
+import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
+import { Tabstopping } from 'hugemce/alloy/api/behaviour/Tabstopping';
+import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as Memento from 'hugemce/alloy/api/component/Memento';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
 
 UnitTest.asynctest('Browser Test: behaviour.keying.FocusManagersTest', (success, failure) => {
   const createManager = (prefix: string) => {

@@ -1,7 +1,7 @@
-import { Keys, RealKeys, TestStore, Waiter } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Type } from '@ephox/katamari';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Keys, RealKeys, TestStore, Waiter } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr, Type } from '@hugemce/katamari';
+import { TinyAssertions, TinyContentActions, TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

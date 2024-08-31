@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarText from 'ephox/sugar/api/node/SugarText';
-import * as TextContent from 'ephox/sugar/api/properties/TextContent';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as SugarText from 'hugemce/sugar/api/node/SugarText';
+import * as TextContent from 'hugemce/sugar/api/properties/TextContent';
 
 UnitTest.test('TextContentTest', () => {
   const element = SugarElement.fromHtml('<p>Hello <strong>World!</strong></p>');

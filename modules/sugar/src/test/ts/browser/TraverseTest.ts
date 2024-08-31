@@ -1,12 +1,12 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
 
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
+import * as InsertAll from 'hugemce/sugar/api/dom/InsertAll';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as SugarNode from 'hugemce/sugar/api/node/SugarNode';
+import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
+import * as Traverse from 'hugemce/sugar/api/search/Traverse';
 
 UnitTest.test('TraverseTest', () => {
   const node = (name: string) => {

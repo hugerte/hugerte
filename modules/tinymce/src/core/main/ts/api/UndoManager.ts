@@ -1,4 +1,4 @@
-import { Arr, Cell, Singleton } from '@ephox/katamari';
+import { Arr, Cell, Singleton } from '@hugemce/katamari';
 
 import { Bookmark } from '../bookmark/BookmarkTypes';
 import * as GetBookmark from '../bookmark/GetBookmark';

@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
-import { Compare, SugarElement, SugarText } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Fun } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
+import { Compare, SugarElement, SugarText } from '@hugemce/sugar';
 
-import * as DomExtract from 'ephox/phoenix/api/dom/DomExtract';
-import { Page } from 'ephox/phoenix/test/Page';
+import * as DomExtract from 'hugemce/phoenix/api/dom/DomExtract';
+import { Page } from 'hugemce/phoenix/test/Page';
 
 UnitTest.test('DomExtractTest', () => {
 

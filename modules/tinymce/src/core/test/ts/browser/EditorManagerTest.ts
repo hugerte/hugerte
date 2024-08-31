@@ -1,5 +1,5 @@
-import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Remove, Selectors } from '@ephox/sugar';
+import { after, afterEach, before, describe, it } from '@hugemce/bedrock-client';
+import { Remove, Selectors } from '@hugemce/sugar';
 import { assert } from 'chai';
 import 'tinymce';
 
@@ -143,7 +143,7 @@ describe('browser.tinymce.core.EditorManagerTest', () => {
         pluginb: '//domain/pluginb.js'
       },
       plugin_base_urls: {
-        testplugin: 'http://custom.ephox.com/dir/testplugin'
+        testplugin: 'http://custom.hugemce.com/dir/testplugin'
       }
     });
 
@@ -154,7 +154,7 @@ describe('browser.tinymce.core.EditorManagerTest', () => {
     assert.strictEqual(EditorManager.baseURL, 'http://www.EditorManager.com/base');
     assert.strictEqual(EditorManager.suffix, 'x');
     assert.strictEqual(editor.options.get('test'), 42);
-    assert.strictEqual(PluginManager.urls.testplugin, 'http://custom.ephox.com/dir/testplugin');
+    assert.strictEqual(PluginManager.urls.testplugin, 'http://custom.hugemce.com/dir/testplugin');
 
     assert.deepEqual(new Editor('ed2', {
       base_url: '/project/tinymce/js/tinymce',
@@ -163,7 +163,7 @@ describe('browser.tinymce.core.EditorManagerTest', () => {
         pluginc: '//domain/pluginc.js'
       },
       plugin_base_urls: {
-        testplugin: 'http://custom.ephox.com/dir/testplugin'
+        testplugin: 'http://custom.hugemce.com/dir/testplugin'
       }
     }, EditorManager).options.get('external_plugins'), {
       plugina: '//domain/plugina2.js',

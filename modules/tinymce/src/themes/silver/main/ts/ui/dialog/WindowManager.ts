@@ -1,11 +1,11 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Boxes, Docking, GuiFactory, HotspotAnchorSpec, InlineView, Keying,
   MakeshiftAnchorSpec, ModalDialog, NodeAnchorSpec, SelectionAnchorSpec, SystemEvents
-} from '@ephox/alloy';
-import { StructureProcessor, StructureSchema } from '@ephox/boulder';
-import { Dialog, DialogManager } from '@ephox/bridge';
-import { Optional, Singleton, Type } from '@ephox/katamari';
-import { SelectorExists, SugarBody, SugarElement, SugarLocation } from '@ephox/sugar';
+} from '@hugemce/alloy';
+import { StructureProcessor, StructureSchema } from '@hugemce/boulder';
+import { Dialog, DialogManager } from '@hugemce/bridge';
+import { Optional, Singleton, Type } from '@hugemce/katamari';
+import { SelectorExists, SugarBody, SugarElement, SugarLocation } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { WindowManagerImpl, WindowParams } from 'tinymce/core/api/WindowManager';

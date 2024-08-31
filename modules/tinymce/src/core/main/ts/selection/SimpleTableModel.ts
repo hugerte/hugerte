@@ -1,5 +1,5 @@
-import { Arr, Optional, Strings } from '@ephox/katamari';
-import { Attribute, Compare, Insert, InsertAll, Replication, SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr, Optional, Strings } from '@hugemce/katamari';
+import { Attribute, Compare, Insert, InsertAll, Replication, SelectorFilter, SugarElement } from '@hugemce/sugar';
 
 export interface TableModel {
   readonly element: SugarElement<HTMLTableElement>;

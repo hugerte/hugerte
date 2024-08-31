@@ -1,9 +1,9 @@
-import { Keys } from '@ephox/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Scroll } from '@ephox/sugar';
-import { TinyDom, LegacyUnit, TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyApis } from '@ephox/wrap-mcagar';
+import { Keys } from '@hugemce/agar';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Fun, Type } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Scroll } from '@hugemce/sugar';
+import { TinyDom, LegacyUnit, TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyApis } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

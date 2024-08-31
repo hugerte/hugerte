@@ -1,7 +1,7 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
-import { Cleaner } from 'ephox/agar/api/Cleaner';
+import { Cleaner } from 'hugemce/agar/api/Cleaner';
 
 UnitTest.test('Cleaner', () => {
   const cleaner = Cleaner();

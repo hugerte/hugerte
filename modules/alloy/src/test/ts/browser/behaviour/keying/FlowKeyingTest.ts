@@ -1,17 +1,17 @@
 
-import { FocusTools, Keyboard, Keys, TestStore } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarDocument, SugarElement } from '@ephox/sugar';
+import { FocusTools, Keyboard, Keys, TestStore } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { SugarDocument, SugarElement } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
+import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import { SketchSpec } from 'hugemce/alloy/api/component/SpecTypes';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
 
 describe('browser.alloy.behaviour.keying.FlowKeyingTest', () => {
 

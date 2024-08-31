@@ -1,5 +1,5 @@
-import { Type } from '@ephox/katamari';
-import { Attribute, SugarElement } from '@ephox/sugar';
+import { Type } from '@hugemce/katamari';
+import { Attribute, SugarElement } from '@hugemce/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 

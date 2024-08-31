@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { SchemaMap } from 'tinymce/core/api/html/Schema';

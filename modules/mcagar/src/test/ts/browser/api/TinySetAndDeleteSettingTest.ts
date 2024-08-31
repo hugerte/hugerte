@@ -1,10 +1,10 @@
-import { Assertions, GeneralSteps, Logger, Pipeline, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Assertions, GeneralSteps, Logger, Pipeline, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 
-import { Editor } from 'ephox/mcagar/alien/EditorTypes';
-import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';
-import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
+import { Editor } from 'hugemce/mcagar/alien/EditorTypes';
+import { TinyApis } from 'hugemce/mcagar/api/pipeline/TinyApis';
+import * as TinyLoader from 'hugemce/mcagar/api/pipeline/TinyLoader';
 
 UnitTest.asynctest('TinySetAndDeleteSettingTest', (success, failure) => {
 

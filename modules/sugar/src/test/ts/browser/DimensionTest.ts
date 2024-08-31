@@ -1,17 +1,17 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Css from 'ephox/sugar/api/properties/Css';
-import * as Height from 'ephox/sugar/api/view/Height';
-import * as Width from 'ephox/sugar/api/view/Width';
-import { Dimension } from 'ephox/sugar/impl/Dimension';
-import Div from 'ephox/sugar/test/Div';
-import MathElement from 'ephox/sugar/test/MathElement';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
+import * as Css from 'hugemce/sugar/api/properties/Css';
+import * as Height from 'hugemce/sugar/api/view/Height';
+import * as Width from 'hugemce/sugar/api/view/Width';
+import { Dimension } from 'hugemce/sugar/impl/Dimension';
+import Div from 'hugemce/sugar/test/Div';
+import MathElement from 'hugemce/sugar/test/MathElement';
 
 interface DimensionApi {
   get: (element: SugarElement<HTMLElement>) => number;

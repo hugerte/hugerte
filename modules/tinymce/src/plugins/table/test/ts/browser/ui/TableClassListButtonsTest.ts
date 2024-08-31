@@ -1,7 +1,7 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { SugarBody } from '@hugemce/sugar';
+import { TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

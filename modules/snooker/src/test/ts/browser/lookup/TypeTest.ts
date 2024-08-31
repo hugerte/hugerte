@@ -1,11 +1,11 @@
-import { UiFinder } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Html, SugarElement } from '@ephox/sugar';
+import { UiFinder } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Html, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Type from 'ephox/snooker/lookup/Type';
+import { Warehouse } from 'hugemce/snooker/api/Warehouse';
+import * as Type from 'hugemce/snooker/lookup/Type';
 
 describe('browser.snooker.lookup.TypeTest', () => {
   const container = SugarElement.fromTag('div');

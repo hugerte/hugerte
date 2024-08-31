@@ -1,11 +1,11 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
 
-import { Gene } from 'ephox/boss/api/Gene';
-import * as Detach from 'ephox/boss/mutant/Detach';
-import * as Logger from 'ephox/boss/mutant/Logger';
-import * as Tracks from 'ephox/boss/mutant/Tracks';
+import { Gene } from 'hugemce/boss/api/Gene';
+import * as Detach from 'hugemce/boss/mutant/Detach';
+import * as Logger from 'hugemce/boss/mutant/Logger';
+import * as Tracks from 'hugemce/boss/mutant/Tracks';
 
 UnitTest.test('DetachTest', () => {
 

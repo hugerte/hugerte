@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, Disabling, FormField as AlloyFormField, HtmlSelect as AlloyHtmlSelect,
   NativeEvents, SimpleSpec, SketchSpec, Tabstopping
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
+} from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
+import { Arr, Optional } from '@hugemce/katamari';
 
 import { UiFactoryBackstageProviders } from 'tinymce/themes/silver/backstage/Backstage';
 import { renderLabel } from 'tinymce/themes/silver/ui/alien/FieldLabeller';

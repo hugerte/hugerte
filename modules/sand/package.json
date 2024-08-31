@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/sand",
+  "name": "@hugemce/sand",
   "version": "6.0.10",
   "description": "Platform detection library",
   "repository": {
@@ -31,9 +31,9 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@ephox/katamari": "^9.1.6"
+    "@hugemce/katamari": "^9.1.6"
   },
-  "main": "./lib/main/ts/ephox/sand/api/Main.js",
-  "module": "./lib/main/ts/ephox/sand/api/Main.js",
-  "types": "./lib/main/ts/ephox/sand/api/Main.d.ts"
+  "main": "./lib/main/ts/hugemce/sand/api/Main.js",
+  "module": "./lib/main/ts/hugemce/sand/api/Main.js",
+  "types": "./lib/main/ts/hugemce/sand/api/Main.d.ts"
 }

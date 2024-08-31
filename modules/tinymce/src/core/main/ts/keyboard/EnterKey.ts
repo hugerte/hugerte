@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Fun, Optional } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
 
 import Editor from '../api/Editor';
 import { EditorEvent } from '../api/util/EventDispatcher';

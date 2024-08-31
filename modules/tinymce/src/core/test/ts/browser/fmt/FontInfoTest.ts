@@ -1,5 +1,5 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Hierarchy, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import * as FontInfo from 'tinymce/core/fmt/FontInfo';

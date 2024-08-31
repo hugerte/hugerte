@@ -1,8 +1,8 @@
-import { RealKeys, UiControls } from '@ephox/agar';
-import { GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Future, Optional } from '@ephox/katamari';
-import { SelectorFind, SugarDocument, Value } from '@ephox/sugar';
+import { RealKeys, UiControls } from '@hugemce/agar';
+import { GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Future, Optional } from '@hugemce/katamari';
+import { SelectorFind, SugarDocument, Value } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import { ApiUrlData } from 'tinymce/themes/silver/backstage/UrlInputBackstage';

@@ -1,15 +1,15 @@
-import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Value } from '@ephox/sugar';
+import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Value } from '@hugemce/sugar';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Form } from 'ephox/alloy/api/ui/Form';
-import { FormField } from 'ephox/alloy/api/ui/FormField';
-import { HtmlSelect } from 'ephox/alloy/api/ui/HtmlSelect';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import * as TestForm from 'ephox/alloy/test/form/TestForm';
-import { FormParts } from 'ephox/alloy/ui/types/FormTypes';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Form } from 'hugemce/alloy/api/ui/Form';
+import { FormField } from 'hugemce/alloy/api/ui/FormField';
+import { HtmlSelect } from 'hugemce/alloy/api/ui/HtmlSelect';
+import { Input } from 'hugemce/alloy/api/ui/Input';
+import * as TestForm from 'hugemce/alloy/test/form/TestForm';
+import { FormParts } from 'hugemce/alloy/ui/types/FormTypes';
 
 UnitTest.asynctest('Basic Form', (success, failure) => {
 

@@ -1,11 +1,11 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Result } from 'ephox/katamari/api/Result';
-import * as Results from 'ephox/katamari/api/Results';
-import { arbResult, arbResultError, arbResultValue } from 'ephox/katamari/test/arb/ArbDataTypes';
+import * as Fun from 'hugemce/katamari/api/Fun';
+import { Result } from 'hugemce/katamari/api/Result';
+import * as Results from 'hugemce/katamari/api/Results';
+import { arbResult, arbResultError, arbResultValue } from 'hugemce/katamari/test/arb/ArbDataTypes';
 
 describe('atomic.katamari.api.data.ResultsTest', () => {
 

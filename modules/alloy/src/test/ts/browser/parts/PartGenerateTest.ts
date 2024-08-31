@@ -1,10 +1,10 @@
-import { Logger } from '@ephox/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { FieldSchema, Objects } from '@ephox/boulder';
-import { Fun, Obj } from '@ephox/katamari';
+import { Logger } from '@hugemce/agar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { FieldSchema, Objects } from '@hugemce/boulder';
+import { Fun, Obj } from '@hugemce/katamari';
 
-import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
-import * as PartType from 'ephox/alloy/parts/PartType';
+import * as AlloyParts from 'hugemce/alloy/parts/AlloyParts';
+import * as PartType from 'hugemce/alloy/parts/PartType';
 
 UnitTest.test('Atomic Test: parts.GenerateTest', () => {
   const schema = [

@@ -1,4 +1,4 @@
-import { Id } from '@ephox/katamari';
+import { Id } from '@hugemce/katamari';
 
 import { Dialog } from 'tinymce/core/api/ui/Ui';
 

@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import { ApproxStructure, Assertions, Keys, UiFinder } from '@ephox/agar';
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Css, SugarBody } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions, Keys, UiFinder } from '@hugemce/agar';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Cell, Fun } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Css, SugarBody } from '@hugemce/sugar';
+import { TinyDom, TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

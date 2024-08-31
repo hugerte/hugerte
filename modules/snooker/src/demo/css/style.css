@@ -1,8 +1,8 @@
-#ephox-ui {
+#hugemce-ui {
   margin-bottom: 20px;
 }
 
-.ephox-snooker-table-picker {
+.hugemce-snooker-table-picker {
   /*border: none;*/
   padding: 0;
   margin: 0;
@@ -10,7 +10,7 @@
   border-collapse: separate;
 }
 
-.ephox-snooker-table-picker .ephox-snooker-table-picker-cell {
+.hugemce-snooker-table-picker .hugemce-snooker-table-picker-cell {
   /*border: none;*/
   width: 1em;
   height: 1em;
@@ -25,27 +25,27 @@
   background-color: inherit;
 }
 
-.ephox-snooker-table-picker .ephox-snooker-table-picker-row {
+.hugemce-snooker-table-picker .hugemce-snooker-table-picker-row {
   white-space: nowrap;
 }
 
-.ephox-snooker-table-picker {
+.hugemce-snooker-table-picker {
   padding-top: 1em;
 }
 
 
-.ephox-snooker-table-picker {
+.hugemce-snooker-table-picker {
   display: inline-block;
   border: 5px solid black;
 }
 
-.ephox-snooker-table-picker .ephox-snooker-table-picker-cell {
+.hugemce-snooker-table-picker .hugemce-snooker-table-picker-cell {
   border: 1px solid black;
   width: 30px;
   height: 30px;
 }
 
-.ephox-snooker-adjust-se-resize {
+.hugemce-snooker-adjust-se-resize {
   width: 10px;
   height: 10px;
   background-color: blue;
@@ -55,26 +55,26 @@
   cursor: nwse-resize;
 }
 
-.ephox-snooker-adjust-selected {
+.hugemce-snooker-adjust-selected {
   border-collapse: collapse !important;
 }
 
-.ephox-snooker-adjust-selected .ephox-snooker-table-picker-cell {
+.hugemce-snooker-adjust-selected .hugemce-snooker-table-picker-cell {
   border-bottom: 1px solid #ccc !important;
 }
 
-.ephox-snooker-adjust-selected .ephox-snooker-table-picker-cell {
+.hugemce-snooker-adjust-selected .hugemce-snooker-table-picker-cell {
   border-right: 1px solid #ccc !important;
 }
 
-.ephox-snooker-adjust-selected .ephox-snooker-table-picker-cell {
+.hugemce-snooker-adjust-selected .hugemce-snooker-table-picker-cell {
   border: none;
 }
 
-.ephox-snooker-table-picker-cell.ephox-snooker-picker-selected {
+.hugemce-snooker-table-picker-cell.hugemce-snooker-picker-selected {
   background-color: #CADBEE;
 }
 
-.ephox-snooker-picker-selected.ephox-snooker-picker-header {
+.hugemce-snooker-picker-selected.hugemce-snooker-picker-header {
   background-color: #BEECAD;
 }

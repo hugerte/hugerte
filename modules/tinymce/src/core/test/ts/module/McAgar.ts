@@ -7,4 +7,4 @@
 import 'tinymce';
 import 'tinymce/models/dom/Main';
 import 'tinymce/themes/silver/Main';
-export * from '@ephox/mcagar';
+export * from '@hugemce/mcagar';

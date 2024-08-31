@@ -17,10 +17,10 @@ The idea is that TinyMCE core is developed against the internal strict configura
 * The public structure is somewhat similar to what is in tinymce 4.x to make migration easy for end users.
 
 # Installation
-`bridge` is available as an `npm` package.  You can install it via the npm package `@ephox/bridge`
+`bridge` is available as an `npm` package.  You can install it via the npm package `@hugemce/bridge`
 
 ## Install from npm
-`npm install @ephox/bridge`
+`npm install @hugemce/bridge`
 
 # Usage
 

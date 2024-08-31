@@ -1,4 +1,4 @@
-import { Arr, Type } from '@ephox/katamari';
+import { Arr, Type } from '@hugemce/katamari';
 
 import Entities from '../html/Entities';
 import Tools from './Tools';

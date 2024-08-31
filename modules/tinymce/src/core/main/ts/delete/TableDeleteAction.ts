@@ -1,5 +1,5 @@
-import { Adt, Arr, Optional, Optionals } from '@ephox/katamari';
-import { Compare, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Adt, Arr, Optional, Optionals } from '@hugemce/katamari';
+import { Compare, SelectorFind, SugarElement } from '@hugemce/sugar';
 
 import * as SelectionUtils from '../selection/SelectionUtils';
 import * as TableCellSelection from '../selection/TableCellSelection';

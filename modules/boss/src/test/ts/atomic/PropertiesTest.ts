@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import { CommentGene } from 'ephox/boss/api/CommentGene';
-import { Gene } from 'ephox/boss/api/Gene';
-import { TextGene } from 'ephox/boss/api/TextGene';
-import * as Properties from 'ephox/boss/mutant/Properties';
+import { CommentGene } from 'hugemce/boss/api/CommentGene';
+import { Gene } from 'hugemce/boss/api/Gene';
+import { TextGene } from 'hugemce/boss/api/TextGene';
+import * as Properties from 'hugemce/boss/mutant/Properties';
 
 UnitTest.test('PropertiesTest', () => {
   const g = Gene('root', 'root', []);

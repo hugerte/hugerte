@@ -1,10 +1,10 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Fun, Optional } from '@hugemce/katamari';
 import { assert } from 'chai';
 
-import { PlatformDetection } from 'ephox/sand/core/PlatformDetection';
-import { UserAgentData, UserAgentDataBrand } from 'ephox/sand/detect/UaData';
-import * as PlatformQuery from 'ephox/sand/test/PlatformQuery';
+import { PlatformDetection } from 'hugemce/sand/core/PlatformDetection';
+import { UserAgentData, UserAgentDataBrand } from 'hugemce/sand/detect/UaData';
+import * as PlatformQuery from 'hugemce/sand/test/PlatformQuery';
 
 type PlatformQuery = typeof PlatformQuery;
 

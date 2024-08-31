@@ -1,4 +1,4 @@
-import { Registry } from '@ephox/bridge';
+import { Registry } from '@hugemce/bridge';
 
 /**
  * TinyMCE UI registration API.

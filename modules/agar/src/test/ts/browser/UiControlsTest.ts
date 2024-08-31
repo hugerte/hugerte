@@ -1,10 +1,10 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Insert, SugarElement } from '@ephox/sugar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Insert, SugarElement } from '@hugemce/sugar';
 
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { Chain } from 'ephox/agar/api/Chain';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import * as UiControls from 'ephox/agar/api/UiControls';
+import * as Assertions from 'hugemce/agar/api/Assertions';
+import { Chain } from 'hugemce/agar/api/Chain';
+import { Pipeline } from 'hugemce/agar/api/Pipeline';
+import * as UiControls from 'hugemce/agar/api/UiControls';
 
 UnitTest.asynctest('UiControlsTest', (success, failure) => {
 

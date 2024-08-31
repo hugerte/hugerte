@@ -1,6 +1,6 @@
-import { AlloySpec, AlloyTriggers, Behaviour, Input, Keying, Memento, SketchSpec } from '@ephox/alloy';
-import { InlineContent } from '@ephox/bridge';
-import { Id, Optional } from '@ephox/katamari';
+import { AlloySpec, AlloyTriggers, Behaviour, Input, Keying, Memento, SketchSpec } from '@hugemce/alloy';
+import { InlineContent } from '@hugemce/bridge';
+import { Id, Optional } from '@hugemce/katamari';
 
 import { ToolbarMode } from '../../api/Options';
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';

@@ -1,4 +1,4 @@
-import { Obj, Type } from '@ephox/katamari';
+import { Obj, Type } from '@hugemce/katamari';
 
 import * as NodeType from '../../dom/NodeType';
 import * as Utils from '../../events/EventUtils';

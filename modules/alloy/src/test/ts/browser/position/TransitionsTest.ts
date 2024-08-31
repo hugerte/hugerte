@@ -1,25 +1,25 @@
-import { Waiter } from '@ephox/agar';
-import { afterEach, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Attribute, Classes, SugarDocument } from '@ephox/sugar';
+import { Waiter } from '@hugemce/agar';
+import { afterEach, beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
+import { Attribute, Classes, SugarDocument } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import { GuiSetup } from 'ephox/alloy/api/testhelpers/TestHelpers';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { PlacementSpec } from 'ephox/alloy/behaviour/positioning/PositioningTypes';
-import * as Layout from 'ephox/alloy/positioning/layout/Layout';
-import * as LayoutInset from 'ephox/alloy/positioning/layout/LayoutInset';
-import { Layouts } from 'ephox/alloy/positioning/mode/Anchoring';
-import { TransitionMode } from 'ephox/alloy/positioning/view/Transitions';
-import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import { Positioning } from 'hugemce/alloy/api/behaviour/Positioning';
+import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as Memento from 'hugemce/alloy/api/component/Memento';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as NativeEvents from 'hugemce/alloy/api/events/NativeEvents';
+import { GuiSetup } from 'hugemce/alloy/api/testhelpers/TestHelpers';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { PlacementSpec } from 'hugemce/alloy/behaviour/positioning/PositioningTypes';
+import * as Layout from 'hugemce/alloy/positioning/layout/Layout';
+import * as LayoutInset from 'hugemce/alloy/positioning/layout/LayoutInset';
+import { Layouts } from 'hugemce/alloy/positioning/mode/Anchoring';
+import { TransitionMode } from 'hugemce/alloy/positioning/view/Transitions';
+import * as PositionTestUtils from 'hugemce/alloy/test/PositionTestUtils';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
 
 interface Scenario {
   readonly spec: PlacementSpec;

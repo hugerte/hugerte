@@ -1,4 +1,4 @@
-import { Waiter } from '@ephox/agar';
+import { Waiter } from '@hugemce/agar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

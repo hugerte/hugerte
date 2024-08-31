@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Mouse, UiFinder } from '@ephox/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
-import { McEditor, TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions, Mouse, UiFinder } from '@hugemce/agar';
+import { before, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Optional } from '@hugemce/katamari';
+import { SugarBody } from '@hugemce/sugar';
+import { McEditor, TinyDom, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { RawEditorOptions } from 'tinymce/core/api/OptionTypes';

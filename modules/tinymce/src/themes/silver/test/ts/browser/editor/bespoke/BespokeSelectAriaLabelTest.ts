@@ -1,8 +1,8 @@
-import { UiFinder } from '@ephox/agar';
-import { afterEach, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Attribute, SugarBody, SugarElement } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { UiFinder } from '@hugemce/agar';
+import { afterEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
+import { Attribute, SugarBody, SugarElement } from '@hugemce/sugar';
+import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

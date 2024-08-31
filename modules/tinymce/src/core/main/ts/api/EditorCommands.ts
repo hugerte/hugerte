@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr, Obj, Type } from '@hugemce/katamari';
 
 import * as SelectionBookmark from '../selection/SelectionBookmark';
 import Editor from './Editor';

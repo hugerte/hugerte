@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { Assertions } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
+import * as DomFactory from 'hugemce/alloy/api/component/DomFactory';
 
 UnitTest.test('DomFactoryTest', () => {
   Assertions.assertEq('Basic DomFactory.simple', {

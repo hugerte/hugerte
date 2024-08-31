@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarBody, SugarElement } from '@ephox/sugar';
-import { McEditor } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { SugarBody, SugarElement } from '@hugemce/sugar';
+import { McEditor } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

@@ -1,6 +1,6 @@
-import { Behaviour, Focusing, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+import { Behaviour, Focusing, SimpleSpec, Tabstopping } from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
+import { Arr } from '@hugemce/katamari';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 

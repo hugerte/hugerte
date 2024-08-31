@@ -1,4 +1,4 @@
-import { Arr, Obj, Strings, Type } from '@ephox/katamari';
+import { Arr, Obj, Strings, Type } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import Env from 'tinymce/core/api/Env';
@@ -155,7 +155,7 @@ const isPageEmbedWrapper = (node: AstNode): boolean => {
 const isWithinEmbedWrapper = (node: AstNode): boolean => {
   let tempNode: AstNode | null | undefined = node;
   while ((tempNode = tempNode.parent)) {
-    if (tempNode.attr('data-ephox-embed-iri') || isPageEmbedWrapper(tempNode)) {
+    if (tempNode.attr('data-hugemce-embed-iri') || isPageEmbedWrapper(tempNode)) {
       return true;
     }
   }

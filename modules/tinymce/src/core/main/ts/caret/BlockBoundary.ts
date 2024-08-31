@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Compare, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Optional } from '@hugemce/katamari';
+import { Compare, SugarElement, SugarNode } from '@hugemce/sugar';
 
 import Schema from '../api/html/Schema';
 import * as Parents from '../dom/Parents';

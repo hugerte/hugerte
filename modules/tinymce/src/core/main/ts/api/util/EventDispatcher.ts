@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
+import { Arr, Fun, Obj } from '@hugemce/katamari';
 
 import * as EventUtils from '../../events/EventUtils';
 import Tools from './Tools';

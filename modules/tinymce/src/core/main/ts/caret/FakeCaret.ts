@@ -1,5 +1,5 @@
-import { Singleton } from '@ephox/katamari';
-import { ContentEditable, SelectorFilter, SugarElement, Traverse } from '@ephox/sugar';
+import { Singleton } from '@hugemce/katamari';
+import { ContentEditable, SelectorFilter, SugarElement, Traverse } from '@hugemce/sugar';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';

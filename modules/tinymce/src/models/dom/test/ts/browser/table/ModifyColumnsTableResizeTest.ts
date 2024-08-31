@@ -1,6 +1,6 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { SelectorFind, Width } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { SelectorFind, Width } from '@hugemce/sugar';
+import { TinyAssertions, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

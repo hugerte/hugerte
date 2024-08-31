@@ -11,7 +11,7 @@
 /gen
 /node_modules
 
-ephox-sugar-*.tgz
+hugemce-sugar-*.tgz
 package-lock.json
 yarn.lock
 jenkins-plumbing

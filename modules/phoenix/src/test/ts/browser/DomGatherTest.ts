@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Optional } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 
-import * as DomGather from 'ephox/phoenix/api/dom/DomGather';
+import * as DomGather from 'hugemce/phoenix/api/dom/DomGather';
 
-import { Page } from '../module/ephox/phoenix/test/Page';
+import { Page } from '../module/hugemce/phoenix/test/Page';
 
 UnitTest.test('DomGatherTest', () => {
   const page = Page();

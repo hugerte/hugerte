@@ -1,6 +1,6 @@
-import { SimpleSpec } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+import { SimpleSpec } from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
+import { Arr } from '@hugemce/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 

@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, StructAssert, Waiter } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions, StructAssert, Waiter } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
+import { TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import * as DataToHtml from 'tinymce/plugins/media/core/DataToHtml';
@@ -57,7 +57,7 @@ describe('browser.tinymce.plugins.media.core.DataToHtmlTest', () => {
       'source': 'a',
       'altsource': '',
       'poster': '',
-      'data-ephox-embed': 'a'
+      'data-hugemce-embed': 'a'
     },
     videoStruct
   ));
@@ -68,7 +68,7 @@ describe('browser.tinymce.plugins.media.core.DataToHtmlTest', () => {
       'source': 'a',
       'altsource': '',
       'poster': '',
-      'data-ephox-embed': 'a'
+      'data-hugemce-embed': 'a'
     },
     iframeStruct
   ));

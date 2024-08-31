@@ -1,9 +1,9 @@
-import { HsvColour } from '@ephox/acid';
-import { UiControls, UiFinder, Waiter } from '@ephox/agar';
-import { AlloyComponent, GuiFactory, TestHelpers } from '@ephox/alloy';
-import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { HsvColour } from '@hugemce/acid';
+import { UiControls, UiFinder, Waiter } from '@hugemce/agar';
+import { AlloyComponent, GuiFactory, TestHelpers } from '@hugemce/alloy';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import { renderColorPicker } from 'tinymce/themes/silver/ui/dialog/ColorPicker';

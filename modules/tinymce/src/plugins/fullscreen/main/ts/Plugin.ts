@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Cell } from '@hugemce/katamari';
 
 import PluginManager from 'tinymce/core/api/PluginManager';
 

@@ -1,12 +1,12 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Attribute, SugarElement, TextContent } from '@ephox/sugar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Attribute, SugarElement, TextContent } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Transitions from 'ephox/snooker/model/Transitions';
-import * as Bridge from 'ephox/snooker/test/Bridge';
+import * as Structs from 'hugemce/snooker/api/Structs';
+import { Warehouse } from 'hugemce/snooker/api/Warehouse';
+import * as Transitions from 'hugemce/snooker/model/Transitions';
+import * as Bridge from 'hugemce/snooker/test/Bridge';
 
 describe('TransitionsTest', () => {
   const createCell = (text: string): SugarElement<HTMLTableCellElement> => {

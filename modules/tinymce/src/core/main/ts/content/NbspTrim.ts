@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from '@hugemce/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Schema from '../api/html/Schema';

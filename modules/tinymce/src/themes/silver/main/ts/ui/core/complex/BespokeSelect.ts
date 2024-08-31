@@ -1,6 +1,6 @@
-import { AlloyComponent, Disabling, SketchSpec, TieredData, Tooltipping } from '@ephox/alloy';
-import { Arr, Cell, Fun, Optional } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { AlloyComponent, Disabling, SketchSpec, TieredData, Tooltipping } from '@hugemce/alloy';
+import { Arr, Cell, Fun, Optional } from '@hugemce/katamari';
+import { Attribute } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Menu } from 'tinymce/core/api/ui/Ui';

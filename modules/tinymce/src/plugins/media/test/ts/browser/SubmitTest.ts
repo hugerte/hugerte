@@ -1,6 +1,6 @@
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Fun } from '@hugemce/katamari';
+import { TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import AstNode from 'tinymce/core/api/html/Node';
@@ -143,13 +143,13 @@ describe('browser.tinymce.plugins.media.core.SubmitTest', () => {
             });
           };
 
-          editor.parser.addAttributeFilter('data-ephox-embed-iri', converter);
+          editor.parser.addAttributeFilter('data-hugemce-embed-iri', converter);
         });
       }
     }, [ Plugin ]);
 
     const customResponiveEmbed =
-      `<div style="max-width: 650px;" data-ephox-embed-iri="https://www.youtube.com/watch?v=5auGeCM0knQ">
+      `<div style="max-width: 650px;" data-hugemce-embed-iri="https://www.youtube.com/watch?v=5auGeCM0knQ">
       <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;"
       src="https://www.youtube.com/embed/5auGeCM0knQ?rel=0" scrolling="no" allow="accelerometer;

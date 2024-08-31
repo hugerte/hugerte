@@ -1,8 +1,8 @@
-import { Clipboard } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
-import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Clipboard } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr, Optional } from '@hugemce/katamari';
+import { SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
+import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloySpec } from '@ephox/alloy';
-import { Dialog, Menu } from '@ephox/bridge';
-import { Cell, Result } from '@ephox/katamari';
+import { AlloyComponent, AlloySpec } from '@hugemce/alloy';
+import { Dialog, Menu } from '@hugemce/bridge';
+import { Cell, Result } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import I18n, { TranslatedString, Untranslated } from 'tinymce/core/api/util/I18n';

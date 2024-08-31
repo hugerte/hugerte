@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "ephox/katamari-assertions/test/*": ["src/test/ts/module/ephox/katamari-assertions/test/*"],
-      "ephox/katamari-assertions/demo/*": ["src/demo/ts/ephox/katamari-assertions/demo/*"],
-      "ephox/katamari-assertions/*": ["src/main/ts/ephox/katamari-assertions/*"]
+      "hugemce/katamari-assertions/test/*": ["src/test/ts/module/hugemce/katamari-assertions/test/*"],
+      "hugemce/katamari-assertions/demo/*": ["src/demo/ts/hugemce/katamari-assertions/demo/*"],
+      "hugemce/katamari-assertions/*": ["src/main/ts/hugemce/katamari-assertions/*"]
     }
   },
   "include": [

@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "ephox/snooker/test/*": ["src/test/ts/module/ephox/snooker/test/*"],
-      "ephox/snooker/demo/*": ["src/demo/ts/ephox/snooker/demo/*"],
-      "ephox/snooker/*": ["src/main/ts/ephox/snooker/*"]
+      "hugemce/snooker/test/*": ["src/test/ts/module/hugemce/snooker/test/*"],
+      "hugemce/snooker/demo/*": ["src/demo/ts/hugemce/snooker/demo/*"],
+      "hugemce/snooker/*": ["src/main/ts/hugemce/snooker/*"]
     }
   },
   "include": [

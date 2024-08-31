@@ -1,6 +1,6 @@
-import { UiFinder } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { UiFinder } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { TinyAssertions, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

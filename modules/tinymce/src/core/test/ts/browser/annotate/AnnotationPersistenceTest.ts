@@ -1,6 +1,6 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { McEditor, TinyAssertions, TinySelections } from '@ephox/wrap-mcagar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { McEditor, TinyAssertions, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import { AnnotatorSettings } from 'tinymce/core/api/Annotator';

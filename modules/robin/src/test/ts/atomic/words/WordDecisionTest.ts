@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Arr, Fun, Optional } from '@hugemce/katamari';
 
-import { WordDecision } from 'ephox/robin/words/WordDecision';
-import { WordWalking } from 'ephox/robin/words/WordWalking';
+import { WordDecision } from 'hugemce/robin/words/WordDecision';
+import { WordWalking } from 'hugemce/robin/words/WordWalking';
 
 UnitTest.test('WordDecisionTest', () => {
   const universe = TestUniverse(

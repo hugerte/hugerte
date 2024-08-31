@@ -1,8 +1,8 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
-import * as Contracts from 'ephox/katamari/api/Contracts';
-import * as Fun from 'ephox/katamari/api/Fun';
+import * as Contracts from 'hugemce/katamari/api/Contracts';
+import * as Fun from 'hugemce/katamari/api/Fun';
 
 describe('atomic.katamari.api.struct.ContractsTest', () => {
 

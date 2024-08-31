@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "ephox/mcagar/test/*": ["src/test/ts/module/ephox/mcagar/test/*"],
-      "ephox/mcagar/demo/*": ["src/demo/ts/ephox/mcagar/demo/*"],
-      "ephox/mcagar/*": ["src/main/ts/ephox/mcagar/*"]
+      "hugemce/mcagar/test/*": ["src/test/ts/module/hugemce/mcagar/test/*"],
+      "hugemce/mcagar/demo/*": ["src/demo/ts/hugemce/mcagar/demo/*"],
+      "hugemce/mcagar/*": ["src/main/ts/hugemce/mcagar/*"]
     }
   },
   "include": [

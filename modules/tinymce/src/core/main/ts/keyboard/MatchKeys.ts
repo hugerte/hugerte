@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional } from '@hugemce/katamari';
 
 interface KeyPatternBase {
   shiftKey?: boolean;

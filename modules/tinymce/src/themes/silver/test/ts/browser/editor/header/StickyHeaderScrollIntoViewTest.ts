@@ -1,7 +1,7 @@
-import { Cursors, Waiter } from '@ephox/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Scroll, SugarLocation, SugarPosition } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Cursors, Waiter } from '@hugemce/agar';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Scroll, SugarLocation, SugarPosition } from '@hugemce/sugar';
+import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

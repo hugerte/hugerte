@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr, Obj, Type } from '@hugemce/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';

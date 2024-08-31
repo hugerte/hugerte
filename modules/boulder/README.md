@@ -6,24 +6,24 @@ The API exposed by boulder will be constantly changing, but it should always be 
 
 # Installation
 
-`boulder` is available as an `npm` package. You can install it via the npm package `@ephox/boulder`
+`boulder` is available as an `npm` package. You can install it via the npm package `@hugemce/boulder`
 
 ## Install from npm
 
-`npm install @ephox/boulder`
+`npm install @hugemce/boulder`
 
 # Usage
 
 ## Running Tests
 
-`boulder` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run tests. The tests are run through the `test` script in the project. Specifically,
+`boulder` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run tests. The tests are run through the `test` script in the project. Specifically,
 
 `$ yarn test`
 
 
 ## Boulder APIs
 
-`ephox.boulder.api.StructureSchema`
+`hugemce.boulder.api.StructureSchema`
 
 * [`valueOf :: (JsObj -> Result) -> StructureProcessor`](#valueOf)
 * [`arrOf :: (StructureProcessor) -> StructureProcessor`](#arrOf)
@@ -35,12 +35,12 @@ The API exposed by boulder will be constantly changing, but it should always be 
 * [`asRaw :: (String, StructureProcessor, JsObj) -> Result (JsObj)`](#asRaw)
 
 
-`ephox.boulder.api.FieldSchema`
+`hugemce.boulder.api.FieldSchema`
 
 * [`field :: (String, String, Presence, StructureProcessor) -> FieldSchema`](#field)
 * [`customField :: (String, (JsObj -> JsObj)) -> FieldSchema`](#customField)
 
-`ephox.boulder.api.ValueType`
+`hugemce.boulder.api.ValueType`
 
 * [`anyValue :: () -> StructureProcessor`](#anyValue)
 * [`number :: () -> StructureProcessor`](#number)
@@ -53,7 +53,7 @@ Note, there are many other APIs as well, but they tend to be convenience functio
 
 ### <a name="valueOf">StructureSchema.valueOf(validator)</a>
 
-- used to provide validation for any value (array, object, number etc.). The argument passed in is a `validator`, which will take the value as an argument and return `Result.value` if it should be allowed, and `Result.error` if it should not. `Result` is a data type defined by [`katamari`](https://www.npmjs.com/package/@ephox/katamari).
+- used to provide validation for any value (array, object, number etc.). The argument passed in is a `validator`, which will take the value as an argument and return `Result.value` if it should be allowed, and `Result.error` if it should not. `Result` is a data type defined by [`katamari`](https://www.npmjs.com/package/@hugemce/katamari).
 
 ### <a name="arrOf">StructureSchema.arrOf(schema)</a>
 
@@ -77,7 +77,7 @@ Note, there are many other APIs as well, but they tend to be convenience functio
 
 ### <a name="asStruct">StructureSchema.asStruct(label, schema, obj)</a>
 
-- take a `schema` for an object and an object (`obj`), and return a [*structified*]((https://www.npmjs.com/package/@ephox/katamari) version of the object in a `Result.value` if it matches the schema. If it does not match, returns `Result.error` with the validation errors. A struct is just an object where every property is wrapped in an accessor function.
+- take a `schema` for an object and an object (`obj`), and return a [*structified*]((https://www.npmjs.com/package/@hugemce/katamari) version of the object in a `Result.value` if it matches the schema. If it does not match, returns `Result.error` with the validation errors. A struct is just an object where every property is wrapped in an accessor function.
 
 ### <a name="asRaw">StructureSchema.asRaw(label, schema, obj)</a>
 

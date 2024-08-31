@@ -6,7 +6,7 @@ declare let escape: any;
 declare let unescape: any;
 
 const isMediaElement = (element: Element): boolean =>
-  element.hasAttribute('data-mce-object') || element.hasAttribute('data-ephox-embed-iri');
+  element.hasAttribute('data-mce-object') || element.hasAttribute('data-hugemce-embed-iri');
 
 const setup = (editor: Editor): void => {
   editor.on('click keyup touchend', () => {

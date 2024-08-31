@@ -1,4 +1,4 @@
-import { Arr, Fun, Id, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Fun, Id, Obj, Optional, Type } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { FormatReference, Separator, StyleFormat } from 'tinymce/core/api/fmt/StyleFormat';

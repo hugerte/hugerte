@@ -1,6 +1,6 @@
-import { ApproxStructure, Keys, StructAssert } from '@ephox/agar';
-import { Thunk, Unicode } from '@ephox/katamari';
-import { TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Keys, StructAssert } from '@hugemce/agar';
+import { Thunk, Unicode } from '@hugemce/katamari';
+import { TinyContentActions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import * as Options from 'tinymce/core/api/Options';

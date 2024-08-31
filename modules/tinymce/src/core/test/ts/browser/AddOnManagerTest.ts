@@ -1,5 +1,5 @@
-import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+import { after, before, context, describe, it } from '@hugemce/bedrock-client';
+import { Obj } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import AddOnManager from 'tinymce/core/api/AddOnManager';

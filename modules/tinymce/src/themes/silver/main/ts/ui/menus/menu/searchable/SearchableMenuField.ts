@@ -1,6 +1,6 @@
-import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, Input, Keying, NativeEvents, NativeSimulatedEvent, Representing } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { Attribute, EventArgs, SelectorFind } from '@ephox/sugar';
+import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, Input, Keying, NativeEvents, NativeSimulatedEvent, Representing } from '@hugemce/alloy';
+import { Optional } from '@hugemce/katamari';
+import { Attribute, EventArgs, SelectorFind } from '@hugemce/sugar';
 
 import { UiFactoryBackstageProviders } from '../../../../backstage/Backstage';
 import { selectableClass as usualItemClass } from '../../item/ItemClasses';

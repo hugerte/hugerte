@@ -1,9 +1,9 @@
-import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr, Strings } from '@ephox/katamari';
-import { SugarBody, SugarDocument, Css } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, TestStore, UiFinder, Waiter } from '@hugemce/agar';
+import { TestHelpers } from '@hugemce/alloy';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Strings } from '@hugemce/katamari';
+import { SugarBody, SugarDocument, Css } from '@hugemce/sugar';
+import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

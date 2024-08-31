@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/boss",
+  "name": "@hugemce/boss",
   "description": "Generic wrapper to document models - DomUniverse vs TestUniverse",
   "version": "6.1.1",
   "repository": {
@@ -19,11 +19,11 @@
     "LICENSE.txt"
   ],
   "dependencies": {
-    "@ephox/katamari": "^9.1.6",
-    "@ephox/sugar": "^9.3.1"
+    "@hugemce/katamari": "^9.1.6",
+    "@hugemce/sugar": "^9.3.1"
   },
   "devDependencies": {
-    "@ephox/katamari-assertions": "^4.0.10"
+    "@hugemce/katamari-assertions": "^4.0.10"
   },
   "scripts": {
     "prepublishOnly": "tsc -b",
@@ -34,7 +34,7 @@
   },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
-  "main": "./lib/main/ts/ephox/boss/api/Main.js",
-  "module": "./lib/main/ts/ephox/boss/api/Main.js",
-  "types": "./lib/main/ts/ephox/boss/api/Main.d.ts"
+  "main": "./lib/main/ts/hugemce/boss/api/Main.js",
+  "module": "./lib/main/ts/hugemce/boss/api/Main.js",
+  "types": "./lib/main/ts/hugemce/boss/api/Main.d.ts"
 }

@@ -1,7 +1,7 @@
-import { ApproxStructure, StructAssert } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
+import { ApproxStructure, StructAssert } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Type } from '@hugemce/katamari';
+import { TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

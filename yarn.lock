@@ -631,55 +631,55 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@ephox/bedrock-client@11 || 12 || 13":
+"@hugemce/bedrock-client@11 || 12 || 13":
   version "13.0.0"
-  resolved "https://registry.yarnpkg.com/@ephox/bedrock-client/-/bedrock-client-13.0.0.tgz#e9af3747257eebf7026f2b8177f2fd15bffb005f"
+  resolved "https://registry.yarnpkg.com/@hugemce/bedrock-client/-/bedrock-client-13.0.0.tgz#e9af3747257eebf7026f2b8177f2fd15bffb005f"
   integrity sha512-Zah4+o7wFmYO6x3AHiQ1fIYdWIKMAlgszFqKp+JYrmkmqQG9h25wk2izPvTvJ+UGrORU6W90PrDWuksE1XhcUw==
   dependencies:
-    "@ephox/bedrock-common" "^13.0.0"
-    "@ephox/dispute" "^1.0.3"
+    "@hugemce/bedrock-common" "^13.0.0"
+    "@hugemce/dispute" "^1.0.3"
 
-"@ephox/bedrock-client@^14.1.0", "@ephox/bedrock-client@^14.1.1":
+"@hugemce/bedrock-client@^14.1.0", "@hugemce/bedrock-client@^14.1.1":
   version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@ephox/bedrock-client/-/bedrock-client-14.1.1.tgz#0688ac5aceee661b3f00f7587478b97e76421e7c"
+  resolved "https://registry.yarnpkg.com/@hugemce/bedrock-client/-/bedrock-client-14.1.1.tgz#0688ac5aceee661b3f00f7587478b97e76421e7c"
   integrity sha512-j9i1JMgtTgLsAze1lqrxPePFKC+9d/Du4CU3x+N008YdAlja1dEU86j/4aGD6GWHDNmhJgbJEPJ4ZLQiD/5t7g==
   dependencies:
-    "@ephox/bedrock-common" "^14.1.1"
-    "@ephox/dispute" "^1.0.3"
+    "@hugemce/bedrock-common" "^14.1.1"
+    "@hugemce/dispute" "^1.0.3"
 
-"@ephox/bedrock-common@11 || 12 || 13", "@ephox/bedrock-common@^13.0.0":
+"@hugemce/bedrock-common@11 || 12 || 13", "@hugemce/bedrock-common@^13.0.0":
   version "13.0.0"
-  resolved "https://registry.yarnpkg.com/@ephox/bedrock-common/-/bedrock-common-13.0.0.tgz#e30d1710552de980b265b812dde879ff8875c359"
+  resolved "https://registry.yarnpkg.com/@hugemce/bedrock-common/-/bedrock-common-13.0.0.tgz#e30d1710552de980b265b812dde879ff8875c359"
   integrity sha512-aJ3gtezZ0duGJAniT/+uWi0fFCJRqNdJjumxhCwOVTc2MSsXcyqn70s6FIlrp/Fw2QuyiEqxgormgrmBUbWNWA==
   dependencies:
     diff "^5.0.0"
 
-"@ephox/bedrock-common@^14.1.1":
+"@hugemce/bedrock-common@^14.1.1":
   version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@ephox/bedrock-common/-/bedrock-common-14.1.1.tgz#8391b2c002b1121344fbd60fb73eb8cf6c4e91a4"
+  resolved "https://registry.yarnpkg.com/@hugemce/bedrock-common/-/bedrock-common-14.1.1.tgz#8391b2c002b1121344fbd60fb73eb8cf6c4e91a4"
   integrity sha512-h3UR0PqjAZ/ufc51Q08hBZ8ZvV5TQapeoBptOxv/rslu4vN+/KtAbqbXyLQF8KpQ6vD/3u3DXV9a+jTFt0dTfw==
   dependencies:
     diff "^5.0.0"
 
-"@ephox/bedrock-runner@^14.1.1":
+"@hugemce/bedrock-runner@^14.1.1":
   version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@ephox/bedrock-runner/-/bedrock-runner-14.1.1.tgz#7b5387bf9ee7fbb64836e86d865083f9e979231d"
+  resolved "https://registry.yarnpkg.com/@hugemce/bedrock-runner/-/bedrock-runner-14.1.1.tgz#7b5387bf9ee7fbb64836e86d865083f9e979231d"
   integrity sha512-RF9RGGTUVZuxy9CGU6CitkmFkqFqafMozSq0/9iGJnjE3bYBz+AyQuER0kY7Ck+xjkrWtDXhlJWhqhMzRwja+Q==
   dependencies:
-    "@ephox/bedrock-common" "^14.1.1"
-    "@ephox/wrap-promise-polyfill" "^2.2.0"
+    "@hugemce/bedrock-common" "^14.1.1"
+    "@hugemce/wrap-promise-polyfill" "^2.2.0"
     jquery "^3.4.1"
     querystringify "^2.1.1"
 
-"@ephox/bedrock-server@^14.1.2":
+"@hugemce/bedrock-server@^14.1.2":
   version "14.1.2"
-  resolved "https://registry.yarnpkg.com/@ephox/bedrock-server/-/bedrock-server-14.1.2.tgz#ff134b24ca810fe2fa0b0e065df5a5f6bc5fb539"
+  resolved "https://registry.yarnpkg.com/@hugemce/bedrock-server/-/bedrock-server-14.1.2.tgz#ff134b24ca810fe2fa0b0e065df5a5f6bc5fb539"
   integrity sha512-0i69zfGgGT6N+sojXjaGroTiifVCD7aSzwQKGQZA2xB5BppOLN4HQBem3Gb8dc98PqPv9l282tIXjb91UXpdPQ==
   dependencies:
     "@aws-sdk/client-device-farm" "^3.354.0"
-    "@ephox/bedrock-client" "^14.1.1"
-    "@ephox/bedrock-common" "^14.1.1"
-    "@ephox/bedrock-runner" "^14.1.1"
+    "@hugemce/bedrock-client" "^14.1.1"
+    "@hugemce/bedrock-common" "^14.1.1"
+    "@hugemce/bedrock-runner" "^14.1.1"
     "@jsdevtools/coverage-istanbul-loader" "^3.0.5"
     "@lambdatest/node-tunnel" "^4.0.4"
     "@wdio/globals" "^8.14.1"
@@ -716,16 +716,16 @@
     which "^2.0.0"
     xml-writer "^1.6.0"
 
-"@ephox/dispute@^1.0.3":
+"@hugemce/dispute@^1.0.3":
   version "1.0.14"
-  resolved "https://registry.yarnpkg.com/@ephox/dispute/-/dispute-1.0.14.tgz#f7a81ec5cfb63561a29711118bc4a3e42f7046df"
+  resolved "https://registry.yarnpkg.com/@hugemce/dispute/-/dispute-1.0.14.tgz#f7a81ec5cfb63561a29711118bc4a3e42f7046df"
   integrity sha512-cl8hu6u8FDIJ0Ofmp9PzMWuby7mNXylcbr5yrsQ7MMOVKXTTBKj93ZWGmPFqKBTbWdeMji16fVRLxYqCp7FInA==
   dependencies:
     tslib "^2.0.0"
 
-"@ephox/oxide-icons-tools@^3.1.1":
+"@hugemce/oxide-icons-tools@^3.1.1":
   version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@ephox/oxide-icons-tools/-/oxide-icons-tools-3.1.1.tgz#c3ec4dd048e63ce7712b9acb391f1c5b3bd0150c"
+  resolved "https://registry.yarnpkg.com/@hugemce/oxide-icons-tools/-/oxide-icons-tools-3.1.1.tgz#c3ec4dd048e63ce7712b9acb391f1c5b3bd0150c"
   integrity sha512-gbxGoM6Hoevpt31NytiELUPW7qsgipUlqwPOJTK970leO6LbUh0ctETszcfZfUhX26lXAEuh21Ni1mAuAPzBng==
   dependencies:
     "@xmldom/xmldom" "^0.8.7"
@@ -737,9 +737,9 @@
     tslib "^2.5.2"
     vinyl "^2.2.0"
 
-"@ephox/swag@^4.6.0":
+"@hugemce/swag@^4.6.0":
   version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@ephox/swag/-/swag-4.6.0.tgz#5d2efde8cfc943f1582d08a7cc634f892a7af5a4"
+  resolved "https://registry.yarnpkg.com/@hugemce/swag/-/swag-4.6.0.tgz#5d2efde8cfc943f1582d08a7cc634f892a7af5a4"
   integrity sha512-yh9fzsjdffVseCL8LRKiqXbduhouc2UK6UtlEUwhXe+jjid0gP6qVgsMnvYrsVIPxGY+ODKGbBqP0efTe+Q/Og==
   dependencies:
     acorn "^8.0.0"
@@ -750,9 +750,9 @@
     rollup-plugin-dts "^4.2.2"
     webpack-sources "^2.3.0"
 
-"@ephox/wrap-promise-polyfill@^2.2.0":
+"@hugemce/wrap-promise-polyfill@^2.2.0":
   version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@ephox/wrap-promise-polyfill/-/wrap-promise-polyfill-2.2.1.tgz#afaabe10bc4c44d167e2f8fa6e722cbd7817d386"
+  resolved "https://registry.yarnpkg.com/@hugemce/wrap-promise-polyfill/-/wrap-promise-polyfill-2.2.1.tgz#afaabe10bc4c44d167e2f8fa6e722cbd7817d386"
   integrity sha512-hg2IKjR3E8awv6ZPUZtHVLa+ZQkaN1ksVacw40Jq2gg6uMU9GkBTcSOl+9PswBzva2Jg0lxX0r0ipMAWemDwsA==
 
 "@eslint-community/eslint-utils@^4.2.0":

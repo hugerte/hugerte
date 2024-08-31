@@ -1,16 +1,16 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
 
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Class from 'ephox/sugar/api/properties/Class';
-import * as SelectorExists from 'ephox/sugar/api/search/SelectorExists';
-import * as SelectorFilter from 'ephox/sugar/api/search/SelectorFilter';
-import * as SelectorFind from 'ephox/sugar/api/search/SelectorFind';
-import * as Selectors from 'ephox/sugar/api/search/Selectors';
-import * as Checkers from 'ephox/sugar/test/Checkers';
-import Div from 'ephox/sugar/test/Div';
-import * as TestPage from 'ephox/sugar/test/TestPage';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Class from 'hugemce/sugar/api/properties/Class';
+import * as SelectorExists from 'hugemce/sugar/api/search/SelectorExists';
+import * as SelectorFilter from 'hugemce/sugar/api/search/SelectorFilter';
+import * as SelectorFind from 'hugemce/sugar/api/search/SelectorFind';
+import * as Selectors from 'hugemce/sugar/api/search/Selectors';
+import * as Checkers from 'hugemce/sugar/test/Checkers';
+import Div from 'hugemce/sugar/test/Div';
+import * as TestPage from 'hugemce/sugar/test/TestPage';
 
 UnitTest.test('SelectorTest', () => {
   // Querying non-element nodes does not throw an error
@@ -31,7 +31,7 @@ UnitTest.test('SelectorTest', () => {
     // IE throws an error running complex queries on an empty div
     // http://jsfiddle.net/spyder/fv9ptr5L/
     const empty = Div();
-    Selectors.all('img:not([data-ephox-polish-blob])', empty);
+    Selectors.all('img:not([data-hugemce-polish-blob])', empty);
   } catch (e: any) {
     Assert.fail(e);
   }

@@ -1,6 +1,6 @@
-import { Behaviour, GuiFactory, Replacing, TestHelpers } from '@ephox/alloy';
-import { describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun } from '@ephox/katamari';
+import { Behaviour, GuiFactory, Replacing, TestHelpers } from '@hugemce/alloy';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Cell, Fun } from '@hugemce/katamari';
 
 import { SimpleBehaviours } from 'tinymce/themes/silver/ui/alien/SimpleBehaviours';
 import { onControlAttached, onControlDetached } from 'tinymce/themes/silver/ui/controls/Controls';

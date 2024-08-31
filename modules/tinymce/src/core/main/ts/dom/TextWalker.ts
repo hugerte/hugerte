@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from '@hugemce/katamari';
 
 import DomTreeWalker from '../api/dom/TreeWalker';
 import * as NodeType from './NodeType';

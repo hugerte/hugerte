@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, FutureResult, Result } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, FutureResult, Result } from '@hugemce/katamari';
 
-import { DataType } from 'ephox/jax/core/DataType';
-import { HttpError } from 'ephox/jax/core/HttpError';
-import * as HttpJwt from 'ephox/jax/core/HttpJwt';
-import { JwtTokenFactory } from 'ephox/jax/core/HttpTypes';
+import { DataType } from 'hugemce/jax/core/DataType';
+import { HttpError } from 'hugemce/jax/core/HttpError';
+import * as HttpJwt from 'hugemce/jax/core/HttpJwt';
+import { JwtTokenFactory } from 'hugemce/jax/core/HttpTypes';
 
 /* eslint-disable no-console */
 

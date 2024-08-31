@@ -1,6 +1,6 @@
-import { AlloySpec, RawDomSchema } from '@ephox/alloy';
-import { Toolbar } from '@ephox/bridge';
-import { Fun, Id, Obj, Optional, Type } from '@ephox/katamari';
+import { AlloySpec, RawDomSchema } from '@hugemce/alloy';
+import { Toolbar } from '@hugemce/bridge';
+import { Fun, Id, Obj, Optional, Type } from '@hugemce/katamari';
 
 import I18n from 'tinymce/core/api/util/I18n';
 

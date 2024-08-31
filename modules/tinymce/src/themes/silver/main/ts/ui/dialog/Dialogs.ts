@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyParts, AlloySpec, Behaviour, Blocking, Button, Container, DomFactory, Focusing, Keying, ModalDialog,
   NativeEvents, SketchSpec, SystemEvents, Tabstopping
-} from '@ephox/alloy';
-import { Fun, Optional, Result } from '@ephox/katamari';
-import { Class, SugarBody } from '@ephox/sugar';
+} from '@hugemce/alloy';
+import { Fun, Optional, Result } from '@hugemce/katamari';
+import { Class, SugarBody } from '@hugemce/sugar';
 
 import Env from 'tinymce/core/api/Env';
 

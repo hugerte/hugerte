@@ -1,7 +1,7 @@
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Hierarchy, Insert, SugarElement } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Fun } from '@hugemce/katamari';
+import { Hierarchy, Insert, SugarElement } from '@hugemce/sugar';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

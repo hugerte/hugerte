@@ -1,6 +1,6 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Html, SugarElement } from '@ephox/sugar';
-import { LegacyUnit } from '@ephox/wrap-mcagar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Html, SugarElement } from '@hugemce/sugar';
+import { LegacyUnit } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import CaretPosition from 'tinymce/core/caret/CaretPosition';

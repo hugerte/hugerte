@@ -1,12 +1,12 @@
-import { Step, TestStore } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { Step, TestStore } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Pinching } from 'ephox/alloy/api/behaviour/Pinching';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Pinching } from 'hugemce/alloy/api/behaviour/Pinching';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
+import * as NativeEvents from 'hugemce/alloy/api/events/NativeEvents';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
 
 interface StorePinchingTest {
   readonly method: string;

@@ -1,5 +1,5 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import * as LazyEvaluator from 'tinymce/core/util/LazyEvaluator';

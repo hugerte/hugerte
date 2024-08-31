@@ -1,19 +1,19 @@
-import { Assert, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+import { Assert, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Obj } from '@hugemce/katamari';
 
-import * as Regexes from 'ephox/polaris/api/Regexes';
+import * as Regexes from 'hugemce/polaris/api/Regexes';
 
 describe('atomic.polaris.api.RegexesTest', () => {
   context('link', () => {
-    const ephoxCases = [
+    const hugemceCases = [
       'www.google.com.au',
       'www.google.com.au:80',
-      'maurizio@ephox.com',
-      'http://www.ephox.com',
+      'maurizio@hugemce.com',
+      'http://www.hugemce.com',
       'https://www.google.it',
-      'mailto:maurizio@ephox.com',
-      'maurizio.napoleoni@ephox.com',
-      'http://maurizio@ephox.com:3443/mystuff',
+      'mailto:maurizio@hugemce.com',
+      'maurizio.napoleoni@hugemce.com',
+      'http://maurizio@hugemce.com:3443/mystuff',
       'maurizio-napoleoni-email@gmail.com',
       'http://link/',
       'https://www.google.com.au/search?espv=2&q=hello+world&oq=hello+world&gs_l=serp.3..0l10.12435.15279.0.15482.13.9.0.3.3.0.241.1121.0j1j4.5.0.msedr...0...1c.1.64.serp..5.8.1125.GLORIzEXy3Y',
@@ -80,9 +80,9 @@ describe('atomic.polaris.api.RegexesTest', () => {
       'but15characters://foo.com',
     ];
 
-    const trueCases = [ ...ephoxCases, ...mathiasBynens, ...validSchemes ];
+    const trueCases = [ ...hugemceCases, ...mathiasBynens, ...validSchemes ];
 
-    const ephoxFalseCases = [
+    const hugemceFalseCases = [
       'I am not a link',
       '#hashtag',
       '@mention',
@@ -152,7 +152,7 @@ describe('atomic.polaris.api.RegexesTest', () => {
       'morethanfifteencharacters://foo.com',
     ];
 
-    const falseCases = [ ...ephoxFalseCases, ...mathiasBynensFalse, ...invalidSchemes ];
+    const falseCases = [ ...hugemceFalseCases, ...mathiasBynensFalse, ...invalidSchemes ];
 
     it('should match true cases', () => {
       Arr.each(trueCases, (cs) => {

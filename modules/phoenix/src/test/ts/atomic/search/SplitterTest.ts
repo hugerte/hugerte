@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Arr } from '@hugemce/katamari';
 
-import * as Splitter from 'ephox/phoenix/search/Splitter';
-import * as Finder from 'ephox/phoenix/test/Finder';
-import * as TestRenders from 'ephox/phoenix/test/TestRenders';
+import * as Splitter from 'hugemce/phoenix/search/Splitter';
+import * as Finder from 'hugemce/phoenix/test/Finder';
+import * as TestRenders from 'hugemce/phoenix/test/TestRenders';
 
 UnitTest.test('SplitterTest', () => {
 

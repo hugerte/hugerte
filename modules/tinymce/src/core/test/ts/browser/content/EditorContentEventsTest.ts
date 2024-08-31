@@ -1,6 +1,6 @@
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr, Singleton } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Singleton } from '@hugemce/katamari';
+import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

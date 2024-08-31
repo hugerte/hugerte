@@ -1,9 +1,9 @@
 # Description
 `phoenix` is a project that handles DOM node text gathering.
 # Installation
-`phoenix` is available as an `npm` package.  You can install it via the npm package `@ephox/phoenix`
+`phoenix` is available as an `npm` package.  You can install it via the npm package `@hugemce/phoenix`
 ## Install from npm
-`npm install @ephox/phoenix`
+`npm install @hugemce/phoenix`
 
 # Usage
 ## Dom
@@ -25,6 +25,6 @@
 `Split`: Used to split text nodes in a given element with a given DOM universe.
 `Wrapping`: Used to wrap text nodes with a given DOM universe.
 # Tests
-`phoenix` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run atomic tests.
+`phoenix` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run atomic tests.
 ## Running Tests
 `$ yarn test`

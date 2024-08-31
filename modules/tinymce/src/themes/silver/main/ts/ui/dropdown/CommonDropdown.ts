@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, CustomEvent, Dropdown as AlloyDropdown, Focusing, GuiFactory, Highlighting,
   Keying, MaxHeight, Memento, NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, TieredData, Tooltipping, Unselecting
-} from '@ephox/alloy';
-import { Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@ephox/katamari';
-import { EventArgs, SugarElement } from '@ephox/sugar';
+} from '@hugemce/alloy';
+import { Toolbar } from '@hugemce/bridge';
+import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@hugemce/katamari';
+import { EventArgs, SugarElement } from '@hugemce/sugar';
 
 import { toolbarButtonEventOrder } from 'tinymce/themes/silver/ui/toolbar/button/ButtonEvents';
 

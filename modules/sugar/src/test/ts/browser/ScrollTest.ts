@@ -1,17 +1,17 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Fun, Optional } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as DomEvent from 'ephox/sugar/api/events/DomEvent';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Css from 'ephox/sugar/api/properties/Css';
-import * as Scroll from 'ephox/sugar/api/view/Scroll';
-import * as SugarLocation from 'ephox/sugar/api/view/SugarLocation';
-import * as Width from 'ephox/sugar/api/view/Width';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as DomEvent from 'hugemce/sugar/api/events/DomEvent';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
+import * as Css from 'hugemce/sugar/api/properties/Css';
+import * as Scroll from 'hugemce/sugar/api/view/Scroll';
+import * as SugarLocation from 'hugemce/sugar/api/view/SugarLocation';
+import * as Width from 'hugemce/sugar/api/view/Width';
 
 interface TestDocSpec {
   iframe: SugarElement<HTMLIFrameElement>;
@@ -72,7 +72,7 @@ UnitTest.asynctest('ScrollTest', (success, failure) => {
     Insert.append(SugarBody.body(), iframe);
   };
 
-  const ifr = '<iframe src="/project/@ephox/sugar/src/test/data/scrollTest.html"></iframe>';
+  const ifr = '<iframe src="/project/@hugemce/sugar/src/test/data/scrollTest.html"></iframe>';
   testOne(ifr, { // vanilla iframe
     iframe: { id: 'vanilla', style: 'height:200px; width:500px; border: 7px dotted chartreuse;' },
     html: Optional.none(),

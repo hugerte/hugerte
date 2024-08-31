@@ -1,15 +1,15 @@
-import { FocusTools, TestStore } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarDocument, SugarElement } from '@ephox/sugar';
+import { FocusTools, TestStore } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
+import { SugarDocument, SugarElement } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Blocking } from 'ephox/alloy/api/behaviour/Blocking';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Blocking } from 'hugemce/alloy/api/behaviour/Blocking';
+import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
+import { Replacing } from 'hugemce/alloy/api/behaviour/Replacing';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as Memento from 'hugemce/alloy/api/component/Memento';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
 
 const memBlockRoot = Memento.record({
   dom: {

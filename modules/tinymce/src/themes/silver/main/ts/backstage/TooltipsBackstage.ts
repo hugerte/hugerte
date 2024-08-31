@@ -1,5 +1,5 @@
-import { AlloyComponent, GuiFactory, SimpleSpec, TooltippingTypes } from '@ephox/alloy';
-import { Fun, Result } from '@ephox/katamari';
+import { AlloyComponent, GuiFactory, SimpleSpec, TooltippingTypes } from '@hugemce/alloy';
+import { Fun, Result } from '@hugemce/katamari';
 
 export interface TooltipsProvider {
   readonly getConfig: (spec: { tooltipText: string; onShow?: (comp: AlloyComponent, tooltip: AlloyComponent) => void }) => TooltippingTypes.TooltippingConfigSpec;

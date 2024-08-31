@@ -1,7 +1,7 @@
-import { ApproxStructure, Keyboard, Keys } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
-import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Keyboard, Keys } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Unicode } from '@hugemce/katamari';
+import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

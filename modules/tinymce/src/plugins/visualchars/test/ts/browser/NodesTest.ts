@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Unicode } from '@ephox/katamari';
-import { Html, SugarElement, SugarNode } from '@ephox/sugar';
+import { Assertions } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Unicode } from '@hugemce/katamari';
+import { Html, SugarElement, SugarNode } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import * as Nodes from 'tinymce/plugins/visualchars/core/Nodes';

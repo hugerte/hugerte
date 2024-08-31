@@ -1,7 +1,7 @@
-import { Mouse } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { SelectorExists, SelectorFind } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Mouse } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { SelectorExists, SelectorFind } from '@hugemce/sugar';
+import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';
@@ -18,7 +18,7 @@ describe('browser.tinymce.models.dom.table.DragEditorContentsOverTableTest', () 
     editor.fire('dragstart');
     const cell = SelectorFind.descendant(TinyDom.body(editor), 'td').getOrDie();
     Mouse.mouseOver(cell, { dx: 0, dy: 0 });
-    assert.isFalse(SelectorExists.descendant(TinyDom.documentElement(editor), '.ephox-snooker-resizer-bar'), 'Should not exist any resize bars');
+    assert.isFalse(SelectorExists.descendant(TinyDom.documentElement(editor), '.hugemce-snooker-resizer-bar'), 'Should not exist any resize bars');
     editor.fire('dragend');
   });
 });

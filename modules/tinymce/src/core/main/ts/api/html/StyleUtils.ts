@@ -1,4 +1,4 @@
-import { Arr, Obj, Strings } from '@ephox/katamari';
+import { Arr, Obj, Strings } from '@hugemce/katamari';
 
 import DOMUtils from '../dom/DOMUtils';
 

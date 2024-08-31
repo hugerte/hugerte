@@ -1,4 +1,4 @@
-import { Regexes } from '@ephox/polaris';
+import { Regexes } from '@hugemce/polaris';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorOptions } from 'tinymce/core/api/OptionTypes';

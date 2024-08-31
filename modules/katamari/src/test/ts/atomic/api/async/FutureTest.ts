@@ -1,12 +1,12 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Testable } from '@ephox/dispute';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Testable } from '@hugemce/dispute';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Future } from 'ephox/katamari/api/Future';
-import * as Futures from 'ephox/katamari/api/Futures';
-import { eqAsync } from 'ephox/katamari/test/AsyncProps';
+import * as Arr from 'hugemce/katamari/api/Arr';
+import * as Fun from 'hugemce/katamari/api/Fun';
+import { Future } from 'hugemce/katamari/api/Future';
+import * as Futures from 'hugemce/katamari/api/Futures';
+import { eqAsync } from 'hugemce/katamari/test/AsyncProps';
 
 const { tNumber, tString, tArray } = Testable;
 

@@ -1,6 +1,6 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as Overflows from 'ephox/alloy/toolbar/Overflows';
+import * as Overflows from 'hugemce/alloy/toolbar/Overflows';
 
 UnitTest.test('OverflowTest', () => {
   const len = (unit: string) => unit.length;

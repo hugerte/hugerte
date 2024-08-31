@@ -1,10 +1,10 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Unicode } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import * as DomTextZones from 'ephox/robin/api/dom/DomTextZones';
-import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
+import * as DomTextZones from 'hugemce/robin/api/dom/DomTextZones';
+import { ZoneViewports } from 'hugemce/robin/api/general/ZoneViewports';
 
 describe('browser.robin.zone.EntityTest', () => {
   it('TINY-7908: Soft hyphens are not treated as a word boundary', () => {

@@ -1,6 +1,6 @@
-import { Assertions } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Assertions } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { SugarElement, SugarPosition } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Fun, Optional } from '@hugemce/katamari';
+import { SugarElement, SugarPosition } from '@hugemce/sugar';
 
-import { DragApi, DragMode, DragSink } from 'ephox/dragster/api/DragApis';
-import * as Dragging from 'ephox/dragster/core/Dragging';
+import { DragApi, DragMode, DragSink } from 'hugemce/dragster/api/DragApis';
+import * as Dragging from 'hugemce/dragster/core/Dragging';
 
 UnitTest.test('DraggerTest', () => {
   let optApi: Optional<DragApi<any>> = Optional.none();

@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from '@hugemce/katamari';
 
 const internalMimeType = 'x-tinymce/html';
 const internalHtmlMime = Fun.constant(internalMimeType);

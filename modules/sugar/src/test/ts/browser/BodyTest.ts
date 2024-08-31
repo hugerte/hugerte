@@ -1,12 +1,12 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarShadowDom from 'ephox/sugar/api/node/SugarShadowDom';
-import * as SelectorFind from 'ephox/sugar/api/search/SelectorFind';
-import { withShadowElement } from 'ephox/sugar/test/WithHelpers';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as SugarShadowDom from 'hugemce/sugar/api/node/SugarShadowDom';
+import * as SelectorFind from 'hugemce/sugar/api/search/SelectorFind';
+import { withShadowElement } from 'hugemce/sugar/test/WithHelpers';
 
 UnitTest.test('Body.inBody - detached elements and their descendents', () => {
   const div = SugarElement.fromTag('div');

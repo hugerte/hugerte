@@ -1,10 +1,10 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import * as RepresentPipes from 'ephox/alloy/test/behaviour/RepresentPipes';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as RepresentPipes from 'hugemce/alloy/test/behaviour/RepresentPipes';
 
 UnitTest.asynctest('RepresentingTest (mode: memory)', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => GuiFactory.build({

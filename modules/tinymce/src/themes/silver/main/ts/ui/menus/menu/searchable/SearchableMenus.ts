@@ -1,5 +1,5 @@
-import { ItemTypes } from '@ephox/alloy';
-import { Id } from '@ephox/katamari';
+import { ItemTypes } from '@hugemce/alloy';
+import { Id } from '@hugemce/katamari';
 
 export const searchResultsClass = 'tox-collection--results__js';
 

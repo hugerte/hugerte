@@ -1,6 +1,6 @@
-import { Arr, Singleton, Strings, Type } from '@ephox/katamari';
-import { Adjustments, ResizeBehaviour, ResizeWire, Sizes, TableConversions, TableGridSize, TableLookup, TableResize, Warehouse } from '@ephox/snooker';
-import { Attribute, Css, SugarElement } from '@ephox/sugar';
+import { Arr, Singleton, Strings, Type } from '@hugemce/katamari';
+import { Adjustments, ResizeBehaviour, ResizeWire, Sizes, TableConversions, TableGridSize, TableLookup, TableResize, Warehouse } from '@hugemce/snooker';
+import { Attribute, Css, SugarElement } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

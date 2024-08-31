@@ -1,5 +1,5 @@
-import { Fun, Obj, Optional } from '@ephox/katamari';
-import { Attribute, Compare, Css, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
+import { Fun, Obj, Optional } from '@hugemce/katamari';
+import { Attribute, Compare, Css, SugarElement, SugarNode, TransformFind } from '@hugemce/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 

@@ -1,8 +1,8 @@
-import { Waiter } from '@ephox/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { Css, Insert, Remove, Scroll, SugarBody, SugarElement, SugarLocation } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Waiter } from '@hugemce/agar';
+import { before, describe, it } from '@hugemce/bedrock-client';
+import { PlatformDetection } from '@hugemce/sand';
+import { Css, Insert, Remove, Scroll, SugarBody, SugarElement, SugarLocation } from '@hugemce/sugar';
+import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

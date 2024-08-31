@@ -1,6 +1,6 @@
-import { Arr, Cell, Fun, Optional, Optionals, Thunk } from '@ephox/katamari';
-import { RunOperation, Structs, TableLookup, Warehouse } from '@ephox/snooker';
-import { Compare, SelectorExists, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Cell, Fun, Optional, Optionals, Thunk } from '@hugemce/katamari';
+import { RunOperation, Structs, TableLookup, Warehouse } from '@hugemce/snooker';
+import { Compare, SelectorExists, SugarElement, SugarNode } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Menu, Toolbar } from 'tinymce/core/api/ui/Ui';

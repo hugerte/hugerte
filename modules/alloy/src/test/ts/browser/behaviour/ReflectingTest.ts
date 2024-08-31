@@ -1,14 +1,14 @@
-import { ApproxStructure, Assertions, Chain, Step, UiFinder } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { ApproxStructure, Assertions, Chain, Step, UiFinder } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Optional } from '@hugemce/katamari';
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Reflecting } from 'ephox/alloy/api/behaviour/Reflecting';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Reflecting } from 'hugemce/alloy/api/behaviour/Reflecting';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
 
 UnitTest.asynctest('ReflectingTest', (success, failure) => {
 

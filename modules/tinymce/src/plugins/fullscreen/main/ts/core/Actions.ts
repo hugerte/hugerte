@@ -1,5 +1,5 @@
-import { Cell, Fun, Optional, Optionals, Singleton, Throttler } from '@ephox/katamari';
-import { Class, Css, DomEvent, EventUnbinder, SugarElement, SugarShadowDom, Traverse, WindowVisualViewport, SugarNode } from '@ephox/sugar';
+import { Cell, Fun, Optional, Optionals, Singleton, Throttler } from '@hugemce/katamari';
+import { Class, Css, DomEvent, EventUnbinder, SugarElement, SugarShadowDom, Traverse, WindowVisualViewport, SugarNode } from '@hugemce/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import Editor from 'tinymce/core/api/Editor';

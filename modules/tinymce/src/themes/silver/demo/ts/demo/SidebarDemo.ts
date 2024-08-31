@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from '@hugemce/sugar';
 
 import { Editor, TinyMCE } from 'tinymce/core/api/PublicApi';
 

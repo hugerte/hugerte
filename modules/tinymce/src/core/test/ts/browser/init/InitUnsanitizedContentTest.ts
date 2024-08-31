@@ -1,5 +1,5 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { McEditor, TinyAssertions } from '@ephox/mcagar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { McEditor, TinyAssertions } from '@hugemce/mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

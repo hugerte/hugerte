@@ -1,7 +1,7 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Button, Focusing, ItemTypes, NativeEvents, Replacing
-} from '@ephox/alloy';
-import { Cell, Fun, Optional, Optionals } from '@ephox/katamari';
+} from '@hugemce/alloy';
+import { Cell, Fun, Optional, Optionals } from '@hugemce/katamari';
 
 import { UiFactoryBackstageProviders } from 'tinymce/themes/silver/backstage/Backstage';
 import * as ReadOnly from 'tinymce/themes/silver/ReadOnly';

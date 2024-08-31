@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from '@hugemce/katamari';
 
 import { Dialog } from 'tinymce/core/api/ui/Ui';
 

@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from '@hugemce/katamari';
 
 import * as NodeType from '../dom/NodeType';
 import * as CaretContainer from './CaretContainer';

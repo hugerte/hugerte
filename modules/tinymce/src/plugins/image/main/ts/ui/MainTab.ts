@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from '@hugemce/katamari';
 
 import { Dialog } from 'tinymce/core/api/ui/Ui';
 

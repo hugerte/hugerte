@@ -1,5 +1,5 @@
-import { AlloyTriggers, Behaviour, Button, Container, SketchSpec } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
+import { AlloyTriggers, Behaviour, Button, Container, SketchSpec } from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
 
 import { formActionEvent } from 'tinymce/themes/silver/ui/general/FormEvents';
 

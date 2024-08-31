@@ -1,9 +1,9 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import * as Waiter from 'ephox/agar/api/Waiter';
-import * as StepAssertions from 'ephox/agar/test/StepAssertions';
+import { Pipeline } from 'hugemce/agar/api/Pipeline';
+import { Step } from 'hugemce/agar/api/Step';
+import * as Waiter from 'hugemce/agar/api/Waiter';
+import * as StepAssertions from 'hugemce/agar/test/StepAssertions';
 
 UnitTest.asynctest('WaiterTest', (success, failure) => {
 

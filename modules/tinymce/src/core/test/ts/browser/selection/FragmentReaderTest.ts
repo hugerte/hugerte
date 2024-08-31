@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Hierarchy, Html, Insert, SugarElement } from '@ephox/sugar';
+import { Assertions } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Hierarchy, Html, Insert, SugarElement } from '@hugemce/sugar';
 
 import Schema from 'tinymce/core/api/html/Schema';
 import * as FragmentReader from 'tinymce/core/selection/FragmentReader';

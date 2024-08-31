@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as Binder from 'ephox/porkbun/Binder';
-import { Event } from 'ephox/porkbun/Event';
-import * as Events from 'ephox/porkbun/Events';
+import * as Binder from 'hugemce/porkbun/Binder';
+import { Event } from 'hugemce/porkbun/Event';
+import * as Events from 'hugemce/porkbun/Events';
 
 UnitTest.test('Binder', () => {
   const events = Events.create({

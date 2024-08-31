@@ -1,6 +1,6 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Cell } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Cell } from '@hugemce/katamari';
+import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import * as DeleteCommands from 'tinymce/core/delete/DeleteCommands';

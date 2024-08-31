@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import Div from 'ephox/sugar/test/Div';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as Html from 'hugemce/sugar/api/properties/Html';
+import Div from 'hugemce/sugar/test/Div';
 
 UnitTest.test('HtmlTest', () => {
   // checks that Html.getOuter does not fiddle with the dom

@@ -1,5 +1,5 @@
-import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { after, afterEach, before, describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import EventUtils, { EventUtilsEvent } from 'tinymce/core/api/dom/EventUtils';

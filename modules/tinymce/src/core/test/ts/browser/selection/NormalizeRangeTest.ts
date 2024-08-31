@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { Assertions } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { Hierarchy, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

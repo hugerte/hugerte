@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
-import { describe, it } from '@ephox/bedrock-client';
+import { ApproxStructure, Assertions } from '@hugemce/agar';
+import { GuiFactory, TestHelpers } from '@hugemce/alloy';
+import { describe, it } from '@hugemce/bedrock-client';
 
 import { renderTable } from 'tinymce/themes/silver/ui/dialog/Table';
 

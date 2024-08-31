@@ -1,5 +1,5 @@
-import { Strings } from '@ephox/katamari';
-import { PredicateFind, Remove, SugarElement, SugarNode } from '@ephox/sugar';
+import { Strings } from '@hugemce/katamari';
+import { PredicateFind, Remove, SugarElement, SugarNode } from '@hugemce/sugar';
 
 import Schema from '../api/html/Schema';
 import CaretPosition from '../caret/CaretPosition';

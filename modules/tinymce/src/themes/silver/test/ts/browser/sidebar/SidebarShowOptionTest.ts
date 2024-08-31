@@ -1,8 +1,8 @@
-import { TestStore, UiFinder } from '@ephox/agar';
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Sidebar } from '@ephox/bridge';
-import { SugarBody, SugarElement, Traverse } from '@ephox/sugar';
-import { McEditor, TinyUiActions } from '@ephox/wrap-mcagar';
+import { TestStore, UiFinder } from '@hugemce/agar';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Sidebar } from '@hugemce/bridge';
+import { SugarBody, SugarElement, Traverse } from '@hugemce/sugar';
+import { McEditor, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

@@ -1,21 +1,21 @@
-import { Assertions, GeneralSteps, Logger, Step, UiFinder, Waiter } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
-import { Css, SugarElement } from '@ephox/sugar';
+import { Assertions, GeneralSteps, Logger, Step, UiFinder, Waiter } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Optional, Result } from '@hugemce/katamari';
+import { Css, SugarElement } from '@hugemce/sugar';
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { InlineView } from 'ephox/alloy/api/ui/InlineView';
-import * as Layout from 'ephox/alloy/positioning/layout/Layout';
-import { NodeAnchorSpec } from 'ephox/alloy/positioning/mode/Anchoring';
-import * as Sinks from 'ephox/alloy/test/Sinks';
-import * as TestBroadcasts from 'ephox/alloy/test/TestBroadcasts';
+import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { InlineView } from 'hugemce/alloy/api/ui/InlineView';
+import * as Layout from 'hugemce/alloy/positioning/layout/Layout';
+import { NodeAnchorSpec } from 'hugemce/alloy/positioning/mode/Anchoring';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
+import * as TestBroadcasts from 'hugemce/alloy/test/TestBroadcasts';
 
 UnitTest.asynctest('InlineViewRepositionTest', (success, failure) => {
 

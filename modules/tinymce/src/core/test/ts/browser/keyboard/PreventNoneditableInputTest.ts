@@ -1,8 +1,8 @@
-import { Cursors } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Cursors } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

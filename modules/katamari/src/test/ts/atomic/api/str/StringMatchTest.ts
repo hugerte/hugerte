@@ -1,8 +1,8 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import { StringMatch } from 'ephox/katamari/api/StringMatch';
+import { StringMatch } from 'hugemce/katamari/api/StringMatch';
 
 interface Scenario {
   readonly expected: boolean;

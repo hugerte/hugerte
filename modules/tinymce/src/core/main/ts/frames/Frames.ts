@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Fun } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 
 import { Navigation } from './Navigation';
 

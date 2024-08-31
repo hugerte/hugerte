@@ -1,17 +1,17 @@
-import { Assertions, Chain, GeneralSteps, Logger, Step, UiFinder } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarNode } from '@ephox/sugar';
+import { Assertions, Chain, GeneralSteps, Logger, Step, UiFinder } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
+import { SugarNode } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Sandboxing } from 'ephox/alloy/api/behaviour/Sandboxing';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Sandboxing } from 'hugemce/alloy/api/behaviour/Sandboxing';
+import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
+import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
+import * as SystemEvents from 'hugemce/alloy/api/events/SystemEvents';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { Input } from 'hugemce/alloy/api/ui/Input';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
 
 UnitTest.asynctest('SandboxingTest', (success, failure) => {
 

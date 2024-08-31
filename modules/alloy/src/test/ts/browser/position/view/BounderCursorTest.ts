@@ -1,12 +1,12 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { SugarElement } from '@ephox/sugar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import { Bounds, bounds } from 'ephox/alloy/alien/Boxes';
-import * as Bubble from 'ephox/alloy/positioning/layout/Bubble';
-import * as Layout from 'ephox/alloy/positioning/layout/Layout';
-import { AnchorBox, AnchorElement, AnchorLayout } from 'ephox/alloy/positioning/layout/LayoutTypes';
-import * as Bounder from 'ephox/alloy/positioning/view/Bounder';
+import { Bounds, bounds } from 'hugemce/alloy/alien/Boxes';
+import * as Bubble from 'hugemce/alloy/positioning/layout/Bubble';
+import * as Layout from 'hugemce/alloy/positioning/layout/Layout';
+import { AnchorBox, AnchorElement, AnchorLayout } from 'hugemce/alloy/positioning/layout/LayoutTypes';
+import * as Bounder from 'hugemce/alloy/positioning/view/Bounder';
 
 interface TestDecisionSpec {
   readonly layout: string;

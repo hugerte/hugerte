@@ -1,9 +1,9 @@
-import { FocusTools, RealKeys, RealMouse, UiFinder, Waiter } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
-import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Focus, SelectorFind, SugarDocument } from '@ephox/sugar';
+import { FocusTools, RealKeys, RealMouse, UiFinder, Waiter } from '@hugemce/agar';
+import { TestHelpers } from '@hugemce/alloy';
+import { before, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Fun } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Focus, SelectorFind, SugarDocument } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import { Dialog } from 'tinymce/core/api/ui/Ui';

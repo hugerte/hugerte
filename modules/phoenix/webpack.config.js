@@ -4,9 +4,9 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    latin: './src/demo/ts/ephox/phoenix/demo/LatinDemo.ts',
-    reuse: './src/demo/ts/ephox/phoenix/demo/ReuseDemo.ts',
-    search: './src/demo/ts/ephox/phoenix/demo/SearchDemo.ts'
+    latin: './src/demo/ts/hugemce/phoenix/demo/LatinDemo.ts',
+    reuse: './src/demo/ts/hugemce/phoenix/demo/ReuseDemo.ts',
+    search: './src/demo/ts/hugemce/phoenix/demo/SearchDemo.ts'
   },
   devtool: 'source-map',
   mode: 'development',

@@ -1,8 +1,8 @@
-import { Keys, Mouse } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SelectorFilter, TextContent } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Keys, Mouse } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { SelectorFilter, TextContent } from '@hugemce/sugar';
+import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

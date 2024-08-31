@@ -1,13 +1,13 @@
 # Description
 `dragster` is a project that handles dragging.
 # Installation
-`dragster` is available as an `npm` package.  You can install it via the npm package `@ephox/dragster`
+`dragster` is available as an `npm` package.  You can install it via the npm package `@hugemce/dragster`
 ## Install from npm
-`npm install @ephox/dragster`
+`npm install @hugemce/dragster`
 
 # Usage
 `Dragger`: Used to transform an external mutator into a dragster drag handler.
 # Tests
-`dragster` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run atomic tests.
+`dragster` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run atomic tests.
 ## Running Tests
 `$ yarn test`

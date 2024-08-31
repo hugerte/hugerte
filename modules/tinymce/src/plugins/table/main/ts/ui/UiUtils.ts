@@ -1,6 +1,6 @@
-import { Transformations } from '@ephox/acid';
-import { Arr, Obj, Optional, Singleton, Strings } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Transformations } from '@hugemce/acid';
+import { Arr, Obj, Optional, Singleton, Strings } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Dialog, Menu } from 'tinymce/core/api/ui/Ui';

@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from '@hugemce/katamari';
 
 import { isReadOnly, processReadonlyEvents } from '../mode/Readonly';
 import DOMUtils from './dom/DOMUtils';

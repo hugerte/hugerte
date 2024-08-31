@@ -1,5 +1,5 @@
-import { Fun, Obj, Strings, Type } from '@ephox/katamari';
-import { TableLookup } from '@ephox/snooker';
+import { Fun, Obj, Strings, Type } from '@hugemce/katamari';
+import { TableLookup } from '@hugemce/snooker';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import Editor from 'tinymce/core/api/Editor';

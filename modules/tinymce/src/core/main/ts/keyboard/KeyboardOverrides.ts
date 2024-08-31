@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Cell } from '@hugemce/katamari';
 
 import Editor from '../api/Editor';
 import * as CaretContainerInput from '../caret/CaretContainerInput';

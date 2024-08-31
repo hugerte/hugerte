@@ -1,4 +1,4 @@
-import { SugarElements } from '@ephox/sugar';
+import { SugarElements } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

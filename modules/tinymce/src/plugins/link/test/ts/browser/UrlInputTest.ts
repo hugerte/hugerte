@@ -1,8 +1,8 @@
-import { FocusTools } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarDocument } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions, TinyContentActions } from '@ephox/wrap-mcagar';
+import { FocusTools } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { PlatformDetection } from '@hugemce/sand';
+import { SugarDocument } from '@hugemce/sugar';
+import { TinyHooks, TinyUiActions, TinyContentActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/link/Plugin';

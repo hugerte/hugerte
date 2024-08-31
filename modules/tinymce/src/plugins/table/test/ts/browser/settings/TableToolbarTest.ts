@@ -1,7 +1,7 @@
-import { UiFinder, Waiter } from '@ephox/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
-import { SugarBody } from '@ephox/sugar';
-import { McEditor, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { UiFinder, Waiter } from '@hugemce/agar';
+import { before, describe, it } from '@hugemce/bedrock-client';
+import { SugarBody } from '@hugemce/sugar';
+import { McEditor, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/table/Plugin';

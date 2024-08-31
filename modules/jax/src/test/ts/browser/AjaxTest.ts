@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, FutureResult, Result } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, FutureResult, Result } from '@hugemce/katamari';
 
-import { readBlobAsText } from 'ephox/jax/core/BlobReader';
-import { DataType } from 'ephox/jax/core/DataType';
-import * as Http from 'ephox/jax/core/Http';
-import { HttpError } from 'ephox/jax/core/HttpError';
+import { readBlobAsText } from 'hugemce/jax/core/BlobReader';
+import { DataType } from 'hugemce/jax/core/DataType';
+import * as Http from 'hugemce/jax/core/Http';
+import { HttpError } from 'hugemce/jax/core/HttpError';
 
 /* eslint-disable no-console */
 

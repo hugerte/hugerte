@@ -1,4 +1,4 @@
-import { Cell, Fun, Obj, Optional, Type } from '@ephox/katamari';
+import { Cell, Fun, Obj, Optional, Type } from '@hugemce/katamari';
 
 import Editor from './api/Editor';
 import Formatter from './api/Formatter';

@@ -1,5 +1,5 @@
-import { Arr, Optional, Optionals } from '@ephox/katamari';
-import { Attribute, Css, Insert, InsertAll, Replication, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Optional, Optionals } from '@hugemce/katamari';
+import { Attribute, Css, Insert, InsertAll, Replication, SugarElement, SugarNode } from '@hugemce/sugar';
 
 import { Entry, EntryFragment, EntryList, isEntryComment, isEntryFragment, isEntryList } from './Entry';
 import { ListType } from './Util';

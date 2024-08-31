@@ -1,14 +1,14 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Testable } from '@ephox/dispute';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Testable } from '@hugemce/dispute';
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Future } from 'ephox/katamari/api/Future';
-import { FutureResult } from 'ephox/katamari/api/FutureResult';
-import { Result } from 'ephox/katamari/api/Result';
-import { tResult } from 'ephox/katamari/api/ResultInstances';
-import { arbResult } from 'ephox/katamari/test/arb/ArbDataTypes';
-import { eqAsync } from 'ephox/katamari/test/AsyncProps';
+import * as Fun from 'hugemce/katamari/api/Fun';
+import { Future } from 'hugemce/katamari/api/Future';
+import { FutureResult } from 'hugemce/katamari/api/FutureResult';
+import { Result } from 'hugemce/katamari/api/Result';
+import { tResult } from 'hugemce/katamari/api/ResultInstances';
+import { arbResult } from 'hugemce/katamari/test/arb/ArbDataTypes';
+import { eqAsync } from 'hugemce/katamari/test/AsyncProps';
 
 type Testable<A> = Testable.Testable<A>;
 const { tNumber } = Testable;

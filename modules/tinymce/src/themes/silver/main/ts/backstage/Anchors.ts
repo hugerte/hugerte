@@ -1,6 +1,6 @@
-import { AlloyComponent, Bubble, HotspotAnchorSpec, Layout, LayoutInset, MaxHeight, NodeAnchorSpec, SelectionAnchorSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { Height, SimSelection, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { AlloyComponent, Bubble, HotspotAnchorSpec, Layout, LayoutInset, MaxHeight, NodeAnchorSpec, SelectionAnchorSpec } from '@hugemce/alloy';
+import { Optional } from '@hugemce/katamari';
+import { Height, SimSelection, SugarElement, SugarShadowDom } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

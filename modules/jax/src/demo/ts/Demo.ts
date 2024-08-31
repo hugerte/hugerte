@@ -1,9 +1,9 @@
-import { FutureResult } from '@ephox/katamari';
+import { FutureResult } from '@hugemce/katamari';
 
-import { DataType } from 'ephox/jax/core/DataType';
-import * as Http from 'ephox/jax/core/Http';
-import * as HttpData from 'ephox/jax/core/HttpData';
-import * as HttpJwt from 'ephox/jax/core/HttpJwt';
+import { DataType } from 'hugemce/jax/core/DataType';
+import * as Http from 'hugemce/jax/core/Http';
+import * as HttpData from 'hugemce/jax/core/HttpData';
+import * as HttpJwt from 'hugemce/jax/core/HttpJwt';
 
 /* eslint-disable no-console */
 

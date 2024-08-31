@@ -1,6 +1,6 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Hierarchy, SugarElement, SugarNode } from '@ephox/sugar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Hierarchy, SugarElement, SugarNode } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import * as Parents from 'tinymce/core/dom/Parents';

@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from '@hugemce/katamari';
 
 import * as NodeType from '../dom/NodeType';
 import * as CaretCandidate from './CaretCandidate';

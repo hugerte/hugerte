@@ -1,11 +1,11 @@
-import { Assertions } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Assertions } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
 
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
-import * as PartSubstitutes from 'ephox/alloy/parts/PartSubstitutes';
-import * as PartType from 'ephox/alloy/parts/PartType';
+import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
+import * as AlloyParts from 'hugemce/alloy/parts/AlloyParts';
+import * as PartSubstitutes from 'hugemce/alloy/parts/PartSubstitutes';
+import * as PartType from 'hugemce/alloy/parts/PartType';
 
 UnitTest.test('Browser Test: parts.PartProcessGroupTest', () => {
 

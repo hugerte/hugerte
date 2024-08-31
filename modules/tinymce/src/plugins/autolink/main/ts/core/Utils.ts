@@ -1,4 +1,4 @@
-import { Unicode } from '@ephox/katamari';
+import { Unicode } from '@hugemce/katamari';
 
 const isTextNode = (node: Node): node is Text =>
   node.nodeType === 3;

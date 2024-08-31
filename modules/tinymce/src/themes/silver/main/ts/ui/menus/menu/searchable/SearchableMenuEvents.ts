@@ -1,5 +1,5 @@
-import { CustomEvent, EventFormat } from '@ephox/alloy';
-import { Id } from '@ephox/katamari';
+import { CustomEvent, EventFormat } from '@hugemce/alloy';
+import { Id } from '@hugemce/katamari';
 
 // We also could have put the SearcherState in here, but that makes refetch
 // a searcher-specific event, which we probably don't want. But maybe that's

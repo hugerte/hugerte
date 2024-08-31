@@ -1,4 +1,4 @@
-import { Behaviour, GuiFactory, Replacing, SimpleSpec } from '@ephox/alloy';
+import { Behaviour, GuiFactory, Replacing, SimpleSpec } from '@hugemce/alloy';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import * as Icons from '../icons/Icons';

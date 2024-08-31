@@ -1,12 +1,12 @@
-import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
-import { PositionArray, PRange } from '@ephox/polaris';
+import { Assert, describe, it } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Arr, Optional } from '@hugemce/katamari';
+import { PositionArray, PRange } from '@hugemce/polaris';
 
-import * as Spot from 'ephox/phoenix/api/data/Spot';
-import * as MatchSplitter from 'ephox/phoenix/search/MatchSplitter';
-import * as Finder from 'ephox/phoenix/test/Finder';
-import * as TestRenders from 'ephox/phoenix/test/TestRenders';
+import * as Spot from 'hugemce/phoenix/api/data/Spot';
+import * as MatchSplitter from 'hugemce/phoenix/search/MatchSplitter';
+import * as Finder from 'hugemce/phoenix/test/Finder';
+import * as TestRenders from 'hugemce/phoenix/test/TestRenders';
 
 interface CheckExpect {
   readonly text: string[];

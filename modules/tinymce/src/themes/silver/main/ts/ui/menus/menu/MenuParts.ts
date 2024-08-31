@@ -1,6 +1,6 @@
-import { Menu as AlloyMenu, RawDomSchema, TieredMenuTypes } from '@ephox/alloy';
-import { Toolbar } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+import { Menu as AlloyMenu, RawDomSchema, TieredMenuTypes } from '@hugemce/alloy';
+import { Toolbar } from '@hugemce/bridge';
+import { Arr } from '@hugemce/katamari';
 
 import { classForPreset } from '../item/ItemClasses';
 import { classes as getMenuClasses } from './MenuClasses';

@@ -1,6 +1,6 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 

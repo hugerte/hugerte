@@ -1,9 +1,9 @@
 import {
   AlloyComponent, AlloyEvents, AlloyParts, AlloySpec, Behaviour, Boxes, Disabling, Gui, GuiFactory, Keying, Memento, Positioning, SimpleSpec, SystemEvents, VerticalDir
-} from '@ephox/alloy';
-import { Arr, Merger, Obj, Optional, Result, Singleton } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Compare, Css, SugarBody, SugarElement } from '@ephox/sugar';
+} from '@hugemce/alloy';
+import { Arr, Merger, Obj, Optional, Result, Singleton } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Compare, Css, SugarBody, SugarElement } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorUiApi } from 'tinymce/core/api/ui/Ui';

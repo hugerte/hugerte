@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    detect: './src/demo/ts/ephox/snooker/demo/DetectDemo.ts',
+    detect: './src/demo/ts/hugemce/snooker/demo/DetectDemo.ts',
   },
   devtool: 'source-map',
   mode: 'development',

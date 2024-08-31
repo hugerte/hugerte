@@ -1,5 +1,5 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import I18n from 'tinymce/core/api/util/I18n';

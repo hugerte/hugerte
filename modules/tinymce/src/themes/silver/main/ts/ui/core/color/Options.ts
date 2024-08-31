@@ -1,5 +1,5 @@
-import { Transformations } from '@ephox/acid';
-import { Type } from '@ephox/katamari';
+import { Transformations } from '@hugemce/acid';
+import { Type } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorOptions } from 'tinymce/core/api/OptionTypes';

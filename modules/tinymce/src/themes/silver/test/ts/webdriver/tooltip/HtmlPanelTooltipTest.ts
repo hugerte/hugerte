@@ -1,6 +1,6 @@
-import { RealKeys, RealMouse } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { RealKeys, RealMouse } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

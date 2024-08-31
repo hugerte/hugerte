@@ -1,6 +1,6 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Css, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Optional } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Css, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
 
 const browser = PlatformDetection.detect().browser;
 

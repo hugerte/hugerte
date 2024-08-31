@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from '@hugemce/katamari';
 
 import Editor from '../api/Editor';
 import * as CaretFinder from '../caret/CaretFinder';

@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from '@hugemce/katamari';
 
 import Editor from './api/Editor';
 import * as Options from './api/Options';

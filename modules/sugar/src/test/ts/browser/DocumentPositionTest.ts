@@ -1,13 +1,13 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as Compare from 'ephox/sugar/api/dom/Compare';
-import * as DocumentPosition from 'ephox/sugar/api/dom/DocumentPosition';
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Html from 'ephox/sugar/api/properties/Html';
+import * as Compare from 'hugemce/sugar/api/dom/Compare';
+import * as DocumentPosition from 'hugemce/sugar/api/dom/DocumentPosition';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as InsertAll from 'hugemce/sugar/api/dom/InsertAll';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Html from 'hugemce/sugar/api/properties/Html';
 
 UnitTest.test('DocumentPositionTest', () => {
   const container = SugarElement.fromTag('div');

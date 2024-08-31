@@ -1,6 +1,6 @@
-import { context, describe, it, before, afterEach, after } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Insert, Remove, Selectors, SugarBody, SugarElement } from '@ephox/sugar';
+import { context, describe, it, before, afterEach, after } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Insert, Remove, Selectors, SugarBody, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import 'tinymce';

@@ -1,5 +1,5 @@
-import { AlloyEvents, AlloyTriggers, CustomEvent, EventFormat, NativeEvents, SystemEvents } from '@ephox/alloy';
-import { Id } from '@ephox/katamari';
+import { AlloyEvents, AlloyTriggers, CustomEvent, EventFormat, NativeEvents, SystemEvents } from '@hugemce/alloy';
+import { Id } from '@hugemce/katamari';
 
 import { GetApiType, runWithApi } from '../../controls/Controls';
 

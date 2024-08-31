@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { KAssert } from '@hugemce/katamari-assertions';
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import { NodeValue } from 'ephox/sugar/impl/NodeValue';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as SugarNode from 'hugemce/sugar/api/node/SugarNode';
+import { NodeValue } from 'hugemce/sugar/impl/NodeValue';
 
 UnitTest.test('NodeValue Test', () => {
 

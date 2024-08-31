@@ -1,11 +1,11 @@
-import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { after, before, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Css, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import * as Adjustments from 'ephox/snooker/resize/Adjustments';
+import * as ResizeBehaviour from 'hugemce/snooker/api/ResizeBehaviour';
+import { TableSize } from 'hugemce/snooker/api/TableSize';
+import * as Adjustments from 'hugemce/snooker/resize/Adjustments';
 
 describe('TableAdjustmentsTest', () => {
   const preserveTable = ResizeBehaviour.preserveTable();

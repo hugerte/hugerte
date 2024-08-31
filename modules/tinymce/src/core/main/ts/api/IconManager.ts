@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from '@hugemce/katamari';
 
 export interface IconPack {
   icons: Record<string, string>;

@@ -1,11 +1,11 @@
-import { Assertions, Logger, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Attribute } from '@ephox/sugar';
+import { Assertions, Logger, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Attribute } from '@hugemce/sugar';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as Memento from 'hugemce/alloy/api/component/Memento';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
 
 UnitTest.asynctest('Browser Test: .ui.button.ButtonTypeTest', (success, failure) => {
 

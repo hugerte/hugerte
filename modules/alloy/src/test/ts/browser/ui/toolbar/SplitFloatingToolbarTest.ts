@@ -1,15 +1,15 @@
-import { ApproxStructure, Assertions, GeneralSteps, Step, StructAssert } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Result } from '@ephox/katamari';
-import { Css } from '@ephox/sugar';
+import { ApproxStructure, Assertions, GeneralSteps, Step, StructAssert } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Result } from '@hugemce/katamari';
+import { Css } from '@hugemce/sugar';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { SplitFloatingToolbar } from 'ephox/alloy/api/ui/SplitFloatingToolbar';
-import * as Sinks from 'ephox/alloy/test/Sinks';
-import * as TestPartialToolbarGroup from 'ephox/alloy/test/toolbar/TestPartialToolbarGroup';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as Memento from 'hugemce/alloy/api/component/Memento';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { SplitFloatingToolbar } from 'hugemce/alloy/api/ui/SplitFloatingToolbar';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
+import * as TestPartialToolbarGroup from 'hugemce/alloy/test/toolbar/TestPartialToolbarGroup';
 
 UnitTest.asynctest('SplitFloatingToolbarTest', (success, failure) => {
 

@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene, Universe } from '@ephox/boss';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene, Universe } from '@hugemce/boss';
 
-import * as Extract from 'ephox/phoenix/api/general/Extract';
-import * as Finder from 'ephox/phoenix/test/Finder';
+import * as Extract from 'hugemce/phoenix/api/general/Extract';
+import * as Finder from 'hugemce/phoenix/test/Finder';
 
 UnitTest.test('ExtractTextTest', () => {
   const doc = TestUniverse(

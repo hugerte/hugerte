@@ -1,4 +1,4 @@
-import { Singleton } from '@ephox/katamari';
+import { Singleton } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 const assertSingletonValueIsSet = <T>(singleton: Singleton.Value<T>, message: string): void =>

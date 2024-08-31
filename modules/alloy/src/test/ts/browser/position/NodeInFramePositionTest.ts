@@ -1,18 +1,18 @@
-import { Chain, Cursors, Guard, NamedChain } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
-import { Css, DomEvent, SelectorFind, SimRange, SugarElement, WindowSelection } from '@ephox/sugar';
+import { Chain, Cursors, Guard, NamedChain } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Optional, Result } from '@hugemce/katamari';
+import { Css, DomEvent, SelectorFind, SimRange, SugarElement, WindowSelection } from '@hugemce/sugar';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
-import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import * as Boxes from 'hugemce/alloy/alien/Boxes';
+import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as ChainUtils from 'hugemce/alloy/test/ChainUtils';
+import * as PositionTestUtils from 'hugemce/alloy/test/PositionTestUtils';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
 
-import * as Frames from '../../../../demo/ts/ephox/alloy/demo/frames/Frames';
+import * as Frames from '../../../../demo/ts/hugemce/alloy/demo/frames/Frames';
 
 UnitTest.asynctest('SelectionInFramePositionTest', (success, failure) => {
 

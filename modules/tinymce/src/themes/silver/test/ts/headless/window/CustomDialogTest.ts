@@ -1,8 +1,8 @@
-import { FocusTools, Keyboard, Keys, Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
-import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Checked, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
+import { FocusTools, Keyboard, Keys, Mouse, TestStore, UiFinder, Waiter } from '@hugemce/agar';
+import { TestHelpers } from '@hugemce/alloy';
+import { before, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Fun } from '@hugemce/katamari';
+import { Checked, SugarBody, SugarDocument, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import { WindowManagerImpl } from 'tinymce/core/api/WindowManager';

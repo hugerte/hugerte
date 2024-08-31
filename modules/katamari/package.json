@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/katamari",
+  "name": "@hugemce/katamari",
   "version": "9.1.6",
   "description": "Basic data type library",
   "repository": {
@@ -17,7 +17,7 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@ephox/dispute": "^1.0.3"
+    "@hugemce/dispute": "^1.0.3"
   },
   "files": [
     "lib/main",
@@ -30,7 +30,7 @@
     "CHANGELOG.md",
     "LICENSE.txt"
   ],
-  "main": "./lib/main/ts/ephox/katamari/api/Main.js",
-  "module": "./lib/main/ts/ephox/katamari/api/Main.js",
-  "types": "./lib/main/ts/ephox/katamari/api/Main.d.ts"
+  "main": "./lib/main/ts/hugemce/katamari/api/Main.js",
+  "module": "./lib/main/ts/hugemce/katamari/api/Main.js",
+  "types": "./lib/main/ts/hugemce/katamari/api/Main.d.ts"
 }

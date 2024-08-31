@@ -1,17 +1,17 @@
-import { Chain, FocusTools, GeneralSteps, Logger, UiFinder } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { Chain, FocusTools, GeneralSteps, Logger, UiFinder } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as FocusManagers from 'ephox/alloy/api/focus/FocusManagers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import * as ItemWidget from 'ephox/alloy/api/ui/ItemWidget';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import { NormalItemSpec, WidgetItemSpec } from 'ephox/alloy/ui/types/ItemTypes';
+import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as FocusManagers from 'hugemce/alloy/api/focus/FocusManagers';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as ItemWidget from 'hugemce/alloy/api/ui/ItemWidget';
+import { Menu } from 'hugemce/alloy/api/ui/Menu';
+import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import { NormalItemSpec, WidgetItemSpec } from 'hugemce/alloy/ui/types/ItemTypes';
 
 UnitTest.asynctest('MenuFocusTest', (success, failure) => {
 

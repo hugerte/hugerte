@@ -1,6 +1,6 @@
-import { AddEventsBehaviour, AlloyEvents, Behaviour, SimpleSpec } from '@ephox/alloy';
-import { Arr, Obj, Optional, Strings } from '@ephox/katamari';
-import { Attribute, SelectorFind } from '@ephox/sugar';
+import { AddEventsBehaviour, AlloyEvents, Behaviour, SimpleSpec } from '@hugemce/alloy';
+import { Arr, Obj, Optional, Strings } from '@hugemce/katamari';
+import { Attribute, SelectorFind } from '@hugemce/sugar';
 
 import I18n from 'tinymce/core/api/util/I18n';
 

@@ -1,6 +1,6 @@
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Fun, Type } from '@ephox/katamari';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Fun, Type } from '@hugemce/katamari';
+import { TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

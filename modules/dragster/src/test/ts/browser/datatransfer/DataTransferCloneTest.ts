@@ -1,12 +1,12 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { KAssert } from '@ephox/katamari-assertions';
-import { PlatformDetection } from '@ephox/sand';
+import { describe, it } from '@hugemce/bedrock-client';
+import { KAssert } from '@hugemce/katamari-assertions';
+import { PlatformDetection } from '@hugemce/sand';
 import { assert } from 'chai';
 
-import { cloneDataTransfer, createDataTransfer, getDragImage } from 'ephox/dragster/datatransfer/DataTransfer';
-import { DragImageData } from 'ephox/dragster/datatransfer/DragImage';
-import { Event, getEvent, setDragstartEvent } from 'ephox/dragster/datatransfer/Event';
-import { getMode, Mode, setMode, setReadOnlyMode, setReadWriteMode } from 'ephox/dragster/datatransfer/Mode';
+import { cloneDataTransfer, createDataTransfer, getDragImage } from 'hugemce/dragster/datatransfer/DataTransfer';
+import { DragImageData } from 'hugemce/dragster/datatransfer/DragImage';
+import { Event, getEvent, setDragstartEvent } from 'hugemce/dragster/datatransfer/Event';
+import { getMode, Mode, setMode, setReadOnlyMode, setReadWriteMode } from 'hugemce/dragster/datatransfer/Mode';
 
 describe('browser.dragster.datatransfer.DataTransferCloneTest', () => {
   const dragImage: DragImageData = {

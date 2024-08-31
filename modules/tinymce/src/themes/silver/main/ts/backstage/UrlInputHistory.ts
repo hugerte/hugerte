@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr, Obj, Type } from '@hugemce/katamari';
 
 import LocalStorage from 'tinymce/core/api/util/LocalStorage';
 

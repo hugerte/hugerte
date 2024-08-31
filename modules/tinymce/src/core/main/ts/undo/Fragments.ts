@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from '@hugemce/katamari';
 
 import Entities from '../api/html/Entities';
 import * as NodeType from '../dom/NodeType';

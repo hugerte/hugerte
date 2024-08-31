@@ -6,7 +6,7 @@
  * @example
  * const isExtending = ExtendingChar.isExtendingChar('a');
  */
-import { Type } from '@ephox/katamari';
+import { Type } from '@hugemce/katamari';
 
 // Generated from: http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt
 // Only includes the characters in that fit into UCS-2 16 bit

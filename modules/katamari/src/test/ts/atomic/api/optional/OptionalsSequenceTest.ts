@@ -1,10 +1,10 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import { Optional } from 'ephox/katamari/api/Optional';
-import * as Optionals from 'ephox/katamari/api/Optionals';
-import { assertNone, assertOptional } from 'ephox/katamari/test/AssertOptional';
+import * as Arr from 'hugemce/katamari/api/Arr';
+import { Optional } from 'hugemce/katamari/api/Optional';
+import * as Optionals from 'hugemce/katamari/api/Optionals';
+import { assertNone, assertOptional } from 'hugemce/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.optional.OptionalsSequenceTest', () => {
   it('unit tests', () => {

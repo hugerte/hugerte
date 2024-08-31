@@ -5,11 +5,11 @@
 
 # Installation
 
-`sand` is available as an `npm` package. You can install it via the npm package `@ephox/sand`
+`sand` is available as an `npm` package. You can install it via the npm package `@hugemce/sand`
 
 ## Install from npm
 
-`npm install @ephox/sand`.
+`npm install @hugemce/sand`.
 
 
 # Using the API

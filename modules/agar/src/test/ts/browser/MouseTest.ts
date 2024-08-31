@@ -1,15 +1,15 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { DomEvent, Insert, Remove, SugarElement } from '@ephox/sugar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { DomEvent, Insert, Remove, SugarElement } from '@hugemce/sugar';
 
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { Chain } from 'ephox/agar/api/Chain';
-import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
-import * as Mouse from 'ephox/agar/api/Mouse';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import * as UiFinder from 'ephox/agar/api/UiFinder';
+import * as Assertions from 'hugemce/agar/api/Assertions';
+import { Chain } from 'hugemce/agar/api/Chain';
+import * as GeneralSteps from 'hugemce/agar/api/GeneralSteps';
+import * as Mouse from 'hugemce/agar/api/Mouse';
+import { Pipeline } from 'hugemce/agar/api/Pipeline';
+import { Step } from 'hugemce/agar/api/Step';
+import * as UiFinder from 'hugemce/agar/api/UiFinder';
 
 UnitTest.asynctest('MouseTest', (success, failure) => {
 

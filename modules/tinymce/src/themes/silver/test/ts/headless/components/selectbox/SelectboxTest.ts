@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { Disabling, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
-import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { ApproxStructure, Assertions } from '@hugemce/agar';
+import { Disabling, GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import { renderSelectBox } from 'tinymce/themes/silver/ui/dialog/SelectBox';

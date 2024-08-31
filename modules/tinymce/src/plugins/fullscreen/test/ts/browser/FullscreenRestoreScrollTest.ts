@@ -1,7 +1,7 @@
-import { Waiter } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Css, Insert, InsertAll, Remove, Scroll, SugarBody, SugarElement } from '@ephox/sugar';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Waiter } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Css, Insert, InsertAll, Remove, Scroll, SugarBody, SugarElement } from '@hugemce/sugar';
+import { TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

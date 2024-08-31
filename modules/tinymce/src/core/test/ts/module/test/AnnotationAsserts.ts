@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { Arr, Obj } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
-import { TinyAssertions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions } from '@hugemce/agar';
+import { Arr, Obj } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
+import { TinyAssertions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import * as Markings from 'tinymce/core/annotate/Markings';

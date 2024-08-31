@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Global } from '@ephox/katamari';
+import { Global } from '@hugemce/katamari';
 
 import { Editor, TinyMCE } from 'tinymce/core/api/PublicApi';
 import CaretPosition from 'tinymce/core/caret/CaretPosition';

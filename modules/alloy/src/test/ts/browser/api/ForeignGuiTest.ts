@@ -1,16 +1,16 @@
-import { ApproxStructure, Assertions, Logger, Mouse, Pipeline, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { EventArgs, Html, Insert, Remove, SugarBody, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Logger, Mouse, Pipeline, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { EventArgs, Html, Insert, Remove, SugarBody, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as ForeignGui from 'ephox/alloy/api/system/ForeignGui';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Toggling } from 'hugemce/alloy/api/behaviour/Toggling';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as NativeEvents from 'hugemce/alloy/api/events/NativeEvents';
+import * as SystemEvents from 'hugemce/alloy/api/events/SystemEvents';
+import * as ForeignGui from 'hugemce/alloy/api/system/ForeignGui';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as Tagger from 'hugemce/alloy/registry/Tagger';
 
 UnitTest.asynctest('Browser Test: api.ForeignGuiTest', (success, failure) => {
   const root = SugarElement.fromTag('div');

@@ -1,4 +1,4 @@
-import { Throttler } from '@ephox/katamari';
+import { Throttler } from '@hugemce/katamari';
 
 import Editor from '../api/Editor';
 import * as FakeCaretUtils from '../caret/FakeCaretUtils';

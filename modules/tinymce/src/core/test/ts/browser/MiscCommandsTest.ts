@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { SugarElement } from '@ephox/sugar';
-import { LegacyUnit, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
+import { Assertions } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { SugarElement } from '@hugemce/sugar';
+import { LegacyUnit, TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

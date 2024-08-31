@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr, Obj, Type } from '@hugemce/katamari';
 
 import { ParserArgs, ParserFilter } from '../api/html/DomParser';
 import AstNode from '../api/html/Node';

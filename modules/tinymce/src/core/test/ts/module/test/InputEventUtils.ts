@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+import { Type } from '@hugemce/katamari';
 
 const deprecated = new Set([
   'keyLocation', 'layerX', 'layerY', 'returnValue',

@@ -1,9 +1,9 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as ArrNavigation from 'ephox/alloy/navigation/ArrNavigation';
+import * as ArrNavigation from 'hugemce/alloy/navigation/ArrNavigation';
 
 UnitTest.test('ArrNavigationTest', () => {
   const genUniqueArray = (min: number, max: number) => fc.integer({ min, max }).map((num) => {

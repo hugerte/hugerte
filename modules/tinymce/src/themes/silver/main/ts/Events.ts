@@ -1,6 +1,6 @@
-import { Attachment, Channels, Gui, SystemEvents } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
-import { Compare, DomEvent, EventArgs, SugarDocument, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Attachment, Channels, Gui, SystemEvents } from '@hugemce/alloy';
+import { Arr } from '@hugemce/katamari';
+import { Compare, DomEvent, EventArgs, SugarDocument, SugarElement, SugarShadowDom } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { AfterProgressStateEvent } from 'tinymce/core/api/EventTypes';

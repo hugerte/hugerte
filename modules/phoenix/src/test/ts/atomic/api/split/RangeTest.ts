@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
 
-import * as Split from 'ephox/phoenix/api/general/Split';
-import * as Finder from 'ephox/phoenix/test/Finder';
-import * as TestRenders from 'ephox/phoenix/test/TestRenders';
+import * as Split from 'hugemce/phoenix/api/general/Split';
+import * as Finder from 'hugemce/phoenix/test/Finder';
+import * as TestRenders from 'hugemce/phoenix/test/TestRenders';
 
 UnitTest.test('IdentifyTest', () => {
   const check = (all: string[], expected: string[], baseid: string, baseoffset: number, endid: string, endoffset: number, input: Gene) => {

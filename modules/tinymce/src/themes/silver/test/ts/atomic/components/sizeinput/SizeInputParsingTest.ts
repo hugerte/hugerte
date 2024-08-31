@@ -1,5 +1,5 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Result } from '@ephox/katamari';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr, Result } from '@hugemce/katamari';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 

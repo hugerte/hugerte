@@ -1,8 +1,8 @@
-import { Assertions } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { Assertions } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Fun, Optional } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Hierarchy, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import { CaretPosition } from 'tinymce/core/caret/CaretPosition';

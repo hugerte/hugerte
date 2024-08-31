@@ -1,4 +1,4 @@
-import { Cell, Throttler } from '@ephox/katamari';
+import { Cell, Throttler } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

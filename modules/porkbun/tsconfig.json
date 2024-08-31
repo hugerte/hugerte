@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "ephox/porkbun/test/*": ["src/test/ts/module/ephox/porkbun/test/*"],
-      "ephox/porkbun/demo/*": ["src/demo/ts/ephox/porkbun/demo/*"],
-      "ephox/porkbun/*": ["src/main/ts/ephox/porkbun/*"]
+      "hugemce/porkbun/test/*": ["src/test/ts/module/hugemce/porkbun/test/*"],
+      "hugemce/porkbun/demo/*": ["src/demo/ts/hugemce/porkbun/demo/*"],
+      "hugemce/porkbun/*": ["src/main/ts/hugemce/porkbun/*"]
     }
   },
   "include": [

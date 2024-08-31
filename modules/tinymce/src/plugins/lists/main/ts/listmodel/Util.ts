@@ -1,4 +1,4 @@
-import { Compare, SugarElement, Traverse } from '@ephox/sugar';
+import { Compare, SugarElement, Traverse } from '@hugemce/sugar';
 
 export const enum ListType {
   OL = 'ol',

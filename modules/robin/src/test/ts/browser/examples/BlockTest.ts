@@ -1,11 +1,11 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
 
-import * as DomLook from 'ephox/robin/api/dom/DomLook';
-import * as DomParent from 'ephox/robin/api/dom/DomParent';
-import * as DomStructure from 'ephox/robin/api/dom/DomStructure';
-import * as BrowserCheck from 'ephox/robin/test/BrowserCheck';
+import * as DomLook from 'hugemce/robin/api/dom/DomLook';
+import * as DomParent from 'hugemce/robin/api/dom/DomParent';
+import * as DomStructure from 'hugemce/robin/api/dom/DomStructure';
+import * as BrowserCheck from 'hugemce/robin/test/BrowserCheck';
 
 UnitTest.test('BlockTest', () => {
   const check = (expected: string, input: string, look: (e: SugarElement) => Optional<SugarElement>) => {

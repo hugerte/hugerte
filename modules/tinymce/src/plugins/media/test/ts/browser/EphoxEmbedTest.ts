@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, StructAssert, Waiter } from '@ephox/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
-import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions, StructAssert, Waiter } from '@hugemce/agar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
+import { TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import AstNode from 'tinymce/core/api/html/Node';
@@ -11,7 +11,7 @@ import Plugin from 'tinymce/plugins/media/Plugin';
 import * as Utils from '../module/test/Utils';
 
 describe('browser.tinymce.plugins.media.core.EphoxEmbedTest', () => {
-  const ephoxEmbedStructure = ApproxStructure.build((s, str/* , arr*/) => {
+  const hugemceEmbedStructure = ApproxStructure.build((s, str/* , arr*/) => {
     return s.element('div', {
       children: [
         s.element('iframe', {
@@ -22,7 +22,7 @@ describe('browser.tinymce.plugins.media.core.EphoxEmbedTest', () => {
         })
       ],
       attrs: {
-        'data-ephox-embed-iri': str.is('embed-iri'),
+        'data-hugemce-embed-iri': str.is('embed-iri'),
         'contenteditable': str.is('false')
       }
     });
@@ -49,16 +49,16 @@ describe('browser.tinymce.plugins.media.core.EphoxEmbedTest', () => {
 
     it('TBA: Open dialog, assert embedded content, close dialog and assert div structure', async () => {
       const editor = hook.editor();
-      const content = '<div contenteditable="false" data-ephox-embed-iri="embed-iri"><iframe src="about:blank"></iframe></div>';
-      const sandboxedContent = '<div contenteditable="false" data-ephox-embed-iri="embed-iri"><iframe src="about:blank" sandbox=""></iframe></div>';
+      const content = '<div contenteditable="false" data-hugemce-embed-iri="embed-iri"><iframe src="about:blank"></iframe></div>';
+      const sandboxedContent = '<div contenteditable="false" data-hugemce-embed-iri="embed-iri"><iframe src="about:blank" sandbox=""></iframe></div>';
       editor.setContent(content);
-      assertDivStructure(editor, ephoxEmbedStructure);
+      assertDivStructure(editor, hugemceEmbedStructure);
       TinySelections.select(editor, 'div', []);
       await Utils.pOpenDialog(editor);
       await Utils.pAssertSourceValue(editor, 'embed-iri');
       await Utils.pAssertEmbedData(editor, sandboxedContent);
       TinyUiActions.submitDialog(editor);
-      await Waiter.pTryUntil('wait for div structure', () => assertDivStructure(editor, ephoxEmbedStructure));
+      await Waiter.pTryUntil('wait for div structure', () => assertDivStructure(editor, hugemceEmbedStructure));
     });
   });
 
@@ -78,14 +78,14 @@ describe('browser.tinymce.plugins.media.core.EphoxEmbedTest', () => {
             });
           };
 
-          editor.parser.addAttributeFilter('data-ephox-embed-iri', converter);
+          editor.parser.addAttributeFilter('data-hugemce-embed-iri', converter);
         });
       },
       base_url: '/project/tinymce/js/tinymce'
     }, [ Plugin ], true);
 
     const responsiveEmbedData =
-      `<div style="max-width: 650px;" data-ephox-embed-iri="https://www.youtube.com/watch?v=5auGeCM0knQ">
+      `<div style="max-width: 650px;" data-hugemce-embed-iri="https://www.youtube.com/watch?v=5auGeCM0knQ">
       <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;"
       src="https://www.youtube.com/embed/5auGeCM0knQ?rel=0" scrolling="no" allow="accelerometer;

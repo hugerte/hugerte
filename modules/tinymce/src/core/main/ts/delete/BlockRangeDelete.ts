@@ -1,5 +1,5 @@
-import { Fun, Optional, Optionals } from '@ephox/katamari';
-import { Compare, PredicateFind, SugarElement } from '@ephox/sugar';
+import { Fun, Optional, Optionals } from '@hugemce/katamari';
+import { Compare, PredicateFind, SugarElement } from '@hugemce/sugar';
 
 import EditorSelection from '../api/dom/Selection';
 import Editor from '../api/Editor';

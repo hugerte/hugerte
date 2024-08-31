@@ -1,8 +1,8 @@
-import { ApproxStructure, Cursors } from '@ephox/agar';
-import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Cursors } from '@hugemce/agar';
+import { after, before, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Type } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

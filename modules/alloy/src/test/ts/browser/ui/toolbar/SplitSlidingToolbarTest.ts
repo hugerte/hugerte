@@ -1,13 +1,13 @@
-import { ApproxStructure, Assertions, Step, StructAssert, Waiter } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Step, StructAssert, Waiter } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Css } from '@hugemce/sugar';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { SplitSlidingToolbar } from 'ephox/alloy/api/ui/SplitSlidingToolbar';
-import * as TestPartialToolbarGroup from 'ephox/alloy/test/toolbar/TestPartialToolbarGroup';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { SplitSlidingToolbar } from 'hugemce/alloy/api/ui/SplitSlidingToolbar';
+import * as TestPartialToolbarGroup from 'hugemce/alloy/test/toolbar/TestPartialToolbarGroup';
 
 UnitTest.asynctest('SplitSlidingToolbarTest', (success, failure) => {
 

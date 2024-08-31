@@ -1,5 +1,5 @@
-import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { after, before, context, describe, it } from '@hugemce/bedrock-client';
+import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

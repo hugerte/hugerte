@@ -1,6 +1,6 @@
-import { AlloyComponent, Disabling, ItemTypes } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
+import { AlloyComponent, Disabling, ItemTypes } from '@hugemce/alloy';
+import { Menu } from '@hugemce/bridge';
+import { Optional } from '@hugemce/katamari';
 
 import { UiFactoryBackstageProviders } from 'tinymce/themes/silver/backstage/Backstage';
 

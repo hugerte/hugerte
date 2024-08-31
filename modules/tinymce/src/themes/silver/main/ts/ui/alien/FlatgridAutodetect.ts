@@ -1,6 +1,6 @@
-import { AlloyComponent } from '@ephox/alloy';
-import { Arr, Optional } from '@ephox/katamari';
-import { SelectorFilter } from '@ephox/sugar';
+import { AlloyComponent } from '@hugemce/alloy';
+import { Arr, Optional } from '@hugemce/katamari';
+import { SelectorFilter } from '@hugemce/sugar';
 
 const detectSize = (comp: AlloyComponent, margin: number, selectorClass: string): Optional<{ numColumns: number; numRows: number }> => {
   const descendants = SelectorFilter.descendants(comp.element, '.' + selectorClass);

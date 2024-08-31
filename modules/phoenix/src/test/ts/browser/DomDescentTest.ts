@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Obj } from '@hugemce/katamari';
+import { Hierarchy, SugarElement } from '@hugemce/sugar';
 
-import { SpotPoint } from 'ephox/phoenix/api/data/Types';
-import * as DomDescent from 'ephox/phoenix/api/dom/DomDescent';
+import { SpotPoint } from 'hugemce/phoenix/api/data/Types';
+import * as DomDescent from 'hugemce/phoenix/api/dom/DomDescent';
 
 UnitTest.test('DomDescentTest', () => {
 

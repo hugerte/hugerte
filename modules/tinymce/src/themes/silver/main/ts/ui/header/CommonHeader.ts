@@ -1,4 +1,4 @@
-import { AlloySpec, Behaviour, SimpleSpec } from '@ephox/alloy';
+import { AlloySpec, Behaviour, SimpleSpec } from '@hugemce/alloy';
 
 import Editor from 'tinymce/core/api/Editor';
 

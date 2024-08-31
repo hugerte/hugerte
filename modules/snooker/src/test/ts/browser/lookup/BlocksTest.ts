@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { SugarElement, TextContent } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { SugarElement, TextContent } from '@hugemce/sugar';
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Blocks from 'ephox/snooker/lookup/Blocks';
+import * as Structs from 'hugemce/snooker/api/Structs';
+import { Warehouse } from 'hugemce/snooker/api/Warehouse';
+import * as Blocks from 'hugemce/snooker/lookup/Blocks';
 
 UnitTest.test('BlocksTest', () => {
   const createCell = (text: string): SugarElement<HTMLTableCellElement> => {

@@ -1,6 +1,6 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Hierarchy } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Hierarchy } from '@hugemce/sugar';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Format } from 'tinymce/core/fmt/FormatTypes';

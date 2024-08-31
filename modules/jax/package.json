@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/jax",
+  "name": "@hugemce/jax",
   "version": "7.0.10",
   "description": "AJAX library",
   "repository": {
@@ -22,7 +22,7 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@ephox/katamari": "^9.1.6"
+    "@hugemce/katamari": "^9.1.6"
   },
   "files": [
     "lib/main",
@@ -35,7 +35,7 @@
     "CHANGELOG.txt",
     "LICENSE.txt"
   ],
-  "main": "./lib/main/ts/ephox/jax/api/Main.js",
-  "module": "./lib/main/ts/ephox/jax/api/Main.js",
-  "types": "./lib/main/ts/ephox/jax/api/Main.d.ts"
+  "main": "./lib/main/ts/hugemce/jax/api/Main.js",
+  "module": "./lib/main/ts/hugemce/jax/api/Main.js",
+  "types": "./lib/main/ts/hugemce/jax/api/Main.d.ts"
 }

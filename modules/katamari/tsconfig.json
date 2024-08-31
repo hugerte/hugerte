@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "ephox/katamari/test/*": ["src/test/ts/module/ephox/katamari/test/*"],
-      "ephox/katamari/demo/*": ["src/demo/ts/ephox/katamari/demo/*"],
-      "ephox/katamari/*": ["src/main/ts/ephox/katamari/*"]
+      "hugemce/katamari/test/*": ["src/test/ts/module/hugemce/katamari/test/*"],
+      "hugemce/katamari/demo/*": ["src/demo/ts/hugemce/katamari/demo/*"],
+      "hugemce/katamari/*": ["src/main/ts/hugemce/katamari/*"]
     }
   },
   "include": [

@@ -1,19 +1,19 @@
-import { Assert, context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+import { Assert, context, describe, it } from '@hugemce/bedrock-client';
+import { Obj } from '@hugemce/katamari';
 
-import * as Url from 'ephox/polaris/api/Url';
+import * as Url from 'hugemce/polaris/api/Url';
 
 describe('atomic.polaris.api.UrlTest', () => {
   context('extractHost', () => {
     const hostMap: Record<string, string> = {
       'www.google.com.au': 'google.com.au',
       'www.google.com.au:80': 'google.com.au',
-      'maurizio@ephox.com': 'ephox.com',
-      'http://www.ephox.com': 'ephox.com',
+      'maurizio@hugemce.com': 'hugemce.com',
+      'http://www.hugemce.com': 'hugemce.com',
       'https://www.google.it': 'google.it',
-      'mailto:maurizio@ephox.com': 'ephox.com',
-      'maurizio.napoleoni@ephox.com': 'ephox.com',
-      'http://maurizio@ephox.com:3443/mystuff': 'ephox.com',
+      'mailto:maurizio@hugemce.com': 'hugemce.com',
+      'maurizio.napoleoni@hugemce.com': 'hugemce.com',
+      'http://maurizio@hugemce.com:3443/mystuff': 'hugemce.com',
       'maurizio-napoleoni-email@gmail.com': 'gmail.com',
       'http://link/': 'link',
       'https://www.google.com.au/search?espv=2&q=hello+world&oq=hello+world&gs_l=serp.3..0l10.12435.15279.0.15482.13.9.0.3.3.0.241.1121.0j1j4.5.0.msedr...0...1c.1.64.serp..5.8.1125.GLORIzEXy3Y': 'google.com.au',

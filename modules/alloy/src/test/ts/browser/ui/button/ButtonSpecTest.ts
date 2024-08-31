@@ -1,13 +1,13 @@
 import {
   ApproxStructure, Assertions, Chain, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder
-} from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+} from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import * as Tagger from 'hugemce/alloy/registry/Tagger';
 
 UnitTest.asynctest('ButtonSpecTest', (success, failure) => {
 

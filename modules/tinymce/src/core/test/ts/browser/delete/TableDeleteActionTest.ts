@@ -1,6 +1,6 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr, Optional } from '@hugemce/katamari';
+import { Hierarchy, Html, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import * as TableDeleteAction from 'tinymce/core/delete/TableDeleteAction';

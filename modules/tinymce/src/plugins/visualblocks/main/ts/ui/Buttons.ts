@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Cell } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Menu, Toolbar } from 'tinymce/core/api/ui/Ui';

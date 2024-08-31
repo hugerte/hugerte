@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+import { Type } from '@hugemce/katamari';
 
 import Editor from '../api/Editor';
 import * as Events from '../api/Events';

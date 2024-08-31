@@ -1,11 +1,11 @@
-import { Assert, context, describe, it } from '@ephox/bedrock-client';
-import { Optional, OptionalInstances } from '@ephox/katamari';
-import { Css, Insert, InsertAll, Remove, SelectorFind, SugarBody, SugarElement, Width } from '@ephox/sugar';
+import { Assert, context, describe, it } from '@hugemce/bedrock-client';
+import { Optional, OptionalInstances } from '@hugemce/katamari';
+import { Css, Insert, InsertAll, Remove, SelectorFind, SugarBody, SugarElement, Width } from '@hugemce/sugar';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
+import { TableSize } from 'hugemce/snooker/api/TableSize';
+import { Warehouse } from 'hugemce/snooker/api/Warehouse';
 
 const tOptional = OptionalInstances.tOptional;
 

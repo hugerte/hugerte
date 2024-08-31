@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloySpec, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
-import { Dimension } from '@ephox/sugar';
+import { AlloyComponent, AlloySpec, AlloyTriggers, SketchSpec } from '@hugemce/alloy';
+import { Arr, Fun, Obj, Optional } from '@hugemce/katamari';
+import { Dimension } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import * as Options from 'tinymce/themes/silver/api/Options';

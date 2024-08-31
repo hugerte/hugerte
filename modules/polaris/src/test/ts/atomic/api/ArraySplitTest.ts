@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 
-import * as Arrays from 'ephox/polaris/api/Arrays';
-import { Splitting } from 'ephox/polaris/api/Splitting';
+import * as Arrays from 'hugemce/polaris/api/Arrays';
+import { Splitting } from 'hugemce/polaris/api/Splitting';
 
 UnitTest.test('api.Arrays.splitby', () => {
   const check = <T>(expected: T[][], input: T[], pred: (x: T) => boolean) => {

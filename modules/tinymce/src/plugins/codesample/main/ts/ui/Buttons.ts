@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Menu, Toolbar } from 'tinymce/core/api/ui/Ui';

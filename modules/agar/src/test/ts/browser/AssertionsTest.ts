@@ -1,7 +1,7 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
-import * as Assertions from 'ephox/agar/api/Assertions';
+import * as Assertions from 'hugemce/agar/api/Assertions';
 
 UnitTest.test('AssertionsTest', () => {
   const replaceTokens = (str, values) =>

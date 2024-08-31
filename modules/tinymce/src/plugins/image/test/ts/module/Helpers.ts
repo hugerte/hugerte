@@ -1,6 +1,6 @@
-import { Assertions, Mouse, UiFinder } from '@ephox/agar';
-import { Obj, Optional, Type } from '@ephox/katamari';
-import { Attribute, Checked, Class, Focus, SugarBody, SugarElement, Traverse, Value } from '@ephox/sugar';
+import { Assertions, Mouse, UiFinder } from '@hugemce/agar';
+import { Obj, Optional, Type } from '@hugemce/katamari';
+import { Attribute, Checked, Class, Focus, SugarBody, SugarElement, Traverse, Value } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

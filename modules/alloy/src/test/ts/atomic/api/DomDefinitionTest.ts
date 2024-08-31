@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Obj, Optional } from '@hugemce/katamari';
 import * as fc from 'fast-check';
 
-import { DomDefinitionDetail } from 'ephox/alloy/dom/DomDefinition';
-import * as DomModification from 'ephox/alloy/dom/DomModification';
+import { DomDefinitionDetail } from 'hugemce/alloy/dom/DomDefinition';
+import * as DomModification from 'hugemce/alloy/dom/DomModification';
 
 UnitTest.test('DomDefinitionTest', () => {
   // TODO: Add property based tests.

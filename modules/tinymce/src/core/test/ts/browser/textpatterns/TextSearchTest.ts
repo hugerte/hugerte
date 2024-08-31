@@ -1,8 +1,8 @@
-import { Assertions } from '@ephox/agar';
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
-import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Assertions } from '@hugemce/agar';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
+import { TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import { SpotPoint } from 'tinymce/core/alien/Spot';

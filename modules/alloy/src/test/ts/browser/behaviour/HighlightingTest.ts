@@ -1,15 +1,15 @@
-import { Assertions, Chain, NamedChain, UiFinder } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Result } from '@ephox/katamari';
-import { Attribute, Class, Compare, Truncate } from '@ephox/sugar';
+import { Assertions, Chain, NamedChain, UiFinder } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Result } from '@hugemce/katamari';
+import { Attribute, Class, Compare, Truncate } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Highlighting } from 'ephox/alloy/api/behaviour/Highlighting';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Highlighting } from 'hugemce/alloy/api/behaviour/Highlighting';
+import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as ChainUtils from 'hugemce/alloy/test/ChainUtils';
 
 UnitTest.asynctest('HighlightingTest', (success, failure) => {
 

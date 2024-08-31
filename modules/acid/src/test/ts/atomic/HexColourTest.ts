@@ -1,9 +1,9 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
 import { assert } from 'chai';
 
-import * as ColourTypes from 'ephox/acid/api/colour/ColourTypes';
-import * as HexColour from 'ephox/acid/api/colour/HexColour';
+import * as ColourTypes from 'hugemce/acid/api/colour/ColourTypes';
+import * as HexColour from 'hugemce/acid/api/colour/HexColour';
 
 describe('atomic.acid.HexColourTest', () => {
   const assertHexFromString = (input: string, expected: string) => {

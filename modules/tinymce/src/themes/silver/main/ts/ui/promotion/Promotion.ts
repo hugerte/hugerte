@@ -1,4 +1,4 @@
-import { AlloySpec, SimpleSpec } from '@ephox/alloy';
+import { AlloySpec, SimpleSpec } from '@hugemce/alloy';
 
 const promotionMessage = '⚡️Upgrade';
 const promotionLink = 'https://www.tiny.cloud/tinymce-self-hosted-premium-features/?utm_campaign=self_hosted_upgrade_promo&utm_source=tiny&utm_medium=referral';

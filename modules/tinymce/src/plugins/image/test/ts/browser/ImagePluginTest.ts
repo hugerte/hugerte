@@ -1,6 +1,6 @@
-import { Cursors } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Cursors } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/image/Plugin';

@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
-import { SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Obj } from '@hugemce/katamari';
+import { SugarElement, SugarNode } from '@hugemce/sugar';
 
 const tableCells = [ 'td', 'th' ];
 const tableSections = [ 'thead', 'tbody', 'tfoot' ];

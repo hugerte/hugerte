@@ -1,5 +1,5 @@
-import { Arr, Obj } from '@ephox/katamari';
-import { InsertAll, Remove, SugarElement, Traverse } from '@ephox/sugar';
+import { Arr, Obj } from '@hugemce/katamari';
+import { InsertAll, Remove, SugarElement, Traverse } from '@hugemce/sugar';
 
 import Editor from '../api/Editor';
 import * as NodeType from '../dom/NodeType';

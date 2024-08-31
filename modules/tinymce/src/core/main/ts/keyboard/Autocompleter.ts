@@ -1,4 +1,4 @@
-import { Cell, Optional, Singleton, Throttler, Thunk, Type } from '@ephox/katamari';
+import { Cell, Optional, Singleton, Throttler, Thunk, Type } from '@hugemce/katamari';
 
 import Editor from '../api/Editor';
 import * as Events from '../api/Events';

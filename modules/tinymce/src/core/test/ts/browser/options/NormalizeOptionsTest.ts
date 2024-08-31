@@ -1,5 +1,5 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Obj } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import { RawEditorOptions } from 'tinymce/core/api/OptionTypes';

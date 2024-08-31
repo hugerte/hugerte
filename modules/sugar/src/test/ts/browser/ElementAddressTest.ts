@@ -1,16 +1,16 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
 
-import * as Hierarchy from 'ephox/sugar/api/dom/Hierarchy';
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import * as ElementAddress from 'ephox/sugar/api/search/ElementAddress';
+import * as Hierarchy from 'hugemce/sugar/api/dom/Hierarchy';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as SugarNode from 'hugemce/sugar/api/node/SugarNode';
+import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
+import * as Html from 'hugemce/sugar/api/properties/Html';
+import * as ElementAddress from 'hugemce/sugar/api/search/ElementAddress';
 
 interface TestParentSpec {
   parent: string;

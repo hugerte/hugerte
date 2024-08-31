@@ -1,8 +1,8 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Num from 'ephox/katamari/api/Num';
+import * as Num from 'hugemce/katamari/api/Num';
 
 describe('atomic.katamari.api.num.NumClampTest', () => {
   it('Num.clamp', () => {

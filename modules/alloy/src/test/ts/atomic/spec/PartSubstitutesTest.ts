@@ -1,11 +1,11 @@
-import { Logger } from '@ephox/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Logger } from '@hugemce/agar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import { subs } from 'ephox/alloy/parts/PartSubstitutes';
-import * as PartType from 'ephox/alloy/parts/PartType';
-import * as UiSubstitutes from 'ephox/alloy/spec/UiSubstitutes';
+import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
+import { subs } from 'hugemce/alloy/parts/PartSubstitutes';
+import * as PartType from 'hugemce/alloy/parts/PartType';
+import * as UiSubstitutes from 'hugemce/alloy/spec/UiSubstitutes';
 
 UnitTest.test('PartSubstitutesTest', () => {
   // TODO: Make this test more exhaustive. This is really just a sanity

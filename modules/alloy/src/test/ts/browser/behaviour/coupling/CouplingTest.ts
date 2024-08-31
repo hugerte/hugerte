@@ -1,15 +1,15 @@
-import { Assertions, Logger, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Attribute, SugarNode } from '@ephox/sugar';
+import { Assertions, Logger, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Attribute, SugarNode } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Coupling } from 'ephox/alloy/api/behaviour/Coupling';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
-import * as StepUtils from 'ephox/alloy/test/StepUtils';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Coupling } from 'hugemce/alloy/api/behaviour/Coupling';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as Tagger from 'hugemce/alloy/registry/Tagger';
+import * as StepUtils from 'hugemce/alloy/test/StepUtils';
 
 UnitTest.asynctest('CouplingTest', (success, failure) => {
 

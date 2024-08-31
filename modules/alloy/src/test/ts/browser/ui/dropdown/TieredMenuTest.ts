@@ -1,20 +1,20 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, Step, StructAssert } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Objects } from '@ephox/boulder';
-import { Arr, Obj } from '@ephox/katamari';
-import { Class } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, Step, StructAssert } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Objects } from '@hugemce/boulder';
+import { Arr, Obj } from '@hugemce/katamari';
+import { Class } from '@hugemce/sugar';
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import * as MenuEvents from 'ephox/alloy/menu/util/MenuEvents';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
+import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Menu } from 'hugemce/alloy/api/ui/Menu';
+import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
+import * as MenuEvents from 'hugemce/alloy/menu/util/MenuEvents';
+import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
 
 UnitTest.asynctest('TieredMenuTest', (success, failure) => {
 

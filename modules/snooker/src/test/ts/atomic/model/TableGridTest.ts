@@ -1,10 +1,10 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as TableGrid from 'ephox/snooker/model/TableGrid';
+import * as Structs from 'hugemce/snooker/api/Structs';
+import * as TableGrid from 'hugemce/snooker/model/TableGrid';
 
 describe('TableGridTest', () => {
   const r = Structs.rowcells;

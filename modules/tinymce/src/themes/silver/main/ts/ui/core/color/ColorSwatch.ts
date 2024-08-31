@@ -1,6 +1,6 @@
-import { HexColour, RgbaColour } from '@ephox/acid';
-import { Arr, Cell, Fun, Optional, Optionals, Strings } from '@ephox/katamari';
-import { Css, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
+import { HexColour, RgbaColour } from '@hugemce/acid';
+import { Arr, Cell, Fun, Optional, Optionals, Strings } from '@hugemce/katamari';
+import { Css, SugarElement, SugarNode, TransformFind } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Dialog, Menu, Toolbar } from 'tinymce/core/api/ui/Ui';

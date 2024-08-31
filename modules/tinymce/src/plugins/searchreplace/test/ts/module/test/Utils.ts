@@ -1,8 +1,8 @@
-import { UiControls, UiFinder, Waiter } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarElement } from '@ephox/sugar';
-import { TinyContentActions, TinyUiActions } from '@ephox/wrap-mcagar';
+import { UiControls, UiFinder, Waiter } from '@hugemce/agar';
+import { Fun } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { SugarElement } from '@hugemce/sugar';
+import { TinyContentActions, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

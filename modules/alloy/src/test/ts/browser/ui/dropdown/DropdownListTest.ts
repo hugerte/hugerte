@@ -1,25 +1,25 @@
-import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
-import { Compare, Focus } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Fun, Future, Optional, Result } from '@hugemce/katamari';
+import { Compare, Focus } from '@hugemce/sugar';
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Dropdown } from 'ephox/alloy/api/ui/Dropdown';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import * as DropdownAssertions from 'ephox/alloy/test/dropdown/DropdownAssertions';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as NavigationUtils from 'ephox/alloy/test/NavigationUtils';
-import * as TestBroadcasts from 'ephox/alloy/test/TestBroadcasts';
+import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Positioning } from 'hugemce/alloy/api/behaviour/Positioning';
+import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as Memento from 'hugemce/alloy/api/component/Memento';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { Dropdown } from 'hugemce/alloy/api/ui/Dropdown';
+import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
+import * as DropdownAssertions from 'hugemce/alloy/test/dropdown/DropdownAssertions';
+import { TestItem } from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as NavigationUtils from 'hugemce/alloy/test/NavigationUtils';
+import * as TestBroadcasts from 'hugemce/alloy/test/TestBroadcasts';
 
 UnitTest.asynctest('Dropdown List', (success, failure) => {
 

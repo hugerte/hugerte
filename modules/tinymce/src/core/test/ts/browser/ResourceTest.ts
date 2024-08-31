@@ -1,5 +1,5 @@
-import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Global } from '@ephox/katamari';
+import { after, before, describe, it } from '@hugemce/bedrock-client';
+import { Global } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 import Resource from 'tinymce/core/api/Resource';

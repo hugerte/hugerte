@@ -1,11 +1,11 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Result } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Fun, Result } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 
-import { SimpleGenerators } from 'ephox/snooker/api/Generators';
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as Fitment from 'ephox/snooker/test/Fitment';
-import * as TableMerge from 'ephox/snooker/test/TableMerge';
+import { SimpleGenerators } from 'hugemce/snooker/api/Generators';
+import * as Structs from 'hugemce/snooker/api/Structs';
+import * as Fitment from 'hugemce/snooker/test/Fitment';
+import * as TableMerge from 'hugemce/snooker/test/TableMerge';
 
 interface InvTest {
   readonly test: () => void;

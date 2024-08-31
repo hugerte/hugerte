@@ -2,7 +2,7 @@
 // The FakeClipboard has been designed to match the native Clipboard API as closely as possible
 // https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
 
-import { Obj, Singleton } from '@ephox/katamari';
+import { Obj, Singleton } from '@hugemce/katamari';
 
 export interface FakeClipboardItem {
   readonly items: Record<string, any>;

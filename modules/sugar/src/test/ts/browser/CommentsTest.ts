@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
 
-import * as SugarComment from 'ephox/sugar/api/node/SugarComment';
-import * as SugarComments from 'ephox/sugar/api/node/SugarComments';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as SugarComment from 'hugemce/sugar/api/node/SugarComment';
+import * as SugarComments from 'hugemce/sugar/api/node/SugarComments';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
 
 UnitTest.test('CommentsTest', () => {
   const testPage = SugarElement.fromHtml('<div><!--one--></head><body><!--two--><p><!--three--></p></div>');

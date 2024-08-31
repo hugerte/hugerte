@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { StructureSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { StructureSchema } from '@hugemce/boulder';
+import { Fun } from '@hugemce/katamari';
 import * as fc from 'fast-check';
 
-import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
-import * as PartType from 'ephox/alloy/parts/PartType';
+import * as AlloyParts from 'hugemce/alloy/parts/AlloyParts';
+import * as PartType from 'hugemce/alloy/parts/PartType';
 
 interface TestSpec {
   readonly defaultValue: number;

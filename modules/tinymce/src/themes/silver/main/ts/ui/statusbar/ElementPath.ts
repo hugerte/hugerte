@@ -1,5 +1,5 @@
-import { AddEventsBehaviour, AlloyEvents, AlloySpec, Behaviour, Button, Disabling, GuiFactory, Keying, Replacing, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
+import { AddEventsBehaviour, AlloyEvents, AlloySpec, Behaviour, Button, Disabling, GuiFactory, Keying, Replacing, SimpleSpec, Tabstopping } from '@hugemce/alloy';
+import { Arr } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

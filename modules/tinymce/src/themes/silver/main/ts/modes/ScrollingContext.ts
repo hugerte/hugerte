@@ -1,6 +1,6 @@
-import { Bounds, Boxes } from '@ephox/alloy';
-import { Arr, Optional, Strings } from '@ephox/katamari';
-import { Css, PredicateFilter, SugarElement, SugarNode, SugarShadowDom } from '@ephox/sugar';
+import { Bounds, Boxes } from '@hugemce/alloy';
+import { Arr, Optional, Strings } from '@hugemce/katamari';
+import { Css, PredicateFilter, SugarElement, SugarNode, SugarShadowDom } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

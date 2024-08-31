@@ -1,4 +1,4 @@
-import { Arr, Cell, Type } from '@ephox/katamari';
+import { Arr, Cell, Type } from '@hugemce/katamari';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';

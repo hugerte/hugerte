@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Scroll, SugarDocument, SugarElement, SugarLocation, SugarPosition } from '@ephox/sugar';
+import { Arr } from '@hugemce/katamari';
+import { Scroll, SugarDocument, SugarElement, SugarLocation, SugarPosition } from '@hugemce/sugar';
 
 import * as Frames from './Frames';
 import * as Navigation from './Navigation';

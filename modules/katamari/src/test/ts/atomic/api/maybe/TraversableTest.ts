@@ -1,8 +1,8 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import * as Maybes from 'ephox/katamari/api/Maybes';
+import * as Fun from 'hugemce/katamari/api/Fun';
+import * as Maybes from 'hugemce/katamari/api/Maybes';
 
 describe('atomic.katamari.maybe.TraversableTest', () => {
   context('exists', () => {

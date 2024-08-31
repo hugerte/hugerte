@@ -1,12 +1,12 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
-import { PlatformDetection } from '@ephox/sand';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
+import { PlatformDetection } from '@hugemce/sand';
 import { assert } from 'chai';
 
-import { createDataTransfer, getDragImage } from 'ephox/dragster/datatransfer/DataTransfer';
-import { setDragendEvent, setDragstartEvent, setDropEvent } from 'ephox/dragster/datatransfer/Event';
-import { isInProtectedMode, setProtectedMode } from 'ephox/dragster/datatransfer/Mode';
+import { createDataTransfer, getDragImage } from 'hugemce/dragster/datatransfer/DataTransfer';
+import { setDragendEvent, setDragstartEvent, setDropEvent } from 'hugemce/dragster/datatransfer/Event';
+import { isInProtectedMode, setProtectedMode } from 'hugemce/dragster/datatransfer/Mode';
 
 describe('browser.dragster.datatransfer.DataTransferTest', () => {
   const browser = PlatformDetection.detect().browser;

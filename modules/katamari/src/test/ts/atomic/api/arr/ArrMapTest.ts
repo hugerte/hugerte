@@ -1,9 +1,9 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
+import * as Arr from 'hugemce/katamari/api/Arr';
+import * as Fun from 'hugemce/katamari/api/Fun';
 
 const dbl = (x: number) => x * 2;
 

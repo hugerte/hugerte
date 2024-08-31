@@ -1,11 +1,11 @@
-import { Assertions, Chain, GeneralSteps, Logger, NamedChain, Pipeline, Step, UiFinder } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Result } from '@ephox/katamari';
-import { Attribute, Compare, Html, Insert, SelectorFilter, SugarElement, Truncate } from '@ephox/sugar';
+import { Assertions, Chain, GeneralSteps, Logger, NamedChain, Pipeline, Step, UiFinder } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Fun, Result } from '@hugemce/katamari';
+import { Attribute, Compare, Html, Insert, SelectorFilter, SugarElement, Truncate } from '@hugemce/sugar';
 
-import * as DescribedHandler from 'ephox/alloy/events/DescribedHandler';
-import { ElementAndHandler, EventRegistry } from 'ephox/alloy/events/EventRegistry';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as DescribedHandler from 'hugemce/alloy/events/DescribedHandler';
+import { ElementAndHandler, EventRegistry } from 'hugemce/alloy/events/EventRegistry';
+import * as Tagger from 'hugemce/alloy/registry/Tagger';
 
 interface ExpectedType {
   readonly id?: string;

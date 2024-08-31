@@ -1,17 +1,17 @@
-import { Chain, Guard, NamedChain, Touch, UiFinder } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional, Result } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Css, Scroll, SugarPosition } from '@ephox/sugar';
+import { Chain, Guard, NamedChain, Touch, UiFinder } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Fun, Optional, Result } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Css, Scroll, SugarPosition } from '@hugemce/sugar';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Dragging } from 'ephox/alloy/api/behaviour/Dragging';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as DragCoord from 'ephox/alloy/api/data/DragCoord';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Boxes from 'hugemce/alloy/alien/Boxes';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Dragging } from 'hugemce/alloy/api/behaviour/Dragging';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as Memento from 'hugemce/alloy/api/component/Memento';
+import * as DragCoord from 'hugemce/alloy/api/data/DragCoord';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
 
 UnitTest.asynctest('TouchDraggingTest', (success, failure) => {
   // Override isTouch() to make Alloy listen to touch events

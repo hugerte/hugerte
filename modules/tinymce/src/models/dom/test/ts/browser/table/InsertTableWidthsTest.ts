@@ -1,7 +1,7 @@
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
-import { Css } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Obj } from '@hugemce/katamari';
+import { Css } from '@hugemce/sugar';
+import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

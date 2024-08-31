@@ -1,7 +1,7 @@
-import { Clipboard as AgarClipboard, Waiter } from '@ephox/agar';
-import { afterEach, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Fun, Singleton } from '@ephox/katamari';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Clipboard as AgarClipboard, Waiter } from '@hugemce/agar';
+import { afterEach, beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { Fun, Singleton } from '@hugemce/katamari';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

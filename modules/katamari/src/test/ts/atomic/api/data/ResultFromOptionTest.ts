@@ -1,8 +1,8 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
-import { Optional } from 'ephox/katamari/api/Optional';
-import { Result } from 'ephox/katamari/api/Result';
+import { Optional } from 'hugemce/katamari/api/Optional';
+import { Result } from 'hugemce/katamari/api/Result';
 
 describe('atomic.katamari.api.data.ResultFromOptionTest', () => {
   it('unit tests', () => {

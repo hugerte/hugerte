@@ -58,7 +58,7 @@ const get = (editor: Editor): Formats => {
         preview: 'font-family font-size'
       },
       {
-        selector: '.mce-preview-object,[data-ephox-embed-iri]',
+        selector: '.mce-preview-object,[data-hugemce-embed-iri]',
         ceFalseOverride: true,
         styles: {
           float: 'left'
@@ -112,7 +112,7 @@ const get = (editor: Editor): Formats => {
         preview: false
       },
       {
-        selector: '[data-ephox-embed-iri]',
+        selector: '[data-hugemce-embed-iri]',
         ceFalseOverride: true,
         styles: {
           marginLeft: 'auto',
@@ -160,7 +160,7 @@ const get = (editor: Editor): Formats => {
         preview: 'font-family font-size'
       },
       {
-        selector: '.mce-preview-object,[data-ephox-embed-iri]',
+        selector: '.mce-preview-object,[data-hugemce-embed-iri]',
         ceFalseOverride: true,
         styles: {
           float: 'right'

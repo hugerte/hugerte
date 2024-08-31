@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Type } from '@ephox/katamari';
+import { Arr, Cell, Obj, Type } from '@hugemce/katamari';
 
 /**
  * I18n class that handles translation of TinyMCE UI.

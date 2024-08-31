@@ -1,4 +1,4 @@
-import { Menu } from '@ephox/bridge';
+import { Menu } from '@hugemce/bridge';
 
 import Editor from 'tinymce/core/api/Editor';
 

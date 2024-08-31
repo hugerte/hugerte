@@ -1,5 +1,5 @@
-import { ResizeWire } from '@ephox/snooker';
-import { Css, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { ResizeWire } from '@hugemce/snooker';
+import { Css, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

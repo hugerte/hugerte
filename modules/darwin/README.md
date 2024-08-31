@@ -2,9 +2,9 @@
 # Description
 Once completed, it is hoped that `darwin` will provide a framework for taking over selection entirely (like a DOM-based editor). At this stage, it is only being used for tables.
 # Installation
-`darwin` is available as an `npm` package.  You can install it via the npm package `@ephox/darwin`
+`darwin` is available as an `npm` package.  You can install it via the npm package `@hugemce/darwin`
 ## Install from npm
-`npm install @ephox/darwin`
+`npm install @hugemce/darwin`
 
 # Usage
 1. Handling Webkit Up/Down in a Table

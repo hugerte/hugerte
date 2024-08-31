@@ -1,7 +1,7 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { StructureSchema } from '@ephox/boulder';
-import { Dialog } from '@ephox/bridge';
-import { Fun } from '@ephox/katamari';
+import { describe, it } from '@hugemce/bedrock-client';
+import { StructureSchema } from '@hugemce/boulder';
+import { Dialog } from '@hugemce/bridge';
+import { Fun } from '@hugemce/katamari';
 import { assert } from 'chai';
 
 describe('headless.tinymce.themes.silver.components.customeditor.CustomEditorSchemaTest', () => {

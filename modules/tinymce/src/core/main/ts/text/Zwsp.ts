@@ -1,4 +1,4 @@
-import { Unicode } from '@ephox/katamari';
+import { Unicode } from '@hugemce/katamari';
 
 import Editor from '../api/Editor';
 

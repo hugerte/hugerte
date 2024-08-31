@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import { createFile } from 'ephox/agar/api/Files';
-import * as Logger from 'ephox/agar/api/Logger';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import { readBlobAsText } from 'ephox/agar/test/BlobReader';
+import { createFile } from 'hugemce/agar/api/Files';
+import * as Logger from 'hugemce/agar/api/Logger';
+import { Pipeline } from 'hugemce/agar/api/Pipeline';
+import { Step } from 'hugemce/agar/api/Step';
+import { readBlobAsText } from 'hugemce/agar/test/BlobReader';
 
 UnitTest.asynctest('FilesTest', (success, failure) => {
   Pipeline.async({}, [

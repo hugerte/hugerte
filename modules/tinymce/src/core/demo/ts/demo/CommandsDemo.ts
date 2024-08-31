@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { DomEvent, Html, Insert, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr } from '@hugemce/katamari';
+import { DomEvent, Html, Insert, SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
 
 import { TinyMCE } from 'tinymce/core/api/PublicApi';
 
@@ -90,7 +90,7 @@ export default (): void => {
     cmd('mceEditImage')
   ];
 
-  const container = SelectorFind.descendant(SugarBody.body(), '#ephox-ui').getOrDie();
+  const container = SelectorFind.descendant(SugarBody.body(), '#hugemce-ui').getOrDie();
   Arr.each(commands, (cmd) => {
     const btn = SugarElement.fromTag('button');
     Html.set(btn, cmd.command);

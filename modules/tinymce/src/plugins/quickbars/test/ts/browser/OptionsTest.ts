@@ -1,4 +1,4 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

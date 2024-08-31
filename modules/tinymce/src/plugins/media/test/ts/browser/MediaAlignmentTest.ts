@@ -1,5 +1,5 @@
-import { context, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/media/Plugin';
@@ -15,7 +15,7 @@ describe('browser.tinymce.plugins.media.core.MediaAlignmentTest', () => {
     const editor = hook.editor();
 
     editor.setContent(inputHtml);
-    TinySelections.select(editor, '.mce-preview-object,[data-ephox-embed-iri]', []);
+    TinySelections.select(editor, '.mce-preview-object,[data-hugemce-embed-iri]', []);
     editor.execCommand(cmd);
 
     TinyAssertions.assertContent(editor, expectedHtml);
@@ -47,20 +47,20 @@ describe('browser.tinymce.plugins.media.core.MediaAlignmentTest', () => {
     ));
   });
 
-  context('apply alignment to ephox embed elements', () => {
-    it('TINY-8687: align ephox embed element without styles to the left', () => testAlignLeft(
-      '<div contenteditable="false" data-ephox-embed-iri="embed-iri"><iframe src="about:blank"></iframe></div>',
-      '<div style="float: left;" contenteditable="false" data-ephox-embed-iri="embed-iri"><iframe src="about:blank" sandbox=""></iframe></div>'
+  context('apply alignment to hugemce embed elements', () => {
+    it('TINY-8687: align hugemce embed element without styles to the left', () => testAlignLeft(
+      '<div contenteditable="false" data-hugemce-embed-iri="embed-iri"><iframe src="about:blank"></iframe></div>',
+      '<div style="float: left;" contenteditable="false" data-hugemce-embed-iri="embed-iri"><iframe src="about:blank" sandbox=""></iframe></div>'
     ));
 
-    it('TINY-8687: align ephox embed element without styles to the center', () => testAlignCenter(
-      '<div contenteditable="false" data-ephox-embed-iri="embed-iri"><iframe src="about:blank"></iframe></div>',
-      '<div style="margin-left: auto; margin-right: auto;" contenteditable="false" data-ephox-embed-iri="embed-iri"><iframe src="about:blank" sandbox=""></iframe></div>'
+    it('TINY-8687: align hugemce embed element without styles to the center', () => testAlignCenter(
+      '<div contenteditable="false" data-hugemce-embed-iri="embed-iri"><iframe src="about:blank"></iframe></div>',
+      '<div style="margin-left: auto; margin-right: auto;" contenteditable="false" data-hugemce-embed-iri="embed-iri"><iframe src="about:blank" sandbox=""></iframe></div>'
     ));
 
-    it('TINY-8687: align ephox embed element without styles to the right', () => testAlignRight(
-      '<div contenteditable="false" data-ephox-embed-iri="embed-iri"><iframe src="about:blank"></iframe></div>',
-      '<div style="float: right;" contenteditable="false" data-ephox-embed-iri="embed-iri"><iframe src="about:blank" sandbox=""></iframe></div>'
+    it('TINY-8687: align hugemce embed element without styles to the right', () => testAlignRight(
+      '<div contenteditable="false" data-hugemce-embed-iri="embed-iri"><iframe src="about:blank"></iframe></div>',
+      '<div style="float: right;" contenteditable="false" data-hugemce-embed-iri="embed-iri"><iframe src="about:blank" sandbox=""></iframe></div>'
     ));
   });
 

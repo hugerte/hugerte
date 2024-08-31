@@ -1,9 +1,9 @@
-import { FocusTools, RealMouse } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
-import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarDocument } from '@ephox/sugar';
+import { FocusTools, RealMouse } from '@hugemce/agar';
+import { TestHelpers } from '@hugemce/alloy';
+import { before, describe, it } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { SugarDocument } from '@hugemce/sugar';
 
 import { WindowManagerImpl } from 'tinymce/core/api/WindowManager';
 import * as WindowManager from 'tinymce/themes/silver/ui/dialog/WindowManager';

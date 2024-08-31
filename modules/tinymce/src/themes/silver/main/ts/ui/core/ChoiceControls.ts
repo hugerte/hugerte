@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Optionals, Singleton, Type } from '@ephox/katamari';
-import { Attribute, Dimension, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals, Singleton, Type } from '@hugemce/katamari';
+import { Attribute, Dimension, SugarElement, SugarNode, TransformFind } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { ContentLanguage } from 'tinymce/core/api/OptionTypes';

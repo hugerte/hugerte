@@ -1,5 +1,5 @@
-import { Optional, Type } from '@ephox/katamari';
-import { Compare, Focus, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Optional, Type } from '@hugemce/katamari';
+import { Compare, Focus, SugarElement, SugarShadowDom } from '@hugemce/sugar';
 
 import EditorSelection from '../api/dom/Selection';
 import Editor from '../api/Editor';

@@ -16,8 +16,8 @@
  * console.log(tinymce.html.Styles().serialize(styles));
  */
 
-import { RgbaColour, Transformations } from '@ephox/acid';
-import { Obj, Type, Unicode } from '@ephox/katamari';
+import { RgbaColour, Transformations } from '@hugemce/acid';
+import { Obj, Type, Unicode } from '@hugemce/katamari';
 
 import { ForceHexColor, URLConverter } from '../OptionTypes';
 import Schema, { SchemaMap } from './Schema';

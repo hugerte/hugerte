@@ -1,10 +1,10 @@
 // Tests always run in a browser, but some we run headless
 const runsHeadless = [
-  '@ephox/alloy',
-  '@ephox/mcagar',
-  '@ephox/katamari',
-  '@ephox/katamari-test',
-  '@ephox/jax'
+  '@hugemce/alloy',
+  '@hugemce/mcagar',
+  '@hugemce/katamari',
+  '@hugemce/katamari-test',
+  '@hugemce/jax'
 ];
 
 if (!Array.prototype.flatMap) {
@@ -219,6 +219,6 @@ Top-level grunt has been replaced by 'yarn build', and the output has moved from
   require('load-grunt-tasks')(grunt, {
     requireResolution: true,
     config: 'package.json',
-    pattern: ['@ephox/bedrock-server', 'grunt-shell']
+    pattern: ['@hugemce/bedrock-server', 'grunt-shell']
   });
 };

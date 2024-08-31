@@ -1,5 +1,5 @@
-import { Arr, Fun, Id, Type } from '@ephox/katamari';
-import { SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Id, Type } from '@hugemce/katamari';
+import { SelectorFilter, SugarElement } from '@hugemce/sugar';
 
 import Tools from 'tinymce/core/api/util/Tools';
 

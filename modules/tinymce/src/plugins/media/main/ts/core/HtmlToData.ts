@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from '@hugemce/katamari';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import DomParser from 'tinymce/core/api/html/DomParser';
@@ -17,8 +17,8 @@ const getEphoxEmbedData = (node: AstNode): MediaData => {
   const style = node.attr('style');
   const styles = style ? DOM.parseStyle(style) : { };
   return {
-    type: 'ephox-embed-iri',
-    source: node.attr('data-ephox-embed-iri') as string,
+    type: 'hugemce-embed-iri',
+    source: node.attr('data-hugemce-embed-iri') as string,
     altsource: '',
     poster: '',
     width: Obj.get(styles, 'max-width').map(trimPx).getOr(''),
@@ -36,7 +36,7 @@ const htmlToData = (html: string, schema?: Schema): MediaData => {
     if (node.type === 1) {
       const name = node.name;
 
-      if (node.attr('data-ephox-embed-iri')) {
+      if (node.attr('data-hugemce-embed-iri')) {
         data = getEphoxEmbedData(node);
         // Don't continue to collect if we find an EME embed
         break;

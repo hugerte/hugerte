@@ -1,13 +1,13 @@
-import { ApproxStructure, Assertions, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { ApproxStructure, Assertions, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Toolbar } from 'ephox/alloy/api/ui/Toolbar';
-import * as TestPartialToolbarGroup from 'ephox/alloy/test/toolbar/TestPartialToolbarGroup';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { Toolbar } from 'hugemce/alloy/api/ui/Toolbar';
+import * as TestPartialToolbarGroup from 'hugemce/alloy/test/toolbar/TestPartialToolbarGroup';
 
 UnitTest.asynctest('BasicToolbarTest', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => GuiFactory.build(

@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, UiFinder, Waiter } from '@ephox/agar';
-import { SugarBody, SugarElement, TextContent } from '@ephox/sugar';
-import { TinyUiActions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions, UiFinder, Waiter } from '@hugemce/agar';
+import { SugarBody, SugarElement, TextContent } from '@hugemce/sugar';
+import { TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

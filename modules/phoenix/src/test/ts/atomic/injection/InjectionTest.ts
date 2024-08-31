@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
 
-import * as Injection from 'ephox/phoenix/injection/Injection';
-import * as Finder from 'ephox/phoenix/test/Finder';
+import * as Injection from 'hugemce/phoenix/injection/Injection';
+import * as Finder from 'hugemce/phoenix/test/Finder';
 
 UnitTest.test('InsertAtTest', () => {
   const makeUniverse = () => {

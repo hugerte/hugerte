@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Arr } from '@hugemce/katamari';
 
-import * as Family from 'ephox/phoenix/api/general/Family';
-import * as Finder from 'ephox/phoenix/test/Finder';
+import * as Family from 'hugemce/phoenix/api/general/Family';
+import * as Finder from 'hugemce/phoenix/test/Finder';
 
 UnitTest.test('RangeTest', () => {
   const doc = TestUniverse(

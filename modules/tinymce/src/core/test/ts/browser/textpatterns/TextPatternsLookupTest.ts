@@ -1,6 +1,6 @@
-import { TestStore } from '@ephox/agar';
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { TestStore } from '@hugemce/agar';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { DynamicPatternContext } from 'tinymce/core/textpatterns/core/PatternTypes';

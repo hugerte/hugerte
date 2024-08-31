@@ -1,8 +1,8 @@
-import { Bounds, Boxes } from '@ephox/alloy';
-import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { InlineContent } from '@ephox/bridge';
-import { Css, Scroll, SelectorFind, SugarBody } from '@ephox/sugar';
-import { McEditor, TinyDom } from '@ephox/wrap-mcagar';
+import { Bounds, Boxes } from '@hugemce/alloy';
+import { after, before, context, describe, it } from '@hugemce/bedrock-client';
+import { InlineContent } from '@hugemce/bridge';
+import { Css, Scroll, SelectorFind, SugarBody } from '@hugemce/sugar';
+import { McEditor, TinyDom } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

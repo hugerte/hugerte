@@ -1,5 +1,5 @@
-import { Obj, Type } from '@ephox/katamari';
-import { Css, Height, SugarElement, SugarPosition, Width } from '@ephox/sugar';
+import { Obj, Type } from '@hugemce/katamari';
+import { Css, Height, SugarElement, SugarPosition, Width } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

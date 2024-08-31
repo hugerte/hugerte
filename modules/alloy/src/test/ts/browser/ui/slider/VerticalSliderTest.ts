@@ -1,14 +1,14 @@
-import { Chain, FocusTools, Keyboard, Keys, Logger, NamedChain, Step, UiFinder, Waiter } from '@ephox/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Result } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Chain, FocusTools, Keyboard, Keys, Logger, NamedChain, Step, UiFinder, Waiter } from '@hugemce/agar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Fun, Result } from '@hugemce/katamari';
+import { SugarElement } from '@hugemce/sugar';
 
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Slider } from 'ephox/alloy/api/ui/Slider';
-import * as RepresentPipes from 'ephox/alloy/test/behaviour/RepresentPipes';
+import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
+import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Slider } from 'hugemce/alloy/api/ui/Slider';
+import * as RepresentPipes from 'hugemce/alloy/test/behaviour/RepresentPipes';
 
 UnitTest.asynctest('Browser Test: ui.slider.VerticalSliderTest', (success, failure) => {
 

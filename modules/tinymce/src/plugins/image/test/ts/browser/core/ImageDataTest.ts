@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, StructAssert } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
-import { SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { ApproxStructure, Assertions, StructAssert } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Arr, Obj } from '@hugemce/katamari';
+import { SelectorFind, SugarElement, SugarNode } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

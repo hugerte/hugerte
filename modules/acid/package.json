@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/acid",
+  "name": "@hugemce/acid",
   "description": "Color library including Alloy UI component for a color picker",
   "version": "6.0.3",
   "repository": {
@@ -8,10 +8,10 @@
     "directory": "modules/acid"
   },
   "dependencies": {
-    "@ephox/alloy": "^14.0.3",
-    "@ephox/boulder": "^7.1.6",
-    "@ephox/katamari": "^9.1.6",
-    "@ephox/sugar": "^9.3.1"
+    "@hugemce/alloy": "^14.0.3",
+    "@hugemce/boulder": "^7.1.6",
+    "@hugemce/katamari": "^9.1.6",
+    "@hugemce/sugar": "^9.3.1"
   },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
@@ -26,9 +26,9 @@
     "CHANGELOG.txt",
     "LICENSE.txt"
   ],
-  "main": "./lib/main/ts/ephox/acid/api/Main.js",
-  "module": "./lib/main/ts/ephox/acid/api/Main.js",
-  "types": "./lib/main/ts/ephox/acid/api/Main.d.ts",
+  "main": "./lib/main/ts/hugemce/acid/api/Main.js",
+  "module": "./lib/main/ts/hugemce/acid/api/Main.js",
+  "types": "./lib/main/ts/hugemce/acid/api/Main.d.ts",
   "scripts": {
     "prepublishOnly": "tsc -b",
     "build": "tsc",

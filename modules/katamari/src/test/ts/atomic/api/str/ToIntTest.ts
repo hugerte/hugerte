@@ -1,8 +1,8 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Strings from 'ephox/katamari/api/Strings';
+import * as Strings from 'hugemce/katamari/api/Strings';
 
 describe('atomic.katamari.api.str.ToIntTest', () => {
   it('convert valid string to integer', () => {

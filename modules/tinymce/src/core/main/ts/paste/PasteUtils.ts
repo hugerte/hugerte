@@ -1,4 +1,4 @@
-import { Type, Unicode } from '@ephox/katamari';
+import { Type, Unicode } from '@hugemce/katamari';
 
 import DomParser from '../api/html/DomParser';
 import AstNode from '../api/html/Node';

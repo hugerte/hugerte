@@ -1,5 +1,5 @@
-import { Fun, Type } from '@ephox/katamari';
-import { SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Fun, Type } from '@hugemce/katamari';
+import { SugarElement, SugarShadowDom } from '@hugemce/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import StyleSheetLoader from 'tinymce/core/api/dom/StyleSheetLoader';

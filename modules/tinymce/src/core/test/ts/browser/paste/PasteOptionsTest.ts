@@ -1,5 +1,5 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { McEditor, TinyUiActions } from '@ephox/wrap-mcagar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { McEditor, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { RawEditorOptions } from 'tinymce/core/api/OptionTypes';

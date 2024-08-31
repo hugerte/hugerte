@@ -1,7 +1,7 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
-import * as Transformations from 'ephox/acid/api/colour/Transformations';
+import * as Transformations from 'hugemce/acid/api/colour/Transformations';
 
 describe('browser.acid.api.TransformationsTest', () => {
   it('TINY-8163: RGB with 0 Red converted to hex', () => {

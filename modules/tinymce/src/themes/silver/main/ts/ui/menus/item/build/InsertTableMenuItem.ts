@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, CustomEvent, Focusing, GuiFactory, ItemTypes, ItemWidget,
   Keying, Memento, NativeEvents, NativeSimulatedEvent, PremadeSpec, Replacing, SystemEvents, Toggling
-} from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Arr, Id } from '@ephox/katamari';
+} from '@hugemce/alloy';
+import { Menu } from '@hugemce/bridge';
+import { Arr, Id } from '@hugemce/katamari';
 
 import { UiFactoryBackstage } from '../../../../backstage/Backstage';
 

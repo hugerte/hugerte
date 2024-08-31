@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Result } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Obj, Result } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
 import * as fc from 'fast-check';
 
-import * as Objects from 'ephox/boulder/api/Objects';
+import * as Objects from 'hugemce/boulder/api/Objects';
 
 UnitTest.test('ObjectsTest', () => {
   const smallSet = fc.string({ minLength: 1 });

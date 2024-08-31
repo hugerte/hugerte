@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Optionals, Type } from '@ephox/katamari';
-import { SelectorFind, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional, Optionals, Type } from '@hugemce/katamari';
+import { SelectorFind, SugarBody, SugarElement, SugarShadowDom } from '@hugemce/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import Editor from 'tinymce/core/api/Editor';

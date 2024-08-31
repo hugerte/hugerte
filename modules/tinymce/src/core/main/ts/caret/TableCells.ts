@@ -1,6 +1,6 @@
 // eslint-disable-next-line max-len
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional } from '@hugemce/katamari';
+import { SelectorFilter, SugarElement } from '@hugemce/sugar';
 
 import * as ClientRect from '../geom/ClientRect';
 import { CaretPosition } from './CaretPosition';

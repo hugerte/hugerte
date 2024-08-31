@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+import { Type } from '@hugemce/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomTreeWalker from '../api/dom/TreeWalker';

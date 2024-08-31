@@ -1,6 +1,6 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { SelectorFind } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { SelectorFind } from '@hugemce/sugar';
+import { TinyAssertions, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

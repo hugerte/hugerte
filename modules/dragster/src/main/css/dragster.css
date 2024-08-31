@@ -1,15 +1,15 @@
-.ephox-dragster-dialog, .ephox-dragster-titlebar, .ephox-dragster-content {
+.hugemce-dragster-dialog, .hugemce-dragster-titlebar, .hugemce-dragster-content {
   z-index: 1;
 }
 
 
-.ephox-dragster-dialog {
+.hugemce-dragster-dialog {
   background-color: white;
   padding: 5px 0px 5px 0px;
   border: 1px solid red;
 }
 
-.ephox-dragster-titlebar {
+.hugemce-dragster-titlebar {
   padding-left: 5px;
   padding-right: 5px;
   margin-bottom: 10px;
@@ -24,11 +24,11 @@
   */
 }
 
-.ephox-dragster-content {
+.hugemce-dragster-content {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-.ephox-dragster-blocker {
+.hugemce-dragster-blocker {
   z-index: 10000;
 }

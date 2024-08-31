@@ -1,9 +1,9 @@
-import { Keys, UiFinder, Waiter } from '@ephox/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Attribute, SugarBody } from '@ephox/sugar';
-import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Keys, UiFinder, Waiter } from '@hugemce/agar';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { Arr, Optional } from '@hugemce/katamari';
+import { PlatformDetection } from '@hugemce/sand';
+import { Attribute, SugarBody } from '@hugemce/sugar';
+import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

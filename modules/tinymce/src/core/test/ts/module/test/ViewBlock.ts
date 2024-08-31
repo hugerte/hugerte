@@ -1,5 +1,5 @@
-import { after, afterEach, before } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { after, afterEach, before } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 

@@ -1,21 +1,21 @@
-import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Cell, Fun, Future, Optional, Result, Strings } from '@ephox/katamari';
-import { Compare, SelectorFind } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Cell, Fun, Future, Optional, Result, Strings } from '@hugemce/katamari';
+import { Compare, SelectorFind } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Dropdown } from 'ephox/alloy/api/ui/Dropdown';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Positioning } from 'hugemce/alloy/api/behaviour/Positioning';
+import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
+import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as Memento from 'hugemce/alloy/api/component/Memento';
+import { SketchSpec } from 'hugemce/alloy/api/component/SpecTypes';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { Dropdown } from 'hugemce/alloy/api/ui/Dropdown';
+import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
+import { TestItem } from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
 
 interface TestDatum {
   readonly code: string;

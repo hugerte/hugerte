@@ -1,11 +1,11 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import { SimSelection } from 'ephox/sugar/api/selection/SimSelection';
-import * as WindowSelection from 'ephox/sugar/api/selection/WindowSelection';
+import * as InsertAll from 'hugemce/sugar/api/dom/InsertAll';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import { SimSelection } from 'hugemce/sugar/api/selection/SimSelection';
+import * as WindowSelection from 'hugemce/sugar/api/selection/WindowSelection';
 
 UnitTest.test('Browser Test: SelectionRectanglesTest', () => {
   const p1 = SugarElement.fromHtml('<p>This is the <strong>first</strong> paragraph</p>');

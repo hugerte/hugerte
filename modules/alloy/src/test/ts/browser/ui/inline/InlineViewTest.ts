@@ -1,19 +1,19 @@
-import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
-import { Compare, Css, Html } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Future, Optional, Result } from '@hugemce/katamari';
+import { Compare, Css, Html } from '@hugemce/sugar';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Dropdown } from 'ephox/alloy/api/ui/Dropdown';
-import { InlineView } from 'ephox/alloy/api/ui/InlineView';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as Sinks from 'ephox/alloy/test/Sinks';
-import * as TestBroadcasts from 'ephox/alloy/test/TestBroadcasts';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { Dropdown } from 'hugemce/alloy/api/ui/Dropdown';
+import { InlineView } from 'hugemce/alloy/api/ui/InlineView';
+import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
+import { TestItem } from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
+import * as TestBroadcasts from 'hugemce/alloy/test/TestBroadcasts';
 
 UnitTest.asynctest('InlineViewTest', (success, failure) => {
 

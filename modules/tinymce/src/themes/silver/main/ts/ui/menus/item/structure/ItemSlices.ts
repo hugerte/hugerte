@@ -1,6 +1,6 @@
-import { AlloySpec, GuiFactory, SimpleSpec } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
+import { AlloySpec, GuiFactory, SimpleSpec } from '@hugemce/alloy';
+import { Menu } from '@hugemce/bridge';
+import { Optional } from '@hugemce/katamari';
 
 import I18n from 'tinymce/core/api/util/I18n';
 

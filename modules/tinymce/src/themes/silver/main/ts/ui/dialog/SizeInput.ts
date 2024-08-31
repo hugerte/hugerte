@@ -2,9 +2,9 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, CustomEvent, Disabling,
   FormCoupledInputs as AlloyFormCoupledInputs,
   FormField as AlloyFormField, GuiFactory, Input as AlloyInput, NativeEvents, Representing, SketchSpec, Tabstopping, Tooltipping
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Id, Unicode } from '@ephox/katamari';
+} from '@hugemce/alloy';
+import { Dialog } from '@hugemce/bridge';
+import { Id, Unicode } from '@hugemce/katamari';
 
 import { formChangeEvent } from 'tinymce/themes/silver/ui/general/FormEvents';
 

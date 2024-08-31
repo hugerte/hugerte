@@ -1,10 +1,10 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Optional } from 'ephox/katamari/api/Optional';
-import * as Optionals from 'ephox/katamari/api/Optionals';
-import { assertNone, assertOptional } from 'ephox/katamari/test/AssertOptional';
+import * as Fun from 'hugemce/katamari/api/Fun';
+import { Optional } from 'hugemce/katamari/api/Optional';
+import * as Optionals from 'hugemce/katamari/api/Optionals';
+import { assertNone, assertOptional } from 'hugemce/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.optional.OptionalsMapFromTest', () => {
   it('Optionals.mapFrom', () => {

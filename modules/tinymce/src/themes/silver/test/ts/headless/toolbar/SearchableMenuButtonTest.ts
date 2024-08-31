@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
-import { AlloyTriggers, GuiFactory, NativeEvents, TestHelpers } from '@ephox/alloy';
-import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { Attribute, SugarDocument, SugarElement } from '@ephox/sugar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder } from '@hugemce/agar';
+import { AlloyTriggers, GuiFactory, NativeEvents, TestHelpers } from '@hugemce/alloy';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Fun, Optional } from '@hugemce/katamari';
+import { Attribute, SugarDocument, SugarElement } from '@hugemce/sugar';
 
 import { renderMenuButton } from 'tinymce/themes/silver/ui/button/MenuButton';
 

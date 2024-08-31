@@ -1,4 +1,4 @@
-import { SugarBody, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
+import { SugarBody, SugarElement, SugarShadowDom, Traverse } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

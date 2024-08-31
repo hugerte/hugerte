@@ -1,6 +1,6 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, Button, GuiFactory, Replacing, Representing, SimpleSpec, SystemEvents, Tabstopping
-} from '@ephox/alloy';
+} from '@hugemce/alloy';
 
 import Editor from 'tinymce/core/api/Editor';
 

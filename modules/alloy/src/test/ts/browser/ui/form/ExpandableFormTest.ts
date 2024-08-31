@@ -1,21 +1,21 @@
-import { Assertions, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Focus, Value } from '@ephox/sugar';
+import { Assertions, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Focus, Value } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { ExpandableForm } from 'ephox/alloy/api/ui/ExpandableForm';
-import { Form } from 'ephox/alloy/api/ui/Form';
-import { FormField } from 'ephox/alloy/api/ui/FormField';
-import { HtmlSelect } from 'ephox/alloy/api/ui/HtmlSelect';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import * as TestForm from 'ephox/alloy/test/form/TestForm';
-import { FormParts } from 'ephox/alloy/ui/types/FormTypes';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
+import { Tabstopping } from 'hugemce/alloy/api/behaviour/Tabstopping';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import { ExpandableForm } from 'hugemce/alloy/api/ui/ExpandableForm';
+import { Form } from 'hugemce/alloy/api/ui/Form';
+import { FormField } from 'hugemce/alloy/api/ui/FormField';
+import { HtmlSelect } from 'hugemce/alloy/api/ui/HtmlSelect';
+import { Input } from 'hugemce/alloy/api/ui/Input';
+import * as TestForm from 'hugemce/alloy/test/form/TestForm';
+import { FormParts } from 'hugemce/alloy/ui/types/FormTypes';
 
 UnitTest.asynctest('ExpandableFormTest', (success, failure) => {
 

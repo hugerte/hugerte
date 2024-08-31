@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Attribute, PredicateExists, SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { Fun } from '@hugemce/katamari';
+import { Attribute, PredicateExists, SelectorFind, SugarElement, SugarNode } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

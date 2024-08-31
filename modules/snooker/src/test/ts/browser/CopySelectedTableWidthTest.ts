@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css, SugarElement } from '@ephox/sugar';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Css, SugarElement } from '@hugemce/sugar';
 
-import * as CopySelected from 'ephox/snooker/api/CopySelected';
-import { reducePrecision } from 'ephox/snooker/test/SizeUtils';
+import * as CopySelected from 'hugemce/snooker/api/CopySelected';
+import { reducePrecision } from 'hugemce/snooker/test/SizeUtils';
 
 const SEL_CLASS = 'copy-selected';
 

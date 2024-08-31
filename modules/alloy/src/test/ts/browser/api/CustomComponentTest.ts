@@ -1,16 +1,16 @@
-import { ApproxStructure, Assertions, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun, Obj } from '@ephox/katamari';
+import { ApproxStructure, Assertions, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { FieldSchema } from '@hugemce/boulder';
+import { Cell, Fun, Obj } from '@hugemce/katamari';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as DomModification from 'ephox/alloy/dom/DomModification';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
+import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as DomModification from 'hugemce/alloy/dom/DomModification';
+import * as Tagger from 'hugemce/alloy/registry/Tagger';
 
 UnitTest.asynctest('CustomComponentTest', (success, failure) => {
 

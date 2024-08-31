@@ -1,7 +1,7 @@
-import { Gui, GuiFactory } from '@ephox/alloy';
-import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Class, Classes } from '@ephox/sugar';
+import { Gui, GuiFactory } from '@hugemce/alloy';
+import { context, describe, it } from '@hugemce/bedrock-client';
+import { Arr } from '@hugemce/katamari';
+import { Class, Classes } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import { LazyUiReferences, SinkAndMothership } from 'tinymce/themes/silver/modes/UiReferences';

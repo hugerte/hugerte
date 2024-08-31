@@ -1,6 +1,6 @@
-import { InlineContent } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
-import { Compare, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
+import { InlineContent } from '@hugemce/bridge';
+import { Arr, Optional } from '@hugemce/katamari';
+import { Compare, SugarElement, SugarNode, TransformFind } from '@hugemce/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

@@ -1,22 +1,22 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Testable } from '@ephox/dispute';
-import { Arr } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Testable } from '@hugemce/dispute';
+import { Arr } from '@hugemce/katamari';
 import fc from 'fast-check';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as DomEvent from 'ephox/sugar/api/events/DomEvent';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import * as SugarDocument from 'ephox/sugar/api/node/SugarDocument';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import { tElement } from 'ephox/sugar/api/node/SugarElementInstances';
-import * as SugarHead from 'ephox/sugar/api/node/SugarHead';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import * as SugarShadowDom from 'ephox/sugar/api/node/SugarShadowDom';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as SelectorFind from 'ephox/sugar/api/search/SelectorFind';
-import { htmlBlockTagName, htmlInlineTagName } from 'ephox/sugar/test/Arbitrary';
-import { setupShadowRoot, withIframe, withNormalElement, withShadowElement, withShadowElementInMode } from 'ephox/sugar/test/WithHelpers';
+import * as Insert from 'hugemce/sugar/api/dom/Insert';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import * as DomEvent from 'hugemce/sugar/api/events/DomEvent';
+import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
+import * as SugarDocument from 'hugemce/sugar/api/node/SugarDocument';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import { tElement } from 'hugemce/sugar/api/node/SugarElementInstances';
+import * as SugarHead from 'hugemce/sugar/api/node/SugarHead';
+import * as SugarNode from 'hugemce/sugar/api/node/SugarNode';
+import * as SugarShadowDom from 'hugemce/sugar/api/node/SugarShadowDom';
+import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
+import * as SelectorFind from 'hugemce/sugar/api/search/SelectorFind';
+import { htmlBlockTagName, htmlInlineTagName } from 'hugemce/sugar/test/Arbitrary';
+import { setupShadowRoot, withIframe, withNormalElement, withShadowElement, withShadowElementInMode } from 'hugemce/sugar/test/WithHelpers';
 
 type RootNode = SugarShadowDom.RootNode;
 

@@ -1,12 +1,12 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Type } from '@hugemce/katamari';
 import { assert } from 'chai';
 
-import { createFile } from 'ephox/agar/api/Files';
-import { createDataTransfer } from 'ephox/agar/datatransfer/DataTransfer';
-import { getData } from 'ephox/agar/datatransfer/DataTransferItem';
-import { createDataTransferItemList } from 'ephox/agar/datatransfer/DataTransferItemList';
-import { setProtectedMode, setReadOnlyMode } from 'ephox/agar/datatransfer/Mode';
+import { createFile } from 'hugemce/agar/api/Files';
+import { createDataTransfer } from 'hugemce/agar/datatransfer/DataTransfer';
+import { getData } from 'hugemce/agar/datatransfer/DataTransferItem';
+import { createDataTransferItemList } from 'hugemce/agar/datatransfer/DataTransferItemList';
+import { setProtectedMode, setReadOnlyMode } from 'hugemce/agar/datatransfer/Mode';
 
 UnitTest.test('DataTransferItemListTest', () => {
   const testAdding = () => {

@@ -1,5 +1,5 @@
-import { describe, it } from '@ephox/bedrock-client';
-import { LegacyUnit } from '@ephox/wrap-mcagar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { LegacyUnit } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import CaretPosition from 'tinymce/core/caret/CaretPosition';

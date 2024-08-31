@@ -1,7 +1,7 @@
-import { ApproxStructure, DragnDrop } from '@ephox/agar';
-import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { SelectorFind } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { ApproxStructure, DragnDrop } from '@hugemce/agar';
+import { before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
+import { SelectorFind } from '@hugemce/sugar';
+import { TinyAssertions, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

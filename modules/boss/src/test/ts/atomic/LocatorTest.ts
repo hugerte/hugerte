@@ -1,11 +1,11 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Optional } from '@hugemce/katamari';
+import { KAssert } from '@hugemce/katamari-assertions';
 
-import { Gene } from 'ephox/boss/api/Gene';
-import * as Creator from 'ephox/boss/mutant/Creator';
-import * as Locator from 'ephox/boss/mutant/Locator';
-import * as Tracks from 'ephox/boss/mutant/Tracks';
+import { Gene } from 'hugemce/boss/api/Gene';
+import * as Creator from 'hugemce/boss/mutant/Creator';
+import * as Locator from 'hugemce/boss/mutant/Locator';
+import * as Tracks from 'hugemce/boss/mutant/Tracks';
 
 UnitTest.test('LocatorTest', () => {
   const family = Tracks.track(

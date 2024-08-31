@@ -1,4 +1,4 @@
-import { Adt, Fun, Optional, Optionals } from '@ephox/katamari';
+import { Adt, Fun, Optional, Optionals } from '@hugemce/katamari';
 
 import * as CaretFinder from '../caret/CaretFinder';
 import CaretPosition from '../caret/CaretPosition';

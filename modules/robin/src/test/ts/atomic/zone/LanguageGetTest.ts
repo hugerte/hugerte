@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Fun, Optional, Optionals } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Fun, Optional, Optionals } from '@hugemce/katamari';
 
-import { LanguageZones } from 'ephox/robin/zone/LanguageZones';
+import { LanguageZones } from 'hugemce/robin/zone/LanguageZones';
 
 UnitTest.test('LanguageGetTest', () => {
   const check = (doc: TestUniverse, id: string, lang: Optional<string>) => {

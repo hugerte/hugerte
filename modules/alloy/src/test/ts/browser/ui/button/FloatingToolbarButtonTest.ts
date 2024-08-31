@@ -1,18 +1,18 @@
-import { ApproxStructure, Assertions, GeneralSteps, Keyboard, Keys, Log, Mouse, Step } from '@ephox/agar';
-import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Future, Result } from '@ephox/katamari';
-import { SelectorExists } from '@ephox/sugar';
+import { ApproxStructure, Assertions, GeneralSteps, Keyboard, Keys, Log, Mouse, Step } from '@hugemce/agar';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Arr, Fun, Future, Result } from '@hugemce/katamari';
+import { SelectorExists } from '@hugemce/sugar';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { FloatingToolbarButton } from 'ephox/alloy/api/ui/FloatingToolbarButton';
-import * as Layout from 'ephox/alloy/positioning/layout/Layout';
-import * as Sinks from 'ephox/alloy/test/Sinks';
-import * as TestPartialToolbarGroup from 'ephox/alloy/test/toolbar/TestPartialToolbarGroup';
+import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
+import { Tabstopping } from 'hugemce/alloy/api/behaviour/Tabstopping';
+import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
+import { SketchSpec } from 'hugemce/alloy/api/component/SpecTypes';
+import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'hugemce/alloy/api/ui/Button';
+import { FloatingToolbarButton } from 'hugemce/alloy/api/ui/FloatingToolbarButton';
+import * as Layout from 'hugemce/alloy/positioning/layout/Layout';
+import * as Sinks from 'hugemce/alloy/test/Sinks';
+import * as TestPartialToolbarGroup from 'hugemce/alloy/test/toolbar/TestPartialToolbarGroup';
 
 UnitTest.asynctest('FloatingToolbarButtonTest', (success, failure) => {
   const sinkComp = Sinks.relativeSink();

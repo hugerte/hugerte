@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
-import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { Hierarchy, Remove, SimRange, SimSelection, SugarElement, Traverse, WindowSelection } from '@ephox/sugar';
+import { Assertions } from '@hugemce/agar';
+import { describe, it } from '@hugemce/bedrock-client';
+import { Fun, Optional } from '@hugemce/katamari';
+import { Hierarchy, Remove, SimRange, SimSelection, SugarElement, Traverse, WindowSelection } from '@hugemce/sugar';
 import { assert } from 'chai';
 
 import * as SelectionBookmark from 'tinymce/core/selection/SelectionBookmark';

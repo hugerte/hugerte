@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Cell, Obj, Optional, Type } from '@hugemce/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Dialog } from 'tinymce/core/api/ui/Ui';
@@ -153,7 +153,7 @@ const handleInsert = (editor: Editor, html: string): void => {
 };
 
 const isEmbedIframe = (url: string, mediaDataType?: MediaDataType) =>
-  Type.isNonNullable(mediaDataType) && mediaDataType === 'ephox-embed-iri' && Type.isNonNullable(UrlPatterns.matchPattern(url));
+  Type.isNonNullable(mediaDataType) && mediaDataType === 'hugemce-embed-iri' && Type.isNonNullable(UrlPatterns.matchPattern(url));
 
 const shouldInsertAsNewIframe = (prevData: MediaData, newData: MediaData) => {
   const hasDimensionsChanged = (prevData: MediaData, newData: MediaData) =>

@@ -1,18 +1,18 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Fun, Optional } from '@hugemce/katamari';
 
-import * as Compare from 'ephox/sugar/api/dom/Compare';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as PredicateExists from 'ephox/sugar/api/search/PredicateExists';
-import * as PredicateFilter from 'ephox/sugar/api/search/PredicateFilter';
-import * as PredicateFind from 'ephox/sugar/api/search/PredicateFind';
-import * as SelectorExists from 'ephox/sugar/api/search/SelectorExists';
-import * as SelectorFilter from 'ephox/sugar/api/search/SelectorFilter';
-import * as SelectorFind from 'ephox/sugar/api/search/SelectorFind';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
-import * as Checkers from 'ephox/sugar/test/Checkers';
-import * as TestPage from 'ephox/sugar/test/TestPage';
+import * as Compare from 'hugemce/sugar/api/dom/Compare';
+import * as Remove from 'hugemce/sugar/api/dom/Remove';
+import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as PredicateExists from 'hugemce/sugar/api/search/PredicateExists';
+import * as PredicateFilter from 'hugemce/sugar/api/search/PredicateFilter';
+import * as PredicateFind from 'hugemce/sugar/api/search/PredicateFind';
+import * as SelectorExists from 'hugemce/sugar/api/search/SelectorExists';
+import * as SelectorFilter from 'hugemce/sugar/api/search/SelectorFilter';
+import * as SelectorFind from 'hugemce/sugar/api/search/SelectorFind';
+import * as Traverse from 'hugemce/sugar/api/search/Traverse';
+import * as Checkers from 'hugemce/sugar/test/Checkers';
+import * as TestPage from 'hugemce/sugar/test/TestPage';
 
 UnitTest.test('IsRootTest', () => {
   TestPage.connect(); // description of structure is in TestPage

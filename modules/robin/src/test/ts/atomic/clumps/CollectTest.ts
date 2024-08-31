@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Arr } from '@hugemce/katamari';
 
-import * as Clumps from 'ephox/robin/clumps/Clumps';
+import * as Clumps from 'hugemce/robin/clumps/Clumps';
 
 UnitTest.test('ClumpsTest', () => {
   const doc = TestUniverse(Gene('root', 'root', [

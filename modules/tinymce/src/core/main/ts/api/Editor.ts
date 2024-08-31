@@ -1,4 +1,4 @@
-import { Arr, Fun, Type } from '@ephox/katamari';
+import { Arr, Fun, Type } from '@hugemce/katamari';
 
 import * as EditorContent from '../content/EditorContent';
 import * as Deprecations from '../Deprecations';

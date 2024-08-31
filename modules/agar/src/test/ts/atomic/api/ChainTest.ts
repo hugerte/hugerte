@@ -1,11 +1,11 @@
-import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { UnitTest } from '@hugemce/bedrock-client';
+import { Fun } from '@hugemce/katamari';
 
-import { Chain } from 'ephox/agar/api/Chain';
-import * as Logger from 'ephox/agar/api/Logger';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import * as StepAssertions from 'ephox/agar/test/StepAssertions';
+import { Chain } from 'hugemce/agar/api/Chain';
+import * as Logger from 'hugemce/agar/api/Logger';
+import { Pipeline } from 'hugemce/agar/api/Pipeline';
+import { Step } from 'hugemce/agar/api/Step';
+import * as StepAssertions from 'hugemce/agar/test/StepAssertions';
 
 UnitTest.asynctest('ChainTest', (success, failure) => {
 

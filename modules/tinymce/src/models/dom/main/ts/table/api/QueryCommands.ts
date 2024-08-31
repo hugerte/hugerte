@@ -1,5 +1,5 @@
-import { Obj } from '@ephox/katamari';
-import { TableLookup } from '@ephox/snooker';
+import { Obj } from '@hugemce/katamari';
+import { TableLookup } from '@hugemce/snooker';
 
 import Editor from 'tinymce/core/api/Editor';
 

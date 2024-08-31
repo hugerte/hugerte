@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Arr, Obj, Optional } from '@hugemce/katamari';
 
 import Tools from '../api/util/Tools';
 import { Attribute, AttributePattern, ElementRule, SchemaElement } from './SchemaTypes';
