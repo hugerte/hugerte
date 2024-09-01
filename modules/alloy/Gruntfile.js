@@ -1,7 +1,7 @@
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
-const swag = require('@hugemce/swag');
+const swag = require('@ephox/swag');
 
 const create = (inFile, outFile) => {
   const tsConfig = "tsconfig.json";
@@ -41,7 +41,7 @@ const create = (inFile, outFile) => {
         },
         {
           test: /\.js$|\.ts$/,
-          use: ['@hugemce/swag/webpack/remapper']
+          use: ['@ephox/swag/webpack/remapper']
         },
         {
           test: /\.ts$/,
@@ -130,7 +130,7 @@ module.exports = (grunt) => {
   require('load-grunt-tasks')(grunt, {
     requireResolution: true,
     config: "../../package.json",
-    pattern: ['grunt-*', '@ephox/bedrock', '@hugemce/swag']
+    pattern: ['grunt-*', '@ephox/bedrock', '@ephox/swag']
   });
 
   grunt.registerTask('dev', ['webpack-dev-server']);
