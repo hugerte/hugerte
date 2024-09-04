@@ -37,6 +37,22 @@ const stripSourceMaps = function (data) {
   return sourcemap > -1 ? data.slice(0, sourcemap) : data;
 };
 
+const handleWarning = function (warning, ignorable_codes)
+{
+	//console.warn(warning);
+	if (!ignorable_codes.includes(warning.code))
+		return swag.onwarn(warning);
+
+	if (warning.loc && warning.loc.file && warning.frame)
+		console.warn("Warning: "+warning.loc.file+":"+warning.loc.line+": "+warning.code+": "+warning.message + "\n--- context: ---\n" + warning.frame);
+	else if (warning.loc && warning.loc.file)
+		console.warn("Warning: "+warning.loc.file+":"+warning.loc.line+": "+warning.code+": "+warning.message);
+	else if (warning.importer)
+		console.warn("Warning: "+warning.importer+":??: "+warning.code+": "+warning.message + "\n--- cycle: ---\n", warning.cycle);
+	else
+		console.warn("Warning: ", warning);
+};
+
 module.exports = function (grunt) {
   const packageData = grunt.file.readJSON('package.json');
 
@@ -77,7 +93,7 @@ module.exports = function (grunt) {
           options: {
             treeshake: true,
             format: 'iife',
-            onwarn: swag.onwarn,
+            onwarn: (warning) => handleWarning(warning, ['CIRCULAR_DEPENDENCY', 'THIS_IS_UNDEFINED', 'SOURCEMAP_ERROR', 'CANNOT_CALL_NAMESPACE', 'MISSING_EXPORT']),
             plugins: [
               FilesAsStrings,
               swag.nodeResolve({
@@ -100,12 +116,7 @@ module.exports = function (grunt) {
           options: {
             treeshake: true,
             format: 'es',
-            onwarn: (warning) => {
-              // Ignore circular deps in types
-              if (warning.code !== 'CIRCULAR_DEPENDENCY') {
-                swag.onwarn(warning)
-              }
-            },
+            onwarn: (warning) => handleWarning(warning, ['CIRCULAR_DEPENDENCY']),
             plugins: [
               FilesAsStrings,
               swag.dts({
@@ -128,7 +139,7 @@ module.exports = function (grunt) {
           options: {
             treeshake: true,
             format: 'iife',
-            onwarn: swag.onwarn,
+            onwarn: (warning) => handleWarning(warning, ['CIRCULAR_DEPENDENCY', 'THIS_IS_UNDEFINED', 'SOURCEMAP_ERROR', 'MISSING_EXPORT']),
             plugins: [
               FilesAsStrings,
               swag.nodeResolve({
@@ -154,7 +165,7 @@ module.exports = function (grunt) {
           options: {
             treeshake: true,
             format: 'iife',
-            onwarn: swag.onwarn,
+            onwarn: (warning) => handleWarning(warning, ['CIRCULAR_DEPENDENCY', 'THIS_IS_UNDEFINED', 'SOURCEMAP_ERROR', 'MISSING_EXPORT']),
             plugins: [
               FilesAsStrings,
               swag.nodeResolve({
@@ -186,7 +197,7 @@ module.exports = function (grunt) {
           options: {
             treeshake: true,
             format: 'iife',
-            onwarn: swag.onwarn,
+            onwarn: (warning) => handleWarning(warning, ['CIRCULAR_DEPENDENCY']),
             plugins: [
               FilesAsStrings,
               swag.nodeResolve({

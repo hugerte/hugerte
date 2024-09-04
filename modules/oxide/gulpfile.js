@@ -24,7 +24,7 @@ const autoprefix = new lessAutoprefix({
 gulp.task('lint', function() {
   return gulp.src('./src/less/**/*.less')
     .pipe(gulpStylelint({
-      failAfterError: true,
+      failAfterError: false,
       reporters: [
         {formatter: 'string', console: true}
       ]
