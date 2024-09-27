@@ -1,4 +1,4 @@
-var iconPackager = require('@ephox/oxide-icons-tools').iconPackager;
+var iconPackager = require('@hugemce/oxide-icons-tools').iconPackager;
 var clean = require('gulp-clean');
 var gulp = require('gulp');
 
