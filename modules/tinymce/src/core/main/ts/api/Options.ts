@@ -677,10 +677,6 @@ const register = (editor: Editor): void => {
     processor: 'string'
   });
 
-  registerOption('license_key', {
-    processor: 'string'
-  });
-
   registerOption('paste_block_drop', {
     processor: 'boolean',
     default: false
@@ -984,8 +980,6 @@ const shouldForceHexColor = option('force_hex_color');
 const shouldSandboxIframes = option('sandbox_iframes');
 const getSandboxIframesExclusions = (editor: Editor): string[] => editor.options.get('sandbox_iframes_exclusions');
 const shouldConvertUnsafeEmbeds = option('convert_unsafe_embeds');
-const getLicenseKey = option('license_key');
-const getApiKey = option('api_key');
 
 export {
   register,
@@ -1093,8 +1087,6 @@ export {
   shouldUseDocumentWrite,
   shouldForceHexColor,
   shouldSandboxIframes,
-  getLicenseKey,
   getSandboxIframesExclusions,
-  shouldConvertUnsafeEmbeds,
-  getApiKey
+  shouldConvertUnsafeEmbeds
 };
