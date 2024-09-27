@@ -47,7 +47,7 @@ Below is a list of commonly used parts of `katamari`
 
 # Tests
 
-`katamari` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run atomic tests. The tests are chiefly written using [fast-check](https://github.com/dubzzz/fast-check)
+`katamari` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run atomic tests. The tests are chiefly written using [fast-check](https://github.com/dubzzz/fast-check)
 
 ## Running Tests
 

@@ -130,7 +130,7 @@ module.exports = (grunt) => {
   require('load-grunt-tasks')(grunt, {
     requireResolution: true,
     config: "../../package.json",
-    pattern: ['grunt-*', '@ephox/bedrock', '@hugemce/swag']
+    pattern: ['grunt-*', '@hugemce/bedrock', '@hugemce/swag']
   });
 
   grunt.registerTask('dev', ['webpack-dev-server']);

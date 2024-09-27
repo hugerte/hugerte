@@ -24,7 +24,7 @@ Pipeline modules are an in-house testing framework that relies on Agar Step and 
 
 # Running tests
 
-The tests can be run using `bedrock` via `yarn test`. Note, this will only run the tests on Chrome and will require `chromedriver`. You can use `bedrock` directly to test on other browsers. See [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) for more details.
+The tests can be run using `bedrock` via `yarn test`. Note, this will only run the tests on Chrome and will require `chromedriver`. You can use `bedrock` directly to test on other browsers. See [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) for more details.
 
 To run the tests on Chrome:
 

@@ -26,7 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "@ephox/bedrock-client": "11 || 12 || 13",
-    "@ephox/bedrock-common": "11 || 12 || 13",
+    "@hugemce/bedrock-common": "11 || 12 || 13",
     "@hugemce/jax": "^7.0.10",
     "@hugemce/sand": "^6.0.10",
     "@hugemce/sugar": "^9.3.1",

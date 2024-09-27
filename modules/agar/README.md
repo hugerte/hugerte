@@ -16,7 +16,7 @@ As mentioned earlier, `agar` contains testing infrastructure for _keyboard_, _mo
 
 # Running Tests
 
-`agar` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run tests. This is packaged as a dev dependency of `agar`. There are two types of tests:
+`agar` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run tests. This is packaged as a dev dependency of `agar`. There are two types of tests:
 
 * browser tests
 * webdriver tests
