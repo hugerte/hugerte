@@ -61,7 +61,7 @@ let create = (entries, tsConfig, outDir = '.') => {
         },
         {
           test: /\.(js|mjs|ts)$/,
-          use: [ '@ephox/swag/webpack/remapper' ]
+          use: [ '@hugemce/swag/webpack/remapper' ]
         },
         {
           test: /\.ts$/,
