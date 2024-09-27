@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Gene, Logger, TestUniverse, TextGene } from '@hugemce/boss';
-import { Arr } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Gene, Logger, TestUniverse, TextGene } from '@ephox/boss';
+import { Arr } from '@ephox/katamari';
 
-import { breakPath, breakToRight } from 'hugemce/robin/parent/Breaker';
+import { breakPath, breakToRight } from 'ephox/robin/parent/Breaker';
 
 UnitTest.test('BreakerTest', () => {
   const generator = () => {

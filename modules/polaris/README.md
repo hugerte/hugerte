@@ -1,9 +1,9 @@
 # Description
 `polaris` is a project which provides data manipulation on arrays and strings.
 # Installation
-`polaris` is available as an `npm` package.  You can install it via the npm package `@hugemce/polaris`
+`polaris` is available as an `npm` package.  You can install it via the npm package `@ephox/polaris`
 ## Install from npm
-`npm install @hugemce/polaris`
+`npm install @ephox/polaris`
 
 # Usage
 `Arrays`: Provides utility functions for dealing with arrays.
@@ -15,6 +15,6 @@
 `Strings`: Provides utility functions for dealing with strings.
 `Words`: Provides functionality parsing text to words.
 # Tests
-`polaris` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run atomic tests.
+`polaris` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run atomic tests.
 ## Running Tests
 `$ yarn test`

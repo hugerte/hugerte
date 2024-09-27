@@ -1,5 +1,5 @@
-import { Optional } from '@hugemce/katamari';
-import { Insert, SugarElement } from '@hugemce/sugar';
+import { Optional } from '@ephox/katamari';
+import { Insert, SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';

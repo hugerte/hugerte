@@ -7,9 +7,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/boulder/test/*": ["src/test/ts/module/hugemce/boulder/test/*"],
-      "hugemce/boulder/demo/*": ["src/demo/ts/hugemce/boulder/demo/*"],
-      "hugemce/boulder/*": ["src/main/ts/hugemce/boulder/*"]
+      "ephox/boulder/test/*": ["src/test/ts/module/ephox/boulder/test/*"],
+      "ephox/boulder/demo/*": ["src/demo/ts/ephox/boulder/demo/*"],
+      "ephox/boulder/*": ["src/main/ts/ephox/boulder/*"]
     }
   },
   "include": [

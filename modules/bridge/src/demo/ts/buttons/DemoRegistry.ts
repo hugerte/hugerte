@@ -1,6 +1,6 @@
-import { Fun } from '@hugemce/katamari';
+import { Fun } from '@ephox/katamari';
 
-import * as Registry from '../../../main/ts/hugemce/bridge/api/Registry';
+import * as Registry from '../../../main/ts/ephox/bridge/api/Registry';
 
 const editorButtons = Registry.create();
 

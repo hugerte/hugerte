@@ -1,12 +1,12 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Optionals } from '@hugemce/katamari';
-import { SugarPosition } from '@hugemce/sugar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Optionals } from '@ephox/katamari';
+import { SugarPosition } from '@ephox/sugar';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Boxes from 'hugemce/alloy/alien/Boxes';
-import * as LayoutBounds from 'hugemce/alloy/positioning/layout/LayoutBounds';
-import { assertInBounds, boundsArb } from 'hugemce/alloy/test/BoundsUtils';
+import * as Boxes from 'ephox/alloy/alien/Boxes';
+import * as LayoutBounds from 'ephox/alloy/positioning/layout/LayoutBounds';
+import { assertInBounds, boundsArb } from 'ephox/alloy/test/BoundsUtils';
 
 describe('LayoutBoundsTest', () => {
   const dimensions = [ 'left' as const, 'right' as const, 'top' as const, 'bottom' as const ];

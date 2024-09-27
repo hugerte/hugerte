@@ -1,6 +1,6 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
 import * as TrimBody from 'tinymce/core/dom/TrimBody';

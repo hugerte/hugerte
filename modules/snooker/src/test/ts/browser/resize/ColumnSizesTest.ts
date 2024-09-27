@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Css, Insert, Remove, SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Css, Insert, Remove, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
-import { TableSize } from 'hugemce/snooker/api/TableSize';
-import { Warehouse } from 'hugemce/snooker/api/Warehouse';
-import * as ColumnSizes from 'hugemce/snooker/resize/ColumnSizes';
+import { TableSize } from 'ephox/snooker/api/TableSize';
+import { Warehouse } from 'ephox/snooker/api/Warehouse';
+import * as ColumnSizes from 'ephox/snooker/resize/ColumnSizes';
 
 const noneTableHtml = '<table><tbody><tr><td>A</td><td>A</td></tr></tbody></table>';
 const pixelTableHtml = '<table style="width: 400px; border-collapse: collapse"><tbody><tr><td style="width: 200px;">A</td><td style="width: 200px;">A</td></tr></tbody></table>';

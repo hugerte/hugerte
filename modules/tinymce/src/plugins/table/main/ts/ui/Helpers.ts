@@ -1,7 +1,7 @@
-import { Transformations } from '@hugemce/acid';
-import { Arr, Fun, Obj, Optional, Strings, Type } from '@hugemce/katamari';
-import { TableLookup, TableOperations } from '@hugemce/snooker';
-import { Css, SugarElement, SugarElements } from '@hugemce/sugar';
+import { Transformations } from '@ephox/acid';
+import { Arr, Fun, Obj, Optional, Strings, Type } from '@ephox/katamari';
+import { TableLookup, TableOperations } from '@ephox/snooker';
+import { Css, SugarElement, SugarElements } from '@ephox/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import Editor from 'tinymce/core/api/Editor';

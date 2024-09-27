@@ -1,7 +1,7 @@
-import { Cursors, Mouse } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { SugarElement } from '@hugemce/sugar';
-import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Cursors, Mouse } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { SugarElement } from '@ephox/sugar';
+import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Fun, Optional } from '@hugemce/katamari';
-import { Html, Insert, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Fun, Optional } from '@ephox/katamari';
+import { Html, Insert, SugarElement } from '@ephox/sugar';
 
-import { CellData } from 'hugemce/snooker/api/Generators';
-import * as TableFill from 'hugemce/snooker/api/TableFill';
+import { CellData } from 'ephox/snooker/api/Generators';
+import * as TableFill from 'ephox/snooker/api/TableFill';
 
 UnitTest.test('CloneFormatsTest', () => {
   const doc = SugarElement.fromDom(document);

@@ -1,4 +1,4 @@
-import { Arr, Cell, Fun } from '@hugemce/katamari';
+import { Arr, Cell, Fun } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as BlockBoundaryDelete from './BlockBoundaryDelete';

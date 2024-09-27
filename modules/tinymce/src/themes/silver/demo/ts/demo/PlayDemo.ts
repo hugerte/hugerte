@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Fun } from '@hugemce/katamari';
+import { Fun } from '@ephox/katamari';
 
 import { TinyMCE } from 'tinymce/core/api/PublicApi';
 

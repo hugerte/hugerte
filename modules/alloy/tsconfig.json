@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/alloy/test/*": ["src/test/ts/module/hugemce/alloy/test/*"],
-      "hugemce/alloy/demo/*": ["src/demo/ts/hugemce/alloy/demo/*"],
-      "hugemce/alloy/*": ["src/main/ts/hugemce/alloy/*"]
+      "ephox/alloy/test/*": ["src/test/ts/module/ephox/alloy/test/*"],
+      "ephox/alloy/demo/*": ["src/demo/ts/ephox/alloy/demo/*"],
+      "ephox/alloy/*": ["src/main/ts/ephox/alloy/*"]
     }
   },
   "include": [

@@ -1,6 +1,6 @@
-import { ItemTypes } from '@hugemce/alloy';
-import { Menu as BridgeMenu, Toolbar } from '@hugemce/bridge';
-import { Arr, Optional, Optionals } from '@hugemce/katamari';
+import { ItemTypes } from '@ephox/alloy';
+import { Menu as BridgeMenu, Toolbar } from '@ephox/bridge';
+import { Arr, Optional, Optionals } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from 'tinymce/themes/silver/backstage/Backstage';
 

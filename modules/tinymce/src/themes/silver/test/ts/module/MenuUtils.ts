@@ -1,7 +1,7 @@
-import { Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { Boxes } from '@hugemce/alloy';
-import { Arr } from '@hugemce/katamari';
-import { SugarBody } from '@hugemce/sugar';
+import { Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { Boxes } from '@ephox/alloy';
+import { Arr } from '@ephox/katamari';
+import { SugarBody } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import { ToolbarMode } from 'tinymce/themes/silver/api/Options';

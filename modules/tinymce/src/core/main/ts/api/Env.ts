@@ -1,4 +1,4 @@
-import { PlatformDetection } from '@hugemce/sand';
+import { PlatformDetection } from '@ephox/sand';
 
 /**
  * This class contains various environment constants like browser versions etc.

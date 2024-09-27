@@ -1,7 +1,7 @@
-import { UiFinder } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { SugarBody } from '@hugemce/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { UiFinder } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { SugarBody } from '@ephox/sugar';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import AdvListPlugin from 'tinymce/plugins/advlist/Plugin';

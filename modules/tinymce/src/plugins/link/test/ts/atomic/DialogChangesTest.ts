@@ -1,5 +1,5 @@
-import { Assert, describe, context, it } from '@hugemce/bedrock-client';
-import { Fun, Optional, OptionalInstances } from '@hugemce/katamari';
+import { Assert, describe, context, it } from '@ephox/bedrock-client';
+import { Fun, Optional, OptionalInstances } from '@ephox/katamari';
 import fc from 'fast-check';
 
 import { DialogChanges, DialogDelta } from 'tinymce/plugins/link/ui/DialogChanges';

@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/sugar/test/*": ["src/test/ts/module/hugemce/sugar/test/*"],
-      "hugemce/sugar/demo/*": ["src/demo/ts/hugemce/sugar/demo/*"],
-      "hugemce/sugar/*": ["src/main/ts/hugemce/sugar/*"]
+      "ephox/sugar/test/*": ["src/test/ts/module/ephox/sugar/test/*"],
+      "ephox/sugar/demo/*": ["src/demo/ts/ephox/sugar/demo/*"],
+      "ephox/sugar/*": ["src/main/ts/ephox/sugar/*"]
     }
   },
   "include": [

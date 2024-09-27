@@ -1,4 +1,4 @@
-import { SugarElement, Traverse, WindowSelection } from '@hugemce/sugar';
+import { SugarElement, Traverse, WindowSelection } from '@ephox/sugar';
 
 const fromPoint = (clientX: number, clientY: number, doc: Document): Range | undefined => {
   const win = Traverse.defaultView(SugarElement.fromDom(doc));

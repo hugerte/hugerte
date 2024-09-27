@@ -1,8 +1,8 @@
-import { Assert, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Optional, Optionals } from '@hugemce/katamari';
+import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Arr, Optional, Optionals } from '@ephox/katamari';
 
-import { WordScope } from 'hugemce/robin/data/WordScope';
-import * as Identify from 'hugemce/robin/words/Identify';
+import { WordScope } from 'ephox/robin/data/WordScope';
+import * as Identify from 'ephox/robin/words/Identify';
 
 describe('atomic.robin.words.IdentifyTest', () => {
   const none = Optional.none<string>();

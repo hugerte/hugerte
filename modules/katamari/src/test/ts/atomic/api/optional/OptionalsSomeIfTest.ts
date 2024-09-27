@@ -1,8 +1,8 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import fc from 'fast-check';
 
-import * as Optionals from 'hugemce/katamari/api/Optionals';
-import { assertNone, assertSome } from 'hugemce/katamari/test/AssertOptional';
+import * as Optionals from 'ephox/katamari/api/Optionals';
+import { assertNone, assertSome } from 'ephox/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.optional.OptionalsSomeIfTest', () => {
   it('someIf(false) is none', () => {

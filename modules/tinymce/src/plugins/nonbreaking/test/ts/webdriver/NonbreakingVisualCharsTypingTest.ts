@@ -1,8 +1,8 @@
-import { ApproxStructure, RealKeys } from '@hugemce/agar';
-import { beforeEach, describe, it } from '@hugemce/bedrock-client';
-import { Unicode } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, RealKeys } from '@ephox/agar';
+import { beforeEach, describe, it } from '@ephox/bedrock-client';
+import { Unicode } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import NonbreakingPlugin from 'tinymce/plugins/nonbreaking/Plugin';

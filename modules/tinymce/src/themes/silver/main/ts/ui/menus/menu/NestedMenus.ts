@@ -1,6 +1,6 @@
-import { TieredData, TieredMenu } from '@hugemce/alloy';
-import { Objects } from '@hugemce/boulder';
-import { Id, Merger, Obj, Optional } from '@hugemce/katamari';
+import { TieredData, TieredMenu } from '@ephox/alloy';
+import { Objects } from '@ephox/boulder';
+import { Id, Merger, Obj, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from 'tinymce/themes/silver/backstage/Backstage';
 

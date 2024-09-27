@@ -1,6 +1,6 @@
-import { ApproxStructure, StructAssert, Waiter } from '@hugemce/agar';
-import { before, context, describe, it } from '@hugemce/bedrock-client';
-import { McEditor, TinyAssertions, TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, StructAssert, Waiter } from '@ephox/agar';
+import { before, context, describe, it } from '@ephox/bedrock-client';
+import { McEditor, TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Env from 'tinymce/core/api/Env';

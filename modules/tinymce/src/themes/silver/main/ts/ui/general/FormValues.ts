@@ -1,4 +1,4 @@
-import { Obj, Optional, Result } from '@hugemce/katamari';
+import { Obj, Optional, Result } from '@ephox/katamari';
 
 const toValidValues = <T>(values: Record<string, Optional<T>>): Result<Record<string, T>, string[]> => {
   const errors: string[] = [];

@@ -1,8 +1,8 @@
-import { Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { afterEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Cell } from '@hugemce/katamari';
-import { Attribute, Height, Hierarchy, SelectorFind, SugarElement, Width } from '@hugemce/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { afterEach, context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Cell } from '@ephox/katamari';
+import { Attribute, Height, Hierarchy, SelectorFind, SugarElement, Width } from '@ephox/sugar';
+import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';
@@ -25,7 +25,7 @@ describe('browser.tinymce.models.dom.table.DragResizeTest', () => {
   const dragDropBlocker = (container: SugarElement<HTMLElement>, selector: string, dx: number, dy: number) => {
     const elem = UiFinder.findIn(container, selector).getOrDie();
     Mouse.mouseDown(elem);
-    const blocker = UiFinder.findIn(container, 'div.hugemce-dragster-blocker').getOrDie();
+    const blocker = UiFinder.findIn(container, 'div.ephox-dragster-blocker').getOrDie();
     Mouse.mouseMove(blocker);
     Mouse.mouseMoveTo(blocker, dx, dy);
     Mouse.mouseUpTo(blocker, dx, dy);

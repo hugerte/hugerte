@@ -1,8 +1,8 @@
-import { UiFinder, UiControls } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Dialog } from '@hugemce/bridge';
-import { SugarBody } from '@hugemce/sugar';
-import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { UiFinder, UiControls } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Dialog } from '@ephox/bridge';
+import { SugarBody } from '@ephox/sugar';
+import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Tools from 'tinymce/core/api/util/Tools';

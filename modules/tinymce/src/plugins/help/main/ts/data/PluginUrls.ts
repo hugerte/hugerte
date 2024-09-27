@@ -1,4 +1,4 @@
-import { Arr } from '@hugemce/katamari';
+import { Arr } from '@ephox/katamari';
 
 export const enum PluginType {
   Premium = 'premium',

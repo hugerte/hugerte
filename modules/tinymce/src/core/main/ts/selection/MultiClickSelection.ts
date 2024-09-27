@@ -1,4 +1,4 @@
-import { Compare, PredicateFind, SugarElement, SugarNode } from '@hugemce/sugar';
+import { Compare, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
 
 import DomTreeWalker from '../api/dom/TreeWalker';
 import Editor from '../api/Editor';

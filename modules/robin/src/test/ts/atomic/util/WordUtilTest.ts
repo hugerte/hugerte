@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Optional, Unicode } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Optional, Unicode } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 
-import * as WordUtil from 'hugemce/robin/util/WordUtil';
+import * as WordUtil from 'ephox/robin/util/WordUtil';
 
 UnitTest.test('Word Util', () => {
   const checkNone = (text: string, word: (w: string) => Optional<string>) => {

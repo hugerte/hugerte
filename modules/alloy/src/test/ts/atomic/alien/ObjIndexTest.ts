@@ -1,8 +1,8 @@
-import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Obj } from '@hugemce/katamari';
+import { Logger } from '@ephox/agar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Obj } from '@ephox/katamari';
 
-import * as ObjIndex from 'hugemce/alloy/alien/ObjIndex';
+import * as ObjIndex from 'ephox/alloy/alien/ObjIndex';
 
 UnitTest.test('ObjIndexTest', () => {
   const tuple = <T>(k: string, v: T) => ({ country: k, value: v });

@@ -1,13 +1,13 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Insert from 'hugemce/sugar/api/dom/Insert';
-import * as Remove from 'hugemce/sugar/api/dom/Remove';
-import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as Css from 'hugemce/sugar/api/properties/Css';
-import * as Height from 'hugemce/sugar/api/view/Height';
-import * as Width from 'hugemce/sugar/api/view/Width';
-import Div from 'hugemce/sugar/test/Div';
+import * as Insert from 'ephox/sugar/api/dom/Insert';
+import * as Remove from 'ephox/sugar/api/dom/Remove';
+import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as Css from 'ephox/sugar/api/properties/Css';
+import * as Height from 'ephox/sugar/api/view/Height';
+import * as Width from 'ephox/sugar/api/view/Width';
+import Div from 'ephox/sugar/test/Div';
 
 interface SizeApi {
   get: (element: SugarElement<HTMLElement>) => number;

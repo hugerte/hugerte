@@ -1,14 +1,14 @@
-import { ApproxStructure, Assertions, Waiter } from '@hugemce/agar';
-import { after, before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { DomEvent, EventUnbinder, SugarElement } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
+import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { DomEvent, EventUnbinder, SugarElement } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Docking } from 'hugemce/alloy/api/behaviour/Docking';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as SystemEvents from 'hugemce/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Docking } from 'ephox/alloy/api/behaviour/Docking';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
 
 describe('browser.alloy.behaviour.docking.DockingTest', () => {
 

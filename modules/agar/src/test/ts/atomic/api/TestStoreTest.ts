@@ -1,10 +1,10 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Fun } from '@hugemce/katamari';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Fun } from '@ephox/katamari';
 
-import * as GeneralSteps from 'hugemce/agar/api/GeneralSteps';
-import { Pipeline } from 'hugemce/agar/api/Pipeline';
-import { Step } from 'hugemce/agar/api/Step';
-import { TestStore } from 'hugemce/agar/api/TestStore';
+import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
+import { Pipeline } from 'ephox/agar/api/Pipeline';
+import { Step } from 'ephox/agar/api/Step';
+import { TestStore } from 'ephox/agar/api/TestStore';
 
 interface TestData {
   readonly name: string;

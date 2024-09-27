@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Optionals, Unicode } from '@hugemce/katamari';
-import { Css, SugarElement } from '@hugemce/sugar';
+import { Arr, Fun, Obj, Optional, Optionals, Unicode } from '@ephox/katamari';
+import { Css, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomTreeWalker from '../api/dom/TreeWalker';

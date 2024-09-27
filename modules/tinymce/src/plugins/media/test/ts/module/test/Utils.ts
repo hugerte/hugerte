@@ -1,7 +1,7 @@
-import { Mouse, UiControls, UiFinder, Waiter } from '@hugemce/agar';
-import { Arr } from '@hugemce/katamari';
-import { Focus, SugarElement } from '@hugemce/sugar';
-import { TinyAssertions, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Mouse, UiControls, UiFinder, Waiter } from '@ephox/agar';
+import { Arr } from '@ephox/katamari';
+import { Focus, SugarElement } from '@ephox/sugar';
+import { TinyAssertions, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

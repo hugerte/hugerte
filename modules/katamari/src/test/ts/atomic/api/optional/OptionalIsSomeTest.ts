@@ -1,8 +1,8 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import { Optional } from 'hugemce/katamari/api/Optional';
+import { Optional } from 'ephox/katamari/api/Optional';
 
 describe('atomic.katamari.api.optional.OptionalIsSomeTest', () => {
   it('none is not some', () => {

@@ -1,11 +1,11 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Fun from 'hugemce/katamari/api/Fun';
-import { Optional } from 'hugemce/katamari/api/Optional';
-import * as Optionals from 'hugemce/katamari/api/Optionals';
-import { arbOptionalSome as arbOptionSome } from 'hugemce/katamari/test/arb/ArbDataTypes';
+import * as Fun from 'ephox/katamari/api/Fun';
+import { Optional } from 'ephox/katamari/api/Optional';
+import * as Optionals from 'ephox/katamari/api/Optionals';
+import { arbOptionalSome as arbOptionSome } from 'ephox/katamari/test/arb/ArbDataTypes';
 
 const boom = Fun.die('boom');
 

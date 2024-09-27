@@ -1,6 +1,6 @@
-import { Waiter } from '@hugemce/agar';
-import { beforeEach, describe, it } from '@hugemce/bedrock-client';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Waiter } from '@ephox/agar';
+import { beforeEach, describe, it } from '@ephox/bedrock-client';
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

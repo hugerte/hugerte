@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Optional, Optionals } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Optional, Optionals } from '@ephox/katamari';
 
-import { WordScope } from 'hugemce/robin/data/WordScope';
-import * as WordSanitiser from 'hugemce/robin/util/WordSanitiser';
+import { WordScope } from 'ephox/robin/data/WordScope';
+import * as WordSanitiser from 'ephox/robin/util/WordSanitiser';
 
 UnitTest.test('Word Sanitiser', () => {
   const some = Optional.some;

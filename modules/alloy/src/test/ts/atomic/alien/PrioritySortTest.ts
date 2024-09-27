@@ -1,8 +1,8 @@
-import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
+import { Logger } from '@ephox/agar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
 
-import * as PrioritySort from 'hugemce/alloy/alien/PrioritySort';
+import * as PrioritySort from 'ephox/alloy/alien/PrioritySort';
 
 UnitTest.test('PrioritySortTest', () => {
   const checkErr = <T extends Record<string, any>>(expected: string, input: T[], order: string[]) => {

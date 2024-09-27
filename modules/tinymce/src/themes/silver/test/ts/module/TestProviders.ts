@@ -1,5 +1,5 @@
-import { TooltippingTypes } from '@hugemce/alloy';
-import { Fun } from '@hugemce/katamari';
+import { TooltippingTypes } from '@ephox/alloy';
+import { Fun } from '@ephox/katamari';
 
 import I18n from 'tinymce/core/api/util/I18n';
 import { UiFactoryBackstageProviders } from 'tinymce/themes/silver/backstage/Backstage';

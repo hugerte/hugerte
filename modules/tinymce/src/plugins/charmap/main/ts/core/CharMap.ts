@@ -1,4 +1,4 @@
-import { Arr } from '@hugemce/katamari';
+import { Arr } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import Tools from 'tinymce/core/api/util/Tools';

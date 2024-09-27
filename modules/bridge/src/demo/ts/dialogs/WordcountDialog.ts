@@ -1,4 +1,4 @@
-import { createTable } from '../../../main/ts/hugemce/bridge/components/dialog/Table';
+import { createTable } from '../../../main/ts/ephox/bridge/components/dialog/Table';
 
 export const createWordcountDialog = (): void => {
   createTable({

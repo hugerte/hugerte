@@ -1,10 +1,10 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { SugarPosition } from '@hugemce/sugar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { SugarPosition } from '@ephox/sugar';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as DragCoord from 'hugemce/alloy/api/data/DragCoord';
+import * as DragCoord from 'ephox/alloy/api/data/DragCoord';
 
 interface TestConversion {
   mode: string;

@@ -1,7 +1,7 @@
-import { Cursors, UiFinder } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Attribute, SugarBody, Value } from '@hugemce/sugar';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Cursors, UiFinder } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Attribute, SugarBody, Value } from '@ephox/sugar';
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

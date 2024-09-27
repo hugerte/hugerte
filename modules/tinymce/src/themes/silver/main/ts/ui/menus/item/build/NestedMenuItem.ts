@@ -1,7 +1,7 @@
-import { AlloyComponent, Disabling, ItemTypes } from '@hugemce/alloy';
-import { Menu } from '@hugemce/bridge';
-import { Fun, Optional } from '@hugemce/katamari';
-import { Attribute, SelectorFind } from '@hugemce/sugar';
+import { AlloyComponent, Disabling, ItemTypes } from '@ephox/alloy';
+import { Menu } from '@ephox/bridge';
+import { Fun, Optional } from '@ephox/katamari';
+import { Attribute, SelectorFind } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from 'tinymce/themes/silver/backstage/Backstage';
 

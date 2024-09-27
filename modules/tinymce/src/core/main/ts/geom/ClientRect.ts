@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@hugemce/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 export interface ClientRect {
   left: number;

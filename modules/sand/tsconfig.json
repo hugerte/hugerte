@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/sand/test/*": ["src/test/ts/module/hugemce/sand/test/*"],
-      "hugemce/sand/demo/*": ["src/demo/ts/hugemce/sand/demo/*"],
-      "hugemce/sand/*": ["src/main/ts/hugemce/sand/*"]
+      "ephox/sand/test/*": ["src/test/ts/module/ephox/sand/test/*"],
+      "ephox/sand/demo/*": ["src/demo/ts/ephox/sand/demo/*"],
+      "ephox/sand/*": ["src/main/ts/ephox/sand/*"]
     }
   },
   "include": [

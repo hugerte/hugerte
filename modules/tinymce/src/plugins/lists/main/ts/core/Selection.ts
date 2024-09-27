@@ -1,5 +1,5 @@
-import { Arr, Optional, Type } from '@hugemce/katamari';
-import { SugarElement, Traverse } from '@hugemce/sugar';
+import { Arr, Optional, Type } from '@ephox/katamari';
+import { SugarElement, Traverse } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Schema from 'tinymce/core/api/html/Schema';

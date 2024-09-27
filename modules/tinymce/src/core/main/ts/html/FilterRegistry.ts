@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@hugemce/katamari';
+import { Arr, Obj, Type } from '@ephox/katamari';
 
 import Tools from '../api/util/Tools';
 

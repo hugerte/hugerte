@@ -1,8 +1,8 @@
-import { FocusTools, Keys, Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Optional } from '@hugemce/katamari';
-import { Attribute, SelectorFilter, SugarDocument, SugarElement, SugarShadowDom } from '@hugemce/sugar';
-import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { FocusTools, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Optional } from '@ephox/katamari';
+import { Attribute, SelectorFilter, SugarDocument, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

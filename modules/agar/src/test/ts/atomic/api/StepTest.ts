@@ -1,9 +1,9 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Logger from 'hugemce/agar/api/Logger';
-import { Pipeline } from 'hugemce/agar/api/Pipeline';
-import { Step } from 'hugemce/agar/api/Step';
+import * as Logger from 'ephox/agar/api/Logger';
+import { Pipeline } from 'ephox/agar/api/Pipeline';
+import { Step } from 'ephox/agar/api/Step';
 
 UnitTest.asynctest('StepTest', (success, failure) => {
 

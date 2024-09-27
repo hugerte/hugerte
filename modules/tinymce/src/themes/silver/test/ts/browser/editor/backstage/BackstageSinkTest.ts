@@ -1,9 +1,9 @@
-import { Assertions, Keyboard, Keys, Mouse, UiFinder } from '@hugemce/agar';
-import { AlloyComponent, Attachment, Behaviour, Gui, GuiFactory, Positioning, Representing } from '@hugemce/alloy';
-import { after, before, context, describe, it } from '@hugemce/bedrock-client';
-import { Fun, Optional, Result } from '@hugemce/katamari';
-import { Classes, SugarBody, Traverse } from '@hugemce/sugar';
-import { TinyHooks } from '@hugemce/wrap-mcagar';
+import { Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
+import { AlloyComponent, Attachment, Behaviour, Gui, GuiFactory, Positioning, Representing } from '@ephox/alloy';
+import { after, before, context, describe, it } from '@ephox/bedrock-client';
+import { Fun, Optional, Result } from '@ephox/katamari';
+import { Classes, SugarBody, Traverse } from '@ephox/sugar';
+import { TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import EditorManager from 'tinymce/core/api/EditorManager';

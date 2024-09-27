@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { afterEach, before, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Attribute, SelectorFilter, SugarElement } from '@hugemce/sugar';
+import { ApproxStructure, Assertions } from '@ephox/agar';
+import { afterEach, before, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Attribute, SelectorFilter, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 import 'tinymce';
 

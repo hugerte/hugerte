@@ -1,5 +1,5 @@
 {
-  "name": "@hugemce/mcagar",
+  "name": "@ephox/mcagar",
   "version": "9.0.1",
   "description": "Tinymce agar wrapper",
   "repository": {
@@ -25,16 +25,16 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@hugemce/agar": "^8.0.1",
-    "@hugemce/katamari": "^9.1.6",
-    "@hugemce/sand": "^6.0.10",
-    "@hugemce/sugar": "^9.3.1",
+    "@ephox/agar": "^8.0.1",
+    "@ephox/katamari": "^9.1.6",
+    "@ephox/sand": "^6.0.10",
+    "@ephox/sugar": "^9.3.1",
     "fast-check": "^2.0.0"
   },
   "peerDependencies": {
     "tinymce": ">=4.0.0"
   },
-  "main": "./lib/main/ts/hugemce/mcagar/api/Main.js",
-  "module": "./lib/main/ts/hugemce/mcagar/api/Main.js",
-  "types": "./lib/main/ts/hugemce/mcagar/api/Main.d.ts"
+  "main": "./lib/main/ts/ephox/mcagar/api/Main.js",
+  "module": "./lib/main/ts/ephox/mcagar/api/Main.js",
+  "types": "./lib/main/ts/ephox/mcagar/api/Main.d.ts"
 }

@@ -1,7 +1,7 @@
-import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, Highlighting, InlineView, ItemTypes, SystemEvents } from '@hugemce/alloy';
-import { InlineContent } from '@hugemce/bridge';
-import { Arr, Cell, Id, Optional, Singleton } from '@hugemce/katamari';
-import { Attribute, Css, Replication, SelectorFind, SimRange, SugarElement } from '@hugemce/sugar';
+import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, Highlighting, InlineView, ItemTypes, SystemEvents } from '@ephox/alloy';
+import { InlineContent } from '@ephox/bridge';
+import { Arr, Cell, Id, Optional, Singleton } from '@ephox/katamari';
+import { Attribute, Css, Replication, SelectorFind, SimRange, SugarElement } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { AutocompleteLookupData } from 'tinymce/core/autocomplete/AutocompleteTypes';

@@ -1,13 +1,13 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { SugarElement } from '@hugemce/sugar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { SugarElement } from '@ephox/sugar';
 
-import * as ApproxStructure from 'hugemce/agar/api/ApproxStructure';
-import * as Assertions from 'hugemce/agar/api/Assertions';
+import * as ApproxStructure from 'ephox/agar/api/ApproxStructure';
+import * as Assertions from 'ephox/agar/api/Assertions';
 
 UnitTest.test('Approx Structures Tutorial Test', () => {
   const html = '<div data-key="test-1" selected="double" class="test1 root" style="display: block;">' +
     '<div selected="true">' +
-    '<span data-hugemce-id="blah" class="disabled">span</span>' +
+    '<span data-ephox-id="blah" class="disabled">span</span>' +
     '</div>' +
     'words' +
     '</div>';
@@ -38,7 +38,7 @@ UnitTest.test('Approx Structures Tutorial Test', () => {
           children: [
             s.element('span', {
               attrs: {
-                'data-hugemce-id': str.startsWith('bl')
+                'data-ephox-id': str.startsWith('bl')
               },
               classes: [
                 arr.has('disabled'),

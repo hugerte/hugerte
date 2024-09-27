@@ -1,15 +1,15 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { DomEvent, Focus, SugarElement } from '@hugemce/sugar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { DomEvent, Focus, SugarElement } from '@ephox/sugar';
 
-import * as Assertions from 'hugemce/agar/api/Assertions';
-import * as Guard from 'hugemce/agar/api/Guard';
-import * as Keyboard from 'hugemce/agar/api/Keyboard';
-import { Keys } from 'hugemce/agar/api/Keys';
-import { Pipeline } from 'hugemce/agar/api/Pipeline';
-import { Step } from 'hugemce/agar/api/Step';
-import { TestLogs } from 'hugemce/agar/api/TestLogs';
-import * as DomContainers from 'hugemce/agar/test/DomContainers';
+import * as Assertions from 'ephox/agar/api/Assertions';
+import * as Guard from 'ephox/agar/api/Guard';
+import * as Keyboard from 'ephox/agar/api/Keyboard';
+import { Keys } from 'ephox/agar/api/Keys';
+import { Pipeline } from 'ephox/agar/api/Pipeline';
+import { Step } from 'ephox/agar/api/Step';
+import { TestLogs } from 'ephox/agar/api/TestLogs';
+import * as DomContainers from 'ephox/agar/test/DomContainers';
 
 UnitTest.asynctest('KeyboardTest', (success, failure) => {
 

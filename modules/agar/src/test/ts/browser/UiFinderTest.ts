@@ -1,11 +1,11 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Class, Css, Hierarchy, Html, Insert, Remove, SugarElement, SugarNode } from '@hugemce/sugar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Class, Css, Hierarchy, Html, Insert, Remove, SugarElement, SugarNode } from '@ephox/sugar';
 
-import * as Assertions from 'hugemce/agar/api/Assertions';
-import { Chain } from 'hugemce/agar/api/Chain';
-import { Pipeline } from 'hugemce/agar/api/Pipeline';
-import { Step } from 'hugemce/agar/api/Step';
-import * as UiFinder from 'hugemce/agar/api/UiFinder';
+import * as Assertions from 'ephox/agar/api/Assertions';
+import { Chain } from 'ephox/agar/api/Chain';
+import { Pipeline } from 'ephox/agar/api/Pipeline';
+import { Step } from 'ephox/agar/api/Step';
+import * as UiFinder from 'ephox/agar/api/UiFinder';
 
 UnitTest.asynctest('UiFinderTest', (success, failure) => {
 

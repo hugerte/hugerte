@@ -1,8 +1,8 @@
-import { AlloyComponent, Behaviour, Focusing, FormField, Receiving, SketchSpec, Tabstopping } from '@hugemce/alloy';
-import { Dialog } from '@hugemce/bridge';
-import { Cell, Fun, Optional, Optionals, Throttler, Type } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { Attribute, Class, Compare, SugarElement, Traverse } from '@hugemce/sugar';
+import { AlloyComponent, Behaviour, Focusing, FormField, Receiving, SketchSpec, Tabstopping } from '@ephox/alloy';
+import { Dialog } from '@ephox/bridge';
+import { Cell, Fun, Optional, Optionals, Throttler, Type } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { Attribute, Class, Compare, SugarElement, Traverse } from '@ephox/sugar';
 
 import * as Backstage from '../../backstage/Backstage';
 import * as FieldLabeller from '../alien/FieldLabeller';

@@ -1,6 +1,6 @@
-import { AlloyEvents, InlineViewTypes, ItemTypes, Keying, TieredMenu, TieredMenuTypes } from '@hugemce/alloy';
-import { InlineContent, Menu as BridgeMenu, Toolbar } from '@hugemce/bridge';
-import { Arr, Obj, Optional, Optionals } from '@hugemce/katamari';
+import { AlloyEvents, InlineViewTypes, ItemTypes, Keying, TieredMenu, TieredMenuTypes } from '@ephox/alloy';
+import { InlineContent, Menu as BridgeMenu, Toolbar } from '@ephox/bridge';
+import { Arr, Obj, Optional, Optionals } from '@ephox/katamari';
 
 import { UiFactoryBackstage, UiFactoryBackstageShared } from 'tinymce/themes/silver/backstage/Backstage';
 

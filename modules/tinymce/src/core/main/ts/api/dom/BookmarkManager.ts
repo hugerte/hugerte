@@ -1,4 +1,4 @@
-import { Fun } from '@hugemce/katamari';
+import { Fun } from '@ephox/katamari';
 
 import * as Bookmarks from '../../bookmark/Bookmarks';
 import { Bookmark } from '../../bookmark/BookmarkTypes';

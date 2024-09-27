@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Fun } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr, Fun } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
-import * as Structs from 'hugemce/snooker/api/Structs';
-import * as MergingOperations from 'hugemce/snooker/operate/MergingOperations';
+import * as Structs from 'ephox/snooker/api/Structs';
+import * as MergingOperations from 'ephox/snooker/operate/MergingOperations';
 
 UnitTest.test('MergeOperationsTest', () => {
   const b = Structs.bounds;

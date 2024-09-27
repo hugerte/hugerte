@@ -1,13 +1,13 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { DomEvent, Insert, Remove, SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { DomEvent, Insert, Remove, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
-import { dragnDrop, dropFiles, isDraggable, sDragnDrop, sDropFiles, sDropItems } from 'hugemce/agar/api/DragnDrop';
-import { createFile } from 'hugemce/agar/api/Files';
-import * as GeneralSteps from 'hugemce/agar/api/GeneralSteps';
-import * as Logger from 'hugemce/agar/api/Logger';
-import { Pipeline } from 'hugemce/agar/api/Pipeline';
-import { Step } from 'hugemce/agar/api/Step';
+import { dragnDrop, dropFiles, isDraggable, sDragnDrop, sDropFiles, sDropItems } from 'ephox/agar/api/DragnDrop';
+import { createFile } from 'ephox/agar/api/Files';
+import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
+import * as Logger from 'ephox/agar/api/Logger';
+import { Pipeline } from 'ephox/agar/api/Pipeline';
+import { Step } from 'ephox/agar/api/Step';
 
 UnitTest.test('DragDrop.isDraggable', () => {
   const check = (expected: boolean, html: string) => {

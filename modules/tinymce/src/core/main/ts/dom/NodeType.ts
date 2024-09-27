@@ -1,5 +1,5 @@
-import { Arr, Type } from '@hugemce/katamari';
-import { SugarElement, SugarNode } from '@hugemce/sugar';
+import { Arr, Type } from '@ephox/katamari';
+import { SugarElement, SugarNode } from '@ephox/sugar';
 
 type NullableNode = Node | null | undefined;
 

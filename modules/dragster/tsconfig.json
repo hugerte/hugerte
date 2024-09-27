@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/dragster/test/*": ["src/test/ts/module/hugemce/dragster/test/*"],
-      "hugemce/dragster/demo/*": ["src/demo/ts/hugemce/dragster/demo/*"],
-      "hugemce/dragster/*": ["src/main/ts/hugemce/dragster/*"]
+      "ephox/dragster/test/*": ["src/test/ts/module/ephox/dragster/test/*"],
+      "ephox/dragster/demo/*": ["src/demo/ts/ephox/dragster/demo/*"],
+      "ephox/dragster/*": ["src/main/ts/ephox/dragster/*"]
     }
   },
   "include": [

@@ -1,4 +1,4 @@
-import { Cell } from '@hugemce/katamari';
+import { Cell } from '@ephox/katamari';
 
 import PluginManager from 'tinymce/core/api/PluginManager';
 import { Dialog as DialogType } from 'tinymce/core/api/ui/Ui';

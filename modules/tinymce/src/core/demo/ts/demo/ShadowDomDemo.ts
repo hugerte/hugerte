@@ -1,4 +1,4 @@
-import { Insert, SelectorFind, SugarBody, SugarElement, Value } from '@hugemce/sugar';
+import { Insert, SelectorFind, SugarBody, SugarElement, Value } from '@ephox/sugar';
 
 import { TinyMCE } from 'tinymce/core/api/PublicApi';
 

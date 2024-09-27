@@ -1,8 +1,8 @@
-import { ApproxStructure, Cursors } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { SugarElement, SugarNode } from '@hugemce/sugar';
-import { TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, Cursors } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { SugarElement, SugarNode } from '@ephox/sugar';
+import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

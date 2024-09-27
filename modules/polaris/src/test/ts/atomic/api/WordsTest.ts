@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
 
-import { getWords, WordOptions } from 'hugemce/polaris/words/Words';
+import { getWords, WordOptions } from 'ephox/polaris/words/Words';
 
 UnitTest.test('api.Words.words', () => {
   interface Char {

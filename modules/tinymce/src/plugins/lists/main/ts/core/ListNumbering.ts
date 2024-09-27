@@ -1,4 +1,4 @@
-import { Arr, Optional, Optionals, Strings } from '@hugemce/katamari';
+import { Arr, Optional, Optionals, Strings } from '@ephox/katamari';
 
 export interface ListDetail {
   readonly start: string;

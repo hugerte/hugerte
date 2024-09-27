@@ -1,6 +1,6 @@
-import { Assertions } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { SugarElement } from '@hugemce/sugar';
+import { Assertions } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import * as CaretContainer from 'tinymce/core/caret/CaretContainer';

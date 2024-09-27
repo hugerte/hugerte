@@ -6,9 +6,9 @@ import {
   AlloySpec, AlloyTriggers, Behaviour,
   GuiFactory, Memento,
   RawDomSchema, Replacing, SimpleOrSketchSpec, SketchSpec, Tabstopping, Tooltipping
-} from '@hugemce/alloy';
-import { Dialog, Toolbar } from '@hugemce/bridge';
-import { Fun, Merger, Optional, Type } from '@hugemce/katamari';
+} from '@ephox/alloy';
+import { Dialog, Toolbar } from '@ephox/bridge';
+import { Fun, Merger, Optional, Type } from '@ephox/katamari';
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import * as ReadOnly from '../../ReadOnly';

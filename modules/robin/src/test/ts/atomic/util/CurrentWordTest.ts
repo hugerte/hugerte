@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
 
-import * as CurrentWord from 'hugemce/robin/util/CurrentWord';
+import * as CurrentWord from 'ephox/robin/util/CurrentWord';
 
 UnitTest.test('CurrentWordTest', () => {
   const check = (expected: { before: Optional<number>; after: Optional<number> }, text: string, position: number) => {

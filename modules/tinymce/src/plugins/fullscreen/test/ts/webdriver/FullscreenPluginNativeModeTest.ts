@@ -1,6 +1,6 @@
-import { RealMouse, Waiter } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
-import { TinyHooks } from '@hugemce/wrap-mcagar';
+import { RealMouse, Waiter } from '@ephox/agar';
+import { before, describe, it } from '@ephox/bedrock-client';
+import { TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { getFullscreenElement } from 'tinymce/plugins/fullscreen/core/NativeFullscreen';

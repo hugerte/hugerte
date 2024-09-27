@@ -1,14 +1,14 @@
-import { ApproxStructure, Assertions, Chain, GeneralSteps, Guard, Logger, Step, UiControls, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Future, Result, Singleton } from '@hugemce/katamari';
-import { SugarElement, Value } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Chain, GeneralSteps, Guard, Logger, Step, UiControls, Waiter } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Future, Result, Singleton } from '@ephox/katamari';
+import { SugarElement, Value } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Invalidating } from 'hugemce/alloy/api/behaviour/Invalidating';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Invalidating } from 'ephox/alloy/api/behaviour/Invalidating';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
 
 UnitTest.asynctest('InvalidatingTest', (success, failure) => {
 

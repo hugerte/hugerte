@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Type } from '@hugemce/katamari';
-import { Attribute, Remove, SugarElement } from '@hugemce/sugar';
+import { Arr, Fun, Obj, Type } from '@ephox/katamari';
+import { Attribute, Remove, SugarElement } from '@ephox/sugar';
 
 import Tools from '../api/util/Tools';
 import * as Zwsp from '../text/Zwsp';

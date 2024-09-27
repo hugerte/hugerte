@@ -1,9 +1,9 @@
-import { Arr, Fun, Optional } from '@hugemce/katamari';
-import { DomDescent } from '@hugemce/phoenix';
+import { Arr, Fun, Optional } from '@ephox/katamari';
+import { DomDescent } from '@ephox/phoenix';
 import {
   CellMutations, ResizeBehaviour, RunOperation, TableFill, TableGridSize, TableSection, TableOperations, TableLookup
-} from '@hugemce/snooker';
-import { Attribute, SugarBody, SugarElement, SugarNode } from '@hugemce/sugar';
+} from '@ephox/snooker';
+import { Attribute, SugarBody, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { TableEventData } from 'tinymce/core/api/EventTypes';

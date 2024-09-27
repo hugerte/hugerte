@@ -4,11 +4,11 @@
 
 # Installation
 
-`sugar` is available as an `npm` package. You can install it via the npm package `@hugemce/sugar`
+`sugar` is available as an `npm` package. You can install it via the npm package `@ephox/sugar`
 
 ## Install from npm
 
-`npm install @hugemce/sugar`
+`npm install @ephox/sugar`
 
 # Usage
 
@@ -25,6 +25,6 @@
 
 # Running Tests
 
-`sugar` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run tests. This is packaged as a dev dependency of `sugar`. To run the tests, use:
+`sugar` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run tests. This is packaged as a dev dependency of `sugar`. To run the tests, use:
 
 `$ yarn test`

@@ -1,4 +1,4 @@
-import { Global } from '@hugemce/katamari';
+import { Global } from '@ephox/katamari';
 import Prism from 'prismjs';
 
 import Editor from 'tinymce/core/api/Editor';

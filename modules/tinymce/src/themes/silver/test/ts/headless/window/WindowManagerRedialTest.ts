@@ -1,6 +1,6 @@
-import { Mouse, TestStore, UiFinder, Waiter } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
-import { SugarBody, Value } from '@hugemce/sugar';
+import { Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
+import { before, describe, it } from '@ephox/bedrock-client';
+import { SugarBody, Value } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import { Dialog } from 'tinymce/core/api/ui/Ui';

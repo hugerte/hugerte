@@ -1,13 +1,13 @@
-import { FocusTools, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { FocusTools, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as Memento from 'hugemce/alloy/api/component/Memento';
-import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import { Keying } from 'ephox/alloy/api/behaviour/Keying';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as Memento from 'ephox/alloy/api/component/Memento';
+import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
 
 UnitTest.asynctest('Browser Test: behaviour.KeyingAndFocusingTest', (success, failure) => {
 

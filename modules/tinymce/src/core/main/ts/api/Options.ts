@@ -1,5 +1,5 @@
-import { Arr, Obj, Strings, Type } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
+import { Arr, Obj, Strings, Type } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
 
 import * as Pattern from '../textpatterns/core/Pattern';
 import * as PatternTypes from '../textpatterns/core/PatternTypes';

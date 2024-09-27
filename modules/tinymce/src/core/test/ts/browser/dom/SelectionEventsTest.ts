@@ -1,8 +1,8 @@
-import { Assertions } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Cell, Fun } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Assertions } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Cell, Fun } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
+import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

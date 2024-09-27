@@ -44,7 +44,7 @@
       "tinymce/plugins/visualchars/*": ["src/plugins/visualchars/main/ts/*"],
       "tinymce/plugins/wordcount/*": ["src/plugins/wordcount/main/ts/*"],
 
-      "@hugemce/wrap-mcagar": ["src/core/test/ts/module/McAgar"]
+      "@ephox/wrap-mcagar": ["src/core/test/ts/module/McAgar"]
     }
   },
   "include": [

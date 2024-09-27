@@ -1,5 +1,5 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { SugarDocument, SugarElement, SugarShadowDom } from '@hugemce/sugar';
+import { describe, it } from '@ephox/bedrock-client';
+import { SugarDocument, SugarElement, SugarShadowDom } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import StyleSheetLoader from 'tinymce/core/api/dom/StyleSheetLoader';

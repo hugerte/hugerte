@@ -1,5 +1,5 @@
-import { AlloySpec, Behaviour, ItemWidget, Keying, Memento, Menu, MenuTypes, SimpleOrSketchSpec } from '@hugemce/alloy';
-import { Id, Optional } from '@hugemce/katamari';
+import { AlloySpec, Behaviour, ItemWidget, Keying, Memento, Menu, MenuTypes, SimpleOrSketchSpec } from '@ephox/alloy';
+import { Id, Optional } from '@ephox/katamari';
 
 import { dom as menuDom } from './MenuParts';
 

@@ -1,21 +1,21 @@
-import { ApproxStructure, Assertions, Chain, Mouse, UiControls, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Result } from '@hugemce/katamari';
-import { Class } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Chain, Mouse, UiControls, UiFinder } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Result } from '@ephox/katamari';
+import { Class } from '@ephox/sugar';
 
-import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
-import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
-import * as NativeEvents from 'hugemce/alloy/api/events/NativeEvents';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { FormCoupledInputs } from 'hugemce/alloy/api/ui/FormCoupledInputs';
-import { FormField } from 'hugemce/alloy/api/ui/FormField';
-import { Input } from 'hugemce/alloy/api/ui/Input';
+import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Representing } from 'ephox/alloy/api/behaviour/Representing';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
+import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
+import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { FormCoupledInputs } from 'ephox/alloy/api/ui/FormCoupledInputs';
+import { FormField } from 'ephox/alloy/api/ui/FormField';
+import { Input } from 'ephox/alloy/api/ui/Input';
 
 interface MakeConfig {
   className: string;

@@ -1,4 +1,4 @@
-.hugemce-snooker-resizer-bar {
+.ephox-snooker-resizer-bar {
   background-color: #500;
   opacity: 0.0;
   -webkit-user-select: none;
@@ -7,14 +7,14 @@
   user-select: none;
 }
 
-.hugemce-snooker-resizer-cols {
+.ephox-snooker-resizer-cols {
   cursor: col-resize;
 }
 
-.hugemce-snooker-resizer-rows {
+.ephox-snooker-resizer-rows {
   cursor: row-resize;
 }
 
-.hugemce-snooker-resizer-bar.hugemce-snooker-resizer-bar-dragging {
+.ephox-snooker-resizer-bar.ephox-snooker-resizer-bar-dragging {
   opacity: 0.2;
 }

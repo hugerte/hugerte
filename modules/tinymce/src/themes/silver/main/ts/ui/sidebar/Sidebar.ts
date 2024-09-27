@@ -3,11 +3,11 @@ import {
   Sliding,
   SlotContainer,
   SlotContainerTypes, SystemEvents, Tabstopping
-} from '@hugemce/alloy';
-import { StructureSchema } from '@hugemce/boulder';
-import { Sidebar as BridgeSidebar } from '@hugemce/bridge';
-import { Arr, Cell, Fun, Id, Obj, Optional, Optionals, Type } from '@hugemce/katamari';
-import { Attribute, Css, SugarElement, Width } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { StructureSchema } from '@ephox/boulder';
+import { Sidebar as BridgeSidebar } from '@ephox/bridge';
+import { Arr, Cell, Fun, Id, Obj, Optional, Optionals, Type } from '@ephox/katamari';
+import { Attribute, Css, SugarElement, Width } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { onControlAttached, onControlDetached } from 'tinymce/themes/silver/ui/controls/Controls';

@@ -1,8 +1,8 @@
-import { Keys, Waiter } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
-import { Cell } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Keys, Waiter } from '@ephox/agar';
+import { before, describe, it } from '@ephox/bedrock-client';
+import { Cell } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

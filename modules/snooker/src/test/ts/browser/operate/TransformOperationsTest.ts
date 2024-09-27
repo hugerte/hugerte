@@ -1,14 +1,14 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { SugarElement, SugarNode, TextContent } from '@hugemce/sugar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { SugarElement, SugarNode, TextContent } from '@ephox/sugar';
 import { assert } from 'chai';
 
-import { Generators } from 'hugemce/snooker/api/Generators';
-import * as Structs from 'hugemce/snooker/api/Structs';
-import { TableSection } from 'hugemce/snooker/api/TableSection';
-import * as TransformOperations from 'hugemce/snooker/operate/TransformOperations';
-import * as MockStructs from 'hugemce/snooker/test/MockStructs';
-import TestGenerator from 'hugemce/snooker/test/TestGenerator';
+import { Generators } from 'ephox/snooker/api/Generators';
+import * as Structs from 'ephox/snooker/api/Structs';
+import { TableSection } from 'ephox/snooker/api/TableSection';
+import * as TransformOperations from 'ephox/snooker/operate/TransformOperations';
+import * as MockStructs from 'ephox/snooker/test/MockStructs';
+import TestGenerator from 'ephox/snooker/test/TestGenerator';
 
 UnitTest.test('TransformOperationsTest', () => {
   const originalElements: Structs.ElementNew[] = [];

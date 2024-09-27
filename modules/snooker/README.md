@@ -1,9 +1,9 @@
 # Description
 `snooker` is a project that implements the table model.
 # Installation
-`snooker` is available as an `npm` package.  You can install it via the npm package `@hugemce/snooker`
+`snooker` is available as an `npm` package.  You can install it via the npm package `@ephox/snooker`
 ## Install from npm
-`npm install @hugemce/snooker`
+`npm install @ephox/snooker`
 
 # Usage
 `CellLocation`: The CellLocation ADT is used to represent a cell when navigating.
@@ -23,7 +23,7 @@
 `TableRender`: Creates a table.
 `TableResize`: Provides resize events for the resize bars.
 # Tests
-`snooker` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run tests.
+`snooker` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run tests.
 ## Running Tests
 `$ yarn test-manual`
 `$ yarn test`

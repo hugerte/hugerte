@@ -1,6 +1,6 @@
-import { Mouse } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { TinyAssertions, TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Mouse } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/charmap/Plugin';

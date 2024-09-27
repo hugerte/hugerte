@@ -1,6 +1,6 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Obj, Type } from '@hugemce/katamari';
-import { SugarElement, SugarNode } from '@hugemce/sugar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Obj, Type } from '@ephox/katamari';
+import { SugarElement, SugarNode } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import Schema, { AttributePattern, SchemaElement } from 'tinymce/core/api/html/Schema';

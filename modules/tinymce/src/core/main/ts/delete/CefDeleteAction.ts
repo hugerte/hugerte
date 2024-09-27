@@ -1,5 +1,5 @@
-import { Adt, Fun, Optional, Type } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Adt, Fun, Optional, Type } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import Schema from '../api/html/Schema';
 import { findNextBr, findPreviousBr, isAfterBr, isBeforeBr } from '../caret/CaretBr';

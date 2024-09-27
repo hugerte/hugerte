@@ -1,4 +1,4 @@
-import { Class, Insert, SelectorFind, SugarBody, SugarElement, Value } from '@hugemce/sugar';
+import { Class, Insert, SelectorFind, SugarBody, SugarElement, Value } from '@ephox/sugar';
 
 import { TinyMCE } from 'tinymce/core/api/PublicApi';
 
@@ -10,7 +10,7 @@ export default (): void => {
   textarea.dom.cols = 80;
   Value.set(textarea, '<p>Bolt</p>');
   Class.add(textarea, 'tinymce');
-  const container = SelectorFind.descendant(SugarBody.body(), '#hugemce-ui').getOrDie();
+  const container = SelectorFind.descendant(SugarBody.body(), '#ephox-ui').getOrDie();
   Insert.append(container, textarea);
 
   tinymce.init({

@@ -1,10 +1,10 @@
 # Description
 
-`mcagar` is a [`tinymce`](https://www.npmjs.com/package/tinymce) specific wrapping of [`agar`](https://www.npmjs.com/package/@hugemce/agar)'s testing infrastructure. It is only a collection of modules.
+`mcagar` is a [`tinymce`](https://www.npmjs.com/package/tinymce) specific wrapping of [`agar`](https://www.npmjs.com/package/@ephox/agar)'s testing infrastructure. It is only a collection of modules.
 
 # Installation
 
-`mcagar` is available as an `npm` package. You can install it via the npm package `@hugemce/mcagar`
+`mcagar` is available as an `npm` package. You can install it via the npm package `@ephox/mcagar`
 
 # Installation for development
 
@@ -12,7 +12,7 @@ You need to use `yarn` to install the mcagar devDependencies since `npm` doesn't
 
 ## Install from npm
 
-`npm install @hugemce/mcagar`
+`npm install @ephox/mcagar`
 
 # Usage
 
@@ -24,7 +24,7 @@ Pipeline modules are an in-house testing framework that relies on Agar Step and 
 
 # Running tests
 
-The tests can be run using `bedrock` via `yarn test`. Note, this will only run the tests on Chrome and will require `chromedriver`. You can use `bedrock` directly to test on other browsers. See [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) for more details.
+The tests can be run using `bedrock` via `yarn test`. Note, this will only run the tests on Chrome and will require `chromedriver`. You can use `bedrock` directly to test on other browsers. See [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) for more details.
 
 To run the tests on Chrome:
 

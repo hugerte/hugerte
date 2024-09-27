@@ -1,4 +1,4 @@
-import { Arr, Type } from '@hugemce/katamari';
+import { Arr, Type } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import AstNode from 'tinymce/core/api/html/Node';

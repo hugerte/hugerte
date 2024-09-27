@@ -1,11 +1,11 @@
-import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { Assert, context, describe, it } from '@hugemce/bedrock-client';
+import { ApproxStructure, Assertions } from '@ephox/agar';
+import { Assert, context, describe, it } from '@ephox/bedrock-client';
 
-import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { HtmlSelect } from 'hugemce/alloy/api/ui/HtmlSelect';
+import { Representing } from 'ephox/alloy/api/behaviour/Representing';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { HtmlSelect } from 'ephox/alloy/api/ui/HtmlSelect';
 
 describe('HtmlSelectTest', () => {
   const simpleAssert = (label: string, expected: any, component: AlloyComponent) =>

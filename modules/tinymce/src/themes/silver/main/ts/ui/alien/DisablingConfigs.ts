@@ -1,4 +1,4 @@
-import { Disabling } from '@hugemce/alloy';
+import { Disabling } from '@ephox/alloy';
 
 type DisablingBehaviour = ReturnType<typeof Disabling['config']>;
 

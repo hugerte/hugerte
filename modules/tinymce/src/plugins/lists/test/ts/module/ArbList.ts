@@ -1,4 +1,4 @@
-import { Arr } from '@hugemce/katamari';
+import { Arr } from '@ephox/katamari';
 import * as fc from 'fast-check';
 
 interface ArbTextNode {

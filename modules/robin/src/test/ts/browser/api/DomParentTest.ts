@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Fun, Optional } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
-import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr, Fun, Optional } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
+import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from '@ephox/sugar';
 
-import * as DomParent from 'hugemce/robin/api/dom/DomParent';
+import * as DomParent from 'ephox/robin/api/dom/DomParent';
 
 UnitTest.test(
   'DomParentTest',

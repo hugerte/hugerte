@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@hugemce/katamari';
+import { Arr, Fun } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

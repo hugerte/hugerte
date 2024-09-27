@@ -1,4 +1,4 @@
-import { NodeTypes } from '@hugemce/sugar';
+import { NodeTypes } from '@ephox/sugar';
 
 import * as Spot from './Spot';
 

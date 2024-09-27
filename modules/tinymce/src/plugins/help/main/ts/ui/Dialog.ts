@@ -1,4 +1,4 @@
-import { Arr, Id, Obj, Optional, Optionals, Type } from '@hugemce/katamari';
+import { Arr, Id, Obj, Optional, Optionals, Type } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Dialog } from 'tinymce/core/api/ui/Ui';

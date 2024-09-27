@@ -1,21 +1,21 @@
-import { ApproxStructure, Assertions, Chain, FocusTools, Keyboard, Keys, Logger, Mouse, Step, StructAssert, UiFinder, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Fun, Result } from '@hugemce/katamari';
-import { SelectorFind } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Chain, FocusTools, Keyboard, Keys, Logger, Mouse, Step, StructAssert, UiFinder, Waiter } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr, Fun, Result } from '@ephox/katamari';
+import { SelectorFind } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
-import { Positioning } from 'hugemce/alloy/api/behaviour/Positioning';
-import { Receiving } from 'hugemce/alloy/api/behaviour/Receiving';
-import { Replacing } from 'hugemce/alloy/api/behaviour/Replacing';
-import { Tooltipping } from 'hugemce/alloy/api/behaviour/Tooltipping';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as Memento from 'hugemce/alloy/api/component/Memento';
-import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import { Keying } from 'ephox/alloy/api/behaviour/Keying';
+import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
+import { Receiving } from 'ephox/alloy/api/behaviour/Receiving';
+import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
+import { Tooltipping } from 'ephox/alloy/api/behaviour/Tooltipping';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as Memento from 'ephox/alloy/api/component/Memento';
+import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
 
 UnitTest.asynctest('Tooltipping Behaviour', (success, failure) => {
 

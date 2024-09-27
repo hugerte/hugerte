@@ -1,21 +1,21 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, Touch, UiFinder, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Fun, Future, Optional, Result } from '@hugemce/katamari';
-import { Attribute } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, Touch, UiFinder, Waiter } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Attribute } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Positioning } from 'hugemce/alloy/api/behaviour/Positioning';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as Memento from 'hugemce/alloy/api/component/Memento';
-import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
-import * as SystemEvents from 'hugemce/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
-import { SplitDropdown } from 'hugemce/alloy/api/ui/SplitDropdown';
-import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
-import { TestItem } from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as Memento from 'ephox/alloy/api/component/Memento';
+import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
+import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
+import { SplitDropdown } from 'ephox/alloy/api/ui/SplitDropdown';
+import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
+import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
 
 UnitTest.asynctest('SplitDropdown List', (success, failure) => {
 

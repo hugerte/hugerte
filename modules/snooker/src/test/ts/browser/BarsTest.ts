@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { Attribute, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { Attribute, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
-import { ResizeWire } from 'hugemce/snooker/api/ResizeWire';
-import * as Bars from 'hugemce/snooker/resize/Bars';
+import { ResizeWire } from 'ephox/snooker/api/ResizeWire';
+import * as Bars from 'ephox/snooker/resize/Bars';
 
 const resizeAttribute = 'data-snooker-resize';
 const isResizable = (elm: SugarElement<Element>) => Attribute.get(elm, resizeAttribute) !== 'false';

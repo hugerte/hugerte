@@ -1,13 +1,13 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Insert from 'hugemce/sugar/api/dom/Insert';
-import * as Remove from 'hugemce/sugar/api/dom/Remove';
-import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as Alignment from 'hugemce/sugar/api/properties/Alignment';
-import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
-import * as Traverse from 'hugemce/sugar/api/search/Traverse';
-import EphoxElement from 'hugemce/sugar/test/EphoxElement';
+import * as Insert from 'ephox/sugar/api/dom/Insert';
+import * as Remove from 'ephox/sugar/api/dom/Remove';
+import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as Alignment from 'ephox/sugar/api/properties/Alignment';
+import * as Attribute from 'ephox/sugar/api/properties/Attribute';
+import * as Traverse from 'ephox/sugar/api/search/Traverse';
+import EphoxElement from 'ephox/sugar/test/EphoxElement';
 
 UnitTest.test('AlignmentTest', () => {
   const body = SugarBody.body();

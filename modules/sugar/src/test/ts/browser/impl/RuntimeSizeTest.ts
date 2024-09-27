@@ -1,17 +1,17 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Fun } from '@hugemce/katamari';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr, Fun } from '@ephox/katamari';
 import { assert } from 'chai';
 
-import * as Insert from 'hugemce/sugar/api/dom/Insert';
-import * as InsertAll from 'hugemce/sugar/api/dom/InsertAll';
-import * as Remove from 'hugemce/sugar/api/dom/Remove';
-import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
-import * as Css from 'hugemce/sugar/api/properties/Css';
-import * as Html from 'hugemce/sugar/api/properties/Html';
-import * as SelectorFilter from 'hugemce/sugar/api/search/SelectorFilter';
-import * as RuntimeSize from 'hugemce/sugar/impl/RuntimeSize';
+import * as Insert from 'ephox/sugar/api/dom/Insert';
+import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
+import * as Remove from 'ephox/sugar/api/dom/Remove';
+import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as Attribute from 'ephox/sugar/api/properties/Attribute';
+import * as Css from 'ephox/sugar/api/properties/Css';
+import * as Html from 'ephox/sugar/api/properties/Html';
+import * as SelectorFilter from 'ephox/sugar/api/search/SelectorFilter';
+import * as RuntimeSize from 'ephox/sugar/impl/RuntimeSize';
 
 interface TableModel {
   readonly total: number;

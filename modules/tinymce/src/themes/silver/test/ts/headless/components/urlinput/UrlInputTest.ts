@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder, Waiter } from '@hugemce/agar';
-import { Container, Disabling, Focusing, GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
-import { beforeEach, describe, it } from '@hugemce/bedrock-client';
-import { Future, Optional } from '@hugemce/katamari';
-import { Attribute, SelectorFind, SugarDocument, Value } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder, Waiter } from '@ephox/agar';
+import { Container, Disabling, Focusing, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { beforeEach, describe, it } from '@ephox/bedrock-client';
+import { Future, Optional } from '@ephox/katamari';
+import { Attribute, SelectorFind, SugarDocument, Value } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import { ApiUrlData } from 'tinymce/themes/silver/backstage/UrlInputBackstage';

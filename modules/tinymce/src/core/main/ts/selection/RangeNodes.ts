@@ -1,4 +1,4 @@
-import { Num } from '@hugemce/katamari';
+import { Num } from '@ephox/katamari';
 
 import * as NodeType from '../dom/NodeType';
 

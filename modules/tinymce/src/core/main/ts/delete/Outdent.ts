@@ -1,5 +1,5 @@
-import { Optional } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Optional } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import * as BlockBoundary from '../caret/BlockBoundary';

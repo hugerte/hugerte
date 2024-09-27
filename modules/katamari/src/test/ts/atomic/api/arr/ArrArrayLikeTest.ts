@@ -1,8 +1,8 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Arr from 'hugemce/katamari/api/Arr';
-import { assertSome } from 'hugemce/katamari/test/AssertOptional';
+import * as Arr from 'ephox/katamari/api/Arr';
+import { assertSome } from 'ephox/katamari/test/AssertOptional';
 
 const arrayLike: ArrayLike<number> = {
   length: 6,

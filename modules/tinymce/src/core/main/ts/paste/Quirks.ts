@@ -1,4 +1,4 @@
-import { Transformations } from '@hugemce/acid';
+import { Transformations } from '@ephox/acid';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';

@@ -1,11 +1,11 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 import { assert } from 'chai';
 
-import { createFile } from 'hugemce/agar/api/Files';
-import { createDataTransfer, getDragImage } from 'hugemce/agar/datatransfer/DataTransfer';
-import { setProtectedMode, setReadOnlyMode } from 'hugemce/agar/datatransfer/Mode';
+import { createFile } from 'ephox/agar/api/Files';
+import { createDataTransfer, getDragImage } from 'ephox/agar/datatransfer/DataTransfer';
+import { setProtectedMode, setReadOnlyMode } from 'ephox/agar/datatransfer/Mode';
 
 describe('DataTransfer', () => {
   it('DataTransfer: setEffects', () => {

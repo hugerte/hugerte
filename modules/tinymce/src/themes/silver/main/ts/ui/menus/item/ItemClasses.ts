@@ -1,5 +1,5 @@
-import { Toolbar } from '@hugemce/bridge';
-import { Obj } from '@hugemce/katamari';
+import { Toolbar } from '@ephox/bridge';
+import { Obj } from '@ephox/katamari';
 
 const navClass = 'tox-menu-nav__js';
 const selectableClass = 'tox-collection__item';

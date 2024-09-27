@@ -1,4 +1,4 @@
-import { Singleton } from '@hugemce/katamari';
+import { Singleton } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Toolbar, Menu } from 'tinymce/core/api/ui/Ui';

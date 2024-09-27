@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Optional } from '@hugemce/katamari';
-import { Insert, InsertAll, Remove, SelectorFilter, SelectorFind, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr, Optional } from '@ephox/katamari';
+import { Insert, InsertAll, Remove, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
-import * as TablePositions from 'hugemce/snooker/api/TablePositions';
+import * as TablePositions from 'ephox/snooker/api/TablePositions';
 
 UnitTest.test('RectangularTest', () => {
   const body = SelectorFind.first('body').getOrDie();

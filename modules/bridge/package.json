@@ -1,5 +1,5 @@
 {
-  "name": "@hugemce/bridge",
+  "name": "@ephox/bridge",
   "version": "4.7.1",
   "description": "Ui API for TinyMCE 5",
   "repository": {
@@ -14,8 +14,8 @@
     "lint": "eslint --config ../../.eslintrc.json src/**/*.ts"
   },
   "dependencies": {
-    "@hugemce/boulder": "^7.1.6",
-    "@hugemce/katamari": "^9.1.6"
+    "@ephox/boulder": "^7.1.6",
+    "@ephox/katamari": "^9.1.6"
   },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "tsconfig.json",
     "README.md"
   ],
-  "main": "./lib/main/ts/hugemce/bridge/api/Main.js",
-  "module": "./lib/main/ts/hugemce/bridge/api/Main.js",
-  "types": "./lib/main/ts/hugemce/bridge/api/Main.d.ts"
+  "main": "./lib/main/ts/ephox/bridge/api/Main.js",
+  "module": "./lib/main/ts/ephox/bridge/api/Main.js",
+  "types": "./lib/main/ts/ephox/bridge/api/Main.d.ts"
 }

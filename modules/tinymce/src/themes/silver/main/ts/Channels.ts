@@ -1,4 +1,4 @@
-import { Fun, Id } from '@hugemce/katamari';
+import { Fun, Id } from '@ephox/katamari';
 
 const toolbarHeightChange = Fun.constant(Id.generate('toolbar-height-change'));
 

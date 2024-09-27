@@ -1,7 +1,7 @@
-import { Clipboard, Waiter } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Singleton } from '@hugemce/katamari';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Clipboard, Waiter } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Singleton } from '@ephox/katamari';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

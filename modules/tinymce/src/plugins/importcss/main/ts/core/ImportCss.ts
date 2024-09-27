@@ -1,4 +1,4 @@
-import { Type } from '@hugemce/katamari';
+import { Type } from '@ephox/katamari';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import Editor from 'tinymce/core/api/Editor';
@@ -26,7 +26,7 @@ export interface Group extends UserDefinedGroup {
   readonly filter: Filter | undefined;
 }
 
-const internalEditorStyle = /^\.(?:hugemce|tiny-pageembed|mce)(?:[.-]+\w+)+$/;
+const internalEditorStyle = /^\.(?:ephox|tiny-pageembed|mce)(?:[.-]+\w+)+$/;
 
 const removeCacheSuffix = (url: string | null): string | null => {
   const cacheSuffix = Env.cacheSuffix;

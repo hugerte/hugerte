@@ -1,14 +1,14 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Obj } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr, Obj } from '@ephox/katamari';
 
-import * as InsertAll from 'hugemce/sugar/api/dom/InsertAll';
-import * as Remove from 'hugemce/sugar/api/dom/Remove';
-import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as SugarNode from 'hugemce/sugar/api/node/SugarNode';
-import * as Html from 'hugemce/sugar/api/properties/Html';
-import { SimSelection } from 'hugemce/sugar/api/selection/SimSelection';
-import * as WindowSelection from 'hugemce/sugar/api/selection/WindowSelection';
+import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
+import * as Remove from 'ephox/sugar/api/dom/Remove';
+import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
+import * as Html from 'ephox/sugar/api/properties/Html';
+import { SimSelection } from 'ephox/sugar/api/selection/SimSelection';
+import * as WindowSelection from 'ephox/sugar/api/selection/WindowSelection';
 
 UnitTest.test('Browser Test: SelectionTest', () => {
   const p1 = SugarElement.fromHtml('<p>This is the <strong>first</strong> paragraph</p>');

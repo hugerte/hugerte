@@ -1,14 +1,14 @@
-import { FocusTools, Keyboard, Keys, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
+import { FocusTools, Keyboard, Keys, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
-import { Tabstopping } from 'hugemce/alloy/api/behaviour/Tabstopping';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import { Keying } from 'ephox/alloy/api/behaviour/Keying';
+import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
 
 UnitTest.asynctest('Browser Test: behaviour.keying.AcyclicKeyingTest', (success, failure) => {
 

@@ -1,8 +1,8 @@
-import { FocusTools, Keys, Mouse } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
-import { Obj } from '@hugemce/katamari';
-import { SugarBody, SugarDocument } from '@hugemce/sugar';
-import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { FocusTools, Keys, Mouse } from '@ephox/agar';
+import { before, describe, it } from '@ephox/bedrock-client';
+import { Obj } from '@ephox/katamari';
+import { SugarBody, SugarDocument } from '@ephox/sugar';
+import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/help/Plugin';

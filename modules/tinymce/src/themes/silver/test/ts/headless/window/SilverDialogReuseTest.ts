@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, StructAssert, TestStore, UiFinder } from '@hugemce/agar';
-import { afterEach, before, describe, it } from '@hugemce/bedrock-client';
-import { Dialog as BridgeSpec } from '@hugemce/bridge';
-import { Optional } from '@hugemce/katamari';
-import { SugarBody, SugarDocument } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, FocusTools, StructAssert, TestStore, UiFinder } from '@ephox/agar';
+import { afterEach, before, describe, it } from '@ephox/bedrock-client';
+import { Dialog as BridgeSpec } from '@ephox/bridge';
+import { Optional } from '@ephox/katamari';
+import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import { Dialog } from 'tinymce/core/api/ui/Ui';

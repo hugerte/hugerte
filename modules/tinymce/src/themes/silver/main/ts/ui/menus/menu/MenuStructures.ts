@@ -1,5 +1,5 @@
-import { AlloySpec, ItemTypes, Menu as AlloyMenu, RawDomSchema, SimpleSpec } from '@hugemce/alloy';
-import { Arr, Fun, Id, Obj } from '@hugemce/katamari';
+import { AlloySpec, ItemTypes, Menu as AlloyMenu, RawDomSchema, SimpleSpec } from '@ephox/alloy';
+import { Arr, Fun, Id, Obj } from '@ephox/katamari';
 
 import I18n from 'tinymce/core/api/util/I18n';
 

@@ -1,5 +1,5 @@
-import { Arr, Obj, Optional } from '@hugemce/katamari';
-import { Remove, SugarElement, SugarNode } from '@hugemce/sugar';
+import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Remove, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as AnnotationChanges from '../annotate/AnnotationChanges';
 import * as AnnotationFilter from '../annotate/AnnotationFilter';

@@ -1,15 +1,15 @@
-import { FocusTools, GeneralSteps, Keyboard, Keys, Log, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Focus, SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
+import { FocusTools, GeneralSteps, Keyboard, Keys, Log, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Focus, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { FocusInsideModes } from 'hugemce/alloy/keying/KeyingModeTypes';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import { Keying } from 'ephox/alloy/api/behaviour/Keying';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { FocusInsideModes } from 'ephox/alloy/keying/KeyingModeTypes';
 
 UnitTest.asynctest('Focus Modes Test', (success, failure) => {
 

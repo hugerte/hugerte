@@ -1,7 +1,7 @@
-import { Waiter } from '@hugemce/agar';
-import { Type } from '@hugemce/katamari';
-import { Height, SugarElement, SugarLocation, Width } from '@hugemce/sugar';
-import { TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Waiter } from '@ephox/agar';
+import { Type } from '@ephox/katamari';
+import { Height, SugarElement, SugarLocation, Width } from '@ephox/sugar';
+import { TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

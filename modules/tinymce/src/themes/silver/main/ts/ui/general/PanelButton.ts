@@ -1,8 +1,8 @@
 import {
   AlloyComponent, AlloySpec, Behaviour, Dropdown as AlloyDropdown, Layouts, RawDomSchema, SketchSpec, Tabstopping, Unselecting
-} from '@hugemce/alloy';
-import { Menu, Toolbar } from '@hugemce/bridge';
-import { Fun, Future, Id, Merger, Optional } from '@hugemce/katamari';
+} from '@ephox/alloy';
+import { Menu, Toolbar } from '@ephox/bridge';
+import { Fun, Future, Id, Merger, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstageShared } from '../../backstage/Backstage';
 import * as ReadOnly from '../../ReadOnly';

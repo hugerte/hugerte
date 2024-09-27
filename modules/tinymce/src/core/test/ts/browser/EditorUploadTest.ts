@@ -1,6 +1,6 @@
-import { afterEach, before, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { LegacyUnit, TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';
+import { afterEach, before, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { LegacyUnit, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

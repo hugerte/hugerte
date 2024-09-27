@@ -1,6 +1,6 @@
-import { AlloyComponent, Behaviour, Button as AlloyButton, GuiFactory, Memento, Replacing, SimpleOrSketchSpec } from '@hugemce/alloy';
-import { Optional } from '@hugemce/katamari';
-import { Attribute, Class } from '@hugemce/sugar';
+import { AlloyComponent, Behaviour, Button as AlloyButton, GuiFactory, Memento, Replacing, SimpleOrSketchSpec } from '@ephox/alloy';
+import { Optional } from '@ephox/katamari';
+import { Attribute, Class } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { renderReplaceableIconFromPack } from '../button/ButtonSlices';

@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Type } from '@hugemce/katamari';
+import { Arr, Obj, Optional, Type } from '@ephox/katamari';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import EditorSelection from 'tinymce/core/api/dom/Selection';

@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, UiFinder, Waiter } from '@hugemce/agar';
-import { before, context, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { SugarBody } from '@hugemce/sugar';
-import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, Assertions, UiFinder, Waiter } from '@ephox/agar';
+import { before, context, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { SugarBody } from '@ephox/sugar';
+import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import AdvListPlugin from 'tinymce/plugins/advlist/Plugin';

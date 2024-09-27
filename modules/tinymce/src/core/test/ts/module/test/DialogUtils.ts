@@ -1,4 +1,4 @@
-import { Dialog } from '@hugemce/bridge';
+import { Dialog } from '@ephox/bridge';
 
 import Editor from 'tinymce/core/api/Editor';
 import { WindowParams } from 'tinymce/core/api/WindowManager';

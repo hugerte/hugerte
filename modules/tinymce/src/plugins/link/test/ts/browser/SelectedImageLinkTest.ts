@@ -1,7 +1,7 @@
-import { FocusTools, UiFinder } from '@hugemce/agar';
-import { describe, it, before, after } from '@hugemce/bedrock-client';
-import { SugarBody, SugarDocument } from '@hugemce/sugar';
-import { TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { FocusTools, UiFinder } from '@ephox/agar';
+import { describe, it, before, after } from '@ephox/bedrock-client';
+import { SugarBody, SugarDocument } from '@ephox/sugar';
+import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/link/Plugin';

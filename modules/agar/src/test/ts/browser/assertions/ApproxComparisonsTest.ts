@@ -1,7 +1,7 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as ApproxComparisons from 'hugemce/agar/assertions/ApproxComparisons';
+import * as ApproxComparisons from 'ephox/agar/assertions/ApproxComparisons';
 
 describe('browser.agar.assertions.ApproxComparisonsTest', () => {
 

@@ -1,6 +1,6 @@
-import { AlloyComponent, Disabling, ItemTypes, Toggling } from '@hugemce/alloy';
-import { Menu } from '@hugemce/bridge';
-import { Merger, Optional } from '@hugemce/katamari';
+import { AlloyComponent, Disabling, ItemTypes, Toggling } from '@ephox/alloy';
+import { Menu } from '@ephox/bridge';
+import { Merger, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from 'tinymce/themes/silver/backstage/Backstage';
 

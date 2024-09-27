@@ -1,5 +1,5 @@
-import { afterEach, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Fun } from '@hugemce/katamari';
+import { afterEach, describe, it } from '@ephox/bedrock-client';
+import { Arr, Fun } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

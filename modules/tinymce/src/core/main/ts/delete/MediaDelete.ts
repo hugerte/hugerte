@@ -1,5 +1,5 @@
-import { Optional, Type } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Optional, Type } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import { isAfterMedia, isBeforeMedia } from '../caret/CaretPositionPredicates';

@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Type } from '@hugemce/katamari';
+import { Arr, Fun, Obj, Optional, Type } from '@ephox/katamari';
 
 import { AddOnConstructor } from '../api/AddOnManager';
 import DOMUtils from '../api/dom/DOMUtils';

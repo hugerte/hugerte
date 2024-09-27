@@ -1,6 +1,6 @@
-import { DragnDrop, UiFinder } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { McEditor, TinyAssertions, TinyDom, TinySelections } from '@hugemce/wrap-mcagar';
+import { DragnDrop, UiFinder } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { McEditor, TinyAssertions, TinyDom, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

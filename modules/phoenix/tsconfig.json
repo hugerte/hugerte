@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/phoenix/test/*": ["src/test/ts/module/hugemce/phoenix/test/*"],
-      "hugemce/phoenix/demo/*": ["src/demo/ts/hugemce/phoenix/demo/*"],
-      "hugemce/phoenix/*": ["src/main/ts/hugemce/phoenix/*"]
+      "ephox/phoenix/test/*": ["src/test/ts/module/ephox/phoenix/test/*"],
+      "ephox/phoenix/demo/*": ["src/demo/ts/ephox/phoenix/demo/*"],
+      "ephox/phoenix/*": ["src/main/ts/ephox/phoenix/*"]
     }
   },
   "include": [

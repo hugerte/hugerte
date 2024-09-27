@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as PositionArray from 'hugemce/polaris/api/PositionArray';
-import * as Parrays from 'hugemce/polaris/test/Parrays';
+import * as PositionArray from 'ephox/polaris/api/PositionArray';
+import * as Parrays from 'ephox/polaris/test/Parrays';
 
 UnitTest.test('api.PositionArray.translate', () => {
   const check = (expected: string[], input: string[], offset: number) => {

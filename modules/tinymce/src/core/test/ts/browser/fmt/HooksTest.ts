@@ -1,5 +1,5 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { LegacyUnit, TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { LegacyUnit, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import * as Hooks from 'tinymce/core/fmt/Hooks';

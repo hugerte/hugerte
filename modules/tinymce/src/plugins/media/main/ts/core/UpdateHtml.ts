@@ -1,4 +1,4 @@
-import { Type } from '@hugemce/katamari';
+import { Type } from '@ephox/katamari';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import AstNode from 'tinymce/core/api/html/Node';
@@ -42,7 +42,7 @@ const updateHtml = (html: string, data: Partial<MediaData>, updateAll?: boolean,
     if (node.type === 1) {
       const name = node.name;
 
-      if (node.attr('data-hugemce-embed-iri')) {
+      if (node.attr('data-ephox-embed-iri')) {
         updateEphoxEmbed(data, node);
         // Don't continue to update if we find an EME embed
         break;

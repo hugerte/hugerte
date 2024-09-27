@@ -1,9 +1,9 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Obj } from '@hugemce/katamari';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Obj } from '@ephox/katamari';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Transformations from 'hugemce/acid/api/colour/Transformations';
+import * as Transformations from 'ephox/acid/api/colour/Transformations';
 
 describe('TransformationsTest', () => {
   context('anyToHex', () => {

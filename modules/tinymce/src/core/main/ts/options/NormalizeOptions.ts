@@ -1,5 +1,5 @@
-import { Arr, Fun, Merger, Obj, Strings, Type } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
+import { Arr, Fun, Merger, Obj, Strings, Type } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
 
 import { NormalizedEditorOptions, RawEditorOptions } from '../api/OptionTypes';
 import Tools from '../api/util/Tools';

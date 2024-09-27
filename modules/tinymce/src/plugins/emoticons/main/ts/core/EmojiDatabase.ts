@@ -1,4 +1,4 @@
-import { Merger, Obj, Optional, Singleton, Strings } from '@hugemce/katamari';
+import { Merger, Obj, Optional, Singleton, Strings } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import Resource from 'tinymce/core/api/Resource';

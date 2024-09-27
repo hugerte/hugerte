@@ -1,6 +1,6 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Fun, Obj } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Fun, Obj } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
 import Env from 'tinymce/core/api/Env';

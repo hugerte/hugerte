@@ -1,7 +1,7 @@
-import { Waiter } from '@hugemce/agar';
-import { DataTransferMode } from '@hugemce/dragster';
-import { Arr, Cell, Singleton, Type } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
+import { Waiter } from '@ephox/agar';
+import { DataTransferMode } from '@ephox/dragster';
+import { Arr, Cell, Singleton, Type } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
 import { PastePostProcessEvent, PastePreProcessEvent } from 'tinymce/core/api/EventTypes';

@@ -1,5 +1,5 @@
-import { Fun } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Fun } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

@@ -5,11 +5,11 @@
 
 # Installation
 
-`jax` is available as an `npm` package. You can install it via the npm package `@hugemce/jax`
+`jax` is available as an `npm` package. You can install it via the npm package `@ephox/jax`
 
 ## Install from npm
 
-`npm install @hugemce/jax`.
+`npm install @ephox/jax`.
 
 # Using the API
 
@@ -22,9 +22,9 @@ Response Types: json, blob, text, html, xml
 
 In addition, `credentials` can be sent with the request. More information can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials).
 
-The `hugemce.jax.api.Ajax` APIs provide the various methods for making AJAX requests. They all return a `LazyValue` (see [katamari](https://www.npmjs.com/package/@hugemce/katamari)) which is a promise-like data structure with `get`, `map`, and `isReady` functions. The APIs also take an additional parameter at the end for any custom request headers, which defaults to `{}` if it is not provided.
+The `ephox.jax.api.Ajax` APIs provide the various methods for making AJAX requests. They all return a `LazyValue` (see [katamari](https://www.npmjs.com/package/@ephox/katamari)) which is a promise-like data structure with `get`, `map`, and `isReady` functions. The APIs also take an additional parameter at the end for any custom request headers, which defaults to `{}` if it is not provided.
 
-`ContentType`, `ResponseType`, and `Credentials` are specified using the constructors inside `hugemce.jax.api.ContentType`, `hugemce.jax.api.ResponseType`, and `hugemce.jax.api.Credentials` respectively.
+`ContentType`, `ResponseType`, and `Credentials` are specified using the constructors inside `ephox.jax.api.ContentType`, `ephox.jax.api.ResponseType`, and `ephox.jax.api.Credentials` respectively.
 
 ## GET Requests
 
@@ -124,4 +124,4 @@ Ajax.get(
 
 `$ yarn test`
 
-These tests require [bedrock](https://www.npmjs.com/package/@hugemce/bedrock) and chrome.
+These tests require [bedrock](https://www.npmjs.com/package/@ephox/bedrock) and chrome.

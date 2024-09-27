@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@hugemce/agar';
-import { GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { after, before, describe, it } from '@hugemce/bedrock-client';
-import { Fun, Id, Optional } from '@hugemce/katamari';
-import { SugarDocument } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
+import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { after, before, describe, it } from '@ephox/bedrock-client';
+import { Fun, Id, Optional } from '@ephox/katamari';
+import { SugarDocument } from '@ephox/sugar';
 
 import I18n from 'tinymce/core/api/util/I18n';
 import { renderMenuButton } from 'tinymce/themes/silver/ui/button/MenuButton';

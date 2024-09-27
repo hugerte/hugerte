@@ -1,8 +1,8 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import { Rect } from 'hugemce/sugar/api/selection/Rect';
+import { Rect } from 'ephox/sugar/api/selection/Rect';
 
 UnitTest.test('Rect', () => {
   fc.assert(fc.property(

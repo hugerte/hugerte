@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Gene, TestUniverse } from '@hugemce/boss';
-import { Arr } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Gene, TestUniverse } from '@ephox/boss';
+import { Arr } from '@ephox/katamari';
 
-import * as Simplify from 'hugemce/robin/pathway/Simplify';
+import * as Simplify from 'ephox/robin/pathway/Simplify';
 
 UnitTest.test('SimplifyTest', () => {
   const doc = TestUniverse(Gene('root', 'root', [

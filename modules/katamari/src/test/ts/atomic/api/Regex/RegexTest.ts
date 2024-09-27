@@ -1,7 +1,7 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Regex from 'hugemce/katamari/api/Regex';
+import * as Regex from 'ephox/katamari/api/Regex';
 
 describe('Regex', () => {
   it('escape', () => {

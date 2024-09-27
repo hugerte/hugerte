@@ -1,7 +1,7 @@
-import { Clipboard, Waiter } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Arr, Obj } from '@hugemce/katamari';
-import { McEditor, TinyAssertions, TinyDom } from '@hugemce/wrap-mcagar';
+import { Clipboard, Waiter } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Arr, Obj } from '@ephox/katamari';
+import { McEditor, TinyAssertions, TinyDom } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { RawEditorOptions } from 'tinymce/core/api/OptionTypes';

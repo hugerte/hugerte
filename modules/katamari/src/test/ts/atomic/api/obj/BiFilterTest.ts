@@ -1,10 +1,10 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Arr from 'hugemce/katamari/api/Arr';
-import * as Fun from 'hugemce/katamari/api/Fun';
-import * as Obj from 'hugemce/katamari/api/Obj';
+import * as Arr from 'ephox/katamari/api/Arr';
+import * as Fun from 'ephox/katamari/api/Fun';
+import * as Obj from 'ephox/katamari/api/Obj';
 
 describe('atomic.katamari.api.obj.BiFilterTest', () => {
 

@@ -1,4 +1,4 @@
-import { Cell } from '@hugemce/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { PastePlainTextToggleEvent } from 'tinymce/core/api/EventTypes';

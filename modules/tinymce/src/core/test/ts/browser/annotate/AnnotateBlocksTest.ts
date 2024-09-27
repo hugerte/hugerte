@@ -1,8 +1,8 @@
-import { Cursors, Waiter } from '@hugemce/agar';
-import { before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Obj } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Cursors, Waiter } from '@ephox/agar';
+import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Obj } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';
@@ -195,7 +195,7 @@ describe('browser.tinymce.core.annotate.AnnotateBlocksTest', () => {
   const iframeMediaEmbedHtml = (withAnnotation: boolean) => (
     `<div
       style="left: 0px; width: 100%; height: 0px; position: relative; padding-bottom: 56.25%; max-width: 650px;"
-      data-hugemce-embed-iri="https://www.youtube.com/watch?v=8aGhZQkoFbQ"
+      data-ephox-embed-iri="https://www.youtube.com/watch?v=8aGhZQkoFbQ"
       contenteditable="false"${withAnnotation ? ' ' + expectedBlockAnnotationAttrs() : ''}>` +
     '<iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/8aGhZQkoFbQ?rel=0" scrolling="no" allowfullscreen="allowfullscreen"></iframe>' +
     '</div>'
@@ -203,7 +203,7 @@ describe('browser.tinymce.core.annotate.AnnotateBlocksTest', () => {
   const videoMediaEmbedHtml = (withAnnotation: boolean) => (
     `<div
       style="max-width: 650px;"
-      data-hugemce-embed-iri="custom/video.mp4"
+      data-ephox-embed-iri="custom/video.mp4"
       contenteditable="false"${withAnnotation ? ' ' + expectedBlockAnnotationAttrs() : ''}>` +
     '<video style="width: 100%;" controls="controls">' +
     '<source src="custom/video.mp4" type="video/mp4">' +
@@ -213,7 +213,7 @@ describe('browser.tinymce.core.annotate.AnnotateBlocksTest', () => {
   const audioMediaEmbedHtml = (withAnnotation: boolean) => (
     `<div
       style="max-width: 650px;"
-      data-hugemce-embed-iri="custom/audio.mp3"
+      data-ephox-embed-iri="custom/audio.mp3"
       contenteditable="false"${withAnnotation ? ' ' + expectedBlockAnnotationAttrs() : ''}>` +
     '<audio style="width: 100%;" controls="controls">' +
     '<source src="custom/audio.mp3" type="audio/mpeg">' +

@@ -1,7 +1,7 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Fun, Singleton } from '@hugemce/katamari';
-import { Focus, SugarDocument } from '@hugemce/sugar';
-import { TinyHooks, TinyAssertions, TinySelections } from '@hugemce/wrap-mcagar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Fun, Singleton } from '@ephox/katamari';
+import { Focus, SugarDocument } from '@ephox/sugar';
+import { TinyHooks, TinyAssertions, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

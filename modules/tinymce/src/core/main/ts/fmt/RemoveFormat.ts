@@ -1,5 +1,5 @@
-import { Adt, Arr, Fun, Optional, Type } from '@hugemce/katamari';
-import { Insert, InsertAll, SugarElement, Traverse } from '@hugemce/sugar';
+import { Adt, Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Insert, InsertAll, SugarElement, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomTreeWalker from '../api/dom/TreeWalker';

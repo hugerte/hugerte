@@ -1,6 +1,6 @@
-import { AlloySpec, Behaviour, GuiFactory, Keying, Replacing, SimpleSpec } from '@hugemce/alloy';
-import { Dialog } from '@hugemce/bridge';
-import { Arr, Optional } from '@hugemce/katamari';
+import { AlloySpec, Behaviour, GuiFactory, Keying, Replacing, SimpleSpec } from '@ephox/alloy';
+import { Dialog } from '@ephox/bridge';
+import { Arr, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstageShared } from '../../backstage/Backstage';
 import { ComposingConfigs } from '../alien/ComposingConfigs';

@@ -1,6 +1,6 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as MenuPathing from 'hugemce/alloy/menu/layered/MenuPathing';
+import * as MenuPathing from 'ephox/alloy/menu/layered/MenuPathing';
 
 UnitTest.test('MenuPathingTest', () => {
   const actual = MenuPathing.generate({ }, { });

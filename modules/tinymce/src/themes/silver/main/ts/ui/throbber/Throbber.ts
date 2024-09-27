@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloySpec, Behaviour, Blocking, Composing, DomFactory, Replacing, SketchSpec } from '@hugemce/alloy';
-import { Arr, Cell, Optional, Singleton, Type } from '@hugemce/katamari';
-import { Attribute, Class, Css, Focus, SugarElement, SugarNode } from '@hugemce/sugar';
+import { AlloyComponent, AlloySpec, Behaviour, Blocking, Composing, DomFactory, Replacing, SketchSpec } from '@ephox/alloy';
+import { Arr, Cell, Optional, Singleton, Type } from '@ephox/katamari';
+import { Attribute, Class, Css, Focus, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { EventUtilsEvent } from 'tinymce/core/api/dom/EventUtils';
 import Editor from 'tinymce/core/api/Editor';

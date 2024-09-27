@@ -14,10 +14,10 @@ export type MediaData = {
   // properties loaded from attributes
   allowfullscreen?: string | boolean;
   src?: string;
-  'data-hugemce-embed'?: string;
+  'data-ephox-embed'?: string;
 };
 
-export type MediaDataType = 'hugemce-embed-iri' | 'object' | 'iframe' | 'embed' | 'video' | 'audio';
+export type MediaDataType = 'ephox-embed-iri' | 'object' | 'iframe' | 'embed' | 'video' | 'audio';
 
 export interface DialogSubData {
   value: string;

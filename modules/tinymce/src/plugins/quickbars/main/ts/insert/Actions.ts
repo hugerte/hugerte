@@ -1,4 +1,4 @@
-import { Id } from '@hugemce/katamari';
+import { Id } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

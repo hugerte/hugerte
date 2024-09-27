@@ -1,11 +1,11 @@
-import { ApproxStructure, Assertions, Step, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Css } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Step, Waiter } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Css } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Transitioning } from 'hugemce/alloy/api/behaviour/Transitioning';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Transitioning } from 'ephox/alloy/api/behaviour/Transitioning';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
 
 UnitTest.asynctest('TransitioningTest', (success, failure) => {
 

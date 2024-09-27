@@ -1,4 +1,4 @@
-import { AlloyEvents, AlloyTriggers, EventFormat, SystemEvents } from '@hugemce/alloy';
+import { AlloyEvents, AlloyTriggers, EventFormat, SystemEvents } from '@ephox/alloy';
 
 import { GetApiType, runWithApi } from '../../controls/Controls';
 import ItemResponse from './ItemResponse';

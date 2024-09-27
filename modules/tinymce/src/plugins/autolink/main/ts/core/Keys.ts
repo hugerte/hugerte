@@ -1,4 +1,4 @@
-import { Fun, Obj, Strings, Type, Unicode } from '@hugemce/katamari';
+import { Fun, Obj, Strings, Type, Unicode } from '@ephox/katamari';
 
 import TextSeeker from 'tinymce/core/api/dom/TextSeeker';
 import Editor from 'tinymce/core/api/Editor';

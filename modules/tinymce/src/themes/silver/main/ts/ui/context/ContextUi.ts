@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, CustomEvent, GuiFactory, InlineView, Keying, NativeEvents,
   SketchSpec
-} from '@hugemce/alloy';
-import { Arr, Cell, Id, Optional, Result } from '@hugemce/katamari';
-import { Class, Css, EventArgs, Focus, SugarElement, SugarShadowDom, Width } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { Arr, Cell, Id, Optional, Result } from '@ephox/katamari';
+import { Class, Css, EventArgs, Focus, SugarElement, SugarShadowDom, Width } from '@ephox/sugar';
 
 const forwardSlideEvent = Id.generate('forward-slide');
 export interface ForwardSlideEvent extends CustomEvent {

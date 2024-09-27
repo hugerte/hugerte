@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Optional, OptionalInstances } from '@hugemce/katamari';
-import { Css, Insert, Remove, SugarBody, SugarElement, Width } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Optional, OptionalInstances } from '@ephox/katamari';
+import { Css, Insert, Remove, SugarBody, SugarElement, Width } from '@ephox/sugar';
 
-import * as TableConversions from 'hugemce/snooker/api/TableConversions';
-import { addStyles, assertApproxCellSizes, readWidth } from 'hugemce/snooker/test/SizeUtils';
+import * as TableConversions from 'ephox/snooker/api/TableConversions';
+import { addStyles, assertApproxCellSizes, readWidth } from 'ephox/snooker/test/SizeUtils';
 
 const tOptional = OptionalInstances.tOptional;
 

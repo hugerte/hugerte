@@ -1,8 +1,8 @@
-import { Assert, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
+import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 
-import { copyCols } from 'hugemce/snooker/api/CopyCols';
+import { copyCols } from 'ephox/snooker/api/CopyCols';
 
 describe('CopyColumnsTest', () => {
   const check = (

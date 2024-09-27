@@ -1,7 +1,7 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import { Version } from 'hugemce/sand/detect/Version';
+import { Version } from 'ephox/sand/detect/Version';
 
 describe('VersionDetectorTest', () => {
   const edgeRegex = /.*?edge\/ ?([0-9]+)\.([0-9]+)$/;

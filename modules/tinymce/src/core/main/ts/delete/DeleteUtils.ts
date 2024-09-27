@@ -1,5 +1,5 @@
-import { Arr, Optional, Optionals } from '@hugemce/katamari';
-import { Compare, PredicateFind, Remove, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
+import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Compare, PredicateFind, Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import { EditorEvent } from '../api/util/EventDispatcher';

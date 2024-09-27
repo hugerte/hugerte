@@ -1,9 +1,9 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import { Optional } from 'hugemce/katamari/api/Optional';
-import { assertOptional } from 'hugemce/katamari/test/AssertOptional';
+import { Optional } from 'ephox/katamari/api/Optional';
+import { assertOptional } from 'ephox/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.optional.AssertOptionalTest', () => {
   it('fails for none vs some', () => {

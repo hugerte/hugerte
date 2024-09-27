@@ -1,11 +1,11 @@
 import {
   AlloyComponent, AlloySpec, Behaviour, Composite, Container, Focusing, FocusInsideModes, Keying, PartType, RawDomSchema, SimpleSpec,
   Sketcher, UiSketcher
-} from '@hugemce/alloy';
-import { FieldSchema } from '@hugemce/boulder';
-import { View as BridgeView } from '@hugemce/bridge';
-import { Arr, Optional } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
+} from '@ephox/alloy';
+import { FieldSchema } from '@ephox/boulder';
+import { View as BridgeView } from '@ephox/bridge';
+import { Arr, Optional } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { renderButton } from './ViewButtons';

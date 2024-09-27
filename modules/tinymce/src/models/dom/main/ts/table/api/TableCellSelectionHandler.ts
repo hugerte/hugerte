@@ -1,8 +1,8 @@
-import { InputHandlers, Response, SelectionAnnotation, SelectionKeys, Selections, SelectionTypes } from '@hugemce/darwin';
-import { Arr, Cell, Fun, Obj } from '@hugemce/katamari';
-import { DomParent } from '@hugemce/robin';
-import { OtherCells, TableFill, TableLookup } from '@hugemce/snooker';
-import { Class, Compare, DomEvent, EventArgs, SelectionDirection, SimSelection, SugarElement, SugarNode, Direction } from '@hugemce/sugar';
+import { InputHandlers, Response, SelectionAnnotation, SelectionKeys, Selections, SelectionTypes } from '@ephox/darwin';
+import { Arr, Cell, Fun, Obj } from '@ephox/katamari';
+import { DomParent } from '@ephox/robin';
+import { OtherCells, TableFill, TableLookup } from '@ephox/snooker';
+import { Class, Compare, DomEvent, EventArgs, SelectionDirection, SimSelection, SugarElement, SugarNode, Direction } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorEvent } from 'tinymce/core/api/util/EventDispatcher';
@@ -21,7 +21,7 @@ export interface TableCellSelectionHandler {
 }
 
 const hasInternalTarget = (e: Event): boolean =>
-  !Class.has(SugarElement.fromDom(e.target as Node), 'hugemce-snooker-resizer-bar');
+  !Class.has(SugarElement.fromDom(e.target as Node), 'ephox-snooker-resizer-bar');
 
 export const TableCellSelectionHandler = (editor: Editor, resizeHandler: TableResizeHandler): TableCellSelectionHandler => {
   const cellSelection = Selections(

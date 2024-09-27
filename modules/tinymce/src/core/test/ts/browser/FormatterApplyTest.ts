@@ -1,8 +1,8 @@
-import { Assertions } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Obj } from '@hugemce/katamari';
-import { Hierarchy } from '@hugemce/sugar';
-import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
+import { Assertions } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Obj } from '@ephox/katamari';
+import { Hierarchy } from '@ephox/sugar';
+import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

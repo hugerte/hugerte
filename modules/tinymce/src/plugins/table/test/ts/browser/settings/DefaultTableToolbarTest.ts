@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { SelectorFilter } from '@hugemce/sugar';
-import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { SelectorFilter } from '@ephox/sugar';
+import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

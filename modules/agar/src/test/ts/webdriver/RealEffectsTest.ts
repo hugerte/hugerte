@@ -1,18 +1,18 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { PlatformDetection } from '@hugemce/sand';
-import { Class, Css, Html, Insert, Remove, SugarElement } from '@hugemce/sugar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { PlatformDetection } from '@ephox/sand';
+import { Class, Css, Html, Insert, Remove, SugarElement } from '@ephox/sugar';
 
-import * as Assertions from 'hugemce/agar/api/Assertions';
-import { Chain } from 'hugemce/agar/api/Chain';
-import * as Guard from 'hugemce/agar/api/Guard';
-import { Pipeline } from 'hugemce/agar/api/Pipeline';
-import * as RealClipboard from 'hugemce/agar/api/RealClipboard';
-import { RealKeys } from 'hugemce/agar/api/RealKeys';
-import * as RealMouse from 'hugemce/agar/api/RealMouse';
-import { Step } from 'hugemce/agar/api/Step';
-import * as UiControls from 'hugemce/agar/api/UiControls';
-import * as UiFinder from 'hugemce/agar/api/UiFinder';
-import * as Waiter from 'hugemce/agar/api/Waiter';
+import * as Assertions from 'ephox/agar/api/Assertions';
+import { Chain } from 'ephox/agar/api/Chain';
+import * as Guard from 'ephox/agar/api/Guard';
+import { Pipeline } from 'ephox/agar/api/Pipeline';
+import * as RealClipboard from 'ephox/agar/api/RealClipboard';
+import { RealKeys } from 'ephox/agar/api/RealKeys';
+import * as RealMouse from 'ephox/agar/api/RealMouse';
+import { Step } from 'ephox/agar/api/Step';
+import * as UiControls from 'ephox/agar/api/UiControls';
+import * as UiFinder from 'ephox/agar/api/UiFinder';
+import * as Waiter from 'ephox/agar/api/Waiter';
 
 UnitTest.asynctest('Real Effects Test', (success, failure) => {
   const platform = PlatformDetection.detect();

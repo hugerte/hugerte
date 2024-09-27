@@ -1,5 +1,5 @@
-import { TableSize } from '@hugemce/snooker';
-import { SugarElement } from '@hugemce/sugar';
+import { TableSize } from '@ephox/snooker';
+import { SugarElement } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

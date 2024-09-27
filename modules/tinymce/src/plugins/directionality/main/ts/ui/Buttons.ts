@@ -1,4 +1,4 @@
-import { Direction, SugarElement } from '@hugemce/sugar';
+import { Direction, SugarElement } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { NodeChangeEvent } from 'tinymce/core/api/EventTypes';

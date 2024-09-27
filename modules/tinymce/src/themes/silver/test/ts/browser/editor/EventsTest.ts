@@ -1,7 +1,7 @@
-import { Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
-import { SugarBody } from '@hugemce/sugar';
-import { McEditor, TinyContentActions, TinyDom, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { before, describe, it } from '@ephox/bedrock-client';
+import { SugarBody } from '@ephox/sugar';
+import { McEditor, TinyContentActions, TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import LinkPlugin from 'tinymce/plugins/link/Plugin';

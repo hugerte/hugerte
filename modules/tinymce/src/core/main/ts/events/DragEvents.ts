@@ -1,5 +1,5 @@
-import { DataTransfer, DataTransferEvent, DataTransferMode } from '@hugemce/dragster';
-import { Fun, Type } from '@hugemce/katamari';
+import { DataTransfer, DataTransferEvent, DataTransferMode } from '@ephox/dragster';
+import { Fun, Type } from '@ephox/katamari';
 
 import { EditorEvent } from '../api/util/EventDispatcher';
 

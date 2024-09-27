@@ -1,6 +1,6 @@
-import { Transformations } from '@hugemce/acid';
-import { Arr, Obj, Optionals, Strings, Type } from '@hugemce/katamari';
-import { Selectors, SugarElement } from '@hugemce/sugar';
+import { Transformations } from '@ephox/acid';
+import { Arr, Obj, Optionals, Strings, Type } from '@ephox/katamari';
+import { Selectors, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import EditorSelection from '../api/dom/Selection';

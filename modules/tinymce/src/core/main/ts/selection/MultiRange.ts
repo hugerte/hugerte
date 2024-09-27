@@ -1,5 +1,5 @@
-import { Arr } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Arr } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import * as RangeNodes from './RangeNodes';
 

@@ -4,19 +4,19 @@
 
 # Installation
 
-`agar` is available as an `npm` package. You can install it via the npm package `@hugemce/agar`
+`agar` is available as an `npm` package. You can install it via the npm package `@ephox/agar`
 
 ## Install from npm
 
-`npm install @hugemce/agar`
+`npm install @ephox/agar`
 
 # Usage
 
-As mentioned earlier, `agar` contains testing infrastructure for _keyboard_, _mouse_, _focus_, and _DOM Manipulation_. The best place to see how it works is to look at the demos provided in the project directory at `src/demo/js/hugemce/agar/demo`. More complete public documentation will be available in the future.
+As mentioned earlier, `agar` contains testing infrastructure for _keyboard_, _mouse_, _focus_, and _DOM Manipulation_. The best place to see how it works is to look at the demos provided in the project directory at `src/demo/js/ephox/agar/demo`. More complete public documentation will be available in the future.
 
 # Running Tests
 
-`agar` uses [`bedrock`](https://www.npmjs.com/package/@hugemce/bedrock) to run tests. This is packaged as a dev dependency of `agar`. There are two types of tests:
+`agar` uses [`bedrock`](https://www.npmjs.com/package/@ephox/bedrock) to run tests. This is packaged as a dev dependency of `agar`. There are two types of tests:
 
 * browser tests
 * webdriver tests

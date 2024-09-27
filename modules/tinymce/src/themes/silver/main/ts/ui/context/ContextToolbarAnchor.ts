@@ -1,7 +1,7 @@
-import { AnchorSpec, Bounds, Boxes, Bubble, Layout, LayoutInset, MaxHeight, MaxWidth } from '@hugemce/alloy';
-import { InlineContent } from '@hugemce/bridge';
-import { Optional } from '@hugemce/katamari';
-import { Compare, Css, Height, Scroll, SugarElement, Traverse } from '@hugemce/sugar';
+import { AnchorSpec, Bounds, Boxes, Bubble, Layout, LayoutInset, MaxHeight, MaxWidth } from '@ephox/alloy';
+import { InlineContent } from '@ephox/bridge';
+import { Optional } from '@ephox/katamari';
+import { Compare, Css, Height, Scroll, SugarElement, Traverse } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

@@ -1,16 +1,16 @@
-import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { Focus } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { Focus } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Disabling } from 'hugemce/alloy/api/behaviour/Disabling';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as Memento from 'hugemce/alloy/api/component/Memento';
-import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'hugemce/alloy/api/ui/Button';
-import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Disabling } from 'ephox/alloy/api/behaviour/Disabling';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as Memento from 'ephox/alloy/api/component/Memento';
+import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'ephox/alloy/api/ui/Button';
+import { Container } from 'ephox/alloy/api/ui/Container';
 
 UnitTest.asynctest('DisablingTest', (success, failure) => {
 

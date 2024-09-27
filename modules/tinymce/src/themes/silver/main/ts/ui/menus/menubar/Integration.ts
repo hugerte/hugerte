@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@hugemce/katamari';
+import { Arr, Obj, Type } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Menu } from 'tinymce/core/api/ui/Ui';

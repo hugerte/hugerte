@@ -1,14 +1,14 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 
-import * as Compare from 'hugemce/sugar/api/dom/Compare';
-import * as Insert from 'hugemce/sugar/api/dom/Insert';
-import * as Remove from 'hugemce/sugar/api/dom/Remove';
-import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as Css from 'hugemce/sugar/api/properties/Css';
-import Div from 'hugemce/sugar/test/Div';
+import * as Compare from 'ephox/sugar/api/dom/Compare';
+import * as Insert from 'ephox/sugar/api/dom/Insert';
+import * as Remove from 'ephox/sugar/api/dom/Remove';
+import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as Css from 'ephox/sugar/api/properties/Css';
+import Div from 'ephox/sugar/test/Div';
 
 UnitTest.test('ElementFromPointTest', () => {
   const a = Div();

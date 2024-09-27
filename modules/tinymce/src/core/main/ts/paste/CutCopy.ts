@@ -1,4 +1,4 @@
-import { Fun } from '@hugemce/katamari';
+import { Fun } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';

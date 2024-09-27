@@ -1,13 +1,13 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
 import {
   Attribute, Compare, Css, Insert, PredicateFilter, Remove, SelectorFilter, SugarBody, SugarElement, SugarNode, SugarText, Traverse, Truncate
-} from '@hugemce/sugar';
+} from '@ephox/sugar';
 import * as fc from 'fast-check';
 
-import * as Arbitraries from 'hugemce/agar/api/Arbitraries';
-import * as Assertions from 'hugemce/agar/api/Assertions';
-import * as Generators from 'hugemce/agar/api/Generators';
+import * as Arbitraries from 'ephox/agar/api/Arbitraries';
+import * as Assertions from 'ephox/agar/api/Assertions';
+import * as Generators from 'ephox/agar/api/Generators';
 
 UnitTest.test('Arbitraries Test', () => {
   const assertProperty = (label: string, element: SugarElement<Node>, assertion: (node: SugarElement<Node>) => boolean): boolean => {

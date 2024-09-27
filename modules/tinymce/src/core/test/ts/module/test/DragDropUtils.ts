@@ -1,6 +1,6 @@
-import { DragnDrop } from '@hugemce/agar';
-import { TinyDom } from '@hugemce/mcagar';
-import { Hierarchy, SugarElement, SugarNode } from '@hugemce/sugar';
+import { DragnDrop } from '@ephox/agar';
+import { TinyDom } from '@ephox/mcagar';
+import { Hierarchy, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

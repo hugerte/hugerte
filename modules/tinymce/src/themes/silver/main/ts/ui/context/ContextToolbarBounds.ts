@@ -1,7 +1,7 @@
-import { Bounds, Boxes } from '@hugemce/alloy';
-import { InlineContent } from '@hugemce/bridge';
-import { Optional } from '@hugemce/katamari';
-import { Scroll, SelectorFind, SugarBody, SugarElement, SugarNode, Traverse, WindowVisualViewport } from '@hugemce/sugar';
+import { Bounds, Boxes } from '@ephox/alloy';
+import { InlineContent } from '@ephox/bridge';
+import { Optional } from '@ephox/katamari';
+import { Scroll, SelectorFind, SugarBody, SugarElement, SugarNode, Traverse, WindowVisualViewport } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

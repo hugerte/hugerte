@@ -1,23 +1,23 @@
-import { ApproxStructure, Assertions, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Fun } from '@hugemce/katamari';
-import { Attribute, SelectorFind } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr, Fun } from '@ephox/katamari';
+import { Attribute, SelectorFind } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Replacing } from 'hugemce/alloy/api/behaviour/Replacing';
-import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
-import { DataField } from 'hugemce/alloy/api/ui/DataField';
-import { FormChooser } from 'hugemce/alloy/api/ui/FormChooser';
-import { FormCoupledInputs } from 'hugemce/alloy/api/ui/FormCoupledInputs';
-import { FormField } from 'hugemce/alloy/api/ui/FormField';
-import { HtmlSelect } from 'hugemce/alloy/api/ui/HtmlSelect';
-import { Input } from 'hugemce/alloy/api/ui/Input';
-import * as Tagger from 'hugemce/alloy/registry/Tagger';
-import * as RepresentPipes from 'hugemce/alloy/test/behaviour/RepresentPipes';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
+import { Representing } from 'ephox/alloy/api/behaviour/Representing';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
+import { DataField } from 'ephox/alloy/api/ui/DataField';
+import { FormChooser } from 'ephox/alloy/api/ui/FormChooser';
+import { FormCoupledInputs } from 'ephox/alloy/api/ui/FormCoupledInputs';
+import { FormField } from 'ephox/alloy/api/ui/FormField';
+import { HtmlSelect } from 'ephox/alloy/api/ui/HtmlSelect';
+import { Input } from 'ephox/alloy/api/ui/Input';
+import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as RepresentPipes from 'ephox/alloy/test/behaviour/RepresentPipes';
 
 UnitTest.asynctest('FieldsTest', (success, failure) => {
 

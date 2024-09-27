@@ -1,7 +1,7 @@
-import { Assertions } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { McEditor, TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';
+import { Assertions } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { McEditor, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

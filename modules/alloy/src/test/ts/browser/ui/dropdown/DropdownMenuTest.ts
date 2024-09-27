@@ -1,19 +1,19 @@
-import { FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Fun, Future, Obj, Optional, Result } from '@hugemce/katamari';
+import { FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr, Fun, Future, Obj, Optional, Result } from '@ephox/katamari';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import { Keying } from 'hugemce/alloy/api/behaviour/Keying';
-import { Positioning } from 'hugemce/alloy/api/behaviour/Positioning';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as Memento from 'hugemce/alloy/api/component/Memento';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
-import { Dropdown } from 'hugemce/alloy/api/ui/Dropdown';
-import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
-import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
-import * as NavigationUtils from 'hugemce/alloy/test/NavigationUtils';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import { Keying } from 'ephox/alloy/api/behaviour/Keying';
+import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as Memento from 'ephox/alloy/api/component/Memento';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
+import { Dropdown } from 'ephox/alloy/api/ui/Dropdown';
+import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
+import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as NavigationUtils from 'ephox/alloy/test/NavigationUtils';
 
 interface TestFocusable {
   label: string;

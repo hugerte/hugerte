@@ -1,10 +1,10 @@
-import { Mouse } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Cell } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { TableGridSize } from '@hugemce/snooker';
-import { Html, Insert, Remove, SelectorExists, SelectorFilter, SugarBody, SugarElement } from '@hugemce/sugar';
-import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
+import { Mouse } from '@ephox/agar';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Cell } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { TableGridSize } from '@ephox/snooker';
+import { Html, Insert, Remove, SelectorExists, SelectorFilter, SugarBody, SugarElement } from '@ephox/sugar';
+import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

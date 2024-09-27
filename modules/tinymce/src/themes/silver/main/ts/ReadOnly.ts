@@ -1,6 +1,6 @@
-import { Behaviour, Channels, Disabling, Receiving } from '@hugemce/alloy';
-import { FieldSchema, StructureSchema } from '@hugemce/boulder';
-import { Arr } from '@hugemce/katamari';
+import { Behaviour, Channels, Disabling, Receiving } from '@ephox/alloy';
+import { FieldSchema, StructureSchema } from '@ephox/boulder';
+import { Arr } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

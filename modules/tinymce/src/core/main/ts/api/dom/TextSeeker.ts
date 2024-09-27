@@ -1,4 +1,4 @@
-import { Optional } from '@hugemce/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as NodeType from '../../dom/NodeType';
 import { TextWalker } from '../../dom/TextWalker';

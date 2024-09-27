@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Unicode } from '@hugemce/katamari';
-import { TinySelections, TinyHooks } from '@hugemce/wrap-mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Unicode } from '@ephox/katamari';
+import { TinySelections, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import RangeUtils from 'tinymce/core/api/dom/RangeUtils';

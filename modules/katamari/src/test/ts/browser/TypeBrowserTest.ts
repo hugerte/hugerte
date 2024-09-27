@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 
-import * as Type from 'hugemce/katamari/api/Type';
+import * as Type from 'ephox/katamari/api/Type';
 
 describe('browser.katamari.TypeBrowserTest', () => {
   it('Type cross window test', () => new Promise<void>((success, failure) => {

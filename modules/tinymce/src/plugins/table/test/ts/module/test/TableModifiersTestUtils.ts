@@ -1,7 +1,7 @@
-import { Assertions, Keys, Waiter } from '@hugemce/agar';
-import { Arr, Fun } from '@hugemce/katamari';
-import { SugarBody, SugarElement } from '@hugemce/sugar';
-import { TinyAssertions, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Assertions, Keys, Waiter } from '@ephox/agar';
+import { Arr, Fun } from '@ephox/katamari';
+import { SugarBody, SugarElement } from '@ephox/sugar';
+import { TinyAssertions, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

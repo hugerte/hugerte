@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, Composing, CustomEvent, Disabling, FormField as AlloyFormField,
   Invalidating, Memento, NativeEvents, Representing, SketchSpec, SimpleSpec, SystemEvents, Tabstopping, Typeahead as AlloyTypeahead
-} from '@hugemce/alloy';
-import { Dialog } from '@hugemce/bridge';
-import { Arr, Fun, Future, FutureResult, Id, Optional, Result } from '@hugemce/katamari';
-import { Attribute, Traverse, Value } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { Dialog } from '@ephox/bridge';
+import { Arr, Fun, Future, FutureResult, Id, Optional, Result } from '@ephox/katamari';
+import { Attribute, Traverse, Value } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { UiFactoryBackstageForUrlInput } from '../../backstage/UrlInputBackstage';

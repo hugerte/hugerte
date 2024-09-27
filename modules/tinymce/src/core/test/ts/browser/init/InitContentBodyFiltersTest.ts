@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { TinyAssertions, TinyHooks } from '@hugemce/wrap-mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

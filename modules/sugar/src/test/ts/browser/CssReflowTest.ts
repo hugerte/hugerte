@@ -1,17 +1,17 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Insert from 'hugemce/sugar/api/dom/Insert';
-import * as Remove from 'hugemce/sugar/api/dom/Remove';
-import * as DomEvent from 'hugemce/sugar/api/events/DomEvent';
-import * as SugarBody from 'hugemce/sugar/api/node/SugarBody';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as Css from 'hugemce/sugar/api/properties/Css';
-import * as Html from 'hugemce/sugar/api/properties/Html';
-import * as Traverse from 'hugemce/sugar/api/search/Traverse';
+import * as Insert from 'ephox/sugar/api/dom/Insert';
+import * as Remove from 'ephox/sugar/api/dom/Remove';
+import * as DomEvent from 'ephox/sugar/api/events/DomEvent';
+import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as Css from 'ephox/sugar/api/properties/Css';
+import * as Html from 'ephox/sugar/api/properties/Html';
+import * as Traverse from 'ephox/sugar/api/search/Traverse';
 
 UnitTest.asynctest('CssReflowTest', (success, failure) => {
 
-  const iframe = SugarElement.fromHtml<HTMLIFrameElement>('<iframe style="height:100px; width:500px;" src="/project/@hugemce/sugar/src/test/data/cssReflowTest.html"></iframe>');
+  const iframe = SugarElement.fromHtml<HTMLIFrameElement>('<iframe style="height:100px; width:500px;" src="/project/@ephox/sugar/src/test/data/cssReflowTest.html"></iframe>');
   Insert.append(SugarBody.body(), iframe);
   const run = DomEvent.bind(iframe, 'load', () => {
     run.unbind();

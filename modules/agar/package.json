@@ -1,5 +1,5 @@
 {
-  "name": "@hugemce/agar",
+  "name": "@ephox/agar",
   "version": "8.0.1",
   "description": "Testing infrastructure",
   "repository": {
@@ -25,17 +25,17 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@hugemce/bedrock-client": "11 || 12 || 13",
-    "@hugemce/bedrock-common": "11 || 12 || 13",
-    "@hugemce/jax": "^7.0.10",
-    "@hugemce/sand": "^6.0.10",
-    "@hugemce/sugar": "^9.3.1",
+    "@ephox/bedrock-client": "11 || 12 || 13",
+    "@ephox/bedrock-common": "11 || 12 || 13",
+    "@ephox/jax": "^7.0.10",
+    "@ephox/sand": "^6.0.10",
+    "@ephox/sugar": "^9.3.1",
     "@types/sizzle": "^2.3.3",
     "fast-check": "^2.0.0",
     "sizzle": "^2.3.4"
   },
   "devDependencies": {
-    "@hugemce/katamari-assertions": "^4.0.10"
+    "@ephox/katamari-assertions": "^4.0.10"
   },
   "files": [
     "lib/main",
@@ -48,7 +48,7 @@
     "CHANGELOG.md",
     "LICENSE.txt"
   ],
-  "main": "./lib/main/ts/hugemce/agar/api/Main.js",
-  "module": "./lib/main/ts/hugemce/agar/api/Main.js",
-  "types": "./lib/main/ts/hugemce/agar/api/Main.d.ts"
+  "main": "./lib/main/ts/ephox/agar/api/Main.js",
+  "module": "./lib/main/ts/ephox/agar/api/Main.js",
+  "types": "./lib/main/ts/ephox/agar/api/Main.d.ts"
 }

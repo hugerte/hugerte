@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, UiFinder } from '@hugemce/agar';
-import { AlloyComponent, Disabling, Form, GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
+import { ApproxStructure, Assertions, Keyboard, Keys, UiFinder } from '@ephox/agar';
+import { AlloyComponent, Disabling, Form, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { describe, it } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import { renderCheckbox } from 'tinymce/themes/silver/ui/general/Checkbox';

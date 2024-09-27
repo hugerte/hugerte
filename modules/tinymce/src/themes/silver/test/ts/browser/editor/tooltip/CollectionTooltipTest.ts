@@ -1,7 +1,7 @@
-import { FocusTools, Keys, Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { SugarDocument } from '@hugemce/sugar';
-import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { FocusTools, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { SugarDocument } from '@ephox/sugar';
+import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import CharmapPlugin from 'tinymce/plugins/charmap/Plugin';

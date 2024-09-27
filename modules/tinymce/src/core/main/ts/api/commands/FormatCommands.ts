@@ -1,4 +1,4 @@
-import { Type } from '@hugemce/katamari';
+import { Type } from '@ephox/katamari';
 
 import * as Font from '../../commands/Font';
 import * as LineHeight from '../../commands/LineHeight';

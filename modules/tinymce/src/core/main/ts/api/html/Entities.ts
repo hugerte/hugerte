@@ -1,4 +1,4 @@
-import { SugarElement } from '@hugemce/sugar';
+import { SugarElement } from '@ephox/sugar';
 
 import Tools from '../util/Tools';
 

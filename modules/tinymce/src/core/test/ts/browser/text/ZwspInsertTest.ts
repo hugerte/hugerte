@@ -1,5 +1,5 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import * as Zwsp from 'tinymce/core/text/Zwsp';

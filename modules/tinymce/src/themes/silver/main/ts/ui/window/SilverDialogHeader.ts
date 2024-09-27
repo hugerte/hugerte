@@ -1,8 +1,8 @@
 import {
   AlloySpec, AlloyTriggers, Behaviour, Button, Container, DomFactory, Dragging, GuiFactory, ModalDialog, Reflecting, SketchSpec, Tabstopping, Tooltipping
-} from '@hugemce/alloy';
-import { Optional } from '@hugemce/katamari';
-import { SelectorFind } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { Optional } from '@ephox/katamari';
+import { SelectorFind } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { formCancelEvent } from '../general/FormEvents';

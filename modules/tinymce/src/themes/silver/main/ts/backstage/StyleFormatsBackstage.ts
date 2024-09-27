@@ -1,4 +1,4 @@
-import { Cell, Optional } from '@hugemce/katamari';
+import { Cell, Optional } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { BlockFormat, InlineFormat } from 'tinymce/core/api/fmt/Format';

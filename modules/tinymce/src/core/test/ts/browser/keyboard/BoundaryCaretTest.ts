@@ -1,7 +1,7 @@
-import { Assertions } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Cell } from '@hugemce/katamari';
-import { Hierarchy, Selectors, SugarElement } from '@hugemce/sugar';
+import { Assertions } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Cell } from '@ephox/katamari';
+import { Hierarchy, Selectors, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import CaretPosition from 'tinymce/core/caret/CaretPosition';

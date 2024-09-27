@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
 
-import { buildUrl } from 'hugemce/jax/core/UrlBuilder';
+import { buildUrl } from 'ephox/jax/core/UrlBuilder';
 
 UnitTest.test('UrlBuilderTest', () => {
   const createRecord = (record: any) => Optional.some<Record<string, string>>(record);

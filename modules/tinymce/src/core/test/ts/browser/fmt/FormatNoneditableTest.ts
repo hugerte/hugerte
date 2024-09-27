@@ -1,7 +1,7 @@
-import { Cursors } from '@hugemce/agar';
-import { after, before, context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Fun, Type } from '@hugemce/katamari';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Cursors } from '@ephox/agar';
+import { after, before, context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Fun, Type } from '@ephox/katamari';
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

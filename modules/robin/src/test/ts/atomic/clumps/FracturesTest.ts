@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@ephox/boss';
 
-import * as Fractures from 'hugemce/robin/clumps/Fractures';
+import * as Fractures from 'ephox/robin/clumps/Fractures';
 
 UnitTest.test('FracturesTest', () => {
   const regen = () => {

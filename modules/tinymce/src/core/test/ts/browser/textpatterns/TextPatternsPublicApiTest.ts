@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { TinyAssertions, TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 // eslint-disable-next-line @tinymce/no-publicapi-module-imports
 import { Editor, PluginManager, TextPatterns } from 'tinymce/core/api/PublicApi';

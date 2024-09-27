@@ -3,9 +3,9 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Boxes, Focusing, Keying, SketchSpec,
   SplitFloatingToolbar as AlloySplitFloatingToolbar,
   SplitSlidingToolbar as AlloySplitSlidingToolbar, Tabstopping, Toolbar as AlloyToolbar, ToolbarGroup as AlloyToolbarGroup
-} from '@hugemce/alloy';
-import { Arr, Optional, Result } from '@hugemce/katamari';
-import { Traverse } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { Arr, Optional, Result } from '@ephox/katamari';
+import { Traverse } from '@ephox/sugar';
 
 import { ToolbarMode } from '../../api/Options';
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';

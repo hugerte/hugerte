@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@hugemce/agar';
-import { AlloyComponent, Disabling, GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
-import { Attribute } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
+import { AlloyComponent, Disabling, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { describe, it } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
+import { Attribute } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import { renderListBox } from 'tinymce/themes/silver/ui/dialog/ListBox';

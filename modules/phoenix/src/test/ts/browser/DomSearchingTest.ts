@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { Pattern } from '@hugemce/polaris';
-import { SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { Pattern } from '@ephox/polaris';
+import { SugarElement } from '@ephox/sugar';
 
-import * as DomSearch from 'hugemce/phoenix/api/dom/DomSearch';
+import * as DomSearch from 'ephox/phoenix/api/dom/DomSearch';
 
 UnitTest.test('DomSearchingTest', () => {
   const root = SugarElement.fromTag('div');

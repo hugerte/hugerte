@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/robin/test/*": ["src/test/ts/module/hugemce/robin/test/*"],
-      "hugemce/robin/demo/*": ["src/demo/ts/hugemce/robin/demo/*"],
-      "hugemce/robin/*": ["src/main/ts/hugemce/robin/*"]
+      "ephox/robin/test/*": ["src/test/ts/module/ephox/robin/test/*"],
+      "ephox/robin/demo/*": ["src/demo/ts/ephox/robin/demo/*"],
+      "ephox/robin/*": ["src/main/ts/ephox/robin/*"]
     }
   },
   "include": [

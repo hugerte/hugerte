@@ -1,6 +1,6 @@
-import { TestStore, UiFinder } from '@hugemce/agar';
-import { SugarBody } from '@hugemce/sugar';
-import { TinyUiActions } from '@hugemce/wrap-mcagar';
+import { TestStore, UiFinder } from '@ephox/agar';
+import { SugarBody } from '@ephox/sugar';
+import { TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Dialog } from 'tinymce/core/api/ui/Ui';

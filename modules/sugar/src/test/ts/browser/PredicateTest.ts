@@ -1,14 +1,14 @@
-import { Assert, describe, it } from '@hugemce/bedrock-client';
-import { Fun, Optional } from '@hugemce/katamari';
+import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Fun, Optional } from '@ephox/katamari';
 
-import * as Remove from 'hugemce/sugar/api/dom/Remove';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as SugarNode from 'hugemce/sugar/api/node/SugarNode';
-import * as PredicateExists from 'hugemce/sugar/api/search/PredicateExists';
-import * as PredicateFilter from 'hugemce/sugar/api/search/PredicateFilter';
-import * as PredicateFind from 'hugemce/sugar/api/search/PredicateFind';
-import * as Checkers from 'hugemce/sugar/test/Checkers';
-import * as TestPage from 'hugemce/sugar/test/TestPage';
+import * as Remove from 'ephox/sugar/api/dom/Remove';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
+import * as PredicateExists from 'ephox/sugar/api/search/PredicateExists';
+import * as PredicateFilter from 'ephox/sugar/api/search/PredicateFilter';
+import * as PredicateFind from 'ephox/sugar/api/search/PredicateFind';
+import * as Checkers from 'ephox/sugar/test/Checkers';
+import * as TestPage from 'ephox/sugar/test/TestPage';
 
 describe('PredicateTest', () => {
   it('TBA: Structure check', () => {

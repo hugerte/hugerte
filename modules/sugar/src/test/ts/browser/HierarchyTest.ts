@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Compare from 'hugemce/sugar/api/dom/Compare';
-import * as Hierarchy from 'hugemce/sugar/api/dom/Hierarchy';
-import * as Insert from 'hugemce/sugar/api/dom/Insert';
-import * as InsertAll from 'hugemce/sugar/api/dom/InsertAll';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Compare from 'ephox/sugar/api/dom/Compare';
+import * as Hierarchy from 'ephox/sugar/api/dom/Hierarchy';
+import * as Insert from 'ephox/sugar/api/dom/Insert';
+import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
 
 UnitTest.test('HierarchyTest', () => {
   const div = SugarElement.fromTag('div');

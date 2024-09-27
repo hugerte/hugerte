@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Waiter } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Cell } from '@hugemce/katamari';
-import { TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Cell } from '@ephox/katamari';
+import { TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

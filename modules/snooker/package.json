@@ -1,5 +1,5 @@
 {
-  "name": "@hugemce/snooker",
+  "name": "@ephox/snooker",
   "description": "This project implements the table model.",
   "version": "11.2.1",
   "files": [
@@ -19,23 +19,23 @@
     "directory": "modules/snooker"
   },
   "dependencies": {
-    "@hugemce/dragster": "^7.3.1",
-    "@hugemce/katamari": "^9.1.6",
-    "@hugemce/porkbun": "^7.0.10",
-    "@hugemce/robin": "^10.4.1",
-    "@hugemce/sugar": "^9.3.1"
+    "@ephox/dragster": "^7.3.1",
+    "@ephox/katamari": "^9.1.6",
+    "@ephox/porkbun": "^7.0.10",
+    "@ephox/robin": "^10.4.1",
+    "@ephox/sugar": "^9.3.1"
   },
   "devDependencies": {
-    "@hugemce/agar": "^8.0.1"
+    "@ephox/agar": "^8.0.1"
   },
   "devDependencies": {
-    "@hugemce/agar": "^8.0.0"
+    "@ephox/agar": "^8.0.0"
   },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
-  "main": "./lib/main/ts/hugemce/snooker/api/Main.js",
-  "module": "./lib/main/ts/hugemce/snooker/api/Main.js",
-  "types": "./lib/main/ts/hugemce/snooker/api/Main.d.ts",
+  "main": "./lib/main/ts/ephox/snooker/api/Main.js",
+  "module": "./lib/main/ts/ephox/snooker/api/Main.js",
+  "types": "./lib/main/ts/ephox/snooker/api/Main.d.ts",
   "scripts": {
     "prepublishOnly": "tsc -b",
     "build": "tsc",

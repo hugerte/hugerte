@@ -1,11 +1,11 @@
 import {
   AlloyComponent, AlloyEvents, Behaviour, Composing,
   Replacing, Sketcher, SlotContainer, SlotContainerTypes, UiSketcher
-} from '@hugemce/alloy';
-import { FieldSchema, StructureSchema } from '@hugemce/boulder';
-import { View as BridgeView } from '@hugemce/bridge';
-import { Arr, Fun, Obj, Optional } from '@hugemce/katamari';
-import { Attribute, Css } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { FieldSchema, StructureSchema } from '@ephox/boulder';
+import { View as BridgeView } from '@ephox/bridge';
+import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
+import { Attribute, Css } from '@ephox/sugar';
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { SimpleBehaviours } from '../alien/SimpleBehaviours';

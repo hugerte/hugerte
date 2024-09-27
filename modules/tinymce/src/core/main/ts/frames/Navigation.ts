@@ -1,5 +1,5 @@
-import { Optional } from '@hugemce/katamari';
-import { SugarElement, Traverse } from '@hugemce/sugar';
+import { Optional } from '@ephox/katamari';
+import { SugarElement, Traverse } from '@ephox/sugar';
 
 export interface Navigation {
   readonly view: (doc: SugarElement<Document>) => Optional<SugarElement<Element>>;

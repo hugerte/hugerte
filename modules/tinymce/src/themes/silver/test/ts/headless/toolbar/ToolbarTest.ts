@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys } from '@hugemce/agar';
-import { Behaviour, Focusing, GuiFactory, Keying, TestHelpers, Toolbar } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Arr, Optional } from '@hugemce/katamari';
-import { SugarDocument } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys } from '@ephox/agar';
+import { Behaviour, Focusing, GuiFactory, Keying, TestHelpers, Toolbar } from '@ephox/alloy';
+import { describe, it } from '@ephox/bedrock-client';
+import { Arr, Optional } from '@ephox/katamari';
+import { SugarDocument } from '@ephox/sugar';
 
 import { ToolbarMode } from 'tinymce/themes/silver/api/Options';
 import { renderToolbar, renderToolbarGroup } from 'tinymce/themes/silver/ui/toolbar/CommonToolbar';

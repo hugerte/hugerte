@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
-import { Optional } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { Optional } from '@ephox/katamari';
 
-import * as Split from 'hugemce/phoenix/api/general/Split';
-import * as Finder from 'hugemce/phoenix/test/Finder';
+import * as Split from 'ephox/phoenix/api/general/Split';
+import * as Finder from 'ephox/phoenix/test/Finder';
 
 UnitTest.test('api.Split.(split,splitByPair)', () => {
   const generate = (text: string) => {

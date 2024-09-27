@@ -1,6 +1,6 @@
-import { Arr, Optional } from '@hugemce/katamari';
-import { CopySelected, TableFill, TableLookup } from '@hugemce/snooker';
-import { SugarElement, SugarElements, SugarNode } from '@hugemce/sugar';
+import { Arr, Optional } from '@ephox/katamari';
+import { CopySelected, TableFill, TableLookup } from '@ephox/snooker';
+import { SugarElement, SugarElements, SugarNode } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

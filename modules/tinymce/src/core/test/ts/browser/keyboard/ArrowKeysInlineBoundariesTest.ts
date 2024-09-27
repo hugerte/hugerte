@@ -1,7 +1,7 @@
-import { Keys } from '@hugemce/agar';
-import { before, context, describe, it } from '@hugemce/bedrock-client';
-import { PlatformDetection } from '@hugemce/sand';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Keys } from '@ephox/agar';
+import { before, context, describe, it } from '@ephox/bedrock-client';
+import { PlatformDetection } from '@ephox/sand';
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

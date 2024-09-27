@@ -1,17 +1,17 @@
-import { Assertions, Chain, FocusTools, GeneralSteps, Logger, Step, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Attribute } from '@hugemce/sugar';
+import { Assertions, Chain, FocusTools, GeneralSteps, Logger, Step, UiFinder } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Attribute } from '@ephox/sugar';
 
-import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import { Highlighting } from 'hugemce/alloy/api/behaviour/Highlighting';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
-import * as SystemEvents from 'hugemce/alloy/api/events/SystemEvents';
-import * as FocusManagers from 'hugemce/alloy/api/focus/FocusManagers';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import { Highlighting } from 'ephox/alloy/api/behaviour/Highlighting';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
+import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
+import * as FocusManagers from 'ephox/alloy/api/focus/FocusManagers';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
 
 UnitTest.asynctest('Browser Test: behaviour.keying.FocusManagersTest', (success, failure) => {
   GuiSetup.setup(

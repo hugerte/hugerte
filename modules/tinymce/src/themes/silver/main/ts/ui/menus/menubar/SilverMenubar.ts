@@ -1,11 +1,11 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, Dropdown, Focusing, Keying, NativeEvents, RawDomSchema, Replacing, Sketcher,
   SystemEvents, Tabstopping, UiSketcher
-} from '@hugemce/alloy';
-import { FieldSchema, StructureSchema } from '@hugemce/boulder';
-import { Toolbar } from '@hugemce/bridge';
-import { Arr, Fun, Optional } from '@hugemce/katamari';
-import { Compare, EventArgs, SelectorFind } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { FieldSchema, StructureSchema } from '@ephox/boulder';
+import { Toolbar } from '@ephox/bridge';
+import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Compare, EventArgs, SelectorFind } from '@ephox/sugar';
 
 import { Menu } from 'tinymce/core/api/ui/Ui';
 import { TranslatedString } from 'tinymce/core/api/util/I18n';

@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import * as fc from 'fast-check';
 
-import { Pipeline } from 'hugemce/agar/api/Pipeline';
-import * as PropertySteps from 'hugemce/agar/api/PropertySteps';
-import { Step } from 'hugemce/agar/api/Step';
+import { Pipeline } from 'ephox/agar/api/Pipeline';
+import * as PropertySteps from 'ephox/agar/api/PropertySteps';
+import { Step } from 'ephox/agar/api/Step';
 
 UnitTest.asynctest('PropertyStepsTest', (success, failure) => {
 

@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
-import Div from 'hugemce/sugar/test/Div';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as Attribute from 'ephox/sugar/api/properties/Attribute';
+import Div from 'ephox/sugar/test/Div';
 
 type AttrFn<K, V> = (element: SugarElement<HTMLElement>, k: K, v: V) => void;
 type InvalidValue<V> = V | null | undefined | {};
@@ -78,7 +78,7 @@ UnitTest.test('AttributeTest', () => {
   Assert.eq('hasNone', false, Attribute.hasNone(SugarElement.fromHtml<HTMLDivElement>('<div style="display: block;"><span id="cat"></span></div>')));
 
   Assert.eq('clone', { id: 'cat' }, Attribute.clone(SugarElement.fromHtml<HTMLSpanElement>('<span id="cat"></span>')));
-  Assert.eq('clone', { 'name': 'foo', 'data-hugemce-foo': 'bar' }, Attribute.clone(SugarElement.fromHtml<HTMLSpanElement>('<span name="foo" data-hugemce-foo="bar"></span>')));
+  Assert.eq('clone', { 'name': 'foo', 'data-ephox-foo': 'bar' }, Attribute.clone(SugarElement.fromHtml<HTMLSpanElement>('<span name="foo" data-ephox-foo="bar"></span>')));
 
   Attribute.set(c, 'tabindex', -1);
   Assert.eq('get', '-1', Attribute.get(c, 'tabindex'));

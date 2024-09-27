@@ -1,4 +1,4 @@
-import { Arr, Strings } from '@hugemce/katamari';
+import { Arr, Strings } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

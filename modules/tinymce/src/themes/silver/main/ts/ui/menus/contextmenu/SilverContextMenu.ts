@@ -1,8 +1,8 @@
-import { AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, GuiFactory, InlineView, Sandboxing, SystemEvents } from '@hugemce/alloy';
-import { Menu } from '@hugemce/bridge';
-import { Arr, Fun, Obj, Result, Strings, Type } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { SelectorExists, SugarElement } from '@hugemce/sugar';
+import { AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, GuiFactory, InlineView, Sandboxing, SystemEvents } from '@ephox/alloy';
+import { Menu } from '@ephox/bridge';
+import { Arr, Fun, Obj, Result, Strings, Type } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { SelectorExists, SugarElement } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorEvent } from 'tinymce/core/api/util/EventDispatcher';

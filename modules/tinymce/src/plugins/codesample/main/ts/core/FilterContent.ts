@@ -1,4 +1,4 @@
-import { Strings } from '@hugemce/katamari';
+import { Strings } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import Tools from 'tinymce/core/api/util/Tools';

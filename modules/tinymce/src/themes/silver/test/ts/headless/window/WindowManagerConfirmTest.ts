@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { SelectorFind, SugarBody, SugarDocument } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { before, describe, it } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { SelectorFind, SugarBody, SugarDocument } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import { WindowManagerImpl } from 'tinymce/core/api/WindowManager';

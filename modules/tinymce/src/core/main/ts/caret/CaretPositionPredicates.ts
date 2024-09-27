@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@hugemce/katamari';
-import { Css, SugarElement } from '@hugemce/sugar';
+import { Fun, Optional } from '@ephox/katamari';
+import { Css, SugarElement } from '@ephox/sugar';
 
 import BookmarkManager from '../api/dom/BookmarkManager';
 import * as NodeType from '../dom/NodeType';

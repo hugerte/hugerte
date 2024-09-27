@@ -1,12 +1,12 @@
-import { Arbitraries, Assertions, Pipeline, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { PlatformDetection } from '@hugemce/sand';
-import { SugarNode } from '@hugemce/sugar';
+import { Arbitraries, Assertions, Pipeline, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { PlatformDetection } from '@ephox/sand';
+import { SugarNode } from '@ephox/sugar';
 
-import { Editor } from 'hugemce/mcagar/alien/EditorTypes';
-import { TinyApis } from 'hugemce/mcagar/api/pipeline/TinyApis';
-import * as TinyLoader from 'hugemce/mcagar/api/pipeline/TinyLoader';
-import { TinyScenarios } from 'hugemce/mcagar/api/pipeline/TinyScenarios';
+import { Editor } from 'ephox/mcagar/alien/EditorTypes';
+import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';
+import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
+import { TinyScenarios } from 'ephox/mcagar/api/pipeline/TinyScenarios';
 
 UnitTest.asynctest('TinyScenariosTest', (success, failure) => {
 

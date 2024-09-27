@@ -1,8 +1,8 @@
-import { ApproxStructure, Keys } from '@hugemce/agar';
-import { describe, it, context } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { TinyApis, TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, Keys } from '@ephox/agar';
+import { describe, it, context } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { TinyApis, TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import * as Zwsp from 'tinymce/core/text/Zwsp';

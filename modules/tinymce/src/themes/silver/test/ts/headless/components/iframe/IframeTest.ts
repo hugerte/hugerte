@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Waiter } from '@hugemce/agar';
-import { AlloyComponent, Composing, Container, GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, context, it } from '@hugemce/bedrock-client';
-import { Arr, Fun, Optional } from '@hugemce/katamari';
+import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
+import { AlloyComponent, Composing, Container, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { describe, context, it } from '@ephox/bedrock-client';
+import { Arr, Fun, Optional } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import { renderIFrame } from 'tinymce/themes/silver/ui/dialog/IFrame';

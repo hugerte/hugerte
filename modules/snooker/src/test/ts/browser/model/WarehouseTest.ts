@@ -1,10 +1,10 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Obj, Type } from '@hugemce/katamari';
-import { Attribute, SugarElement, TextContent } from '@hugemce/sugar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Obj, Type } from '@ephox/katamari';
+import { Attribute, SugarElement, TextContent } from '@ephox/sugar';
 import { assert } from 'chai';
 
-import * as Structs from 'hugemce/snooker/api/Structs';
-import { Warehouse } from 'hugemce/snooker/api/Warehouse';
+import * as Structs from 'ephox/snooker/api/Structs';
+import { Warehouse } from 'ephox/snooker/api/Warehouse';
 
 interface ExpectedWarehouse {
   readonly access: Record<string, string>;

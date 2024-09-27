@@ -1,6 +1,6 @@
-import { ApproxStructure } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
+import { ApproxStructure } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

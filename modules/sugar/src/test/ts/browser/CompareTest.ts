@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Compare from 'hugemce/sugar/api/dom/Compare';
-import * as Remove from 'hugemce/sugar/api/dom/Remove';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
-import * as TestPage from 'hugemce/sugar/test/TestPage';
+import * as Compare from 'ephox/sugar/api/dom/Compare';
+import * as Remove from 'ephox/sugar/api/dom/Remove';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
+import * as TestPage from 'ephox/sugar/test/TestPage';
 
 UnitTest.test('CompareTest', () => {
   TestPage.connect(); // description of structure is in TestPage

@@ -1,10 +1,10 @@
-import { GeneralSteps, Logger, Pipeline, Step, TestStore, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { EventArgs, SugarElement } from '@hugemce/sugar';
+import { GeneralSteps, Logger, Pipeline, Step, TestStore, Waiter } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { EventArgs, SugarElement } from '@ephox/sugar';
 
-import * as NativeEvents from 'hugemce/alloy/api/events/NativeEvents';
-import * as SystemEvents from 'hugemce/alloy/api/events/SystemEvents';
-import * as TapEvent from 'hugemce/alloy/events/TapEvent';
+import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
+import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
+import * as TapEvent from 'ephox/alloy/events/TapEvent';
 
 UnitTest.asynctest('browser events.TapEventsTest', (success, failure) => {
   // Needs to be browser because it uses DOM comparison

@@ -1,6 +1,6 @@
-import { Id, Arr } from '@hugemce/katamari';
-import { DomDescent } from '@hugemce/phoenix';
-import { Attribute, SelectorFind, SugarElement } from '@hugemce/sugar';
+import { Id, Arr } from '@ephox/katamari';
+import { DomDescent } from '@ephox/phoenix';
+import { Attribute, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

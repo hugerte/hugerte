@@ -1,5 +1,5 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { PlatformDetection } from '@hugemce/sand';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
 import Schema from 'tinymce/core/api/html/Schema';

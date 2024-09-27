@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Composing, Form as AlloyForm, GuiFactory, Keying, Receiving, Representing,
   SketchSpec, Tabbar as AlloyTabbar, TabbarTypes, TabSection as AlloyTabSection, Tabstopping
-} from '@hugemce/alloy';
-import { Objects } from '@hugemce/boulder';
-import { Dialog } from '@hugemce/bridge';
-import { Arr, Cell, Fun, Merger, Optional } from '@hugemce/katamari';
+} from '@ephox/alloy';
+import { Objects } from '@ephox/boulder';
+import { Dialog } from '@ephox/bridge';
+import { Arr, Cell, Fun, Merger, Optional } from '@ephox/katamari';
 
 import { toValidValues } from 'tinymce/themes/silver/ui/general/FormValues';
 import { interpretInForm } from 'tinymce/themes/silver/ui/general/UiFactory';

@@ -1,11 +1,11 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Obj, Optional } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Obj, Optional } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 
-import * as FieldSchema from 'hugemce/boulder/api/FieldSchema';
-import * as StructureSchema from 'hugemce/boulder/api/StructureSchema';
-import { FieldProcessor } from 'hugemce/boulder/core/FieldProcessor';
-import * as ValueType from 'hugemce/boulder/core/ValueType';
+import * as FieldSchema from 'ephox/boulder/api/FieldSchema';
+import * as StructureSchema from 'ephox/boulder/api/StructureSchema';
+import { FieldProcessor } from 'ephox/boulder/core/FieldProcessor';
+import * as ValueType from 'ephox/boulder/core/ValueType';
 
 UnitTest.test('Atomic Test: api.FieldSchemaTest', () => {
   const assertFieldValue = (label: string, expected: any, input: any, field: FieldProcessor) => {

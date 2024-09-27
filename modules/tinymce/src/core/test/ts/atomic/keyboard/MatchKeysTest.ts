@@ -1,5 +1,5 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Cell } from '@hugemce/katamari';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Cell } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import * as MatchKeys from 'tinymce/core/keyboard/MatchKeys';

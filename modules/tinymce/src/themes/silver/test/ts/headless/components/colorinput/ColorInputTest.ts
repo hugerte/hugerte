@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { AlloyComponent, AlloyTriggers, Container, GuiFactory, Invalidating, NativeEvents, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Fun, Optional } from '@hugemce/katamari';
-import { SelectorFind, SugarDocument, Traverse } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { AlloyComponent, AlloyTriggers, Container, GuiFactory, Invalidating, NativeEvents, Representing, TestHelpers } from '@ephox/alloy';
+import { describe, it } from '@ephox/bedrock-client';
+import { Fun, Optional } from '@ephox/katamari';
+import { SelectorFind, SugarDocument, Traverse } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import { renderColorInput } from 'tinymce/themes/silver/ui/dialog/ColorInput';

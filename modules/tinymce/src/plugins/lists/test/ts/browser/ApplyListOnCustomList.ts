@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Strings } from '@hugemce/katamari';
-import { TinyAssertions, TinyHooks, TinyUiActions } from '@hugemce/mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Strings } from '@ephox/katamari';
+import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/lists/Plugin';

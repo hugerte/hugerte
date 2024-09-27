@@ -1,5 +1,5 @@
-import { Arr, Id, Obj, Singleton, Unicode } from '@hugemce/katamari';
-import { Attribute, Class, Classes, Html, Insert, Replication, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
+import { Arr, Id, Obj, Singleton, Unicode } from '@ephox/katamari';
+import { Attribute, Class, Classes, Html, Insert, Replication, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import * as ExpandRange from '../fmt/ExpandRange';

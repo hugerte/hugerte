@@ -1,9 +1,9 @@
-import { Log, Pipeline, Step } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Fun, Optional } from '@hugemce/katamari';
-import { SelectorFind, SugarDocument, SugarElement } from '@hugemce/sugar';
+import { Log, Pipeline, Step } from '@ephox/agar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Fun, Optional } from '@ephox/katamari';
+import { SelectorFind, SugarDocument, SugarElement } from '@ephox/sugar';
 
-import { cellOperations } from 'hugemce/snooker/api/TableFill';
+import { cellOperations } from 'ephox/snooker/api/TableFill';
 
 UnitTest.asynctest('modules.snooker.src.test.ts.browser.CopyAttributesTest.ts', (success, failure) => {
   const operations = cellOperations(Fun.noop, SugarDocument.getDocument(), Optional.none());

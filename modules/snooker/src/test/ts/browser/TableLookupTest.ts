@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Compare, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Compare, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
-import * as TableLookup from 'hugemce/snooker/api/TableLookup';
+import * as TableLookup from 'ephox/snooker/api/TableLookup';
 
 const testWithSelector = (html: string, selector: string, assert: (element: SugarElement<Element>) => void) => {
   const element = SugarElement.fromHtml(html);
@@ -47,9 +47,9 @@ UnitTest.test('TableLookupTest - cells', () => {
   '<tbody>' +
   '<tr style="height: 0px;">' +
   '<td style="width: 399px; height: 0px;" colspan="3" rowspan="3">' +
-  '<span class="hugemce-cram-annotation-wrap hugemce-cram_4309642597121480569760068" ' +
-  'aria-invalid="spelling" data-hugemce-cram-highlight-id="hugemce-cram_4309642597121480569760068" ' +
-  'data-hugemce-cram-annotation="eee" data-hugemce-cram-lingo="en_us">eee</span>' +
+  '<span class="ephox-cram-annotation-wrap ephox-cram_4309642597121480569760068" ' +
+  'aria-invalid="spelling" data-ephox-cram-highlight-id="ephox-cram_4309642597121480569760068" ' +
+  'data-ephox-cram-annotation="eee" data-ephox-cram-lingo="en_us">eee</span>' +
   '</td>' +
   '</tr>' +
   '<tr style="height: 0px;"></tr>' +

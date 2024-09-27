@@ -1,14 +1,14 @@
 // noinspection JSPrimitiveTypeWrapperUsage
 
-import { Assert, context, describe, it } from '@hugemce/bedrock-client';
-import { Pprint } from '@hugemce/dispute';
+import { Assert, context, describe, it } from '@ephox/bedrock-client';
+import { Pprint } from '@ephox/dispute';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Arr from 'hugemce/katamari/api/Arr';
-import * as Fun from 'hugemce/katamari/api/Fun';
-import { Optional } from 'hugemce/katamari/api/Optional';
-import * as Type from 'hugemce/katamari/api/Type';
+import * as Arr from 'ephox/katamari/api/Arr';
+import * as Fun from 'ephox/katamari/api/Fun';
+import { Optional } from 'ephox/katamari/api/Optional';
+import * as Type from 'ephox/katamari/api/Type';
 
 const check = (method: (u: unknown) => boolean, methodName: string) => (expected: boolean, input: unknown) => {
   const actual = method(input);

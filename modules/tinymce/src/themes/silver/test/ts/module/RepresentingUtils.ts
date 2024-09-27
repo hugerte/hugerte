@@ -1,4 +1,4 @@
-import { AlloyComponent, Composing, Representing } from '@hugemce/alloy';
+import { AlloyComponent, Composing, Representing } from '@ephox/alloy';
 import { assert } from 'chai';
 
 const assertComposedValue = (component: AlloyComponent, expected: any): void => {

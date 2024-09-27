@@ -1,5 +1,5 @@
-import { Optional } from '@hugemce/katamari';
-import { SugarElement, SugarShadowDom } from '@hugemce/sugar';
+import { Optional } from '@ephox/katamari';
+import { SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import StyleSheetLoader, { StyleSheetLoaderSettings } from '../api/dom/StyleSheetLoader';
 

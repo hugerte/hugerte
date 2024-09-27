@@ -1,9 +1,9 @@
 import {
   Behaviour, Button as AlloyButton, Tabstopping, GuiFactory, SimpleSpec, Toggling, Replacing, Keying, AddEventsBehaviour, AlloyEvents, NativeEvents, AlloyComponent, CustomEvent, Receiving, Focusing, Sliding, AlloyTriggers, EventFormat
-} from '@hugemce/alloy';
-import { Dialog } from '@hugemce/bridge';
-import { Cell, Fun, Id, Optional } from '@hugemce/katamari';
-import { EventArgs, SelectorFind } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { Dialog } from '@ephox/bridge';
+import { Cell, Fun, Id, Optional } from '@ephox/katamari';
+import { EventArgs, SelectorFind } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderMenuButton } from '../button/MenuButton';

@@ -1,7 +1,7 @@
-import { AlloyComponent, AlloyTriggers, Composing, Disabling, Focusing, Form, Reflecting, Representing, TabSection } from '@hugemce/alloy';
-import { StructureSchema } from '@hugemce/boulder';
-import { Dialog, DialogManager } from '@hugemce/bridge';
-import { Cell, Merger, Obj, Optional, Type } from '@hugemce/katamari';
+import { AlloyComponent, AlloyTriggers, Composing, Disabling, Focusing, Form, Reflecting, Representing, TabSection } from '@ephox/alloy';
+import { StructureSchema } from '@ephox/boulder';
+import { Dialog, DialogManager } from '@ephox/bridge';
+import { Cell, Merger, Obj, Optional, Type } from '@ephox/katamari';
 
 import { formBlockEvent, formCloseEvent, formUnblockEvent } from '../general/FormEvents';
 import { bodyChannel, dialogChannel, footerChannel, titleChannel } from './DialogChannels';

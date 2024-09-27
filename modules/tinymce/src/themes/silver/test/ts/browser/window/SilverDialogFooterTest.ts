@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { describe, context, it, afterEach, beforeEach } from '@hugemce/bedrock-client';
-import { Singleton } from '@hugemce/katamari';
-import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, Assertions } from '@ephox/agar';
+import { describe, context, it, afterEach, beforeEach } from '@ephox/bedrock-client';
+import { Singleton } from '@ephox/katamari';
+import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Dialog } from 'tinymce/core/api/ui/Ui';

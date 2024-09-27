@@ -1,4 +1,4 @@
-import { Dialog } from '@hugemce/bridge';
+import { Dialog } from '@ephox/bridge';
 
 import { TinyMCE } from 'tinymce/core/api/PublicApi';
 

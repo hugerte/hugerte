@@ -1,8 +1,8 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
+import { context, describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Arr from 'hugemce/katamari/api/Arr';
+import * as Arr from 'ephox/katamari/api/Arr';
 
 interface TestResult<T> {
   readonly index: number;

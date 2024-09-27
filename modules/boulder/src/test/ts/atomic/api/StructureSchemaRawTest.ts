@@ -1,14 +1,14 @@
-import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Fun, Result } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { Logger } from '@ephox/agar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Fun, Result } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 
-import * as FieldPresence from 'hugemce/boulder/api/FieldPresence';
-import * as FieldSchema from 'hugemce/boulder/api/FieldSchema';
-import * as Objects from 'hugemce/boulder/api/Objects';
-import * as StructureSchema from 'hugemce/boulder/api/StructureSchema';
-import { StructureProcessor } from 'hugemce/boulder/core/StructureProcessor';
-import * as ValueType from 'hugemce/boulder/core/ValueType';
+import * as FieldPresence from 'ephox/boulder/api/FieldPresence';
+import * as FieldSchema from 'ephox/boulder/api/FieldSchema';
+import * as Objects from 'ephox/boulder/api/Objects';
+import * as StructureSchema from 'ephox/boulder/api/StructureSchema';
+import { StructureProcessor } from 'ephox/boulder/core/StructureProcessor';
+import * as ValueType from 'ephox/boulder/core/ValueType';
 
 UnitTest.test('StructureSchemaRawTest', () => {
   const checkErr = (label: string, expectedPart: string, input: any, processor: StructureProcessor) => {

@@ -1,7 +1,7 @@
-import { AlloyComponent, Bubble, InlineView, Layout, LayoutInset, MaxHeight, MaxWidth, TieredMenuTypes } from '@hugemce/alloy';
-import { Optional } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { SimSelection, WindowSelection } from '@hugemce/sugar';
+import { AlloyComponent, Bubble, InlineView, Layout, LayoutInset, MaxHeight, MaxWidth, TieredMenuTypes } from '@ephox/alloy';
+import { Optional } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { SimSelection, WindowSelection } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Delay from 'tinymce/core/api/util/Delay';

@@ -1,9 +1,9 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
-import { reconcileToDom } from 'hugemce/alloy/dom/Reconcile';
+import { reconcileToDom } from 'ephox/alloy/dom/Reconcile';
 
 describe('ReconcileTest', () => {
   const elementDefinition = {

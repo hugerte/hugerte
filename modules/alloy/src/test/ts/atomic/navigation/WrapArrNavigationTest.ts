@@ -1,8 +1,8 @@
-import { UnitTest } from '@hugemce/bedrock-client';
+import { UnitTest } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as WrapArrNavigation from 'hugemce/alloy/navigation/WrapArrNavigation';
+import * as WrapArrNavigation from 'ephox/alloy/navigation/WrapArrNavigation';
 
 interface GeneratedGrid {
   readonly values: number[];

@@ -1,5 +1,5 @@
-import { Fun } from '@hugemce/katamari';
-import { Compare, Css, SugarElement, TransformFind } from '@hugemce/sugar';
+import { Fun } from '@ephox/katamari';
+import { Compare, Css, SugarElement, TransformFind } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import { mapRange } from '../selection/RangeMap';

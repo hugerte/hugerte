@@ -1,8 +1,8 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
 
-import * as TableOperations from 'hugemce/snooker/api/TableOperations';
-import * as Assertions from 'hugemce/snooker/test/Assertions';
+import * as TableOperations from 'ephox/snooker/api/TableOperations';
+import * as Assertions from 'ephox/snooker/test/Assertions';
 
 describe('browser.snooker.InsertMultipleOperationsTest', () => {
   context('insertColumnsBefore', () => {

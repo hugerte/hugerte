@@ -1,7 +1,7 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 
-import * as Obj from 'hugemce/katamari/api/Obj';
-import { assertNone, assertSome } from 'hugemce/katamari/test/AssertOptional';
+import * as Obj from 'ephox/katamari/api/Obj';
+import { assertNone, assertSome } from 'ephox/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.obj.GetTest', () => {
 

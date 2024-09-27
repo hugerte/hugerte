@@ -1,7 +1,7 @@
-import { ApproxStructure, Keys, Mouse, StructAssert, Waiter } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Arr, Type } from '@hugemce/katamari';
-import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, Keys, Mouse, StructAssert, Waiter } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Arr, Type } from '@ephox/katamari';
+import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

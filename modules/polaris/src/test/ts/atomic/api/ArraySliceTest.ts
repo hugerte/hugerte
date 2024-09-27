@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Testable } from '@hugemce/dispute';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Testable } from '@ephox/dispute';
 import * as fc from 'fast-check';
 
-import * as Arrays from 'hugemce/polaris/api/Arrays';
+import * as Arrays from 'ephox/polaris/api/Arrays';
 
 const { tArray, tNumber } = Testable;
 

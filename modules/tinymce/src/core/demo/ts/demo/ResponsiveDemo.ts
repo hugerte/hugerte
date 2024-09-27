@@ -1,4 +1,4 @@
-import { SugarElement } from '@hugemce/sugar';
+import { SugarElement } from '@ephox/sugar';
 
 import { Editor, RawEditorOptions, TinyMCE } from 'tinymce/core/api/PublicApi';
 
@@ -26,7 +26,7 @@ export default (): void => {
     skin_url: '../../../../js/tinymce/skins/ui/oxide',
     content_css: '../../../../js/tinymce/skins/content/default/content.css',
     images_upload_url: 'd',
-    selector: '#hugemce-ui textarea',
+    selector: '#ephox-ui textarea',
     // rtl_ui: true,
     link_list: [
       { title: 'My page 1', value: 'http://www.tinymce.com' },

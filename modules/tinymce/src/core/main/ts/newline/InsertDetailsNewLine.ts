@@ -1,4 +1,4 @@
-import { Obj, Type } from '@hugemce/katamari';
+import { Obj, Type } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';

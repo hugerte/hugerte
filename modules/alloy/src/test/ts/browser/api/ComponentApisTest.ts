@@ -1,9 +1,9 @@
-import { Step, GeneralSteps, Logger, Assertions } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
+import { Step, GeneralSteps, Logger, Assertions } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
 
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
 
 UnitTest.asynctest('ComponentApisTest', (success, failure) => {
   interface TestApiInterface {

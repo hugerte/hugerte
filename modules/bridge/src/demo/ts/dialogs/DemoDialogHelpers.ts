@@ -1,8 +1,8 @@
-import { StructureProcessor, StructureSchema } from '@hugemce/boulder';
-import { Cell, Fun, Merger } from '@hugemce/katamari';
+import { StructureProcessor, StructureSchema } from '@ephox/boulder';
+import { Cell, Fun, Merger } from '@ephox/katamari';
 
-import { DialogManager } from '../../../main/ts/hugemce/bridge/api/DialogManager';
-import { Dialog, DialogData, DialogInstanceApi, DialogSpec } from '../../../main/ts/hugemce/bridge/components/dialog/Dialog';
+import { DialogManager } from '../../../main/ts/ephox/bridge/api/DialogManager';
+import { Dialog, DialogData, DialogInstanceApi, DialogSpec } from '../../../main/ts/ephox/bridge/components/dialog/Dialog';
 
 // This is the function that would be implemented in modern theme/silver theme for creating dialogs
 const createDemoApi = <T extends DialogData>(internalStructure: Dialog<T>, initialData: Partial<T>, dataValidator: StructureProcessor): DialogInstanceApi<T> => {

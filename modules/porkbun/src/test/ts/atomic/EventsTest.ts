@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Obj } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Obj } from '@ephox/katamari';
 
-import { Bindable, Event } from 'hugemce/porkbun/Event';
-import * as Events from 'hugemce/porkbun/Events';
-import SourceEvent from 'hugemce/porkbun/SourceEvent';
+import { Bindable, Event } from 'ephox/porkbun/Event';
+import * as Events from 'ephox/porkbun/Events';
+import SourceEvent from 'ephox/porkbun/SourceEvent';
 
 interface MyEvent {
   readonly name: string;

@@ -1,4 +1,4 @@
-import { Fun, Future, Obj, Optional, Type } from '@hugemce/katamari';
+import { Fun, Future, Obj, Optional, Type } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { FilePickerCallback, FilePickerValidationCallback } from 'tinymce/core/api/OptionTypes';

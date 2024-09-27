@@ -1,4 +1,4 @@
-import { Fun } from '@hugemce/katamari';
+import { Fun } from '@ephox/katamari';
 
 import * as Dimensions from '../dom/Dimensions';
 import * as ClientRect from '../geom/ClientRect';

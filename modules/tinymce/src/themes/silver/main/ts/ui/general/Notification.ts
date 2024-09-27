@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Button, DomFactory, Focusing, GuiFactory, Memento, NativeEvents, Replacing, Sketcher,
   UiSketcher
-} from '@hugemce/alloy';
-import { FieldSchema } from '@hugemce/boulder';
-import { Arr, Optional } from '@hugemce/katamari';
+} from '@ephox/alloy';
+import { FieldSchema } from '@ephox/boulder';
+import { Arr, Optional } from '@ephox/katamari';
 
 import { TranslatedString, Untranslated } from 'tinymce/core/api/util/I18n';
 

@@ -1,8 +1,8 @@
-import { Chain, Cleaner, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Pipeline, Step, TestStore, Touch, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Attribute, DomEvent, EventArgs, Insert, Remove, SugarElement, SugarNode, SugarText } from '@hugemce/sugar';
+import { Chain, Cleaner, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Pipeline, Step, TestStore, Touch, UiFinder } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Attribute, DomEvent, EventArgs, Insert, Remove, SugarElement, SugarNode, SugarText } from '@ephox/sugar';
 
-import * as GuiEvents from 'hugemce/alloy/events/GuiEvents';
+import * as GuiEvents from 'ephox/alloy/events/GuiEvents';
 
 interface StoreGuiEventsTest {
   readonly eventName: string;

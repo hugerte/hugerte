@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
-import { SugarPosition } from '@hugemce/sugar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
+import { SugarPosition } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

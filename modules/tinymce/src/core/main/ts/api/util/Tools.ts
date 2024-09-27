@@ -1,4 +1,4 @@
-import { Obj, Type } from '@hugemce/katamari';
+import { Obj, Type } from '@ephox/katamari';
 
 import * as ArrUtils from '../../util/ArrUtils';
 import Env from '../Env';

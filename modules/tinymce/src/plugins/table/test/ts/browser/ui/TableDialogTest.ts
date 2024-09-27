@@ -1,7 +1,7 @@
-import { ApproxStructure, UiFinder } from '@hugemce/agar';
-import { after, before, context, describe, it } from '@hugemce/bedrock-client';
-import { SugarBody } from '@hugemce/sugar';
-import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, UiFinder } from '@ephox/agar';
+import { after, before, context, describe, it } from '@ephox/bedrock-client';
+import { SugarBody } from '@ephox/sugar';
+import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/table/Plugin';

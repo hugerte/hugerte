@@ -1,5 +1,5 @@
-import { after, describe, it } from '@hugemce/bedrock-client';
-import { McEditor } from '@hugemce/wrap-mcagar';
+import { after, describe, it } from '@ephox/bedrock-client';
+import { McEditor } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

@@ -1,4 +1,4 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
 import Entities from 'tinymce/core/api/html/Entities';

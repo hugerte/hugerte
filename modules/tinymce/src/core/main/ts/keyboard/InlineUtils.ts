@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Type } from '@hugemce/katamari';
-import { Selectors, SugarElement } from '@hugemce/sugar';
+import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Selectors, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

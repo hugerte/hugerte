@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Compare from 'hugemce/sugar/api/dom/Compare';
-import * as DomFuture from 'hugemce/sugar/api/dom/DomFuture';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Compare from 'ephox/sugar/api/dom/Compare';
+import * as DomFuture from 'ephox/sugar/api/dom/DomFuture';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
 
 UnitTest.asynctest('Browser Test: .DomFutureTest', (success) => {
 

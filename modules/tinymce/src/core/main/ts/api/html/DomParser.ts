@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Type } from '@hugemce/katamari';
+import { Arr, Fun, Obj, Type } from '@ephox/katamari';
 
 import * as TransparentElements from '../../content/TransparentElements';
 import * as NodeType from '../../dom/NodeType';

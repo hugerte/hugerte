@@ -1,10 +1,10 @@
-import { Assert, describe, it } from '@hugemce/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
-import { Arr, Fun } from '@hugemce/katamari';
+import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { Arr, Fun } from '@ephox/katamari';
 
-import * as Searcher from 'hugemce/phoenix/search/Searcher';
-import * as Finder from 'hugemce/phoenix/test/Finder';
-import * as TestRenders from 'hugemce/phoenix/test/TestRenders';
+import * as Searcher from 'ephox/phoenix/search/Searcher';
+import * as Finder from 'ephox/phoenix/test/Finder';
+import * as TestRenders from 'ephox/phoenix/test/TestRenders';
 
 interface CheckItem {
   readonly items: string[];

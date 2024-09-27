@@ -1,10 +1,10 @@
-import { after, before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Singleton } from '@hugemce/katamari';
-import { DomEvent, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
+import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Singleton } from '@ephox/katamari';
+import { DomEvent, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
-import { copy, cut, pasteDataTransfer, pasteFiles, pasteItems, pPasteUrlItems } from 'hugemce/agar/api/Clipboard';
-import { createFileFromString, getFileDataAsString } from 'hugemce/agar/api/Files';
+import { copy, cut, pasteDataTransfer, pasteFiles, pasteItems, pPasteUrlItems } from 'ephox/agar/api/Clipboard';
+import { createFileFromString, getFileDataAsString } from 'ephox/agar/api/Files';
 
 describe('ClipboardTest', () => {
   const pasteState = Singleton.value<DataTransfer>();
@@ -142,8 +142,8 @@ describe('ClipboardTest', () => {
     const pastebin = pastebinState.get().getOrDie('Could not get pastebin from state');
 
     await pPasteUrlItems(pastebin, [
-      { kind: 'string', url: 'project/@hugemce/agar/src/test/resources/clipboard.html' },
-      { kind: 'string', url: 'project/@hugemce/agar/src/test/resources/clipboard.txt' },
+      { kind: 'string', url: 'project/@ephox/agar/src/test/resources/clipboard.html' },
+      { kind: 'string', url: 'project/@ephox/agar/src/test/resources/clipboard.txt' },
     ]);
 
     const dataTransfer = pasteState.get().getOrDie('Could not get dataTransfer from state');
@@ -157,8 +157,8 @@ describe('ClipboardTest', () => {
     const pastebin = pastebinState.get().getOrDie('Could not get pastebin from state');
 
     await pPasteUrlItems(pastebin, [
-      { kind: 'file', url: 'project/@hugemce/agar/src/test/resources/clipboard.html' },
-      { kind: 'file', url: 'project/@hugemce/agar/src/test/resources/clipboard.txt' },
+      { kind: 'file', url: 'project/@ephox/agar/src/test/resources/clipboard.html' },
+      { kind: 'file', url: 'project/@ephox/agar/src/test/resources/clipboard.txt' },
     ]);
 
     const dataTransfer = pasteState.get().getOrDie('Could not get dataTransfer from state');

@@ -1,16 +1,16 @@
-import { Chain, Cursors, NamedChain } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Optional, Result } from '@hugemce/katamari';
-import { Css, Html, Scroll, SugarElement } from '@hugemce/sugar';
+import { Chain, Cursors, NamedChain } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Optional, Result } from '@ephox/katamari';
+import { Css, Html, Scroll, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
-import * as ChainUtils from 'hugemce/alloy/test/ChainUtils';
-import * as PositionTestUtils from 'hugemce/alloy/test/PositionTestUtils';
-import { toDomRange } from 'hugemce/alloy/test/RangeUtils';
-import * as Sinks from 'hugemce/alloy/test/Sinks';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
+import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
+import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
+import { toDomRange } from 'ephox/alloy/test/RangeUtils';
+import * as Sinks from 'ephox/alloy/test/Sinks';
 
 UnitTest.asynctest('SelectionInDocPositionTest', (success, failure) => {
 

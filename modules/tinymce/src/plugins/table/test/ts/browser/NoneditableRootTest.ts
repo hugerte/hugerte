@@ -1,8 +1,8 @@
-import { Keys, UiFinder } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Obj, Optional } from '@hugemce/katamari';
-import { SugarBody } from '@hugemce/sugar';
-import { TinyHooks, TinySelections, TinyState, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Keys, UiFinder } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Obj, Optional } from '@ephox/katamari';
+import { SugarBody } from '@ephox/sugar';
+import { TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import * as FakeClipboard from 'tinymce/plugins/table/api/Clipboard';

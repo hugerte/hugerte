@@ -1,12 +1,12 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Fun, Unicode } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
-import { Spot } from '@hugemce/phoenix';
-import { Pattern } from '@hugemce/polaris';
-import { Compare, Html, Insert, InsertAll, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Fun, Unicode } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
+import { Spot } from '@ephox/phoenix';
+import { Pattern } from '@ephox/polaris';
+import { Compare, Html, Insert, InsertAll, SugarElement } from '@ephox/sugar';
 
-import * as DomTextSearch from 'hugemce/robin/api/dom/DomTextSearch';
-import { TextSeekerOutcome, TextSeekerPhaseConstructor } from 'hugemce/robin/textdata/TextSeeker';
+import * as DomTextSearch from 'ephox/robin/api/dom/DomTextSearch';
+import { TextSeekerOutcome, TextSeekerPhaseConstructor } from 'ephox/robin/textdata/TextSeeker';
 
 UnitTest.test('DomTextSearchTest', () => {
   const wordbreaker = () => {

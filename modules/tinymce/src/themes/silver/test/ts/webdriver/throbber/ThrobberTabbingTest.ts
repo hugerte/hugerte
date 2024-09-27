@@ -1,8 +1,8 @@
-import { FocusTools, RealKeys, UiFinder } from '@hugemce/agar';
-import { after, before, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement } from '@hugemce/sugar';
-import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
+import { FocusTools, RealKeys, UiFinder } from '@ephox/agar';
+import { after, before, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
+import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

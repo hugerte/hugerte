@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Optionals } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Optionals } from '@ephox/katamari';
 import fc from 'fast-check';
 
-import * as Dimension from 'hugemce/sugar/api/view/Dimension';
+import * as Dimension from 'ephox/sugar/api/view/Dimension';
 
 UnitTest.test('All valid floats are valid', () => {
   fc.assert(fc.property(fc.oneof(

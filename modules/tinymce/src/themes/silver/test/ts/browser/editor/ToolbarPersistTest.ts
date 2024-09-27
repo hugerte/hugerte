@@ -1,7 +1,7 @@
-import { UiFinder, Waiter } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Focus, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
-import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { UiFinder, Waiter } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Focus, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

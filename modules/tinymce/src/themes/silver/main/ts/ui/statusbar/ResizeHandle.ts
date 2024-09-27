@@ -1,6 +1,6 @@
-import { Dragging, Focusing, Keying, SimpleSpec, Tabstopping, Tooltipping } from '@hugemce/alloy';
-import { Optional } from '@hugemce/katamari';
-import { SugarPosition } from '@hugemce/sugar';
+import { Dragging, Focusing, Keying, SimpleSpec, Tabstopping, Tooltipping } from '@ephox/alloy';
+import { Optional } from '@ephox/katamari';
+import { SugarPosition } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

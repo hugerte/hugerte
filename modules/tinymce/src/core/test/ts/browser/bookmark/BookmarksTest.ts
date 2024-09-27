@@ -1,8 +1,8 @@
-import { Assertions, Cursors, Mouse } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Hierarchy, Html, Remove, Replication, SelectorFilter, SugarElement, Insert, SugarBody, DomEvent } from '@hugemce/sugar';
-import { McEditor, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Assertions, Cursors, Mouse } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Hierarchy, Html, Remove, Replication, SelectorFilter, SugarElement, Insert, SugarBody, DomEvent } from '@ephox/sugar';
+import { McEditor, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

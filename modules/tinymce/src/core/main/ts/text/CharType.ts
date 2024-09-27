@@ -1,4 +1,4 @@
-import { Unicode } from '@hugemce/katamari';
+import { Unicode } from '@ephox/katamari';
 
 const is = (expected: string) => (actual: string): boolean =>
   expected === actual;

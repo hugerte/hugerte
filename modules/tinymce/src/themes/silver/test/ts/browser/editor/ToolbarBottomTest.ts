@@ -1,9 +1,9 @@
-import { Mouse, UiFinder } from '@hugemce/agar';
-import { Boxes } from '@hugemce/alloy';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Fun } from '@hugemce/katamari';
-import { SugarBody } from '@hugemce/sugar';
-import { McEditor } from '@hugemce/wrap-mcagar';
+import { Mouse, UiFinder } from '@ephox/agar';
+import { Boxes } from '@ephox/alloy';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Fun } from '@ephox/katamari';
+import { SugarBody } from '@ephox/sugar';
+import { McEditor } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

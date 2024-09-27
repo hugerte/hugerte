@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/darwin/test/*": ["src/test/ts/module/hugemce/darwin/test/*"],
-      "hugemce/darwin/demo/*": ["src/demo/ts/hugemce/darwin/demo/*"],
-      "hugemce/darwin/*": ["src/main/ts/hugemce/darwin/*"]
+      "ephox/darwin/test/*": ["src/test/ts/module/ephox/darwin/test/*"],
+      "ephox/darwin/demo/*": ["src/demo/ts/ephox/darwin/demo/*"],
+      "ephox/darwin/*": ["src/main/ts/ephox/darwin/*"]
     }
   },
   "include": [

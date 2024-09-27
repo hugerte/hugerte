@@ -1,7 +1,7 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Throttler from 'hugemce/katamari/api/Throttler';
+import * as Throttler from 'ephox/katamari/api/Throttler';
 
 describe('atomic.katamari.api.fun.ThrottlerTest', () => {
 

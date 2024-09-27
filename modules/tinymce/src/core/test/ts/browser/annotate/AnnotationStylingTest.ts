@@ -1,8 +1,8 @@
-import { UiFinder, Waiter } from '@hugemce/agar';
-import { before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Class, Compare, Css, SelectorFilter, SugarElement, SugarNode } from '@hugemce/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { UiFinder, Waiter } from '@ephox/agar';
+import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Class, Compare, Css, SelectorFilter, SugarElement, SugarNode } from '@ephox/sugar';
+import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';
@@ -134,15 +134,15 @@ describe('browser.tinymce.core.annotate.AnnotationStylingTest', () => {
     '<li><a href="#mcetoc_">Heading</a></li>' +
     '</ul>' +
     '</div>';
-  const iframeMediaEmbedHtml = '<div style="left: 0px; width: 100%; height: 0px; position: relative; padding-bottom: 56.25%; max-width: 650px;" data-hugemce-embed-iri="https://www.youtube.com/watch?v=8aGhZQkoFbQ" contenteditable="false">' +
+  const iframeMediaEmbedHtml = '<div style="left: 0px; width: 100%; height: 0px; position: relative; padding-bottom: 56.25%; max-width: 650px;" data-ephox-embed-iri="https://www.youtube.com/watch?v=8aGhZQkoFbQ" contenteditable="false">' +
     '<iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/8aGhZQkoFbQ?rel=0" scrolling="no" allowfullscreen="allowfullscreen"></iframe>' +
     '</div>';
-  const videoMediaEmbedHtml = '<div style="max-width: 650px;" data-hugemce-embed-iri="custom/video.mp4" contenteditable="false">' +
+  const videoMediaEmbedHtml = '<div style="max-width: 650px;" data-ephox-embed-iri="custom/video.mp4" contenteditable="false">' +
     '<video style="width: 100%;" controls="controls">' +
     '<source src="custom/video.mp4" type="video/mp4">' +
     '</video>' +
     '</div>';
-  const audioMediaEmbedHtml = '<div style="max-width: 650px;" data-hugemce-embed-iri="custom/audio.mp3" contenteditable="false">' +
+  const audioMediaEmbedHtml = '<div style="max-width: 650px;" data-ephox-embed-iri="custom/audio.mp3" contenteditable="false">' +
     '<audio style="width: 100%;" controls="controls">' +
     '<source src="custom/audio.mp3" type="audio/mpeg">' +
     '</audio>' +
@@ -161,9 +161,9 @@ describe('browser.tinymce.core.annotate.AnnotationStylingTest', () => {
     { label: 'media iframe (YouTube video)', name: 'iframe', outlineSelector: 'span.mce-preview-object', html: iframeMediaHtml },
     { label: 'media audio', name: 'audio', outlineSelector: 'span.mce-preview-object', html: audioMediaHtml },
     { label: 'media video', name: 'video', outlineSelector: 'span.mce-preview-object', html: videoMediaHtml },
-    { label: 'mediaembed iframe (YouTube video)', name: 'iframe', outlineSelector: 'div[data-hugemce-embed-iri]', html: iframeMediaEmbedHtml },
-    { label: 'mediaembed video', name: 'video', outlineSelector: 'div[data-hugemce-embed-iri]', html: videoMediaEmbedHtml },
-    { label: 'mediaembed audio', name: 'audio', outlineSelector: 'div[data-hugemce-embed-iri]', html: audioMediaEmbedHtml },
+    { label: 'mediaembed iframe (YouTube video)', name: 'iframe', outlineSelector: 'div[data-ephox-embed-iri]', html: iframeMediaEmbedHtml },
+    { label: 'mediaembed video', name: 'video', outlineSelector: 'div[data-ephox-embed-iri]', html: videoMediaEmbedHtml },
+    { label: 'mediaembed audio', name: 'audio', outlineSelector: 'div[data-ephox-embed-iri]', html: audioMediaEmbedHtml },
     { label: 'pageembed website', name: 'iframe', outlineSelector: 'div.tiny-pageembed', html: pageEmbedHtml },
   ], (scenario) => {
     const { label, name, outlineSelector, html } = scenario;

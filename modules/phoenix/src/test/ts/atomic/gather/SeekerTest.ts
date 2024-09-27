@@ -1,10 +1,10 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
-import { Optional } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { Optional } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 
-import * as Gather from 'hugemce/phoenix/api/general/Gather';
-import * as Finder from 'hugemce/phoenix/test/Finder';
+import * as Gather from 'ephox/phoenix/api/general/Gather';
+import * as Finder from 'ephox/phoenix/test/Finder';
 
 UnitTest.test('Seeker Test', () => {
   const some = Optional.some;

@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Optionals } from '@hugemce/katamari';
+import { Arr, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
 
 import { LinkDialogCatalog, LinkDialogData, LinkDialogUrlData, ListGroup, ListItem, ListValue } from './DialogTypes';
 

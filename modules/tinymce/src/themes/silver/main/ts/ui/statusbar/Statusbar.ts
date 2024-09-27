@@ -1,4 +1,4 @@
-import { Behaviour, Focusing, GuiFactory, SimpleSpec } from '@hugemce/alloy';
+import { Behaviour, Focusing, GuiFactory, SimpleSpec } from '@ephox/alloy';
 
 import Editor from 'tinymce/core/api/Editor';
 import I18n from 'tinymce/core/api/util/I18n';

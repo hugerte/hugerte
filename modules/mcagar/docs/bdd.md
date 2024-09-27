@@ -21,7 +21,7 @@ Available functions:
 ### Example: Using TinyHooks to test a custom plugin
 
 ```js
-import { TinyHooks } from '@hugemce/mcagar';
+import { TinyHooks } from '@ephox/mcagar';
 import { Editor } from 'tinymce';
 
 import { Plugin } from '../../main/ts/Plugin';

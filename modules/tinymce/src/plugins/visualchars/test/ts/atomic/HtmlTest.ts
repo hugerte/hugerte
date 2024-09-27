@@ -1,5 +1,5 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Unicode } from '@hugemce/katamari';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Unicode } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import * as Html from 'tinymce/plugins/visualchars/core/Html';

@@ -1,4 +1,4 @@
-import { Throttler } from '@hugemce/katamari';
+import { Throttler } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import Delay from 'tinymce/core/api/util/Delay';

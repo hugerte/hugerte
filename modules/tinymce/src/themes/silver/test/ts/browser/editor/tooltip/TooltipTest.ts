@@ -1,8 +1,8 @@
-import { Waiter } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Fun } from '@hugemce/katamari';
-import { SugarElement, TextContent } from '@hugemce/sugar';
-import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Waiter } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Fun } from '@ephox/katamari';
+import { SugarElement, TextContent } from '@ephox/sugar';
+import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

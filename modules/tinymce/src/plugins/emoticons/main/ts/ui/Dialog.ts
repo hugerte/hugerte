@@ -1,4 +1,4 @@
-import { Arr, Cell, Optional, Throttler } from '@hugemce/katamari';
+import { Arr, Cell, Optional, Throttler } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Dialog } from 'tinymce/core/api/ui/Ui';

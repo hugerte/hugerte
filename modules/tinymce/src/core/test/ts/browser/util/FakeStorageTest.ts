@@ -1,4 +1,4 @@
-import { beforeEach, describe, it } from '@hugemce/bedrock-client';
+import { beforeEach, describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
 import * as FakeStorage from 'tinymce/core/api/util/FakeStorage';

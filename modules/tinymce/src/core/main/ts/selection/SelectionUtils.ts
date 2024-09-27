@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Optionals, Type } from '@hugemce/katamari';
-import { Compare, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
+import { Arr, Fun, Obj, Optional, Optionals, Type } from '@ephox/katamari';
+import { Compare, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import EditorSelection from '../api/dom/Selection';

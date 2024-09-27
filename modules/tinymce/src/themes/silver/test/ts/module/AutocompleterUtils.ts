@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, StructAssert, UiFinder, Waiter } from '@hugemce/agar';
-import { Arr, Type } from '@hugemce/katamari';
-import { SugarBody, SugarElement } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, StructAssert, UiFinder, Waiter } from '@ephox/agar';
+import { Arr, Type } from '@ephox/katamari';
+import { SugarBody, SugarElement } from '@ephox/sugar';
 
 interface TitleWithTextItem {
   readonly title: string;

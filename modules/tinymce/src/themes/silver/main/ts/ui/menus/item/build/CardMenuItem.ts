@@ -1,7 +1,7 @@
-import { AlloyComponent, AlloySpec, Behaviour, Disabling, ItemTypes } from '@hugemce/alloy';
-import { Menu } from '@hugemce/bridge';
-import { Arr, Optional } from '@hugemce/katamari';
-import { SelectorFilter } from '@hugemce/sugar';
+import { AlloyComponent, AlloySpec, Behaviour, Disabling, ItemTypes } from '@ephox/alloy';
+import { Menu } from '@ephox/bridge';
+import { Arr, Optional } from '@ephox/katamari';
+import { SelectorFilter } from '@ephox/sugar';
 
 import { UiFactoryBackstageShared } from 'tinymce/themes/silver/backstage/Backstage';
 import { renderItemDomStructure } from 'tinymce/themes/silver/ui/menus/item/structure/ItemStructure';

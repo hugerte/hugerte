@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Type } from '@hugemce/katamari';
-import { PredicateExists, SugarElement } from '@hugemce/sugar';
+import { Arr, Fun, Obj, Type } from '@ephox/katamari';
+import { PredicateExists, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

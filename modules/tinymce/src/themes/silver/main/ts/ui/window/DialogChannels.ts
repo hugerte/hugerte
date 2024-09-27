@@ -1,4 +1,4 @@
-import { Id } from '@hugemce/katamari';
+import { Id } from '@ephox/katamari';
 
 const dialogChannel = Id.generate('update-dialog');
 const titleChannel = Id.generate('update-title');

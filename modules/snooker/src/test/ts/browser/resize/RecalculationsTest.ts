@@ -1,10 +1,10 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { SugarElement, TextContent } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { SugarElement, TextContent } from '@ephox/sugar';
 
-import * as Structs from 'hugemce/snooker/api/Structs';
-import { Warehouse } from 'hugemce/snooker/api/Warehouse';
-import * as Recalculations from 'hugemce/snooker/resize/Recalculations';
+import * as Structs from 'ephox/snooker/api/Structs';
+import { Warehouse } from 'ephox/snooker/api/Warehouse';
+import * as Recalculations from 'ephox/snooker/resize/Recalculations';
 
 UnitTest.test('RecalculationsTest', () => {
   const dimensions = Structs.dimensions;

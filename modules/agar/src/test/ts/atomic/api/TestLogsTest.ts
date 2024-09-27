@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
 
-import { addLogEntry, addStackTrace, popLogLevel, pushLogLevel, TestLogEntryState, TestLogs } from 'hugemce/agar/api/TestLogs';
+import { addLogEntry, addStackTrace, popLogLevel, pushLogLevel, TestLogEntryState, TestLogs } from 'ephox/agar/api/TestLogs';
 
 UnitTest.test('TestLogsTest', () => {
 

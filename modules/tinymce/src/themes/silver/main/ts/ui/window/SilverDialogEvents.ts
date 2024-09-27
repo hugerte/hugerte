@@ -1,7 +1,7 @@
-import { AlloyComponent, AlloyEvents, AlloyTriggers, CustomEvent, Keying, NativeEvents, Reflecting, Representing } from '@hugemce/alloy';
-import { Dialog, DialogManager } from '@hugemce/bridge';
-import { Result, Fun } from '@hugemce/katamari';
-import { Attribute, Compare, Focus, SugarElement, SugarShadowDom } from '@hugemce/sugar';
+import { AlloyComponent, AlloyEvents, AlloyTriggers, CustomEvent, Keying, NativeEvents, Reflecting, Representing } from '@ephox/alloy';
+import { Dialog, DialogManager } from '@ephox/bridge';
+import { Result, Fun } from '@ephox/katamari';
+import { Attribute, Compare, Focus, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import {
   formActionEvent, FormActionEvent, formBlockEvent, FormBlockEvent, FormCancelEvent, formCancelEvent, FormChangeEvent, formChangeEvent,

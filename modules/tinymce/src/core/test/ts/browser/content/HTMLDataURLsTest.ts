@@ -1,5 +1,5 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { McEditor } from '@hugemce/wrap-mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { McEditor } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 describe('browser.tinymce.core.content.HTMLDataURLsTest', () => {

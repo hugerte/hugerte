@@ -1,6 +1,6 @@
-import { AlloyTriggers, Behaviour, Focusing, GuiFactory, SimpleSpec, Slider } from '@hugemce/alloy';
-import { Dialog } from '@hugemce/bridge';
-import { Fun, Optional } from '@hugemce/katamari';
+import { AlloyTriggers, Behaviour, Focusing, GuiFactory, SimpleSpec, Slider } from '@ephox/alloy';
+import { Dialog } from '@ephox/bridge';
+import { Fun, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { ComposingConfigs } from '../alien/ComposingConfigs';

@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
 import * as fc from 'fast-check';
 
-import * as SliderModel from 'hugemce/alloy/ui/slider/SliderModel';
+import * as SliderModel from 'ephox/alloy/ui/slider/SliderModel';
 
 interface TestData {
   readonly min: number;

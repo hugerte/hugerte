@@ -1,5 +1,5 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Optional } from '@hugemce/katamari';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Optional } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import AstNode from 'tinymce/core/api/html/Node';

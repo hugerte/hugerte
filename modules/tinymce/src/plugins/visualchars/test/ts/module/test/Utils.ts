@@ -1,6 +1,6 @@
-import { ApproxStructure, StructAssert } from '@hugemce/agar';
-import { Unicode } from '@hugemce/katamari';
-import { TinyAssertions } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, StructAssert } from '@ephox/agar';
+import { Unicode } from '@ephox/katamari';
+import { TinyAssertions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

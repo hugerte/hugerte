@@ -1,10 +1,10 @@
-import { Arr } from '@hugemce/katamari';
-import { Attribute, Css, SelectorFilter, SugarElement } from '@hugemce/sugar';
+import { Arr } from '@ephox/katamari';
+import { Attribute, Css, SelectorFilter, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import Env from 'tinymce/core/api/Env';
 
-const attr = 'data-hugemce-mobile-fullscreen-style';
+const attr = 'data-ephox-mobile-fullscreen-style';
 const siblingStyles = 'display:none!important;';
 const ancestorPosition = 'position:absolute!important;';
 // TINY-3407 ancestors need 'height:100%!important;overflow:visible!important;' to prevent collapsed ancestors hiding the editor

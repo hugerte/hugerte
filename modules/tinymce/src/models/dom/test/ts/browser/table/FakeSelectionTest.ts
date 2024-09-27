@@ -1,8 +1,8 @@
-import { Assertions, Keys } from '@hugemce/agar';
-import { afterEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Html, SelectorFilter, SelectorFind, SugarElement } from '@hugemce/sugar';
-import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';
+import { Assertions, Keys } from '@ephox/agar';
+import { afterEach, context, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
+import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

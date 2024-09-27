@@ -1,4 +1,4 @@
-import { Arr, Obj } from '@hugemce/katamari';
+import { Arr, Obj } from '@ephox/katamari';
 
 import Env from 'tinymce/core/api/Env';
 

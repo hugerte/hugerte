@@ -1,11 +1,11 @@
-import { Assert, after, before, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Optional, Type } from '@hugemce/katamari';
-import { Css, Html, Insert, InsertAll, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
+import { Assert, after, before, describe, it } from '@ephox/bedrock-client';
+import { Arr, Optional, Type } from '@ephox/katamari';
+import { Css, Html, Insert, InsertAll, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 // import { assert } from 'chai';
 
-import * as Sizes from 'hugemce/snooker/api/Sizes';
+import * as Sizes from 'ephox/snooker/api/Sizes';
 
-import { addStyles, readRowHeights, readWidth } from '../module/hugemce/snooker/test/SizeUtils';
+import { addStyles, readRowHeights, readWidth } from '../module/ephox/snooker/test/SizeUtils';
 
 describe('Table Sizes Test (fusebox)', () => {
   const percentTable =

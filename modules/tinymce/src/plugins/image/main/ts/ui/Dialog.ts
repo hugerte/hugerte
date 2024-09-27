@@ -1,4 +1,4 @@
-import { Arr, Merger, Optional, Strings, Type } from '@hugemce/katamari';
+import { Arr, Merger, Optional, Strings, Type } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { BlobInfo } from 'tinymce/core/api/file/BlobCache';

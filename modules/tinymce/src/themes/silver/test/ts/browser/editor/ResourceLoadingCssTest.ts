@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { McEditor, TinyDom } from '@hugemce/mcagar';
-import { Css } from '@hugemce/sugar';
+import { describe, it } from '@ephox/bedrock-client';
+import { McEditor, TinyDom } from '@ephox/mcagar';
+import { Css } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

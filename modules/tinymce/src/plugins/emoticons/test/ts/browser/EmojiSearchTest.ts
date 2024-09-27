@@ -1,8 +1,8 @@
-import { FocusTools, Keys, UiFinder, Waiter } from '@hugemce/agar';
-import { before, describe, it } from '@hugemce/bedrock-client';
-import { PlatformDetection } from '@hugemce/sand';
-import { Attribute, SugarBody, SugarDocument } from '@hugemce/sugar';
-import { TinyAssertions, TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { FocusTools, Keys, UiFinder, Waiter } from '@ephox/agar';
+import { before, describe, it } from '@ephox/bedrock-client';
+import { PlatformDetection } from '@ephox/sand';
+import { Attribute, SugarBody, SugarDocument } from '@ephox/sugar';
+import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

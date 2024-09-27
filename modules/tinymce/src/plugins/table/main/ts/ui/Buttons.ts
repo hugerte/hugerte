@@ -1,4 +1,4 @@
-import { Type } from '@hugemce/katamari';
+import { Type } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Toolbar } from 'tinymce/core/api/ui/Ui';

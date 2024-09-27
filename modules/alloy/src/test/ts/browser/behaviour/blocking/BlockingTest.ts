@@ -1,16 +1,16 @@
-import { ApproxStructure, Assertions, Chain, Log, Step, TestStore, UiFinder } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Chain, Log, Step, TestStore, UiFinder } from '@ephox/agar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Blocking } from 'hugemce/alloy/api/behaviour/Blocking';
-import { Replacing } from 'hugemce/alloy/api/behaviour/Replacing';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as Memento from 'hugemce/alloy/api/component/Memento';
-import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Blocking } from 'ephox/alloy/api/behaviour/Blocking';
+import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as Memento from 'ephox/alloy/api/component/Memento';
+import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
 
 UnitTest.asyncTest('BlockingTest', (success, failure) => {
   const memBlockRoot = Memento.record({

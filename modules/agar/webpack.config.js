@@ -3,7 +3,7 @@ const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/demo/ts/hugemce/agar/demo/RunDemos.ts',
+  entry: './src/demo/ts/ephox/agar/demo/RunDemos.ts',
   devtool: 'source-map',
   mode: 'development',
   target: ['web'],

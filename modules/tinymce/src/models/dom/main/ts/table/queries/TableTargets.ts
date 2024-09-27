@@ -5,10 +5,10 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { CellOpSelection } from '@hugemce/darwin';
-import { Optional } from '@hugemce/katamari';
-import { RunOperation, SimpleGenerators } from '@hugemce/snooker';
-import { SugarElement } from '@hugemce/sugar';
+import { CellOpSelection } from '@ephox/darwin';
+import { Optional } from '@ephox/katamari';
+import { RunOperation, SimpleGenerators } from '@ephox/snooker';
+import { SugarElement } from '@ephox/sugar';
 
 import { ephemera } from '../selection/Ephemera';
 

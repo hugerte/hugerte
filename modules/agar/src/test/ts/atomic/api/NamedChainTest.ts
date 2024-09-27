@@ -1,12 +1,12 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Result } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Result } from '@ephox/katamari';
 
-import { Chain } from 'hugemce/agar/api/Chain';
-import * as GeneralSteps from 'hugemce/agar/api/GeneralSteps';
-import * as Logger from 'hugemce/agar/api/Logger';
-import { _outputName, _outputUnset, NamedChain } from 'hugemce/agar/api/NamedChain';
-import { Pipeline } from 'hugemce/agar/api/Pipeline';
-import * as StepAssertions from 'hugemce/agar/test/StepAssertions';
+import { Chain } from 'ephox/agar/api/Chain';
+import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
+import * as Logger from 'ephox/agar/api/Logger';
+import { _outputName, _outputUnset, NamedChain } from 'ephox/agar/api/NamedChain';
+import { Pipeline } from 'ephox/agar/api/Pipeline';
+import * as StepAssertions from 'ephox/agar/test/StepAssertions';
 
 UnitTest.asynctest('NamedChainTest', (success, failure) => {
 

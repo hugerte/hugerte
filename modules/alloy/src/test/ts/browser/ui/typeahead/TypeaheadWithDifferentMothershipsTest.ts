@@ -1,25 +1,25 @@
 
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder } from '@hugemce/agar';
-import { after, before, context, describe, it } from '@hugemce/bedrock-client';
-import { Objects } from '@hugemce/boulder';
-import { Arr, Future, Optional, Result } from '@hugemce/katamari';
-import { SugarDocument, Value } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder } from '@ephox/agar';
+import { after, before, context, describe, it } from '@ephox/bedrock-client';
+import { Objects } from '@ephox/boulder';
+import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { SugarDocument, Value } from '@ephox/sugar';
 
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import { SketchSpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
-import * as NativeEvents from 'hugemce/alloy/api/events/NativeEvents';
-import * as Attachment from 'hugemce/alloy/api/system/Attachment';
-import * as Gui from 'hugemce/alloy/api/system/Gui';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
-import { Typeahead } from 'hugemce/alloy/api/ui/Typeahead';
-import * as MenuEvents from 'hugemce/alloy/menu/util/MenuEvents';
-import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
-import { TestItem } from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
-import * as Sinks from 'hugemce/alloy/test/Sinks';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
+import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
+import * as Attachment from 'ephox/alloy/api/system/Attachment';
+import * as Gui from 'ephox/alloy/api/system/Gui';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
+import { Typeahead } from 'ephox/alloy/api/ui/Typeahead';
+import * as MenuEvents from 'ephox/alloy/menu/util/MenuEvents';
+import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as Sinks from 'ephox/alloy/test/Sinks';
 
 describe('browser.alloy.ui.typeahead.TypeaheadWithDifferentMothershipsTest', () => {
   // This test checks that all of Typeahead's functions work when the sink is in a

@@ -1,19 +1,19 @@
-import { FocusTools, Keyboard, Keys } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Future, Optional, Result } from '@hugemce/katamari';
-import { SugarNode } from '@hugemce/sugar';
+import { FocusTools, Keyboard, Keys } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { SugarNode } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
-import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
-import { Typeahead } from 'hugemce/alloy/api/ui/Typeahead';
-import { TestItem } from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
-import * as Sinks from 'hugemce/alloy/test/Sinks';
-import TestTypeaheadSteps from 'hugemce/alloy/test/typeahead/TestTypeaheadSteps';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
+import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
+import { Typeahead } from 'ephox/alloy/api/ui/Typeahead';
+import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as Sinks from 'ephox/alloy/test/Sinks';
+import TestTypeaheadSteps from 'ephox/alloy/test/typeahead/TestTypeaheadSteps';
 
 UnitTest.asynctest('Browser Test: .ui.typeahead.TypeaheadEscEnterBubbleTest', (success, failure) => {
 

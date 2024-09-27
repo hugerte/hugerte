@@ -26,7 +26,7 @@ const register = (editor: Editor): void => {
     onSetup: (buttonApi) => {
       const selection = editor.selection;
       buttonApi.setActive(isMediaElement(selection.getNode()));
-      const unbindSelectorChanged = selection.selectorChangedWithUnbind('img[data-mce-object],span[data-mce-object],div[data-hugemce-embed-iri]', buttonApi.setActive).unbind;
+      const unbindSelectorChanged = selection.selectorChangedWithUnbind('img[data-mce-object],span[data-mce-object],div[data-ephox-embed-iri]', buttonApi.setActive).unbind;
       const unbindEditable = onSetupEditable(editor)(buttonApi);
       return () => {
         unbindSelectorChanged();

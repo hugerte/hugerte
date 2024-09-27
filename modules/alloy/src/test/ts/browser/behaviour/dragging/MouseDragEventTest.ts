@@ -1,13 +1,13 @@
-import { Assertions, Chain, Mouse, NamedChain, TestStore, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Result } from '@hugemce/katamari';
-import { Css, SugarElement } from '@hugemce/sugar';
+import { Assertions, Chain, Mouse, NamedChain, TestStore, UiFinder } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Result } from '@ephox/katamari';
+import { Css, SugarElement } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Dragging } from 'hugemce/alloy/api/behaviour/Dragging';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Dragging } from 'ephox/alloy/api/behaviour/Dragging';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
 
 interface StoreMouseDragEventTest {
   readonly left: number;

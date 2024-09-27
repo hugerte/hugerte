@@ -1,11 +1,11 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
-import * as Structs from 'hugemce/snooker/api/Structs';
-import * as Fitment from 'hugemce/snooker/test/Fitment';
-import * as TableMerge from 'hugemce/snooker/test/TableMerge';
-import TestGenerator from 'hugemce/snooker/test/TestGenerator';
+import * as Structs from 'ephox/snooker/api/Structs';
+import * as Fitment from 'ephox/snooker/test/Fitment';
+import * as TableMerge from 'ephox/snooker/test/TableMerge';
+import TestGenerator from 'ephox/snooker/test/TestGenerator';
 
 UnitTest.test('FitmentTest', () => {
   const generator = TestGenerator;

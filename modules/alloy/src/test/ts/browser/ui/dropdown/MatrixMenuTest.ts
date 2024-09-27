@@ -1,21 +1,21 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, TestStore, UiFinder } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Optional } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Keyboard, Keys, TestStore, UiFinder } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Optional } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
-import * as AddEventsBehaviour from 'hugemce/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as AlloyEvents from 'hugemce/alloy/api/events/AlloyEvents';
-import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';
-import * as SystemEvents from 'hugemce/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Menu } from 'hugemce/alloy/api/ui/Menu';
-import * as MenuEvents from 'hugemce/alloy/menu/util/MenuEvents';
-import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
-import { MenuMovementSpec } from 'hugemce/alloy/ui/types/MenuTypes';
+import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
+import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
+import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Menu } from 'ephox/alloy/api/ui/Menu';
+import * as MenuEvents from 'ephox/alloy/menu/util/MenuEvents';
+import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import { MenuMovementSpec } from 'ephox/alloy/ui/types/MenuTypes';
 
 describe('browser.ui.dropdown.MatrixMenuTest', () => {
   const selectedClass = 'selected-item';

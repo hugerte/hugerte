@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Strings, Type } from '@hugemce/katamari';
+import { Arr, Fun, Obj, Strings, Type } from '@ephox/katamari';
 
 import Env from '../api/Env';
 import { BlobCache, BlobInfo } from '../api/file/BlobCache';

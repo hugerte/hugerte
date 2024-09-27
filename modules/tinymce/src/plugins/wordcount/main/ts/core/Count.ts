@@ -1,5 +1,5 @@
-import { Fun } from '@hugemce/katamari';
-import { Words } from '@hugemce/polaris';
+import { Fun } from '@ephox/katamari';
+import { Words } from '@ephox/polaris';
 
 import Schema from 'tinymce/core/api/html/Schema';
 

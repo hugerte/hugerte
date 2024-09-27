@@ -1,13 +1,13 @@
-import { Arbitraries, Assertions, Pipeline, Step, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Arbitraries, Assertions, Pipeline, Step, UiFinder } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
-import { Editor } from 'hugemce/mcagar/alien/EditorTypes';
-import { TinyApis } from 'hugemce/mcagar/api/pipeline/TinyApis';
-import * as TinyLoader from 'hugemce/mcagar/api/pipeline/TinyLoader';
-import { TinyScenarios } from 'hugemce/mcagar/api/pipeline/TinyScenarios';
-import { TinyDom } from 'hugemce/mcagar/api/TinyDom';
+import { Editor } from 'ephox/mcagar/alien/EditorTypes';
+import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';
+import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
+import { TinyScenarios } from 'ephox/mcagar/api/pipeline/TinyScenarios';
+import { TinyDom } from 'ephox/mcagar/api/TinyDom';
 
 UnitTest.asynctest('Tutorial: Property Testing with TinyMCE', (success, failure) => {
 

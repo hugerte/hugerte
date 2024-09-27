@@ -1,6 +1,6 @@
-import { AnchorSpec, MakeshiftAnchorSpec, NodeAnchorSpec, SelectionAnchorSpec } from '@hugemce/alloy';
-import { Optional } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { AnchorSpec, MakeshiftAnchorSpec, NodeAnchorSpec, SelectionAnchorSpec } from '@ephox/alloy';
+import { Optional } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import Editor from 'tinymce/core/api/Editor';

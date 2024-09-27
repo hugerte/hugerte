@@ -1,13 +1,13 @@
-import { ApproxStructure, Assertions, Logger, Pipeline, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Unicode } from '@hugemce/katamari';
-import { Compare, SugarElement } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Logger, Pipeline, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Arr, Unicode } from '@ephox/katamari';
+import { Compare, SugarElement } from '@ephox/sugar';
 
-import * as Structs from 'hugemce/snooker/api/Structs';
-import { Warehouse } from 'hugemce/snooker/api/Warehouse';
-import * as Transitions from 'hugemce/snooker/model/Transitions';
-import * as Redraw from 'hugemce/snooker/operate/Redraw';
-import * as Bridge from 'hugemce/snooker/test/Bridge';
+import * as Structs from 'ephox/snooker/api/Structs';
+import { Warehouse } from 'ephox/snooker/api/Warehouse';
+import * as Transitions from 'ephox/snooker/model/Transitions';
+import * as Redraw from 'ephox/snooker/operate/Redraw';
+import * as Bridge from 'ephox/snooker/test/Bridge';
 
 UnitTest.asynctest('Redraw Section Order Test', (success, failure) => {
 

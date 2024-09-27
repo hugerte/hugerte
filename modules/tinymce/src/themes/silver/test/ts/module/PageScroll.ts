@@ -1,7 +1,7 @@
-import { after, before } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
-import { Insert, Remove, SugarElement } from '@hugemce/sugar';
-import { TinyDom } from '@hugemce/wrap-mcagar';
+import { after, before } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
+import { Insert, Remove, SugarElement } from '@ephox/sugar';
+import { TinyDom } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

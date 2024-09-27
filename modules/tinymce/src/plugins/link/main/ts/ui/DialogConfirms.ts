@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@hugemce/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import Delay from 'tinymce/core/api/util/Delay';

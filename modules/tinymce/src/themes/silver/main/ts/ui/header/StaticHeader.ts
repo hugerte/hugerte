@@ -1,4 +1,4 @@
-import { Fun } from '@hugemce/katamari';
+import { Fun } from '@ephox/katamari';
 
 const setup = Fun.noop;
 const isDocked = Fun.never;

@@ -1,4 +1,4 @@
-import { Arr, Type } from '@hugemce/katamari';
+import { Arr, Type } from '@ephox/katamari';
 
 import { FormatVars } from '../../fmt/FormatTypes';
 import Editor from '../Editor';

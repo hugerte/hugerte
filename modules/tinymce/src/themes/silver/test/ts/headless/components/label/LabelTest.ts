@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { AlloyComponent, GuiFactory, Memento, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
+import { ApproxStructure, Assertions } from '@ephox/agar';
+import { AlloyComponent, GuiFactory, Memento, TestHelpers } from '@ephox/alloy';
+import { describe, it } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
 
 import { UiFactoryBackstageShared } from 'tinymce/themes/silver/backstage/Backstage';
 import { renderLabel } from 'tinymce/themes/silver/ui/dialog/Label';

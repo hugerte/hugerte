@@ -1,12 +1,12 @@
-import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { PlatformDetection } from '@hugemce/sand';
+import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { PlatformDetection } from '@ephox/sand';
 
-import { Focusing } from 'hugemce/alloy/api/behaviour/Focusing';
-import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Input } from 'hugemce/alloy/api/ui/Input';
+import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
+import { Representing } from 'ephox/alloy/api/behaviour/Representing';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Input } from 'ephox/alloy/api/ui/Input';
 
 UnitTest.asynctest('InputTest', (success, failure) => {
 

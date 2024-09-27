@@ -1,8 +1,8 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 
-import * as TableOperations from 'hugemce/snooker/api/TableOperations';
-import * as Assertions from 'hugemce/snooker/test/Assertions';
-import { generateTestTable } from 'hugemce/snooker/test/CreateTableUtils';
+import * as TableOperations from 'ephox/snooker/api/TableOperations';
+import * as Assertions from 'ephox/snooker/test/Assertions';
+import { generateTestTable } from 'ephox/snooker/test/CreateTableUtils';
 
 describe('PasteColumnOperationsTest', () => {
   it('TBA: Test1', () =>

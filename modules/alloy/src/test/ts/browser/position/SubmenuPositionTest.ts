@@ -1,12 +1,12 @@
-import { Chain, NamedChain } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { Chain, NamedChain } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
 
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
-import * as ChainUtils from 'hugemce/alloy/test/ChainUtils';
-import * as PositionTestUtils from 'hugemce/alloy/test/PositionTestUtils';
-import * as Sinks from 'hugemce/alloy/test/Sinks';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
+import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
+import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
+import * as Sinks from 'ephox/alloy/test/Sinks';
 
 UnitTest.asynctest('SubmenuPositionTest', (success, failure) => {
 

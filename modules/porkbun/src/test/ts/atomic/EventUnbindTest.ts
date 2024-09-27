@@ -1,7 +1,7 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
 
-import { Event } from 'hugemce/porkbun/Event';
+import { Event } from 'ephox/porkbun/Event';
 
 UnitTest.test('EventUnbindTest', () => {
   const event = Event([]);

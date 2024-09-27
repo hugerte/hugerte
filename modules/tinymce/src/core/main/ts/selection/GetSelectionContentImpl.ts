@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Fun, Optional } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import { cleanupBogusElements, cleanupInputNames } from '../content/ContentCleanup';

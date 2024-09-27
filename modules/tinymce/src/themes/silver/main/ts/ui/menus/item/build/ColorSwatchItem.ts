@@ -1,6 +1,6 @@
-import { ItemTypes, ItemWidget, Menu as AlloyMenu, MenuTypes } from '@hugemce/alloy';
-import { Menu } from '@hugemce/bridge';
-import { Fun, Id } from '@hugemce/katamari';
+import { ItemTypes, ItemWidget, Menu as AlloyMenu, MenuTypes } from '@ephox/alloy';
+import { Menu } from '@ephox/bridge';
+import { Fun, Id } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from 'tinymce/themes/silver/backstage/Backstage';
 import * as ColorSwatch from 'tinymce/themes/silver/ui/core/color/ColorSwatch';

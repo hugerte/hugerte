@@ -1,8 +1,8 @@
-import { ApproxStructure, Mouse, UiFinder, Clipboard } from '@hugemce/agar';
-import { Assert, describe, it } from '@hugemce/bedrock-client';
-import { Optional, OptionalInstances } from '@hugemce/katamari';
-import { Class, Css, Scroll, SelectorFind, SugarBody, SugarElement, Traverse } from '@hugemce/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, Mouse, UiFinder, Clipboard } from '@ephox/agar';
+import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Optional, OptionalInstances } from '@ephox/katamari';
+import { Class, Css, Scroll, SelectorFind, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';
@@ -58,7 +58,7 @@ describe('browser.tinymce.core.ReadOnlyModeTest', () => {
   };
 
   const assertResizeBars = (editor: Editor, expectedState: boolean) => {
-    SelectorFind.descendant(Traverse.documentElement(TinyDom.document(editor)), '.hugemce-snooker-resizer-bar').fold(
+    SelectorFind.descendant(Traverse.documentElement(TinyDom.document(editor)), '.ephox-snooker-resizer-bar').fold(
       () => {
         assert.isFalse(expectedState, 'Was expecting to find resize bars');
       },

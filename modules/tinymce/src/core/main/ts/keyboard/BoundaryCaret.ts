@@ -1,4 +1,4 @@
-import { Cell, Optional } from '@hugemce/katamari';
+import { Cell, Optional } from '@ephox/katamari';
 
 import * as CaretContainer from '../caret/CaretContainer';
 import * as CaretContainerInline from '../caret/CaretContainerInline';

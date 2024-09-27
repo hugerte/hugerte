@@ -1,4 +1,4 @@
-import { Fun, Obj, Type } from '@hugemce/katamari';
+import { Fun, Obj, Type } from '@ephox/katamari';
 
 export interface PartialEvent {
   readonly type?: string;

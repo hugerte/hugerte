@@ -1,5 +1,5 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
+import { describe, it } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import * as Predicate from 'tinymce/core/util/Predicate';

@@ -1,7 +1,7 @@
-import { afterEach, before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Singleton } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { afterEach, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Singleton } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

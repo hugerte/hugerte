@@ -1,5 +1,5 @@
-import { Optional } from '@hugemce/katamari';
-import { SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
+import { Optional } from '@ephox/katamari';
+import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomTreeWalker from '../api/dom/TreeWalker';

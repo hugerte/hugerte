@@ -1,4 +1,4 @@
-import { Optional, Optionals } from '@hugemce/katamari';
+import { Optional, Optionals } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

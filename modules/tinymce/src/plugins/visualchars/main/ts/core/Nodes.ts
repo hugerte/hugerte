@@ -1,5 +1,5 @@
-import { Arr, Type } from '@hugemce/katamari';
-import { ContentEditable, SugarElement, SugarNode } from '@hugemce/sugar';
+import { Arr, Type } from '@ephox/katamari';
+import { ContentEditable, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as Data from './Data';
 import * as Html from './Html';

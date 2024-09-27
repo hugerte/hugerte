@@ -1,8 +1,8 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Fun, Optional } from '@hugemce/katamari';
+import { describe, it } from '@ephox/bedrock-client';
+import { Fun, Optional } from '@ephox/katamari';
 import { assert } from 'chai';
 
-import { PlatformDetection } from 'hugemce/sand/core/PlatformDetection';
+import { PlatformDetection } from 'ephox/sand/core/PlatformDetection';
 
 describe('DeviceTypeTest', () => {
   const getPlatform = (userAgent: string) => {

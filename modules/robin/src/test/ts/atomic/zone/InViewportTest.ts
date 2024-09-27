@@ -1,13 +1,13 @@
-import { Assertions, Log, Pipeline, Step } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
-import { Arr, Fun } from '@hugemce/katamari';
+import { Assertions, Log, Pipeline, Step } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { Arr, Fun } from '@ephox/katamari';
 
-import { ZonePosition } from 'hugemce/robin/api/general/ZonePosition';
-import { ZoneViewports } from 'hugemce/robin/api/general/ZoneViewports';
-import { WordDecision } from 'hugemce/robin/words/WordDecision';
-import { ZoneDetails } from 'hugemce/robin/zone/LanguageZones';
-import * as ZoneWalker from 'hugemce/robin/zone/ZoneWalker';
+import { ZonePosition } from 'ephox/robin/api/general/ZonePosition';
+import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
+import { WordDecision } from 'ephox/robin/words/WordDecision';
+import { ZoneDetails } from 'ephox/robin/zone/LanguageZones';
+import * as ZoneWalker from 'ephox/robin/zone/ZoneWalker';
 
 UnitTest.asyncTest('atomic.robin.zone.InViewportTest', (success, failure) => {
   const doc = TestUniverse(Gene('root', 'root', [

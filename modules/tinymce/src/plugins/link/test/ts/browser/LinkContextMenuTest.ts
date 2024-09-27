@@ -1,7 +1,7 @@
-import { FocusTools, Keys, Waiter } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { SugarDocument } from '@hugemce/sugar';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { FocusTools, Keys, Waiter } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { SugarDocument } from '@ephox/sugar';
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Plugin from 'tinymce/plugins/link/Plugin';

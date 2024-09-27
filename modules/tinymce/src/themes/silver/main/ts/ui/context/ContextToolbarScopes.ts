@@ -1,6 +1,6 @@
-import { StructureSchema } from '@hugemce/boulder';
-import { InlineContent, Toolbar } from '@hugemce/bridge';
-import { Arr, Obj } from '@hugemce/katamari';
+import { StructureSchema } from '@ephox/boulder';
+import { InlineContent, Toolbar } from '@ephox/bridge';
+import { Arr, Obj } from '@ephox/katamari';
 
 import { ContextSpecType, ContextType } from './ContextToolbar';
 

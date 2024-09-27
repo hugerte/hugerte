@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, KeyPressAdt, Mouse, RealKeys, StructAssert, UiFinder } from '@hugemce/agar';
-import { GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Fun, Id, Optional } from '@hugemce/katamari';
-import { Attribute, Focus, SugarDocument, SugarElement, SugarNode, Value } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, FocusTools, KeyPressAdt, Mouse, RealKeys, StructAssert, UiFinder } from '@ephox/agar';
+import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Fun, Id, Optional } from '@ephox/katamari';
+import { Attribute, Focus, SugarDocument, SugarElement, SugarNode, Value } from '@ephox/sugar';
 
 import { renderMenuButton } from 'tinymce/themes/silver/ui/button/MenuButton';
 

@@ -1,4 +1,4 @@
-import { Cell, Singleton } from '@hugemce/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 
 import { EditorEvent } from '../api/util/EventDispatcher';
 import { Bookmark } from '../bookmark/BookmarkTypes';

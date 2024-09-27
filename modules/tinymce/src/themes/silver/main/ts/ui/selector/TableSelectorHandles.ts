@@ -1,9 +1,9 @@
 import {
   AlloyComponent, Attachment, Behaviour, Boxes, Button, DragCoord, Dragging, DraggingTypes, GuiFactory, Memento, Unselecting
-} from '@hugemce/alloy';
-import { Arr, Cell, Optional, Singleton } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { Compare, Css, SugarElement, SugarPosition, Traverse } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { Arr, Cell, Optional, Singleton } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { Compare, Css, SugarElement, SugarPosition, Traverse } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorEvent } from 'tinymce/core/api/util/EventDispatcher';

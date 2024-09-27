@@ -1,5 +1,5 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { TinyHooks } from '@hugemce/mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { TinyHooks } from '@ephox/mcagar';
 import { assert } from 'chai';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

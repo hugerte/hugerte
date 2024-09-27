@@ -1,6 +1,6 @@
-import { Arr, Fun, Obj } from '@hugemce/katamari';
-import { SandNode } from '@hugemce/sand';
-import { SelectorFilter, SugarElement, Traverse } from '@hugemce/sugar';
+import { Arr, Fun, Obj } from '@ephox/katamari';
+import { SandNode } from '@ephox/sand';
+import { SelectorFilter, SugarElement, Traverse } from '@ephox/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import DomTreeWalker from 'tinymce/core/api/dom/TreeWalker';

@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import { Gene } from 'hugemce/boss/api/Gene';
-import * as Attribution from 'hugemce/boss/mutant/Attribution';
+import { Gene } from 'ephox/boss/api/Gene';
+import * as Attribution from 'ephox/boss/mutant/Attribution';
 
 UnitTest.test('AttributionTest', () => {
   const item = Gene('id1', 'name1', [], {}, { border: '10' });

@@ -1,5 +1,5 @@
-import { Arr } from '@hugemce/katamari';
-import { Attribute, Insert, SugarElement, SugarText } from '@hugemce/sugar';
+import { Arr } from '@ephox/katamari';
+import { Attribute, Insert, SugarElement, SugarText } from '@ephox/sugar';
 
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';
 import EditorSelection from 'tinymce/core/api/dom/Selection';

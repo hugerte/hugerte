@@ -1,7 +1,7 @@
 import {
   PublicDialog as Dialog, PublicInlineContent as InlineContent, PublicMenu as Menu, PublicSidebar as Sidebar, PublicView as View, PublicToolbar as Toolbar,
   Registry as BridgeRegistry
-} from '@hugemce/bridge';
+} from '@ephox/bridge';
 
 import StyleSheetLoader from '../dom/StyleSheetLoader';
 

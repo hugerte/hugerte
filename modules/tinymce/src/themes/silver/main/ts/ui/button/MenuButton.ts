@@ -1,7 +1,7 @@
-import { AlloyComponent, AlloyTriggers, Disabling, MementoRecord, SketchSpec, Tabstopping } from '@hugemce/alloy';
-import { Dialog, Menu, Toolbar } from '@hugemce/bridge';
-import { Arr, Cell, Optional } from '@hugemce/katamari';
-import { Attribute, Class, Focus } from '@hugemce/sugar';
+import { AlloyComponent, AlloyTriggers, Disabling, MementoRecord, SketchSpec, Tabstopping } from '@ephox/alloy';
+import { Dialog, Menu, Toolbar } from '@ephox/bridge';
+import { Arr, Cell, Optional } from '@ephox/katamari';
+import { Attribute, Class, Focus } from '@ephox/sugar';
 
 import { formActionEvent } from 'tinymce/themes/silver/ui/general/FormEvents';
 

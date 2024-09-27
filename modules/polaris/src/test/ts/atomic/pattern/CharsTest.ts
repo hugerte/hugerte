@@ -1,7 +1,7 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
 
-import * as Chars from 'hugemce/polaris/pattern/Chars';
+import * as Chars from 'ephox/polaris/pattern/Chars';
 
 UnitTest.test('CharsTest', () => {
   const supported = [ 'fr', 'en_au', 'pt', 'it', 'nl', 'en_uk', 'pt_pt', 'de', 'nb', 'en_br', 'sv', 'da', 'en', 'es', 'en_gb', 'fi', 'en_us' ];

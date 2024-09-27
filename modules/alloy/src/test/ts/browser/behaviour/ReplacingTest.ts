@@ -1,17 +1,17 @@
-import { ApproxStructure, Assertions, Logger, Step, UiFinder, Chain, Log } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr, Optional } from '@hugemce/katamari';
-import { Compare, SugarBody } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, Logger, Step, UiFinder, Chain, Log } from '@ephox/agar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr, Optional } from '@ephox/katamari';
+import { Compare, SugarBody } from '@ephox/sugar';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Replacing } from 'hugemce/alloy/api/behaviour/Replacing';
-import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';
-import * as DomFactory from 'hugemce/alloy/api/component/DomFactory';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as Memento from 'hugemce/alloy/api/component/Memento';
-import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
+import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
+import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as Memento from 'ephox/alloy/api/component/Memento';
+import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
 
 UnitTest.asynctest('ReplacingTest', (success, failure) => {
   const make = (reuseDom: boolean) => Container.sketch({

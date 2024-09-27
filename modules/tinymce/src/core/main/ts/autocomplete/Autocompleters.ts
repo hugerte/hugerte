@@ -1,6 +1,6 @@
-import { StructureSchema } from '@hugemce/boulder';
-import { InlineContent } from '@hugemce/bridge';
-import { Arr, Fun, Obj, Unique } from '@hugemce/katamari';
+import { StructureSchema } from '@ephox/boulder';
+import { InlineContent } from '@ephox/bridge';
+import { Arr, Fun, Obj, Unique } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 

@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 
-import { copyRows } from 'hugemce/snooker/api/CopyRows';
-import * as Bridge from 'hugemce/snooker/test/Bridge';
+import { copyRows } from 'ephox/snooker/api/CopyRows';
+import * as Bridge from 'ephox/snooker/test/Bridge';
 
 UnitTest.test('CopyRowsTest', () => {
   const check = (

@@ -1,8 +1,8 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Css, SugarElement } from '@hugemce/sugar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Css, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
-import { getTransitionDuration } from 'hugemce/alloy/positioning/view/Transitions';
+import { getTransitionDuration } from 'ephox/alloy/positioning/view/Transitions';
 
 describe('browser.alloy.position.view.TransitionsDurationTest', () => {
   it('TINY-7740: should return 0 without any transition', () => {

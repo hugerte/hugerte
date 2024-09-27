@@ -1,14 +1,14 @@
-import { Chain, NamedChain } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Fun } from '@hugemce/katamari';
+import { Chain, NamedChain } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
 
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'hugemce/alloy/api/ui/Button';
-import { Container } from 'hugemce/alloy/api/ui/Container';
-import * as ChainUtils from 'hugemce/alloy/test/ChainUtils';
-import * as PositionTestUtils from 'hugemce/alloy/test/PositionTestUtils';
-import * as Sinks from 'hugemce/alloy/test/Sinks';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Button } from 'ephox/alloy/api/ui/Button';
+import { Container } from 'ephox/alloy/api/ui/Container';
+import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
+import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
+import * as Sinks from 'ephox/alloy/test/Sinks';
 
 UnitTest.asynctest('HotspotPositionTest', (success, failure) => {
 

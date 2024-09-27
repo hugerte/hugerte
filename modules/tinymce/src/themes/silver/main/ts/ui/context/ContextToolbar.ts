@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, AnchorSpec, Behaviour, GuiFactory, InlineView, Keying, Positioning
-} from '@hugemce/alloy';
-import { InlineContent, Toolbar } from '@hugemce/bridge';
-import { Arr, Fun, Id, Merger, Obj, Optional, Optionals, Singleton, Throttler, Thunk } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { Class, Compare, Css, Focus, SugarElement } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { InlineContent, Toolbar } from '@ephox/bridge';
+import { Arr, Fun, Id, Merger, Obj, Optional, Optionals, Singleton, Throttler, Thunk } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { Class, Compare, Css, Focus, SugarElement } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Delay from 'tinymce/core/api/util/Delay';

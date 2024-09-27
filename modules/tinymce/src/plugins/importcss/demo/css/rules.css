@@ -6,7 +6,7 @@ h1.blue {
   color: blue;
 }
 
-.hugemce-summary-card {
+.ephox-summary-card {
   border: 1px solid #AAA;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
   padding: 10px;
@@ -14,40 +14,40 @@ h1.blue {
   margin-bottom: 1em;
 }
 
-.hugemce-summary-card a {
+.ephox-summary-card a {
   text-decoration: none;
   color: inherit;
 }
 
-.hugemce-summary-card a:visited {
+.ephox-summary-card a:visited {
   color: inherit;
 }
 
-.hugemce-summary-card-title {
+.ephox-summary-card-title {
   font-size: 1.2em;
   display: block;
 }
 
-.hugemce-summary-card-author {
+.ephox-summary-card-author {
   color: #999;
   display: block;
   margin-top: 0.5em;
 }
 
-.hugemce-summary-card-website {
+.ephox-summary-card-website {
   color: #999;
   display: block;
   margin-top: 0.5em;
 }
 
-.hugemce-summary-card-thumbnail {
+.ephox-summary-card-thumbnail {
   max-width: 180px;
   max-height: 180px;
   margin-left: 2em;
   float: right;
 }
 
-.hugemce-summary-card-description {
+.ephox-summary-card-description {
   margin-top: 0.5em;
   display: block;
 }

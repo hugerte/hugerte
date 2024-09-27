@@ -1,10 +1,10 @@
-import { Assertions, Logger, Pipeline, Step, TestLogs } from '@hugemce/agar';
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { SugarShadowDom } from '@hugemce/sugar';
+import { Assertions, Logger, Pipeline, Step, TestLogs } from '@ephox/agar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { SugarShadowDom } from '@ephox/sugar';
 
-import { Editor } from 'hugemce/mcagar/alien/EditorTypes';
-import * as TinyLoader from 'hugemce/mcagar/api/pipeline/TinyLoader';
-import { TinyUi } from 'hugemce/mcagar/api/pipeline/TinyUi';
+import { Editor } from 'ephox/mcagar/alien/EditorTypes';
+import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
+import { TinyUi } from 'ephox/mcagar/api/pipeline/TinyUi';
 
 UnitTest.asynctest('TinyLoaderTest', (success, failure) => {
   let clickedOn = false;

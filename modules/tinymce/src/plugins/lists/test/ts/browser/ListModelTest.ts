@@ -1,7 +1,7 @@
-import { Arbitraries } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Arr, Optional } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Arbitraries } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Arr, Optional } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
 import { composeList } from 'tinymce/plugins/lists/listmodel/ComposeList';

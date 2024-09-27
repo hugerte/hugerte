@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Compare from 'hugemce/sugar/api/dom/Compare';
-import * as Link from 'hugemce/sugar/api/dom/Link';
-import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
+import * as Compare from 'ephox/sugar/api/dom/Compare';
+import * as Link from 'ephox/sugar/api/dom/Link';
+import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
 
 UnitTest.test('LinkTest', () => {
   const realDoc = SugarElement.fromDom(document);

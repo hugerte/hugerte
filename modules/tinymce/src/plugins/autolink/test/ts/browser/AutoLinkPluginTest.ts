@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Type } from '@hugemce/katamari';
-import { LegacyUnit, TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Type } from '@ephox/katamari';
+import { LegacyUnit, TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 import fc from 'fast-check';
 

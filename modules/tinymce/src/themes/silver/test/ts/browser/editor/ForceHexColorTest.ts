@@ -1,6 +1,6 @@
-import { Transformations } from '@hugemce/acid';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { Transformations } from '@ephox/acid';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

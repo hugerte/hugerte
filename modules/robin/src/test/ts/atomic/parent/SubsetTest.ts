@@ -1,9 +1,9 @@
-import { UnitTest } from '@hugemce/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
-import { Arr, Optional } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { UnitTest } from '@ephox/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { Arr, Optional } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 
-import * as Subset from 'hugemce/robin/parent/Subset';
+import * as Subset from 'ephox/robin/parent/Subset';
 
 UnitTest.test('SubsetTest', () => {
   const universe = TestUniverse(Gene('root', 'root', [

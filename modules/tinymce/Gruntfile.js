@@ -7,7 +7,7 @@ const FilesAsStrings = PluginString({
 let zipUtils = require('./tools/modules/zip-helper');
 let gruntUtils = require('./tools/modules/grunt-utils');
 let gruntWebPack = require('./tools/modules/grunt-webpack');
-let swag = require('@hugemce/swag');
+let swag = require('@ephox/swag');
 let path = require('path');
 
 let plugins = [
@@ -916,7 +916,7 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt, {
     requireResolution: true,
     config: "../../package.json",
-    pattern: ['grunt-*', '@hugemce/bedrock-server', '@hugemce/swag']
+    pattern: ['grunt-*', '@ephox/bedrock-server', '@ephox/swag']
   });
   grunt.loadTasks('tools/tasks');
 

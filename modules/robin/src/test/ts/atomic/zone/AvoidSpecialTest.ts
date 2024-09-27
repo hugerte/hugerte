@@ -1,12 +1,12 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Gene, SpecialGene, TestUniverse, TextGene } from '@hugemce/boss';
-import { Arr } from '@hugemce/katamari';
+import { describe, it } from '@ephox/bedrock-client';
+import { Gene, SpecialGene, TestUniverse, TextGene } from '@ephox/boss';
+import { Arr } from '@ephox/katamari';
 import { assert } from 'chai';
 
-import { ZoneViewports } from 'hugemce/robin/api/general/ZoneViewports';
-import { WordDecision } from 'hugemce/robin/words/WordDecision';
-import { ZoneDetails } from 'hugemce/robin/zone/LanguageZones';
-import * as ZoneWalker from 'hugemce/robin/zone/ZoneWalker';
+import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
+import { WordDecision } from 'ephox/robin/words/WordDecision';
+import { ZoneDetails } from 'ephox/robin/zone/LanguageZones';
+import * as ZoneWalker from 'ephox/robin/zone/ZoneWalker';
 
 describe('atomic.robin.zone.AvoidSpecialTest', () => {
   const doc = TestUniverse(Gene('root', 'root', [

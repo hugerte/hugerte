@@ -1,7 +1,7 @@
-import { Assertions } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Fun, Optional } from '@hugemce/katamari';
-import { Hierarchy, SugarElement } from '@hugemce/sugar';
+import { Assertions } from '@ephox/agar';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Fun, Optional } from '@ephox/katamari';
+import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import Schema from 'tinymce/core/api/html/Schema';

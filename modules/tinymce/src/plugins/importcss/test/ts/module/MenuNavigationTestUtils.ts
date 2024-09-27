@@ -1,5 +1,5 @@
-import { FocusTools, Keyboard, Keys, Waiter } from '@hugemce/agar';
-import { SugarElement } from '@hugemce/sugar';
+import { FocusTools, Keyboard, Keys, Waiter } from '@ephox/agar';
+import { SugarElement } from '@ephox/sugar';
 
 export interface Navigation {
   readonly item: string;

@@ -1,12 +1,12 @@
-import { ApproxStructure, Assertions, TestStore } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Fun, Optional } from '@hugemce/katamari';
-import { Focus, SugarElement } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, TestStore } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Fun, Optional } from '@ephox/katamari';
+import { Focus, SugarElement } from '@ephox/sugar';
 
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { tieredMenu as TieredMenu } from 'hugemce/alloy/api/ui/TieredMenu';
-import * as TestDropdownMenu from 'hugemce/alloy/test/dropdown/TestDropdownMenu';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
+import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
 
 /* Menu structure
 

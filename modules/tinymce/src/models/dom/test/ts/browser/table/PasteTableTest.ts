@@ -1,7 +1,7 @@
-import { Clipboard } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/mcagar';
-import { SugarElement } from '@hugemce/sugar';
+import { Clipboard } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/mcagar';
+import { SugarElement } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 

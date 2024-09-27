@@ -1,4 +1,4 @@
-import { Fun, Unicode } from '@hugemce/katamari';
+import { Fun, Unicode } from '@ephox/katamari';
 
 import * as TextSearch from '../../alien/TextSearch';
 import Editor from '../../api/Editor';

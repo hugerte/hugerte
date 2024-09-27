@@ -1,11 +1,11 @@
-import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { UnitTest } from '@hugemce/bedrock-client';
+import { ApproxStructure, Assertions } from '@ephox/agar';
+import { UnitTest } from '@ephox/bedrock-client';
 
-import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
-import { Unselecting } from 'hugemce/alloy/api/behaviour/Unselecting';
-import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'hugemce/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'hugemce/alloy/api/ui/Container';
+import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
+import { Unselecting } from 'ephox/alloy/api/behaviour/Unselecting';
+import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import { Container } from 'ephox/alloy/api/ui/Container';
 
 UnitTest.asynctest('UnselectingTest', (success, failure) => {
 

@@ -1,5 +1,5 @@
-import { Arr, Optional, Type, Unicode } from '@hugemce/katamari';
-import { Has, SugarElement } from '@hugemce/sugar';
+import { Arr, Optional, Type, Unicode } from '@ephox/katamari';
+import { Has, SugarElement } from '@ephox/sugar';
 
 import BookmarkManager from 'tinymce/core/api/dom/BookmarkManager';
 import DOMUtils from 'tinymce/core/api/dom/DOMUtils';

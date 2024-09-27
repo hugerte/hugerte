@@ -1,7 +1,7 @@
-import { AlloySpec, VerticalDir } from '@hugemce/alloy';
-import { StructureSchema } from '@hugemce/boulder';
-import { Toolbar } from '@hugemce/bridge';
-import { Arr, Obj, Optional, Result, Type } from '@hugemce/katamari';
+import { AlloySpec, VerticalDir } from '@ephox/alloy';
+import { StructureSchema } from '@ephox/boulder';
+import { Toolbar } from '@ephox/bridge';
+import { Arr, Obj, Optional, Result, Type } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 

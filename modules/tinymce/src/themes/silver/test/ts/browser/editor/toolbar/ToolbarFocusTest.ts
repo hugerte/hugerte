@@ -1,7 +1,7 @@
-import { FocusTools, Keys } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { SugarDocument } from '@hugemce/sugar';
-import { McEditor, TinyContentActions, TinyDom, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { FocusTools, Keys } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { SugarDocument } from '@ephox/sugar';
+import { McEditor, TinyContentActions, TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { RawEditorOptions } from 'tinymce/core/api/OptionTypes';

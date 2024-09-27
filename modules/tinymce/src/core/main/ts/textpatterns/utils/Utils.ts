@@ -1,4 +1,4 @@
-import { Optional } from '@hugemce/katamari';
+import { Optional } from '@ephox/katamari';
 
 import DOMUtils from '../../api/dom/DOMUtils';
 import Editor from '../../api/Editor';

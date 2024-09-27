@@ -1,5 +1,5 @@
-import { Arr } from '@hugemce/katamari';
-import { Selectors, SugarElement, SugarNode, SugarText, Traverse } from '@hugemce/sugar';
+import { Arr } from '@ephox/katamari';
+import { Selectors, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import { isCaretNode } from '../fmt/FormatContainer';
@@ -25,7 +25,7 @@ const validBlocks = [
   // Image plugin - captioned image
   'figure.image',
   // Mediaembed plugin
-  'div[data-hugemce-embed-iri]',
+  'div[data-ephox-embed-iri]',
   // Pageembed plugin
   'div.tiny-pageembed',
   // Tableofcontents plugin

@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { DomUniverse } from '@hugemce/boss';
-import { Arr } from '@hugemce/katamari';
-import { Compare, Hierarchy, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { DomUniverse } from '@ephox/boss';
+import { Arr } from '@ephox/katamari';
+import { Compare, Hierarchy, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 
-import * as Clumps from 'hugemce/robin/clumps/Clumps';
+import * as Clumps from 'ephox/robin/clumps/Clumps';
 
 UnitTest.test('ClumpsTest', () => {
   /* The purpose of this test is to take a large section of html and test dividing it into

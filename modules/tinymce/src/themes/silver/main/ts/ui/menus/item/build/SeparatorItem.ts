@@ -1,5 +1,5 @@
-import { GuiFactory, ItemTypes } from '@hugemce/alloy';
-import { Menu } from '@hugemce/bridge';
+import { GuiFactory, ItemTypes } from '@ephox/alloy';
+import { Menu } from '@ephox/bridge';
 
 import * as ItemClasses from '../ItemClasses';
 

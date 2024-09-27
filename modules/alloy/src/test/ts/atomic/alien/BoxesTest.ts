@@ -1,9 +1,9 @@
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr, Optional } from '@hugemce/katamari';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr, Optional } from '@ephox/katamari';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Boxes from 'hugemce/alloy/alien/Boxes';
+import * as Boxes from 'ephox/alloy/alien/Boxes';
 
 describe('atomic.alloy.alien.BoxesTest', () => {
   const arbBounds: fc.Arbitrary<Boxes.Bounds> =

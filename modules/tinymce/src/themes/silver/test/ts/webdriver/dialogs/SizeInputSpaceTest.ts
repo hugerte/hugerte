@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, RealKeys, UiFinder } from '@hugemce/agar';
-import { GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Optional } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { ApproxStructure, Assertions, FocusTools, RealKeys, UiFinder } from '@ephox/agar';
+import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { describe, it } from '@ephox/bedrock-client';
+import { Optional } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import { renderSizeInput } from 'tinymce/themes/silver/ui/dialog/SizeInput';
 

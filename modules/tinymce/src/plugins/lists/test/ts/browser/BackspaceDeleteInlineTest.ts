@@ -1,6 +1,6 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { Html, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
-import { TinyHooks } from '@hugemce/wrap-mcagar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Html, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

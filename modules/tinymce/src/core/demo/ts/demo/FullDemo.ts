@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { Merger } from '@hugemce/katamari';
-import { SugarElement } from '@hugemce/sugar';
+import { Merger } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import { Editor, RawEditorOptions, TinyMCE } from 'tinymce/core/api/PublicApi';
 

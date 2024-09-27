@@ -1,4 +1,4 @@
-import { Arr, Type } from '@hugemce/katamari';
+import { Arr, Type } from '@ephox/katamari';
 
 import Env from '../api/Env';
 import DomParser, { DomParserSettings } from '../api/html/DomParser';

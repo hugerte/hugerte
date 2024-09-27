@@ -1,5 +1,5 @@
-import { Arr, Fun } from '@hugemce/katamari';
-import { Compare, Insert, PredicateFind, SugarElement, SugarNode } from '@hugemce/sugar';
+import { Arr, Fun } from '@ephox/katamari';
+import { Compare, Insert, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import Schema from '../api/html/Schema';

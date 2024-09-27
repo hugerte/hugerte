@@ -5,10 +5,10 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { ApproxStructure, Assertions, Cursors, Mouse, StructAssert, UiFinder, Waiter } from '@hugemce/agar';
-import { Arr } from '@hugemce/katamari';
-import { Attribute, Html, SelectorFilter, SelectorFind, SugarElement } from '@hugemce/sugar';
-import { TinyAssertions, TinyContentActions, TinyDom, TinySelections } from '@hugemce/wrap-mcagar';
+import { ApproxStructure, Assertions, Cursors, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
+import { Arr } from '@ephox/katamari';
+import { Attribute, Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
+import { TinyAssertions, TinyContentActions, TinyDom, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';
@@ -134,7 +134,7 @@ const pDragResizeBar = async (editor: Editor, rowOrCol: 'row' | 'column', index:
   );
   Mouse.mouseDown(resizeBar);
 
-  const blocker = UiFinder.findIn(docElem, 'div.hugemce-dragster-blocker').getOrDie();
+  const blocker = UiFinder.findIn(docElem, 'div.ephox-dragster-blocker').getOrDie();
   Mouse.mouseMove(blocker);
   Mouse.mouseMoveTo(blocker, dx, dy);
   Mouse.mouseUp(blocker);

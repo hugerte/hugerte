@@ -1,4 +1,4 @@
-import { Selectors, SugarElement } from '@hugemce/sugar';
+import { Selectors, SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';

@@ -1,6 +1,6 @@
-import { Assertions } from '@hugemce/agar';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Hierarchy, Html, SugarElement } from '@hugemce/sugar';
+import { Assertions } from '@ephox/agar';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import * as SimpleTableModel from 'tinymce/core/selection/SimpleTableModel';

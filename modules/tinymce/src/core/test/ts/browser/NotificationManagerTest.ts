@@ -1,7 +1,7 @@
-import { afterEach, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { Focus, Insert, Remove, SugarElement } from '@hugemce/sugar';
-import { LegacyUnit, TinyHooks } from '@hugemce/wrap-mcagar';
+import { afterEach, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { Focus, Insert, Remove, SugarElement } from '@ephox/sugar';
+import { LegacyUnit, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

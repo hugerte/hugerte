@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "paths": {
-      "hugemce/acid/test/*": ["src/test/ts/module/hugemce/acid/test/*"],
-      "hugemce/acid/demo/*": ["src/demo/ts/hugemce/acid/demo/*"],
-      "hugemce/acid/*": ["src/main/ts/hugemce/acid/*"]
+      "ephox/acid/test/*": ["src/test/ts/module/ephox/acid/test/*"],
+      "ephox/acid/demo/*": ["src/demo/ts/ephox/acid/demo/*"],
+      "ephox/acid/*": ["src/main/ts/ephox/acid/*"]
     }
   },
   "include": [

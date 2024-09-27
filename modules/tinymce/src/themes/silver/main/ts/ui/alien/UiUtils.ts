@@ -1,5 +1,5 @@
-import { AlloyComponent } from '@hugemce/alloy';
-import { Css } from '@hugemce/sugar';
+import { AlloyComponent } from '@ephox/alloy';
+import { Css } from '@ephox/sugar';
 
 const forceInitialSize = (comp: AlloyComponent): void => Css.set(comp.element, 'width', Css.get(comp.element, 'width'));
 

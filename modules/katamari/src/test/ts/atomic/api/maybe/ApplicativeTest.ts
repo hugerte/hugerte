@@ -1,9 +1,9 @@
-import { context, describe } from '@hugemce/bedrock-client';
+import { context, describe } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Fun from 'hugemce/katamari/api/Fun';
-import { Maybe } from 'hugemce/katamari/api/Maybe';
-import * as Maybes from 'hugemce/katamari/api/Maybes';
+import * as Fun from 'ephox/katamari/api/Fun';
+import { Maybe } from 'ephox/katamari/api/Maybe';
+import * as Maybes from 'ephox/katamari/api/Maybes';
 
 const boom = Fun.die('this should not be called');
 const nothing = Maybes.nothing<never>();

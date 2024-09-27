@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Attribute from 'hugemce/sugar/api/properties/Attribute';
-import { AttributeProperty } from 'hugemce/sugar/api/properties/AttributeProperty';
-import EphoxElement from 'hugemce/sugar/test/EphoxElement';
+import * as Attribute from 'ephox/sugar/api/properties/Attribute';
+import { AttributeProperty } from 'ephox/sugar/api/properties/AttributeProperty';
+import EphoxElement from 'ephox/sugar/test/EphoxElement';
 
 UnitTest.test('AttributePropertyTest', () => {
   const attrName = 'custom';

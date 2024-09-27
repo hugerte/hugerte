@@ -1,5 +1,5 @@
-import { Arr, Type } from '@hugemce/katamari';
-import { ContentEditable, Insert, PredicateFilter, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
+import { Arr, Type } from '@ephox/katamari';
+import { ContentEditable, Insert, PredicateFilter, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomTreeWalker from '../api/dom/TreeWalker';

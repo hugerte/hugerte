@@ -1,9 +1,9 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
-import { Unicode } from '@hugemce/katamari';
-import { KAssert } from '@hugemce/katamari-assertions';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Gene, TestUniverse, TextGene } from '@ephox/boss';
+import { Unicode } from '@ephox/katamari';
+import { KAssert } from '@ephox/katamari-assertions';
 
-import * as Selection from 'hugemce/robin/smartselect/Selection';
+import * as Selection from 'ephox/robin/smartselect/Selection';
 
 UnitTest.test('SelectionTest', () => {
   const doc1 = TestUniverse(Gene('root', 'root', [

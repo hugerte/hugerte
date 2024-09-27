@@ -1,10 +1,10 @@
-import { Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { Boxes } from '@hugemce/alloy';
-import { context, describe, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { Html, SelectorFilter, SelectorFind, SimSelection, SugarBody, SugarElement, WindowSelection } from '@hugemce/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { Boxes } from '@ephox/alloy';
+import { context, describe, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { Html, SelectorFilter, SelectorFind, SimSelection, SugarBody, SugarElement, WindowSelection } from '@ephox/sugar';
+import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';

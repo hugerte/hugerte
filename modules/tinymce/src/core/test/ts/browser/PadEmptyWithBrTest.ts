@@ -1,6 +1,6 @@
-import { describe, context, it } from '@hugemce/bedrock-client';
-import { Arr } from '@hugemce/katamari';
-import { TinyAssertions, TinySelections, TinyHooks } from '@hugemce/wrap-mcagar';
+import { describe, context, it } from '@ephox/bedrock-client';
+import { Arr } from '@ephox/katamari';
+import { TinyAssertions, TinySelections, TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 import Theme from 'tinymce/themes/silver/Theme';

@@ -1,5 +1,5 @@
-import { Arr, Obj, Optional } from '@hugemce/katamari';
-import { Attribute, Class, Compare, SelectorExists, SelectorFilter, SelectorFind, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
+import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Attribute, Class, Compare, SelectorExists, SelectorFilter, SelectorFind, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
 import * as Markings from './Markings';

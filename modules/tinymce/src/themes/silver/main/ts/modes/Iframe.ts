@@ -1,7 +1,7 @@
-import { Attachment, Channels, Disabling } from '@hugemce/alloy';
-import { Arr, Cell, Throttler, Type } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { Css, DomEvent, SugarElement, SugarPosition, SugarShadowDom } from '@hugemce/sugar';
+import { Attachment, Channels, Disabling } from '@ephox/alloy';
+import { Arr, Cell, Throttler, Type } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { Css, DomEvent, SugarElement, SugarPosition, SugarShadowDom } from '@ephox/sugar';
 
 import { EventUtilsEvent } from 'tinymce/core/api/dom/EventUtils';
 import Editor from 'tinymce/core/api/Editor';

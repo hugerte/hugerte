@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@hugemce/katamari';
-import { SugarElement, Width } from '@hugemce/sugar';
+import { Arr, Optional } from '@ephox/katamari';
+import { SugarElement, Width } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { EditorOptions } from 'tinymce/core/api/OptionTypes';

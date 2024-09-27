@@ -1,4 +1,4 @@
-import { Arr, Id, Optional, Strings } from '@hugemce/katamari';
+import { Arr, Id, Optional, Strings } from '@ephox/katamari';
 
 import * as Spot from '../../alien/Spot';
 import * as TextSearch from '../../alien/TextSearch';

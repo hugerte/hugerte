@@ -1,8 +1,8 @@
-import { describe, it } from '@hugemce/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Boxes from 'hugemce/alloy/alien/Boxes';
-import * as Bounder from 'hugemce/alloy/positioning/view/Bounder';
+import * as Boxes from 'ephox/alloy/alien/Boxes';
+import * as Bounder from 'ephox/alloy/positioning/view/Bounder';
 
 describe('BounderDeterminePositionTest', () => {
   it('TINY-7545: inside the bounds', () => {

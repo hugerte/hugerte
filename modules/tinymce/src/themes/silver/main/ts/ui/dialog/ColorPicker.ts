@@ -1,7 +1,7 @@
-import { ColourPicker } from '@hugemce/acid';
-import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Form, Memento, NativeEvents, Representing, SimpleSpec } from '@hugemce/alloy';
-import { Dialog } from '@hugemce/bridge';
-import { Arr, Optional, Strings, Type } from '@hugemce/katamari';
+import { ColourPicker } from '@ephox/acid';
+import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Form, Memento, NativeEvents, Representing, SimpleSpec } from '@ephox/alloy';
+import { Dialog } from '@ephox/bridge';
+import { Arr, Optional, Strings, Type } from '@ephox/katamari';
 
 import { Untranslated } from 'tinymce/core/api/util/I18n';
 

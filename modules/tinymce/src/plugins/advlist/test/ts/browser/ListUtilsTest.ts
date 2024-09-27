@@ -1,5 +1,5 @@
-import { describe, it } from '@hugemce/bedrock-client';
-import { SugarElement } from '@hugemce/sugar';
+import { describe, it } from '@ephox/bedrock-client';
+import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import { isTableCellNode, isListNode } from 'tinymce/plugins/advlist/core/ListUtils';

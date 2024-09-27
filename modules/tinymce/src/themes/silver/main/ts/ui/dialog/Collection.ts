@@ -2,10 +2,10 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Bubble, Disabling, EventFormat, FormField as AlloyFormField, Keying,
   Layout,
   NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, Tabstopping, Tooltipping
-} from '@hugemce/alloy';
-import { Dialog } from '@hugemce/bridge';
-import { Arr, Fun, Optional } from '@hugemce/katamari';
-import { Attribute, Class, EventArgs, Focus, Html, SelectorFilter, SelectorFind, SugarElement } from '@hugemce/sugar';
+} from '@ephox/alloy';
+import { Dialog } from '@ephox/bridge';
+import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Attribute, Class, EventArgs, Focus, Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import Entities from 'tinymce/core/api/html/Entities';
 import I18n from 'tinymce/core/api/util/I18n';

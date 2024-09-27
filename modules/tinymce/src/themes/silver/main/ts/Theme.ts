@@ -1,5 +1,5 @@
-import { Boxes } from '@hugemce/alloy';
-import { Fun } from '@hugemce/katamari';
+import { Boxes } from '@ephox/alloy';
+import { Fun } from '@ephox/katamari';
 
 import Editor from 'tinymce/core/api/Editor';
 import ThemeManager, { RenderResult, Theme } from 'tinymce/core/api/ThemeManager';

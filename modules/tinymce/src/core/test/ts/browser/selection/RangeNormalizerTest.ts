@@ -1,6 +1,6 @@
-import { Assertions } from '@hugemce/agar';
-import { describe, it } from '@hugemce/bedrock-client';
-import { Hierarchy, SugarElement } from '@hugemce/sugar';
+import { Assertions } from '@ephox/agar';
+import { describe, it } from '@ephox/bedrock-client';
+import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
 import * as RangeNormalizer from 'tinymce/core/selection/RangeNormalizer';

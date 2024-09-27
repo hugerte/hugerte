@@ -1,9 +1,9 @@
-import { FocusTools, Keys, UiFinder, Waiter } from '@hugemce/agar';
-import { before, describe, it, TestLabel } from '@hugemce/bedrock-client';
-import { Result } from '@hugemce/katamari';
-import { PlatformDetection } from '@hugemce/sand';
-import { SelectorExists, SugarBody, SugarDocument, SugarElement, WindowSelection } from '@hugemce/sugar';
-import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
+import { FocusTools, Keys, UiFinder, Waiter } from '@ephox/agar';
+import { before, describe, it, TestLabel } from '@ephox/bedrock-client';
+import { Result } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
+import { SelectorExists, SugarBody, SugarDocument, SugarElement, WindowSelection } from '@ephox/sugar';
+import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';
 

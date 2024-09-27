@@ -1,8 +1,8 @@
-import { Assertions, Cursors, Waiter } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
-import { Cell } from '@hugemce/katamari';
-import { Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
+import { Assertions, Cursors, Waiter } from '@ephox/agar';
+import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { Cell } from '@ephox/katamari';
+import { Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'tinymce/core/api/Editor';
@@ -263,7 +263,7 @@ context('scrollToMarker should not scroll the container', () => {
   const insertNewline = (editor: Editor, args: Partial<EditorEvent<KeyboardEvent>>) => {
     InsertNewLine.insert(editor, args as EditorEvent<KeyboardEvent>);
   };
-  const container: SugarElement<HTMLElement> = SugarElement.fromHtml('<div id="hugemce-ui" style="border: 2px solid red; margin-top: 4000px; margin-bottom: 4000px"></div>');
+  const container: SugarElement<HTMLElement> = SugarElement.fromHtml('<div id="ephox-ui" style="border: 2px solid red; margin-top: 4000px; margin-bottom: 4000px"></div>');
 
   const setupElement = () => {
     const element = SugarElement.fromTag('textarea');

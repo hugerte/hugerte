@@ -1,6 +1,6 @@
-import { Arr, Fun, Obj, Optional } from '@hugemce/katamari';
-import { TableLookup, Warehouse } from '@hugemce/snooker';
-import { Compare, SugarElement } from '@hugemce/sugar';
+import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
+import { TableLookup, Warehouse } from '@ephox/snooker';
+import { Compare, SugarElement } from '@ephox/sugar';
 
 import Editor from 'tinymce/core/api/Editor';
 import { Dialog } from 'tinymce/core/api/ui/Ui';

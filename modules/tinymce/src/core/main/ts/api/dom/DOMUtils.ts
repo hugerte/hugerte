@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optionals, Strings, Type } from '@hugemce/katamari';
-import { Attribute, Class, ContentEditable, Css, Html, Insert, Remove, Selectors, SugarElement, SugarNode, Traverse, WindowVisualViewport } from '@hugemce/sugar';
+import { Arr, Fun, Obj, Optionals, Strings, Type } from '@ephox/katamari';
+import { Attribute, Class, ContentEditable, Css, Html, Insert, Remove, Selectors, SugarElement, SugarNode, Traverse, WindowVisualViewport } from '@ephox/sugar';
 
 import * as TransparentElements from '../../content/TransparentElements';
 import * as Empty from '../../dom/Empty';

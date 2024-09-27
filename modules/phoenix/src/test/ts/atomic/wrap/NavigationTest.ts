@@ -1,8 +1,8 @@
-import { Assert, UnitTest } from '@hugemce/bedrock-client';
-import { CommentGene, Gene, TestUniverse, TextGene } from '@hugemce/boss';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { CommentGene, Gene, TestUniverse, TextGene } from '@ephox/boss';
 
-import * as Finder from 'hugemce/phoenix/test/Finder';
-import * as Navigation from 'hugemce/phoenix/wrap/Navigation';
+import * as Finder from 'ephox/phoenix/test/Finder';
+import * as Navigation from 'ephox/phoenix/wrap/Navigation';
 
 UnitTest.test('NavigationTest', () => {
   let doc = TestUniverse(
