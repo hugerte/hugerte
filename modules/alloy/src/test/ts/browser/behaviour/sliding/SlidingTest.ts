@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, GeneralSteps, Logger, Step, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Class, Css, Traverse } from '@hugemce/sugar';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';

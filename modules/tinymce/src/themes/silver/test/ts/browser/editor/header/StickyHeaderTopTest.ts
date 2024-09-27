@@ -1,4 +1,4 @@
-import { describe } from '@ephox/bedrock-client';
+import { describe } from '@hugemce/bedrock-client';
 
 import { ToolbarLocation, ToolbarMode } from 'tinymce/themes/silver/api/Options';
 

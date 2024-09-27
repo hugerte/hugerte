@@ -1,4 +1,4 @@
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 

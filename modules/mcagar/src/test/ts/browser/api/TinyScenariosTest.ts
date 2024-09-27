@@ -1,5 +1,5 @@
 import { Arbitraries, Assertions, Pipeline, Step } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 import { SugarNode } from '@hugemce/sugar';
 

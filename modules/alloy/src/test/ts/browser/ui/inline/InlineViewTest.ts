@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr, Future, Optional, Result } from '@hugemce/katamari';
 import { Compare, Css, Html } from '@hugemce/sugar';
 

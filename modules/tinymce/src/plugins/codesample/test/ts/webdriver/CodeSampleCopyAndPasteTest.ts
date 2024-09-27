@@ -1,5 +1,5 @@
 import { ApproxStructure, Keys, RealClipboard, RealMouse, StructAssert } from '@hugemce/agar';
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 

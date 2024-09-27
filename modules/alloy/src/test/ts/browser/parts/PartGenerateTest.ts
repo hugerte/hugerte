@@ -1,5 +1,5 @@
 import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { FieldSchema, Objects } from '@hugemce/boulder';
 import { Fun, Obj } from '@hugemce/katamari';
 

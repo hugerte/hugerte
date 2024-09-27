@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { KAssert } from '@hugemce/katamari-assertions';
 
 import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';

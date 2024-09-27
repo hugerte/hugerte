@@ -1,5 +1,5 @@
 import { Clipboard, Waiter } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr, Obj } from '@hugemce/katamari';
 import { McEditor, TinyAssertions, TinyDom } from '@hugemce/wrap-mcagar';
 

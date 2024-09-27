@@ -1,4 +1,4 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 

@@ -1,5 +1,5 @@
 import { Assertions } from '@hugemce/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Focus, Hierarchy, SugarBody, SugarNode } from '@hugemce/sugar';
 import { McEditor, TinyAssertions, TinyDom, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

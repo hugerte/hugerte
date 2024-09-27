@@ -1,4 +1,4 @@
-import { Assert, TestLabel } from '@ephox/bedrock-client';
+import { Assert, TestLabel } from '@hugemce/bedrock-client';
 import { Arr, Fun, Id, Strings } from '@hugemce/katamari';
 
 import { ArrayAssert, StringAssert } from './ApproxStructures';

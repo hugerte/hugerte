@@ -1,5 +1,5 @@
 import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Result } from '@hugemce/katamari';
 
 import * as FieldSchema from 'hugemce/boulder/api/FieldSchema';

@@ -1,5 +1,5 @@
 import { Clipboard } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/mcagar';
 import { SugarElement } from '@hugemce/sugar';
 

@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Mouse, StructAssert } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

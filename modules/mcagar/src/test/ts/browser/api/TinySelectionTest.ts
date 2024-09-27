@@ -1,5 +1,5 @@
 import { Pipeline } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
 import { TinyApis } from 'hugemce/mcagar/api/pipeline/TinyApis';
 import * as TinyLoader from 'hugemce/mcagar/api/pipeline/TinyLoader';

@@ -1,4 +1,4 @@
-import { Assert, context, describe, it } from '@ephox/bedrock-client';
+import { Assert, context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Obj } from '@hugemce/katamari';
 
 import * as Regexes from 'hugemce/polaris/api/Regexes';

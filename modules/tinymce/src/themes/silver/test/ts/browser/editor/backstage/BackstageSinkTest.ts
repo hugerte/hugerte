@@ -1,6 +1,6 @@
 import { Assertions, Keyboard, Keys, Mouse, UiFinder } from '@hugemce/agar';
 import { AlloyComponent, Attachment, Behaviour, Gui, GuiFactory, Positioning, Representing } from '@hugemce/alloy';
-import { after, before, context, describe, it } from '@ephox/bedrock-client';
+import { after, before, context, describe, it } from '@hugemce/bedrock-client';
 import { Fun, Optional, Result } from '@hugemce/katamari';
 import { Classes, SugarBody, Traverse } from '@hugemce/sugar';
 import { TinyHooks } from '@hugemce/wrap-mcagar';

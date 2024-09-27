@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
 import * as PositionArray from 'hugemce/polaris/api/PositionArray';
 import * as Strings from 'hugemce/polaris/api/Strings';

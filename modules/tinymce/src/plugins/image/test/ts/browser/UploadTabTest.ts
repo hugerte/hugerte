@@ -1,5 +1,5 @@
 import { Assertions, FileInput, Files, Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { afterEach, describe, it } from '@ephox/bedrock-client';
+import { afterEach, describe, it } from '@hugemce/bedrock-client';
 import { Strings } from '@hugemce/katamari';
 import { SugarBody, Value } from '@hugemce/sugar';
 import { TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';

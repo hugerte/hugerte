@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { InlineContent } from '@hugemce/bridge';
 import { Arr, Fun, Optional } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';

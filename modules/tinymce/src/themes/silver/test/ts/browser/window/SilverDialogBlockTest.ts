@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Mouse, TestStore, UiFinder } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Optionals } from '@hugemce/katamari';
 import { Attribute, Height, SelectorFind, SugarBody, SugarDocument, SugarElement, SugarLocation, Width } from '@hugemce/sugar';
 import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';

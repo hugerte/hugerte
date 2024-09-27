@@ -1,5 +1,5 @@
 import { DragnDrop as Dnd, Files, GeneralSteps, Logger, TestStore } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';

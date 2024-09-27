@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
 import { GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 
 import { renderFooterButton } from 'tinymce/themes/silver/ui/general/Button';

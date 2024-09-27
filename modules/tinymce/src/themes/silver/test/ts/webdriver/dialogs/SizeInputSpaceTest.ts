@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, RealKeys, UiFinder } from '@hugemce/agar';
 import { GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 

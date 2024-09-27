@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Arr, Fun, Optional } from '@hugemce/katamari';
 import { KAssert } from '@hugemce/katamari-assertions';
 import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from '@hugemce/sugar';

@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, Touch, UiFinder, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr, Fun, Future, Optional, Result } from '@hugemce/katamari';
 import { Attribute } from '@hugemce/sugar';
 

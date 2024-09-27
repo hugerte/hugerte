@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Gene, SpecialGene, TestUniverse, TextGene } from '@hugemce/boss';
 import { Arr } from '@hugemce/katamari';
 import { assert } from 'chai';

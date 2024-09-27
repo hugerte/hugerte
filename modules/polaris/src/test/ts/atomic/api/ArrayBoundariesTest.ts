@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
 import * as Boundaries from 'hugemce/polaris/array/Boundaries';
 

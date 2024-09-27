@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
 import * as Insert from 'hugemce/sugar/api/dom/Insert';

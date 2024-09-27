@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, StructAssert, UiFinder } from '@hugemce/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Fun, Obj, Type } from '@hugemce/katamari';
 import { McEditor, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 

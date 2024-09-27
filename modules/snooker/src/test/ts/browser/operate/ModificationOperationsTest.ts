@@ -1,5 +1,5 @@
 import { Assertions } from '@hugemce/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Arr, Fun } from '@hugemce/katamari';
 import { Html, SugarElement, SugarNode } from '@hugemce/sugar';
 

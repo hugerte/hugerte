@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Obj, Optional } from '@hugemce/katamari';
 import { KAssert } from '@hugemce/katamari-assertions';
 

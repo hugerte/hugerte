@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
 import { GuiFactory, Representing, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 
 import { renderSelectBox } from 'tinymce/themes/silver/ui/dialog/SelectBox';

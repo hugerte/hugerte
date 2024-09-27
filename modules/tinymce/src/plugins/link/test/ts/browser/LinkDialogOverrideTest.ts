@@ -1,5 +1,5 @@
 import { UiFinder, UiControls } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Dialog } from '@hugemce/bridge';
 import { SugarBody } from '@hugemce/sugar';
 import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';

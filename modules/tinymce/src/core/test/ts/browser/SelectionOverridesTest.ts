@@ -1,5 +1,5 @@
 import { Mouse } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Scroll, SugarElement, Traverse } from '@hugemce/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';

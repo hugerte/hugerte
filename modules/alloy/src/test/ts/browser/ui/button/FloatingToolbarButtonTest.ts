@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, GeneralSteps, Keyboard, Keys, Log, Mouse, Step } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr, Fun, Future, Result } from '@hugemce/katamari';
 import { SelectorExists } from '@hugemce/sugar';
 

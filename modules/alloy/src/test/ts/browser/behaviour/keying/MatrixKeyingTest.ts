@@ -1,5 +1,5 @@
 import { FocusTools, Keyboard, Keys } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Objects } from '@hugemce/boulder';
 import { Arr } from '@hugemce/katamari';
 

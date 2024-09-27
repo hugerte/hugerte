@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Logger } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
 import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
 import * as ToggleModes from 'hugemce/alloy/behaviour/toggling/ToggleModes';

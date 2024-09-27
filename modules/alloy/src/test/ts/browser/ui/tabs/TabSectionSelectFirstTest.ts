@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
 import { Tabstopping } from 'hugemce/alloy/api/behaviour/Tabstopping';

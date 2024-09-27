@@ -1,5 +1,5 @@
 import { FocusTools, Keys, UiFinder, Waiter } from '@hugemce/agar';
-import { before, describe, it, TestLabel } from '@ephox/bedrock-client';
+import { before, describe, it, TestLabel } from '@hugemce/bedrock-client';
 import { Result } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { SelectorExists, SugarBody, SugarDocument, SugarElement, WindowSelection } from '@hugemce/sugar';

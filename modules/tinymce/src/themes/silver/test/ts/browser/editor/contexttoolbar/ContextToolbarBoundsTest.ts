@@ -1,5 +1,5 @@
 import { Bounds, Boxes } from '@hugemce/alloy';
-import { after, before, context, describe, it } from '@ephox/bedrock-client';
+import { after, before, context, describe, it } from '@hugemce/bedrock-client';
 import { InlineContent } from '@hugemce/bridge';
 import { Css, Scroll, SelectorFind, SugarBody } from '@hugemce/sugar';
 import { McEditor, TinyDom } from '@hugemce/wrap-mcagar';

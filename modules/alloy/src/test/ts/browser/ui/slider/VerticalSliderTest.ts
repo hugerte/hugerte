@@ -1,5 +1,5 @@
 import { Chain, FocusTools, Keyboard, Keys, Logger, NamedChain, Step, UiFinder, Waiter } from '@hugemce/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Fun, Result } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 

@@ -1,5 +1,5 @@
 import { TestStore, Waiter } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { Optional, Result } from '@hugemce/katamari';
 import { Css, SelectorFind, Selectors, SugarElement, SugarLocation } from '@hugemce/sugar';
 import { assert } from 'chai';

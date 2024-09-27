@@ -1,5 +1,5 @@
 import { Assertions, Log, Logger, Step } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Class, Width } from '@hugemce/sugar';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';

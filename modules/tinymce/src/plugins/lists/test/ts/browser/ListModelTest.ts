@@ -1,5 +1,5 @@
 import { Arbitraries } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr, Optional } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 import * as fc from 'fast-check';

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
 import { TinyHooks, TinySelections, TinyAssertions } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';

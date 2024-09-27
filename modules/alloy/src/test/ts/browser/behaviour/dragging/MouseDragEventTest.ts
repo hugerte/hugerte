@@ -1,5 +1,5 @@
 import { Assertions, Chain, Mouse, NamedChain, TestStore, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Result } from '@hugemce/katamari';
 import { Css, SugarElement } from '@hugemce/sugar';
 

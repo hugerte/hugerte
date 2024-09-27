@@ -1,5 +1,5 @@
 import { FocusTools, Keys, Mouse, UiControls, UiFinder } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { SugarBody, SugarDocument, Value } from '@hugemce/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

@@ -1,5 +1,5 @@
 import { Clipboard } from '@hugemce/agar';
-import { before, beforeEach, describe, it } from '@ephox/bedrock-client';
+import { before, beforeEach, describe, it } from '@hugemce/bedrock-client';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';

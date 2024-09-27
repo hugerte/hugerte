@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Gene, Logger, TestUniverse, TextGene } from '@hugemce/boss';
 
 import * as Wrapping from 'hugemce/phoenix/api/general/Wrapping';

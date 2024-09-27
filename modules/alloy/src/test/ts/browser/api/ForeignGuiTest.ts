@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Logger, Mouse, Pipeline, Step } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 import { EventArgs, Html, Insert, Remove, SugarBody, SugarElement, SugarNode, Traverse } from '@hugemce/sugar';
 

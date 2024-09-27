@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Chain, Step, StructAssert } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Result } from '@hugemce/katamari';
 
 import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';

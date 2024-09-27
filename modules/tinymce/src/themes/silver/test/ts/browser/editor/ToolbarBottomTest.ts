@@ -1,6 +1,6 @@
 import { Mouse, UiFinder } from '@hugemce/agar';
 import { Boxes } from '@hugemce/alloy';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Fun } from '@hugemce/katamari';
 import { SugarBody } from '@hugemce/sugar';
 import { McEditor } from '@hugemce/wrap-mcagar';

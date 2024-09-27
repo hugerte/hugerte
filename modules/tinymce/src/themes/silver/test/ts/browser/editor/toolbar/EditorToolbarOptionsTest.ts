@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarBody, SugarElement } from '@hugemce/sugar';
 import { McEditor } from '@hugemce/wrap-mcagar';

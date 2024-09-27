@@ -1,4 +1,4 @@
-import { afterEach, describe, it } from '@ephox/bedrock-client';
+import { afterEach, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Fun } from '@hugemce/katamari';
 import { assert } from 'chai';
 

@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
 import * as StringMapper from 'hugemce/polaris/words/StringMapper';
 import * as WordBoundary from 'hugemce/polaris/words/WordBoundary';

@@ -1,4 +1,4 @@
-import { Assert, TestLabel } from '@ephox/bedrock-client';
+import { Assert, TestLabel } from '@hugemce/bedrock-client';
 import { Arr, Fun, Obj, Optional } from '@hugemce/katamari';
 import { Attribute, Classes, Css, Html, SugarElement, SugarNode, SugarText, Traverse, Truncate, Value } from '@hugemce/sugar';
 

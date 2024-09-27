@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder, Waiter } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Css, SugarBody } from '@hugemce/sugar';
 import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 

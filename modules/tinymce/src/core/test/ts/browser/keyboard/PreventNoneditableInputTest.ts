@@ -1,5 +1,5 @@
 import { Cursors } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

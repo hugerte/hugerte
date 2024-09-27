@@ -1,4 +1,4 @@
-import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Assert, describe, it } from '@hugemce/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
 import { Arr, Optional } from '@hugemce/katamari';
 import { PositionArray, PRange } from '@hugemce/polaris';

@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Css, SelectorFind } from '@hugemce/sugar';
 import { TinyHooks, TinyDom } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

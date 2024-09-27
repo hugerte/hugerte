@@ -1,4 +1,4 @@
-import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { after, before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { Singleton } from '@hugemce/katamari';
 import { DomEvent, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';

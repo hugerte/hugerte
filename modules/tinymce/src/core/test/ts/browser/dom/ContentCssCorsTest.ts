@@ -1,4 +1,4 @@
-import { afterEach, context, describe, it } from '@ephox/bedrock-client';
+import { afterEach, context, describe, it } from '@hugemce/bedrock-client';
 import { McEditor } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 

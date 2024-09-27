@@ -1,5 +1,5 @@
 import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
 import { Arr, Optional, Optionals } from '@hugemce/katamari';
 import * as fc from 'fast-check';

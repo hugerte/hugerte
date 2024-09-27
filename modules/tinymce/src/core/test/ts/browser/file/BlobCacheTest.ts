@@ -1,4 +1,4 @@
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
 import { BlobCache, BlobInfoData } from 'tinymce/core/api/file/BlobCache';

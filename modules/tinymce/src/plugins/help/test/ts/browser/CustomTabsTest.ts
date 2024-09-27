@@ -1,5 +1,5 @@
 import { UiFinder } from '@hugemce/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Html } from '@hugemce/sugar';
 import { McEditor, TinyUiActions } from '@hugemce/wrap-mcagar';

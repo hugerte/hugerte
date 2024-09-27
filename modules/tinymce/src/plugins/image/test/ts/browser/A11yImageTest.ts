@@ -1,5 +1,5 @@
 import { Cursors, UiFinder } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Attribute, SugarBody, Value } from '@hugemce/sugar';
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

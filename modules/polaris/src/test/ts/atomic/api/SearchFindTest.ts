@@ -1,4 +1,4 @@
-import { Assert, it, describe } from '@ephox/bedrock-client';
+import { Assert, it, describe } from '@hugemce/bedrock-client';
 import { Arr, Unicode } from '@hugemce/katamari';
 
 import * as Pattern from 'hugemce/polaris/api/Pattern';

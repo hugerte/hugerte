@@ -1,5 +1,5 @@
 import { Cursors, Keys, Mouse, UiFinder } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarBody } from '@hugemce/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';

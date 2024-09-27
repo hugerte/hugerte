@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { Assert, context, describe, it } from '@ephox/bedrock-client';
+import { Assert, context, describe, it } from '@hugemce/bedrock-client';
 
 import { Representing } from 'hugemce/alloy/api/behaviour/Representing';
 import { AlloyComponent } from 'hugemce/alloy/api/component/ComponentApi';

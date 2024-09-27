@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { DomUniverse, Universe } from '@hugemce/boss';
 import { Arr } from '@hugemce/katamari';
 import { Hierarchy, Insert, InsertAll, Remove, Replication, SugarBody, SugarElement } from '@hugemce/sugar';

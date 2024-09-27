@@ -1,4 +1,4 @@
-import { afterEach, describe, it } from '@ephox/bedrock-client';
+import { afterEach, describe, it } from '@hugemce/bedrock-client';
 import { TinyAssertions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 
 import Editor from 'tinymce/core/api/Editor';

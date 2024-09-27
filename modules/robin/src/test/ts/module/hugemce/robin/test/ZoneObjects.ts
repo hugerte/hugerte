@@ -1,5 +1,5 @@
 import { Logger } from '@hugemce/agar';
-import { Assert } from '@ephox/bedrock-client';
+import { Assert } from '@hugemce/bedrock-client';
 import { Gene, TestUniverse } from '@hugemce/boss';
 import { Arr } from '@hugemce/katamari';
 

@@ -1,5 +1,5 @@
 import { Clipboard } from '@hugemce/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 import { TinyAssertions, TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';
 

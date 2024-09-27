@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
 import { createFile } from 'hugemce/agar/api/Files';
 import * as Logger from 'hugemce/agar/api/Logger';

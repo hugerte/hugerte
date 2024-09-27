@@ -1,5 +1,5 @@
 import { Keys, Mouse } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SelectorFilter, TextContent } from '@hugemce/sugar';
 import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';

@@ -1,4 +1,4 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Fun, Obj, Optional } from '@hugemce/katamari';
 import { TinyDom, TinyHooks } from '@hugemce/mcagar';
 import { PredicateFilter, SugarElement, SugarNode, TextContent } from '@hugemce/sugar';

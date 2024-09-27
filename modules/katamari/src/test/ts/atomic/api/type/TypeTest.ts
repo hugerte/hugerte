@@ -1,6 +1,6 @@
 // noinspection JSPrimitiveTypeWrapperUsage
 
-import { Assert, context, describe, it } from '@ephox/bedrock-client';
+import { Assert, context, describe, it } from '@hugemce/bedrock-client';
 import { Pprint } from '@hugemce/dispute';
 import { assert } from 'chai';
 import * as fc from 'fast-check';

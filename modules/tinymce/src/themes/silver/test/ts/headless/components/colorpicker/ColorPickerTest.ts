@@ -1,7 +1,7 @@
 import { HsvColour } from '@hugemce/acid';
 import { UiControls, UiFinder, Waiter } from '@hugemce/agar';
 import { AlloyComponent, GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';

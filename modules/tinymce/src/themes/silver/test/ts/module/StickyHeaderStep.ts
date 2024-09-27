@@ -1,5 +1,5 @@
 import { UiFinder, Waiter } from '@hugemce/agar';
-import { after, before, context, it } from '@ephox/bedrock-client';
+import { after, before, context, it } from '@hugemce/bedrock-client';
 import { Strings } from '@hugemce/katamari';
 import { Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 import { TinyHooks } from '@hugemce/wrap-mcagar';

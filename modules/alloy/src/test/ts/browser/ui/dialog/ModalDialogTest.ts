@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, StructAssert, TestStore, UiFinder } from '@hugemce/agar';
-import { after, afterEach, before, beforeEach, describe, it } from '@ephox/bedrock-client';
+import { after, afterEach, before, beforeEach, describe, it } from '@hugemce/bedrock-client';
 import { Result } from '@hugemce/katamari';
 import { Attribute, Class, Compare, SugarBody, SugarDocument } from '@hugemce/sugar';
 

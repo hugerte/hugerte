@@ -1,5 +1,5 @@
 import { Keys } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Fun, Type } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { Scroll } from '@hugemce/sugar';

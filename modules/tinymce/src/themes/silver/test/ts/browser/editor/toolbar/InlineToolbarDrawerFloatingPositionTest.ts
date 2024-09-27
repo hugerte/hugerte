@@ -1,5 +1,5 @@
 import { Keys, UiFinder, Waiter } from '@hugemce/agar';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr, Cell } from '@hugemce/katamari';
 import { Css, SugarBody, SugarLocation } from '@hugemce/sugar';
 import { McEditor, TinyContentActions, TinyDom, TinySelections } from '@hugemce/wrap-mcagar';

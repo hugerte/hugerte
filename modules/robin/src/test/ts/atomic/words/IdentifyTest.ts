@@ -1,4 +1,4 @@
-import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Assert, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Optional, Optionals } from '@hugemce/katamari';
 
 import { WordScope } from 'hugemce/robin/data/WordScope';

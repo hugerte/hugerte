@@ -1,4 +1,4 @@
-import { Assert, describe, context, it } from '@ephox/bedrock-client';
+import { Assert, describe, context, it } from '@hugemce/bedrock-client';
 import { Fun, Optional, OptionalInstances } from '@hugemce/katamari';
 import fc from 'fast-check';
 

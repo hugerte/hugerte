@@ -1,5 +1,5 @@
 import { Waiter } from '@hugemce/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { PlatformDetection } from '@hugemce/sand';
 import { Css, Insert, Remove, Scroll, SugarBody, SugarElement, SugarLocation } from '@hugemce/sugar';
 import { TinyDom, TinyHooks } from '@hugemce/wrap-mcagar';

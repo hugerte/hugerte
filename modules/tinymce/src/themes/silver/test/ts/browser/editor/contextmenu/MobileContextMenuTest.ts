@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Touch, UiFinder, Waiter } from '@hugemce/agar';
-import { after, before, describe, it } from '@ephox/bedrock-client';
+import { after, before, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Fun } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { SugarBody, SugarDocument } from '@hugemce/sugar';

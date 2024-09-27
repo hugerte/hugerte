@@ -1,5 +1,5 @@
 import { ApproxStructure, Mouse, UiFinder, Clipboard } from '@hugemce/agar';
-import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Assert, describe, it } from '@hugemce/bedrock-client';
 import { Optional, OptionalInstances } from '@hugemce/katamari';
 import { Class, Css, Scroll, SelectorFind, SugarBody, SugarElement, Traverse } from '@hugemce/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';

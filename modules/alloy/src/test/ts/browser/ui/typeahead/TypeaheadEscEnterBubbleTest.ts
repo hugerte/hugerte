@@ -1,5 +1,5 @@
 import { FocusTools, Keyboard, Keys } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr, Future, Optional, Result } from '@hugemce/katamari';
 import { SugarNode } from '@hugemce/sugar';
 

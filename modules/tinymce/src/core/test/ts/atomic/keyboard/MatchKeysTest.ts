@@ -1,4 +1,4 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Cell } from '@hugemce/katamari';
 import { assert } from 'chai';
 

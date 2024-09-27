@@ -1,5 +1,5 @@
 import { Cursors } from '@hugemce/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Fun, Optional } from '@hugemce/katamari';
 import { ContentEditable, Css, Html, Insert, Remove, SugarBody, SugarElement, SugarLocation } from '@hugemce/sugar';
 import { assert } from 'chai';

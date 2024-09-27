@@ -1,5 +1,5 @@
 import { Assertions, Keys } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { Html, InsertAll, Remove, SugarElement } from '@hugemce/sugar';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 

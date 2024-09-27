@@ -1,5 +1,5 @@
 import { Assertions } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 
 import { AlloySpec } from 'hugemce/alloy/api/component/SpecTypes';

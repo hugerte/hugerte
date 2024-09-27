@@ -1,4 +1,4 @@
-import { Assert, context, describe, it } from '@ephox/bedrock-client';
+import { Assert, context, describe, it } from '@hugemce/bedrock-client';
 import { Optional, OptionalInstances } from '@hugemce/katamari';
 import { Css, Insert, InsertAll, Remove, SelectorFind, SugarBody, SugarElement, Width } from '@hugemce/sugar';
 import { assert } from 'chai';

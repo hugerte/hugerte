@@ -1,5 +1,5 @@
 import { Pipeline, Step, TestStore } from '@hugemce/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Attribute, SugarBody, SugarNode, Traverse } from '@hugemce/sugar';
 
 import * as EventRoot from 'hugemce/alloy/alien/EventRoot';

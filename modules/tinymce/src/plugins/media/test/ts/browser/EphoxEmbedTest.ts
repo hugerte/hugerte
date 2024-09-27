@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, StructAssert, Waiter } from '@hugemce/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarElement } from '@hugemce/sugar';
 import { TinyHooks, TinySelections, TinyUiActions } from '@hugemce/wrap-mcagar';

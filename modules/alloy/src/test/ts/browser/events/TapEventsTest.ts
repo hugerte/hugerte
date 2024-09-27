@@ -1,5 +1,5 @@
 import { GeneralSteps, Logger, Pipeline, Step, TestStore, Waiter } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { EventArgs, SugarElement } from '@hugemce/sugar';
 
 import * as NativeEvents from 'hugemce/alloy/api/events/NativeEvents';

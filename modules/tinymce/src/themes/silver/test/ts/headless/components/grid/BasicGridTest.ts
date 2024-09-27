@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
 import { GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 
 import { UiFactoryBackstageShared } from 'tinymce/themes/silver/backstage/Backstage';

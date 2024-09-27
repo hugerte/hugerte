@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr, Obj, Singleton, Strings } from '@hugemce/katamari';
 import { TinyHooks } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

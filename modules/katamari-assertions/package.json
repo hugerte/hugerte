@@ -17,7 +17,7 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@ephox/bedrock-client": "11 || 12 || 13",
+    "@hugemce/bedrock-client": "11 || 12 || 13",
     "@hugemce/dispute": "^1.0.3",
     "@hugemce/katamari": "^9.1.6"
   },

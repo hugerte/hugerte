@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 
 import * as Obj from 'hugemce/katamari/api/Obj';
 import { assertNone, assertSome } from 'hugemce/katamari/test/AssertOptional';

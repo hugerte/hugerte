@@ -1,5 +1,5 @@
 import { Waiter } from '@hugemce/agar';
-import { afterEach, beforeEach, describe, it } from '@ephox/bedrock-client';
+import { afterEach, beforeEach, describe, it } from '@hugemce/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { Attribute, Classes, SugarDocument } from '@hugemce/sugar';
 import { assert } from 'chai';

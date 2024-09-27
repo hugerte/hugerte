@@ -1,6 +1,6 @@
 import { FocusTools, Keyboard, Keys, TestStore } from '@hugemce/agar';
 import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, TestHelpers } from '@hugemce/alloy';
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 
 import { renderCheckbox } from 'tinymce/themes/silver/ui/general/Checkbox';

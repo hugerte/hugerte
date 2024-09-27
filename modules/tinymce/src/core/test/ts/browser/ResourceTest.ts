@@ -1,4 +1,4 @@
-import { after, before, describe, it } from '@ephox/bedrock-client';
+import { after, before, describe, it } from '@hugemce/bedrock-client';
 import { Global } from '@hugemce/katamari';
 import { assert } from 'chai';
 

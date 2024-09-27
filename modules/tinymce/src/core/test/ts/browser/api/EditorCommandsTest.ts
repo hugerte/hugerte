@@ -1,4 +1,4 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Fun, Singleton } from '@hugemce/katamari';
 import { Focus, SugarDocument } from '@hugemce/sugar';
 import { TinyHooks, TinyAssertions, TinySelections } from '@hugemce/wrap-mcagar';

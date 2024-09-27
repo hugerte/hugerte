@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { assert } from 'chai';
 
 import * as Transformations from 'hugemce/acid/api/colour/Transformations';

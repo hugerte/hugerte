@@ -1,4 +1,4 @@
-import { TestLabel } from '@ephox/bedrock-client';
+import { TestLabel } from '@hugemce/bedrock-client';
 import { Adt, Optional, Result } from '@hugemce/katamari';
 import { SugarElement, Truncate } from '@hugemce/sugar';
 

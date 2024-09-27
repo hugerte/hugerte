@@ -1,5 +1,5 @@
 import { Clipboard, Waiter } from '@hugemce/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Singleton } from '@hugemce/katamari';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';

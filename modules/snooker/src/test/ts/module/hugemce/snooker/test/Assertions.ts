@@ -1,5 +1,5 @@
 import { Assertions } from '@hugemce/agar';
-import { Assert } from '@ephox/bedrock-client';
+import { Assert } from '@hugemce/bedrock-client';
 import { Arr, Optional, Optionals } from '@hugemce/katamari';
 import { Attribute, Css, Hierarchy, Html, Insert, Remove, SelectorFilter, SugarBody, SugarElement, Traverse } from '@hugemce/sugar';
 

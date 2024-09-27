@@ -1,4 +1,4 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Class, Css, DomEvent, Html, Insert, InsertAll, Remove, SugarElement } from '@hugemce/sugar';
 
 import { Chain } from 'hugemce/agar/api/Chain';

@@ -1,5 +1,5 @@
 import { TestStore, UiFinder } from '@hugemce/agar';
-import { beforeEach, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, describe, it } from '@hugemce/bedrock-client';
 import { Sidebar } from '@hugemce/bridge';
 import { SugarBody, SugarElement, Traverse } from '@hugemce/sugar';
 import { McEditor, TinyUiActions } from '@hugemce/wrap-mcagar';

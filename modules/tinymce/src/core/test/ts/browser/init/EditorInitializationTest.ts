@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { afterEach, before, describe, it } from '@ephox/bedrock-client';
+import { afterEach, before, describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Attribute, SelectorFilter, SugarElement } from '@hugemce/sugar';
 import { assert } from 'chai';

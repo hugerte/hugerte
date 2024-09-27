@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, TestStore, UiFinder } from '@hugemce/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Objects } from '@hugemce/boulder';
 import { Arr, Future, Optional, Result } from '@hugemce/katamari';
 import { SelectorFind, SugarDocument, SugarElement, Value } from '@hugemce/sugar';

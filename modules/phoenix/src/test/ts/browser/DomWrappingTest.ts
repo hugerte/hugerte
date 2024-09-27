@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Class, Html, Insert, InsertAll, Remove, SelectorFind, SugarElement, Traverse } from '@hugemce/sugar';
 
 import * as DomWrapping from 'hugemce/phoenix/api/dom/DomWrapping';

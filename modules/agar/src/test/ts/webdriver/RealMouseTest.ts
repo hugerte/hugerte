@@ -1,4 +1,4 @@
-import { after, Assert, before, describe, it, UnitTest } from '@ephox/bedrock-client';
+import { after, Assert, before, describe, it, UnitTest } from '@hugemce/bedrock-client';
 import { Cell } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { Attribute, Class, Css, DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarElement } from '@hugemce/sugar';

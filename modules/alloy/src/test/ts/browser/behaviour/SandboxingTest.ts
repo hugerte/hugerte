@@ -1,5 +1,5 @@
 import { Assertions, Chain, GeneralSteps, Logger, Step, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { SugarNode } from '@hugemce/sugar';
 

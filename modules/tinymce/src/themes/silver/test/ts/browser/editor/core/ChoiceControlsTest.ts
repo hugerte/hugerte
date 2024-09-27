@@ -1,5 +1,5 @@
 import { Keys, UiFinder, Waiter } from '@hugemce/agar';
-import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Optional } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { Attribute, SugarBody } from '@hugemce/sugar';

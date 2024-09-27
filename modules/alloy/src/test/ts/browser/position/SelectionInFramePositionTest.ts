@@ -1,5 +1,5 @@
 import { Chain, Cursors, Guard, NamedChain } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Optional, Result } from '@hugemce/katamari';
 import { Css, DomEvent, Scroll, SelectorFind, SimRange, SugarElement, SugarNode, SugarPosition, Traverse, WindowSelection } from '@hugemce/sugar';
 import { assert } from 'chai';

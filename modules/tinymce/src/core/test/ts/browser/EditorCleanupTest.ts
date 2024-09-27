@@ -1,4 +1,4 @@
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { Fun } from '@hugemce/katamari';
 import { Attribute, Remove, Truncate } from '@hugemce/sugar';
 import { McEditor, TinyDom } from '@hugemce/wrap-mcagar';

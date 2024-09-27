@@ -1,4 +1,4 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
 import * as TableOperations from 'hugemce/snooker/api/TableOperations';
 import * as Assertions from 'hugemce/snooker/test/Assertions';

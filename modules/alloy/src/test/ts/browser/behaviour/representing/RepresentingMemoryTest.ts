@@ -1,4 +1,4 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
 import * as Behaviour from 'hugemce/alloy/api/behaviour/Behaviour';
 import { Representing } from 'hugemce/alloy/api/behaviour/Representing';

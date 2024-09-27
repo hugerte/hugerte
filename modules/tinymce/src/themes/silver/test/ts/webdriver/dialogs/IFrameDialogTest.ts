@@ -1,6 +1,6 @@
 import { FocusTools, RealKeys, RealMouse, UiFinder, Waiter } from '@hugemce/agar';
 import { TestHelpers } from '@hugemce/alloy';
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Fun } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { Focus, SelectorFind, SugarDocument } from '@hugemce/sugar';

@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { afterEach, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Focus, Insert, Remove, SugarElement } from '@hugemce/sugar';
 import { LegacyUnit, TinyHooks } from '@hugemce/wrap-mcagar';

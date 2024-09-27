@@ -1,4 +1,4 @@
-import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Assert, describe, it } from '@hugemce/bedrock-client';
 import { Fun, Optional } from '@hugemce/katamari';
 
 import * as Remove from 'hugemce/sugar/api/dom/Remove';

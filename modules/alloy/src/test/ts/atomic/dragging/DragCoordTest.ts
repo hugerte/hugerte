@@ -1,4 +1,4 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarPosition } from '@hugemce/sugar';
 import { assert } from 'chai';

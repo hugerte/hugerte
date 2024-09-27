@@ -1,5 +1,5 @@
 import { Keys, Monitor, Mouse } from '@hugemce/agar';
-import { before, describe, it } from '@ephox/bedrock-client';
+import { before, describe, it } from '@hugemce/bedrock-client';
 import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@hugemce/wrap-mcagar';
 import { assert } from 'chai';
 

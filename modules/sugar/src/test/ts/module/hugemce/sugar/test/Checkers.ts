@@ -1,4 +1,4 @@
-import { Assert } from '@ephox/bedrock-client';
+import { Assert } from '@hugemce/bedrock-client';
 import { Testable } from '@hugemce/dispute';
 import { Optional } from '@hugemce/katamari';
 import { KAssert } from '@hugemce/katamari-assertions';

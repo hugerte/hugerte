@@ -1,7 +1,7 @@
 import {
   ApproxStructure, Assertions, Chain, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder
 } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
 import * as GuiFactory from 'hugemce/alloy/api/component/GuiFactory';
 import * as AlloyTriggers from 'hugemce/alloy/api/events/AlloyTriggers';

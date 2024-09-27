@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Compare, Hierarchy, Insert, InsertAll, Remove, SugarBody, SugarElement } from '@hugemce/sugar';
 
 import * as DomSmartSelect from 'hugemce/robin/api/dom/DomSmartSelect';

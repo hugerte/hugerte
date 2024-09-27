@@ -1,5 +1,5 @@
 import { Gui, GuiFactory } from '@hugemce/alloy';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { Class, Classes } from '@hugemce/sugar';
 import { assert } from 'chai';

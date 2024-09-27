@@ -1,5 +1,5 @@
 import { Assertions, Log, Pipeline, Step } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@hugemce/boss';
 import { Arr, Fun } from '@hugemce/katamari';
 

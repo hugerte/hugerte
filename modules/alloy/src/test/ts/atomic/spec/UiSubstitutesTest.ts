@@ -1,5 +1,5 @@
 import { Logger } from '@hugemce/agar';
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 
 import { CompositeSketchDetail } from 'hugemce/alloy/api/ui/Sketcher';

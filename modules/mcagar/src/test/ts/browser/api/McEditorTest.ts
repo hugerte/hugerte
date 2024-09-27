@@ -1,5 +1,5 @@
 import { Assertions, Chain, Pipeline } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 
 import * as McEditor from 'hugemce/mcagar/api/McEditor';
 import { ApiChains } from 'hugemce/mcagar/api/pipeline/ApiChains';

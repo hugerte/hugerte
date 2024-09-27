@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 import { Testable } from '@hugemce/dispute';
 import { Arr } from '@hugemce/katamari';
 import fc from 'fast-check';

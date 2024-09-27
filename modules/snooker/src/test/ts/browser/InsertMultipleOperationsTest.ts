@@ -1,4 +1,4 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Optional } from '@hugemce/katamari';
 
 import * as TableOperations from 'hugemce/snooker/api/TableOperations';

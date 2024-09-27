@@ -1,4 +1,4 @@
-import { Assert, UnitTest } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@hugemce/bedrock-client';
 
 import * as SugarComment from 'hugemce/sugar/api/node/SugarComment';
 import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';

@@ -1,5 +1,5 @@
 import { Assertions } from '@hugemce/agar';
-import { context, describe, it } from '@ephox/bedrock-client';
+import { context, describe, it } from '@hugemce/bedrock-client';
 import { Obj } from '@hugemce/katamari';
 import { Hierarchy } from '@hugemce/sugar';
 import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';

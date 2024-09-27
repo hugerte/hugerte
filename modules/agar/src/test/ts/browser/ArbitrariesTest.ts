@@ -1,4 +1,4 @@
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import {
   Attribute, Compare, Css, Insert, PredicateFilter, Remove, SelectorFilter, SugarBody, SugarElement, SugarNode, SugarText, Traverse, Truncate

@@ -1,5 +1,5 @@
 import { ApproxStructure, Cursors } from '@hugemce/agar';
-import { after, before, context, describe, it } from '@ephox/bedrock-client';
+import { after, before, context, describe, it } from '@hugemce/bedrock-client';
 import { Arr, Type } from '@hugemce/katamari';
 import { PlatformDetection } from '@hugemce/sand';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@hugemce/wrap-mcagar';

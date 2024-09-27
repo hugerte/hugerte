@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { Arr } from '@hugemce/katamari';
 import { SugarElement, SugarNode } from '@hugemce/sugar';
 import { TinyHooks } from '@hugemce/wrap-mcagar';

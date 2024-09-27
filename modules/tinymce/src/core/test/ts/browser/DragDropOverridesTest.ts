@@ -1,5 +1,5 @@
 import { Assertions, DragnDrop, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@hugemce/agar';
-import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
+import { before, beforeEach, context, describe, it } from '@hugemce/bedrock-client';
 import { DataTransfer, DataTransferMode, DragImageData } from '@hugemce/dragster';
 import { Arr, Fun, Obj, Optional, Type } from '@hugemce/katamari';
 import { KAssert } from '@hugemce/katamari-assertions';

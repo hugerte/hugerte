@@ -1,5 +1,5 @@
 import { Assertions, Chain, NamedChain, UiFinder } from '@hugemce/agar';
-import { UnitTest } from '@ephox/bedrock-client';
+import { UnitTest } from '@hugemce/bedrock-client';
 import { Arr, Result } from '@hugemce/katamari';
 import { Attribute, Class, Compare, Truncate } from '@hugemce/sugar';
 

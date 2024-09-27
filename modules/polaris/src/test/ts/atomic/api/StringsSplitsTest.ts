@@ -1,4 +1,4 @@
-import { Assert, describe, it } from '@ephox/bedrock-client';
+import { Assert, describe, it } from '@hugemce/bedrock-client';
 
 import * as Strings from 'hugemce/polaris/api/Strings';
 

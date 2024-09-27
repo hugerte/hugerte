@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions } from '@hugemce/agar';
-import { describe, context, it, afterEach, beforeEach } from '@ephox/bedrock-client';
+import { describe, context, it, afterEach, beforeEach } from '@hugemce/bedrock-client';
 import { Singleton } from '@hugemce/katamari';
 import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 

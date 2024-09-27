@@ -1,4 +1,4 @@
-import { describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@hugemce/bedrock-client';
 import { TinyHooks, TinyUiActions } from '@hugemce/wrap-mcagar';
 
 import HelpPlugin from 'tinymce/plugins/help/Plugin';
