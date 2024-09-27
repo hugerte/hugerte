@@ -1,4 +1,4 @@
-import { Eq, Pnode, Pprint, Testable } from '@ephox/dispute';
+import { Eq, Pnode, Pprint, Testable } from '@hugemce/dispute';
 
 import * as Html from '../properties/Html';
 import { SugarElement } from './SugarElement';

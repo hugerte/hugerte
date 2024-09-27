@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Testable } from '@ephox/dispute';
+import { Testable } from '@hugemce/dispute';
 
 import { SugarElement } from 'hugemce/sugar/api/node/SugarElement';
 import * as Head from 'hugemce/sugar/api/node/SugarHead';

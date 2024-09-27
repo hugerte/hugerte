@@ -637,7 +637,7 @@
   integrity sha512-Zah4+o7wFmYO6x3AHiQ1fIYdWIKMAlgszFqKp+JYrmkmqQG9h25wk2izPvTvJ+UGrORU6W90PrDWuksE1XhcUw==
   dependencies:
     "@hugemce/bedrock-common" "^13.0.0"
-    "@ephox/dispute" "^1.0.3"
+    "@hugemce/dispute" "^1.0.3"
 
 "@ephox/bedrock-client@^14.1.0", "@ephox/bedrock-client@^14.1.1":
   version "14.1.1"
@@ -645,7 +645,7 @@
   integrity sha512-j9i1JMgtTgLsAze1lqrxPePFKC+9d/Du4CU3x+N008YdAlja1dEU86j/4aGD6GWHDNmhJgbJEPJ4ZLQiD/5t7g==
   dependencies:
     "@hugemce/bedrock-common" "^14.1.1"
-    "@ephox/dispute" "^1.0.3"
+    "@hugemce/dispute" "^1.0.3"
 
 "@hugemce/bedrock-common@11 || 12 || 13", "@hugemce/bedrock-common@^13.0.0":
   version "13.0.0"
@@ -716,9 +716,9 @@
     which "^2.0.0"
     xml-writer "^1.6.0"
 
-"@ephox/dispute@^1.0.3":
+"@hugemce/dispute@^1.0.3":
   version "1.0.14"
-  resolved "https://registry.yarnpkg.com/@ephox/dispute/-/dispute-1.0.14.tgz#f7a81ec5cfb63561a29711118bc4a3e42f7046df"
+  resolved "https://registry.yarnpkg.com/@hugemce/dispute/-/dispute-1.0.14.tgz#f7a81ec5cfb63561a29711118bc4a3e42f7046df"
   integrity sha512-cl8hu6u8FDIJ0Ofmp9PzMWuby7mNXylcbr5yrsQ7MMOVKXTTBKj93ZWGmPFqKBTbWdeMji16fVRLxYqCp7FInA==
   dependencies:
     tslib "^2.0.0"

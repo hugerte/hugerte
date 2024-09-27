@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Testable } from '@ephox/dispute';
+import { Testable } from '@hugemce/dispute';
 import { Arr } from '@hugemce/katamari';
 import fc from 'fast-check';
 

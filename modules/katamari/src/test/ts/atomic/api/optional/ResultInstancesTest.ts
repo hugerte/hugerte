@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Pprint, Testable } from '@ephox/dispute';
+import { Pprint, Testable } from '@hugemce/dispute';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
