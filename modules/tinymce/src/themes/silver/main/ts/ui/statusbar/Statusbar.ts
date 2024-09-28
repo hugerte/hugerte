@@ -2,7 +2,8 @@ import { Behaviour, Focusing, GuiFactory, SimpleSpec } from '@ephox/alloy';
 
 import Editor from 'tinymce/core/api/Editor';
 import I18n from 'tinymce/core/api/util/I18n';
-import { Logo } from 'tinymce/themes/silver/resources/StatusbarLogo';
+// TODO: add back when we have our own logo
+// import { Logo } from 'tinymce/themes/silver/resources/StatusbarLogo';
 
 import * as Options from '../../api/Options';
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -24,12 +25,11 @@ const renderStatusbar = (editor: Editor, providersBackstage: UiFactoryBackstageP
           dom: {
             tag: 'a',
             attributes: {
-              'href': 'https://www.tiny.cloud/powered-by-tiny?utm_campaign=poweredby&utm_source=tiny&utm_medium=referral&utm_content=v7',
-              'rel': 'noopener',
-              'target': '_blank',
-              'aria-label': I18n.translate([ 'Powered by {0}', 'Tiny' ])
+              href: 'https://hugerte.org/powered-by-hugerte?utm_campaign=poweredby&utm_source=editor&utm_medium=referral&utm_content=v1',
+              rel: 'noopener',
+              target: '_blank',
             },
-            innerHtml: Logo.trim()
+            innerHtml: I18n.translate([ 'Powered by {0}', 'HugeRTE' ]),
           },
           behaviours: Behaviour.derive([
             Focusing.config({})
