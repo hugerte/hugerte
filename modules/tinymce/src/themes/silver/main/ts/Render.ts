@@ -229,7 +229,7 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
         ...verticalDirAttributes
       },
       components: Arr.flatten<AlloySpec>([
-        hasMenubar ? [ partMenubar ],
+        hasMenubar ? [ partMenubar ] : [],
         getPartToolbar(),
         // fixed_toolbar_container anchors to the editable area, else add an anchor bar
         Options.useFixedContainer(editor) ? [ ] : [ memAnchorBar.asSpec() ]
