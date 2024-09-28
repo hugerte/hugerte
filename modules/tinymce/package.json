@@ -1,13 +1,13 @@
 {
   "name": "tinymce",
-  "version": "6.8.4",
+  "version": "1.0.0",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/tinymce/tinymce"
   },
   "description": "TinyMCE rich text editor",
-  "author": "Ephox Corporation DBA Tiny Technologies, Inc",
+  "author": "Ephox Corporation DBA Tiny Technologies, Inc and the TinyMCE contributors",
   "bugs": {
     "url": "https://github.com/tinymce/tinymce/issues"
   },
