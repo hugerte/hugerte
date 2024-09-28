@@ -14,28 +14,6 @@ interface PluginData {
 }
 
 const tab = (editor: Editor): Dialog.TabSpec & { name: string } => {
-  const availablePlugins = () => {
-    const premiumPlugins = Arr.filter(PluginUrls.urls, ({ type }) => {
-      return type === PluginUrls.PluginType.Premium;
-    });
-
-    const sortedPremiumPlugins = Arr.sort(
-      Arr.map(premiumPlugins, (p) => p.name),
-      (s1, s2) => s1.localeCompare(s2)
-    );
-
-    const premiumPluginList = Arr.map(sortedPremiumPlugins, (pluginName) => `<li>${pluginName}</li>`).join('');
-    return '<div>' +
-      '<p><b>' + I18n.translate('Premium plugins:') + '</b></p>' +
-      '<ul>' +
-      premiumPluginList +
-      '<li class="tox-help__more-link" ">' +
-      '<a href="https://www.tiny.cloud/pricing/?utm_campaign=help_dialog_plugin_tab&utm_source=tiny&utm_medium=referral&utm_term=read_more&utm_content=premium_plugin_heading" rel="noopener" target="_blank"' +
-      ' data-alloy-tabstop="true" tabindex="-1">' + I18n.translate('Learn more...') + '</a></li>' +
-      '</ul>' +
-      '</div>';
-  };
-
   const makeLink = (p: { name: string; url: string }): string =>
     `<a data-alloy-tabstop="true" tabindex="-1" href="${p.url}" target="_blank" rel="noopener">${p.name}</a>`;
 
@@ -55,9 +33,8 @@ const tab = (editor: Editor): Dialog.TabSpec & { name: string } => {
     return identifyUnknownPlugin(editor, key);
   }, (x) => {
     // We know this plugin, so use our stored details.
-    const name = x.type === PluginUrls.PluginType.Premium ? `${x.name}*` : x.name;
-    const html = makeLink({ name, url: `https://www.tiny.cloud/docs/tinymce/7/${x.slug}/` });
-    return { name, html };
+    const html = makeLink({ name: x.name, url: `https://www.tiny.cloud/docs/tinymce/6/${x.slug}/` });
+    return { name: x.name, html };
   });
 
   const getPluginKeys = (editor: Editor) => {
@@ -101,8 +78,7 @@ const tab = (editor: Editor): Dialog.TabSpec & { name: string } => {
     type: 'htmlpanel',
     presets: 'document',
     html: [
-      installedPlugins(editor),
-      availablePlugins()
+      installedPlugins(editor)
     ].join('')
   };
   return {
@@ -117,3 +93,4 @@ const tab = (editor: Editor): Dialog.TabSpec & { name: string } => {
 export {
   tab
 };
+

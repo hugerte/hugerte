@@ -1,7 +1,7 @@
 import { Arr } from '@ephox/katamari';
 
+// TODO: remove this when we are sure it is not referenced anymore
 export const enum PluginType {
-  Premium = 'premium',
   OpenSource = 'opensource'
 }
 
@@ -51,7 +51,7 @@ const urls = Arr.map<PartialPluginUrl, PluginUrl>([
   { key: 'visualblocks', name: 'Visual Blocks' },
   { key: 'visualchars', name: 'Visual Characters' },
   { key: 'wordcount', name: 'Word Count' },
-  // TODO: Add other premium plugins when they are included in the website
+  /* TODO: Reimplement some premium plugins as opensource
   { key: 'a11ychecker', name: 'Accessibility Checker', type: PluginType.Premium },
   { key: 'typography', name: 'Advanced Typography', type: PluginType.Premium, slug: 'advanced-typography' },
   { key: 'ai', name: 'AI Assistant', type: PluginType.Premium },
@@ -80,11 +80,11 @@ const urls = Arr.map<PartialPluginUrl, PluginUrl>([
   { key: 'tableofcontents', name: 'Table of Contents', type: PluginType.Premium },
   { key: 'advtemplate', name: 'Templates', type: PluginType.Premium, slug: 'advanced-templates' },
   { key: 'tinycomments', name: 'Tiny Comments', type: PluginType.Premium, slug: 'introduction-to-tiny-comments' },
-  { key: 'tinydrive', name: 'Tiny Drive', type: PluginType.Premium, slug: 'tinydrive-introduction' },
+  { key: 'tinydrive', name: 'Tiny Drive', type: PluginType.Premium, slug: 'tinydrive-introduction' }, */
 ], (item) => ({
   ...item,
   // Set the defaults/fallbacks for the plugin urls
-  type: item.type || PluginType.OpenSource,
+  type: item.type || PluginType.OpenSource, // TODO remove
   slug: item.slug || item.key
 }));
 
