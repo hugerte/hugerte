@@ -51,9 +51,9 @@ gulp.task('copyTinymce', function(done) {
       })
       .pipe(gulp.dest('./build'));
   } else {
-    console.log(chalk.red('Local TinyMCE does not exist. Using cloud version instead'));
+    console.log(chalk.red('Local TinyMCE does not exist. Using CDN version instead'));
     console.log(chalk.yellow('Run yarn build in the repository root to build a local version of TinyMCE'));
-    const url = 'https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/5-dev/tinymce.min.js';
+    const url = 'https://cdn.jsdelivr.net/npm/tinymce@1/tinymce.min.js';
     const html = fs.readFileSync('./build/index.html', 'utf8');
     fs.writeFileSync('./build/index.html', html.replace('/tinymce/tinymce.min.js', url));
     done();
