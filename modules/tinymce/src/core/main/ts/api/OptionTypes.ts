@@ -187,7 +187,6 @@ interface BaseEditorOptions {
   placeholder?: string;
   preserve_cdata?: boolean;
   preview_styles?: false | string;
-  promotion?: boolean;
   protect?: RegExp[];
   readonly?: boolean;
   referrer_policy?: ReferrerPolicy;
@@ -337,7 +336,6 @@ export interface EditorOptions extends NormalizedEditorOptions {
   pad_empty_with_br: boolean;
   paste_as_text: boolean;
   preview_styles: string;
-  promotion: boolean;
   readonly: boolean;
   removed_menuitems: string;
   sandbox_iframes: boolean;

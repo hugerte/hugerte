@@ -209,8 +209,6 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
     const hasMultipleToolbar = Options.isMultipleToolbars(editor);
     const hasToolbar = Options.isToolbarEnabled(editor);
     const hasMenubar = Options.isMenubarEnabled(editor);
-    const shouldHavePromotion = Options.promotionEnabled(editor);
-    const partPromotion = makePromotion();
     const hasAnyContents = hasMultipleToolbar || hasToolbar || hasMenubar;
 
     const getPartToolbar = () => {
@@ -223,8 +221,6 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
       }
     };
 
-    const menubarCollection = shouldHavePromotion ? [ partPromotion, partMenubar ] : [ partMenubar ];
-
     return OuterContainer.parts.header({
       dom: {
         tag: 'div',
@@ -233,7 +229,7 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
         ...verticalDirAttributes
       },
       components: Arr.flatten<AlloySpec>([
-        hasMenubar ? menubarCollection : [ ],
+        hasMenubar ? [ partMenubar ],
         getPartToolbar(),
         // fixed_toolbar_container anchors to the editable area, else add an anchor bar
         Options.useFixedContainer(editor) ? [ ] : [ memAnchorBar.asSpec() ]
@@ -242,15 +238,6 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
       editor,
       // TINY-9223: If using a sticky toolbar, which sink should it really go in?
       sharedBackstage: backstages.popup.shared
-    });
-  };
-
-  const makePromotion = () => {
-    return OuterContainer.parts.promotion({
-      dom: {
-        tag: 'div',
-        classes: [ 'tox-promotion' ],
-      },
     });
   };
 

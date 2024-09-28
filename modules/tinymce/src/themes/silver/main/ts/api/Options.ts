@@ -267,11 +267,6 @@ const register = (editor: Editor): void => {
     default: true
   });
 
-  registerOption('promotion', {
-    processor: 'boolean',
-    default: true
-  });
-
   registerOption('resize', {
     processor: (value) => value === 'both' || Type.isBoolean(value),
     // Editor resize doesn't work on touch devices at this stage
@@ -329,7 +324,6 @@ const useBranding = option('branding');
 const getResize = option('resize');
 const getPasteAsText = option('paste_as_text');
 const getSidebarShow = option('sidebar_show');
-const promotionEnabled = option('promotion');
 const useHelpAccessibility = option('help_accessibility');
 const getDefaultFontStack = option('default_font_stack');
 
@@ -480,7 +474,6 @@ export {
   getFontSizeInputDefaultUnit,
   useStatusBar,
   useElementPath,
-  promotionEnabled,
   useBranding,
   getResize,
   getPasteAsText,
