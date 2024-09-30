@@ -13,16 +13,12 @@ const removedOptions = (
 ).split(',');
 
 const deprecatedOptions = (
-  'template_cdate_classes,template_mdate_classes,template_selected_content_classes,template_preview_replace_values,template_replace_values,templates,template_cdate_format,template_mdate_format'
+  ''
 ).split(',');
 
 const removedPlugins = 'bbcode,colorpicker,contextmenu,fullpage,legacyoutput,spellchecker,textcolor'.split(',');
 
 const deprecatedPlugins = [
-  {
-    name: 'template',
-    replacedWith: 'Advanced Template',
-  },
   {
     name: 'rtc',
   },
