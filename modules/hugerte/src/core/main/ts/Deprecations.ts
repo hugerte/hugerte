@@ -21,6 +21,7 @@ const removedPlugins = 'bbcode,colorpicker,contextmenu,fullpage,legacyoutput,spe
 const deprecatedPlugins = [
   {
     name: 'rtc',
+    replacedWith: false
   },
 ];
 
