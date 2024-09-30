@@ -1,38 +1,45 @@
-# HugeMCE
+# HugeRTE
 
 The 100% free fork of the world's #1 open source rich text editor.
 
-Used and trusted by millions of developers, [TinyMCE](https://github.com/tinymce/tinymce) (the original project I've forked) is the world’s most customizable, scalable, and flexible rich text editor. They’ve helped launch the likes of Atlassian, Medium, Evernote (and lots more they can’t tell you), by empowering them to create exceptional content and experiences for their users.
+Used and trusted by millions of developers, [TinyMCE](https://github.com/tinymce/tinymce) (the original project we've forked) is the world’s most customizable, scalable, and flexible rich text editor. However, they changed the license of TinyMCE 7 to GPLv2+ (or a commercial license) while it has been MIT for TinyMCE 6 and LGPL for older versions. This creates problems for users (see [the discussion](https://github.com/tinymce/tinymce/issues/9453)) so a fork has been created here. It has originally been named HugeMCE, however, due to [potential trademark confusion with TinyMCE](https://github.com/hugerte/hugerte/issues/1#issuecomment-2373423311), it has been renamed to HugeRTE before its publishment to npm.
 
-With more than 350M+ downloads every year, they’re also one of the most trusted enterprise-grade open source HTML editors on the internet. There’s currently more than 100M+ products worldwide, powered by Tiny. As a high powered WYSIWYG editor, TinyMCE is built to scale, designed to innovate, and thrives on delivering results to difficult edge-cases.
+## Get started with HugeRTE
 
-Now, why do we need HugeMCE? Why can't we just continue using TinyMCE?
+The simplest way to get started with HugeRTE is using a CDN:
 
-Well, TinyMCE's second-latest version (6), was licensed under the MIT license, which permits free use for everybody. But its latest version 7 is licensed under the GPL, which only permits use in open-source projects, and only in GPL-licensed ones at that. That's not what we want. Therefore, I've forked the 6.x version and will (hopefully, with a team soon) continue providing fixes and new features for it under the MIT license.
+```html
+<script src="https://cdn.jsdelivr.net/npm/hugerte@1.0.0/hugerte.min.js">
+```
 
-<p align="center">
-  <img alt="Screenshot of the TinyMCE Editor" src="https://www.tiny.cloud/storage/github-readme-images/tinymce-editor-6x.png"\>
-</p>
+Or install it manually via `npm`:
 
-## Get started with HugeMCE
+```bash
+npm i hugerte
+```
 
-HugeMCE is a new project, just some days old. It's not yet available on NPM or anywhere. Information about installing it will be provided here as soon as it's ready. In the meantime, the rest of this document will provide you instructions to install the official 6.x version of TinyMCE. It will hopefully be trivial changing to HugeMCE later as soon as it's ready.
+## Migrate from TinyMCE
 
-Getting started with the TinyMCE rich text editor is easy, and for simple configurations can be done in less than 5 minutes.
+If you have been using TinyMCE before, you have to brute-force replace `tinymce` by `hugerte` in your code. In your package.json, make sure you use `1.0.0` as `hugerte` version – not the one you used for `tinymce` before. HugeRTE is based on TinyMCE 6.8.4.
 
-[TinyMCE Self-hosted Deployment Guide](https://www.tiny.cloud/docs/tinymce/6/npm-projects/)
+We're soon going to host the docs for HugeRTE on [our website](https://hugerte.org); for now, please refer to the [TinyMCE docs](https://tiny.cloud/docs/tinymce/6), but replace `tinymce` by `hugerte` in all code snippets.
 
-TinyMCE provides a range of configuration options that allow you to integrate it into your application. Start customizing with a [basic setup](https://www.tiny.cloud/docs/tinymce/6/basic-setup/).
+[See this guide also](https://www.tiny.cloud/docs/tinymce/6/npm-projects/), but replace `tinymce@^6` by `hugerte@^1` (and of course, all occurrences of `tinymce` by `hugerte`).
+
+HugeRTE provides a range of configuration options that allow you to integrate it into your application. Start customizing with a [basic setup](https://www.tiny.cloud/docs/tinymce/6/basic-setup/).
 
 Configure it for one of three modes of editing:
 
-- [TinyMCE classic editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-classic/).
-- [TinyMCE inline editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-inline/).
-- [TinyMCE distraction-free editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-distraction-free/).
+- [classic editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-classic/).
+- [inline editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-inline/).
+- [distraction-free editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-distraction-free/).
 
 ## Features
 
 ### Integration
+
+> [!WARNING]
+> We have not yet forked these integrations so they're still about TinyMCE.
 
 TinyMCE is easily integrated into your projects with the help of components such as:
 
@@ -46,22 +53,22 @@ With over 29 integrations, and 400+ APIs, see the TinyMCE docs for a full list o
 
 It is easy to [configure the UI](https://www.tiny.cloud/docs/tinymce/6/customize-ui/) of your rich text editor to match the design of your site, product or application. Due to its flexibility, you can [configure the editor](https://www.tiny.cloud/docs/tinymce/6/basic-setup/) with as much or as little functionality as you like, depending on your requirements.
 
-With [50+ powerful plugins available](https://www.tiny.cloud/tinymce/features/), and content editable as the basis of TinyMCE, adding additional functionality is as simple as including a single line of code.
+With [30 powerful plugins available](https://www.tiny.cloud/tinymce/features/), and content editable as the basis of HugeRTE, adding additional functionality is as simple as including a single line of code.
 
 Realizing the full power of most plugins requires only a few lines more.
 
 ### Extensibility
 
-Sometimes your editor requirements can be quite unique, and you need the freedom and flexibility to innovate. Thanks to TinyMCE being open source, you can view the source code and develop your own extensions for custom functionality to meet your own requirements.
+Sometimes your editor requirements can be quite unique, and you need the freedom and flexibility to innovate. Thanks to HugeRTE being open source, you can view the source code and develop your own extensions for custom functionality to meet your own requirements.
 
-The TinyMCE [API](https://www.tiny.cloud/docs/tinymce/6/apis/tinymce.root/) is exposed to make it easier for you to write custom functionality that fits within the existing framework of TinyMCE [UI components](https://www.tiny.cloud/docs/tinymce/6/custom-ui-components/).
+The HugeRTE [API](https://www.tiny.cloud/docs/tinymce/6/apis/tinymce.root/) is exposed to make it easier for you to write custom functionality that fits within the existing framework of HugeRTE [UI components](https://www.tiny.cloud/docs/tinymce/6/custom-ui-components/). Just don't forget to replace every instance of the `tinymce` object in the TinyMCE docs by `hugerte`.
 
 ## Compiling and contributing
 
-In 2019 the decision was made to transition our codebase to a monorepo. For information on compiling and contributing, see: [contribution guidelines](https://github.com/tinymce/tinymce/blob/master/CONTRIBUTING.md).
+In 2019 TinyMCE made the decision to transition their codebase to a monorepo. For information on compiling and contributing, see: [contribution guidelines](https://github.com/tinymce/tinymce/blob/master/CONTRIBUTING.md).
 
 As an open source product, we encourage and support the active development of our software.
 
 ## Want more information?
 
-Visit the [TinyMCE website](https://tiny.cloud/) and check out the [TinyMCE documentation](https://www.tiny.cloud/docs/).
+Visit the [HugeRTE website](https://tiny.cloud/) and check out the [TinyMCE documentation](https://www.tiny.cloud/docs/) until we host the docs ourselves.
