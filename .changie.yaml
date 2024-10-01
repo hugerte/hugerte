@@ -91,6 +91,5 @@ newlines:
 envPrefix: CHANGIE_
 custom:
 - key: Issue
-  label: Issue (TINY-XXXX+)
+  label: Tiny JIRA Issue (TINY-XXXX+) or HugeRTE GitHub Issue (GH-X+)
   type: string
-  minLength: 7
