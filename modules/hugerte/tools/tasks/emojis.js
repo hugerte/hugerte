@@ -4,7 +4,7 @@ const twemoji = require('twemoji');
 const prettyPrint = (obj) => JSON.stringify(obj, null, 2);
 
 const generateContent = (json, attribution) => {
-  const content = `window.tinymce.Resource.add('tinymce.plugins.emoticons', ${json});`;
+  const content = `window.hugerte.Resource.add('hugerte.plugins.emoticons', ${json});`;
   return '// Source: npm package: emojilib' + attribution + '\n' + content;
 };
 
