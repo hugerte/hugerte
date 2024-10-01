@@ -1,0 +1,29 @@
+diff --git a/node_modules/@ephox/oxide-icons-tools/lib/main/ts/templates/IconProvider.js b/node_modules/@ephox/oxide-icons-tools/lib/main/ts/templates/IconProvider.js
+index 52d2a0d..6f35af9 100644
+--- a/node_modules/@ephox/oxide-icons-tools/lib/main/ts/templates/IconProvider.js
++++ b/node_modules/@ephox/oxide-icons-tools/lib/main/ts/templates/IconProvider.js
+@@ -1,7 +1,7 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.populateIconProvider = void 0;
+-const template = `tinymce.IconManager.add('/* name */', {
++const template = `hugerte.IconManager.add('/* name */', {
+   icons: {
+ /* inject */  }
+ });`;
+diff --git a/node_modules/@ephox/oxide-icons-tools/lib/test/ts/PluginTest.js b/node_modules/@ephox/oxide-icons-tools/lib/test/ts/PluginTest.js
+index 8d22646..ccad684 100644
+--- a/node_modules/@ephox/oxide-icons-tools/lib/test/ts/PluginTest.js
++++ b/node_modules/@ephox/oxide-icons-tools/lib/test/ts/PluginTest.js
+@@ -62,9 +62,9 @@ const runPlugin = (options, svgs) => new Promise((resolve) => {
+         chai_1.assert.isFunction(exprt.getAll, 'Should have named export "getAll"');
+         validateIcons(exprt.getAll());
+     }));
+-    it('"icons/my-icon-pack/icons.js" should add an icon pack to tinymce global', () => runPlugin({ name: 'my-icon-pack' }, svgs).then((mockFs) => {
++    it('"icons/my-icon-pack/icons.js" should add an icon pack to hugerte global', () => runPlugin({ name: 'my-icon-pack' }, svgs).then((mockFs) => {
+         const file = mockFs['icons/my-icon-pack/icons.js'];
+-        Object.defineProperty(global, 'tinymce', {
++        Object.defineProperty(global, 'hugerte', {
+             value: {
+                 IconManager: {
+                     add: (name, iconPack) => {
