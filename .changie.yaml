@@ -64,9 +64,9 @@ projects:
   - label: sugar
     key: sugar
     changelog: modules/sugar/CHANGELOG.md
-  - label: tinymce
-    key: tinymce
-    changelog: modules/tinymce/CHANGELOG.md
+  - label: hugerte
+    key: hugerte
+    changelog: modules/hugerte/CHANGELOG.md
 kinds:
 - label: Added
   auto: minor

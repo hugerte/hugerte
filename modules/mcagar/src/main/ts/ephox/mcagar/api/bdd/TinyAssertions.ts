@@ -19,24 +19,24 @@ const assertPath = (label: string, root: SugarElement<Node>, expPath: number[], 
 
 const assertContent = (editor: Editor, expected: string, args?: GetContentArgs): void => {
   const content = editor.getContent(args);
-  Assertions.assertHtml('Checking TinyMCE content', expected, content);
+  Assertions.assertHtml('Checking HugeRTE content', expected, content);
 };
 
 const assertRawContent = (editor: Editor, expected: string): void => {
   const content = editor.getBody().innerHTML;
-  Assertions.assertHtml('Checking TinyMCE raw content', expected, content);
+  Assertions.assertHtml('Checking HugeRTE raw content', expected, content);
 };
 
 const assertContentPresence = (editor: Editor, expected: Presence): void => {
   Assertions.assertPresence(
-    () => 'Asserting the presence of selectors inside TinyMCE content. Complete list: ' + JSON.stringify(expected) + '\n',
+    () => 'Asserting the presence of selectors inside HugeRTE content. Complete list: ' + JSON.stringify(expected) + '\n',
     expected,
     TinyDom.body(editor)
   );
 };
 
 const assertContentStructure = (editor: Editor, expected: StructAssert): void => {
-  Assertions.assertStructure('Asserting the structure of TinyMCE content.', expected, TinyDom.body(editor));
+  Assertions.assertStructure('Asserting the structure of HugeRTE content.', expected, TinyDom.body(editor));
 };
 
 const assertSelection = (editor: Editor, startPath: number[], soffset: number, finishPath: number[], foffset: number): void => {

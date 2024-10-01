@@ -87,7 +87,7 @@ export const just = <T>(value: T): Maybe<T> => ({
 
 /**
  Perform a transform on a Maybe type. Similar to the fold method on a number
- of ADTs in the TinyMCE codebase, you pass two functions into this - if `self`
+ of ADTs in the HugeRTE codebase, you pass two functions into this - if `self`
  **does not** contain a value then `onNothing` will be called (with no
  argument) but if `self` **does** contain a value then `onJust` will be
  called (with the value as its argument).

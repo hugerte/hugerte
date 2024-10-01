@@ -3,11 +3,11 @@ import { Arr, FutureResult, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Loader from '../../loader/Loader';
-import { setTinymceBaseUrl } from '../../loader/Urls';
+import { setHugerteBaseUrl } from '../../loader/Urls';
 
-const setupBaseUrl = (tinymce: any, settings: Record<string, any>) => {
+const setupBaseUrl = (hugerte: any, settings: Record<string, any>) => {
   if (settings.base_url) {
-    setTinymceBaseUrl(tinymce, settings.base_url);
+    setHugerteBaseUrl(hugerte, settings.base_url);
   }
 };
 

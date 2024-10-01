@@ -22,7 +22,7 @@ export interface DialogInit<T extends DialogData> {
 const extract = <T extends DialogData>(structure: DialogSpec<T>): DialogInit<T> => {
   const internalDialog = StructureSchema.getOrDie(createDialog(structure));
   const dataValidator = createDataValidator<T>(structure);
-  // We used to validate data here, but it's done when loading the dialog in tinymce
+  // We used to validate data here, but it's done when loading the dialog in hugerte
   const initialData = structure.initialData ?? {};
   return {
     internalDialog,

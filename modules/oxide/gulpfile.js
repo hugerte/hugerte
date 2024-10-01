@@ -41,21 +41,21 @@ gulp.task('buildDemos', function() {
 });
 
 //
-// Copy TinyMCE from modules/tinymce to the build folder.
+// Copy HugeRTE from modules/hugerte to the build folder.
 // NOTE. This task must be run after the buildDemos task
 //
-gulp.task('copyTinymce', function(done) {
-  if (fs.existsSync('../tinymce/js/tinymce/tinymce.min.js')) {
-    return gulp.src(['../tinymce/js/tinymce/**/*'], {
-        base: '../tinymce/js/'
+gulp.task('copyHugerte', function(done) {
+  if (fs.existsSync('../hugerte/js/hugerte/hugerte.min.js')) {
+    return gulp.src(['../hugerte/js/hugerte/**/*'], {
+        base: '../hugerte/js/'
       })
       .pipe(gulp.dest('./build'));
   } else {
-    console.log(chalk.red('Local TinyMCE does not exist. Using CDN version instead'));
-    console.log(chalk.yellow('Run yarn build in the repository root to build a local version of TinyMCE'));
-    const url = 'https://cdn.jsdelivr.net/npm/tinymce@1/tinymce.min.js';
+    console.log(chalk.red('Local HugeRTE does not exist. Using CDN version instead'));
+    console.log(chalk.yellow('Run yarn build in the repository root to build a local version of HugeRTE'));
+    const url = 'https://cdn.jsdelivr.net/npm/hugerte@1/hugerte.min.js';
     const html = fs.readFileSync('./build/index.html', 'utf8');
-    fs.writeFileSync('./build/index.html', html.replace('/tinymce/tinymce.min.js', url));
+    fs.writeFileSync('./build/index.html', html.replace('/hugerte/hugerte.min.js', url));
     done();
   }
 });
@@ -107,7 +107,7 @@ gulp.task('generateJs', function() {
     .pipe(cleanCSS({ rebase: false }))
     .pipe(through2.obj(function(file, _, cb) {
       if (file.isBuffer()) {
-        const contents = `tinymce.Resource.add('${file.relative}', ${JSON.stringify(file.contents.toString())})`;
+        const contents = `hugerte.Resource.add('${file.relative}', ${JSON.stringify(file.contents.toString())})`;
         file.contents = Buffer.from(contents)
       }
       cb(null, file);
@@ -130,7 +130,7 @@ gulp.task('monitor', function (done) {
     this.server.on('close', done);
   });
 
-  gulp.watch('./src/**/*').on('change', gulp.series('css', 'buildDemos', 'buildSkinSwitcher', 'copyTinymce'));
+  gulp.watch('./src/**/*').on('change', gulp.series('css', 'buildDemos', 'buildSkinSwitcher', 'copyHugerte'));
 });
 
 //
@@ -152,4 +152,4 @@ gulp.task('build', gulp.series('clean', 'css'));
 gulp.task('default', gulp.series('build'));
 
 gulp.task('demo-build', gulp.series('css', 'less', 'minifyCss', 'buildDemos', 'buildSkinSwitcher'));
-gulp.task('watch', gulp.series('build', 'buildDemos', 'buildSkinSwitcher', 'copyTinymce', 'monitor'));
+gulp.task('watch', gulp.series('build', 'buildDemos', 'buildSkinSwitcher', 'copyHugerte', 'monitor'));

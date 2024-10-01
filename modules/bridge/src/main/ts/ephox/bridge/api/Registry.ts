@@ -13,8 +13,8 @@ import { ToolbarSplitButtonSpec } from '../components/toolbar/ToolbarSplitButton
 import { ToolbarToggleButtonSpec } from '../components/toolbar/ToolbarToggleButton';
 import { ViewSpec } from '../components/view/View';
 
-// This would be part of the tinymce api under editor.ui.* so editor.ui.addButton('bold', ...)
-// TODO: This should maybe not be part of this project but rather something built into tinymce core using these public types
+// This would be part of the hugerte api under editor.ui.* so editor.ui.addButton('bold', ...)
+// TODO: This should maybe not be part of this project but rather something built into hugerte core using these public types
 
 export interface Registry {
   addButton: (name: string, spec: ToolbarButtonSpec) => void;

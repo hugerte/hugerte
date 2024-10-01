@@ -3,7 +3,7 @@ import { Optional } from '@ephox/katamari';
 import { Insert, Remove, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import * as Loader from '../../loader/Loader';
-import { setupTinymceBaseUrl } from '../../loader/Urls';
+import { setupHugerteBaseUrl } from '../../loader/Urls';
 
 type FailureCallback = Loader.FailureCallback;
 type SuccessCallback = Loader.SuccessCallback;
@@ -17,7 +17,7 @@ const setupLight = (callback: Loader.RunCallback, settings: Record<string, any>,
   };
 
   Loader.setup({
-    preInit: setupTinymceBaseUrl,
+    preInit: setupHugerteBaseUrl,
     run: callback,
     success,
     failure
@@ -26,7 +26,7 @@ const setupLight = (callback: Loader.RunCallback, settings: Record<string, any>,
 
 const setup = (callback: Loader.RunCallback, settings: Record<string, any>, success: Loader.SuccessCallback, failure: Loader.FailureCallback): void => {
   Loader.setup({
-    preInit: setupTinymceBaseUrl,
+    preInit: setupHugerteBaseUrl,
     run: callback,
     success,
     failure
@@ -41,7 +41,7 @@ const setupFromElement = (
   failure: Loader.FailureCallback
 ): void => {
   Loader.setup({
-    preInit: setupTinymceBaseUrl,
+    preInit: setupHugerteBaseUrl,
     run: callback,
     success,
     failure

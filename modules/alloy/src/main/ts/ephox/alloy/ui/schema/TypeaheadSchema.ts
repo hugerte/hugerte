@@ -89,7 +89,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
               // The solution is to tell screen readers which menu item is highlighted using the `aria-activedescendant` attribute.
               // TINY-9280: The aria attribute is removed when the menu is closed.
               // Since `onDehighlight` is called only when highlighting a new menu item, this will be handled in
-              // https://github.com/tinymce/tinymce/blob/2d8c1c034e8aa484b868a0c44605489ee0ca9cd4/modules/alloy/src/main/ts/ephox/alloy/ui/composite/TypeaheadSpec.ts#L282
+              // https://github.com/hugerte/hugerte/blob/2d8c1c034e8aa484b868a0c44605489ee0ca9cd4/modules/alloy/src/main/ts/ephox/alloy/ui/composite/TypeaheadSpec.ts#L282
               Attribute.getOpt(item.element, 'id').each((id) => Attribute.set(input.element, 'aria-activedescendant', id));
             });
           } else {
@@ -111,7 +111,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
             // and reset previewing to true. Otherwise, all codepaths should set previewing
             // to false, because now we have a valid highlight.
             //
-            // As of 2022-08-18, the selectsOver model is not in use by TinyMCE, so
+            // As of 2022-08-18, the selectsOver model is not in use by HugeRTE, so
             // this subtle interaction is unfortunately largely untested. Also, if we can't
             // get a reference to the typeahead input by lazyTypeaheadComp, then we don't
             // change previewing, either. Note also, that it is likely that if we checked

@@ -3,14 +3,14 @@ import { Arr, Fun, FutureResult, Global, Id, Optional, Result } from '@ephox/kat
 import { Attribute, DomEvent, Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor } from '../alien/EditorTypes';
-import { detectTinymceBaseUrl } from './Urls';
+import { detectHugerteBaseUrl } from './Urls';
 
 export type SuccessCallback = (v?: any, logs?: TestLogs) => void;
 export type FailureCallback = (err: Error | string, logs?: TestLogs) => void;
 export type RunCallback = (editor: any, success: SuccessCallback, failure: FailureCallback) => void;
 
 interface Callbacks {
-  preInit: (tinymce: any, settings: Record<string, any>) => void;
+  preInit: (hugerte: any, settings: Record<string, any>) => void;
   run: RunCallback;
   success: SuccessCallback;
   failure: FailureCallback;
@@ -18,12 +18,12 @@ interface Callbacks {
 
 const createTarget = (inline: boolean) => SugarElement.fromTag(inline ? 'div' : 'textarea');
 
-const removeTinymceElements = () => {
-  // NOTE: Don't remove the link/scripts added, as those are part of the global tinymce which we don't clean up
+const removeHugerteElements = () => {
+  // NOTE: Don't remove the link/scripts added, as those are part of the global hugerte which we don't clean up
   const elements = Arr.flatten([
-    // Some older versions of tinymce leaves elements behind in the dom
+    // Some older versions of hugerte leaves elements behind in the dom
     SelectorFilter.all('.mce-notification,.mce-window,#mce-modal-block'),
-    // TinyMCE leaves inline editor content_styles in the dom
+    // HugeRTE leaves inline editor content_styles in the dom
     SelectorFilter.children(SugarElement.fromDom(document.head), 'style')
   ]);
 
@@ -59,9 +59,9 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
   }
 
   const teardown = () => {
-    Global.tinymce.remove();
+    Global.hugerte.remove();
     Remove.remove(target);
-    removeTinymceElements();
+    removeHugerteElements();
   };
 
   // Agar v. ??? supports logging
@@ -83,12 +83,12 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
   const settingsSetup = settings.setup !== undefined ? settings.setup : Fun.noop;
 
   const run = () => {
-    const tinymce = Global.tinymce;
-    callbacks.preInit(tinymce, settings);
+    const hugerte = Global.hugerte;
+    callbacks.preInit(hugerte, settings);
 
     const targetSettings = SugarShadowDom.isInShadowRoot(target) ? ({ target: target.dom }) : ({ selector: '#' + randomId });
 
-    tinymce.init({
+    hugerte.init({
       ...settings,
       ...targetSettings,
       setup: (editor: Editor) => {
@@ -112,10 +112,10 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
     });
   };
 
-  if (!Global.tinymce) {
-    // Attempt to load TinyMCE if it's not available
-    loadScript(detectTinymceBaseUrl(settings) + '/tinymce.js').get((result) => {
-      result.fold(() => callbacks.failure('Failed to find a global tinymce instance'), run);
+  if (!Global.hugerte) {
+    // Attempt to load HugeRTE if it's not available
+    loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').get((result) => {
+      result.fold(() => callbacks.failure('Failed to find a global hugerte instance'), run);
     });
   } else {
     run();

@@ -13,7 +13,7 @@ UnitTest.asynctest('TinyScenariosTest', (success, failure) => {
   const platform = PlatformDetection.detect();
   if (platform.browser.isFirefox()) {
     // eslint-disable-next-line no-console
-    console.log('Skipping TinyScenariosTest as it triggers a tinymce bug in Firefox');
+    console.log('Skipping TinyScenariosTest as it triggers a hugerte bug in Firefox');
     success();
     return;
   }
@@ -54,6 +54,6 @@ UnitTest.asynctest('TinyScenariosTest', (success, failure) => {
     ], loadSuccess, loadFailure);
 
   }, {
-    base_url: '/project/tinymce/js/tinymce'
+    base_url: '/project/hugerte/js/hugerte'
   }, success, failure);
 });

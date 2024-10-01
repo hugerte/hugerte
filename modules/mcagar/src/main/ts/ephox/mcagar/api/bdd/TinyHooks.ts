@@ -4,7 +4,7 @@ import { Insert, Remove, SugarBody, SugarElement, SugarShadowDom } from '@ephox/
 
 import { Editor as EditorType } from '../../alien/EditorTypes';
 import * as Loader from '../../loader/Loader';
-import { setupTinymceBaseUrl } from '../../loader/Urls';
+import { setupHugerteBaseUrl } from '../../loader/Urls';
 
 export interface Hook<T extends EditorType> {
   readonly editor: () => T;
@@ -37,8 +37,8 @@ const setupHooks = <T extends EditorType = EditorType>(
     this.timeout(4000);
     setup = setupElement();
     Loader.setup({
-      preInit: (tinymce, settings) => {
-        setupTinymceBaseUrl(tinymce, settings);
+      preInit: (hugerte, settings) => {
+        setupHugerteBaseUrl(hugerte, settings);
         Arr.each(setupModules, Fun.call);
       },
       run: (ed, success) => {

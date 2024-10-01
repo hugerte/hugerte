@@ -1,16 +1,16 @@
 # BDD testing
 
-The following are the primary modules used when testing TinyMCE using the behavior-driven development tests.
+The following are the primary modules used when testing HugeRTE using the behavior-driven development tests.
 
 ## TinyHooks
 
-The `TinyHooks` module registers `before` and `after` hooks to set up TinyMCE in a test. It takes the TinyMCE settings and will then initialize the editor during the test suite setup phase. Additional module setup functions (such as a plugin constructor) can also be provided and will be called before the editor is initialized. The editor instance can be accessed inside a test by calling the `editor()` function on the object returned by the hook function.
+The `TinyHooks` module registers `before` and `after` hooks to set up HugeRTE in a test. It takes the HugeRTE settings and will then initialize the editor during the test suite setup phase. Additional module setup functions (such as a plugin constructor) can also be provided and will be called before the editor is initialized. The editor instance can be accessed inside a test by calling the `editor()` function on the object returned by the hook function.
 
 > 💡 **Note:** The editor is only initialized once per suite instead of per test, so be sure to close open dialogs, or reset any state after each test.
 
 Available functions:
 - `bddSetup(settings: RawEditorSettings, setupModules?: Array<() => void>, focusOnInit?: boolean)`
-  - Sets up the editor using the settings provided. This is the most common way to setup and test TinyMCE.
+  - Sets up the editor using the settings provided. This is the most common way to setup and test HugeRTE.
 - `bddSetupLight(settings: RawEditorSettings, setupModules?: Array<() => void>, focusOnInit?: boolean)`
   - Similar to `bddSetup`, except that by default the editor `menubar`, `toolbar` and `statusbar` will not be rendered. This helps to speed up tests where the UI isn't required.
 - `bddSetupFromElement(settings: RawEditorSettings, setupElement: () => SetupElement, setupModules?: Array<() => void>, focusOnInit?: boolean)`
@@ -22,7 +22,7 @@ Available functions:
 
 ```js
 import { TinyHooks } from '@ephox/mcagar';
-import { Editor } from 'tinymce';
+import { Editor } from 'hugerte';
 
 import { Plugin } from '../../main/ts/Plugin';
 

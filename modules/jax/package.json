@@ -4,15 +4,15 @@
   "description": "AJAX library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tinymce/tinymce.git",
+    "url": "https://github.com/hugerte/hugerte.git",
     "directory": "modules/jax"
   },
   "scripts": {
     "prepublishOnly": "yarn run lint && yarn run build",
     "lint": "eslint --config ../../.eslintrc.json src/**/*.ts",
     "build": "tsc -b",
-    "test": "bedrock-auto -b chrome-headless --customRoutes ../tinymce/src/core/test/json/routes.json -d src/test/ts/",
-    "test-manual": "bedrock --customRoutes --customRoutes ../tinymce/src/core/test/json/routes.json -d src/test/ts/",
+    "test": "bedrock-auto -b chrome-headless --customRoutes ../hugerte/src/core/test/json/routes.json -d src/test/ts/",
+    "test-manual": "bedrock --customRoutes --customRoutes ../hugerte/src/core/test/json/routes.json -d src/test/ts/",
     "start": "webpack-dev-server --open-page './src/demo/html'",
     "build:demo": "webpack"
   },

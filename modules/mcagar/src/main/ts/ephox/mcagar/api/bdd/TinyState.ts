@@ -4,7 +4,7 @@ const setEditableRoot = <T extends EditorType = EditorType>(editor: T, state: bo
   if (editor.setEditableRoot) {
     editor.setEditableRoot(state);
   } else {
-    throw new Error('setEditableRoot requires at least TinyMCE v6.5');
+    throw new Error('setEditableRoot requires at least HugeRTE v6.5');
   }
 };
 

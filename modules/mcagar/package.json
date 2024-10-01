@@ -1,10 +1,10 @@
 {
   "name": "@ephox/mcagar",
   "version": "9.0.1",
-  "description": "Tinymce agar wrapper",
+  "description": "Hugerte agar wrapper",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tinymce/tinymce.git",
+    "url": "https://github.com/hugerte/hugerte.git",
     "directory": "modules/mcagar"
   },
   "files": [
@@ -32,7 +32,7 @@
     "fast-check": "^2.0.0"
   },
   "peerDependencies": {
-    "tinymce": ">=1.0.0"
+    "hugerte": ">=1.0.0"
   },
   "main": "./lib/main/ts/ephox/mcagar/api/Main.js",
   "module": "./lib/main/ts/ephox/mcagar/api/Main.js",

@@ -37,15 +37,15 @@
     "node_modules/@ephox/sand": true,
     "node_modules/@ephox/snooker": true,
     "node_modules/@ephox/sugar": true,
-    "node_modules/@ephox/tinymce": true,
+    "node_modules/@ephox/hugerte": true,
   },
 
   "search.exclude": {
     // hide build output from searches
     "modules/oxide/build": true,
     "modules/oxide-icons-default/dist": true,
-    "modules/tinymce/js": true,
-    "modules/tinymce/dist": true,
+    "modules/hugerte/js": true,
+    "modules/hugerte/dist": true,
     "modules/*/lib": true,
     "js": true,
     "dist": true,

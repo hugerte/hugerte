@@ -4,7 +4,7 @@
   "version": "7.3.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tinymce/tinymce.git",
+    "url": "https://github.com/hugerte/hugerte.git",
     "directory": "modules/dragster"
   },
   "files": [

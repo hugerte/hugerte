@@ -14,7 +14,7 @@ describe('browser.phoenix.api.DomSearchTest', () => {
   const container = SugarElement.fromTag('div');
   Insert.append(body, container);
 
-  // Taken from: modules/tinymce/src/core/main/ts/api/html/Entities.ts, makes tests easier to read
+  // Taken from: modules/hugerte/src/core/main/ts/api/html/Entities.ts, makes tests easier to read
   const decode = (html: string) => {
     const entityRegExp = /&#([a-z0-9]+);?|&([a-z0-9]+);/gi;
     const reverseEntities: EntitiesMap = {

@@ -1,0 +1,3 @@
+/**
+ * HugeRTE version @@version@@ (@@releaseDate@@)
+ */

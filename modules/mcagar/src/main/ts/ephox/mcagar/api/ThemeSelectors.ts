@@ -4,11 +4,11 @@ import { Editor } from '../alien/EditorTypes';
 import { get as getOption } from '../alien/Options';
 
 const isSilver = (): boolean => {
-  const tinymce = Global.tinymce;
-  if (!tinymce) {
-    throw new Error('Failed to get global tinymce');
+  const hugerte = Global.hugerte;
+  if (!hugerte) {
+    throw new Error('Failed to get global hugerte');
   }
-  return Obj.has(tinymce.activeEditor, 'ui');
+  return Obj.has(hugerte.activeEditor, 'ui');
 };
 
 const isModern = (): boolean => !isSilver();

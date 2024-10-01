@@ -11,7 +11,7 @@ UnitTest.asynctest('EditorTest', (success, failure) => {
 
   Pipeline.async({}, [
     Chain.asStep({}, [
-      McEditor.cFromSettings({ base_url: '/project/tinymce/js/tinymce', inline: true }),
+      McEditor.cFromSettings({ base_url: '/project/hugerte/js/hugerte', inline: true }),
       ApiChains.cFocus,
       cAssertEditorExists,
       McEditor.cRemove

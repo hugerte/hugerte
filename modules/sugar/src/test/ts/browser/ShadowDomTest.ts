@@ -99,7 +99,7 @@ UnitTest.test('isDocument in iframe', () => {
 });
 
 UnitTest.test('isSupported platform test', () => {
-  // as of TinyMCE 6 all browsers support it
+  // as of HugeRTE 6 all browsers support it
   Assert.eq('This browser should support root node', true, SugarShadowDom.isSupported());
 });
 

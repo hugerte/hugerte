@@ -4,7 +4,7 @@ import { Attribute, Insert, Remove, Selectors, SugarBody, SugarElement, SugarSha
 
 import { Editor as EditorType } from '../alien/EditorTypes';
 import { loadScript } from '../loader/Loader';
-import { detectTinymceBaseUrl, setupTinymceBaseUrl } from '../loader/Urls';
+import { detectHugerteBaseUrl, setupHugerteBaseUrl } from '../loader/Urls';
 
 const errorMessageEditorRemoved = 'Editor Removed';
 
@@ -23,12 +23,12 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
     }
 
     const run = () => {
-      const tinymce = Global.tinymce;
-      setupTinymceBaseUrl(tinymce, nuSettings);
+      const hugerte = Global.hugerte;
+      setupHugerteBaseUrl(hugerte, nuSettings);
 
       const targetSettings = SugarShadowDom.isInShadowRoot(element) ? ({ target: element.dom }) : ({ selector: '#' + randomId });
 
-      tinymce.init({
+      hugerte.init({
         ...nuSettings,
         ...targetSettings,
         setup: (editor: T) => {
@@ -56,10 +56,10 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
       });
     };
 
-    if (!Global.tinymce) {
-      // Attempt to load TinyMCE if it's not available
-      loadScript(detectTinymceBaseUrl(settings) + '/tinymce.js').get((result) => {
-        result.fold(() => reject('Failed to find a global tinymce instance'), run);
+    if (!Global.hugerte) {
+      // Attempt to load HugeRTE if it's not available
+      loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').get((result) => {
+        result.fold(() => reject('Failed to find a global hugerte instance'), run);
       });
     } else {
       run();

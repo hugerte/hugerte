@@ -1,10 +1,10 @@
 # The big Tiny monorepo
 
-Welcome to the TinyMCE monorepo. For TinyMCE itself look to the [modules/tinymce](modules/tinymce) folder.
+Welcome to the HugeRTE monorepo. For HugeRTE itself look to the [modules/hugerte](modules/hugerte) folder.
 
 ## Some background
 
-As TinyMCE transitioned to a modern codebase through 2017 and 2018 many external dependencies were added from previously closed-source projects. This became unwieldy to develop, so in June 2019 the decision was made to bring those projects together in a monorepo.
+As HugeRTE transitioned to a modern codebase through 2017 and 2018 many external dependencies were added from previously closed-source projects. This became unwieldy to develop, so in June 2019 the decision was made to bring those projects together in a monorepo.
 
 This repo is built with Yarn workspaces and uses publish tooling support from Lerna. NPM is not supported and attempts to use it will fail.
 
@@ -15,7 +15,7 @@ https://www.typescriptlang.org/docs/handbook/project-references.html
 
 Most monorepos use a `packages` folder to hold the included projects, but we have chosen `modules` instead. There are few reasons for this:
 
-* These projects are not extra packages of TinyMCE, they are self contained libraries used as module dependencies for the editor.
+* These projects are not extra packages of HugeRTE, they are self contained libraries used as module dependencies for the editor.
 * Enough examples exist of projects not using `packages` that we don't think it will be difficult to understand
 * It tab completes better (`packages` overlaps with `package.json`)
 
@@ -24,20 +24,20 @@ Most monorepos use a `packages` folder to hold the included projects, but we hav
 Install [Node.js](https://nodejs.org/en/) on your system.
 Clone this repository on your system
 ```
-$ git clone https://github.com/tinymce/tinymce.git
+$ git clone https://github.com/hugerte/hugerte.git
 ```
 
 ### Install dependencies
 
 * `yarn`
 
-### Build TinyMCE
+### Build HugeRTE
 
 * `yarn build`
 
-This will produce an editor build in `modules/tinymce/js`, with distribution zips in `modules/tinymce/dist/tinymce_[number].zip`.
+This will produce an editor build in `modules/hugerte/js`, with distribution zips in `modules/hugerte/dist/hugerte_[number].zip`.
 
-## Developing TinyMCE
+## Developing HugeRTE
 
 * `yarn dev`
 
@@ -45,18 +45,18 @@ This performs compilation steps which webpack requires but are usually once-off.
 
 ### Builds
 
-To build the editor in development, use `yarn tinymce-grunt`. This will output to the `modules/tinymce/js` folder (`build` is effectively `dev` followed by `tinymce-grunt`).
+To build the editor in development, use `yarn hugerte-grunt`. This will output to the `modules/hugerte/js` folder (`build` is effectively `dev` followed by `hugerte-grunt`).
 
-Task names can be included, for example `yarn tinymce-grunt bundle` will execute the bundle task. More information on TinyMCE grunt tasks is available in the [TinyMCE readme](modules/tinymce/README.md).
+Task names can be included, for example `yarn hugerte-grunt bundle` will execute the bundle task. More information on HugeRTE grunt tasks is available in the [HugeRTE readme](modules/hugerte/README.md).
 
 ## Development scripts
 
-There are many top-level helper scripts for TinyMCE and Oxide (the default skin) defined in `package.json`.
+There are many top-level helper scripts for HugeRTE and Oxide (the default skin) defined in `package.json`.
 
-### TinyMCE
+### HugeRTE
 
 `yarn start`
-This boots the TinyMCE webpack dev server at http://localhost:3000. With this running changes to _any_ `.ts` source file in the monorepo (excluding tests) should be reflected in WebPack within a few seconds.
+This boots the HugeRTE webpack dev server at http://localhost:3000. With this running changes to _any_ `.ts` source file in the monorepo (excluding tests) should be reflected in WebPack within a few seconds.
 
 `yarn watch`
 runs `tsc -b -w` for those times when you don't need to iterate in the browser.
@@ -67,8 +67,8 @@ an alias to `tsc -b` just in case you forget
 `yarn eslint`
 runs `eslint` across the entire repository with the rule set that is required to pass in CI. Use `yarn eslint --fix` to automatically fix minor problems. The [ESLint vscode plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) can be used to apply lint fixes on save.
 
-`yarn tinymce-grunt`
-easy access to the TinyMCE grunt commands from the root folder.
+`yarn hugerte-grunt`
+easy access to the HugeRTE grunt commands from the root folder.
 
 ### Oxide
 
@@ -151,7 +151,7 @@ Changes to minor and major versions are such a rare occurence that this manual p
 
 `yarn lerna publish patch`
 
-This is configured via `lerna.json` to exclude TinyMCE. We will not be using lerna to publish TinyMCE itself as it places far greater importance on the version number than library projects.
+This is configured via `lerna.json` to exclude HugeRTE. We will not be using lerna to publish HugeRTE itself as it places far greater importance on the version number than library projects.
 
 `yarn lerna publish from-package`
 
@@ -166,18 +166,18 @@ git push --tags
 
 ## Adding globals
 
-TinyMCE puts a `tinymce` object in the global namespace, and has a tree of objects down from there.
+HugeRTE puts a `hugerte` object in the global namespace, and has a tree of objects down from there.
 If you wish to add to this, you need to do the following:
 
-1. Ensure your module is located under `modules/tinymce/src/core/main/ts/api`
-2. Expose any types under `interface TinyMCE` in `modules/tinymce/src/core/main/ts/api/Tinymce.ts`
-3. Expose any objects/functions as part of `const publicApi` in `modules/tinymce/src/core/main/ts/api/Tinymce.ts`
-4. Ensure your values are exposed in `modules/tinymce/src/core/main/json/globals.json`
+1. Ensure your module is located under `modules/hugerte/src/core/main/ts/api`
+2. Expose any types under `interface HugeRTE` in `modules/hugerte/src/core/main/ts/api/Hugerte.ts`
+3. Expose any objects/functions as part of `const publicApi` in `modules/hugerte/src/core/main/ts/api/Hugerte.ts`
+4. Ensure your values are exposed in `modules/hugerte/src/core/main/json/globals.json`
 
-Ensure the paths all match. e.g. if you're exposing `modules/tinymce/src/core/main/ts/api/dom/StyleSheetLoader.ts`
+Ensure the paths all match. e.g. if you're exposing `modules/hugerte/src/core/main/ts/api/dom/StyleSheetLoader.ts`
 
 1. The module is under `.../api/dom/StyleSheetLoader.ts`
-2. The type is `TinyMCE.dom.StyleSheetLoader`
+2. The type is `HugeRTE.dom.StyleSheetLoader`
 3. The constructor function is `publicApi.dom.StyleSheetLoader`
-4. globals.json contains `"tinymce.core.api.dom.StyleSheetLoader"`
+4. globals.json contains `"hugerte.core.api.dom.StyleSheetLoader"`
 

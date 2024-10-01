@@ -28,7 +28,7 @@
     z-index: 2;
   }
 
-  &:not(.tox-tinymce-inline) .tox-editor-header {
+  &:not(.tox-hugerte-inline) .tox-editor-header {
     background-color: @background-color;
     border-bottom: @editor-header-border;
     box-shadow: @editor-header-box-shadow;
@@ -39,24 +39,24 @@
     }
   }
 
-  &:not(.tox-tinymce-inline).tox-tinymce--toolbar-bottom .tox-editor-header {
+  &:not(.tox-hugerte-inline).tox-hugerte--toolbar-bottom .tox-editor-header {
     border-top: 1px solid @_editor-bottom-header-separator-color;
     box-shadow: @editor-bottom-header-box-shadow;
   }
 }
 
-.tox.tox-tinymce--toolbar-sticky-off {
+.tox.tox-hugerte--toolbar-sticky-off {
   //
 }
 
-.tox:not(.tox-tinymce-inline).tox-tinymce--toolbar-sticky-on {
+.tox:not(.tox-hugerte-inline).tox-hugerte--toolbar-sticky-on {
   .tox-editor-header {
     background-color: @background-color;
     box-shadow: @editor-header-sticky-box-shadow;
     padding: @pad-xs 0;
   }
 
-  &.tox-tinymce--toolbar-bottom {
+  &.tox-hugerte--toolbar-bottom {
     .tox-editor-header {
       box-shadow: @editor-bottom-header-sticky-box-shadow;
     }
@@ -65,7 +65,7 @@
 
 // Remove styling if there is no Menubar and Toolbars in the header
 // Two `.tox` classes are used to make it more specific than sticky header styles without using `!important`
-.tox.tox:not(.tox-tinymce-inline) .tox-editor-header.tox-editor-header--empty {
+.tox.tox:not(.tox-hugerte-inline) .tox-editor-header.tox-editor-header--empty {
   background: none;
   border: none;
   box-shadow: none;

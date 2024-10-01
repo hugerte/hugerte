@@ -36,7 +36,7 @@ UnitTest.asynctest('TinyLoaderTest', (success, failure) => {
   }, {
     setup: silverSetup,
     toolbar: 'test-button',
-    base_url: '/project/tinymce/js/tinymce'
+    base_url: '/project/hugerte/js/hugerte'
   }, success, failure);
 });
 
@@ -46,7 +46,7 @@ UnitTest.asynctest('TinyLoader.setupInBodyAndShadowRoot passes logs through', (s
     calls++;
     onSuccess('call' + calls, TestLogs.single('log' + calls));
   }, {
-    base_url: '/project/tinymce/js/tinymce'
+    base_url: '/project/hugerte/js/hugerte'
   }, (v, logs) => {
     try {
       if (SugarShadowDom.isSupported()) {

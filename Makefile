@@ -4,12 +4,12 @@ PACKAGES := $(patsubst .changes/unreleased/%,%,$(UNRELEASED_FILES))
 extract_first_word = $(word 1, $(subst -, ,$1))
 
 PACKAGE_NAMES := $(sort $(foreach proj,$(PACKAGES),$(call extract_first_word,$(proj))))
-TINY_PACKAGES := $(filter tinymce%,$(PACKAGE_NAMES))
-OTHER_PACKAGES := $(filter-out tinymce%,$(PACKAGE_NAMES))
+TINY_PACKAGES := $(filter hugerte%,$(PACKAGE_NAMES))
+OTHER_PACKAGES := $(filter-out hugerte%,$(PACKAGE_NAMES))
 
 VERSION_FILE := versions.txt
 
-get_tiny_version = $(shell jq -r '.version' modules/tinymce/package.json)
+get_tiny_version = $(shell jq -r '.version' modules/hugerte/package.json)
 get_version = $(shell grep '^$(call extract_first_word,$1)@' $(VERSION_FILE) | cut -d '@' -f 2)
 
 .PHONY: tiny other
@@ -32,10 +32,10 @@ $(OTHER_PACKAGES):
 	fi
 
 $(TINY_PACKAGES):
-	@echo "Running changie batch (dry run) for TinyMCE"
+	@echo "Running changie batch (dry run) for HugeRTE"
 	@version=$(get_tiny_version); \
-	changie batch $$version --project tinymce --dry-run; \
+	changie batch $$version --project hugerte --dry-run; \
 	echo "Press Enter to continue with actual changie batch or Ctrl+C to cancel..."; \
 	read; \
-	changie batch $$version --project tinymce
+	changie batch $$version --project hugerte
 

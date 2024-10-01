@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Oxide Skin development demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="/tinymce/tinymce.min.js"></script>
+    <script src="/hugerte/hugerte.min.js"></script>
     <style>
         body {
             margin: 2rem;
@@ -39,7 +39,7 @@
         const skin = localStorage.getItem('skin') || 'default';
         const contentcss = localStorage.getItem('contentcss') || 'default';
 
-        tinymce.init({
+        hugerte.init({
             selector:'textarea',
             plugins: [
               'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',

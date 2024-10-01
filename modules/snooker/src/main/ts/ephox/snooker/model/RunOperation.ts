@@ -42,7 +42,7 @@ export interface TargetUnmergable {
   readonly unmergable: Optional<SugarElement<HTMLTableCellElement>[]>;
 }
 
-// combines the above 4 interfaces because this is what data we actually get from TinyMCE
+// combines the above 4 interfaces because this is what data we actually get from HugeRTE
 export interface CombinedTargets extends TargetElement, TargetSelection, TargetMergable, TargetUnmergable { }
 
 export interface TargetPaste {
