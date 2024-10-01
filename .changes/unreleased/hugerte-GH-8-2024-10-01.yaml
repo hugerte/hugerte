@@ -1,6 +1,0 @@
-project: hugerte
-kind: Changed
-body: '`TinyMCE`, `tinymce`, `Tinymce`, `TinyMce`, `tinyMCE`, `tinyMce` have been replaced by appropiate HugeRTE variants, especially the global `tinymce` object'
-time: 2024-10-01T16:01:46.723413453-04:00
-custom:
-    Issue: GH-8
