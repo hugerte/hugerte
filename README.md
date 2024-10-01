@@ -18,10 +18,6 @@ Or install it manually via `npm`:
 npm i hugerte
 ```
 
-## Migrate from TinyMCE
-
-If you have been using TinyMCE before, you have to brute-force replace `tinymce` by `hugerte` in your code. In your package.json, make sure you use `1.0.0` as `hugerte` version – not the one you used for `tinymce` before. HugeRTE is based on TinyMCE 6.8.4.
-
 We're soon going to host the docs for HugeRTE on [our website](https://hugerte.org); for now, please refer to the [TinyMCE docs](https://tiny.cloud/docs/tinymce/6), but replace `tinymce` by `hugerte` in all code snippets.
 
 [See this guide also](https://www.tiny.cloud/docs/tinymce/6/npm-projects/), but replace `tinymce@^6` by `hugerte@^1` (and of course, all occurrences of `tinymce` by `hugerte`).
@@ -33,6 +29,10 @@ Configure it for one of three modes of editing:
 - [classic editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-classic/).
 - [inline editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-inline/).
 - [distraction-free editing mode](https://www.tiny.cloud/docs/tinymce/6/use-tinymce-distraction-free/).
+
+## Migrate from TinyMCE
+
+If you have been using TinyMCE before, you have to brute-force replace `tinymce` by `hugerte` in your code. In your package.json, make sure you use `1.0.0` as `hugerte` version – not the one you used for `tinymce` before. HugeRTE is based on TinyMCE 6.8.4, but it is even later because it contains some code from TinyMCE 7 (all until the [commit which changed the license](https://github.com/tinymce/tinymce/commit/1cfe7f6817c68d713971a3e1dbe0c9775a40ce6d)). See the [HugeRTE 1.0.0 changelog](.changes/hugerte/1.0.0.md) for details.
 
 ## Features
 
