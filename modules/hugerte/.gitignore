@@ -43,7 +43,5 @@ mentions
 .rpt2_cache
 hugerte-*.tgz
 
-emojis*.js
-emojiimages*.js
-
 src/plugins/help/main/js/i18n/*
+src/plugins/emoticons/main/js/
