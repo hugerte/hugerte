@@ -630,7 +630,7 @@ module.exports = function (grunt) {
               'description': 'Web based JavaScript HTML WYSIWYG editor control.',
               'license': 'MIT',
               'keywords': keywords,
-              'homepage': 'https://www.tiny.cloud/',
+              'homepage': 'https:/hugerte.org/',
               'ignore': ['README.md', 'composer.json', 'package.json', '.npmignore', 'CHANGELOG.md']
             }));
 
@@ -643,12 +643,12 @@ module.exports = function (grunt) {
                 'directory': 'modules/hugerte'
               },
               'description': 'Web based JavaScript HTML WYSIWYG editor control.',
-              'author': 'Ephox Corporation DBA Tiny Technologies, Inc',
+              'author': 'Ephox Corporation DBA Tiny Technologies, Inc and the HugeRTE contributors',
               'main': 'hugerte.js',
               'types': 'hugerte.d.ts',
               'license': 'MIT',
               'keywords': keywords,
-              'homepage': 'https://www.tiny.cloud/',
+              'homepage': 'https://hugerte.org/',
               'bugs': { 'url': 'https://github.com/hugerte/hugerte/issues' }
             }));
 
@@ -658,7 +658,7 @@ module.exports = function (grunt) {
               'description': 'Web based JavaScript HTML WYSIWYG editor control.',
               'license': ['MIT-only'],
               'keywords': keywords,
-              'homepage': 'https://www.tiny.cloud/',
+              'homepage': 'https://hugerte.org/',
               'type': 'component',
               'extra': {
                 'component': {
@@ -737,16 +737,16 @@ module.exports = function (grunt) {
           version: packageData.version,
           authors: 'Ephox Corporation DBA Tiny Technologies, Inc',
           owners: 'Ephox Corporation DBA Tiny Technologies, Inc',
-          description: 'The best WYSIWYG editor! HugeRTE is a platform independent web based Javascript HTML WYSIWYG editor ' +
-          'control released as Open Source under MIT by Tiny Technologies, Inc. HugeRTE has the ability to convert HTML ' +
-          'TEXTAREA fields or other HTML elements to editor instances. HugeRTE is very easy to integrate ' +
+          description: 'The best WYSIWYG editor! HugeRTE is an open source platform independent web based Javascript HTML WYSIWYG editor ' +
+          'control forked by the HugeRTE contributors from the latest MIT-licensed version of the TinyMCE editor released by Tiny Technologies, Inc. ' +
+          'HugeRTE has the ability to convert HTML TEXTAREA fields or other HTML elements to editor instances. HugeRTE is very easy to integrate ' +
           'into other Content Management Systems.',
           releaseNotes: 'Release notes for my package.',
           summary: 'HugeRTE is a platform independent web based Javascript HTML WYSIWYG editor ' +
-          'control released as Open Source under MIT by Tiny Technologies, Inc.',
-          projectUrl: 'https://www.tiny.cloud/',
-          iconUrl: 'https://www.tiny.cloud/favicon-32x32.png',
-          licenseUrl: 'https://www.tiny.cloud/license',
+          'control released as Open Source under MIT.',
+          projectUrl: 'https://hugerte.org/',
+          //iconUrl: 'https://www.tiny.cloud/favicon-32x32.png',
+          licenseUrl: 'https://github.com/hugerte/hugerte/blob/main/LICENSE.TXT',
           requireLicenseAcceptance: true,
           tags: 'Editor HugeRTE HTML HTMLEditor',
           excludes: [
