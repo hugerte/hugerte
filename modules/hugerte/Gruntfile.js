@@ -656,7 +656,7 @@ module.exports = function (grunt) {
               'name': 'hugerte/hugerte',
               'version': packageData.version,
               'description': 'Web based JavaScript HTML WYSIWYG editor control.',
-              'license': ['MIT-only'],
+              'license': ['MIT'],
               'keywords': keywords,
               'homepage': 'https://hugerte.org/',
               'type': 'component',
