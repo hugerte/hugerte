@@ -9,7 +9,7 @@ Used and trusted by millions of developers, [TinyMCE](https://github.com/tinymce
 The simplest way to get started with HugeRTE is using a CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/hugerte@1.0.2/hugerte.min.js">
+<script src="https://cdn.jsdelivr.net/npm/hugerte@1.0.4/hugerte.min.js">
 ```
 
 Or install it manually via `npm`:
@@ -32,7 +32,7 @@ Configure it for one of three modes of editing:
 
 ## Migrate from TinyMCE
 
-If you have been using TinyMCE before, you have to brute-force replace `tinymce` by `hugerte` in your code. In your package.json, make sure you use `1.0.2` as `hugerte` version – not the one you used for `tinymce` before. HugeRTE is based on TinyMCE 6.8.4, but it is even later because it contains some code from TinyMCE 7 (all until the [commit which changed the license](https://github.com/tinymce/tinymce/commit/1cfe7f6817c68d713971a3e1dbe0c9775a40ce6d)). See the [Changelog](https://hugerte.org/docs/hugerte/1/changelog/) for details.
+If you have been using TinyMCE before, you have to brute-force replace `tinymce` by `hugerte` in your code. In your package.json, make sure you use `1.0.4` as `hugerte` version – not the one you used for `tinymce` before. HugeRTE is based on TinyMCE 6.8.4, but it is even later because it contains some code from TinyMCE 7 (all until the [commit which changed the license](https://github.com/tinymce/tinymce/commit/1cfe7f6817c68d713971a3e1dbe0c9775a40ce6d)). See the [Changelog](https://hugerte.org/docs/hugerte/1/changelog/) for details.
 
 ## Features
 
@@ -71,4 +71,4 @@ As an open source product, we encourage and support the active development of ou
 
 ## Want more information?
 
-Visit the [HugeRTE website](https://tiny.cloud/) and check out the [TinyMCE documentation](https://www.tiny.cloud/docs/) until we host the docs ourselves.
+Visit the [HugeRTE website](https://hugerte.org) and check out the [TinyMCE documentation](https://www.tiny.cloud/docs/) until we host the docs ourselves.
