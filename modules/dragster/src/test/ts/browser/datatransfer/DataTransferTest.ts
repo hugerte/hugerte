@@ -4,9 +4,9 @@ import { KAssert } from "@hugerte/katamari-assertions";
 import { PlatformDetection } from "@hugerte/sand";
 import { assert } from 'chai';
 
-import { createDataTransfer, getDragImage } from 'ephox/dragster/datatransfer/DataTransfer';
-import { setDragendEvent, setDragstartEvent, setDropEvent } from 'ephox/dragster/datatransfer/Event';
-import { isInProtectedMode, setProtectedMode } from 'ephox/dragster/datatransfer/Mode';
+import { createDataTransfer, getDragImage } from "hugerte/dragster/datatransfer/DataTransfer";
+import { setDragendEvent, setDragstartEvent, setDropEvent } from "hugerte/dragster/datatransfer/Event";
+import { isInProtectedMode, setProtectedMode } from "hugerte/dragster/datatransfer/Mode";
 
 describe('browser.dragster.datatransfer.DataTransferTest', () => {
   const browser = PlatformDetection.detect().browser;

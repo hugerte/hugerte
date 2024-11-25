@@ -2,14 +2,14 @@ import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from "@hugert
 import { UnitTest } from '@ephox/bedrock-client';
 import { Value } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Form } from 'ephox/alloy/api/ui/Form';
-import { FormField } from 'ephox/alloy/api/ui/FormField';
-import { HtmlSelect } from 'ephox/alloy/api/ui/HtmlSelect';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import * as TestForm from 'ephox/alloy/test/form/TestForm';
-import { FormParts } from 'ephox/alloy/ui/types/FormTypes';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Form } from "hugerte/alloy/api/ui/Form";
+import { FormField } from "hugerte/alloy/api/ui/FormField";
+import { HtmlSelect } from "hugerte/alloy/api/ui/HtmlSelect";
+import { Input } from "hugerte/alloy/api/ui/Input";
+import * as TestForm from "hugerte/alloy/test/form/TestForm";
+import { FormParts } from "hugerte/alloy/ui/types/FormTypes";
 
 UnitTest.asynctest('Basic Form', (success, failure) => {
 

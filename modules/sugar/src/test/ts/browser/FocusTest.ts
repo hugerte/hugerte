@@ -1,15 +1,15 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional, OptionalInstances } from "@hugerte/katamari";
 
-import * as Compare from 'ephox/sugar/api/dom/Compare';
-import * as Focus from 'ephox/sugar/api/dom/Focus';
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import { tElement } from 'ephox/sugar/api/node/SugarElementInstances';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import { withShadowElement } from 'ephox/sugar/test/WithHelpers';
+import * as Compare from "hugerte/sugar/api/dom/Compare";
+import * as Focus from "hugerte/sugar/api/dom/Focus";
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import { tElement } from "hugerte/sugar/api/node/SugarElementInstances";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import { withShadowElement } from "hugerte/sugar/test/WithHelpers";
 
 const tOptional = OptionalInstances.tOptional;
 

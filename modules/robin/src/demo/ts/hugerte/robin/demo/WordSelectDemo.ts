@@ -1,7 +1,7 @@
 import { Fun, Optional } from "@hugerte/katamari";
 import { DomEvent, Insert, SelectorFind, SugarElement } from "@hugerte/sugar";
 
-import * as DomSmartSelect from 'ephox/robin/api/dom/DomSmartSelect';
+import * as DomSmartSelect from "hugerte/robin/api/dom/DomSmartSelect";
 
 const ephoxUi = SelectorFind.first('#ephox-ui').getOrDie();
 

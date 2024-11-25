@@ -2,10 +2,10 @@ import { Assert } from '@ephox/bedrock-client';
 import { Arr, Result } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 
-import { SimpleGenerators } from 'ephox/snooker/api/Generators';
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as TableMerge from 'ephox/snooker/model/TableMerge';
-import * as Fitment from 'ephox/snooker/test/Fitment';
+import { SimpleGenerators } from "hugerte/snooker/api/Generators";
+import * as Structs from "hugerte/snooker/api/Structs";
+import * as TableMerge from "hugerte/snooker/model/TableMerge";
+import * as Fitment from "hugerte/snooker/test/Fitment";
 
 interface Spec {
   readonly rows: number;

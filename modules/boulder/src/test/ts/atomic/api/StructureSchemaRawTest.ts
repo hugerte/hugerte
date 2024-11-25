@@ -3,12 +3,12 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Fun, Result } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import * as FieldPresence from 'ephox/boulder/api/FieldPresence';
-import * as FieldSchema from 'ephox/boulder/api/FieldSchema';
-import * as Objects from 'ephox/boulder/api/Objects';
-import * as StructureSchema from 'ephox/boulder/api/StructureSchema';
-import { StructureProcessor } from 'ephox/boulder/core/StructureProcessor';
-import * as ValueType from 'ephox/boulder/core/ValueType';
+import * as FieldPresence from "hugerte/boulder/api/FieldPresence";
+import * as FieldSchema from "hugerte/boulder/api/FieldSchema";
+import * as Objects from "hugerte/boulder/api/Objects";
+import * as StructureSchema from "hugerte/boulder/api/StructureSchema";
+import { StructureProcessor } from "hugerte/boulder/core/StructureProcessor";
+import * as ValueType from "hugerte/boulder/core/ValueType";
 
 UnitTest.test('StructureSchemaRawTest', () => {
   const checkErr = (label: string, expectedPart: string, input: any, processor: StructureProcessor) => {

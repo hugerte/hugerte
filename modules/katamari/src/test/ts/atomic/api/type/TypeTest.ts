@@ -5,10 +5,10 @@ import { Pprint } from '@ephox/dispute';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Optional } from 'ephox/katamari/api/Optional';
-import * as Type from 'ephox/katamari/api/Type';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Optional } from "hugerte/katamari/api/Optional";
+import * as Type from "hugerte/katamari/api/Type";
 
 const check = (method: (u: unknown) => boolean, methodName: string) => (expected: boolean, input: unknown) => {
   const actual = method(input);

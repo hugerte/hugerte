@@ -1,15 +1,15 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { SugarElement, SugarShadowDom, Value } from "@hugerte/sugar";
 
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { Chain } from 'ephox/agar/api/Chain';
-import * as FocusTools from 'ephox/agar/api/FocusTools';
-import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
-import * as Guard from 'ephox/agar/api/Guard';
-import * as Log from 'ephox/agar/api/Log';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import * as DomContainers from 'ephox/agar/test/DomContainers';
+import * as Assertions from "hugerte/agar/api/Assertions";
+import { Chain } from "hugerte/agar/api/Chain";
+import * as FocusTools from "hugerte/agar/api/FocusTools";
+import * as GeneralSteps from "hugerte/agar/api/GeneralSteps";
+import * as Guard from "hugerte/agar/api/Guard";
+import * as Log from "hugerte/agar/api/Log";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import { Step } from "hugerte/agar/api/Step";
+import * as DomContainers from "hugerte/agar/test/DomContainers";
 
 UnitTest.asynctest('FocusToolsTest', (success, failure) => {
 

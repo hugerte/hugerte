@@ -2,8 +2,8 @@ import { after, Assert, describe, it } from '@ephox/bedrock-client';
 import { Arr, Fun } from "@hugerte/katamari";
 import { Attribute, Html, Insert, InsertAll, Remove, SugarElement } from "@hugerte/sugar";
 
-import * as DomSearch from 'ephox/phoenix/api/dom/DomSearch';
-import * as DomWrapping from 'ephox/phoenix/api/dom/DomWrapping';
+import * as DomSearch from "hugerte/phoenix/api/dom/DomSearch";
+import * as DomWrapping from "hugerte/phoenix/api/dom/DomWrapping";
 
 interface EntitiesMap {
   readonly [name: string]: string;

@@ -4,14 +4,14 @@ import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { SugarDocument, SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import { SketchSpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 describe('browser.alloy.behaviour.keying.FlowKeyingTest', () => {
 

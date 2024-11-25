@@ -3,13 +3,13 @@ import { Arr } from "@hugerte/katamari";
 import { PlatformDetection } from "@hugerte/sand";
 import { DomEvent, Insert, Remove, SugarElement } from "@hugerte/sugar";
 
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { Chain } from 'ephox/agar/api/Chain';
-import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
-import * as Mouse from 'ephox/agar/api/Mouse';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import * as UiFinder from 'ephox/agar/api/UiFinder';
+import * as Assertions from "hugerte/agar/api/Assertions";
+import { Chain } from "hugerte/agar/api/Chain";
+import * as GeneralSteps from "hugerte/agar/api/GeneralSteps";
+import * as Mouse from "hugerte/agar/api/Mouse";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import { Step } from "hugerte/agar/api/Step";
+import * as UiFinder from "hugerte/agar/api/UiFinder";
 
 UnitTest.asynctest('MouseTest', (success, failure) => {
 

@@ -1,4 +1,4 @@
-import * as PlatformDetection from 'ephox/sand/api/PlatformDetection';
+import * as PlatformDetection from "hugerte/sand/api/PlatformDetection";
 
 const platform = PlatformDetection.detect();
 

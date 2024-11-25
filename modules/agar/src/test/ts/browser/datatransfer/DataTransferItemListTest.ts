@@ -2,11 +2,11 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Type } from "@hugerte/katamari";
 import { assert } from 'chai';
 
-import { createFile } from 'ephox/agar/api/Files';
-import { createDataTransfer } from 'ephox/agar/datatransfer/DataTransfer';
-import { getData } from 'ephox/agar/datatransfer/DataTransferItem';
-import { createDataTransferItemList } from 'ephox/agar/datatransfer/DataTransferItemList';
-import { setProtectedMode, setReadOnlyMode } from 'ephox/agar/datatransfer/Mode';
+import { createFile } from "hugerte/agar/api/Files";
+import { createDataTransfer } from "hugerte/agar/datatransfer/DataTransfer";
+import { getData } from "hugerte/agar/datatransfer/DataTransferItem";
+import { createDataTransferItemList } from "hugerte/agar/datatransfer/DataTransferItemList";
+import { setProtectedMode, setReadOnlyMode } from "hugerte/agar/datatransfer/Mode";
 
 UnitTest.test('DataTransferItemListTest', () => {
   const testAdding = () => {

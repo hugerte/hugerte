@@ -1,11 +1,11 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Optional } from "@hugerte/katamari";
 
-import { Gene } from 'ephox/boss/api/Gene';
-import * as Insertion from 'ephox/boss/mutant/Insertion';
-import * as Locator from 'ephox/boss/mutant/Locator';
-import * as Logger from 'ephox/boss/mutant/Logger';
-import * as Tracks from 'ephox/boss/mutant/Tracks';
+import { Gene } from "hugerte/boss/api/Gene";
+import * as Insertion from "hugerte/boss/mutant/Insertion";
+import * as Locator from "hugerte/boss/mutant/Locator";
+import * as Logger from "hugerte/boss/mutant/Logger";
+import * as Tracks from "hugerte/boss/mutant/Tracks";
 
 UnitTest.test('InsertionTest', () => {
   const data = (): Gene => {

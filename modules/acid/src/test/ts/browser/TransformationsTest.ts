@@ -3,7 +3,7 @@ import { Obj } from "@hugerte/katamari";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Transformations from 'ephox/acid/api/colour/Transformations';
+import * as Transformations from "hugerte/acid/api/colour/Transformations";
 
 describe('TransformationsTest', () => {
   context('anyToHex', () => {

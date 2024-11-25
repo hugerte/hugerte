@@ -3,8 +3,8 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Obj } from "@hugerte/katamari";
 import { Attribute, EventArgs, Html, Insert, SelectorFind, SugarElement } from "@hugerte/sugar";
 
-import * as Debugging from 'ephox/alloy/debugging/Debugging';
-import * as Triggers from 'ephox/alloy/events/Triggers';
+import * as Debugging from "hugerte/alloy/debugging/Debugging";
+import * as Triggers from "hugerte/alloy/events/Triggers";
 
 UnitTest.asynctest('TriggersTest', (success, failure) => {
   let log: string[] = [ ];

@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
 
 const boundsArb = (minBounds = 0, maxBounds = 2000): fc.Arbitrary<Boxes.Bounds> => {
   const zeroableArb = fc.integer(minBounds, maxBounds);

@@ -2,11 +2,11 @@ import { Cleaner, Step, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { DomEvent, EventArgs, SugarElement } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 UnitTest.asynctest('Browser Test: events.BroadcastingEventsTest', (success, failure) => {
 

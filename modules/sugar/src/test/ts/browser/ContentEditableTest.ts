@@ -1,13 +1,13 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as ContentEditable from 'ephox/sugar/api/properties/ContentEditable';
-import Div from 'ephox/sugar/test/Div';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import * as ContentEditable from "hugerte/sugar/api/properties/ContentEditable";
+import Div from "hugerte/sugar/test/Div";
 
 describe('ContentEditableTest', () => {
   const makeNonEditable = (element: SugarElement<HTMLElement>) => Attribute.set(element, 'contenteditable', 'false');

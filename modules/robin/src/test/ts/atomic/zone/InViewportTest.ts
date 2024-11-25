@@ -3,11 +3,11 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr, Fun } from "@hugerte/katamari";
 
-import { ZonePosition } from 'ephox/robin/api/general/ZonePosition';
-import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
-import { WordDecision } from 'ephox/robin/words/WordDecision';
-import { ZoneDetails } from 'ephox/robin/zone/LanguageZones';
-import * as ZoneWalker from 'ephox/robin/zone/ZoneWalker';
+import { ZonePosition } from "hugerte/robin/api/general/ZonePosition";
+import { ZoneViewports } from "hugerte/robin/api/general/ZoneViewports";
+import { WordDecision } from "hugerte/robin/words/WordDecision";
+import { ZoneDetails } from "hugerte/robin/zone/LanguageZones";
+import * as ZoneWalker from "hugerte/robin/zone/ZoneWalker";
 
 UnitTest.asyncTest('atomic.robin.zone.InViewportTest', (success, failure) => {
   const doc = TestUniverse(Gene('root', 'root', [

@@ -3,22 +3,22 @@ import { after, afterEach, before, beforeEach, describe, it } from '@ephox/bedro
 import { Result } from "@hugerte/katamari";
 import { Attribute, Class, Compare, SugarBody, SugarDocument } from "@hugerte/sugar";
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { ModalDialog } from 'ephox/alloy/api/ui/ModalDialog';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { Tabstopping } from "hugerte/alloy/api/behaviour/Tabstopping";
+import { Toggling } from "hugerte/alloy/api/behaviour/Toggling";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { ModalDialog } from "hugerte/alloy/api/ui/ModalDialog";
+import * as Sinks from "hugerte/alloy/test/Sinks";
 
 describe('browser.alloy.ui.dialog.ModalDialogTest', () => {
   const focusAndTab = Behaviour.derive([

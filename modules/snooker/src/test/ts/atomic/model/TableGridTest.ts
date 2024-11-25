@@ -3,8 +3,8 @@ import { Fun } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as TableGrid from 'ephox/snooker/model/TableGrid';
+import * as Structs from "hugerte/snooker/api/Structs";
+import * as TableGrid from "hugerte/snooker/model/TableGrid";
 
 describe('TableGridTest', () => {
   const r = Structs.rowcells;

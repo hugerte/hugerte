@@ -3,12 +3,12 @@ import { Arr } from "@hugerte/katamari";
 import { SugarElement, SugarNode, TextContent } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import { Generators } from 'ephox/snooker/api/Generators';
-import * as Structs from 'ephox/snooker/api/Structs';
-import { TableSection } from 'ephox/snooker/api/TableSection';
-import * as TransformOperations from 'ephox/snooker/operate/TransformOperations';
-import * as MockStructs from 'ephox/snooker/test/MockStructs';
-import TestGenerator from 'ephox/snooker/test/TestGenerator';
+import { Generators } from "hugerte/snooker/api/Generators";
+import * as Structs from "hugerte/snooker/api/Structs";
+import { TableSection } from "hugerte/snooker/api/TableSection";
+import * as TransformOperations from "hugerte/snooker/operate/TransformOperations";
+import * as MockStructs from "hugerte/snooker/test/MockStructs";
+import TestGenerator from "hugerte/snooker/test/TestGenerator";
 
 UnitTest.test('TransformOperationsTest', () => {
   const originalElements: Structs.ElementNew[] = [];

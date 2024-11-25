@@ -2,7 +2,7 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Resolve from 'ephox/katamari/api/Resolve';
+import * as Resolve from "hugerte/katamari/api/Resolve";
 
 describe('atomic.katamari.api.obj.ResolveTest', () => {
   it('namespace', () => {

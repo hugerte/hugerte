@@ -3,7 +3,7 @@ import { Gene, TestUniverse, Universe } from "@hugerte/boss";
 import { Arr, Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import { oneAll } from 'ephox/robin/parent/Shared';
+import { oneAll } from "hugerte/robin/parent/Shared";
 
 UnitTest.test('SharedTest', () => {
   const data = TestUniverse(Gene('root', 'root', [

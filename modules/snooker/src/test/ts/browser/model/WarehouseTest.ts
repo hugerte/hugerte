@@ -3,8 +3,8 @@ import { Obj, Type } from "@hugerte/katamari";
 import { Attribute, SugarElement, TextContent } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
+import * as Structs from "hugerte/snooker/api/Structs";
+import { Warehouse } from "hugerte/snooker/api/Warehouse";
 
 interface ExpectedWarehouse {
   readonly access: Record<string, string>;

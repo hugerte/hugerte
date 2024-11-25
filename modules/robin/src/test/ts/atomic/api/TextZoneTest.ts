@@ -2,11 +2,11 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Fun, Optional } from "@hugerte/katamari";
 
-import * as TextZone from 'ephox/robin/api/general/TextZone';
-import { ArbIds, arbIds, ArbRangeIds, arbRangeIds } from 'ephox/robin/test/Arbitraries';
-import * as PropertyAssertions from 'ephox/robin/test/PropertyAssertions';
-import { assertProps, rawOne, RawZone } from 'ephox/robin/test/ZoneObjects';
-import { Zone } from 'ephox/robin/zone/Zones';
+import * as TextZone from "hugerte/robin/api/general/TextZone";
+import { ArbIds, arbIds, ArbRangeIds, arbRangeIds } from "hugerte/robin/test/Arbitraries";
+import * as PropertyAssertions from "hugerte/robin/test/PropertyAssertions";
+import { assertProps, rawOne, RawZone } from "hugerte/robin/test/ZoneObjects";
+import { Zone } from "hugerte/robin/zone/Zones";
 
 UnitTest.test('TextZoneTest', () => {
   const doc1 = TestUniverse(Gene('root', 'root', [

@@ -3,7 +3,7 @@ import { Eq, Pprint, Testable } from '@ephox/dispute';
 import { Fun, Optional, Result } from "@hugerte/katamari";
 import fc from 'fast-check';
 
-import * as KAssert from 'ephox/katamari-assertions/api/KAssert';
+import * as KAssert from "hugerte/katamari-assertions/api/KAssert";
 
 const { tNumber } = Testable;
 

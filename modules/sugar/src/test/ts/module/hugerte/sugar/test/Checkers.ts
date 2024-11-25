@@ -3,9 +3,9 @@ import { Testable } from '@ephox/dispute';
 import { Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import { tElement } from 'ephox/sugar/api/node/SugarElementInstances';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import { tElement } from "hugerte/sugar/api/node/SugarElementInstances";
+import * as SugarNode from "hugerte/sugar/api/node/SugarNode";
 
 const { tArray } = Testable;
 

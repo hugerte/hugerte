@@ -1,12 +1,12 @@
 import { Arr, Fun, Merger } from "@hugerte/katamari";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import { AlloySpec, SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import { Toolbar } from 'ephox/alloy/api/ui/Toolbar';
-import { ToolbarGroup } from 'ephox/alloy/api/ui/ToolbarGroup';
-import { ToolbarGroupSpec } from 'ephox/alloy/ui/types/ToolbarGroupTypes';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import { AlloySpec, SketchSpec } from "hugerte/alloy/api/component/SpecTypes";
+import { Toolbar } from "hugerte/alloy/api/ui/Toolbar";
+import { ToolbarGroup } from "hugerte/alloy/api/ui/ToolbarGroup";
+import { ToolbarGroupSpec } from "hugerte/alloy/ui/types/ToolbarGroupTypes";
 
 const mungeItem = (itemSpec: AlloySpec) => Merger.deepMerge(
   itemSpec,

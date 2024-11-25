@@ -3,7 +3,7 @@ import { Arr, Fun, Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from "@hugerte/sugar";
 
-import * as DomParent from 'ephox/robin/api/dom/DomParent';
+import * as DomParent from "hugerte/robin/api/dom/DomParent";
 
 UnitTest.test(
   'DomParentTest',

@@ -1,9 +1,9 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as SugarComment from 'ephox/sugar/api/node/SugarComment';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
+import * as SugarComment from "hugerte/sugar/api/node/SugarComment";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as SugarNode from "hugerte/sugar/api/node/SugarNode";
+import * as Traverse from "hugerte/sugar/api/search/Traverse";
 
 UnitTest.test('CommentTest', () => {
   const ensureClobberedTextNodeDoesNotThrow = () => {

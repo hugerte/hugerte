@@ -2,16 +2,16 @@ import { Assertions, GeneralSteps, Logger, Step, UiFinder, Waiter } from "@huger
 import { UnitTest } from '@ephox/bedrock-client';
 import { Optional, Result } from "@hugerte/katamari";
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { InlineView } from 'ephox/alloy/api/ui/InlineView';
-import * as Sinks from 'ephox/alloy/test/Sinks';
-import * as TestBroadcasts from 'ephox/alloy/test/TestBroadcasts';
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { InlineView } from "hugerte/alloy/api/ui/InlineView";
+import * as Sinks from "hugerte/alloy/test/Sinks";
+import * as TestBroadcasts from "hugerte/alloy/test/TestBroadcasts";
 
 UnitTest.asynctest('InlineViewDismissTest', (success, failure) => {
 

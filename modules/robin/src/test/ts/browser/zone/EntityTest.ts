@@ -3,8 +3,8 @@ import { Unicode } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as DomTextZones from 'ephox/robin/api/dom/DomTextZones';
-import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
+import * as DomTextZones from "hugerte/robin/api/dom/DomTextZones";
+import { ZoneViewports } from "hugerte/robin/api/general/ZoneViewports";
 
 describe('browser.robin.zone.EntityTest', () => {
   it('TINY-7908: Soft hyphens are not treated as a word boundary', () => {

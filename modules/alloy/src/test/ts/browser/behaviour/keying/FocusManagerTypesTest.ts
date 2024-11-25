@@ -3,15 +3,15 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { Attribute } from "@hugerte/sugar";
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Highlighting } from 'ephox/alloy/api/behaviour/Highlighting';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as FocusManagers from 'ephox/alloy/api/focus/FocusManagers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { Highlighting } from "hugerte/alloy/api/behaviour/Highlighting";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as FocusManagers from "hugerte/alloy/api/focus/FocusManagers";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
 
 UnitTest.asynctest('Browser Test: behaviour.keying.FocusManagersTest', (success, failure) => {
   GuiSetup.setup(

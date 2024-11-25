@@ -1,14 +1,14 @@
 import { Arr, Future, Optional, Result } from "@hugerte/katamari";
 import { Class, SugarElement } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import { TouchMenu } from 'ephox/alloy/api/ui/TouchMenu';
-import * as Debugging from 'ephox/alloy/debugging/Debugging';
-import * as DemoSink from 'ephox/alloy/demo/DemoSink';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Menu } from "hugerte/alloy/api/ui/Menu";
+import { TouchMenu } from "hugerte/alloy/api/ui/TouchMenu";
+import * as Debugging from "hugerte/alloy/debugging/Debugging";
+import * as DemoSink from "hugerte/alloy/demo/DemoSink";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
 
 import * as DemoRenders from './forms/DemoRenders';
 

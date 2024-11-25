@@ -3,10 +3,10 @@ import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr, Optional } from "@hugerte/katamari";
 import { PositionArray, PRange } from "@hugerte/polaris";
 
-import * as Spot from 'ephox/phoenix/api/data/Spot';
-import * as MatchSplitter from 'ephox/phoenix/search/MatchSplitter';
-import * as Finder from 'ephox/phoenix/test/Finder';
-import * as TestRenders from 'ephox/phoenix/test/TestRenders';
+import * as Spot from "hugerte/phoenix/api/data/Spot";
+import * as MatchSplitter from "hugerte/phoenix/search/MatchSplitter";
+import * as Finder from "hugerte/phoenix/test/Finder";
+import * as TestRenders from "hugerte/phoenix/test/TestRenders";
 
 interface CheckExpect {
   readonly text: string[];

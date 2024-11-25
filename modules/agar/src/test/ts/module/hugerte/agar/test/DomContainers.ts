@@ -1,6 +1,6 @@
 import { Attribute, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import { Step } from 'ephox/agar/api/Step';
+import { Step } from "hugerte/agar/api/Step";
 
 const createContainer = () => {
   const container = SugarElement.fromTag('div');

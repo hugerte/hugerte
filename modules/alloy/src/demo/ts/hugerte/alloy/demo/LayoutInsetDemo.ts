@@ -1,16 +1,16 @@
 import { Optional } from "@hugerte/katamari";
 import { Class, SugarElement } from "@hugerte/sugar";
 
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as DemoSink from 'ephox/alloy/demo/DemoSink';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
-import * as LayoutInset from 'ephox/alloy/positioning/layout/LayoutInset';
-import { Layouts } from 'ephox/alloy/positioning/mode/Anchoring';
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as DemoSink from "hugerte/alloy/demo/DemoSink";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
+import * as LayoutInset from "hugerte/alloy/positioning/layout/LayoutInset";
+import { Layouts } from "hugerte/alloy/positioning/mode/Anchoring";
 
 export default (): void => {
   const gui = Gui.create();

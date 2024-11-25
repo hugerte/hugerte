@@ -3,16 +3,16 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { Css } from "@hugerte/sugar";
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as Layout from 'ephox/alloy/positioning/layout/Layout';
-import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
-import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as Layout from "hugerte/alloy/positioning/layout/Layout";
+import * as ChainUtils from "hugerte/alloy/test/ChainUtils";
+import * as PositionTestUtils from "hugerte/alloy/test/PositionTestUtils";
+import * as Sinks from "hugerte/alloy/test/Sinks";
 
 UnitTest.asynctest('HotspotPositionTest', (success, failure) => {
 

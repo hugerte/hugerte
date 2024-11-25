@@ -3,7 +3,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Fun, Optional } from "@hugerte/katamari";
 import { SelectorFind, SugarDocument, SugarElement } from "@hugerte/sugar";
 
-import { cellOperations } from 'ephox/snooker/api/TableFill';
+import { cellOperations } from "hugerte/snooker/api/TableFill";
 
 UnitTest.asynctest('modules.snooker.src.test.ts.browser.CopyAttributesTest.ts', (success, failure) => {
   const operations = cellOperations(Fun.noop, SugarDocument.getDocument(), Optional.none());

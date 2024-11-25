@@ -2,12 +2,12 @@ import { DragnDrop as Dnd, Files, GeneralSteps, Logger, TestStore } from "@huger
 import { UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { DragnDrop } from 'ephox/alloy/api/behaviour/DragnDrop';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { DropDragndropConfigSpec, StartingDragndropConfigSpec } from 'ephox/alloy/dragging/dragndrop/DragnDropTypes';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { DragnDrop } from "hugerte/alloy/api/behaviour/DragnDrop";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { DropDragndropConfigSpec, StartingDragndropConfigSpec } from "hugerte/alloy/dragging/dragndrop/DragnDropTypes";
 
 interface StoreDragnDropTest {
   readonly type: string;

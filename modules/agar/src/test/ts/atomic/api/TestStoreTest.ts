@@ -1,10 +1,10 @@
 import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Fun } from "@hugerte/katamari";
 
-import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import { TestStore } from 'ephox/agar/api/TestStore';
+import * as GeneralSteps from "hugerte/agar/api/GeneralSteps";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import { Step } from "hugerte/agar/api/Step";
+import { TestStore } from "hugerte/agar/api/TestStore";
 
 interface TestData {
   readonly name: string;

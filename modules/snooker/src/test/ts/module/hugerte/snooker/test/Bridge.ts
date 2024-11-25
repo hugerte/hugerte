@@ -1,9 +1,9 @@
 import { Arr, Fun, Obj, Optional, Optionals } from "@hugerte/katamari";
 import { Attribute, Css, Hierarchy, Insert, Replication, SugarElement, SugarNode, TextContent } from "@hugerte/sugar";
 
-import { Generators, SimpleGenerators } from 'ephox/snooker/api/Generators';
-import * as Structs from 'ephox/snooker/api/Structs';
-import { TargetMergable } from 'ephox/snooker/model/RunOperation';
+import { Generators, SimpleGenerators } from "hugerte/snooker/api/Generators";
+import * as Structs from "hugerte/snooker/api/Structs";
+import { TargetMergable } from "hugerte/snooker/model/RunOperation";
 
 // Mock/Stub out helper functions
 

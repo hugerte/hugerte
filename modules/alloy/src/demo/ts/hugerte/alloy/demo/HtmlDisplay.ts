@@ -1,13 +1,13 @@
 import { Id, Thunk } from "@hugerte/katamari";
 import { DomEvent, Html, SugarElement, TextContent } from "@hugerte/sugar";
 
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as Channels from 'ephox/alloy/api/messages/Channels';
-import { GuiSystem } from 'ephox/alloy/api/system/Gui';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as Debugging from 'ephox/alloy/debugging/Debugging';
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as Channels from "hugerte/alloy/api/messages/Channels";
+import { GuiSystem } from "hugerte/alloy/api/system/Gui";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as Debugging from "hugerte/alloy/debugging/Debugging";
 
 const register = Thunk.cached((gui: GuiSystem) => {
   Debugging.registerInspector('htmldisplay', gui);

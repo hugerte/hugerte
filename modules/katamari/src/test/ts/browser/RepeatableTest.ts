@@ -1,8 +1,8 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import { Optional } from 'ephox/katamari/api/Optional';
-import * as Singleton from 'ephox/katamari/api/Singleton';
+import { Optional } from "hugerte/katamari/api/Optional";
+import * as Singleton from "hugerte/katamari/api/Singleton";
 
 const delay = (ms: number): Promise<never> => {
   return new Promise((resolve) => setTimeout(resolve, ms));

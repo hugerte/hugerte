@@ -2,9 +2,9 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene, Universe } from "@hugerte/boss";
 import { Arr, Optional } from "@hugerte/katamari";
 
-import * as Look from 'ephox/robin/api/general/Look';
-import * as Parent from 'ephox/robin/api/general/Parent';
-import * as Structure from 'ephox/robin/api/general/Structure';
+import * as Look from "hugerte/robin/api/general/Look";
+import * as Parent from "hugerte/robin/api/general/Parent";
+import * as Structure from "hugerte/robin/api/general/Structure";
 
 UnitTest.test('BlockTest', () => {
   const doc = TestUniverse(Gene('root', 'root', [

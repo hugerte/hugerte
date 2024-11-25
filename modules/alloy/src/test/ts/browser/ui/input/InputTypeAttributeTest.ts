@@ -1,9 +1,9 @@
 import { ApproxStructure, Assertions, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Input } from 'ephox/alloy/api/ui/Input';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Input } from "hugerte/alloy/api/ui/Input";
 
 UnitTest.asynctest('InputTypeAttributeTest', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => GuiFactory.build(

@@ -2,9 +2,9 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import Div from 'ephox/sugar/test/Div';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import Div from "hugerte/sugar/test/Div";
 
 type AttrFn<K, V> = (element: SugarElement<HTMLElement>, k: K, v: V) => void;
 type InvalidValue<V> = V | null | undefined | {};

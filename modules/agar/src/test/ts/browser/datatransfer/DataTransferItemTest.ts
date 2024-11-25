@@ -2,9 +2,9 @@ import { Assert, describe, it } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import { createFile } from 'ephox/agar/api/Files';
-import { createDataTransfer } from 'ephox/agar/datatransfer/DataTransfer';
-import { createDataTransferItemFromFile, createDataTransferItemFromString, getData } from 'ephox/agar/datatransfer/DataTransferItem';
+import { createFile } from "hugerte/agar/api/Files";
+import { createDataTransfer } from "hugerte/agar/datatransfer/DataTransfer";
+import { createDataTransferItemFromFile, createDataTransferItemFromString, getData } from "hugerte/agar/datatransfer/DataTransferItem";
 
 describe('atomic.agar.datatransfer.DataTransferItemTest', () => {
   it('Create transfer item from file', () => {

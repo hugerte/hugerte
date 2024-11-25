@@ -1,14 +1,14 @@
 import { SugarBody } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Form } from 'ephox/alloy/api/ui/Form';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import * as Debugging from 'ephox/alloy/debugging/Debugging';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
-import { FormParts } from 'ephox/alloy/ui/types/FormTypes';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Form } from "hugerte/alloy/api/ui/Form";
+import { Input } from "hugerte/alloy/api/ui/Input";
+import * as Debugging from "hugerte/alloy/debugging/Debugging";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
+import { FormParts } from "hugerte/alloy/ui/types/FormTypes";
 
 /* eslint-disable no-console */
 

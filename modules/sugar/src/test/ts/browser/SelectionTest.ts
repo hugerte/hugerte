@@ -1,17 +1,17 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Compare from 'ephox/sugar/api/dom/Compare';
-import * as Hierarchy from 'ephox/sugar/api/dom/Hierarchy';
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarElements from 'ephox/sugar/api/node/SugarElements';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
-import { SimSelection } from 'ephox/sugar/api/selection/SimSelection';
-import { Situ } from 'ephox/sugar/api/selection/Situ';
-import * as WindowSelection from 'ephox/sugar/api/selection/WindowSelection';
+import * as Compare from "hugerte/sugar/api/dom/Compare";
+import * as Hierarchy from "hugerte/sugar/api/dom/Hierarchy";
+import * as InsertAll from "hugerte/sugar/api/dom/InsertAll";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as SugarElements from "hugerte/sugar/api/node/SugarElements";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import * as Traverse from "hugerte/sugar/api/search/Traverse";
+import { SimSelection } from "hugerte/sugar/api/selection/SimSelection";
+import { Situ } from "hugerte/sugar/api/selection/Situ";
+import * as WindowSelection from "hugerte/sugar/api/selection/WindowSelection";
 
 UnitTest.test('Browser Test: SelectionTest', () => {
   const p1 = SugarElement.fromHtml<HTMLParagraphElement>('<p>This is the <strong>first</strong> paragraph</p>');

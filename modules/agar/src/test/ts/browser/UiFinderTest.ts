@@ -1,11 +1,11 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { Class, Css, Hierarchy, Html, Insert, Remove, SugarElement, SugarNode } from "@hugerte/sugar";
 
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { Chain } from 'ephox/agar/api/Chain';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import * as UiFinder from 'ephox/agar/api/UiFinder';
+import * as Assertions from "hugerte/agar/api/Assertions";
+import { Chain } from "hugerte/agar/api/Chain";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import { Step } from "hugerte/agar/api/Step";
+import * as UiFinder from "hugerte/agar/api/UiFinder";
 
 UnitTest.asynctest('UiFinderTest', (success, failure) => {
 

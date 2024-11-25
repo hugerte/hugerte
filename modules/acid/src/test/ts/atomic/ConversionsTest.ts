@@ -1,8 +1,8 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as HexColour from 'ephox/acid/api/colour/HexColour';
-import * as RgbaColour from 'ephox/acid/api/colour/RgbaColour';
+import * as HexColour from "hugerte/acid/api/colour/HexColour";
+import * as RgbaColour from "hugerte/acid/api/colour/RgbaColour";
 
 describe('browser.acid.api.ConversionsTest', () => {
 

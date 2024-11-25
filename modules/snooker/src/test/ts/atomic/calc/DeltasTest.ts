@@ -1,9 +1,9 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Fun } from "@hugerte/katamari";
 
-import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import * as Deltas from 'ephox/snooker/calc/Deltas';
+import * as ResizeBehaviour from "hugerte/snooker/api/ResizeBehaviour";
+import { TableSize } from "hugerte/snooker/api/TableSize";
+import * as Deltas from "hugerte/snooker/calc/Deltas";
 
 UnitTest.test('DeltasTest', () => {
   const preserveTable = ResizeBehaviour.preserveTable();

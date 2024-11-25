@@ -2,9 +2,9 @@ import { context, describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Maybe } from 'ephox/katamari/api/Maybe';
-import * as Maybes from 'ephox/katamari/api/Maybes';
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Maybe } from "hugerte/katamari/api/Maybe";
+import * as Maybes from "hugerte/katamari/api/Maybes";
 
 describe('atomic.katamari.maybe.MonadTest', () => {
   context('flatten', () => {

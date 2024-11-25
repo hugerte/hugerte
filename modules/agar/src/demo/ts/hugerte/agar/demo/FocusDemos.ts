@@ -1,8 +1,8 @@
 import { Attribute, Css, DomEvent, Html, InsertAll, SugarElement, Traverse } from "@hugerte/sugar";
 
-import * as FocusTools from 'ephox/agar/api/FocusTools';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import * as DemoContainer from 'ephox/agar/demo/DemoContainer';
+import * as FocusTools from "hugerte/agar/api/FocusTools";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import * as DemoContainer from "hugerte/agar/demo/DemoContainer";
 
 export const demo = (): void => {
   DemoContainer.init('Focus demos', (success, failure) => {

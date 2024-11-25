@@ -4,9 +4,9 @@ import { SugarPosition } from "@hugerte/sugar";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import * as LayoutBounds from 'ephox/alloy/positioning/layout/LayoutBounds';
-import { assertInBounds, boundsArb } from 'ephox/alloy/test/BoundsUtils';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
+import * as LayoutBounds from "hugerte/alloy/positioning/layout/LayoutBounds";
+import { assertInBounds, boundsArb } from "hugerte/alloy/test/BoundsUtils";
 
 describe('LayoutBoundsTest', () => {
   const dimensions = [ 'left' as const, 'right' as const, 'top' as const, 'bottom' as const ];

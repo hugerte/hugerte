@@ -3,7 +3,7 @@ import { DomUniverse } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 import { Compare, Hierarchy, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import * as Clumps from 'ephox/robin/clumps/Clumps';
+import * as Clumps from "hugerte/robin/clumps/Clumps";
 
 UnitTest.test('ClumpsTest', () => {
   /* The purpose of this test is to take a large section of html and test dividing it into

@@ -2,10 +2,10 @@ import { Assertions } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
-import * as PartSubstitutes from 'ephox/alloy/parts/PartSubstitutes';
-import * as PartType from 'ephox/alloy/parts/PartType';
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as AlloyParts from "hugerte/alloy/parts/AlloyParts";
+import * as PartSubstitutes from "hugerte/alloy/parts/PartSubstitutes";
+import * as PartType from "hugerte/alloy/parts/PartType";
 
 UnitTest.test('Browser Test: parts.PartProcessGroupTest', () => {
 

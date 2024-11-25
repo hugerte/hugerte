@@ -1,13 +1,13 @@
 import { describe, it } from '@ephox/bedrock-client';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
-import { LazyValue } from 'ephox/katamari/api/LazyValue';
-import * as LazyValues from 'ephox/katamari/api/LazyValues';
-import { Optional } from 'ephox/katamari/api/Optional';
-import { tOptional } from 'ephox/katamari/api/OptionalInstances';
-import { eqAsync } from 'ephox/katamari/test/AsyncProps';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Fun from "hugerte/katamari/api/Fun";
+import { LazyValue } from "hugerte/katamari/api/LazyValue";
+import * as LazyValues from "hugerte/katamari/api/LazyValues";
+import { Optional } from "hugerte/katamari/api/Optional";
+import { tOptional } from "hugerte/katamari/api/OptionalInstances";
+import { eqAsync } from "hugerte/katamari/test/AsyncProps";
 
 const lazyCounter = () => {
   let counter = 0;

@@ -1,7 +1,7 @@
 import { Gene } from "@hugerte/boss";
 import { Arr, Optional } from "@hugerte/katamari";
 
-import { TypedItem } from 'ephox/phoenix/api/data/TypedItem';
+import { TypedItem } from "hugerte/phoenix/api/data/TypedItem";
 
 const typeditem = (a: TypedItem<Gene, undefined>): string => {
   return a.fold((item) => {

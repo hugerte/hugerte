@@ -1,10 +1,10 @@
 import { SelectorFind } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { SlotContainer } from 'ephox/alloy/api/ui/SlotContainer';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { SlotContainer } from "hugerte/alloy/api/ui/SlotContainer";
 
 export default (): void => {
   const ephoxUi = SelectorFind.first('#ephox-ui').getOrDie();

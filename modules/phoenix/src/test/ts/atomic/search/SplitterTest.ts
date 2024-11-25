@@ -2,9 +2,9 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 
-import * as Splitter from 'ephox/phoenix/search/Splitter';
-import * as Finder from 'ephox/phoenix/test/Finder';
-import * as TestRenders from 'ephox/phoenix/test/TestRenders';
+import * as Splitter from "hugerte/phoenix/search/Splitter";
+import * as Finder from "hugerte/phoenix/test/Finder";
+import * as TestRenders from "hugerte/phoenix/test/TestRenders";
 
 UnitTest.test('SplitterTest', () => {
 

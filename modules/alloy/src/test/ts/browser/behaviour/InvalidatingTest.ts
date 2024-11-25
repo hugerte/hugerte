@@ -3,12 +3,12 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Future, Result, Singleton } from "@hugerte/katamari";
 import { SugarElement, Value } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Invalidating } from 'ephox/alloy/api/behaviour/Invalidating';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Invalidating } from "hugerte/alloy/api/behaviour/Invalidating";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
 
 UnitTest.asynctest('InvalidatingTest', (success, failure) => {
 

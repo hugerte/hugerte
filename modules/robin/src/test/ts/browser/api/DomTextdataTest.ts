@@ -3,7 +3,7 @@ import { Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 import { SugarElement } from "@hugerte/sugar";
 
-import * as DomTextdata from 'ephox/robin/api/dom/DomTextdata';
+import * as DomTextdata from "hugerte/robin/api/dom/DomTextdata";
 
 UnitTest.test('DomTextdataTest', () => {
   const a = SugarElement.fromText('alpha');

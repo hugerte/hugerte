@@ -1,9 +1,9 @@
 import { FutureResult } from "@hugerte/katamari";
 
-import { DataType } from 'ephox/jax/core/DataType';
-import * as Http from 'ephox/jax/core/Http';
-import * as HttpData from 'ephox/jax/core/HttpData';
-import * as HttpJwt from 'ephox/jax/core/HttpJwt';
+import { DataType } from "hugerte/jax/core/DataType";
+import * as Http from "hugerte/jax/core/Http";
+import * as HttpData from "hugerte/jax/core/HttpData";
+import * as HttpJwt from "hugerte/jax/core/HttpJwt";
 
 /* eslint-disable no-console */
 

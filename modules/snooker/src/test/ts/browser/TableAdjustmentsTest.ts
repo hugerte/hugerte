@@ -3,9 +3,9 @@ import { Arr } from "@hugerte/katamari";
 import { Css, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import * as Adjustments from 'ephox/snooker/resize/Adjustments';
+import * as ResizeBehaviour from "hugerte/snooker/api/ResizeBehaviour";
+import { TableSize } from "hugerte/snooker/api/TableSize";
+import * as Adjustments from "hugerte/snooker/resize/Adjustments";
 
 describe('TableAdjustmentsTest', () => {
   const preserveTable = ResizeBehaviour.preserveTable();

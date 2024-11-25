@@ -5,8 +5,8 @@ import { Spot } from "@hugerte/phoenix";
 import { Pattern } from "@hugerte/polaris";
 import { Compare, Html, Insert, InsertAll, SugarElement } from "@hugerte/sugar";
 
-import * as DomTextSearch from 'ephox/robin/api/dom/DomTextSearch';
-import { TextSeekerOutcome, TextSeekerPhaseConstructor } from 'ephox/robin/textdata/TextSeeker';
+import * as DomTextSearch from "hugerte/robin/api/dom/DomTextSearch";
+import { TextSeekerOutcome, TextSeekerPhaseConstructor } from "hugerte/robin/textdata/TextSeeker";
 
 UnitTest.test('DomTextSearchTest', () => {
   const wordbreaker = () => {

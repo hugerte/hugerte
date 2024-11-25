@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Optional } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 
-import * as DomGather from 'ephox/phoenix/api/dom/DomGather';
+import * as DomGather from "hugerte/phoenix/api/dom/DomGather";
 
 import { Page } from '../module/ephox/phoenix/test/Page';
 

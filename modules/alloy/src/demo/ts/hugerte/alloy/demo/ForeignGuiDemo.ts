@@ -2,14 +2,14 @@ import { Optional, Optionals } from "@hugerte/katamari";
 import { PlatformDetection } from "@hugerte/sand";
 import { Css, DomEvent, EventArgs, Height, Insert, InsertAll, SelectorFind, SugarElement, SugarElements, SugarNode, Width } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Dragging } from 'ephox/alloy/api/behaviour/Dragging';
-import { Pinching } from 'ephox/alloy/api/behaviour/Pinching';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as ForeignGui from 'ephox/alloy/api/system/ForeignGui';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Dragging } from "hugerte/alloy/api/behaviour/Dragging";
+import { Pinching } from "hugerte/alloy/api/behaviour/Pinching";
+import { Toggling } from "hugerte/alloy/api/behaviour/Toggling";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as ForeignGui from "hugerte/alloy/api/system/ForeignGui";
 
 import * as Frames from './frames/Frames';
 

@@ -2,7 +2,7 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as MatrixNavigation from 'ephox/alloy/navigation/MatrixNavigation';
+import * as MatrixNavigation from "hugerte/alloy/navigation/MatrixNavigation";
 
 interface GeneratedMatrix {
   readonly matrix: string[][];

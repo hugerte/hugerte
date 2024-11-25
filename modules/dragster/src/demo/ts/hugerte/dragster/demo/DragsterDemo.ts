@@ -1,9 +1,9 @@
 import { Css, DomEvent, Insert, SelectorFind, SugarElement } from "@hugerte/sugar";
 
-import * as Dragger from 'ephox/dragster/api/Dragger';
-import { Sizers } from 'ephox/dragster/demo/Sizers';
-import * as Grow from 'ephox/dragster/transform/Grow';
-import * as Relocate from 'ephox/dragster/transform/Relocate';
+import * as Dragger from "hugerte/dragster/api/Dragger";
+import { Sizers } from "hugerte/dragster/demo/Sizers";
+import * as Grow from "hugerte/dragster/transform/Grow";
+import * as Relocate from "hugerte/dragster/transform/Relocate";
 
 // const container = $('<div/>').append('Hi.');
 

@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { FutureResult } from "@hugerte/katamari";
 
-import { readBlobAsText } from 'ephox/jax/core/BlobReader';
-import * as Http from 'ephox/jax/core/Http';
+import { readBlobAsText } from "hugerte/jax/core/BlobReader";
+import * as Http from "hugerte/jax/core/Http";
 
 UnitTest.asynctest('HttpDownloadTest', (success, failure) => {
   let progressCalls = 0;

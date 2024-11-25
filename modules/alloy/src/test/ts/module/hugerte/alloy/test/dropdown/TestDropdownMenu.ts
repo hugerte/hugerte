@@ -2,17 +2,17 @@ import { ApproxStructure, Assertions, Step, StructAssert, TestStore, Waiter } fr
 import { Arr, Fun, Merger, Obj } from "@hugerte/katamari";
 import { SelectorFind } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Disabling } from 'ephox/alloy/api/behaviour/Disabling';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as ItemWidget from 'ephox/alloy/api/ui/ItemWidget';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import { TogglingConfigSpec } from 'ephox/alloy/behaviour/toggling/TogglingTypes';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
-import { ItemSpec } from 'ephox/alloy/ui/types/ItemTypes';
-import { PartialMenuSpec, TieredData, TieredMenuSpec } from 'ephox/alloy/ui/types/TieredMenuTypes';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Disabling } from "hugerte/alloy/api/behaviour/Disabling";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import { SketchSpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as ItemWidget from "hugerte/alloy/api/ui/ItemWidget";
+import { Menu } from "hugerte/alloy/api/ui/Menu";
+import { TogglingConfigSpec } from "hugerte/alloy/behaviour/toggling/TogglingTypes";
+import * as Tagger from "hugerte/alloy/registry/Tagger";
+import { ItemSpec } from "hugerte/alloy/ui/types/ItemTypes";
+import { PartialMenuSpec, TieredData, TieredMenuSpec } from "hugerte/alloy/ui/types/TieredMenuTypes";
 
 interface MenuState {
   readonly menuUid: string;

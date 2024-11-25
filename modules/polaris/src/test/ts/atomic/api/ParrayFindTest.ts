@@ -2,8 +2,8 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import * as PositionArray from 'ephox/polaris/api/PositionArray';
-import * as Parrays from 'ephox/polaris/test/Parrays';
+import * as PositionArray from "hugerte/polaris/api/PositionArray";
+import * as Parrays from "hugerte/polaris/test/Parrays";
 
 UnitTest.test('api.PositionArray.find', () => {
   const check = (expected: Optional<string>, input: string[], value: string | null) => {

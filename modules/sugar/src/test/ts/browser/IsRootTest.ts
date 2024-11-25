@@ -1,18 +1,18 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Fun, Optional } from "@hugerte/katamari";
 
-import * as Compare from 'ephox/sugar/api/dom/Compare';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as PredicateExists from 'ephox/sugar/api/search/PredicateExists';
-import * as PredicateFilter from 'ephox/sugar/api/search/PredicateFilter';
-import * as PredicateFind from 'ephox/sugar/api/search/PredicateFind';
-import * as SelectorExists from 'ephox/sugar/api/search/SelectorExists';
-import * as SelectorFilter from 'ephox/sugar/api/search/SelectorFilter';
-import * as SelectorFind from 'ephox/sugar/api/search/SelectorFind';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
-import * as Checkers from 'ephox/sugar/test/Checkers';
-import * as TestPage from 'ephox/sugar/test/TestPage';
+import * as Compare from "hugerte/sugar/api/dom/Compare";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as PredicateExists from "hugerte/sugar/api/search/PredicateExists";
+import * as PredicateFilter from "hugerte/sugar/api/search/PredicateFilter";
+import * as PredicateFind from "hugerte/sugar/api/search/PredicateFind";
+import * as SelectorExists from "hugerte/sugar/api/search/SelectorExists";
+import * as SelectorFilter from "hugerte/sugar/api/search/SelectorFilter";
+import * as SelectorFind from "hugerte/sugar/api/search/SelectorFind";
+import * as Traverse from "hugerte/sugar/api/search/Traverse";
+import * as Checkers from "hugerte/sugar/test/Checkers";
+import * as TestPage from "hugerte/sugar/test/TestPage";
 
 UnitTest.test('IsRootTest', () => {
   TestPage.connect(); // description of structure is in TestPage

@@ -3,8 +3,8 @@ import { Singleton } from "@hugerte/katamari";
 import { DomEvent, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import { copy, cut, pasteDataTransfer, pasteFiles, pasteItems, pPasteUrlItems } from 'ephox/agar/api/Clipboard';
-import { createFileFromString, getFileDataAsString } from 'ephox/agar/api/Files';
+import { copy, cut, pasteDataTransfer, pasteFiles, pasteItems, pPasteUrlItems } from "hugerte/agar/api/Clipboard";
+import { createFileFromString, getFileDataAsString } from "hugerte/agar/api/Files";
 
 describe('ClipboardTest', () => {
   const pasteState = Singleton.value<DataTransfer>();

@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, Logger, TestUniverse, TextGene } from "@hugerte/boss";
 
-import * as Wrapping from 'ephox/phoenix/api/general/Wrapping';
-import * as Finder from 'ephox/phoenix/test/Finder';
+import * as Wrapping from "hugerte/phoenix/api/general/Wrapping";
+import * as Finder from "hugerte/phoenix/test/Finder";
 
 UnitTest.test('WrapperTest', () => {
   const doc = TestUniverse(

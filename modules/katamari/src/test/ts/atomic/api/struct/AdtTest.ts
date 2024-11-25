@@ -2,9 +2,9 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import { Adt } from 'ephox/katamari/api/Adt';
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
+import { Adt } from "hugerte/katamari/api/Adt";
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Fun from "hugerte/katamari/api/Fun";
 
 const checkInvalid = (message: string, f: () => void) => {
   let error = false;

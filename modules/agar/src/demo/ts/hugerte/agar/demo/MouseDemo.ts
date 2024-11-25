@@ -1,4 +1,4 @@
-import * as DemoContainer from 'ephox/agar/demo/DemoContainer';
+import * as DemoContainer from "hugerte/agar/demo/DemoContainer";
 
 export const demo = (): void => {
   DemoContainer.init(

@@ -3,11 +3,11 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { Css } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { SplitSlidingToolbar } from 'ephox/alloy/api/ui/SplitSlidingToolbar';
-import * as TestPartialToolbarGroup from 'ephox/alloy/test/toolbar/TestPartialToolbarGroup';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { SplitSlidingToolbar } from "hugerte/alloy/api/ui/SplitSlidingToolbar";
+import * as TestPartialToolbarGroup from "hugerte/alloy/test/toolbar/TestPartialToolbarGroup";
 
 UnitTest.asynctest('SplitSlidingToolbarTest', (success, failure) => {
 

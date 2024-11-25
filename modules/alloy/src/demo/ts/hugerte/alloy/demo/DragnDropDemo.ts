@@ -1,12 +1,12 @@
 import { Class, Css, Replication, SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { DragnDrop } from 'ephox/alloy/api/behaviour/DragnDrop';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { DragnDrop } from "hugerte/alloy/api/behaviour/DragnDrop";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
 
 export default (): void => {
   const gui = Gui.create();

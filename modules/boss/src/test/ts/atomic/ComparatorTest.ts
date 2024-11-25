@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import { Gene } from 'ephox/boss/api/Gene';
-import * as Comparator from 'ephox/boss/mutant/Comparator';
+import { Gene } from "hugerte/boss/api/Gene";
+import * as Comparator from "hugerte/boss/mutant/Comparator";
 
 UnitTest.test('ComparatorTest', () => {
   const a = Gene('id1', 'bob', [], {}, { border: '10' });

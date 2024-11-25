@@ -2,8 +2,8 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { Attribute, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import { ResizeWire } from 'ephox/snooker/api/ResizeWire';
-import * as Bars from 'ephox/snooker/resize/Bars';
+import { ResizeWire } from "hugerte/snooker/api/ResizeWire";
+import * as Bars from "hugerte/snooker/resize/Bars";
 
 const resizeAttribute = 'data-snooker-resize';
 const isResizable = (elm: SugarElement<Element>) => Attribute.get(elm, resizeAttribute) !== 'false';

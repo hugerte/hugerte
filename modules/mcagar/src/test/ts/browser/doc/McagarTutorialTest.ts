@@ -1,10 +1,10 @@
 import { Pipeline, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
-import { Editor } from 'ephox/mcagar/alien/EditorTypes';
-import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';
-import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
-import { TinyUi } from 'ephox/mcagar/api/pipeline/TinyUi';
+import { Editor } from "hugerte/mcagar/alien/EditorTypes";
+import { TinyApis } from "hugerte/mcagar/api/pipeline/TinyApis";
+import * as TinyLoader from "hugerte/mcagar/api/pipeline/TinyLoader";
+import { TinyUi } from "hugerte/mcagar/api/pipeline/TinyUi";
 
 UnitTest.asynctest('McagarTutorialTest', (success, failure) => {
   const handler = (ed: Editor) => () => {

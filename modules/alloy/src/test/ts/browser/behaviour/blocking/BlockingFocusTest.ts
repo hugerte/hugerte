@@ -3,13 +3,13 @@ import { context, describe, it } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { SugarDocument, SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Blocking } from 'ephox/alloy/api/behaviour/Blocking';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Blocking } from "hugerte/alloy/api/behaviour/Blocking";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { Replacing } from "hugerte/alloy/api/behaviour/Replacing";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
 
 const memBlockRoot = Memento.record({
   dom: {

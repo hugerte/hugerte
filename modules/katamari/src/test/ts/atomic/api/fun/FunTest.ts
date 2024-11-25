@@ -2,7 +2,7 @@ import { context, describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
+import * as Fun from "hugerte/katamari/api/Fun";
 
 describe('atomic.katamari.api.fun.FunTest', () => {
   it('unit tests', () => {

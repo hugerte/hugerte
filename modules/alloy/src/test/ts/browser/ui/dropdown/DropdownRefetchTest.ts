@@ -3,19 +3,19 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Cell, Fun, Future, Optional, Result, Strings } from "@hugerte/katamari";
 import { Compare, SelectorFind } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Dropdown } from 'ephox/alloy/api/ui/Dropdown';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import { SketchSpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { Dropdown } from "hugerte/alloy/api/ui/Dropdown";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import { TestItem } from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import * as TestDropdownMenu from "hugerte/alloy/test/dropdown/TestDropdownMenu";
 
 interface TestDatum {
   readonly code: string;

@@ -2,16 +2,16 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Fun, Optional } from "@hugerte/katamari";
 import { PlatformDetection } from "@hugerte/sand";
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as DomEvent from 'ephox/sugar/api/events/DomEvent';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Css from 'ephox/sugar/api/properties/Css';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
-import * as Scroll from 'ephox/sugar/api/view/Scroll';
-import * as SugarLocation from 'ephox/sugar/api/view/SugarLocation';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as DomEvent from "hugerte/sugar/api/events/DomEvent";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import * as Css from "hugerte/sugar/api/properties/Css";
+import * as Traverse from "hugerte/sugar/api/search/Traverse";
+import * as Scroll from "hugerte/sugar/api/view/Scroll";
+import * as SugarLocation from "hugerte/sugar/api/view/SugarLocation";
 
 interface TestDocSpec {
   iframe: SugarElement<HTMLIFrameElement>;

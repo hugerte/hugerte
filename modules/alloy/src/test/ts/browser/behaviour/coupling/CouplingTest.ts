@@ -2,14 +2,14 @@ import { Assertions, Logger, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Attribute, SugarNode } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Coupling } from 'ephox/alloy/api/behaviour/Coupling';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
-import * as StepUtils from 'ephox/alloy/test/StepUtils';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Coupling } from "hugerte/alloy/api/behaviour/Coupling";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as Tagger from "hugerte/alloy/registry/Tagger";
+import * as StepUtils from "hugerte/alloy/test/StepUtils";
 
 UnitTest.asynctest('CouplingTest', (success, failure) => {
 

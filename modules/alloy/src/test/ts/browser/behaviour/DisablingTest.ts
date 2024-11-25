@@ -3,14 +3,14 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { Focus } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Disabling } from 'ephox/alloy/api/behaviour/Disabling';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Disabling } from "hugerte/alloy/api/behaviour/Disabling";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 UnitTest.asynctest('DisablingTest', (success, failure) => {
 

@@ -2,11 +2,11 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Optional } from 'ephox/katamari/api/Optional';
-import * as Optionals from 'ephox/katamari/api/Optionals';
-import * as ArbDataTypes from 'ephox/katamari/test/arb/ArbDataTypes';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Optional } from "hugerte/katamari/api/Optional";
+import * as Optionals from "hugerte/katamari/api/Optionals";
+import * as ArbDataTypes from "hugerte/katamari/test/arb/ArbDataTypes";
 
 describe('atomic.katamari.api.optional.OptionalsTest', () => {
   it('OptionsTest', () => {

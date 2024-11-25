@@ -1,8 +1,8 @@
 import { Fun } from "@hugerte/katamari";
 
-import * as Binder from 'ephox/porkbun/Binder';
-import { Bindable, Event } from 'ephox/porkbun/Event';
-import * as Events from 'ephox/porkbun/Events';
+import * as Binder from "hugerte/porkbun/Binder";
+import { Bindable, Event } from "hugerte/porkbun/Event";
+import * as Events from "hugerte/porkbun/Events";
 
 import { Outlaw, Saloon, ShootingEvent } from './Types';
 

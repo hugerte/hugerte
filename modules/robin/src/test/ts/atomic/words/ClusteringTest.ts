@@ -4,10 +4,10 @@ import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr, Optional, Optionals } from "@hugerte/katamari";
 import * as fc from 'fast-check';
 
-import { arbTextIds } from 'ephox/robin/test/Arbitraries';
-import * as Clustering from 'ephox/robin/words/Clustering';
-import { WordDecisionItem } from 'ephox/robin/words/WordDecision';
-import { LanguageZones } from 'ephox/robin/zone/LanguageZones';
+import { arbTextIds } from "hugerte/robin/test/Arbitraries";
+import * as Clustering from "hugerte/robin/words/Clustering";
+import { WordDecisionItem } from "hugerte/robin/words/WordDecision";
+import { LanguageZones } from "hugerte/robin/zone/LanguageZones";
 
 UnitTest.test('ClusteringTest', () => {
   const checkWords = (universe: TestUniverse, words: WordDecisionItem<Gene>[]) => {

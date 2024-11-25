@@ -2,7 +2,7 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
+import * as Arr from "hugerte/katamari/api/Arr";
 
 describe('atomic.katamari.api.arr.ArrUniqueTest', () => {
   it('unit tests', () => {

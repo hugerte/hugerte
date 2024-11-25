@@ -1,12 +1,12 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Compare from 'ephox/sugar/api/dom/Compare';
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import * as Awareness from 'ephox/sugar/api/selection/Awareness';
-import * as CursorPosition from 'ephox/sugar/api/selection/CursorPosition';
-import * as Edge from 'ephox/sugar/api/selection/Edge';
+import * as Compare from "hugerte/sugar/api/dom/Compare";
+import * as InsertAll from "hugerte/sugar/api/dom/InsertAll";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import * as Awareness from "hugerte/sugar/api/selection/Awareness";
+import * as CursorPosition from "hugerte/sugar/api/selection/CursorPosition";
+import * as Edge from "hugerte/sugar/api/selection/Edge";
 
 UnitTest.test('Browser Test: CursorPositionTest', () => {
   const container = SugarElement.fromTag('div');

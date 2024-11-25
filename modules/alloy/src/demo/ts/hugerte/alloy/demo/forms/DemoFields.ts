@@ -1,25 +1,25 @@
 import { Arr, Future, Result } from "@hugerte/katamari";
 import { Value } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Invalidating } from 'ephox/alloy/api/behaviour/Invalidating';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
-import { LazySink } from 'ephox/alloy/api/component/CommonTypes';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as ComponentUtil from 'ephox/alloy/api/component/ComponentUtil';
-import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
-import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { FormChooser } from 'ephox/alloy/api/ui/FormChooser';
-import { FormCoupledInputs } from 'ephox/alloy/api/ui/FormCoupledInputs';
-import { FormField } from 'ephox/alloy/api/ui/FormField';
-import { HtmlSelect } from 'ephox/alloy/api/ui/HtmlSelect';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { Typeahead } from 'ephox/alloy/api/ui/Typeahead';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Invalidating } from "hugerte/alloy/api/behaviour/Invalidating";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import { Tabstopping } from "hugerte/alloy/api/behaviour/Tabstopping";
+import { LazySink } from "hugerte/alloy/api/component/CommonTypes";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as ComponentUtil from "hugerte/alloy/api/component/ComponentUtil";
+import * as DomFactory from "hugerte/alloy/api/component/DomFactory";
+import { SketchSpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { FormChooser } from "hugerte/alloy/api/ui/FormChooser";
+import { FormCoupledInputs } from "hugerte/alloy/api/ui/FormCoupledInputs";
+import { FormField } from "hugerte/alloy/api/ui/FormField";
+import { HtmlSelect } from "hugerte/alloy/api/ui/HtmlSelect";
+import { Input } from "hugerte/alloy/api/ui/Input";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import { Typeahead } from "hugerte/alloy/api/ui/Typeahead";
+import * as Tagger from "hugerte/alloy/registry/Tagger";
 
 import * as DemoRenders from './DemoRenders';
 

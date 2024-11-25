@@ -2,10 +2,10 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import { Gene } from 'ephox/boss/api/Gene';
-import * as Locator from 'ephox/boss/mutant/Locator';
-import * as Tracks from 'ephox/boss/mutant/Tracks';
-import * as Up from 'ephox/boss/mutant/Up';
+import { Gene } from "hugerte/boss/api/Gene";
+import * as Locator from "hugerte/boss/mutant/Locator";
+import * as Tracks from "hugerte/boss/mutant/Tracks";
+import * as Up from "hugerte/boss/mutant/Up";
 
 UnitTest.test('UpTest', () => {
   const family = Tracks.track(

@@ -3,10 +3,10 @@ import { Arr } from "@hugerte/katamari";
 import { Css, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Deltas from 'ephox/snooker/calc/Deltas';
+import * as ResizeBehaviour from "hugerte/snooker/api/ResizeBehaviour";
+import { TableSize } from "hugerte/snooker/api/TableSize";
+import { Warehouse } from "hugerte/snooker/api/Warehouse";
+import * as Deltas from "hugerte/snooker/calc/Deltas";
 
 describe('ResizeTest', () => {
   const resizing = ResizeBehaviour.preserveTable();

@@ -2,10 +2,10 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
-import { arbNegativeInteger } from 'ephox/katamari/test/arb/ArbDataTypes';
-import { assertNone, assertOptional, assertSome } from 'ephox/katamari/test/AssertOptional';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Fun from "hugerte/katamari/api/Fun";
+import { arbNegativeInteger } from "hugerte/katamari/test/arb/ArbDataTypes";
+import { assertNone, assertOptional, assertSome } from "hugerte/katamari/test/AssertOptional";
 
 describe('atomic.katamari.api.arr.FindIndexTest', () => {
   it('unit tests', () => {

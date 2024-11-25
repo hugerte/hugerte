@@ -1,6 +1,6 @@
-import * as Outlaw from 'ephox/porkbun/demo/Outlaw';
-import * as Saloon from 'ephox/porkbun/demo/Saloon';
-import * as Sheriff from 'ephox/porkbun/demo/Sheriff';
+import * as Outlaw from "hugerte/porkbun/demo/Outlaw";
+import * as Saloon from "hugerte/porkbun/demo/Saloon";
+import * as Sheriff from "hugerte/porkbun/demo/Sheriff";
 
 declare const $: any;
 

@@ -2,8 +2,8 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Unique from 'ephox/katamari/api/Unique';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Unique from "hugerte/katamari/api/Unique";
 
 describe('atomic.katamari.api.arr.UniqueTest', () => {
   it('unit tests', () => {

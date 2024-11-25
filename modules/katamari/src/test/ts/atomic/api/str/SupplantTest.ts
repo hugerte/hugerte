@@ -1,8 +1,8 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import * as Strings from 'ephox/katamari/api/Strings';
+import * as Fun from "hugerte/katamari/api/Fun";
+import * as Strings from "hugerte/katamari/api/Strings";
 
 describe('atomic.katamari.api.str.SupplantTest', () => {
   it('supplant', () => {

@@ -1,17 +1,17 @@
 import { Chain, FocusTools, GeneralSteps, Logger, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as FocusManagers from 'ephox/alloy/api/focus/FocusManagers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import * as ItemWidget from 'ephox/alloy/api/ui/ItemWidget';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import { NormalItemSpec, WidgetItemSpec } from 'ephox/alloy/ui/types/ItemTypes';
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as FocusManagers from "hugerte/alloy/api/focus/FocusManagers";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import * as ItemWidget from "hugerte/alloy/api/ui/ItemWidget";
+import { Menu } from "hugerte/alloy/api/ui/Menu";
+import * as TestDropdownMenu from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import { NormalItemSpec, WidgetItemSpec } from "hugerte/alloy/ui/types/ItemTypes";
 
 UnitTest.asynctest('MenuFocusTest', (success, failure) => {
 

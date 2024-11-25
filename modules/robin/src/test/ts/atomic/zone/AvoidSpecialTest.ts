@@ -3,10 +3,10 @@ import { Gene, SpecialGene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 import { assert } from 'chai';
 
-import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
-import { WordDecision } from 'ephox/robin/words/WordDecision';
-import { ZoneDetails } from 'ephox/robin/zone/LanguageZones';
-import * as ZoneWalker from 'ephox/robin/zone/ZoneWalker';
+import { ZoneViewports } from "hugerte/robin/api/general/ZoneViewports";
+import { WordDecision } from "hugerte/robin/words/WordDecision";
+import { ZoneDetails } from "hugerte/robin/zone/LanguageZones";
+import * as ZoneWalker from "hugerte/robin/zone/ZoneWalker";
 
 describe('atomic.robin.zone.AvoidSpecialTest', () => {
   const doc = TestUniverse(Gene('root', 'root', [

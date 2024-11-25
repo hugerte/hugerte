@@ -1,15 +1,15 @@
 import { Arr, Optional } from "@hugerte/katamari";
 import { Class, SugarElement, Value } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Reflecting } from 'ephox/alloy/api/behaviour/Reflecting';
-import { Streaming } from 'ephox/alloy/api/behaviour/Streaming';
-import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Reflecting } from "hugerte/alloy/api/behaviour/Reflecting";
+import { Streaming } from "hugerte/alloy/api/behaviour/Streaming";
+import * as DomFactory from "hugerte/alloy/api/component/DomFactory";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { Input } from "hugerte/alloy/api/ui/Input";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
 
 export default (): void => {
   const gui = Gui.create();

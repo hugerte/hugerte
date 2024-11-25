@@ -1,11 +1,11 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Class from 'ephox/sugar/api/properties/Class';
-import * as Classes from 'ephox/sugar/api/properties/Classes';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import Div from 'ephox/sugar/test/Div';
-import EphoxElement from 'ephox/sugar/test/EphoxElement';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Class from "hugerte/sugar/api/properties/Class";
+import * as Classes from "hugerte/sugar/api/properties/Classes";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import Div from "hugerte/sugar/test/Div";
+import EphoxElement from "hugerte/sugar/test/EphoxElement";
 
 UnitTest.test('InsertTest', () => {
   const container = Div();

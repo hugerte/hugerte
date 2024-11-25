@@ -2,11 +2,11 @@ import { after, before } from '@ephox/bedrock-client';
 import { Fun, Optional } from "@hugerte/katamari";
 import { Compare, PredicateExists, SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 interface Sinks {
   readonly fixed: () => AlloyComponent;

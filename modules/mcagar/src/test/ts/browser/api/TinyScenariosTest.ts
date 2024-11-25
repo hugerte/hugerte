@@ -3,10 +3,10 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { PlatformDetection } from "@hugerte/sand";
 import { SugarNode } from "@hugerte/sugar";
 
-import { Editor } from 'ephox/mcagar/alien/EditorTypes';
-import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';
-import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
-import { TinyScenarios } from 'ephox/mcagar/api/pipeline/TinyScenarios';
+import { Editor } from "hugerte/mcagar/alien/EditorTypes";
+import { TinyApis } from "hugerte/mcagar/api/pipeline/TinyApis";
+import * as TinyLoader from "hugerte/mcagar/api/pipeline/TinyLoader";
+import { TinyScenarios } from "hugerte/mcagar/api/pipeline/TinyScenarios";
 
 UnitTest.asynctest('TinyScenariosTest', (success, failure) => {
 

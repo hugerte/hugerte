@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional, Unicode } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import * as WordUtil from 'ephox/robin/util/WordUtil';
+import * as WordUtil from "hugerte/robin/util/WordUtil";
 
 UnitTest.test('Word Util', () => {
   const checkNone = (text: string, word: (w: string) => Optional<string>) => {

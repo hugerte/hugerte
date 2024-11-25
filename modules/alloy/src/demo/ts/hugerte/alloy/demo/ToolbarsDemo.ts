@@ -1,18 +1,18 @@
 import { Arr, Fun, Result } from "@hugerte/katamari";
 import { Class, SugarElement } from "@hugerte/sugar";
 
-import { LazySink } from 'ephox/alloy/api/component/CommonTypes';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { CustomList } from 'ephox/alloy/api/ui/CustomList';
-import { SplitFloatingToolbar } from 'ephox/alloy/api/ui/SplitFloatingToolbar';
-import { SplitSlidingToolbar } from 'ephox/alloy/api/ui/SplitSlidingToolbar';
-import { Toolbar } from 'ephox/alloy/api/ui/Toolbar';
-import { ToolbarGroup } from 'ephox/alloy/api/ui/ToolbarGroup';
-import * as DemoSink from 'ephox/alloy/demo/DemoSink';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
+import { LazySink } from "hugerte/alloy/api/component/CommonTypes";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { CustomList } from "hugerte/alloy/api/ui/CustomList";
+import { SplitFloatingToolbar } from "hugerte/alloy/api/ui/SplitFloatingToolbar";
+import { SplitSlidingToolbar } from "hugerte/alloy/api/ui/SplitSlidingToolbar";
+import { Toolbar } from "hugerte/alloy/api/ui/Toolbar";
+import { ToolbarGroup } from "hugerte/alloy/api/ui/ToolbarGroup";
+import * as DemoSink from "hugerte/alloy/demo/DemoSink";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
 
 import * as DemoRenders from './forms/DemoRenders';
 

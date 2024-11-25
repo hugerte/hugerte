@@ -2,8 +2,8 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { Css, SugarElement } from "@hugerte/sugar";
 
-import * as CopySelected from 'ephox/snooker/api/CopySelected';
-import { reducePrecision } from 'ephox/snooker/test/SizeUtils';
+import * as CopySelected from "hugerte/snooker/api/CopySelected";
+import { reducePrecision } from "hugerte/snooker/test/SizeUtils";
 
 const SEL_CLASS = 'copy-selected';
 

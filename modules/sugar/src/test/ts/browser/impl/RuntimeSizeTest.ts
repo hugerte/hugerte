@@ -2,16 +2,16 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Css from 'ephox/sugar/api/properties/Css';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import * as SelectorFilter from 'ephox/sugar/api/search/SelectorFilter';
-import * as RuntimeSize from 'ephox/sugar/impl/RuntimeSize';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as InsertAll from "hugerte/sugar/api/dom/InsertAll";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import * as Css from "hugerte/sugar/api/properties/Css";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import * as SelectorFilter from "hugerte/sugar/api/search/SelectorFilter";
+import * as RuntimeSize from "hugerte/sugar/impl/RuntimeSize";
 
 interface TableModel {
   readonly total: number;

@@ -2,7 +2,7 @@ import { Chain, Cleaner, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logg
 import { UnitTest } from '@ephox/bedrock-client';
 import { Attribute, DomEvent, EventArgs, Insert, Remove, SugarElement, SugarNode, SugarText } from "@hugerte/sugar";
 
-import * as GuiEvents from 'ephox/alloy/events/GuiEvents';
+import * as GuiEvents from "hugerte/alloy/events/GuiEvents";
 
 interface StoreGuiEventsTest {
   readonly eventName: string;

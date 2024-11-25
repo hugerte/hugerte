@@ -1,12 +1,12 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { Class, Css, DomEvent, Html, Insert, InsertAll, Remove, SugarElement } from "@hugerte/sugar";
 
-import { Chain } from 'ephox/agar/api/Chain';
-import * as ChainSequence from 'ephox/agar/api/ChainSequence';
-import * as Guard from 'ephox/agar/api/Guard';
-import * as Mouse from 'ephox/agar/api/Mouse';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import * as UiFinder from 'ephox/agar/api/UiFinder';
+import { Chain } from "hugerte/agar/api/Chain";
+import * as ChainSequence from "hugerte/agar/api/ChainSequence";
+import * as Guard from "hugerte/agar/api/Guard";
+import * as Mouse from "hugerte/agar/api/Mouse";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import * as UiFinder from "hugerte/agar/api/UiFinder";
 
 UnitTest.asynctest('Example for Tutorial', (success, failure) => {
 

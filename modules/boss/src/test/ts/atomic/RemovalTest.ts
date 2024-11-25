@@ -1,11 +1,11 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional } from "@hugerte/katamari";
 
-import { Gene } from 'ephox/boss/api/Gene';
-import * as Locator from 'ephox/boss/mutant/Locator';
-import * as Logger from 'ephox/boss/mutant/Logger';
-import * as Removal from 'ephox/boss/mutant/Removal';
-import * as Tracks from 'ephox/boss/mutant/Tracks';
+import { Gene } from "hugerte/boss/api/Gene";
+import * as Locator from "hugerte/boss/mutant/Locator";
+import * as Logger from "hugerte/boss/mutant/Logger";
+import * as Removal from "hugerte/boss/mutant/Removal";
+import * as Tracks from "hugerte/boss/mutant/Tracks";
 
 UnitTest.test('RemovalTest', () => {
   const data = (): Gene => {

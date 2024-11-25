@@ -2,13 +2,13 @@ import { Chain, Logger, Mouse, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Classes, EventArgs, SelectorFind } from "@hugerte/sugar";
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
 
 UnitTest.asynctest('AlloyTriggersRetargetTest', (success, failure) => {
   /*

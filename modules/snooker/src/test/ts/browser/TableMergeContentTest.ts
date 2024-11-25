@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { Html, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import * as TableContent from 'ephox/snooker/api/TableContent';
+import * as TableContent from "hugerte/snooker/api/TableContent";
 
 UnitTest.test('TableMergeContentTest', () => {
   const mergeContentTest = (specs: { label: string; html: string; expected: string }[]) => {

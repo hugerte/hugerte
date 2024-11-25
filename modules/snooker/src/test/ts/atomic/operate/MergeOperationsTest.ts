@@ -2,8 +2,8 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Fun } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as MergingOperations from 'ephox/snooker/operate/MergingOperations';
+import * as Structs from "hugerte/snooker/api/Structs";
+import * as MergingOperations from "hugerte/snooker/operate/MergingOperations";
 
 UnitTest.test('MergeOperationsTest', () => {
   const b = Structs.bounds;

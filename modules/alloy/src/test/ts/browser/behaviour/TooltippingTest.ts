@@ -3,19 +3,19 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Fun, Result } from "@hugerte/katamari";
 import { SelectorFind } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { Receiving } from 'ephox/alloy/api/behaviour/Receiving';
-import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
-import { Tooltipping } from 'ephox/alloy/api/behaviour/Tooltipping';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { Receiving } from "hugerte/alloy/api/behaviour/Receiving";
+import { Replacing } from "hugerte/alloy/api/behaviour/Replacing";
+import { Tooltipping } from "hugerte/alloy/api/behaviour/Tooltipping";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 UnitTest.asynctest('Tooltipping Behaviour', (success, failure) => {
 

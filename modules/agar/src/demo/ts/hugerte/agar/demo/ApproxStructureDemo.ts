@@ -1,9 +1,9 @@
 import { Class, Html, InsertAll, SugarElement } from "@hugerte/sugar";
 
-import * as ApproxStructure from 'ephox/agar/api/ApproxStructure';
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import * as DemoContainer from 'ephox/agar/demo/DemoContainer';
+import * as ApproxStructure from "hugerte/agar/api/ApproxStructure";
+import * as Assertions from "hugerte/agar/api/Assertions";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import * as DemoContainer from "hugerte/agar/demo/DemoContainer";
 
 export const demo = (): void => {
   DemoContainer.init(

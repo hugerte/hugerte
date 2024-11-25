@@ -1,10 +1,10 @@
 import { describe, it } from '@ephox/bedrock-client';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Optional } from 'ephox/katamari/api/Optional';
-import { assertNone, assertSome } from 'ephox/katamari/test/AssertOptional';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Optional } from "hugerte/katamari/api/Optional";
+import { assertNone, assertSome } from "hugerte/katamari/test/AssertOptional";
 
 describe('atomic.katamari.api.arr.ArrFindTest', () => {
   it('unit tests', () => {

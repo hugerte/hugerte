@@ -3,8 +3,8 @@ import { Assert } from '@ephox/bedrock-client';
 import { Gene, TestUniverse } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 
-import { LanguageZones } from 'ephox/robin/zone/LanguageZones';
-import { Zone } from 'ephox/robin/zone/Zones';
+import { LanguageZones } from "hugerte/robin/zone/LanguageZones";
+import { Zone } from "hugerte/robin/zone/Zones";
 
 export interface RawZone {
   lang: string;

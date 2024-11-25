@@ -2,9 +2,9 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { Css, Insert, Remove, SelectorFind, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as ColumnSizes from 'ephox/snooker/resize/ColumnSizes';
+import { TableSize } from "hugerte/snooker/api/TableSize";
+import { Warehouse } from "hugerte/snooker/api/Warehouse";
+import * as ColumnSizes from "hugerte/snooker/resize/ColumnSizes";
 
 const noneTableHtml = '<table><tbody><tr><td>A</td><td>A</td></tr></tbody></table>';
 const pixelTableHtml = '<table style="width: 400px; border-collapse: collapse"><tbody><tr><td style="width: 200px;">A</td><td style="width: 200px;">A</td></tr></tbody></table>';

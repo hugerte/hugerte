@@ -1,18 +1,18 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { PlatformDetection } from "@hugerte/sand";
 
-import * as Compare from 'ephox/sugar/api/dom/Compare';
-import * as Hierarchy from 'ephox/sugar/api/dom/Hierarchy';
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Class from 'ephox/sugar/api/properties/Class';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import { SimSelection } from 'ephox/sugar/api/selection/SimSelection';
-import { Situ } from 'ephox/sugar/api/selection/Situ';
-import * as WindowSelection from 'ephox/sugar/api/selection/WindowSelection';
+import * as Compare from "hugerte/sugar/api/dom/Compare";
+import * as Hierarchy from "hugerte/sugar/api/dom/Hierarchy";
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import * as Class from "hugerte/sugar/api/properties/Class";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import { SimSelection } from "hugerte/sugar/api/selection/SimSelection";
+import { Situ } from "hugerte/sugar/api/selection/Situ";
+import * as WindowSelection from "hugerte/sugar/api/selection/WindowSelection";
 
 interface VariantRange {
   start: number[];

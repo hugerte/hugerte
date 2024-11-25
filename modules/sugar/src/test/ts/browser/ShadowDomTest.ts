@@ -3,20 +3,20 @@ import { Testable } from '@ephox/dispute';
 import { Arr } from "@hugerte/katamari";
 import fc from 'fast-check';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as DomEvent from 'ephox/sugar/api/events/DomEvent';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import * as SugarDocument from 'ephox/sugar/api/node/SugarDocument';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import { tElement } from 'ephox/sugar/api/node/SugarElementInstances';
-import * as SugarHead from 'ephox/sugar/api/node/SugarHead';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import * as SugarShadowDom from 'ephox/sugar/api/node/SugarShadowDom';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as SelectorFind from 'ephox/sugar/api/search/SelectorFind';
-import { htmlBlockTagName, htmlInlineTagName } from 'ephox/sugar/test/Arbitrary';
-import { setupShadowRoot, withIframe, withNormalElement, withShadowElement, withShadowElementInMode } from 'ephox/sugar/test/WithHelpers';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as DomEvent from "hugerte/sugar/api/events/DomEvent";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import * as SugarDocument from "hugerte/sugar/api/node/SugarDocument";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import { tElement } from "hugerte/sugar/api/node/SugarElementInstances";
+import * as SugarHead from "hugerte/sugar/api/node/SugarHead";
+import * as SugarNode from "hugerte/sugar/api/node/SugarNode";
+import * as SugarShadowDom from "hugerte/sugar/api/node/SugarShadowDom";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import * as SelectorFind from "hugerte/sugar/api/search/SelectorFind";
+import { htmlBlockTagName, htmlInlineTagName } from "hugerte/sugar/test/Arbitrary";
+import { setupShadowRoot, withIframe, withNormalElement, withShadowElement, withShadowElementInMode } from "hugerte/sugar/test/WithHelpers";
 
 type RootNode = SugarShadowDom.RootNode;
 

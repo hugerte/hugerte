@@ -2,13 +2,13 @@ import { ApproxStructure, Assertions, FocusTools, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Value } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { DatasetRepresentingState } from 'ephox/alloy/behaviour/representing/RepresentingTypes';
-import { TypeaheadData } from 'ephox/alloy/ui/types/TypeaheadTypes';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { DatasetRepresentingState } from "hugerte/alloy/behaviour/representing/RepresentingTypes";
+import { TypeaheadData } from "hugerte/alloy/ui/types/TypeaheadTypes";
 
 UnitTest.asynctest('RepresentingTest (mode: dataset)', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => GuiFactory.build(

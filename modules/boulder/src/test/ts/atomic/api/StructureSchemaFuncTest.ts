@@ -2,10 +2,10 @@ import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Result } from "@hugerte/katamari";
 
-import * as FieldSchema from 'ephox/boulder/api/FieldSchema';
-import * as Objects from 'ephox/boulder/api/Objects';
-import * as StructureSchema from 'ephox/boulder/api/StructureSchema';
-import * as ValueType from 'ephox/boulder/core/ValueType';
+import * as FieldSchema from "hugerte/boulder/api/FieldSchema";
+import * as Objects from "hugerte/boulder/api/Objects";
+import * as StructureSchema from "hugerte/boulder/api/StructureSchema";
+import * as ValueType from "hugerte/boulder/core/ValueType";
 
 UnitTest.test('Atomic Test: api.StructureSchemaFuncTest', () => {
   const checkErr = (label, expectedPart, v, processor) => {

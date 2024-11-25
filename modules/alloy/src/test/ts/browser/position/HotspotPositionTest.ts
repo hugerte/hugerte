@@ -2,13 +2,13 @@ import { Chain, NamedChain } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
-import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as ChainUtils from "hugerte/alloy/test/ChainUtils";
+import * as PositionTestUtils from "hugerte/alloy/test/PositionTestUtils";
+import * as Sinks from "hugerte/alloy/test/Sinks";
 
 UnitTest.asynctest('HotspotPositionTest', (success, failure) => {
 

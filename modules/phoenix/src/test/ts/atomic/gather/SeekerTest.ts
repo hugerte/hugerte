@@ -3,8 +3,8 @@ import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import * as Gather from 'ephox/phoenix/api/general/Gather';
-import * as Finder from 'ephox/phoenix/test/Finder';
+import * as Gather from "hugerte/phoenix/api/general/Gather";
+import * as Finder from "hugerte/phoenix/test/Finder";
 
 UnitTest.test('Seeker Test', () => {
   const some = Optional.some;

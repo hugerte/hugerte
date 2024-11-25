@@ -1,13 +1,13 @@
 import { Fun, Obj, Optional, Optionals } from "@hugerte/katamari";
 import { Attribute, Css, DomEvent, EventArgs, Insert, InsertAll, Ready, Replication, SelectorFind, SugarElement, SugarNode } from "@hugerte/sugar";
 
-import { Generators } from 'ephox/snooker/api/Generators';
-import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';
-import { ResizeWire } from 'ephox/snooker/api/ResizeWire';
-import * as TableOperations from 'ephox/snooker/api/TableOperations';
-import { TableResize } from 'ephox/snooker/api/TableResize';
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import { OperationCallback, TargetElement, TargetSelection } from 'ephox/snooker/model/RunOperation';
+import { Generators } from "hugerte/snooker/api/Generators";
+import * as ResizeBehaviour from "hugerte/snooker/api/ResizeBehaviour";
+import { ResizeWire } from "hugerte/snooker/api/ResizeWire";
+import * as TableOperations from "hugerte/snooker/api/TableOperations";
+import { TableResize } from "hugerte/snooker/api/TableResize";
+import { TableSize } from "hugerte/snooker/api/TableSize";
+import { OperationCallback, TargetElement, TargetSelection } from "hugerte/snooker/model/RunOperation";
 
 Ready.document(() => {
 

@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import { Chain } from 'ephox/agar/api/Chain';
+import { Chain } from "hugerte/agar/api/Chain";
 
 UnitTest.asynctest('ChainPipelineTest', (success, failure) => {
 

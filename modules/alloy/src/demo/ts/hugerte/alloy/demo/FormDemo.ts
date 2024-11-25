@@ -1,22 +1,22 @@
 import { Obj, Result } from "@hugerte/katamari";
 import { Class, SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { ExpandableForm } from 'ephox/alloy/api/ui/ExpandableForm';
-import { Form } from 'ephox/alloy/api/ui/Form';
-import { FormField } from 'ephox/alloy/api/ui/FormField';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import DemoDataset from 'ephox/alloy/demo/DemoDataset';
-import * as DemoSink from 'ephox/alloy/demo/DemoSink';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
-import { FormParts } from 'ephox/alloy/ui/types/FormTypes';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import { Tabstopping } from "hugerte/alloy/api/behaviour/Tabstopping";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { ExpandableForm } from "hugerte/alloy/api/ui/ExpandableForm";
+import { Form } from "hugerte/alloy/api/ui/Form";
+import { FormField } from "hugerte/alloy/api/ui/FormField";
+import { Input } from "hugerte/alloy/api/ui/Input";
+import DemoDataset from "hugerte/alloy/demo/DemoDataset";
+import * as DemoSink from "hugerte/alloy/demo/DemoSink";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
+import { FormParts } from "hugerte/alloy/ui/types/FormTypes";
 
 import * as DemoFields from './forms/DemoFields';
 

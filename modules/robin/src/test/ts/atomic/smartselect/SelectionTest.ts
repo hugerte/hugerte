@@ -3,7 +3,7 @@ import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Unicode } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import * as Selection from 'ephox/robin/smartselect/Selection';
+import * as Selection from "hugerte/robin/smartselect/Selection";
 
 UnitTest.test('SelectionTest', () => {
   const doc1 = TestUniverse(Gene('root', 'root', [

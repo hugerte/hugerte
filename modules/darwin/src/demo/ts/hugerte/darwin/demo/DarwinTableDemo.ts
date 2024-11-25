@@ -4,12 +4,12 @@ import {
   WindowSelection
 } from "@hugerte/sugar";
 
-import { Ephemera } from 'ephox/darwin/api/Ephemera';
-import * as InputHandlers from 'ephox/darwin/api/InputHandlers';
-import { SelectionAnnotation } from 'ephox/darwin/api/SelectionAnnotation';
-import * as SelectionKeys from 'ephox/darwin/api/SelectionKeys';
-import { Response } from 'ephox/darwin/selection/Response';
-import * as Util from 'ephox/darwin/selection/Util';
+import { Ephemera } from "hugerte/darwin/api/Ephemera";
+import * as InputHandlers from "hugerte/darwin/api/InputHandlers";
+import { SelectionAnnotation } from "hugerte/darwin/api/SelectionAnnotation";
+import * as SelectionKeys from "hugerte/darwin/api/SelectionKeys";
+import { Response } from "hugerte/darwin/selection/Response";
+import * as Util from "hugerte/darwin/selection/Util";
 
 const ephoxUi = SelectorFind.first('#ephox-ui').getOrDie();
 Attribute.set(ephoxUi, 'contenteditable', 'true');

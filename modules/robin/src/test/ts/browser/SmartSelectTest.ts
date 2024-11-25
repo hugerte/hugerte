@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Compare, Hierarchy, Insert, InsertAll, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import * as DomSmartSelect from 'ephox/robin/api/dom/DomSmartSelect';
+import * as DomSmartSelect from "hugerte/robin/api/dom/DomSmartSelect";
 
 UnitTest.test('SmartSelectTest', () => {
   const editor = SugarElement.fromTag('div');

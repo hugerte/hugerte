@@ -3,10 +3,10 @@ import { describe, it } from '@ephox/bedrock-client';
 import { Fun, Optional } from "@hugerte/katamari";
 import { Focus, SugarElement } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import * as TestDropdownMenu from "hugerte/alloy/test/dropdown/TestDropdownMenu";
 
 /* Menu structure
 

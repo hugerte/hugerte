@@ -1,9 +1,9 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Css from 'ephox/sugar/api/properties/Css';
-import { CssProperty } from 'ephox/sugar/api/properties/CssProperty';
-import EphoxElement from 'ephox/sugar/test/EphoxElement';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Css from "hugerte/sugar/api/properties/Css";
+import { CssProperty } from "hugerte/sugar/api/properties/CssProperty";
+import EphoxElement from "hugerte/sugar/test/EphoxElement";
 
 UnitTest.test('CssProperty', () => {
   const propertyName = 'text-align';

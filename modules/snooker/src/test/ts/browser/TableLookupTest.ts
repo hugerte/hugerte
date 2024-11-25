@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { Compare, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import * as TableLookup from 'ephox/snooker/api/TableLookup';
+import * as TableLookup from "hugerte/snooker/api/TableLookup";
 
 const testWithSelector = (html: string, selector: string, assert: (element: SugarElement<Element>) => void) => {
   const element = SugarElement.fromHtml(html);

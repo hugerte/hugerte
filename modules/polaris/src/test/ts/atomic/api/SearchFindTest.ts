@@ -1,10 +1,10 @@
 import { Assert, it, describe } from '@ephox/bedrock-client';
 import { Arr, Unicode } from "@hugerte/katamari";
 
-import * as Pattern from 'ephox/polaris/api/Pattern';
-import * as Search from 'ephox/polaris/api/Search';
-import * as Safe from 'ephox/polaris/pattern/Safe';
-import { PRegExp } from 'ephox/polaris/pattern/Types';
+import * as Pattern from "hugerte/polaris/api/Pattern";
+import * as Search from "hugerte/polaris/api/Search";
+import * as Safe from "hugerte/polaris/pattern/Safe";
+import { PRegExp } from "hugerte/polaris/pattern/Types";
 
 describe('atomic.polaris.api.SearchFindTest', () => {
   const checkAll = (expected: [number, number][], input: string, pattern: PRegExp) => {

@@ -2,11 +2,11 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Result } from 'ephox/katamari/api/Result';
-import * as Results from 'ephox/katamari/api/Results';
-import { arbResultError, arbResultValue } from 'ephox/katamari/test/arb/ArbDataTypes';
-import { assertResult } from 'ephox/katamari/test/AssertResult';
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Result } from "hugerte/katamari/api/Result";
+import * as Results from "hugerte/katamari/api/Results";
+import { arbResultError, arbResultValue } from "hugerte/katamari/test/arb/ArbDataTypes";
+import { assertResult } from "hugerte/katamari/test/AssertResult";
 
 describe('atomic.katamari.api.arr.ResultValueTest', () => {
   it('unit tests', () => {

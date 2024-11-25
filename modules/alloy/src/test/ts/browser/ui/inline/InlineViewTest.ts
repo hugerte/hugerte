@@ -3,17 +3,17 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Future, Optional, Result } from "@hugerte/katamari";
 import { Compare, Css, Html } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Dropdown } from 'ephox/alloy/api/ui/Dropdown';
-import { InlineView } from 'ephox/alloy/api/ui/InlineView';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as Sinks from 'ephox/alloy/test/Sinks';
-import * as TestBroadcasts from 'ephox/alloy/test/TestBroadcasts';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { Dropdown } from "hugerte/alloy/api/ui/Dropdown";
+import { InlineView } from "hugerte/alloy/api/ui/InlineView";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import { TestItem } from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import * as TestDropdownMenu from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import * as Sinks from "hugerte/alloy/test/Sinks";
+import * as TestBroadcasts from "hugerte/alloy/test/TestBroadcasts";
 
 UnitTest.asynctest('InlineViewTest', (success, failure) => {
 

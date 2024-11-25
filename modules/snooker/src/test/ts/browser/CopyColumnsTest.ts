@@ -2,7 +2,7 @@ import { Assert, describe, it } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import { copyCols } from 'ephox/snooker/api/CopyCols';
+import { copyCols } from "hugerte/snooker/api/CopyCols";
 
 describe('CopyColumnsTest', () => {
   const check = (

@@ -2,12 +2,12 @@ import { ApproxStructure, Assertions, Chain, Step, StructAssert } from "@hugerte
 import { UnitTest } from '@ephox/bedrock-client';
 import { Result } from "@hugerte/katamari";
 
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import { SlotContainer } from 'ephox/alloy/api/ui/SlotContainer';
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Input } from "hugerte/alloy/api/ui/Input";
+import { SlotContainer } from "hugerte/alloy/api/ui/SlotContainer";
 
 UnitTest.asynctest('SlotContainerTest', (success, failure) => {
 

@@ -2,13 +2,13 @@ import { Pipeline, Step, TestStore } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Attribute, SugarBody, SugarNode, Traverse } from "@hugerte/sugar";
 
-import * as EventRoot from 'ephox/alloy/alien/EventRoot';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as EventRoot from "hugerte/alloy/alien/EventRoot";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 UnitTest.asynctest('Browser Test: events.AttachingEventTest', (success, failure) => {
 

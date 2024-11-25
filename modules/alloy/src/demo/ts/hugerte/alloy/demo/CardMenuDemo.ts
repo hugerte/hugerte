@@ -2,16 +2,16 @@ import { Objects } from "@hugerte/boulder";
 import { Optional } from "@hugerte/katamari";
 import { Class, SelectorFind, SugarElement, Width } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Transitioning } from 'ephox/alloy/api/behaviour/Transitioning';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
-import { ItemSpec } from 'ephox/alloy/ui/types/ItemTypes';
-import { HighlightOnOpen } from 'ephox/alloy/ui/types/TieredMenuTypes';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Transitioning } from "hugerte/alloy/api/behaviour/Transitioning";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Menu } from "hugerte/alloy/api/ui/Menu";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
+import { ItemSpec } from "hugerte/alloy/ui/types/ItemTypes";
+import { HighlightOnOpen } from "hugerte/alloy/ui/types/TieredMenuTypes";
 
 /* eslint-disable no-console */
 

@@ -3,15 +3,15 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Optional } from "@hugerte/katamari";
 import { Compare, SugarBody } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Replacing } from "hugerte/alloy/api/behaviour/Replacing";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as DomFactory from "hugerte/alloy/api/component/DomFactory";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 UnitTest.asynctest('ReplacingTest', (success, failure) => {
   const make = (reuseDom: boolean) => Container.sketch({

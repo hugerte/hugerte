@@ -3,9 +3,9 @@ import { Pprint, Testable } from '@ephox/dispute';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import { Result } from 'ephox/katamari/api/Result';
-import { tResult } from 'ephox/katamari/api/ResultInstances';
-import { assertResult } from 'ephox/katamari/test/AssertResult';
+import { Result } from "hugerte/katamari/api/Result";
+import { tResult } from "hugerte/katamari/api/ResultInstances";
+import { assertResult } from "hugerte/katamari/test/AssertResult";
 
 const { tNumber, tString } = Testable;
 

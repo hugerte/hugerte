@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { PlatformDetection } from "@hugerte/sand";
 
-import * as WindowVisualViewport from 'ephox/sugar/api/view/WindowVisualViewport';
+import * as WindowVisualViewport from "hugerte/sugar/api/view/WindowVisualViewport";
 
 UnitTest.test('WindowVisualViewport.getBounds', () => {
   const deviceType = PlatformDetection.detect().deviceType;

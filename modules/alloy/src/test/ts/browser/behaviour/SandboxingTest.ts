@@ -3,15 +3,15 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { SugarNode } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Sandboxing } from 'ephox/alloy/api/behaviour/Sandboxing';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Sandboxing } from "hugerte/alloy/api/behaviour/Sandboxing";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { Input } from "hugerte/alloy/api/ui/Input";
+import * as Sinks from "hugerte/alloy/test/Sinks";
 
 UnitTest.asynctest('SandboxingTest', (success, failure) => {
 

@@ -1,10 +1,10 @@
 import { Css, Height, SelectorFind, SugarElement, Width } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Pinching } from 'ephox/alloy/api/behaviour/Pinching';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Pinching } from "hugerte/alloy/api/behaviour/Pinching";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
 
 export default (): void => {
   const ephoxUi = SelectorFind.first('#ephox-ui').getOrDie();

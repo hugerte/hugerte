@@ -2,10 +2,10 @@ import { ApproxStructure, Assertions, Step, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Css } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Transitioning } from 'ephox/alloy/api/behaviour/Transitioning';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Transitioning } from "hugerte/alloy/api/behaviour/Transitioning";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
 
 UnitTest.asynctest('TransitioningTest', (success, failure) => {
 

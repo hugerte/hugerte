@@ -4,11 +4,11 @@ import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import * as Bubble from 'ephox/alloy/positioning/layout/Bubble';
-import * as LayoutInset from 'ephox/alloy/positioning/layout/LayoutInset';
-import { Placement, setPlacement } from 'ephox/alloy/positioning/layout/Placement';
-import { boxArb, boundsArb } from 'ephox/alloy/test/BoundsUtils';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
+import * as Bubble from "hugerte/alloy/positioning/layout/Bubble";
+import * as LayoutInset from "hugerte/alloy/positioning/layout/LayoutInset";
+import { Placement, setPlacement } from "hugerte/alloy/positioning/layout/Placement";
+import { boxArb, boundsArb } from "hugerte/alloy/test/BoundsUtils";
 
 describe('LayoutInsetTest', () => {
   const placements = [

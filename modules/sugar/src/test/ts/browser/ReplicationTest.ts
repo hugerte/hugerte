@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Replication from 'ephox/sugar/api/dom/Replication';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
+import * as Replication from "hugerte/sugar/api/dom/Replication";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Traverse from "hugerte/sugar/api/search/Traverse";
 
 interface TestSpec {
   name: string;

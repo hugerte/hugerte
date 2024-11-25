@@ -1,8 +1,8 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
 import { Arr, Optional, Optionals } from "@hugerte/katamari";
 
-import { WordScope } from 'ephox/robin/data/WordScope';
-import * as Identify from 'ephox/robin/words/Identify';
+import { WordScope } from "hugerte/robin/data/WordScope";
+import * as Identify from "hugerte/robin/words/Identify";
 
 describe('atomic.robin.words.IdentifyTest', () => {
   const none = Optional.none<string>();

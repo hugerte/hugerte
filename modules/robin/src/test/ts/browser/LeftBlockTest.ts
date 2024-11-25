@@ -3,7 +3,7 @@ import { DomUniverse, Universe } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 import { Hierarchy, Insert, InsertAll, Remove, Replication, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import * as LeftBlock from 'ephox/robin/api/general/LeftBlock';
+import * as LeftBlock from "hugerte/robin/api/general/LeftBlock";
 
 UnitTest.test('LeftBlockTest', () => {
   const universe = DomUniverse();

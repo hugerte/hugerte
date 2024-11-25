@@ -3,19 +3,19 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Fun, Future, Optional, Result } from "@hugerte/katamari";
 import { Attribute } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { SplitDropdown } from 'ephox/alloy/api/ui/SplitDropdown';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { SplitDropdown } from "hugerte/alloy/api/ui/SplitDropdown";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import { TestItem } from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import * as TestDropdownMenu from "hugerte/alloy/test/dropdown/TestDropdownMenu";
 
 UnitTest.asynctest('SplitDropdown List', (success, failure) => {
 

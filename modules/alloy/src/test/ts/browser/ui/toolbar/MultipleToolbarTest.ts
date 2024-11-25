@@ -2,13 +2,13 @@ import { ApproxStructure, Assertions, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { CustomList } from 'ephox/alloy/api/ui/CustomList';
-import { Toolbar } from 'ephox/alloy/api/ui/Toolbar';
-import { ToolbarGroup } from 'ephox/alloy/api/ui/ToolbarGroup';
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { CustomList } from "hugerte/alloy/api/ui/CustomList";
+import { Toolbar } from "hugerte/alloy/api/ui/Toolbar";
+import { ToolbarGroup } from "hugerte/alloy/api/ui/ToolbarGroup";
 
 UnitTest.asynctest('MultipleToolbarTest', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => GuiFactory.build(

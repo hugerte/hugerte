@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 
-import * as LeftBlock from 'ephox/robin/api/general/LeftBlock';
+import * as LeftBlock from "hugerte/robin/api/general/LeftBlock";
 
 UnitTest.test('LeftBlockTest', () => {
   const universe = TestUniverse(Gene('root', 'root', [

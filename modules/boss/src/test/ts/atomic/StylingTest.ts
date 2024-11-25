@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import { Gene } from 'ephox/boss/api/Gene';
-import * as Styling from 'ephox/boss/mutant/Styling';
+import { Gene } from "hugerte/boss/api/Gene";
+import * as Styling from "hugerte/boss/mutant/Styling";
 
 UnitTest.test('StylingTest', () => {
   const item = Gene('item', 'item', [], { border: '10' });

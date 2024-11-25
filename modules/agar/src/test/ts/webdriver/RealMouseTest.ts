@@ -3,13 +3,13 @@ import { Cell } from "@hugerte/katamari";
 import { PlatformDetection } from "@hugerte/sand";
 import { Attribute, Class, Css, DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
-import * as Assertions from 'ephox/agar/api/Assertions';
-import { Chain } from 'ephox/agar/api/Chain';
-import * as Guard from 'ephox/agar/api/Guard';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import * as RealMouse from 'ephox/agar/api/RealMouse';
-import { Step } from 'ephox/agar/api/Step';
-import * as UiFinder from 'ephox/agar/api/UiFinder';
+import * as Assertions from "hugerte/agar/api/Assertions";
+import { Chain } from "hugerte/agar/api/Chain";
+import * as Guard from "hugerte/agar/api/Guard";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import * as RealMouse from "hugerte/agar/api/RealMouse";
+import { Step } from "hugerte/agar/api/Step";
+import * as UiFinder from "hugerte/agar/api/UiFinder";
 
 UnitTest.asynctest('RealMouseTest', (success, failure) => {
 

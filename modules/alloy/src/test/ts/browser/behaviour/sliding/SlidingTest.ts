@@ -2,11 +2,11 @@ import { ApproxStructure, Assertions, GeneralSteps, Logger, Step, Waiter } from 
 import { UnitTest } from '@ephox/bedrock-client';
 import { Class, Css, Traverse } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Sliding } from 'ephox/alloy/api/behaviour/Sliding';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Sliding } from "hugerte/alloy/api/behaviour/Sliding";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 UnitTest.asynctest('SlidingTest', (success, failure) => {
 

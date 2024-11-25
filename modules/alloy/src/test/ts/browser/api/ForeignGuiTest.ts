@@ -3,14 +3,14 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Optional } from "@hugerte/katamari";
 import { EventArgs, Html, Insert, Remove, SugarBody, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as ForeignGui from 'ephox/alloy/api/system/ForeignGui';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Toggling } from "hugerte/alloy/api/behaviour/Toggling";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as ForeignGui from "hugerte/alloy/api/system/ForeignGui";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import * as Tagger from "hugerte/alloy/registry/Tagger";
 
 UnitTest.asynctest('Browser Test: api.ForeignGuiTest', (success, failure) => {
   const root = SugarElement.fromTag('div');

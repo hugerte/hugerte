@@ -1,4 +1,4 @@
-import { Bindable } from 'ephox/porkbun/Event';
+import { Bindable } from "hugerte/porkbun/Event";
 
 export interface ShootEvent {
   readonly target: any;

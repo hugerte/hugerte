@@ -2,11 +2,11 @@ import { FocusTools, GeneralSteps, Log, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Focus, SelectorFind, SugarBody } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
 
 UnitTest.asynctest('SpecialKeyingFocusInTest', (success, failure) => {
 

@@ -2,8 +2,8 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import { assertSome } from 'ephox/katamari/test/AssertOptional';
+import * as Arr from "hugerte/katamari/api/Arr";
+import { assertSome } from "hugerte/katamari/test/AssertOptional";
 
 describe('atomic.katamari.api.arr.ArrHeadTest', () => {
   it('returns none when empty', () => {

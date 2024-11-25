@@ -4,8 +4,8 @@ import { Arr, Fun } from "@hugerte/katamari";
 import { SugarElement, Traverse } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as TextZones from 'ephox/robin/api/general/TextZones';
-import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
+import * as TextZones from "hugerte/robin/api/general/TextZones";
+import { ZoneViewports } from "hugerte/robin/api/general/ZoneViewports";
 
 // Strip out the bits of an actual Zone that aren't compatible with assert.deepEqual
 interface AssertableZone {

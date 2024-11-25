@@ -1,9 +1,9 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Fragment from 'ephox/sugar/api/node/SugarFragment';
-import * as Html from 'ephox/sugar/api/properties/Html';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Fragment from "hugerte/sugar/api/node/SugarFragment";
+import * as Html from "hugerte/sugar/api/properties/Html";
 
 UnitTest.test('FragmentTest', () => {
   const fragment = Fragment.fromElements([

@@ -2,7 +2,7 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import { StringMatch } from 'ephox/katamari/api/StringMatch';
+import { StringMatch } from "hugerte/katamari/api/StringMatch";
 
 interface Scenario {
   readonly expected: boolean;

@@ -3,7 +3,7 @@ import { Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as ArrNavigation from 'ephox/alloy/navigation/ArrNavigation';
+import * as ArrNavigation from "hugerte/alloy/navigation/ArrNavigation";
 
 UnitTest.test('ArrNavigationTest', () => {
   const genUniqueArray = (min: number, max: number) => fc.integer({ min, max }).map((num) => {

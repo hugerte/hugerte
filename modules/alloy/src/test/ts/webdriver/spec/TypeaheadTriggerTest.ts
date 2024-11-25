@@ -3,16 +3,16 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Future, Optional, Result } from "@hugerte/katamari";
 import { Value } from "@hugerte/sugar";
 
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { Typeahead } from 'ephox/alloy/api/ui/Typeahead';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as Sinks from 'ephox/alloy/test/Sinks';
-import TestTypeaheadSteps from 'ephox/alloy/test/typeahead/TestTypeaheadSteps';
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import { Typeahead } from "hugerte/alloy/api/ui/Typeahead";
+import { TestItem } from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import * as TestDropdownMenu from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import * as Sinks from "hugerte/alloy/test/Sinks";
+import TestTypeaheadSteps from "hugerte/alloy/test/typeahead/TestTypeaheadSteps";
 
 UnitTest.asynctest('TypeaheadTriggerTest (webdriver)', (success, failure) => {
   GuiSetup.setup((store, _doc, _body) => {

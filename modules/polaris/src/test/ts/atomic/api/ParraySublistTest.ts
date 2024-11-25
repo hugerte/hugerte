@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as PositionArray from 'ephox/polaris/api/PositionArray';
-import * as Parrays from 'ephox/polaris/test/Parrays';
+import * as PositionArray from "hugerte/polaris/api/PositionArray";
+import * as Parrays from "hugerte/polaris/test/Parrays";
 
 UnitTest.test('api.PositionArray.sublist', () => {
   const check = (expected: string[], input: string[], start: number, finish: number) => {

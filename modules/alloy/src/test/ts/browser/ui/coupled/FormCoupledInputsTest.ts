@@ -3,19 +3,19 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Result } from "@hugerte/katamari";
 import { Class } from "@hugerte/sugar";
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { FormCoupledInputs } from 'ephox/alloy/api/ui/FormCoupledInputs';
-import { FormField } from 'ephox/alloy/api/ui/FormField';
-import { Input } from 'ephox/alloy/api/ui/Input';
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { FormCoupledInputs } from "hugerte/alloy/api/ui/FormCoupledInputs";
+import { FormField } from "hugerte/alloy/api/ui/FormField";
+import { Input } from "hugerte/alloy/api/ui/Input";
 
 interface MakeConfig {
   className: string;

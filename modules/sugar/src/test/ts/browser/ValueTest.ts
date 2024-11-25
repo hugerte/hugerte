@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Value from 'ephox/sugar/api/properties/Value';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Value from "hugerte/sugar/api/properties/Value";
 
 UnitTest.test('ValueTest', () => {
   const ta = SugarElement.fromHtml<HTMLTextAreaElement>('<textarea>sometexthere</textarea>');

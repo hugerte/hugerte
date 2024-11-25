@@ -2,10 +2,10 @@ import { Assertions, Logger, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { Attribute } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
 
 UnitTest.asynctest('Browser Test: .ui.button.ButtonTypeTest', (success, failure) => {
 

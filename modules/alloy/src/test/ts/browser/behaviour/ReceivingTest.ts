@@ -2,12 +2,12 @@ import { Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { FieldSchema, StructureSchema } from "@hugerte/boulder";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Receiving } from 'ephox/alloy/api/behaviour/Receiving';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import { Receiving } from "hugerte/alloy/api/behaviour/Receiving";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 UnitTest.asynctest('ReceivingTest', (success, failure) => {
 

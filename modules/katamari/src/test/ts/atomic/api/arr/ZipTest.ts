@@ -2,11 +2,11 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Obj from 'ephox/katamari/api/Obj';
-import { Optional } from 'ephox/katamari/api/Optional';
-import * as Unique from 'ephox/katamari/api/Unique';
-import * as Zip from 'ephox/katamari/api/Zip';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Obj from "hugerte/katamari/api/Obj";
+import { Optional } from "hugerte/katamari/api/Optional";
+import * as Unique from "hugerte/katamari/api/Unique";
+import * as Zip from "hugerte/katamari/api/Zip";
 
 describe('atomic.katamari.api.arr.ZipTest', () => {
   it('unit tests', () => {

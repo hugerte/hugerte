@@ -1,9 +1,9 @@
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Future } from 'ephox/katamari/api/Future';
-import { Optional } from 'ephox/katamari/api/Optional';
-import { Result } from 'ephox/katamari/api/Result';
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Future } from "hugerte/katamari/api/Future";
+import { Optional } from "hugerte/katamari/api/Optional";
+import { Result } from "hugerte/katamari/api/Result";
 
 type Arbitrary<A> = fc.Arbitrary<A>;
 

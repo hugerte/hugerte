@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { CommentGene, Gene, TestUniverse, TextGene } from "@hugerte/boss";
 
-import * as Finder from 'ephox/phoenix/test/Finder';
-import * as Navigation from 'ephox/phoenix/wrap/Navigation';
+import * as Finder from "hugerte/phoenix/test/Finder";
+import * as Navigation from "hugerte/phoenix/wrap/Navigation";
 
 UnitTest.test('NavigationTest', () => {
   let doc = TestUniverse(

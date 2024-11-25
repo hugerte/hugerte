@@ -4,8 +4,8 @@ import { Arr } from "@hugerte/katamari";
 import { Html, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Type from 'ephox/snooker/lookup/Type';
+import { Warehouse } from "hugerte/snooker/api/Warehouse";
+import * as Type from "hugerte/snooker/lookup/Type";
 
 describe('browser.snooker.lookup.TypeTest', () => {
   const container = SugarElement.fromTag('div');

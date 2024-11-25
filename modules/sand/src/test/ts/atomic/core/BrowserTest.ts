@@ -2,9 +2,9 @@ import { describe, it } from '@ephox/bedrock-client';
 import { Fun, Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
-import { PlatformDetection } from 'ephox/sand/core/PlatformDetection';
-import { UserAgentData, UserAgentDataBrand } from 'ephox/sand/detect/UaData';
-import * as PlatformQuery from 'ephox/sand/test/PlatformQuery';
+import { PlatformDetection } from "hugerte/sand/core/PlatformDetection";
+import { UserAgentData, UserAgentDataBrand } from "hugerte/sand/detect/UaData";
+import * as PlatformQuery from "hugerte/sand/test/PlatformQuery";
 
 type PlatformQuery = typeof PlatformQuery;
 

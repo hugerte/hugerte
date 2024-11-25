@@ -4,22 +4,22 @@ import { Fun } from "@hugerte/katamari";
 import { Attribute, Classes, SugarDocument } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import { GuiSetup } from 'ephox/alloy/api/testhelpers/TestHelpers';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { PlacementSpec } from 'ephox/alloy/behaviour/positioning/PositioningTypes';
-import * as Layout from 'ephox/alloy/positioning/layout/Layout';
-import * as LayoutInset from 'ephox/alloy/positioning/layout/LayoutInset';
-import { Layouts } from 'ephox/alloy/positioning/mode/Anchoring';
-import { TransitionMode } from 'ephox/alloy/positioning/view/Transitions';
-import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import { GuiSetup } from "hugerte/alloy/api/testhelpers/TestHelpers";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { PlacementSpec } from "hugerte/alloy/behaviour/positioning/PositioningTypes";
+import * as Layout from "hugerte/alloy/positioning/layout/Layout";
+import * as LayoutInset from "hugerte/alloy/positioning/layout/LayoutInset";
+import { Layouts } from "hugerte/alloy/positioning/mode/Anchoring";
+import { TransitionMode } from "hugerte/alloy/positioning/view/Transitions";
+import * as PositionTestUtils from "hugerte/alloy/test/PositionTestUtils";
+import * as Sinks from "hugerte/alloy/test/Sinks";
 
 interface Scenario {
   readonly spec: PlacementSpec;

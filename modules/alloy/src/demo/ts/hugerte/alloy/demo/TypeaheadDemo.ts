@@ -1,15 +1,15 @@
 import { Arr, Future, Optional, Result, Strings } from "@hugerte/katamari";
 import { Class, SugarElement, Value } from "@hugerte/sugar";
 
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { Typeahead } from 'ephox/alloy/api/ui/Typeahead';
-import * as DemoSink from 'ephox/alloy/demo/DemoSink';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
-import { TypeaheadData } from 'ephox/alloy/ui/types/TypeaheadTypes';
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import { Typeahead } from "hugerte/alloy/api/ui/Typeahead";
+import * as DemoSink from "hugerte/alloy/demo/DemoSink";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
+import { TypeaheadData } from "hugerte/alloy/ui/types/TypeaheadTypes";
 
 import * as DemoRenders from './forms/DemoRenders';
 

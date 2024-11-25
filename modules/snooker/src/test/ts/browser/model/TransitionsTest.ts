@@ -3,10 +3,10 @@ import { Arr } from "@hugerte/katamari";
 import { Attribute, SugarElement, TextContent } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Transitions from 'ephox/snooker/model/Transitions';
-import * as Bridge from 'ephox/snooker/test/Bridge';
+import * as Structs from "hugerte/snooker/api/Structs";
+import { Warehouse } from "hugerte/snooker/api/Warehouse";
+import * as Transitions from "hugerte/snooker/model/Transitions";
+import * as Bridge from "hugerte/snooker/test/Bridge";
 
 describe('TransitionsTest', () => {
   const createCell = (text: string): SugarElement<HTMLTableCellElement> => {

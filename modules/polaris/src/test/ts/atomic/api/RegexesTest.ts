@@ -1,7 +1,7 @@
 import { Assert, context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Obj } from "@hugerte/katamari";
 
-import * as Regexes from 'ephox/polaris/api/Regexes';
+import * as Regexes from "hugerte/polaris/api/Regexes";
 
 describe('atomic.polaris.api.RegexesTest', () => {
   context('link', () => {

@@ -1,9 +1,9 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Obj } from "@hugerte/katamari";
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import Div from 'ephox/sugar/test/Div';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import Div from "hugerte/sugar/test/Div";
 
 UnitTest.test('AttributeTransfer', () => {
   const alpha = () => {

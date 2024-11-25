@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse } from "@hugerte/boss";
 
-import * as Parents from 'ephox/phoenix/family/Parents';
-import * as Finder from 'ephox/phoenix/test/Finder';
+import * as Parents from "hugerte/phoenix/family/Parents";
+import * as Finder from "hugerte/phoenix/test/Finder";
 
 UnitTest.test('ParentsTest', () => {
   const doc = TestUniverse(

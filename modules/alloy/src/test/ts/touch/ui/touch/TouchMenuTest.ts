@@ -3,14 +3,14 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Future, Optional } from "@hugerte/katamari";
 import { Class, SugarElement } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import { TouchMenu } from 'ephox/alloy/api/ui/TouchMenu';
-import { ItemSpec } from 'ephox/alloy/ui/types/ItemTypes';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Menu } from "hugerte/alloy/api/ui/Menu";
+import { TouchMenu } from "hugerte/alloy/api/ui/TouchMenu";
+import { ItemSpec } from "hugerte/alloy/ui/types/ItemTypes";
 
 interface TestItemSpec {
   type: string;

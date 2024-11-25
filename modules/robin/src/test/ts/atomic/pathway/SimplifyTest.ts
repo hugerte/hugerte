@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 
-import * as Simplify from 'ephox/robin/pathway/Simplify';
+import * as Simplify from "hugerte/robin/pathway/Simplify";
 
 UnitTest.test('SimplifyTest', () => {
   const doc = TestUniverse(Gene('root', 'root', [

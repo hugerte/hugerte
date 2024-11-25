@@ -1,11 +1,11 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 
-import * as NodeTypes from 'ephox/sugar/api/node/NodeTypes';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
-import EphoxElement from 'ephox/sugar/test/EphoxElement';
+import * as NodeTypes from "hugerte/sugar/api/node/NodeTypes";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as SugarNode from "hugerte/sugar/api/node/SugarNode";
+import * as Traverse from "hugerte/sugar/api/search/Traverse";
+import EphoxElement from "hugerte/sugar/test/EphoxElement";
 
 UnitTest.test('NodeTest', () => {
   const check = (node: SugarElement<Node>, nodeType: number, nodeName: string, nodeValue: string | null, isElement: boolean, isText: boolean, isDocument: boolean) => {

@@ -2,9 +2,9 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 
-import * as Finder from 'ephox/phoenix/test/Finder';
-import * as TestRenders from 'ephox/phoenix/test/TestRenders';
-import * as Contiguous from 'ephox/phoenix/util/Contiguous';
+import * as Finder from "hugerte/phoenix/test/Finder";
+import * as TestRenders from "hugerte/phoenix/test/TestRenders";
+import * as Contiguous from "hugerte/phoenix/util/Contiguous";
 
 UnitTest.test('Contiguous Text Nodes Test', () => {
   const doc = TestUniverse(

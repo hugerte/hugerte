@@ -2,9 +2,9 @@ import { Assertions, Logger, Pipeline, Step, TestLogs } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { SugarShadowDom } from "@hugerte/sugar";
 
-import { Editor } from 'ephox/mcagar/alien/EditorTypes';
-import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
-import { TinyUi } from 'ephox/mcagar/api/pipeline/TinyUi';
+import { Editor } from "hugerte/mcagar/alien/EditorTypes";
+import * as TinyLoader from "hugerte/mcagar/api/pipeline/TinyLoader";
+import { TinyUi } from "hugerte/mcagar/api/pipeline/TinyUi";
 
 UnitTest.asynctest('TinyLoaderTest', (success, failure) => {
   let clickedOn = false;

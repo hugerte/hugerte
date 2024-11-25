@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { SugarElement, SugarText, Traverse } from "@hugerte/sugar";
 
-import * as DomSplit from 'ephox/phoenix/api/dom/DomSplit';
+import * as DomSplit from "hugerte/phoenix/api/dom/DomSplit";
 
 import { Page } from '../module/ephox/phoenix/test/Page';
 

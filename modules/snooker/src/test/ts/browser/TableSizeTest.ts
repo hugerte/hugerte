@@ -4,8 +4,8 @@ import { Css, Insert, InsertAll, Remove, SelectorFind, SugarBody, SugarElement, 
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import { TableSize } from 'ephox/snooker/api/TableSize';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
+import { TableSize } from "hugerte/snooker/api/TableSize";
+import { Warehouse } from "hugerte/snooker/api/Warehouse";
 
 const tOptional = OptionalInstances.tOptional;
 

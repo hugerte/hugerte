@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional, OptionalInstances } from "@hugerte/katamari";
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import { eqElement, tElement } from 'ephox/sugar/api/node/SugarElementInstances';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import { eqElement, tElement } from "hugerte/sugar/api/node/SugarElementInstances";
 
 const tOptional = OptionalInstances.tOptional;
 

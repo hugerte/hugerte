@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 
-import { Optional } from 'ephox/katamari/api/Optional';
-import { tOptional } from 'ephox/katamari/api/OptionalInstances';
+import { Optional } from "hugerte/katamari/api/Optional";
+import { tOptional } from "hugerte/katamari/api/OptionalInstances";
 
 export const assertOptional = <T> (actual: Optional<T>, expected: Optional<T>): void => {
   if (!tOptional().eq(actual, expected)) {

@@ -3,11 +3,11 @@ import {
 } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import * as Tagger from "hugerte/alloy/registry/Tagger";
 
 UnitTest.asynctest('ButtonSpecTest', (success, failure) => {
 

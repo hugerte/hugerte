@@ -1,10 +1,10 @@
 import { describe, it } from '@ephox/bedrock-client';
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Optional } from 'ephox/katamari/api/Optional';
-import { arbOptionalSome as arbOptionSome } from 'ephox/katamari/test/arb/ArbDataTypes';
-import { assertNone, assertSome } from 'ephox/katamari/test/AssertOptional';
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Optional } from "hugerte/katamari/api/Optional";
+import { arbOptionalSome as arbOptionSome } from "hugerte/katamari/test/arb/ArbDataTypes";
+import { assertNone, assertSome } from "hugerte/katamari/test/AssertOptional";
 
 const { some, none } = Optional;
 

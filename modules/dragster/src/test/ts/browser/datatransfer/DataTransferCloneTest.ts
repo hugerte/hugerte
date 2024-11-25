@@ -3,10 +3,10 @@ import { KAssert } from "@hugerte/katamari-assertions";
 import { PlatformDetection } from "@hugerte/sand";
 import { assert } from 'chai';
 
-import { cloneDataTransfer, createDataTransfer, getDragImage } from 'ephox/dragster/datatransfer/DataTransfer';
-import { DragImageData } from 'ephox/dragster/datatransfer/DragImage';
-import { Event, getEvent, setDragstartEvent } from 'ephox/dragster/datatransfer/Event';
-import { getMode, Mode, setMode, setReadOnlyMode, setReadWriteMode } from 'ephox/dragster/datatransfer/Mode';
+import { cloneDataTransfer, createDataTransfer, getDragImage } from "hugerte/dragster/datatransfer/DataTransfer";
+import { DragImageData } from "hugerte/dragster/datatransfer/DragImage";
+import { Event, getEvent, setDragstartEvent } from "hugerte/dragster/datatransfer/Event";
+import { getMode, Mode, setMode, setReadOnlyMode, setReadWriteMode } from "hugerte/dragster/datatransfer/Mode";
 
 describe('browser.dragster.datatransfer.DataTransferCloneTest', () => {
   const dragImage: DragImageData = {

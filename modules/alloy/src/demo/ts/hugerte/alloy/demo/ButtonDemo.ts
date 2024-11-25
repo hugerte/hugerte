@@ -1,12 +1,12 @@
 import { Class, SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
-import * as DomModification from 'ephox/alloy/dom/DomModification';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Toggling } from "hugerte/alloy/api/behaviour/Toggling";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
+import * as DomModification from "hugerte/alloy/dom/DomModification";
 
 /* eslint-disable no-console */
 

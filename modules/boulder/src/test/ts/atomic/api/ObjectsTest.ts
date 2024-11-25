@@ -3,7 +3,7 @@ import { Arr, Obj, Result } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 import * as fc from 'fast-check';
 
-import * as Objects from 'ephox/boulder/api/Objects';
+import * as Objects from "hugerte/boulder/api/Objects";
 
 UnitTest.test('ObjectsTest', () => {
   const smallSet = fc.string({ minLength: 1 });

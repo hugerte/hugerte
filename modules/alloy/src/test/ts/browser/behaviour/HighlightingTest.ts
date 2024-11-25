@@ -3,13 +3,13 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Result } from "@hugerte/katamari";
 import { Attribute, Class, Compare, Truncate } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Highlighting } from 'ephox/alloy/api/behaviour/Highlighting';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Highlighting } from "hugerte/alloy/api/behaviour/Highlighting";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as ChainUtils from "hugerte/alloy/test/ChainUtils";
 
 UnitTest.asynctest('HighlightingTest', (success, failure) => {
 

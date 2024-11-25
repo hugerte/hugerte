@@ -1,9 +1,9 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Head from 'ephox/sugar/api/node/SugarHead';
-import { withIframe } from 'ephox/sugar/test/WithHelpers';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Head from "hugerte/sugar/api/node/SugarHead";
+import { withIframe } from "hugerte/sugar/test/WithHelpers";
 
 UnitTest.test('head in normal document', () => {
   Assert.eq('head should be head', document.head, Head.getHead(SugarElement.fromDom(document)).dom, Testable.tStrict);

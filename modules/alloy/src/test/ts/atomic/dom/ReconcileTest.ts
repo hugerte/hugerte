@@ -3,7 +3,7 @@ import { Optional } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import { reconcileToDom } from 'ephox/alloy/dom/Reconcile';
+import { reconcileToDom } from "hugerte/alloy/dom/Reconcile";
 
 describe('ReconcileTest', () => {
   const elementDefinition = {

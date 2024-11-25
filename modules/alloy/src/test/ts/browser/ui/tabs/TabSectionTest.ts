@@ -2,14 +2,14 @@ import { ApproxStructure, Assertions, GeneralSteps, Logger, Step, StructAssert }
 import { UnitTest } from '@ephox/bedrock-client';
 import { SelectorFind, SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Tabbar } from 'ephox/alloy/api/ui/Tabbar';
-import { TabSection } from 'ephox/alloy/api/ui/TabSection';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Tabstopping } from "hugerte/alloy/api/behaviour/Tabstopping";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { Tabbar } from "hugerte/alloy/api/ui/Tabbar";
+import { TabSection } from "hugerte/alloy/api/ui/TabSection";
 
 UnitTest.asynctest('TabSection Test', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => {

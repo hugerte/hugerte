@@ -2,7 +2,7 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Strings from 'ephox/katamari/api/Strings';
+import * as Strings from "hugerte/katamari/api/Strings";
 
 describe('atomic.katamari.api.str.EmptyTest', () => {
   it('isEmpty unit test', () => {

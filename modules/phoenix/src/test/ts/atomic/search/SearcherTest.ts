@@ -2,9 +2,9 @@ import { Assert, describe, it } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr, Fun } from "@hugerte/katamari";
 
-import * as Searcher from 'ephox/phoenix/search/Searcher';
-import * as Finder from 'ephox/phoenix/test/Finder';
-import * as TestRenders from 'ephox/phoenix/test/TestRenders';
+import * as Searcher from "hugerte/phoenix/search/Searcher";
+import * as Finder from "hugerte/phoenix/test/Finder";
+import * as TestRenders from "hugerte/phoenix/test/TestRenders";
 
 interface CheckItem {
   readonly items: string[];

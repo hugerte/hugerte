@@ -1,21 +1,21 @@
 import { Optional } from "@hugerte/katamari";
 import { Class, Css, DomEvent, SelectorFind, SugarElement, SugarLocation } from "@hugerte/sugar";
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import { AllowBubbling } from 'ephox/alloy/api/behaviour/AllowBubbling';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Docking } from 'ephox/alloy/api/behaviour/Docking';
-import { Dragging } from 'ephox/alloy/api/behaviour/Dragging';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { DockingConfigSpec, DockingViewport } from 'ephox/alloy/behaviour/docking/DockingTypes';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import { AllowBubbling } from "hugerte/alloy/api/behaviour/AllowBubbling";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Docking } from "hugerte/alloy/api/behaviour/Docking";
+import { Dragging } from "hugerte/alloy/api/behaviour/Dragging";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { DockingConfigSpec, DockingViewport } from "hugerte/alloy/behaviour/docking/DockingTypes";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
 
 export default (): void => {
   const gui = Gui.create();

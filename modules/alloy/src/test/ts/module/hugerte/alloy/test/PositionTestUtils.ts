@@ -3,13 +3,13 @@ import { Optional, Result } from "@hugerte/katamari";
 import { Css, Scroll, Traverse } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import { Bounds } from 'ephox/alloy/alien/Boxes';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import { PlacementSpec } from 'ephox/alloy/behaviour/positioning/PositioningTypes';
-import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import { Bounds } from "hugerte/alloy/alien/Boxes";
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import { PlacementSpec } from "hugerte/alloy/behaviour/positioning/PositioningTypes";
+import * as ChainUtils from "hugerte/alloy/test/ChainUtils";
+import * as Sinks from "hugerte/alloy/test/Sinks";
 
 const addPopupToSinkCommon = (popup: AlloyComponent, sink: AlloyComponent, positioner: () => void) => {
   Attachment.attach(sink, popup);

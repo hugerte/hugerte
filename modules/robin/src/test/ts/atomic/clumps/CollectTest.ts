@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 
-import * as Clumps from 'ephox/robin/clumps/Clumps';
+import * as Clumps from "hugerte/robin/clumps/Clumps";
 
 UnitTest.test('ClumpsTest', () => {
   const doc = TestUniverse(Gene('root', 'root', [

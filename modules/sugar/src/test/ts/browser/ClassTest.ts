@@ -1,11 +1,11 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Class from 'ephox/sugar/api/properties/Class';
-import * as Classes from 'ephox/sugar/api/properties/Classes';
-import Div from 'ephox/sugar/test/Div';
-import MathElement from 'ephox/sugar/test/MathElement';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import * as Class from "hugerte/sugar/api/properties/Class";
+import * as Classes from "hugerte/sugar/api/properties/Classes";
+import Div from "hugerte/sugar/test/Div";
+import MathElement from "hugerte/sugar/test/MathElement";
 
 UnitTest.test('ClassTest', () => {
   const c = Div();

@@ -2,7 +2,7 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as Strings from 'ephox/katamari/api/Strings';
+import * as Strings from "hugerte/katamari/api/Strings";
 
 describe('atomic.katamari.api.str.ToIntTest', () => {
   it('convert valid string to integer', () => {

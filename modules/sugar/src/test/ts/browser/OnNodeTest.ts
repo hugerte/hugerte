@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as OnNode from 'ephox/sugar/api/properties/OnNode';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as OnNode from "hugerte/sugar/api/properties/OnNode";
 
 UnitTest.test('OnNodeTest', () => {
   const element = SugarElement.fromTag('div');

@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Optional } from "@hugerte/katamari";
 
-import * as PositionArray from 'ephox/polaris/api/PositionArray';
+import * as PositionArray from "hugerte/polaris/api/PositionArray";
 
 import { PArrayTestItem } from '../../module/ephox/polaris/test/Parrays';
 

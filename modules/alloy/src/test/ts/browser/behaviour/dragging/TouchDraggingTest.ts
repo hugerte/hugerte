@@ -4,14 +4,14 @@ import { Fun, Optional, Result } from "@hugerte/katamari";
 import { PlatformDetection } from "@hugerte/sand";
 import { Css, Scroll, SugarPosition } from "@hugerte/sugar";
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Dragging } from 'ephox/alloy/api/behaviour/Dragging';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as DragCoord from 'ephox/alloy/api/data/DragCoord';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Dragging } from "hugerte/alloy/api/behaviour/Dragging";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import * as DragCoord from "hugerte/alloy/api/data/DragCoord";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
 
 UnitTest.asynctest('TouchDraggingTest', (success, failure) => {
   // Override isTouch() to make Alloy listen to touch events

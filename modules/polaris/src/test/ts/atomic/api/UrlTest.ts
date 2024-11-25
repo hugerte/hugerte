@@ -1,7 +1,7 @@
 import { Assert, context, describe, it } from '@ephox/bedrock-client';
 import { Obj } from "@hugerte/katamari";
 
-import * as Url from 'ephox/polaris/api/Url';
+import * as Url from "hugerte/polaris/api/Url";
 
 describe('atomic.polaris.api.UrlTest', () => {
   context('extractHost', () => {

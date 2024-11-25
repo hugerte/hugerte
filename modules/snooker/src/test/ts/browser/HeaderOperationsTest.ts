@@ -1,10 +1,10 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { Optional } from "@hugerte/katamari";
 
-import * as TableOperations from 'ephox/snooker/api/TableOperations';
-import { TableSection } from 'ephox/snooker/api/TableSection';
-import * as Assertions from 'ephox/snooker/test/Assertions';
-import { generateTestTable } from 'ephox/snooker/test/CreateTableUtils';
+import * as TableOperations from "hugerte/snooker/api/TableOperations";
+import { TableSection } from "hugerte/snooker/api/TableSection";
+import * as Assertions from "hugerte/snooker/test/Assertions";
+import { generateTestTable } from "hugerte/snooker/test/CreateTableUtils";
 
 UnitTest.test('HeaderOperationsTest', () => {
   const testSingleRowSection = () => {

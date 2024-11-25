@@ -3,9 +3,9 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Fun, Result } from "@hugerte/katamari";
 import { Attribute, Compare, Html, Insert, SelectorFilter, SugarElement, Truncate } from "@hugerte/sugar";
 
-import * as DescribedHandler from 'ephox/alloy/events/DescribedHandler';
-import { ElementAndHandler, EventRegistry } from 'ephox/alloy/events/EventRegistry';
-import * as Tagger from 'ephox/alloy/registry/Tagger';
+import * as DescribedHandler from "hugerte/alloy/events/DescribedHandler";
+import { ElementAndHandler, EventRegistry } from "hugerte/alloy/events/EventRegistry";
+import * as Tagger from "hugerte/alloy/registry/Tagger";
 
 interface ExpectedType {
   readonly id?: string;

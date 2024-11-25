@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional } from "@hugerte/katamari";
 
-import { buildUrl } from 'ephox/jax/core/UrlBuilder';
+import { buildUrl } from "hugerte/jax/core/UrlBuilder";
 
 UnitTest.test('UrlBuilderTest', () => {
   const createRecord = (record: any) => Optional.some<Record<string, string>>(record);

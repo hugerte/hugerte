@@ -1,14 +1,14 @@
 import { FieldSchema, StructureSchema } from "@hugerte/boulder";
 
-import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
-import { AlloySpec, RawDomSchema, SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as ItemWidget from 'ephox/alloy/api/ui/ItemWidget';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import { ToolbarGroup } from 'ephox/alloy/api/ui/ToolbarGroup';
-import { ItemDataTuple, ItemSpec, SeparatorItemSpec, WidgetItemSpec } from 'ephox/alloy/ui/types/ItemTypes';
-import { MenuSpec } from 'ephox/alloy/ui/types/MenuTypes';
-import { PartialMenuSpec, TieredMenuSpec } from 'ephox/alloy/ui/types/TieredMenuTypes';
-import { ToolbarGroupSpec } from 'ephox/alloy/ui/types/ToolbarGroupTypes';
+import * as DomFactory from "hugerte/alloy/api/component/DomFactory";
+import { AlloySpec, RawDomSchema, SketchSpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as ItemWidget from "hugerte/alloy/api/ui/ItemWidget";
+import { Menu } from "hugerte/alloy/api/ui/Menu";
+import { ToolbarGroup } from "hugerte/alloy/api/ui/ToolbarGroup";
+import { ItemDataTuple, ItemSpec, SeparatorItemSpec, WidgetItemSpec } from "hugerte/alloy/ui/types/ItemTypes";
+import { MenuSpec } from "hugerte/alloy/ui/types/MenuTypes";
+import { PartialMenuSpec, TieredMenuSpec } from "hugerte/alloy/ui/types/TieredMenuTypes";
+import { ToolbarGroupSpec } from "hugerte/alloy/ui/types/ToolbarGroupTypes";
 
 export interface DemoItem {
   readonly type: 'item';

@@ -1,8 +1,8 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Select from 'ephox/sugar/api/tag/SelectTag';
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Select from "hugerte/sugar/api/tag/SelectTag";
 
 UnitTest.test('SelectTagTest', () => {
   const select = SugarElement.fromHtml<HTMLSelectElement>('<select><option selected="selected" value="myvalue">valx</option><option value="non selected">valy</option></select>');

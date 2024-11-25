@@ -3,7 +3,7 @@ import { Fun } from "@hugerte/katamari";
 import { Pattern } from "@hugerte/polaris";
 import { SugarElement } from "@hugerte/sugar";
 
-import * as DomSearch from 'ephox/phoenix/api/dom/DomSearch';
+import * as DomSearch from "hugerte/phoenix/api/dom/DomSearch";
 
 UnitTest.test('DomSearchingTest', () => {
   const root = SugarElement.fromTag('div');

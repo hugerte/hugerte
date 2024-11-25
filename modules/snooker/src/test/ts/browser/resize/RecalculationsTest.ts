@@ -2,9 +2,9 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { SugarElement, TextContent } from "@hugerte/sugar";
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Recalculations from 'ephox/snooker/resize/Recalculations';
+import * as Structs from "hugerte/snooker/api/Structs";
+import { Warehouse } from "hugerte/snooker/api/Warehouse";
+import * as Recalculations from "hugerte/snooker/resize/Recalculations";
 
 UnitTest.test('RecalculationsTest', () => {
   const dimensions = Structs.dimensions;

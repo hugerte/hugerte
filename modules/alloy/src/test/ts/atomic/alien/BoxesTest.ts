@@ -3,7 +3,7 @@ import { Arr, Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
 
 describe('atomic.alloy.alien.BoxesTest', () => {
   const arbBounds: fc.Arbitrary<Boxes.Bounds> =

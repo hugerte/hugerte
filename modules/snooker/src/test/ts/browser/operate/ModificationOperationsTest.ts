@@ -3,10 +3,10 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Fun } from "@hugerte/katamari";
 import { Html, SugarElement, SugarNode } from "@hugerte/sugar";
 
-import { Generators } from 'ephox/snooker/api/Generators';
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as ModificationOperations from 'ephox/snooker/operate/ModificationOperations';
-import BrowserTestGenerator from 'ephox/snooker/test/BrowserTestGenerator';
+import { Generators } from "hugerte/snooker/api/Generators";
+import * as Structs from "hugerte/snooker/api/Structs";
+import * as ModificationOperations from "hugerte/snooker/operate/ModificationOperations";
+import BrowserTestGenerator from "hugerte/snooker/test/BrowserTestGenerator";
 
 type Grid = Structs.ElementNew<HTMLTableCellElement>[][];
 

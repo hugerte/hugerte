@@ -2,11 +2,11 @@ import { describe, it } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Future } from 'ephox/katamari/api/Future';
-import * as Futures from 'ephox/katamari/api/Futures';
-import { eqAsync } from 'ephox/katamari/test/AsyncProps';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Future } from "hugerte/katamari/api/Future";
+import * as Futures from "hugerte/katamari/api/Futures";
+import { eqAsync } from "hugerte/katamari/test/AsyncProps";
 
 const { tNumber, tString, tArray } = Testable;
 

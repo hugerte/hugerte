@@ -4,17 +4,17 @@ import { Objects } from "@hugerte/boulder";
 import { Arr, Obj } from "@hugerte/katamari";
 import { Class } from "@hugerte/sugar";
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Menu } from 'ephox/alloy/api/ui/Menu';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import * as MenuEvents from 'ephox/alloy/menu/util/MenuEvents';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Menu } from "hugerte/alloy/api/ui/Menu";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import * as MenuEvents from "hugerte/alloy/menu/util/MenuEvents";
+import * as TestDropdownMenu from "hugerte/alloy/test/dropdown/TestDropdownMenu";
 
 UnitTest.asynctest('TieredMenuTest', (success, failure) => {
 

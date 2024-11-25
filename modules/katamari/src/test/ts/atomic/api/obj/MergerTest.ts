@@ -2,9 +2,9 @@ import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
-import * as Arr from 'ephox/katamari/api/Arr';
-import * as Merger from 'ephox/katamari/api/Merger';
-import * as Obj from 'ephox/katamari/api/Obj';
+import * as Arr from "hugerte/katamari/api/Arr";
+import * as Merger from "hugerte/katamari/api/Merger";
+import * as Obj from "hugerte/katamari/api/Obj";
 
 describe('atomic.katamari.api.obj.MergerTest', () => {
   it('Merger', () => {

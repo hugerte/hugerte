@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as PositionArray from 'ephox/polaris/api/PositionArray';
-import * as Strings from 'ephox/polaris/api/Strings';
-import * as Parrays from 'ephox/polaris/test/Parrays';
+import * as PositionArray from "hugerte/polaris/api/PositionArray";
+import * as Strings from "hugerte/polaris/api/Strings";
+import * as Parrays from "hugerte/polaris/test/Parrays";
 
 UnitTest.test('api.PositionArray.splits', () => {
   const subdivide = (unit: Parrays.PArrayTestItem, positions: number[]) => {

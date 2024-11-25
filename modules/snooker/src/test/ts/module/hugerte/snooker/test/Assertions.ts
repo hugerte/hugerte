@@ -3,10 +3,10 @@ import { Assert } from '@ephox/bedrock-client';
 import { Arr, Optional, Optionals } from "@hugerte/katamari";
 import { Attribute, Css, Hierarchy, Html, Insert, Remove, SelectorFilter, SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
 
-import * as TableOperations from 'ephox/snooker/api/TableOperations';
-import { TableSection } from 'ephox/snooker/api/TableSection';
-import { TargetElement, TargetPaste, TargetPasteRows, TargetSelection, OperationCallback } from 'ephox/snooker/model/RunOperation';
-import * as Bridge from 'ephox/snooker/test/Bridge';
+import * as TableOperations from "hugerte/snooker/api/TableOperations";
+import { TableSection } from "hugerte/snooker/api/TableSection";
+import { TargetElement, TargetPaste, TargetPasteRows, TargetSelection, OperationCallback } from "hugerte/snooker/model/RunOperation";
+import * as Bridge from "hugerte/snooker/test/Bridge";
 
 interface TargetLocation {
   readonly section: number;

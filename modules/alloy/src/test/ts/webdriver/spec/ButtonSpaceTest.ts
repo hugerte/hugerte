@@ -1,9 +1,9 @@
 import { FocusTools, RealKeys, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Button } from 'ephox/alloy/api/ui/Button';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Button } from "hugerte/alloy/api/ui/Button";
 
 UnitTest.asynctest('ButtonSpaceTest (webdriver)', (success, failure) => {
   GuiSetup.setup((store, _doc, _body) => GuiFactory.build(

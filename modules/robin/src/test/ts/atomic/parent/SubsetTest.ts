@@ -3,7 +3,7 @@ import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr, Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import * as Subset from 'ephox/robin/parent/Subset';
+import * as Subset from "hugerte/robin/parent/Subset";
 
 UnitTest.test('SubsetTest', () => {
   const universe = TestUniverse(Gene('root', 'root', [

@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Optional } from "@hugerte/katamari";
 import { Insert, InsertAll, Remove, SelectorFilter, SelectorFind, SugarElement } from "@hugerte/sugar";
 
-import * as TablePositions from 'ephox/snooker/api/TablePositions';
+import * as TablePositions from "hugerte/snooker/api/TablePositions";
 
 UnitTest.test('RectangularTest', () => {
   const body = SelectorFind.first('body').getOrDie();

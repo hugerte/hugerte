@@ -1,10 +1,10 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import { Optional } from 'ephox/katamari/api/Optional';
-import * as Optionals from 'ephox/katamari/api/Optionals';
-import { Result } from 'ephox/katamari/api/Result';
-import * as Results from 'ephox/katamari/api/Results';
+import { Optional } from "hugerte/katamari/api/Optional";
+import * as Optionals from "hugerte/katamari/api/Optionals";
+import { Result } from "hugerte/katamari/api/Result";
+import * as Results from "hugerte/katamari/api/Results";
 
 interface Animal {
   readonly name: string;

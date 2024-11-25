@@ -3,9 +3,9 @@ import { Arr } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 import { assert } from 'chai';
 
-import { createFile } from 'ephox/agar/api/Files';
-import { createDataTransfer, getDragImage } from 'ephox/agar/datatransfer/DataTransfer';
-import { setProtectedMode, setReadOnlyMode } from 'ephox/agar/datatransfer/Mode';
+import { createFile } from "hugerte/agar/api/Files";
+import { createDataTransfer, getDragImage } from "hugerte/agar/datatransfer/DataTransfer";
+import { setProtectedMode, setReadOnlyMode } from "hugerte/agar/datatransfer/Mode";
 
 describe('DataTransfer', () => {
   it('DataTransfer: setEffects', () => {

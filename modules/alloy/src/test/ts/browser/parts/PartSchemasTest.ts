@@ -3,8 +3,8 @@ import { StructureSchema } from "@hugerte/boulder";
 import { Fun } from "@hugerte/katamari";
 import * as fc from 'fast-check';
 
-import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
-import * as PartType from 'ephox/alloy/parts/PartType';
+import * as AlloyParts from "hugerte/alloy/parts/AlloyParts";
+import * as PartType from "hugerte/alloy/parts/PartType";
 
 interface TestSpec {
   readonly defaultValue: number;

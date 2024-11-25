@@ -1,7 +1,7 @@
 import { context, describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as SandHTMLElement from 'ephox/sand/api/SandHTMLElement';
+import * as SandHTMLElement from "hugerte/sand/api/SandHTMLElement";
 
 describe('HtmlElementTest', () => {
   context('isPrototypeOf', () => {

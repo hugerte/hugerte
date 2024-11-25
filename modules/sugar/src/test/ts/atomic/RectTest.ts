@@ -2,7 +2,7 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import { Rect } from 'ephox/sugar/api/selection/Rect';
+import { Rect } from "hugerte/sugar/api/selection/Rect";
 
 UnitTest.test('Rect', () => {
   fc.assert(fc.property(

@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional } from "@hugerte/katamari";
 
-import * as Util from 'ephox/snooker/util/Util';
+import * as Util from "hugerte/snooker/util/Util";
 
 UnitTest.test('UtilTest', () => {
   const eq = (a: number, b: number) => a === b;

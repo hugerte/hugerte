@@ -2,8 +2,8 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional, OptionalInstances } from "@hugerte/katamari";
 import { Css, Insert, Remove, SugarBody, SugarElement, Width } from "@hugerte/sugar";
 
-import * as TableConversions from 'ephox/snooker/api/TableConversions';
-import { addStyles, assertApproxCellSizes, readWidth } from 'ephox/snooker/test/SizeUtils';
+import * as TableConversions from "hugerte/snooker/api/TableConversions";
+import { addStyles, assertApproxCellSizes, readWidth } from "hugerte/snooker/test/SizeUtils";
 
 const tOptional = OptionalInstances.tOptional;
 

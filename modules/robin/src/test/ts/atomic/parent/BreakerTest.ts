@@ -2,7 +2,7 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, Logger, TestUniverse, TextGene } from "@hugerte/boss";
 import { Arr } from "@hugerte/katamari";
 
-import { breakPath, breakToRight } from 'ephox/robin/parent/Breaker';
+import { breakPath, breakToRight } from "hugerte/robin/parent/Breaker";
 
 UnitTest.test('BreakerTest', () => {
   const generator = () => {

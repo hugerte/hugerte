@@ -2,7 +2,7 @@ import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 
-import * as PrioritySort from 'ephox/alloy/alien/PrioritySort';
+import * as PrioritySort from "hugerte/alloy/alien/PrioritySort";
 
 UnitTest.test('PrioritySortTest', () => {
   const checkErr = <T extends Record<string, any>>(expected: string, input: T[], order: string[]) => {

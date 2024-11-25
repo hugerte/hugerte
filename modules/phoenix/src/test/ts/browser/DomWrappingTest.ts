@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Class, Html, Insert, InsertAll, Remove, SelectorFind, SugarElement, Traverse } from "@hugerte/sugar";
 
-import * as DomWrapping from 'ephox/phoenix/api/dom/DomWrapping';
+import * as DomWrapping from "hugerte/phoenix/api/dom/DomWrapping";
 
 UnitTest.test('DomWrappingTest', () => {
   const root = SugarElement.fromTag('div');

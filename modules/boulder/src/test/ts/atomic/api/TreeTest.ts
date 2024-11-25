@@ -1,8 +1,8 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as FieldPresence from 'ephox/boulder/api/FieldPresence';
-import * as FieldSchema from 'ephox/boulder/api/FieldSchema';
-import * as StructureSchema from 'ephox/boulder/api/StructureSchema';
+import * as FieldPresence from "hugerte/boulder/api/FieldPresence";
+import * as FieldSchema from "hugerte/boulder/api/FieldSchema";
+import * as StructureSchema from "hugerte/boulder/api/StructureSchema";
 
 UnitTest.test('Atomic Test: api.TreeTest', () => {
   const schema = StructureSchema.objOf([

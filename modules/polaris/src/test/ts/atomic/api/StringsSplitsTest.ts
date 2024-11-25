@@ -1,6 +1,6 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
 
-import * as Strings from 'ephox/polaris/api/Strings';
+import * as Strings from "hugerte/polaris/api/Strings";
 
 describe('atomic.polaris.api.StringsSplitsTest', () => {
   const check = (expected: string[], input: string, points: number[]) => {

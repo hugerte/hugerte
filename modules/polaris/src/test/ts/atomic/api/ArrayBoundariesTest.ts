@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Boundaries from 'ephox/polaris/array/Boundaries';
+import * as Boundaries from "hugerte/polaris/array/Boundaries";
 
 UnitTest.test('BoundariesTest', () => {
   const comparator = (a: string, b: string) => {

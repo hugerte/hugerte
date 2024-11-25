@@ -1,8 +1,8 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { SugarElement } from "@hugerte/sugar";
 
-import * as ApproxStructure from 'ephox/agar/api/ApproxStructure';
-import * as Assertions from 'ephox/agar/api/Assertions';
+import * as ApproxStructure from "hugerte/agar/api/ApproxStructure";
+import * as Assertions from "hugerte/agar/api/Assertions";
 
 UnitTest.test('Approx Structures Tutorial Test', () => {
   const html = '<div data-key="test-1" selected="double" class="test1 root" style="display: block;">' +

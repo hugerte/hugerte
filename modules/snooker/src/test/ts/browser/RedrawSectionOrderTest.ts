@@ -3,11 +3,11 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Arr, Unicode } from "@hugerte/katamari";
 import { Compare, SugarElement } from "@hugerte/sugar";
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import { Warehouse } from 'ephox/snooker/api/Warehouse';
-import * as Transitions from 'ephox/snooker/model/Transitions';
-import * as Redraw from 'ephox/snooker/operate/Redraw';
-import * as Bridge from 'ephox/snooker/test/Bridge';
+import * as Structs from "hugerte/snooker/api/Structs";
+import { Warehouse } from "hugerte/snooker/api/Warehouse";
+import * as Transitions from "hugerte/snooker/model/Transitions";
+import * as Redraw from "hugerte/snooker/operate/Redraw";
+import * as Bridge from "hugerte/snooker/test/Bridge";
 
 UnitTest.asynctest('Redraw Section Order Test', (success, failure) => {
 

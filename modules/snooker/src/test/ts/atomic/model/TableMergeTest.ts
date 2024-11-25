@@ -2,9 +2,9 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as TableMerge from 'ephox/snooker/test/TableMerge';
-import TestGenerator from 'ephox/snooker/test/TestGenerator';
+import * as Structs from "hugerte/snooker/api/Structs";
+import * as TableMerge from "hugerte/snooker/test/TableMerge";
+import TestGenerator from "hugerte/snooker/test/TestGenerator";
 
 UnitTest.test('TableMergeTest', () => {
   const generator = TestGenerator;

@@ -5,9 +5,9 @@ import {
 } from "@hugerte/sugar";
 import * as fc from 'fast-check';
 
-import * as Arbitraries from 'ephox/agar/api/Arbitraries';
-import * as Assertions from 'ephox/agar/api/Assertions';
-import * as Generators from 'ephox/agar/api/Generators';
+import * as Arbitraries from "hugerte/agar/api/Arbitraries";
+import * as Assertions from "hugerte/agar/api/Assertions";
+import * as Generators from "hugerte/agar/api/Generators";
 
 UnitTest.test('Arbitraries Test', () => {
   const assertProperty = (label: string, element: SugarElement<Node>, assertion: (node: SugarElement<Node>) => boolean): boolean => {

@@ -1,9 +1,9 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Logger from 'ephox/agar/api/Logger';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
+import * as Logger from "hugerte/agar/api/Logger";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import { Step } from "hugerte/agar/api/Step";
 
 UnitTest.asynctest('StepTest', (success, failure) => {
 

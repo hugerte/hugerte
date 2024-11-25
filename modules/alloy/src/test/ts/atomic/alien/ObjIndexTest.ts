@@ -2,7 +2,7 @@ import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Obj } from "@hugerte/katamari";
 
-import * as ObjIndex from 'ephox/alloy/alien/ObjIndex';
+import * as ObjIndex from "hugerte/alloy/alien/ObjIndex";
 
 UnitTest.test('ObjIndexTest', () => {
   const tuple = <T>(k: string, v: T) => ({ country: k, value: v });

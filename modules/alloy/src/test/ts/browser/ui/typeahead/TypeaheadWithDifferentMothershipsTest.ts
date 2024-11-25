@@ -5,21 +5,21 @@ import { Objects } from "@hugerte/boulder";
 import { Arr, Future, Optional, Result } from "@hugerte/katamari";
 import { SugarDocument, Value } from "@hugerte/sugar";
 
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { SketchSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import { Typeahead } from 'ephox/alloy/api/ui/Typeahead';
-import * as MenuEvents from 'ephox/alloy/menu/util/MenuEvents';
-import * as TestDropdownMenu from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import { TestItem } from 'ephox/alloy/test/dropdown/TestDropdownMenu';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import { SketchSpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import { Typeahead } from "hugerte/alloy/api/ui/Typeahead";
+import * as MenuEvents from "hugerte/alloy/menu/util/MenuEvents";
+import * as TestDropdownMenu from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import { TestItem } from "hugerte/alloy/test/dropdown/TestDropdownMenu";
+import * as Sinks from "hugerte/alloy/test/Sinks";
 
 describe('browser.alloy.ui.typeahead.TypeaheadWithDifferentMothershipsTest', () => {
   // This test checks that all of Typeahead's functions work when the sink is in a

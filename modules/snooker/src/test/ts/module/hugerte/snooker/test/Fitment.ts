@@ -1,9 +1,9 @@
 import { Assert } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 
-import { SimpleGenerators } from 'ephox/snooker/api/Generators';
-import * as Structs from 'ephox/snooker/api/Structs';
-import * as Fitment from 'ephox/snooker/model/Fitment';
+import { SimpleGenerators } from "hugerte/snooker/api/Generators";
+import * as Structs from "hugerte/snooker/api/Structs";
+import * as Fitment from "hugerte/snooker/model/Fitment";
 
 const mapToStructGrid = (grid: Structs.ElementNew[][]): Structs.RowCells[] => {
   return Arr.map(grid, (row) => {

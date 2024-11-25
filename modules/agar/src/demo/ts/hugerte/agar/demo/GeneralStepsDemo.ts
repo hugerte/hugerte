@@ -1,8 +1,8 @@
 import { SugarElement } from "@hugerte/sugar";
 
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import * as DemoContainer from 'ephox/agar/demo/DemoContainer';
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import { Step } from "hugerte/agar/api/Step";
+import * as DemoContainer from "hugerte/agar/demo/DemoContainer";
 
 export const demo = (): void => {
   DemoContainer.init(

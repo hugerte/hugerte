@@ -2,8 +2,8 @@ import { describe, context, it } from '@ephox/bedrock-client';
 import { PlatformDetection } from "@hugerte/sand";
 import { assert } from 'chai';
 
-import { createDataTransfer } from 'ephox/dragster/datatransfer/DataTransfer';
-import { isInProtectedMode, isInReadOnlyMode, isInReadWriteMode, setProtectedMode, setReadOnlyMode } from 'ephox/dragster/datatransfer/Mode';
+import { createDataTransfer } from "hugerte/dragster/datatransfer/DataTransfer";
+import { isInProtectedMode, isInReadOnlyMode, isInReadWriteMode, setProtectedMode, setReadOnlyMode } from "hugerte/dragster/datatransfer/Mode";
 
 describe('browser.dragster.datatransfer.DataTransferModeTest', () => {
   const browser = PlatformDetection.detect().browser;

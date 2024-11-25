@@ -1,9 +1,9 @@
 import { Arr, Optional } from "@hugerte/katamari";
 import { Attribute, Class, Css, DomEvent, Insert, InsertAll, SugarElement, Value } from "@hugerte/sugar";
 
-import { SearchResult } from 'ephox/phoenix/api/data/Types';
-import * as DomSearch from 'ephox/phoenix/api/dom/DomSearch';
-import * as DomWrapping from 'ephox/phoenix/api/dom/DomWrapping';
+import { SearchResult } from "hugerte/phoenix/api/data/Types";
+import * as DomSearch from "hugerte/phoenix/api/dom/DomSearch";
+import * as DomWrapping from "hugerte/phoenix/api/dom/DomWrapping";
 
 const container = SugarElement.fromTag('div');
 

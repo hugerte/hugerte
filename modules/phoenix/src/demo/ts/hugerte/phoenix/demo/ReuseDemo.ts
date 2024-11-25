@@ -1,7 +1,7 @@
 import { Arr, Optional } from "@hugerte/katamari";
 import { Css, DomEvent, Insert, SelectorFind, SugarElement, SugarNode } from "@hugerte/sugar";
 
-import * as DomWrapping from 'ephox/phoenix/api/dom/DomWrapping';
+import * as DomWrapping from "hugerte/phoenix/api/dom/DomWrapping";
 
 const editor = SugarElement.fromTag('div');
 Css.setAll(editor, {

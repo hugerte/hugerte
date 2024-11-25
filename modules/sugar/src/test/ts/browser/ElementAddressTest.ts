@@ -2,15 +2,15 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 
-import * as Hierarchy from 'ephox/sugar/api/dom/Hierarchy';
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import * as ElementAddress from 'ephox/sugar/api/search/ElementAddress';
+import * as Hierarchy from "hugerte/sugar/api/dom/Hierarchy";
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as SugarNode from "hugerte/sugar/api/node/SugarNode";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import * as ElementAddress from "hugerte/sugar/api/search/ElementAddress";
 
 interface TestParentSpec {
   parent: string;

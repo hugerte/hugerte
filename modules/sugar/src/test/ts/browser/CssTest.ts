@@ -3,13 +3,13 @@ import { Arr, Optional } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 import { PlatformDetection } from "@hugerte/sand";
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import * as Attribute from 'ephox/sugar/api/properties/Attribute';
-import * as Css from 'ephox/sugar/api/properties/Css';
-import Div from 'ephox/sugar/test/Div';
-import MathElement from 'ephox/sugar/test/MathElement';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import * as Attribute from "hugerte/sugar/api/properties/Attribute";
+import * as Css from "hugerte/sugar/api/properties/Css";
+import Div from "hugerte/sugar/test/Div";
+import MathElement from "hugerte/sugar/test/MathElement";
 
 UnitTest.test('CssTest', () => {
   const runChecks = (connected: boolean) => {

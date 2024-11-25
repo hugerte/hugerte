@@ -4,14 +4,14 @@ import { Optional, Result } from "@hugerte/katamari";
 import { Css, DomEvent, Scroll, SelectorFind, SimRange, SugarElement, SugarNode, SugarPosition, Traverse, WindowSelection } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
-import * as PositionTestUtils from 'ephox/alloy/test/PositionTestUtils';
-import { toDomRange } from 'ephox/alloy/test/RangeUtils';
-import * as Sinks from 'ephox/alloy/test/Sinks';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as ChainUtils from "hugerte/alloy/test/ChainUtils";
+import * as PositionTestUtils from "hugerte/alloy/test/PositionTestUtils";
+import { toDomRange } from "hugerte/alloy/test/RangeUtils";
+import * as Sinks from "hugerte/alloy/test/Sinks";
 
 import * as Frames from '../../../../demo/ts/ephox/alloy/demo/frames/Frames';
 

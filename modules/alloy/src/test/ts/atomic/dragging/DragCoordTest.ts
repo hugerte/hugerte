@@ -4,7 +4,7 @@ import { SugarPosition } from "@hugerte/sugar";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
-import * as DragCoord from 'ephox/alloy/api/data/DragCoord';
+import * as DragCoord from "hugerte/alloy/api/data/DragCoord";
 
 interface TestConversion {
   mode: string;

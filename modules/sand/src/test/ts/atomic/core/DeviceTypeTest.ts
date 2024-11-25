@@ -2,7 +2,7 @@ import { describe, it } from '@ephox/bedrock-client';
 import { Fun, Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
-import { PlatformDetection } from 'ephox/sand/core/PlatformDetection';
+import { PlatformDetection } from "hugerte/sand/core/PlatformDetection";
 
 describe('DeviceTypeTest', () => {
   const getPlatform = (userAgent: string) => {

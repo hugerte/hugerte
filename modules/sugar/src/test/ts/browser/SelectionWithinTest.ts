@@ -1,14 +1,14 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Obj } from "@hugerte/katamari";
 
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import { SimSelection } from 'ephox/sugar/api/selection/SimSelection';
-import * as WindowSelection from 'ephox/sugar/api/selection/WindowSelection';
+import * as InsertAll from "hugerte/sugar/api/dom/InsertAll";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as SugarNode from "hugerte/sugar/api/node/SugarNode";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import { SimSelection } from "hugerte/sugar/api/selection/SimSelection";
+import * as WindowSelection from "hugerte/sugar/api/selection/WindowSelection";
 
 UnitTest.test('Browser Test: SelectionTest', () => {
   const p1 = SugarElement.fromHtml('<p>This is the <strong>first</strong> paragraph</p>');

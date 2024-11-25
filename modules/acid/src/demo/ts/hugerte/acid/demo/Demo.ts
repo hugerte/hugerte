@@ -2,8 +2,8 @@ import { Channels, Debugging, Gui, GuiFactory } from "@hugerte/alloy";
 import { Fun, Optional, Type } from "@hugerte/katamari";
 import { Class, DomEvent, Insert, SugarElement } from "@hugerte/sugar";
 
-import { Untranslated } from 'ephox/acid/alien/I18n';
-import * as ColourPicker from 'ephox/acid/gui/ColourPicker';
+import { Untranslated } from "hugerte/acid/alien/I18n";
+import * as ColourPicker from "hugerte/acid/gui/ColourPicker";
 
 import { strings } from '../../../../i18n/en';
 

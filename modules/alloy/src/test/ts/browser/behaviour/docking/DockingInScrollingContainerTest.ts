@@ -4,18 +4,18 @@ import { Optional, Result } from "@hugerte/katamari";
 import { Css, SelectorFind, Selectors, SugarElement, SugarLocation } from "@hugerte/sugar";
 import { assert } from 'chai';
 
-import * as Boxes from 'ephox/alloy/alien/Boxes';
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import { AllowBubbling } from 'ephox/alloy/api/behaviour/AllowBubbling';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Docking } from 'ephox/alloy/api/behaviour/Docking';
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Boxes from "hugerte/alloy/alien/Boxes";
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import { AllowBubbling } from "hugerte/alloy/api/behaviour/AllowBubbling";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Docking } from "hugerte/alloy/api/behaviour/Docking";
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as AlloyTriggers from "hugerte/alloy/api/events/AlloyTriggers";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
 
 describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () => {
 

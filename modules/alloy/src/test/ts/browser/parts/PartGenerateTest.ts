@@ -3,8 +3,8 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { FieldSchema, Objects } from "@hugerte/boulder";
 import { Fun, Obj } from "@hugerte/katamari";
 
-import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
-import * as PartType from 'ephox/alloy/parts/PartType';
+import * as AlloyParts from "hugerte/alloy/parts/AlloyParts";
+import * as PartType from "hugerte/alloy/parts/PartType";
 
 UnitTest.test('Atomic Test: parts.GenerateTest', () => {
   const schema = [

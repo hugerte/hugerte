@@ -3,8 +3,8 @@ import { Arr, Fun } from "@hugerte/katamari";
 import { KAssert } from "@hugerte/katamari-assertions";
 import { Compare, SugarElement, SugarText } from "@hugerte/sugar";
 
-import * as DomExtract from 'ephox/phoenix/api/dom/DomExtract';
-import { Page } from 'ephox/phoenix/test/Page';
+import * as DomExtract from "hugerte/phoenix/api/dom/DomExtract";
+import { Page } from "hugerte/phoenix/test/Page";
 
 UnitTest.test('DomExtractTest', () => {
 

@@ -2,9 +2,9 @@ import { GeneralSteps, Logger, Pipeline, Step, TestStore, Waiter } from "@hugert
 import { UnitTest } from '@ephox/bedrock-client';
 import { EventArgs, SugarElement } from "@hugerte/sugar";
 
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';
-import * as TapEvent from 'ephox/alloy/events/TapEvent';
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as SystemEvents from "hugerte/alloy/api/events/SystemEvents";
+import * as TapEvent from "hugerte/alloy/events/TapEvent";
 
 UnitTest.asynctest('browser events.TapEventsTest', (success, failure) => {
   // Needs to be browser because it uses DOM comparison

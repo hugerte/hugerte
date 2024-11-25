@@ -2,9 +2,9 @@ import { Assertions, Logger, Pipeline, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 import { SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Toggling } from "hugerte/alloy/api/behaviour/Toggling";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
 
 UnitTest.asynctest('Browser Test: api.ComponentConfiguredTest', (success, failure) => {
   Pipeline.async({}, [

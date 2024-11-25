@@ -1,10 +1,10 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, FutureResult, Result } from "@hugerte/katamari";
 
-import { readBlobAsText } from 'ephox/jax/core/BlobReader';
-import { DataType } from 'ephox/jax/core/DataType';
-import * as Http from 'ephox/jax/core/Http';
-import { HttpError } from 'ephox/jax/core/HttpError';
+import { readBlobAsText } from "hugerte/jax/core/BlobReader";
+import { DataType } from "hugerte/jax/core/DataType";
+import * as Http from "hugerte/jax/core/Http";
+import { HttpError } from "hugerte/jax/core/HttpError";
 
 /* eslint-disable no-console */
 

@@ -2,14 +2,14 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { DomEvent, Focus, SugarElement } from "@hugerte/sugar";
 
-import * as Assertions from 'ephox/agar/api/Assertions';
-import * as Guard from 'ephox/agar/api/Guard';
-import * as Keyboard from 'ephox/agar/api/Keyboard';
-import { Keys } from 'ephox/agar/api/Keys';
-import { Pipeline } from 'ephox/agar/api/Pipeline';
-import { Step } from 'ephox/agar/api/Step';
-import { TestLogs } from 'ephox/agar/api/TestLogs';
-import * as DomContainers from 'ephox/agar/test/DomContainers';
+import * as Assertions from "hugerte/agar/api/Assertions";
+import * as Guard from "hugerte/agar/api/Guard";
+import * as Keyboard from "hugerte/agar/api/Keyboard";
+import { Keys } from "hugerte/agar/api/Keys";
+import { Pipeline } from "hugerte/agar/api/Pipeline";
+import { Step } from "hugerte/agar/api/Step";
+import { TestLogs } from "hugerte/agar/api/TestLogs";
+import * as DomContainers from "hugerte/agar/test/DomContainers";
 
 UnitTest.asynctest('KeyboardTest', (success, failure) => {
 

@@ -3,11 +3,11 @@ import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 
-import { Editor } from 'ephox/mcagar/alien/EditorTypes';
-import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';
-import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
-import { TinyScenarios } from 'ephox/mcagar/api/pipeline/TinyScenarios';
-import { TinyDom } from 'ephox/mcagar/api/TinyDom';
+import { Editor } from "hugerte/mcagar/alien/EditorTypes";
+import { TinyApis } from "hugerte/mcagar/api/pipeline/TinyApis";
+import * as TinyLoader from "hugerte/mcagar/api/pipeline/TinyLoader";
+import { TinyScenarios } from "hugerte/mcagar/api/pipeline/TinyScenarios";
+import { TinyDom } from "hugerte/mcagar/api/TinyDom";
 
 UnitTest.asynctest('Tutorial: Property Testing with HugeRTE', (success, failure) => {
 

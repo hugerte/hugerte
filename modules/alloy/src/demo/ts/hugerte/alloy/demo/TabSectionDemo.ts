@@ -1,14 +1,14 @@
 import { Arr } from "@hugerte/katamari";
 import { Class, SugarElement } from "@hugerte/sugar";
 
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import { PremadeSpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Tabbar } from 'ephox/alloy/api/ui/Tabbar';
-import { TabSection } from 'ephox/alloy/api/ui/TabSection';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import { PremadeSpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Tabbar } from "hugerte/alloy/api/ui/Tabbar";
+import { TabSection } from "hugerte/alloy/api/ui/TabSection";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
 
 export default (): void => {
   const gui = Gui.create();

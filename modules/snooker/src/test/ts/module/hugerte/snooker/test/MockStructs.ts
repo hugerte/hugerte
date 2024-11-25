@@ -1,7 +1,7 @@
 import { Arr } from "@hugerte/katamari";
 import { SugarElement, SugarNode, TextContent } from "@hugerte/sugar";
 
-import * as Structs from 'ephox/snooker/api/Structs';
+import * as Structs from "hugerte/snooker/api/Structs";
 
 // Creates an elementNew (or returns from elements array if it already exists)
 const getElementNew = (elements: Structs.ElementNew[], tagName: 'td' | 'th' | 'col', text: string, isNew: boolean, isLocked: boolean): Structs.ElementNew => {

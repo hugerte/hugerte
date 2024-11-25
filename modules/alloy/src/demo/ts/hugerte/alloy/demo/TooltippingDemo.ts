@@ -1,17 +1,17 @@
 import { Arr, Result } from "@hugerte/katamari";
 import { Class, SugarElement } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { Tooltipping } from 'ephox/alloy/api/behaviour/Tooltipping';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Focusing } from "hugerte/alloy/api/behaviour/Focusing";
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { Tooltipping } from "hugerte/alloy/api/behaviour/Tooltipping";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import { AlloySpec } from "hugerte/alloy/api/component/SpecTypes";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
 
 export default (): void => {
   const gui = Gui.create();

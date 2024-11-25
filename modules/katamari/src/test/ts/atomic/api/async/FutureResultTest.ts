@@ -2,13 +2,13 @@ import { describe, it } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Future } from 'ephox/katamari/api/Future';
-import { FutureResult } from 'ephox/katamari/api/FutureResult';
-import { Result } from 'ephox/katamari/api/Result';
-import { tResult } from 'ephox/katamari/api/ResultInstances';
-import { arbResult } from 'ephox/katamari/test/arb/ArbDataTypes';
-import { eqAsync } from 'ephox/katamari/test/AsyncProps';
+import * as Fun from "hugerte/katamari/api/Fun";
+import { Future } from "hugerte/katamari/api/Future";
+import { FutureResult } from "hugerte/katamari/api/FutureResult";
+import { Result } from "hugerte/katamari/api/Result";
+import { tResult } from "hugerte/katamari/api/ResultInstances";
+import { arbResult } from "hugerte/katamari/test/arb/ArbDataTypes";
+import { eqAsync } from "hugerte/katamari/test/AsyncProps";
 
 type Testable<A> = Testable.Testable<A>;
 const { tNumber } = Testable;

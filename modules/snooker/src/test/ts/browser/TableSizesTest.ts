@@ -3,7 +3,7 @@ import { Arr, Optional, Type } from "@hugerte/katamari";
 import { Css, Html, Insert, InsertAll, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 // import { assert } from 'chai';
 
-import * as Sizes from 'ephox/snooker/api/Sizes';
+import * as Sizes from "hugerte/snooker/api/Sizes";
 
 import { addStyles, readRowHeights, readWidth } from '../module/ephox/snooker/test/SizeUtils';
 

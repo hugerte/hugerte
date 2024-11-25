@@ -1,25 +1,25 @@
 import { Arr, Fun, Optional, Result } from "@hugerte/katamari";
 import { Class, EventArgs, SugarElement, Value } from "@hugerte/sugar";
 
-import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { Tooltipping } from 'ephox/alloy/api/behaviour/Tooltipping';
-import { LazySink } from 'ephox/alloy/api/component/CommonTypes';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { InlineView } from 'ephox/alloy/api/ui/InlineView';
-import { Input } from 'ephox/alloy/api/ui/Input';
-import { tieredMenu as TieredMenu } from 'ephox/alloy/api/ui/TieredMenu';
-import * as DemoSink from 'ephox/alloy/demo/DemoSink';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
-import { AnchorSpec, SelectionAnchorSpec, SubmenuAnchorSpec } from 'ephox/alloy/positioning/mode/Anchoring';
+import * as AddEventsBehaviour from "hugerte/alloy/api/behaviour/AddEventsBehaviour";
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { Tooltipping } from "hugerte/alloy/api/behaviour/Tooltipping";
+import { LazySink } from "hugerte/alloy/api/component/CommonTypes";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { InlineView } from "hugerte/alloy/api/ui/InlineView";
+import { Input } from "hugerte/alloy/api/ui/Input";
+import { tieredMenu as TieredMenu } from "hugerte/alloy/api/ui/TieredMenu";
+import * as DemoSink from "hugerte/alloy/demo/DemoSink";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
+import { AnchorSpec, SelectionAnchorSpec, SubmenuAnchorSpec } from "hugerte/alloy/positioning/mode/Anchoring";
 
 import * as DemoRenders from './forms/DemoRenders';
 

@@ -3,12 +3,12 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Fun, Result } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 
-import { Keying } from 'ephox/alloy/api/behaviour/Keying';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
-import { Slider } from 'ephox/alloy/api/ui/Slider';
-import * as RepresentPipes from 'ephox/alloy/test/behaviour/RepresentPipes';
+import { Keying } from "hugerte/alloy/api/behaviour/Keying";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
+import { Slider } from "hugerte/alloy/api/ui/Slider";
+import * as RepresentPipes from "hugerte/alloy/test/behaviour/RepresentPipes";
 
 UnitTest.asynctest('Browser Test: ui.slider.HorizontalSliderTest', (success, failure) => {
 

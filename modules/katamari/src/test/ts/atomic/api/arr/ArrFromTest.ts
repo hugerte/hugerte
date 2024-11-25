@@ -1,7 +1,7 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 
-import * as Arr from 'ephox/katamari/api/Arr';
+import * as Arr from "hugerte/katamari/api/Arr";
 
 describe('atomic.katamari.api.arr.ArrFromTest', () => {
   it('works with arguments values', () => {

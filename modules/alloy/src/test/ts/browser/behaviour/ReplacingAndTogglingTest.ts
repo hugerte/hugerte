@@ -1,12 +1,12 @@
 import { Assertions, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as Memento from 'ephox/alloy/api/component/Memento';
-import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Replacing } from "hugerte/alloy/api/behaviour/Replacing";
+import { Toggling } from "hugerte/alloy/api/behaviour/Toggling";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as Memento from "hugerte/alloy/api/component/Memento";
+import * as GuiSetup from "hugerte/alloy/api/testhelpers/GuiSetup";
 
 UnitTest.asynctest('Browser Test: behaviour.ReplacingAndTogglingTest', (success, failure) => {
 

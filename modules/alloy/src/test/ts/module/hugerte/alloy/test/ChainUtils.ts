@@ -2,8 +2,8 @@ import { Chain, Guard, NamedChain } from "@hugerte/agar";
 import { Arr, Obj } from "@hugerte/katamari";
 import { SugarElement } from "@hugerte/sugar";
 
-import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
-import { GuiSystem } from 'ephox/alloy/api/system/Gui';
+import { AlloyComponent } from "hugerte/alloy/api/component/ComponentApi";
+import { GuiSystem } from "hugerte/alloy/api/system/Gui";
 
 // INVESTIGATE: Does cLogging have a place in vanilla agar?
 const cLogging = <T, U>(label: string, chains: Array<Chain<T, U>>): Chain<T, U> => {

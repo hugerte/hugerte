@@ -1,15 +1,15 @@
 import { SelectorFind } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';
-import { Representing } from 'ephox/alloy/api/behaviour/Representing';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as GuiTemplate from 'ephox/alloy/api/component/GuiTemplate';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import { Input } from 'ephox/alloy/api/ui/Input';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Replacing } from "hugerte/alloy/api/behaviour/Replacing";
+import { Representing } from "hugerte/alloy/api/behaviour/Representing";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as GuiTemplate from "hugerte/alloy/api/component/GuiTemplate";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import { Input } from "hugerte/alloy/api/ui/Input";
 
 export default (): void => {
   const ephoxUi = SelectorFind.first('#ephox-ui').getOrDie();

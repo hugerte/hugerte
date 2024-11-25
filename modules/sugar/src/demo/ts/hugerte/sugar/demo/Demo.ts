@@ -1,10 +1,10 @@
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
-import * as DomEvent from 'ephox/sugar/api/events/DomEvent';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Css from 'ephox/sugar/api/properties/Css';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import * as SelectorFind from 'ephox/sugar/api/search/SelectorFind';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as InsertAll from "hugerte/sugar/api/dom/InsertAll";
+import * as DomEvent from "hugerte/sugar/api/events/DomEvent";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Css from "hugerte/sugar/api/properties/Css";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import * as SelectorFind from "hugerte/sugar/api/search/SelectorFind";
 
 /* eslint-disable no-console */
 

@@ -1,16 +1,16 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional } from "@hugerte/katamari";
 
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Class from 'ephox/sugar/api/properties/Class';
-import * as SelectorExists from 'ephox/sugar/api/search/SelectorExists';
-import * as SelectorFilter from 'ephox/sugar/api/search/SelectorFilter';
-import * as SelectorFind from 'ephox/sugar/api/search/SelectorFind';
-import * as Selectors from 'ephox/sugar/api/search/Selectors';
-import * as Checkers from 'ephox/sugar/test/Checkers';
-import Div from 'ephox/sugar/test/Div';
-import * as TestPage from 'ephox/sugar/test/TestPage';
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Class from "hugerte/sugar/api/properties/Class";
+import * as SelectorExists from "hugerte/sugar/api/search/SelectorExists";
+import * as SelectorFilter from "hugerte/sugar/api/search/SelectorFilter";
+import * as SelectorFind from "hugerte/sugar/api/search/SelectorFind";
+import * as Selectors from "hugerte/sugar/api/search/Selectors";
+import * as Checkers from "hugerte/sugar/test/Checkers";
+import Div from "hugerte/sugar/test/Div";
+import * as TestPage from "hugerte/sugar/test/TestPage";
 
 UnitTest.test('SelectorTest', () => {
   // Querying non-element nodes does not throw an error

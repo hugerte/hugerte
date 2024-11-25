@@ -1,15 +1,15 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 
-import * as Insert from 'ephox/sugar/api/dom/Insert';
-import * as Remove from 'ephox/sugar/api/dom/Remove';
-import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
-import * as Class from 'ephox/sugar/api/properties/Class';
-import * as Classes from 'ephox/sugar/api/properties/Classes';
-import * as Html from 'ephox/sugar/api/properties/Html';
-import * as Traverse from 'ephox/sugar/api/search/Traverse';
-import Div from 'ephox/sugar/test/Div';
-import EphoxElement from 'ephox/sugar/test/EphoxElement';
+import * as Insert from "hugerte/sugar/api/dom/Insert";
+import * as Remove from "hugerte/sugar/api/dom/Remove";
+import * as SugarBody from "hugerte/sugar/api/node/SugarBody";
+import { SugarElement } from "hugerte/sugar/api/node/SugarElement";
+import * as Class from "hugerte/sugar/api/properties/Class";
+import * as Classes from "hugerte/sugar/api/properties/Classes";
+import * as Html from "hugerte/sugar/api/properties/Html";
+import * as Traverse from "hugerte/sugar/api/search/Traverse";
+import Div from "hugerte/sugar/test/Div";
+import EphoxElement from "hugerte/sugar/test/EphoxElement";
 
 UnitTest.test('RemoveTest', () => {
   const runChecks = (connected: boolean) => {

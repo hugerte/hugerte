@@ -1,18 +1,18 @@
 import { Class, Css, DomEvent, SugarElement, Traverse } from "@hugerte/sugar";
 
-import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
-import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
-import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';
-import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
-import * as AlloyEvents from 'ephox/alloy/api/events/AlloyEvents';
-import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
-import * as Attachment from 'ephox/alloy/api/system/Attachment';
-import * as Gui from 'ephox/alloy/api/system/Gui';
-import { Button } from 'ephox/alloy/api/ui/Button';
-import { Container } from 'ephox/alloy/api/ui/Container';
-import * as DemoContent from 'ephox/alloy/demo/DemoContent';
-import * as DemoSink from 'ephox/alloy/demo/DemoSink';
-import * as HtmlDisplay from 'ephox/alloy/demo/HtmlDisplay';
+import * as Behaviour from "hugerte/alloy/api/behaviour/Behaviour";
+import { Positioning } from "hugerte/alloy/api/behaviour/Positioning";
+import { Toggling } from "hugerte/alloy/api/behaviour/Toggling";
+import * as GuiFactory from "hugerte/alloy/api/component/GuiFactory";
+import * as AlloyEvents from "hugerte/alloy/api/events/AlloyEvents";
+import * as NativeEvents from "hugerte/alloy/api/events/NativeEvents";
+import * as Attachment from "hugerte/alloy/api/system/Attachment";
+import * as Gui from "hugerte/alloy/api/system/Gui";
+import { Button } from "hugerte/alloy/api/ui/Button";
+import { Container } from "hugerte/alloy/api/ui/Container";
+import * as DemoContent from "hugerte/alloy/demo/DemoContent";
+import * as DemoSink from "hugerte/alloy/demo/DemoSink";
+import * as HtmlDisplay from "hugerte/alloy/demo/HtmlDisplay";
 
 import * as Frames from './frames/Frames';
 
