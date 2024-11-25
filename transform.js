@@ -2,8 +2,8 @@ module.exports = function (fileInfo, api) {
   const j = api.jscodeshift;
   const root = j(fileInfo.source);
 
-  const oldNamespace = '@ephox/';
-  const newNamespace = '@hugerte/';
+  const oldNamespace = 'ephox/';
+  const newNamespace = 'hugerte/';
 
   // Packages to exclude from replacement
   const excludePackages = [
