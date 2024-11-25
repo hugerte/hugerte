@@ -69,6 +69,10 @@ In 2019 TinyMCE made the decision to transition their codebase to a monorepo. Fo
 
 As an open source product, we encourage and support the active development of our software.
 
+## AI-Generated Content in This Repository
+
+Commit messages or other contributions may be assisted by AI tools, such as ChatGPT. All AI-generated content is carefully reviewed by human contributors before being merged to ensure accuracy and clarity.
+
 ## Want more information?
 
 Visit the [HugeRTE website](https://hugerte.org) and check out the [TinyMCE documentation](https://www.tiny.cloud/docs/) until we host the docs ourselves.
