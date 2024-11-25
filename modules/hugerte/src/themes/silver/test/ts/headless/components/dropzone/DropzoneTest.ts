@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, UiFinder } from '@ephox/agar';
-import { AlloyTriggers, Composing, GuiFactory, NativeEvents, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, UiFinder } from "@hugerte/agar";
+import { AlloyTriggers, Composing, GuiFactory, NativeEvents, Representing, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { renderDropZone } from 'hugerte/themes/silver/ui/dialog/Dropzone';

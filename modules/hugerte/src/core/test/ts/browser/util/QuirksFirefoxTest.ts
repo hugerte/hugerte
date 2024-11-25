@@ -1,7 +1,7 @@
-import { ApproxStructure, DragnDrop } from '@ephox/agar';
+import { ApproxStructure, DragnDrop } from "@hugerte/agar";
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { SelectorFind } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { SelectorFind } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

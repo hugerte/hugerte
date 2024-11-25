@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Focus, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Focus, SugarElement } from "@hugerte/sugar";
 
 import * as Clicks from '../mouse/Clicks';
 import { Chain } from './Chain';

@@ -1,6 +1,6 @@
-import { ItemTypes } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Obj, Optional } from '@ephox/katamari';
+import { ItemTypes } from "@hugerte/alloy";
+import { Menu } from "@hugerte/bridge";
+import { Obj, Optional } from "@hugerte/katamari";
 
 import { UiFactoryBackstage } from '../../../../backstage/Backstage';
 import { renderColorSwatchItem } from './ColorSwatchItem';

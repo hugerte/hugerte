@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as SelectionTypes from '../api/SelectionTypes';
 import * as TableSelection from '../api/TableSelection';

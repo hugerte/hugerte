@@ -1,4 +1,4 @@
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell, Fun } from "@hugerte/katamari";
 
 import { nuState } from '../common/BehaviourState';
 import { SlidingConfig, SlidingState } from './SlidingTypes';

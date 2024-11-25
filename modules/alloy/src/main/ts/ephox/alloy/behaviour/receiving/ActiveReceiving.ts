@@ -1,5 +1,5 @@
-import { StructureSchema } from '@ephox/boulder';
-import { Arr, Obj } from '@ephox/katamari';
+import { StructureSchema } from "@hugerte/boulder";
+import { Arr, Obj } from "@hugerte/katamari";
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
 import * as SystemEvents from '../../api/events/SystemEvents';

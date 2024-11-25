@@ -1,5 +1,5 @@
-import { Transformations } from '@ephox/acid';
-import { Arr, Type } from '@ephox/katamari';
+import { Transformations } from "@hugerte/acid";
+import { Arr, Type } from "@hugerte/katamari";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

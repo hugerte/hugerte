@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SelectorFind, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SelectorFind, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as CaretCandidate from 'hugerte/core/caret/CaretCandidate';

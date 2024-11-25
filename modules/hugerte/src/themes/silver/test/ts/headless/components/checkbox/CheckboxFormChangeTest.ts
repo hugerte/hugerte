@@ -1,7 +1,7 @@
-import { FocusTools, Keyboard, Keys, TestStore } from '@ephox/agar';
-import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, TestHelpers } from '@ephox/alloy';
+import { FocusTools, Keyboard, Keys, TestStore } from "@hugerte/agar";
+import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { renderCheckbox } from 'hugerte/themes/silver/ui/general/Checkbox';
 import { FormChangeEvent, formChangeEvent } from 'hugerte/themes/silver/ui/general/FormEvents';

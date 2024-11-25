@@ -1,5 +1,5 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun } from '@ephox/katamari';
+import { FieldSchema } from "@hugerte/boulder";
+import { Cell, Fun } from "@hugerte/katamari";
 
 import { Toolbar } from '../../api/ui/Toolbar';
 import * as Fields from '../../data/Fields';

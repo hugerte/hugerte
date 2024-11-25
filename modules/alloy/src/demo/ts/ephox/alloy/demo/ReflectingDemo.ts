@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Class, SugarElement, Value } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Class, SugarElement, Value } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Reflecting } from 'ephox/alloy/api/behaviour/Reflecting';

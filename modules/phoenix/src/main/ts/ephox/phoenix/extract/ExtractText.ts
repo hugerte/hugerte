@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Arr, Fun } from "@hugerte/katamari";
 
 import * as Extract from './Extract';
 

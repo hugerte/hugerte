@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Insert, Remove, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Insert, Remove, SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
 
 import * as InternalAttachment from '../../system/InternalAttachment';
 import { AlloyComponent } from '../component/ComponentApi';

@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { Gene } from '../api/Gene';
 import { TextGene } from '../api/TextGene';

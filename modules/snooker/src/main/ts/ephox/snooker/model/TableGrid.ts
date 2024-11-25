@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { ElementNew, RowCells } from '../api/Structs';
 import { CompElm } from '../util/TableTypes';

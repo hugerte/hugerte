@@ -1,7 +1,7 @@
-import { UiFinder } from '@ephox/agar';
+import { UiFinder } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Html, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Html, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { Warehouse } from 'ephox/snooker/api/Warehouse';

@@ -1,7 +1,7 @@
-import { ApproxStructure, Keys, RealClipboard, RealMouse, StructAssert } from '@ephox/agar';
+import { ApproxStructure, Keys, RealClipboard, RealMouse, StructAssert } from "@hugerte/agar";
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/codesample/Plugin';

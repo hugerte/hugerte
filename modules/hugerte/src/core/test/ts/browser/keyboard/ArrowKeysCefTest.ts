@@ -1,6 +1,6 @@
-import { Keys, Waiter } from '@ephox/agar';
+import { Keys, Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

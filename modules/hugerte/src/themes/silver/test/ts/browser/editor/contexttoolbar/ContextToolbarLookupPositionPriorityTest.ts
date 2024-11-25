@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { InlineContent } from '@ephox/bridge';
-import { Arr, Fun } from '@ephox/katamari';
+import { InlineContent } from "@hugerte/bridge";
+import { Arr, Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { ContextType } from 'hugerte/themes/silver/ui/context/ContextToolbar';

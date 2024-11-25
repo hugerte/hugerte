@@ -1,6 +1,6 @@
-import { Keys } from '@ephox/agar';
+import { Keys } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/save/Plugin';

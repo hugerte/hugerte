@@ -1,7 +1,7 @@
-import { SimpleOrSketchSpec } from '@ephox/alloy';
+import { SimpleOrSketchSpec } from "@hugerte/alloy";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Optional } from "@hugerte/katamari";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 import { getAll as getAllOxide } from '@tinymce/oxide-icons-default';
 import { assert } from 'chai';
 

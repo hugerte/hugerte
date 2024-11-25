@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, TestStore } from '@ephox/agar';
+import { ApproxStructure, Assertions, TestStore } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { Focus, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Focus, SugarElement } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';

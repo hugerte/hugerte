@@ -1,7 +1,7 @@
-import { ApproxStructure, UiFinder } from '@ephox/agar';
+import { ApproxStructure, UiFinder } from "@hugerte/agar";
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { SugarBody } from '@ephox/sugar';
-import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { SugarBody } from "@hugerte/sugar";
+import { TinyAssertions, TinyHooks, TinySelections, TinyState } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/table/Plugin';

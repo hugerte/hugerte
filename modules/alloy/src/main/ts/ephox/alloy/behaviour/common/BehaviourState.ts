@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 export interface BehaviourState {
   /** This is for debug purposes only, and only used by the Alloy Inspector Chrome Plugin */

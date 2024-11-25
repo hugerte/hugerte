@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';

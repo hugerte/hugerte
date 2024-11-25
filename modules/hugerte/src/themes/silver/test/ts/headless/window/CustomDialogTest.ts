@@ -1,8 +1,8 @@
-import { FocusTools, Keyboard, Keys, Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
+import { FocusTools, Keyboard, Keys, Mouse, TestStore, UiFinder, Waiter } from "@hugerte/agar";
+import { TestHelpers } from "@hugerte/alloy";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Checked, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { Checked, SugarBody, SugarDocument, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { WindowManagerImpl } from 'hugerte/core/api/WindowManager';

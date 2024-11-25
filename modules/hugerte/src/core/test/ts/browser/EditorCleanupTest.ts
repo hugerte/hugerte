@@ -1,7 +1,7 @@
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Attribute, Remove, Truncate } from '@ephox/sugar';
-import { McEditor, TinyDom } from '@ephox/wrap-mcagar';
+import { Fun } from "@hugerte/katamari";
+import { Attribute, Remove, Truncate } from "@hugerte/sugar";
+import { McEditor, TinyDom } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

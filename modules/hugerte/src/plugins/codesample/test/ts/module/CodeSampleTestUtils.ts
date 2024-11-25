@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, UiFinder, Waiter } from '@ephox/agar';
-import { SugarBody, SugarElement, TextContent } from '@ephox/sugar';
-import { TinyUiActions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions, UiFinder, Waiter } from "@hugerte/agar";
+import { SugarBody, SugarElement, TextContent } from "@hugerte/sugar";
+import { TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

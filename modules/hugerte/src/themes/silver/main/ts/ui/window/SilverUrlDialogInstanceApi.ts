@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloyTriggers } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Type } from '@ephox/katamari';
+import { AlloyComponent, AlloyTriggers } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Type } from "@hugerte/katamari";
 
 import { formBlockEvent, formCloseEvent, formUnblockEvent } from '../general/FormEvents';
 import { bodySendMessageChannel } from './DialogChannels';

@@ -1,4 +1,4 @@
-import { Arr, Fun, Merger } from '@ephox/katamari';
+import { Arr, Fun, Merger } from "@hugerte/katamari";
 
 import { AlloySpec } from '../api/component/SpecTypes';
 import { CompositeSketchDetail, CompositeSketchSpec } from '../api/ui/Sketcher';

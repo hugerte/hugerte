@@ -1,6 +1,6 @@
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
-import { TableLookup, Warehouse } from '@ephox/snooker';
-import { Compare, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional } from "@hugerte/katamari";
+import { TableLookup, Warehouse } from "@hugerte/snooker";
+import { Compare, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';

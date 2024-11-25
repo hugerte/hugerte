@@ -1,8 +1,8 @@
-import { FocusTools, RealKeys, UiFinder } from '@ephox/agar';
+import { FocusTools, RealKeys, UiFinder } from "@hugerte/agar";
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

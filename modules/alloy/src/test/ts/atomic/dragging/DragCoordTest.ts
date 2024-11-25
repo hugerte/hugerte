@@ -1,6 +1,6 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 

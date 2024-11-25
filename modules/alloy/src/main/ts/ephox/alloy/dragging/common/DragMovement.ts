@@ -1,5 +1,5 @@
-import { Fun, Num, Optional, Optionals } from '@ephox/katamari';
-import { Css, Scroll, SugarElement, SugarLocation, SugarPosition, Traverse } from '@ephox/sugar';
+import { Fun, Num, Optional, Optionals } from "@hugerte/katamari";
+import { Css, Scroll, SugarElement, SugarLocation, SugarPosition, Traverse } from "@hugerte/sugar";
 
 import * as OffsetOrigin from '../../alien/OffsetOrigin';
 import { AlloyComponent } from '../../api/component/ComponentApi';

@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Focus } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Focus } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Disabling } from 'ephox/alloy/api/behaviour/Disabling';

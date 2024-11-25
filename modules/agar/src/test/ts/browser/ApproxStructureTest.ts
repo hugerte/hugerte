@@ -1,5 +1,5 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { InsertAll, SugarElement } from '@ephox/sugar';
+import { InsertAll, SugarElement } from "@hugerte/sugar";
 
 import * as ApproxStructure from 'ephox/agar/api/ApproxStructure';
 import * as Assertions from 'ephox/agar/api/Assertions';

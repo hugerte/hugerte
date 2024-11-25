@@ -1,5 +1,5 @@
-import { Gene, TestUniverse } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Gene, TestUniverse } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
 
 const get = (universe: TestUniverse, id: string): Gene => {
   return universe.find(universe.get(), id).getOrDie('Test element "' + id + '" not found');

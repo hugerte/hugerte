@@ -1,4 +1,4 @@
-import { Compare, SugarElement } from '@ephox/sugar';
+import { Compare, SugarElement } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import * as AlloyEvents from '../api/events/AlloyEvents';

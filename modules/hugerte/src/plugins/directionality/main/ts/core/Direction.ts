@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Traverse, Attribute, SugarElement, SugarNode, SelectorFind, Direction, SelectorFilter } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Traverse, Attribute, SugarElement, SugarNode, SelectorFind, Direction, SelectorFilter } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

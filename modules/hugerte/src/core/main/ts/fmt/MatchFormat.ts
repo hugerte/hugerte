@@ -1,5 +1,5 @@
-import { Arr, Obj, Optional, Strings, Type } from '@ephox/katamari';
-import { Compare, SugarElement, TransformFind } from '@ephox/sugar';
+import { Arr, Obj, Optional, Strings, Type } from "@hugerte/katamari";
+import { Compare, SugarElement, TransformFind } from "@hugerte/sugar";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

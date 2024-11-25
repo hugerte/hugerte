@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { Chain } from './Chain';
 import { sequence } from './GeneralSteps';

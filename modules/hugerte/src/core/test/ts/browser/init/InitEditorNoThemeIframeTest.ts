@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { SelectorFind, SugarBody, Traverse } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { SelectorFind, SugarBody, Traverse } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

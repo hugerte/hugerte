@@ -1,6 +1,6 @@
-import { Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
+import { Mouse, TestStore, UiFinder, Waiter } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { SugarBody, Value } from '@ephox/sugar';
+import { SugarBody, Value } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';

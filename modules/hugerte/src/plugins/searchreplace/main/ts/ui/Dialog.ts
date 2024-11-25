@@ -1,4 +1,4 @@
-import { Arr, Cell, Singleton } from '@ephox/katamari';
+import { Arr, Cell, Singleton } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import Env from 'hugerte/core/api/Env';

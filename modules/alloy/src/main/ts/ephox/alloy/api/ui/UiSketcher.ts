@@ -1,5 +1,5 @@
-import { FieldProcessor } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
+import { FieldProcessor } from "@hugerte/boulder";
+import { Obj } from "@hugerte/katamari";
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import { PartTypeAdt } from '../../parts/PartType';

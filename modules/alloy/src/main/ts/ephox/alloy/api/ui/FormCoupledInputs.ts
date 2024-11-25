@@ -1,4 +1,4 @@
-import { Obj, Optional } from '@ephox/katamari';
+import { Obj, Optional } from "@hugerte/katamari";
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as FormCoupledInputsSchema from '../../ui/schema/FormCoupledInputsSchema';

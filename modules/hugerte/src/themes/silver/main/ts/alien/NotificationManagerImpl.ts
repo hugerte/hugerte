@@ -1,6 +1,6 @@
-import { Boxes, Gui, GuiFactory, InlineView, Layout, MaxHeight, NodeAnchorSpec } from '@ephox/alloy';
-import { Arr, Num, Optional, Type } from '@ephox/katamari';
-import { SugarBody, SugarElement } from '@ephox/sugar';
+import { Boxes, Gui, GuiFactory, InlineView, Layout, MaxHeight, NodeAnchorSpec } from "@hugerte/alloy";
+import { Arr, Num, Optional, Type } from "@hugerte/katamari";
+import { SugarBody, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { NotificationApi, NotificationManagerImpl, NotificationSpec } from 'hugerte/core/api/NotificationManager';
@@ -61,7 +61,7 @@ export default (editor: Editor, extras: Extras, uiMothership: Gui.GuiSystem): No
         },
         lazySink: sharedBackstage.getSink,
         fireDismissalEventInstead: {},
-        ...sharedBackstage.header.isPositionedAtTop() ? {} : { fireRepositionEventInstead: {}}
+        ...(sharedBackstage.header.isPositionedAtTop() ? {} : { fireRepositionEventInstead: {}})
       })
     );
 

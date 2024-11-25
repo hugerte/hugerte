@@ -5,7 +5,7 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { Compare, ContentEditable, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { Compare, ContentEditable, PredicateFind, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

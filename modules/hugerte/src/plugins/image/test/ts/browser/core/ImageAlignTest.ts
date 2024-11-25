@@ -1,7 +1,7 @@
-import { ApproxStructure } from '@ephox/agar';
+import { ApproxStructure } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/image/Plugin';
@@ -18,14 +18,14 @@ const figureImageApproxStructure = (alignment: Alignment, isSelectAll: boolean) 
 
   return ApproxStructure.build((s, str, arr) => s.element('body', {
     children: [
-      ...isSelectAll ? [
+      ...(isSelectAll ? [
         s.element('p', {
           styles: alignment === 'justify' ? { 'text-align': str.is('justify') } : {},
           children: [
             s.text(str.is('before'))
           ]
         }),
-      ] : [],
+      ] : []),
       s.element('figure', {
         classes: [
           arr.has('image'),
@@ -40,14 +40,14 @@ const figureImageApproxStructure = (alignment: Alignment, isSelectAll: boolean) 
           s.theRest()
         ]
       }),
-      ...isSelectAll ? [
+      ...(isSelectAll ? [
         s.element('p', {
           styles: alignment === 'justify' ? { 'text-align': str.is('justify') } : {},
           children: [
             s.text(str.is('after'))
           ]
         }),
-      ] : [],
+      ] : []),
       s.theRest()
     ]
   }));
@@ -63,14 +63,14 @@ const imageApproxStructure = (alignment: Alignment, isSelectAll: boolean) => {
 
   return ApproxStructure.build((s, str) => s.element('body', {
     children: [
-      ...isSelectAll ? [
+      ...(isSelectAll ? [
         s.element('p', {
           styles: alignment === 'justify' ? { 'text-align': str.is('justify') } : {},
           children: [
             s.text(str.is('before'))
           ]
         }),
-      ] : [],
+      ] : []),
       s.element('p', {
         styles: alignment === 'justify' ? { 'text-align': str.is('justify') } : {},
         children: [
@@ -82,14 +82,14 @@ const imageApproxStructure = (alignment: Alignment, isSelectAll: boolean) => {
           })
         ]
       }),
-      ...isSelectAll ? [
+      ...(isSelectAll ? [
         s.element('p', {
           styles: alignment === 'justify' ? { 'text-align': str.is('justify') } : {},
           children: [
             s.text(str.is('after'))
           ]
         }),
-      ] : [],
+      ] : []),
       s.theRest()
     ]
   }));

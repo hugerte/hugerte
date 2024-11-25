@@ -1,5 +1,5 @@
-import { Fun, Id, Singleton } from '@ephox/katamari';
-import { Traverse } from '@ephox/sugar';
+import { Fun, Id, Singleton } from "@hugerte/katamari";
+import { Traverse } from "@hugerte/sugar";
 
 import * as AriaLabel from '../../aria/AriaLabel';
 import * as AlloyParts from '../../parts/AlloyParts';

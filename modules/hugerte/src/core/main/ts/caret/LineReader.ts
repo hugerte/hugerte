@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
 
 import * as NodeType from '../dom/NodeType';
 import * as CaretFinder from './CaretFinder';

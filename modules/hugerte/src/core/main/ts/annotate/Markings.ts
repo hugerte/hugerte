@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 const annotation = Fun.constant('mce-annotation');
 

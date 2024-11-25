@@ -1,4 +1,4 @@
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell, Optional } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { BlockFormat, InlineFormat } from 'hugerte/core/api/fmt/Format';

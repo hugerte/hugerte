@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Compare, Insert, Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Compare, Insert, Remove, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { AlloySpec } from '../api/component/SpecTypes';

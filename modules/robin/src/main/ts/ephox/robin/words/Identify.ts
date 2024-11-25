@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Words } from '@ephox/polaris';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Words } from "@hugerte/polaris";
 
 import { WordScope } from '../data/WordScope';
 import * as WordSanitiser from '../util/WordSanitiser';

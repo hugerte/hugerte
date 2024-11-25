@@ -1,8 +1,8 @@
-import { Cursors } from '@ephox/agar';
+import { Cursors } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional, Optionals } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Fun, Optional, Optionals } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

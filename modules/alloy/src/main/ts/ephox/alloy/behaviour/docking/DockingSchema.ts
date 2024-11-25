@@ -1,5 +1,5 @@
-import { FieldProcessor, FieldSchema, ValueType } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+import { FieldProcessor, FieldSchema, ValueType } from "@hugerte/boulder";
+import { Optional } from "@hugerte/katamari";
 
 import * as Boxes from '../../alien/Boxes';
 import * as Fields from '../../data/Fields';

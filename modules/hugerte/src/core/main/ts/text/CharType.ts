@@ -1,4 +1,4 @@
-import { Unicode } from '@ephox/katamari';
+import { Unicode } from "@hugerte/katamari";
 
 const is = (expected: string) => (actual: string): boolean =>
   expected === actual;

@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse } from '@ephox/boss';
+import { Gene, TestUniverse } from "@hugerte/boss";
 
 import * as Structure from 'ephox/robin/api/general/Structure';
 

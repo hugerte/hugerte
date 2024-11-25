@@ -1,4 +1,4 @@
-import { FieldProcessor } from '@ephox/boulder';
+import { FieldProcessor } from "@hugerte/boulder";
 
 import DragStarting from '../../dragging/dragndrop/DragStarting';
 import Dropping from '../../dragging/dragndrop/Dropping';

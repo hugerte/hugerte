@@ -1,8 +1,8 @@
-import { Keys, Mouse } from '@ephox/agar';
+import { Keys, Mouse } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SelectorFilter, TextContent } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { SelectorFilter, TextContent } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

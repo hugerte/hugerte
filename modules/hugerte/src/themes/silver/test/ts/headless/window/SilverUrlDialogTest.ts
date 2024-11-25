@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Mouse, TestStore, UiFinder, Waiter } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { SugarBody } from '@ephox/sugar';
+import { SugarBody } from "@hugerte/sugar";
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 import { WindowManagerImpl } from 'hugerte/core/api/WindowManager';

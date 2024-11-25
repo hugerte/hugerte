@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinySelections, TinyHooks } from '@ephox/wrap-mcagar';
+import { TinyAssertions, TinySelections, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/lists/Plugin';

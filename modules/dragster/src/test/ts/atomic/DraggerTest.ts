@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { SugarElement, SugarPosition } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { SugarElement, SugarPosition } from "@hugerte/sugar";
 
 import { DragApi, DragMode, DragSink } from 'ephox/dragster/api/DragApis';
 import * as Dragging from 'ephox/dragster/core/Dragging';

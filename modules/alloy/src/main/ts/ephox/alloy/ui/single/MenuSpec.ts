@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Attribute, Compare, SelectorFilter } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Attribute, Compare, SelectorFilter } from "@hugerte/sugar";
 
 import { Composing } from '../../api/behaviour/Composing';
 import { Highlighting } from '../../api/behaviour/Highlighting';

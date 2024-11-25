@@ -1,6 +1,6 @@
-import { AddEventsBehaviour, AlloyEvents, Behaviour, Focusing, Memento, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Obj, Optional, Singleton } from '@ephox/katamari';
+import { AddEventsBehaviour, AlloyEvents, Behaviour, Focusing, Memento, SimpleSpec, Tabstopping } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Obj, Optional, Singleton } from "@hugerte/katamari";
 
 import Resource from 'hugerte/core/api/Resource';
 

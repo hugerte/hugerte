@@ -1,5 +1,5 @@
-import { StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { StructureSchema } from "@hugerte/boulder";
+import { Optional, Result } from "@hugerte/katamari";
 
 import { FancyMenuItemSpec, MenuItemSpec, SeparatorMenuItemSpec, ToggleMenuItemSpec } from '../../api/Menu';
 import * as ComponentSchema from '../../core/ComponentSchema';

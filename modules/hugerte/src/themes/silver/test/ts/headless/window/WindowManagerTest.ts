@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder, Waiter } from "@hugerte/agar";
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SelectorFind, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';

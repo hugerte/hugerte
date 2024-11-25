@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { DieFn, NextFn } from '../pipe/Pipe';
 import { Step } from './Step';

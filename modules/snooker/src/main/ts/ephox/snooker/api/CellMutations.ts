@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Sizes from '../resize/Sizes';
 import * as CellUtils from '../util/CellUtils';

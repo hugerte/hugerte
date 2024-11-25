@@ -1,4 +1,4 @@
-import { Focus } from '@ephox/sugar';
+import { Focus } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { FocusingConfig } from './FocusingTypes';

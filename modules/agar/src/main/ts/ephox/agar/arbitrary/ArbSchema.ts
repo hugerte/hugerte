@@ -1,5 +1,5 @@
-import { Unicode } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Unicode } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 import * as fc from 'fast-check';
 
 import * as ArbNodes from './ArbNodes';

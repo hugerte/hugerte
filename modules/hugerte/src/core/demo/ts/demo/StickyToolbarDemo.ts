@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import { Editor, RawEditorOptions, HugeRTE } from 'hugerte/core/api/PublicApi';
 

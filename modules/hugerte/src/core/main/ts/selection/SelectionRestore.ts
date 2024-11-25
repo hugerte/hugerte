@@ -1,4 +1,4 @@
-import { Throttler } from '@ephox/katamari';
+import { Throttler } from "@hugerte/katamari";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

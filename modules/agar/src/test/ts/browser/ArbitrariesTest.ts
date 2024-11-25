@@ -1,8 +1,8 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 import {
   Attribute, Compare, Css, Insert, PredicateFilter, Remove, SelectorFilter, SugarBody, SugarElement, SugarNode, SugarText, Traverse, Truncate
-} from '@ephox/sugar';
+} from "@hugerte/sugar";
 import * as fc from 'fast-check';
 
 import * as Arbitraries from 'ephox/agar/api/Arbitraries';

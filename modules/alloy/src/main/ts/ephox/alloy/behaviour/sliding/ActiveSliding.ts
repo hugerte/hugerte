@@ -1,5 +1,5 @@
-import { Objects } from '@ephox/boulder';
-import { Css, EventArgs } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Css, EventArgs } from "@hugerte/sugar";
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
 import * as NativeEvents from '../../api/events/NativeEvents';

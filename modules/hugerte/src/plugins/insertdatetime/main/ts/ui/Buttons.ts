@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Cell } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Menu, Toolbar } from 'hugerte/core/api/ui/Ui';

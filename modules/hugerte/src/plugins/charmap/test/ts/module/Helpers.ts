@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 // TODO: Move into shared library
 const fakeEvent = (elm: SugarElement<Node>, name: string): void => {

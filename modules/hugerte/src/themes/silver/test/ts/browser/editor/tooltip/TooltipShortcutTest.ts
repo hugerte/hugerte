@@ -1,7 +1,7 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import FullscreenPlugin from 'hugerte/plugins/fullscreen/Plugin';

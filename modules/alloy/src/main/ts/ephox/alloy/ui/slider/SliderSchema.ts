@@ -1,5 +1,5 @@
-import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Cell, Fun } from '@ephox/katamari';
+import { FieldProcessor, FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Cell, Fun } from "@hugerte/katamari";
 
 import { Keying } from '../../api/behaviour/Keying';
 import { Representing } from '../../api/behaviour/Representing';

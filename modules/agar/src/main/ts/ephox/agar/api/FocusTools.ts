@@ -1,5 +1,5 @@
-import { Result } from '@ephox/katamari';
-import { Compare, Focus, SugarElement, SugarShadowDom, Truncate } from '@ephox/sugar';
+import { Result } from "@hugerte/katamari";
+import { Compare, Focus, SugarElement, SugarShadowDom, Truncate } from "@hugerte/sugar";
 
 import * as SizzleFind from '../alien/SizzleFind';
 import { Chain } from './Chain';

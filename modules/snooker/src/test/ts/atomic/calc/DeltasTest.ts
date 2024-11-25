@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from "@hugerte/katamari";
 
 import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';
 import { TableSize } from 'ephox/snooker/api/TableSize';

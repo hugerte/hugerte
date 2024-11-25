@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 
 /*
  * This is used to take something like:

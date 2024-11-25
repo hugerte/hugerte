@@ -1,8 +1,8 @@
-import { FocusTools, Keys } from '@ephox/agar';
+import { FocusTools, Keys } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarDocument } from '@ephox/sugar';
-import { TinyContentActions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { SugarDocument } from "@hugerte/sugar";
+import { TinyContentActions, TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 describe('browser.hugerte.core.focus.KeyboardShortcutElementPathFocusTest ', () => {
 

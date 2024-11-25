@@ -1,9 +1,9 @@
-import { Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
-import { AlloyComponent, Attachment, Behaviour, Gui, GuiFactory, Positioning, Representing } from '@ephox/alloy';
+import { Assertions, Keyboard, Keys, Mouse, UiFinder } from "@hugerte/agar";
+import { AlloyComponent, Attachment, Behaviour, Gui, GuiFactory, Positioning, Representing } from "@hugerte/alloy";
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional, Result } from '@ephox/katamari';
-import { Classes, SugarBody, Traverse } from '@ephox/sugar';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Fun, Optional, Result } from "@hugerte/katamari";
+import { Classes, SugarBody, Traverse } from "@hugerte/sugar";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import EditorManager from 'hugerte/core/api/EditorManager';

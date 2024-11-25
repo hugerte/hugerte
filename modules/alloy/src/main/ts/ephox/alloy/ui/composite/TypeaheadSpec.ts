@@ -1,6 +1,6 @@
-import { Objects } from '@ephox/boulder';
-import { Arr, Fun, Merger, Obj, Optional } from '@ephox/katamari';
-import { Attribute, EventArgs, Focus, Value } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Arr, Fun, Merger, Obj, Optional } from "@hugerte/katamari";
+import { Attribute, EventArgs, Focus, Value } from "@hugerte/sugar";
 
 import * as AddEventsBehaviour from '../../api/behaviour/AddEventsBehaviour';
 import { Composing } from '../../api/behaviour/Composing';

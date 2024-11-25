@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import * as FilteredEvent from '../../impl/FilteredEvent';
 import { SugarElement } from '../node/SugarElement';

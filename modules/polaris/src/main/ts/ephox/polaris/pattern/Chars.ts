@@ -1,4 +1,4 @@
-import { Fun, Unicode } from '@ephox/katamari';
+import { Fun, Unicode } from "@hugerte/katamari";
 
 import { punctuationStr } from '../words/UnicodeData';
 

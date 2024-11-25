@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
+import { Arr, Fun, Obj, Type } from "@hugerte/katamari";
 
 import { AlloyEventHandler, EventRunHandler } from '../api/events/AlloyEvents';
 import { EventFormat, SimulatedEvent } from '../events/SimulatedEvent';

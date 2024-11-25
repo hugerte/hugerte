@@ -1,5 +1,5 @@
-import { Optional, Optionals, Singleton } from '@ephox/katamari';
-import { Compare, ContentEditable, EventArgs, SelectorFind, SugarElement, Traverse } from '@ephox/sugar';
+import { Optional, Optionals, Singleton } from "@hugerte/katamari";
+import { Compare, ContentEditable, EventArgs, SelectorFind, SugarElement, Traverse } from "@hugerte/sugar";
 
 import { SelectionAnnotation } from '../api/SelectionAnnotation';
 import { WindowBridge } from '../api/WindowBridge';

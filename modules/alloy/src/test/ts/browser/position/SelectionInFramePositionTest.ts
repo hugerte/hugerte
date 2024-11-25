@@ -1,7 +1,7 @@
-import { Chain, Cursors, Guard, NamedChain } from '@ephox/agar';
+import { Chain, Cursors, Guard, NamedChain } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
-import { Css, DomEvent, Scroll, SelectorFind, SimRange, SugarElement, SugarNode, SugarPosition, Traverse, WindowSelection } from '@ephox/sugar';
+import { Optional, Result } from "@hugerte/katamari";
+import { Css, DomEvent, Scroll, SelectorFind, SimRange, SugarElement, SugarNode, SugarPosition, Traverse, WindowSelection } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';

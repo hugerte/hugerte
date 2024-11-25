@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { Gene } from 'ephox/boss/api/Gene';
 import * as Locator from 'ephox/boss/mutant/Locator';

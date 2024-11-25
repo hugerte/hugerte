@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 const genericBase = {
   remove_similar: true,

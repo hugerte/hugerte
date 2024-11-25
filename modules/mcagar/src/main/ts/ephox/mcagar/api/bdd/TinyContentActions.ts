@@ -1,4 +1,4 @@
-import { Keyboard, Mouse } from '@ephox/agar';
+import { Keyboard, Mouse } from "@hugerte/agar";
 
 import { Editor } from '../../alien/EditorTypes';
 import * as TypeText from '../../keyboard/TypeText';

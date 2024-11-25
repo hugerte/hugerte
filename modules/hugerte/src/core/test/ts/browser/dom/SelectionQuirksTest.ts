@@ -1,6 +1,6 @@
-import { Keys, Monitor, Mouse } from '@ephox/agar';
+import { Keys, Monitor, Mouse } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

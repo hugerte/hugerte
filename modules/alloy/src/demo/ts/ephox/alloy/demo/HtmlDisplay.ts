@@ -1,5 +1,5 @@
-import { Id, Thunk } from '@ephox/katamari';
-import { DomEvent, Html, SugarElement, TextContent } from '@ephox/sugar';
+import { Id, Thunk } from "@hugerte/katamari";
+import { DomEvent, Html, SugarElement, TextContent } from "@hugerte/sugar";
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import { Pipeline } from 'ephox/agar/api/Pipeline';
 import { Step } from 'ephox/agar/api/Step';

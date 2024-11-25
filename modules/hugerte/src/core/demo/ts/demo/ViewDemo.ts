@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Merger } from '@ephox/katamari';
+import { Merger } from "@hugerte/katamari";
 
 import { RawEditorOptions, HugeRTE } from 'hugerte/core/api/PublicApi';
 

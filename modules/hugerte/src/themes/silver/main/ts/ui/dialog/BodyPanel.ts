@@ -1,6 +1,6 @@
-import { AddEventsBehaviour, AlloyEvents, Behaviour, Form as AlloyForm, Keying, Memento, NativeEvents, SimpleSpec } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { AddEventsBehaviour, AlloyEvents, Behaviour, Form as AlloyForm, Keying, Memento, NativeEvents, SimpleSpec } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { ComposingConfigs } from '../alien/ComposingConfigs';

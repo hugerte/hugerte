@@ -1,5 +1,5 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
-import { Attribute, SugarNode } from '@ephox/sugar';
+import { Arr, Obj, Optional } from "@hugerte/katamari";
+import { Attribute, SugarNode } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { AriaTogglingConfig } from './TogglingTypes';

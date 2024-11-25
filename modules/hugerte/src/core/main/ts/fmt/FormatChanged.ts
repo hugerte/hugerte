@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Cell, Obj, Optional, Type } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 import { FormatEvent } from '../api/EventTypes';

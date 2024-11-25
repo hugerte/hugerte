@@ -1,5 +1,5 @@
-import { Bindable, Event, Events } from '@ephox/porkbun';
-import { SugarElement } from '@ephox/sugar';
+import { Bindable, Event, Events } from "@hugerte/porkbun";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Adjustments from '../resize/Adjustments';
 import { BarManager } from '../resize/BarManager';

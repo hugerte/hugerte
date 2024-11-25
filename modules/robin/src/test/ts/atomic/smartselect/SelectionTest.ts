@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Unicode } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
+import { Unicode } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 
 import * as Selection from 'ephox/robin/smartselect/Selection';
 

@@ -1,6 +1,6 @@
-import { RealMouse, Waiter } from '@ephox/agar';
+import { RealMouse, Waiter } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { getFullscreenElement } from 'hugerte/plugins/fullscreen/core/NativeFullscreen';

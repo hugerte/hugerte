@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Result } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Arr, Obj, Result } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 import * as fc from 'fast-check';
 
 import * as Objects from 'ephox/boulder/api/Objects';

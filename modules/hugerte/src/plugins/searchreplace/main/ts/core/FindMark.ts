@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Attribute, Insert, SugarElement, SugarText } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute, Insert, SugarElement, SugarText } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import EditorSelection from 'hugerte/core/api/dom/Selection';

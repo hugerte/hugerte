@@ -1,4 +1,4 @@
-import { Obj, Type } from '@ephox/katamari';
+import { Obj, Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

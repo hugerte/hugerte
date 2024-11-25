@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Remove, SugarElement } from '@ephox/sugar';
+import { Remove, SugarElement } from "@hugerte/sugar";
 
 import * as TableGridSize from 'ephox/snooker/api/TableGridSize';
 

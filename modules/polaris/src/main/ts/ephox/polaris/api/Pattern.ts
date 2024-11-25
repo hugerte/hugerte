@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import * as Chars from '../pattern/Chars';
 import { Custom } from '../pattern/Custom';

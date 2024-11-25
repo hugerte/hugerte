@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { Css, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Css, SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
 
 import Editor from './api/Editor';
 

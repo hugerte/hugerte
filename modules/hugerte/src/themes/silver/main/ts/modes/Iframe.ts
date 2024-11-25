@@ -1,7 +1,7 @@
-import { Attachment, Channels, Disabling } from '@ephox/alloy';
-import { Arr, Cell, Throttler, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Css, DomEvent, SugarElement, SugarPosition, SugarShadowDom } from '@ephox/sugar';
+import { Attachment, Channels, Disabling } from "@hugerte/alloy";
+import { Arr, Cell, Throttler, Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Css, DomEvent, SugarElement, SugarPosition, SugarShadowDom } from "@hugerte/sugar";
 
 import { EventUtilsEvent } from 'hugerte/core/api/dom/EventUtils';
 import Editor from 'hugerte/core/api/Editor';

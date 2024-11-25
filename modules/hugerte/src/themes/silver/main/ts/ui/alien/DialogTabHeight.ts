@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloyEvents, EventFormat, Replacing, SystemEvents, TabbarTypes, TabSection } from '@ephox/alloy';
-import { Arr, Singleton } from '@ephox/katamari';
-import { Css, Focus, Height, SelectorFind, SugarElement, SugarShadowDom, Traverse, Width } from '@ephox/sugar';
+import { AlloyComponent, AlloyEvents, EventFormat, Replacing, SystemEvents, TabbarTypes, TabSection } from "@hugerte/alloy";
+import { Arr, Singleton } from "@hugerte/katamari";
+import { Css, Focus, Height, SelectorFind, SugarElement, SugarShadowDom, Traverse, Width } from "@hugerte/sugar";
 
 import { formResizeEvent } from '../general/FormEvents';
 

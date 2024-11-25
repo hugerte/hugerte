@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { BehaviourConfigAndState } from '../../behaviour/common/BehaviourBlob';
 import { UncurriedHandler } from '../../events/EventRegistry';

@@ -1,4 +1,4 @@
-import { Arr, Merger, Optional, Strings, Type } from '@ephox/katamari';
+import { Arr, Merger, Optional, Strings, Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { BlobInfo } from 'hugerte/core/api/file/BlobCache';

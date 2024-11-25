@@ -1,6 +1,6 @@
-import { AlloySpec, GuiFactory, SimpleSpec } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
+import { AlloySpec, GuiFactory, SimpleSpec } from "@hugerte/alloy";
+import { Menu } from "@hugerte/bridge";
+import { Optional } from "@hugerte/katamari";
 
 import I18n from 'hugerte/core/api/util/I18n';
 

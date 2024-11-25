@@ -1,5 +1,5 @@
-import { Bindable, Event, Events } from '@ephox/porkbun';
-import { Height, SugarElement, Width } from '@ephox/sugar';
+import { Bindable, Event, Events } from "@hugerte/porkbun";
+import { Height, SugarElement, Width } from "@hugerte/sugar";
 
 export interface GrowEvent {
   readonly x: number;

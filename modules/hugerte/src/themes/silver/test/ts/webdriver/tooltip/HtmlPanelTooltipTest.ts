@@ -1,6 +1,6 @@
-import { RealKeys, RealMouse } from '@ephox/agar';
+import { RealKeys, RealMouse } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, Keys } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, Keys } from "@hugerte/agar";
+import { TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { SugarDocument } from '@ephox/sugar';
-import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { SugarDocument } from "@hugerte/sugar";
+import { TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

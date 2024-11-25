@@ -1,8 +1,8 @@
-import { ApproxStructure } from '@ephox/agar';
+import { ApproxStructure } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

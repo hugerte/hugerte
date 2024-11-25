@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Cell } from '@ephox/katamari';
-import { Hierarchy, Selectors, SugarElement } from '@ephox/sugar';
+import { Cell } from "@hugerte/katamari";
+import { Hierarchy, Selectors, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import CaretPosition from 'hugerte/core/caret/CaretPosition';

@@ -1,6 +1,6 @@
-import { Behaviour, Channels, Disabling, Receiving } from '@ephox/alloy';
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr } from '@ephox/katamari';
+import { Behaviour, Channels, Disabling, Receiving } from "@hugerte/alloy";
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Arr } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

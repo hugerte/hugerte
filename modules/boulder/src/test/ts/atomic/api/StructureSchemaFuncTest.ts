@@ -1,6 +1,6 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Result } from '@ephox/katamari';
+import { Result } from "@hugerte/katamari";
 
 import * as FieldSchema from 'ephox/boulder/api/FieldSchema';
 import * as Objects from 'ephox/boulder/api/Objects';

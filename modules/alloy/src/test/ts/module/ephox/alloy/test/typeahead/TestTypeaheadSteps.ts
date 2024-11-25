@@ -1,5 +1,5 @@
-import { Assertions, Chain, FocusTools, Logger, Step, UiFinder, Waiter } from '@ephox/agar';
-import { Attribute, SugarElement, Value } from '@ephox/sugar';
+import { Assertions, Chain, FocusTools, Logger, Step, UiFinder, Waiter } from "@hugerte/agar";
+import { Attribute, SugarElement, Value } from "@hugerte/sugar";
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
 import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';

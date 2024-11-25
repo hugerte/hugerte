@@ -1,7 +1,7 @@
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
-import { Css } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { Css } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

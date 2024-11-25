@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+import { Type } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { createFile } from 'ephox/agar/api/Files';

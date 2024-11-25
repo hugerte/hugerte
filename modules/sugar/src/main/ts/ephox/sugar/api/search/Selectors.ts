@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional } from "@hugerte/katamari";
 
 import { DOCUMENT, DOCUMENT_FRAGMENT, ELEMENT } from '../node/NodeTypes';
 import { SugarElement } from '../node/SugarElement';

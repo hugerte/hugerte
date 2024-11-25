@@ -1,4 +1,4 @@
-import { Future, Optional } from '@ephox/katamari';
+import { Future, Optional } from "@hugerte/katamari";
 
 import { readBlobAsText } from './BlobReader';
 import { DataType } from './DataType';

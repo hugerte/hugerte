@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Unicode } from '@ephox/katamari';
-import { Html, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Unicode } from "@hugerte/katamari";
+import { Html, SugarElement, SugarNode } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as Nodes from 'hugerte/plugins/visualchars/core/Nodes';

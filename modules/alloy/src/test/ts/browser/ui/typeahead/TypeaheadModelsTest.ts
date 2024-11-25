@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, TestStore, UiFinder } from '@ephox/agar';
+import { ApproxStructure, Assertions, Keyboard, Keys, TestStore, UiFinder } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Objects } from '@ephox/boulder';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
-import { SelectorFind, SugarDocument, SugarElement, Value } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Arr, Future, Optional, Result } from "@hugerte/katamari";
+import { SelectorFind, SugarDocument, SugarElement, Value } from "@hugerte/sugar";
 
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';

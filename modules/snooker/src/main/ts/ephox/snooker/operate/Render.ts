@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Attribute, Css, Insert, InsertAll, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute, Css, Insert, InsertAll, SugarElement } from "@hugerte/sugar";
 
 export interface RenderOptions {
   styles: Record<string, string>;

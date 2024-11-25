@@ -1,4 +1,4 @@
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from "@hugerte/katamari";
 
 import { BeforeAfter } from '../data/BeforeAfter';
 import * as WordUtil from './WordUtil';

@@ -1,4 +1,4 @@
-import { Strings, Type } from '@ephox/katamari';
+import { Strings, Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';

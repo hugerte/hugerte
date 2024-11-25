@@ -1,5 +1,5 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
-import { Attribute, Insert, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Arr, Obj, Type } from "@hugerte/katamari";
+import { Attribute, Insert, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import Annotator from '../api/Annotator';
 import DOMUtils from '../api/dom/DOMUtils';

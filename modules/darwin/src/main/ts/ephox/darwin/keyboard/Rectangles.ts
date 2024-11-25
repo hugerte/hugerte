@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Awareness, RawRect, SugarElement, SugarNode } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Awareness, RawRect, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import { WindowBridge } from '../api/WindowBridge';
 import * as Carets from './Carets';

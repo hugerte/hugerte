@@ -1,4 +1,4 @@
-import { Insert, InsertAll, Remove, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Insert, InsertAll, Remove, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const Page = () => {

@@ -1,6 +1,6 @@
-import { TestLogs } from '@ephox/agar';
-import { Arr, Fun, FutureResult, Global, Id, Optional, Result } from '@ephox/katamari';
-import { Attribute, DomEvent, Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { TestLogs } from "@hugerte/agar";
+import { Arr, Fun, FutureResult, Global, Id, Optional, Result } from "@hugerte/katamari";
+import { Attribute, DomEvent, Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import { Editor } from '../alien/EditorTypes';
 import { detectHugerteBaseUrl } from './Urls';

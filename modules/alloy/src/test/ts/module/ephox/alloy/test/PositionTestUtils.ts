@@ -1,6 +1,6 @@
-import { Chain, Guard, NamedChain, Waiter } from '@ephox/agar';
-import { Optional, Result } from '@ephox/katamari';
-import { Css, Scroll, Traverse } from '@ephox/sugar';
+import { Chain, Guard, NamedChain, Waiter } from "@hugerte/agar";
+import { Optional, Result } from "@hugerte/katamari";
+import { Css, Scroll, Traverse } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { Bounds } from 'ephox/alloy/alien/Boxes';

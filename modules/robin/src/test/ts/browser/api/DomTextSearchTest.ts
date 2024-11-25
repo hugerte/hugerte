@@ -1,9 +1,9 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Unicode } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
-import { Spot } from '@ephox/phoenix';
-import { Pattern } from '@ephox/polaris';
-import { Compare, Html, Insert, InsertAll, SugarElement } from '@ephox/sugar';
+import { Fun, Unicode } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
+import { Spot } from "@hugerte/phoenix";
+import { Pattern } from "@hugerte/polaris";
+import { Compare, Html, Insert, InsertAll, SugarElement } from "@hugerte/sugar";
 
 import * as DomTextSearch from 'ephox/robin/api/dom/DomTextSearch';
 import { TextSeekerOutcome, TextSeekerPhaseConstructor } from 'ephox/robin/textdata/TextSeeker';

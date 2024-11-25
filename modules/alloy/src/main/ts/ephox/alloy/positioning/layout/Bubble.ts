@@ -1,5 +1,5 @@
-import { Arr, Obj } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 
 export interface BubbleInstance {
   readonly offset: SugarPosition;

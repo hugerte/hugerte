@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { EventArgs } from "@hugerte/sugar";
 
 import { nuState } from '../../behaviour/common/BehaviourState';
 import { BaseDraggingState, DragModeDeltas, DragStartData } from './DraggingTypes';

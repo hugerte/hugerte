@@ -1,6 +1,6 @@
-import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr, Optional, Result } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+import { FieldProcessor, FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Arr, Optional, Result } from "@hugerte/katamari";
+import { EventArgs } from "@hugerte/sugar";
 
 import * as EventRoot from '../alien/EventRoot';
 import * as Keys from '../alien/Keys';

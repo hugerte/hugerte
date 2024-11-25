@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarText, SugarElement } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { SugarText, SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from '../../api/dom/DOMUtils';
 import Editor from '../../api/Editor';

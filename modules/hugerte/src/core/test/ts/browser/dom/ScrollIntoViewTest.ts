@@ -1,8 +1,8 @@
-import { Assertions, Cursors, Waiter } from '@ephox/agar';
+import { Assertions, Cursors, Waiter } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Cell } from '@ephox/katamari';
-import { Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Cell } from "@hugerte/katamari";
+import { Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,4 +1,4 @@
-import { Arr, Optional, Type, Unicode } from '@ephox/katamari';
+import { Arr, Optional, Type, Unicode } from "@hugerte/katamari";
 
 export interface CharPos {
   readonly ch: string;

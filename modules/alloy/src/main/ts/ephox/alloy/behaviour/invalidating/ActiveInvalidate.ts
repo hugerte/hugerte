@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
 import { Stateless } from '../common/BehaviourState';

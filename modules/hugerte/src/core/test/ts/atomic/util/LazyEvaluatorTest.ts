@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import * as LazyEvaluator from 'hugerte/core/util/LazyEvaluator';

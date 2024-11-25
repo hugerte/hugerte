@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Focus, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Focus, SugarElement } from "@hugerte/sugar";
 
 import * as EditorView from '../EditorView';
 import * as EditorFocus from '../focus/EditorFocus';

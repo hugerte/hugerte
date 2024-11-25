@@ -1,4 +1,4 @@
-import { Strings, Type } from '@ephox/katamari';
+import { Strings, Type } from "@hugerte/katamari";
 
 export const setHugerteBaseUrl = (hugerte: any, baseUrl: string): void => {
   const prefix = document.location.protocol + '//' + document.location.host;

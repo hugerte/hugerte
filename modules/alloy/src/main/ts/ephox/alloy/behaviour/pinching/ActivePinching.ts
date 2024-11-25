@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { EventArgs } from "@hugerte/sugar";
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
 import * as NativeEvents from '../../api/events/NativeEvents';

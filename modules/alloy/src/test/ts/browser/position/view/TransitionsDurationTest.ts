@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Css, SugarElement } from '@ephox/sugar';
+import { Css, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { getTransitionDuration } from 'ephox/alloy/positioning/view/Transitions';

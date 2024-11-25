@@ -1,7 +1,7 @@
-import { Attachment, Behaviour, DomFactory, Gui, GuiFactory, Positioning } from '@ephox/alloy';
+import { Attachment, Behaviour, DomFactory, Gui, GuiFactory, Positioning } from "@hugerte/alloy";
 import { after, afterEach, before } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { Class, SugarBody, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Class, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { UiFactoryBackstagePair } from 'hugerte/themes/silver/backstage/Backstage';

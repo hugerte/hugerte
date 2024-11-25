@@ -1,6 +1,6 @@
-import { DragnDrop } from '@ephox/agar';
-import { TinyDom } from '@ephox/mcagar';
-import { Hierarchy, SugarElement, SugarNode } from '@ephox/sugar';
+import { DragnDrop } from "@hugerte/agar";
+import { TinyDom } from "@hugerte/mcagar";
+import { Hierarchy, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

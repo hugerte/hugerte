@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { Disabling, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
+import { Disabling, GuiFactory, Representing, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { renderTextarea } from 'hugerte/themes/silver/ui/dialog/TextField';

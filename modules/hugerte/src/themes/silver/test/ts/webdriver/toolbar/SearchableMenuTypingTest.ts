@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, KeyPressAdt, Mouse, RealKeys, StructAssert, UiFinder } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, KeyPressAdt, Mouse, RealKeys, StructAssert, UiFinder } from "@hugerte/agar";
+import { GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Id, Optional } from '@ephox/katamari';
-import { Attribute, Focus, SugarDocument, SugarElement, SugarNode, Value } from '@ephox/sugar';
+import { Fun, Id, Optional } from "@hugerte/katamari";
+import { Attribute, Focus, SugarDocument, SugarElement, SugarNode, Value } from "@hugerte/sugar";
 
 import { renderMenuButton } from 'hugerte/themes/silver/ui/button/MenuButton';
 

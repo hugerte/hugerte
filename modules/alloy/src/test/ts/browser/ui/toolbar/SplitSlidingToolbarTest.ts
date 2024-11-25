@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Step, StructAssert, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Step, StructAssert, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Css } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';

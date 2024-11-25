@@ -1,6 +1,6 @@
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import AstNode from 'hugerte/core/api/html/Node';

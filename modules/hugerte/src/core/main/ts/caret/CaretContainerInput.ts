@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { SelectorFind, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import * as CaretContainer from './CaretContainer';

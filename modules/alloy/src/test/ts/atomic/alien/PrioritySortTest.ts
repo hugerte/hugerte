@@ -1,6 +1,6 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import * as PrioritySort from 'ephox/alloy/alien/PrioritySort';
 

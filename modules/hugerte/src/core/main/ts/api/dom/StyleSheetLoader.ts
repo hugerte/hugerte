@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
-import { Attribute, Insert, Remove, SelectorFind, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
+import { Arr, Fun, Obj } from "@hugerte/katamari";
+import { Attribute, Insert, Remove, SelectorFind, SugarElement, SugarShadowDom, Traverse } from "@hugerte/sugar";
 
 import Tools from '../util/Tools';
 

@@ -1,6 +1,6 @@
-import { Mouse, UiFinder } from '@ephox/agar';
+import { Mouse, UiFinder } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/quickbars/Plugin';

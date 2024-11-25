@@ -1,5 +1,5 @@
-import { DomUniverse } from '@ephox/boss';
-import { SugarElement } from '@ephox/sugar';
+import { DomUniverse } from "@hugerte/boss";
+import { SugarElement } from "@hugerte/sugar";
 
 import { TypedItem } from '../data/TypedItem';
 import * as Family from '../general/Family';

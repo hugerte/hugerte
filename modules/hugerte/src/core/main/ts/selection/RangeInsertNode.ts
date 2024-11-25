@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import * as NodeType from '../dom/NodeType';

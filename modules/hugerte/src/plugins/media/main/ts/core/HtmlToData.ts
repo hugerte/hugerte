@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import DomParser from 'hugerte/core/api/html/DomParser';

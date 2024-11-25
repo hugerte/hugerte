@@ -1,5 +1,5 @@
-import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
+import { FieldProcessor, FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Obj } from "@hugerte/katamari";
 
 import * as FunctionAnnotator from '../../debugging/FunctionAnnotator';
 import * as AlloyParts from '../../parts/AlloyParts';

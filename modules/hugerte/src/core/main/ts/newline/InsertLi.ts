@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
-import { Css, Insert, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Obj, Type } from "@hugerte/katamari";
+import { Css, Insert, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import * as NodeType from '../dom/NodeType';

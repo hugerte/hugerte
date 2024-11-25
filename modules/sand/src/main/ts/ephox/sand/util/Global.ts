@@ -1,4 +1,4 @@
-import { Resolve } from '@ephox/katamari';
+import { Resolve } from "@hugerte/katamari";
 
 const unsafe = <T>(name: string, scope?: {}): T | undefined => {
   return Resolve.resolve(name, scope);

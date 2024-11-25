@@ -1,7 +1,7 @@
-import { AlloyComponent, AlloySpec, Behaviour, Disabling, ItemTypes } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
-import { SelectorFilter } from '@ephox/sugar';
+import { AlloyComponent, AlloySpec, Behaviour, Disabling, ItemTypes } from "@hugerte/alloy";
+import { Menu } from "@hugerte/bridge";
+import { Arr, Optional } from "@hugerte/katamari";
+import { SelectorFilter } from "@hugerte/sugar";
 
 import { UiFactoryBackstageShared } from 'hugerte/themes/silver/backstage/Backstage';
 import { renderItemDomStructure } from 'hugerte/themes/silver/ui/menus/item/structure/ItemStructure';

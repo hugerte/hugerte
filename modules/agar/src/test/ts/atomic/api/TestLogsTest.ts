@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { addLogEntry, addStackTrace, popLogLevel, pushLogLevel, TestLogEntryState, TestLogs } from 'ephox/agar/api/TestLogs';
 

@@ -1,11 +1,11 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Boxes, Docking, GuiFactory, HotspotAnchorSpec, InlineView, Keying,
   MakeshiftAnchorSpec, ModalDialog, NodeAnchorSpec, SelectionAnchorSpec, SystemEvents
-} from '@ephox/alloy';
-import { StructureProcessor, StructureSchema } from '@ephox/boulder';
-import { Dialog, DialogManager } from '@ephox/bridge';
-import { Optional, Singleton, Type } from '@ephox/katamari';
-import { SelectorExists, SugarBody, SugarElement, SugarLocation } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { StructureProcessor, StructureSchema } from "@hugerte/boulder";
+import { Dialog, DialogManager } from "@hugerte/bridge";
+import { Optional, Singleton, Type } from "@hugerte/katamari";
+import { SelectorExists, SugarBody, SugarElement, SugarLocation } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { WindowManagerImpl, WindowParams } from 'hugerte/core/api/WindowManager';
@@ -202,7 +202,7 @@ const setup = (extras: WindowManagerSetup): WindowManagerImpl => {
         // reposition at all because they aren't visually connected to the toolbar
         // (i.e. inline "toolbar" dialogs still display at the top, even when the
         // toolbar_location is bottom), but it's unclear.
-        ...isToolbarLocationTop ? { } : { fireRepositionEventInstead: { }},
+        ...(isToolbarLocationTop ? { } : { fireRepositionEventInstead: { }}),
         inlineBehaviours: Behaviour.derive([
           AddEventsBehaviour.config('window-manager-inline-events', [
             AlloyEvents.run(SystemEvents.dismissRequested(), (_comp, _se) => {
@@ -292,7 +292,7 @@ const setup = (extras: WindowManagerSetup): WindowManagerImpl => {
         },
         // Fires the default dismiss event.
         fireDismissalEventInstead: (windowParams.persistent ? { event: 'doNotDismissYet' } : { }),
-        ...isToolbarLocationTop ? { } : { fireRepositionEventInstead: { }},
+        ...(isToolbarLocationTop ? { } : { fireRepositionEventInstead: { }}),
         inlineBehaviours: Behaviour.derive([
           AddEventsBehaviour.config('window-manager-inline-events', [
             AlloyEvents.run(SystemEvents.dismissRequested(), (_comp, _se) => {

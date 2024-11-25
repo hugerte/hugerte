@@ -1,5 +1,5 @@
-import { Arr, Cell, Optional } from '@ephox/katamari';
-import { Compare, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Cell, Optional } from "@hugerte/katamari";
+import { Compare, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import { createEntry, Entry, EntryFragment } from './Entry';
 import { isList, isListItem, ListType } from './Util';

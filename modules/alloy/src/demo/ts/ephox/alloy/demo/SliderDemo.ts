@@ -1,6 +1,6 @@
-import { Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Class, Css, DomEvent, Insert, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Class, Css, DomEvent, Insert, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Keying } from 'ephox/alloy/api/behaviour/Keying';

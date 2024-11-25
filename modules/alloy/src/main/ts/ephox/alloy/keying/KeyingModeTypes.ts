@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { EventArgs, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { EventArgs, SugarElement } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import * as AlloyEvents from '../api/events/AlloyEvents';

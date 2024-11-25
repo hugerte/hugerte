@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { ContentEditable, EventArgs, PredicateFind, Situ, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { ContentEditable, EventArgs, PredicateFind, Situ, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import * as KeySelection from '../keyboard/KeySelection';
 import * as VerticalMovement from '../keyboard/VerticalMovement';

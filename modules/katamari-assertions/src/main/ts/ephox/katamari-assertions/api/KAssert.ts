@@ -1,6 +1,6 @@
 import { Assert, TestLabel } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
-import { Optional, OptionalInstances, Result, ResultInstances } from '@ephox/katamari';
+import { Optional, OptionalInstances, Result, ResultInstances } from "@hugerte/katamari";
 
 const { tOptional } = OptionalInstances;
 const { tResult } = ResultInstances;

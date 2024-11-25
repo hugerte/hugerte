@@ -1,5 +1,5 @@
-import { Bindable } from '@ephox/porkbun';
-import { EventArgs, SugarPosition } from '@ephox/sugar';
+import { Bindable } from "@hugerte/porkbun";
+import { EventArgs, SugarPosition } from "@hugerte/sugar";
 
 import { DragMode } from '../api/DragApis';
 

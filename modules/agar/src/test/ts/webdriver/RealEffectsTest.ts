@@ -1,6 +1,6 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { Class, Css, Html, Insert, Remove, SugarElement } from '@ephox/sugar';
+import { PlatformDetection } from "@hugerte/sand";
+import { Class, Css, Html, Insert, Remove, SugarElement } from "@hugerte/sugar";
 
 import * as Assertions from 'ephox/agar/api/Assertions';
 import { Chain } from 'ephox/agar/api/Chain';

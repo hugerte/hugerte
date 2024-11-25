@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Remove, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import BookmarkManager from '../api/dom/BookmarkManager';
 import Editor from '../api/Editor';

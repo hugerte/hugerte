@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { Css, Width } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Css, Width } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as AlloyTriggers from '../../api/events/AlloyTriggers';

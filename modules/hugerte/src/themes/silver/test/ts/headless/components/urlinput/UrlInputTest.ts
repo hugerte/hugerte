@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder, Waiter } from '@ephox/agar';
-import { Container, Disabling, Focusing, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder, Waiter } from "@hugerte/agar";
+import { Container, Disabling, Focusing, GuiFactory, Representing, TestHelpers } from "@hugerte/alloy";
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Future, Optional } from '@ephox/katamari';
-import { Attribute, SelectorFind, SugarDocument, Value } from '@ephox/sugar';
+import { Future, Optional } from "@hugerte/katamari";
+import { Attribute, SelectorFind, SugarDocument, Value } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { ApiUrlData } from 'hugerte/themes/silver/backstage/UrlInputBackstage';

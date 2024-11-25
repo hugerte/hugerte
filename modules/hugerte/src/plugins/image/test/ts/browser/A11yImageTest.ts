@@ -1,7 +1,7 @@
-import { Cursors, UiFinder } from '@ephox/agar';
+import { Cursors, UiFinder } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Attribute, SugarBody, Value } from '@ephox/sugar';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Attribute, SugarBody, Value } from "@hugerte/sugar";
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,4 +1,4 @@
-import { Optional, Strings } from '@ephox/katamari';
+import { Optional, Strings } from "@hugerte/katamari";
 
 /**
  * Converts blob/uris back and forth.

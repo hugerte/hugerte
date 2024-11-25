@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/mcagar';
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import * as Zwsp from 'hugerte/core/text/Zwsp';

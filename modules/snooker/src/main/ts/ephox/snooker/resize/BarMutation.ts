@@ -1,6 +1,6 @@
-import { Optional } from '@ephox/katamari';
-import { Bindable, Event, Events } from '@ephox/porkbun';
-import { SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Bindable, Event, Events } from "@hugerte/porkbun";
+import { SugarElement } from "@hugerte/sugar";
 
 import { DragDistanceEvent, Mutation } from './Mutation';
 

@@ -1,4 +1,4 @@
-import { Class, SugarElement } from '@ephox/sugar';
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

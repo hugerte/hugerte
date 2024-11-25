@@ -1,7 +1,7 @@
-import { Keys } from '@ephox/agar';
+import { Keys } from "@hugerte/agar";
 import { describe, it, context } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

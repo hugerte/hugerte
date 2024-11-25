@@ -1,5 +1,5 @@
-import { Cursors } from '@ephox/agar';
-import { Traverse } from '@ephox/sugar';
+import { Cursors } from "@hugerte/agar";
+import { Traverse } from "@hugerte/sugar";
 
 const toDomRange = (cursorRange: Cursors.CursorRange): Range => {
   const doc = Traverse.owner(cursorRange.start);

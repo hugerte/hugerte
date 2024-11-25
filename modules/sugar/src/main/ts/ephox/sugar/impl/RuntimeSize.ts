@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+import { Strings } from "@hugerte/katamari";
 
 import { SugarElement } from '../api/node/SugarElement';
 import * as Css from '../api/properties/Css';

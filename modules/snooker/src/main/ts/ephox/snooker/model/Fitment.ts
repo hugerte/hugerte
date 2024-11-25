@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Result } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Obj, Result } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { SimpleGenerators } from '../api/Generators';
 import * as Structs from '../api/Structs';

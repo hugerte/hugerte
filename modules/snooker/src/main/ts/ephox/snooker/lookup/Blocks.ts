@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { DetailExt } from '../api/Structs';
 import { Warehouse } from '../api/Warehouse';

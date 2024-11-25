@@ -1,5 +1,5 @@
-import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { EventArgs } from '@ephox/sugar';
+import { FieldProcessor, FieldSchema } from "@hugerte/boulder";
+import { EventArgs } from "@hugerte/sugar";
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
 import * as NativeEvents from '../../api/events/NativeEvents';

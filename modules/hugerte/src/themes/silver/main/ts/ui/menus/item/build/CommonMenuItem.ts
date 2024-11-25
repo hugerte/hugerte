@@ -1,7 +1,7 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Button, Focusing, ItemTypes, NativeEvents, Replacing
-} from '@ephox/alloy';
-import { Cell, Fun, Optional, Optionals } from '@ephox/katamari';
+} from "@hugerte/alloy";
+import { Cell, Fun, Optional, Optionals } from "@hugerte/katamari";
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 import * as ReadOnly from 'hugerte/themes/silver/ReadOnly';

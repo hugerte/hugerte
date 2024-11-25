@@ -1,4 +1,4 @@
-import { Adt } from '@ephox/katamari';
+import { Adt } from "@hugerte/katamari";
 
 type InjectPositionHandler<E, U> = (item: E) => U;
 type InvalidHandler<E, U> = (item: E, offset: number) => U;

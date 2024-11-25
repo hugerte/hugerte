@@ -1,6 +1,6 @@
-import { AddEventsBehaviour, AlloyEvents, Behaviour, SimpleSpec } from '@ephox/alloy';
-import { Arr, Obj, Optional, Strings } from '@ephox/katamari';
-import { Attribute, SelectorFind } from '@ephox/sugar';
+import { AddEventsBehaviour, AlloyEvents, Behaviour, SimpleSpec } from "@hugerte/alloy";
+import { Arr, Obj, Optional, Strings } from "@hugerte/katamari";
+import { Attribute, SelectorFind } from "@hugerte/sugar";
 
 import I18n from 'hugerte/core/api/util/I18n';
 
@@ -84,7 +84,7 @@ const renderIcon = (spec: IconSpec, iconName: string, icons: Record<string, stri
       innerHtml: iconHtml
     },
     behaviours: Behaviour.derive([
-      ...spec.behaviours ?? [],
+      ...(spec.behaviours ?? []),
       addFocusableBehaviour()
     ])
   };

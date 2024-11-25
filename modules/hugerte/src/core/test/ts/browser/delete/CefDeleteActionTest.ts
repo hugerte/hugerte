@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Hierarchy, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import Schema from 'hugerte/core/api/html/Schema';

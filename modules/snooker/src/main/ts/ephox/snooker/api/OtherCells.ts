@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as GridRow from '../model/GridRow';
 import { onCells, TargetSelection, toDetailList } from '../model/RunOperation';

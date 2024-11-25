@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { EventArgs, SugarElement, SugarPosition } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { EventArgs, SugarElement, SugarPosition } from "@hugerte/sugar";
 
 import { Bounds } from '../../alien/Boxes';
 import * as Behaviour from '../../api/behaviour/Behaviour';

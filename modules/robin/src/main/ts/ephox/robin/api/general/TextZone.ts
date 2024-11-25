@@ -1,6 +1,6 @@
-import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
-import { Descent } from '@ephox/phoenix';
+import { Universe } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
+import { Descent } from "@hugerte/phoenix";
 
 import * as TextZone from '../../zone/TextZone';
 import { Zone } from '../../zone/Zones';

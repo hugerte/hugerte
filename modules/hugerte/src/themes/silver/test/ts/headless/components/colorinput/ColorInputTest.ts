@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
-import { AlloyComponent, AlloyTriggers, Container, GuiFactory, Invalidating, NativeEvents, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder, Waiter } from "@hugerte/agar";
+import { AlloyComponent, AlloyTriggers, Container, GuiFactory, Invalidating, NativeEvents, Representing, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { SelectorFind, SugarDocument, Traverse } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { SelectorFind, SugarDocument, Traverse } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { renderColorInput } from 'hugerte/themes/silver/ui/dialog/ColorInput';

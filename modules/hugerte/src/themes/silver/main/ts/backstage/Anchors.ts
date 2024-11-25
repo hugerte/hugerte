@@ -1,6 +1,6 @@
-import { AlloyComponent, Bubble, HotspotAnchorSpec, Layout, LayoutInset, MaxHeight, NodeAnchorSpec, SelectionAnchorSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { Height, SimSelection, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { AlloyComponent, Bubble, HotspotAnchorSpec, Layout, LayoutInset, MaxHeight, NodeAnchorSpec, SelectionAnchorSpec } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
+import { Height, SimSelection, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

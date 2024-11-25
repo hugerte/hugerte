@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from "@hugerte/katamari";
 
 import { WordScope } from 'ephox/robin/data/WordScope';
 import * as WordSanitiser from 'ephox/robin/util/WordSanitiser';

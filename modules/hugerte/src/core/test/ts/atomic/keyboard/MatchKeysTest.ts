@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Cell } from '@ephox/katamari';
+import { Arr, Cell } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import * as MatchKeys from 'hugerte/core/keyboard/MatchKeys';

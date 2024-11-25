@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
-import { SelectorFind } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Fun, Optional } from "@hugerte/katamari";
+import { SelectorFind } from "@hugerte/sugar";
 
 import * as Keys from '../alien/Keys';
 import { AlloyComponent } from '../api/component/ComponentApi';

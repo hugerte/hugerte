@@ -1,4 +1,4 @@
-import { Chain, FocusTools, GeneralSteps, Logger, UiFinder } from '@ephox/agar';
+import { Chain, FocusTools, GeneralSteps, Logger, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';

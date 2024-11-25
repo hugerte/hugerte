@@ -1,4 +1,4 @@
-import { Universe } from '@ephox/boss';
+import { Universe } from "@hugerte/boss";
 
 import * as Searcher from '../../search/Searcher';
 import { NamedPattern } from '../data/NamedPattern';

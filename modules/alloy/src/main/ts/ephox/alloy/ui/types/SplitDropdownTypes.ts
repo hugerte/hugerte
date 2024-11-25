@@ -1,4 +1,4 @@
-import { Future, Optional, Result } from '@ephox/katamari';
+import { Future, Optional, Result } from "@hugerte/katamari";
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';

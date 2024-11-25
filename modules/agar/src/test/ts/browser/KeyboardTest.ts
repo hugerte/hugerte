@@ -1,6 +1,6 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { DomEvent, Focus, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { DomEvent, Focus, SugarElement } from "@hugerte/sugar";
 
 import * as Assertions from 'ephox/agar/api/Assertions';
 import * as Guard from 'ephox/agar/api/Guard';

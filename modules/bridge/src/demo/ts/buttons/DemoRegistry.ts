@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import * as Registry from '../../../main/ts/ephox/bridge/api/Registry';
 

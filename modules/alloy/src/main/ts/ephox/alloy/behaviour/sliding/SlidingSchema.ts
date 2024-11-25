@@ -1,5 +1,5 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Height, SugarElement, Width } from '@ephox/sugar';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Height, SugarElement, Width } from "@hugerte/sugar";
 
 import * as Fields from '../../data/Fields';
 

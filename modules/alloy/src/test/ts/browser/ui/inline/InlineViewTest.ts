@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step, Touch, UiFinder, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
-import { Compare, Css, Html } from '@ephox/sugar';
+import { Arr, Future, Optional, Result } from "@hugerte/katamari";
+import { Compare, Css, Html } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';

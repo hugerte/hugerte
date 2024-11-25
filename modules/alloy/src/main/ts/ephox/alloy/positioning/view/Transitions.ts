@@ -1,5 +1,5 @@
-import { Arr, Obj, Optional, Optionals, Singleton, Strings, Type } from '@ephox/katamari';
-import { Attribute, Classes, Compare, Css, DomEvent, EventArgs, SugarElement } from '@ephox/sugar';
+import { Arr, Obj, Optional, Optionals, Singleton, Strings, Type } from "@hugerte/katamari";
+import { Attribute, Classes, Compare, Css, DomEvent, EventArgs, SugarElement } from "@hugerte/sugar";
 
 import * as NativeEvents from '../../api/events/NativeEvents';
 import { PlacerResult } from '../layout/LayoutTypes';

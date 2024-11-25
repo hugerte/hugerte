@@ -1,5 +1,5 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
+import { FieldSchema } from "@hugerte/boulder";
+import { Obj } from "@hugerte/katamari";
 
 import * as ButtonBase from '../../ui/common/ButtonBase';
 import { ButtonDetail, ButtonSketcher, ButtonSpec } from '../../ui/types/ButtonTypes';

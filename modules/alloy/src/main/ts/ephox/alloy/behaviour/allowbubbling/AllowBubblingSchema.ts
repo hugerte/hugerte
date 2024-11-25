@@ -1,4 +1,4 @@
-import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
+import { FieldProcessor, FieldSchema, StructureSchema } from "@hugerte/boulder";
 
 export default [
   FieldSchema.requiredArrayOf('events', StructureSchema.objOf([

@@ -1,4 +1,4 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
 
 import * as Fields from '../../data/Fields';
 import DatasetStore from './DatasetStore';

@@ -1,7 +1,7 @@
-import { Chain, Guard, Mouse, NamedChain, UiFinder } from '@ephox/agar';
+import { Chain, Guard, Mouse, NamedChain, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
-import { Css, Scroll, SugarPosition } from '@ephox/sugar';
+import { Optional, Result } from "@hugerte/katamari";
+import { Css, Scroll, SugarPosition } from "@hugerte/sugar";
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

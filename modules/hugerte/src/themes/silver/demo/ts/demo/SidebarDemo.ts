@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import { Editor, HugeRTE } from 'hugerte/core/api/PublicApi';
 

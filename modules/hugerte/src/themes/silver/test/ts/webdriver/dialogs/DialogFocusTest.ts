@@ -1,9 +1,9 @@
-import { FocusTools, RealMouse } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
+import { FocusTools, RealMouse } from "@hugerte/agar";
+import { TestHelpers } from "@hugerte/alloy";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarDocument } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SugarDocument } from "@hugerte/sugar";
 
 import { WindowManagerImpl } from 'hugerte/core/api/WindowManager';
 import * as WindowManager from 'hugerte/themes/silver/ui/dialog/WindowManager';

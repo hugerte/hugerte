@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Optional, Optionals, Singleton } from '@ephox/katamari';
+import { Arr, Cell, Obj, Optional, Optionals, Singleton } from "@hugerte/katamari";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { MenuPreparation } from '../../ui/single/TieredMenuSpec';

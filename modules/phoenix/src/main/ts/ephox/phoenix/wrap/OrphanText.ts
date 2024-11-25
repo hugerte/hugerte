@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
 
 export interface OrphanText<E> {
   readonly validateText: (textNode: E) => boolean;

@@ -1,6 +1,6 @@
-import { AnchorSpec, MakeshiftAnchorSpec, NodeAnchorSpec, SelectionAnchorSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { AnchorSpec, MakeshiftAnchorSpec, NodeAnchorSpec, SelectionAnchorSpec } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

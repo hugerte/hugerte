@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { reconcileToDom } from 'ephox/alloy/dom/Reconcile';

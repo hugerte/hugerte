@@ -1,6 +1,6 @@
-import { AlloyComponent, Disabling, SketchSpec, TieredData, Tooltipping } from '@ephox/alloy';
-import { Arr, Cell, Fun, Optional } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { AlloyComponent, Disabling, SketchSpec, TieredData, Tooltipping } from "@hugerte/alloy";
+import { Arr, Cell, Fun, Optional } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Menu } from 'hugerte/core/api/ui/Ui';

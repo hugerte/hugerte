@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Attribute, Css, SugarElement, SugarNode } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Attribute, Css, SugarElement, SugarNode } from "@hugerte/sugar";
 
 export const getAttrValue = (cell: SugarElement<Element>, name: string, fallback: number = 0): number =>
   Attribute.getOpt(cell, name).map((value) => parseInt(value, 10)).getOr(fallback);

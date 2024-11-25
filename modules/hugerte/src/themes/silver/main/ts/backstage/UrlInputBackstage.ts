@@ -1,4 +1,4 @@
-import { Fun, Future, Obj, Optional, Type } from '@ephox/katamari';
+import { Fun, Future, Obj, Optional, Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { FilePickerCallback, FilePickerValidationCallback } from 'hugerte/core/api/OptionTypes';

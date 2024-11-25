@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Compare, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Compare, SugarElement } from "@hugerte/sugar";
 
 import { CellLocation } from './CellLocation';
 import * as TableLookup from './TableLookup';

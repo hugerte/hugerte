@@ -1,5 +1,5 @@
-import { FieldSchema, Objects } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { FieldSchema, Objects } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
 
 import { Composing } from '../../api/behaviour/Composing';
 import { Representing } from '../../api/behaviour/Representing';

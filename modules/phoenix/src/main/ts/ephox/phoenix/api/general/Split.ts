@@ -1,4 +1,4 @@
-import { Universe } from '@ephox/boss';
+import { Universe } from "@hugerte/boss";
 
 import * as Splitter from '../../search/Splitter';
 import * as Positions from '../../split/Positions';

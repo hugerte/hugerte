@@ -2,10 +2,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Blocking, Composing, Focusing, GuiFactory, Keying, Memento, NativeEvents,
   Receiving, Reflecting, Replacing, SystemEvents
-} from '@ephox/alloy';
-import { Dialog, DialogManager } from '@ephox/bridge';
-import { Cell, Fun, Id, Optional, Optionals } from '@ephox/katamari';
-import { Attribute, Height, SugarNode } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Dialog, DialogManager } from "@hugerte/bridge";
+import { Cell, Fun, Id, Optional, Optionals } from "@hugerte/katamari";
+import { Attribute, Height, SugarNode } from "@hugerte/sugar";
 
 import * as Backstage from '../../backstage/Backstage';
 import * as RepresentingConfigs from '../alien/RepresentingConfigs';

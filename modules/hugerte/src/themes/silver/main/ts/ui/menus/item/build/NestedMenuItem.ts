@@ -1,7 +1,7 @@
-import { AlloyComponent, Disabling, ItemTypes } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Fun, Optional } from '@ephox/katamari';
-import { Attribute, SelectorFind } from '@ephox/sugar';
+import { AlloyComponent, Disabling, ItemTypes } from "@hugerte/alloy";
+import { Menu } from "@hugerte/bridge";
+import { Fun, Optional } from "@hugerte/katamari";
+import { Attribute, SelectorFind } from "@hugerte/sugar";
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 

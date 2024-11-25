@@ -1,4 +1,4 @@
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

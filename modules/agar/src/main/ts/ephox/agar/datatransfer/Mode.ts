@@ -1,4 +1,4 @@
-import { Id, Optional } from '@ephox/katamari';
+import { Id, Optional } from "@hugerte/katamari";
 
 const enum Mode {
   ReadWrite,

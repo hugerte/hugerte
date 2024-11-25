@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Menu, Toolbar } from 'hugerte/core/api/ui/Ui';

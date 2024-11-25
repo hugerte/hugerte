@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import {
   HorizontalSliderDetail, SliderDetail, SliderValueX, SliderValueXY, SliderValueY, TwoDSliderDetail, VerticalSliderDetail

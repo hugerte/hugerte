@@ -1,4 +1,4 @@
-import { Adt } from '@ephox/katamari';
+import { Adt } from "@hugerte/katamari";
 
 type SplittingHandler<T, U> = (item: T) => U;
 

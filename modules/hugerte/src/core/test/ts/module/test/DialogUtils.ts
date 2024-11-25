@@ -1,4 +1,4 @@
-import { Dialog } from '@ephox/bridge';
+import { Dialog } from "@hugerte/bridge";
 
 import Editor from 'hugerte/core/api/Editor';
 import { WindowParams } from 'hugerte/core/api/WindowManager';

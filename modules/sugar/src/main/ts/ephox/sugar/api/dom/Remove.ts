@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { SugarElement } from '../node/SugarElement';
 import * as Traverse from '../search/Traverse';

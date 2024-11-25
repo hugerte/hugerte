@@ -1,7 +1,7 @@
-import { Assertions, FocusTools, Keyboard, Keys, Mouse, Step, Touch, UiControls, UiFinder, Waiter } from '@ephox/agar';
+import { Assertions, FocusTools, Keyboard, Keys, Mouse, Step, Touch, UiControls, UiFinder, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result, Strings } from '@ephox/katamari';
-import { Focus, Value } from '@ephox/sugar';
+import { Arr, Future, Optional, Result, Strings } from "@hugerte/katamari";
+import { Focus, Value } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

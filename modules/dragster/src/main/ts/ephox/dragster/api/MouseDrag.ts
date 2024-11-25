@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { DomEvent, EventArgs, Insert, Remove, SugarElement, SugarPosition } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { DomEvent, EventArgs, Insert, Remove, SugarElement, SugarPosition } from "@hugerte/sugar";
 
 import { Blocker, BlockerOptions } from '../detect/Blocker';
 import { DragApi, DragMode, DragMutation, DragSink } from './DragApis';

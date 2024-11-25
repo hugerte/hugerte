@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, StructAssert, TestStore, UiFinder } from '@ephox/agar';
+import { ApproxStructure, Assertions, FocusTools, StructAssert, TestStore, UiFinder } from "@hugerte/agar";
 import { afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Dialog as BridgeSpec } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
-import { SugarBody, SugarDocument } from '@ephox/sugar';
+import { Dialog as BridgeSpec } from "@hugerte/bridge";
+import { Optional } from "@hugerte/katamari";
+import { SugarBody, SugarDocument } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';

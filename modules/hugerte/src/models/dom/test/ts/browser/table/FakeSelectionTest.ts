@@ -1,8 +1,8 @@
-import { Assertions, Keys } from '@ephox/agar';
+import { Assertions, Keys } from "@hugerte/agar";
 import { afterEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
-import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Html, SelectorFilter, SelectorFind, SugarElement } from "@hugerte/sugar";
+import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyState } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

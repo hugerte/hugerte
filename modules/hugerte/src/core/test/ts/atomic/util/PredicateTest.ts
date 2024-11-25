@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import * as Predicate from 'hugerte/core/util/Predicate';

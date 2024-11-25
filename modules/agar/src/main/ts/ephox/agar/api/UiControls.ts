@@ -1,5 +1,5 @@
-import { Type } from '@ephox/katamari';
-import { SugarElement, Value } from '@ephox/sugar';
+import { Type } from "@hugerte/katamari";
+import { SugarElement, Value } from "@hugerte/sugar";
 
 import { Chain } from './Chain';
 import { Step } from './Step';

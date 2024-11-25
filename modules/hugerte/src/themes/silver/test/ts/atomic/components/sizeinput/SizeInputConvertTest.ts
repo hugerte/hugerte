@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Arr, Optional, Optionals } from "@hugerte/katamari";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 

@@ -1,7 +1,7 @@
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css, Scroll, SelectorFind } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Css, Scroll, SelectorFind } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

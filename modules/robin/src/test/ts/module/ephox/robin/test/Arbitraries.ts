@@ -1,5 +1,5 @@
-import { Gene, TestUniverse } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Gene, TestUniverse } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
 import * as fc from 'fast-check';
 
 export interface ArbTextIds {

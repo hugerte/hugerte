@@ -1,4 +1,4 @@
-import { Adt } from '@ephox/katamari';
+import { Adt } from "@hugerte/katamari";
 
 import { SugarElement } from '../node/SugarElement';
 import * as Traverse from '../search/Traverse';

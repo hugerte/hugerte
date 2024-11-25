@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun } from '@ephox/katamari';
-import { EventArgs, SugarPosition } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Cell, Fun } from "@hugerte/katamari";
+import { EventArgs, SugarPosition } from "@hugerte/sugar";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Focusing } from '../../api/behaviour/Focusing';

@@ -1,5 +1,5 @@
-import { Bindable, Event, Events } from '@ephox/porkbun';
-import { Css, SugarElement, SugarLocation } from '@ephox/sugar';
+import { Bindable, Event, Events } from "@hugerte/porkbun";
+import { Css, SugarElement, SugarLocation } from "@hugerte/sugar";
 
 export interface RelocateEvent {
   readonly x: number;

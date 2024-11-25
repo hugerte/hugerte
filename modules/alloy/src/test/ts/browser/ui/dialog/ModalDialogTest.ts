@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, StructAssert, TestStore, UiFinder } from '@ephox/agar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, StructAssert, TestStore, UiFinder } from "@hugerte/agar";
 import { after, afterEach, before, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Result } from '@ephox/katamari';
-import { Attribute, Class, Compare, SugarBody, SugarDocument } from '@ephox/sugar';
+import { Result } from "@hugerte/katamari";
+import { Attribute, Class, Compare, SugarBody, SugarDocument } from "@hugerte/sugar";
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

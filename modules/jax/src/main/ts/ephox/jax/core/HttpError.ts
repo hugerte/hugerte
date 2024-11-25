@@ -1,4 +1,4 @@
-import { Result } from '@ephox/katamari';
+import { Result } from "@hugerte/katamari";
 
 import { ResponseType, ResponseTypeMap } from './HttpData';
 

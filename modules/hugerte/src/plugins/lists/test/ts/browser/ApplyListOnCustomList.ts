@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Strings } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/mcagar';
+import { Strings } from "@hugerte/katamari";
+import { TinyAssertions, TinyHooks, TinyUiActions } from "@hugerte/mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/lists/Plugin';

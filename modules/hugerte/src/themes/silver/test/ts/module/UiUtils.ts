@@ -1,7 +1,7 @@
-import { Mouse, UiFinder, Waiter } from '@ephox/agar';
-import { Arr } from '@ephox/katamari';
-import { Scroll, SugarBody, SugarElement } from '@ephox/sugar';
-import { TinyDom } from '@ephox/wrap-mcagar';
+import { Mouse, UiFinder, Waiter } from "@hugerte/agar";
+import { Arr } from "@hugerte/katamari";
+import { Scroll, SugarBody, SugarElement } from "@hugerte/sugar";
+import { TinyDom } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

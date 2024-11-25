@@ -1,8 +1,8 @@
-import { Bounds, Boxes } from '@ephox/alloy';
+import { Bounds, Boxes } from "@hugerte/alloy";
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { InlineContent } from '@ephox/bridge';
-import { Css, Scroll, SelectorFind, SugarBody } from '@ephox/sugar';
-import { McEditor, TinyDom } from '@ephox/wrap-mcagar';
+import { InlineContent } from "@hugerte/bridge";
+import { Css, Scroll, SelectorFind, SugarBody } from "@hugerte/sugar";
+import { McEditor, TinyDom } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

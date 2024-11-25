@@ -1,4 +1,4 @@
-import { Class, Classes } from '@ephox/sugar';
+import { Class, Classes } from "@hugerte/sugar";
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
 import * as NativeEvents from '../../api/events/NativeEvents';

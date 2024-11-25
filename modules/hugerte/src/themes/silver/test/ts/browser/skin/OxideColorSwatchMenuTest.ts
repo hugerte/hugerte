@@ -1,9 +1,9 @@
-import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, StructAssert, TestStore, UiFinder, Waiter } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, StructAssert, TestStore, UiFinder, Waiter } from "@hugerte/agar";
+import { TestHelpers } from "@hugerte/alloy";
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarBody, SugarDocument } from '@ephox/sugar';
-import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { SugarBody, SugarDocument } from "@hugerte/sugar";
+import { TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Menu } from 'hugerte/core/api/ui/Ui';

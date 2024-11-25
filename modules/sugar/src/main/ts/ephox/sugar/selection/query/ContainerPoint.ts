@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional } from "@hugerte/katamari";
 
 import { SugarElement } from '../../api/node/SugarElement';
 import * as SugarNode from '../../api/node/SugarNode';

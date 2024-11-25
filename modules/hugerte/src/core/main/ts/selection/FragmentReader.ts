@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Strings } from '@ephox/katamari';
-import { Compare, Css, Insert, Replication, SelectorFind, SugarElement, SugarFragment, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional, Strings } from "@hugerte/katamari";
+import { Compare, Css, Insert, Replication, SelectorFind, SugarElement, SugarFragment, SugarNode, Traverse } from "@hugerte/sugar";
 
 import Schema from '../api/html/Schema';
 import * as ElementType from '../dom/ElementType';

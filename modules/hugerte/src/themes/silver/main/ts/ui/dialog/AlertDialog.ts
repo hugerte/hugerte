@@ -1,5 +1,5 @@
-import { AlloyEvents, Focusing, GuiFactory, Memento, ModalDialog } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+import { AlloyEvents, Focusing, GuiFactory, Memento, ModalDialog } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderFooterButton } from '../general/Button';

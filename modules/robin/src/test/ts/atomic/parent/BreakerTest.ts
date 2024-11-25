@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, Logger, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Gene, Logger, TestUniverse, TextGene } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
 
 import { breakPath, breakToRight } from 'ephox/robin/parent/Breaker';
 

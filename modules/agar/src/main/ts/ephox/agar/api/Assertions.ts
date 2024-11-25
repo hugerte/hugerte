@@ -1,7 +1,7 @@
 import { Assert, TestError, TestLabel } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
-import { Obj, Optional } from '@ephox/katamari';
-import { Compare, SugarElement, Truncate } from '@ephox/sugar';
+import { Obj, Optional } from "@hugerte/katamari";
+import { Compare, SugarElement, Truncate } from "@hugerte/sugar";
 
 import { elementQueue, StructAssert } from '../assertions/ApproxStructures';
 import * as Differ from '../assertions/Differ';

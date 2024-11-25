@@ -1,5 +1,5 @@
 import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import 'hugerte';

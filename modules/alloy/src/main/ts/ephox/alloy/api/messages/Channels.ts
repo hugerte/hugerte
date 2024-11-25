@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 const dismissPopups = Fun.constant('dismiss.popups');
 const repositionPopups = Fun.constant('reposition.popups');

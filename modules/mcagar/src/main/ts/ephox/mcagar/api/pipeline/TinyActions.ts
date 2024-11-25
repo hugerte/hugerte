@@ -1,5 +1,5 @@
-import { Keyboard, Step } from '@ephox/agar';
-import { SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Keyboard, Step } from "@hugerte/agar";
+import { SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import { Editor } from '../../alien/EditorTypes';
 

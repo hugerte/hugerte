@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import { HugeRTE } from 'hugerte/core/api/PublicApi';
 

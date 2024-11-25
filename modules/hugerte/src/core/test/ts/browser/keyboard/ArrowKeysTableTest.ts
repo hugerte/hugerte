@@ -1,8 +1,8 @@
-import { ApproxStructure, Keys, StructAssert } from '@ephox/agar';
+import { ApproxStructure, Keys, StructAssert } from "@hugerte/agar";
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Fun } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

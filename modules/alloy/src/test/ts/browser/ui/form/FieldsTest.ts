@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Attribute, SelectorFind } from '@ephox/sugar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { Attribute, SelectorFind } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';

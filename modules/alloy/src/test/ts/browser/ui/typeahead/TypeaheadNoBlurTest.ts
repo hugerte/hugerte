@@ -1,7 +1,7 @@
-import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step } from '@ephox/agar';
+import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
-import { Focus } from '@ephox/sugar';
+import { Arr, Future, Optional, Result } from "@hugerte/katamari";
+import { Focus } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

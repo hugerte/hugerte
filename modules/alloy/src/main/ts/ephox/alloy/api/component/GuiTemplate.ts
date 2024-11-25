@@ -1,5 +1,5 @@
-import { Arr, Obj, Result } from '@ephox/katamari';
-import { SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
+import { Arr, Obj, Result } from "@hugerte/katamari";
+import { SugarElement, SugarNode, SugarText, Traverse } from "@hugerte/sugar";
 
 import { getAttrs, getClasses } from './DomFactory';
 import { SimpleOrSketchSpec } from './SpecTypes';

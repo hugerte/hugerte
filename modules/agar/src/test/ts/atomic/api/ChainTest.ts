@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import { Chain } from 'ephox/agar/api/Chain';
 import * as Logger from 'ephox/agar/api/Logger';

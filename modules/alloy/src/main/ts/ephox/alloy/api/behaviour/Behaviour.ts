@@ -1,5 +1,5 @@
-import { FieldSchema, Objects, StructureSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { FieldSchema, Objects, StructureSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
 
 import * as CommonBehaviour from '../../behaviour/common/Behaviour';
 import { BehaviourState, NoState } from '../../behaviour/common/BehaviourState';

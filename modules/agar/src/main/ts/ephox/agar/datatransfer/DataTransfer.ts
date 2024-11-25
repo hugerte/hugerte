@@ -1,4 +1,4 @@
-import { Arr, Id, Optional, Type } from '@ephox/katamari';
+import { Arr, Id, Optional, Type } from "@hugerte/katamari";
 
 import { createFileList } from '../file/FileList';
 import { getData } from './DataTransferItem';

@@ -1,8 +1,8 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Hierarchy, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { CaretPosition } from 'hugerte/core/caret/CaretPosition';

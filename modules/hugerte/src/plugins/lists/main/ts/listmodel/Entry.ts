@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Attribute, Replication, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Attribute, Replication, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import { hasLastChildList, ListType } from './Util';
 

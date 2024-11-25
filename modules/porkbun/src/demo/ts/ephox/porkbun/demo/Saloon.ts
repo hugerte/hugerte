@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import * as Binder from 'ephox/porkbun/Binder';
 import { Bindable, Event } from 'ephox/porkbun/Event';

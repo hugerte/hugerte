@@ -1,4 +1,4 @@
-import { Arr, Strings, Type } from '@ephox/katamari';
+import { Arr, Strings, Type } from "@hugerte/katamari";
 
 import { NativeSimulatedEvent } from '../../events/SimulatedEvent';
 

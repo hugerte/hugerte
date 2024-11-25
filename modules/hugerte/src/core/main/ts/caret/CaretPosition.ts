@@ -1,4 +1,4 @@
-import { Arr, Fun, Optionals, Type, Unicode } from '@ephox/katamari';
+import { Arr, Fun, Optionals, Type, Unicode } from "@hugerte/katamari";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import * as NodeType from '../dom/NodeType';

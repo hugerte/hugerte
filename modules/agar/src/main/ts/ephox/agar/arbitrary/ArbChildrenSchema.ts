@@ -1,4 +1,4 @@
-import { Arr, Fun, Merger, Obj } from '@ephox/katamari';
+import { Arr, Fun, Merger, Obj } from "@hugerte/katamari";
 import * as fc from 'fast-check';
 
 import * as WeightedChoice from './WeightedChoice';

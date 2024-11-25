@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
 
 interface SubsetAncestors<E> {
   readonly firstpath: E[];

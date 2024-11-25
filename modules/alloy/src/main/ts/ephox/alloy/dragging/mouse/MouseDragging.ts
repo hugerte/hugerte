@@ -1,6 +1,6 @@
-import { FieldProcessor } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+import { FieldProcessor } from "@hugerte/boulder";
+import { Optional } from "@hugerte/katamari";
+import { EventArgs } from "@hugerte/sugar";
 
 import { DelayedFunction } from '../../alien/DelayedFunction';
 import { AlloyComponent } from '../../api/component/ComponentApi';

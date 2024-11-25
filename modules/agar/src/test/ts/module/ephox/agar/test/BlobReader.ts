@@ -1,4 +1,4 @@
-import { FutureResult, Result } from '@ephox/katamari';
+import { FutureResult, Result } from "@hugerte/katamari";
 
 const readBlobAsText = (blob: Blob): FutureResult<string, string> => FutureResult.nu((resolve) => {
   const reader = new FileReader();

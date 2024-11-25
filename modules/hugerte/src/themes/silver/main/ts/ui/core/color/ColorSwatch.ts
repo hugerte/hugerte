@@ -1,6 +1,6 @@
-import { HexColour, RgbaColour } from '@ephox/acid';
-import { Arr, Cell, Fun, Optional, Optionals, Strings } from '@ephox/katamari';
-import { Css, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
+import { HexColour, RgbaColour } from "@hugerte/acid";
+import { Arr, Cell, Fun, Optional, Optionals, Strings } from "@hugerte/katamari";
+import { Css, SugarElement, SugarNode, TransformFind } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog, Menu, Toolbar } from 'hugerte/core/api/ui/Ui';

@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';

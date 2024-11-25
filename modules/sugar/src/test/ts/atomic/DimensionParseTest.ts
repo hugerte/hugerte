@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optionals } from '@ephox/katamari';
+import { Optionals } from "@hugerte/katamari";
 import fc from 'fast-check';
 
 import * as Dimension from 'ephox/sugar/api/view/Dimension';

@@ -1,5 +1,5 @@
-import { Arr, Obj } from '@ephox/katamari';
-import { Attribute, Classes, Css, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { Attribute, Classes, Css, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import * as ApproxComparisons from '../assertions/ApproxComparisons';
 import * as ApproxStructures from '../assertions/ApproxStructures';

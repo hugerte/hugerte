@@ -1,4 +1,4 @@
-import { Id } from '@ephox/katamari';
+import { Id } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

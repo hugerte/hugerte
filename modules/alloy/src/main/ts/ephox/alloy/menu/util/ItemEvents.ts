@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Focus } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Focus } from "@hugerte/sugar";
 
 import { Focusing } from '../../api/behaviour/Focusing';
 import { AlloyComponent } from '../../api/component/ComponentApi';

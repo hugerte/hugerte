@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,5 +1,5 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Arr, Optional, Optionals } from "@hugerte/katamari";
 
 import { WordScope } from 'ephox/robin/data/WordScope';
 import * as Identify from 'ephox/robin/words/Identify';

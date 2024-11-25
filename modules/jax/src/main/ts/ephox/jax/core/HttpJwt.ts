@@ -1,4 +1,4 @@
-import { FutureResult } from '@ephox/katamari';
+import { FutureResult } from "@hugerte/katamari";
 
 import * as Http from './Http';
 import { ResponseBodyDataTypes, ResponseType, ResponseTypeMap } from './HttpData';

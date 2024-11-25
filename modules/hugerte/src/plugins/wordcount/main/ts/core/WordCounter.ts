@@ -1,4 +1,4 @@
-import { Throttler } from '@ephox/katamari';
+import { Throttler } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import Delay from 'hugerte/core/api/util/Delay';

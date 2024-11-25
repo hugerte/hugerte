@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyParts, AlloySpec, Behaviour, Blocking, Button, Container, DomFactory, Focusing, Keying, ModalDialog,
   NativeEvents, SketchSpec, SystemEvents, Tabstopping
-} from '@ephox/alloy';
-import { Fun, Optional, Result } from '@ephox/katamari';
-import { Class, SugarBody } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Fun, Optional, Result } from "@hugerte/katamari";
+import { Class, SugarBody } from "@hugerte/sugar";
 
 import Env from 'hugerte/core/api/Env';
 

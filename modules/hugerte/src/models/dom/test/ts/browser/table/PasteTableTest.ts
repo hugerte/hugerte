@@ -1,7 +1,7 @@
-import { Clipboard } from '@ephox/agar';
+import { Clipboard } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/mcagar';
-import { SugarElement } from '@ephox/sugar';
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/mcagar";
+import { SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

@@ -1,5 +1,5 @@
-import { StructureSchema } from '@ephox/boulder';
-import { Result } from '@ephox/katamari';
+import { StructureSchema } from "@hugerte/boulder";
+import { Result } from "@hugerte/katamari";
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { BaseMenuButton, BaseMenuButtonSpec, baseMenuButtonFields, BaseMenuButtonInstanceApi, MenuButtonItemTypes } from '../../core/MenuButton';

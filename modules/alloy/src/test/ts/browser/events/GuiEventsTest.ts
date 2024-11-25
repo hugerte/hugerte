@@ -1,6 +1,6 @@
-import { Chain, Cleaner, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Pipeline, Step, TestStore, Touch, UiFinder } from '@ephox/agar';
+import { Chain, Cleaner, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Pipeline, Step, TestStore, Touch, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Attribute, DomEvent, EventArgs, Insert, Remove, SugarElement, SugarNode, SugarText } from '@ephox/sugar';
+import { Attribute, DomEvent, EventArgs, Insert, Remove, SugarElement, SugarNode, SugarText } from "@hugerte/sugar";
 
 import * as GuiEvents from 'ephox/alloy/events/GuiEvents';
 

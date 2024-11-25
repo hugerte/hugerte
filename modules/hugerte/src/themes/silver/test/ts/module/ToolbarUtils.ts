@@ -1,7 +1,7 @@
-import { Waiter } from '@ephox/agar';
-import { Type } from '@ephox/katamari';
-import { Height, SugarElement, SugarLocation, Width } from '@ephox/sugar';
-import { TinyUiActions } from '@ephox/wrap-mcagar';
+import { Waiter } from "@hugerte/agar";
+import { Type } from "@hugerte/katamari";
+import { Height, SugarElement, SugarLocation, Width } from "@hugerte/sugar";
+import { TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

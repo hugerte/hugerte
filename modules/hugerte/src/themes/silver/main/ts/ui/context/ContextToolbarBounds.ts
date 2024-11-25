@@ -1,7 +1,7 @@
-import { Bounds, Boxes } from '@ephox/alloy';
-import { InlineContent } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
-import { Scroll, SelectorFind, SugarBody, SugarElement, SugarNode, Traverse, WindowVisualViewport } from '@ephox/sugar';
+import { Bounds, Boxes } from "@hugerte/alloy";
+import { InlineContent } from "@hugerte/bridge";
+import { Optional } from "@hugerte/katamari";
+import { Scroll, SelectorFind, SugarBody, SugarElement, SugarNode, Traverse, WindowVisualViewport } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

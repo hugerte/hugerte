@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyEvents, AlloyTriggers, Behaviour, Disabling, FormField as AlloyFormField, Input as AlloyInput, Invalidating, Keying,
   NativeEvents, Representing, SketchSpec, SystemEvents, Tabstopping
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
-import { Traverse } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Arr, Fun, Future, Optional, Result } from "@hugerte/katamari";
+import { Traverse } from "@hugerte/sugar";
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import * as ReadOnly from '../../ReadOnly';

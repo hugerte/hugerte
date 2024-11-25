@@ -1,5 +1,5 @@
-import { Adt } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Adt } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 /*
  * The CellLocation ADT is used to represent a cell when navigating. The

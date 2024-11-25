@@ -1,7 +1,7 @@
-import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyParts, Receiving, Reflecting } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Id, Obj, Optional, Singleton, Type } from '@ephox/katamari';
-import { DomEvent, EventUnbinder, SelectorFind, SugarElement } from '@ephox/sugar';
+import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyParts, Receiving, Reflecting } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Id, Obj, Optional, Singleton, Type } from "@hugerte/katamari";
+import { DomEvent, EventUnbinder, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import URI from 'hugerte/core/api/util/URI';

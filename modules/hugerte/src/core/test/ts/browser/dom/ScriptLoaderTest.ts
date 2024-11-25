@@ -1,5 +1,5 @@
 import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Global } from '@ephox/katamari';
+import { Arr, Global } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import ScriptLoader from 'hugerte/core/api/dom/ScriptLoader';

@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Arr, Obj, Optional } from "@hugerte/katamari";
 import * as fc from 'fast-check';
 
 import { DomDefinitionDetail } from 'ephox/alloy/dom/DomDefinition';

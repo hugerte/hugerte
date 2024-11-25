@@ -2,10 +2,10 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Bubble, Disabling, EventFormat, FormField as AlloyFormField, Keying,
   Layout,
   NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, Tabstopping, Tooltipping
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Attribute, Class, EventArgs, Focus, Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Attribute, Class, EventArgs, Focus, Html, SelectorFilter, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import Entities from 'hugerte/core/api/html/Entities';
 import I18n from 'hugerte/core/api/util/I18n';

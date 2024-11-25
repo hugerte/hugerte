@@ -1,5 +1,5 @@
 import { Assert, TestLabel } from '@ephox/bedrock-client';
-import { Arr, Fun, Id, Strings } from '@ephox/katamari';
+import { Arr, Fun, Id, Strings } from "@hugerte/katamari";
 
 import { ArrayAssert, StringAssert } from './ApproxStructures';
 

@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, Waiter } from "@hugerte/agar";
+import { GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun, Global, Optional } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Cell, Fun, Global, Optional } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import Resource from 'hugerte/core/api/Resource';
 import { HugeRTE } from 'hugerte/core/api/Hugerte';

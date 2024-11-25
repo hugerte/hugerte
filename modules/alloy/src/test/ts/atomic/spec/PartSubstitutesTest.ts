@@ -1,6 +1,6 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
 import { subs } from 'ephox/alloy/parts/PartSubstitutes';

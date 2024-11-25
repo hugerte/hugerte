@@ -1,7 +1,7 @@
-import { ColourPicker } from '@ephox/acid';
-import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Form, Memento, NativeEvents, Representing, SimpleSpec } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Optional, Strings, Type } from '@ephox/katamari';
+import { ColourPicker } from "@hugerte/acid";
+import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Form, Memento, NativeEvents, Representing, SimpleSpec } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Arr, Optional, Strings, Type } from "@hugerte/katamari";
 
 import { Untranslated } from 'hugerte/core/api/util/I18n';
 

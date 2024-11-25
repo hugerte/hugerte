@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { PlatformDetection } from 'ephox/sand/core/PlatformDetection';

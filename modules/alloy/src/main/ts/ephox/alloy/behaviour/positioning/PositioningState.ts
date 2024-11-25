@@ -1,4 +1,4 @@
-import { Obj, Optional, Type } from '@ephox/katamari';
+import { Obj, Optional, Type } from "@hugerte/katamari";
 
 import { PlacerResult } from '../../positioning/layout/LayoutTypes';
 import { nuState } from '../common/BehaviourState';

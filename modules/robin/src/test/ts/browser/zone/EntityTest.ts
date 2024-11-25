@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Unicode } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as DomTextZones from 'ephox/robin/api/dom/DomTextZones';

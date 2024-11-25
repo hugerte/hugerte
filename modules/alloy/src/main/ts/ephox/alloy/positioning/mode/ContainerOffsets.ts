@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Compare, Scroll, SugarElement, SugarLocation, SugarPosition, Traverse } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Compare, Scroll, SugarElement, SugarLocation, SugarPosition, Traverse } from "@hugerte/sugar";
 
 import * as CssPosition from '../../alien/CssPosition';
 import { AlloyComponent } from '../../api/component/ComponentApi';

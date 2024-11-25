@@ -1,6 +1,6 @@
-import { DragnDrop, UiFinder } from '@ephox/agar';
+import { DragnDrop, UiFinder } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { McEditor, TinyAssertions, TinyDom, TinySelections } from '@ephox/wrap-mcagar';
+import { McEditor, TinyAssertions, TinyDom, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

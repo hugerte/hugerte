@@ -1,6 +1,6 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { CompositeSketchDetail } from 'ephox/alloy/api/ui/Sketcher';
 import { ConfiguredPart } from 'ephox/alloy/parts/AlloyParts';

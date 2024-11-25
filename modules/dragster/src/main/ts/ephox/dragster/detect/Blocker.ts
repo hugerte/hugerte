@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Attribute, Class, Css, Remove, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Attribute, Class, Css, Remove, SugarElement } from "@hugerte/sugar";
 
 import * as Styles from '../style/Styles';
 

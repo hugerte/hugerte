@@ -1,5 +1,5 @@
-import { Arr, Strings } from '@ephox/katamari';
-import { Css, PredicateFind, SugarElement, SugarElements, Traverse } from '@ephox/sugar';
+import { Arr, Strings } from "@hugerte/katamari";
+import { Css, PredicateFind, SugarElement, SugarElements, Traverse } from "@hugerte/sugar";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

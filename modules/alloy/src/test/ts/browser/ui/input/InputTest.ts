@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
+import { PlatformDetection } from "@hugerte/sand";
 
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';

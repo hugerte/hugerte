@@ -1,6 +1,6 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { CellLocation, CellNavigation, TableLookup } from '@ephox/snooker';
-import { Compare, ContentEditable, CursorPosition, Insert, SimSelection, SugarElement, SugarNode, WindowSelection } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { CellLocation, CellNavigation, TableLookup } from "@hugerte/snooker";
+import { Compare, ContentEditable, CursorPosition, Insert, SimSelection, SugarElement, SugarNode, WindowSelection } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import * as CaretFinder from '../caret/CaretFinder';

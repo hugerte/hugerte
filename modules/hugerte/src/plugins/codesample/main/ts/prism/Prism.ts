@@ -1,4 +1,4 @@
-import { Global } from '@ephox/katamari';
+import { Global } from "@hugerte/katamari";
 import Prism from 'prismjs';
 
 import Editor from 'hugerte/core/api/Editor';

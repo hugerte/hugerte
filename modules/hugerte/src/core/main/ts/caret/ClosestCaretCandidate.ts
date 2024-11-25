@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Compare, SugarElement, Traverse } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Compare, SugarElement, Traverse } from "@hugerte/sugar";
 
 import { getClientRects, NodeClientRect } from '../dom/Dimensions';
 import * as NodeType from '../dom/NodeType';

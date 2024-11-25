@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+import { Type } from "@hugerte/katamari";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import AstNode from 'hugerte/core/api/html/Node';

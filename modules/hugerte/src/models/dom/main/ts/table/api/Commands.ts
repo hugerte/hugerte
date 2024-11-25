@@ -1,6 +1,6 @@
-import { Arr, Fun, Obj, Optional, Type } from '@ephox/katamari';
-import { CopyCols, CopyRows, Sizes, TableFill, TableLookup, TableConversions } from '@ephox/snooker';
-import { Insert, Remove, Replication, SelectorFind, Selectors, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional, Type } from "@hugerte/katamari";
+import { CopyCols, CopyRows, Sizes, TableFill, TableLookup, TableConversions } from "@hugerte/snooker";
+import { Insert, Remove, Replication, SelectorFind, Selectors, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

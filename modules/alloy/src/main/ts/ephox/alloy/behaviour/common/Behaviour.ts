@@ -1,5 +1,5 @@
-import { StructureProcessor, FieldSchema, StructureSchema, FieldProcessor } from '@ephox/boulder';
-import { Fun, Obj, Optional, Optionals, Thunk } from '@ephox/katamari';
+import { StructureProcessor, FieldSchema, StructureSchema, FieldProcessor } from "@hugerte/boulder";
+import { Fun, Obj, Optional, Optionals, Thunk } from "@hugerte/katamari";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as AlloyEvents from '../../api/events/AlloyEvents';

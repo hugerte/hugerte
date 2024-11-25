@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Arr, Obj, Optional } from "@hugerte/katamari";
 
 import Editor from '../Editor';
 import DOMUtils from './DOMUtils';

@@ -1,8 +1,8 @@
-import { FocusTools } from '@ephox/agar';
+import { FocusTools } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarDocument } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions, TinyContentActions } from '@ephox/wrap-mcagar';
+import { PlatformDetection } from "@hugerte/sand";
+import { SugarDocument } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions, TinyContentActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/link/Plugin';

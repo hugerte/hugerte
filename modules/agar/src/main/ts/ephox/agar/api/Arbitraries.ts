@@ -1,4 +1,4 @@
-import { SimRange, SugarElement } from '@ephox/sugar';
+import { SimRange, SugarElement } from "@hugerte/sugar";
 import * as fc from 'fast-check';
 
 import * as ArbContent from '../arbitrary/ArbContent';

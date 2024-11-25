@@ -1,9 +1,9 @@
-import { FocusTools, RealKeys, RealMouse, UiFinder, Waiter } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
+import { FocusTools, RealKeys, RealMouse, UiFinder, Waiter } from "@hugerte/agar";
+import { TestHelpers } from "@hugerte/alloy";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Focus, SelectorFind, SugarDocument } from '@ephox/sugar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Focus, SelectorFind, SugarDocument } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';

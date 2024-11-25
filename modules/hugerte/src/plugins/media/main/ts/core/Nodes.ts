@@ -1,4 +1,4 @@
-import { Arr, Obj, Strings, Type } from '@ephox/katamari';
+import { Arr, Obj, Strings, Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import Env from 'hugerte/core/api/Env';

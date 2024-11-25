@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 import * as fc from 'fast-check';
 
 import * as SliderModel from 'ephox/alloy/ui/slider/SliderModel';

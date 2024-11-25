@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Focusing } from '../../api/behaviour/Focusing';

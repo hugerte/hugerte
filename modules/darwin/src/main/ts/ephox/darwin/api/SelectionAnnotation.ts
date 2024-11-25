@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Attribute, Class, OnNode, SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute, Class, OnNode, SelectorFilter, SugarElement } from "@hugerte/sugar";
 
 import { Ephemera } from './Ephemera';
 

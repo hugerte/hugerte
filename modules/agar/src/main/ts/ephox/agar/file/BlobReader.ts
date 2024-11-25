@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+import { Type } from "@hugerte/katamari";
 
 export const readBlobAsString = (blob: Blob): Promise<string> => {
   return new Promise<string>((resolve, reject) => {

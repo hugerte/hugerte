@@ -1,4 +1,4 @@
-import { FocusTools, RealKeys, Step } from '@ephox/agar';
+import { FocusTools, RealKeys, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

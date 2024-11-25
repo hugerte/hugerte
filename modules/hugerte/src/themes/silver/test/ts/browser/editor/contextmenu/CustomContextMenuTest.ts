@@ -1,8 +1,8 @@
-import { Keyboard, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { Keyboard, Keys, Mouse, UiFinder, Waiter } from "@hugerte/agar";
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarBody, SugarDocument } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Fun } from "@hugerte/katamari";
+import { SugarBody, SugarDocument } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

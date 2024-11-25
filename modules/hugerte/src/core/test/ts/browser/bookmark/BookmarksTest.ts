@@ -1,8 +1,8 @@
-import { Assertions, Cursors, Mouse } from '@ephox/agar';
+import { Assertions, Cursors, Mouse } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Hierarchy, Html, Remove, Replication, SelectorFilter, SugarElement, Insert, SugarBody, DomEvent } from '@ephox/sugar';
-import { McEditor, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Hierarchy, Html, Remove, Replication, SelectorFilter, SugarElement, Insert, SugarBody, DomEvent } from "@hugerte/sugar";
+import { McEditor, TinyAssertions, TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

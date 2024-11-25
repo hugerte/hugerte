@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys } from '@ephox/agar';
-import { Behaviour, Focusing, GuiFactory, Keying, TestHelpers, Toolbar } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys } from "@hugerte/agar";
+import { Behaviour, Focusing, GuiFactory, Keying, TestHelpers, Toolbar } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarDocument } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { SugarDocument } from "@hugerte/sugar";
 
 import { ToolbarMode } from 'hugerte/themes/silver/api/Options';
 import { renderToolbar, renderToolbarGroup } from 'hugerte/themes/silver/ui/toolbar/CommonToolbar';

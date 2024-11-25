@@ -1,4 +1,4 @@
-import { SelectorFind } from '@ephox/sugar';
+import { SelectorFind } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';

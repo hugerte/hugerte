@@ -1,11 +1,11 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, Dropdown, Focusing, Keying, NativeEvents, RawDomSchema, Replacing, Sketcher,
   SystemEvents, Tabstopping, UiSketcher
-} from '@ephox/alloy';
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Toolbar } from '@ephox/bridge';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Compare, EventArgs, SelectorFind } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Toolbar } from "@hugerte/bridge";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Compare, EventArgs, SelectorFind } from "@hugerte/sugar";
 
 import { Menu } from 'hugerte/core/api/ui/Ui';
 import { TranslatedString } from 'hugerte/core/api/util/I18n';

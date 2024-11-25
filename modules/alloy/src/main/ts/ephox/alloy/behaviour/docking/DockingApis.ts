@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Classes, Css } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Classes, Css } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import { AlloyComponent } from '../../api/component/ComponentApi';

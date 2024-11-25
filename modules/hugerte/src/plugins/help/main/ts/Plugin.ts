@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Cell } from "@hugerte/katamari";
 
 import PluginManager from 'hugerte/core/api/PluginManager';
 import { Dialog as DialogType } from 'hugerte/core/api/ui/Ui';

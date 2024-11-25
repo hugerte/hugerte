@@ -1,5 +1,5 @@
-import { Cell, Optional } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Cell, Optional } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';

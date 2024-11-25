@@ -1,6 +1,6 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr, Obj, Optional } from '@ephox/katamari';
-import { DomEvent, EventArgs, Insert, SugarElement } from '@ephox/sugar';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Arr, Obj, Optional } from "@hugerte/katamari";
+import { DomEvent, EventArgs, Insert, SugarElement } from "@hugerte/sugar";
 
 import { UncurriedHandler } from '../../events/EventRegistry';
 import * as SimulatedEvent from '../../events/SimulatedEvent';

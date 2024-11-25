@@ -1,7 +1,7 @@
-import { FocusTools, Keyboard, Keys } from '@ephox/agar';
+import { FocusTools, Keyboard, Keys } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Objects } from '@ephox/boulder';
-import { Arr } from '@ephox/katamari';
+import { Objects } from "@hugerte/boulder";
+import { Arr } from "@hugerte/katamari";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

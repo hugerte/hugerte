@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { Pattern, Search } from '@ephox/polaris';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Pattern, Search } from "@hugerte/polaris";
 
 const wordstart = new RegExp(Pattern.wordbreak() + '+', 'g');
 

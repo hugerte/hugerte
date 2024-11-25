@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Css, Scroll } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Css, Scroll } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

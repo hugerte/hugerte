@@ -1,7 +1,7 @@
-import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, Highlighting, InlineView, ItemTypes, SystemEvents } from '@ephox/alloy';
-import { InlineContent } from '@ephox/bridge';
-import { Arr, Cell, Id, Optional, Singleton } from '@ephox/katamari';
-import { Attribute, Css, Replication, SelectorFind, SimRange, SugarElement } from '@ephox/sugar';
+import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, Highlighting, InlineView, ItemTypes, SystemEvents } from "@hugerte/alloy";
+import { InlineContent } from "@hugerte/bridge";
+import { Arr, Cell, Id, Optional, Singleton } from "@hugerte/katamari";
+import { Attribute, Css, Replication, SelectorFind, SimRange, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { AutocompleteLookupData } from 'hugerte/core/autocomplete/AutocompleteTypes';

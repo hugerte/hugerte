@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloyParts, Behaviour, Focusing, Keying, ModalDialog, Reflecting, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Fun, Optional } from '@ephox/katamari';
+import { AlloyComponent, AlloyParts, Behaviour, Focusing, Keying, ModalDialog, Reflecting, SimpleSpec, Tabstopping } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Fun, Optional } from "@hugerte/katamari";
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { ComposingConfigs } from '../alien/ComposingConfigs';
@@ -49,7 +49,7 @@ const renderBody = (spec: WindowBodySpec, dialogId: string, contentId: Optional<
       classes: [ 'tox-dialog__content-js' ],
       attributes: {
         ...contentId.map((x): { id?: string } => ({ id: x })).getOr({}),
-        ...ariaAttrs ? ariaAttributes : {}
+        ...(ariaAttrs ? ariaAttributes : {})
       }
     },
     components: [],

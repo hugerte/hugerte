@@ -1,7 +1,7 @@
-import { Keys, UiFinder } from '@ephox/agar';
+import { Keys, UiFinder } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { SugarBody } from '@ephox/sugar';
-import { TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
+import { SugarBody } from "@hugerte/sugar";
+import { TinyHooks, TinySelections, TinyState, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/link/Plugin';

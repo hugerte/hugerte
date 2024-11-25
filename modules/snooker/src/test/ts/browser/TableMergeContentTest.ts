@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Html, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Html, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import * as TableContent from 'ephox/snooker/api/TableContent';
 

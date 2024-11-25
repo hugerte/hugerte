@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { Merger } from '@ephox/katamari';
-import { Css, SugarElement } from '@ephox/sugar';
+import { Merger } from "@hugerte/katamari";
+import { Css, SugarElement } from "@hugerte/sugar";
 
 import { Editor, RawEditorOptions, HugeRTE } from 'hugerte/core/api/PublicApi';
 

@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
 
 import * as Compare from '../dom/Compare';
 import { SugarElement } from '../node/SugarElement';

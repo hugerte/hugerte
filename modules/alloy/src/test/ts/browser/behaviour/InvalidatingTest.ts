@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Chain, GeneralSteps, Guard, Logger, Step, UiControls, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Chain, GeneralSteps, Guard, Logger, Step, UiControls, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Future, Result, Singleton } from '@ephox/katamari';
-import { SugarElement, Value } from '@ephox/sugar';
+import { Future, Result, Singleton } from "@hugerte/katamari";
+import { SugarElement, Value } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Invalidating } from 'ephox/alloy/api/behaviour/Invalidating';

@@ -1,5 +1,5 @@
-import { Arr, Unicode } from '@ephox/katamari';
-import { Attribute, Insert, Remove, SelectorFilter, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
+import { Arr, Unicode } from "@hugerte/katamari";
+import { Attribute, Insert, Remove, SelectorFilter, SugarElement, SugarNode, SugarText, Traverse } from "@hugerte/sugar";
 
 import Schema from '../api/html/Schema';
 import * as ElementType from './ElementType';

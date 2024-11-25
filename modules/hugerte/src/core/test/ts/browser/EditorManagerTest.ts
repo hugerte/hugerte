@@ -1,5 +1,5 @@
 import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Remove, Selectors } from '@ephox/sugar';
+import { Remove, Selectors } from "@hugerte/sugar";
 import { assert } from 'chai';
 import 'hugerte';
 

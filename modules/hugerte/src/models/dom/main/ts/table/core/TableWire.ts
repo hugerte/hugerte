@@ -1,5 +1,5 @@
-import { ResizeWire } from '@ephox/snooker';
-import { Css, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { ResizeWire } from "@hugerte/snooker";
+import { Css, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

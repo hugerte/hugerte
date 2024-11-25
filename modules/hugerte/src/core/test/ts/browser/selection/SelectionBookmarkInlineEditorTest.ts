@@ -1,7 +1,7 @@
-import { Assertions, Cursors, Waiter } from '@ephox/agar';
+import { Assertions, Cursors, Waiter } from "@hugerte/agar";
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Hierarchy, Html, SimRange, SugarElement } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Hierarchy, Html, SimRange, SugarElement } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

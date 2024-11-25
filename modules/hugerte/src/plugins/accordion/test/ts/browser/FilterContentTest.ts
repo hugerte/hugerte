@@ -1,8 +1,8 @@
-import { ApproxStructure, StructAssert, Waiter } from '@ephox/agar';
+import { ApproxStructure, StructAssert, Waiter } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type, Unicode } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Type, Unicode } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/accordion/Plugin';
@@ -36,8 +36,8 @@ describe('browser.hugerte.plugins.accordion.FilterContentTest', () => {
     return s.element('details', {
       exactClasses: [ 'mce-accordion' ],
       exactAttrs: {
-        ...Type.isNullable(open) || open === true ? { open: str.is('open') } : {},
-        ...Type.isNullable(isSelected) || isSelected === true ? { 'data-mce-selected': str.is('1') } : {}
+        ...(Type.isNullable(open) || open === true ? { open: str.is('open') } : {}),
+        ...(Type.isNullable(isSelected) || isSelected === true ? { 'data-mce-selected': str.is('1') } : {})
       },
       children: [
         s.element('summary', {

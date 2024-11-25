@@ -1,5 +1,5 @@
 import { afterEach, context, describe, it } from '@ephox/bedrock-client';
-import { McEditor } from '@ephox/wrap-mcagar';
+import { McEditor } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';

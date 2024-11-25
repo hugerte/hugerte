@@ -1,8 +1,8 @@
-import { Keys, UiFinder } from '@ephox/agar';
+import { Keys, UiFinder } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SelectorFind } from '@ephox/sugar';
-import { TinyContentActions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Fun } from "@hugerte/katamari";
+import { SelectorFind } from "@hugerte/sugar";
+import { TinyContentActions, TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

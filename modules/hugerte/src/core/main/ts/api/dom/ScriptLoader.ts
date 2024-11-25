@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Type, Unique } from '@ephox/katamari';
+import { Arr, Fun, Obj, Optional, Type, Unique } from "@hugerte/katamari";
 
 import Tools from '../util/Tools';
 import DOMUtils from './DOMUtils';

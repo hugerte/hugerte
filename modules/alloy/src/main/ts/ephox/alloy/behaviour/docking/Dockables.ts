@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
-import { Class, Css, Height, SugarBody, SugarElement, SugarPosition, Width } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional, Optionals } from "@hugerte/katamari";
+import { Class, Css, Height, SugarBody, SugarElement, SugarPosition, Width } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import * as OffsetOrigin from '../../alien/OffsetOrigin';

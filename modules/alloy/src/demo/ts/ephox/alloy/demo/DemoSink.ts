@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';

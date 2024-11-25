@@ -1,5 +1,5 @@
-import { Arr, Fun, Result } from '@ephox/katamari';
-import { Compare, EventArgs, Focus, Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Fun, Result } from "@hugerte/katamari";
+import { Compare, EventArgs, Focus, Remove, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import * as Debugging from '../../debugging/Debugging';
 import * as DescribedHandler from '../../events/DescribedHandler';

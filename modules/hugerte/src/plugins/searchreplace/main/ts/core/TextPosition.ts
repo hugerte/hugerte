@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { SugarElement, SugarText } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SugarElement, SugarText } from "@hugerte/sugar";
 
 import { Pattern, Position, TextMatch } from './Types';
 

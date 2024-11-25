@@ -1,9 +1,9 @@
-import { ApproxStructure, Assertions, FocusTools, UiFinder, Waiter } from '@ephox/agar';
-import { Boxes } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, UiFinder, Waiter } from "@hugerte/agar";
+import { Boxes } from "@hugerte/alloy";
 import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Strings } from '@ephox/katamari';
-import { Class, Css, Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement, Traverse } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Arr, Strings } from "@hugerte/katamari";
+import { Class, Css, Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement, Traverse } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

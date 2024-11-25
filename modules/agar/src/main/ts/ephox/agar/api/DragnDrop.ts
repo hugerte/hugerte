@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Attribute, SugarBody, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute, SugarBody, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import { createDataTransfer, getDragImage } from '../datatransfer/DataTransfer';
 import {

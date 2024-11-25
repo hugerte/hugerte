@@ -1,6 +1,6 @@
 import { Assert } from '@ephox/bedrock-client';
 import { Pprint } from '@ephox/dispute';
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Arr, Fun, Result } from "@hugerte/katamari";
 
 import { Chain } from 'ephox/agar/api/Chain';
 import { Pipeline } from 'ephox/agar/api/Pipeline';

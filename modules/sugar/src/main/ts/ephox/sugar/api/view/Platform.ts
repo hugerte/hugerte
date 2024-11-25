@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Arr, Optional } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 
 interface ChoiceOption<T> {
   predicate: () => boolean;

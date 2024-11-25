@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 export interface Pattern {
   readonly regex: RegExp;

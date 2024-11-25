@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import AstNode from '../api/html/Node';
 import Schema from '../api/html/Schema';

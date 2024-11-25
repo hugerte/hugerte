@@ -1,4 +1,4 @@
-import { Fun, Id, Optional, Type } from '@ephox/katamari';
+import { Fun, Id, Optional, Type } from "@hugerte/katamari";
 
 import { isInProtectedMode } from './Mode';
 

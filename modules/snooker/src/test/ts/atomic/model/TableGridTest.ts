@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as Structs from 'ephox/snooker/api/Structs';

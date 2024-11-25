@@ -1,4 +1,4 @@
-import { Singleton } from '@ephox/katamari';
+import { Singleton } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Toolbar, Menu } from 'hugerte/core/api/ui/Ui';

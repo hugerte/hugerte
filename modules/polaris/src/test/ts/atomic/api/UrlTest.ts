@@ -1,5 +1,5 @@
 import { Assert, context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 
 import * as Url from 'ephox/polaris/api/Url';
 

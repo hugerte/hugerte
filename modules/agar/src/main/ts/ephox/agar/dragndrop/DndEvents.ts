@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import { setProtectedMode, setReadOnlyMode, setReadWriteMode } from '../datatransfer/Mode';
 

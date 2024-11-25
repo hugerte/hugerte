@@ -1,4 +1,4 @@
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell, Fun } from "@hugerte/katamari";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

@@ -1,4 +1,4 @@
-import { Fun, Singleton } from '@ephox/katamari';
+import { Fun, Singleton } from "@hugerte/katamari";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { nuState } from '../common/BehaviourState';

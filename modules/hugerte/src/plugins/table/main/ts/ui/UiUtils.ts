@@ -1,6 +1,6 @@
-import { Transformations } from '@ephox/acid';
-import { Arr, Obj, Optional, Singleton, Strings } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Transformations } from "@hugerte/acid";
+import { Arr, Obj, Optional, Singleton, Strings } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog, Menu } from 'hugerte/core/api/ui/Ui';

@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Class, Classes, Css, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Class, Classes, Css, SugarElement } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { SlidingConfig, SlidingState } from './SlidingTypes';

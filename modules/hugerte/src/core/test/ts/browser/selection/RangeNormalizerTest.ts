@@ -1,6 +1,6 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { Hierarchy, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as RangeNormalizer from 'hugerte/core/selection/RangeNormalizer';

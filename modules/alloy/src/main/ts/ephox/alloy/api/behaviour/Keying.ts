@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 
 import { Stateless } from '../../behaviour/common/BehaviourState';
 import * as KeyboardBranches from '../../behaviour/keyboard/KeyboardBranches';

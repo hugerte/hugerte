@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Singleton } from '@ephox/katamari';
-import { Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Singleton } from "@hugerte/katamari";
+import { Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import { Chain } from 'ephox/agar/api/Chain';
 import { cRunOnPatchedFileInput, sRunOnPatchedFileInput } from 'ephox/agar/api/FileInput';

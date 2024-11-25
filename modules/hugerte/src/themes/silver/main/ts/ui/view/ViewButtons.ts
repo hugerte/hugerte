@@ -1,6 +1,6 @@
-import { AlloyComponent, Behaviour, Button as AlloyButton, GuiFactory, Memento, Replacing, SimpleOrSketchSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { Attribute, Class } from '@ephox/sugar';
+import { AlloyComponent, Behaviour, Button as AlloyButton, GuiFactory, Memento, Replacing, SimpleOrSketchSpec } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
+import { Attribute, Class } from "@hugerte/sugar";
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { renderReplaceableIconFromPack } from '../button/ButtonSlices';
@@ -75,10 +75,10 @@ export const renderButton = (spec: ViewButtonWithoutGroup, providers: UiFactoryB
   const dom = {
     tag: 'button',
     classes: buttonTypeClasses
-      .concat(...spec.icon.isSome() && !hasIconAndText ? [ 'tox-button--icon' ] : [])
-      .concat(...hasIconAndText ? [ 'tox-button--icon-and-text' ] : [])
-      .concat(...spec.borderless ? [ 'tox-button--naked' ] : [])
-      .concat(...spec.type === 'togglebutton' && spec.active ? [ ViewButtonClasses.Ticked ] : []),
+      .concat(...(spec.icon.isSome() && !hasIconAndText ? [ 'tox-button--icon' ] : []))
+      .concat(...(hasIconAndText ? [ 'tox-button--icon-and-text' ] : []))
+      .concat(...(spec.borderless ? [ 'tox-button--naked' ] : []))
+      .concat(...(spec.type === 'togglebutton' && spec.active ? [ ViewButtonClasses.Ticked ] : [])),
     attributes: ariaLabelAttributes
   };
   const extraBehaviours: Behaviours = [];

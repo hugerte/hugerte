@@ -1,5 +1,5 @@
-import { Cell, Obj } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Cell, Obj } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { EventFormat } from './SimulatedEvent';
 

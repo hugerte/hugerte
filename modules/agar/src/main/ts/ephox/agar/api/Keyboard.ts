@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Focus, SugarElement, Traverse } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Focus, SugarElement, Traverse } from "@hugerte/sugar";
 
 import { keyevent, MixedKeyModifiers } from '../keyboard/FakeKeys';
 import { Step } from './Step';

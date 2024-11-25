@@ -1,4 +1,4 @@
-import { Chain, Cursors, StructAssert } from '@ephox/agar';
+import { Chain, Cursors, StructAssert } from "@hugerte/agar";
 
 import { Editor } from '../../alien/EditorTypes';
 import * as Options from '../../alien/Options';

@@ -1,7 +1,7 @@
-import { Optional } from '@ephox/katamari';
-import { Spot, SpotPoint } from '@ephox/phoenix';
-import { PlatformDetection } from '@ephox/sand';
-import { Awareness, Compare, SimRange, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Spot, SpotPoint } from "@hugerte/phoenix";
+import { PlatformDetection } from "@hugerte/sand";
+import { Awareness, Compare, SimRange, SugarElement } from "@hugerte/sugar";
 
 import { WindowBridge } from '../api/WindowBridge';
 import { BeforeAfter } from '../navigation/BeforeAfter';

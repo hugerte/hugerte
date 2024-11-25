@@ -1,4 +1,4 @@
-import { SimRange, SugarElement } from '@ephox/sugar';
+import { SimRange, SugarElement } from "@hugerte/sugar";
 
 import { Editor } from '../alien/EditorTypes';
 

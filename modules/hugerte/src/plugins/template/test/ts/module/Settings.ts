@@ -1,5 +1,5 @@
-import { Obj } from '@ephox/katamari';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Obj } from "@hugerte/katamari";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

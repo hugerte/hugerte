@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun, Obj } from '@ephox/katamari';
+import { FieldSchema } from "@hugerte/boulder";
+import { Cell, Fun, Obj } from "@hugerte/katamari";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

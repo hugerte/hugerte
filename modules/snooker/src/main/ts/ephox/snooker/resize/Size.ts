@@ -1,4 +1,4 @@
-import { Adt, Strings } from '@ephox/katamari';
+import { Adt, Strings } from "@hugerte/katamari";
 
 export interface Size {
   fold: <T> (

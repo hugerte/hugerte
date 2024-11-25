@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder, Waiter } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SelectorFind, SugarBody, SugarDocument } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SelectorFind, SugarBody, SugarDocument } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { WindowManagerImpl } from 'hugerte/core/api/WindowManager';

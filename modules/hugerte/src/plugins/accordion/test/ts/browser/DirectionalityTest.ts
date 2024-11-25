@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { TinyHooks, TinySelections, TinyAssertions } from '@ephox/wrap-mcagar';
+import { TinyHooks, TinySelections, TinyAssertions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import AccordionPlugin from 'hugerte/plugins/accordion/Plugin';

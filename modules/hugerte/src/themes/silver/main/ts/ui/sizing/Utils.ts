@@ -1,4 +1,4 @@
-import { Optional, Type } from '@ephox/katamari';
+import { Optional, Type } from "@hugerte/katamari";
 
 const parseToInt = (val: string | number): Optional<number> => {
   // if size is a number or '_px', will return the number

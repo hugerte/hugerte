@@ -1,5 +1,5 @@
-import { Arr, Obj, Throttler, Type } from '@ephox/katamari';
-import { SelectorFind, Selectors, SugarElement } from '@ephox/sugar';
+import { Arr, Obj, Throttler, Type } from "@hugerte/katamari";
+import { SelectorFind, Selectors, SugarElement } from "@hugerte/sugar";
 
 import * as NodeType from '../../dom/NodeType';
 import * as RangePoint from '../../dom/RangePoint';

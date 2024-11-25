@@ -1,5 +1,5 @@
-import { FieldPresence, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Result } from '@ephox/katamari';
+import { FieldPresence, FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Result } from "@hugerte/katamari";
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { alertBannerSchema } from './AlertBanner';

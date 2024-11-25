@@ -1,7 +1,7 @@
-import { ApproxStructure } from '@ephox/agar';
+import { ApproxStructure } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -54,7 +54,7 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
                 s.element('td', {
                   styles: {
                     width: str.is('50%'),
-                    ...cell1 ? mapStyles(styles, str) : {}
+                    ...(cell1 ? mapStyles(styles, str) : {})
                   },
                   children: [
                     s.text(str.is('a'))
@@ -63,7 +63,7 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
                 s.element('td', {
                   styles: {
                     width: str.is('50%'),
-                    ...cell2 ? mapStyles(styles, str) : {}
+                    ...(cell2 ? mapStyles(styles, str) : {})
                   },
                   children: [
                     s.text(str.is('b'))
@@ -76,7 +76,7 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
                 s.element('td', {
                   styles: {
                     width: str.is('50%'),
-                    ...cell3 ? mapStyles(styles, str) : {}
+                    ...(cell3 ? mapStyles(styles, str) : {})
                   },
                   children: [
                     s.text(str.is('c'))
@@ -85,7 +85,7 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
                 s.element('td', {
                   styles: {
                     width: str.is('50%'),
-                    ...cell4 ? mapStyles(styles, str) : {}
+                    ...(cell4 ? mapStyles(styles, str) : {})
                   },
                   children: [
                     s.text(str.is('d'))

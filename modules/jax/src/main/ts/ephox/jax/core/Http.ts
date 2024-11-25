@@ -1,4 +1,4 @@
-import { FutureResult, Global, Obj, Optional, Result, Strings, Type } from '@ephox/katamari';
+import { FutureResult, Global, Obj, Optional, Result, Strings, Type } from "@hugerte/katamari";
 
 import { DataType } from './DataType';
 import { RequestBody, ResponseBodyDataTypes, ResponseType, ResponseTypeMap, textData } from './HttpData';

@@ -1,6 +1,6 @@
-import { GeneralSteps, Logger, Pipeline, Step, TestStore, Waiter } from '@ephox/agar';
+import { GeneralSteps, Logger, Pipeline, Step, TestStore, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { EventArgs, SugarElement } from '@ephox/sugar';
+import { EventArgs, SugarElement } from "@hugerte/sugar";
 
 import * as NativeEvents from 'ephox/alloy/api/events/NativeEvents';
 import * as SystemEvents from 'ephox/alloy/api/events/SystemEvents';

@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Attribute, Value } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Attribute, Value } from "@hugerte/sugar";
 
 import { Representing } from '../../api/behaviour/Representing';
 import { AlloyComponent } from '../../api/component/ComponentApi';

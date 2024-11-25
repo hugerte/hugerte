@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Strings } from '@ephox/katamari';
+import { Arr, Fun, Optional, Strings } from "@hugerte/katamari";
 
 import { EmojiEntry } from './EmojiDatabase';
 

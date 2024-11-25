@@ -1,4 +1,4 @@
-import { Fun, Type } from '@ephox/katamari';
+import { Fun, Type } from "@hugerte/katamari";
 
 import { DomDefinitionDetail } from './DomDefinition';
 

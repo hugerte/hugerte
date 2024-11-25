@@ -1,7 +1,7 @@
-import { FocusTools, Keyboard, Keys, RealKeys, UiControls } from '@ephox/agar';
+import { FocusTools, Keyboard, Keys, RealKeys, UiControls } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
-import { Value } from '@ephox/sugar';
+import { Arr, Future, Optional, Result } from "@hugerte/katamari";
+import { Value } from "@hugerte/sugar";
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

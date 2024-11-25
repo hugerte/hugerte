@@ -1,7 +1,7 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { InlineContent } from '@ephox/bridge';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { InlineContent } from "@hugerte/bridge";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { ContextType } from 'hugerte/themes/silver/ui/context/ContextToolbar';

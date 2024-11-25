@@ -1,8 +1,8 @@
 
-import { FocusTools, Keyboard, Keys, TestStore } from '@ephox/agar';
+import { FocusTools, Keyboard, Keys, TestStore } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarDocument, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SugarDocument, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

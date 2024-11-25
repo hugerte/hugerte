@@ -1,5 +1,5 @@
-import { Optional, Result } from '@ephox/katamari';
-import { EventArgs, SugarElement } from '@ephox/sugar';
+import { Optional, Result } from "@hugerte/katamari";
+import { EventArgs, SugarElement } from "@hugerte/sugar";
 
 import { NativeSimulatedEvent } from '../../events/SimulatedEvent';
 import { AlloyComponent } from '../component/ComponentApi';

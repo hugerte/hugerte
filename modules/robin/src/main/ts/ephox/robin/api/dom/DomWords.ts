@@ -1,4 +1,4 @@
-import { DomUniverse } from '@ephox/boss';
+import { DomUniverse } from "@hugerte/boss";
 
 import { WordScope } from '../../data/WordScope';
 import * as Words from '../general/Words';

@@ -1,5 +1,5 @@
-import { Optional, Type } from '@ephox/katamari';
-import { Attribute, SugarElement, SugarPosition } from '@ephox/sugar';
+import { Optional, Type } from "@hugerte/katamari";
+import { Attribute, SugarElement, SugarPosition } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { SnapsConfig } from '../common/DraggingTypes';

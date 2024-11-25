@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 

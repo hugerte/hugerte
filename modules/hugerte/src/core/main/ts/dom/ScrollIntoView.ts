@@ -1,7 +1,7 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 import {
   Css, Height, Insert, Remove, Scroll, SugarElement, SugarLocation, SugarNode, SugarPosition, SugarText, Traverse, WindowVisualViewport
-} from '@ephox/sugar';
+} from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import { ScrollIntoViewEvent } from '../api/EventTypes';

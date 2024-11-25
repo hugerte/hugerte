@@ -1,4 +1,4 @@
-import { Fun, Singleton } from '@ephox/katamari';
+import { Fun, Singleton } from "@hugerte/katamari";
 
 import { Bindable, Event } from 'ephox/porkbun/Event';
 import * as Events from 'ephox/porkbun/Events';

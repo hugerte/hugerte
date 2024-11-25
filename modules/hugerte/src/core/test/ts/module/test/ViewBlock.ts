@@ -1,5 +1,5 @@
 import { after, afterEach, before } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 

@@ -5,10 +5,10 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { CellOpSelection } from '@ephox/darwin';
-import { Optional } from '@ephox/katamari';
-import { RunOperation } from '@ephox/snooker';
-import { SugarElement } from '@ephox/sugar';
+import { CellOpSelection } from "@hugerte/darwin";
+import { Optional } from "@hugerte/katamari";
+import { RunOperation } from "@hugerte/snooker";
+import { SugarElement } from "@hugerte/sugar";
 
 import { ephemera } from '../selection/Ephemera';
 

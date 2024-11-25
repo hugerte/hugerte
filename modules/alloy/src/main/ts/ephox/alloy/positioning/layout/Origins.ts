@@ -1,5 +1,5 @@
-import { Adt, Fun, Optional } from '@ephox/katamari';
-import { Height, Scroll, SugarElement, SugarPosition, Width } from '@ephox/sugar';
+import { Adt, Fun, Optional } from "@hugerte/katamari";
+import { Height, Scroll, SugarElement, SugarPosition, Width } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import * as OuterPosition from '../../frame/OuterPosition';

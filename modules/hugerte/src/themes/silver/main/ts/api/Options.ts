@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Optionals, Type } from '@ephox/katamari';
-import { SelectorFind, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional, Optionals, Type } from "@hugerte/katamari";
+import { SelectorFind, SugarBody, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

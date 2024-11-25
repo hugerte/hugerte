@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+import { Type } from "@hugerte/katamari";
 
 import * as Namespace from '../../html/Namespace';
 import AstNode, { Attributes } from './Node';

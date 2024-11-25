@@ -1,5 +1,5 @@
-import { FieldSchema, Objects } from '@ephox/boulder';
-import { Id } from '@ephox/katamari';
+import { FieldSchema, Objects } from "@hugerte/boulder";
+import { Id } from "@hugerte/katamari";
 
 import * as Fields from '../../data/Fields';
 import * as TieredMenuSpec from '../../ui/single/TieredMenuSpec';

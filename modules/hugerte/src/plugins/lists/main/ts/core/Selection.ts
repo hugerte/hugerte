@@ -1,5 +1,5 @@
-import { Arr, Optional, Type } from '@ephox/katamari';
-import { SugarElement, Traverse } from '@ephox/sugar';
+import { Arr, Optional, Type } from "@hugerte/katamari";
+import { SugarElement, Traverse } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Schema from 'hugerte/core/api/html/Schema';

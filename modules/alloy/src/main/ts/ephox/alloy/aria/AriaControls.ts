@@ -1,5 +1,5 @@
-import { Id, Optional } from '@ephox/katamari';
-import { Attribute, PredicateFind, SelectorFind, SugarElement, SugarNode, SugarShadowDom } from '@ephox/sugar';
+import { Id, Optional } from "@hugerte/katamari";
+import { Attribute, PredicateFind, SelectorFind, SugarElement, SugarNode, SugarShadowDom } from "@hugerte/sugar";
 
 export interface AriaManager {
   readonly id: string;

@@ -1,6 +1,6 @@
-import { Assertions, Pipeline, Step, TestLogs, TestStore } from '@ephox/agar';
-import { Fun, Global, Merger, Obj, Optional, Type } from '@ephox/katamari';
-import { DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarDocument, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
+import { Assertions, Pipeline, Step, TestLogs, TestStore } from "@hugerte/agar";
+import { Fun, Global, Merger, Obj, Optional, Type } from "@hugerte/katamari";
+import { DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarDocument, SugarElement, SugarShadowDom, Traverse } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../component/ComponentApi';
 import * as Attachment from '../system/Attachment';

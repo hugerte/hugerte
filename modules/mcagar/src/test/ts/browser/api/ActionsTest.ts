@@ -1,4 +1,4 @@
-import { Assertions, Chain, Pipeline, Step, Waiter } from '@ephox/agar';
+import { Assertions, Chain, Pipeline, Step, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import { Editor as EditorType } from 'ephox/mcagar/alien/EditorTypes';

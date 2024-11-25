@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Focusing, Sketcher, SketchSpec, Slider, SliderTypes, UiSketcher } from '@ephox/alloy';
-import { Fun, Optional, Type } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Focusing, Sketcher, SketchSpec, Slider, SliderTypes, UiSketcher } from "@hugerte/alloy";
+import { Fun, Optional, Type } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import { Untranslated } from '../../alien/I18n';
 import { Hex } from '../../api/colour/ColourTypes';

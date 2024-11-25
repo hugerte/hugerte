@@ -1,5 +1,5 @@
-import { Arr, Num, Optional, Optionals, Result } from '@ephox/katamari';
-import { Class, Compare, SelectorFilter, SelectorFind } from '@ephox/sugar';
+import { Arr, Num, Optional, Optionals, Result } from "@hugerte/katamari";
+import { Class, Compare, SelectorFilter, SelectorFind } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as AlloyTriggers from '../../api/events/AlloyTriggers';

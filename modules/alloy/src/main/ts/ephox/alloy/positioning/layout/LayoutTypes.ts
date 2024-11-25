@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import { SpotInfo } from '../view/SpotInfo';

@@ -1,4 +1,4 @@
-import { Arr, Optional, Strings } from '@ephox/katamari';
+import { Arr, Optional, Strings } from "@hugerte/katamari";
 
 interface Annotation {
   readonly name: string;

@@ -1,6 +1,6 @@
-import { Keyboard } from '@ephox/agar';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Keyboard } from "@hugerte/agar";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 const isText = (node: Node): node is Text => SugarNode.isText(SugarElement.fromDom(node));
 

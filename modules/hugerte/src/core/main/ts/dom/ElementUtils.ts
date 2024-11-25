@@ -1,4 +1,4 @@
-import { Arr, Obj, Strings, Type } from '@ephox/katamari';
+import { Arr, Obj, Strings, Type } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 import Tools from '../api/util/Tools';

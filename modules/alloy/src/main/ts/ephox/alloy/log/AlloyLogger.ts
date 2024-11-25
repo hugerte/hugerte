@@ -1,4 +1,4 @@
-import { SugarElement, Truncate } from '@ephox/sugar';
+import { SugarElement, Truncate } from "@hugerte/sugar";
 
 const element = (elem: SugarElement<Node>): string => Truncate.getHtml(elem);
 

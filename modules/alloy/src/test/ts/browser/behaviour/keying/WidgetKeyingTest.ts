@@ -1,6 +1,6 @@
-import { FocusTools, Keyboard, Keys, Step } from '@ephox/agar';
+import { FocusTools, Keyboard, Keys, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

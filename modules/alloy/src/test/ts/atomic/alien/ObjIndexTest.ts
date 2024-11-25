@@ -1,6 +1,6 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 
 import * as ObjIndex from 'ephox/alloy/alien/ObjIndex';
 

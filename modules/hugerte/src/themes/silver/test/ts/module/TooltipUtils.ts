@@ -1,6 +1,6 @@
-import { FocusTools, Mouse, UiFinder, Waiter } from '@ephox/agar';
-import { SelectorFilter, SugarBody, SugarElement, TextContent } from '@ephox/sugar';
-import { TinyUiActions } from '@ephox/wrap-mcagar';
+import { FocusTools, Mouse, UiFinder, Waiter } from "@hugerte/agar";
+import { SelectorFilter, SugarBody, SugarElement, TextContent } from "@hugerte/sugar";
+import { TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

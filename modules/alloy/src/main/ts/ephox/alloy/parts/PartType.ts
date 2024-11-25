@@ -1,5 +1,5 @@
-import { FieldPresence, FieldProcessor, FieldSchema, StructureProcessor, StructureSchema, ValueType } from '@ephox/boulder';
-import { Adt, Fun, Id, Optional } from '@ephox/katamari';
+import { FieldPresence, FieldProcessor, FieldSchema, StructureProcessor, StructureSchema, ValueType } from "@hugerte/boulder";
+import { Adt, Fun, Id, Optional } from "@hugerte/katamari";
 
 import { SimpleOrSketchSpec } from '../api/component/SpecTypes';
 import { CompositeSketchDetail } from '../api/ui/Sketcher';

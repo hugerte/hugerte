@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
-import { SelectorFind, SugarElement } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Fun, Optional } from "@hugerte/katamari";
+import { SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import * as Keys from '../alien/Keys';
 import { AlloyComponent } from '../api/component/ComponentApi';
@@ -66,8 +66,8 @@ const getKeydownRules = (
   flowConfig: FlowConfig,
   _flowState: Stateless
 ): Array<KeyRules.KeyRule<FlowConfig, Stateless>> => {
-  const westMovers = [ ...flowConfig.allowHorizontal ? Keys.LEFT : [] ].concat(flowConfig.allowVertical ? Keys.UP : [ ]);
-  const eastMovers = [ ...flowConfig.allowHorizontal ? Keys.RIGHT : [] ].concat(flowConfig.allowVertical ? Keys.DOWN : [ ]);
+  const westMovers = [ ...(flowConfig.allowHorizontal ? Keys.LEFT : []) ].concat(flowConfig.allowVertical ? Keys.UP : [ ]);
+  const eastMovers = [ ...(flowConfig.allowHorizontal ? Keys.RIGHT : []) ].concat(flowConfig.allowVertical ? Keys.DOWN : [ ]);
   return [
     KeyRules.rule(KeyMatch.inSet(westMovers), doMove(DomMovement.west(moveLeft, moveRight))),
     KeyRules.rule(KeyMatch.inSet(eastMovers), doMove(DomMovement.east(moveLeft, moveRight))),

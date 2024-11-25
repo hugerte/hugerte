@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
+import { GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { renderSlider } from 'hugerte/themes/silver/ui/dialog/Slider';
 

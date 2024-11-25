@@ -1,4 +1,4 @@
-import { Attribute, Css, SugarNode, Traverse } from '@ephox/sugar';
+import { Attribute, Css, SugarNode, Traverse } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { AlloyEventRecord } from '../../api/events/AlloyEvents';

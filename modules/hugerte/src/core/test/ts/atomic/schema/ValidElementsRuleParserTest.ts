@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { SchemaElement } from 'hugerte/core/schema/SchemaTypes';

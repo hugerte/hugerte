@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional } from "@hugerte/katamari";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomParser from '../api/html/DomParser';

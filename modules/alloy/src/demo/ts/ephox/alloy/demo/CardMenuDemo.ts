@@ -1,6 +1,6 @@
-import { Objects } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
-import { Class, SelectorFind, SugarElement, Width } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Optional } from "@hugerte/katamari";
+import { Class, SelectorFind, SugarElement, Width } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Transitioning } from 'ephox/alloy/api/behaviour/Transitioning';

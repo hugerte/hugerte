@@ -1,4 +1,4 @@
-import { Waiter } from '@ephox/agar';
+import { Waiter } from "@hugerte/agar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

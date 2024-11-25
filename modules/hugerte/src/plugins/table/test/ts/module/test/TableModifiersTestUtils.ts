@@ -1,7 +1,7 @@
-import { Assertions, Keys, Waiter } from '@ephox/agar';
-import { Arr, Fun } from '@ephox/katamari';
-import { SugarBody, SugarElement } from '@ephox/sugar';
-import { TinyAssertions, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Assertions, Keys, Waiter } from "@hugerte/agar";
+import { Arr, Fun } from "@hugerte/katamari";
+import { SugarBody, SugarElement } from "@hugerte/sugar";
+import { TinyAssertions, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

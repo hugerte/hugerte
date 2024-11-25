@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 import fc from 'fast-check';
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';

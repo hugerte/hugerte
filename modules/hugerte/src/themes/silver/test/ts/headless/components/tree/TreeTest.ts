@@ -1,9 +1,9 @@
-import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, UiFinder } from '@ephox/agar';
-import { AlloyComponent, AlloyTriggers, GuiFactory, NativeEvents, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, UiFinder } from "@hugerte/agar";
+import { AlloyComponent, AlloyTriggers, GuiFactory, NativeEvents, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { StructureSchema } from '@ephox/boulder';
-import { Dialog } from '@ephox/bridge';
-import { Class, SelectorFind, SugarBody, SugarDocument } from '@ephox/sugar';
+import { StructureSchema } from "@hugerte/boulder";
+import { Dialog } from "@hugerte/bridge";
+import { Class, SelectorFind, SugarBody, SugarDocument } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { renderTree } from 'hugerte/themes/silver/ui/dialog/Tree';

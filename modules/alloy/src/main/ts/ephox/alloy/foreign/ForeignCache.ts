@@ -1,5 +1,5 @@
-import { Obj } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Obj } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as DomState from '../alien/DomState';
 import { Dragging } from '../api/behaviour/Dragging';

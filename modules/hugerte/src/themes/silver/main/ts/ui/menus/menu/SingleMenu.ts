@@ -1,6 +1,6 @@
-import { AlloyEvents, InlineViewTypes, ItemTypes, Keying, TieredMenu, TieredMenuTypes } from '@ephox/alloy';
-import { InlineContent, Menu as BridgeMenu, Toolbar } from '@ephox/bridge';
-import { Arr, Obj, Optional, Optionals } from '@ephox/katamari';
+import { AlloyEvents, InlineViewTypes, ItemTypes, Keying, TieredMenu, TieredMenuTypes } from "@hugerte/alloy";
+import { InlineContent, Menu as BridgeMenu, Toolbar } from "@hugerte/bridge";
+import { Arr, Obj, Optional, Optionals } from "@hugerte/katamari";
 
 import { UiFactoryBackstage, UiFactoryBackstageShared } from 'hugerte/themes/silver/backstage/Backstage';
 

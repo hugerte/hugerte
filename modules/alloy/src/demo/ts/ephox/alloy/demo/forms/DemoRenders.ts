@@ -1,4 +1,4 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
 
 import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
 import { AlloySpec, RawDomSchema, SketchSpec } from 'ephox/alloy/api/component/SpecTypes';

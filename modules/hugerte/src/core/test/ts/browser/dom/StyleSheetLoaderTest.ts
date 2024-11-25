@@ -1,6 +1,6 @@
-import { UiFinder } from '@ephox/agar';
+import { UiFinder } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Attribute, SelectorFilter, SugarElement, SugarHead } from '@ephox/sugar';
+import { Attribute, SelectorFilter, SugarElement, SugarHead } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import StyleSheetLoader from 'hugerte/core/api/dom/StyleSheetLoader';

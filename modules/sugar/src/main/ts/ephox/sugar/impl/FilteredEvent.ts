@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import { EventArgs, EventFilter, EventHandler, EventUnbinder } from '../api/events/Types';
 import { SugarElement } from '../api/node/SugarElement';

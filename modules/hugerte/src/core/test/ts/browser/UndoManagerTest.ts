@@ -1,9 +1,9 @@
-import { Keys } from '@ephox/agar';
+import { Keys } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Scroll } from '@ephox/sugar';
-import { TinyDom, LegacyUnit, TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyApis } from '@ephox/wrap-mcagar';
+import { Arr, Fun, Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Scroll } from "@hugerte/sugar";
+import { TinyDom, LegacyUnit, TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyApis } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

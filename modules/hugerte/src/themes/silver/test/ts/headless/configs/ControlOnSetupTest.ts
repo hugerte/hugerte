@@ -1,6 +1,6 @@
-import { Behaviour, GuiFactory, Replacing, TestHelpers } from '@ephox/alloy';
+import { Behaviour, GuiFactory, Replacing, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell, Fun } from "@hugerte/katamari";
 
 import { SimpleBehaviours } from 'hugerte/themes/silver/ui/alien/SimpleBehaviours';
 import { onControlAttached, onControlDetached } from 'hugerte/themes/silver/ui/controls/Controls';

@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
-import { PredicateExists, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Fun, Optional, Type } from "@hugerte/katamari";
+import { PredicateExists, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import Schema from '../api/html/Schema';

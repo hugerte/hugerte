@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 const debug = (): void => {
   // eslint-disable-next-line no-debugger

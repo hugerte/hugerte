@@ -1,6 +1,6 @@
-import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
-import { Direction, SugarElement } from '@ephox/sugar';
+import { FieldProcessor, FieldSchema } from "@hugerte/boulder";
+import { Optional } from "@hugerte/katamari";
+import { Direction, SugarElement } from "@hugerte/sugar";
 
 import { AnchorLayout } from '../layout/LayoutTypes';
 import { HasLayoutAnchor } from './Anchoring';

@@ -1,8 +1,8 @@
-import { InputHandlers, Response, SelectionAnnotation, SelectionKeys, Selections, SelectionTypes } from '@ephox/darwin';
-import { Arr, Cell, Fun, Obj } from '@ephox/katamari';
-import { DomParent } from '@ephox/robin';
-import { OtherCells, TableFill, TableLookup } from '@ephox/snooker';
-import { Class, Compare, DomEvent, EventArgs, SelectionDirection, SimSelection, SugarElement, SugarNode, Direction } from '@ephox/sugar';
+import { InputHandlers, Response, SelectionAnnotation, SelectionKeys, Selections, SelectionTypes } from "@hugerte/darwin";
+import { Arr, Cell, Fun, Obj } from "@hugerte/katamari";
+import { DomParent } from "@hugerte/robin";
+import { OtherCells, TableFill, TableLookup } from "@hugerte/snooker";
+import { Class, Compare, DomEvent, EventArgs, SelectionDirection, SimSelection, SugarElement, SugarNode, Direction } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorEvent } from 'hugerte/core/api/util/EventDispatcher';

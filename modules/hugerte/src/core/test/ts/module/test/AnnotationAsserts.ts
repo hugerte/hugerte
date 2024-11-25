@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { Arr, Obj } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
-import { TinyAssertions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
+import { Arr, Obj } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
+import { TinyAssertions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import * as Markings from 'hugerte/core/annotate/Markings';

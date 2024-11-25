@@ -1,4 +1,4 @@
-import { Arr, Fun, Type } from '@ephox/katamari';
+import { Arr, Fun, Type } from "@hugerte/katamari";
 
 import * as Uuid from '../../util/Uuid';
 

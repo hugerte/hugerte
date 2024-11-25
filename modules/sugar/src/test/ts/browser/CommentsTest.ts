@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import * as SugarComment from 'ephox/sugar/api/node/SugarComment';
 import * as SugarComments from 'ephox/sugar/api/node/SugarComments';

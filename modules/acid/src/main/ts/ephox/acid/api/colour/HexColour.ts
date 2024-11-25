@@ -1,4 +1,4 @@
-import { Strings, Optional } from '@ephox/katamari';
+import { Strings, Optional } from "@hugerte/katamari";
 
 import { Hex, Rgba } from './ColourTypes';
 

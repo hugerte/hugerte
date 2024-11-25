@@ -1,5 +1,5 @@
-import { Future, Optional, Result } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Future, Optional, Result } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';

@@ -1,6 +1,6 @@
-import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Compare, Height, SelectorFilter, SelectorFind, SugarElement, Traverse } from '@ephox/sugar';
+import { FieldProcessor, FieldSchema } from "@hugerte/boulder";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Compare, Height, SelectorFilter, SelectorFind, SugarElement, Traverse } from "@hugerte/sugar";
 
 import * as Keys from '../alien/Keys';
 import { AlloyComponent } from '../api/component/ComponentApi';

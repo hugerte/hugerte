@@ -1,6 +1,6 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
-import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Obj } from "@hugerte/katamari";
+import { TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

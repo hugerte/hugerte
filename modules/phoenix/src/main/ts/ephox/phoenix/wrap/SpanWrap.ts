@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Fun, Optional, Unicode } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Fun, Optional, Unicode } from "@hugerte/katamari";
 
 import * as Spot from '../api/data/Spot';
 import { SpanWrapRange, SpotPoint } from '../api/data/Types';

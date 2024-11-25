@@ -1,4 +1,4 @@
-import { Behaviour, Focusing, GuiFactory, SimpleSpec } from '@ephox/alloy';
+import { Behaviour, Focusing, GuiFactory, SimpleSpec } from "@hugerte/alloy";
 
 import Editor from 'hugerte/core/api/Editor';
 import I18n from 'hugerte/core/api/util/I18n';

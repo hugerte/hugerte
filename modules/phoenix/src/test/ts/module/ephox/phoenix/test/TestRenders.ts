@@ -1,5 +1,5 @@
-import { Gene } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
+import { Gene } from "@hugerte/boss";
+import { Arr, Optional } from "@hugerte/katamari";
 
 import { TypedItem } from 'ephox/phoenix/api/data/TypedItem';
 

@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { SugarElement, SelectorFind, Class } from '@ephox/sugar';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { SugarElement, SelectorFind, Class } from "@hugerte/sugar";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { BaseDraggingState } from '../../dragging/common/DraggingTypes';

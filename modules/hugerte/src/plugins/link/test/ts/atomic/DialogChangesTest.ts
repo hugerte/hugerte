@@ -1,5 +1,5 @@
 import { Assert, describe, context, it } from '@ephox/bedrock-client';
-import { Fun, Optional, OptionalInstances } from '@ephox/katamari';
+import { Fun, Optional, OptionalInstances } from "@hugerte/katamari";
 import fc from 'fast-check';
 
 import { DialogChanges, DialogDelta } from 'hugerte/plugins/link/ui/DialogChanges';

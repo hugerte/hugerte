@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Global } from '@ephox/katamari';
+import { Global } from "@hugerte/katamari";
 
 import { Editor, HugeRTE } from 'hugerte/core/api/PublicApi';
 import CaretPosition from 'hugerte/core/caret/CaretPosition';

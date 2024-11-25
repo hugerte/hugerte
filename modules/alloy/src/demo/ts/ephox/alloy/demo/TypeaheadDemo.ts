@@ -1,5 +1,5 @@
-import { Arr, Future, Optional, Result, Strings } from '@ephox/katamari';
-import { Class, SugarElement, Value } from '@ephox/sugar';
+import { Arr, Future, Optional, Result, Strings } from "@hugerte/katamari";
+import { Class, SugarElement, Value } from "@hugerte/sugar";
 
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';
 import * as Attachment from 'ephox/alloy/api/system/Attachment';

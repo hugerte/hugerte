@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Chain, Logger, Step, StructAssert, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Chain, Logger, Step, StructAssert, UiFinder, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Arr, Future, Optional } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as AlloyTriggers from 'ephox/alloy/api/events/AlloyTriggers';

@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { StructureSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { StructureSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
 import * as fc from 'fast-check';
 
 import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';

@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { PredicateFind, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { PredicateFind, SugarElement } from "@hugerte/sugar";
 
 import DomTreeWalker from '../api/dom/TreeWalker';
 import * as NodeType from '../dom/NodeType';

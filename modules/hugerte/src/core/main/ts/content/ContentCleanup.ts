@@ -1,5 +1,5 @@
-import { Arr, Unicode } from '@ephox/katamari';
-import { Attribute, Insert, Remove, SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr, Unicode } from "@hugerte/katamari";
+import { Attribute, Insert, Remove, SelectorFilter, SugarElement } from "@hugerte/sugar";
 
 import * as ElementType from '../dom/ElementType';
 

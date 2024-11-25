@@ -1,4 +1,4 @@
-import { Arr, Fun, Id, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Fun, Id, Obj, Optional, Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { FormatReference, Separator, StyleFormat } from 'hugerte/core/api/fmt/StyleFormat';

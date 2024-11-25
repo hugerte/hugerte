@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Attribute, InsertAll, Replication, SugarElement } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Attribute, InsertAll, Replication, SugarElement } from "@hugerte/sugar";
 
 import { onUnlockedCells, TargetSelection } from '../model/RunOperation';
 import * as CellUtils from '../util/CellUtils';

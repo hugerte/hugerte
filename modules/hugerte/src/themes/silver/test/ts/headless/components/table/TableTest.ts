@@ -1,5 +1,5 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
+import { GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
 
 import { renderTable } from 'hugerte/themes/silver/ui/dialog/Table';

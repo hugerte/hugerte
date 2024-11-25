@@ -1,6 +1,6 @@
-import { Transformations } from '@ephox/acid';
-import { Arr, Obj, Optionals, Strings, Type } from '@ephox/katamari';
-import { Selectors, SugarElement } from '@ephox/sugar';
+import { Transformations } from "@hugerte/acid";
+import { Arr, Obj, Optionals, Strings, Type } from "@hugerte/katamari";
+import { Selectors, SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import EditorSelection from '../api/dom/Selection';

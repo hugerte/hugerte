@@ -1,4 +1,4 @@
-import { Id } from '@ephox/katamari';
+import { Id } from "@hugerte/katamari";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { CustomEvent } from '../../events/SimulatedEvent';

@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloyTriggers, Coupling, Dropdown, Focusing, Highlighting, Representing, Sandboxing, SimulatedEvent } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { Attribute, Class, SelectorFind, SugarElement } from '@ephox/sugar';
+import { AlloyComponent, AlloyTriggers, Coupling, Dropdown, Focusing, Highlighting, Representing, Sandboxing, SimulatedEvent } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
+import { Attribute, Class, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import { MenuLayoutType } from '../MenuUtils';
 import { RedirectMenuItemInteractionEvent } from './SearchableMenuEvents';

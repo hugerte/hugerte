@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import * as AlloyLogger from '../../log/AlloyLogger';
 import { AlloyComponent } from '../component/ComponentApi';

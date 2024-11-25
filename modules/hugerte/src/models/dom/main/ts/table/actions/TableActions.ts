@@ -1,9 +1,9 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { DomDescent } from '@ephox/phoenix';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { DomDescent } from "@hugerte/phoenix";
 import {
   CellMutations, ResizeBehaviour, RunOperation, TableFill, TableGridSize, TableSection, TableOperations, TableLookup
-} from '@ephox/snooker';
-import { Attribute, SugarBody, SugarElement, SugarNode } from '@ephox/sugar';
+} from "@hugerte/snooker";
+import { Attribute, SugarBody, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { TableEventData } from 'hugerte/core/api/EventTypes';

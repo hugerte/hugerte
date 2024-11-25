@@ -1,6 +1,6 @@
-import { Keyboard, Mouse, Touch, UiFinder } from '@ephox/agar';
-import { Type } from '@ephox/katamari';
-import { SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Keyboard, Mouse, Touch, UiFinder } from "@hugerte/agar";
+import { Type } from "@hugerte/katamari";
+import { SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import { Editor } from '../../alien/EditorTypes';
 import { getThemeSelectors } from '../ThemeSelectors';

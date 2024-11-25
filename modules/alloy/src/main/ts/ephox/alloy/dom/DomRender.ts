@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Attribute, Classes, Css, Html, InsertAll, SugarElement, SugarNode, Value } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Attribute, Classes, Css, Html, InsertAll, SugarElement, SugarNode, Value } from "@hugerte/sugar";
 
 import { isPremade } from '../api/ui/GuiTypes';
 import * as Tagger from '../registry/Tagger';

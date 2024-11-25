@@ -1,6 +1,6 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, Button, GuiFactory, Replacing, Representing, SimpleSpec, SystemEvents, Tabstopping
-} from '@ephox/alloy';
+} from "@hugerte/alloy";
 
 import Editor from 'hugerte/core/api/Editor';
 

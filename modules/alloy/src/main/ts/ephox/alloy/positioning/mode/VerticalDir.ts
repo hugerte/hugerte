@@ -1,4 +1,4 @@
-import { Attribute as Attrib, PredicateExists, SugarElement, SugarNode } from '@ephox/sugar';
+import { Attribute as Attrib, PredicateExists, SugarElement, SugarNode } from "@hugerte/sugar";
 
 export enum AttributeValue {
   TopToBottom = 'toptobottom',

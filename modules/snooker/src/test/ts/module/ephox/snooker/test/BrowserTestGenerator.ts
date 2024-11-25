@@ -1,4 +1,4 @@
-import { Html, SugarElement, SugarNode } from '@ephox/sugar';
+import { Html, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import { SimpleGenerators } from 'ephox/snooker/api/Generators';
 

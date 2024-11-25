@@ -1,4 +1,4 @@
-import { Classes, Css, Height, SugarElement, Width } from '@ephox/sugar';
+import { Classes, Css, Height, SugarElement, Width } from "@hugerte/sugar";
 
 import { Bubble } from '../layout/Bubble';
 import { AnchorBox, AnchorElement } from '../layout/LayoutTypes';

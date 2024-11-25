@@ -1,4 +1,4 @@
-import { Arr, Obj } from '@ephox/katamari';
+import { Arr, Obj } from "@hugerte/katamari";
 
 const narrow = <T extends Record<string, any>, F extends Array<keyof T>>(obj: T, fields: F): Pick<T, F[number]> => {
   const r = { } as Pick<T, F[number]>;

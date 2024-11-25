@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as DragCoord from '../../api/data/DragCoord';

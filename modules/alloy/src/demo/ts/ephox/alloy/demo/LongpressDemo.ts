@@ -1,5 +1,5 @@
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Arr, Future, Optional, Result } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as Attachment from 'ephox/alloy/api/system/Attachment';

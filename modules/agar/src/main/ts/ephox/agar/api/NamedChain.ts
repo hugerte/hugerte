@@ -1,4 +1,4 @@
-import { Arr, Fun, Id, Obj, Result } from '@ephox/katamari';
+import { Arr, Fun, Id, Obj, Result } from "@hugerte/katamari";
 
 import { DieFn, NextFn } from '../pipe/Pipe';
 import { Chain } from './Chain';

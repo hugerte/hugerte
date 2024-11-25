@@ -1,6 +1,6 @@
-import { Chain } from '@ephox/agar';
-import { Global, Id, Type } from '@ephox/katamari';
-import { Attribute, Insert, Remove, Selectors, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Chain } from "@hugerte/agar";
+import { Global, Id, Type } from "@hugerte/katamari";
+import { Attribute, Insert, Remove, Selectors, SugarBody, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import { Editor as EditorType } from '../alien/EditorTypes';
 import { loadScript } from '../loader/Loader';

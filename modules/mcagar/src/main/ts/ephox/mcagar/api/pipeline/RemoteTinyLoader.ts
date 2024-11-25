@@ -1,6 +1,6 @@
-import { TestLogs } from '@ephox/agar';
-import { Arr, FutureResult, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { TestLogs } from "@hugerte/agar";
+import { Arr, FutureResult, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Loader from '../../loader/Loader';
 import { setHugerteBaseUrl } from '../../loader/Urls';

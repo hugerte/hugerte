@@ -1,6 +1,6 @@
-import { Dragging, Focusing, Keying, SimpleSpec, Tabstopping, Tooltipping } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Dragging, Focusing, Keying, SimpleSpec, Tabstopping, Tooltipping } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

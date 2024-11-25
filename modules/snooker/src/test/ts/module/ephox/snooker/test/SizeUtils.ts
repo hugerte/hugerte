@@ -1,6 +1,6 @@
 import { Assert } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css, Insert, Remove, SelectorFilter, SugarElement, SugarHead } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Css, Insert, Remove, SelectorFilter, SugarElement, SugarHead } from "@hugerte/sugar";
 
 const addStyles = (): { remove: () => void } => {
   const style = SugarElement.fromHtml('<style>table { border-collapse: collapse; } td { border: 1px solid #333; min-width: 25px; }</style>');

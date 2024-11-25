@@ -1,5 +1,5 @@
-import { StructureSchema, FieldSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { StructureSchema, FieldSchema } from "@hugerte/boulder";
+import { Optional, Result } from "@hugerte/katamari";
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { FormComponentWithLabel, FormComponentWithLabelSpec, formComponentWithLabelFields } from './FormComponent';

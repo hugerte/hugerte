@@ -1,4 +1,4 @@
-import { PRegExp } from '@ephox/polaris';
+import { PRegExp } from "@hugerte/polaris";
 
 export interface NamedPattern {
   word: string;

@@ -1,5 +1,5 @@
-import { Arr, Type } from '@ephox/katamari';
-import { Compare, SugarElement } from '@ephox/sugar';
+import { Arr, Type } from "@hugerte/katamari";
+import { Compare, SugarElement } from "@hugerte/sugar";
 
 import { Bookmark } from '../../bookmark/BookmarkTypes';
 import CaretPosition from '../../caret/CaretPosition';

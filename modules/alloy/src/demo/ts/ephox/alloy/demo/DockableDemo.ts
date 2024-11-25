@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Class, Css, DomEvent, SelectorFind, SugarElement, SugarLocation } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Class, Css, DomEvent, SelectorFind, SugarElement, SugarLocation } from "@hugerte/sugar";
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';

@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Arr, Fun, Optional, Type } from "@hugerte/katamari";
 
 import ClosestOrAncestor from '../../impl/ClosestOrAncestor';
 import * as Compare from '../dom/Compare';

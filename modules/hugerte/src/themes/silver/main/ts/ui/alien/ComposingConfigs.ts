@@ -1,6 +1,6 @@
-import { AlloyComponent, Composing, MementoRecord } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { Traverse } from '@ephox/sugar';
+import { AlloyComponent, Composing, MementoRecord } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
+import { Traverse } from "@hugerte/sugar";
 
 type ComposingBehaviour = ReturnType<typeof Composing['config']>;
 

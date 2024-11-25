@@ -1,4 +1,4 @@
-import { ApproxStructure, Assertions, Logger } from '@ephox/agar';
+import { ApproxStructure, Assertions, Logger } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

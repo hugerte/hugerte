@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Button, DomFactory, Focusing, GuiFactory, Memento, NativeEvents, Replacing, Sketcher,
   UiSketcher
-} from '@ephox/alloy';
-import { FieldSchema } from '@ephox/boulder';
-import { Arr, Optional } from '@ephox/katamari';
+} from "@hugerte/alloy";
+import { FieldSchema } from "@hugerte/boulder";
+import { Arr, Optional } from "@hugerte/katamari";
 
 import { TranslatedString, Untranslated } from 'hugerte/core/api/util/I18n';
 

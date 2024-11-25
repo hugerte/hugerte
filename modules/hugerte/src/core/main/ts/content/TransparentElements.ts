@@ -1,5 +1,5 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
-import { Compare, PredicateFilter, PredicateFind, Remove, SelectorFilter, SugarElement, SugarElements, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Obj, Type } from "@hugerte/katamari";
+import { Compare, PredicateFilter, PredicateFind, Remove, SelectorFilter, SugarElement, SugarElements, SugarNode, Traverse } from "@hugerte/sugar";
 
 import AstNode from '../api/html/Node';
 import Schema, { SchemaMap } from '../api/html/Schema';

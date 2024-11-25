@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { Hierarchy, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as SelectionUtils from 'hugerte/core/selection/SelectionUtils';

@@ -1,5 +1,5 @@
-import { Arr, Optional, Optionals } from '@ephox/katamari';
-import { Compare, ContentEditable, PredicateFind, Remove, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Optional, Optionals } from "@hugerte/katamari";
+import { Compare, ContentEditable, PredicateFind, Remove, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import RangeUtils from 'hugerte/core/api/dom/RangeUtils';

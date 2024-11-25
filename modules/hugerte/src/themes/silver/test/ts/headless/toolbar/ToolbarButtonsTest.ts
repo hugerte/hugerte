@@ -1,9 +1,9 @@
-import { ApproxStructure, Assertions, Mouse, Waiter } from '@ephox/agar';
-import { AlloyComponent, GuiFactory, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, Mouse, Waiter } from "@hugerte/agar";
+import { AlloyComponent, GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { afterEach, describe, it } from '@ephox/bedrock-client';
-import { Menu, Toolbar } from '@ephox/bridge';
-import { Cell, Fun, Optional } from '@ephox/katamari';
-import { Attribute, Class, SelectorFind } from '@ephox/sugar';
+import { Menu, Toolbar } from "@hugerte/bridge";
+import { Cell, Fun, Optional } from "@hugerte/katamari";
+import { Attribute, Class, SelectorFind } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { renderMenuButton } from 'hugerte/themes/silver/ui/button/MenuButton';

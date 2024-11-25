@@ -1,7 +1,7 @@
-import { RealKeys, Waiter } from '@ephox/agar';
+import { RealKeys, Waiter } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Cell } from '@ephox/katamari';
-import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Cell } from "@hugerte/katamari";
+import { TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

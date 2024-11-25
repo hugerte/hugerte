@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from "@hugerte/agar";
+import { GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Fun, Id, Optional } from '@ephox/katamari';
-import { SugarDocument } from '@ephox/sugar';
+import { Fun, Id, Optional } from "@hugerte/katamari";
+import { SugarDocument } from "@hugerte/sugar";
 
 import I18n from 'hugerte/core/api/util/I18n';
 import { renderMenuButton } from 'hugerte/themes/silver/ui/button/MenuButton';

@@ -1,4 +1,4 @@
-import { Class, SugarElement } from '@ephox/sugar';
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { Stateless } from '../common/BehaviourState';

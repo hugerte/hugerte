@@ -1,4 +1,4 @@
-import { StructureProcessor } from '@ephox/boulder';
+import { StructureProcessor } from "@hugerte/boulder";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';

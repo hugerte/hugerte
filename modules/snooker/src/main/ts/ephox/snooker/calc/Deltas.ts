@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from "@hugerte/katamari";
 
 import { ResizeBehaviour } from '../api/ResizeBehaviour';
 import { TableSize } from '../api/TableSize';

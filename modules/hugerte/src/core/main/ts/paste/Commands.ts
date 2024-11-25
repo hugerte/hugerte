@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Cell } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 import * as Events from '../api/Events';

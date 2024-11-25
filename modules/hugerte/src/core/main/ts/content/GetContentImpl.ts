@@ -1,5 +1,5 @@
-import { Fun, Optional, Type } from '@ephox/katamari';
-import { Attribute, Css, Html, Insert, Remove, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Fun, Optional, Type } from "@hugerte/katamari";
+import { Attribute, Css, Html, Insert, Remove, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import AstNode from '../api/html/Node';

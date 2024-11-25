@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Arr, Fun, Optional, Type } from "@hugerte/katamari";
 
 import { HTMLElementFullTagNameMap } from '../../alien/DomTypes';
 import * as Traverse from '../search/Traverse';

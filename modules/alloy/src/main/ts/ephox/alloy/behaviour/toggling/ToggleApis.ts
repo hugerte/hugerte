@@ -1,4 +1,4 @@
-import { Class } from '@ephox/sugar';
+import { Class } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { TogglingConfig, TogglingState } from './TogglingTypes';

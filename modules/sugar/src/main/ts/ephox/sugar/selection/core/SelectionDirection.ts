@@ -1,4 +1,4 @@
-import { Adt, Fun, Optional, Thunk } from '@ephox/katamari';
+import { Adt, Fun, Optional, Thunk } from "@hugerte/katamari";
 
 import { SugarElement } from '../../api/node/SugarElement';
 import { SimSelection } from '../../api/selection/SimSelection';

@@ -1,6 +1,6 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
-import { SandNode } from '@ephox/sand';
-import { SelectorFilter, SugarElement, Traverse } from '@ephox/sugar';
+import { Arr, Fun, Obj } from "@hugerte/katamari";
+import { SandNode } from "@hugerte/sand";
+import { SelectorFilter, SugarElement, Traverse } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import DomTreeWalker from 'hugerte/core/api/dom/TreeWalker';

@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as TabSectionSchema from '../../ui/schema/TabSectionSchema';

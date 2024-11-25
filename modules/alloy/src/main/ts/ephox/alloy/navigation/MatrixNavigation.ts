@@ -1,4 +1,4 @@
-import { Num, Optional } from '@ephox/katamari';
+import { Num, Optional } from "@hugerte/katamari";
 
 export interface MatrixNavigationOutcome<A> {
   readonly rowIndex: number;

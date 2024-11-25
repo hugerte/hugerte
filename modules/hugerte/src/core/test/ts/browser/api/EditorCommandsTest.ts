@@ -1,7 +1,7 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Singleton } from '@ephox/katamari';
-import { Focus, SugarDocument } from '@ephox/sugar';
-import { TinyHooks, TinyAssertions, TinySelections } from '@ephox/wrap-mcagar';
+import { Fun, Singleton } from "@hugerte/katamari";
+import { Focus, SugarDocument } from "@hugerte/sugar";
+import { TinyHooks, TinyAssertions, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

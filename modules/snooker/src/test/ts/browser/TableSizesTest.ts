@@ -1,6 +1,6 @@
 import { Assert, after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Type } from '@ephox/katamari';
-import { Css, Html, Insert, InsertAll, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr, Optional, Type } from "@hugerte/katamari";
+import { Css, Html, Insert, InsertAll, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 // import { assert } from 'chai';
 
 import * as Sizes from 'ephox/snooker/api/Sizes';

@@ -1,5 +1,5 @@
-import { Arr, Obj, Optional, Optionals, Strings, Type } from '@ephox/katamari';
-import { Attribute, SugarElement } from '@ephox/sugar';
+import { Arr, Obj, Optional, Optionals, Strings, Type } from "@hugerte/katamari";
+import { Attribute, SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import EventUtils from '../api/dom/EventUtils';

@@ -1,5 +1,5 @@
-import { Arr, Obj, Type, Unicode } from '@ephox/katamari';
-import { Attribute, Compare, Css, Focus, Insert, InsertAll, Remove, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Arr, Obj, Type, Unicode } from "@hugerte/katamari";
+import { Attribute, Compare, Css, Focus, Insert, InsertAll, Remove, SelectorFilter, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import Editor from './api/Editor';
 import VK from './api/util/VK';

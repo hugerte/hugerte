@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
 
 /**
  * Creates a look function that searches the current element and parent elements until

@@ -1,6 +1,6 @@
-import { Arr, Fun, Optional, Optionals, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals, Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

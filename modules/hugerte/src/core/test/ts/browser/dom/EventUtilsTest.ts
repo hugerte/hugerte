@@ -1,5 +1,5 @@
 import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import EventUtils, { EventUtilsEvent } from 'hugerte/core/api/dom/EventUtils';

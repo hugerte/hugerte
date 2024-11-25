@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, UiFinder } from '@ephox/agar';
-import { AlloyComponent, GuiFactory, Memento, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, UiFinder } from "@hugerte/agar";
+import { AlloyComponent, GuiFactory, Memento, Representing, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { Ready } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Ready } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { ImagePreviewDataSpec, renderImagePreview } from 'hugerte/themes/silver/ui/dialog/ImagePreview';

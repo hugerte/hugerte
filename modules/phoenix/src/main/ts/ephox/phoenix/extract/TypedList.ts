@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Arrays } from '@ephox/polaris';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Arrays } from "@hugerte/polaris";
 
 import * as Spot from '../api/data/Spot';
 import { TypedItem } from '../api/data/TypedItem';

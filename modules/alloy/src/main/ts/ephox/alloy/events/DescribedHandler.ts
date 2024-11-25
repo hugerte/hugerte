@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import { CurriedHandler, UncurriedHandler } from './EventRegistry';
 

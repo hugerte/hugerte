@@ -1,7 +1,7 @@
-import { Clipboard } from '@ephox/agar';
+import { Clipboard } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

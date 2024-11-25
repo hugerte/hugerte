@@ -1,4 +1,4 @@
-import { AlloySpec, Behaviour, SimpleSpec } from '@ephox/alloy';
+import { AlloySpec, Behaviour, SimpleSpec } from "@hugerte/alloy";
 
 import Editor from 'hugerte/core/api/Editor';
 

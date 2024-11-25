@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from "@hugerte/katamari";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Focusing } from '../../api/behaviour/Focusing';

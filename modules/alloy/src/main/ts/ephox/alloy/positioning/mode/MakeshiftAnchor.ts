@@ -1,5 +1,5 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+import { FieldSchema } from "@hugerte/boulder";
+import { Optional } from "@hugerte/katamari";
 
 import { bounds } from '../../alien/Boxes';
 import { AlloyComponent } from '../../api/component/ComponentApi';

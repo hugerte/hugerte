@@ -1,5 +1,5 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
 
 const menuFields = Fun.constant([
   FieldSchema.required('menu'),

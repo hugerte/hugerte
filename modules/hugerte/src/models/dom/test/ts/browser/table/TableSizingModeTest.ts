@@ -1,7 +1,7 @@
-import { ApproxStructure, StructAssert } from '@ephox/agar';
+import { ApproxStructure, StructAssert } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
+import { Type } from "@hugerte/katamari";
+import { TinyAssertions, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

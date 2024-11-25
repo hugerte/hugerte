@@ -1,5 +1,5 @@
-import { Arr, Future, Result } from '@ephox/katamari';
-import { Value } from '@ephox/sugar';
+import { Arr, Future, Result } from "@hugerte/katamari";
+import { Value } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Invalidating } from 'ephox/alloy/api/behaviour/Invalidating';

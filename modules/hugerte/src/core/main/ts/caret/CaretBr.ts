@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Schema from '../api/html/Schema';
 import * as ElementType from '../dom/ElementType';

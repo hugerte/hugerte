@@ -1,5 +1,5 @@
-import { AddEventsBehaviour, AlloyEvents, AlloySpec, Behaviour, Button, Disabling, GuiFactory, Keying, Replacing, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
+import { AddEventsBehaviour, AlloyEvents, AlloySpec, Behaviour, Button, Disabling, GuiFactory, Keying, Replacing, SimpleSpec, Tabstopping } from "@hugerte/alloy";
+import { Arr } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

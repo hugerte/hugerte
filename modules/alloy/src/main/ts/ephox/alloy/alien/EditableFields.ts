@@ -1,4 +1,4 @@
-import { Attribute, SugarElement, SugarNode } from '@ephox/sugar';
+import { Attribute, SugarElement, SugarNode } from "@hugerte/sugar";
 
 const inside = (target: SugarElement<Node>): boolean => (
   (SugarNode.isTag('input')(target) && Attribute.get(target, 'type') !== 'radio') ||

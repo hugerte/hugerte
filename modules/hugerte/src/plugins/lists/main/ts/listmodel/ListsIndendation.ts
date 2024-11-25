@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
-import { InsertAll, Remove, SugarElement, SugarFragment } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
+import { InsertAll, Remove, SugarElement, SugarFragment } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

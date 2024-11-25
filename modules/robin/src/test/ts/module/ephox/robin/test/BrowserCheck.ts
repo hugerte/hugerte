@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Insert, Remove, SelectorFind, SugarElement, Traverse } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Insert, Remove, SelectorFind, SugarElement, Traverse } from "@hugerte/sugar";
 
 const getNode = (container: SugarElement): SugarElement<Node> => {
   return SelectorFind.descendant(container, '.me').orThunk(() => {

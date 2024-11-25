@@ -1,6 +1,6 @@
-import { Bounds, Boxes } from '@ephox/alloy';
-import { Arr, Optional, Strings } from '@ephox/katamari';
-import { Css, PredicateFilter, SugarElement, SugarNode, SugarShadowDom } from '@ephox/sugar';
+import { Bounds, Boxes } from "@hugerte/alloy";
+import { Arr, Optional, Strings } from "@hugerte/katamari";
+import { Css, PredicateFilter, SugarElement, SugarNode, SugarShadowDom } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

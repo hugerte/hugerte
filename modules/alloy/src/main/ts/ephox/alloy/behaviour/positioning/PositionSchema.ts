@@ -1,5 +1,5 @@
-import { FieldSchema, ValueType } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { FieldSchema, ValueType } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
 
 import AnchorSchema from '../../positioning/mode/AnchorSchema';
 

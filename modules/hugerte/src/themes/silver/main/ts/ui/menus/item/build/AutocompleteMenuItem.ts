@@ -1,7 +1,7 @@
-import { Behaviour, GuiFactory, ItemTypes, MaxHeight, Tooltipping } from '@ephox/alloy';
-import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Fun, Obj, Optional, Regex } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Behaviour, GuiFactory, ItemTypes, MaxHeight, Tooltipping } from "@hugerte/alloy";
+import { InlineContent, Toolbar } from "@hugerte/bridge";
+import { Fun, Obj, Optional, Regex } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import I18n from 'hugerte/core/api/util/I18n';

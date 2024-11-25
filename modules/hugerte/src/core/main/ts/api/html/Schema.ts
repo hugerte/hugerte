@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Strings, Type } from '@ephox/katamari';
+import { Arr, Fun, Obj, Optional, Strings, Type } from "@hugerte/katamari";
 
 import * as CustomElementsRuleParser from '../../schema/CustomElementsRuleParser';
 import * as GlobalAttributesSet from '../../schema/GlobalAttributesSet';

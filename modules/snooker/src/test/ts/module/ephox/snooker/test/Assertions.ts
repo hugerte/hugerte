@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { Assert } from '@ephox/bedrock-client';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
-import { Attribute, Css, Hierarchy, Html, Insert, Remove, SelectorFilter, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
+import { Arr, Optional, Optionals } from "@hugerte/katamari";
+import { Attribute, Css, Hierarchy, Html, Insert, Remove, SelectorFilter, SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
 
 import * as TableOperations from 'ephox/snooker/api/TableOperations';
 import { TableSection } from 'ephox/snooker/api/TableSection';

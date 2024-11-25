@@ -1,4 +1,4 @@
-import { Future, LazyValue, Result } from '@ephox/katamari';
+import { Future, LazyValue, Result } from "@hugerte/katamari";
 
 import * as DomEvent from '../events/DomEvent';
 import { EventArgs } from '../events/Types';

@@ -1,6 +1,6 @@
-import { TestStore, UiFinder } from '@ephox/agar';
-import { SugarBody } from '@ephox/sugar';
-import { TinyUiActions } from '@ephox/wrap-mcagar';
+import { TestStore, UiFinder } from "@hugerte/agar";
+import { SugarBody } from "@hugerte/sugar";
+import { TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';

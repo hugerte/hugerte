@@ -1,5 +1,5 @@
-import { FieldPresence, FieldSchema, ValueType } from '@ephox/boulder';
-import { Id } from '@ephox/katamari';
+import { FieldPresence, FieldSchema, ValueType } from "@hugerte/boulder";
+import { Id } from "@hugerte/katamari";
 
 import { events } from '../../ui/common/ButtonBase';
 import { TabButtonDetail, TabButtonSketcher, TabButtonSpec } from '../../ui/types/TabButtonTypes';

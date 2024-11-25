@@ -1,5 +1,5 @@
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import AddOnManager from 'hugerte/core/api/AddOnManager';

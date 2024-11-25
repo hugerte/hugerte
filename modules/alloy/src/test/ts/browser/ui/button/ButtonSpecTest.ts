@@ -1,6 +1,6 @@
 import {
   ApproxStructure, Assertions, Chain, Cursors, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder
-} from '@ephox/agar';
+} from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

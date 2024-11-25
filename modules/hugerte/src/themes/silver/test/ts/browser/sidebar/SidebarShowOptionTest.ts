@@ -1,8 +1,8 @@
-import { TestStore, UiFinder } from '@ephox/agar';
+import { TestStore, UiFinder } from "@hugerte/agar";
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Sidebar } from '@ephox/bridge';
-import { SugarBody, SugarElement, Traverse } from '@ephox/sugar';
-import { McEditor, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Sidebar } from "@hugerte/bridge";
+import { SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
+import { McEditor, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

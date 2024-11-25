@@ -1,7 +1,7 @@
-import { Waiter } from '@ephox/agar';
-import { DataTransferMode } from '@ephox/dragster';
-import { Arr, Cell, Singleton, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Waiter } from "@hugerte/agar";
+import { DataTransferMode } from "@hugerte/dragster";
+import { Arr, Cell, Singleton, Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 import { assert } from 'chai';
 
 import { PastePostProcessEvent, PastePreProcessEvent } from 'hugerte/core/api/EventTypes';

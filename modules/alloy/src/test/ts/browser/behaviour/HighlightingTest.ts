@@ -1,7 +1,7 @@
-import { Assertions, Chain, NamedChain, UiFinder } from '@ephox/agar';
+import { Assertions, Chain, NamedChain, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Result } from '@ephox/katamari';
-import { Attribute, Class, Compare, Truncate } from '@ephox/sugar';
+import { Arr, Result } from "@hugerte/katamari";
+import { Attribute, Class, Compare, Truncate } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Highlighting } from 'ephox/alloy/api/behaviour/Highlighting';

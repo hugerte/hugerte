@@ -1,7 +1,7 @@
-import { Cursors } from '@ephox/agar';
-import { Boxes } from '@ephox/alloy';
+import { Cursors } from "@hugerte/agar";
+import { Boxes } from "@hugerte/alloy";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Css, Insert, InsertAll, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Css, Insert, InsertAll, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as ScrollingContext from 'hugerte/themes/silver/modes/ScrollingContext';

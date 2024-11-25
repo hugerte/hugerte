@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
 
 import * as Clumps from 'ephox/robin/clumps/Clumps';
 

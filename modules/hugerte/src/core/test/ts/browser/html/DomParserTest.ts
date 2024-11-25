@@ -1,6 +1,6 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Obj } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Arr, Fun, Obj } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 import { assert } from 'chai';
 
 import Env from 'hugerte/core/api/Env';

@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { McEditor, TinyDom } from '@ephox/mcagar';
-import { Css } from '@ephox/sugar';
+import { McEditor, TinyDom } from "@hugerte/mcagar";
+import { Css } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

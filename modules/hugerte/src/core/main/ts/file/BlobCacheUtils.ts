@@ -1,4 +1,4 @@
-import { Optional, Strings, Type } from '@ephox/katamari';
+import { Optional, Strings, Type } from "@hugerte/katamari";
 
 import { BlobCache, BlobInfo } from '../api/file/BlobCache';
 import * as Conversions from './Conversions';

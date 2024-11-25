@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Direction, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Direction, SugarElement } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { NativeSimulatedEvent } from '../events/SimulatedEvent';

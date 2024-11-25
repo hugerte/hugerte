@@ -1,4 +1,4 @@
-import { Arr, Optional, Strings } from '@ephox/katamari';
+import { Arr, Optional, Strings } from "@hugerte/katamari";
 
 // TINY-10350: A modification of the Regexes.link regex to specifically capture host.
 // eslint-disable-next-line max-len

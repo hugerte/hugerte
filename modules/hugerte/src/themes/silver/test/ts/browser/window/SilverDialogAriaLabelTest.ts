@@ -1,9 +1,9 @@
-import { UiFinder } from '@ephox/agar';
-import { TestHelpers } from '@ephox/alloy';
+import { UiFinder } from "@hugerte/agar";
+import { TestHelpers } from "@hugerte/alloy";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Attribute, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute, SugarBody, SugarDocument, SugarElement } from "@hugerte/sugar";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';

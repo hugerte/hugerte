@@ -1,4 +1,4 @@
-import { Arr, Obj } from '@ephox/katamari';
+import { Arr, Obj } from "@hugerte/katamari";
 
 import { NormalizedEditorOptions, RawEditorOptions } from './api/OptionTypes';
 import Tools from './api/util/Tools';

@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Replication, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Replication, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

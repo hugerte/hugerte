@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 const wrap = <V>(key: string, value: V): Record<string, V> => ({ [key]: value });
 

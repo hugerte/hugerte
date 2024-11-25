@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional } from "@hugerte/katamari";
 
 import { PlatformInfo } from '../info/PlatformInfo';
 import { UaInfo } from '../info/UaInfo';

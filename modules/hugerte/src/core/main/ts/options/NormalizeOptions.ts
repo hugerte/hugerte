@@ -1,5 +1,5 @@
-import { Arr, Fun, Merger, Obj, Strings, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Arr, Fun, Merger, Obj, Strings, Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 
 import { NormalizedEditorOptions, RawEditorOptions } from '../api/OptionTypes';
 import Tools from '../api/util/Tools';
@@ -66,7 +66,7 @@ const getMobileOverrideOptions = (mobileOptions: RawEditorOptions, isPhone: bool
 
   return {
     ...defaultMobileOptions,
-    ...isPhone ? defaultPhoneOptions : { }
+    ...(isPhone ? defaultPhoneOptions : { })
   };
 };
 

@@ -1,6 +1,6 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement, SugarNode } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import AstNode from 'hugerte/core/api/html/Node';

@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
-import { TinySelections, TinyHooks } from '@ephox/wrap-mcagar';
+import { Unicode } from "@hugerte/katamari";
+import { TinySelections, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import RangeUtils from 'hugerte/core/api/dom/RangeUtils';

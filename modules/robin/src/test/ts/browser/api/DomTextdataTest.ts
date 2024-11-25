@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
-import { SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as DomTextdata from 'ephox/robin/api/dom/DomTextdata';
 

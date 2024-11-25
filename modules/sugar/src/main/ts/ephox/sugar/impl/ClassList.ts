@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { SugarElement } from '../api/node/SugarElement';
 import * as AttrList from '../api/properties/AttrList';

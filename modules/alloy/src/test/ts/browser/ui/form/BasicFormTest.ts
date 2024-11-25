@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, GeneralSteps, Logger, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Value } from '@ephox/sugar';
+import { Value } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';

@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 // TODO: remove this when we are sure it is not referenced anymore
 export const enum PluginType {

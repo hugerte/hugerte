@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { Bounds, bounds } from 'ephox/alloy/alien/Boxes';

@@ -1,6 +1,6 @@
-import { AlloyComponent, GuiFactory, HotspotAnchorSpec, TooltippingTypes } from '@ephox/alloy';
-import { Cell, Fun, Future, Optional, Result } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
+import { AlloyComponent, GuiFactory, HotspotAnchorSpec, TooltippingTypes } from "@hugerte/alloy";
+import { Cell, Fun, Future, Optional, Result } from "@hugerte/katamari";
+import { SugarBody } from "@hugerte/sugar";
 
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
 import { ApiUrlData } from 'hugerte/themes/silver/backstage/UrlInputBackstage';

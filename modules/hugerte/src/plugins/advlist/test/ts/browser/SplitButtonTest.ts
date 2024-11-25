@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Keys } from '@ephox/agar';
+import { ApproxStructure, Assertions, Keys } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { SelectorFind, SugarDocument } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { SelectorFind, SugarDocument } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import AdvListPlugin from 'hugerte/plugins/advlist/Plugin';

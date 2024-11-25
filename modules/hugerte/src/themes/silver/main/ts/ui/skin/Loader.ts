@@ -1,5 +1,5 @@
-import { Fun, Type } from '@ephox/katamari';
-import { SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Fun, Type } from "@hugerte/katamari";
+import { SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import StyleSheetLoader from 'hugerte/core/api/dom/StyleSheetLoader';

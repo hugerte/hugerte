@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Compare, SugarElement, Traverse } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Compare, SugarElement, Traverse } from "@hugerte/sugar";
 
 const dropLast = <T>(xs: T[]): T[] => xs.slice(0, -1);
 

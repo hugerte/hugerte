@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Eq, Pprint, Testable } from '@ephox/dispute';
-import { Fun, Optional, Result } from '@ephox/katamari';
+import { Fun, Optional, Result } from "@hugerte/katamari";
 import fc from 'fast-check';
 
 import * as KAssert from 'ephox/katamari-assertions/api/KAssert';

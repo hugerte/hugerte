@@ -1,7 +1,7 @@
-import { Assertions, Chain, GeneralSteps, Logger, Step, UiFinder } from '@ephox/agar';
+import { Assertions, Chain, GeneralSteps, Logger, Step, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarNode } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SugarNode } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Sandboxing } from 'ephox/alloy/api/behaviour/Sandboxing';

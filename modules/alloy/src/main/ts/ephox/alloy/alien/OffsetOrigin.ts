@@ -1,5 +1,5 @@
-import { Optional, Optionals } from '@ephox/katamari';
-import { Css, Insert, Remove, SugarElement, SugarLocation, SugarPosition, Traverse } from '@ephox/sugar';
+import { Optional, Optionals } from "@hugerte/katamari";
+import { Css, Insert, Remove, SugarElement, SugarLocation, SugarPosition, Traverse } from "@hugerte/sugar";
 
 const getOffsetParent = (element: SugarElement<HTMLElement>): Optional<SugarElement<HTMLElement>> => {
   // Firefox sets the offsetParent to the body when fixed instead of null like

@@ -1,4 +1,4 @@
-import { Css, Scroll, Traverse } from '@ephox/sugar';
+import { Css, Scroll, Traverse } from "@hugerte/sugar";
 
 import * as OffsetOrigin from '../../alien/OffsetOrigin';
 import { AlloyComponent } from '../../api/component/ComponentApi';

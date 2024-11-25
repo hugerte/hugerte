@@ -1,4 +1,4 @@
-import { SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
+import { SugarElement, SugarNode, SugarText, Traverse } from "@hugerte/sugar";
 
 export interface ElementAndOffset<T extends Node> {
   readonly element: SugarElement<T>;

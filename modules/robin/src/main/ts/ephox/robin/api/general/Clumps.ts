@@ -1,6 +1,6 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
-import { Split } from '@ephox/phoenix';
+import { Universe } from "@hugerte/boss";
+import { Arr, Optional } from "@hugerte/katamari";
+import { Split } from "@hugerte/phoenix";
 
 import * as Clumps from '../../clumps/Clumps';
 import * as EntryPoints from '../../clumps/EntryPoints';

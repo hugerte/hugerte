@@ -1,7 +1,7 @@
-import { Assertions, Chain, NamedChain } from '@ephox/agar';
+import { Assertions, Chain, NamedChain } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Css } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Css } from "@hugerte/sugar";
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';

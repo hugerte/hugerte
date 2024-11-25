@@ -1,7 +1,7 @@
-import { Chain, FocusTools, Keyboard, Keys, Logger, NamedChain, Step, UiFinder, Waiter } from '@ephox/agar';
+import { Chain, FocusTools, Keyboard, Keys, Logger, NamedChain, Step, UiFinder, Waiter } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Result } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Fun, Result } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { Keying } from 'ephox/alloy/api/behaviour/Keying';
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';

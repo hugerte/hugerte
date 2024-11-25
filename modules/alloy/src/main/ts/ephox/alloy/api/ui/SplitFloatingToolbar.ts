@@ -1,4 +1,4 @@
-import { Arr, Future } from '@ephox/katamari';
+import { Arr, Future } from "@hugerte/katamari";
 
 import * as Layout from '../../positioning/layout/Layout';
 import * as SplitToolbarUtils from '../../toolbar/SplitToolbarUtils';

@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Event, Events } from '@ephox/porkbun';
+import { Fun } from "@hugerte/katamari";
+import { Event, Events } from "@hugerte/porkbun";
 
 import { DragEvents, DragState } from './DragTypes';
 

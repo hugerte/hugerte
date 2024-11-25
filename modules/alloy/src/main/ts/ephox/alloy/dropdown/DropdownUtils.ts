@@ -1,5 +1,5 @@
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
-import { Css, Width } from '@ephox/sugar';
+import { Arr, Fun, Future, Optional, Result } from "@hugerte/katamari";
+import { Css, Width } from "@hugerte/sugar";
 
 import * as ComponentStructure from '../alien/ComponentStructure';
 import { Composing } from '../api/behaviour/Composing';

@@ -1,4 +1,4 @@
-import { Fun, Strings } from '@ephox/katamari';
+import { Fun, Strings } from "@hugerte/katamari";
 
 export interface PlatformInfo {
   readonly name: string;

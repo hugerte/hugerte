@@ -1,7 +1,7 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
-import { Spot, SpotRange } from '@ephox/phoenix';
-import { PositionArray } from '@ephox/polaris';
+import { Universe } from "@hugerte/boss";
+import { Arr, Optional } from "@hugerte/katamari";
+import { Spot, SpotRange } from "@hugerte/phoenix";
+import { PositionArray } from "@hugerte/polaris";
 
 interface TextdataGet<E> {
   readonly list: SpotRange<E>[];

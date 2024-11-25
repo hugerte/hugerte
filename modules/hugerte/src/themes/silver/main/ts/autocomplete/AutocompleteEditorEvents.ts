@@ -1,5 +1,5 @@
-import { AlloyComponent, AlloyTriggers, Highlighting, NativeEvents } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+import { AlloyComponent, AlloyTriggers, Highlighting, NativeEvents } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorEvent } from 'hugerte/core/api/util/EventDispatcher';

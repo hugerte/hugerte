@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import * as Remove from 'ephox/sugar/api/dom/Remove';
 import { SugarElement } from 'ephox/sugar/api/node/SugarElement';

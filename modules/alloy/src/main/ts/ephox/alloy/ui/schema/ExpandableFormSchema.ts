@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
-import { Class, Focus } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
+import { Class, Focus } from "@hugerte/sugar";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Keying } from '../../api/behaviour/Keying';

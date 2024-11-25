@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
 
 import * as Spot from '../api/data/Spot';
 import { SpotPoint } from '../api/data/Types';

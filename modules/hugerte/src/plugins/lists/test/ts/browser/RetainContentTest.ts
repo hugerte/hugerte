@@ -1,7 +1,7 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
-import { TinyDom, TinyHooks } from '@ephox/mcagar';
-import { PredicateFilter, SugarElement, SugarNode, TextContent } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional } from "@hugerte/katamari";
+import { TinyDom, TinyHooks } from "@hugerte/mcagar";
+import { PredicateFilter, SugarElement, SugarNode, TextContent } from "@hugerte/sugar";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 

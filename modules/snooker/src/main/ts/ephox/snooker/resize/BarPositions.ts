@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Direction, Height, SugarElement, SugarLocation, Width } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Direction, Height, SugarElement, SugarLocation, Width } from "@hugerte/sugar";
 
 export interface RowInfo {
   readonly row: number;

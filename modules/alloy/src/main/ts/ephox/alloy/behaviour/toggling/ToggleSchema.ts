@@ -1,5 +1,5 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
 
 import * as Fields from '../../data/Fields';
 import * as ToggleModes from './ToggleModes';

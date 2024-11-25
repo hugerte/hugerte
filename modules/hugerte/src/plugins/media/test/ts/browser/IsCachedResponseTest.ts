@@ -1,7 +1,7 @@
-import { Assertions, UiFinder, Waiter } from '@ephox/agar';
+import { Assertions, UiFinder, Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Html, SugarBody, SugarElement } from '@ephox/sugar';
-import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Html, SugarBody, SugarElement } from "@hugerte/sugar";
+import { TinyAssertions, TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/media/Plugin';

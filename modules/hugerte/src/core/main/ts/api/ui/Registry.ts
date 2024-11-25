@@ -1,4 +1,4 @@
-import { Registry } from '@ephox/bridge';
+import { Registry } from "@hugerte/bridge";
 
 /**
  * HugeRTE UI registration API.

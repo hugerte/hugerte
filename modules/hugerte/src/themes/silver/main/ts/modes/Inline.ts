@@ -1,6 +1,6 @@
-import { AlloyComponent, Attachment, Boxes, Disabling, Docking } from '@ephox/alloy';
-import { Cell, Singleton, Throttler } from '@ephox/katamari';
-import { DomEvent, Scroll, SugarElement } from '@ephox/sugar';
+import { AlloyComponent, Attachment, Boxes, Disabling, Docking } from "@hugerte/alloy";
+import { Cell, Singleton, Throttler } from "@hugerte/katamari";
+import { DomEvent, Scroll, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { NodeChangeEvent } from 'hugerte/core/api/EventTypes';

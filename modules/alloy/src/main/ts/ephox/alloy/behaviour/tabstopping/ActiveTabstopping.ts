@@ -1,4 +1,4 @@
-import { Objects } from '@ephox/boulder';
+import { Objects } from "@hugerte/boulder";
 
 import { DomDefinitionDetail } from '../../dom/DomDefinition';
 import * as DomModification from '../../dom/DomModification';

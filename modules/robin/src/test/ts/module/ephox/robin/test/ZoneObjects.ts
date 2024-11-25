@@ -1,7 +1,7 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert } from '@ephox/bedrock-client';
-import { Gene, TestUniverse } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Gene, TestUniverse } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
 
 import { LanguageZones } from 'ephox/robin/zone/LanguageZones';
 import { Zone } from 'ephox/robin/zone/Zones';

@@ -1,4 +1,4 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
 import { Assert, context, describe, it } from '@ephox/bedrock-client';
 
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';

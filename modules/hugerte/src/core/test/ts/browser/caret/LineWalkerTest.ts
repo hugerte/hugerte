@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Html, SugarElement } from '@ephox/sugar';
-import { LegacyUnit } from '@ephox/wrap-mcagar';
+import { Html, SugarElement } from "@hugerte/sugar";
+import { LegacyUnit } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import CaretPosition from 'hugerte/core/caret/CaretPosition';

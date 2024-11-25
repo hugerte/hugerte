@@ -4,8 +4,8 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import FakeClipboard from 'hugerte/core/api/FakeClipboard';
 

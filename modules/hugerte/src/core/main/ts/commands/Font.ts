@@ -1,5 +1,5 @@
-import { Arr, Strings } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr, Strings } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';

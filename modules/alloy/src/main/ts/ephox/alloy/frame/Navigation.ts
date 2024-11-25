@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { SugarElement, Traverse } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { SugarElement, Traverse } from "@hugerte/sugar";
 
 export interface Navigation {
   view: (doc: SugarElement<Document>) => Optional<SugarElement<Element>>;

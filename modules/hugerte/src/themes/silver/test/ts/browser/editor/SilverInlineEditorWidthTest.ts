@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, UiFinder } from '@ephox/agar';
+import { ApproxStructure, Assertions, UiFinder } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Type } from '@ephox/katamari';
-import { Css, Scroll, SugarBody, SugarElement } from '@ephox/sugar';
-import { McEditor, TinyDom } from '@ephox/wrap-mcagar';
+import { Arr, Fun, Type } from "@hugerte/katamari";
+import { Css, Scroll, SugarBody, SugarElement } from "@hugerte/sugar";
+import { McEditor, TinyDom } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,6 +1,6 @@
-import { Optional } from '@ephox/katamari';
-import { DomGather } from '@ephox/phoenix';
-import { Situ, SugarElement, Traverse } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { DomGather } from "@hugerte/phoenix";
+import { Situ, SugarElement, Traverse } from "@hugerte/sugar";
 
 import { WindowBridge } from '../api/WindowBridge';
 import { Carets } from '../keyboard/Carets';

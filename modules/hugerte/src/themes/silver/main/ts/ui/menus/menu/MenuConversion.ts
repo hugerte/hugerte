@@ -1,5 +1,5 @@
-import { Menu } from '@ephox/bridge';
-import { Arr, Id, Merger, Obj, Type } from '@ephox/katamari';
+import { Menu } from "@hugerte/bridge";
+import { Arr, Id, Merger, Obj, Type } from "@hugerte/katamari";
 
 import { SingleMenuItemSpec } from './SingleMenuTypes';
 

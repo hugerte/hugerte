@@ -1,6 +1,6 @@
-import { StructureSchema } from '@ephox/boulder';
-import { Arr, Cell, Optional, Type } from '@ephox/katamari';
-import { SugarElement, Traverse } from '@ephox/sugar';
+import { StructureSchema } from "@hugerte/boulder";
+import { Arr, Cell, Optional, Type } from "@hugerte/katamari";
+import { SugarElement, Traverse } from "@hugerte/sugar";
 
 import * as BehaviourBlob from '../../behaviour/common/BehaviourBlob';
 import { BehaviourState } from '../../behaviour/common/BehaviourState';

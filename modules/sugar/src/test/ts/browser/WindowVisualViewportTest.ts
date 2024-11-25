@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
+import { PlatformDetection } from "@hugerte/sand";
 
 import * as WindowVisualViewport from 'ephox/sugar/api/view/WindowVisualViewport';
 

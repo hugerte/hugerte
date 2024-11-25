@@ -1,4 +1,4 @@
-import { EventUnbinder } from '@ephox/sugar';
+import { EventUnbinder } from "@hugerte/sugar";
 
 import * as ActiveAllowBubbling from '../../behaviour/allowbubbling/ActiveAllowBubbling';
 import AllowBubblingSchema from '../../behaviour/allowbubbling/AllowBubblingSchema';

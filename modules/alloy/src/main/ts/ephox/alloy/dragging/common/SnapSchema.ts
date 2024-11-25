@@ -1,4 +1,4 @@
-import { FieldSchema } from '@ephox/boulder';
+import { FieldSchema } from "@hugerte/boulder";
 
 import * as Boxes from '../../alien/Boxes';
 import * as Fields from '../../data/Fields';

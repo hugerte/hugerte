@@ -1,6 +1,6 @@
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Attribute, ContentEditable, Css, Html, Insert, SelectorFilter, SelectorFind, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { Attribute, ContentEditable, Css, Html, Insert, SelectorFilter, SelectorFind, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';

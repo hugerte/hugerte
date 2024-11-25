@@ -1,7 +1,7 @@
-import { Keys, UiFinder } from '@ephox/agar';
+import { Keys, UiFinder } from "@hugerte/agar";
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { SugarBody, TextContent } from '@ephox/sugar';
-import { TinyHooks, TinySelections, TinyAssertions, TinyContentActions } from '@ephox/wrap-mcagar';
+import { SugarBody, TextContent } from "@hugerte/sugar";
+import { TinyHooks, TinySelections, TinyAssertions, TinyContentActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

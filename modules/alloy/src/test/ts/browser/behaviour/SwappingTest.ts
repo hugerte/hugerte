@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from "@hugerte/katamari";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Swapping } from 'ephox/alloy/api/behaviour/Swapping';

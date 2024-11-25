@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Type, Unicode } from '@ephox/katamari';
+import { Arr, Obj, Optional, Type, Unicode } from "@hugerte/katamari";
 
 import * as TextSearch from '../../alien/TextSearch';
 import DOMUtils from '../../api/dom/DOMUtils';

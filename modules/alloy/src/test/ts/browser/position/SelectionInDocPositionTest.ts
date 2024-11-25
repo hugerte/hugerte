@@ -1,7 +1,7 @@
-import { Chain, Cursors, NamedChain } from '@ephox/agar';
+import { Chain, Cursors, NamedChain } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
-import { Css, Html, Scroll, SugarElement } from '@ephox/sugar';
+import { Optional, Result } from "@hugerte/katamari";
+import { Css, Html, Scroll, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

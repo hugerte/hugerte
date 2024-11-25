@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, Step, StructAssert, TestStore, Waiter } from '@ephox/agar';
-import { Arr, Fun, Merger, Obj } from '@ephox/katamari';
-import { SelectorFind } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Step, StructAssert, TestStore, Waiter } from "@hugerte/agar";
+import { Arr, Fun, Merger, Obj } from "@hugerte/katamari";
+import { SelectorFind } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Disabling } from 'ephox/alloy/api/behaviour/Disabling';

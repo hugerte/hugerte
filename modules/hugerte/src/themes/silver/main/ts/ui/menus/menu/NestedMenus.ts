@@ -1,6 +1,6 @@
-import { TieredData, TieredMenu } from '@ephox/alloy';
-import { Objects } from '@ephox/boulder';
-import { Id, Merger, Obj, Optional } from '@ephox/katamari';
+import { TieredData, TieredMenu } from "@hugerte/alloy";
+import { Objects } from "@hugerte/boulder";
+import { Id, Merger, Obj, Optional } from "@hugerte/katamari";
 
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
 

@@ -1,7 +1,7 @@
-import { TestStore, Waiter } from '@ephox/agar';
+import { TestStore, Waiter } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
-import { Css, SelectorFind, Selectors, SugarElement, SugarLocation } from '@ephox/sugar';
+import { Optional, Result } from "@hugerte/katamari";
+import { Css, SelectorFind, Selectors, SugarElement, SugarLocation } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';

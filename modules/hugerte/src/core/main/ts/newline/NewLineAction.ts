@@ -1,5 +1,5 @@
-import { Adt, Arr, Optional, Type } from '@ephox/katamari';
-import { SugarElement, Traverse, SugarNode, ContentEditable } from '@ephox/sugar';
+import { Adt, Arr, Optional, Type } from "@hugerte/katamari";
+import { SugarElement, Traverse, SugarNode, ContentEditable } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';

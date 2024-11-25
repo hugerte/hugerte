@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { SimRange, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { SimRange, SugarElement } from "@hugerte/sugar";
 
 import { Bounds } from '../../alien/Boxes';
 import { AlloyComponent } from '../../api/component/ComponentApi';

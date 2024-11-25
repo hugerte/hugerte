@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { Toolbar } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+import { Toolbar } from "@hugerte/bridge";
+import { Arr } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

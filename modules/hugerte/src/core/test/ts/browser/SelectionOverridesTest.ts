@@ -1,8 +1,8 @@
-import { Mouse } from '@ephox/agar';
+import { Mouse } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Scroll, SugarElement, Traverse } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Scroll, SugarElement, Traverse } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

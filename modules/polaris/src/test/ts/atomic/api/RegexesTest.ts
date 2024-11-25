@@ -1,5 +1,5 @@
 import { Assert, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+import { Arr, Obj } from "@hugerte/katamari";
 
 import * as Regexes from 'ephox/polaris/api/Regexes';
 

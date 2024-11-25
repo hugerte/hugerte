@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import * as ClassList from '../../impl/ClassList';
 import { SugarElement } from '../node/SugarElement';

@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Pattern } from '@ephox/polaris';
-import { SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Pattern } from "@hugerte/polaris";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as DomSearch from 'ephox/phoenix/api/dom/DomSearch';
 

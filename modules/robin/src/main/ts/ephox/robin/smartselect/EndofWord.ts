@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Optional, Unicode } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Arr, Optional, Unicode } from "@hugerte/katamari";
 
 import { WordRange } from '../data/WordRange';
 import * as Clustering from '../words/Clustering';

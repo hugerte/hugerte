@@ -1,6 +1,6 @@
-import { Clipboard, Waiter } from '@ephox/agar';
+import { Clipboard, Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinySelections, TinyHooks, TinyDom } from '@ephox/wrap-mcagar';
+import { TinyAssertions, TinySelections, TinyHooks, TinyDom } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/lists/Plugin';

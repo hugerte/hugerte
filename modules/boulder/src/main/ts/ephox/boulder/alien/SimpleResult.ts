@@ -1,4 +1,4 @@
-import { Arr, Result } from '@ephox/katamari';
+import { Arr, Result } from "@hugerte/katamari";
 
 // An experiment to make a more efficient boulder.
 export type SimpleResult<E, A> = SimpleError<E> | SimpleValue<A>;

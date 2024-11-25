@@ -1,4 +1,4 @@
-import { PlatformDetection } from '@ephox/sand';
+import { PlatformDetection } from "@hugerte/sand";
 
 import { KeyModifiers } from '../keyboard/FakeKeys';
 import { RealKeys } from './RealKeys';

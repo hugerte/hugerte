@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { BehaviourStateInitialiser } from '../../behaviour/common/BehaviourState';
 import * as DraggingApis from '../../behaviour/dragging/DraggingApis';

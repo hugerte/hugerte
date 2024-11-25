@@ -1,4 +1,4 @@
-import { EventArgs } from '@ephox/sugar';
+import { EventArgs } from "@hugerte/sugar";
 
 import { DragMode } from '../api/DragApis';
 import { DragEvents, DragState } from './DragTypes';

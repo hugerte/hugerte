@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Cell } from "@hugerte/katamari";
 
 import { BehaviourState, BehaviourStateInitialiser } from './BehaviourState';
 

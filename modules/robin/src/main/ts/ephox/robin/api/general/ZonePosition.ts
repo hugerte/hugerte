@@ -1,4 +1,4 @@
-import { Adt } from '@ephox/katamari';
+import { Adt } from "@hugerte/katamari";
 
 export interface ZonePosition<E> {
   fold: <T> (

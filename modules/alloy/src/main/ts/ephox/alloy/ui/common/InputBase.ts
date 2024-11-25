@@ -1,6 +1,6 @@
-import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
-import { Value } from '@ephox/sugar';
+import { FieldProcessor, FieldSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
+import { Value } from "@hugerte/sugar";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Focusing } from '../../api/behaviour/Focusing';

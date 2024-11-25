@@ -1,5 +1,5 @@
-import { Fun, Id } from '@ephox/katamari';
-import { Attribute, SugarElement } from '@ephox/sugar';
+import { Fun, Id } from "@hugerte/katamari";
+import { Attribute, SugarElement } from "@hugerte/sugar";
 
 import * as SeleniumAction from '../server/SeleniumAction';
 import { Chain } from './Chain';

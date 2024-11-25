@@ -1,5 +1,5 @@
-import { Arr, Cell, Fun } from '@ephox/katamari';
-import { SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr, Cell, Fun } from "@hugerte/katamari";
+import { SelectorFilter, SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

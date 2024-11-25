@@ -1,4 +1,4 @@
-import { Fun, Obj, Result } from '@ephox/katamari';
+import { Fun, Obj, Result } from "@hugerte/katamari";
 
 import { SimpleResult } from '../alien/SimpleResult';
 import { choose as chooseProcessor } from '../core/ChoiceProcessor';

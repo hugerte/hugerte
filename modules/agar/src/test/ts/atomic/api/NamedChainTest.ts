@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Result } from '@ephox/katamari';
+import { Result } from "@hugerte/katamari";
 
 import { Chain } from 'ephox/agar/api/Chain';
 import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';

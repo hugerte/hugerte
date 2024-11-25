@@ -1,5 +1,5 @@
-import { Obj, Optional } from '@ephox/katamari';
-import { Attribute, Class } from '@ephox/sugar';
+import { Obj, Optional } from "@hugerte/katamari";
+import { Attribute, Class } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { Stateless } from '../common/BehaviourState';

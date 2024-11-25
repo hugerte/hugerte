@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Cell, Fun, Future, Optional, Result, Strings } from '@ephox/katamari';
-import { Compare, SelectorFind } from '@ephox/sugar';
+import { Arr, Cell, Fun, Future, Optional, Result, Strings } from "@hugerte/katamari";
+import { Compare, SelectorFind } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';

@@ -1,5 +1,5 @@
-import { Cell } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Cell } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 
 import Editor from '../api/Editor';
 import { NodeChangeEvent } from '../api/EventTypes';

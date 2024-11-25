@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { SugarElement, TextContent } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SugarElement, TextContent } from "@hugerte/sugar";
 
 import { SimpleGenerators } from 'ephox/snooker/api/Generators';
 

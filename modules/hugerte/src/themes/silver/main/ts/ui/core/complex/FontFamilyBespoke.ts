@@ -1,5 +1,5 @@
-import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
+import { AlloyComponent, AlloyTriggers, SketchSpec } from "@hugerte/alloy";
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

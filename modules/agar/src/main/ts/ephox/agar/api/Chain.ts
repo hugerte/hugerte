@@ -1,5 +1,5 @@
 import { Failure } from '@ephox/bedrock-common';
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Arr, Fun, Result } from "@hugerte/katamari";
 
 import * as AsyncActions from '../pipe/AsyncActions';
 import * as GeneralActions from '../pipe/GeneralActions';

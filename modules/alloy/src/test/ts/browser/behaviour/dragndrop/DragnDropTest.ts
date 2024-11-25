@@ -1,6 +1,6 @@
-import { DragnDrop as Dnd, Files, GeneralSteps, Logger, TestStore } from '@ephox/agar';
+import { DragnDrop as Dnd, Files, GeneralSteps, Logger, TestStore } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { DragnDrop } from 'ephox/alloy/api/behaviour/DragnDrop';

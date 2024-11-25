@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { LegacyUnit } from '@ephox/wrap-mcagar';
+import { LegacyUnit } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import CaretPosition from 'hugerte/core/caret/CaretPosition';

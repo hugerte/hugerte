@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
 import { afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Attribute, SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute, SelectorFilter, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 import 'hugerte';
 

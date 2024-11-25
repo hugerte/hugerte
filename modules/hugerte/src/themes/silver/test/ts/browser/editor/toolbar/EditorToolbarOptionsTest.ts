@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarBody, SugarElement } from '@ephox/sugar';
-import { McEditor } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { SugarBody, SugarElement } from "@hugerte/sugar";
+import { McEditor } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

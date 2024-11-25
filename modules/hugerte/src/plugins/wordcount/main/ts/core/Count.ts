@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Words } from '@ephox/polaris';
+import { Fun } from "@hugerte/katamari";
+import { Words } from "@hugerte/polaris";
 
 import Schema from 'hugerte/core/api/html/Schema';
 

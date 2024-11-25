@@ -1,4 +1,4 @@
-import { Arr, Strings } from '@ephox/katamari';
+import { Arr, Strings } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';

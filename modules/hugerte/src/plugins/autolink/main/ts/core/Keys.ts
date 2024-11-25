@@ -1,4 +1,4 @@
-import { Fun, Obj, Strings, Type, Unicode } from '@ephox/katamari';
+import { Fun, Obj, Strings, Type, Unicode } from "@hugerte/katamari";
 
 import TextSeeker from 'hugerte/core/api/dom/TextSeeker';
 import Editor from 'hugerte/core/api/Editor';

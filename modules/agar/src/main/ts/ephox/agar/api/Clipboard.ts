@@ -1,5 +1,5 @@
-import { Arr, Obj } from '@ephox/katamari';
-import { SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { SugarBody, SugarElement } from "@hugerte/sugar";
 
 import { createCopyEvent, createCutEvent, createPasteEvent } from '../clipboard/ClipboardEvents';
 import { createDataTransfer } from '../datatransfer/DataTransfer';

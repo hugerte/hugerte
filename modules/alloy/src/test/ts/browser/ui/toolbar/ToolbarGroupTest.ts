@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SelectorFind } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SelectorFind } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

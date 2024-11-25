@@ -1,5 +1,5 @@
-import { Adt, Arr, Fun } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Adt, Arr, Fun } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 
 export interface CssPositionAdt {
   fold: <T> (

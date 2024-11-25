@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Strings, Type, Unicode } from '@ephox/katamari';
-import { Attribute, Insert, Remove, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional, Strings, Type, Unicode } from "@hugerte/katamari";
+import { Attribute, Insert, Remove, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import DomTreeWalker from '../api/dom/TreeWalker';
 import Editor from '../api/Editor';

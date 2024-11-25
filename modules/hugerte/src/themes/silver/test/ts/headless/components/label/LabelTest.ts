@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
-import { AlloyComponent, GuiFactory, Memento, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
+import { AlloyComponent, GuiFactory, Memento, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import { UiFactoryBackstageShared } from 'hugerte/themes/silver/backstage/Backstage';
 import { renderLabel } from 'hugerte/themes/silver/ui/dialog/Label';

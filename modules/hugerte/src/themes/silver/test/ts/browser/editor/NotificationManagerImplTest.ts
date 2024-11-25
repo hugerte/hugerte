@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Mouse, UiFinder, Waiter } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Focus, Scroll, SugarBody, SugarElement, SugarLocation, Traverse } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Focus, Scroll, SugarBody, SugarElement, SugarLocation, Traverse } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -63,7 +63,7 @@ describe('browser.hugerte.themes.silver.editor.NotificationManagerImplTest', () 
               ])
             ]
           }),
-          ...progress !== undefined ? [
+          ...(progress !== undefined ? [
             s.element('div', {
               classes: [ arr.has('tox-progress-bar'), arr.has('tox-progress-indicator') ],
               children: [
@@ -84,7 +84,7 @@ describe('browser.hugerte.themes.silver.editor.NotificationManagerImplTest', () 
                 })
               ]
             })
-          ] : [],
+          ] : []),
           s.element('button', {
             classes: [
               arr.has('tox-notification__dismiss'),

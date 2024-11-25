@@ -1,4 +1,4 @@
-import { Optional, Thunk } from '@ephox/katamari';
+import { Optional, Thunk } from "@hugerte/katamari";
 
 import * as SchemaElementSets from './SchemaElementSets';
 import * as SchemaTypes from './SchemaTypes';

@@ -1,8 +1,8 @@
-import { UiFinder, UiControls } from '@ephox/agar';
+import { UiFinder, UiControls } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Dialog } from '@ephox/bridge';
-import { SugarBody } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Dialog } from "@hugerte/bridge";
+import { SugarBody } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Tools from 'hugerte/core/api/util/Tools';

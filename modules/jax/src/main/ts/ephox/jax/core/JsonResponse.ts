@@ -1,4 +1,4 @@
-import { Result } from '@ephox/katamari';
+import { Result } from "@hugerte/katamari";
 
 export const create = (text: string): Result<any, string> => {
   try {

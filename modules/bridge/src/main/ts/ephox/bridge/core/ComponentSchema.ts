@@ -1,5 +1,5 @@
-import { FieldPresence, FieldProcessor, FieldSchema, ValueType } from '@ephox/boulder';
-import { Fun, Id } from '@ephox/katamari';
+import { FieldPresence, FieldProcessor, FieldSchema, ValueType } from "@hugerte/boulder";
+import { Fun, Id } from "@hugerte/katamari";
 
 export const type = FieldSchema.requiredString('type');
 export const name = FieldSchema.requiredString('name');

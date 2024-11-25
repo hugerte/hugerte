@@ -1,5 +1,5 @@
-import { Fun, Id, Optional } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { Fun, Id, Optional } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import * as DropdownUtils from '../../dropdown/DropdownUtils';
 import * as AlloyParts from '../../parts/AlloyParts';

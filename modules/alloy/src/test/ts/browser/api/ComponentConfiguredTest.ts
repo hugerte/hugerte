@@ -1,6 +1,6 @@
-import { Assertions, Logger, Pipeline, Step } from '@ephox/agar';
+import { Assertions, Logger, Pipeline, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Toggling } from 'ephox/alloy/api/behaviour/Toggling';

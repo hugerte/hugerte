@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, RealKeys, UiFinder } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, RealKeys, UiFinder } from "@hugerte/agar";
+import { GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { renderSizeInput } from 'hugerte/themes/silver/ui/dialog/SizeInput';
 

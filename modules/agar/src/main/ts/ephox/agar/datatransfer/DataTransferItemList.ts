@@ -1,4 +1,4 @@
-import { Arr, Type } from '@ephox/katamari';
+import { Arr, Type } from "@hugerte/katamari";
 
 import { createDataTransferItemFromFile, createDataTransferItemFromString } from './DataTransferItem';
 import { isInReadWriteMode } from './Mode';

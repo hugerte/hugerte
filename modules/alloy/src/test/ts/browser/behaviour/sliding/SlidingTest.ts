@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, GeneralSteps, Logger, Step, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, GeneralSteps, Logger, Step, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Class, Css, Traverse } from '@ephox/sugar';
+import { Class, Css, Traverse } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Sliding } from 'ephox/alloy/api/behaviour/Sliding';

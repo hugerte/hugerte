@@ -1,11 +1,11 @@
 import {
   AlloyComponent, AlloyEvents, Behaviour, Composing,
   Replacing, Sketcher, SlotContainer, SlotContainerTypes, UiSketcher
-} from '@ephox/alloy';
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { View as BridgeView } from '@ephox/bridge';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
-import { Attribute, Css } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { View as BridgeView } from "@hugerte/bridge";
+import { Arr, Fun, Obj, Optional } from "@hugerte/katamari";
+import { Attribute, Css } from "@hugerte/sugar";
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { SimpleBehaviours } from '../alien/SimpleBehaviours';
@@ -38,12 +38,12 @@ const makeViews = (parts: SlotContainerTypes.SlotContainerParts, viewConfigs: Vi
       },
       viewConfig: internalViewConfig,
       components: [
-        ...internalViewConfig.buttons.length > 0 ? [
+        ...(internalViewConfig.buttons.length > 0 ? [
           View.parts.header({
             buttons: internalViewConfig.buttons,
             providers
           })
-        ] : [],
+        ] : []),
         View.parts.pane({})
       ]
     }));

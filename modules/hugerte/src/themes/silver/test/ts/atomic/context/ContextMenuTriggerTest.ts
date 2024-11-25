@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

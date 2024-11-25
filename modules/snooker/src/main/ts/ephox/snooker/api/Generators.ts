@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
-import { Attribute, Css, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
+import { Attribute, Css, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import { getAttrValue } from '../util/CellUtils';
 import { CellElement, CompElm, RowElement } from '../util/TableTypes';

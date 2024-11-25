@@ -1,6 +1,6 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Html, SugarElement } from '@ephox/sugar';
+import { Html, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import Schema from 'hugerte/core/api/html/Schema';

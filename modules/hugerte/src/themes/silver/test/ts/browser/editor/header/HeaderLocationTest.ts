@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

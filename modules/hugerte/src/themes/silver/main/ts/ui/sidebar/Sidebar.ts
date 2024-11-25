@@ -3,11 +3,11 @@ import {
   Sliding,
   SlotContainer,
   SlotContainerTypes, SystemEvents, Tabstopping
-} from '@ephox/alloy';
-import { StructureSchema } from '@ephox/boulder';
-import { Sidebar as BridgeSidebar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Id, Obj, Optional, Optionals, Type } from '@ephox/katamari';
-import { Attribute, Css, SugarElement, Width } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { StructureSchema } from "@hugerte/boulder";
+import { Sidebar as BridgeSidebar } from "@hugerte/bridge";
+import { Arr, Cell, Fun, Id, Obj, Optional, Optionals, Type } from "@hugerte/katamari";
+import { Attribute, Css, SugarElement, Width } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { onControlAttached, onControlDetached } from 'hugerte/themes/silver/ui/controls/Controls';

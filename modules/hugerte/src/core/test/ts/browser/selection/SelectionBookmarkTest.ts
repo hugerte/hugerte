@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { Hierarchy, Remove, SimRange, SimSelection, SugarElement, Traverse, WindowSelection } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Hierarchy, Remove, SimRange, SimSelection, SugarElement, Traverse, WindowSelection } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as SelectionBookmark from 'hugerte/core/selection/SelectionBookmark';

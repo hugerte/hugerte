@@ -1,5 +1,5 @@
-import { Arr, Strings, Type } from '@ephox/katamari';
-import { Attribute, Insert, Remove, SugarElement, SugarElements, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Strings, Type } from "@hugerte/katamari";
+import { Attribute, Insert, Remove, SugarElement, SugarElements, SugarNode, Traverse } from "@hugerte/sugar";
 
 import * as ErrorReporter from '../ErrorReporter';
 import { BlobInfoImagePair, BlobUriError, ImageScanner } from '../file/ImageScanner';

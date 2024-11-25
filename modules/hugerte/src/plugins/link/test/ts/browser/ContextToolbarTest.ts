@@ -1,7 +1,7 @@
-import { Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { Mouse, UiFinder, Waiter } from "@hugerte/agar";
 import { describe, it, before, after } from '@ephox/bedrock-client';
-import { SugarBody } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { SugarBody } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/link/Plugin';

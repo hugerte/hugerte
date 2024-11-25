@@ -1,6 +1,6 @@
-import { Pipeline, Step, TestStore } from '@ephox/agar';
+import { Pipeline, Step, TestStore } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Attribute, SugarBody, SugarNode, Traverse } from '@ephox/sugar';
+import { Attribute, SugarBody, SugarNode, Traverse } from "@hugerte/sugar";
 
 import * as EventRoot from 'ephox/alloy/alien/EventRoot';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

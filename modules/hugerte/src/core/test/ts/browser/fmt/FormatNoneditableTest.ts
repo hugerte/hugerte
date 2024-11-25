@@ -1,7 +1,7 @@
-import { Cursors } from '@ephox/agar';
+import { Cursors } from "@hugerte/agar";
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Type } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr, Fun, Type } from "@hugerte/katamari";
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

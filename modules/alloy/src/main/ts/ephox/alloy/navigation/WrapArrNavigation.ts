@@ -1,4 +1,4 @@
-import { Num, Optional } from '@ephox/katamari';
+import { Num, Optional } from "@hugerte/katamari";
 
 export interface WrapArrNavigationOutcome {
   readonly row: number;

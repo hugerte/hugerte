@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Obj, Optional, Type } from "@hugerte/katamari";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import EditorSelection from 'hugerte/core/api/dom/Selection';

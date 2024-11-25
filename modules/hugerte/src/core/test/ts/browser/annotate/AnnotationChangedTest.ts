@@ -1,7 +1,7 @@
-import { Waiter } from '@ephox/agar';
+import { Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Cell } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Cell } from "@hugerte/katamari";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import { AnnotationListenerApi } from 'hugerte/core/api/Annotator';

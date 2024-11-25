@@ -1,7 +1,7 @@
-import { AlloyComponent, MementoRecord, Representing } from '@ephox/alloy';
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
-import { Html, SugarElement, Value } from '@ephox/sugar';
+import { AlloyComponent, MementoRecord, Representing } from "@hugerte/alloy";
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Fun, Optional } from "@hugerte/katamari";
+import { Html, SugarElement, Value } from "@hugerte/sugar";
 
 type RepresentingBehaviour = ReturnType<typeof Representing['config']>;
 

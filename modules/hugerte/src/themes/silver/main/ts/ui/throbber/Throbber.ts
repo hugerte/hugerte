@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloySpec, Behaviour, Blocking, Composing, DomFactory, Replacing, SketchSpec } from '@ephox/alloy';
-import { Arr, Cell, Optional, Singleton, Type } from '@ephox/katamari';
-import { Attribute, Class, Css, Focus, SugarElement, SugarNode } from '@ephox/sugar';
+import { AlloyComponent, AlloySpec, Behaviour, Blocking, Composing, DomFactory, Replacing, SketchSpec } from "@hugerte/alloy";
+import { Arr, Cell, Optional, Singleton, Type } from "@hugerte/katamari";
+import { Attribute, Class, Css, Focus, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import { EventUtilsEvent } from 'hugerte/core/api/dom/EventUtils';
 import Editor from 'hugerte/core/api/Editor';

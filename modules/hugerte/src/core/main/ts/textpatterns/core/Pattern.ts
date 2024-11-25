@@ -1,4 +1,4 @@
-import { Arr, Result, Results, Type } from '@ephox/katamari';
+import { Arr, Result, Results, Type } from "@hugerte/katamari";
 
 import { BlockPattern, DynamicPatternContext, DynamicPatternsLookup, InlineCmdPattern, InlinePattern, Pattern, PatternError, PatternSet, RawDynamicPatternsLookup, RawPattern, BlockPatternTrigger } from './PatternTypes';
 

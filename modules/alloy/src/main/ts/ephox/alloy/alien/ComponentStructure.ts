@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Compare, PredicateExists, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Compare, PredicateExists, SugarElement } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import * as AriaControls from '../aria/AriaControls';

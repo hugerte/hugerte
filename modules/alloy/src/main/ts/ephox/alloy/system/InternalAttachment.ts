@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Insert, Remove, SugarBody } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Insert, Remove, SugarBody } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { AlloySpec } from '../api/component/SpecTypes';

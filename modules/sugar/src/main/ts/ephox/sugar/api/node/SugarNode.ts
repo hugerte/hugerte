@@ -1,4 +1,4 @@
-import { SandHTMLElement } from '@ephox/sand';
+import { SandHTMLElement } from "@hugerte/sand";
 
 import { HTMLElementFullTagNameMap } from '../../alien/DomTypes';
 import * as NodeTypes from './NodeTypes';

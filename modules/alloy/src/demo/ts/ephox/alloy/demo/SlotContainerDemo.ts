@@ -1,4 +1,4 @@
-import { SelectorFind } from '@ephox/sugar';
+import { SelectorFind } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as Attachment from 'ephox/alloy/api/system/Attachment';

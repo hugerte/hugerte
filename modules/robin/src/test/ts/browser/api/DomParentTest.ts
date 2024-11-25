@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
-import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
+import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import * as DomParent from 'ephox/robin/api/dom/DomParent';
 

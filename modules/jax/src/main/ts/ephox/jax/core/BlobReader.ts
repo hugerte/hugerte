@@ -1,4 +1,4 @@
-import { Future } from '@ephox/katamari';
+import { Future } from "@hugerte/katamari";
 
 const readBlobAsText = (blob: Blob): Future<string> => Future.nu((callback) => {
   const fr = new FileReader();

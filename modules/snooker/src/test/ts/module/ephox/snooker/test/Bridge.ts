@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
-import { Attribute, Css, Hierarchy, Insert, Replication, SugarElement, SugarNode, TextContent } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional, Optionals } from "@hugerte/katamari";
+import { Attribute, Css, Hierarchy, Insert, Replication, SugarElement, SugarNode, TextContent } from "@hugerte/sugar";
 
 import { Generators, SimpleGenerators } from 'ephox/snooker/api/Generators';
 import * as Structs from 'ephox/snooker/api/Structs';

@@ -1,4 +1,4 @@
-import { Pipeline, Step } from '@ephox/agar';
+import { Pipeline, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import { Editor } from 'ephox/mcagar/alien/EditorTypes';

@@ -1,7 +1,7 @@
-import { FocusTools, TestStore } from '@ephox/agar';
+import { FocusTools, TestStore } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarDocument, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SugarDocument, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Blocking } from 'ephox/alloy/api/behaviour/Blocking';

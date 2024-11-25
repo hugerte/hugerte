@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Fun } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Fun } from "@hugerte/katamari";
 
 import { InjectPosition } from '../api/data/InjectPosition';
 import * as Split from '../api/general/Split';

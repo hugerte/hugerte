@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
 
 import * as Extract from '../../extract/Extract';
 import * as ExtractText from '../../extract/ExtractText';

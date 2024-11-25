@@ -1,6 +1,6 @@
-import { AlloyComponent, Composing, ModalDialog, Reflecting } from '@ephox/alloy';
-import { Dialog, DialogManager } from '@ephox/bridge';
-import { Cell, Fun, Id, Optional, Optionals } from '@ephox/katamari';
+import { AlloyComponent, Composing, ModalDialog, Reflecting } from "@hugerte/alloy";
+import { Dialog, DialogManager } from "@hugerte/bridge";
+import { Cell, Fun, Id, Optional, Optionals } from "@hugerte/katamari";
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { dialogChannel } from './DialogChannels';

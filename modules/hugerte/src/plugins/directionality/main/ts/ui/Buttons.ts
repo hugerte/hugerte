@@ -1,4 +1,4 @@
-import { Direction, SugarElement } from '@ephox/sugar';
+import { Direction, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { NodeChangeEvent } from 'hugerte/core/api/EventTypes';

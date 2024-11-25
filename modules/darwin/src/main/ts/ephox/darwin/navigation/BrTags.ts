@@ -1,6 +1,6 @@
-import { Optional } from '@ephox/katamari';
-import { Spot, SpotPoint } from '@ephox/phoenix';
-import { Awareness, ElementAddress, Situ, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Spot, SpotPoint } from "@hugerte/phoenix";
+import { Awareness, ElementAddress, Situ, SugarElement, SugarNode, SugarText, Traverse } from "@hugerte/sugar";
 
 import { Situs } from '../selection/Situs';
 import { BeforeAfter } from './BeforeAfter';

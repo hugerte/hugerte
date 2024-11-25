@@ -1,4 +1,4 @@
-import { FieldSchema } from '@ephox/boulder';
+import { FieldSchema } from "@hugerte/boulder";
 
 import { ContainerDetail, ContainerSketcher, ContainerSpec } from '../../ui/types/ContainerTypes';
 import * as SketchBehaviours from '../component/SketchBehaviours';

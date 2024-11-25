@@ -1,4 +1,4 @@
-import { Situ, SugarElement } from '@ephox/sugar';
+import { Situ, SugarElement } from "@hugerte/sugar";
 
 export interface Situs {
   readonly start: Situ;

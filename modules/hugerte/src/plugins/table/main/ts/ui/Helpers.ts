@@ -1,7 +1,7 @@
-import { Transformations } from '@ephox/acid';
-import { Arr, Fun, Obj, Optional, Strings, Type } from '@ephox/katamari';
-import { TableLookup, TableOperations } from '@ephox/snooker';
-import { Css, SugarElement, SugarElements } from '@ephox/sugar';
+import { Transformations } from "@hugerte/acid";
+import { Arr, Fun, Obj, Optional, Strings, Type } from "@hugerte/katamari";
+import { TableLookup, TableOperations } from "@hugerte/snooker";
+import { Css, SugarElement, SugarElements } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

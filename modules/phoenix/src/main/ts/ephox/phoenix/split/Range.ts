@@ -1,4 +1,4 @@
-import { Universe } from '@ephox/boss';
+import { Universe } from "@hugerte/boss";
 
 import * as Spot from '../api/data/Spot';
 import * as Family from '../api/general/Family';

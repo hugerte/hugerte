@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloySpec, AlloyTriggers, Behaviour, Focusing, NativeEvents, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Fun, Id, Optional } from '@ephox/katamari';
-import { Class, SelectorExists, SugarElement } from '@ephox/sugar';
+import { AlloyComponent, AlloySpec, AlloyTriggers, Behaviour, Focusing, NativeEvents, SimpleSpec, Tabstopping } from "@hugerte/alloy";
+import { Fun, Id, Optional } from "@hugerte/katamari";
+import { Class, SelectorExists, SugarElement } from "@hugerte/sugar";
 
 import { ComposingConfigs } from '../alien/ComposingConfigs';
 

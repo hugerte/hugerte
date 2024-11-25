@@ -1,7 +1,7 @@
-import { Cursors } from '@ephox/agar';
+import { Cursors } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { ContentEditable, Css, Html, Insert, Remove, SugarBody, SugarElement, SugarLocation } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { ContentEditable, Css, Html, Insert, Remove, SugarBody, SugarElement, SugarLocation } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { FakeCaretPosition, closestCaretCandidateNodeRect, closestFakeCaretCandidate } from 'hugerte/core/caret/ClosestCaretCandidate';

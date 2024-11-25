@@ -1,5 +1,5 @@
-import { Cell, Fun, Optional, Optionals, Singleton, Throttler } from '@ephox/katamari';
-import { Class, Css, DomEvent, EventUnbinder, SugarElement, SugarShadowDom, Traverse, WindowVisualViewport, SugarNode } from '@ephox/sugar';
+import { Cell, Fun, Optional, Optionals, Singleton, Throttler } from "@hugerte/katamari";
+import { Class, Css, DomEvent, EventUnbinder, SugarElement, SugarShadowDom, Traverse, WindowVisualViewport, SugarNode } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

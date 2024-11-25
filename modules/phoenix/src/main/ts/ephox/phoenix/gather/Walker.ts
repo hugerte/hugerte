@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Arr, Optional } from "@hugerte/katamari";
 
 import { Direction, Successor, Transition, Traverse } from '../api/data/Types';
 

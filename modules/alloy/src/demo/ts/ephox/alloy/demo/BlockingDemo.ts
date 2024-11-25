@@ -1,5 +1,5 @@
-import { Result } from '@ephox/katamari';
-import { SugarBody, Traverse } from '@ephox/sugar';
+import { Result } from "@hugerte/katamari";
+import { SugarBody, Traverse } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Blocking } from 'ephox/alloy/api/behaviour/Blocking';

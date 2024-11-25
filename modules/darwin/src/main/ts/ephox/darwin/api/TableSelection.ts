@@ -1,6 +1,6 @@
-import { Optional } from '@ephox/katamari';
-import { Structs, TablePositions } from '@ephox/snooker';
-import { Compare, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Structs, TablePositions } from "@hugerte/snooker";
+import { Compare, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import * as CellSelection from '../selection/CellSelection';
 

@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Optional } from "@hugerte/katamari";
+import { SugarBody } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as Fields from '../../data/Fields';

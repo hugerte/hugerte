@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, Step, StructAssert } from '@ephox/agar';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, Step, StructAssert } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Objects } from '@ephox/boulder';
-import { Arr, Obj } from '@ephox/katamari';
-import { Class } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Arr, Obj } from "@hugerte/katamari";
+import { Class } from "@hugerte/sugar";
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -116,9 +116,7 @@ UnitTest.asynctest('TieredMenuTest', (success, failure) => {
         classes: [ arr.has('item'), (sel ? arr.has : arr.not)('selected-item') ],
         attrs: {
           'aria-haspopup': str.is(hasPopups[i].toString()),
-          ...hasPopups[i]
-            ? { 'aria-expanded': str.is(isExpandeds[i].toString()) }
-            : { 'aria-expanded': str.none('aria-expanded should not exist') },
+          ...(hasPopups[i] ? { 'aria-expanded': str.is(isExpandeds[i].toString()) } : { 'aria-expanded': str.none('aria-expanded should not exist') }),
           'aria-disabled': str.is(disabled[i].toString()),
         }
       }))

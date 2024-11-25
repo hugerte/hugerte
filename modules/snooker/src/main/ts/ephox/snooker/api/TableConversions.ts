@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Attribute, Css, SugarElement } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Attribute, Css, SugarElement } from "@hugerte/sugar";
 
 import * as Sizes from '../resize/Sizes';
 import { redistribute } from './Sizes';

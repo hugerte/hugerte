@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { SugarBody, SugarElement, Traverse } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
 
 /* eslint-disable no-console */
 

@@ -1,4 +1,4 @@
-import { Arr, Type } from '@ephox/katamari';
+import { Arr, Type } from "@hugerte/katamari";
 
 import { SugarElement } from '../api/node/SugarElement';
 import * as Css from '../api/properties/Css';

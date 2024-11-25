@@ -1,6 +1,6 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Strings } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Strings } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 

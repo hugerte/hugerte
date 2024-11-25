@@ -1,5 +1,5 @@
-import { Generators, PropertySteps, Step } from '@ephox/agar';
-import { Html, SimRange, SugarElement } from '@ephox/sugar';
+import { Generators, PropertySteps, Step } from "@hugerte/agar";
+import { Html, SimRange, SugarElement } from "@hugerte/sugar";
 import * as fc from 'fast-check';
 
 import { Editor } from '../../alien/EditorTypes';

@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { McEditor, TinyAssertions, TinySelections } from '@ephox/wrap-mcagar';
+import { McEditor, TinyAssertions, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorEvent } from 'hugerte/core/api/util/EventDispatcher';

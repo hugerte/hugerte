@@ -1,7 +1,7 @@
-import { Keys } from '@ephox/agar';
+import { Keys } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type, Unicode } from '@ephox/katamari';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Type, Unicode } from "@hugerte/katamari";
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

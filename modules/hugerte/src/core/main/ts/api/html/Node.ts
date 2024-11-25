@@ -1,4 +1,4 @@
-import { Obj, Type } from '@ephox/katamari';
+import { Obj, Type } from "@hugerte/katamari";
 
 import { isWhitespaceText } from '../../text/Whitespace';
 import { SchemaMap } from './Schema';

@@ -1,5 +1,5 @@
-import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Arr, Fun } from '@ephox/katamari';
+import { FieldProcessor, FieldSchema } from "@hugerte/boulder";
+import { Arr, Fun } from "@hugerte/katamari";
 
 import { AlloyBehaviourRecord, derive, NamedConfiguredBehaviour } from '../behaviour/Behaviour';
 

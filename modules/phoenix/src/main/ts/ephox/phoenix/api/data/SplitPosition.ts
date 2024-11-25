@@ -1,4 +1,4 @@
-import { Adt } from '@ephox/katamari';
+import { Adt } from "@hugerte/katamari";
 
 type NoneHandler<U> = () => U;
 type StartHandler<E, U> = (element: E) => U;

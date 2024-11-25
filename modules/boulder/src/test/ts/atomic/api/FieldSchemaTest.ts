@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Obj, Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Obj, Optional } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 
 import * as FieldSchema from 'ephox/boulder/api/FieldSchema';
 import * as StructureSchema from 'ephox/boulder/api/StructureSchema';

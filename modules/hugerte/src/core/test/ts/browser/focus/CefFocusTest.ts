@@ -1,6 +1,6 @@
-import { Waiter } from '@ephox/agar';
+import { Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { McEditor, TinyAssertions } from '@ephox/wrap-mcagar';
+import { McEditor, TinyAssertions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

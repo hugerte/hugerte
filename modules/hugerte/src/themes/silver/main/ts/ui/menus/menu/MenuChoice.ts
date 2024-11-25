@@ -1,6 +1,6 @@
-import { ItemTypes } from '@ephox/alloy';
-import { Menu as BridgeMenu, Toolbar } from '@ephox/bridge';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { ItemTypes } from "@hugerte/alloy";
+import { Menu as BridgeMenu, Toolbar } from "@hugerte/bridge";
+import { Arr, Optional, Optionals } from "@hugerte/katamari";
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 

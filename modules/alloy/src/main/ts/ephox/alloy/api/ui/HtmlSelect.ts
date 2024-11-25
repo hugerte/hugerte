@@ -1,6 +1,6 @@
-import { FieldSchema, Objects } from '@ephox/boulder';
-import { Arr } from '@ephox/katamari';
-import { Value } from '@ephox/sugar';
+import { FieldSchema, Objects } from "@hugerte/boulder";
+import { Arr } from "@hugerte/katamari";
+import { Value } from "@hugerte/sugar";
 
 import { HtmlSelectDetail, HtmlSelectSketcher, HtmlSelectSpec } from '../../ui/types/HtmlSelectTypes';
 import { Focusing } from '../behaviour/Focusing';

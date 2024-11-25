@@ -1,6 +1,6 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
-import { ContentEditable, Hierarchy, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Type } from "@hugerte/katamari";
+import { ContentEditable, Hierarchy, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';

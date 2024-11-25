@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Remove, SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Remove, SelectorFilter, SugarElement } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import CaretPosition from '../caret/CaretPosition';

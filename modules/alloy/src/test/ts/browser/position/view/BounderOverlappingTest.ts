@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarElement, SugarPosition } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SugarElement, SugarPosition } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { Bounds, bounds } from 'ephox/alloy/alien/Boxes';

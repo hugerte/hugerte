@@ -1,5 +1,5 @@
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { TinyAssertions, TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/codesample/Plugin';

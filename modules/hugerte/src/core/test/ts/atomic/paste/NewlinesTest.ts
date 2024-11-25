@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import * as Newlines from 'hugerte/core/paste/Newlines';

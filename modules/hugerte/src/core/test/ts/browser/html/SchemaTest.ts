@@ -1,6 +1,6 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj, Type } from '@ephox/katamari';
-import { SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Obj, Type } from "@hugerte/katamari";
+import { SugarElement, SugarNode } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import Schema, { AttributePattern, SchemaElement } from 'hugerte/core/api/html/Schema';

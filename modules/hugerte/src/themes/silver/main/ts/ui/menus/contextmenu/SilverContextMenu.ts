@@ -1,8 +1,8 @@
-import { AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, GuiFactory, InlineView, Sandboxing, SystemEvents } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Arr, Fun, Obj, Result, Strings, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SelectorExists, SugarElement } from '@ephox/sugar';
+import { AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, GuiFactory, InlineView, Sandboxing, SystemEvents } from "@hugerte/alloy";
+import { Menu } from "@hugerte/bridge";
+import { Arr, Fun, Obj, Result, Strings, Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SelectorExists, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorEvent } from 'hugerte/core/api/util/EventDispatcher';

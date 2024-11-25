@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { SelectorFilter, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import * as ElementType from '../dom/ElementType';

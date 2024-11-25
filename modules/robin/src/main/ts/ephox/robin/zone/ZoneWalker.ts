@@ -1,6 +1,6 @@
-import { Universe } from '@ephox/boss';
-import { Fun, Optional } from '@ephox/katamari';
-import { Gather, Traverse } from '@ephox/phoenix';
+import { Universe } from "@hugerte/boss";
+import { Fun, Optional } from "@hugerte/katamari";
+import { Gather, Traverse } from "@hugerte/phoenix";
 
 import { ZonePosition } from '../api/general/ZonePosition';
 import { ZoneViewports } from '../api/general/ZoneViewports';

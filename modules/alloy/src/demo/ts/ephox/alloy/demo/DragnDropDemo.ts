@@ -1,4 +1,4 @@
-import { Class, Css, Replication, SugarElement } from '@ephox/sugar';
+import { Class, Css, Replication, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { DragnDrop } from 'ephox/alloy/api/behaviour/DragnDrop';

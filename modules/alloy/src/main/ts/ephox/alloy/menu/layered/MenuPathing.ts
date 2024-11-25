@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Arr, Obj, Optional } from "@hugerte/katamari";
 
 // Not enforced :( Just for readability.
 type TriggerItemToMenu = Record<string, string>;

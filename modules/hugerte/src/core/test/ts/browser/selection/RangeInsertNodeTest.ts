@@ -1,7 +1,7 @@
-import { ApproxStructure } from '@ephox/agar';
+import { ApproxStructure } from "@hugerte/agar";
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { SugarElements, SugarFragment } from '@ephox/sugar';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { SugarElements, SugarFragment } from "@hugerte/sugar";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { rangeInsertNode } from 'hugerte/core/selection/RangeInsertNode';

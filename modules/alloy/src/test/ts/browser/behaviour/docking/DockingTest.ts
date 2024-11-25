@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Waiter } from "@hugerte/agar";
 import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { DomEvent, EventUnbinder, SugarElement } from '@ephox/sugar';
+import { DomEvent, EventUnbinder, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Docking } from 'ephox/alloy/api/behaviour/Docking';

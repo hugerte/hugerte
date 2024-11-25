@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Gene, SpecialGene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Gene, SpecialGene, TestUniverse, TextGene } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';

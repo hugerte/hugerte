@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Strings, Type } from '@ephox/katamari';
-import { Attribute, NodeTypes, Remove, Replication, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Obj, Strings, Type } from "@hugerte/katamari";
+import { Attribute, NodeTypes, Remove, Replication, SugarElement } from "@hugerte/sugar";
 import createDompurify, { Config, DOMPurifyI, SanitizeAttributeHookEvent, SanitizeElementHookEvent } from 'dompurify';
 
 import { DomParserSettings } from '../api/html/DomParser';

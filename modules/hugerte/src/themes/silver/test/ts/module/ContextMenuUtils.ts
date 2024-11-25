@@ -1,6 +1,6 @@
-import { UiFinder, Waiter } from '@ephox/agar';
-import { Css, SugarBody } from '@ephox/sugar';
-import { TinyUiActions } from '@ephox/wrap-mcagar';
+import { UiFinder, Waiter } from "@hugerte/agar";
+import { Css, SugarBody } from "@hugerte/sugar";
+import { TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

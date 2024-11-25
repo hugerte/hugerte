@@ -1,5 +1,5 @@
-import { Optional, Strings } from '@ephox/katamari';
-import { Attribute, Class, DomEvent, SugarElement } from '@ephox/sugar';
+import { Optional, Strings } from "@hugerte/katamari";
+import { Attribute, Class, DomEvent, SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

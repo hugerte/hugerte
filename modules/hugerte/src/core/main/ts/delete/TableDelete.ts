@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
-import { Attribute, Compare, Remove, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
+import { Attribute, Compare, Remove, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import * as CaretFinder from '../caret/CaretFinder';

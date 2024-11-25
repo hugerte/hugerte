@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr, Obj, Type } from "@hugerte/katamari";
 
 import * as BehaviourBlob from '../../behaviour/common/BehaviourBlob';
 import { AlloyBehaviour, AlloyBehaviourRecord } from '../behaviour/Behaviour';

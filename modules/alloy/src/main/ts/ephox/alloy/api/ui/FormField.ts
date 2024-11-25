@@ -1,5 +1,5 @@
-import { Id } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { Id } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as FormFieldSchema from '../../ui/schema/FormFieldSchema';

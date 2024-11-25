@@ -1,7 +1,7 @@
-import { FocusTools, Keys, Mouse, UiControls, UiFinder } from '@ephox/agar';
+import { FocusTools, Keys, Mouse, UiControls, UiFinder } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { SugarBody, SugarDocument, Value } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { SugarBody, SugarDocument, Value } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

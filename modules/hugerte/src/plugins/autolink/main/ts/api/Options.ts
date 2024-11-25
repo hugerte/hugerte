@@ -1,4 +1,4 @@
-import { Regexes } from '@ephox/polaris';
+import { Regexes } from "@hugerte/polaris";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';

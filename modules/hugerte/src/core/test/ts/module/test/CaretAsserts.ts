@@ -1,5 +1,5 @@
 import { Assert } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+import { Type } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';

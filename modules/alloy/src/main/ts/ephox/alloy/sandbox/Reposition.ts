@@ -1,5 +1,5 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Optional } from "@hugerte/katamari";
 
 import { NamedConfiguredBehaviour } from '../api/behaviour/Behaviour';
 import { Receiving } from '../api/behaviour/Receiving';

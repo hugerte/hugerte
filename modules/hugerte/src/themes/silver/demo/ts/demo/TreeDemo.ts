@@ -1,4 +1,4 @@
-import { Dialog } from '@ephox/bridge';
+import { Dialog } from "@hugerte/bridge";
 
 import { HugeRTE } from 'hugerte/core/api/PublicApi';
 

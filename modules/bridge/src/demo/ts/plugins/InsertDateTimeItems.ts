@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { ToolbarSplitButtonItemTypes } from '../../../main/ts/ephox/bridge/components/toolbar/ToolbarSplitButton';
 import { getDemoRegistry } from '../buttons/DemoRegistry';

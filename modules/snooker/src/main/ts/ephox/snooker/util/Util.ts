@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional } from "@hugerte/katamari";
 
 const unique = <T> (xs: T[], eq: (a: T, b: T) => boolean): T[] => {
   const result: T[] = [];

@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { EventArgs } from "@hugerte/sugar";
 
 import { KeyRuleHandler } from '../keying/KeyingModeTypes';
 import * as KeyMatch from './KeyMatch';

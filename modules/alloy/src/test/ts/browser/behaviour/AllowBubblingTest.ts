@@ -1,4 +1,4 @@
-import { Logger, Step, StepSequence } from '@ephox/agar';
+import { Logger, Step, StepSequence } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';

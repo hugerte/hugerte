@@ -1,6 +1,6 @@
 
-import { Arr, Optional, Strings, Type } from '@ephox/katamari';
-import { Url } from '@ephox/polaris';
+import { Arr, Optional, Strings, Type } from "@hugerte/katamari";
+import { Url } from "@hugerte/polaris";
 
 import AstNode from '../api/html/Node';
 

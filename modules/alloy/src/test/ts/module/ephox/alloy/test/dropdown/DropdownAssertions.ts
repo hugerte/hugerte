@@ -1,5 +1,5 @@
-import { Assertions, Chain, Logger, Step, UiFinder } from '@ephox/agar';
-import { Css, Width } from '@ephox/sugar';
+import { Assertions, Chain, Logger, Step, UiFinder } from "@hugerte/agar";
+import { Css, Width } from "@hugerte/sugar";
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
 import { GuiSystem } from 'ephox/alloy/api/system/Gui';

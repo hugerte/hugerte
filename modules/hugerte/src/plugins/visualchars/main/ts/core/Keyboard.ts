@@ -1,4 +1,4 @@
-import { Cell, Throttler } from '@ephox/katamari';
+import { Cell, Throttler } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

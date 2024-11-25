@@ -5,9 +5,9 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { Arr, Optional, Strings } from '@ephox/katamari';
-import { TableLookup } from '@ephox/snooker';
-import { Attribute, Compare, ContentEditable, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Optional, Strings } from "@hugerte/katamari";
+import { TableLookup } from "@hugerte/snooker";
+import { Attribute, Compare, ContentEditable, PredicateFind, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

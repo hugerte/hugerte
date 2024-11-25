@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { Compare, Focus, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Compare, Focus, SugarElement } from "@hugerte/sugar";
 
 import { Highlighting } from '../behaviour/Highlighting';
 import { AlloyComponent } from '../component/ComponentApi';

@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { Gene } from '../api/Gene';
 import * as Comparator from './Comparator';

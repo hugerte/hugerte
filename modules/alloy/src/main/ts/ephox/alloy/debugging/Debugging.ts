@@ -1,6 +1,6 @@
-import { Objects } from '@ephox/boulder';
-import { Arr, Cell, Fun, Global, Obj, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Arr, Cell, Fun, Global, Obj, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import * as SystemEvents from '../api/events/SystemEvents';

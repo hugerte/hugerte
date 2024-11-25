@@ -1,6 +1,6 @@
-import { Arr } from '@ephox/katamari';
-import { DomStructure } from '@ephox/robin';
-import { Compare, CursorPosition, InsertAll, PredicateFind, Remove, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { DomStructure } from "@hugerte/robin";
+import { Compare, CursorPosition, InsertAll, PredicateFind, Remove, SugarElement, SugarNode, SugarText, Traverse } from "@hugerte/sugar";
 
 const merge = (cells: SugarElement<HTMLTableCellElement>[]): void => {
   const isBr = SugarNode.isTag('br');

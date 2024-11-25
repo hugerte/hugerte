@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Type } from '@ephox/katamari';
-import { Attribute, Class, Html, InsertAll, SugarElement } from '@ephox/sugar';
+import { Arr, Obj, Type } from "@hugerte/katamari";
+import { Attribute, Class, Html, InsertAll, SugarElement } from "@hugerte/sugar";
 
 import * as CopySelected from 'ephox/snooker/api/CopySelected';
 import { LOCKED_COL_ATTR } from 'ephox/snooker/util/LockedColumnUtils';

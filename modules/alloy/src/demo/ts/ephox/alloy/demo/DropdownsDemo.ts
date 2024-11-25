@@ -1,5 +1,5 @@
-import { Arr, Future, Obj, Optional, Result } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Arr, Future, Obj, Optional, Result } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Keying } from 'ephox/alloy/api/behaviour/Keying';
@@ -27,7 +27,7 @@ const makeItem = (v: string, t: string, c?: string): DemoRenders.DemoItem => ({
     value: v,
     meta: {
       text: t,
-      ...c ? { 'item-class': c } : { }
+      ...(c ? { 'item-class': c } : { })
     }
   }
 });

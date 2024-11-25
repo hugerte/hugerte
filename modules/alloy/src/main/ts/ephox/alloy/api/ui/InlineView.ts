@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import * as ComponentStructure from '../../alien/ComponentStructure';

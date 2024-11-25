@@ -1,4 +1,4 @@
-import { Optional, Type } from '@ephox/katamari';
+import { Optional, Type } from "@hugerte/katamari";
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 import Tools from 'hugerte/core/api/util/Tools';

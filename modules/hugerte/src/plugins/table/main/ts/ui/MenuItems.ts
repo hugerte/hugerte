@@ -1,5 +1,5 @@
-import { Arr, Fun, Type } from '@ephox/katamari';
-import { SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Type } from "@hugerte/katamari";
+import { SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Menu } from 'hugerte/core/api/ui/Ui';

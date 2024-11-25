@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr, Obj, Type } from "@hugerte/katamari";
 
 export const getAllObjects = (obj: any): Array<Object> => {
   if (Type.isObject(obj)) {

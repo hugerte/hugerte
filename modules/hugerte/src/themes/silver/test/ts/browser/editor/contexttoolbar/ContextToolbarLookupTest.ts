@@ -1,8 +1,8 @@
-import { UiFinder, Waiter } from '@ephox/agar';
+import { UiFinder, Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun, Obj } from '@ephox/katamari';
-import { Focus, SelectorFind, SugarBody } from '@ephox/sugar';
-import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Cell, Fun, Obj } from "@hugerte/katamari";
+import { Focus, SelectorFind, SugarBody } from "@hugerte/sugar";
+import { TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

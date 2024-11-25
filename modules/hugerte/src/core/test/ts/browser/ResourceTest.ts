@@ -1,5 +1,5 @@
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Global } from '@ephox/katamari';
+import { Global } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import Resource from 'hugerte/core/api/Resource';

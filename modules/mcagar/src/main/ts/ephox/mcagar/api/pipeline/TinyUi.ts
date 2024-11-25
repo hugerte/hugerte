@@ -1,6 +1,6 @@
-import { Assertions, Chain, Mouse, Step, UiFinder } from '@ephox/agar';
-import { Arr, Fun } from '@ephox/katamari';
-import { SugarElement, SugarShadowDom, Visibility } from '@ephox/sugar';
+import { Assertions, Chain, Mouse, Step, UiFinder } from "@hugerte/agar";
+import { Arr, Fun } from "@hugerte/katamari";
+import { SugarElement, SugarShadowDom, Visibility } from "@hugerte/sugar";
 
 import { Editor } from '../../alien/EditorTypes';
 import * as TinyUiActions from '../bdd/TinyUiActions';

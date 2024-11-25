@@ -1,9 +1,9 @@
-import { Mouse, UiFinder, Waiter } from '@ephox/agar';
-import { Boxes } from '@ephox/alloy';
+import { Mouse, UiFinder, Waiter } from "@hugerte/agar";
+import { Boxes } from "@hugerte/alloy";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Class, Css, Height, Insert, Remove, Scroll, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Class, Css, Height, Insert, Remove, Scroll, SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

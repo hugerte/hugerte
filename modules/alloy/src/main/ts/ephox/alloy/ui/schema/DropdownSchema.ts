@@ -1,5 +1,5 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
+import { FieldSchema } from "@hugerte/boulder";
+import { Fun, Optional } from "@hugerte/katamari";
 
 import { Coupling } from '../../api/behaviour/Coupling';
 import { Focusing } from '../../api/behaviour/Focusing';

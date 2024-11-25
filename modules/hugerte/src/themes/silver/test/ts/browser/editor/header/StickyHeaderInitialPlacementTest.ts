@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { McEditor } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { McEditor } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { ToolbarLocation } from 'hugerte/themes/silver/api/Options';

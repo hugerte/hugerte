@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene, Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
+import { Gene, TestUniverse, TextGene, Universe } from "@hugerte/boss";
+import { Arr, Optional } from "@hugerte/katamari";
 
 import * as Look from 'ephox/robin/api/general/Look';
 import * as Parent from 'ephox/robin/api/general/Parent';

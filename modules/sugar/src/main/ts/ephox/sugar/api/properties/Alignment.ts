@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 
 import { SugarElement } from '../node/SugarElement';
 import * as Node from '../node/SugarNode';

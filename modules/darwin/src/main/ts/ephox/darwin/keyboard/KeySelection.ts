@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Awareness, Compare, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Awareness, Compare, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import { SelectionAnnotation } from '../api/SelectionAnnotation';
 import * as CellSelection from '../selection/CellSelection';

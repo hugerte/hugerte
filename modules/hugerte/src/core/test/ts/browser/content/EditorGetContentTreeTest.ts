@@ -1,6 +1,6 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyApis, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { TinyApis, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import AstNode from 'hugerte/core/api/html/Node';

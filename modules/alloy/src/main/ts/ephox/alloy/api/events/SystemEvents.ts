@@ -1,6 +1,6 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SugarElement } from "@hugerte/sugar";
 
 import { CustomEvent } from '../../events/SimulatedEvent';
 import { AlloyComponent } from '../component/ComponentApi';

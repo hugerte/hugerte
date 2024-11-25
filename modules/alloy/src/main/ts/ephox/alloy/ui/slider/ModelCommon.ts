@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 
 import { NativeSimulatedEvent } from '../../events/SimulatedEvent';
 

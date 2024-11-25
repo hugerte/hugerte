@@ -1,8 +1,8 @@
-import { Assertions, FileInput, Files, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { Assertions, FileInput, Files, Mouse, UiFinder, Waiter } from "@hugerte/agar";
 import { afterEach, describe, it } from '@ephox/bedrock-client';
-import { Strings } from '@ephox/katamari';
-import { SugarBody, Value } from '@ephox/sugar';
-import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Strings } from "@hugerte/katamari";
+import { SugarBody, Value } from "@hugerte/sugar";
+import { TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

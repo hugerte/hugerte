@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
-import { Attribute, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional } from "@hugerte/katamari";
+import { Attribute, SugarElement } from "@hugerte/sugar";
 
 import * as Structs from '../api/Structs';
 import * as GridRow from '../model/GridRow';

@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+import { Strings } from "@hugerte/katamari";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

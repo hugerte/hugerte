@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { DomEvent, Html, Insert, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { DomEvent, Html, Insert, SelectorFind, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import { HugeRTE } from 'hugerte/core/api/PublicApi';
 

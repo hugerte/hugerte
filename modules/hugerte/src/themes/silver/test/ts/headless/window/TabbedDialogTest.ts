@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder } from '@ephox/agar';
+import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarBody, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SugarBody, SugarElement } from "@hugerte/sugar";
 
 import { WindowManagerImpl } from 'hugerte/core/api/WindowManager';
 import * as WindowManager from 'hugerte/themes/silver/ui/dialog/WindowManager';

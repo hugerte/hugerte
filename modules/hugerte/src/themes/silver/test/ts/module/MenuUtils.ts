@@ -1,7 +1,7 @@
-import { Mouse, UiFinder, Waiter } from '@ephox/agar';
-import { Boxes } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
+import { Mouse, UiFinder, Waiter } from "@hugerte/agar";
+import { Boxes } from "@hugerte/alloy";
+import { Arr } from "@hugerte/katamari";
+import { SugarBody } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { ToolbarMode } from 'hugerte/themes/silver/api/Options';

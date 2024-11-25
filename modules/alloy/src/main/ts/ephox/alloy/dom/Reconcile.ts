@@ -1,5 +1,5 @@
-import { Arr, Obj } from '@ephox/katamari';
-import { Attribute, Classes, Css, Html, SugarElement, Value } from '@ephox/sugar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { Attribute, Classes, Css, Html, SugarElement, Value } from "@hugerte/sugar";
 
 import { DomDefinitionDetail } from './DomDefinition';
 import { patchDomChildren } from './Patching';

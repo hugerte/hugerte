@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder } from '@ephox/agar';
-import { AlloyComponent, GuiFactory, NativeEvents, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder } from "@hugerte/agar";
+import { AlloyComponent, GuiFactory, NativeEvents, Representing, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { renderSizeInput } from 'hugerte/themes/silver/ui/dialog/SizeInput';
 

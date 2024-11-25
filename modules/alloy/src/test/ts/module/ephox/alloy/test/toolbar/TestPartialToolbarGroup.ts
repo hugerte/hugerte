@@ -1,4 +1,4 @@
-import { Arr, Fun, Merger } from '@ephox/katamari';
+import { Arr, Fun, Merger } from "@hugerte/katamari";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

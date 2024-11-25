@@ -1,5 +1,5 @@
-import { Merger, Obj } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Merger, Obj } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 import * as fc from 'fast-check';
 
 import { ArbSchema } from './ArbSchema';

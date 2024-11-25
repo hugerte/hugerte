@@ -1,8 +1,8 @@
-import { Cursors, RealClipboard, RealKeys } from '@ephox/agar';
+import { Cursors, RealClipboard, RealKeys } from "@hugerte/agar";
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Singleton } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Singleton } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

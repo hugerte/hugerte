@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { SugarElement, Width } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SugarElement, Width } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Env from 'hugerte/core/api/Env';

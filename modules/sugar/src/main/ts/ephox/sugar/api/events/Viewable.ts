@@ -1,4 +1,4 @@
-import { Fun, Throttler } from '@ephox/katamari';
+import { Fun, Throttler } from "@hugerte/katamari";
 
 import { SugarElement } from '../node/SugarElement';
 import * as Traverse from '../search/Traverse';

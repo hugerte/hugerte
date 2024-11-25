@@ -5,10 +5,10 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { TableSelection } from '@ephox/darwin';
-import { Arr, Fun } from '@ephox/katamari';
-import { TableLookup } from '@ephox/snooker';
-import { SelectorFind, Selectors, SugarElement, SugarElements, SugarNode } from '@ephox/sugar';
+import { TableSelection } from "@hugerte/darwin";
+import { Arr, Fun } from "@hugerte/katamari";
+import { TableLookup } from "@hugerte/snooker";
+import { SelectorFind, Selectors, SugarElement, SugarElements, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

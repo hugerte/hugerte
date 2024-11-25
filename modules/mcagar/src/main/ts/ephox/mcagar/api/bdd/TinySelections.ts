@@ -1,4 +1,4 @@
-import { Cursors, UiFinder } from '@ephox/agar';
+import { Cursors, UiFinder } from "@hugerte/agar";
 
 import { Editor } from '../../alien/EditorTypes';
 import { createDomSelection } from '../../selection/SelectionTools';

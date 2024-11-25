@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Attribute, Class, SugarNode } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute, Class, SugarNode } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { Stateless } from '../../behaviour/common/BehaviourState';

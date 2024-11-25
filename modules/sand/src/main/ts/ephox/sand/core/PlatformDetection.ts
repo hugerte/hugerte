@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { DeviceType } from '../detect/DeviceType';
 import * as UaData from '../detect/UaData';

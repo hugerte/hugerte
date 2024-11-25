@@ -1,10 +1,10 @@
-import { Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
-import { AlloyComponent, Behaviour, GuiFactory, ModalDialog, Positioning, TestHelpers, TooltippingTypes } from '@ephox/alloy';
+import { Mouse, TestStore, UiFinder, Waiter } from "@hugerte/agar";
+import { AlloyComponent, Behaviour, GuiFactory, ModalDialog, Positioning, TestHelpers, TooltippingTypes } from "@hugerte/alloy";
 import { before, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { ValueType } from '@ephox/boulder';
-import { DialogManager } from '@ephox/bridge';
-import { Fun, Optional, Result } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
+import { ValueType } from "@hugerte/boulder";
+import { DialogManager } from "@hugerte/bridge";
+import { Fun, Optional, Result } from "@hugerte/katamari";
+import { SugarBody } from "@hugerte/sugar";
 
 import I18n from 'hugerte/core/api/util/I18n';
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';

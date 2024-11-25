@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
 import * as Remove from 'ephox/sugar/api/dom/Remove';

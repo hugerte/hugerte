@@ -1,5 +1,5 @@
-import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { FieldProcessor, FieldSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
 
 import * as Boxes from '../../alien/Boxes';
 import SnapSchema from './SnapSchema';

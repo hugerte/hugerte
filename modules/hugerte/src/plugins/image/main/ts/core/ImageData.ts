@@ -1,5 +1,5 @@
-import { Type } from '@ephox/katamari';
-import { Attribute, SugarElement } from '@ephox/sugar';
+import { Type } from "@hugerte/katamari";
+import { Attribute, SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 

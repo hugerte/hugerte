@@ -1,4 +1,4 @@
-import { Id } from '@ephox/katamari';
+import { Id } from "@hugerte/katamari";
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 

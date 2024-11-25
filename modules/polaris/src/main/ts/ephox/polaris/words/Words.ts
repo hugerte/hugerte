@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { CharacterMap, classify } from './StringMapper';
 import * as UnicodeData from './UnicodeData';

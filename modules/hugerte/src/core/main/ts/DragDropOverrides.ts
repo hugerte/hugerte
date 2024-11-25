@@ -1,6 +1,6 @@
-import { DataTransfer, DataTransferContent } from '@ephox/dragster';
-import { Arr, Optional, Singleton, Throttler, Type } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { DataTransfer, DataTransferContent } from "@hugerte/dragster";
+import { Arr, Optional, Singleton, Throttler, Type } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from './api/dom/DOMUtils';
 import { EventUtilsEvent } from './api/dom/EventUtils';

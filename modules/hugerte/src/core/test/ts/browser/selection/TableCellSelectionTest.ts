@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Hierarchy, Html, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as TableCellSelection from 'hugerte/core/selection/TableCellSelection';

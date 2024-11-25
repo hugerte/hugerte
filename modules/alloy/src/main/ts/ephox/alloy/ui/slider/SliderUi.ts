@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { Keying } from '../../api/behaviour/Keying';
 import { Receiving } from '../../api/behaviour/Receiving';

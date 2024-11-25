@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import * as NativeRange from '../../selection/core/NativeRange';
 import * as SelectionDirection from '../../selection/core/SelectionDirection';

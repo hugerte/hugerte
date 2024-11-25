@@ -1,6 +1,6 @@
-import { Chain, NamedChain } from '@ephox/agar';
+import { Chain, NamedChain } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';

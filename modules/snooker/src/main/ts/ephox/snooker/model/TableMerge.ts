@@ -1,5 +1,5 @@
-import { Arr, Fun, Result } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Result } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { SimpleGenerators } from '../api/Generators';
 import * as Structs from '../api/Structs';
@@ -19,12 +19,11 @@ const isSpanning = (grid: Structs.RowCells[], row: number, col: number, comparat
     (
       // search left, if we're not on the left edge
       // search down, if we're not on the bottom edge
-      (col > 0 && matching(GridRow.getCellElement(currentRow, col - 1))) ||
+      ((col > 0 && matching(GridRow.getCellElement(currentRow, col - 1))) ||
       // search right, if we're not on the right edge
       (col < currentRow.cells.length - 1 && matching(GridRow.getCellElement(currentRow, col + 1))) ||
       // search up, if we're not on the top edge
-      (row > 0 && matching(GridRow.getCellElement(grid[row - 1], col))) ||
-      (row < grid.length - 1 && matching(GridRow.getCellElement(grid[row + 1], col)))
+      (row > 0 && matching(GridRow.getCellElement(grid[row - 1], col))) || (row < grid.length - 1 && matching(GridRow.getCellElement(grid[row + 1], col))))
     );
 };
 

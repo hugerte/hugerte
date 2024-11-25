@@ -1,7 +1,7 @@
-import { AlloyComponent, AlloyTriggers, Disabling, MementoRecord, SketchSpec, Tabstopping } from '@ephox/alloy';
-import { Dialog, Menu, Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Optional } from '@ephox/katamari';
-import { Attribute, Class, Focus } from '@ephox/sugar';
+import { AlloyComponent, AlloyTriggers, Disabling, MementoRecord, SketchSpec, Tabstopping } from "@hugerte/alloy";
+import { Dialog, Menu, Toolbar } from "@hugerte/bridge";
+import { Arr, Cell, Optional } from "@hugerte/katamari";
+import { Attribute, Class, Focus } from "@hugerte/sugar";
 
 import { formActionEvent } from 'hugerte/themes/silver/ui/general/FormEvents';
 

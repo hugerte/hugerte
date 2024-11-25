@@ -1,5 +1,5 @@
 import { Assert, it, describe } from '@ephox/bedrock-client';
-import { Arr, Unicode } from '@ephox/katamari';
+import { Arr, Unicode } from "@hugerte/katamari";
 
 import * as Pattern from 'ephox/polaris/api/Pattern';
 import * as Search from 'ephox/polaris/api/Search';

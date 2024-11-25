@@ -1,4 +1,4 @@
-import { Assertions, Guard, Step } from '@ephox/agar';
+import { Assertions, Guard, Step } from "@hugerte/agar";
 import { Assert } from '@ephox/bedrock-client';
 
 const sAssertFailIs = <T>(label: string, expected: string, f: () => void): Step<T, T> =>

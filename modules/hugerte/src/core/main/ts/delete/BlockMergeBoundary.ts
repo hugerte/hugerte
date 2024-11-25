@@ -1,5 +1,5 @@
-import { Optional, Optionals } from '@ephox/katamari';
-import { Compare, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { Optional, Optionals } from "@hugerte/katamari";
+import { Compare, PredicateFind, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Schema from '../api/html/Schema';
 import * as CaretFinder from '../caret/CaretFinder';

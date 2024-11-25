@@ -1,5 +1,5 @@
-import { Objects } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
+import { Objects } from "@hugerte/boulder";
+import { Obj } from "@hugerte/katamari";
 
 import * as ActiveTransitioning from '../../behaviour/transitioning/ActiveTransitioning';
 import * as TransitionApis from '../../behaviour/transitioning/TransitionApis';

@@ -1,8 +1,8 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
 import {
   Attribute, Compare, Css, Insert, InsertAll, PredicateFilter, PredicateFind, Remove, SelectorFilter, SelectorFind, SugarElement, SugarNode,
   SugarText, Traverse
-} from '@ephox/sugar';
+} from "@hugerte/sugar";
 
 import TagBoundaries from '../common/TagBoundaries';
 import { Universe } from './Universe';

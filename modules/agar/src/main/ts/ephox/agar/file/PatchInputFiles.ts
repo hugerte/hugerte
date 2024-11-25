@@ -1,4 +1,4 @@
-import { Singleton } from '@ephox/katamari';
+import { Singleton } from "@hugerte/katamari";
 
 import { Chain } from '../api/Chain';
 import * as GeneralSteps from '../api/GeneralSteps';

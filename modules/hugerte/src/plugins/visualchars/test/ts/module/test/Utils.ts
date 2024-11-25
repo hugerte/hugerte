@@ -1,6 +1,6 @@
-import { ApproxStructure, StructAssert } from '@ephox/agar';
-import { Unicode } from '@ephox/katamari';
-import { TinyAssertions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, StructAssert } from "@hugerte/agar";
+import { Unicode } from "@hugerte/katamari";
+import { TinyAssertions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

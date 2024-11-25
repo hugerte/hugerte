@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from "@hugerte/katamari";
 
 import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
 import { Pipeline } from 'ephox/agar/api/Pipeline';

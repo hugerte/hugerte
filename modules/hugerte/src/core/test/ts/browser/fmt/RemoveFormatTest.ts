@@ -1,6 +1,6 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Hierarchy } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { Hierarchy } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Format } from 'hugerte/core/fmt/FormatTypes';

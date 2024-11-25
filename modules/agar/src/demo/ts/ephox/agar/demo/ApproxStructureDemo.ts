@@ -1,4 +1,4 @@
-import { Class, Html, InsertAll, SugarElement } from '@ephox/sugar';
+import { Class, Html, InsertAll, SugarElement } from "@hugerte/sugar";
 
 import * as ApproxStructure from 'ephox/agar/api/ApproxStructure';
 import * as Assertions from 'ephox/agar/api/Assertions';

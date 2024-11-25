@@ -1,4 +1,4 @@
-import { Cell, Singleton } from '@ephox/katamari';
+import { Cell, Singleton } from "@hugerte/katamari";
 
 import { nuState } from '../common/BehaviourState';
 import { DockingConfig, DockingMode, DockingState, InitialDockingPosition } from './DockingTypes';

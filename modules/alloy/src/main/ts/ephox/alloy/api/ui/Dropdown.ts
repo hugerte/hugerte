@@ -1,5 +1,5 @@
-import { Fun, Future, Obj, Optional } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+import { Fun, Future, Obj, Optional } from "@hugerte/katamari";
+import { EventArgs } from "@hugerte/sugar";
 
 import * as DropdownUtils from '../../dropdown/DropdownUtils';
 import { SimulatedEvent } from '../../events/SimulatedEvent';
@@ -183,7 +183,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
       attributes: {
         'aria-haspopup': 'true',
         ...detail.role.fold(() => ({}), (role) => ({ role })),
-        ...detail.dom.tag === 'button' ? { type: lookupAttr('type').getOr('button') } : {}
+        ...(detail.dom.tag === 'button' ? { type: lookupAttr('type').getOr('button') } : {})
       }
     }
   };

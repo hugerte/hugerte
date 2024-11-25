@@ -1,5 +1,5 @@
-import { TooltippingTypes } from '@ephox/alloy';
-import { Fun } from '@ephox/katamari';
+import { TooltippingTypes } from "@hugerte/alloy";
+import { Fun } from "@hugerte/katamari";
 
 import I18n from 'hugerte/core/api/util/I18n';
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';

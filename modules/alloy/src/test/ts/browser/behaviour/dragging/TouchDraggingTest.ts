@@ -1,8 +1,8 @@
-import { Chain, Guard, NamedChain, Touch, UiFinder } from '@ephox/agar';
+import { Chain, Guard, NamedChain, Touch, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional, Result } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Css, Scroll, SugarPosition } from '@ephox/sugar';
+import { Fun, Optional, Result } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Css, Scroll, SugarPosition } from "@hugerte/sugar";
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

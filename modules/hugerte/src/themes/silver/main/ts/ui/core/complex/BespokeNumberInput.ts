@@ -1,7 +1,7 @@
-import { Keys } from '@ephox/agar';
-import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Button, Disabling, Focusing, FocusInsideModes, Input, Keying, Memento, NativeEvents, Representing, SystemEvents, Tooltipping } from '@ephox/alloy';
-import { Arr, Cell, Fun, Id, Optional, Type } from '@ephox/katamari';
-import { Focus, SugarElement, Traverse } from '@ephox/sugar';
+import { Keys } from "@hugerte/agar";
+import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Button, Disabling, Focusing, FocusInsideModes, Input, Keying, Memento, NativeEvents, Representing, SystemEvents, Tooltipping } from "@hugerte/alloy";
+import { Arr, Cell, Fun, Id, Optional, Type } from "@hugerte/katamari";
+import { Focus, SugarElement, Traverse } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';

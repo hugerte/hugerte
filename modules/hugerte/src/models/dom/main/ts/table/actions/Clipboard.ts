@@ -1,6 +1,6 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { CopySelected, TableFill, TableLookup } from '@ephox/snooker';
-import { SugarElement, SugarElements, SugarNode } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { CopySelected, TableFill, TableLookup } from "@hugerte/snooker";
+import { SugarElement, SugarElements, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

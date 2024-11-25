@@ -1,8 +1,8 @@
-import { ApproxStructure, UiControls, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, UiControls, UiFinder, Waiter } from "@hugerte/agar";
 import { Assert, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarBody, SugarShadowDom } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { SugarBody, SugarShadowDom } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import LocalStorage from 'hugerte/core/api/util/LocalStorage';

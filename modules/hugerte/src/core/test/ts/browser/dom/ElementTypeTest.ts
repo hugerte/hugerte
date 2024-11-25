@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as ElementType from 'hugerte/core/dom/ElementType';

@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Composing, Form as AlloyForm, GuiFactory, Keying, Receiving, Representing,
   SketchSpec, Tabbar as AlloyTabbar, TabbarTypes, TabSection as AlloyTabSection, Tabstopping
-} from '@ephox/alloy';
-import { Objects } from '@ephox/boulder';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Cell, Fun, Merger, Optional } from '@ephox/katamari';
+} from "@hugerte/alloy";
+import { Objects } from "@hugerte/boulder";
+import { Dialog } from "@hugerte/bridge";
+import { Arr, Cell, Fun, Merger, Optional } from "@hugerte/katamari";
 
 import { toValidValues } from 'hugerte/themes/silver/ui/general/FormValues';
 import { interpretInForm } from 'hugerte/themes/silver/ui/general/UiFactory';

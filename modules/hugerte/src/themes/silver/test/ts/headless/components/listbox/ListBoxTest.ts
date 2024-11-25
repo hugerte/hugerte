@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
-import { AlloyComponent, Disabling, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from "@hugerte/agar";
+import { AlloyComponent, Disabling, GuiFactory, Representing, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { renderListBox } from 'hugerte/themes/silver/ui/dialog/ListBox';

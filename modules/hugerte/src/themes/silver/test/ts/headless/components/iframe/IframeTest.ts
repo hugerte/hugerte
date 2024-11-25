@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
-import { AlloyComponent, Composing, Container, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, Waiter } from "@hugerte/agar";
+import { AlloyComponent, Composing, Container, GuiFactory, Representing, TestHelpers } from "@hugerte/alloy";
 import { describe, context, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { renderIFrame } from 'hugerte/themes/silver/ui/dialog/IFrame';

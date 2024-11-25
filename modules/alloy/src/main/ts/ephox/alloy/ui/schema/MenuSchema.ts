@@ -1,5 +1,5 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Obj, Optional } from '@ephox/katamari';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Fun, Obj, Optional } from "@hugerte/katamari";
 
 import { Composing } from '../../api/behaviour/Composing';
 import { Highlighting } from '../../api/behaviour/Highlighting';

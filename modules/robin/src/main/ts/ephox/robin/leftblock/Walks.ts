@@ -1,6 +1,6 @@
-import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
-import { Gather, Transition, Traverse } from '@ephox/phoenix';
+import { Universe } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
+import { Gather, Transition, Traverse } from "@hugerte/phoenix";
 
 export interface Walks {
   rules?: {

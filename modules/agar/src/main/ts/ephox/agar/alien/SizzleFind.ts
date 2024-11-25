@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 import * as Sizzle from 'sizzle';
 
 type SizzleContext = Element | Document | DocumentFragment;

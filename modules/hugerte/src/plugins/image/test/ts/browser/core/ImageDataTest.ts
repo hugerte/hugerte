@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, StructAssert } from '@ephox/agar';
+import { ApproxStructure, Assertions, StructAssert } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
-import { SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { SelectorFind, SugarElement, SugarNode } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';

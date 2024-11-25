@@ -1,4 +1,4 @@
-import { Arr, Cell, Fun, Obj, Optional } from '@ephox/katamari';
+import { Arr, Cell, Fun, Obj, Optional } from "@hugerte/katamari";
 
 import { ItemDataTuple } from '../../ui/types/ItemTypes';
 import { nuState } from '../common/BehaviourState';

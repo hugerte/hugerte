@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional, OptionalInstances } from '@ephox/katamari';
+import { Optional, OptionalInstances } from "@hugerte/katamari";
 
 import * as Compare from 'ephox/sugar/api/dom/Compare';
 import * as Focus from 'ephox/sugar/api/dom/Focus';

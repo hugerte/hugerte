@@ -1,7 +1,7 @@
-import { UiFinder } from '@ephox/agar';
+import { UiFinder } from "@hugerte/agar";
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { SugarBody } from '@ephox/sugar';
-import { McEditor } from '@ephox/wrap-mcagar';
+import { SugarBody } from "@hugerte/sugar";
+import { McEditor } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

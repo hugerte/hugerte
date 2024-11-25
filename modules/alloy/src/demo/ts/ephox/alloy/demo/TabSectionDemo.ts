@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as Memento from 'ephox/alloy/api/component/Memento';

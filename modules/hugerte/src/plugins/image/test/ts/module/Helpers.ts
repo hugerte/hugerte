@@ -1,6 +1,6 @@
-import { Assertions, Mouse, UiFinder } from '@ephox/agar';
-import { Obj, Optional, Type } from '@ephox/katamari';
-import { Attribute, Checked, Class, Focus, SugarBody, SugarElement, Traverse, Value } from '@ephox/sugar';
+import { Assertions, Mouse, UiFinder } from "@hugerte/agar";
+import { Obj, Optional, Type } from "@hugerte/katamari";
+import { Attribute, Checked, Class, Focus, SugarBody, SugarElement, Traverse, Value } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

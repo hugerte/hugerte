@@ -1,9 +1,9 @@
 import {
   AlloyComponent, Attachment, Behaviour, Boxes, Button, DragCoord, Dragging, DraggingTypes, GuiFactory, Memento, Unselecting
-} from '@ephox/alloy';
-import { Arr, Cell, Optional, Singleton } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Compare, Css, SugarElement, SugarPosition, Traverse } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Arr, Cell, Optional, Singleton } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Compare, Css, SugarElement, SugarPosition, Traverse } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorEvent } from 'hugerte/core/api/util/EventDispatcher';

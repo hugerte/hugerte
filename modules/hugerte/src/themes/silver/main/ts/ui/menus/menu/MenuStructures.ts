@@ -1,5 +1,5 @@
-import { AlloySpec, ItemTypes, Menu as AlloyMenu, RawDomSchema, SimpleSpec } from '@ephox/alloy';
-import { Arr, Fun, Id, Obj } from '@ephox/katamari';
+import { AlloySpec, ItemTypes, Menu as AlloyMenu, RawDomSchema, SimpleSpec } from "@hugerte/alloy";
+import { Arr, Fun, Id, Obj } from "@hugerte/katamari";
 
 import I18n from 'hugerte/core/api/util/I18n';
 

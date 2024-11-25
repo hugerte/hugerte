@@ -1,8 +1,8 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, Composing, Keying, Memento, RawDomSchema, SimulatedEvent, Sketcher, Slider
-} from '@ephox/alloy';
-import { FieldSchema } from '@ephox/boulder';
-import { Arr, Cell, Fun } from '@ephox/katamari';
+} from "@hugerte/alloy";
+import { FieldSchema } from "@hugerte/boulder";
+import { Arr, Cell, Fun } from "@hugerte/katamari";
 
 import { Untranslated } from '../alien/I18n';
 import { Hex } from '../api/colour/ColourTypes';

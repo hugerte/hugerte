@@ -1,5 +1,5 @@
-import { Assertions, Step } from '@ephox/agar';
-import { Obj, Optional } from '@ephox/katamari';
+import { Assertions, Step } from "@hugerte/agar";
+import { Obj, Optional } from "@hugerte/katamari";
 
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';

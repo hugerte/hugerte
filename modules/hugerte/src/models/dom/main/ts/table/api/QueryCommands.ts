@@ -1,5 +1,5 @@
-import { Obj } from '@ephox/katamari';
-import { TableLookup } from '@ephox/snooker';
+import { Obj } from "@hugerte/katamari";
+import { TableLookup } from "@hugerte/snooker";
 
 import Editor from 'hugerte/core/api/Editor';
 

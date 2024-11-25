@@ -1,7 +1,7 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
-import { Compare, SugarElement, SugarText } from '@ephox/sugar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
+import { Compare, SugarElement, SugarText } from "@hugerte/sugar";
 
 import * as DomExtract from 'ephox/phoenix/api/dom/DomExtract';
 import { Page } from 'ephox/phoenix/test/Page';

@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, GeneralSteps, Keyboard, Keys, Log, Mouse, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, GeneralSteps, Keyboard, Keys, Log, Mouse, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Future, Result } from '@ephox/katamari';
-import { SelectorExists } from '@ephox/sugar';
+import { Arr, Fun, Future, Result } from "@hugerte/katamari";
+import { SelectorExists } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Tabstopping } from 'ephox/alloy/api/behaviour/Tabstopping';

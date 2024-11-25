@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions } from '@ephox/agar';
+import { ApproxStructure, Assertions } from "@hugerte/agar";
 import { describe, context, it, afterEach, beforeEach } from '@ephox/bedrock-client';
-import { Singleton } from '@ephox/katamari';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Singleton } from "@hugerte/katamari";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -59,9 +59,9 @@ describe('browser.hugerte.themes.silver.window.SilverDialogFooterTest', () => {
           s.element('div', {
             classes: [ arr.has('tox-dialog__content-js') ]
           }),
-          ...hasFooter ? [ s.element('div', {
+          ...(hasFooter ? [ s.element('div', {
             classes: [ arr.has('tox-dialog__footer') ]
-          }) ] : []
+          }) ] : [])
         ]
       })),
       dialog

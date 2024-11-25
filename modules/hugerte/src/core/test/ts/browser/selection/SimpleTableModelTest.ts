@@ -1,6 +1,6 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
+import { Hierarchy, Html, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as SimpleTableModel from 'hugerte/core/selection/SimpleTableModel';

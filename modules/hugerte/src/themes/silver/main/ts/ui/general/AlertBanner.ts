@@ -1,5 +1,5 @@
-import { AlloyTriggers, Behaviour, Button, Container, SketchSpec } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
+import { AlloyTriggers, Behaviour, Button, Container, SketchSpec } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
 
 import { formActionEvent } from 'hugerte/themes/silver/ui/general/FormEvents';
 

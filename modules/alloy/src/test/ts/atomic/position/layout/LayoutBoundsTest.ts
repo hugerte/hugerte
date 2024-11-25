@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optionals } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Optionals } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 

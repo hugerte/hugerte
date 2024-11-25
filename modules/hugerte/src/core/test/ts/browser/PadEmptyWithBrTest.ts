@@ -1,6 +1,6 @@
 import { describe, context, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { TinyAssertions, TinySelections, TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { TinyAssertions, TinySelections, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Theme from 'hugerte/themes/silver/Theme';

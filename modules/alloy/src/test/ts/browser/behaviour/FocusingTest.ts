@@ -1,4 +1,4 @@
-import { ApproxStructure, Assertions, FocusTools, Guard, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, FocusTools, Guard, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

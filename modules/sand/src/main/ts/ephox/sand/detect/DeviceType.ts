@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import { Browser } from '../core/Browser';
 import { OperatingSystem } from '../core/OperatingSystem';

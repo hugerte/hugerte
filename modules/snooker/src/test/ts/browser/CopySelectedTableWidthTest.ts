@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Css, SugarElement } from "@hugerte/sugar";
 
 import * as CopySelected from 'ephox/snooker/api/CopySelected';
 import { reducePrecision } from 'ephox/snooker/test/SizeUtils';

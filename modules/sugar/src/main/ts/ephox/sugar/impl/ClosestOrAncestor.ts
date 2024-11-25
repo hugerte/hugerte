@@ -1,4 +1,4 @@
-import { Optional, Type } from '@ephox/katamari';
+import { Optional, Type } from "@hugerte/katamari";
 
 import { SugarElement } from '../api/node/SugarElement';
 

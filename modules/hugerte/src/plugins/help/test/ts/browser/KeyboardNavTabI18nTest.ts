@@ -1,7 +1,7 @@
-import { Mouse, UiFinder } from '@ephox/agar';
+import { Mouse, UiFinder } from "@hugerte/agar";
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { SugarBody, SugarElement } from '@ephox/sugar';
-import { McEditor, TinyUiActions } from '@ephox/wrap-mcagar';
+import { SugarBody, SugarElement } from "@hugerte/sugar";
+import { McEditor, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { LegacyUnit, TinyApis, TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { LegacyUnit, TinyApis, TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

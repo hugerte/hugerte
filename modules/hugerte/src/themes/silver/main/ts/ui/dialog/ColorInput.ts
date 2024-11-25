@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, Composing, CustomEvent, Disabling, Focusing, FormField, Input,
   Invalidating, Layout, Memento, Representing, SimpleSpec, Tabstopping
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Fun, Future, Id, Optional, Result } from '@ephox/katamari';
-import { Css, SugarElement, Traverse } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Fun, Future, Id, Optional, Result } from "@hugerte/katamari";
+import { Css, SugarElement, Traverse } from "@hugerte/sugar";
 
 import { UiFactoryBackstageShared } from '../../backstage/Backstage';
 import { UiFactoryBackstageForColorInput } from '../../backstage/ColorInputBackstage';

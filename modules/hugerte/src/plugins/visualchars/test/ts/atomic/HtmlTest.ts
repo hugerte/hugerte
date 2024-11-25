@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+import { Unicode } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import * as Html from 'hugerte/plugins/visualchars/core/Html';

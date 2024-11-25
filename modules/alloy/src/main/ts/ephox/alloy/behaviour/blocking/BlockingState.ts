@@ -1,4 +1,4 @@
-import { Singleton } from '@ephox/katamari';
+import { Singleton } from "@hugerte/katamari";
 
 import { nuState } from '../common/BehaviourState';
 import { BlockingState } from './BlockingTypes';

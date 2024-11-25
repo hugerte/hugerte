@@ -1,7 +1,7 @@
-import { AlloySpec, VerticalDir } from '@ephox/alloy';
-import { StructureSchema } from '@ephox/boulder';
-import { Toolbar } from '@ephox/bridge';
-import { Arr, Obj, Optional, Result, Type } from '@ephox/katamari';
+import { AlloySpec, VerticalDir } from "@hugerte/alloy";
+import { StructureSchema } from "@hugerte/boulder";
+import { Toolbar } from "@hugerte/bridge";
+import { Arr, Obj, Optional, Result, Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 

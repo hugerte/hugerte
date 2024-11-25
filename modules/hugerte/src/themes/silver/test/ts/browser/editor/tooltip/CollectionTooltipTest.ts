@@ -1,7 +1,7 @@
-import { FocusTools, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { FocusTools, Keys, Mouse, UiFinder, Waiter } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { SugarDocument } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { SugarDocument } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import CharmapPlugin from 'hugerte/plugins/charmap/Plugin';

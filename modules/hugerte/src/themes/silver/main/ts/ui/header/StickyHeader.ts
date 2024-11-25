@@ -1,6 +1,6 @@
-import { AlloyComponent, Behaviour, Boxes, Channels, Docking, DockingTypes, Focusing, Receiving } from '@ephox/alloy';
-import { Arr, Optional, Result, Singleton } from '@ephox/katamari';
-import { Class, Classes, Compare, Css, Focus, Height, Scroll, SugarElement, SugarLocation, Traverse, Visibility, Width } from '@ephox/sugar';
+import { AlloyComponent, Behaviour, Boxes, Channels, Docking, DockingTypes, Focusing, Receiving } from "@hugerte/alloy";
+import { Arr, Optional, Result, Singleton } from "@hugerte/katamari";
+import { Class, Classes, Compare, Css, Focus, Height, Scroll, SugarElement, SugarLocation, Traverse, Visibility, Width } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { ScrollIntoViewEvent } from 'hugerte/core/api/EventTypes';

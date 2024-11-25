@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { AlloyBehaviour, BehaviourConfigDetail, BehaviourConfigSpec } from '../../api/behaviour/Behaviour';
 import { LazySink } from '../../api/component/CommonTypes';

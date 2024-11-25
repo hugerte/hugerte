@@ -1,4 +1,4 @@
-import { Attribute, Css, SugarElement } from '@ephox/sugar';
+import { Attribute, Css, SugarElement } from "@hugerte/sugar";
 
 const col = (column: number, x: number, y: number, w: number, h: number): SugarElement<HTMLDivElement> => {
   const bar = SugarElement.fromTag('div');

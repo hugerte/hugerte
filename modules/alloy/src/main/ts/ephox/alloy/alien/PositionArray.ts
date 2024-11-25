@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
 
 export interface PositionableUnit {
   readonly finish: number;

@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, AnchorSpec, Behaviour, GuiFactory, InlineView, Keying, Positioning
-} from '@ephox/alloy';
-import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Arr, Fun, Id, Merger, Obj, Optional, Optionals, Singleton, Throttler, Thunk } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Class, Compare, Css, Focus, SugarElement } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { InlineContent, Toolbar } from "@hugerte/bridge";
+import { Arr, Fun, Id, Merger, Obj, Optional, Optionals, Singleton, Throttler, Thunk } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Class, Compare, Css, Focus, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Delay from 'hugerte/core/api/util/Delay';

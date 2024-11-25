@@ -1,4 +1,4 @@
-import { Fun, Optional, Singleton } from '@ephox/katamari';
+import { Fun, Optional, Singleton } from "@hugerte/katamari";
 
 import * as ComponentStructure from '../../alien/ComponentStructure';
 import * as AriaControls from '../../aria/AriaControls';

@@ -1,5 +1,5 @@
 import { describe, context, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
+import { PlatformDetection } from "@hugerte/sand";
 import { assert } from 'chai';
 
 import { createDataTransfer } from 'ephox/dragster/datatransfer/DataTransfer';

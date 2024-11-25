@@ -1,7 +1,7 @@
-import { Assertions, GeneralSteps, Logger, Step, UiFinder, Waiter } from '@ephox/agar';
+import { Assertions, GeneralSteps, Logger, Step, UiFinder, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
-import { Css, SugarElement } from '@ephox/sugar';
+import { Optional, Result } from "@hugerte/katamari";
+import { Css, SugarElement } from "@hugerte/sugar";
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

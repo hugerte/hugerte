@@ -1,5 +1,5 @@
-import { Obj, Optional } from '@ephox/katamari';
-import { SugarElement, TransformFind } from '@ephox/sugar';
+import { Obj, Optional } from "@hugerte/katamari";
+import { SugarElement, TransformFind } from "@hugerte/sugar";
 
 import * as Tagger from '../registry/Tagger';
 import * as DescribedHandler from './DescribedHandler';

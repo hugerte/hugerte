@@ -1,4 +1,4 @@
-import { FocusTools, GeneralSteps, Keyboard, Keys, Step } from '@ephox/agar';
+import { FocusTools, GeneralSteps, Keyboard, Keys, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

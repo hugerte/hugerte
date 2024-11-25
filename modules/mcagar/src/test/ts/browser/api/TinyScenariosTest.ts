@@ -1,7 +1,7 @@
-import { Arbitraries, Assertions, Pipeline, Step } from '@ephox/agar';
+import { Arbitraries, Assertions, Pipeline, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarNode } from '@ephox/sugar';
+import { PlatformDetection } from "@hugerte/sand";
+import { SugarNode } from "@hugerte/sugar";
 
 import { Editor } from 'ephox/mcagar/alien/EditorTypes';
 import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';

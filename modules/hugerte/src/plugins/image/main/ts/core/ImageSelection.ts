@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { SchemaMap } from 'hugerte/core/api/html/Schema';

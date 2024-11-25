@@ -1,6 +1,6 @@
-import { ItemTypes, ItemWidget, Menu as AlloyMenu, MenuTypes } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Fun, Id } from '@ephox/katamari';
+import { ItemTypes, ItemWidget, Menu as AlloyMenu, MenuTypes } from "@hugerte/alloy";
+import { Menu } from "@hugerte/bridge";
+import { Fun, Id } from "@hugerte/katamari";
 
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
 import * as ColorSwatch from 'hugerte/themes/silver/ui/core/color/ColorSwatch';

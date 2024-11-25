@@ -1,7 +1,7 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { DomUniverse, Universe } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
-import { SugarElement, Traverse } from '@ephox/sugar';
+import { DomUniverse, Universe } from "@hugerte/boss";
+import { Arr, Fun } from "@hugerte/katamari";
+import { SugarElement, Traverse } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as TextZones from 'ephox/robin/api/general/TextZones';

@@ -1,7 +1,7 @@
-import { Log, Pipeline, Step } from '@ephox/agar';
+import { Log, Pipeline, Step } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { SelectorFind, SugarDocument, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { SelectorFind, SugarDocument, SugarElement } from "@hugerte/sugar";
 
 import { cellOperations } from 'ephox/snooker/api/TableFill';
 

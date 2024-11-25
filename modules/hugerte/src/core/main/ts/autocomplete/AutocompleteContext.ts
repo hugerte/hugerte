@@ -1,4 +1,4 @@
-import { Optional, Strings } from '@ephox/katamari';
+import { Optional, Strings } from "@hugerte/katamari";
 
 import * as TextSearch from '../alien/TextSearch';
 import DOMUtils from '../api/dom/DOMUtils';

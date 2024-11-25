@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder, Waiter } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { McEditor, TinyDom } from '@ephox/wrap-mcagar';
+import { McEditor, TinyDom } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { RawEditorOptions } from 'hugerte/core/api/OptionTypes';

@@ -1,5 +1,5 @@
-import { Arr, Fun } from '@ephox/katamari';
-import { EventArgs, Focus, SelectorFind, Selectors } from '@ephox/sugar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { EventArgs, Focus, SelectorFind, Selectors } from "@hugerte/sugar";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 // Not ideal coupling here.

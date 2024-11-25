@@ -1,6 +1,6 @@
-import { Assertions, Log, Logger, Step } from '@ephox/agar';
+import { Assertions, Log, Logger, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Class, Width } from '@ephox/sugar';
+import { Class, Width } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Sliding } from 'ephox/alloy/api/behaviour/Sliding';

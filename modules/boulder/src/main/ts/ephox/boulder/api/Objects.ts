@@ -1,4 +1,4 @@
-import { Arr, Merger, Result, Results } from '@ephox/katamari';
+import { Arr, Merger, Result, Results } from "@hugerte/katamari";
 
 import * as ObjChanger from '../core/ObjChanger';
 import * as ObjWriter from '../core/ObjWriter';

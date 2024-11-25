@@ -1,4 +1,4 @@
-import { Attribute, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Attribute, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import { Step } from 'ephox/agar/api/Step';
 

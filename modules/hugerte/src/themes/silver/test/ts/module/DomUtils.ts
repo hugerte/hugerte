@@ -1,6 +1,6 @@
-import { FocusTools, UiFinder } from '@ephox/agar';
-import { AlloyComponent, AlloyTriggers } from '@ephox/alloy';
-import { Traverse, Value } from '@ephox/sugar';
+import { FocusTools, UiFinder } from "@hugerte/agar";
+import { AlloyComponent, AlloyTriggers } from "@hugerte/alloy";
+import { Traverse, Value } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 const assertValue = (label: string, component: AlloyComponent, selector: string, expected: string): void => {

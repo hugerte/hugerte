@@ -1,6 +1,6 @@
-import { Objects } from '@ephox/boulder';
-import { Cell, Obj, Optional, Singleton } from '@ephox/katamari';
-import { Compare, EventArgs, SugarElement } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Cell, Obj, Optional, Singleton } from "@hugerte/katamari";
+import { Compare, EventArgs, SugarElement } from "@hugerte/sugar";
 
 import { DelayedFunction } from '../alien/DelayedFunction';
 import * as NativeEvents from '../api/events/NativeEvents';

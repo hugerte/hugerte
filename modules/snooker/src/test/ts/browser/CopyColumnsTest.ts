@@ -1,6 +1,6 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import { copyCols } from 'ephox/snooker/api/CopyCols';
 

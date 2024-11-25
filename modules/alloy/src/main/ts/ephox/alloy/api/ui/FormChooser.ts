@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Attribute, SelectorFilter } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Attribute, SelectorFilter } from "@hugerte/sugar";
 
 import * as FormChooserSchema from '../../ui/schema/FormChooserSchema';
 import { FormChooserDetail, FormChooserSketcher, FormChooserSpec } from '../../ui/types/FormChooserTypes';

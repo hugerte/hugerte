@@ -1,5 +1,5 @@
-import { Fun, Obj, Strings, Type } from '@ephox/katamari';
-import { TableLookup } from '@ephox/snooker';
+import { Fun, Obj, Strings, Type } from "@hugerte/katamari";
+import { TableLookup } from "@hugerte/snooker";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

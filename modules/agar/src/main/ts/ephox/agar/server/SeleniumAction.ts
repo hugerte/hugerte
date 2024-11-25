@@ -1,4 +1,4 @@
-import { DataType, Http } from '@ephox/jax';
+import { DataType, Http } from "@hugerte/jax";
 
 import { Chain } from '../api/Chain';
 import { Step } from '../api/Step';

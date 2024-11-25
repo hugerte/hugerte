@@ -1,8 +1,8 @@
-import { AlloyComponent, Behaviour, Focusing, FormField, Receiving, SketchSpec, Tabstopping } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Cell, Fun, Optional, Optionals, Throttler, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Attribute, Class, Compare, SugarElement, Traverse } from '@ephox/sugar';
+import { AlloyComponent, Behaviour, Focusing, FormField, Receiving, SketchSpec, Tabstopping } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Cell, Fun, Optional, Optionals, Throttler, Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Attribute, Class, Compare, SugarElement, Traverse } from "@hugerte/sugar";
 
 import * as Backstage from '../../backstage/Backstage';
 import * as FieldLabeller from '../alien/FieldLabeller';
@@ -133,7 +133,7 @@ const renderIFrame = (spec: IframeSpec, providersBackstage: Backstage.UiFactoryB
   const attributes = {
     ...spec.label.map<{ title?: string }>((title) => ({ title })).getOr({}),
     ...initialData.map((html) => ({ srcdoc: html })).getOr({}),
-    ...spec.sandboxed ? { sandbox: 'allow-scripts allow-same-origin' } : { }
+    ...(spec.sandboxed ? { sandbox: 'allow-scripts allow-same-origin' } : { })
   };
 
   const sourcing = getDynamicSource(initialData, spec.streamContent);

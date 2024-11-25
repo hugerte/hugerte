@@ -1,8 +1,8 @@
 import {
   AlloyComponent, AlloyParts, Behaviour, Container, DomFactory, Memento, MementoRecord, ModalDialog, Reflecting, SimpleSpec, SketchSpec
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
+} from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Arr, Optional } from "@hugerte/katamari";
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderFooterButton } from '../general/Button';

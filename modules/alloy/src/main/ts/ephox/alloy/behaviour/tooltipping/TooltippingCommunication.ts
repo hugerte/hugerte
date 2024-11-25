@@ -1,4 +1,4 @@
-import { Id } from '@ephox/katamari';
+import { Id } from "@hugerte/katamari";
 
 const ExclusivityChannel = Id.generate('tooltip.exclusive');
 

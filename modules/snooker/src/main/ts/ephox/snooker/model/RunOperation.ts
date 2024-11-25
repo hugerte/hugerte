@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
-import { Attribute, Compare, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
+import { Attribute, Compare, SugarElement } from "@hugerte/sugar";
 
 import { Generators, GeneratorsWrapper, SimpleGenerators } from '../api/Generators';
 import * as ResizeBehaviour from '../api/ResizeBehaviour';

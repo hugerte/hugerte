@@ -1,6 +1,6 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
 import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';

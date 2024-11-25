@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Focus, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Focus, SelectorFilter, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import * as Keys from '../alien/Keys';
 import { AlloyComponent } from '../api/component/ComponentApi';

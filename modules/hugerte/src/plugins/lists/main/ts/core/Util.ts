@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { NodeChangeEvent } from 'hugerte/core/api/EventTypes';

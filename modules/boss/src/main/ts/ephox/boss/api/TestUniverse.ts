@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from "@hugerte/katamari";
 
 import * as Attribution from '../mutant/Attribution';
 import * as Comparator from '../mutant/Comparator';

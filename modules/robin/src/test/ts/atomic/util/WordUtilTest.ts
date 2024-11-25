@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional, Unicode } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Optional, Unicode } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 
 import * as WordUtil from 'ephox/robin/util/WordUtil';
 

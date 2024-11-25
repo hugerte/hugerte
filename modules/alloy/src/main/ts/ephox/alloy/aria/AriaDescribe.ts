@@ -1,5 +1,5 @@
-import { Fun, Id, Optional } from '@ephox/katamari';
-import { Attribute, SugarElement } from '@ephox/sugar';
+import { Fun, Id, Optional } from "@hugerte/katamari";
+import { Attribute, SugarElement } from "@hugerte/sugar";
 
 const describedBy = (describedElement: SugarElement<Element>, describeElement: SugarElement<Element>): void => {
   const describeId = Optional.from(Attribute.get(describedElement, 'id'))

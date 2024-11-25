@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloySpec, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
-import { Dimension } from '@ephox/sugar';
+import { AlloyComponent, AlloySpec, AlloyTriggers, SketchSpec } from "@hugerte/alloy";
+import { Arr, Fun, Obj, Optional } from "@hugerte/katamari";
+import { Dimension } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import * as Options from 'hugerte/themes/silver/api/Options';

@@ -1,9 +1,9 @@
 import {
   AlloyComponent, AlloySpec, Behaviour, Composite, CustomList, Keying, RawDomSchema, Sketcher, SketchSpec, Toolbar, UiSketcher
-} from '@ephox/alloy';
-import { FieldSchema } from '@ephox/boulder';
-import { Arr, Id, Optional, Optionals, Result } from '@ephox/katamari';
-import { Attribute, Css } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { FieldSchema } from "@hugerte/boulder";
+import { Arr, Id, Optional, Optionals, Result } from "@hugerte/katamari";
+import { Attribute, Css } from "@hugerte/sugar";
 
 import { ToolbarMode } from '../../api/Options';
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';

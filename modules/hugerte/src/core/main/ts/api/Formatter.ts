@@ -1,4 +1,4 @@
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell, Fun } from "@hugerte/katamari";
 
 import * as CaretFormat from '../fmt/CaretFormat';
 import * as FormatChanged from '../fmt/FormatChanged';

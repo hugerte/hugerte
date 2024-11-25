@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Obj, Optional, Type } from "@hugerte/katamari";
 
 import Tools from 'hugerte/core/api/util/Tools';
 

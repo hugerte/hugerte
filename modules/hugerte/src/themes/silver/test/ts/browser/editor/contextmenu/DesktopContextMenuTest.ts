@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys } from '@ephox/agar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarDocument } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { SugarDocument } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import ImagePlugin from 'hugerte/plugins/image/Plugin';

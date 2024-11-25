@@ -1,5 +1,5 @@
-import { Arr, Fun, Id, Type } from '@ephox/katamari';
-import { SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Id, Type } from "@hugerte/katamari";
+import { SelectorFilter, SugarElement } from "@hugerte/sugar";
 
 import Tools from 'hugerte/core/api/util/Tools';
 

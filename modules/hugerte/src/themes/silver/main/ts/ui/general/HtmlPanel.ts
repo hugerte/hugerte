@@ -1,7 +1,7 @@
-import { AlloyComponent, Behaviour, Bubble, Container as AlloyContainer, Focusing, Layout, SketchSpec, Tabstopping, Tooltipping } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Fun } from '@ephox/katamari';
-import { Attribute, Focus, SelectorFind } from '@ephox/sugar';
+import { AlloyComponent, Behaviour, Bubble, Container as AlloyContainer, Focusing, Layout, SketchSpec, Tabstopping, Tooltipping } from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Fun } from "@hugerte/katamari";
+import { Attribute, Focus, SelectorFind } from "@hugerte/sugar";
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 

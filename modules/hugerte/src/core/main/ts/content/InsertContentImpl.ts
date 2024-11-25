@@ -1,5 +1,5 @@
-import { Arr, Optional, Type } from '@ephox/katamari';
-import { Remove, SugarElement } from '@ephox/sugar';
+import { Arr, Optional, Type } from "@hugerte/katamari";
+import { Remove, SugarElement } from "@hugerte/sugar";
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';

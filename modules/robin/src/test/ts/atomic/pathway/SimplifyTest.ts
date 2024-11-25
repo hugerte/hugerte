@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+import { Gene, TestUniverse } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
 
 import * as Simplify from 'ephox/robin/pathway/Simplify';
 

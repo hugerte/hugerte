@@ -1,4 +1,4 @@
-import { ApproxStructure, Assertions, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

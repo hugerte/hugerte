@@ -1,4 +1,4 @@
-import { Cell, Optional, Singleton, Throttler } from '@ephox/katamari';
+import { Cell, Optional, Singleton, Throttler } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 

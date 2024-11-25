@@ -1,6 +1,6 @@
-import { Fun, Id } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Attribute, Css, Insert, Remove, SugarElement, Traverse } from '@ephox/sugar';
+import { Fun, Id } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Attribute, Css, Insert, Remove, SugarElement, Traverse } from "@hugerte/sugar";
 
 const offscreen = {
   position: 'absolute',

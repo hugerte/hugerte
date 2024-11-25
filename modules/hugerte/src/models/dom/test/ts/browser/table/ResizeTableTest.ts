@@ -1,10 +1,10 @@
-import { Mouse } from '@ephox/agar';
+import { Mouse } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Cell } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TableGridSize } from '@ephox/snooker';
-import { Html, Insert, Remove, SelectorExists, SelectorFilter, SugarBody, SugarElement } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr, Cell } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { TableGridSize } from "@hugerte/snooker";
+import { Html, Insert, Remove, SelectorExists, SelectorFilter, SugarBody, SugarElement } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

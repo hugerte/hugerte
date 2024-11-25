@@ -1,8 +1,8 @@
-import { RealKeys } from '@ephox/agar';
+import { RealKeys } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

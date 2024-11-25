@@ -1,10 +1,10 @@
 import {
   AlloyComponent, AlloyEvents, AlloyParts, AlloySpec, AlloyTriggers, Behaviour, DomFactory, GuiFactory, ModalDialog, Receiving, Reflecting,
   SystemEvents
-} from '@ephox/alloy';
-import { Dialog, DialogManager } from '@ephox/bridge';
-import { Arr, Cell, Obj, Optional } from '@ephox/katamari';
-import { Class, Classes, Height, SelectorFind, SugarElement } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Dialog, DialogManager } from "@hugerte/bridge";
+import { Arr, Cell, Obj, Optional } from "@hugerte/katamari";
+import { Class, Classes, Height, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import * as RepresentingConfigs from '../alien/RepresentingConfigs';

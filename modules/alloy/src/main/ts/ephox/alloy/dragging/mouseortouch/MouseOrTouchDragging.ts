@@ -1,5 +1,5 @@
-import { FieldProcessor } from '@ephox/boulder';
-import { EventArgs } from '@ephox/sugar';
+import { FieldProcessor } from "@hugerte/boulder";
+import { EventArgs } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { AlloyEventKeyAndHandler } from '../../api/events/AlloyEvents';

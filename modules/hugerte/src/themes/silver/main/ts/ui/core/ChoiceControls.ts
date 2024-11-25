@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Optionals, Singleton, Type } from '@ephox/katamari';
-import { Attribute, Dimension, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals, Singleton, Type } from "@hugerte/katamari";
+import { Attribute, Dimension, SugarElement, SugarNode, TransformFind } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { ContentLanguage } from 'hugerte/core/api/OptionTypes';

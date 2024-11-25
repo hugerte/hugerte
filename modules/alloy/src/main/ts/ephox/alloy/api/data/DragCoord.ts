@@ -1,5 +1,5 @@
-import { Adt, Arr, Optional } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Adt, Arr, Optional } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 
 // Snappables use an option for the coord and then pass it to absorb below
 // so "T" here should either be a `number` or an `Optional<number>`

@@ -1,6 +1,6 @@
-import { FieldProcessor } from '@ephox/boulder';
-import { Fun, Singleton } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+import { FieldProcessor } from "@hugerte/boulder";
+import { Fun, Singleton } from "@hugerte/katamari";
+import { EventArgs } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as AlloyEvents from '../../api/events/AlloyEvents';

@@ -1,4 +1,4 @@
-import { GeneralSteps, Mouse, Step, Waiter } from '@ephox/agar';
+import { GeneralSteps, Mouse, Step, Waiter } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

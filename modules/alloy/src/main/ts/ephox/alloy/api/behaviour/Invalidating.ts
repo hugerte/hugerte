@@ -1,4 +1,4 @@
-import { Future, Result } from '@ephox/katamari';
+import { Future, Result } from "@hugerte/katamari";
 
 import * as ActiveInvalidate from '../../behaviour/invalidating/ActiveInvalidate';
 import * as InvalidateApis from '../../behaviour/invalidating/InvalidateApis';

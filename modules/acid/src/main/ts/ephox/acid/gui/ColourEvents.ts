@@ -1,5 +1,5 @@
-import { CustomEvent, SliderTypes } from '@ephox/alloy';
-import { Id } from '@ephox/katamari';
+import { CustomEvent, SliderTypes } from "@hugerte/alloy";
+import { Id } from "@hugerte/katamari";
 
 import { Hex } from '../api/colour/ColourTypes';
 

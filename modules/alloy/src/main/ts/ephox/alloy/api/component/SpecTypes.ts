@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { DomModification } from '../../dom/DomModification';
 import { ConfiguredPart } from '../../parts/AlloyParts';

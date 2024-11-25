@@ -1,5 +1,5 @@
 import { describe, it, before, after } from '@ephox/bedrock-client';
-import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import * as LinkPluginUtils from 'hugerte/plugins/link/core/Utils';

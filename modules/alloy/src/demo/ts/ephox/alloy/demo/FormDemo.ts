@@ -1,5 +1,5 @@
-import { Obj, Result } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Obj, Result } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Keying } from 'ephox/alloy/api/behaviour/Keying';

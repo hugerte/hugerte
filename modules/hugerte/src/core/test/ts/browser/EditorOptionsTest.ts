@@ -1,6 +1,6 @@
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Fun, Type } from '@ephox/katamari';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Fun, Type } from "@hugerte/katamari";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

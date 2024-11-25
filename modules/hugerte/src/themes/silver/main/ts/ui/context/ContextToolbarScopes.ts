@@ -1,6 +1,6 @@
-import { StructureSchema } from '@ephox/boulder';
-import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Arr, Obj } from '@ephox/katamari';
+import { StructureSchema } from "@hugerte/boulder";
+import { InlineContent, Toolbar } from "@hugerte/bridge";
+import { Arr, Obj } from "@hugerte/katamari";
 
 import { ContextSpecType, ContextType } from './ContextToolbar';
 

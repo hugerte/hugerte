@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import { AnchorBox } from './LayoutTypes';
 import * as Origins from './Origins';

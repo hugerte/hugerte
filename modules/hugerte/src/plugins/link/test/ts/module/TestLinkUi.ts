@@ -1,7 +1,7 @@
-import { FocusTools, Mouse, UiControls, UiFinder, Waiter } from '@ephox/agar';
-import { Obj } from '@ephox/katamari';
-import { Attribute, Class, SugarBody, SugarDocument, SugarElement, Traverse, Value } from '@ephox/sugar';
-import { TinyAssertions, TinyUiActions } from '@ephox/wrap-mcagar';
+import { FocusTools, Mouse, UiControls, UiFinder, Waiter } from "@hugerte/agar";
+import { Obj } from "@hugerte/katamari";
+import { Attribute, Class, SugarBody, SugarDocument, SugarElement, Traverse, Value } from "@hugerte/sugar";
+import { TinyAssertions, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

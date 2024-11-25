@@ -1,5 +1,5 @@
-import { UiFinder, Waiter } from '@ephox/agar';
-import { SugarBody } from '@ephox/sugar';
+import { UiFinder, Waiter } from "@hugerte/agar";
+import { SugarBody } from "@hugerte/sugar";
 
 const toolbarSelector = '.tox-pop__dialog .tox-toolbar';
 

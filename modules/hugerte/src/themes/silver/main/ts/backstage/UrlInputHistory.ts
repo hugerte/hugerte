@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr, Obj, Type } from "@hugerte/katamari";
 
 import LocalStorage from 'hugerte/core/api/util/LocalStorage';
 

@@ -1,4 +1,4 @@
-import { Arr, Fun, Global, Obj } from '@ephox/katamari';
+import { Arr, Fun, Global, Obj } from "@hugerte/katamari";
 
 import { Editor } from '../alien/EditorTypes';
 import { get as getOption } from '../alien/Options';

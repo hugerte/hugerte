@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 import { SetContentEvent } from '../api/EventTypes';

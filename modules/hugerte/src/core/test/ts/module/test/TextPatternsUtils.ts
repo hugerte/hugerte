@@ -1,6 +1,6 @@
-import { ApproxStructure, Keys, StructAssert } from '@ephox/agar';
-import { Thunk, Unicode } from '@ephox/katamari';
-import { TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Keys, StructAssert } from "@hugerte/agar";
+import { Thunk, Unicode } from "@hugerte/katamari";
+import { TinyContentActions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import * as Options from 'hugerte/core/api/Options';

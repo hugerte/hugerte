@@ -1,4 +1,4 @@
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell, Optional } from "@hugerte/katamari";
 
 import { Bounds } from '../../alien/Boxes';
 import { LazySink } from '../../api/component/CommonTypes';

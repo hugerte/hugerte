@@ -1,7 +1,7 @@
-import { Adt, Fun, Optional } from '@ephox/katamari';
-import { DomGather } from '@ephox/phoenix';
-import { DomStructure } from '@ephox/robin';
-import { PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { Adt, Fun, Optional } from "@hugerte/katamari";
+import { DomGather } from "@hugerte/phoenix";
+import { DomStructure } from "@hugerte/robin";
+import { PredicateFind, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import { WindowBridge } from '../api/WindowBridge';
 import { Situs } from '../selection/Situs';

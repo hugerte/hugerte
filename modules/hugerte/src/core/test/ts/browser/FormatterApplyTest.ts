@@ -1,8 +1,8 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
-import { Hierarchy } from '@ephox/sugar';
-import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { Obj } from "@hugerte/katamari";
+import { Hierarchy } from "@hugerte/sugar";
+import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

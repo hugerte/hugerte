@@ -1,9 +1,9 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Touch, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Touch, UiFinder, Waiter } from "@hugerte/agar";
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarBody, SugarDocument } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SugarBody, SugarDocument } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import ImagePlugin from 'hugerte/plugins/image/Plugin';

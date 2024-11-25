@@ -1,4 +1,4 @@
-import { Attribute, Insert, InsertAll, SugarElement } from '@ephox/sugar';
+import { Attribute, Insert, InsertAll, SugarElement } from "@hugerte/sugar";
 
 const nu = (tag: string, id: string) => {
   const r = SugarElement.fromTag(tag);

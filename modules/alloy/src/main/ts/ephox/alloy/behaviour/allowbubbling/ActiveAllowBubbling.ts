@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { DomEvent } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { DomEvent } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as AlloyEvents from '../../api/events/AlloyEvents';

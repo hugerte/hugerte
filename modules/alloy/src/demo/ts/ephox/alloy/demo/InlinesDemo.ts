@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Result } from '@ephox/katamari';
-import { Class, EventArgs, SugarElement, Value } from '@ephox/sugar';
+import { Arr, Fun, Optional, Result } from "@hugerte/katamari";
+import { Class, EventArgs, SugarElement, Value } from "@hugerte/sugar";
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

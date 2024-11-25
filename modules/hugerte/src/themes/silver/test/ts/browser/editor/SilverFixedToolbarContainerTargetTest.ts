@@ -1,7 +1,7 @@
-﻿import { Assertions } from '@ephox/agar';
+﻿import { Assertions } from "@hugerte/agar";
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

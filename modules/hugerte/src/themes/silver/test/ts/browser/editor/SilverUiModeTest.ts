@@ -1,8 +1,8 @@
-import { Keys, UiFinder } from '@ephox/agar';
+import { Keys, UiFinder } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Class, Insert, Remove, SelectorFind, Selectors, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { Class, Insert, Remove, SelectorFind, Selectors, SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

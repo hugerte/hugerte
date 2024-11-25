@@ -1,5 +1,5 @@
-import { Objects } from '@ephox/boulder';
-import { Arr, Obj, Optional, Result } from '@ephox/katamari';
+import { Objects } from "@hugerte/boulder";
+import { Arr, Obj, Optional, Result } from "@hugerte/katamari";
 
 import * as ObjIndex from '../alien/ObjIndex';
 import * as PrioritySort from '../alien/PrioritySort';

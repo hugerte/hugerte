@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { SugarPosition } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { SugarPosition } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

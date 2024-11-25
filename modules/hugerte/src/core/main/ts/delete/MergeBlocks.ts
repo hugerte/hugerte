@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Compare, Insert, Remove, Replication, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Compare, Insert, Remove, Replication, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import Schema from '../api/html/Schema';
 import * as CaretFinder from '../caret/CaretFinder';

@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Arr, Fun } from "@hugerte/katamari";
 
 const eq = <E, D>(universe: Universe<E, D>, e1: E): (e2: E) => boolean => {
   return Fun.curry(universe.eq, e1);

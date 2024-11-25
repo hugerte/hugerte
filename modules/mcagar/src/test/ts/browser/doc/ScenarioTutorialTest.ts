@@ -1,7 +1,7 @@
-import { Arbitraries, Assertions, Pipeline, Step, UiFinder } from '@ephox/agar';
+import { Arbitraries, Assertions, Pipeline, Step, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { Editor } from 'ephox/mcagar/alien/EditorTypes';
 import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';

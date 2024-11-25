@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, UiFinder } from '@ephox/agar';
-import { AlloyComponent, Disabling, Form, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, Keyboard, Keys, UiFinder } from "@hugerte/agar";
+import { AlloyComponent, Disabling, Form, GuiFactory, Representing, TestHelpers } from "@hugerte/alloy";
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import { renderCheckbox } from 'hugerte/themes/silver/ui/general/Checkbox';

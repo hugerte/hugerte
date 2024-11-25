@@ -1,6 +1,6 @@
 import { TestLabel } from '@ephox/bedrock-client';
-import { Adt, Optional, Result } from '@ephox/katamari';
-import { SugarElement, Truncate } from '@ephox/sugar';
+import { Adt, Optional, Result } from "@hugerte/katamari";
+import { SugarElement, Truncate } from "@hugerte/sugar";
 
 import * as SizzleFind from '../alien/SizzleFind';
 

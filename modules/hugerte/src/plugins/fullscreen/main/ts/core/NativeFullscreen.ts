@@ -1,4 +1,4 @@
-import { SugarBody, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
+import { SugarBody, SugarElement, SugarShadowDom, Traverse } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

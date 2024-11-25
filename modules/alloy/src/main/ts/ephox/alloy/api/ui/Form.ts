@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Result } from '@ephox/katamari';
+import { Arr, Fun, Obj, Optional, Result } from "@hugerte/katamari";
 
 import * as AlloyLogger from '../../log/AlloyLogger';
 import * as AlloyParts from '../../parts/AlloyParts';

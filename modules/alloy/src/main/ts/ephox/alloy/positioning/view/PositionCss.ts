@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Css, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Css, SugarElement } from "@hugerte/sugar";
 
 export interface PositionCss {
   readonly position: string;

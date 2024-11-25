@@ -1,5 +1,5 @@
-import { DataTransfer, DataTransferContent, DataTransferMode } from '@ephox/dragster';
-import { Arr, Cell, Strings, Type } from '@ephox/katamari';
+import { DataTransfer, DataTransferContent, DataTransferMode } from "@hugerte/dragster";
+import { Arr, Cell, Strings, Type } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';

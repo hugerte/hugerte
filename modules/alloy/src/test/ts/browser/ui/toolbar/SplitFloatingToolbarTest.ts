@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, GeneralSteps, Step, StructAssert } from '@ephox/agar';
+import { ApproxStructure, Assertions, GeneralSteps, Step, StructAssert } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Result } from '@ephox/katamari';
-import { Css } from '@ephox/sugar';
+import { Arr, Result } from "@hugerte/katamari";
+import { Css } from "@hugerte/sugar";
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as Memento from 'ephox/alloy/api/component/Memento';

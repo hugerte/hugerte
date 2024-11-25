@@ -1,7 +1,7 @@
-import { ApproxStructure, RealKeys } from '@ephox/agar';
+import { ApproxStructure, RealKeys } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { PlatformDetection } from "@hugerte/sand";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { applyCaretFormat } from 'hugerte/core/fmt/CaretFormat';

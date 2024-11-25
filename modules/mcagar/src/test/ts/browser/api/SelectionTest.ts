@@ -1,4 +1,4 @@
-import { Chain, Pipeline } from '@ephox/agar';
+import { Chain, Pipeline } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as McEditor from 'ephox/mcagar/api/McEditor';

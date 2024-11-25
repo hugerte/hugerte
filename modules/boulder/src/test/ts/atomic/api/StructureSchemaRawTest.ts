@@ -1,7 +1,7 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Result } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Fun, Result } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 
 import * as FieldPresence from 'ephox/boulder/api/FieldPresence';
 import * as FieldSchema from 'ephox/boulder/api/FieldSchema';

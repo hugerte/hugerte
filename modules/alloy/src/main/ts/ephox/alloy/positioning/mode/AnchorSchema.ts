@@ -1,4 +1,4 @@
-import { StructureSchema } from '@ephox/boulder';
+import { StructureSchema } from "@hugerte/boulder";
 
 import HotspotAnchor from './HotspotAnchor';
 import MakeshiftAnchor from './MakeshiftAnchor';

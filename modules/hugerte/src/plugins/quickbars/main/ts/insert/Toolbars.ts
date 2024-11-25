@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Attribute, PredicateExists, SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Attribute, PredicateExists, SelectorFind, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

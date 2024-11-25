@@ -1,5 +1,5 @@
-import { Fun, Obj, Type } from '@ephox/katamari';
-import { Compare, ContentEditable, SugarNode, SugarElement, Traverse, PredicateExists } from '@ephox/sugar';
+import { Fun, Obj, Type } from "@hugerte/katamari";
+import { Compare, ContentEditable, SugarNode, SugarElement, Traverse, PredicateExists } from "@hugerte/sugar";
 
 import DomTreeWalker from '../api/dom/TreeWalker';
 import Schema from '../api/html/Schema';

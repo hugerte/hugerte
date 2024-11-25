@@ -1,4 +1,4 @@
-import { FieldSchema } from '@ephox/boulder';
+import { FieldSchema } from "@hugerte/boulder";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as Fields from '../../data/Fields';

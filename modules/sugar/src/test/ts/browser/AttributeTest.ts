@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Optional } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 
 import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
 import * as Attribute from 'ephox/sugar/api/properties/Attribute';

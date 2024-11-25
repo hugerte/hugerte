@@ -1,4 +1,4 @@
-import { Insert, SelectorFind, SugarBody, SugarElement, Value } from '@ephox/sugar';
+import { Insert, SelectorFind, SugarBody, SugarElement, Value } from "@hugerte/sugar";
 
 import { HugeRTE } from 'hugerte/core/api/PublicApi';
 

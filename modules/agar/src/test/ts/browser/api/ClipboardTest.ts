@@ -1,6 +1,6 @@
 import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Singleton } from '@ephox/katamari';
-import { DomEvent, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Singleton } from "@hugerte/katamari";
+import { DomEvent, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { copy, cut, pasteDataTransfer, pasteFiles, pasteItems, pPasteUrlItems } from 'ephox/agar/api/Clipboard';

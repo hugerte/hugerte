@@ -1,6 +1,6 @@
-import { ApproxStructure, Assertions, Keyboard, Keys, StructAssert, UiFinder, Waiter } from '@ephox/agar';
-import { Arr, Fun } from '@ephox/katamari';
-import { Css, Focus, Scroll, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
+import { ApproxStructure, Assertions, Keyboard, Keys, StructAssert, UiFinder, Waiter } from "@hugerte/agar";
+import { Arr, Fun } from "@hugerte/katamari";
+import { Css, Focus, Scroll, SugarBody, SugarDocument, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { ToolbarLocation } from 'hugerte/themes/silver/api/Options';
@@ -59,9 +59,7 @@ const pAssertHeaderDocked = async (assertDockedTop: boolean): Promise<void> => {
       ApproxStructure.build((s, str, _arr) => s.element('div', {
         styles: {
           position: str.is('fixed'),
-          ...assertDockedTop ?
-            { top: str.is('0px') } :
-            { bottom: str.is('0px') }
+          ...(assertDockedTop ? { top: str.is('0px') } : { bottom: str.is('0px') })
         }
       })),
       header

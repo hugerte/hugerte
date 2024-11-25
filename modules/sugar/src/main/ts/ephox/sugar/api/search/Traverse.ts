@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Arr, Fun, Optional, Type } from "@hugerte/katamari";
 
 import * as Recurse from '../../alien/Recurse';
 import * as Compare from '../dom/Compare';

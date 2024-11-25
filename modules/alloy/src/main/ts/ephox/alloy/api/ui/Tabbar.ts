@@ -1,4 +1,4 @@
-import { Attribute } from '@ephox/sugar';
+import { Attribute } from "@hugerte/sugar";
 
 import * as TabbarSchema from '../../ui/schema/TabbarSchema';
 import { TabbarDetail, TabbarSketcher, TabbarSpec } from '../../ui/types/TabbarTypes';

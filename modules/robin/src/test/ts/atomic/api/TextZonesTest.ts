@@ -1,7 +1,7 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Fun } from '@ephox/katamari';
+import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
+import { Fun } from "@hugerte/katamari";
 
 import * as TextZones from 'ephox/robin/api/general/TextZones';
 import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';

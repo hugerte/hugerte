@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from "@hugerte/katamari";
 
 import * as GlobalAttributesSet from './GlobalAttributesSet';
 import * as SchemaElementSets from './SchemaElementSets';

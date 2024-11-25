@@ -1,4 +1,4 @@
-import { Arr, Result } from '@ephox/katamari';
+import { Arr, Result } from "@hugerte/katamari";
 
 import { SimpleResult } from '../alien/SimpleResult';
 import * as FieldProcessor from '../core/FieldProcessor';

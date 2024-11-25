@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Arr } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 import { assert } from 'chai';
 
 import { createFile } from 'ephox/agar/api/Files';

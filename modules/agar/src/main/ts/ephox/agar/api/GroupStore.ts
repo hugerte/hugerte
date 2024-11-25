@@ -1,4 +1,4 @@
-import { Merger } from '@ephox/katamari';
+import { Merger } from "@hugerte/katamari";
 
 export interface GroupStore<T> {
   readonly record: (prop: string, elem: T) => void;

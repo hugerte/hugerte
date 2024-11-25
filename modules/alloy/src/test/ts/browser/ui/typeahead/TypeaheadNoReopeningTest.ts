@@ -1,7 +1,7 @@
-import { FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiControls, UiFinder } from '@ephox/agar';
+import { FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiControls, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result, Strings } from '@ephox/katamari';
-import { Value } from '@ephox/sugar';
+import { Arr, Future, Optional, Result, Strings } from "@hugerte/katamari";
+import { Value } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

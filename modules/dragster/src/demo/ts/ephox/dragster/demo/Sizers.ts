@@ -1,5 +1,5 @@
-import { Arr, Fun } from '@ephox/katamari';
-import { Css, Height, InsertAll, Remove, SelectorFind, SugarElement, SugarLocation, Visibility, Width } from '@ephox/sugar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { Css, Height, InsertAll, Remove, SelectorFind, SugarElement, SugarLocation, Visibility, Width } from "@hugerte/sugar";
 
 interface Box {
   readonly element: () => SugarElement<HTMLDivElement>;

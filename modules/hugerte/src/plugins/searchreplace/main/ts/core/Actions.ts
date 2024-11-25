@@ -1,5 +1,5 @@
-import { Cell } from '@ephox/katamari';
-import { Pattern as PolarisPattern } from '@ephox/polaris';
+import { Cell } from "@hugerte/katamari";
+import { Pattern as PolarisPattern } from "@hugerte/polaris";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

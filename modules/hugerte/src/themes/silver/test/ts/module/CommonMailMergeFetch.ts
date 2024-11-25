@@ -1,6 +1,6 @@
-import { TestStore } from '@ephox/agar';
-import { Menu, Toolbar } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+import { TestStore } from "@hugerte/agar";
+import { Menu, Toolbar } from "@hugerte/bridge";
+import { Arr } from "@hugerte/katamari";
 
 export const fetchMailMergeData = (settings: { collapseSearchResults: boolean }, store: TestStore): Toolbar.ToolbarMenuButtonSpec['fetch'] => (callback, fetchContext) => {
   const makeMailMerge = (info: { value: string; title?: string }): Menu.MenuItemSpec => ({

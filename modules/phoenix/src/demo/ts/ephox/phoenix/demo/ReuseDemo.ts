@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Css, DomEvent, Insert, SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Css, DomEvent, Insert, SelectorFind, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import * as DomWrapping from 'ephox/phoenix/api/dom/DomWrapping';
 

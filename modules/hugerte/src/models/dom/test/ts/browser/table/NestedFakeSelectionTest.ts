@@ -1,7 +1,7 @@
-import { Cursors, Keys } from '@ephox/agar';
+import { Cursors, Keys } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Attribute } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Attribute } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

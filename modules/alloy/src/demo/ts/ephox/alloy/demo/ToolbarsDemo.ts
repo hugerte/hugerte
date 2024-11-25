@@ -1,5 +1,5 @@
-import { Arr, Fun, Result } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Arr, Fun, Result } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import { LazySink } from 'ephox/alloy/api/component/CommonTypes';
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';

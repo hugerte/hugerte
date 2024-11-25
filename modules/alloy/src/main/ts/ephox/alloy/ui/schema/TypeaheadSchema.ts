@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun, Optional } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Cell, Fun, Optional } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import { Coupling } from '../../api/behaviour/Coupling';
 import { Focusing } from '../../api/behaviour/Focusing';

@@ -1,7 +1,7 @@
-import { AlloyComponent, Bubble, InlineView, Layout, LayoutInset, MaxHeight, MaxWidth, TieredMenuTypes } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SimSelection, WindowSelection } from '@ephox/sugar';
+import { AlloyComponent, Bubble, InlineView, Layout, LayoutInset, MaxHeight, MaxWidth, TieredMenuTypes } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SimSelection, WindowSelection } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Delay from 'hugerte/core/api/util/Delay';

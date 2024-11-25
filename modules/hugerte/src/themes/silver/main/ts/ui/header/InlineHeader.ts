@@ -1,6 +1,6 @@
-import { AlloyComponent, Boxes, Channels, Docking, OffsetOrigin, VerticalDir } from '@ephox/alloy';
-import { Arr, Cell, Fun, Optional, Optionals, Singleton } from '@ephox/katamari';
-import { Attribute, Compare, Css, Height, Scroll, SugarBody, SugarElement, SugarLocation, Traverse, Width } from '@ephox/sugar';
+import { AlloyComponent, Boxes, Channels, Docking, OffsetOrigin, VerticalDir } from "@hugerte/alloy";
+import { Arr, Cell, Fun, Optional, Optionals, Singleton } from "@hugerte/katamari";
+import { Attribute, Compare, Css, Height, Scroll, SugarBody, SugarElement, SugarLocation, Traverse, Width } from "@hugerte/sugar";
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';

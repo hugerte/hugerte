@@ -1,5 +1,5 @@
-import { Fun, Optional } from '@ephox/katamari';
-import { DomEvent, Insert, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { DomEvent, Insert, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import * as DomSmartSelect from 'ephox/robin/api/dom/DomSmartSelect';
 

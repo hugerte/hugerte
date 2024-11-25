@@ -1,8 +1,8 @@
-import { Keys, Waiter } from '@ephox/agar';
+import { Keys, Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { InlineContent } from '@ephox/bridge';
-import { Arr, Throttler } from '@ephox/katamari';
-import { TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { InlineContent } from "@hugerte/bridge";
+import { Arr, Throttler } from "@hugerte/katamari";
+import { TinyContentActions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,6 +1,6 @@
-import { StructureSchema } from '@ephox/boulder';
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
-import { Css, SugarLocation } from '@ephox/sugar';
+import { StructureSchema } from "@hugerte/boulder";
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
+import { Css, SugarLocation } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import { AlloyComponent } from '../../api/component/ComponentApi';

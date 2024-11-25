@@ -1,9 +1,9 @@
-import { Keys, UiFinder, Waiter } from '@ephox/agar';
+import { Keys, UiFinder, Waiter } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Attribute, SugarBody } from '@ephox/sugar';
-import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Attribute, SugarBody } from "@hugerte/sugar";
+import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyState, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

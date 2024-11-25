@@ -1,11 +1,11 @@
-import { Assertions, DragnDrop, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { Assertions, DragnDrop, Keyboard, Keys, Mouse, UiFinder, Waiter } from "@hugerte/agar";
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { DataTransfer, DataTransferMode, DragImageData } from '@ephox/dragster';
-import { Arr, Fun, Obj, Optional, Type } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
-import { PlatformDetection } from '@ephox/sand';
-import { Html, SelectorFind, SugarBody, SugarElement, SugarLocation, Traverse } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinyState } from '@ephox/wrap-mcagar';
+import { DataTransfer, DataTransferMode, DragImageData } from "@hugerte/dragster";
+import { Arr, Fun, Obj, Optional, Type } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
+import { PlatformDetection } from "@hugerte/sand";
+import { Html, SelectorFind, SugarBody, SugarElement, SugarLocation, Traverse } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks, TinyState } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

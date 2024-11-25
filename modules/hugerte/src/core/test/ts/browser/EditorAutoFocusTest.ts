@@ -1,6 +1,6 @@
 import { context, describe, it, before, afterEach, after } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Insert, Remove, Selectors, SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Insert, Remove, Selectors, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import 'hugerte';

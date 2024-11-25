@@ -1,4 +1,4 @@
-import { Fun, Obj, Strings, Type } from '@ephox/katamari';
+import { Fun, Obj, Strings, Type } from "@hugerte/katamari";
 
 import Editor from './Editor';
 import { EditorOptions, NormalizedEditorOptions } from './OptionTypes';

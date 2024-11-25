@@ -1,5 +1,5 @@
-import { FieldProcessor, StructureSchema } from '@ephox/boulder';
-import { Result } from '@ephox/katamari';
+import { FieldProcessor, StructureSchema } from "@hugerte/boulder";
+import { Result } from "@hugerte/katamari";
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { FormComponentWithLabel, FormComponentWithLabelSpec, formComponentWithLabelFields } from './FormComponent';

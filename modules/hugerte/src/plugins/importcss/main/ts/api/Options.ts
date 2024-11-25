@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+import { Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { StyleFormat } from 'hugerte/core/api/fmt/StyleFormat';

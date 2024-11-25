@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import ClosestOrAncestor from '../../impl/ClosestOrAncestor';
 import { SugarElement } from '../node/SugarElement';

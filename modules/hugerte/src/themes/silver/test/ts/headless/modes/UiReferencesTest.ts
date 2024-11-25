@@ -1,7 +1,7 @@
-import { Gui, GuiFactory } from '@ephox/alloy';
+import { Gui, GuiFactory } from "@hugerte/alloy";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Class, Classes } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Class, Classes } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { LazyUiReferences, SinkAndMothership } from 'hugerte/themes/silver/modes/UiReferences';

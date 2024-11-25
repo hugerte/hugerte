@@ -1,6 +1,6 @@
-import { Assertions, Logger, Step } from '@ephox/agar';
+import { Assertions, Logger, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Attribute, SugarNode } from '@ephox/sugar';
+import { Attribute, SugarNode } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Coupling } from 'ephox/alloy/api/behaviour/Coupling';

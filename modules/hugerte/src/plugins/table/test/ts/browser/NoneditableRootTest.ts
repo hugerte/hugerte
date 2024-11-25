@@ -1,8 +1,8 @@
-import { Keys, UiFinder } from '@ephox/agar';
+import { Keys, UiFinder } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Obj, Optional } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
-import { TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Obj, Optional } from "@hugerte/katamari";
+import { SugarBody } from "@hugerte/sugar";
+import { TinyHooks, TinySelections, TinyState, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import * as FakeClipboard from 'hugerte/plugins/table/api/Clipboard';

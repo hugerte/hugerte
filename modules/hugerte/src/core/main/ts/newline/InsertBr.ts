@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Insert, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Insert, SugarElement } from "@hugerte/sugar";
 
 import DomTreeWalker from '../api/dom/TreeWalker';
 import Editor from '../api/Editor';

@@ -1,7 +1,7 @@
-import { AnchorSpec, Bounds, Boxes, Bubble, Layout, LayoutInset, MaxHeight, MaxWidth } from '@ephox/alloy';
-import { InlineContent } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
-import { Compare, Css, Height, Scroll, SugarElement, Traverse } from '@ephox/sugar';
+import { AnchorSpec, Bounds, Boxes, Bubble, Layout, LayoutInset, MaxHeight, MaxWidth } from "@hugerte/alloy";
+import { InlineContent } from "@hugerte/bridge";
+import { Optional } from "@hugerte/katamari";
+import { Compare, Css, Height, Scroll, SugarElement, Traverse } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, StructAssert, UiFinder } from '@ephox/agar';
+import { ApproxStructure, Assertions, StructAssert, UiFinder } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
-import { McEditor, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr, Fun, Obj, Type } from "@hugerte/katamari";
+import { McEditor, TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/media/Plugin';

@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Fun, Optional } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Fun, Optional } from "@hugerte/katamari";
 
 import * as Parent from '../api/general/Parent';
 import { ZoneViewports } from '../api/general/ZoneViewports';

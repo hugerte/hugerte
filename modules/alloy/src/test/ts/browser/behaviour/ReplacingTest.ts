@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Logger, Step, UiFinder, Chain, Log } from '@ephox/agar';
+import { ApproxStructure, Assertions, Logger, Step, UiFinder, Chain, Log } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { Compare, SugarBody } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Compare, SugarBody } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Replacing } from 'ephox/alloy/api/behaviour/Replacing';

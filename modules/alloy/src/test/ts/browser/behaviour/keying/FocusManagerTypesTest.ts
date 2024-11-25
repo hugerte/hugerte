@@ -1,7 +1,7 @@
-import { Assertions, Chain, FocusTools, GeneralSteps, Logger, Step, UiFinder } from '@ephox/agar';
+import { Assertions, Chain, FocusTools, GeneralSteps, Logger, Step, UiFinder } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

@@ -1,10 +1,10 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, CustomEvent, Dropdown as AlloyDropdown, Focusing, GuiFactory, Highlighting,
   Keying, MaxHeight, Memento, NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, TieredData, Tooltipping, Unselecting
-} from '@ephox/alloy';
-import { Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@ephox/katamari';
-import { EventArgs, SugarElement } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Toolbar } from "@hugerte/bridge";
+import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from "@hugerte/katamari";
+import { EventArgs, SugarElement } from "@hugerte/sugar";
 
 import { toolbarButtonEventOrder } from 'hugerte/themes/silver/ui/toolbar/button/ButtonEvents';
 
@@ -127,7 +127,7 @@ const renderCommonDropdown = <T>(
 
   const memDropdown = Memento.record(
     AlloyDropdown.sketch({
-      ...spec.uid ? { uid: spec.uid } : {},
+      ...(spec.uid ? { uid: spec.uid } : {}),
       ...role,
       dom: {
         tag: 'button',

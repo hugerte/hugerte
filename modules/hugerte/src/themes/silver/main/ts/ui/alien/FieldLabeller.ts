@@ -1,5 +1,5 @@
-import { AlloySpec, Behaviour, FormField as AlloyFormField, GuiFactory, RawDomSchema, SketchSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+import { AlloySpec, Behaviour, FormField as AlloyFormField, GuiFactory, RawDomSchema, SketchSpec } from "@hugerte/alloy";
+import { Optional } from "@hugerte/katamari";
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 

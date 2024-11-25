@@ -1,5 +1,5 @@
-import { Arr, Optional, Strings } from '@ephox/katamari';
-import { Attribute, Class, Compare, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Arr, Optional, Strings } from "@hugerte/katamari";
+import { Attribute, Class, Compare, SelectorFilter, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import VK from '../api/util/VK';

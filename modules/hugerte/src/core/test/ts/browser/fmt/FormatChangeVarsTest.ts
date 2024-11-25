@@ -1,7 +1,7 @@
-import { Waiter } from '@ephox/agar';
+import { Waiter } from "@hugerte/agar";
 import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Singleton } from '@ephox/katamari';
-import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Singleton } from "@hugerte/katamari";
+import { TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

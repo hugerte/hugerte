@@ -1,7 +1,7 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 
 import * as Gather from 'ephox/phoenix/api/general/Gather';
 import * as Finder from 'ephox/phoenix/test/Finder';

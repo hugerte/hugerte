@@ -1,6 +1,6 @@
-import { Step } from '@ephox/agar';
+import { Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Keying } from 'ephox/alloy/api/behaviour/Keying';

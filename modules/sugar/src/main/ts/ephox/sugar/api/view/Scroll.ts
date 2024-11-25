@@ -1,5 +1,5 @@
-import { Optional, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Optional, Type } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 
 import * as Insert from '../dom/Insert';
 import * as Remove from '../dom/Remove';

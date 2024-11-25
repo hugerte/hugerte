@@ -1,8 +1,8 @@
-import { UiControls, UiFinder, Waiter } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarElement } from '@ephox/sugar';
-import { TinyContentActions, TinyUiActions } from '@ephox/wrap-mcagar';
+import { UiControls, UiFinder, Waiter } from "@hugerte/agar";
+import { Fun } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SugarElement } from "@hugerte/sugar";
+import { TinyContentActions, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

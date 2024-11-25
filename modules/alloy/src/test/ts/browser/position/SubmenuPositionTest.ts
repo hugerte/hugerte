@@ -1,4 +1,4 @@
-import { Chain, NamedChain } from '@ephox/agar';
+import { Chain, NamedChain } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

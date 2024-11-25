@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { SugarElement, SugarNode, TextContent } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SugarElement, SugarNode, TextContent } from "@hugerte/sugar";
 
 import * as Structs from 'ephox/snooker/api/Structs';
 

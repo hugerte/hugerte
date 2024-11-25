@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Obj, Optional, Unicode } from '@ephox/katamari';
-import { Insert, Remove, SimRange, SimSelection, SugarElement, SugarNode, Traverse, WindowSelection } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Obj, Optional, Unicode } from "@hugerte/katamari";
+import { Insert, Remove, SimRange, SimSelection, SugarElement, SugarNode, Traverse, WindowSelection } from "@hugerte/sugar";
 
 import * as Descend from '../../alien/Descend';
 import { AlloyComponent } from '../../api/component/ComponentApi';

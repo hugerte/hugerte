@@ -1,4 +1,4 @@
-import { Resolve, Type } from '@ephox/katamari';
+import { Resolve, Type } from "@hugerte/katamari";
 
 import * as Global from '../util/Global';
 

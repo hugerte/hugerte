@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import { EventFormat, SimulatedEvent } from '../../events/SimulatedEvent';
 import { AlloyComponent } from '../component/ComponentApi';

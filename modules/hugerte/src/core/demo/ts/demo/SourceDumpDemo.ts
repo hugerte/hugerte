@@ -1,4 +1,4 @@
-import { Checked, SelectorFind, SugarBody, Value } from '@ephox/sugar';
+import { Checked, SelectorFind, SugarBody, Value } from "@hugerte/sugar";
 
 import { Editor, HugeRTE } from 'hugerte/core/api/PublicApi';
 

@@ -1,6 +1,6 @@
-import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
-import { Gather, Transition } from '@ephox/phoenix';
+import { Universe } from "@hugerte/boss";
+import { Arr } from "@hugerte/katamari";
+import { Gather, Transition } from "@hugerte/phoenix";
 
 import { Walks } from '../../leftblock/Walks';
 

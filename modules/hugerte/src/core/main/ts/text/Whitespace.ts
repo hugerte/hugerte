@@ -1,4 +1,4 @@
-import { Arr, Strings, Unicode } from '@ephox/katamari';
+import { Arr, Strings, Unicode } from "@hugerte/katamari";
 
 const whiteSpaceRegExp = /^[ \t\r\n]*$/;
 

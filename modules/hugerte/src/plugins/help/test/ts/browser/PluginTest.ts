@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Plugin from 'hugerte/plugins/help/Plugin';
 

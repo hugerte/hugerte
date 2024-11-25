@@ -1,6 +1,6 @@
-import { Arr, Cell, Fun, Optional, Optionals, Thunk } from '@ephox/katamari';
-import { RunOperation, Structs, TableLookup, Warehouse } from '@ephox/snooker';
-import { Compare, SelectorExists, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Cell, Fun, Optional, Optionals, Thunk } from "@hugerte/katamari";
+import { RunOperation, Structs, TableLookup, Warehouse } from "@hugerte/snooker";
+import { Compare, SelectorExists, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Menu, Toolbar } from 'hugerte/core/api/ui/Ui';

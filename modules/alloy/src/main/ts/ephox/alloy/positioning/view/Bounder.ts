@@ -1,5 +1,5 @@
-import { Adt, Arr, Fun, Num } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Adt, Arr, Fun, Num } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import { Bubble } from '../layout/Bubble';

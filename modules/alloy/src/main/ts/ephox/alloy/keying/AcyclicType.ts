@@ -1,5 +1,5 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+import { FieldSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
 
 import * as TabbingTypes from './TabbingTypes';
 

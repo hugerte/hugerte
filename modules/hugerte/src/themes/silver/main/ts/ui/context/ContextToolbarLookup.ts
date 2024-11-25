@@ -1,6 +1,6 @@
-import { InlineContent } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
-import { Compare, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
+import { InlineContent } from "@hugerte/bridge";
+import { Arr, Optional } from "@hugerte/katamari";
+import { Compare, SugarElement, SugarNode, TransformFind } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

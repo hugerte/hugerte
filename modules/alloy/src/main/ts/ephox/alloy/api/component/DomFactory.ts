@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Html, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Html, SugarElement, SugarNode, Traverse } from "@hugerte/sugar";
 
 import { AlloySpec, RawDomSchema, SimpleSpec, SketchSpec } from './SpecTypes';
 

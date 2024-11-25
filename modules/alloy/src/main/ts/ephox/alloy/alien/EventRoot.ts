@@ -1,4 +1,4 @@
-import { Compare } from '@ephox/sugar';
+import { Compare } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { EventFormat, SimulatedEvent } from '../events/SimulatedEvent';

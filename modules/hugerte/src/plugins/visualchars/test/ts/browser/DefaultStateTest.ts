@@ -1,6 +1,6 @@
-import { Keyboard, Keys, Waiter } from '@ephox/agar';
+import { Keyboard, Keys, Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { TinyDom, TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/visualchars/Plugin';

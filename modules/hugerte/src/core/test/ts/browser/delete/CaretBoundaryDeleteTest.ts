@@ -1,7 +1,7 @@
-import { ApproxStructure, Keys } from '@ephox/agar';
+import { ApproxStructure, Keys } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
-import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Unicode } from "@hugerte/katamari";
+import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import * as Zwsp from 'hugerte/core/text/Zwsp';

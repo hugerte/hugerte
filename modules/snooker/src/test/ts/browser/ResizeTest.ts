@@ -1,6 +1,6 @@
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Css, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Css, Insert, Remove, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';

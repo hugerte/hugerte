@@ -1,5 +1,5 @@
-import { Transformations } from '@ephox/acid';
-import { Type } from '@ephox/katamari';
+import { Transformations } from "@hugerte/acid";
+import { Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';

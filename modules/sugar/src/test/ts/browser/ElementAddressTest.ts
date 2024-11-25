@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { KAssert } from '@ephox/katamari-assertions';
+import { Arr } from "@hugerte/katamari";
+import { KAssert } from "@hugerte/katamari-assertions";
 
 import * as Hierarchy from 'ephox/sugar/api/dom/Hierarchy';
 import * as Insert from 'ephox/sugar/api/dom/Insert';

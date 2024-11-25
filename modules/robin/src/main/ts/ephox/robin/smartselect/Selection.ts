@@ -1,5 +1,5 @@
-import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+import { Universe } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
 
 import { WordRange } from '../data/WordRange';
 import * as CurrentWord from '../util/CurrentWord';

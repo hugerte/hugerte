@@ -1,8 +1,8 @@
-import { Assertions, Keys } from '@ephox/agar';
+import { Assertions, Keys } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarDocument } from '@ephox/sugar';
-import { McEditor, TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { SugarDocument } from "@hugerte/sugar";
+import { McEditor, TinyDom, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { RawEditorOptions } from 'hugerte/core/api/OptionTypes';

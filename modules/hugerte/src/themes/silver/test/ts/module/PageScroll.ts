@@ -1,7 +1,7 @@
 import { after, before } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Insert, Remove, SugarElement } from '@ephox/sugar';
-import { TinyDom } from '@ephox/wrap-mcagar';
+import { Fun } from "@hugerte/katamari";
+import { Insert, Remove, SugarElement } from "@hugerte/sugar";
+import { TinyDom } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

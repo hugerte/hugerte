@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, TestStore, UiFinder, Waiter } from '@ephox/agar';
+import { ApproxStructure, Assertions, TestStore, UiFinder, Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { SugarBody, SugarElement, Traverse } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Fun } from "@hugerte/katamari";
+import { SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Sidebar } from 'hugerte/core/api/ui/Ui';

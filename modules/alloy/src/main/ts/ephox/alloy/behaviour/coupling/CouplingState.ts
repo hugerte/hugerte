@@ -1,4 +1,4 @@
-import { Fun, Obj, Optional } from '@ephox/katamari';
+import { Fun, Obj, Optional } from "@hugerte/katamari";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { nuState } from '../common/BehaviourState';

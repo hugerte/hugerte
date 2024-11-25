@@ -1,4 +1,4 @@
-import { InlineContent } from '@ephox/bridge';
+import { InlineContent } from "@hugerte/bridge";
 
 export interface AutocompleteLookupData {
   readonly matchText: string;

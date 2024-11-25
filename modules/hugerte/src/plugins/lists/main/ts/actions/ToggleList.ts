@@ -1,5 +1,5 @@
-import { Arr, Optional, Type, Unicode } from '@ephox/katamari';
-import { Has, SugarElement } from '@ephox/sugar';
+import { Arr, Optional, Type, Unicode } from "@hugerte/katamari";
+import { Has, SugarElement } from "@hugerte/sugar";
 
 import BookmarkManager from 'hugerte/core/api/dom/BookmarkManager';
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';

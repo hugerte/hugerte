@@ -1,5 +1,5 @@
-import { StructureProcessor, StructureSchema } from '@ephox/boulder';
-import { Cell, Fun, Merger } from '@ephox/katamari';
+import { StructureProcessor, StructureSchema } from "@hugerte/boulder";
+import { Cell, Fun, Merger } from "@hugerte/katamari";
 
 import { DialogManager } from '../../../main/ts/ephox/bridge/api/DialogManager';
 import { Dialog, DialogData, DialogInstanceApi, DialogSpec } from '../../../main/ts/ephox/bridge/components/dialog/Dialog';

@@ -1,7 +1,7 @@
-import { Mouse } from '@ephox/agar';
+import { Mouse } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { SelectorExists, SelectorFind } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { SelectorExists, SelectorFind } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

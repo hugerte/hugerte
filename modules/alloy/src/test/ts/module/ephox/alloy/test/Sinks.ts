@@ -1,6 +1,6 @@
 import { after, before } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
-import { Compare, PredicateExists, SugarElement } from '@ephox/sugar';
+import { Fun, Optional } from "@hugerte/katamari";
+import { Compare, PredicateExists, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';

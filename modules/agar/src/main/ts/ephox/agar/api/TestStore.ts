@@ -1,5 +1,5 @@
 import { Assert } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { Chain } from './Chain';
 import { Step } from './Step';

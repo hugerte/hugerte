@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 
 import { Grid } from './Structs';
 import { Warehouse } from './Warehouse';

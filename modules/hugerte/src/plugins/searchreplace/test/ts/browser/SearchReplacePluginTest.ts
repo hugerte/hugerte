@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
-import { TinyApis, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
+import { Unicode } from "@hugerte/katamari";
+import { TinyApis, TinyAssertions, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Fun, Optional, Optionals } from '@ephox/katamari';
+import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
+import { Fun, Optional, Optionals } from "@hugerte/katamari";
 
 import { LanguageZones } from 'ephox/robin/zone/LanguageZones';
 

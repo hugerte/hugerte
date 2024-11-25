@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 import AstNode from '../api/html/Node';

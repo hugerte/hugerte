@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj, Optional, Optionals, Singleton } from '@ephox/katamari';
-import { Attribute, Class, Classes, SelectorFilter, SelectorFind, SugarBody } from '@ephox/sugar';
+import { Arr, Fun, Obj, Optional, Optionals, Singleton } from "@hugerte/katamari";
+import { Attribute, Class, Classes, SelectorFilter, SelectorFind, SugarBody } from "@hugerte/sugar";
 
 import * as EditableFields from '../../alien/EditableFields';
 import { Composing } from '../../api/behaviour/Composing';

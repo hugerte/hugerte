@@ -1,4 +1,4 @@
-import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
+import { FieldSchema, StructureSchema, ValueType } from "@hugerte/boulder";
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { formComponentFields, FormComponent, FormComponentSpec } from './FormComponent';

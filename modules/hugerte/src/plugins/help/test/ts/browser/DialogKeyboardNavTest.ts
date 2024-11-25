@@ -1,8 +1,8 @@
-import { FocusTools, Keys, Mouse } from '@ephox/agar';
+import { FocusTools, Keys, Mouse } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
-import { SugarBody, SugarDocument } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Obj } from "@hugerte/katamari";
+import { SugarBody, SugarDocument } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/help/Plugin';

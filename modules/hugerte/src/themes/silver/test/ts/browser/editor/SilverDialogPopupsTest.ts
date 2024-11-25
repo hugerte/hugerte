@@ -1,9 +1,9 @@
-import { FocusTools, Keys, UiFinder, Waiter } from '@ephox/agar';
+import { FocusTools, Keys, UiFinder, Waiter } from "@hugerte/agar";
 import { before, describe, it, TestLabel } from '@ephox/bedrock-client';
-import { Result } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SelectorExists, SugarBody, SugarDocument, SugarElement, WindowSelection } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Result } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SelectorExists, SugarBody, SugarDocument, SugarElement, WindowSelection } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

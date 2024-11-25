@@ -1,4 +1,4 @@
-import { Unicode } from '@ephox/katamari';
+import { Unicode } from "@hugerte/katamari";
 
 import DomTreeWalker from 'hugerte/core/api/dom/TreeWalker';
 import Schema, { SchemaMap } from 'hugerte/core/api/html/Schema';

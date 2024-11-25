@@ -1,7 +1,7 @@
-import { Clipboard as AgarClipboard, Waiter } from '@ephox/agar';
+import { Clipboard as AgarClipboard, Waiter } from "@hugerte/agar";
 import { afterEach, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Fun, Singleton } from '@ephox/katamari';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Fun, Singleton } from "@hugerte/katamari";
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

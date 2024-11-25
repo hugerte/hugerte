@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { SugarElement, SugarPosition } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { SugarElement, SugarPosition } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import * as CssPosition from '../../alien/CssPosition';

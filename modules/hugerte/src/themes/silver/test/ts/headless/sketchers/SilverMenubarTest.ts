@@ -1,8 +1,8 @@
-import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
-import { GuiFactory, TestHelpers } from '@ephox/alloy';
+import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder, Waiter } from "@hugerte/agar";
+import { GuiFactory, TestHelpers } from "@hugerte/alloy";
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Strings } from '@ephox/katamari';
-import { SelectorFind, Selectors, SugarDocument } from '@ephox/sugar';
+import { Arr, Fun, Strings } from "@hugerte/katamari";
+import { SelectorFind, Selectors, SugarDocument } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import SilverMenubar from 'hugerte/themes/silver/ui/menus/menubar/SilverMenubar';
@@ -101,7 +101,7 @@ describe('headless.hugerte.themes.silver.sketchers.SilverMenubar Test', () => {
             return s.element('div', {
               classes: [ arr.has('tox-collection__item') ],
               children: [
-                ...hasIcons ? [ s.element('div', { classes: [ arr.has('tox-collection__item-icon') ] }) ] : [],
+                ...(hasIcons ? [ s.element('div', { classes: [ arr.has('tox-collection__item-icon') ] }) ] : []),
                 s.element('div', {
                   classes: [ arr.has('tox-collection__item-label') ],
                   html: str.is(hasCaret ? itemText.substring(0, itemText.length - 1) : itemText)

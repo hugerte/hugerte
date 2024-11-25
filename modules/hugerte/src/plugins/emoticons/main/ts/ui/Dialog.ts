@@ -1,4 +1,4 @@
-import { Arr, Cell, Optional, Throttler } from '@ephox/katamari';
+import { Arr, Cell, Optional, Throttler } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';

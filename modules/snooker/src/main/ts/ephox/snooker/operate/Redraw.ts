@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Attribute, Insert, InsertAll, Remove, Replication, SelectorFilter, SelectorFind, SugarElement, Traverse } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Attribute, Insert, InsertAll, Remove, Replication, SelectorFilter, SelectorFind, SugarElement, Traverse } from "@hugerte/sugar";
 
 import { Detail, DetailNew, RowDetailNew, Section } from '../api/Structs';
 

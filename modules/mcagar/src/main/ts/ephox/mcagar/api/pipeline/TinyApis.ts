@@ -1,5 +1,5 @@
-import { Assertions, Chain, Cursors, Step, StructAssert, Waiter } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
+import { Assertions, Chain, Cursors, Step, StructAssert, Waiter } from "@hugerte/agar";
+import { Fun } from "@hugerte/katamari";
 
 import { Editor } from '../../alien/EditorTypes';
 import * as Options from '../../alien/Options';

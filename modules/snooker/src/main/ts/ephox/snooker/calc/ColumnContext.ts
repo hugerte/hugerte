@@ -1,4 +1,4 @@
-import { Adt } from '@ephox/katamari';
+import { Adt } from "@hugerte/katamari";
 
 type NoneHandler<T> = () => T;
 type OnlyHandler<T> = (index: number) => T;

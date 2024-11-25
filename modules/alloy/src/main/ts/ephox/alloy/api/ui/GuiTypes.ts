@@ -1,6 +1,6 @@
-import { Objects } from '@ephox/boulder';
-import { Id, Obj, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Id, Obj, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as FunctionAnnotator from '../../debugging/FunctionAnnotator';
 import { AlloyComponent } from '../component/ComponentApi';

@@ -1,4 +1,4 @@
-import { Universe } from '@ephox/boss';
+import { Universe } from "@hugerte/boss";
 
 import * as Injection from '../../injection/Injection';
 

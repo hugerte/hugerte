@@ -1,5 +1,5 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
-import { Attribute, Css } from '@ephox/sugar';
+import { Arr, Fun, Obj } from "@hugerte/katamari";
+import { Attribute, Css } from "@hugerte/sugar";
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as PartType from '../../parts/PartType';

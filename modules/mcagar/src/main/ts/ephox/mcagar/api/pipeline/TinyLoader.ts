@@ -1,6 +1,6 @@
-import { TestLogs } from '@ephox/agar';
-import { Optional } from '@ephox/katamari';
-import { Insert, Remove, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { TestLogs } from "@hugerte/agar";
+import { Optional } from "@hugerte/katamari";
+import { Insert, Remove, SugarBody, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import * as Loader from '../../loader/Loader';
 import { setupHugerteBaseUrl } from '../../loader/Urls';

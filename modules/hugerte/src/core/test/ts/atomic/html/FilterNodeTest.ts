@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import AstNode from 'hugerte/core/api/html/Node';

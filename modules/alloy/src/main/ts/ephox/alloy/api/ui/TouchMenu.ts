@@ -1,5 +1,5 @@
-import { Cell, Fun, Optional } from '@ephox/katamari';
-import { EventArgs, Focus, SugarShadowDom } from '@ephox/sugar';
+import { Cell, Fun, Optional } from "@hugerte/katamari";
+import { EventArgs, Focus, SugarShadowDom } from "@hugerte/sugar";
 
 import * as ElementFromPoint from '../../alien/ElementFromPoint';
 import { TransitionPropertiesSpec } from '../../behaviour/transitioning/TransitioningTypes';

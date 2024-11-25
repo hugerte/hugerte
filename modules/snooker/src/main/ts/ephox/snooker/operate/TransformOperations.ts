@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Attribute, SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Attribute, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import * as Structs from '../api/Structs';
 import { TableSection } from '../api/TableSection';

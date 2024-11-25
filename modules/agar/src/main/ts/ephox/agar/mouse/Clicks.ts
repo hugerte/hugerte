@@ -1,5 +1,5 @@
-import { Fun, Obj } from '@ephox/katamari';
-import { SugarElement, SugarLocation, SugarNode, SugarPosition, Traverse } from '@ephox/sugar';
+import { Fun, Obj } from "@hugerte/katamari";
+import { SugarElement, SugarLocation, SugarNode, SugarPosition, Traverse } from "@hugerte/sugar";
 
 // The 'button' field of the mouse event - which button was pressed to create the event. Pick only one value. Not defined for mouseenter,
 // mouseleave, mouseover, mouseout or mousemove.

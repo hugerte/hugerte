@@ -6,9 +6,9 @@ import {
   AlloySpec, AlloyTriggers, Behaviour,
   GuiFactory, Memento,
   RawDomSchema, Replacing, SimpleOrSketchSpec, SketchSpec, Tabstopping, Tooltipping
-} from '@ephox/alloy';
-import { Dialog, Toolbar } from '@ephox/bridge';
-import { Fun, Merger, Optional, Type } from '@ephox/katamari';
+} from "@hugerte/alloy";
+import { Dialog, Toolbar } from "@hugerte/bridge";
+import { Fun, Merger, Optional, Type } from "@hugerte/katamari";
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import * as ReadOnly from '../../ReadOnly';
@@ -132,8 +132,8 @@ const renderButtonSpec = (
 
   const classes = [
     ...baseClasses,
-    ...icon.isSome() ? [ 'tox-button--icon' ] : [],
-    ...spec.borderless ? [ 'tox-button--naked' ] : [],
+    ...(icon.isSome() ? [ 'tox-button--icon' ] : []),
+    ...(spec.borderless ? [ 'tox-button--naked' ] : []),
     ...extraClasses
   ];
 

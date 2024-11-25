@@ -4,10 +4,10 @@ import {
   Keying, Memento, NativeEvents, Replacing, SketchSpec, SplitDropdown as AlloySplitDropdown, SystemEvents, TieredData, TieredMenuTypes, Toggling,
   Tooltipping,
   Unselecting
-} from '@ephox/alloy';
-import { Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@ephox/katamari';
-import { Attribute, EventArgs, SelectorFind } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Toolbar } from "@hugerte/bridge";
+import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from "@hugerte/katamari";
+import { Attribute, EventArgs, SelectorFind } from "@hugerte/sugar";
 
 import { ToolbarGroupOption } from '../../../api/Options';
 import { UiFactoryBackstage, UiFactoryBackstageProviders, UiFactoryBackstageShared } from '../../../backstage/Backstage';

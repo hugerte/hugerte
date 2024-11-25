@@ -1,6 +1,6 @@
-import { Chain, Guard, NamedChain } from '@ephox/agar';
-import { Arr, Obj } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Chain, Guard, NamedChain } from "@hugerte/agar";
+import { Arr, Obj } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
 import { GuiSystem } from 'ephox/alloy/api/system/Gui';

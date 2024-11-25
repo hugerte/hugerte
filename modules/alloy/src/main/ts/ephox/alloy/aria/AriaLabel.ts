@@ -1,5 +1,5 @@
-import { Fun, Id } from '@ephox/katamari';
-import { Attribute, SugarElement } from '@ephox/sugar';
+import { Fun, Id } from "@hugerte/katamari";
+import { Attribute, SugarElement } from "@hugerte/sugar";
 
 export const labelledBy = (labelledElement: SugarElement<Element>, labelElement: SugarElement<Element>): void => {
   const labelId = Attribute.getOpt(labelledElement, 'id')

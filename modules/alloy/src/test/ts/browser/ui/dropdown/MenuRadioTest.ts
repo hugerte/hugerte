@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, StructAssert, TestStore, UiFinder } from '@ephox/agar';
+import { ApproxStructure, Assertions, StructAssert, TestStore, UiFinder } from "@hugerte/agar";
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';

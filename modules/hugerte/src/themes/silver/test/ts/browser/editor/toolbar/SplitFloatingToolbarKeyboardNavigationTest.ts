@@ -1,7 +1,7 @@
-import { FocusTools, Keys } from '@ephox/agar';
+import { FocusTools, Keys } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { TinyHooks, TinyUiActions } from '@ephox/mcagar';
-import { Attribute, SugarDocument } from '@ephox/sugar';
+import { TinyHooks, TinyUiActions } from "@hugerte/mcagar";
+import { Attribute, SugarDocument } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

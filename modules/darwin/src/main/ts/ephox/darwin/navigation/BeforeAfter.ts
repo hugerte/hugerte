@@ -1,6 +1,6 @@
-import { Adt, Optional } from '@ephox/katamari';
-import { DomParent } from '@ephox/robin';
-import { Awareness, Compare, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Adt, Optional } from "@hugerte/katamari";
+import { DomParent } from "@hugerte/robin";
+import { Awareness, Compare, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import { WindowBridge } from '../api/WindowBridge';
 

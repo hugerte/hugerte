@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { DomEvent, Insert, Remove, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
+import { DomEvent, Insert, Remove, SelectorFind, SugarBody, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { dragnDrop, dropFiles, isDraggable, sDragnDrop, sDropFiles, sDropItems } from 'ephox/agar/api/DragnDrop';

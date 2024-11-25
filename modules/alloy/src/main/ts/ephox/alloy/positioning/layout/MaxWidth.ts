@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { SugarElement, Width } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { SugarElement, Width } from "@hugerte/sugar";
 
 // applies the max-width as determined by Bounder
 const expandable = Fun.constant((element: SugarElement<HTMLElement>, available: number): void => {

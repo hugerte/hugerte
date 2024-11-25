@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Css, Height, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Css, Height, SugarElement } from "@hugerte/sugar";
 
 // applies the max-height as determined by Bounder
 const setMaxHeight = (element: SugarElement<HTMLElement>, maxHeight: number): void => {

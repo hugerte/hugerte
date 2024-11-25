@@ -1,5 +1,5 @@
-import { Arr, Optional, Optionals } from '@ephox/katamari';
-import { SugarElement, SugarNode } from '@ephox/sugar';
+import { Arr, Optional, Optionals } from "@hugerte/katamari";
+import { SugarElement, SugarNode } from "@hugerte/sugar";
 
 import * as Structs from '../api/Structs';
 import { Warehouse } from '../api/Warehouse';

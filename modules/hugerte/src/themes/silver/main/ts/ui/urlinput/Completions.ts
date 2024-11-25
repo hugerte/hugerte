@@ -1,5 +1,5 @@
-import { Menu as BridgeMenu } from '@ephox/bridge';
-import { Arr, Fun, Optional, Strings } from '@ephox/katamari';
+import { Menu as BridgeMenu } from "@hugerte/bridge";
+import { Arr, Fun, Optional, Strings } from "@hugerte/katamari";
 
 import { LinkInformation } from '../../backstage/UrlInputBackstage';
 import { LinkTarget, LinkTargetType } from '../core/LinkTargets';

@@ -1,6 +1,6 @@
-import { AlloyComponent, Gui } from '@ephox/alloy';
-import { Optional, Singleton } from '@ephox/katamari';
-import { Compare } from '@ephox/sugar';
+import { AlloyComponent, Gui } from "@hugerte/alloy";
+import { Optional, Singleton } from "@hugerte/katamari";
+import { Compare } from "@hugerte/sugar";
 
 export interface SinkAndMothership {
   readonly sink: AlloyComponent;

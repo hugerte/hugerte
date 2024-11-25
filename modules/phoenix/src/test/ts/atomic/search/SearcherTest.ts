@@ -1,6 +1,6 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
+import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
+import { Arr, Fun } from "@hugerte/katamari";
 
 import * as Searcher from 'ephox/phoenix/search/Searcher';
 import * as Finder from 'ephox/phoenix/test/Finder';

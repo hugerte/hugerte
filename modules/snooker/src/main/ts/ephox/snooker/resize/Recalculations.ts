@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { Warehouse } from '../api/Warehouse';
 import { CellElement } from '../util/TableTypes';

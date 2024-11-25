@@ -1,5 +1,5 @@
-import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Fun, Optional, Type } from '@ephox/katamari';
+import { FieldSchema, StructureSchema, ValueType } from "@hugerte/boulder";
+import { Fun, Optional, Type } from "@hugerte/katamari";
 
 import { NestedMenuItemContents } from '../components/menu/NestedMenuItem';
 

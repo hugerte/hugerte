@@ -5,10 +5,10 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { ApproxStructure, Assertions, Cursors, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
-import { Arr, Obj } from '@ephox/katamari';
-import { Attribute, Checked, Class, Insert, SelectorFind, SugarBody, SugarElement, TextContent, Value } from '@ephox/sugar';
-import { TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
+import { ApproxStructure, Assertions, Cursors, Mouse, StructAssert, UiFinder, Waiter } from "@hugerte/agar";
+import { Arr, Obj } from "@hugerte/katamari";
+import { Attribute, Checked, Class, Insert, SelectorFind, SugarBody, SugarElement, TextContent, Value } from "@hugerte/sugar";
+import { TinyDom, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

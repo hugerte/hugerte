@@ -1,9 +1,9 @@
 import {
   AlloyComponent, AlloyEvents, AlloyParts, AlloySpec, Behaviour, Boxes, Disabling, Gui, GuiFactory, Keying, Memento, Positioning, SimpleSpec, SystemEvents, VerticalDir
-} from '@ephox/alloy';
-import { Arr, Merger, Obj, Optional, Result, Singleton } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { Compare, Css, SugarBody, SugarElement } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Arr, Merger, Obj, Optional, Result, Singleton } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { Compare, Css, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorUiApi } from 'hugerte/core/api/ui/Ui';
@@ -279,7 +279,7 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
         tag: 'div',
         classes: [ 'tox', 'tox-silver-sink', 'tox-hugerte-aux' ].concat(deviceClasses),
         attributes: {
-          ...I18n.isRtl() ? { dir: 'rtl' } : {}
+          ...(I18n.isRtl() ? { dir: 'rtl' } : {})
         }
       },
       behaviours: Behaviour.derive([
@@ -319,7 +319,7 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
         tag: 'div',
         classes: [ 'tox', 'tox-silver-sink', 'tox-silver-popup-sink', 'tox-hugerte-aux' ].concat(deviceClasses),
         attributes: {
-          ...I18n.isRtl() ? { dir: 'rtl' } : {}
+          ...(I18n.isRtl() ? { dir: 'rtl' } : {})
         }
       },
       behaviours: Behaviour.derive([
@@ -384,8 +384,8 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
 
     const attributes = {
       role: 'application',
-      ...I18n.isRtl() ? { dir: 'rtl' } : {},
-      ...isHidden ? { 'aria-hidden': 'true' } : {}
+      ...(I18n.isRtl() ? { dir: 'rtl' } : {}),
+      ...(isHidden ? { 'aria-hidden': 'true' } : {})
     };
 
     const outerContainer = GuiFactory.build(
@@ -400,13 +400,13 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
             // This is overridden by the skin, it helps avoid FOUC
             visibility: 'hidden',
             // Hide the container if needed, but don't use "display: none" so that it still has a position
-            ...isHidden ? { opacity: '0', border: '0' } : {}
+            ...(isHidden ? { opacity: '0', border: '0' } : {})
           },
           attributes
         },
         components: [
           editorContainer,
-          ...isInline ? [] : [ partViewWrapper ],
+          ...(isInline ? [] : [ partViewWrapper ]),
           partThrobber,
         ],
         behaviours: Behaviour.derive([

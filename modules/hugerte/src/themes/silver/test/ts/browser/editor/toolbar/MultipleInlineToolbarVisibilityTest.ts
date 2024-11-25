@@ -1,6 +1,6 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Css } from '@ephox/sugar';
-import { McEditor, TinyDom } from '@ephox/wrap-mcagar';
+import { Css } from "@hugerte/sugar";
+import { McEditor, TinyDom } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

@@ -1,4 +1,4 @@
-import { Arr, Unicode } from '@ephox/katamari';
+import { Arr, Unicode } from "@hugerte/katamari";
 
 import { SugarElement } from '../node/SugarElement';
 import * as SugarNode from '../node/SugarNode';

@@ -1,4 +1,4 @@
-import { Class, SugarElement } from '@ephox/sugar';
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Sliding } from 'ephox/alloy/api/behaviour/Sliding';

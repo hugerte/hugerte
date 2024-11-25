@@ -1,4 +1,4 @@
-import { Assertions, Logger, Step } from '@ephox/agar';
+import { Assertions, Logger, Step } from "@hugerte/agar";
 
 import { Editor } from '../../alien/EditorTypes';
 import { TinyDom } from '../TinyDom';

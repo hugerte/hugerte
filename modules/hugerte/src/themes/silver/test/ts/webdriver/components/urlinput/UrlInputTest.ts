@@ -1,8 +1,8 @@
-import { RealKeys, UiControls } from '@ephox/agar';
-import { GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
+import { RealKeys, UiControls } from "@hugerte/agar";
+import { GuiFactory, Representing, TestHelpers } from "@hugerte/alloy";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Future, Optional } from '@ephox/katamari';
-import { SelectorFind, SugarDocument, Value } from '@ephox/sugar';
+import { Future, Optional } from "@hugerte/katamari";
+import { SelectorFind, SugarDocument, Value } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import { ApiUrlData } from 'hugerte/themes/silver/backstage/UrlInputBackstage';

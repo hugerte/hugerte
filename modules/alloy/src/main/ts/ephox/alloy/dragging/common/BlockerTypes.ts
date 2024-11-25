@@ -1,4 +1,4 @@
-import { EventArgs } from '@ephox/sugar';
+import { EventArgs } from "@hugerte/sugar";
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 

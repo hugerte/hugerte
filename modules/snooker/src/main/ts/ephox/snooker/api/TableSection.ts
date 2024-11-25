@@ -1,5 +1,5 @@
-import { Fun } from '@ephox/katamari';
-import { Replication, SugarElement, SugarNode } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Replication, SugarElement, SugarNode } from "@hugerte/sugar";
 
 import { findTableRowHeaderType, RowHeaderType } from '../lookup/Type';
 import { CompElm, Subst } from '../util/TableTypes';

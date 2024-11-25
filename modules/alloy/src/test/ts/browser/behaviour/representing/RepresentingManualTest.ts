@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Html } from '@ephox/sugar';
+import { Html } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';

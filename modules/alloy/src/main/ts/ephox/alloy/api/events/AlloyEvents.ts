@@ -1,6 +1,6 @@
-import { Objects } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
-import { TransformFind } from '@ephox/sugar';
+import { Objects } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
+import { TransformFind } from "@hugerte/sugar";
 
 import * as EventRoot from '../../alien/EventRoot';
 import * as EventHandler from '../../construct/EventHandler';

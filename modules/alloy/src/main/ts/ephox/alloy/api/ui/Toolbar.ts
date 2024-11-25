@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from "@hugerte/katamari";
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as ToolbarSchema from '../../ui/schema/ToolbarSchema';

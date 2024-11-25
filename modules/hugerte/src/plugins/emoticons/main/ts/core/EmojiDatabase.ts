@@ -1,4 +1,4 @@
-import { Merger, Obj, Optional, Singleton, Strings } from '@ephox/katamari';
+import { Merger, Obj, Optional, Singleton, Strings } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import Resource from 'hugerte/core/api/Resource';

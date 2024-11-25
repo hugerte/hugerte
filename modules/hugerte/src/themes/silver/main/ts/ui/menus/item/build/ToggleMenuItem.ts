@@ -1,6 +1,6 @@
-import { AlloyComponent, Disabling, ItemTypes, Toggling } from '@ephox/alloy';
-import { Menu } from '@ephox/bridge';
-import { Merger, Optional } from '@ephox/katamari';
+import { AlloyComponent, Disabling, ItemTypes, Toggling } from "@hugerte/alloy";
+import { Menu } from "@hugerte/bridge";
+import { Merger, Optional } from "@hugerte/katamari";
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 

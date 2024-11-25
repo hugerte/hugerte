@@ -1,7 +1,7 @@
-import { DomUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
-import { SpotPoint } from '@ephox/phoenix';
-import { SugarElement } from '@ephox/sugar';
+import { DomUniverse } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
+import { SpotPoint } from "@hugerte/phoenix";
+import { SugarElement } from "@hugerte/sugar";
 
 import { CharPos } from '../../textdata/TextSearch';
 import { TextSeekerOutcome, TextSeekerPhaseProcessor } from '../../textdata/TextSeeker';

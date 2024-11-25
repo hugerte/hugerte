@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
-import { Css, Height, SugarElement, Width } from '@ephox/sugar';
+import { Arr, Fun, Optional } from "@hugerte/katamari";
+import { Css, Height, SugarElement, Width } from "@hugerte/sugar";
 
 import * as ColumnSizes from '../resize/ColumnSizes';
 import * as Redistribution from '../resize/Redistribution';

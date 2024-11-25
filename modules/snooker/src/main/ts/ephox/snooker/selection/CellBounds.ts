@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from "@hugerte/katamari";
 
 import { Bounds, DetailExt } from '../api/Structs';
 import { Warehouse } from '../api/Warehouse';

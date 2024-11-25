@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Selectors, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Selectors, SugarElement, SugarNode, SugarText, Traverse } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import { isCaretNode } from '../fmt/FormatContainer';

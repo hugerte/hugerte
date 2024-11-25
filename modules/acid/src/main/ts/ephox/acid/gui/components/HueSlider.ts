@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloyTriggers, Behaviour, Focusing, SketchSpec, Slider } from '@ephox/alloy';
-import { Fun } from '@ephox/katamari';
-import { Attribute } from '@ephox/sugar';
+import { AlloyComponent, AlloyTriggers, Behaviour, Focusing, SketchSpec, Slider } from "@hugerte/alloy";
+import { Fun } from "@hugerte/katamari";
+import { Attribute } from "@hugerte/sugar";
 
 import { sliderUpdate } from '../ColourEvents';
 

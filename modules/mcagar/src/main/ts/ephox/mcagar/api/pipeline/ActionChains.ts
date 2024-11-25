@@ -1,6 +1,6 @@
-import { Chain, FocusTools, Keyboard, NamedChain } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Chain, FocusTools, Keyboard, NamedChain } from "@hugerte/agar";
+import { Fun } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { Editor } from '../../alien/EditorTypes';
 

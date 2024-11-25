@@ -1,4 +1,4 @@
-import { Regex, Type } from '@ephox/katamari';
+import { Regex, Type } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import Tools from 'hugerte/core/api/util/Tools';

@@ -1,8 +1,8 @@
-import { Waiter } from '@ephox/agar';
+import { Waiter } from "@hugerte/agar";
 import { before, describe, it } from '@ephox/bedrock-client';
-import { PlatformDetection } from '@ephox/sand';
-import { Css, Insert, Remove, Scroll, SugarBody, SugarElement, SugarLocation } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { PlatformDetection } from "@hugerte/sand";
+import { Css, Insert, Remove, Scroll, SugarBody, SugarElement, SugarLocation } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

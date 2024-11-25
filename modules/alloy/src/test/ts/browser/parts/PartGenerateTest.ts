@@ -1,7 +1,7 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { FieldSchema, Objects } from '@ephox/boulder';
-import { Fun, Obj } from '@ephox/katamari';
+import { FieldSchema, Objects } from "@hugerte/boulder";
+import { Fun, Obj } from "@hugerte/katamari";
 
 import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
 import * as PartType from 'ephox/alloy/parts/PartType';

@@ -1,7 +1,7 @@
-import { Arbitraries } from '@ephox/agar';
+import { Arbitraries } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 import * as fc from 'fast-check';
 
 import { composeList } from 'hugerte/plugins/lists/listmodel/ComposeList';

@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

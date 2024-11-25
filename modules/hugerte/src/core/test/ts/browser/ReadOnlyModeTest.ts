@@ -1,8 +1,8 @@
-import { ApproxStructure, Mouse, UiFinder, Clipboard } from '@ephox/agar';
+import { ApproxStructure, Mouse, UiFinder, Clipboard } from "@hugerte/agar";
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Optional, OptionalInstances } from '@ephox/katamari';
-import { Class, Css, Scroll, SelectorFind, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
-import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Optional, OptionalInstances } from "@hugerte/katamari";
+import { Class, Css, Scroll, SelectorFind, SugarBody, SugarElement, Traverse } from "@hugerte/sugar";
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -47,7 +47,7 @@ describe('browser.hugerte.core.ReadOnlyModeTest', () => {
               s.text(str.is('c'))
             ]
           }),
-          ...offscreen ? [ s.element('div', {}) ] : [] // Offscreen cef clone
+          ...(offscreen ? [ s.element('div', {}) ] : []) // Offscreen cef clone
         ]
       });
     })

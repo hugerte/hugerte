@@ -1,5 +1,5 @@
-import { Optional, Result } from '@ephox/katamari';
-import { Class, SugarElement } from '@ephox/sugar';
+import { Optional, Result } from "@hugerte/katamari";
+import { Class, SugarElement } from "@hugerte/sugar";
 
 import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';

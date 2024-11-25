@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj, Singleton, Strings } from '@ephox/katamari';
-import { TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr, Obj, Singleton, Strings } from "@hugerte/katamari";
+import { TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

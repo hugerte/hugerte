@@ -1,8 +1,8 @@
-import { ApproxStructure } from '@ephox/agar';
+import { ApproxStructure } from "@hugerte/agar";
 import { afterEach, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
-import { SugarElement, SugarNode } from '@ephox/sugar';
-import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { SugarElement, SugarNode } from "@hugerte/sugar";
+import { TinyAssertions, TinyHooks, TinySelections, TinyState } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

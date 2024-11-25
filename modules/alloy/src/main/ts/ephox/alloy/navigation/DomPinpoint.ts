@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Compare, SelectorFilter, SugarElement, Visibility } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Compare, SelectorFilter, SugarElement, Visibility } from "@hugerte/sugar";
 
 import * as ArrPinpoint from './ArrPinpoint';
 

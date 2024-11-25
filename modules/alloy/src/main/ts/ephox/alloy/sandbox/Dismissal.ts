@@ -1,6 +1,6 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Fun, Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { NamedConfiguredBehaviour } from '../api/behaviour/Behaviour';
 import { Receiving } from '../api/behaviour/Receiving';

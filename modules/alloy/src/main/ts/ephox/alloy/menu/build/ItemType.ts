@@ -1,5 +1,5 @@
-import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Obj, Type } from '@ephox/katamari';
+import { FieldProcessor, FieldSchema } from "@hugerte/boulder";
+import { Obj, Type } from "@hugerte/katamari";
 
 import * as AddEventsBehaviour from '../../api/behaviour/AddEventsBehaviour';
 import { Focusing } from '../../api/behaviour/Focusing';

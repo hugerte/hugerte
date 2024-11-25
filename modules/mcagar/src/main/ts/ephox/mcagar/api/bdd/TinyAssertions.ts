@@ -1,6 +1,6 @@
-import { Assertions, Cursors, StructAssert } from '@ephox/agar';
-import { Optional } from '@ephox/katamari';
-import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
+import { Assertions, Cursors, StructAssert } from "@hugerte/agar";
+import { Optional } from "@hugerte/katamari";
+import { Hierarchy, Html, SugarElement } from "@hugerte/sugar";
 
 import { Editor, GetContentArgs } from '../../alien/EditorTypes';
 import { Presence } from '../pipeline/TinyApis';

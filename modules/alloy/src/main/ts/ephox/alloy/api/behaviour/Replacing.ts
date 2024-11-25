@@ -1,4 +1,4 @@
-import { FieldSchema } from '@ephox/boulder';
+import { FieldSchema } from "@hugerte/boulder";
 
 import * as ReplaceApis from '../../behaviour/replacing/ReplaceApis';
 import { ReplacingBehaviour } from '../../behaviour/replacing/ReplacingTypes';

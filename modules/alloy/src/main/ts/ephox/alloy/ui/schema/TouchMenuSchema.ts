@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
-import { Height, SugarLocation, Width } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
+import { Height, SugarLocation, Width } from "@hugerte/sugar";
 
 import { Coupling } from '../../api/behaviour/Coupling';
 import { Toggling } from '../../api/behaviour/Toggling';

@@ -1,6 +1,6 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr, Cell, Fun, Obj, Optional, Result } from '@ephox/katamari';
-import { SugarElement, Traverse } from '@ephox/sugar';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Arr, Cell, Fun, Obj, Optional, Result } from "@hugerte/katamari";
+import { SugarElement, Traverse } from "@hugerte/sugar";
 
 import * as DefaultEvents from '../../events/DefaultEvents';
 import * as Tagger from '../../registry/Tagger';

@@ -1,6 +1,6 @@
-import { Attachment, Channels, Gui, SystemEvents } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
-import { Compare, DomEvent, EventArgs, SugarDocument, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Attachment, Channels, Gui, SystemEvents } from "@hugerte/alloy";
+import { Arr } from "@hugerte/katamari";
+import { Compare, DomEvent, EventArgs, SugarDocument, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { AfterProgressStateEvent } from 'hugerte/core/api/EventTypes';

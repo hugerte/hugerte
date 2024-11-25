@@ -1,6 +1,6 @@
-import { AlloyComponent, AlloySpec } from '@ephox/alloy';
-import { Dialog, Menu } from '@ephox/bridge';
-import { Cell, Result } from '@ephox/katamari';
+import { AlloyComponent, AlloySpec } from "@hugerte/alloy";
+import { Dialog, Menu } from "@hugerte/bridge";
+import { Cell, Result } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import I18n, { TranslatedString, Untranslated } from 'hugerte/core/api/util/I18n';

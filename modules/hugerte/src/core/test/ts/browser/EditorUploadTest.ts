@@ -1,6 +1,6 @@
 import { afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { LegacyUnit, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { LegacyUnit, TinyAssertions, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';

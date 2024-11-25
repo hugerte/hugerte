@@ -1,4 +1,4 @@
-import { Fun, Optional, Thunk } from '@ephox/katamari';
+import { Fun, Optional, Thunk } from "@hugerte/katamari";
 
 import { Browser as BrowserCore } from '../core/Browser';
 import { OperatingSystem as OperatingSystemCore } from '../core/OperatingSystem';

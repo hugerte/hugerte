@@ -16,8 +16,8 @@
  * console.log(hugerte.html.Styles().serialize(styles));
  */
 
-import { RgbaColour, Transformations } from '@ephox/acid';
-import { Obj, Type, Unicode } from '@ephox/katamari';
+import { RgbaColour, Transformations } from "@hugerte/acid";
+import { Obj, Type, Unicode } from "@hugerte/katamari";
 
 import { ForceHexColor, URLConverter } from '../OptionTypes';
 import Schema, { SchemaMap } from './Schema';

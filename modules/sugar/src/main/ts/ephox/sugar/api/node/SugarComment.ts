@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 import { NodeValue } from '../../impl/NodeValue';
 import { SugarElement } from './SugarElement';

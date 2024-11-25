@@ -1,6 +1,6 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
-import { Strings } from '@ephox/polaris';
+import { Universe } from "@hugerte/boss";
+import { Arr, Optional } from "@hugerte/katamari";
+import { Strings } from "@hugerte/polaris";
 
 import { TextSplit } from '../api/data/TextSplit';
 

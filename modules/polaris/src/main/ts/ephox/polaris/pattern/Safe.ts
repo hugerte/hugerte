@@ -1,4 +1,4 @@
-import { Regex } from '@ephox/katamari';
+import { Regex } from "@hugerte/katamari";
 
 import { PRegExp } from './Types';
 import * as Unsafe from './Unsafe';

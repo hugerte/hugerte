@@ -1,6 +1,6 @@
-import { Arr, Singleton, Strings, Type } from '@ephox/katamari';
-import { Adjustments, ResizeBehaviour, ResizeWire, Sizes, TableConversions, TableGridSize, TableLookup, TableResize, Warehouse } from '@ephox/snooker';
-import { Attribute, Css, SugarElement } from '@ephox/sugar';
+import { Arr, Singleton, Strings, Type } from "@hugerte/katamari";
+import { Adjustments, ResizeBehaviour, ResizeWire, Sizes, TableConversions, TableGridSize, TableLookup, TableResize, Warehouse } from "@hugerte/snooker";
+import { Attribute, Css, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

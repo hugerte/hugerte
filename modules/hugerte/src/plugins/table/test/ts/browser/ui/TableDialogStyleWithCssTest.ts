@@ -1,8 +1,8 @@
-import { ApproxStructure } from '@ephox/agar';
+import { ApproxStructure } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj, Type } from '@ephox/katamari';
-import { Attribute, Css, Html, SelectorFilter, SugarElement } from '@ephox/sugar';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Arr, Obj, Type } from "@hugerte/katamari";
+import { Attribute, Css, Html, SelectorFilter, SugarElement } from "@hugerte/sugar";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import Plugin from 'hugerte/plugins/table/Plugin';

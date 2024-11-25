@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+import { Obj } from "@hugerte/katamari";
 
 import { NodeClientRect } from '../dom/Dimensions';
 import * as NodeType from '../dom/NodeType';

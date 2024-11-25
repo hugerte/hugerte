@@ -1,7 +1,7 @@
-import { Logger } from '@ephox/agar';
+import { Logger } from "@hugerte/agar";
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Gene, TestUniverse, TextGene } from "@hugerte/boss";
+import { Arr, Optional, Optionals } from "@hugerte/katamari";
 import * as fc from 'fast-check';
 
 import { arbTextIds } from 'ephox/robin/test/Arbitraries';

@@ -1,4 +1,4 @@
-import { Result } from '@ephox/katamari';
+import { Result } from "@hugerte/katamari";
 
 import Editor from '../api/Editor';
 import * as Events from '../api/Events';

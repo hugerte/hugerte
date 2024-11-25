@@ -1,7 +1,7 @@
-import { ApproxStructure, Keys, Mouse, StructAssert, Waiter } from '@ephox/agar';
+import { ApproxStructure, Keys, Mouse, StructAssert, Waiter } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Type } from '@ephox/katamari';
-import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr, Type } from "@hugerte/katamari";
+import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

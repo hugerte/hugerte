@@ -1,4 +1,4 @@
-import { Obj, Optional } from '@ephox/katamari';
+import { Obj, Optional } from "@hugerte/katamari";
 
 import * as Tagger from '../../registry/Tagger';
 import { isSketchSpec } from '../ui/Sketcher';

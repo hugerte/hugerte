@@ -1,5 +1,5 @@
-import { Boxes } from '@ephox/alloy';
-import { Fun } from '@ephox/katamari';
+import { Boxes } from "@hugerte/alloy";
+import { Fun } from "@hugerte/katamari";
 
 import Editor from 'hugerte/core/api/Editor';
 import ThemeManager, { RenderResult, Theme } from 'hugerte/core/api/ThemeManager';

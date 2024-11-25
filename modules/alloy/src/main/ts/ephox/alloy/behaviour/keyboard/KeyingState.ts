@@ -1,4 +1,4 @@
-import { Singleton } from '@ephox/katamari';
+import { Singleton } from "@hugerte/katamari";
 
 import { FlatgridState, GeneralKeyingConfig } from '../../keying/KeyingModeTypes';
 import { nuState, Stateless } from '../common/BehaviourState';

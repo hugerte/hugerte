@@ -1,7 +1,7 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { StructureSchema } from '@ephox/boulder';
-import { Dialog } from '@ephox/bridge';
-import { Fun } from '@ephox/katamari';
+import { StructureSchema } from "@hugerte/boulder";
+import { Dialog } from "@hugerte/bridge";
+import { Fun } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 describe('headless.hugerte.themes.silver.components.customeditor.CustomEditorSchemaTest', () => {

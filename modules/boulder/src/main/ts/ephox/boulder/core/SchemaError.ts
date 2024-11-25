@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import { SimpleResult } from '../alien/SimpleResult';
 import { formatObj } from '../format/PrettyPrinter';

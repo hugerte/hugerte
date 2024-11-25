@@ -1,5 +1,5 @@
-import { Cell } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Cell } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 
 import Editor from '../api/Editor';
 import { EditorEvent } from '../api/util/EventDispatcher';
@@ -49,14 +49,14 @@ const executeKeydownOverride = (editor: Editor, caret: Cell<Text | null>, evt: K
     { keyCode: VK.DELETE, action: MatchKeys.action(TableDelete.backspaceDelete, editor, true) },
     { keyCode: VK.BACKSPACE, action: MatchKeys.action(DetailsDelete.backspaceDelete, editor, false, unmodifiedGranularity) },
     { keyCode: VK.DELETE, action: MatchKeys.action(DetailsDelete.backspaceDelete, editor, true, unmodifiedGranularity) },
-    ...isMacOSOriOS ? [
+    ...(isMacOSOriOS ? [
       { keyCode: VK.BACKSPACE, altKey: true, action: MatchKeys.action(DetailsDelete.backspaceDelete, editor, false, getModifiedGranularity(true)) },
       { keyCode: VK.DELETE, altKey: true, action: MatchKeys.action(DetailsDelete.backspaceDelete, editor, true, getModifiedGranularity(true)) },
       { keyCode: VK.BACKSPACE, metaKey: true, action: MatchKeys.action(DetailsDelete.backspaceDelete, editor, false, getModifiedGranularity(false)) },
     ] : [
       { keyCode: VK.BACKSPACE, ctrlKey: true, action: MatchKeys.action(DetailsDelete.backspaceDelete, editor, false, getModifiedGranularity(true)) },
       { keyCode: VK.DELETE, ctrlKey: true, action: MatchKeys.action(DetailsDelete.backspaceDelete, editor, true, getModifiedGranularity(true)) }
-    ],
+    ]),
     { keyCode: VK.BACKSPACE, action: MatchKeys.action(ImageBlockDelete.backspaceDelete, editor, false) },
     { keyCode: VK.DELETE, action: MatchKeys.action(ImageBlockDelete.backspaceDelete, editor, true) },
     { keyCode: VK.BACKSPACE, action: MatchKeys.action(MediaDelete.backspaceDelete, editor, false) },
@@ -84,21 +84,21 @@ const executeKeyupOverride = (editor: Editor, evt: KeyboardEvent, isBackspaceKey
   MatchKeys.execute([
     { keyCode: VK.BACKSPACE, action: MatchKeys.action(CefDelete.paddEmptyElement, editor) },
     { keyCode: VK.DELETE, action: MatchKeys.action(CefDelete.paddEmptyElement, editor) },
-    ...isMacOSOriOS ? [
+    ...(isMacOSOriOS ? [
       { keyCode: VK.BACKSPACE, altKey: true, action: MatchKeys.action(InlineFormatDelete.refreshCaret, editor) },
       { keyCode: VK.DELETE, altKey: true, action: MatchKeys.action(InlineFormatDelete.refreshCaret, editor) },
       // macOS surpresses keyup events for most keys including Backspace when Meta key is engaged
       // To emulate Meta + Backspace on macOS, add a pattern for the meta key when backspace was
       // detected on keydown
-      ...isBackspaceKeydown ? [{
+      ...(isBackspaceKeydown ? [{
         // Firefox detects macOS Command key code as "Command" not "Meta"
         keyCode: isFirefox ? 224 : 91,
         action: MatchKeys.action(InlineFormatDelete.refreshCaret, editor)
-      }] : []
+      }] : [])
     ] : [
       { keyCode: VK.BACKSPACE, ctrlKey: true, action: MatchKeys.action(InlineFormatDelete.refreshCaret, editor) },
       { keyCode: VK.DELETE, ctrlKey: true, action: MatchKeys.action(InlineFormatDelete.refreshCaret, editor) }
-    ]
+    ])
   ], evt);
 
 const setup = (editor: Editor, caret: Cell<Text | null>): void => {

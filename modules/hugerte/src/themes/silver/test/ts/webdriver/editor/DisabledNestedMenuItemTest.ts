@@ -1,7 +1,7 @@
-import { Keys, Mouse, RealKeys, UiFinder, Waiter } from '@ephox/agar';
+import { Keys, Mouse, RealKeys, UiFinder, Waiter } from "@hugerte/agar";
 import { afterEach, describe, it } from '@ephox/bedrock-client';
-import { SugarBody } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { SugarBody } from "@hugerte/sugar";
+import { TinyHooks, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

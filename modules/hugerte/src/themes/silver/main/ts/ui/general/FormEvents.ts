@@ -1,5 +1,5 @@
-import { CustomEvent } from '@ephox/alloy';
-import { Id } from '@ephox/katamari';
+import { CustomEvent } from "@hugerte/alloy";
+import { Id } from "@hugerte/katamari";
 
 export interface FormChangeEvent<T> extends CustomEvent {
   readonly name: keyof T;

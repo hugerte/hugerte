@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
+import { Arr, Fun, Obj, Type } from "@hugerte/katamari";
 
 const formatObj = (input: any): string => {
   return Type.isObject(input) && Obj.keys(input).length > 100 ? ' removed due to size' : JSON.stringify(input, null, 2);

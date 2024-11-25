@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Compare, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Compare, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import * as TableLookup from 'ephox/snooker/api/TableLookup';
 

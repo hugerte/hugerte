@@ -1,7 +1,7 @@
-import { Cursors, Mouse } from '@ephox/agar';
+import { Cursors, Mouse } from "@hugerte/agar";
 import { describe, it } from '@ephox/bedrock-client';
-import { SugarElement } from '@ephox/sugar';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { SugarElement } from "@hugerte/sugar";
+import { TinyAssertions, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';

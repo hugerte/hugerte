@@ -1,7 +1,7 @@
-import { ApproxStructure, Assertions, Logger, Pipeline, Step } from '@ephox/agar';
+import { ApproxStructure, Assertions, Logger, Pipeline, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Unicode } from '@ephox/katamari';
-import { Compare, SugarElement } from '@ephox/sugar';
+import { Arr, Unicode } from "@hugerte/katamari";
+import { Compare, SugarElement } from "@hugerte/sugar";
 
 import * as Structs from 'ephox/snooker/api/Structs';
 import { Warehouse } from 'ephox/snooker/api/Warehouse';

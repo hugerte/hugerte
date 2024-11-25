@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Hierarchy, SugarElement, SugarNode } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Hierarchy, SugarElement, SugarNode } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

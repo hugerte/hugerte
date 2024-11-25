@@ -2,10 +2,10 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Button, Disabling,
   FormField as AlloyFormField, GuiFactory, Memento, NativeEvents, Representing, SimpleSpec, SimulatedEvent, SketchSpec,
   SystemEvents, Tabstopping, Toggling
-} from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge';
-import { Arr, Optional, Strings } from '@ephox/katamari';
-import { EventArgs } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Dialog } from "@hugerte/bridge";
+import { Arr, Optional, Strings } from "@hugerte/katamari";
+import { EventArgs } from "@hugerte/sugar";
 
 import Tools from 'hugerte/core/api/util/Tools';
 

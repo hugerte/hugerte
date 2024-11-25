@@ -1,6 +1,6 @@
-import { FocusTools, GeneralSteps, Log, Step } from '@ephox/agar';
+import { FocusTools, GeneralSteps, Log, Step } from "@hugerte/agar";
 import { UnitTest } from '@ephox/bedrock-client';
-import { Focus, SelectorFind, SugarBody } from '@ephox/sugar';
+import { Focus, SelectorFind, SugarBody } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';

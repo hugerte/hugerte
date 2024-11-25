@@ -1,5 +1,5 @@
-import { Arr, Thunk, Type } from '@ephox/katamari';
-import { Html, Remove, SelectorFilter, SugarElement } from '@ephox/sugar';
+import { Arr, Thunk, Type } from "@hugerte/katamari";
+import { Html, Remove, SelectorFilter, SugarElement } from "@hugerte/sugar";
 
 import Editor from '../api/Editor';
 import { isPathBookmark } from '../bookmark/BookmarkTypes';

@@ -1,4 +1,4 @@
-import { SugarElement } from '@ephox/sugar';
+import { SugarElement } from "@hugerte/sugar";
 import * as fc from 'fast-check';
 
 const createTag = <T extends HTMLElement>(name: string): SugarElement<T> => {

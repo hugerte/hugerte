@@ -1,6 +1,6 @@
-import { DomUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
-import { SugarElement } from '@ephox/sugar';
+import { DomUniverse } from "@hugerte/boss";
+import { Optional } from "@hugerte/katamari";
+import { SugarElement } from "@hugerte/sugar";
 
 import { Direction, Successor, Transition, Traverse } from '../data/Types';
 import * as Gather from '../general/Gather';

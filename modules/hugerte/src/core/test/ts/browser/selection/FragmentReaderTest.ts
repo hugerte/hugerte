@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { Hierarchy, Html, Insert, SugarElement } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Hierarchy, Html, Insert, SugarElement } from "@hugerte/sugar";
 
 import Schema from 'hugerte/core/api/html/Schema';
 import * as FragmentReader from 'hugerte/core/selection/FragmentReader';

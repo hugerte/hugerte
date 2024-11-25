@@ -1,7 +1,7 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { DomParent } from '@ephox/robin';
-import { TablePositions } from '@ephox/snooker';
-import { Compare, SelectorFilter, SelectorFind, Selectors, SugarElement } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { DomParent } from "@hugerte/robin";
+import { TablePositions } from "@hugerte/snooker";
+import { Compare, SelectorFilter, SelectorFind, Selectors, SugarElement } from "@hugerte/sugar";
 
 import { Identified, IdentifiedExt } from './Identified';
 

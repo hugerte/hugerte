@@ -1,5 +1,5 @@
-import { Optional } from '@ephox/katamari';
-import { Attribute, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Attribute, SugarElement } from "@hugerte/sugar";
 
 export const enum Placement {
   North = 'north',

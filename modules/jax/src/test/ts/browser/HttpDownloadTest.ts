@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { FutureResult } from '@ephox/katamari';
+import { FutureResult } from "@hugerte/katamari";
 
 import { readBlobAsText } from 'ephox/jax/core/BlobReader';
 import * as Http from 'ephox/jax/core/Http';

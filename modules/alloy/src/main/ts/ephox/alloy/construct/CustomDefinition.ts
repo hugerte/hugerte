@@ -1,5 +1,5 @@
-import { FieldPresence, FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Arr, Optional, Result } from '@ephox/katamari';
+import { FieldPresence, FieldSchema, StructureSchema, ValueType } from "@hugerte/boulder";
+import { Arr, Optional, Result } from "@hugerte/katamari";
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { ComponentDetail, SimpleOrSketchSpec, StructDomSchema } from '../api/component/SpecTypes';

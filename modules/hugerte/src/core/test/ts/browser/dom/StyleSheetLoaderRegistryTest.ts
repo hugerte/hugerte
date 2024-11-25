@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { SugarDocument, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { SugarDocument, SugarElement, SugarShadowDom } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import StyleSheetLoader from 'hugerte/core/api/dom/StyleSheetLoader';

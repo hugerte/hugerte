@@ -1,5 +1,5 @@
-import { Arr, Obj } from '@ephox/katamari';
-import { Attribute, Insert, Remove, Replication, Selectors, SugarElement } from '@ephox/sugar';
+import { Arr, Obj } from "@hugerte/katamari";
+import { Attribute, Insert, Remove, Replication, Selectors, SugarElement } from "@hugerte/sugar";
 
 import * as DetailsList from '../model/DetailsList';
 import * as ColumnSizes from '../resize/ColumnSizes';

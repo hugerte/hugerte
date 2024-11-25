@@ -1,6 +1,6 @@
-import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
-import { SelectorFind } from '@ephox/sugar';
+import { FieldSchema } from "@hugerte/boulder";
+import { Fun } from "@hugerte/katamari";
+import { SelectorFind } from "@hugerte/sugar";
 
 import * as Boxes from '../../alien/Boxes';
 import * as Behaviour from '../../api/behaviour/Behaviour';

@@ -1,5 +1,5 @@
-import { Arr } from '@ephox/katamari';
-import { Height, SugarElement, SugarLocation, Width, WindowVisualViewport } from '@ephox/sugar';
+import { Arr } from "@hugerte/katamari";
+import { Height, SugarElement, SugarLocation, Width, WindowVisualViewport } from "@hugerte/sugar";
 
 import * as OuterPosition from '../frame/OuterPosition';
 import { CssPositionAdt } from './CssPosition';

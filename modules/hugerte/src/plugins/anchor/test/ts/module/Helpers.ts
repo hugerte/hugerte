@@ -1,6 +1,6 @@
-import { Waiter } from '@ephox/agar';
-import { SugarElement, Value } from '@ephox/sugar';
-import { TinyAssertions, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Waiter } from "@hugerte/agar";
+import { SugarElement, Value } from "@hugerte/sugar";
+import { TinyAssertions, TinyUiActions } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 

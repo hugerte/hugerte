@@ -1,6 +1,6 @@
 import { after, Assert, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Attribute, Html, Insert, InsertAll, Remove, SugarElement } from '@ephox/sugar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { Attribute, Html, Insert, InsertAll, Remove, SugarElement } from "@hugerte/sugar";
 
 import * as DomSearch from 'ephox/phoenix/api/dom/DomSearch';
 import * as DomWrapping from 'ephox/phoenix/api/dom/DomWrapping';

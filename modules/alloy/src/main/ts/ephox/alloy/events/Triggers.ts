@@ -1,5 +1,5 @@
-import { Adt, Arr, Cell, Fun, Optional } from '@ephox/katamari';
-import { SugarElement, Traverse } from '@ephox/sugar';
+import { Adt, Arr, Cell, Fun, Optional } from "@hugerte/katamari";
+import { SugarElement, Traverse } from "@hugerte/sugar";
 
 import { DebuggerLogger } from '../debugging/Debugging';
 import * as DescribedHandler from './DescribedHandler';

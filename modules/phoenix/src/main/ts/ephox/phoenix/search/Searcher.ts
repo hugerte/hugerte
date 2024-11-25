@@ -1,6 +1,6 @@
-import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
-import { Pattern, PositionArray, Search } from '@ephox/polaris';
+import { Universe } from "@hugerte/boss";
+import { Arr, Optional } from "@hugerte/katamari";
+import { Pattern, PositionArray, Search } from "@hugerte/polaris";
 
 import { NamedPattern } from '../api/data/NamedPattern';
 import * as Spot from '../api/data/Spot';

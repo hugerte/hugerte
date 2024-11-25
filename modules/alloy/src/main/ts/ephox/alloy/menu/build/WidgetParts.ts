@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+import { Fun } from "@hugerte/katamari";
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Representing } from '../../api/behaviour/Representing';

@@ -1,5 +1,5 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
-import { ContentEditable, Remove, SugarElement, Width } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
+import { ContentEditable, Remove, SugarElement, Width } from "@hugerte/sugar";
 
 import * as Blocks from '../lookup/Blocks';
 import { findCommonCellType, findCommonRowType } from '../lookup/Type';

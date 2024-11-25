@@ -1,4 +1,4 @@
-import { Obj, Optional, Optionals, Result } from '@ephox/katamari';
+import { Obj, Optional, Optionals, Result } from "@hugerte/katamari";
 
 export type SizeUnit = '' | 'cm' | 'mm' | 'in' | 'px' | 'pt' | 'pc' | 'em' | 'ex' | 'ch' | 'rem' | 'vw' | 'vh' | 'vmin' | 'vmax' | '%';
 

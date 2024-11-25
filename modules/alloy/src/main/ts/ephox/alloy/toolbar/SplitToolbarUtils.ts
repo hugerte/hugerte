@@ -1,5 +1,5 @@
-import { Arr, Optional } from '@ephox/katamari';
-import { Css, Focus, Width } from '@ephox/sugar';
+import { Arr, Optional } from "@hugerte/katamari";
+import { Css, Focus, Width } from "@hugerte/sugar";
 
 import { Coupling } from '../api/behaviour/Coupling';
 import { Focusing } from '../api/behaviour/Focusing';

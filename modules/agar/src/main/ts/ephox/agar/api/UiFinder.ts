@@ -1,5 +1,5 @@
-import { Fun, Result } from '@ephox/katamari';
-import { SugarElement, Truncate, Visibility } from '@ephox/sugar';
+import { Fun, Result } from "@hugerte/katamari";
+import { SugarElement, Truncate, Visibility } from "@hugerte/sugar";
 
 import * as UiSearcher from '../find/UiSearcher';
 import { Chain } from './Chain';

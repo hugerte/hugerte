@@ -1,9 +1,9 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, EventFormat, Focusing, Form, FormField, FormTypes, GuiFactory, Input, Invalidating,
   Memento, Representing, SimulatedEvent, Sketcher, SketchSpec, Tabstopping, UiSketcher
-} from '@ephox/alloy';
-import { Cell, Fun, Future, Id, Merger, Optional, Result } from '@ephox/katamari';
-import { Css } from '@ephox/sugar';
+} from "@hugerte/alloy";
+import { Cell, Fun, Future, Id, Merger, Optional, Result } from "@hugerte/katamari";
+import { Css } from "@hugerte/sugar";
 
 import { Hex, Rgba } from '../../api/colour/ColourTypes';
 import * as HexColour from '../../api/colour/HexColour';
@@ -99,7 +99,7 @@ const rgbFormFactory = (
       factory: Input,
       inputAttributes: {
         type: 'text',
-        ...name === 'hex' ? { 'aria-live': 'polite' } : {}
+        ...(name === 'hex' ? { 'aria-live': 'polite' } : {})
       },
       inputClasses: [ getClass('textfield') ],
 

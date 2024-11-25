@@ -1,5 +1,5 @@
-import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Optional, Result } from '@ephox/katamari';
+import { FieldSchema, StructureSchema } from "@hugerte/boulder";
+import { Fun, Optional, Result } from "@hugerte/katamari";
 
 import { dialogButtonFields } from './Dialog';
 import { DialogFooterNormalButton, DialogFooterNormalButtonSpec } from './DialogFooterButton';

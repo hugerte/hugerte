@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
-import { Attribute, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
+import { Fun } from "@hugerte/katamari";
+import { Attribute, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from "@hugerte/sugar";
 
 import { ResizeWire } from 'ephox/snooker/api/ResizeWire';
 import * as Bars from 'ephox/snooker/resize/Bars';

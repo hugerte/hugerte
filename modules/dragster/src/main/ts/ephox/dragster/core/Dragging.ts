@@ -1,6 +1,6 @@
-import { Throttler } from '@ephox/katamari';
-import { Bindable, Event, Events } from '@ephox/porkbun';
-import { EventArgs, SugarElement } from '@ephox/sugar';
+import { Throttler } from "@hugerte/katamari";
+import { Bindable, Event, Events } from "@hugerte/porkbun";
+import { EventArgs, SugarElement } from "@hugerte/sugar";
 
 import { DragApi, DragMode, DragMutation } from '../api/DragApis';
 import { BlockerOptions } from '../detect/Blocker';

@@ -1,4 +1,4 @@
-import { Menu } from '@ephox/bridge';
+import { Menu } from "@hugerte/bridge";
 
 import Editor from 'hugerte/core/api/Editor';
 

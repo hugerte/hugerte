@@ -1,6 +1,6 @@
-import { AlloySpec, RawDomSchema } from '@ephox/alloy';
-import { Toolbar } from '@ephox/bridge';
-import { Fun, Id, Obj, Optional, Type } from '@ephox/katamari';
+import { AlloySpec, RawDomSchema } from "@hugerte/alloy";
+import { Toolbar } from "@hugerte/bridge";
+import { Fun, Id, Obj, Optional, Type } from "@hugerte/katamari";
 
 import I18n from 'hugerte/core/api/util/I18n';
 

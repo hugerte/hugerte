@@ -1,8 +1,8 @@
-import { Keys, UiFinder, Waiter } from '@ephox/agar';
+import { Keys, UiFinder, Waiter } from "@hugerte/agar";
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
-import { Css, Scroll, SugarBody } from '@ephox/sugar';
-import { TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr, Fun } from "@hugerte/katamari";
+import { Css, Scroll, SugarBody } from "@hugerte/sugar";
+import { TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,4 +1,4 @@
-import { Adt, Arr, Fun, Obj, Optional } from '@ephox/katamari';
+import { Adt, Arr, Fun, Obj, Optional } from "@hugerte/katamari";
 
 import { AlloySpec } from '../api/component/SpecTypes';
 import { CompositeSketchDetail } from '../api/ui/Sketcher';

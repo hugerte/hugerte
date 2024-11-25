@@ -1,7 +1,7 @@
-import { FocusTools, RealKeys, RealMouse } from '@ephox/agar';
+import { FocusTools, RealKeys, RealMouse } from "@hugerte/agar";
 import { after, afterEach, before, context, describe, it } from '@ephox/bedrock-client';
-import { Class, SugarDocument } from '@ephox/sugar';
-import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
+import { Class, SugarDocument } from "@hugerte/sugar";
+import { TinyDom, TinyHooks } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,6 +1,6 @@
-import { Clipboard } from '@ephox/agar';
+import { Clipboard } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { TinyHooks, TinyAssertions, TinyDom, TinySelections } from '@ephox/wrap-mcagar';
+import { TinyHooks, TinyAssertions, TinyDom, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,8 +1,8 @@
-import { TestStore, Waiter, FocusTools } from '@ephox/agar';
+import { TestStore, Waiter, FocusTools } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { SugarDocument } from '@ephox/sugar';
-import { McEditor, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Arr } from "@hugerte/katamari";
+import { SugarDocument } from "@hugerte/sugar";
+import { McEditor, TinyUiActions } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

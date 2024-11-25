@@ -1,8 +1,8 @@
-import { Mouse, UiFinder, Waiter } from '@ephox/agar';
+import { Mouse, UiFinder, Waiter } from "@hugerte/agar";
 import { afterEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Cell } from '@ephox/katamari';
-import { Attribute, Height, Hierarchy, SelectorFind, SugarElement, Width } from '@ephox/sugar';
-import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Arr, Cell } from "@hugerte/katamari";
+import { Attribute, Height, Hierarchy, SelectorFind, SugarElement, Width } from "@hugerte/sugar";
+import { TinyDom, TinyHooks, TinySelections } from "@hugerte/wrap-mcagar";
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';

@@ -1,4 +1,4 @@
-import { Class, Css, DomEvent, SugarElement, Traverse } from '@ephox/sugar';
+import { Class, Css, DomEvent, SugarElement, Traverse } from "@hugerte/sugar";
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Positioning } from 'ephox/alloy/api/behaviour/Positioning';

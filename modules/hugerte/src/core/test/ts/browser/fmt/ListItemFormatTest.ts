@@ -1,7 +1,7 @@
-import { Cursors } from '@ephox/agar';
+import { Cursors } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
-import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
+import { Type } from "@hugerte/katamari";
+import { TinyAssertions, TinyHooks, TinySelections, TinyState } from "@hugerte/wrap-mcagar";
 
 import Editor from 'hugerte/core/api/Editor';
 import { FormatVars } from 'hugerte/core/fmt/FormatTypes';

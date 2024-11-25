@@ -1,6 +1,6 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
-import { SugarElement, SugarNode, Width } from '@ephox/sugar';
+import { Arr, Fun, Optional, Optionals } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
+import { SugarElement, SugarNode, Width } from "@hugerte/sugar";
 
 import { TableSize } from '../api/TableSize';
 import { Warehouse } from '../api/Warehouse';

@@ -1,7 +1,7 @@
-import { Assertions } from '@ephox/agar';
+import { Assertions } from "@hugerte/agar";
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
-import { Hierarchy, SugarElement } from '@ephox/sugar';
+import { Optional } from "@hugerte/katamari";
+import { Hierarchy, SugarElement } from "@hugerte/sugar";
 import { assert } from 'chai';
 
 import * as CaretFinder from 'hugerte/core/caret/CaretFinder';

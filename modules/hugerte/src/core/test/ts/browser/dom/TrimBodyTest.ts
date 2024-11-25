@@ -1,6 +1,6 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
+import { Arr } from "@hugerte/katamari";
+import { PlatformDetection } from "@hugerte/sand";
 import { assert } from 'chai';
 
 import * as TrimBody from 'hugerte/core/dom/TrimBody';

@@ -1,6 +1,6 @@
-import { Id, Arr } from '@ephox/katamari';
-import { DomDescent } from '@ephox/phoenix';
-import { Attribute, SelectorFind, SugarElement } from '@ephox/sugar';
+import { Id, Arr } from "@hugerte/katamari";
+import { DomDescent } from "@hugerte/phoenix";
+import { Attribute, SelectorFind, SugarElement } from "@hugerte/sugar";
 
 import Editor from 'hugerte/core/api/Editor';
 

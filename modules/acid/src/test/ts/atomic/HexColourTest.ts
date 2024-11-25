@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+import { Arr } from "@hugerte/katamari";
 import { assert } from 'chai';
 
 import * as ColourTypes from 'ephox/acid/api/colour/ColourTypes';

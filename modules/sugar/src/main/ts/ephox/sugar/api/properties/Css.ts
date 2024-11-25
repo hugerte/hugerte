@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Optionals, Strings, Type } from '@ephox/katamari';
+import { Arr, Obj, Optional, Optionals, Strings, Type } from "@hugerte/katamari";
 
 import * as Style from '../../impl/Style';
 import * as SugarBody from '../node/SugarBody';

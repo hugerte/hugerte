@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from "@hugerte/katamari";
 
 import * as Compare from 'ephox/sugar/api/dom/Compare';
 import * as Remove from 'ephox/sugar/api/dom/Remove';

@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+import { Optional } from "@hugerte/katamari";
 
 const getHtmlData = (dataTransfer: DataTransfer): Optional<string> => {
   const html = dataTransfer.getData('text/html');
