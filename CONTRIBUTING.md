@@ -1,10 +1,10 @@
-# The big Tiny monorepo
+# The big HugeRTE monorepo
 
 Welcome to the HugeRTE monorepo. For HugeRTE itself look to the [modules/hugerte](modules/hugerte) folder.
 
 ## Some background
 
-As HugeRTE transitioned to a modern codebase through 2017 and 2018 many external dependencies were added from previously closed-source projects. This became unwieldy to develop, so in June 2019 the decision was made to bring those projects together in a monorepo.
+As TinyMCE (the original project we've forked) transitioned to a modern codebase through 2017 and 2018 many external dependencies were added from previously closed-source projects. This became unwieldy to develop, so in June 2019 the decision was made to bring those projects together in a monorepo.
 
 This repo is built with Yarn workspaces and uses publish tooling support from Lerna. NPM is not supported and attempts to use it will fail.
 
@@ -135,7 +135,7 @@ Note that both names must be the entire scoped `name` of the package, not the fo
 
 ## Publishing process
 
-We have a CI process set up to publish all changed libraries as patch releases twice a day. This simply describes that process, is is not intended that it be performed manually.
+We do not have a CI process set up to publish changed libraries. The publishing is done manually by the maintainer at the moment. We might change that in the future.
 
 ### Side note: major and minor version bumps
 
@@ -147,7 +147,7 @@ For each changed package choose major, minor or patch as appropriate depending o
 
 Changes to minor and major versions are such a rare occurence that this manual process will suffice until we switch to conventional commits. Unfortunately manual version changes mean the next automated build will run all repository tests, since nothing has changed, but that's probably a good idea for serious version changes anyway.
 
-### CI publish process
+### Publishing commands
 
 `yarn lerna publish patch`
 
