@@ -1,7 +1,7 @@
 {
-  "name": "@tinymce/oxide",
+  "name": "@hugerte/oxide",
   "version": "2.8.2",
-  "description": "HugeRTE 5 Oxide skin",
+  "description": "HugeRTE Oxide skin",
   "repository": {
     "type": "git",
     "url": "https://github.com/hugerte/hugerte.git",

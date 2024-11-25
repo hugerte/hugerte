@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/katamari",
+  "name": "@hugerte/katamari",
   "version": "9.1.6",
   "description": "Basic data type library",
   "repository": {
@@ -30,7 +30,7 @@
     "CHANGELOG.md",
     "LICENSE.txt"
   ],
-  "main": "./lib/main/ts/ephox/katamari/api/Main.js",
-  "module": "./lib/main/ts/ephox/katamari/api/Main.js",
-  "types": "./lib/main/ts/ephox/katamari/api/Main.d.ts"
+  "main": "./lib/main/ts/hugerte/katamari/api/Main.js",
+  "module": "./lib/main/ts/hugerte/katamari/api/Main.js",
+  "types": "./lib/main/ts/hugerte/katamari/api/Main.d.ts"
 }

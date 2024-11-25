@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/jax",
+  "name": "@hugerte/jax",
   "version": "7.0.10",
   "description": "AJAX library",
   "repository": {
@@ -35,7 +35,7 @@
     "CHANGELOG.txt",
     "LICENSE.txt"
   ],
-  "main": "./lib/main/ts/ephox/jax/api/Main.js",
-  "module": "./lib/main/ts/ephox/jax/api/Main.js",
-  "types": "./lib/main/ts/ephox/jax/api/Main.d.ts"
+  "main": "./lib/main/ts/hugerte/jax/api/Main.js",
+  "module": "./lib/main/ts/hugerte/jax/api/Main.js",
+  "types": "./lib/main/ts/hugerte/jax/api/Main.d.ts"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/darwin",
+  "name": "@hugerte/darwin",
   "description": "This project's purpose is to handle selection and cursor navigation.",
   "version": "8.2.1",
   "repository": {
@@ -19,18 +19,18 @@
     "LICENSE.txt"
   ],
   "dependencies": {
-    "@ephox/katamari": "^9.1.6",
-    "@ephox/phoenix": "^8.4.1",
-    "@ephox/robin": "^10.4.1",
-    "@ephox/sand": "^6.0.10",
-    "@ephox/snooker": "^11.2.1",
-    "@ephox/sugar": "^9.3.1"
+    "@hugerte/katamari": "^9.1.6",
+    "@hugerte/phoenix": "^8.4.1",
+    "@hugerte/robin": "^10.4.1",
+    "@hugerte/sand": "^6.0.10",
+    "@hugerte/snooker": "^11.2.1",
+    "@hugerte/sugar": "^9.3.1"
   },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
-  "main": "./lib/main/ts/ephox/darwin/api/Main.js",
-  "module": "./lib/main/ts/ephox/darwin/api/Main.js",
-  "types": "./lib/main/ts/ephox/darwin/api/Main.d.ts",
+  "main": "./lib/main/ts/hugerte/darwin/api/Main.js",
+  "module": "./lib/main/ts/hugerte/darwin/api/Main.js",
+  "types": "./lib/main/ts/hugerte/darwin/api/Main.d.ts",
   "scripts": {
     "test": "tsc -b",
     "lint": "eslint --config ../../.eslintrc.json src/**/*.ts",

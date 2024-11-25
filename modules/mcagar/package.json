@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/mcagar",
+  "name": "@hugerte/mcagar",
   "version": "9.0.1",
   "description": "Hugerte agar wrapper",
   "repository": {
@@ -25,16 +25,16 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@ephox/agar": "^8.0.1",
-    "@ephox/katamari": "^9.1.6",
-    "@ephox/sand": "^6.0.10",
-    "@ephox/sugar": "^9.3.1",
+    "@hugerte/agar": "^8.0.1",
+    "@hugerte/katamari": "^9.1.6",
+    "@hugerte/sand": "^6.0.10",
+    "@hugerte/sugar": "^9.3.1",
     "fast-check": "^2.0.0"
   },
   "peerDependencies": {
     "hugerte": ">=1.0.0"
   },
-  "main": "./lib/main/ts/ephox/mcagar/api/Main.js",
-  "module": "./lib/main/ts/ephox/mcagar/api/Main.js",
-  "types": "./lib/main/ts/ephox/mcagar/api/Main.d.ts"
+  "main": "./lib/main/ts/hugerte/mcagar/api/Main.js",
+  "module": "./lib/main/ts/hugerte/mcagar/api/Main.js",
+  "types": "./lib/main/ts/hugerte/mcagar/api/Main.d.ts"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/dragster",
+  "name": "@hugerte/dragster",
   "description": "This project handles dragging.",
   "version": "7.3.1",
   "repository": {
@@ -19,9 +19,9 @@
     "LICENSE.txt"
   ],
   "dependencies": {
-    "@ephox/katamari": "^9.1.6",
-    "@ephox/porkbun": "^7.0.10",
-    "@ephox/sugar": "^9.3.1"
+    "@hugerte/katamari": "^9.1.6",
+    "@hugerte/porkbun": "^7.0.10",
+    "@hugerte/sugar": "^9.3.1"
   },
   "scripts": {
     "test": "bedrock-auto -b chrome-headless -d src/test",
@@ -32,7 +32,7 @@
   },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
-  "main": "./lib/main/ts/ephox/dragster/api/Main.js",
-  "module": "./lib/main/ts/ephox/dragster/api/Main.js",
-  "types": "./lib/main/ts/ephox/dragster/api/Main.d.ts"
+  "main": "./lib/main/ts/hugerte/dragster/api/Main.js",
+  "module": "./lib/main/ts/hugerte/dragster/api/Main.js",
+  "types": "./lib/main/ts/hugerte/dragster/api/Main.d.ts"
 }

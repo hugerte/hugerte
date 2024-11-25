@@ -1,5 +1,5 @@
 {
-  "name": "@ephox/phoenix",
+  "name": "@hugerte/phoenix",
   "description": "DOM node text gathering library, rose from the ashes of some other projects we can't remember the names of now (edit: seek, sherlock, gift)",
   "version": "8.4.1",
   "repository": {
@@ -19,13 +19,13 @@
     "LICENSE.txt"
   ],
   "dependencies": {
-    "@ephox/boss": "^6.1.1",
-    "@ephox/katamari": "^9.1.6",
-    "@ephox/polaris": "^6.3.1",
-    "@ephox/sugar": "^9.3.1"
+    "@hugerte/boss": "^6.1.1",
+    "@hugerte/katamari": "^9.1.6",
+    "@hugerte/polaris": "^6.3.1",
+    "@hugerte/sugar": "^9.3.1"
   },
   "devDependencies": {
-    "@ephox/katamari-assertions": "^4.0.10"
+    "@hugerte/katamari-assertions": "^4.0.10"
   },
   "scripts": {
     "test-manual": "bedrock -d src/test",
@@ -35,7 +35,7 @@
   },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
-  "main": "./lib/main/ts/ephox/phoenix/api/Main.js",
-  "module": "./lib/main/ts/ephox/phoenix/api/Main.js",
-  "types": "./lib/main/ts/ephox/phoenix/api/Main.d.ts"
+  "main": "./lib/main/ts/hugerte/phoenix/api/Main.js",
+  "module": "./lib/main/ts/hugerte/phoenix/api/Main.js",
+  "types": "./lib/main/ts/hugerte/phoenix/api/Main.d.ts"
 }
