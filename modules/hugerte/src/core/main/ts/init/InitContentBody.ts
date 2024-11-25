@@ -1,5 +1,5 @@
 import { Arr, Obj, Type } from '@ephox/katamari';
-import { Attribute, Insert, Remove, SugarElement, SugarShadowDom } from '@ephox/sugar';
+import { Attribute, Insert, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import Annotator from '../api/Annotator';
 import DOMUtils from '../api/dom/DOMUtils';
@@ -47,13 +47,13 @@ const appendStyle = (editor: Editor, text: string) => {
   const body = SugarElement.fromDom(editor.getBody());
   const container = SugarShadowDom.getStyleContainer(SugarShadowDom.getRootNode(body));
 
-  const style = SugarElement.fromTag('style');
-  Attribute.set(style, 'type', 'text/css');
-  Insert.append(style, SugarElement.fromText(text));
-  Insert.append(container, style);
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.appendChild(document.createTextNode(text));
+  container.dom.appendChild(style);
 
   editor.on('remove', () => {
-    Remove.remove(style);
+    style.remove();
   });
 };
 

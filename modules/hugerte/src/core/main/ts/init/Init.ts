@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 
 import { AddOnConstructor } from '../api/AddOnManager';
 import DOMUtils from '../api/dom/DOMUtils';
@@ -51,7 +51,7 @@ const trimLegacyPrefix = (name: string) => {
 const initPlugins = (editor: Editor) => {
   const initializedPlugins: string[] = [];
 
-  Arr.each(Options.getPlugins(editor), (name) => {
+  Options.getPlugins(editor).forEach((name) => {
     initPlugin(editor, initializedPlugins, trimLegacyPrefix(name));
   });
 };
@@ -65,9 +65,9 @@ const initIcons = (editor: Editor) => {
     ...IconManager.get(iconPackName).icons
   };
 
-  Obj.each(loadIcons, (svgData, icon) => {
+  Object.entries(loadIcons).forEach(([icon, svgData]) => {
     // Don't override an icon registered manually
-    if (!Obj.has(currentIcons, icon)) {
+    if (!Object.prototype.hasOwnProperty.call(currentIcons, icon)) {
       editor.ui.registry.addIcon(icon, svgData);
     }
   });
@@ -156,12 +156,12 @@ const renderThemeUi = (editor: Editor) => {
 
 const augmentEditorUiApi = (editor: Editor, api: Partial<EditorUiApi>) => {
   const uiApiFacade: EditorUiApi = {
-    show: Optional.from(api.show).getOr(Fun.noop),
-    hide: Optional.from(api.hide).getOr(Fun.noop),
-    isEnabled: Optional.from(api.isEnabled).getOr(Fun.always),
+    show: api.show ?? () => {},
+    hide: api.hide ?? () => {},
+    isEnabled: api.isEnabled ?? () => true,
     setEnabled: (state) => {
       if (!editor.mode.isReadOnly()) {
-        Optional.from(api.setEnabled).each((f) => f(state));
+        api.setEnabled ?? api.setEnabled(state);
       }
     }
   };
@@ -176,7 +176,7 @@ const init = async (editor: Editor): Promise<void> => {
   initModel(editor);
   initPlugins(editor);
   const renderInfo = await renderThemeUi(editor);
-  augmentEditorUiApi(editor, Optional.from(renderInfo.api).getOr({}));
+  augmentEditorUiApi(editor, renderInfo.api ?? {});
   editor.editorContainer = renderInfo.editorContainer as HTMLElement;
   appendContentCssFromSettings(editor);
 

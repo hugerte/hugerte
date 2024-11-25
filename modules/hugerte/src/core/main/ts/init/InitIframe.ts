@@ -16,21 +16,21 @@ interface BoxInfo {
 const DOM = DOMUtils.DOM;
 
 const createIframeElement = (id: string, title: TranslatedString, customAttrs: {}, tabindex: Optional<number>) => {
-  const iframe = SugarElement.fromTag('iframe');
+  const iframe = document.createElement('iframe');
 
   // This can also be explicitly set by customAttrs, so do this first
-  tabindex.each((t) => Attribute.set(iframe, 'tabindex', t));
+  tabindex.each((t) => iframe.setAttribute('tabindex', t.toString()));
 
-  Attribute.setAll(iframe, customAttrs);
-
-  Attribute.setAll(iframe, {
-    id: id + '_ifr',
-    frameBorder: '0',
-    allowTransparency: 'true',
-    title
+  Object.entries(customAttrs).forEach(([key, value]) => {
+    iframe.setAttribute(key, value);
   });
 
-  Class.add(iframe, 'tox-edit-area__iframe');
+  iframe.setAttribute('id', id + '_ifr');
+  iframe.setAttribute('frameBorder', '0');
+  iframe.setAttribute('allowTransparency', 'true');
+  iframe.setAttribute('title', title);
+
+  iframe.classList.add('tox-edit-area__iframe');
 
   return iframe;
 };
@@ -65,7 +65,7 @@ const getIframeHtml = (editor: Editor) => {
 const createIframe = (editor: Editor, boxInfo: BoxInfo) => {
   const iframeTitle = editor.translate('Rich Text Area');
   const tabindex = Attribute.getOpt(SugarElement.fromDom(editor.getElement()), 'tabindex').bind(Strings.toInt);
-  const ifr = createIframeElement(editor.id, iframeTitle, Options.getIframeAttrs(editor), tabindex).dom;
+  const ifr = createIframeElement(editor.id, iframeTitle, Options.getIframeAttrs(editor), tabindex);
 
   ifr.onload = () => {
     ifr.onload = null;

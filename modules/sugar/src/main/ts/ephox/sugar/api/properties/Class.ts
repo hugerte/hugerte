@@ -3,20 +3,8 @@ import { SugarElement } from '../node/SugarElement';
 import * as Attribute from './Attribute';
 import { Toggler } from './Toggler';
 
-/*
- * ClassList is IE10 minimum:
- * https://developer.mozilla.org/en-US/docs/Web/API/Element.classList
- *
- * Note that IE doesn't support the second argument to toggle (at all).
- * If it did, the toggler could be better.
- */
-
 const add = (element: SugarElement<Element>, clazz: string): void => {
-  if (ClassList.supports(element)) {
-    element.dom.classList.add(clazz);
-  } else {
-    ClassList.add(element, clazz);
-  }
+  element.dom.classList.add(clazz);
 };
 
 const cleanClass = (element: SugarElement<Element>): void => {
