@@ -1,0 +1,397 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node10",
+        "target": "es2018",
+        "module": "es6",
+        "lib": [
+            "es2020",
+            "dom"
+        ],
+        "importHelpers": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "composite": true,
+        "outDir": "./lib",
+        "rootDir": "./",
+        "baseUrl": "./",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "strict": true,
+        "types": [],
+        "paths": {
+            "hugerte": [
+                "modules/hugerte/src/core/main/ts/api/Main"
+            ],
+            "hugerte/core/*": [
+                "modules/hugerte/src/core/main/ts/*"
+            ],
+            "hugerte/themes/silver/resources/*": [
+                "modules/hugerte/src/themes/silver/main/resources/*"
+            ],
+            "hugerte/themes/silver/demo/*": [
+                "modules/hugerte/src/themes/silver/demo/ts/*"
+            ],
+            "hugerte/themes/silver/*": [
+                "modules/hugerte/src/themes/silver/main/ts/*"
+            ],
+            "hugerte/models/dom/demo/*": [
+                "modules/hugerte/src/models/dom/demo/ts/*"
+            ],
+            "hugerte/models/dom/*": [
+                "modules/hugerte/src/models/dom/main/ts/*"
+            ],
+            "hugerte/plugins/advlist/*": [
+                "modules/hugerte/src/plugins/advlist/main/ts/*"
+            ],
+            "hugerte/plugins/accordion/*": [
+                "modules/hugerte/src/plugins/accordion/main/ts/*"
+            ],
+            "hugerte/plugins/anchor/*": [
+                "modules/hugerte/src/plugins/anchor/main/ts/*"
+            ],
+            "hugerte/plugins/autolink/*": [
+                "modules/hugerte/src/plugins/autolink/main/ts/*"
+            ],
+            "hugerte/plugins/autoresize/*": [
+                "modules/hugerte/src/plugins/autoresize/main/ts/*"
+            ],
+            "hugerte/plugins/autosave/*": [
+                "modules/hugerte/src/plugins/autosave/main/ts/*"
+            ],
+            "hugerte/plugins/charmap/*": [
+                "modules/hugerte/src/plugins/charmap/main/ts/*"
+            ],
+            "hugerte/plugins/code/*": [
+                "modules/hugerte/src/plugins/code/main/ts/*"
+            ],
+            "hugerte/plugins/codesample/*": [
+                "modules/hugerte/src/plugins/codesample/main/ts/*"
+            ],
+            "hugerte/plugins/directionality/*": [
+                "modules/hugerte/src/plugins/directionality/main/ts/*"
+            ],
+            "hugerte/plugins/emoticons/*": [
+                "modules/hugerte/src/plugins/emoticons/main/ts/*"
+            ],
+            "hugerte/plugins/fullscreen/*": [
+                "modules/hugerte/src/plugins/fullscreen/main/ts/*"
+            ],
+            "hugerte/plugins/help/*": [
+                "modules/hugerte/src/plugins/help/main/ts/*"
+            ],
+            "hugerte/plugins/image/*": [
+                "modules/hugerte/src/plugins/image/main/ts/*"
+            ],
+            "hugerte/plugins/importcss/*": [
+                "modules/hugerte/src/plugins/importcss/main/ts/*"
+            ],
+            "hugerte/plugins/insertdatetime/*": [
+                "modules/hugerte/src/plugins/insertdatetime/main/ts/*"
+            ],
+            "hugerte/plugins/link/*": [
+                "modules/hugerte/src/plugins/link/main/ts/*"
+            ],
+            "hugerte/plugins/lists/*": [
+                "modules/hugerte/src/plugins/lists/main/ts/*"
+            ],
+            "hugerte/plugins/media/*": [
+                "modules/hugerte/src/plugins/media/main/ts/*"
+            ],
+            "hugerte/plugins/nonbreaking/*": [
+                "modules/hugerte/src/plugins/nonbreaking/main/ts/*"
+            ],
+            "hugerte/plugins/noneditable/*": [
+                "modules/hugerte/src/plugins/noneditable/main/ts/*"
+            ],
+            "hugerte/plugins/pagebreak/*": [
+                "modules/hugerte/src/plugins/pagebreak/main/ts/*"
+            ],
+            "hugerte/plugins/preview/*": [
+                "modules/hugerte/src/plugins/preview/main/ts/*"
+            ],
+            "hugerte/plugins/quickbars/*": [
+                "modules/hugerte/src/plugins/quickbars/main/ts/*"
+            ],
+            "hugerte/plugins/save/*": [
+                "modules/hugerte/src/plugins/save/main/ts/*"
+            ],
+            "hugerte/plugins/searchreplace/*": [
+                "modules/hugerte/src/plugins/searchreplace/main/ts/*"
+            ],
+            "hugerte/plugins/table/*": [
+                "modules/hugerte/src/plugins/table/main/ts/*"
+            ],
+            "hugerte/plugins/template/*": [
+                "modules/hugerte/src/plugins/template/main/ts/*"
+            ],
+            "hugerte/plugins/visualblocks/*": [
+                "modules/hugerte/src/plugins/visualblocks/main/ts/*"
+            ],
+            "hugerte/plugins/visualchars/*": [
+                "modules/hugerte/src/plugins/visualchars/main/ts/*"
+            ],
+            "hugerte/plugins/wordcount/*": [
+                "modules/hugerte/src/plugins/wordcount/main/ts/*"
+            ],
+            "@hugerte/wrap-mcagar": [
+                "modules/hugerte/src/core/test/ts/module/McAgar"
+            ],
+            "@hugerte/oxide-icons-default": [
+                "modules/oxide-icons-default/dist/js/Main.d.js"
+            ],
+            "hugerte/acid/test/*": [
+                "modules/acid/src/test/ts/module/hugerte/acid/test/*"
+            ],
+            "hugerte/acid/demo/*": [
+                "modules/acid/src/demo/ts/hugerte/acid/demo/*"
+            ],
+            "hugerte/acid/*": [
+                "modules/acid/src/main/ts/hugerte/acid/*"
+            ],
+            "hugerte/agar/test/*": [
+                "modules/agar/src/test/ts/module/hugerte/agar/test/*"
+            ],
+            "hugerte/agar/demo/*": [
+                "modules/agar/src/demo/ts/hugerte/agar/demo/*"
+            ],
+            "hugerte/agar/*": [
+                "modules/agar/src/main/ts/hugerte/agar/*"
+            ],
+            "hugerte/alloy/test/*": [
+                "modules/alloy/src/test/ts/module/hugerte/alloy/test/*"
+            ],
+            "hugerte/alloy/demo/*": [
+                "modules/alloy/src/demo/ts/hugerte/alloy/demo/*"
+            ],
+            "hugerte/alloy/*": [
+                "modules/alloy/src/main/ts/hugerte/alloy/*"
+            ],
+            "hugerte/boss/test/*": [
+                "modules/boss/src/test/ts/module/hugerte/boss/test/*"
+            ],
+            "hugerte/boss/demo/*": [
+                "modules/boss/src/demo/ts/hugerte/boss/demo/*"
+            ],
+            "hugerte/boss/*": [
+                "modules/boss/src/main/ts/hugerte/boss/*"
+            ],
+            "hugerte/boulder/test/*": [
+                "modules/boulder/src/test/ts/module/hugerte/boulder/test/*"
+            ],
+            "hugerte/boulder/demo/*": [
+                "modules/boulder/src/demo/ts/hugerte/boulder/demo/*"
+            ],
+            "hugerte/boulder/*": [
+                "modules/boulder/src/main/ts/hugerte/boulder/*"
+            ],
+            "hugerte/bridge/test/*": [
+                "modules/bridge/src/test/ts/module/hugerte/bridge/test/*"
+            ],
+            "hugerte/bridge/demo/*": [
+                "modules/bridge/src/demo/ts/hugerte/bridge/demo/*"
+            ],
+            "hugerte/bridge/*": [
+                "modules/bridge/src/main/ts/hugerte/bridge/*"
+            ],
+            "hugerte/darwin/test/*": [
+                "modules/darwin/src/test/ts/module/hugerte/darwin/test/*"
+            ],
+            "hugerte/darwin/demo/*": [
+                "modules/darwin/src/demo/ts/hugerte/darwin/demo/*"
+            ],
+            "hugerte/darwin/*": [
+                "modules/darwin/src/main/ts/hugerte/darwin/*"
+            ],
+            "hugerte/dragster/test/*": [
+                "modules/dragster/src/test/ts/module/hugerte/dragster/test/*"
+            ],
+            "hugerte/dragster/demo/*": [
+                "modules/dragster/src/demo/ts/hugerte/dragster/demo/*"
+            ],
+            "hugerte/dragster/*": [
+                "modules/dragster/src/main/ts/hugerte/dragster/*"
+            ],
+            "hugerte/jax/test/*": [
+                "modules/jax/src/test/ts/module/hugerte/jax/test/*"
+            ],
+            "hugerte/jax/demo/*": [
+                "modules/jax/src/demo/ts/hugerte/jax/demo/*"
+            ],
+            "hugerte/jax/*": [
+                "modules/jax/src/main/ts/hugerte/jax/*"
+            ],
+            "hugerte/katamari/test/*": [
+                "modules/katamari/src/test/ts/module/hugerte/katamari/test/*"
+            ],
+            "hugerte/katamari/demo/*": [
+                "modules/katamari/src/demo/ts/hugerte/katamari/demo/*"
+            ],
+            "hugerte/katamari/*": [
+                "modules/katamari/src/main/ts/hugerte/katamari/*"
+            ],
+            "hugerte/katamari-assertions/test/*": [
+                "modules/katamari-assertions/src/test/ts/module/hugerte/katamari-assertions/test/*"
+            ],
+            "hugerte/katamari-assertions/demo/*": [
+                "modules/katamari-assertions/src/demo/ts/hugerte/katamari-assertions/demo/*"
+            ],
+            "hugerte/katamari-assertions/*": [
+                "modules/katamari-assertions/src/main/ts/hugerte/katamari-assertions/*"
+            ],
+            "hugerte/mcagar/test/*": [
+                "modules/mcagar/src/test/ts/module/hugerte/mcagar/test/*"
+            ],
+            "hugerte/mcagar/demo/*": [
+                "modules/mcagar/src/demo/ts/hugerte/mcagar/demo/*"
+            ],
+            "hugerte/mcagar/*": [
+                "modules/mcagar/src/main/ts/hugerte/mcagar/*"
+            ],
+            "hugerte/phoenix/test/*": [
+                "modules/phoenix/src/test/ts/module/hugerte/phoenix/test/*"
+            ],
+            "hugerte/phoenix/demo/*": [
+                "modules/phoenix/src/demo/ts/hugerte/phoenix/demo/*"
+            ],
+            "hugerte/phoenix/*": [
+                "modules/phoenix/src/main/ts/hugerte/phoenix/*"
+            ],
+            "hugerte/polaris/test/*": [
+                "modules/polaris/src/test/ts/module/hugerte/polaris/test/*"
+            ],
+            "hugerte/polaris/demo/*": [
+                "modules/polaris/src/demo/ts/hugerte/polaris/demo/*"
+            ],
+            "hugerte/polaris/*": [
+                "modules/polaris/src/main/ts/hugerte/polaris/*"
+            ],
+            "hugerte/porkbun/test/*": [
+                "modules/porkbun/src/test/ts/module/hugerte/porkbun/test/*"
+            ],
+            "hugerte/porkbun/demo/*": [
+                "modules/porkbun/src/demo/ts/hugerte/porkbun/demo/*"
+            ],
+            "hugerte/porkbun/*": [
+                "modules/porkbun/src/main/ts/hugerte/porkbun/*"
+            ],
+            "hugerte/robin/test/*": [
+                "modules/robin/src/test/ts/module/hugerte/robin/test/*"
+            ],
+            "hugerte/robin/demo/*": [
+                "modules/robin/src/demo/ts/hugerte/robin/demo/*"
+            ],
+            "hugerte/robin/*": [
+                "modules/robin/src/main/ts/hugerte/robin/*"
+            ],
+            "hugerte/sand/test/*": [
+                "modules/sand/src/test/ts/module/hugerte/sand/test/*"
+            ],
+            "hugerte/sand/demo/*": [
+                "modules/sand/src/demo/ts/hugerte/sand/demo/*"
+            ],
+            "hugerte/sand/*": [
+                "modules/sand/src/main/ts/hugerte/sand/*"
+            ],
+            "hugerte/snooker/test/*": [
+                "modules/snooker/src/test/ts/module/hugerte/snooker/test/*"
+            ],
+            "hugerte/snooker/demo/*": [
+                "modules/snooker/src/demo/ts/hugerte/snooker/demo/*"
+            ],
+            "hugerte/snooker/*": [
+                "modules/snooker/src/main/ts/hugerte/snooker/*"
+            ],
+            "hugerte/sugar/test/*": [
+                "modules/sugar/src/test/ts/module/hugerte/sugar/test/*"
+            ],
+            "hugerte/sugar/demo/*": [
+                "modules/sugar/src/demo/ts/hugerte/sugar/demo/*"
+            ],
+            "hugerte/sugar/*": [
+                "modules/sugar/src/main/ts/hugerte/sugar/*"
+            ],
+            "hugerte/hugerte/test/*": [
+                "modules/hugerte/src/test/ts/module/hugerte/hugerte/test/*"
+            ],
+            "hugerte/hugerte/demo/*": [
+                "modules/hugerte/src/demo/ts/hugerte/hugerte/demo/*"
+            ],
+            "hugerte/hugerte/*": [
+                "modules/hugerte/src/main/ts/hugerte/hugerte/*"
+            ]
+        },
+        "incremental": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "alwaysStrict": true,
+        "useUnknownInCatchVariables": true
+    },
+    "references": [
+        {
+            "path": "modules/acid"
+        },
+        {
+            "path": "modules/agar"
+        },
+        {
+            "path": "modules/alloy"
+        },
+        {
+            "path": "modules/boss"
+        },
+        {
+            "path": "modules/boulder"
+        },
+        {
+            "path": "modules/bridge"
+        },
+        {
+            "path": "modules/darwin"
+        },
+        {
+            "path": "modules/dragster"
+        },
+        {
+            "path": "modules/katamari"
+        },
+        {
+            "path": "modules/katamari-assertions"
+        },
+        {
+            "path": "modules/mcagar"
+        },
+        {
+            "path": "modules/phoenix"
+        },
+        {
+            "path": "modules/polaris"
+        },
+        {
+            "path": "modules/porkbun"
+        },
+        {
+            "path": "modules/robin"
+        },
+        {
+            "path": "modules/sand"
+        },
+        {
+            "path": "modules/snooker"
+        },
+        {
+            "path": "modules/sugar"
+        },
+        {
+            "path": "modules/hugerte"
+        }
+    ],
+    "exclude": [
+        "/home/karl/Schreibtisch/hugerte/lib"
+    ]
+}
