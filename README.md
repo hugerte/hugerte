@@ -63,6 +63,9 @@ Sometimes your editor requirements can be quite unique, and you need the freedom
 
 The HugeRTE [API](https://www.tiny.cloud/docs/tinymce/6/apis/tinymce.root/) is exposed to make it easier for you to write custom functionality that fits within the existing framework of HugeRTE [UI components](https://www.tiny.cloud/docs/tinymce/6/custom-ui-components/). Just don't forget to replace every instance of the `tinymce` object in the TinyMCE docs by `hugerte`.
 
+### Localization
+Download the [TinyMCE 6 language pack](https://download.tiny.cloud/tinymce/community/languagepacks/6/langs.zip), extract the languages you need, open all the files of the languages you need and replace the `tinymce` variable at the top by `hugerte`. Then, follow the [instructions by TinyMCE](https://www.tiny.cloud/docs/tinymce/6/ui-localization/).
+
 ## Compiling and contributing
 
 In 2019 TinyMCE made the decision to transition their codebase to a monorepo. For information on compiling and contributing, see: [contribution guidelines](https://github.com/tinymce/tinymce/blob/master/CONTRIBUTING.md).
