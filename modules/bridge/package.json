@@ -1,7 +1,7 @@
 {
   "name": "@ephox/bridge",
   "version": "4.7.1",
-  "description": "Ui API for HugeRTE 5",
+  "description": "Ui API for HugeRTE",
   "repository": {
     "type": "git",
     "url": "https://github.com/hugerte/hugerte.git",
