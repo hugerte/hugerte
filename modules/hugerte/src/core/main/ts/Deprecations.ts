@@ -73,7 +73,7 @@ const logRemovedWarnings = (rawOptions: RawEditorOptions, normalizedOptions: Nor
     // eslint-disable-next-line no-console
     console.warn(
       'The following deprecated features are currently enabled and have been removed in HugeRTE 6.0. These features will no longer work and should be removed from the HugeRTE configuration. ' +
-      'See https://www.tiny.cloud/docs/hugerte/6/migration-from-5x/ for more information.' +
+      'See https://www.hugerte.org/docs/hugerte/1/migration-from-5x/ for more information.' +
       themesMessage +
       pluginsMessage +
       optionsMessage
