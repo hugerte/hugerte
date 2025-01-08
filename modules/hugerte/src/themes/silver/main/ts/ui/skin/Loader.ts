@@ -62,9 +62,8 @@ const loadUrlSkin = async (isInline: boolean, editor: Editor): Promise<void> => 
     }
   }, (skinUrl) => {
     const skinContentCss = 'ui/' + skinUrl + (isInline ? '/content.inline' : '/content') + '.css';
-    const css = hugerte.Resource.get(skinContentCss);
-    if (Type.isString(css)) {
-      loadRawCss(editor, skinContentCss, css, editor.ui.styleSheetLoader);
+    if (hugerte.Resource.has(skinContentCss)) {
+      editor.contentCSS.push(skinContentCss);
     } else {
       const skinResourceIdentifier = Options.getSkinUrl(editor);
       if (skinResourceIdentifier) {

@@ -27,7 +27,7 @@ const transformToUrls = (editor: Editor, cssLinks: string[]): string[] => {
 
   return Arr.map(cssLinks, (url) => {
     if (isBundledCssSkinName(url)) {
-      return url;
+      return toContentSkinResourceName(url);
     } else if (isContentCssSkinName(url) && !editor.inline) {
       return `${skinUrl}/${url}/${contentCssFile}`;
     } else {

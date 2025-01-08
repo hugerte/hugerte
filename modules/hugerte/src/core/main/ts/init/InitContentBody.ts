@@ -36,7 +36,6 @@ import { hasAnyRanges } from '../selection/SelectionUtils';
 import SelectionOverrides from '../SelectionOverrides';
 import * as TextPattern from '../textpatterns/TextPatterns';
 import Quirks from '../util/Quirks';
-import * as ContentCss from './ContentCss';
 
 declare const escape: any;
 declare let hugerte: HugeRTE;
@@ -267,9 +266,9 @@ const getStyleSheetLoader = (editor: Editor): StyleSheetLoader =>
   editor.inline ? editor.ui.styleSheetLoader : editor.dom.styleSheetLoader;
 
 const makeStylesheetLoadingPromises = (editor: Editor, css: string[], framedFonts: string[]): Promise<unknown>[] => {
-  const { pass: bundledCss, fail: normalCss } = Arr.partition(css, (name) => hugerte.Resource.has(ContentCss.toContentSkinResourceName(name)));
+  const { pass: bundledCss, fail: normalCss } = Arr.partition(css, (name) => hugerte.Resource.has(name));
   const bundledPromises = bundledCss.map((url) => {
-    const css = hugerte.Resource.get(ContentCss.toContentSkinResourceName(url));
+    const css = hugerte.Resource.get(url);
     if (Type.isString(css)) {
       return Promise.resolve(getStyleSheetLoader(editor).loadRawCss(url, css));
     }
