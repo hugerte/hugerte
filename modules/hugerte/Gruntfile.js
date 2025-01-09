@@ -311,6 +311,7 @@ module.exports = function (grunt) {
         core: {
           src: [
             'src/core/text/build-header.js',
+            'src/core/text/dompurify-license-header.js',
             'js/hugerte/hugerte.js'
           ],
           dest: 'js/hugerte/hugerte.js'
@@ -329,8 +330,9 @@ module.exports = function (grunt) {
         return {
           src: [
             'src/core/text/build-header.js',
+            name === 'silver' ? 'src/core/text/dompurify-license-header.js' : null,
             `js/hugerte/themes/${name}/theme.js`
-          ],
+          ].filter(Boolean),
           dest: `js/hugerte/themes/${name}/theme.js`
         };
       }),
