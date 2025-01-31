@@ -13,7 +13,7 @@ import I18n from './util/I18n';
  * <br><br>
  * <strong>Warning</strong>: Much of HugeRTE's functionality is provided by the default Silver theme.
  * Creating a custom theme may require the re-implementation of this functionality.
- * To change HugeRTE's appearance, Tiny recommends changing the Skin instead.
+ * To change HugeRTE's appearance, we recommend changing the Skin instead.
  *
  * @class hugerte.Theme
  * @example
