@@ -17,6 +17,10 @@ labels: enhancement
 ### 🚦 How important would you rate the requested feature or improvement?
 *Choose from nice-to-have, important or critical.*
 
+## ❤️ Thank you
+Thank you for taking the time to submit us this feature request! Maybe you have another two minutes for quickly [filling out a survey](https://hugerte.org)? Just in case.
+_(Please delete this section.)_
+
 ---
 
 If you'd like to see this implemented sooner, add a 👍 reaction to this post.
