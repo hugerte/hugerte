@@ -48,10 +48,9 @@ interface Tools {
  * @param {String} s String to remove whitespace from.
  * @return {String} New string with removed whitespace.
  */
-const whiteSpaceRegExp = /^\s*|\s*$/g;
 
 const trim = (str: string | null | undefined): string => {
-  return Type.isNullable(str) ? '' : ('' + str).replace(whiteSpaceRegExp, '');
+  return Type.isNullable(str) ? '' : ('' + str).trim();
 };
 
 /**
