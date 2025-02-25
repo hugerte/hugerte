@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Optionals, Strings, Type } from '@ephox/katamari';
+import { Arr, Obj, Optional, Optionals, Strings } from '@ephox/katamari';
 
 import * as Style from '../../impl/Style';
 import * as SugarBody from '../node/SugarBody';
@@ -7,15 +7,6 @@ import * as SugarNode from '../node/SugarNode';
 import * as Attribute from './Attribute';
 
 const internalSet = (dom: Node, property: string, value: string): void => {
-  // This is going to hurt. Apologies.
-  // JQuery coerces numbers to pixels for certain property names, and other times lets numbers through.
-  // we're going to be explicit; strings only.
-  if (!Type.isString(value)) {
-    // eslint-disable-next-line no-console
-    console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value, ':: Element ', dom);
-    throw new Error('CSS value must be a string: ' + value);
-  }
-
   // removed: support for dom().style[property] where prop is camel case instead of normal property name
   if (Style.isSupported(dom)) {
     dom.style.setProperty(property, value);
@@ -35,8 +26,7 @@ const internalRemove = (dom: Node, property: string): void => {
 };
 
 const set = (element: SugarElement<Node>, property: string, value: string): void => {
-  const dom = element.dom;
-  internalSet(dom, property, value);
+  internalSet(element.dom, property, value);
 };
 
 const setAll = (element: SugarElement<Node>, css: Record<string, string>): void => {
@@ -129,6 +119,7 @@ const remove = (element: SugarElement<Node>, property: string): void => {
 
   if (Optionals.is(Attribute.getOpt(element as SugarElement<Element>, 'style').map(Strings.trim), '')) {
     // No more styles left, remove the style attribute as well
+    // TODO this seems unimportant
     Attribute.remove(element as SugarElement<Element>, 'style');
   }
 };
