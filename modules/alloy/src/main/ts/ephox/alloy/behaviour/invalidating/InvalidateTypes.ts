@@ -26,7 +26,7 @@ export interface InvalidatingConfigSpec extends Behaviour.BehaviourConfigSpec {
     onValidate?: (comp: AlloyComponent) => void;
   };
   validator?: {
-    validate: (input: AlloyComponent) => Future<Result<any, string>>;
+    validate: (input: AlloyComponent) => Promise<Result<any, string>>;
     onEvent?: string;
     validateOnLoad?: boolean;
   };
