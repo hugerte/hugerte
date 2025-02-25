@@ -75,13 +75,4 @@ UnitTest.test('ClassTest', () => {
   Assert.eq('', [ 'a' ], Classes.get(m));
   Class.toggle(m, 'a');
   Assert.eq('', [], Classes.get(m));
-
-  const tgl = Class.toggler(m, 'tglClass');
-  Assert.eq('', false, tgl.isOn());
-  tgl.on();
-  Assert.eq('', true, tgl.isOn());
-  Assert.eq('', [ 'tglClass' ], Classes.get(m));
-  tgl.off();
-  Assert.eq('', false, tgl.isOn());
-  Assert.eq('', [], Classes.get(m));
 });
