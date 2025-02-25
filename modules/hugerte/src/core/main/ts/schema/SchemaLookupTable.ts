@@ -5,6 +5,8 @@ import * as SchemaElementSets from './SchemaElementSets';
 import { SchemaType } from './SchemaTypes';
 import * as SchemaUtils from './SchemaUtils';
 
+// TODO: What's all that? We only support HTML5.
+
 export interface SchemaLookupTable {
   [key: string]: {
     attributes: Record<string, {}>;
