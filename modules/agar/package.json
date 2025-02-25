@@ -27,7 +27,6 @@
   "dependencies": {
     "@ephox/bedrock-client": "11 || 12 || 13",
     "@ephox/bedrock-common": "11 || 12 || 13",
-    "@ephox/jax": "^7.0.10",
     "@ephox/sand": "^6.0.10",
     "@ephox/sugar": "^9.3.1",
     "@types/sizzle": "^2.3.3",
