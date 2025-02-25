@@ -1,6 +1,6 @@
 import { StructureSchema } from '@ephox/boulder';
 import { InlineContent } from '@ephox/bridge';
-import { Arr, Fun, Obj, Unique } from '@ephox/katamari';
+import { Arr, Obj } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 
@@ -16,12 +16,12 @@ const register = (editor: Editor): AutocompleterDatabase => {
     (err) => {
       throw new Error(StructureSchema.formatError(err));
     },
-    Fun.identity
+    (x) => x
   ));
 
-  const triggers = Unique.stringArray(
+  const triggers = [...new Set(
     Obj.mapToArray(dataset, (v) => v.trigger)
-  );
+  )];
 
   const datasetValues = Obj.values(dataset);
 
