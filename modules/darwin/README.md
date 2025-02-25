@@ -12,8 +12,8 @@ Once completed, it is hoped that `darwin` will provide a framework for taking ov
 For Webkit browsers, when the user presses Up or Down, the native behaviour is to move to the next cell horizontally, not vertically. This confuses the user. The project `darwin` seeks to remedy this by potentially overriding the Up/Down key event.
 
 With current the (element, offset)
-a. If the user is on a <br> (or referencing a <br> by the parent offset), and the respective adjacent node is the edge of cell, restart the process but start from the edge of the cell. If the adjacent node is not the edge, DO NOT OVERRIDE the key. The browser should naturally move to the adjacent node.
-b. If the user is not in a <br>, continue the process
+a. If the user is on a `<br>` (or referencing a `<br>` by the parent offset), and the respective adjacent node is the edge of cell, restart the process but start from the edge of the cell. If the adjacent node is not the edge, DO NOT OVERRIDE the key. The browser should naturally move to the adjacent node.
+b. If the user is not in a `<br>`, continue the process
 
 c. find the (x, y) coordinate of the (element, offset) and shift it in the respective direction. Continue shifting until we find an element that contains this (x, y) position and the element's y position is different from the initial y position. Note, if we don't ... then DO NOT OVERRIDE the key.
 d. find the element under the shifted (x, y) position, scrolling if necessary
