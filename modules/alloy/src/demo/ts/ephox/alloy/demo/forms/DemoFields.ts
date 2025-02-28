@@ -1,5 +1,5 @@
-import { Arr, Future, Result } from '@ephox/katamari';
 import { Value } from '@ephox/sugar';
+import { Arr, Result } from '@ephox/katamari';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Invalidating } from 'ephox/alloy/api/behaviour/Invalidating';
@@ -198,8 +198,8 @@ const typeaheadMunger = (spec: { label: string; lazySink: LazySink; dataset: any
         { type: 'separator', text: 'No items' } as DemoRenders.DemoSeparatorItem
       ];
 
-      const future = Future.pure(matches);
-      return future.map((items) => {
+      const promise = Promise.resolve(matches);
+      return promise.then((items) => {
         const menu = DemoRenders.menu({
           value: 'typeahead-menu-blah',
           items: Arr.map(items, DemoRenders.item)

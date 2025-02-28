@@ -113,7 +113,7 @@ const rgbFormFactory = (
       onSetValue: (input: AlloyComponent) => {
         if (Invalidating.isInvalid(input)) {
           const run = Invalidating.run(input);
-          run.get(Fun.noop);
+          run;
         }
       }
     });

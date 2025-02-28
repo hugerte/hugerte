@@ -1,4 +1,4 @@
-import { Fun, Future, Obj, Optional } from '@ephox/katamari';
+import { Fun, Obj, Optional } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import * as DropdownUtils from '../../dropdown/DropdownUtils';
@@ -31,7 +31,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
     });
   };
 
-  const togglePopup = (dropdownComp: AlloyComponent, onOpenSync: (c: AlloyComponent) => void, highlightOnOpen: HighlightOnOpen): Future<AlloyComponent> => {
+  const togglePopup = (dropdownComp: AlloyComponent, onOpenSync: (c: AlloyComponent) => void, highlightOnOpen: HighlightOnOpen): Promise<AlloyComponent> => {
     return DropdownUtils.togglePopup(
       detail,
       Fun.identity,
@@ -44,18 +44,18 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
 
   const action = (component: AlloyComponent): void => {
     const onOpenSync = switchToMenu;
-    togglePopup(component, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+    togglePopup(component, onOpenSync, HighlightOnOpen.HighlightMenuAndItem);
   };
 
   const apis: DropdownApis = {
     expand: (comp) => {
       if (!Toggling.isOn(comp)) {
-        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightNone).get(Fun.noop);
+        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightNone);
       }
     },
     open: (comp) => {
       if (!Toggling.isOn(comp)) {
-        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightMenuAndItem);
       }
     },
     refetch: (comp) => {
@@ -101,7 +101,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
     isOpen: Toggling.isOn,
     close: (comp) => {
       if (Toggling.isOn(comp)) {
-        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightMenuAndItem);
       }
     },
     // If we are open, refresh the menus in the tiered menu system

@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Chain, GeneralSteps, Guard, Logger, Step, UiControls, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Future, Result, Singleton } from '@ephox/katamari';
 import { SugarElement, Value } from '@ephox/sugar';
+import { Result, Singleton } from '@ephox/katamari';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Invalidating } from 'ephox/alloy/api/behaviour/Invalidating';
@@ -27,7 +27,7 @@ UnitTest.asynctest('InvalidatingTest', (success, failure) => {
           validate: (input) => {
             const value = Value.get(input.element);
             const res = value === 'good-value' ? Result.value('good-value') : Result.error('bad value: ' + value);
-            return Future.pure(res);
+            return Promise.resolve(res);
           },
           onEvent: 'custom.test.validate'
         }
@@ -139,20 +139,20 @@ UnitTest.asynctest('InvalidatingTest', (success, failure) => {
       Step.sync(() => {
         AlloyTriggers.emit(component, 'custom.test.validate');
       }),
-      // It is future based, so give it a bit of time. The rest of the assertions should all
+      // It is promise based, so give it a bit of time. The rest of the assertions should all
       // repeat until as well to stop this being fragile. I just don't want it to pass incorrectly
       // because the validation hasn't finished yet.
       Step.wait(100)
     ]);
 
     const cQueryApi = Chain.async((_value, next, _die) => {
-      Invalidating.query(component).get((res) => {
+      Invalidating.query(component).then((res) => {
         next(res);
       });
     });
 
     const cRunApi = Chain.async((_value, next, _die) => {
-      Invalidating.run(component).get((res) => {
+      Invalidating.run(component).then((res) => {
         next(res);
       });
     });

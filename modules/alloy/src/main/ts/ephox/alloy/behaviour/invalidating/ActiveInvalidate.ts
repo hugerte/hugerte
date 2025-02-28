@@ -11,7 +11,7 @@ const events = (invalidConfig: InvalidatingConfig, invalidState: Stateless): All
   })
 ].concat(validatorInfo.validateOnLoad ? [
   AlloyEvents.runOnAttached((component) => {
-    InvalidateApis.run(component, invalidConfig, invalidState).get(Fun.noop);
+    InvalidateApis.run(component, invalidConfig, invalidState);
   })
 ] : [ ]))).getOr({ });
 

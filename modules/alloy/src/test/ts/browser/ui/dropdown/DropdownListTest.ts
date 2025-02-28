@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Arr, Fun, Optional, Result } from '@ephox/katamari';
 import { Compare, Focus } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -80,14 +80,14 @@ UnitTest.asynctest('Dropdown List', (success, failure) => {
         },
 
         fetch: () => {
-          const future = Future.pure<TestItem[]>([
+          const promise = Promise.resolve<TestItem[]>([
             { type: 'item', data: { value: 'alpha', meta: { text: 'Alpha' }}},
             { type: 'item', data: { value: 'beta', meta: { text: 'Beta' }}},
             { type: 'item', data: { value: 'gamma', meta: { text: 'Gamma' }}},
             { type: 'item', data: { value: 'delta', meta: { text: 'Delta' }}}
           ]);
 
-          return future.map((f) => {
+          return promise.then((f) => {
             const menu = TestDropdownMenu.renderMenu({
               value: 'v',
               items: Arr.map(f, TestDropdownMenu.renderItem)

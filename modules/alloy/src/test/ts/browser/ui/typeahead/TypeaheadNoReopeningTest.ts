@@ -1,6 +1,6 @@
 import { FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiControls, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result, Strings } from '@ephox/katamari';
+import { Arr, Optional, Result, Strings } from '@ephox/katamari';
 import { Value } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -45,12 +45,12 @@ UnitTest.asynctest('Browser Test: .ui.typeahead.TypeaheadNoReopeningTest', (succ
 
             fetch: (input) => {
               const text = Value.get(input.element).toLowerCase();
-              const future = Future.pure<TestItem[]>([
+              const promise = Promise.resolve<TestItem[]>([
                 { type: 'item', data: { value: text + '1', meta: { text: Strings.capitalize(text) + '1' }}},
                 { type: 'item', data: { value: text + '2', meta: { text: Strings.capitalize(text) + '2' }}}
               ]);
 
-              return future.map((f) => {
+              return promise.then((f) => {
                 // TODO: Test this.
                 const items: TestItem[] = text === 'no-data' ? [
                   { type: 'separator', text: 'No data' }

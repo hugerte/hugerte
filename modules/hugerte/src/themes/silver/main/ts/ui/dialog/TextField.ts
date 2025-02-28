@@ -3,7 +3,7 @@ import {
   NativeEvents, Representing, SketchSpec, SystemEvents, Tabstopping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Arr, Fun, Optional, Result } from '@ephox/katamari';
 import { Traverse } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -70,7 +70,7 @@ const renderTextField = (spec: TextField, providersBackstage: UiFactoryBackstage
       validate: (input) => {
         const v = Representing.getValue(input);
         const result = vl.validator(v);
-        return Future.pure(result === true ? Result.value(v) : Result.error(result));
+        return Promise.resolve(result === true ? Result.value(v) : Result.error(result));
       },
       validateOnLoad: vl.validateOnLoad
     }
