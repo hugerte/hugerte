@@ -1,9 +1,7 @@
 # Description
 `polaris` is a project which provides data manipulation on arrays and strings.
-# Installation
-`polaris` is available as an `npm` package.  You can install it via the npm package `@ephox/polaris`
-## Install from npm
-`npm install @ephox/polaris`
+
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 `Arrays`: Provides utility functions for dealing with arrays.

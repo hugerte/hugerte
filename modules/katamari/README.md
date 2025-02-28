@@ -2,13 +2,7 @@
 
 `katamari` is a collection of various data structures and reusable higher-order functions. It does not bundle any commands. It is only a collection of modules.
 
-# Installation
-
-`katamari` is available as an `npm` package. You can install it via the npm package `@ephox/katamari`
-
-## Install from npm
-
-`npm install @ephox/katamari`.
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 
 # Usage
@@ -26,9 +20,7 @@ Below is a list of commonly used parts of `katamari`
 
 ## Asynchronous Data Types
 
-- `Future`: An abstraction over an asynchronous value
-- `FutureResult`: A composition of a `Result` and a `Future`
-- `LazyValue`: An asynchronous value that is only calculated once
+- `PromiseResult`: A composition of a `Result` and a `Promise`
 
 ## Mutable Data Types
 

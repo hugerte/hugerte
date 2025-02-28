@@ -1,9 +1,7 @@
 # Description
 `porkbun` is an event handling framework for JavaScript.
-# Installation
-`porkbun` is available as an `npm` package.  You can install it via the npm package `@ephox/porkbun`
-## Install from npm
-`npm install @ephox/porkbun`
+
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 `Binder`: An event binder that allows binding and unbinding of events.

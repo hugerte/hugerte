@@ -1,18 +1,8 @@
 # Description
 
-`mcagar` is a [`tinymce`](https://www.npmjs.com/package/tinymce) specific wrapping of [`agar`](https://www.npmjs.com/package/@ephox/agar)'s testing infrastructure. It is only a collection of modules.
+In this fork of TinyMCE, `mcagar` is a [`hugerte`](https://www.npmjs.com/package/hugerte) specific wrapping of the agar package's testing infrastructure. It is only a collection of modules.
 
-# Installation
-
-`mcagar` is available as an `npm` package. You can install it via the npm package `@ephox/mcagar`
-
-# Installation for development
-
-You need to use `yarn` to install the mcagar devDependencies since `npm` doesn't support package aliasing and that is used in the `package.json`.
-
-## Install from npm
-
-`npm install @ephox/mcagar`
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 

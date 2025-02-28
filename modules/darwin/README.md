@@ -1,10 +1,8 @@
 
 # Description
 Once completed, it is hoped that `darwin` will provide a framework for taking over selection entirely (like a DOM-based editor). At this stage, it is only being used for tables.
-# Installation
-`darwin` is available as an `npm` package.  You can install it via the npm package `@ephox/darwin`
-## Install from npm
-`npm install @ephox/darwin`
+
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 1. Handling Webkit Up/Down in a Table
