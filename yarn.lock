@@ -739,9 +739,9 @@
     xml-writer "^1.6.0"
 
 "@ephox/dispute@^1.0.3":
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/@ephox/dispute/-/dispute-1.0.14.tgz#f7a81ec5cfb63561a29711118bc4a3e42f7046df"
-  integrity sha512-cl8hu6u8FDIJ0Ofmp9PzMWuby7mNXylcbr5yrsQ7MMOVKXTTBKj93ZWGmPFqKBTbWdeMji16fVRLxYqCp7FInA==
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@ephox/dispute/-/dispute-1.0.15.tgz#b16db7899b16ad5ac10dd6e26e39cbcd17804569"
+  integrity sha512-CChNuKLWX29kZ2akmB8DegHDigaXUAhFPtAkUw/7Ss/AFAuobCyfScNhOIZKNycRbcPYmbs2MLY9Z5tygG525A==
   dependencies:
     tslib "^2.0.0"
 
