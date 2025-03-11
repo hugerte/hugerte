@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Chain, GeneralSteps, Guard, Logger, Step, UiControls, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { SugarElement, Value } from '@ephox/sugar';
 import { Result, Singleton } from '@ephox/katamari';
+import { SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Invalidating } from 'ephox/alloy/api/behaviour/Invalidating';
@@ -25,7 +25,7 @@ UnitTest.asynctest('InvalidatingTest', (success, failure) => {
         notify: {},
         validator: {
           validate: (input) => {
-            const value = Value.get(input.element);
+            const value = input.element.dom.value;
             const res = value === 'good-value' ? Result.value('good-value') : Result.error('bad value: ' + value);
             return Promise.resolve(res);
           },

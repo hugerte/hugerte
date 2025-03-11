@@ -1,8 +1,9 @@
 import { Arr, Obj } from '@ephox/katamari';
-import { Attribute, Classes, Css, Html, SugarElement, Value } from '@ephox/sugar';
+import { Attribute, Classes, Css, Html, SugarElement } from '@ephox/sugar';
 
 import { DomDefinitionDetail } from './DomDefinition';
 import { patchDomChildren } from './Patching';
+import { UnsugaredHelpers } from '@ephox/sugar';
 
 interface KeyValueDiff {
   readonly toSet: Record<string, string>;
@@ -32,7 +33,8 @@ const reconcileToDom = (definition: DomDefinitionDetail, obsoleted: SugarElement
   const existingStyles = Css.getAllRaw(obsoleted);
   const { toSet: stylesToSet, toRemove: stylesToRemove } = diffKeyValueSet(definition.styles, existingStyles);
   const updateStyles = () => {
-    Arr.each(stylesToRemove, (s) => Css.remove(obsoleted, s));
+    stylesToRemove.forEach((s) => obsoleted.dom.style.removeProperty(s));
+    UnsugaredHelpers.cleanupStyleAttr(obsoleted.dom);
     Css.setAll(obsoleted, stylesToSet);
   };
 
@@ -57,9 +59,9 @@ const reconcileToDom = (definition: DomDefinitionDetail, obsoleted: SugarElement
   const updateValue = () => {
     const valueElement = obsoleted as SugarElement<HTMLInputElement | HTMLTextAreaElement>;
     const value = definition.value.getOrUndefined();
-    if (value !== Value.get(valueElement)) {
-      // TINY-8736: Value.set throws an error in case the value is undefined
-      Value.set(valueElement, value ?? '');
+    if (value !== valueElement.dom.value) {
+      // TINY-8736: Value.set (TODO does this apply to direct value assignment?) throws an error in case the value is undefined
+      valueElement.dom.value = value ?? '';
     }
   };
 

@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, EventFormat, Focusing, Form, FormField, FormTypes, GuiFactory, Input, Invalidating,
   Memento, Representing, SimulatedEvent, Sketcher, SketchSpec, Tabstopping, UiSketcher
 } from '@ephox/alloy';
-import { Cell, Fun, Id, Merger, Optional, Result } from '@ephox/katamari';
+import { Cell, Id, Merger, Optional, Result } from '@ephox/katamari';
 import { Css } from '@ephox/sugar';
 
 import { Hex, Rgba } from '../../api/colour/ColourTypes';

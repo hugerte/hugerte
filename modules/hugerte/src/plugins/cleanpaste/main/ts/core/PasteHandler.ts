@@ -1,8 +1,10 @@
+import { EditorEvent } from 'hugerte/core/api/PublicApi';
 import { dataTools, RTFTools, imageTools } from './Utils';
 import DOMPurify from 'dompurify';
 
 /*
-The PasteFromWord class handles the pasting of content from Microsoft Word into a web application. It includes methods for:
+TODO
+This plugin handles the pasting of content from Microsoft Word into a web application. It includes methods for:
 
 1. Detecting if the pasted content is from Word.
 2. Cleaning the pasted HTML content by removing Word-specific tags and attributes.
@@ -13,6 +15,9 @@ The PasteFromWord class handles the pasting of content from Microsoft Word into 
 */
 
 class PasteFromWord {
+  private config;
+  private dompurifyConfig;
+
   constructor(config = {}) {
     this.config = config;
     this.dompurifyConfig = {
@@ -33,11 +38,11 @@ class PasteFromWord {
     return ['image/png', 'image/jpeg', 'image/gif'];
   }
 
-  parse = (pasteEvent, next) => {
+  parse = (pasteEvent: EditorEvent<ClipboardEvent & { clipboardData: DataTransfer; }>, next: { (data: any): void; (arg0: { html: TrustedHTML & Node & DocumentFragment & string; text: any; }): void; }) => {
 
     console.log('Paste Event: ', pasteEvent);
     
-    const clipboardData = pasteEvent.clipboardData || window.clipboardData;
+    const clipboardData = pasteEvent.clipboardData;
     console.log('Clipboard Data Types: ', clipboardData.types);
 
     if (this.checkPaster(clipboardData)) {
@@ -55,7 +60,7 @@ class PasteFromWord {
     }
   };
 
-  checkPaster = (paster) => {
+  checkPaster = (paster: any) => {
     const mswordHtml = this.getClipboardData(paster, 'text/html');
     const generatorName = this.getContentGeneratorName(mswordHtml);
     const wordRegexp =
@@ -68,9 +73,9 @@ class PasteFromWord {
     return mswordHtml && isOfficeContent;
   };
 
-  getClipboardData = (data, type) => data.getData(type);
+  getClipboardData = (data: { getData: (arg0: any) => any; }, type: string) => data.getData(type);
 
-  getContentGeneratorName = (content) => {
+  getContentGeneratorName = (content: string) => {
     const metaGeneratorTag =
       /<meta\s+name=["']?generator["']?\s+content=["']?(\w+)/gi;
     const result = metaGeneratorTag.exec(content);
@@ -84,7 +89,7 @@ class PasteFromWord {
     return 'unknown';
   };
 
-  parser = (paster, next) => {
+  parser = (paster: { files: any[]; }, next: (arg0: { html: string; text: any; }) => void) => {
     
     const mswordHtml = this.cleanWordHtml(
       this.getClipboardData(paster, 'text/html')
@@ -112,7 +117,7 @@ class PasteFromWord {
     }
   };
 
-  cleanWordHtml = (html) => {
+  cleanWordHtml = (html: string) => {
     // Create a DOM parser to parse the HTML
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
@@ -342,7 +347,7 @@ class PasteFromWord {
     });
   };
 
-  filterRtfImageToHtml = (html: string, rtf) => {
+  filterRtfImageToHtml = (html: string, rtf: any) => {
     const imgTags = this.extractTagsFromHtml(html);
     console.log('Extracted Image Tags: ', imgTags);
     if (imgTags.length === 0) return Promise.resolve(html);
@@ -364,7 +369,7 @@ class PasteFromWord {
     return ret;
   };
 
-  handleRtfImages = async (html: string, rtf: , imgTags) => {
+  handleRtfImages = async (html: string, rtf: any, imgTags: any) => {
     const hexImages = this.extractFromRtf(rtf);
     console.log('Extracted Hex Images: ', hexImages);
     if (hexImages.length === 0) return html;
@@ -377,7 +382,7 @@ class PasteFromWord {
     console.log('New Src Values:', newSrcValues.length, newSrcValues);
     console.log('Image Tags:', imgTags.length, imgTags);
 
-    imgTags.forEach((imgTag, index) => {
+    imgTags.forEach((imgTag: string, index: string | number) => {
       if (imgTag.startsWith('file://')) {
         const newSrcValue = newSrcValues[index];
         if (newSrcValue) {
@@ -403,10 +408,10 @@ class PasteFromWord {
   };
 
   // convert blob URLs to base64 images and replace them in the HTML content.
-  handleBlobImages = (html, imgTags) => {
+  handleBlobImages = (html: string, imgTags: any[]) => {
     const blobUrls = [...new Set(
         imgTags.filter(
-            (imgTag) => /^blob:/i.test(imgTag) || /^file:/i.test(imgTag)
+            (imgTag: string) => /^blob:/i.test(imgTag) || /^file:/i.test(imgTag)
         )
     )];
     console.log("oh no, the wrong thing starts");
@@ -429,7 +434,7 @@ class PasteFromWord {
     });
   };
 
-  convertBlobOrFileUrlToBase64 = (url) =>
+  convertBlobOrFileUrlToBase64 = (url: string) =>
     new Promise((resolve, reject) => {
     console.log('convertBlobOrFileUrlToBase64', url);
       if (url.startsWith('file://')) {
@@ -463,7 +468,7 @@ class PasteFromWord {
           url,
           (arrayBuffer: ArrayBuffer) => {
             const data = new Uint8Array(arrayBuffer);
-            const imageType = tools.getImageTypeFromSignature(data);
+            const imageType = imageTools.getImageTypeFromSignature(data);
             const img = { type: imageType, hex: data };
 
             if (this.config.imageHandler) {
@@ -477,17 +482,17 @@ class PasteFromWord {
       }
     });
 
-  extractFromRtf = (rtfContent) => {
-    const ret = [];
+  extractFromRtf = (rtfContent: string) => {
+    const ret: { id: any; hex: any; type: string; }[] = [];
     rtfContent = RTFTools.removeGroups(
       rtfContent,
       '(?:(?:header|footer)[lrf]?|nonshppict|shprslt)'
     );
-    const wholeImages = tools.getGroups(rtfContent, 'pict');
+    const wholeImages = RTFTools.getGroups(rtfContent, 'pict');
 
     if (!wholeImages) return ret;
 
-    wholeImages.forEach((currentImage) => {
+    wholeImages.forEach((currentImage: { content: string | string[]; }) => {
       const imageId = this.getImageId(currentImage.content);
       const imageType = this.getImageType(currentImage.content);
       const imageDataIndex = this.getImageIndex(imageId, ret);
@@ -527,13 +532,13 @@ class PasteFromWord {
     return ret;
   };
 
-  getImageIndex = (id, ret) => 
+  getImageIndex = (id: any, ret: any[]) => 
     typeof id !== 'string' 
       ? -1 
-      : ret.findIndex(image => image.id === id);
+      : ret.findIndex((image: { id: string; }) => image.id === id);
 
 
-  getImageId = (image) => {
+  getImageId = (image: string) => {
     const blipUidRegex = /\\blipuid (\w+)\}/;
     const blipTagRegex = /\\bliptag(-?\d+)/;
     const blipUidMatch = image.match(blipUidRegex);
@@ -545,10 +550,10 @@ class PasteFromWord {
       : null;
   };
 
-  getImageContent = (image) =>
+  getImageContent = (image: any) =>
     tools.extractGroupContent(image).replace(/\s/g, '');
 
-  getImageType = (imageContent) => {
+  getImageType = (imageContent: string) => {
     const tests = [
       { marker: /\\pngblip/, type: 'image/png' },
       { marker: /\\jpegblip/, type: 'image/jpeg' },
@@ -559,19 +564,19 @@ class PasteFromWord {
     return extractedType ? extractedType.type : 'unknown';
   };
 
-  createSrcWithBase64 = (img) => {
+  createSrcWithBase64 = (img: { type: any; hex: any; }) => {
     if (!this.supportedImageTypes.includes(img.type)) return null;
     const data =
       typeof img.hex === 'string'
-        ? tools.convertHexStringToBytes(img.hex)
+        ? ImageTools.convertHexStringToBytes(img.hex)
         : img.hex;
-    const base64Data = tools.convertBytesToBase64(data);
+    const base64Data = ImageTools.convertBytesToBase64(data);
    console.log(`Converted Image: data:${img.type};base64,${base64Data}`);
     return img.type ? `data:${img.type};base64,${base64Data}` : null;
   };
 
   // Create a Blob object from image data.
-  createBlobWithImageInfo = (img) => {
+  createBlobWithImageInfo = (img: { type: string; hex: any; }) => {
     console.log('createBlobWithImageInfo');
     console.log(this.supportedImageTypes, img.type);
 
@@ -581,7 +586,7 @@ class PasteFromWord {
 
     const data =
       typeof img.hex === 'string'
-        ? tools.convertHexStringToBytes(img.hex)
+        ? imageTools.convertHexStringToBytes(img.hex)
         : img.hex;
 
     const ab = new ArrayBuffer(data.length);
@@ -591,20 +596,20 @@ class PasteFromWord {
   };
 
   // Wrapper for custom image handler.
-  imageHandlerWrapper = (img) =>
+  imageHandlerWrapper = (img: { type: any/*TODO*/; hex: Uint8Array<ArrayBuffer>; }) =>
     new Promise((resolve) => {
      console.log('imageHandlerWrapper', img);
       this.config.imageHandler(this.createBlobWithImageInfo(img), resolve);
     });
 
   // Process a single file pasted from the clipboard.
-  handleSingleFile = (file) =>
+  handleSingleFile = (file: Blob) =>
     new Promise((resolve) => {
     console.log('Handling single file: ', file);
       const supportType = this.supportedImageTypes.includes(file.type);
       if (this.config.imageHandler) {
         const blob = new Blob([file], { type: file.type });
-        this.config.imageHandler(blob, (result) => {
+        this.config.imageHandler(blob, (result: unknown) => {
           resolve(supportType ? `<img src="${result}" />` : result);
         });
       } else {

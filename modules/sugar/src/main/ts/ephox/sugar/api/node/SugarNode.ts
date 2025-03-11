@@ -9,9 +9,11 @@ const name = (element: SugarElement<Node>): string => {
   return r.toLowerCase();
 };
 
+/** @deprecated Use `element.dom.nodeType` instead */
 const type = (element: SugarElement<Node>): number =>
   element.dom.nodeType;
 
+/** @deprecated Use `element.dom.nodeValue` instead */
 const value = (element: SugarElement<Node>): string | null =>
   element.dom.nodeValue;
 

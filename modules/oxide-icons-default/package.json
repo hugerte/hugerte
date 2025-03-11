@@ -9,9 +9,9 @@
   },
   "main": "dist/js/icons.js",
   "scripts": {
-    "build": "gulp",
+    "build": "node build.js",
     "prepublishOnly": "yarn ci",
-    "ci": "gulp --no-color"
+    "ci": "node build.js"
   },
   "keywords": [
     "HugeRTE",

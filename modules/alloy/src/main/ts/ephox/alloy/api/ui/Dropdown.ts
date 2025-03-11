@@ -68,7 +68,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
           // If we don't have a sandbox, refetch is the same as open,
           // except we return when it is completed.
           return togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightMenuAndItem)
-            .map(Fun.noop);
+            .then(Fun.noop);
         },
         (sandboxComp) => {
           // We are intentionally not preserving the selected items when
@@ -92,7 +92,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
             externals,
             Fun.noop,
             HighlightOnOpen.HighlightMenuAndItem
-          ).map(
+          ).then(
             Fun.noop
           );
         }

@@ -58,7 +58,7 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
 
     if (!Global.hugerte) {
       // Attempt to load HugeRTE if it's not available
-      loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').get((result) => {
+      loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').then((result) => {
         result.fold(() => reject('Failed to find a global hugerte instance'), run);
       });
     } else {

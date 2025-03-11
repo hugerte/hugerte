@@ -1,166 +1,78 @@
-import * as SelectionDirection from '../selection/core/SelectionDirection'; // Used directly by dawin
-import * as Compare from './dom/Compare';
-import * as DocumentPosition from './dom/DocumentPosition';
-import * as DomFuture from './dom/DomFuture';
-import * as Focus from './dom/Focus';
-import * as Hierarchy from './dom/Hierarchy';
-import * as Insert from './dom/Insert';
-import * as InsertAll from './dom/InsertAll';
-import * as Link from './dom/Link';
-import * as Remove from './dom/Remove';
-import * as Replication from './dom/Replication';
-import * as Truncate from './dom/Truncate';
-import * as DomEvent from './events/DomEvent';
-import * as MouseEvents from './events/MouseEvents';
-import * as Ready from './events/Ready';
-import * as Resize from './events/Resize';
-import * as ScrollChange from './events/ScrollChange';
-import { EventArgs, EventFilter, EventHandler, EventUnbinder } from './events/Types';
-import * as Viewable from './events/Viewable';
-import * as NodeTypes from './node/NodeTypes';
-import * as SugarBody from './node/SugarBody';
-import * as SugarComment from './node/SugarComment';
-import * as SugarComments from './node/SugarComments';
-import * as SugarDocument from './node/SugarDocument';
-import { SugarElement } from './node/SugarElement';
-import * as SugarElementInstances from './node/SugarElementInstances';
-import * as SugarElements from './node/SugarElements';
-import * as SugarFragment from './node/SugarFragment';
-import * as SugarHead from './node/SugarHead';
-import * as SugarNode from './node/SugarNode';
-import * as SugarShadowDom from './node/SugarShadowDom';
-import * as SugarText from './node/SugarText';
-import * as Alignment from './properties/Alignment';
-import * as Attribute from './properties/Attribute';
-import { AttributeProperty } from './properties/AttributeProperty';
-import * as AttrList from './properties/AttrList';
-import * as Checked from './properties/Checked';
-import * as Class from './properties/Class';
-import * as Classes from './properties/Classes';
-import * as ContentEditable from './properties/ContentEditable';
-import * as Css from './properties/Css';
-import { CssProperty } from './properties/CssProperty';
-import * as Direction from './properties/Direction';
-import * as Float from './properties/Float';
-import * as Html from './properties/Html';
-import * as OnNode from './properties/OnNode';
-import * as TextContent from './properties/TextContent';
-import { Toggler } from './properties/Toggler';
-import * as Value from './properties/Value';
-import * as ElementAddress from './search/ElementAddress';
-import * as Has from './search/Has';
-import * as PredicateExists from './search/PredicateExists';
-import * as PredicateFilter from './search/PredicateFilter';
-import * as PredicateFind from './search/PredicateFind';
-import * as SelectorExists from './search/SelectorExists';
-import * as SelectorFilter from './search/SelectorFilter';
-import * as SelectorFind from './search/SelectorFind';
-import * as Selectors from './search/Selectors';
-import * as TransformFind from './search/TransformFind';
-import * as Traverse from './search/Traverse';
-import * as Awareness from './selection/Awareness';
-import * as CursorPosition from './selection/CursorPosition';
-import * as Edge from './selection/Edge';
-import { RawRect, Rect, StructRect } from './selection/Rect';
-import { SimRange } from './selection/SimRange';
-import { SimSelection } from './selection/SimSelection';
-import { Situ } from './selection/Situ';
-import * as WindowSelection from './selection/WindowSelection';
-import * as OptionTag from './tag/OptionTag';
-import * as SelectTag from './tag/SelectTag';
-import * as Dimension from './view/Dimension';
-import * as Height from './view/Height';
-import * as Platform from './view/Platform';
-import * as Scroll from './view/Scroll';
-import * as SugarLocation from './view/SugarLocation';
-import { SugarPosition } from './view/SugarPosition';
-import * as Visibility from './view/Visibility';
-import * as Width from './view/Width';
-import * as WindowVisualViewport from './view/WindowVisualViewport';
-
-export {
-  Compare,
-  DocumentPosition,
-  DomFuture,
-  Focus,
-  Hierarchy,
-  Insert,
-  InsertAll,
-  Link,
-  Remove,
-  Replication,
-  EventArgs,
-  EventFilter,
-  EventHandler,
-  EventUnbinder,
-  DomEvent,
-  MouseEvents,
-  Ready,
-  Resize,
-  ScrollChange,
-  Viewable,
-  SugarComment,
-  SugarComments,
-  SugarBody,
-  SugarDocument,
-  SugarElement,
-  SugarElementInstances,
-  SugarElements,
-  SugarFragment,
-  SugarHead,
-  SugarNode,
-  NodeTypes,
-  SugarShadowDom,
-  SugarText,
-  Alignment,
-  Attribute,
-  AttributeProperty,
-  AttrList,
-  Checked,
-  Class,
-  Classes,
-  ContentEditable,
-  Css,
-  CssProperty,
-  Direction,
-  Float,
-  Html,
-  OnNode,
-  TextContent,
-  Toggler,
-  Value,
-  ElementAddress,
-  Has,
-  PredicateExists,
-  PredicateFilter,
-  PredicateFind,
-  SelectorExists,
-  SelectorFilter,
-  SelectorFind,
-  Selectors,
-  TransformFind,
-  Traverse,
-  Awareness,
-  CursorPosition,
-  Edge,
-  SimSelection,
-  SimRange,
-  Situ,
-  WindowSelection,
-  OptionTag,
-  SelectTag,
-  Truncate,
-  Dimension,
-  Height,
-  SugarLocation,
-  Platform,
-  SugarPosition,
-  Scroll,
-  Visibility,
-  WindowVisualViewport,
-  Width,
-  SelectionDirection,
-  StructRect,
-  RawRect,
-  Rect
-};
+export * as SelectionDirection from '../selection/core/SelectionDirection'; // Used directly by darwin
+export * as Compare from './dom/Compare';
+export * as DocumentPosition from './dom/DocumentPosition';
+export * as Focus from './dom/Focus';
+export * as Hierarchy from './dom/Hierarchy';
+export * as Insert from './dom/Insert';
+export * as InsertAll from './dom/InsertAll';
+export * as Link from './dom/Link';
+export * as Remove from './dom/Remove';
+export * as Replication from './dom/Replication';
+export * as Truncate from './dom/Truncate';
+export * as DomEvent from './events/DomEvent';
+export * as MouseEvents from './events/MouseEvents';
+export * as Ready from './events/Ready';
+export * as Resize from './events/Resize';
+export * as ScrollChange from './events/ScrollChange';
+export { EventArgs, EventFilter, EventHandler, EventUnbinder } from './events/Types';
+export * as Viewable from './events/Viewable';
+export * as NodeTypes from './node/NodeTypes';
+export * as SugarBody from './node/SugarBody';
+export * as SugarComment from './node/SugarComment';
+export * as SugarComments from './node/SugarComments';
+export * as SugarDocument from './node/SugarDocument';
+export { SugarElement } from './node/SugarElement';
+export * as SugarElementInstances from './node/SugarElementInstances';
+export * as SugarElements from './node/SugarElements';
+export * as SugarFragment from './node/SugarFragment';
+export * as SugarHead from './node/SugarHead';
+export * as SugarNode from './node/SugarNode';
+export * as SugarShadowDom from './node/SugarShadowDom';
+export * as SugarText from './node/SugarText';
+export * as Alignment from './properties/Alignment';
+export * as Attribute from './properties/Attribute';
+export { AttributeProperty } from './properties/AttributeProperty';
+export * as Checked from './properties/Checked';
+export * as Class from './properties/Class';
+export * as Classes from './properties/Classes';
+export * as ContentEditable from './properties/ContentEditable';
+export * as Css from './properties/Css';
+export { CssProperty } from './properties/CssProperty';
+export * as Direction from './properties/Direction';
+export * as Float from './properties/Float';
+export * as Html from './properties/Html';
+export * as OnNode from './properties/OnNode';
+export * as TextContent from './properties/TextContent';
+export { Toggler } from './properties/Toggler';
+export * as UnsugaredHelpers from './properties/UnsugaredHelpers';
+export * as Value from './properties/Value';
+export * as ElementAddress from './search/ElementAddress';
+export * as Has from './search/Has';
+export * as PredicateExists from './search/PredicateExists';
+export * as PredicateFilter from './search/PredicateFilter';
+export * as PredicateFind from './search/PredicateFind';
+export * as SelectorExists from './search/SelectorExists';
+export * as SelectorFilter from './search/SelectorFilter';
+export * as SelectorFind from './search/SelectorFind';
+export * as Selectors from './search/Selectors';
+export * as TransformFind from './search/TransformFind';
+export * as Traverse from './search/Traverse';
+export * as Awareness from './selection/Awareness';
+export * as CursorPosition from './selection/CursorPosition';
+export * as Edge from './selection/Edge';
+export { RawRect } from './selection/Rect';
+export { SimRange } from './selection/SimRange';
+export { SimSelection } from './selection/SimSelection';
+export { Situ } from './selection/Situ';
+export * as WindowSelection from './selection/WindowSelection';
+export * as OptionTag from './tag/OptionTag';
+export * as SelectTag from './tag/SelectTag';
+export * as Dimension from './view/Dimension';
+export * as Height from './view/Height';
+export * as Platform from './view/Platform';
+export * as Scroll from './view/Scroll';
+export * as SugarLocation from './view/SugarLocation';
+export { SugarPosition } from './view/SugarPosition';
+export * as Visibility from './view/Visibility';
+export * as Width from './view/Width';
+export * as WindowVisualViewport from './view/WindowVisualViewport';

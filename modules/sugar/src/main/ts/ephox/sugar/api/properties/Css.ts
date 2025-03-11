@@ -1,10 +1,11 @@
-import { Arr, Obj, Optional, Optionals, Strings } from '@ephox/katamari';
+import { Arr, Obj, Optional } from '@ephox/katamari';
 
 import * as Style from '../../impl/Style';
 import * as SugarBody from '../node/SugarBody';
 import { SugarElement } from '../node/SugarElement';
 import * as SugarNode from '../node/SugarNode';
 import * as Attribute from './Attribute';
+import * as UnsugaredHelpers from './UnsugaredHelpers';
 
 const internalSet = (dom: Node, property: string, value: string): void => {
   // removed: support for dom().style[property] where prop is camel case instead of normal property name
@@ -112,16 +113,10 @@ const isValidValue = (tag: string, property: string, value: string): boolean => 
   return style.isSome();
 };
 
-const remove = (element: SugarElement<Node>, property: string): void => {
-  const dom = element.dom;
-
-  internalRemove(dom, property);
-
-  if (Optionals.is(Attribute.getOpt(element as SugarElement<Element>, 'style').map(Strings.trim), '')) {
-    // No more styles left, remove the style attribute as well
-    // TODO this seems unimportant
-    Attribute.remove(element as SugarElement<Element>, 'style');
-  }
+/** @deprecated Use `element.dom.style.removeProperty(property)` instead, then call `UnsugaredHelpers.cleanupAttrs(element.dom)` */
+const remove = (element: SugarElement<Element>, property: string): void => {
+  internalRemove(element.dom, property);
+  UnsugaredHelpers.cleanupAttrs(element.dom);
 };
 
 const preserve = <E extends Element, T> (element: SugarElement<E>, f: (e: SugarElement<E>) => T): T => {

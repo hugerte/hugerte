@@ -57,7 +57,7 @@ const run = (component: AlloyComponent, invalidConfig: InvalidatingConfig, inval
     notifyInfo.onValidate(component);
   });
 
-  return query(component, invalidConfig, invalidState).map((valid: Result<any, string>) => {
+  return query(component, invalidConfig, invalidState).then((valid: Result<any, string>) => {
     if (component.getSystem().isConnected()) {
       return valid.fold((err) => {
         markInvalid(component, invalidConfig, invalidState, err);

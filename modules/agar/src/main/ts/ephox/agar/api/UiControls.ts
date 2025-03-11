@@ -1,5 +1,5 @@
 import { Type } from '@ephox/katamari';
-import { SugarElement, Value } from '@ephox/sugar';
+import { SugarElement } from '@ephox/sugar';
 
 import { Chain } from './Chain';
 import { Step } from './Step';
@@ -16,7 +16,7 @@ const fireEvent = (elem: SugarElement<Node>, event: string) => {
 };
 
 const setValue = (element: SugarElement<TogglableElement>, newValue: string, eventName?: string): void => {
-  Value.set(element, newValue);
+  element.dom.value = newValue;
   if (Type.isNonNullable(eventName)) {
     fireEvent(element, eventName);
   }
@@ -27,7 +27,7 @@ const setValueOn = (container: SugarElement<Node>, selector: string, newValue: s
   setValue(element, newValue, eventName);
 };
 
-const getValue = (element: SugarElement<TogglableElement>): string => Value.get(element);
+const getValue = (element: SugarElement<TogglableElement>): string => element.dom.value;
 
 const cSetValue = <T extends TogglableElement>(newValue: string): Chain<SugarElement<T>, SugarElement<T>> =>
   Chain.op((element) => {
