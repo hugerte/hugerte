@@ -7,7 +7,6 @@
     // start by ignoring _most_ of node_modules
     "node_modules/[a-zA-Z]*": true,
     "node_modules/@babel": true,
-    "node_modules/@gulp-sourcemaps": true,
     "node_modules/@lerna": true,
     "node_modules/@mrmlnc": true,
     "node_modules/@nodelib": true,

@@ -7,3 +7,5 @@ The icon pack build process uses [Node](http://nodejs.org/) and [Gulp](http://gu
 
 1. Install dependencies with `yarn`
 2. Build the icon pack using the `yarn run build` command.
+
+TODO no gulp

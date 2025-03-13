@@ -8,3 +8,5 @@ The build process uses [Node](http://nodejs.org/) and [Gulp](http://gulpjs.com/)
 
 1. Install dependencies with `yarn`.
 2. To view the skins, run `npm start` in this repository and see the oxide-test-data repository for more information.
+
+TODO no gulp
