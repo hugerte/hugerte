@@ -321,8 +321,9 @@ module.exports = function (grunt) {
         return {
           src: [
             'src/core/text/build-header.js',
+            name === 'codesample' ? 'src/core/text/prismjs-license-header.js' : null,
             `js/hugerte/plugins/${name}/plugin.js`
-          ],
+          ].filter(Boolean),
           dest: `js/hugerte/plugins/${name}/plugin.js`
         };
       }),
