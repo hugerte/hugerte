@@ -6,7 +6,7 @@ Welcome to the HugeRTE monorepo. For HugeRTE itself look to the [modules/hugerte
 
 As TinyMCE (the original project we've forked) transitioned to a modern codebase through 2017 and 2018 many external dependencies were added from previously closed-source projects. This became unwieldy to develop, so in June 2019 the decision was made to bring those projects together in a monorepo.
 
-This repo is built with Yarn workspaces and uses publish tooling support from Lerna. NPM is not supported and attempts to use it will fail.
+This repo is built with Yarn workspaces and uses publish tooling support from Lerna. npm is not supported and attempts to use it will fail.
 
 An important feature of this monorepo is the use of TypeScript 3.0 features "project references" and "build mode":
 https://www.typescriptlang.org/docs/handbook/project-references.html
