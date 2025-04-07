@@ -113,7 +113,7 @@ const isValidValue = (tag: string, property: string, value: string): boolean => 
   return style.isSome();
 };
 
-/** @deprecated Use `element.dom.style.removeProperty(property)` instead, then call `UnsugaredHelpers.cleanupAttrs(element.dom)` */
+/** @deprecated Use `element.dom.style.removeProperty(property)` instead, then call `UnsugaredHelpers.cleanupAttrs(element.dom)` but problem is style.isSupported so maybe only act on HTMLElement and yeah, we don't use Angular anyway */
 const remove = (element: SugarElement<Element>, property: string): void => {
   internalRemove(element.dom, property);
   UnsugaredHelpers.cleanupAttrs(element.dom);

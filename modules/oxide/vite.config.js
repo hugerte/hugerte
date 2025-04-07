@@ -12,7 +12,6 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'src/demo/index.html'),
       },
-      external: ['/hugerte/hugerte.min.js'],
     },
   },
   css: {

@@ -33,7 +33,7 @@ const reconcileToDom = (definition: DomDefinitionDetail, obsoleted: SugarElement
   const existingStyles = Css.getAllRaw(obsoleted);
   const { toSet: stylesToSet, toRemove: stylesToRemove } = diffKeyValueSet(definition.styles, existingStyles);
   const updateStyles = () => {
-    stylesToRemove.forEach((s) => obsoleted.dom.style.removeProperty(s));
+    stylesToRemove.forEach((s) => Css.remove(obsoleted, s));
     UnsugaredHelpers.cleanupStyleAttr(obsoleted.dom);
     Css.setAll(obsoleted, stylesToSet);
   };
