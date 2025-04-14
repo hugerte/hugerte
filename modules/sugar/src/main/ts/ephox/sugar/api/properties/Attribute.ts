@@ -1,44 +1,30 @@
-import { Arr, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Obj, Optional } from '@ephox/katamari';
 
 import { SugarElement } from '../node/SugarElement';
 import * as SugarNode from '../node/SugarNode';
 
-const rawSet = (dom: Element, key: string, value: string | boolean | number): void => {
-  /*
-   * JQuery coerced everything to a string, and silently did nothing on text node/null/undefined.
-   *
-   * We fail on those invalid cases, only allowing numbers and booleans.
-   */
-  if (Type.isString(value) || Type.isBoolean(value) || Type.isNumber(value)) {
-    dom.setAttribute(key, value + '');
-  } else {
-    // eslint-disable-next-line no-console
-    console.error('Invalid call to Attribute.set. Key ', key, ':: Value ', value, ':: Element ', dom);
-    throw new Error('Attribute value was not simple');
-  }
-};
-
+/** @deprecated Use `element.dom.setAttribute(key, value.toString())` instead. */
 const set = (element: SugarElement<Element>, key: string, value: string | boolean | number): void => {
-  rawSet(element.dom, key, value);
+  element.dom.setAttribute(key, value.toString());
 };
 
-const setAll = (element: SugarElement<Element>, attrs: Record<string, string | boolean | number>): void => {
-  const dom = element.dom;
-  Obj.each(attrs, (v, k) => {
-    rawSet(dom, k, v);
+const setAll = (element: SugarElement<Element>, attributes: Record<string, string | boolean | number>): void => {
+  Object.keys(attributes).forEach((key) => {
+    element.dom.setAttribute(key, attributes[key].toString());
   });
 };
 
 const setOptions = (element: SugarElement<Element>, attrs: Record<string, Optional<string | boolean | number>>): void => {
   Obj.each(attrs, (v, k) => {
     v.fold(() => {
-      remove(element, k);
+      element.dom.removeAttribute(k);
     }, (value) => {
-      rawSet(element.dom, k, value);
+      element.dom.setAttribute(k, value.toString());
     });
   });
 };
 
+/** @deprecated Use `element.dom.getAttribute(key)` instead, but note that it returns null instead of undefined. */
 const get = (element: SugarElement<Element>, key: string): undefined | string => {
   const v = element.dom.getAttribute(key);
 
@@ -56,6 +42,7 @@ const has = (element: SugarElement<Node>, key: string): boolean => {
   return dom && (dom as Element).hasAttribute ? (dom as Element).hasAttribute(key) : false;
 };
 
+/** @deprecated Use `element.dom.removeAttribute(key)` instead. */
 const remove = (element: SugarElement<Element>, key: string): void => {
   element.dom.removeAttribute(key);
 };
@@ -83,7 +70,7 @@ const transfer = (source: SugarElement<Element>, destination: SugarElement<Eleme
   if (!SugarNode.isElement(source) || !SugarNode.isElement(destination)) {
     return;
   }
-  Arr.each(attrs, (attr) => {
+  attrs.forEach((attr) => {
     transferOne(source, destination, attr);
   });
 };

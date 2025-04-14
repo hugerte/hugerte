@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, GeneralSteps, Keyboard, Keys, Log, Mouse, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Future, Result } from '@ephox/katamari';
+import { Arr, Fun, Result } from '@ephox/katamari';
 import { SelectorExists } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -34,7 +34,7 @@ UnitTest.asynctest('FloatingToolbarButtonTest', (success, failure) => {
         onLtr: () => [ Layout.southeast, Layout.northeast ]
       },
       lazySink: Fun.constant(Result.value(sinkComp)),
-      fetch: () => Future.nu((resolve) => {
+      fetch: () => new Promise((resolve) => {
         const groups = TestPartialToolbarGroup.createGroups([
           { items: Arr.map([{ text: 'A' }, { text: 'B' }], makeButton) },
           { items: Arr.map([{ text: 'C' }, { text: 'D' }], makeButton) }

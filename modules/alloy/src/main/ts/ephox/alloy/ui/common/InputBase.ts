@@ -27,8 +27,7 @@ const focusBehaviours = (detail: InputDetail): Behaviour.AlloyBehaviourRecord =>
   Focusing.config({
     onFocus: !detail.selectOnFocus ? Fun.noop : (component) => {
       const input = component.element;
-      const value = Value.get(input);
-      input.dom.setSelectionRange(0, value.length);
+      input.dom.setSelectionRange(0, input.dom.value.length);
     }
   })
 ]);
@@ -44,10 +43,10 @@ const behaviours = (detail: InputDetail): Behaviour.AlloyBehaviourRecord => ({
           // Propagating its Optional
           ...detail.data.map((data) => ({ initialValue: data } as { initialValue?: string })).getOr({ }),
           getValue: (input) => {
-            return Value.get(input.element);
+            return input.element.dom.value;
           },
           setValue: (input, data) => {
-            const current = Value.get(input.element);
+            const current = input.element.dom.value;
             // Only set it if it has changed ... otherwise the cursor goes to the end.
             if (current !== data) {
               Value.set(input.element, data);

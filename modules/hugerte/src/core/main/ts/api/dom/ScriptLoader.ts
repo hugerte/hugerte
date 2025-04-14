@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Type, Unique } from '@ephox/katamari';
+import { Arr, Fun, Obj, Optional, Type } from '@ephox/katamari';
 
 import Tools from '../util/Tools';
 import DOMUtils from './DOMUtils';
@@ -268,7 +268,7 @@ class ScriptLoader {
     };
 
     // Wait for any other scripts to finish loading first, otherwise load immediately
-    const uniqueScripts = Unique.stringArray(scripts);
+    const uniqueScripts = [...new Set(scripts)];
     if (self.loading) {
       return new Promise((resolve, reject) => {
         self.queueLoadedCallbacks.push(() => {

@@ -1,4 +1,4 @@
-import { Arr, Future, Obj, Optional, Result } from '@ephox/katamari';
+import { Arr, Obj, Optional, Result } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -102,7 +102,7 @@ export default (): void => {
           items: [ wDoubleInput ]
         });
 
-        return Future.pure(
+        return Promise.resolve(
           Optional.some(TieredMenu.singleData('name', wMenu))
         );
       },
@@ -152,7 +152,7 @@ export default (): void => {
           items: [ wDoubleInput ]
         });
 
-        return Future.pure(menu).map(() => Optional.some(TieredMenu.singleData('demo.2.menu', menu)));
+        return Promise.resolve(menu).then(() => Optional.some(TieredMenu.singleData('demo.2.menu', menu)));
       }
     })
   );
@@ -203,7 +203,7 @@ export default (): void => {
               items: [ wDoubleInput ]
             });
 
-            return Future.pure(menu).map(() => Optional.some(TieredMenu.singleData('demo.2.menu', menu)));
+            return Promise.resolve(menu).then(() => Optional.some(TieredMenu.singleData('demo.2.menu', menu)));
           }
         })
       ]
@@ -241,8 +241,8 @@ export default (): void => {
           makeItem('delta', '+Delta')
         ], DemoRenders.gridItem);
 
-        const future = Future.pure(data);
-        return future.map((items) => {
+        const promise = Promise.resolve(data);
+        return promise.then((items) => {
           const menu = DemoRenders.gridMenu({
             value: 'demo.3.menu',
             items,
@@ -292,8 +292,8 @@ export default (): void => {
           makeItem('delta', 'Delta', 'class-delta')
         ], DemoRenders.item);
 
-        const future = Future.pure(data);
-        return future.map((items) => {
+        const promise = Promise.resolve(data);
+        return promise.then((items) => {
           const menu = DemoRenders.menu({
             value: 'demo.4.menu',
             items
@@ -335,7 +335,7 @@ export default (): void => {
         console.log('*** dropdown menu demo execute on: ' + Representing.getValue(item).value + ' ***');
       },
       fetch: () => {
-        const future = Future.pure({
+        const promise = Promise.resolve({
           primary: 'tools-menu',
           menus: Obj.map({
             'tools-menu': {
@@ -445,7 +445,7 @@ export default (): void => {
           }
         });
 
-        return future.map((f) => Optional.from(TieredMenu.tieredData(f.primary, f.menus, f.expansions)));
+        return promise.then((f) => Optional.from(TieredMenu.tieredData(f.primary, f.menus, f.expansions)));
       }
     })
   );

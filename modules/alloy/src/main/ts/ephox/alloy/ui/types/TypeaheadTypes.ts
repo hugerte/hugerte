@@ -1,4 +1,4 @@
-import { Cell, Future, Optional, Result } from '@ephox/katamari';
+import { Cell, Optional, Result } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -74,7 +74,7 @@ export interface TypeaheadSpec extends CompositeSketchSpec, InputSpec {
   // TODO: Add everything else.
   uid?: string;
   lazySink?: (comp: AlloyComponent) => Result<AlloyComponent, Error>;
-  fetch: (comp: AlloyComponent) => Future<Optional<TieredData>>;
+  fetch: (comp: AlloyComponent) => Promise<Optional<TieredData>>;
   components?: AlloySpec[];
   typeaheadBehaviours?: AlloyBehaviourRecord;
   sandboxClasses?: string[];
