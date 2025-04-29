@@ -645,6 +645,10 @@ module.exports = function (grunt) {
                 'url': 'https://github.com/hugerte/hugerte.git',
                 'directory': 'modules/hugerte'
               },
+              'funding': {
+                'type': 'opencollective',
+                'url': 'https://opencollective.com/hugerte'
+              },
               'description': 'Web based JavaScript HTML WYSIWYG editor control.',
               'author': 'Ephox Corporation DBA Tiny Technologies, Inc and the HugeRTE contributors',
               'main': 'hugerte.js',
@@ -663,6 +667,12 @@ module.exports = function (grunt) {
               'keywords': keywords,
               'homepage': 'https://hugerte.org/',
               'type': 'component',
+              'funding': [
+                {
+                  'type': 'opencollective',
+                  'url': 'https://opencollective.com/hugerte'
+                }
+              ],
               'extra': {
                 'component': {
                   'scripts': [
