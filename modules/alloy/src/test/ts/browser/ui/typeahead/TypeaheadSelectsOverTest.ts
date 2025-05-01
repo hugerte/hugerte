@@ -1,6 +1,6 @@
 import { FocusTools, Keyboard, Keys } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Id, Optional, Result } from '@ephox/katamari';
+import { Arr, Id, Optional, Result } from '@ephox/katamari';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
@@ -23,14 +23,14 @@ UnitTest.asynctest('Browser Test: .ui.typeahead.TypeaheadSelectsOverTest', (succ
   GuiSetup.setup((store, _doc, _body) => {
     const sink = Sinks.relativeSink();
 
-    const fetch = (_input: AlloyComponent): Future<Optional<TieredData>> => {
-      const future = Future.pure<TestItem[]>([
+    const fetch = (_input: AlloyComponent): Promise<Optional<TieredData>> => {
+      const promise = Promise.resolve<TestItem[]>([
         { type: 'item', data: { value: 'alpha', meta: { text: 'Alpha' }}},
         { type: 'item', data: { value: 'beta', meta: { text: 'Beta' }}},
         { type: 'item', data: { value: 'gamma', meta: { text: 'Gamma' }}}
       ]);
 
-      return future.map((items) => {
+      return promise.then((items) => {
         const menu = TestDropdownMenu.renderMenu({
           value: Id.generate('single-menu-value'),
           items: Arr.map(items, TestDropdownMenu.renderItem)

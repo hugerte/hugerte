@@ -143,7 +143,7 @@ const factory: CompositeSketchFactory<TouchMenuDetail, TouchMenuSpec> = (detail,
 
       // On longpress, create the menu items to show, and put them in the sandbox.
       AlloyEvents.run(SystemEvents.longpress(), (component, _simulatedEvent) => {
-        detail.fetch(component).get((items) => {
+        detail.fetch(component).then((items) => {
           forceHoverOn(component);
           const iMenu = Menu.sketch({
             ...externals.menu(),

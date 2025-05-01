@@ -9,17 +9,18 @@ type ObjMorphism<T extends {}, R> = (value: T[keyof T], key: ObjKeys<T>) => R;
 type ObjGuardPredicate<T extends {}, U extends T[keyof T]> = (value: T[keyof T], key: ObjKeys<T>) => value is U;
 type ObjPredicate<T extends {}> = (value: T[keyof T], key: ObjKeys<T>) => boolean;
 
-// There are many variations of Object iteration that are faster than the 'for-in' style:
-// http://jsperf.com/object-keys-iteration/107
-//
-// Use the native keys if it is available (IE9+), otherwise fall back to manually filtering
+/** @deprecated Use Object.keys instead */
 export const keys = Object.keys;
 
+/** @deprecated Use Object.hasOwnProperty instead */
 // eslint-disable-next-line @typescript-eslint/unbound-method
 export const hasOwnProperty = Object.hasOwnProperty;
 
+// TODO more deprecations
+
+/** @deprecated Use `Object.entries(obj).forEach(([key, value]) => f(value, key))` instead */
 export const each = <T extends {}>(obj: T, f: ObjCallback<T>): void => {
-  const props = keys(obj) as Array<ObjKeys<T>>;
+  const props = Object.keys(obj) as Array<ObjKeys<T>>;
   for (let k = 0, len = props.length; k < len; k++) {
     const i = props[k];
     const x = obj[i];

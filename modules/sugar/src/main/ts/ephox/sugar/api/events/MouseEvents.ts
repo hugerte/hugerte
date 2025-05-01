@@ -26,6 +26,7 @@ const isRealClick = (raw: MouseEvent): boolean => {
   const isTrusted = raw.isTrusted !== undefined && raw.isTrusted !== true ? false : true;
   // Firefox non-standard property
   // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent#mozInputSource
+  // TODO migrate to PointerEvent.pointerType
   const firefoxRaw = raw as any;
   return (firefoxRaw.mozInputSource === 6 || firefoxRaw.mozInputSource === 0) ? false : isTrusted;
 };

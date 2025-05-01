@@ -2,7 +2,7 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder } from '@ephox/agar';
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
 import { Objects } from '@ephox/boulder';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { Arr, Optional, Result } from '@ephox/katamari';
 import { SugarDocument, Value } from '@ephox/sugar';
 
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
@@ -51,9 +51,9 @@ describe('browser.alloy.ui.typeahead.TypeaheadWithDifferentMothershipsTest', () 
           };
         });
 
-        const future = Future.pure<TestItem[]>(items);
+        const promise = Promise.resolve<TestItem[]>(items);
 
-        return future.map((f) => {
+        return promise.then((f) => {
           const items: TestItem[] = text === 'no-data' ? [
             { type: 'separator', text: 'No data' }
           ] : f;
