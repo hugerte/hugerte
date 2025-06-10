@@ -2,15 +2,7 @@
 
 `sand` is a library for handling platform detection and standardising native browser functions. It does not bundle any commands. It is only a collection of modules.
 
-
-# Installation
-
-`sand` is available as an `npm` package. You can install it via the npm package `@ephox/sand`
-
-## Install from npm
-
-`npm install @ephox/sand`.
-
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Using the API
 

@@ -61,6 +61,7 @@ export const chunk = <T>(array: ArrayLike<T>, size: number): T[][] => {
   return r;
 };
 
+/** @deprecated Use `Array.prototype.map` instead */
 export const map = <T = any, U = any>(xs: ArrayLike<T>, f: ArrayMorphism<T, U>): U[] => {
   // pre-allocating array size when it's guaranteed to be known
   // http://jsperf.com/push-allocated-vs-dynamic/22
@@ -76,6 +77,9 @@ export const map = <T = any, U = any>(xs: ArrayLike<T>, f: ArrayMorphism<T, U>):
 // Unwound implementing other functions in terms of each.
 // The code size is roughly the same, and it should allow for better optimisation.
 // const each = function<T, U>(xs: T[], f: (x: T, i?: number, xs?: T[]) => void): void {
+/**
+ * @deprecated Use `Array.prototype.forEach` instead.
+ */
 export const each = <T = any>(xs: ArrayLike<T>, f: ArrayMorphism<T, void>): void => {
   for (let i = 0, len = xs.length; i < len; i++) {
     const x = xs[i];
@@ -101,6 +105,9 @@ export const partition = <T = any>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): {
   return { pass, fail };
 };
 
+/**
+ * @deprecated Use `Array.prototype.filter` instead.
+ */
 export const filter: {
   <T, U extends T>(xs: ArrayLike<T>, pred: ArrayGuardPredicate<T, U>): U[];
   <T>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): T[];

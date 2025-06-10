@@ -1,9 +1,7 @@
 # Description
 `boss` is a project which provides a generic wrapper for document models - DomUniverse vs TestUniverse.
-# Installation
-`boss` is available as an `npm` package.  You can install it via the npm package `@ephox/boss`
-## Install from npm
-`npm install @ephox/boss`
+
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 `DomUniverse`: Provides utility functions for dealing with the DOM.
