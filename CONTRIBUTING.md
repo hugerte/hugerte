@@ -81,11 +81,6 @@ These commands build the skin and icons but should not normally be required outs
 
 `yarn oxide-start` will set up a watch and rebuild process for creating custom skins.
 
-### Focussed development
-
-If you are working in a single module and don't want to deal with the overheads of whole-monorepo compilation, you can run `yarn --focus` from that module's folder to install the latest published versions of monorepo projects in a local `node_modules`. For more information see this yarn blog post:
-https://yarnpkg.com/blog/2018/05/18/focused-workspaces/
-
 ## Testing
 
 Testing relies on `yarn lerna changed` to determine which modules need testing, and a grunt script then separates them into two groups depending on whether they need GUI browser testing or can be tested with chrome-headless.
