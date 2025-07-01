@@ -1,4 +1,4 @@
-import { Future, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { LazySink } from '../../api/component/CommonTypes';
@@ -17,7 +17,7 @@ export interface CommonDropdownDetail<F> extends CompositeSketchDetail, HasLayou
 
   role: Optional<string>;
   eventOrder: Record<string, string[]>;
-  fetch: (comp: AlloyComponent) => Future<Optional<F>>;
+  fetch: (comp: AlloyComponent) => Promise<Optional<F>>;
   onOpen: (anchor: AnchorSpec, comp: AlloyComponent, menu: AlloyComponent) => void;
 
   lazySink: Optional<LazySink>;
@@ -39,7 +39,7 @@ export interface DropdownDetail extends CommonDropdownDetail<TieredData>, Compos
 
 export interface DropdownApis {
   open: (comp: AlloyComponent) => void;
-  refetch: (comp: AlloyComponent) => Future<void>;
+  refetch: (comp: AlloyComponent) => Promise<void>;
   expand: (comp: AlloyComponent) => void;
   isOpen: (comp: AlloyComponent) => boolean;
   close: (comp: AlloyComponent) => void;
@@ -50,7 +50,7 @@ export interface DropdownSpec extends CompositeSketchSpec, HasLayoutAnchorSpec {
   uid?: string;
   dom: RawDomSchema;
   components?: AlloySpec[];
-  fetch: (comp: AlloyComponent) => Future<Optional<TieredData>>;
+  fetch: (comp: AlloyComponent) => Promise<Optional<TieredData>>;
   onOpen?: (anchor: AnchorSpec, comp: AlloyComponent, menu: AlloyComponent) => void;
   dropdownBehaviours?: AlloyBehaviourRecord;
   onExecute?: (sandbox: AlloyComponent, item: AlloyComponent, value: any) => void;

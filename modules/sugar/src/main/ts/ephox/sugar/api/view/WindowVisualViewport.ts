@@ -18,7 +18,7 @@ export interface Bounds {
 const get = (_win?: Window): Optional<VisualViewport> => {
   const win = _win === undefined ? window : _win;
   if (PlatformDetection.detect().browser.isFirefox()) {
-    // TINY-7984: Firefox 91 is returning incorrect values for visualViewport.pageTop, so disable it for now
+    // TODO: Firefox 91 is returning incorrect values for visualViewport.pageTop, so disable it for now
     return Optional.none();
   } else {
     return Optional.from(win.visualViewport);

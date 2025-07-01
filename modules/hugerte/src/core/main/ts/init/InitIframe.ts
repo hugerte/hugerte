@@ -1,5 +1,5 @@
 import { Optional, Strings } from '@ephox/katamari';
-import { Attribute, Class, DomEvent, SugarElement } from '@ephox/sugar';
+import { Attribute, DomEvent, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';
@@ -15,22 +15,51 @@ interface BoxInfo {
 
 const DOM = DOMUtils.DOM;
 
-const createIframeElement = (id: string, title: TranslatedString, customAttrs: {}, tabindex: Optional<number>) => {
-  const iframe = SugarElement.fromTag('iframe');
+class HugeRTEContentArea extends HTMLElement {
+  private root: ShadowRoot;
+
+  constructor() {
+    super();
+    this.root = this.attachShadow({ mode: 'open' });
+  }
+
+  public create(id: string, title: TranslatedString, customAttrs: Record<string, string>, tabindex?: number) {
+    // This can also be explicitly set by customAttrs, so do this first
+    if (tabindex !== undefined) this.tabIndex = tabindex;
+
+    Object.entries(customAttrs).forEach(([key, value]) => {
+      this.setAttribute(key, value);
+    });
+
+    this.setAttribute('id', id + '_ifr');
+    this.setAttribute('frameBorder', '0');
+    this.setAttribute('allowTransparency', 'true');
+    this.setAttribute('title', title);
+
+    // TODO: replace this globally by something else than iframe
+    this.classList.add('tox-edit-area__iframe');
+  }
+}
+
+customElements.define('hugerte-content-area', HugeRTEContentArea);
+
+// TODO: is customAttrs record type an api break? that will need to be documented?
+const createIframeElement = (id: string, title: TranslatedString, customAttrs: Record<string, string>, tabindex: Optional<number>) => {
+  const iframe = document.createElement('iframe');
 
   // This can also be explicitly set by customAttrs, so do this first
-  tabindex.each((t) => Attribute.set(iframe, 'tabindex', t));
+  tabindex.each((t) => iframe.setAttribute('tabindex', t.toString()));
 
-  Attribute.setAll(iframe, customAttrs);
-
-  Attribute.setAll(iframe, {
-    id: id + '_ifr',
-    frameBorder: '0',
-    allowTransparency: 'true',
-    title
+  Object.entries(customAttrs).forEach(([key, value]) => {
+    iframe.setAttribute(key, value);
   });
 
-  Class.add(iframe, 'tox-edit-area__iframe');
+  iframe.setAttribute('id', id + '_ifr');
+  iframe.setAttribute('frameBorder', '0');
+  iframe.setAttribute('allowTransparency', 'true');
+  iframe.setAttribute('title', title);
+
+  iframe.classList.add('tox-edit-area__iframe');
 
   return iframe;
 };
@@ -65,7 +94,7 @@ const getIframeHtml = (editor: Editor) => {
 const createIframe = (editor: Editor, boxInfo: BoxInfo) => {
   const iframeTitle = editor.translate('Rich Text Area');
   const tabindex = Attribute.getOpt(SugarElement.fromDom(editor.getElement()), 'tabindex').bind(Strings.toInt);
-  const ifr = createIframeElement(editor.id, iframeTitle, Options.getIframeAttrs(editor), tabindex).dom;
+  const ifr = createIframeElement(editor.id, iframeTitle, Options.getIframeAttrs(editor), tabindex);
 
   ifr.onload = () => {
     ifr.onload = null;

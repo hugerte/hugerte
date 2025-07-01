@@ -1,25 +1,20 @@
 import { Fun } from '@ephox/katamari';
 
 import { SugarElement } from './SugarElement';
-import * as SugarNode from './SugarNode';
 import { getShadowHost, getShadowRoot } from './SugarShadowDom';
 
 // Node.contains() is very, very, very good performance
 // http://jsperf.com/closest-vs-contains/5
 const inBody = (element: SugarElement<Node>): boolean => {
-  // Technically this is only required on IE, where contains() returns false for text nodes.
-  // But it's cheap enough to run everywhere and Sugar doesn't have platform detection (yet).
-  const dom = SugarNode.isText(element) ? element.dom.parentNode : element.dom;
-
   // use ownerDocument.body to ensure this works inside iframes.
   // Normally contains is bad because an element "contains" itself, but here we want that.
-  if (dom === undefined || dom === null || dom.ownerDocument === null) {
+  if (element.dom === undefined || element.dom === null || element.dom.ownerDocument === null) {
     return false;
   }
 
-  const doc = dom.ownerDocument;
-  return getShadowRoot(SugarElement.fromDom(dom)).fold(
-    () => doc.body.contains(dom),
+  const doc = element.dom.ownerDocument;
+  return getShadowRoot(SugarElement.fromDom(element.dom)).fold(
+    () => doc.body.contains(element.dom),
     Fun.compose1(inBody, getShadowHost)
   );
 };

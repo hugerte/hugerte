@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { Arr, Optional, Result } from '@ephox/katamari';
 import { Compare, Css, Html } from '@ephox/sugar';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
@@ -211,12 +211,12 @@ UnitTest.asynctest('InlineViewTest', (success, failure) => {
               menu: TestDropdownMenu.part(store)
             },
             fetch: () => {
-              const future = Future.pure<TestItem[]>([
+              const promise = Promise.resolve<TestItem[]>([
                 { type: 'item', data: { value: optionPrefix.toLowerCase() + '-1', meta: { text: optionPrefix + '-1' }}},
                 { type: 'item', data: { value: optionPrefix.toLowerCase() + '-2' + buttonText, meta: { text: optionPrefix + '-2' }}}
               ]);
 
-              return future.map((f) => {
+              return promise.then((f) => {
                 const menu = TestDropdownMenu.renderMenu({
                   value: 'inline-view-test',
                   items: Arr.map(f, TestDropdownMenu.renderItem)
