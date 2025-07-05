@@ -115,11 +115,11 @@ describe('browser.hugerte.plugins.accordion.FilterContentTest', () => {
       TinyAssertions.assertContentStructure(
         editor,
         buildContentStructure({
-          before: () => ApproxStructure.fromHtml(`<p>blah1${browser.isSafari() ? ' ' : Unicode.nbsp}</p>`),
+          before: () => ApproxStructure.fromHtml(`<p>blah1${browser.isSafari ? ' ' : Unicode.nbsp}</p>`),
           accordion: buildAccordionStructure({
             summary: 'Test'
           }),
-          after: () => ApproxStructure.fromHtml(`<p>${browser.isSafari() ? Unicode.nbsp : ' '}blah2</p>`),
+          after: () => ApproxStructure.fromHtml(`<p>${browser.isSafari ? Unicode.nbsp : ' '}blah2</p>`),
         })
       );
     });

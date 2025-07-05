@@ -5,18 +5,18 @@ export default (): void => {
   PluginManager.add('cleanpaste', (editor) => {
     const pFWord = new PasteFromWord({
       ignorePasteSingleFile: false,
-      imageHandler: (blob, callback) => {
+      imageHandler: (blob: Blob, callback: (arg0: string | ArrayBuffer | null) => any) => {
         try {
           if (!(blob instanceof Blob)) {
             throw new TypeError('Provided parameter is not of type Blob');
           }
-  
+
           // console.log('Image blob:', blob);
           // console.log('Blob type:', JSON.stringify(blob));
-  
+
           const reader = new FileReader();
           reader.onloadend = () => callback(reader.result);
-  
+
           reader.onerror = (error) => {
             console.error('FileReader error:', error);
             callback(null); // Pass null to the callback in case of an error
@@ -33,7 +33,7 @@ export default (): void => {
     // Bind to the paste event
     editor.on("paste", (event) => {
       event.preventDefault();
-      function handlePastedContent(data) {
+      function handlePastedContent(data: { html: string}/*TODO*/) {
         try {
           // console.log('Cleaned HTML:', data.html);
           // console.log('Plain text:', data.text);

@@ -20,9 +20,9 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
   }, [ LinkPlugin, SavePlugin, SearchReplacePlugin, FullscreenPlugin ]);
   const os = PlatformDetection.detect().os;
 
-  const meta = os.isMacOS() || os.isiOS() ? '\u2318' : 'Ctrl+';
-  const shift = os.isMacOS() || os.isiOS() ? '\u21E7' : 'Shift+';
-  const alt = os.isMacOS() || os.isiOS() ? '\u2325' : 'Alt+';
+  const meta = os.isMacOS || os.isiOS ? '\u2318' : 'Ctrl+';
+  const shift = os.isMacOS || os.isiOS ? '\u21E7' : 'Shift+';
+  const alt = os.isMacOS || os.isiOS ? '\u2325' : 'Alt+';
 
   Arr.each([
     { button: 'bold', expectedTooltip: `Bold (${meta}B)` },

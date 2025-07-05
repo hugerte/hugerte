@@ -18,7 +18,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysEdgeCefTest', () => {
     assert.isTrue(CaretContainer.isRangeInCaretContainerBlock(editor.selection.getRng()));
 
   const selectToBeginning = (editor: Editor) => {
-    if (os.isMacOS()) {
+    if (os.isMacOS) {
       TinyContentActions.keystroke(editor, Keys.up(), { metaKey: true, shiftKey: true });
     } else {
       TinyContentActions.keystroke(editor, Keys.home(), { ctrlKey: true, shiftKey: true });
@@ -26,7 +26,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysEdgeCefTest', () => {
   };
 
   const selectToEnd = (editor: Editor) => {
-    if (os.isMacOS()) {
+    if (os.isMacOS) {
       TinyContentActions.keystroke(editor, Keys.down(), { metaKey: true, shiftKey: true });
     } else {
       TinyContentActions.keystroke(editor, Keys.end(), { ctrlKey: true, shiftKey: true });

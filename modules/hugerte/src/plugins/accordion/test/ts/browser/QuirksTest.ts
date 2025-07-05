@@ -20,7 +20,7 @@ describe('browser.hugerte.plugins.accordion.QuirksTest', () => {
   it('TINY-10177: should override the selection to the beginning of `summary` after clicking on it.', () => {
     const editor = hook.editor();
     editor.setContent('<p>Hello</p> ' + AccordionUtils.createAccordion());
-    if (browser.isSafari()) {
+    if (browser.isSafari) {
     // set selection before the `summary`
       TinySelections.setCursor(editor, [ 1 ], 0);
     } else {

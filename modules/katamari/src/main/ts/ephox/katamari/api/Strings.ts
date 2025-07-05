@@ -39,6 +39,7 @@ export const ensureTrailing = (str: string, suffix: string): string => {
   return endsWith(str, suffix) ? str : StrAppend.addToEnd(str, suffix);
 };
 
+/** @deprecated Use str.contains(substr, [start]) if you don't need end index. Perhaps use this partly as polyfill, but check core-js and polyfill-service. */
 export const contains = (str: string, substr: string, start: number = 0, end?: number): boolean => {
   const idx = str.indexOf(substr, start);
   if (idx !== -1) {

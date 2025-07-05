@@ -40,11 +40,11 @@ UnitTest.test('WindowSelectionTest', () => {
   const detection = PlatformDetection.detect();
 
   const detector = (variants: Variants): VariantRange => {
-    if (detection.browser.isFirefox() && variants.firefox !== undefined) {
+    if (detection.browser.isFirefox && variants.firefox !== undefined) {
       return variants.firefox;
-    } else if (detection.browser.isSafari() && variants.safari !== undefined) {
+    } else if (detection.browser.isSafari && variants.safari !== undefined) {
       return variants.safari;
-    } else if (detection.browser.isChromium() && variants.chromium !== undefined) {
+    } else if (detection.browser.isChromium && variants.chromium !== undefined) {
       return variants.chromium;
     } else {
       return variants.fallback;

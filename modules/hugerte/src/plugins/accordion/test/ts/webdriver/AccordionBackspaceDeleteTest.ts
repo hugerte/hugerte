@@ -32,10 +32,10 @@ describe('webdriver.hugerte.plugins.accordion.AccordionBackspaceDeleteTest', () 
 
   const platform = PlatformDetection.detect();
   const os = platform.os;
-  const isSafari = platform.browser.isSafari();
-  const isFirefox = platform.browser.isFirefox();
-  const isMacOS = os.isMacOS();
-  const isWindows = os.isWindows();
+  const isSafari = platform.browser.isSafari;
+  const isFirefox = platform.browser.isFirefox;
+  const isMacOS = os.isMacOS;
+  const isWindows = os.isWindows;
 
   const pDoBackspaceDelete = async (key: DeletionKey, modifier?: BackspaceDeleteModifier): Promise<void> => {
     await RealKeys.pSendKeysOn('iframe => body', [ Type.isUndefined(modifier) ? RealKeys.text(key) : RealKeys.combo(modifier, key) ]);

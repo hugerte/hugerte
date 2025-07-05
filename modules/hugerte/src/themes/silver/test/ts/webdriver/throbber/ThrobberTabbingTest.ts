@@ -100,7 +100,7 @@ describe('webdriver.hugerte.themes.silver.throbber.ThrobberTabbingTest', () => {
 
   it('TINY-7373: should be able to Shift+Tab out of the throbber if it has focus', async function () {
     // Automated test doesn't work on Safari but works manually
-    if (Env.browser.isSafari()) {
+    if (Env.browser.isSafari) {
       this.skip();
     }
 

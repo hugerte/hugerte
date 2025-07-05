@@ -82,7 +82,7 @@ const capture = (doc: SugarElement<Document>): ScrollCapture => {
 
 // TBIO-4472 Safari 10 - Scrolling typeahead with keyboard scrolls page
 const intoView = (element: SugarElement<Element>, alignToTop: boolean): void => {
-  const isSafari = PlatformDetection.detect().browser.isSafari();
+  const isSafari = PlatformDetection.detect().browser.isSafari;
   // this method isn't in TypeScript
   if (isSafari && Type.isFunction((element.dom as any).scrollIntoViewIfNeeded)) {
     (element.dom as any).scrollIntoViewIfNeeded(false); // false=align to nearest edge

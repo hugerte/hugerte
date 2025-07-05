@@ -39,7 +39,7 @@ const setNodeChangeBlocker = (blocked: Cell<boolean>, editor: Editor, block: boo
 const setup = (editor: Editor, caret: Cell<Text | null>): void => {
 
   // Mac OS doesn't move the selection when pressing page up/down and as such HugeRTE shouldn't be moving it either
-  if (platform.os.isMacOS()) {
+  if (platform.os.isMacOS) {
     return;
   }
 

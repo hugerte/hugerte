@@ -27,10 +27,10 @@ const Quirks = (editor: Editor): Quirks => {
   const each = Tools.each;
   const BACKSPACE = VK.BACKSPACE, DELETE = VK.DELETE, dom = editor.dom, selection = editor.selection, parser = editor.parser;
   const browser = Env.browser;
-  const isGecko = browser.isFirefox();
-  const isWebKit = browser.isChromium() || browser.isSafari();
-  const isiOS = Env.deviceType.isiPhone() || Env.deviceType.isiPad();
-  const isMac = Env.os.isMacOS() || Env.os.isiOS();
+  const isGecko = browser.isFirefox;
+  const isWebKit = browser.isChromium || browser.isSafari;
+  const isiOS = Env.deviceType.isiPhone || Env.deviceType.isiPad;
+  const isMac = Env.os.isMacOS || Env.os.isiOS;
 
   /**
    * Executes a command with a specific state this can be to enable/disable browser editing features.

@@ -1,4 +1,4 @@
-import { Id, Arr } from '@ephox/katamari';
+/*import { Id, Arr } from '@ephox/katamari';
 import { DomDescent } from '@ephox/phoenix';
 import { Attribute, SelectorFind, SugarElement } from '@ephox/sugar';
 
@@ -88,3 +88,4 @@ export {
   removeAccordion,
   toggleAllAccordions
 };
+*/

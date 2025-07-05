@@ -135,7 +135,7 @@ const element = (tag: string, fields: ElementFields): StructAssert => {
       assertValue(optValue, actual);
       assertChildren(optChildren, actual);
     } else {
-      Assert.eq('Incorrect node type for: ' + Truncate.getHtml(actual), 1, SugarNode.type(actual));
+      Assert.eq('Incorrect node type for: ' + Truncate.getHtml(actual), 1, actual.dom.nodeType);
     }
   };
 

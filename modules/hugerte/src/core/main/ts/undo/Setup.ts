@@ -68,7 +68,7 @@ export const registerEvents = (editor: Editor, undoManager: UndoManager, locks: 
       return;
     }
 
-    const isMeta = Env.os.isMacOS() && e.key === 'Meta';
+    const isMeta = Env.os.isMacOS && e.key === 'Meta';
 
     if ((keyCode >= 33 && keyCode <= 36) || (keyCode >= 37 && keyCode <= 40) || keyCode === 45 || e.ctrlKey || isMeta) {
       addNonTypingUndoLevel();
@@ -119,7 +119,7 @@ export const registerEvents = (editor: Editor, undoManager: UndoManager, locks: 
       return;
     }
 
-    const hasOnlyMetaOrCtrlModifier = Env.os.isMacOS() ? e.metaKey : e.ctrlKey && !e.altKey;
+    const hasOnlyMetaOrCtrlModifier = Env.os.isMacOS ? e.metaKey : e.ctrlKey && !e.altKey;
     if (hasOnlyMetaOrCtrlModifier) {
       undoManager.beforeChange();
     }

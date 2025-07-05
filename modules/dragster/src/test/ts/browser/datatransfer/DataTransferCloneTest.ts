@@ -48,7 +48,7 @@ describe('browser.dragster.datatransfer.DataTransferCloneTest', () => {
     assert.strictEqual(dataTransfer.getData('text/html'), '<p>123</p>', normalizeLabel('should have expected text/html data'));
     KAssert.eqSome(normalizeLabel('should have expected drag image'), dragImage, getDragImage(dataTransfer));
     assert.deepEqual(dataTransfer.types,
-      PlatformDetection.detect().browser.isSafari() ? [ 'Files', 'text/plain', 'text/html' ] : [ 'text/plain', 'text/html', 'Files' ],
+      PlatformDetection.detect().browser.isSafari ? [ 'Files', 'text/plain', 'text/html' ] : [ 'text/plain', 'text/html', 'Files' ],
       normalizeLabel('should have expected types'));
     const files = dataTransfer.files;
     assert.strictEqual(files.length, 2, normalizeLabel('should have expected number of files'));

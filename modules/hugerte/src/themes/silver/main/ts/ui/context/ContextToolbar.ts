@@ -68,7 +68,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
 
   const canLaunchToolbar = () => {
     // If a mobile context menu is open, don't launch else they'll probably overlap. For android, specifically.
-    return !editor.removed && !(isTouch() && backstage.isContextMenuOpen());
+    return !editor.removed && !(isTouch && backstage.isContextMenuOpen());
   };
 
   const isSameLaunchElement = (elem: Optional<SugarElement<Element>>) =>
@@ -171,7 +171,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
 
   const getAnchor = (position: InlineContent.ContextPosition, element: Optional<SugarElement<Element>>): AnchorSpec => {
     const anchorage = position === 'node' ? sharedBackstage.anchors.node(element) : sharedBackstage.anchors.cursor();
-    const anchorLayout = ContextToolbarAnchor.getAnchorLayout(editor, position, isTouch(), {
+    const anchorLayout = ContextToolbarAnchor.getAnchorLayout(editor, position, isTouch, {
       lastElement: lastElement.get,
       isReposition: () => Optionals.is(lastTrigger.get(), TriggerCause.Reposition),
       getMode: () => Positioning.getMode(sink)

@@ -4,16 +4,21 @@ import { NodeValue } from '../../impl/NodeValue';
 import { SugarElement } from './SugarElement';
 import * as SugarNode from './SugarNode';
 
+// can only get text value of a text node
 const api = NodeValue(SugarNode.isText, 'text');
 
+/** @deprecated just get element.dom.nodeValue */
 const get = (element: SugarElement<Text>): string =>
-  api.get(element);
+  element.dom.nodeValue || '';
 
+/** @deprecated */
 const getOption = (element: SugarElement<Node>): Optional<string> =>
   api.getOption(element);
 
-const set = (element: SugarElement<Text>, value: string): void =>
-  api.set(element, value);
+/** @deprecated */
+const set = (element: SugarElement<Text>, value: string): void => {
+  element.dom.nodeValue = value;
+};
 
 export {
   get,

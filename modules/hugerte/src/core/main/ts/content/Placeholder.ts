@@ -24,7 +24,7 @@ const nonTypingKeycodes = [
   VK.DOWN, VK.UP, VK.LEFT, VK.RIGHT
 ].concat(
   // Meta key on firefox is different
-  Env.browser.isFirefox() ? [ 224 ] : []
+  Env.browser.isFirefox ? [ 224 ] : []
 );
 
 const placeholderAttr = 'data-mce-placeholder';

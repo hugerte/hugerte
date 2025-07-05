@@ -195,7 +195,7 @@ const restoreEndPoint = (dom: DOMUtils, suffix: string, bookmark: IdBookmark): O
       // If siblings are text nodes then merge them unless it's Opera since it some how removes the node
       // and we are sniffing since adding a lot of detection code for a browser with 3% of the market
       // isn't worth the effort. Sorry, Opera but it's just a fact
-      if (NodeType.isText(next) && NodeType.isText(prev) && !Env.browser.isOpera()) {
+      if (NodeType.isText(next) && NodeType.isText(prev) && !Env.browser.isOpera) {
         const idx = prev.data.length;
         prev.appendData(next.data);
         dom.remove(next);

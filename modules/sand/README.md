@@ -1,14 +1,10 @@
 # Description
 
-`sand` is a library for handling platform detection and standardising native browser functions. It does not bundle any commands. It is only a collection of modules.
+`sand` is a library for handling platform detection.
 
 Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Using the API
-
-The project `sand` has two purposes: platform detection and global wrappers.
-
-## Platform Detection
 
 In order to detect the current platform, execute `PlatformDetection.detect()`. This will return an object with three parts: `browser`, `os`, and `device`.
 
@@ -21,7 +17,7 @@ console.log('device', platform.device);
 
 Note, `PlatformQuery` has been introduced to provide convenience methods for common platform queries and manage the internal structure of detect's response itself.
 
-### Browser
+## Browser
 
 The `browser` field has the following information:
 
@@ -36,10 +32,10 @@ The `browser` field has the following information:
 
 ~~~javascript
 var platform = PlatformDetection.detect();
-var isFF = platform.browser.isFirefox();
+var isFF = platform.browser.isFirefox;
 ~~~
 
-### Operating System (OS)
+## Operating System (OS)
 
 The `os` field has the following information:
 
@@ -55,11 +51,11 @@ The `os` field has the following information:
 
 ~~~javascript
 var platform = PlatformDetection.detect();
-var isWin = platform.os.isWindows();
+var isWin = platform.os.isWindows;
 ~~~
 
 
-### Device
+## Device
 
 The `device` field has the following information:
 
@@ -74,79 +70,8 @@ The `device` field has the following information:
 
 ~~~javascript
 var platform = PlatformDetection.detect();
-var isPh = platform.device.isPhone();
+var isPh = platform.device.isPhone;
 ~~~
-
-
-## Global Wrappers
-
-These wrappers allow dependencies on globals that only exist on newer browsers, where normal references to them would cause the script to fail to load. They don't provide any safety in accessing the globals; it is assumed the supporting code knows whether the current browser supports the global. They are simply a way to defer referencing it.
-
-
-### Blob
-
-https://developer.mozilla.org/en-US/docs/Web/API/Blob
-
-### Event
-
-https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events
-
-### FileReader
-
-https://developer.mozilla.org/en-US/docs/Web/API/FileReader
-
-### FormData
-
-https://developer.mozilla.org/en-US/docs/Web/API/FormData
-
-### HTMLElement
-
-https://developer.mozilla.org/en/docs/Web/API/HTMLElement
-
-* `HTMLElement.isPrototypeOf(x)`
-
-### JSON
-
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON
-
-* `JSON.parse(obj)`
-* `JSON.stringify(obj, replacer, space)`
-
-### NodeFilter
-
-https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter
-
-
-### URL
-
-https://developer.mozilla.org/en-US/docs/Web/API/URL.createObjectURL
-
-* `URL.createObjectURL(blob)`
-* `URL.removeObjectURL(u)`
-
-### Uint8Array
-
-https://developer.mozilla.org/en-US/docs/Web/API/Uint8Array
-
-
-### Window
-
-https://developer.mozilla.org/en/docs/Web/API/window.requestAnimationFrame
-
-* `Window.requestAnimationFrame(callback)`
-* `Window.atob(base64)`
-
-
-### XMLHttpRequest
-
-https://developer.mozilla.org/en/docs/XMLHttpRequest
-
-
-### XMLSerializer
-
-https://developer.mozilla.org/en/docs/XMLSerializer
-
-* `XMLSerializer.serializeToString(node)`
 
 # Running Tests
 

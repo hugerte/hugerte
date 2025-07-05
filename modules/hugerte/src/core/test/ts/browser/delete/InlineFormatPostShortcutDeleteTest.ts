@@ -18,17 +18,17 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
   const browser = platform.browser;
 
   const ctrlBackspaceKeyup = (editor: Editor) =>
-    TinyContentActions.keyup(editor, Keys.backspace(), os.isMacOS() ? { alt: true } : { ctrl: true });
+    TinyContentActions.keyup(editor, Keys.backspace(), os.isMacOS ? { alt: true } : { ctrl: true });
 
   const ctrlDeleteKeyup = (editor: Editor) =>
-    TinyContentActions.keyup(editor, Keys.delete(), os.isMacOS() ? { alt: true } : { ctrl: true });
+    TinyContentActions.keyup(editor, Keys.delete(), os.isMacOS ? { alt: true } : { ctrl: true });
 
   const metaBackspaceKeyup = (editor: Editor) => {
     // using Meta + Backspace workaround trigger as macOS suppresses most keyup events when meta is engaged
     // side effect of performing backspace keydown
     TinyContentActions.keydown(editor, Keys.backspace());
     // firefox detects macOS Command keycode as "Command" not "Meta"
-    TinyContentActions.keyup(editor, browser.isFirefox() ? 224 : 91);
+    TinyContentActions.keyup(editor, browser.isFirefox ? 224 : 91);
   };
 
   // due to backspace keydown side effect in metaBackspaceKeyup, Meta + Backspace scenario
@@ -38,7 +38,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
     { name: 'Ctrl + Delete', fn: ctrlDeleteKeyup },
   ];
 
-  const shortcutDeleteScenarios = os.isMacOS() ? [
+  const shortcutDeleteScenarios = os.isMacOS ? [
     ...shortcutDeleteScenariosNoMeta,
     { name: 'Meta + Backspace', fn: metaBackspaceKeyup }
   ] : shortcutDeleteScenariosNoMeta;

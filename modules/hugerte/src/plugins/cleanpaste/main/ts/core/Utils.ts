@@ -1,11 +1,12 @@
 type ResponseTypeMap = {
-    'text': string;
-    'arraybuffer': ArrayBuffer;
-  };
-  
-  type LoadCallback<T extends keyof ResponseTypeMap> = (response: ResponseTypeMap[T] | null) => any;
+  'text': string;
+  'arraybuffer': ArrayBuffer;
+}
+
+type LoadCallback<T extends keyof ResponseTypeMap> = (response: ResponseTypeMap[T] | null) => any;
+
 const dataTools = {
-      load: async <T extends keyof ResponseTypeMap>(url: string, callback: LoadCallback<T>, responseType: T | 'text' = 'text') => {
+      load: async <T extends keyof ResponseTypeMap>(url: string, callback: LoadCallback<T>, responseType: T = 'text' as T /*yup, TODO for later*/) => {
         try {
             const response = await fetch(url);
             if (!response.ok) {
@@ -75,7 +76,7 @@ const RTFTools = {
      * @param {Number} options.start String index on which the search should begin.
      * @returns {Object}
      */
-    getGroup: (content: string, groupName: string, options: { start: number; } = { start: 0 }): object => {
+    getGroup: (content: string, groupName: string, options: { start: number; } = { start: 0 }): {start: number, end: number, content: string} | null => {
         const openGroups = [];
         const startRegex = new RegExp(`\\{\\\\${groupName}`, 'g');
         let match;
@@ -122,12 +123,13 @@ const RTFTools = {
      * @param {String} group Group string.
      * @returns {String} Group name.
      */
-    getGroupName: (group: string): string => {
+    getGroupName: (group: string): string | null => {
         const match = group.match(/^\{\\(\w+)/);
         return match ? match[1] : null;
     },
 };
 
+// TODO: does vanilla ES perhaps give us enough utils already?
 const imageTools = {
     /**
      * Converts a hex string to an array containing 1 byte in each cell.

@@ -20,7 +20,7 @@ describe('webdriver.hugerte.core.delete.ShortcutDeleteTest', () => {
 
   before(function () {
     // Safari doesn't automatically trigger keyup override in tests
-    if (browser.isSafari()) {
+    if (browser.isSafari) {
       this.skip();
     }
   });
@@ -37,7 +37,7 @@ describe('webdriver.hugerte.core.delete.ShortcutDeleteTest', () => {
           children: [
             s.element('p', {
               // firefox preserves formats
-              children: browser.isFirefox()
+              children: browser.isFirefox
                 ? [
                   s.element('strong', {
                     children: [
@@ -82,7 +82,7 @@ describe('webdriver.hugerte.core.delete.ShortcutDeleteTest', () => {
         });
       })
     );
-    const selPath = browser.isFirefox() ? [ 0, 0, 0, 0, 0, 0 ] : [ 0, 0, 0 ];
+    const selPath = browser.isFirefox ? [ 0, 0, 0, 0, 0, 0 ] : [ 0, 0, 0 ];
     TinyAssertions.assertCursor(editor, selPath, 0);
   };
 
@@ -128,11 +128,11 @@ describe('webdriver.hugerte.core.delete.ShortcutDeleteTest', () => {
   };
 
   const assertContentDeletionThenTyping = (editor: Editor): void =>
-    TinyAssertions.assertContent(editor, browser.isFirefox()
+    TinyAssertions.assertContent(editor, browser.isFirefox
       ? '<p><span style="text-decoration: underline;">d</span></p>'
       : '<p>d</p>');
 
-  const ctrlModifier: BackspaceDeleteModifier = os.isMacOS() ? { alt: true } : { ctrl: true };
+  const ctrlModifier: BackspaceDeleteModifier = os.isMacOS ? { alt: true } : { ctrl: true };
 
   it('TINY-9302: Ctrl/Alt + Backspace at the end of a formatted word', async () => {
     const editor = hook.editor();

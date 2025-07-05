@@ -51,7 +51,7 @@ UnitTest.asynctest('Real Effects Test', (success, failure) => {
     Chain.asStep(body, [
       UiFinder.cFindIn('button.test'),
       Chain.mapper((button) => {
-        const prop = platform.browser.isFirefox() ? 'border-right-color' : 'border-color';
+        const prop = platform.browser.isFirefox ? 'border-right-color' : 'border-color';
         return Css.get(button, prop);
       }),
       Assertions.cAssertEq(label + '\nChecking color of button border', expected)
@@ -77,7 +77,7 @@ UnitTest.asynctest('Real Effects Test', (success, failure) => {
     sCheckInput('After correcting "this"', 'I am typing this'),
     Step.wait(50),
     RealKeys.sSendKeysOn('input', [
-      RealKeys.combo(platform.os.isMacOS() ? { metaKey: true } : { ctrlKey: true }, 'a')
+      RealKeys.combo(platform.os.isMacOS ? { metaKey: true } : { ctrlKey: true }, 'a')
     ]),
     Step.wait(50),
     RealClipboard.sCopy('input'),
@@ -96,7 +96,7 @@ UnitTest.asynctest('Real Effects Test', (success, failure) => {
     sCheckButtonBorder('Checking initial state of button border', 'rgb(0, 0, 0)'),
     RealMouse.sMoveToOn('button.test'),
     // Safari resets the mouse immediately after the move action so we can't do the assertion
-    ...(platform.browser.isSafari() ? [] : [
+    ...(platform.browser.isSafari ? [] : [
       Waiter.sTryUntil(
         'Waiting for hovered state',
         sCheckButtonBorder('Checking hovered state of button border', 'rgb(255, 255, 255)')

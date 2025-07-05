@@ -1,4 +1,4 @@
-
+/*
 const accordionTag = 'details';
 const accordionDetailsClass = 'mce-accordion';
 const accordionSummaryClass = 'mce-accordion-summary';
@@ -12,3 +12,4 @@ export {
   accordionSummaryClass,
   accordionBodyWrapperClass
 };
+*/

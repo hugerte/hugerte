@@ -19,7 +19,7 @@ describe('browser.hugerte.plugins.link.QuickLinkTest', () => {
 
   const doc = SugarDocument.getDocument();
 
-  const metaKey = PlatformDetection.detect().os.isMacOS() ? { metaKey: true } : { ctrlKey: true };
+  const metaKey = PlatformDetection.detect().os.isMacOS ? { metaKey: true } : { ctrlKey: true };
 
   before(() => {
     TestLinkUi.clearHistory();

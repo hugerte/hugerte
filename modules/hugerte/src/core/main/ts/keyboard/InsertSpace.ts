@@ -62,7 +62,7 @@ const insertSpaceInSummaryAtSelectionOnFirefox = (editor: Editor): Optional<() =
     insertSpaceOrNbspAtPosition(root, pos, editor.schema).each(setSelection(editor));
   };
 
-  return Optionals.someIf(Env.browser.isFirefox() && editor.selection.isEditable() && isInsideSummary(editor.dom, editor.selection.getRng().startContainer), insertSpaceThunk);
+  return Optionals.someIf(Env.browser.isFirefox && editor.selection.isEditable() && isInsideSummary(editor.dom, editor.selection.getRng().startContainer), insertSpaceThunk);
 };
 
 export {

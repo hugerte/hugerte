@@ -20,7 +20,7 @@ describe('browser.hugerte.plugins.link.UrlInputTest', () => {
   }, [ Plugin ]);
 
   const pOpenLinkDialogWithKeyboard = async (editor: Editor) => {
-    TinyContentActions.keystroke(editor, 'K'.charCodeAt(0), platform.os.isMacOS() ? { meta: true } : { ctrl: true });
+    TinyContentActions.keystroke(editor, 'K'.charCodeAt(0), platform.os.isMacOS ? { meta: true } : { ctrl: true });
     await TinyUiActions.pWaitForDialog(editor);
   };
 

@@ -1,4 +1,4 @@
-import { Arr, Type } from '@ephox/katamari';
+/*import { Arr, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import AstNode from 'hugerte/core/api/html/Node';
@@ -151,3 +151,4 @@ const setup = (editor: Editor): void => {
 export {
   setup
 };
+*/

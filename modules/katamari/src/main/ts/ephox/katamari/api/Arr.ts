@@ -11,7 +11,7 @@ type Comparator<T> = (a: T, b: T) => number;
 
 /* eslint-disable @typescript-eslint/unbound-method */
 const nativeSlice = Array.prototype.slice;
-const nativeIndexOf = Array.prototype.indexOf;
+const nativeIndexOf = Array.prototype.indexOf; // TODO we need polyfill from core-js or old TinyMCE if there is one MIT licensed TODO check
 const nativePush = Array.prototype.push;
 /* eslint-enable */
 
@@ -61,7 +61,7 @@ export const chunk = <T>(array: ArrayLike<T>, size: number): T[][] => {
   return r;
 };
 
-/** @deprecated Use `Array.prototype.map` instead */
+/** @deprecated Use `Array.prototype.map` instead but this should be used as polyfill, just be aware of holes and species dont matter I think */
 export const map = <T = any, U = any>(xs: ArrayLike<T>, f: ArrayMorphism<T, U>): U[] => {
   // pre-allocating array size when it's guaranteed to be known
   // http://jsperf.com/push-allocated-vs-dynamic/22
@@ -78,7 +78,7 @@ export const map = <T = any, U = any>(xs: ArrayLike<T>, f: ArrayMorphism<T, U>):
 // The code size is roughly the same, and it should allow for better optimisation.
 // const each = function<T, U>(xs: T[], f: (x: T, i?: number, xs?: T[]) => void): void {
 /**
- * @deprecated Use `Array.prototype.forEach` instead.
+ * @deprecated Use `Array.prototype.forEach` instead. but use as polyfill. but check core-js etc
  */
 export const each = <T = any>(xs: ArrayLike<T>, f: ArrayMorphism<T, void>): void => {
   for (let i = 0, len = xs.length; i < len; i++) {
@@ -187,6 +187,7 @@ export const findUntil: {
   return Optional.none();
 };
 
+// TODO array prototype find and polyfill?
 export const find: {
   <T, U extends T>(xs: ArrayLike<T>, pred: ArrayGuardPredicate<T, U>): Optional<U>;
   <T = any>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): Optional<T>;
@@ -273,6 +274,18 @@ export const last = <T>(xs: ArrayLike<T>): Optional<T> => get(xs, xs.length - 1)
 
 export const from: <T>(x: ArrayLike<T>) => T[] = Type.isFunction(Array.from) ? Array.from : (x) => nativeSlice.call(x);
 
+/**
+ * Iterates over the elements of an array-like object and applies a function `f` to each element.
+ * If the function returns an `Optional` value that is `Some`, the iteration stops and the `Some` value is returned.
+ * If no `Some` value is found, returns `Optional.none`.
+ *
+ * @template A - The type of elements in the input array-like object.
+ * @template B - The type of the value wrapped in the `Optional` returned by the function `f`.
+ * @param arr - The array-like object to iterate over.
+ * @param f - A function that takes an element of type `A` and its index, and returns an `Optional<B>`.
+ * @returns An `Optional<B>` containing the first `Some` value found, or `Optional.none` if no such value exists.
+ * @deprecated But this one is somewhat tricky to replace with native functional methods.
+ */
 export const findMap = <A, B>(arr: ArrayLike<A>, f: (a: A, index: number) => Optional<B>): Optional<B> => {
   for (let i = 0; i < arr.length; i++) {
     const r = f(arr[i], i);

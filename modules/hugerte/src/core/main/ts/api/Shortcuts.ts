@@ -72,7 +72,7 @@ const isModifier = (key: string): key is keyof ModifierMap =>
 
 const parseShortcut = (pattern: string): Shortcut => {
   const shortcut = {} as Shortcut;
-  const isMac = Env.os.isMacOS() || Env.os.isiOS();
+  const isMac = Env.os.isMacOS || Env.os.isiOS;
 
   // Parse modifiers and keys ctrl+alt+b for example
   each(explode(pattern.toLowerCase(), '+'), (value) => {

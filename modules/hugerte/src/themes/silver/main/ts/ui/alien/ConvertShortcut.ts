@@ -6,7 +6,7 @@ import Env from 'hugerte/core/api/Env';
 // Note: This is different to the help shortcut converter, as it doesn't padd the + symbol with spaces
 //       so as to not take up large amounts of space in the menus
 const convertText = (source: string): string => {
-  const isMac = Env.os.isMacOS() || Env.os.isiOS();
+  const isMac = Env.os.isMacOS || Env.os.isiOS;
   const mac = {
     alt: '\u2325',
     ctrl: '\u2303',

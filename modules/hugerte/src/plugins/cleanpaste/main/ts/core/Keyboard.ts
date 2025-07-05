@@ -1,4 +1,4 @@
-import Editor from 'hugerte/core/api/Editor';
+/*import Editor from 'hugerte/core/api/Editor';
 import VK from 'hugerte/core/api/util/VK';
 
 import * as Utils from './Utils';
@@ -25,3 +25,4 @@ const setup = (editor: Editor): void => {
 };
 
 export { setup };
+*/

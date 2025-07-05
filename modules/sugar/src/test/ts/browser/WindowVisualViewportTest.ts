@@ -5,7 +5,7 @@ import * as WindowVisualViewport from 'ephox/sugar/api/view/WindowVisualViewport
 
 UnitTest.test('WindowVisualViewport.getBounds', () => {
   const deviceType = PlatformDetection.detect().deviceType;
-  if (deviceType.isDesktop()) {
+  if (deviceType.isDesktop) {
     const bounds = WindowVisualViewport.getBounds();
     Assert.eq('Top is 0', 0, bounds.y);
     Assert.eq('Left is 0', 0, bounds.x);

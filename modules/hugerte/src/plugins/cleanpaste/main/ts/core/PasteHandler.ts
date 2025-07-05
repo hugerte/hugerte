@@ -38,11 +38,12 @@ class PasteFromWord {
     return ['image/png', 'image/jpeg', 'image/gif'];
   }
 
-  parse = (pasteEvent: EditorEvent<ClipboardEvent & { clipboardData: DataTransfer; }>, next: { (data: any): void; (arg0: { html: TrustedHTML & Node & DocumentFragment & string; text: any; }): void; }) => {
+  parse = (pasteEvent: EditorEvent<ClipboardEvent>, next: { (data: any): void; (arg0: { html: TrustedHTML & Node & DocumentFragment & string; text: any; }): void; }) => {
 
     console.log('Paste Event: ', pasteEvent);
     
     const clipboardData = pasteEvent.clipboardData;
+    if (clipboardData === null) return false; // TODO just to make ts happy!
     console.log('Clipboard Data Types: ', clipboardData.types);
 
     if (this.checkPaster(clipboardData)) {

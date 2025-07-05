@@ -10,7 +10,7 @@ import * as InsertNewLine from '../newline/InsertNewLine';
 import { endTypingLevelIgnoreLocks } from '../undo/TypingState';
 
 const platform = PlatformDetection.detect();
-const isIOSSafari = platform.os.isiOS() && platform.browser.isSafari();
+const isIOSSafari = platform.os.isiOS && platform.browser.isSafari;
 
 const handleEnterKeyEvent = (editor: Editor, event: EditorEvent<KeyboardEvent>) => {
   if (event.isDefaultPrevented()) {

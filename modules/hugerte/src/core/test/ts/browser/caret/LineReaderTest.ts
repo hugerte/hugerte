@@ -16,7 +16,7 @@ type LineInfo = LineReader.LineInfo;
 describe('browser.hugerte.core.caret.LineReader', () => {
   const viewBlock = ViewBlock.bddSetup();
   const browser = PlatformDetection.detect().browser;
-  const isSafari13OrLower = browser.isSafari() && (browser.version.major < 13 || browser.version.major === 13 && browser.version.minor < 1);
+  const isSafari13OrLower = browser.isSafari && (browser.version.major < 13 || browser.version.major === 13 && browser.version.minor < 1);
 
   interface Path {
     path: number[];

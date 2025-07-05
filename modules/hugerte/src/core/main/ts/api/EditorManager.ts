@@ -372,7 +372,7 @@ const EditorManager: EditorManager = {
     };
 
     const findTargets = (options: RawEditorOptions): HTMLElement[] => {
-      if (Env.browser.isIE() || Env.browser.isEdge()) {
+      if (Env.browser.isIE || Env.browser.isEdge) {
         ErrorReporter.initError(
           'HugeRTE does not support the browser you are using. For a list of supported' +
           ' browsers please see: https://www.hugerte.org/docs/hugerte/1/support/#supportedwebbrowsers'

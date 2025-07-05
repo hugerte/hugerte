@@ -16,7 +16,7 @@ UnitTest.asynctest('RealMouseTest', (success, failure) => {
   const detection = PlatformDetection.detect();
 
   // Safari fails to hover on mousemove
-  if (detection.browser.isSafari()) {
+  if (detection.browser.isSafari) {
     return success();
   }
 
@@ -92,7 +92,7 @@ describe('RealMouseTest promise based variant', () => {
   before(function () {
 
     // Safari fails to hover on mousemove
-    if (detection.browser.isSafari()) {
+    if (detection.browser.isSafari) {
       this.skip();
     }
 

@@ -11,27 +11,27 @@ describe('DeviceTypeTest', () => {
 
   const checkTablet = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isTablet(), 'Tablet incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isTablet, 'Tablet incorrect: ' + userAgent);
   };
 
   const checkiPad = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isiPad(), 'iPad incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isiPad, 'iPad incorrect: ' + userAgent);
   };
 
   const checkiPhone = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isiPhone(), 'iPhone incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isiPhone, 'iPhone incorrect: ' + userAgent);
   };
 
   const checkIsWebView = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isWebView(), 'WebView incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isWebView, 'WebView incorrect: ' + userAgent);
   };
 
   const checkDesktop = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isDesktop(), 'desktop incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isDesktop, 'desktop incorrect: ' + userAgent);
   };
 
   it('iPad iOS10 wkWebview', () => {
