@@ -4,6 +4,8 @@ Once completed, it is hoped that `darwin` will provide a framework for taking ov
 
 Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
+TODO better docs, see notes/approach...
+
 # Usage
 1. Handling Webkit Up/Down in a Table
 
