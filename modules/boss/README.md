@@ -3,7 +3,7 @@
 
 Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
-This package should really be get rid of, I think. Just delete it all.
+TODO: Instead of Genes and Universes and all, fork VanJS.
 
 # Usage
 `DomUniverse`: Provides utility functions for dealing with the DOM.
