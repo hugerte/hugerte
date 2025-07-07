@@ -15,9 +15,11 @@ const nativeIndexOf = Array.prototype.indexOf; // TODO we need polyfill from cor
 const nativePush = Array.prototype.push;
 /* eslint-enable */
 
+/** @deprecated TODO */
 const rawIndexOf = <T> (ts: ArrayLike<T>, t: T): number =>
-  nativeIndexOf.call(ts, t);
+  nativeIndexOf.call(ts, t); // TODO why not just ts.indexOf(t)?
 
+/** @deprecated TODO */
 export const indexOf = <T = any>(xs: ArrayLike<T>, x: T): Optional<number> => {
   // The rawIndexOf method does not wrap up in an option. This is for performance reasons.
   const r = rawIndexOf(xs, x);
