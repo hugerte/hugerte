@@ -141,7 +141,7 @@ describe('browser.hugerte.core.textpatterns.ReplacementTest', () => {
     const testFragmentedText = (editor: Editor, pressKey: () => void, getNodes: () => SugarElement<Node>[], elementPath: number[], offset: number, expected: string) => {
       editor.setContent('<p></p>');
       const paragraph = SugarElement.fromDom(editor.dom.select('p')[0]);
-      Remove.empty(paragraph);
+      paragraph.dom.innerHTML = '';
       InsertAll.append(paragraph, getNodes());
       editor.focus();
       TinySelections.setCursor(editor, elementPath, offset);

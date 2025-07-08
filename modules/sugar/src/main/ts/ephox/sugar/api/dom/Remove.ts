@@ -1,7 +1,8 @@
 import { SugarElement } from '../node/SugarElement';
 import * as InsertAll from './InsertAll';
 
-const empty = (element: SugarElement<Node>): void => {
+/** @deprecated Set innerHTML to '' instead */
+const empty = (element: SugarElement<Element>): void => {
   // shortcut "empty node" trick.
   element.dom.textContent = '';
 
@@ -15,19 +16,16 @@ const empty = (element: SugarElement<Node>): void => {
 };
 
 /** @deprecated Use `element.dom.remove()` instead. */
-const remove = (element: SugarElement<Node>): void => {
-  const dom = element.dom;
-  if (dom.parentNode !== null) {
-    dom.parentNode.removeChild(dom);
-  }
+const remove = (element: SugarElement<Element>): void => {
+  element.dom.remove();
 };
 
-const unwrap = (wrapper: SugarElement<Node>): void => {
+const unwrap = (wrapper: SugarElement<Element>): void => {
   const children = [].slice.call(wrapper.dom.childNodes).map(SugarElement.fromDom);
   if (children.length > 0) {
     InsertAll.after(wrapper, children);
   }
-  remove(wrapper);
+  wrapper.dom.remove();
 };
 
 export {
