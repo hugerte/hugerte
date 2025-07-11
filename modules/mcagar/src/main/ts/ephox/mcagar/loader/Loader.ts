@@ -1,5 +1,5 @@
 import { TestLogs } from '@ephox/agar';
-import { Arr, Fun, FutureResult, Global, Id, Optional, Result } from '@ephox/katamari';
+import { Arr, Fun, PromiseResult, Global, Id, Optional, Result } from '@ephox/katamari';
 import { Attribute, DomEvent, Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor } from '../alien/EditorTypes';
@@ -30,7 +30,7 @@ const removeHugerteElements = () => {
   Arr.each(elements, Remove.remove);
 };
 
-const loadScript = (url: string): FutureResult<string, Error> => FutureResult.nu((resolve) => {
+const loadScript = (url: string): PromiseResult<string, Error> => PromiseResult.nu((resolve) => {
   const script = SugarElement.fromTag('script');
 
   Attribute.set(script, 'referrerpolicy', 'origin');
@@ -114,7 +114,7 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
 
   if (!Global.hugerte) {
     // Attempt to load HugeRTE if it's not available
-    loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').get((result) => {
+    loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').then((result) => {
       result.fold(() => callbacks.failure('Failed to find a global hugerte instance'), run);
     });
   } else {

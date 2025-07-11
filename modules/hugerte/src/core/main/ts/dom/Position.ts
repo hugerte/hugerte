@@ -10,7 +10,7 @@ const firstElement = (nodes: SugarElement<Node>[]): Optional<SugarElement<HTMLEl
 // Firefox has a bug where caption height is not included correctly in offset calculations of tables
 // this tries to compensate for that by detecting if that offsets are incorrect and then remove the height
 const getTableCaptionDeltaY = (elm: SugarElement<Node>) => {
-  if (browser.isFirefox() && SugarNode.name(elm) === 'table') {
+  if (browser.isFirefox && SugarNode.name(elm) === 'table') {
     return firstElement(Traverse.children(elm)).filter((elm) => {
       return SugarNode.name(elm) === 'caption';
     }).bind((caption) => {

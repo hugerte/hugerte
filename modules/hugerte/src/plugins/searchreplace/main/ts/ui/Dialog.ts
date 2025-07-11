@@ -51,7 +51,7 @@ const open = (editor: Editor, currentSearchState: Cell<Actions.SearchState>): vo
   // Temporarily workaround for iOS/iPadOS dialog placement to hide the keyboard
   // TODO: Remove in 5.2 once iOS fixed positioning is fixed. See TINY-4441
   const focusButtonIfRequired = (api: Dialog.DialogInstanceApi<DialogData>, name: string): void => {
-    if (Env.browser.isSafari() && Env.deviceType.isTouch() && (name === 'find' || name === 'replace' || name === 'replaceall')) {
+    if (Env.browser.isSafari && Env.deviceType.isTouch && (name === 'find' || name === 'replace' || name === 'replaceall')) {
       api.focus(name);
     }
   };

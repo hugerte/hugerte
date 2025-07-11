@@ -219,7 +219,7 @@ export const FakeCaret = (editor: Editor, root: HTMLElement, isBlock: (node: Nod
   };
 };
 
-export const isFakeCaretTableBrowser = (): boolean => Env.browser.isFirefox();
+export const isFakeCaretTableBrowser = (): boolean => Env.browser.isFirefox;
 
 export const isInlineFakeCaretTarget = (node: Node | undefined | null): node is HTMLElement =>
   isContentEditableFalse(node) || isMedia(node);

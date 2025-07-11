@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Gene, SpecialGene, TestUniverse, TextGene } from '@ephox/boss';
+import { Gene, TestUniverse, TextGene } from '@ephox/boss';
 import { Arr } from '@ephox/katamari';
 import { assert } from 'chai';
 
@@ -8,16 +8,17 @@ import { WordDecision } from 'ephox/robin/words/WordDecision';
 import { ZoneDetails } from 'ephox/robin/zone/LanguageZones';
 import * as ZoneWalker from 'ephox/robin/zone/ZoneWalker';
 
+// TODO drop this as we have removed special gene?
 describe('atomic.robin.zone.AvoidSpecialTest', () => {
   const doc = TestUniverse(Gene('root', 'root', [
     Gene('1', 'p', [
       TextGene('1.1', 'Hello world'),
       TextGene('1.2', 'More text')
     ]),
-    SpecialGene('2', [
-      TextGene('2.1', 'We do not want this text'),
-      TextGene('2.2', 'This is not good text that we want to walk over')
-    ]),
+    // SpecialGene('2', [
+    //   TextGene('2.1', 'We do not want this text'),
+    //   TextGene('2.2', 'This is not good text that we want to walk over')
+    // ]),
     Gene('3', 'p', [
       TextGene('3.1', 'The ending')
     ]),

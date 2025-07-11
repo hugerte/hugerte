@@ -3,16 +3,9 @@ import * as Arr from './Arr';
 import { Cell } from './Cell';
 import * as Contracts from './Contracts';
 import * as Fun from './Fun';
-import { Future } from './Future';
-import { FutureResult } from './FutureResult';
-import * as Futures from './Futures';
+import { PromiseResult } from './PromiseResult';
 import { Global } from './Global';
 import * as Id from './Id';
-import * as Jam from './Jam';
-import { LazyValue } from './LazyValue';
-import * as LazyValues from './LazyValues';
-import { Maybe } from './Maybe';
-import * as Maybes from './Maybes';
 import * as Merger from './Merger';
 import * as Namespace from './Namespace';
 import * as Num from './Num';
@@ -32,8 +25,6 @@ import * as Throttler from './Throttler';
 import * as Thunk from './Thunk';
 import * as Type from './Type';
 import * as Unicode from './Unicode';
-import * as Unique from './Unique';
-import * as Zip from './Zip';
 
 export {
   Adt,
@@ -42,16 +33,9 @@ export {
   Contracts,
   Num,
   Fun,
-  Future,
-  FutureResult,
-  Futures,
+  PromiseResult,
   Global,
   Id,
-  Jam,
-  LazyValue,
-  LazyValues,
-  Maybe,
-  Maybes,
   Merger,
   Namespace,
   Obj,
@@ -70,6 +54,4 @@ export {
   Thunk,
   Type,
   Unicode,
-  Unique,
-  Zip
 };

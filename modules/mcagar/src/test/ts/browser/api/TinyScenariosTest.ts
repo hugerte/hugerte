@@ -11,7 +11,7 @@ import { TinyScenarios } from 'ephox/mcagar/api/pipeline/TinyScenarios';
 UnitTest.asynctest('TinyScenariosTest', (success, failure) => {
 
   const platform = PlatformDetection.detect();
-  if (platform.browser.isFirefox()) {
+  if (platform.browser.isFirefox) {
     // eslint-disable-next-line no-console
     console.log('Skipping TinyScenariosTest as it triggers a hugerte bug in Firefox');
     success();

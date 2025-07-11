@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 import ClosestOrAncestor from '../../impl/ClosestOrAncestor';
 import * as Compare from '../dom/Compare';
@@ -16,7 +16,7 @@ const ancestor: {
   (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node>>;
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean) => {
   let element = scope.dom;
-  const stop = Type.isFunction(isRoot) ? isRoot : Fun.never;
+  const stop = typeof isRoot === 'function' ? isRoot : (() => false); // TODO stop the eslint
 
   while (element.parentNode) {
     element = element.parentNode;
@@ -61,28 +61,13 @@ const child: {
   return result.map(SugarElement.fromDom);
 };
 
+const flattenNodes = (node: Node): Node[] => Array.from(node.childNodes).flatMap((child) => [ child, ...flattenNodes(child) ]);
+
 const descendant: {
   <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): Optional<SugarElement<T & ChildNode>>;
   (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node & ChildNode>>;
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean) => {
-  const descend = (node: Node): Optional<SugarElement<Node & ChildNode>> => {
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < node.childNodes.length; i++) {
-      const child = SugarElement.fromDom(node.childNodes[i]);
-      if (predicate(child)) {
-        return Optional.some(child);
-      }
-
-      const res = descend(node.childNodes[i]);
-      if (res.isSome()) {
-        return res;
-      }
-    }
-
-    return Optional.none<SugarElement<Node & ChildNode>>();
-  };
-
-  return descend(scope.dom);
+  return Optional.from(flattenNodes(scope.dom).map(SugarElement.fromDom).find(predicate) as SugarElement<Node & ChildNode> | undefined);
 };
 
 export { first, ancestor, closest, sibling, child, descendant };

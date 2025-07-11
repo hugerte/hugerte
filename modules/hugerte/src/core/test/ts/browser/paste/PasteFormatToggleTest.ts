@@ -8,7 +8,7 @@ import Editor from 'hugerte/core/api/Editor';
 describe('browser.hugerte.core.paste.PasteFormatToggleTest', () => {
   before(function () {
     const browser = PlatformDetection.detect().browser;
-    if (!browser.isChromium() && !browser.isSafari()) {
+    if (!browser.isChromium && !browser.isSafari) {
       this.skip();
     }
   });

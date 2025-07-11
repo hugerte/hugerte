@@ -17,7 +17,7 @@ describe('webdriver.hugerte.themes.silver.dialogs.DialogFocusTest', () => {
   before(function () {
     // This test won't work on Mac OS browsers other than Chrome (webdriver actions appear to be ignored)
     const platform = PlatformDetection.detect();
-    if (platform.os.isMacOS() && !platform.browser.isChromium()) {
+    if (platform.os.isMacOS && !platform.browser.isChromium) {
       this.skip();
     }
 

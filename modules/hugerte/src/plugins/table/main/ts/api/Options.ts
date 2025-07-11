@@ -92,7 +92,7 @@ const register = (editor: Editor): void => {
   registerOption('table_grid', {
     processor: 'boolean',
     // Table grid relies on hover, which isn't available on touch devices so use the dialog instead
-    default: !Env.deviceType.isTouch()
+    default: !Env.deviceType.isTouch
   });
 
   registerOption('table_cell_class_list', {

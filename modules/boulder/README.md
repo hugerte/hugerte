@@ -4,13 +4,7 @@
 
 The API exposed by boulder will be constantly changing, but it should always be based on `structure` and `field` schemas. `Structure` schemas are used to represent an entire structure of `field`s (e.g. number, array, object etc.). `Field` schemas are used to represent a single field inside an `object` (e.g. `object.alpha`). By combining them, `boulder` should be able to specify objects of reasonable complexity.
 
-# Installation
-
-`boulder` is available as an `npm` package. You can install it via the npm package `@ephox/boulder`
-
-## Install from npm
-
-`npm install @ephox/boulder`
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 

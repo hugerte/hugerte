@@ -8,6 +8,7 @@ export interface NodeValue {
   readonly set: (element: SugarElement<Node>, value: string) => void;
 }
 
+/** @deprecated read or set nodeValue manually */
 export const NodeValue = (is: (e: SugarElement<Node>) => boolean, name: string): NodeValue => {
   const get = (element: SugarElement<Node>): string => {
     if (!is(element)) {

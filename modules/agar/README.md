@@ -2,13 +2,7 @@
 
 `agar` is a library containing testing infrastructure for _keyboard_, _mouse_, _focus_, and _DOM Manipulation_. It is designed to provide a pipeline for composing together asynchronous testing operations. It does not bundle any commands. It is only a collection of modules.
 
-# Installation
-
-`agar` is available as an `npm` package. You can install it via the npm package `@ephox/agar`
-
-## Install from npm
-
-`npm install @ephox/agar`
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 
