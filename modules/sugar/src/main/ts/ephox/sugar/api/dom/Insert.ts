@@ -1,35 +1,33 @@
 import { SugarElement } from '../node/SugarElement';
 
-// TODO: maybe we shouldn't even deprecate these as they can be easy shortcuts
-// for all that parentNode and nextSibling stuff. But they shouldn't need SugarElement then.
-
-/** @deprecated Use `marker.dom.parentNode?.insertBefore(element.dom, marker.dom)` instead. */
+/** @deprecated Use `marker.dom.before(element.dom)` instead. */
 const before = (marker: SugarElement<Node>, element: SugarElement<Node>): void => {
-  marker.dom.parentNode?.insertBefore(element.dom, marker.dom);
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
-/** @deprecated Use `marker.dom.parentNode?.insertBefore(element.dom, marker.dom.nextSibling)` instead. */
+/** @deprecated Use `marker.dom.after(element.dom)` instead. */
 const after = (marker: SugarElement<Node>, element: SugarElement<Node>): void => {
-  marker.dom.parentNode?.insertBefore(element.dom, marker.dom.nextSibling);
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
-/** @deprecated Use `parent.dom.insertBefore(element.dom, parent.dom.firstChild)` instead. */
+/** @deprecated Use `parent.dom.prepend(element.dom)` instead. */
 const prepend = (parent: SugarElement<Node>, element: SugarElement<Node>): void => {
-  parent.dom.insertBefore(element.dom, parent.dom.firstChild);
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
-/** @deprecated Use `parent.dom.appendChild(element.dom)` instead. */
+/** @deprecated Use `parent.dom.append(element.dom)` instead. */
 const append = (parent: SugarElement<Node>, element: SugarElement<Node>): void => {
-  parent.dom.appendChild(element.dom);
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
-/** @deprecated Use `parent.dom.insertBefore(element.dom, parent.dom.childNodes[index])` instead. */
+/** @deprecated Use `parent.dom.insertBefore(element.dom, parent.dom.childNodes[index])` instead or see if you can refactor to make it all smaller. */
 const appendAt = (parent: SugarElement<Node>, element: SugarElement<Node>, index: number): void => {
-  parent.dom.insertBefore(element.dom, parent.dom.childNodes[index]);
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
-const wrap = (element: SugarElement<Node>, wrapper: SugarElement<Node>): void => {
-  element.dom.parentNode?.insertBefore(wrapper.dom, element.dom)
+/** @todo Do we really need this? */
+const wrap = (element: SugarElement<Element>, wrapper: SugarElement<Element>): void => {
+  element.dom.after(wrapper.dom);
   wrapper.dom.appendChild(element.dom);
 };
 
