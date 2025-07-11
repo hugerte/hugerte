@@ -4803,10 +4803,10 @@ emoji-regex@^9.2.2:
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-9.2.2.tgz#840c8803b0d8047f4ff0cf963176b32d4ef3ed72"
   integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
 
-emojilib@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/emojilib/-/emojilib-2.4.0.tgz#ac518a8bb0d5f76dda57289ccb2fdf9d39ae721e"
-  integrity sha512-5U0rVMU5Y2n2+ykNLQqMoqklN9ICBT/KsvC1Gz6vqHbz2AXXGkG+Pm5rMWk/8Vjrr/mY9985Hi8DYzn1F09Nyw==
+emojilib@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/emojilib/-/emojilib-4.0.2.tgz#98441588cadedb2cb91a2ba6c177e9377195a51b"
+  integrity sha512-8sP3sfAi861cNaFFp7RmyKi4S26K34ZKy4si75ojUW627AIVBHhMSu2SFJo3YRoK66YWnbysIbOk/d48uEqtKQ==
 
 emojis-list@^3.0.0:
   version "3.0.0"
