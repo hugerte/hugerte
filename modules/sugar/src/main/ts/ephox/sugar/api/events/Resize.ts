@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 import * as Monitors from '../../impl/Monitors';
 import * as Compare from '../dom/Compare';
@@ -77,7 +77,9 @@ const visibleUpdate = (el: Monitored) => {
   if (w !== el.lastWidth || h !== el.lastHeight) {
     el.lastWidth = w;
     el.lastHeight = h;
-    Arr.each(el.handlers, Fun.apply);
+    el.handlers.forEach((h) => {
+      h();
+    });
   }
 };
 

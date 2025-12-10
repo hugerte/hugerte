@@ -168,7 +168,7 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
     const defaultDataTransferSpec: DataTransferSpec = {
       data: [{
         type: 'text/html',
-        value: PlatformDetection.detect().browser.isFirefox()
+        value: PlatformDetection.detect().browser.isFirefox
           ? '<p class="draggable" data-mce-selected="1" contenteditable="false">a</p>'
           : '<p contenteditable="false" class="draggable" data-mce-selected="1">a</p>'
       }],

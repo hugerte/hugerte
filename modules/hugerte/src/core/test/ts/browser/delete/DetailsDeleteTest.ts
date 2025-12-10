@@ -39,7 +39,7 @@ describe('browser.hugerte.core.delete.DeleteDetailsTest', () => {
   const testDeleteForward = testDeleteDetails(true);
   const testDeleteBackward = testDeleteDetails(false);
 
-  const isSafari = PlatformDetection.detect().browser.isSafari();
+  const isSafari = PlatformDetection.detect().browser.isSafari;
 
   context('Summary', () => {
     it('Delete forward at the end of summary should do nothing', () => testDeleteForward({

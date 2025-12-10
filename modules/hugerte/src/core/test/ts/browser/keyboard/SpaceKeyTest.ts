@@ -12,7 +12,7 @@ describe('browser.hugerte.core.keyboard.SpaceKeyTest', () => {
     base_url: '/project/hugerte/js/hugerte'
   }, []);
 
-  const isFirefox = PlatformDetection.detect().browser.isFirefox();
+  const isFirefox = PlatformDetection.detect().browser.isFirefox;
 
   beforeEach(() => {
     hook.editor().focus();

@@ -18,7 +18,7 @@ describe.skip('webdriver.hugerte.plugins.nonbreaking.NonbreakingVisualCharsTypin
     base_url: '/project/hugerte/js/hugerte'
   }, [ NonbreakingPlugin, VisualCharsPlugin ], true);
 
-  const isFirefox = PlatformDetection.detect().browser.isFirefox();
+  const isFirefox = PlatformDetection.detect().browser.isFirefox;
 
   const clickNbspToolbarButton = (editor: Editor) => TinyUiActions.clickOnToolbar(editor, 'button[aria-label="Nonbreaking space"]');
 

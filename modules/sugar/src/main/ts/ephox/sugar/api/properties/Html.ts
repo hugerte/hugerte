@@ -1,10 +1,10 @@
-import * as Insert from '../dom/Insert';
 import * as InsertAll from '../dom/InsertAll';
 import * as Remove from '../dom/Remove';
 import { SugarElement } from '../node/SugarElement';
 import * as SugarElements from '../node/SugarElements';
 import * as Traverse from '../search/Traverse';
 
+/** @deprecated Use `element.dom.innerHTML` instead. */
 const get = (element: SugarElement<HTMLElement>): string =>
   element.dom.innerHTML;
 
@@ -18,14 +18,14 @@ const set = (element: SugarElement<Node>, content: string): void => {
   InsertAll.append(fragment, contentElements);
 
   Remove.empty(element);
-  Insert.append(element, fragment);
+  element.dom.appendChild(fragment.dom);
 };
 
 const getOuter = (element: SugarElement<Node>): string => {
   const container = SugarElement.fromTag('div');
   const clone = SugarElement.fromDom(element.dom.cloneNode(true));
-  Insert.append(container, clone);
-  return get(container);
+  container.dom.appendChild(clone.dom);
+  return container.dom.innerHTML;
 };
 
 export {

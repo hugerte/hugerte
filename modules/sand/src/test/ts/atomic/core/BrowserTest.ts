@@ -1,16 +1,13 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import { PlatformDetection } from 'ephox/sand/core/PlatformDetection';
-import { UserAgentData, UserAgentDataBrand } from 'ephox/sand/detect/UaData';
+import { UserAgentData, UserAgentDataBrand } from 'ephox/sand/detect/UaData'; // TODO
 import * as PlatformQuery from 'ephox/sand/test/PlatformQuery';
-
-type PlatformQuery = typeof PlatformQuery;
 
 describe('BrowserTest', () => {
   const check = (
-    expectedQuery: keyof PlatformQuery,
+    expectedQuery: keyof typeof PlatformQuery,
     expectedOs: string,
     expectedBrowser: string,
     expectedMajor: number,
@@ -18,7 +15,7 @@ describe('BrowserTest', () => {
     userAgent: string,
     userAgentData?: UserAgentData
   ) => {
-    const platform = PlatformDetection.detect(userAgent, Optional.from(userAgentData), Fun.never);
+    const platform = PlatformDetection.detect(userAgent, userAgentData, () => false);
     assert.equal(expectedBrowser, platform.browser.current);
     assert.equal(expectedOs, platform.os.current);
 
@@ -30,7 +27,7 @@ describe('BrowserTest', () => {
   };
 
   const checkOSVersion = (expectedMajor: number, expectedMinor: number, userAgent: string, userAgentData?: UserAgentData) => {
-    const platform = PlatformDetection.detect(userAgent, Optional.from(userAgentData), Fun.never);
+    const platform = PlatformDetection.detect(userAgent, userAgentData, () => false);
     assert.equal(expectedMajor, platform.os.version.major, `Invalid major OS version ${platform.os.version.major} for agent: ${userAgent}`);
     assert.equal(expectedMinor, platform.os.version.minor, `Invalid minor OS version ${platform.os.version.minor} for agent: ${userAgent}`);
   };
@@ -40,7 +37,7 @@ describe('BrowserTest', () => {
     mobile: isMobile
   });
 
-  // These tests are assuming there is no chromeframe activeX object active in the page.
+  // These tests are assuming there is no chromeframe activeX object active in the page. TODO
   it('Edge', () => {
     check('isEdge', 'Windows', 'Edge', 12, 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0');
   });

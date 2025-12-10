@@ -13,7 +13,7 @@ describe('browser.hugerte.themes.silver.editor.DialogPopupsTest', () => {
     // using this API to check if the popups appearing from things like the color input button and
     // the urlinput are on top of the dialog. Just test in Firefox and Chrome.
     const browser = PlatformDetection.detect().browser;
-    if (!browser.isChromium() && !browser.isFirefox()) {
+    if (!browser.isChromium && !browser.isFirefox) {
       this.skip();
     }
   });

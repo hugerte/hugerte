@@ -1,5 +1,5 @@
 import { Arr } from '@ephox/katamari';
-import { Html, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
+import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import { AlloySpec, RawDomSchema, SimpleSpec, SketchSpec } from './SpecTypes';
 
@@ -24,7 +24,7 @@ const fromHtml = (html: string): RawDomSchema => {
   const children = Traverse.children(elem);
   const attrs = getAttrs(elem);
   const classes = getClasses(elem);
-  const contents = children.length === 0 ? { } : { innerHtml: Html.get(elem) };
+  const contents = children.length === 0 ? { } : { innerHtml: elem.dom.innerHTML };
 
   return {
     tag: SugarNode.name(elem),

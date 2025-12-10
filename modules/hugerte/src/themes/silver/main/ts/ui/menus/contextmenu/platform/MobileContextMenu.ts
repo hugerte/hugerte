@@ -136,10 +136,10 @@ const show = (editor: Editor, e: EditorEvent<TouchEvent>, items: MenuItems, back
 
 export const initAndShow = (editor: Editor, e: EditorEvent<TouchEvent>, buildMenu: () => MenuItems, backstage: UiFactoryBackstage, contextmenu: AlloyComponent, anchorType: Coords.AnchorType): void => {
   const detection = PlatformDetection.detect();
-  const isiOS = detection.os.isiOS();
-  const isMacOS = detection.os.isMacOS();
-  const isAndroid = detection.os.isAndroid();
-  const isTouch = detection.deviceType.isTouch();
+  const isiOS = detection.os.isiOS;
+  const isMacOS = detection.os.isMacOS;
+  const isAndroid = detection.os.isAndroid;
+  const isTouch = detection.deviceType.isTouch;
 
   const shouldHighlightImmediately = () => !(isAndroid || isiOS || (isMacOS && isTouch));
 

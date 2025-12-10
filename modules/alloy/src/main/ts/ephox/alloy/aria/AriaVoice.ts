@@ -44,7 +44,7 @@ const base = (getAttrs: (string: string) => { }, parent: SugarElement<Element>, 
 
   // firefox needs aria-describedby to speak a role=alert token, which causes IE11 to read twice
   const token = create(doc, text);
-  if (PlatformDetection.detect().browser.isFirefox()) {
+  if (PlatformDetection.detect().browser.isFirefox) {
     linkToDescription(parent, token);
   }
 

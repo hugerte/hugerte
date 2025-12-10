@@ -1,13 +1,13 @@
 import { Arr } from '@ephox/katamari';
 import { DomStructure } from '@ephox/robin';
-import { Compare, CursorPosition, InsertAll, PredicateFind, Remove, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
+import { Compare, CursorPosition, InsertAll, NodeTypes, PredicateFind, Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 const merge = (cells: SugarElement<HTMLTableCellElement>[]): void => {
   const isBr = SugarNode.isTag('br');
 
-  const advancedBr = (children: SugarElement<Node>[]) => {
+  const advancedBr = (children: Text[]) => {
     return Arr.forall(children, (c) => {
-      return isBr(c) || (SugarNode.isText(c) && SugarText.get(c).trim().length === 0);
+      return c.nodeName === 'br' || (c.nodeType === NodeTypes.TEXT && c.nodeValue!.trim().length === 0); // TODO for Text it should be string, not possibly null, in TS!
     });
   };
 
@@ -38,8 +38,7 @@ const merge = (cells: SugarElement<HTMLTableCellElement>[]): void => {
 
   const markContent = () => {
     const content = Arr.bind(cells, (cell) => {
-      const children = Traverse.children(cell);
-      return advancedBr(children) ? [ ] : children.concat(markCell(cell));
+      return advancedBr(cell.dom.childNodes as unknown as Text[] /* TODO*/) ? [ ] : Array.from(cell.dom.childNodes).map(SugarElement.fromDom).concat(markCell(cell));
     });
 
     return content.length === 0 ? [ SugarElement.fromTag('br') ] : content;

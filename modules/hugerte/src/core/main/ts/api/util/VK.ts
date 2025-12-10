@@ -53,7 +53,7 @@ const VK: VK = {
 
   metaKeyPressed: (e: KeyboardLikeEvent): boolean => {
     // Check if ctrl or meta key is pressed. Edge case for AltGr on Windows where it produces ctrlKey+altKey states
-    return Env.os.isMacOS() || Env.os.isiOS() ? e.metaKey : e.ctrlKey && !e.altKey;
+    return Env.os.isMacOS || Env.os.isiOS ? e.metaKey : e.ctrlKey && !e.altKey;
   }
 };
 

@@ -1,7 +1,5 @@
 import fc from 'fast-check';
 
-import * as Fun from 'ephox/katamari/api/Fun';
-import { Future } from 'ephox/katamari/api/Future';
 import { Optional } from 'ephox/katamari/api/Optional';
 import { Result } from 'ephox/katamari/api/Result';
 
@@ -22,19 +20,3 @@ export const arbOptionalSome = <T> (at: Arbitrary<T>): Arbitrary<Optional<T>> =>
 export const arbOptional = <T> (at: Arbitrary<T>): Arbitrary<Optional<T>> => fc.oneof(arbOptionalNone<T>(), arbOptionalSome(at));
 
 export const arbNegativeInteger = (): Arbitrary<number> => fc.integer(Number.MIN_SAFE_INTEGER, -1);
-
-export const arbFutureNow = <A> (arbA: Arbitrary<A>): Arbitrary<Future<A>> =>
-  arbA.map(Future.pure);
-
-export const arbFutureSoon = <A> (arbA: Arbitrary<A>): Arbitrary<Future<A>> =>
-  arbA.map((a) => Future.nu((cb) => {
-    setTimeout(() => {
-      cb(a);
-    }, 5);
-  }));
-
-export const arbFutureNever = <A> (): Arbitrary<Future<A>> =>
-  fc.constant(Future.nu(Fun.noop));
-
-export const arbFutureNowOrSoon = <A> (arbA: Arbitrary<A>): Arbitrary<Future<A>> =>
-  fc.oneof(arbFutureNow(arbA), arbFutureSoon(arbA));

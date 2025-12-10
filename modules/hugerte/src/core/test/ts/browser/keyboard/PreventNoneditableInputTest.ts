@@ -10,7 +10,7 @@ import Editor from 'hugerte/core/api/Editor';
 import * as InputEventUtils from '../../module/test/InputEventUtils';
 
 describe('browser.hugerte.core.keyboard.PreventNoneditableInputTest', () => {
-  const isSafari = PlatformDetection.detect().browser.isSafari();
+  const isSafari = PlatformDetection.detect().browser.isSafari;
 
   const hook = TinyHooks.bddSetupLight<Editor>({
     indent: false,

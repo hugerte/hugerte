@@ -65,7 +65,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
       const onOpenSync = (sandbox: AlloyComponent) => {
         Composing.getCurrent(sandbox).each(highlighter);
       };
-      DropdownUtils.open(detail, mapFetch(comp), comp, sandbox, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+      DropdownUtils.open(detail, mapFetch(comp), comp, sandbox, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem);
     }
   };
 
@@ -193,7 +193,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
               // we want to highlight just the menu so that the onOpenSync can find the
               // activeMenu.
               HighlightOnOpen.HighlightJustMenu
-            ).get(Fun.noop);
+            );
           }
         }
       },
@@ -298,7 +298,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
       }),
       AlloyEvents.runOnExecute((comp) => {
         const onOpenSync = Fun.noop;
-        DropdownUtils.togglePopup(detail, mapFetch(comp), comp, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+        DropdownUtils.togglePopup(detail, mapFetch(comp), comp, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem);
       }),
       AlloyEvents.run<ItemExecuteEvent>(TypeaheadEvents.itemExecute(), (comp, se) => {
         const sandbox = Coupling.getCoupled(comp, 'sandbox');

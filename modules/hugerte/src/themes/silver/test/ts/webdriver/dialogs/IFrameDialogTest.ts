@@ -13,7 +13,7 @@ import * as WindowManager from 'hugerte/themes/silver/ui/dialog/WindowManager';
 import * as TestExtras from '../../module/TestExtras';
 
 describe('webdriver.hugerte.themes.silver.dialogs.IFrameDialogTest', () => {
-  const isFirefox = PlatformDetection.detect().browser.isFirefox();
+  const isFirefox = PlatformDetection.detect().browser.isFirefox;
   const extrasHook = TestExtras.bddSetup();
   let windowManager: WindowManagerImpl;
   before(() => {

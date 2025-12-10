@@ -112,7 +112,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
 
         it(`TINY-7713: ${spec.name} updates if computed line height changes`, async function () {
           // TODO: TINY-7895
-          if (platform.browser.isSafari()) {
+          if (platform.browser.isSafari) {
             this.skip();
           }
           const editor = hook.editor();

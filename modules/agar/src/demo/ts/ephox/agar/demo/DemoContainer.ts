@@ -22,7 +22,7 @@ export const init = (name: string, f: (success: () => void, failure: (err: any) 
 
   const failure = (err: any): void => {
     Class.add(outcome, 'failure');
-    Remove.empty(outcome);
+    outcome.dom.innerHTML = '';
     if (err.diff) {
       InsertAll.append(outcome, SugarElements.fromHtml(keepMarkers(htmlentities(err.diff.comparison))));
     } else {

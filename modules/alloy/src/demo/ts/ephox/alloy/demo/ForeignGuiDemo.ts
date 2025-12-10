@@ -90,7 +90,7 @@ export default (): void => {
           alloyConfig: {
             behaviours: Behaviour.derive([
               Dragging.config({
-                mode: platform.deviceType.isTouch() ? 'touch' : 'mouse',
+                mode: platform.deviceType.isTouch ? 'touch' : 'mouse',
                 blockerClass: 'blocker'
               })
             ])

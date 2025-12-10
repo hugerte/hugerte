@@ -21,7 +21,7 @@ const defaultExpectedEvents = [
 describe('browser.hugerte.core.content.EditorContentTest', () => {
   // TINY-10669: Remove this
   const platform = PlatformDetection.detect();
-  const isSafari = platform.browser.isSafari();
+  const isSafari = platform.browser.isSafari;
   const isSafariLessThan17 = isSafari && platform.browser.version.major < 17;
 
   const toHtml = (node: AstNode): string => HtmlSerializer({}).serialize(node);

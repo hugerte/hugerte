@@ -27,7 +27,7 @@ describe('browser.hugerte.core.commands.LineHeightTest', () => {
 
   it('TINY-4843: Unspecified line-height can be read from element', function () {
     // TODO: TINY-7895
-    if (platform.browser.isSafari()) {
+    if (platform.browser.isSafari) {
       this.skip();
     }
     const editor = hook.editor();

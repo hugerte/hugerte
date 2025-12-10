@@ -37,11 +37,11 @@ const keyevent = (type: string, doc: SugarElement<Document>, value: number, modi
   const dispatcher = focus !== undefined ? focus : doc;
 
   const platform = PlatformDetection.detect();
-  if (platform.browser.isSafari()) {
+  if (platform.browser.isSafari) {
     safari(type, doc, value, mod, dispatcher);
   } else {
 
-    if (platform.browser.isChromium() || platform.browser.isFirefox()) {
+    if (platform.browser.isChromium || platform.browser.isFirefox) {
       if (type === 'keypress') {
         defineGetter(oEvent, 'charCode', getter);
       }
@@ -65,7 +65,7 @@ const keyevent = (type: string, doc: SugarElement<Document>, value: number, modi
     if (anyEvent.initKeyboardEvent) {
       anyEvent.initKeyboardEvent(type, canBubble, cancellable, domDoc.defaultView, ctrlKey, altKey, shiftKey, metaKey, value, value);
     } else {
-      anyEvent.initKeyEvent(type, canBubble, cancellable, domDoc.defaultView, ctrlKey, altKey, shiftKey, metaKey, value, type === 'keypress' && platform.browser.isFirefox() ? value : 0);
+      anyEvent.initKeyEvent(type, canBubble, cancellable, domDoc.defaultView, ctrlKey, altKey, shiftKey, metaKey, value, type === 'keypress' && platform.browser.isFirefox ? value : 0);
     }
 
     dispatcher.dom.dispatchEvent(oEvent);

@@ -1,5 +1,5 @@
 import { AlloyComponent, GuiFactory, HotspotAnchorSpec, TooltippingTypes } from '@ephox/alloy';
-import { Cell, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Cell, Fun, Optional, Result } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
@@ -68,7 +68,7 @@ export default (sink?: AlloyComponent): UiFactoryBackstage => {
       addToHistory: Fun.noop,
       getLinkInformation: Optional.none,
       getValidationHandler: Optional.none,
-      getUrlPicker: (_filetype) => Optional.some((entry: ApiUrlData) => Future.pure(entry))
+      getUrlPicker: (_filetype) => Optional.some((entry: ApiUrlData) => Promise.resolve(entry))
     },
     styles: {
       getData: Fun.constant([])
