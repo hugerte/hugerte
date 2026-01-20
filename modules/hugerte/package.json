@@ -12,6 +12,7 @@
     "url": "https://github.com/hugerte/hugerte/issues"
   },
   "license": "MIT",
+  "funding": "https://opencollective.com/hugerte",
   "engines": {
     "node": ">=0.10.26"
   },
