@@ -274,10 +274,12 @@ const setup = (editor: Editor): void => {
     });
 
     const items = model.toFormats();
-    editor.dispatch('addStyleModifications', {
-      items,
-      replace: !Options.shouldAppend(editor)
-    });
+    if (items.length > 0) {
+      editor.dispatch('addStyleModifications', {
+        items,
+        replace: !Options.shouldAppend(editor)
+      });
+    }
   });
 };
 
