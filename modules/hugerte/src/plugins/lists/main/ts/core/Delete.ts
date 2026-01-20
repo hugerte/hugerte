@@ -1,10 +1,13 @@
 import { Arr, Optional, Optionals } from '@ephox/katamari';
 import { Compare, ContentEditable, PredicateFind, Remove, SugarElement, SugarNode } from '@ephox/sugar';
 
+import * as Empty from 'hugerte/core/dom/Empty';
+
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import RangeUtils from 'hugerte/core/api/dom/RangeUtils';
 import DomTreeWalker from 'hugerte/core/api/dom/TreeWalker';
 import Editor from 'hugerte/core/api/Editor';
+import Schema from 'hugerte/core/api/html/Schema';
 import VK from 'hugerte/core/api/util/VK';
 
 import { flattenListSelection, outdentListSelection } from '../actions/Indendation';
@@ -262,6 +265,15 @@ const backspaceDeleteCaret = (editor: Editor, isForward: boolean): boolean => {
   return backspaceDeleteFromListToListCaret(editor, isForward) || backspaceDeleteIntoListCaret(editor, isForward);
 };
 
+const cleanEmptyElements = (dom: DOMUtils, schema: Schema, element: Element): void => {
+  const links = dom.select('a', element);
+  Arr.each(links, (link) => {
+    if (Empty.isEmpty(schema, SugarElement.fromDom(link))) {
+      dom.remove(link);
+    }
+  });
+};
+
 const hasListSelection = (editor: Editor) => {
   const selectionStartElm = editor.selection.getStart();
   const root = Selection.getClosestEditingHost(editor, selectionStartElm);
@@ -275,6 +287,7 @@ const backspaceDeleteRange = (editor: Editor): boolean => {
     editor.undoManager.transact(() => {
       editor.execCommand('Delete');
       NormalizeLists.normalizeLists(editor.dom, editor.getBody());
+      cleanEmptyElements(editor.dom, editor.schema, editor.getBody());
     });
 
     return true;
