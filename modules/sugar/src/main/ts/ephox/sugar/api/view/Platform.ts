@@ -29,19 +29,19 @@ const choice = <T> (options: ChoiceOption<T>[], fallback: T): T => {
 };
 
 const isLargeTouch = (): boolean =>
-  isOfSize(MINIMUM_LARGE_WIDTH, MINIMUM_LARGE_HEIGHT) && isTouch();
+  isOfSize(MINIMUM_LARGE_WIDTH, MINIMUM_LARGE_HEIGHT) && isTouch;
 
 const isLargeDesktop = (): boolean =>
-  isOfSize(MINIMUM_LARGE_WIDTH, MINIMUM_LARGE_HEIGHT) && !isTouch();
+  isOfSize(MINIMUM_LARGE_WIDTH, MINIMUM_LARGE_HEIGHT) && !isTouch;
 
 const isSmallTouch = (): boolean =>
-  !isOfSize(MINIMUM_LARGE_WIDTH, MINIMUM_LARGE_HEIGHT) && isTouch();
+  !isOfSize(MINIMUM_LARGE_WIDTH, MINIMUM_LARGE_HEIGHT) && isTouch;
 
 const isLarge = (): boolean =>
   isOfSize(MINIMUM_LARGE_WIDTH, MINIMUM_LARGE_HEIGHT);
 
 const isSmallAndroid = (): boolean =>
-  isSmallTouch() && isAndroid();
+  isSmallTouch() && isAndroid;
 
 export {
   isTouch,

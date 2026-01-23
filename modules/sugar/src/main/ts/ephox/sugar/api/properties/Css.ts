@@ -1,21 +1,13 @@
-import { Arr, Obj, Optional, Optionals, Strings, Type } from '@ephox/katamari';
+import { Arr, Obj, Optional } from '@ephox/katamari';
 
 import * as Style from '../../impl/Style';
 import * as SugarBody from '../node/SugarBody';
 import { SugarElement } from '../node/SugarElement';
 import * as SugarNode from '../node/SugarNode';
 import * as Attribute from './Attribute';
+import * as UnsugaredHelpers from './UnsugaredHelpers';
 
 const internalSet = (dom: Node, property: string, value: string): void => {
-  // This is going to hurt. Apologies.
-  // JQuery coerces numbers to pixels for certain property names, and other times lets numbers through.
-  // we're going to be explicit; strings only.
-  if (!Type.isString(value)) {
-    // eslint-disable-next-line no-console
-    console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value, ':: Element ', dom);
-    throw new Error('CSS value must be a string: ' + value);
-  }
-
   // removed: support for dom().style[property] where prop is camel case instead of normal property name
   if (Style.isSupported(dom)) {
     dom.style.setProperty(property, value);
@@ -35,8 +27,7 @@ const internalRemove = (dom: Node, property: string): void => {
 };
 
 const set = (element: SugarElement<Node>, property: string, value: string): void => {
-  const dom = element.dom;
-  internalSet(dom, property, value);
+  internalSet(element.dom, property, value);
 };
 
 const setAll = (element: SugarElement<Node>, css: Record<string, string>): void => {
@@ -122,15 +113,10 @@ const isValidValue = (tag: string, property: string, value: string): boolean => 
   return style.isSome();
 };
 
-const remove = (element: SugarElement<Node>, property: string): void => {
-  const dom = element.dom;
-
-  internalRemove(dom, property);
-
-  if (Optionals.is(Attribute.getOpt(element as SugarElement<Element>, 'style').map(Strings.trim), '')) {
-    // No more styles left, remove the style attribute as well
-    Attribute.remove(element as SugarElement<Element>, 'style');
-  }
+/** @deprecated Use `element.dom.style.removeProperty(property)` instead, then call `UnsugaredHelpers.cleanupAttrs(element.dom)` but problem is style.isSupported so maybe only act on HTMLElement and yeah, we don't use Angular anyway */
+const remove = (element: SugarElement<Element>, property: string): void => {
+  internalRemove(element.dom, property);
+  UnsugaredHelpers.cleanupAttrs(element.dom);
 };
 
 const preserve = <E extends Element, T> (element: SugarElement<E>, f: (e: SugarElement<E>) => T): T => {

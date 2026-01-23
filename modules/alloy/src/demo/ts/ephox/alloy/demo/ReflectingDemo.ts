@@ -1,5 +1,5 @@
 import { Arr, Optional } from '@ephox/katamari';
-import { Class, SugarElement, Value } from '@ephox/sugar';
+import { Class, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Reflecting } from 'ephox/alloy/api/behaviour/Reflecting';
@@ -31,7 +31,7 @@ export default (): void => {
               },
               onStream: (comp) => {
                 comp.getSystem().broadcastOn([ 'reflecting-channel' ], {
-                  items: Value.get(comp.element).split(',')
+                  items: (comp.element.dom as any).value.split(',')
                 });
               }
             })

@@ -14,7 +14,7 @@ const assertUndoManagerDataLength = (editor: Editor, expected: number) =>
 describe('browser.hugerte.core.FirefoxFakeCaretBeforeTableTypeTest', () => {
   before(function () {
     // This test is only relevant on Firefox
-    if (!Env.browser.isFirefox()) {
+    if (!Env.browser.isFirefox) {
       this.skip();
     }
   });

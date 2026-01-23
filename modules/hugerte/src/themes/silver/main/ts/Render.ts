@@ -87,7 +87,7 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
   const lazyPopupMothership = Singleton.value<Gui.GuiSystem>();
 
   const platform = PlatformDetection.detect();
-  const isTouch = platform.deviceType.isTouch();
+  const isTouch = platform.deviceType.isTouch;
   const touchPlatformClass = 'tox-platform-touch';
   const deviceClasses = isTouch ? [ touchPlatformClass ] : [];
   const isToolbarBottom = Options.isToolbarLocationBottom(editor);

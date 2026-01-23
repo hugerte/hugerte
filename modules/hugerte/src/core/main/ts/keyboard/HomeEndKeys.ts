@@ -9,7 +9,7 @@ import * as MatchKeys from './MatchKeys';
 import * as MediaNavigation from './MediaNavigation';
 
 const executeKeydownOverride = (editor: Editor, caret: Cell<Text | null>, evt: KeyboardEvent) => {
-  const isMac = Env.os.isMacOS() || Env.os.isiOS();
+  const isMac = Env.os.isMacOS || Env.os.isiOS;
 
   MatchKeys.execute([
     { keyCode: VK.END, action: MatchKeys.action(CefNavigation.moveToLineEndPoint, editor, true) },

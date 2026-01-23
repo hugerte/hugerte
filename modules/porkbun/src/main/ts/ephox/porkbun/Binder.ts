@@ -1,5 +1,3 @@
-import { Arr } from '@ephox/katamari';
-
 import { Bindable, EventHandler } from './Event';
 
 export interface Binder {
@@ -13,7 +11,7 @@ const create = (): Binder => {
   const handlers: EventHandler<any>[] = [];
 
   const bind = <T>(registration: Bindable<T>, handler: EventHandler<T>) => {
-    if (Arr.contains(registrations, registration)) {
+    if (registrations.includes(registration)) {
       throw new Error('Invalid key, key already exists.');
     } else {
       registrations.push(registration);
@@ -23,18 +21,15 @@ const create = (): Binder => {
   };
 
   const unbind = <T>(registration: Bindable<T>) => {
-    const index = Arr.indexOf(registrations, registration);
-    index.fold(() => {
-      throw new Error('Invalid key, does not exist.');
-    }, (ind) => {
-      registrations.splice(ind, 1);
-      const handler = handlers.splice(ind, 1)[0];
-      registration.unbind(handler);
-    });
+    const index = registrations.indexOf(registration);
+    if (index === -1) throw new Error('Invalid key, does not exist.');
+    registrations.splice(index, 1);
+    const handler = handlers.splice(index, 1)[0];
+    registration.unbind(handler);
   };
 
   const unbindAll = () => {
-    Arr.each(registrations, (registration, i) => {
+    registrations.forEach((registration, i) => {
       const handler = handlers[i];
       registration.unbind(handler);
     });

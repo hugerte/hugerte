@@ -228,7 +228,7 @@ export default (): void => {
   );
 
   const platform = PlatformDetection.detect();
-  const isTouch = platform.deviceType.isTouch();
+  const isTouch = platform.deviceType.isTouch;
 
   DomEvent.bind(body, 'click', () => {
     if (!isTouch) {

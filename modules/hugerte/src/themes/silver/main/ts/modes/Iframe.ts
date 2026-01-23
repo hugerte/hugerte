@@ -19,7 +19,7 @@ import { setToolbar } from './Toolbars';
 import { ReadyUiReferences } from './UiReferences';
 
 const detection = PlatformDetection.detect();
-const isiOS12 = detection.os.isiOS() && detection.os.version.major <= 12;
+const isiOS12 = detection.os.isiOS && detection.os.version.major <= 12;
 
 const setupEvents = (editor: Editor, uiRefs: ReadyUiReferences) => {
   const { uiMotherships } = uiRefs;

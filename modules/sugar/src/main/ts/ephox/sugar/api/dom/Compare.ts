@@ -27,6 +27,6 @@ export {
   isEqualNode,
   member,
   contains,
-  // Only used by DomUniverse. Remove (or should Selectors.is move here?)
+  // TODO: Only used by DomUniverse. Remove (or should Selectors.is move here?)
   is
 };

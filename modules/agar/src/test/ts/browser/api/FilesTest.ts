@@ -20,19 +20,16 @@ UnitTest.asynctest('FilesTest', (success, failure) => {
     Logger.t('Create file and read blob data', Step.async((next, die) => {
       const file = createFile('test.txt', 1234, new Blob([ '123' ], { type: 'text/plain' }));
 
-      readBlobAsText(file).get((result) => {
-        result.fold(
-          failure,
-          (text) => {
-            try {
-              Assert.eq('Should be the expected blob contents', '123', text);
-              next();
-            } catch (e) {
-              die(e);
-            }
+      readBlobAsText(file)
+        .then((text) => {
+          try {
+            Assert.eq('Should be the expected blob contents', '123', text);
+            next();
+          } catch (e) {
+            die(e);
           }
-        );
-      });
+        })
+        .catch(failure);
     }))
   ], () => success(), failure);
 });

@@ -72,7 +72,6 @@ const getHtmlFromNode = (dom: DOMUtils, node: Node, args: ParserArgs): string =>
 const parseHtml = (htmlParser: DomParser, html: string, args: ParserArgs) => {
   const parserArgs = args.selection ? { forced_root_block: false, ...args } : args;
   const rootNode = htmlParser.parse(html, parserArgs);
-  DomSerializerFilters.trimTrailingBr(rootNode);
   return rootNode;
 };
 

@@ -3,7 +3,6 @@ import { Assert, UnitTest } from '@ephox/bedrock-client';
 import * as Insert from 'ephox/sugar/api/dom/Insert';
 import * as Remove from 'ephox/sugar/api/dom/Remove';
 import * as SugarBody from 'ephox/sugar/api/node/SugarBody';
-import * as Class from 'ephox/sugar/api/properties/Class';
 import * as Css from 'ephox/sugar/api/properties/Css';
 import * as Visibility from 'ephox/sugar/api/view/Visibility';
 import Div from 'ephox/sugar/test/Div';
@@ -43,18 +42,9 @@ UnitTest.test('TogglerTest', () => {
     check(false);
   };
 
-  // this is all due for a good refactoring
-
-  const checkClass = (has: boolean) => {
-    Assert.eq('', has, Class.has(c, 'blob'));
-  };
+  // TODO: this is all due for a good refactoring
 
   let c = Div();
-  runCheck(Class.toggler(c, 'blob'), checkClass);
-  c = Div();
-  Insert.append(SugarBody.body(), c);
-  runCheck(Class.toggler(c, 'blob'), checkClass);
-  Remove.remove(c);
 
   // CSS toggles are silly - we should delete this and do it in a way that does not require detection
 

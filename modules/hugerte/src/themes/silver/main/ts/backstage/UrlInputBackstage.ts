@@ -1,4 +1,4 @@
-import { Fun, Future, Obj, Optional, Type } from '@ephox/katamari';
+import { Fun, Obj, Optional, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { FilePickerCallback, FilePickerValidationCallback } from 'hugerte/core/api/OptionTypes';
@@ -23,7 +23,7 @@ export interface InternalUrlData extends ApiUrlData {
   readonly fieldname: string;
 }
 
-export type UrlPicker = (entry: InternalUrlData) => Future<ApiUrlData>;
+export type UrlPicker = (entry: InternalUrlData) => Promise<ApiUrlData>;
 
 export interface UiFactoryBackstageForUrlInput {
   readonly getHistory: (fileType: string) => string[];
@@ -60,7 +60,7 @@ const getPickerSetting = (editor: Editor, filetype: string): Optional<FilePicker
   }
 };
 
-const getUrlPicker = (editor: Editor, filetype: string): Optional<UrlPicker> => getPickerSetting(editor, filetype).map((picker) => (entry: InternalUrlData): Future<ApiUrlData> => Future.nu((completer) => {
+const getUrlPicker = (editor: Editor, filetype: string): Optional<UrlPicker> => getPickerSetting(editor, filetype).map((picker) => (entry: InternalUrlData): Promise<ApiUrlData> => new Promise((completer) => {
   const handler = (value: string, meta?: Record<string, any>) => {
     if (!Type.isString(value)) {
       throw new Error('Expected value to be string');

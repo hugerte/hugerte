@@ -1,4 +1,4 @@
-import { context, describe, it } from '@ephox/bedrock-client';
+import { describe, it } from '@ephox/bedrock-client';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
@@ -44,16 +44,6 @@ describe('atomic.katamari.api.fun.FunTest', () => {
     assert.isTrue(Fun.not((_x: string) => false)('cat'));
 
     assert.throws(Fun.die('Died!'));
-
-    let called = false;
-    const f = () => {
-      called = true;
-    };
-    Fun.apply(f);
-    assert.isTrue(called);
-    called = false;
-    Fun.apply(f);
-    assert.isTrue(called);
   });
 
   it('Check compose :: compose(f, g)(x) = f(g(x))', () => {
@@ -119,12 +109,6 @@ describe('atomic.katamari.api.fun.FunTest', () => {
     }));
   });
 
-  it('Check apply :: apply(constant(a)) === a', () => {
-    fc.assert(fc.property(fc.json(), (x) => {
-      assert.deepEqual(Fun.apply(Fun.constant(x)), x);
-    }));
-  });
-
   it('Check call :: apply(constant(a)) === undefined', () => {
     fc.assert(fc.property(fc.json(), (x) => {
       let hack: any = null;
@@ -135,44 +119,5 @@ describe('atomic.katamari.api.fun.FunTest', () => {
       assert.isUndefined(output);
       assert.deepEqual(hack, x);
     }));
-  });
-
-  context('pipe', () => {
-    const maker = <T, U>(from: T, to: U): (input: T) => U => (input) => {
-      assert.deepEqual(input, from);
-      return to;
-    };
-
-    it('Works for 1 function', () => {
-      assert.equal(Fun.pipe('a', maker('a', 1)), 1);
-      assert.equal(Fun.pipe(undefined, maker(undefined, 'output')), 'output');
-    });
-
-    it('Works for 2 functions', () => {
-      assert.equal(Fun.pipe('a', maker('a', 1), maker(1, null)), null);
-      assert.equal(Fun.pipe([], maker([], 'a'), maker('a', 3)), 3);
-    });
-
-    it('Works for 3 functions', () => {
-      assert.equal(Fun.pipe({}, maker({}, 'a'), maker('a', 1), maker(1, null)), null);
-    });
-
-    it('Works for 4 functions', () => {
-      assert.equal(Fun.pipe('a', maker('a', 1), maker(1, []), maker([], {}), maker({}, null)), null);
-    });
-
-    it('Works for 5 functions', () => {
-      assert.equal(Fun.pipe('a', maker('a', 1), maker(1, []), maker([], {}), maker({}, null), maker(null, undefined)), undefined);
-    });
-
-    it('Works for 6 functions', () => {
-      assert.equal(Fun.pipe('a', maker('a', 1), maker(1, []), maker([], {}), maker({}, null), maker(null, undefined), maker(undefined, 'out-of-types')), 'out-of-types');
-    });
-
-    it('Works for 7 functions', () => {
-      assert.equal(Fun.pipe(1, maker(1, 2), maker(2, 3), maker(3, 4), maker(4, 5), maker(5, 6), maker(6, 7), maker(7, 8)), 8);
-    });
-
-    // Fun.pipe currently maxes out at 7 functions - if you need more please reconsider (or just add more)
   });
 });

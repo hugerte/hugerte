@@ -20,7 +20,7 @@ interface DetailsElements {
 type Granularity = 'character' | 'word' | 'line' | 'selection';
 
 const browser = PlatformDetection.detect().browser;
-const isSafari = browser.isSafari();
+const isSafari = browser.isSafari;
 
 const emptyNodeContents = (node: Node) => PaddingBr.fillWithPaddingBr(SugarElement.fromDom(node));
 

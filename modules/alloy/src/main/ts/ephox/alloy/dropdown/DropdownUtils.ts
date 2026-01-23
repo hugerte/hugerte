@@ -1,4 +1,4 @@
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Arr, Fun, Optional, Result } from '@ephox/katamari';
 import { Css, Width } from '@ephox/sugar';
 
 import * as ComponentStructure from '../alien/ComponentStructure';
@@ -48,9 +48,9 @@ const fetch = (
   detail: CommonDropdownDetail<TieredData>,
   mapFetch: MapFetch,
   component: AlloyComponent
-): Future<Optional<TieredData>> => {
+): Promise<Optional<TieredData>> => {
   const fetcher = detail.fetch;
-  return fetcher(component).map(mapFetch);
+  return fetcher(component).then(mapFetch);
 };
 
 const openF = (
@@ -61,13 +61,13 @@ const openF = (
   sandbox: AlloyComponent,
   externals: any,
   highlightOnOpen: HighlightOnOpen
-): Future<Optional<SketchSpec>> => {
-  const futureData: Future<Optional<TieredData>> = fetch(detail, mapFetch, component);
+): Promise<Optional<SketchSpec>> => {
+  const futureData: Promise<Optional<TieredData>> = fetch(detail, mapFetch, component);
 
   const getLazySink = getSink(component, detail);
 
   // TODO: Make this potentially a single menu also
-  return futureData.map((tdata) => tdata.bind((data) => Optional.from(TieredMenu.sketch({
+  return futureData.then((tdata) => tdata.bind((data) => Optional.from(TieredMenu.sketch({
     // Externals are configured by the "menu" part. It's called external because it isn't contained
     // within the DOM descendants of the dropdown. You can configure things like `fakeFocus` here.
     ...externals.menu(),
@@ -113,7 +113,7 @@ const openF = (
   }))));
 };
 
-// onOpenSync is because some operations need to be applied immediately, not wrapped in a future
+// onOpenSync is because some operations need to be applied immediately, not wrapped in a promise
 // It can avoid things like flickering due to asynchronous bouncing
 const open = (
   detail: CommonDropdownDetail<TieredData>,
@@ -123,10 +123,10 @@ const open = (
   externals: any,
   onOpenSync: OnOpenSyncFunc,
   highlightOnOpen: HighlightOnOpen
-): Future<AlloyComponent> => {
+): Promise<AlloyComponent> => {
   const anchor = getAnchor(detail, hotspot);
   const processed = openF(detail, mapFetch, anchor, hotspot, sandbox, externals, highlightOnOpen);
-  return processed.map((tdata) => {
+  return processed.then((tdata) => {
     // If we have data, display a menu. Else, close the menu if it was open
     tdata.fold(
       () => {
@@ -152,9 +152,9 @@ const close = (
   _externals: any,
   _onOpenSync: OnOpenSyncFunc,
   _highlightOnOpen: HighlightOnOpen
-): Future<AlloyComponent> => {
+): Promise<AlloyComponent> => {
   Sandboxing.close(sandbox);
-  return Future.pure(sandbox);
+  return Promise.resolve(sandbox);
 };
 
 const togglePopup = (
@@ -164,7 +164,7 @@ const togglePopup = (
   externals: any,
   onOpenSync: OnOpenSyncFunc,
   highlightOnOpen: HighlightOnOpen
-): Future<AlloyComponent> => {
+): Promise<AlloyComponent> => {
   const sandbox = Coupling.getCoupled(hotspot, 'sandbox');
   const showing = Sandboxing.isOpen(sandbox);
 

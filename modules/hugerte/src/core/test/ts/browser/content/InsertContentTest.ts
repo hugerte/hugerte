@@ -11,7 +11,7 @@ import * as InsertContent from 'hugerte/core/content/InsertContent';
 describe('browser.hugerte.core.content.InsertContentTest', () => {
   // TINY-10669: Remove this
   const platform = PlatformDetection.detect();
-  const isSafariLessThan17 = platform.browser.isSafari() && platform.browser.version.major < 17;
+  const isSafariLessThan17 = platform.browser.isSafari && platform.browser.version.major < 17;
 
   const hook = TinyHooks.bddSetupLight<Editor>({
     add_unload_trigger: false,

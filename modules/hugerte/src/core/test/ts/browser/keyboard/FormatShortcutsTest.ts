@@ -12,11 +12,11 @@ describe('browser.hugerte.core.keyboard.FormatShortcutsTest', () => {
   const platform = PlatformDetection.detect();
 
   const testFormat = (editor: Editor, style: string) => {
-    TinyContentActions.keystroke(editor, style.charCodeAt(0), platform.os.isMacOS() ? { meta: true } : { ctrl: true } );
+    TinyContentActions.keystroke(editor, style.charCodeAt(0), platform.os.isMacOS ? { meta: true } : { ctrl: true } );
   };
 
   const heading = (editor: Editor, number: string) => {
-    TinyContentActions.keystroke(editor, number.charCodeAt(0), platform.os.isMacOS() ? { ctrl: true, alt: true } : { shift: true, alt: true });
+    TinyContentActions.keystroke(editor, number.charCodeAt(0), platform.os.isMacOS ? { ctrl: true, alt: true } : { shift: true, alt: true });
   };
 
   it('TINY-2884: should set the selection to be bold', () => {

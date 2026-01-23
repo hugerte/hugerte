@@ -82,7 +82,7 @@ const hasSelectedContent = (editor: Editor): boolean =>
 const cut = (editor: Editor) => (evt: EditorEvent<ClipboardEvent>): void => {
   if (!evt.isDefaultPrevented() && hasSelectedContent(editor) && editor.selection.isEditable()) {
     setClipboardData(evt, getData(editor), fallback(editor), () => {
-      if (Env.browser.isChromium() || Env.browser.isFirefox()) {
+      if (Env.browser.isChromium || Env.browser.isFirefox) {
         const rng = editor.selection.getRng();
         // Chrome fails to execCommand from another execCommand with this message:
         // "We don't execute document.execCommand() this time, because it is called recursively.""

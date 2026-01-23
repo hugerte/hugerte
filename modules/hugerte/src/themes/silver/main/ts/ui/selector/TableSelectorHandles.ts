@@ -185,7 +185,7 @@ const setup = (editor: Editor, sink: AlloyComponent): void => {
   const snapLastBottomRight = () => finishCell.get().each(snapBottomRight);
 
   // TODO: Make this work for desktop maybe?
-  if (PlatformDetection.detect().deviceType.isTouch()) {
+  if (PlatformDetection.detect().deviceType.isTouch) {
     const domToSugar = <T extends Node>(arr: T[]) => Arr.map(arr, SugarElement.fromDom);
 
     editor.on('TableSelectionChange', (e: EditorEvent<TableSelectionChangeEvent>) => {
