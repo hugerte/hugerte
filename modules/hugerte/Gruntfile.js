@@ -257,8 +257,8 @@ module.exports = function (grunt) {
       gruntUtils.generate(plugins, 'plugin', (name) => {
         var pluginExtras = {
           emoticons: [
-            { src: 'src/plugins/emoticons/main/js/emojis.js', dest: 'js/hugerte/plugins/emoticons/js/emojis.min.js' },
-            { src: 'src/plugins/emoticons/main/js/emojiimages.js', dest: 'js/hugerte/plugins/emoticons/js/emojiimages.min.js' }
+            { src: 'js/hugerte/plugins/emoticons/js/emojis.js', dest: 'js/hugerte/plugins/emoticons/js/emojis.min.js' },
+            { src: 'js/hugerte/plugins/emoticons/js/emojiimages.js', dest: 'js/hugerte/plugins/emoticons/js/emojiimages.min.js' }
           ]
         };
         return {
@@ -315,6 +315,20 @@ module.exports = function (grunt) {
             'js/hugerte/hugerte.js'
           ],
           dest: 'js/hugerte/hugerte.js'
+        },
+        'emoticons-data': {
+          src: [
+            'src/core/text/emojilib-license-header.js',
+            'js/hugerte/plugins/emoticons/js/emojis.js'
+          ],
+          dest: 'js/hugerte/plugins/emoticons/js/emojis.js'
+        },
+        'emoticons-images': {
+          src: [
+            'src/core/text/emojilib-license-header.js',
+            'js/hugerte/plugins/emoticons/js/emojiimages.js'
+          ],
+          dest: 'js/hugerte/plugins/emoticons/js/emojiimages.js'
         }
       },
       gruntUtils.generate(plugins, 'plugin', function (name) {
