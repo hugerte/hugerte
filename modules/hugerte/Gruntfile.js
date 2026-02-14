@@ -12,7 +12,7 @@ let path = require('path');
 
 let plugins = [
   'accordion', 'advlist', 'anchor', 'autolink', 'autoresize', 'autosave', 'charmap', 'code', 'codesample',
-  'directionality', 'emoticons', 'help', 'fullscreen', 'image', 'importcss', 'insertdatetime',
+  'directionality', 'emoticons', 'help', 'fullscreen', 'image', 'imagedownload', 'importcss', 'insertdatetime',
   'link', 'lists', 'media', 'nonbreaking', 'pagebreak', 'preview', 'save', 'searchreplace',
   'table', 'template', 'visualblocks', 'visualchars', 'wordcount', 'quickbars'
 ];
