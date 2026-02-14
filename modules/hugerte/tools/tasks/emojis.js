@@ -3,9 +3,9 @@ const twemoji = require('twemoji');
 
 const prettyPrint = (obj) => JSON.stringify(obj, null, 2);
 
-const generateContent = (json) => {
+const generateContent = (json, attribution) => {
   const content = `window.hugerte.Resource.add('hugerte.plugins.emoticons', ${json});`;
-  return content;
+  return '// Source: npm package: emojilib' + attribution + '\n' + content;
 };
 
 const getTwemojiOptions = (grunt, options) => {
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
       emojiImageDatabase[name] = item;
     });
 
-    grunt.file.write('src/plugins/emoticons/main/js/emojis.js', generateContent(emojiJson));
-    grunt.file.write('src/plugins/emoticons/main/js/emojiimages.js', generateContent(prettyPrint(emojiImageDatabase)));
+    grunt.file.write('src/plugins/emoticons/main/js/emojis.js', generateContent(emojiJson, ', file:emojis.json'));
+    grunt.file.write('src/plugins/emoticons/main/js/emojiimages.js', generateContent(prettyPrint(emojiImageDatabase), '\n// Images provided by twemoji: https://github.com/twitter/twemoji'));
   });
 };
