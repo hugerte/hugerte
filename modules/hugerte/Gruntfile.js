@@ -650,7 +650,7 @@ module.exports = function (grunt) {
                 'url': 'https://opencollective.com/hugerte'
               },
               'description': 'Web based JavaScript HTML WYSIWYG editor control.',
-              'author': 'Ephox Corporation DBA Tiny Technologies, Inc and the HugeRTE contributors',
+              'author': 'HugeRTE contributors',
               'main': 'hugerte.js',
               'types': 'hugerte.d.ts',
               'license': 'MIT',
@@ -748,13 +748,12 @@ module.exports = function (grunt) {
         options: {
           id: 'HugeRTE',
           version: packageData.version,
-          authors: 'Ephox Corporation DBA Tiny Technologies, Inc',
-          owners: 'Ephox Corporation DBA Tiny Technologies, Inc',
+          authors: 'HugeRTE contributors',
           description: 'The best WYSIWYG editor! HugeRTE is an open source platform independent web based Javascript HTML WYSIWYG editor ' +
           'control forked by the HugeRTE contributors from the latest MIT-licensed version of the TinyMCE editor released by Tiny Technologies, Inc. ' +
           'HugeRTE has the ability to convert HTML TEXTAREA fields or other HTML elements to editor instances. HugeRTE is very easy to integrate ' +
           'into other Content Management Systems.',
-          releaseNotes: 'Release notes for my package.',
+          releaseNotes: 'http://hugerte.org/docs/hugerte/1/changelog',
           summary: 'HugeRTE is a platform independent web based Javascript HTML WYSIWYG editor ' +
           'control released as Open Source under MIT.',
           projectUrl: 'https://hugerte.org/',
