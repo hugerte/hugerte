@@ -946,7 +946,7 @@ module.exports = function (grunt) {
   });
   grunt.loadTasks('tools/tasks');
 
-  grunt.registerTask('emoji', ['emojis', 'terser:emoticons-raw', 'concat:emoticons-data', 'concat:emoticons-images']);
+  grunt.registerTask('emoji', ['emojis', 'terser:emoticons-raw']);
 
   grunt.registerTask('prodBuild', [
     'shell:prismjs',
