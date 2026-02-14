@@ -11,18 +11,18 @@ const register = (editor: Editor): void => {
       const count = await downloadImagesInSelection(editor);
       if (count > 0) {
         editor.notificationManager.open({
-          text: `Downloaded ${count} image${count === 1 ? '' : 's'}`,
+          text: editor.translate(['Downloaded {0} images', count]),
           type: 'success'
         });
       } else {
         editor.notificationManager.open({
-          text: 'No external images found in selection',
+          text: editor.translate('No external images found in selection'),
           type: 'info'
         });
       }
     } catch (err) {
       editor.notificationManager.open({
-        text: 'Failed to download images: ' + (err as Error).message,
+        text: editor.translate(['Failed to download images: {0}', (err as Error).message]),
         type: 'error'
       });
     }
@@ -34,18 +34,18 @@ const register = (editor: Editor): void => {
       const count = await downloadAllExternalImages(editor);
       if (count > 0) {
         editor.notificationManager.open({
-          text: `Downloaded ${count} image${count === 1 ? '' : 's'}`,
+          text: editor.translate(['Downloaded {0} images', count]),
           type: 'success'
         });
       } else {
         editor.notificationManager.open({
-          text: 'No external images found in editor',
+          text: editor.translate('No external images found in editor'),
           type: 'info'
         });
       }
     } catch (err) {
       editor.notificationManager.open({
-        text: 'Failed to download images: ' + (err as Error).message,
+        text: editor.translate(['Failed to download images: {0}', (err as Error).message]),
         type: 'error'
       });
     }

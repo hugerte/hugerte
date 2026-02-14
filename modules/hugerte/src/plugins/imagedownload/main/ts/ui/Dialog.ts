@@ -46,14 +46,14 @@ const open = (editor: Editor): void => {
   
   if (externalImages.length === 0) {
     editor.windowManager.open({
-      title: 'Download External Images',
+      title: editor.translate('Download External Images'),
       body: {
         type: 'panel',
         items: [
           {
             type: 'alertbanner',
             level: 'info',
-            text: 'No external images found in the editor. External images are images loaded from URLs (not data URIs or blob URLs).',
+            text: editor.translate('No external images found in the editor. External images are images loaded from URLs (not data URIs or blob URLs).'),
             icon: 'info'
           }
         ]
@@ -62,7 +62,7 @@ const open = (editor: Editor): void => {
         {
           type: 'cancel',
           name: 'close',
-          text: 'Close',
+          text: editor.translate('Close'),
           primary: true
         }
       ]
@@ -83,33 +83,32 @@ const open = (editor: Editor): void => {
   };
   
   editor.windowManager.open({
-    title: 'Download External Image',
+    title: editor.translate('Download External Image'),
     body: {
       type: 'panel',
       items: [
         {
           type: 'alertbanner',
           level: 'warn',
-          text: `Found ${externalImages.length} external image${externalImages.length === 1 ? '' : 's'} in the editor.`,
+          text: editor.translate(['Found {0} external images in the editor.', externalImages.length]),
           icon: 'warning'
         },
         {
           type: 'selectbox',
           name: 'imageSelect',
-          label: 'Select image to download',
+          label: editor.translate('Select image to download'),
           items
         },
         {
           type: 'urlinput',
           name: 'src',
-          label: 'Or enter external URL',
+          label: editor.translate('Or enter external URL'),
           filetype: 'image'
         },
         {
           type: 'htmlpanel',
           html: '<p style="font-size: 12px; color: #666; margin-top: 10px;">' +
-                'The image will be downloaded and converted to a local blob. ' +
-                'If automatic uploads are enabled, it will be uploaded to your server.' +
+                editor.translate('The image will be downloaded and converted to a local blob. If automatic uploads are enabled, it will be uploaded to your server.') +
                 '</p>'
         }
       ]
@@ -118,12 +117,12 @@ const open = (editor: Editor): void => {
       {
         type: 'cancel',
         name: 'cancel',
-        text: 'Cancel'
+        text: editor.translate('Cancel')
       },
       {
         type: 'submit',
         name: 'download',
-        text: 'Download',
+        text: editor.translate('Download'),
         primary: true
       }
     ],
@@ -151,7 +150,7 @@ const open = (editor: Editor): void => {
         return;
       }
       
-      api.block('Downloading image...');
+      api.block(editor.translate('Downloading image...'));
       
       try {
         // Find the image element if it exists
@@ -178,13 +177,13 @@ const open = (editor: Editor): void => {
         api.close();
         
         editor.notificationManager.open({
-          text: 'Image downloaded successfully',
+          text: editor.translate('Image downloaded successfully'),
           type: 'success'
         });
       } catch (err) {
         api.unblock();
         editor.notificationManager.open({
-          text: 'Failed to download image: ' + (err as Error).message,
+          text: editor.translate(['Failed to download image: {0}', (err as Error).message]),
           type: 'error'
         });
       }
@@ -194,17 +193,17 @@ const open = (editor: Editor): void => {
 
 const openMultiDownload = (editor: Editor): void => {
   const externalImages = getExternalImages(editor);
-  
+
   if (externalImages.length === 0) {
     editor.notificationManager.open({
-      text: 'No external images found to download',
+      text: editor.translate('No external images found to download'),
       type: 'info'
     });
     return;
   }
-  
+
   editor.windowManager.confirm(
-    `Download all ${externalImages.length} external image${externalImages.length === 1 ? '' : 's'}?`,
+    editor.translate(['Download all {0} external images?', externalImages.length]),
     (state) => {
       if (state) {
         editor.execCommand('mceDownloadAllExternalImages');

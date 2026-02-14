@@ -31,11 +31,11 @@ const fetchImage = async (url: string): Promise<Blob> => {
     mode: 'cors',
     cache: 'no-cache',
   });
-  
+
   if (!response.ok) {
-    throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
   }
-  
+
   return response.blob();
 };
 

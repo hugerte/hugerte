@@ -52,15 +52,15 @@ const setupButtons = (editor: Editor): void => {
   // Main toolbar button
   editor.ui.registry.addButton('imagedownload', {
     icon: 'download',
-    tooltip: 'Download external images',
+    tooltip: editor.translate('Download external images'),
     onAction: () => Dialog.open(editor),
     onSetup: toggleDownloadButtonState(editor)
   });
-  
+
   // Button to download all external images at once
   editor.ui.registry.addButton('imagedownloadall', {
     icon: 'save',
-    tooltip: 'Download all external images',
+    tooltip: editor.translate('Download all external images'),
     onAction: () => Dialog.openMultiDownload(editor),
     onSetup: toggleDownloadButtonState(editor)
   });
@@ -69,14 +69,14 @@ const setupButtons = (editor: Editor): void => {
 const setupMenuItems = (editor: Editor): void => {
   editor.ui.registry.addMenuItem('imagedownload', {
     icon: 'download',
-    text: 'Download external image...',
+    text: editor.translate('Download external image...'),
     onAction: () => Dialog.open(editor),
     onSetup: toggleDownloadButtonState(editor)
   });
-  
+
   editor.ui.registry.addMenuItem('imagedownloadall', {
     icon: 'save',
-    text: 'Download all external images',
+    text: editor.translate('Download all external images'),
     onAction: () => Dialog.openMultiDownload(editor),
     onSetup: toggleDownloadButtonState(editor)
   });
@@ -99,7 +99,7 @@ const setupContextMenu = (editor: Editor): void => {
   // Context menu item for downloading the specific image
   editor.ui.registry.addMenuItem('imagedownloadcontext', {
     icon: 'download',
-    text: 'Download image to local',
+    text: editor.translate('Download image to local'),
     onAction: async () => {
       const selectedNode = editor.selection.getNode();
       if (selectedNode.nodeName === 'IMG') {
@@ -107,12 +107,12 @@ const setupContextMenu = (editor: Editor): void => {
         try {
           await DownloadImage.downloadAndReplaceImage(editor, img);
           editor.notificationManager.open({
-            text: 'Image downloaded successfully',
+            text: editor.translate('Image downloaded successfully'),
             type: 'success'
           });
         } catch (err) {
           editor.notificationManager.open({
-            text: 'Failed to download image: ' + (err as Error).message,
+            text: editor.translate(['Failed to download image: {0}', (err as Error).message]),
             type: 'error'
           });
         }
