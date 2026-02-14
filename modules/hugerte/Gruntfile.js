@@ -245,7 +245,8 @@ module.exports = function (grunt) {
             mangle: false,
             compress: false,
             output: {
-              indent_level: 2
+              indent_level: 2,
+              comments: 'all'
             }
           },
           files: [
