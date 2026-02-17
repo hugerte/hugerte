@@ -329,7 +329,7 @@ describe.skip('browser.hugerte.plugins.quickbars.ToolbarPositionTest', () => {
 
     context('Selection outside table', () => {
       // Skipping safari, the quickbar toolbar is positioned differently in safari and chrome, see TINY-9851
-      const skipIfSafari = PlatformDetection.detect().browser.isSafari() ? it.skip : it;
+      const skipIfSafari = PlatformDetection.detect().browser.isSafari ? it.skip : it;
 
       // When selection starts from outside the table and expands to the table, the toolbar should be displayed in the center of the table
       skipIfSafari('TINY-8297: Selection starts from starting paragraph and expands to the first cell of the table in the editor', async () => {

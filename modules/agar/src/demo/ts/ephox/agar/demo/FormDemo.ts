@@ -1,4 +1,4 @@
-import { Attribute, Css, DomEvent, Html, Insert, InsertAll, Remove, SugarElement, Value } from '@ephox/sugar';
+import { Attribute, Css, DomEvent, Html, Insert, InsertAll, Remove, SugarElement } from '@ephox/sugar';
 
 import { Chain } from 'ephox/agar/api/Chain';
 import * as FocusTools from 'ephox/agar/api/FocusTools';
@@ -25,7 +25,7 @@ export const demo = (): void => {
         Html.set(submit, 'Apply');
 
         DomEvent.bind(submit, 'click', () => {
-          if (Value.get(fieldName) !== 'test') {
+          if (fieldName.dom.value !== 'test') {
             Css.set(fieldName, 'border', '3px solid red');
           } else {
             Css.remove(fieldName, 'border');

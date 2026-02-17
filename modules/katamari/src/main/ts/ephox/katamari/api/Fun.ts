@@ -1,12 +1,13 @@
-import * as Type from './Type';
-
-const noop: (...args: any[]) => void
-= () => { };
+/** @deprecated */
+const noop = () => {};
 
 const noarg: <T>(f: () => T) => (...args: any[]) => void
 = (f) => () => f();
 
-/** Compose a unary function with an n-ary function */
+/**
+ * Compose a unary function with an n-ary function
+ * @deprecated Brainstorm how this works exactly and what alternative is.
+ */
 const compose = <T extends any[], U, V>(fa: (v: U) => V, fb: (...x: T) => U): (...x: T) => V => {
   return (...args: T) => {
     return fa(fb.apply(null, args));
@@ -17,12 +18,17 @@ const compose = <T extends any[], U, V>(fa: (v: U) => V, fb: (...x: T) => U): (.
 const compose1 = <A, B, C> (fbc: (b: B) => C, fab: (a: A) => B) => (a: A): C =>
   fbc(fab(a));
 
+/**
+ * A function that takes one argument and returns a function that returns the argument back.
+ * @deprecated Use `() => value` instead, but reconsider if you really need these constant functions at all. Bad practice!
+ */
 const constant = <T>(value: T): () => T => {
   return () => {
     return value;
   };
 };
 
+/** A function that takes one argument and returns it back again. */
 const identity = <T = any>(x: T): T => {
   return x;
 };
@@ -59,63 +65,12 @@ const die = (msg: string) => {
   };
 };
 
-const apply = <T>(f: () => T): T => {
-  return f();
-};
-
 const call = (f: () => any): void => {
   f();
 };
 
 const never: (...args: any[]) => false = constant<false>(false);
 const always: (...args: any[]) => true = constant<true>(true);
-
-/* Used to weaken types */
-const weaken = <A, B extends A>(b: B): A => b;
-
-type Fun<X, Y> = (x: X) => Y;
-const pipe: {
-  <A, B>(a: A, ab: Fun<A, B>): B;
-  <A, B, C>(a: A, ab: Fun<A, B>, bc: Fun<B, C>): C;
-  <A, B, C, D>(a: A, ab: Fun<A, B>, bc: Fun<B, C>, cd: Fun<C, D>): D;
-  <A, B, C, D, E>(a: A, ab: Fun<A, B>, bc: Fun<B, C>, cd: Fun<C, D>, de: Fun<D, E>): E;
-  <A, B, C, D, E, F>(a: A, ab: Fun<A, B>, bc: Fun<B, C>, cd: Fun<C, D>, de: Fun<D, E>, ef: Fun<E, F>): F;
-  <A, B, C, D, E, F, G>(a: A, ab: Fun<A, B>, bc: Fun<B, C>, cd: Fun<C, D>, de: Fun<D, E>, ef: Fun<E, F>, fg: Fun<F, G>): G;
-  <A, B, C, D, E, F, G, H>(a: A, ab: Fun<A, B>, bc: Fun<B, C>, cd: Fun<C, D>, de: Fun<D, E>, ef: Fun<E, F>, fg: Fun<F, G>, gh: Fun<G, H>): H;
-} =
-  <A, B, C, D, E, F, G, H>(a: A, ab: Fun<A, B>, bc?: Fun<B, C>, cd?: Fun<C, D>, de?: Fun<D, E>, ef?: Fun<E, F>, fg?: Fun<F, G>, gh?: Fun<G, H>): B | C | D | E | F | G | H => {
-    const b = ab(a);
-    if (Type.isNullable(bc)) {
-      return b;
-    }
-
-    const c = bc(b);
-    if (Type.isNullable(cd)) {
-      return c;
-    }
-
-    const d = cd(c);
-    if (Type.isNullable(de)) {
-      return d;
-    }
-
-    const e = de(d);
-    if (Type.isNullable(ef)) {
-      return e;
-    }
-
-    const f = ef(e);
-    if (Type.isNullable(fg)) {
-      return f;
-    }
-
-    const g = fg(f);
-    if (Type.isNullable(gh)) {
-      return g;
-    }
-
-    return gh(g);
-  };
 
 export {
   noop,
@@ -128,10 +83,7 @@ export {
   curry,
   not,
   die,
-  apply,
   call,
   never,
-  always,
-  weaken,
-  pipe
+  always
 };

@@ -130,7 +130,7 @@ const find = (editor: Editor, currentSearchState: Cell<SearchState>, text: strin
 
   // Safari has a bug whereby splitting text nodes breaks the selection (which is done when marking matches).
   // As such we need to manually reset it after doing a find action. See https://bugs.webkit.org/show_bug.cgi?id=230594
-  if (Env.browser.isSafari()) {
+  if (Env.browser.isSafari) {
     selection.setRng(selection.getRng(), isForwardSelection);
   }
 

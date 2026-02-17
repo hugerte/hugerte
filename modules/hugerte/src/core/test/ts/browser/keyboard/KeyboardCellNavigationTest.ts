@@ -10,7 +10,7 @@ import Editor from 'hugerte/core/api/Editor';
 describe('browser.hugerte.core.table.KeyboardCellNavigationTest', () => {
   before(function () {
     const browser = PlatformDetection.detect().browser;
-    if (!browser.isChromium() && !browser.isSafari()) {
+    if (!browser.isChromium && !browser.isSafari) {
       this.skip();
     }
   });

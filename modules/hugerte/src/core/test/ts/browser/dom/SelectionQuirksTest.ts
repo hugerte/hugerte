@@ -76,7 +76,7 @@ describe('browser.hugerte.core.dom.SelectionQuirksTest', () => {
     editor.setContent('<p><img src="about:blank"></p>');
     TinySelections.setCursor(editor, [ 0 ], 1);
     editor.shortcuts.add('meta+a', null, 'SelectAll');
-    const isMac = Env.os.isMacOS() || Env.os.isiOS();
+    const isMac = Env.os.isMacOS || Env.os.isiOS;
     TinyContentActions.keydown(editor, 65, { metaKey: isMac, ctrlKey: !isMac });
     editor.dispatch('keyup', new KeyboardEvent('keyup', { key: isMac ? 'Meta' : 'Control' }));
     TinyAssertions.assertSelection(editor, [ ], 0, [ ], 1);

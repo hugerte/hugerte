@@ -1,5 +1,4 @@
 import { Optional } from '@ephox/katamari';
-import { Attribute, Value } from '@ephox/sugar';
 
 import { Representing } from '../../api/behaviour/Representing';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -13,12 +12,10 @@ const setValueFromItem = (model: TypeaheadModelDetail, input: AlloyComponent, it
 };
 
 const setSelectionOn = (input: AlloyComponent, f: (node: HTMLInputElement, value: string) => void): void => {
-  const el = input.element;
-  const value = Value.get(el);
-  const node = el.dom as HTMLInputElement;
+  const el = input.element.dom as HTMLInputElement;
   // Only do for valid input types.
-  if (Attribute.get(el, 'type') !== 'number') {
-    f(node, value);
+  if (el.type !== 'number') {
+    f(el, el.value);
   }
 };
 

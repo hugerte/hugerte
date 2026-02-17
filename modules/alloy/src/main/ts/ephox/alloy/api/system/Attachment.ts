@@ -38,7 +38,7 @@ const detachChildren = (component: AlloyComponent): void => {
   const subs = component.components();
   Arr.each(subs, doDetach);
   // Clear the component also.
-  Remove.empty(component.element);
+  Remove.empty(component.element); // TODO if alloy sugar would just not be Node but Element
   component.syncComponents();
 };
 

@@ -69,7 +69,7 @@ const positionWithinBounds = (component: AlloyComponent, posConfig: PositioningC
       // code to combine them, and pass in the combined value as optWithinBounds. The optWithinBounds
       // will *always* override the Positioning config.
       const optBounds: Optional<Boxes.Bounds> = optWithinBounds.orThunk(
-        () => posConfig.getBounds.map(Fun.apply)
+        () => posConfig.getBounds.map((f) => f())
       );
 
       // Place the element and then update the state for the placee

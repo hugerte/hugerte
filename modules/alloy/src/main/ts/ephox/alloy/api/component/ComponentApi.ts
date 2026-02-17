@@ -20,7 +20,7 @@ export interface AlloyComponent {
   readonly connect: (newApi: AlloySystemApi) => void;
   readonly disconnect: () => void;
   readonly getApis: <A>() => A;
-  readonly element: SugarElement<any>;
+  readonly element: SugarElement<any>; // any? TODO. Can't we make AlloyComponent generic? so we see if the element is an input, for example?
   readonly syncComponents: () => void;
   readonly components: () => AlloyComponent[];
   readonly events: ReadonlyRecord<string, UncurriedHandler>;

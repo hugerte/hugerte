@@ -24,9 +24,9 @@ describe('webdriver.hugerte.core.delete.InlineFormatRetentionTest', () => {
     TinySelections.setSelection(editor, [ 0, 0, 0 ], 0, [ 0, 0, 0 ], 3);
     await doNativeBackspace();
     // firefox natively preserves formats for block deletion
-    TinyAssertions.assertContent(editor, browser.isFirefox() ? '<p><span style="text-decoration: underline;">&nbsp;</span></p><p>&nbsp;</p>' : '<p>&nbsp;</p><p>&nbsp;</p>');
+    TinyAssertions.assertContent(editor, browser.isFirefox ? '<p><span style="text-decoration: underline;">&nbsp;</span></p><p>&nbsp;</p>' : '<p>&nbsp;</p><p>&nbsp;</p>');
     await RealKeys.pSendKeysOn('iframe => body', [ RealKeys.text('d') ]);
-    TinyAssertions.assertContent(editor, browser.isFirefox() ? '<p><span style="text-decoration: underline;">d<br></span></p><p>&nbsp;</p>' : '<p><span style="text-decoration: underline;">d</span></p><p>&nbsp;</p>');
+    TinyAssertions.assertContent(editor, browser.isFirefox ? '<p><span style="text-decoration: underline;">d<br></span></p><p>&nbsp;</p>' : '<p><span style="text-decoration: underline;">d</span></p><p>&nbsp;</p>');
   });
 
   it('TINY-9302: Backspace partial selection of underlined text within block then typing will not produce unexpected formats', async () => {
@@ -37,6 +37,6 @@ describe('webdriver.hugerte.core.delete.InlineFormatRetentionTest', () => {
     TinyAssertions.assertContent(editor, '<p>a</p>');
     await RealKeys.pSendKeysOn('iframe => body', [ RealKeys.text('d') ]);
     // chrome and safari disregards caret format when surrounded by unformatted text
-    TinyAssertions.assertContent(editor, browser.isFirefox() ? '<p>a<span style="text-decoration: underline;">d</span></p>' : '<p>ad</p>');
+    TinyAssertions.assertContent(editor, browser.isFirefox ? '<p>a<span style="text-decoration: underline;">d</span></p>' : '<p>ad</p>');
   });
 });

@@ -45,7 +45,7 @@ describe('browser.hugerte.core.newline.InsertNewLineTest', () => {
     range.setStart(cursorRange.start.dom, cursorRange.soffset);
     range.setEnd(cursorRange.finish.dom, cursorRange.foffset);
 
-    if (PlatformDetection.detect().browser.isSafari()) {
+    if (PlatformDetection.detect().browser.isSafari) {
       editor.selection.setRng(range);
     } else {
       sel.removeAllRanges();

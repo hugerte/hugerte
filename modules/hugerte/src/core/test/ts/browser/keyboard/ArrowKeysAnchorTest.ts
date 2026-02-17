@@ -18,7 +18,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
   const END = false;
 
   const addGeckoBr = (s: ApproxStructure.StructApi, str: ApproxStructure.StringApi, children: StructAssert[]) => {
-    if (PlatformDetection.detect().browser.isFirefox()) {
+    if (PlatformDetection.detect().browser.isFirefox) {
       return [ ...children, s.element('br', { attrs: { 'data-mce-bogus': str.is('1') }}) ];
     } else {
       return children;

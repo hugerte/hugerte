@@ -402,7 +402,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
             children: [
               s.element('p', {
                 // firefox retains formats by default, so no new caret created
-                children: browser.isFirefox()
+                children: browser.isFirefox
                   ? [
                     s.element('strong', {
                       children: [
@@ -453,7 +453,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
           });
         })
       );
-      const selPath = browser.isFirefox() ? [ 0, 0, 0, 0 ] : [ 0, 0, 0, 0, 0, 0 ];
+      const selPath = browser.isFirefox ? [ 0, 0, 0, 0 ] : [ 0, 0, 0, 0, 0, 0 ];
       TinyAssertions.assertCursor(editor, selPath, 0);
     };
 
@@ -478,7 +478,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
       editor.setContent('<p>a<strong><em><span style="text-decoration: underline;">bcd</span></em></strong>e</p>');
       TinySelections.setSelection(editor, [ 0, 1, 0, 0, 0 ], 0, [ 0, 1, 0, 0, 0 ], 3);
       doBackspace(editor);
-      const outerText = browser.isFirefox() ? [ 'e' ] : [ '', 'e' ];
+      const outerText = browser.isFirefox ? [ 'e' ] : [ '', 'e' ];
       TinyAssertions.assertContentStructure(editor,
         ApproxStructure.build((s, str, _arr) => {
           return s.element('body', {
@@ -526,8 +526,8 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
       editor.setContent('<p>a<strong><em><span style="text-decoration: underline;">bcd</span></em></strong>ef</p>');
       TinySelections.setSelection(editor, [ 0, 1, 0, 0, 0 ], 0, [ 0, 2 ], 'e'.length);
       doBackspace(editor);
-      const firstOuterText = browser.isFirefox() ? [ 'a', '' ] : [ 'a' ];
-      const secondOuterText = browser.isFirefox() ? [ 'f' ] : [ '', 'f' ];
+      const firstOuterText = browser.isFirefox ? [ 'a', '' ] : [ 'a' ];
+      const secondOuterText = browser.isFirefox ? [ 'f' ] : [ '', 'f' ];
       TinyAssertions.assertContentStructure(editor,
         ApproxStructure.build((s, str, _arr) => {
           return s.element('body', {
@@ -567,7 +567,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
           });
         })
       );
-      const selPath = browser.isFirefox() ? [ 0, 2, 0, 0, 0, 0 ] : [ 0, 1, 0, 0, 0, 0 ];
+      const selPath = browser.isFirefox ? [ 0, 2, 0, 0, 0, 0 ] : [ 0, 1, 0, 0, 0, 0 ];
       TinyAssertions.assertCursor(editor, selPath, 0);
     });
 
@@ -616,8 +616,8 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
       editor.setContent('<ul><li>a<strong><em><span style="text-decoration: underline;">bcd</span></em></strong>ef</li></ul>');
       TinySelections.setSelection(editor, [ 0, 0, 1, 0, 0, 0 ], 0, [ 0, 0, 2 ], 'e'.length);
       doBackspace(editor);
-      const firstOuterText = browser.isFirefox() ? [ 'a', '' ] : [ 'a' ];
-      const secondOuterText = browser.isFirefox() ? [ 'f' ] : [ '', 'f' ];
+      const firstOuterText = browser.isFirefox ? [ 'a', '' ] : [ 'a' ];
+      const secondOuterText = browser.isFirefox ? [ 'f' ] : [ '', 'f' ];
       TinyAssertions.assertContentStructure(editor,
         ApproxStructure.build((s, str, _arr) => {
           return s.element('body', {
@@ -661,7 +661,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
           });
         })
       );
-      const selPath = [ 0, 0, browser.isFirefox() ? 2 : 1, 0, 0, 0, 0 ];
+      const selPath = [ 0, 0, browser.isFirefox ? 2 : 1, 0, 0, 0, 0 ];
       TinyAssertions.assertCursor(editor, selPath, 0);
     });
 
@@ -670,7 +670,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
       editor.setContent('<table><tbody><tr><td><span style="text-decoration: underline;">a</span>b</td></tr></tbody></table>');
       TinySelections.setSelection(editor, [ 0, 0, 0, 0, 0, 0 ], 0, [ 0, 0, 0, 0, 0, 0 ], 'a'.length);
       doBackspace(editor);
-      const outerText = browser.isFirefox() ? [ ] : [ '' ];
+      const outerText = browser.isFirefox ? [ ] : [ '' ];
       TinyAssertions.assertContentStructure(editor,
         ApproxStructure.build((s, str, _arr) => {
           return s.element('body', {
@@ -713,7 +713,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
             ]
           });
         }));
-      const selPath = browser.isFirefox() ? [ 0, 0, 0, 0, 0, 0, 0 ] : [ 0, 0, 0, 0, 1, 0, 0 ];
+      const selPath = browser.isFirefox ? [ 0, 0, 0, 0, 0, 0, 0 ] : [ 0, 0, 0, 0, 1, 0, 0 ];
       TinyAssertions.assertCursor(editor, selPath, 0);
     });
 
@@ -775,7 +775,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
             children: [
               s.element('p', {
                 // firefox retains formats by default, so no new caret created
-                children: browser.isFirefox()
+                children: browser.isFirefox
                   ? [
                     s.element('span', {
                       attrs: {
@@ -808,7 +808,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
             ]
           });
         }));
-      const selPath = browser.isFirefox() ? [ 0, 0 ] : [ 0, 0, 0, 0 ];
+      const selPath = browser.isFirefox ? [ 0, 0 ] : [ 0, 0, 0, 0 ];
       TinyAssertions.assertCursor(editor, selPath, 0);
     });
 
@@ -861,7 +861,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
             children: [
               s.element('p', {
                 // firefox retains formats by default, so no new caret created
-                children: browser.isFirefox()
+                children: browser.isFirefox
                   ? [
                     s.element('span', {
                       attrs: {
@@ -896,7 +896,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
           });
         })
       );
-      const selPath = browser.isFirefox() ? [ 0, 0 ] : [ 0, 0, 0, 0 ];
+      const selPath = browser.isFirefox ? [ 0, 0 ] : [ 0, 0, 0, 0 ];
       TinyAssertions.assertCursor(editor, selPath, 0);
     });
 

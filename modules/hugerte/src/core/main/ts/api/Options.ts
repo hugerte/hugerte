@@ -10,7 +10,7 @@ import I18n from './util/I18n';
 import Tools from './util/Tools';
 
 const deviceDetection = PlatformDetection.detect().deviceType;
-const isTouch = deviceDetection.isTouch();
+const isTouch = deviceDetection.isTouch;
 const DOM = DOMUtils.DOM;
 
 const getHash = (value: string): Record<string, string> => {
@@ -337,7 +337,7 @@ const register = (editor: Editor): void => {
     processor: (value) => {
       const valid = Type.isBoolean(value) || Type.isString(value);
       if (valid) {
-        if (value === false || deviceDetection.isiPhone() || deviceDetection.isiPad()) {
+        if (value === false || deviceDetection.isiPhone || deviceDetection.isiPad) {
           return { value: '', valid };
         } else {
           return { value: value === true ? 'table,img,figure.image,div,video,iframe' : value, valid };

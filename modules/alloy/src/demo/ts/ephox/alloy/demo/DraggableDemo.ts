@@ -85,7 +85,7 @@ export default (): void => {
 
           buttonBehaviours: Behaviour.derive([
             Dragging.config({
-              mode: PlatformDetection.detect().deviceType.isTouch() ? 'touch' : 'mouse',
+              mode: PlatformDetection.detect().deviceType.isTouch ? 'touch' : 'mouse',
               blockerClass: 'blocker',
               snaps: snapData
             }),

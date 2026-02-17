@@ -22,10 +22,10 @@ export interface DialogFocusShiftedEvent extends CustomEvent {
 type IframeSpec = Omit<Dialog.Iframe, 'type'>;
 
 const browser = PlatformDetection.detect().browser;
-const isSafari = browser.isSafari();
-const isFirefox = browser.isFirefox();
+const isSafari = browser.isSafari;
+const isFirefox = browser.isFirefox;
 const isSafariOrFirefox = isSafari || isFirefox;
-const isChromium = browser.isChromium();
+const isChromium = browser.isChromium;
 
 const isElementScrollAtBottom = ({ scrollTop, scrollHeight, clientHeight }: HTMLElement) =>
   Math.ceil(scrollTop) + clientHeight >= scrollHeight;

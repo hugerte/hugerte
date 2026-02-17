@@ -1,4 +1,4 @@
-import { Arr, Future, Result } from '@ephox/katamari';
+import { Arr, Result } from '@ephox/katamari';
 import { Attribute, Class, Html, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -46,18 +46,18 @@ const markInvalid = (component: AlloyComponent, invalidConfig: InvalidatingConfi
   });
 };
 
-const query = (component: AlloyComponent, invalidConfig: InvalidatingConfig, _invalidState: Stateless): Future<Result<any, string>> =>
+const query = (component: AlloyComponent, invalidConfig: InvalidatingConfig, _invalidState: Stateless): Promise<Result<any, string>> =>
   invalidConfig.validator.fold(
-    () => Future.pure(Result.value(true)),
+    () => Promise.resolve(Result.value(true)),
     (validatorInfo) => validatorInfo.validate(component)
   );
 
-const run = (component: AlloyComponent, invalidConfig: InvalidatingConfig, invalidState: Stateless): Future<Result<any, string>> => {
+const run = (component: AlloyComponent, invalidConfig: InvalidatingConfig, invalidState: Stateless): Promise<Result<any, string>> => {
   invalidConfig.notify.each((notifyInfo) => {
     notifyInfo.onValidate(component);
   });
 
-  return query(component, invalidConfig, invalidState).map((valid: Result<any, string>) => {
+  return query(component, invalidConfig, invalidState).then((valid: Result<any, string>) => {
     if (component.getSystem().isConnected()) {
       return valid.fold((err) => {
         markInvalid(component, invalidConfig, invalidState, err);

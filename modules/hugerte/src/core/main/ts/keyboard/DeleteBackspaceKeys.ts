@@ -20,10 +20,10 @@ import * as MatchKeys from './MatchKeys';
 
 const platform = PlatformDetection.detect();
 const os = platform.os;
-const isMacOSOriOS = os.isMacOS() || os.isiOS();
+const isMacOSOriOS = os.isMacOS || os.isiOS;
 
 const browser = platform.browser;
-const isFirefox = browser.isFirefox();
+const isFirefox = browser.isFirefox;
 
 const executeKeydownOverride = (editor: Editor, caret: Cell<Text | null>, evt: KeyboardEvent) => {
   const inputType = evt.keyCode === VK.BACKSPACE ? 'deleteContentBackward' : 'deleteContentForward';

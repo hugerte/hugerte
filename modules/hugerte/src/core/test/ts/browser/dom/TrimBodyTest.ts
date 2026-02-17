@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import * as TrimBody from 'hugerte/core/dom/TrimBody';
 
 describe('browser.hugerte.core.dom.TrimBodyTest', () => {
-  const isSafari = PlatformDetection.detect().browser.isSafari();
+  const isSafari = PlatformDetection.detect().browser.isSafari;
 
   context('trim', () => {
     it('trim should trim body containing trimmmable nodes', () => {

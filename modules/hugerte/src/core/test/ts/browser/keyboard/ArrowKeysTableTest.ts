@@ -32,7 +32,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysTableTest', () => {
 
   context('FakeCaret before/after table', () => {
     before(function () {
-      if (!browser.isFirefox()) {
+      if (!browser.isFirefox) {
         this.skip();
       }
     });

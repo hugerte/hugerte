@@ -1,9 +1,7 @@
 # Description
 `snooker` is a project that implements the table model.
-# Installation
-`snooker` is available as an `npm` package.  You can install it via the npm package `@ephox/snooker`
-## Install from npm
-`npm install @ephox/snooker`
+
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 `CellLocation`: The CellLocation ADT is used to represent a cell when navigating.

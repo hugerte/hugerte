@@ -102,7 +102,7 @@ const focusEditor = (editor: Editor) => {
   if (!editor.inline) {
     // WebKit needs this call to fire focusin event properly see #5948
     // But Opera pre Blink engine will produce an empty selection so skip Opera
-    if (!Env.browser.isOpera()) {
+    if (!Env.browser.isOpera) {
       focusBody(body);
     }
 
@@ -110,7 +110,7 @@ const focusEditor = (editor: Editor) => {
   }
 
   // Focus the body as well since it's contentEditable
-  if (Env.browser.isFirefox() || editor.inline) {
+  if (Env.browser.isFirefox || editor.inline) {
     focusBody(body);
     normalizeSelection(editor, rng);
   }

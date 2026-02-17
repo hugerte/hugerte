@@ -1,51 +1,29 @@
-import { Arr } from '@ephox/katamari';
-
-import * as ClassList from '../../impl/ClassList';
 import { SugarElement } from '../node/SugarElement';
 import * as Class from './Class';
 
-/*
- * ClassList is IE10 minimum:
- * https://developer.mozilla.org/en-US/docs/Web/API/Element.classList
- */
+/** @deprecated Use `element.dom.classList.add(...classes)` instead. */
 const add = (element: SugarElement<Element>, classes: string[]): void => {
-  Arr.each(classes, (x) => {
-    Class.add(element, x);
-  });
+  element.dom.classList.add(...classes);
 };
 
+/** @deprecated Use `element.dom.classList.remove(...classes)` instead. */
 const remove = (element: SugarElement<Element>, classes: string[]): void => {
-  Arr.each(classes, (x) => {
-    Class.remove(element, x);
-  });
+  element.dom.classList.remove(...classes);
 };
 
 const toggle = (element: SugarElement<Element>, classes: string[]): void => {
-  Arr.each(classes, (x) => {
-    Class.toggle(element, x);
-  });
+  classes.forEach((c) => element.dom.classList.toggle(c));
 };
 
 const hasAll = (element: SugarElement<Node>, classes: string[]): boolean =>
-  Arr.forall(classes, (clazz) => Class.has(element, clazz));
+  classes.every((c) => Class.has(element, c));
 
 const hasAny = (element: SugarElement<Node>, classes: string[]): boolean =>
-  Arr.exists(classes, (clazz) => Class.has(element, clazz));
+  classes.some((c) => Class.has(element, c));
 
-const getNative = (element: SugarElement<Element>): string[] => {
-  const classList = element.dom.classList;
-  const r: Array<string> = new Array(classList.length);
-  for (let i = 0; i < classList.length; i++) {
-    const item = classList.item(i);
-    if (item !== null) {
-      r[i] = item;
-    }
-  }
-  return r;
-};
-
+/** @deprecated Use `Array.from(element.dom.classList)` instead. */
 const get = (element: SugarElement<Element>): string[] =>
-  ClassList.supports(element) ? getNative(element) : ClassList.get(element);
+  Array.from(element.dom.classList);
 
 export {
   add,

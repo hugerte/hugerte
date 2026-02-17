@@ -1,6 +1,7 @@
 {
   "name": "@tinymce/oxide-icons-default",
   "version": "2.6.1",
+  "type": "module",
   "description": "The default icon pack for HugeRTE",
   "repository": {
     "type": "git",
@@ -9,9 +10,9 @@
   },
   "main": "dist/js/icons.js",
   "scripts": {
-    "build": "gulp",
+    "build": "node build.js",
     "prepublishOnly": "yarn ci",
-    "ci": "gulp --no-color"
+    "ci": "yarn build"
   },
   "keywords": [
     "HugeRTE",
@@ -23,15 +24,5 @@
     "LICENSE.txt"
   ],
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
-  "license": "MIT",
-  "devDependencies": {
-    "gulp": "^5.0.0",
-    "gulp-clean": "^0.4.0",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-connect": "^5.7.0",
-    "gulp-less": "^5.0.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-stylelint": "^13.0.0"
-  }
+  "license": "MIT"
 }

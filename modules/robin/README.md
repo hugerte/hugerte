@@ -1,9 +1,7 @@
 # Description
 `robin` is a project that groups sibling DOM nodes together by boundary points, for example the list of elements and nodes representing a word.
-# Installation
-`robin` is available as an `npm` package.  You can install it via the npm package `@ephox/robin`
-## Install from npm
-`npm install @ephox/robin`
+
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 ## Text node traversal within text boundaries

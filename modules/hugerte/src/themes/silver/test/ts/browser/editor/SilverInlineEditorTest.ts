@@ -349,7 +349,7 @@ describe.skip('browser.hugerte.themes.silver.editor.SilverInlineEditorTest', () 
           }),
           s.element('div', {
             classes: [ arr.has('tox-collection__item-accessory') ],
-            html: str.is(os.isMacOS() || os.isiOS() ? '\u2318' + 'M' : 'Ctrl' + '+M')
+            html: str.is(os.isMacOS || os.isiOS ? '\u2318' + 'M' : 'Ctrl' + '+M')
           })
         ]
       })),

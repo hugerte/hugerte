@@ -1,6 +1,6 @@
 import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { Arr, Optional, Result } from '@ephox/katamari';
 import { Focus } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -45,12 +45,12 @@ UnitTest.asynctest('Browser Test: .ui.typeahead.TypeaheadNoBlurTest', (success, 
             },
 
             fetch: (_input) => {
-              const future = Future.pure<TestItem[]>([
+              const promise = Promise.resolve<TestItem[]>([
                 { type: 'item', data: { value: 'choice1', meta: { text: 'choice1' }}},
                 { type: 'item', data: { value: 'choice2', meta: { text: 'choice2' }}}
               ]);
 
-              return future.map((items) => {
+              return promise.then((items) => {
                 const menu = TestDropdownMenu.renderMenu({
                   value: 'blah',
                   items: Arr.map(items, TestDropdownMenu.renderItem)

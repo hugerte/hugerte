@@ -163,7 +163,7 @@ export const Uploader = (uploadStatus: UploadStatus, settings: UploaderSettings)
           }
 
           Optional.from(notification)
-            .orThunk(() => Optional.from(openNotification).map(Fun.apply))
+            .orThunk(() => Optional.from(openNotification).map((f) => f()))
             .each((n) => {
               notification = n;
               n.progressBar.value(percent);

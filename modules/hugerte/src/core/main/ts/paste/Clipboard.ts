@@ -187,7 +187,7 @@ const pasteImageData = (editor: Editor, e: ClipboardEvent | DragEvent, rng: Rang
 
 // Chrome on Android doesn't support proper clipboard access so we have no choice but to allow the browser default behavior.
 const isBrokenAndroidClipboardEvent = (e: ClipboardEvent): boolean =>
-  Env.os.isAndroid() && e.clipboardData?.items?.length === 0;
+  Env.os.isAndroid && e.clipboardData?.items?.length === 0;
 
 // Ctrl+V or Shift+Insert
 const isKeyboardPasteEvent = (e: KeyboardEvent): boolean =>

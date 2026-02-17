@@ -1,9 +1,7 @@
 # Description
 `dragster` is a project that handles dragging.
-# Installation
-`dragster` is available as an `npm` package.  You can install it via the npm package `@ephox/dragster`
-## Install from npm
-`npm install @ephox/dragster`
+
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 # Usage
 `Dragger`: Used to transform an external mutator into a dragster drag handler.

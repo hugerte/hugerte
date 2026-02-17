@@ -1,3 +1,4 @@
+// TODO GET RID EARLY!!!! we dont need functions just wrapping methods! but the TestUniverse file???
 import { Arr, Obj, Optional } from '@ephox/katamari';
 
 import { Gene } from '../api/Gene';
@@ -62,7 +63,7 @@ const isBoundary = (item: Gene): boolean => {
 };
 
 const isNonEditable = (item: Gene): boolean => {
-  return isElement(item) && item.attrs.contenteditable === 'false';
+  return isElement(item) && item.attrs.contenteditable === 'false'; // TODO of course we'll also switch to designMode...
 };
 
 export {

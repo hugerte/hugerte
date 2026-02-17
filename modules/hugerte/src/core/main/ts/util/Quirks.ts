@@ -27,10 +27,10 @@ const Quirks = (editor: Editor): Quirks => {
   const each = Tools.each;
   const BACKSPACE = VK.BACKSPACE, DELETE = VK.DELETE, dom = editor.dom, selection = editor.selection, parser = editor.parser;
   const browser = Env.browser;
-  const isGecko = browser.isFirefox();
-  const isWebKit = browser.isChromium() || browser.isSafari();
-  const isiOS = Env.deviceType.isiPhone() || Env.deviceType.isiPad();
-  const isMac = Env.os.isMacOS() || Env.os.isiOS();
+  const isGecko = browser.isFirefox;
+  const isWebKit = browser.isChromium || browser.isSafari;
+  const isiOS = Env.deviceType.isiPhone || Env.deviceType.isiPad;
+  const isMac = Env.os.isMacOS || Env.os.isiOS;
 
   /**
    * Executes a command with a specific state this can be to enable/disable browser editing features.
@@ -499,6 +499,9 @@ const Quirks = (editor: Editor): Quirks => {
    * body to be at least 150px. If the user clicks the HTML element out side this 150px region
    * we simply move the focus into the first paragraph. Not ideal since you loose the
    * positioning of the caret but goot enough for most cases.
+   *
+   * @deprecated IE is not supported anymore. See if we can remove this. Why do we call this if
+   * we are on iOS??
    */
   const bodyHeight = () => {
     if (!editor.inline) {
@@ -684,11 +687,7 @@ const Quirks = (editor: Editor): Quirks => {
     removeBlockQuoteOnBackSpace();
     emptyEditorWhenDeleting();
 
-    // Windows phone will return a range like [body, 0] on mousedown so
-    // it will always normalize to the wrong location
-    if (!Env.windowsPhone) {
-      normalizeSelection();
-    }
+    normalizeSelection();
 
     // WebKit
     if (isWebKit) {

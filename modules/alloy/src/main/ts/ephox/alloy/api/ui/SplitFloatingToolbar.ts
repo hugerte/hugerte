@@ -1,4 +1,4 @@
-import { Arr, Future } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import * as Layout from '../../positioning/layout/Layout';
 import * as SplitToolbarUtils from '../../toolbar/SplitToolbarUtils';
@@ -32,7 +32,7 @@ const refresh = (toolbar: AlloyComponent, memFloatingToolbarButton: Memento.Meme
 const factory: CompositeSketchFactory<SplitFloatingToolbarDetail, SplitFloatingToolbarSpec> = (detail, components, spec, externals) => {
   const memFloatingToolbarButton = Memento.record(
     FloatingToolbarButton.sketch({
-      fetch: () => Future.nu((resolve) => {
+      fetch: () => new Promise((resolve) => {
         resolve(buildGroups(detail.overflowGroups.get()));
       }),
       layouts: {

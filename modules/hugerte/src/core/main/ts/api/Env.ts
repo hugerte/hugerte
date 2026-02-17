@@ -33,33 +33,33 @@ interface Env {
   browser: {
     current: string | undefined;
     version: Version;
-    isEdge: () => boolean;
-    isChromium: () => boolean;
-    isIE: () => boolean;
-    isOpera: () => boolean;
-    isFirefox: () => boolean;
-    isSafari: () => boolean;
+    isEdge: boolean;
+    isChromium: boolean;
+    isIE: boolean;
+    isOpera: boolean;
+    isFirefox: boolean;
+    isSafari: boolean;
   };
   os: {
     current: string | undefined;
     version: Version;
-    isWindows: () => boolean;
-    isiOS: () => boolean;
-    isAndroid: () => boolean;
-    isMacOS: () => boolean;
-    isLinux: () => boolean;
-    isSolaris: () => boolean;
-    isFreeBSD: () => boolean;
-    isChromeOS: () => boolean;
+    isWindows: boolean;
+    isiOS: boolean;
+    isAndroid: boolean;
+    isMacOS: boolean;
+    isLinux: boolean;
+    isSolaris: boolean;
+    isFreeBSD: boolean;
+    isChromeOS: boolean;
   };
   deviceType: {
-    isiPad: () => boolean;
-    isiPhone: () => boolean;
-    isTablet: () => boolean;
-    isPhone: () => boolean;
-    isTouch: () => boolean;
-    isWebView: () => boolean;
-    isDesktop: () => boolean;
+    isiPad: boolean;
+    isiPhone: boolean;
+    isTablet: boolean;
+    isPhone: boolean;
+    isTouch: boolean;
+    isWebView: boolean;
+    isDesktop: boolean;
   };
 }
 
@@ -79,7 +79,7 @@ const Env: Env = {
    * @property documentMode
    * @type Number
    */
-  documentMode: browser.isIE() ? ((document as any).documentMode || 7) : 10,
+  documentMode: browser.isIE ? ((document as any).documentMode || 7) : 10,
 
   cacheSuffix: null,
   container: null,
@@ -87,7 +87,7 @@ const Env: Env = {
   /**
    * Constant if CSP mode is possible or not. Meaning we can't use script urls for the iframe.
    */
-  canHaveCSP: !browser.isIE(),
+  canHaveCSP: !browser.isIE,
 
   windowsPhone,
 

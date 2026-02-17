@@ -3,7 +3,6 @@ import { Obj } from '@ephox/katamari';
 
 import { Bindable, Event } from 'ephox/porkbun/Event';
 import * as Events from 'ephox/porkbun/Events';
-import SourceEvent from 'ephox/porkbun/SourceEvent';
 
 interface MyEvent {
   readonly name: string;
@@ -69,7 +68,7 @@ UnitTest.test('Events', () => {
     const ea = Events.create({
       chook: Event([ 'a', 'b', 'c' ])
     });
-
+    // TODO we have no sosurcevent anymore
     const eb = Events.create({
       quack: SourceEvent([ 'a', 'b', 'c' ], ea.registry.chook)
     });
@@ -94,7 +93,7 @@ UnitTest.test('Events', () => {
     });
 
     const eb = Events.create({
-      quack: SourceEvent([ 'a', 'b', 'c' ], ea.registry.chook)
+      quack: SourceEvent([ 'a', 'b', 'c' ], ea.registry.chook) //TODO
     });
 
     eb.registry.quack.bind((evt) => {

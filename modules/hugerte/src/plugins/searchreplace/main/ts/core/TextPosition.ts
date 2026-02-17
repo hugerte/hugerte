@@ -1,5 +1,5 @@
 import { Arr } from '@ephox/katamari';
-import { SugarElement, SugarText } from '@ephox/sugar';
+import { SugarElement } from '@ephox/sugar';
 
 import { Pattern, Position, TextMatch } from './Types';
 
@@ -34,7 +34,7 @@ const find = (text: string, pattern: Pattern, start = 0, finish = text.length): 
 const extract = (elements: SugarElement<Text>[], matches: Position[]): TextMatch[][] => {
   // Walk over each text node and compare with the matches
   const nodePositions = Arr.foldl(elements, (acc, element) => {
-    const content = SugarText.get(element);
+    const content = element.dom.nodeValue!; // TODO for Text it should be string, not possibly null, in TS!
     const start = acc.last;
     const finish = start + content.length;
 

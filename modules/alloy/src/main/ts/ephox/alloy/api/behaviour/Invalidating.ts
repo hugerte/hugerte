@@ -1,4 +1,4 @@
-import { Future, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ActiveInvalidate from '../../behaviour/invalidating/ActiveInvalidate';
 import * as InvalidateApis from '../../behaviour/invalidating/InvalidateApis';
@@ -19,7 +19,7 @@ const Invalidating: InvalidatingBehaviour = Behaviour.create({
     validation: <T>(validator: (v: string) => Result<T, string>) => {
       return (component: AlloyComponent) => {
         const v = Representing.getValue(component);
-        return Future.pure(validator(v));
+        return Promise.resolve(validator(v));
       };
     }
   }

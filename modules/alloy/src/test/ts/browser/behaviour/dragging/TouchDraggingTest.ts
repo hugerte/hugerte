@@ -14,7 +14,7 @@ import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
 import { Container } from 'ephox/alloy/api/ui/Container';
 
 UnitTest.asynctest('TouchDraggingTest', (success, failure) => {
-  // Override isTouch() to make Alloy listen to touch events
+  // Override isTouch to make Alloy listen to touch events
   const origPlatform = PlatformDetection.detect();
   PlatformDetection.override({
     deviceType: {

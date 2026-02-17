@@ -352,7 +352,7 @@ describe('browser.hugerte.core.paste.PasteTest', () => {
 
   context('paste_webkit_styles', () => {
     before(function () {
-      if (!browser.isChromium() && !browser.isSafari()) {
+      if (!browser.isChromium && !browser.isSafari) {
         this.skip();
       }
     });

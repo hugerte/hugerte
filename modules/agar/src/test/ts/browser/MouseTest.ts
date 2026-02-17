@@ -52,7 +52,7 @@ UnitTest.asynctest('MouseTest', (success, failure) => {
 
   const isUnfocusedFirefox = () =>
     // Focus events are not fired until the window has focus: https://bugzilla.mozilla.org/show_bug.cgi?id=566671
-    platform.browser.isFirefox() && !document.hasFocus();
+    platform.browser.isFirefox && !document.hasFocus();
 
   const trueClickEventOrder = (() => {
     if (isUnfocusedFirefox()) {

@@ -1,6 +1,6 @@
 import { FocusTools, Keyboard, Keys, RealKeys, UiControls } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { Arr, Optional, Result } from '@ephox/katamari';
 import { Value } from '@ephox/sugar';
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
@@ -40,12 +40,12 @@ UnitTest.asynctest('TypeaheadTriggerTest (webdriver)', (success, failure) => {
 
             fetch: (input: AlloyComponent) => {
               const text = Value.get(input.element);
-              const future = Future.pure<TestItem[]>([
+              const promise = Promise.resolve<TestItem[]>([
                 { type: 'item', data: { value: text + '1', meta: { text: text + '1' }}},
                 { type: 'item', data: { value: text + '2', meta: { text: text + '2' }}}
               ]);
 
-              return future.map((f) => {
+              return promise.then((f) => {
                 // TODO: Test this.
                 const items: TestItem[] = text === 'no-data' ? [
                   { type: 'separator', text: 'No data' }

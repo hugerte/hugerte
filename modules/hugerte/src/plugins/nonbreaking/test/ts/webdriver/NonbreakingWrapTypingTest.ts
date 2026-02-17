@@ -16,7 +16,7 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
     base_url: '/project/hugerte/js/hugerte'
   }, [ Plugin ]);
 
-  const isFirefox = Env.browser.isFirefox();
+  const isFirefox = Env.browser.isFirefox;
 
   const clickNbspToolbarButton = (editor: Editor) => TinyUiActions.clickOnToolbar(editor, 'button[aria-label="Nonbreaking space"]');
 

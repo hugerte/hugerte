@@ -155,7 +155,7 @@ describe('browser.hugerte.core.EditorTest', () => {
   });
 
   it('TBA: WebKit Serialization range bug', function () {
-    if (!(browser.isChromium() || browser.isSafari())) {
+    if (!(browser.isChromium || browser.isSafari)) {
       this.skip();
     }
 

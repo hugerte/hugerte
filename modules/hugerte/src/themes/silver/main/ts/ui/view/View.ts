@@ -50,8 +50,8 @@ const renderButtonsGroup = (spec: BridgeView.ViewButtonsGroup, providers: UiFact
 };
 
 const deviceDetection = PlatformDetection.detect().deviceType;
-const isPhone = deviceDetection.isPhone();
-const isTablet = deviceDetection.isTablet();
+const isPhone = deviceDetection.isPhone;
+const isTablet = deviceDetection.isTablet;
 
 const renderViewHeader = (spec: ViewHeaderSpec) => {
   let hasGroups = false;

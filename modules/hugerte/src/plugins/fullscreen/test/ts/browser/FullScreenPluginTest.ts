@@ -112,7 +112,7 @@ describe('browser.hugerte.plugins.fullscreen.FullScreenPluginTest', () => {
   };
 
   const fullScreenKeyCombination = (editor: Editor) => {
-    const modifiers = platform.os.isMacOS() ? { meta: true, shift: true } : { ctrl: true, shift: true };
+    const modifiers = platform.os.isMacOS ? { meta: true, shift: true } : { ctrl: true, shift: true };
     TinyContentActions.keystroke(editor, 'F'.charCodeAt(0), modifiers);
   };
 

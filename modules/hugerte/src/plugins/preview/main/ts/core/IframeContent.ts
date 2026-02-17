@@ -24,7 +24,7 @@ const getPreviewHtml = (editor: Editor): string => {
 
   const bodyClass = Options.getBodyClass(editor);
 
-  const isMetaKeyPressed = Env.os.isMacOS() || Env.os.isiOS() ? 'e.metaKey' : 'e.ctrlKey && !e.altKey';
+  const isMetaKeyPressed = Env.os.isMacOS || Env.os.isiOS ? 'e.metaKey' : 'e.ctrlKey && !e.altKey';
 
   const preventClicksOnLinksScript = (
     '<script>' +

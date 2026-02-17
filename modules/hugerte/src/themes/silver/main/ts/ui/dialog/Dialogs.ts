@@ -12,7 +12,7 @@ import * as HtmlSanitizer from '../core/HtmlSanitizer';
 import * as NavigableObject from '../general/NavigableObject';
 import * as DialogChannels from '../window/DialogChannels';
 
-const isTouch = Env.deviceType.isTouch();
+const isTouch = Env.deviceType.isTouch;
 
 const hiddenHeader = (title: AlloyParts.ConfiguredPart, close: AlloyParts.ConfiguredPart): AlloySpec => ({
   dom: {

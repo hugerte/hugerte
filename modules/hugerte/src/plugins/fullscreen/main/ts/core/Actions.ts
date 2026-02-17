@@ -98,7 +98,7 @@ const toggleFullscreen = (editor: Editor, fullscreenState: Cell<FullScreenInfo |
   const fullscreenInfo: FullScreenInfo | null = fullscreenState.get();
   const editorBody = SugarElement.fromDom(editor.getBody());
 
-  const isTouch = Env.deviceType.isTouch();
+  const isTouch = Env.deviceType.isTouch;
 
   const editorContainerStyle = editorContainer.style;
 

@@ -1,4 +1,4 @@
-import { Future, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { Bounds } from '../../alien/Boxes';
 import { LazySink } from '../../api/component/CommonTypes';
@@ -10,7 +10,7 @@ import { ToolbarSpec } from './ToolbarTypes';
 
 export interface FloatingToolbarButtonDetail extends CompositeSketchDetail, HasLayoutAnchor {
   lazySink: LazySink;
-  fetch: () => Future<AlloySpec[]>;
+  fetch: () => Promise<AlloySpec[]>;
   getBounds: Optional<() => Bounds>;
   fireDismissalEventInstead: Optional<{
     event: string;
@@ -34,7 +34,7 @@ export interface FloatingToolbarButtonApis {
 
 export interface FloatingToolbarButtonSpec extends CompositeSketchSpec, HasLayoutAnchorSpec {
   lazySink: LazySink;
-  fetch: () => Future<AlloySpec[]>;
+  fetch: () => Promise<AlloySpec[]>;
   getBounds?: () => Bounds;
   fireDismissalEventInstead?: {
     event?: string;
