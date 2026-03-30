@@ -142,6 +142,17 @@ describe('browser.hugerte.core.paste.SmartPasteTest', () => {
       assert.lengthOf(editor.undoManager.data, 3);
     });
 
+    it('paste as content, paste url with parameters as html', () => {
+      const editor = hook.editor();
+      editor.resetContent('<p>abc</p>');
+      LegacyUnit.setSelection(editor, 'p', 0, 'p', 3);
+      editor.undoManager.add();
+
+      editor.execCommand('mceInsertClipboardContent', false, { html: '<span>http://example.com?foo=bar&amp;baz</span>' });
+      TinyAssertions.assertContent(editor, '<p><a href="http://example.com?foo=bar&amp;baz">abc</a></p>');
+      assert.lengthOf(editor.undoManager.data, 3);
+    });
+
     it('TBA: paste as content, paste image url', () => {
       const editor = hook.editor();
       editor.resetContent('<p>abc</p>');

@@ -1,7 +1,8 @@
 import { afterEach, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Singleton } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
-import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
+import { Clipboard as AgarClipboard, Waiter } from '@ephox/agar';
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -348,6 +349,24 @@ describe('browser.hugerte.core.paste.PasteTest', () => {
     assert.equal(PasteUtils.trimHtml('<span class="Apple-converted-space">\u00a0<\/span>b'), ' b');
     assert.equal(PasteUtils.trimHtml('a<span class="Apple-converted-space">\u00a0<\/span>'), 'a ');
     assert.equal(PasteUtils.trimHtml('<span class="Apple-converted-space">\u00a0<\/span>'), ' ');
+  });
+
+  context('html paste', () => {
+    const hook = TinyHooks.bddSetupLight<Editor>({
+      base_url: '/project/hugerte/js/hugerte',
+      paste_as_text: false
+    });
+    it('#131 Pasting URL with parameters is encoded correctly', async () => {
+      const editor = hook.editor();
+      AgarClipboard.pasteDataTransfer(TinyDom.body(editor), (dataTransfer) => {
+        dataTransfer.setData('text/html', 'http://example.com?foo=bar&amp;notes');
+        dataTransfer.setData('text/plain', 'http://example.com?foo=bar&notes');
+      });
+
+      await Waiter.pTryUntilPredicate(`Wait for content to be pasted`, () => editor.getContent().includes("example.com"));
+
+      TinyAssertions.assertContent(editor, '<p>http://example.com?foo=bar&amp;notes</p>');
+    });
   });
 
   context('paste_webkit_styles', () => {

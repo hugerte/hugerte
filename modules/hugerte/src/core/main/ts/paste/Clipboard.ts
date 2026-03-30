@@ -6,6 +6,7 @@ import Env from '../api/Env';
 import { BlobCache, BlobInfo } from '../api/file/BlobCache';
 import { ParserArgs } from '../api/html/DomParser';
 import * as Options from '../api/Options';
+import Entities from '../api/html/Entities';
 import Delay from '../api/util/Delay';
 import { EditorEvent } from '../api/util/EventDispatcher';
 import VK from '../api/util/VK';
@@ -215,6 +216,12 @@ const insertClipboardContent = (editor: Editor, clipboardContent: ClipboardConte
       content = clipboardContent['text/plain'];
     } else {
       content = PasteUtils.innerText(content);
+    }
+    // If we are extracting raw text but pasting it as HTML, we MUST encode it
+    // so the browser doesn't interpret characters like '&' as HTML entities.
+    // Note that the plain text mode should not be forced, otherwise SmartPaste does not work
+    if (!plainTextMode) {
+      content = Entities.encodeRaw(content);
     }
   }
 
