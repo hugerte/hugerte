@@ -330,6 +330,15 @@ describe('browser.hugerte.core.FormattingCommandsTest', () => {
     TinyAssertions.assertContent(editor, '<p><a href="foo%20bar">test 123</a></p>');
   });
 
+  it('mceInsertLink (link with parameters)', () => {
+    const editor = hook.editor();
+    editor.setContent('<p>test 123</p>');
+    editor.execCommand('SelectAll');
+    editor.execCommand('mceInsertLink', false, { href: 'http://example.com?foo=bar&amp;notes' });
+    // Note that &amp; should not be double encoded
+    TinyAssertions.assertContent(editor, '<p><a href="http://example.com?foo=bar&amp;notes">test 123</a></p>');
+  });
+
   it('mceInsertLink (link floated img)', () => {
     const editor = hook.editor();
     editor.setContent('<p><img style="float: right;" src="about:blank" /></p>');
