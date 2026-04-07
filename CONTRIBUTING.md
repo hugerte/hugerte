@@ -107,7 +107,7 @@ To run a whole folder of tests: `yarn bedrock -d folder`
 
 ## CI builds
 
-CI builds rely on the `ci` and `ci-all` package.json scripts, in addition to the above testing scripts, to run type checking and linting before executing the full test suite. A `ci-local` package.json script has also been added for convenience to simulate this process in development and then run tests.
+CI builds rely on the `ci` and `ci-all` package.json scripts, in addition to the above testing scripts, to run type checking and linting before executing the full test suite. A `local-ci` package.json script has also been added for convenience to simulate this process in development and then run tests.
 
 ## Version management
 
