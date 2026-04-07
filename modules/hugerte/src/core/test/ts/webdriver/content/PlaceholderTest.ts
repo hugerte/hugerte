@@ -131,4 +131,17 @@ describe('webdriver.hugerte.core.content.PlaceholderTest', () => {
     await pAssertPlaceholderNotExists(editor);
     assertCount(1);
   });
+
+  it('Check placeholder hides when input event fires after content is inserted (e.g. Alt+key typing on macOS)', async () => {
+    const editor = hook.editor();
+    setContent(editor, '<p></p>');
+    await pAssertPlaceholderExists(editor);
+    // Simulate what happens when a character is inserted via a key combination that sets altKey=true
+    // (e.g. typing "@" on macOS with certain keyboard layouts). In such cases the keydown event is
+    // skipped by isNonTypingKeyboardEvent, but the browser still inserts the character and fires input.
+    editor.getBody().innerHTML = '<p>@</p>';
+    editor.dispatch('input');
+    await pAssertPlaceholderNotExists(editor);
+    assertCount(1);
+  });
 });
