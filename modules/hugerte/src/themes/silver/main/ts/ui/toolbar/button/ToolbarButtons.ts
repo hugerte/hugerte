@@ -1,5 +1,5 @@
 import {
-  AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Button as AlloyButton, Disabling, Dropdown as AlloyDropdown, FloatingToolbarButton,
+  AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Button as AlloyButton, Disabling, Dropdown as AlloyDropdown,
   GuiFactory,
   Keying, Memento, NativeEvents, Replacing, AlloySpec, SketchSpec, SystemEvents, TieredData, TieredMenuTypes, Toggling,
   Tooltipping,
