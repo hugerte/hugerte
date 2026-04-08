@@ -193,10 +193,7 @@ const getSelectedTextBlocks = (editor: Editor, rng: Range, root: Node): HTMLElem
 
 const hasCompatibleStyle = (dom: DOMUtils, sib: Element, detail: ListDetail): boolean => {
   const sibStyle = dom.getStyle(sib, 'list-style-type');
-  let detailStyle = detail ? detail['list-style-type'] : '';
-
-  detailStyle = detailStyle === null ? '' : detailStyle;
-
+  const detailStyle = detail['list-style-type'] ?? '';
   return sibStyle === detailStyle;
 };
 
@@ -345,7 +342,7 @@ const updateCustomList = (editor: Editor, list: Element, listName: 'UL' | 'OL' |
 
 const toggleMultipleLists = (editor: Editor, parentList: HTMLElement | null, lists: HTMLElement[], listName: 'UL' | 'OL' | 'DL', detail: ListDetail): void => {
   const parentIsList = NodeType.isListNode(parentList);
-  if (parentIsList && parentList.nodeName === listName && !hasListStyleDetail(detail) && !isCustomList(parentList)) {
+  if (parentIsList && parentList.nodeName === listName && hasCompatibleStyle(editor.dom, parentList, detail) && !isCustomList(parentList)) {
     flattenListSelection(editor);
   } else {
     applyList(editor, listName, detail);
@@ -362,17 +359,13 @@ const toggleMultipleLists = (editor: Editor, parentList: HTMLElement | null, lis
   }
 };
 
-const hasListStyleDetail = (detail: ListDetail): boolean => {
-  return 'list-style-type' in detail;
-};
-
 const toggleSingleList = (editor: Editor, parentList: HTMLElement | null, listName: 'UL' | 'OL' | 'DL', detail: ListDetail): void => {
   if (parentList === editor.getBody()) {
     return;
   }
 
   if (parentList) {
-    if (parentList.nodeName === listName && !hasListStyleDetail(detail) && !isCustomList(parentList)) {
+    if (parentList.nodeName === listName && hasCompatibleStyle(editor.dom, parentList, detail) && !isCustomList(parentList)) {
       flattenListSelection(editor);
     } else {
       const bookmark = Bookmark.createBookmark(editor.selection.getRng());
