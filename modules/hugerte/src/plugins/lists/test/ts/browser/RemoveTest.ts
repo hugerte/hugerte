@@ -61,6 +61,25 @@ describe('browser.hugerte.plugins.lists.RemoveTest', () => {
     assert.equal(editor.selection.getStart().nodeName, 'P');
   });
 
+  it('TBA: Remove UL with specific list style', () => {
+    const editor = hook.editor();
+    editor.setContent(
+      '<ul style="list-style-type: circle">' +
+      '<li>test</li>' +
+      '</ul>'
+    );
+
+    LegacyUnit.setSelection(editor, 'li', 0);
+    editor.execCommand('InsertUnorderedList', false, {
+      'list-style-type': 'circle'
+    });
+
+    TinyAssertions.assertContent(editor,
+      '<p>test</p>'
+    );
+    assert.equal(editor.selection.getNode().nodeName, 'P');
+  });
+
   it('TBA: Remove UL at start empty LI', () => {
     const editor = hook.editor();
     editor.setContent(
