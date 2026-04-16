@@ -1,4 +1,4 @@
-import { ApproxStructure, Assertions, Mouse, StructAssert } from '@ephox/agar';
+import { ApproxStructure, Assertions, Keys, Mouse, StructAssert } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
@@ -890,5 +890,16 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
         ]
       });
     }));
+  });
+
+  it('Applying italic format after bold text with a Shift+Enter line break should not throw an error', () => {
+    const editor = hook.editor();
+    editor.setContent('<p><strong>text</strong></p>');
+    TinySelections.setCursor(editor, [ 0, 0, 0 ], 4); // end of 'text'
+    removeCaretFormat(editor, 'bold', {}); // create non-bold caret container after <strong>
+    TinyContentActions.keystroke(editor, Keys.enter(), { shiftKey: true }); // Shift+Enter removes caret container and inserts <br>
+    applyCaretFormat(editor, 'italic', {}); // should not throw IndexSizeError
+    TinyAssertions.assertContent(editor, '<p><strong>text</strong><br></p>');
+    TinyAssertions.assertSelection(editor, [ 0, 2, 0, 0 ], 1, [ 0, 2, 0, 0 ], 1);
   });
 });
