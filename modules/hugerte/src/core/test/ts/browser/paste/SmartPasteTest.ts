@@ -187,7 +187,7 @@ describe('browser.hugerte.core.paste.SmartPasteTest', () => {
       assert.lengthOf(editor.undoManager.data, 2);
     });
 
-    it('paste URL with HTML entity in query string should not double decode (no selection)', async () => {
+    it('paste URL containing ampersand preserves the literal ampersand without double decoding', async () => {
       const editor = hook.editor();
       editor.resetContent('<p></p>');
       TinySelections.setCursor(editor, [ 0, 0 ], 0);
@@ -201,7 +201,7 @@ describe('browser.hugerte.core.paste.SmartPasteTest', () => {
       );
     });
 
-    it('paste URL with HTML entity in query string should create link with correct href', async () => {
+    it('paste URL over selection creates link with correctly decoded href', async () => {
       const editor = hook.editor();
       editor.resetContent('<p>abc</p>');
       TinySelections.setSelection(editor, [ 0, 0 ], 0, [ 0, 0 ], 3);
