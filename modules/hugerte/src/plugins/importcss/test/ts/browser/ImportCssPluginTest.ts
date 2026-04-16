@@ -111,6 +111,23 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
     }
   ));
 
+  it('TBA: content_css with no files, append default (false)', () => pTestEditorWithSettings(
+    {
+      menuContents: [
+        { html: 'Headings', submenu: true },
+        { html: 'Inline', submenu: true },
+        { html: 'Blocks', submenu: true },
+        { html: 'Align', submenu: true }
+      ],
+      menuHasIcons: false,
+      choice: Optional.none()
+    },
+    {
+      content_css: [ ],
+      importcss_append: undefined
+    }
+  ));
+
   it('TBA: content_css with no files, append true', () => pTestEditorWithSettings(
     {
       menuContents: [

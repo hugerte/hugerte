@@ -38,7 +38,9 @@ export const init = (editor: Editor): UiFactoryBackstageForStyleFormats => {
     // Is there going to be an order issue here?
     const modifications = FormatRegister.register(editor, e.items, isSelectedFor, getPreviewFor);
     eventsFormats.set(modifications);
-    replaceSettings.set(e.replace);
+    // Only replace settings formats when there are actual modifications to show.
+    // If the modifications list is empty, keep the existing settings formats visible.
+    replaceSettings.set(e.replace && modifications.length > 0);
   });
 
   const getData = () => {
