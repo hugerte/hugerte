@@ -217,7 +217,7 @@ const applyCaretFormat = (editor: Editor, name: string, vars?: FormatVars): void
     }
 
     // Move selection to text node, clamping offset to valid range
-    selection.setCursorLocation(textNode, Math.min(offset, textNode ? textNode.data.length : 0));
+    selection.setCursorLocation(textNode, Math.min(offset, textNode?.data.length ?? 0));
   }
 };
 
