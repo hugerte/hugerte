@@ -226,7 +226,10 @@ const insertClipboardContent = (editor: Editor, clipboardContent: ClipboardConte
   if (plainTextMode) {
     pasteText(editor, content, shouldSimulateInputEvent);
   } else {
-    pasteHtml(editor, content, isInternal, shouldSimulateInputEvent);
+    // If the content is an absolute URL, it was extracted from text/plain or innerText as a raw decoded
+    // string. It must be HTML-encoded before passing to pasteHtml to prevent the browser's HTML parser
+    // from treating URL query string parameters like &not as HTML entities (e.g. &not => ¬).
+    pasteHtml(editor, isAbsoluteUrl ? editor.dom.encode(content) : content, isInternal, shouldSimulateInputEvent);
   }
 };
 

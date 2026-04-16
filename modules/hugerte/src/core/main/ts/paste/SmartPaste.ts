@@ -1,6 +1,7 @@
 import { Arr, Strings } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
+import Entities from '../api/html/Entities';
 import * as Options from '../api/Options';
 import Tools from '../api/util/Tools';
 
@@ -44,7 +45,8 @@ const createLink = (editor: Editor, url: string, pasteHtmlFn: PasteFn): boolean 
   editor.undoManager.extra(() => {
     pasteHtmlFn(editor, url);
   }, () => {
-    editor.execCommand('mceInsertLink', false, url);
+    // Decode HTML entities (e.g. &amp; -> &) so the href attribute contains the correct raw URL
+    editor.execCommand('mceInsertLink', false, Entities.decode(url));
   });
 
   return true;

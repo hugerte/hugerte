@@ -1,6 +1,7 @@
+import { Clipboard, Waiter } from '@ephox/agar';
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@ephox/katamari';
-import { LegacyUnit, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
+import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -184,6 +185,35 @@ describe('browser.hugerte.core.paste.SmartPasteTest', () => {
       editor.execCommand('mceInsertClipboardContent', false, { text: '<img src="http://www.site.com/my.jpg" />' });
       TinyAssertions.assertContent(editor, '<p>a&lt;img src=\"http://www.site.com/my.jpg\" /&gt;bc</p>');
       assert.lengthOf(editor.undoManager.data, 2);
+    });
+
+    it('paste URL with HTML entity in query string should not double decode (no selection)', async () => {
+      const editor = hook.editor();
+      editor.resetContent('<p></p>');
+      TinySelections.setCursor(editor, [ 0, 0 ], 0);
+
+      Clipboard.pasteItems(TinyDom.body(editor), {
+        'text/html': 'http://example.com?asdf&amp;notes',
+        'text/plain': 'http://example.com?asdf&notes'
+      });
+      await Waiter.pTryUntil('Wait for paste', () =>
+        TinyAssertions.assertContent(editor, '<p>http://example.com?asdf&amp;notes</p>')
+      );
+    });
+
+    it('paste URL with HTML entity in query string should create link with correct href', async () => {
+      const editor = hook.editor();
+      editor.resetContent('<p>abc</p>');
+      TinySelections.setSelection(editor, [ 0, 0 ], 0, [ 0, 0 ], 3);
+      editor.undoManager.add();
+
+      Clipboard.pasteItems(TinyDom.body(editor), {
+        'text/html': 'http://example.com/?a=1&amp;b=2',
+        'text/plain': 'http://example.com/?a=1&b=2'
+      });
+      await Waiter.pTryUntil('Wait for paste', () =>
+        TinyAssertions.assertContent(editor, '<p><a href="http://example.com/?a=1&amp;b=2">abc</a></p>')
+      );
     });
   });
 
