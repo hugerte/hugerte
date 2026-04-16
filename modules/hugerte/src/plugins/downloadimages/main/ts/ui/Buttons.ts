@@ -4,7 +4,7 @@ import * as DownloadImages from '../core/DownloadImages';
 
 const register = (editor: Editor): void => {
   editor.ui.registry.addButton('downloadimages', {
-    icon: 'upload',
+    icon: 'image',
     tooltip: 'Download remote images',
     onAction: () => {
       DownloadImages.downloadAndReplaceImages(editor);
@@ -12,7 +12,7 @@ const register = (editor: Editor): void => {
   });
 
   editor.ui.registry.addMenuItem('downloadimages', {
-    icon: 'upload',
+    icon: 'image',
     text: 'Download remote images',
     onAction: () => {
       DownloadImages.downloadAndReplaceImages(editor);

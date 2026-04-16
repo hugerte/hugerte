@@ -6,7 +6,7 @@ import { BlobCache, BlobInfo } from 'hugerte/core/api/file/BlobCache';
 let counter = 0;
 
 const createId = (): string =>
-  'mcedigitalasset-' + (new Date()).getTime() + '-' + (++counter);
+  'mcedownloadedimage-' + (new Date()).getTime() + '-' + (++counter);
 
 const extractFilename = (url: string): string =>
   url.replace(/[?#].*/, '').replace(/.*\//, '');
@@ -33,8 +33,11 @@ const createBlobInfo = (blobCache: BlobCache, image: HTMLImageElement, blob: Blo
 const isExternalUrl = (src: string): boolean =>
   /^https?:\/\//i.test(src) || /^\/\//.test(src);
 
+const resolveUrl = (src: string): string =>
+  src.startsWith('//') ? window.location.protocol + src : src;
+
 const downloadImage = (blobCache: BlobCache, image: HTMLImageElement): Promise<BlobInfo> =>
-  fetch(image.src)
+  fetch(resolveUrl(image.src))
     .then((response) => {
       if (!response.ok) {
         return Promise.reject(`Failed to fetch image: ${image.src} (${response.status} ${response.statusText})`);
