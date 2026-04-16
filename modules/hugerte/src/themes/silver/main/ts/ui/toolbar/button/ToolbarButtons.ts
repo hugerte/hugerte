@@ -1,13 +1,13 @@
 import {
-  AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Button as AlloyButton, Disabling, FloatingToolbarButton, Focusing,
+  AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, Button as AlloyButton, Disabling, Dropdown as AlloyDropdown,
   GuiFactory,
-  Keying, Memento, NativeEvents, Replacing, SketchSpec, SplitDropdown as AlloySplitDropdown, SystemEvents, TieredData, TieredMenuTypes, Toggling,
+  Keying, Memento, NativeEvents, Replacing, AlloySpec, SketchSpec, SystemEvents, TieredData, TieredMenuTypes, Toggling,
   Tooltipping,
   Unselecting
 } from '@ephox/alloy';
 import { Toolbar } from '@ephox/bridge';
 import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@ephox/katamari';
-import { Attribute, EventArgs, SelectorFind } from '@ephox/sugar';
+import { Attribute, Class, EventArgs, SelectorFind, Traverse } from '@ephox/sugar';
 
 import { ToolbarGroupOption } from '../../../api/Options';
 import { UiFactoryBackstage, UiFactoryBackstageProviders, UiFactoryBackstageShared } from '../../../backstage/Backstage';
@@ -18,7 +18,7 @@ import { detectSize } from '../../alien/FlatgridAutodetect';
 import { SimpleBehaviours } from '../../alien/SimpleBehaviours';
 import * as UiUtils from '../../alien/UiUtils';
 import { renderLabel, renderReplaceableIconFromPack } from '../../button/ButtonSlices';
-import { onControlAttached, onControlDetached, OnDestroy } from '../../controls/Controls';
+import { onControlAttached, onControlDetached } from '../../controls/Controls';
 import { updateMenuIcon, UpdateMenuIconEvent, updateMenuText, UpdateMenuTextEvent } from '../../dropdown/CommonDropdown';
 import * as Icons from '../../icons/Icons';
 import { componentRenderPipeline } from '../../menus/item/build/CommonMenuItem';
@@ -293,138 +293,164 @@ const fetchChoices = (getApi: (comp: AlloyComponent) => Toolbar.ToolbarSplitButt
       )));
 
 // TODO: hookup onSetup and onDestroy
-const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: UiFactoryBackstageShared, btnName?: string): SketchSpec => {
-  const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+const makeSplitButtonApi = (tooltipString: Cell<string>, sharedBackstage: UiFactoryBackstageShared) =>
+  (component: AlloyComponent): Toolbar.ToolbarSplitButtonInstanceApi => {
+    const system = component.getSystem();
+    const element = component.element;
 
-  const getApi = (comp: AlloyComponent): Toolbar.ToolbarSplitButtonInstanceApi => ({
-    isEnabled: () => !Disabling.isDisabled(comp),
-    setEnabled: (state: boolean) => Disabling.set(comp, !state),
-    setIconFill: (id, value) => {
-      SelectorFind.descendant(comp.element, `svg path[class="${id}"], rect[class="${id}"]`).each((underlinePath) => {
-        Attribute.set(underlinePath, 'fill', value);
-      });
-    },
-    setActive: (state) => {
-      // Toggle the pressed aria state component
-      Attribute.set(comp.element, 'aria-pressed', state);
-      // Toggle the inner button state, as that's the toggle component of the split button
-      SelectorFind.descendant(comp.element, 'span').each((button) => {
-        comp.getSystem().getByDom(button).each((buttonComp) => Toggling.set(buttonComp, state));
-      });
-    },
-    isActive: () => SelectorFind.descendant(comp.element, 'span').exists((button) => comp.getSystem().getByDom(button).exists(Toggling.isOn)),
-    setText: (text: string) =>
-      SelectorFind.descendant(comp.element, 'span').each((button) =>
-        comp.getSystem().getByDom(button).each((buttonComp) =>
-          AlloyTriggers.emitWith(buttonComp, updateMenuText, {
-            text
-          }))
-      ),
-    setIcon: (icon: string) =>
-      SelectorFind.descendant(comp.element, 'span').each((button) =>
-        comp.getSystem().getByDom(button).each((buttonComp) =>
-          AlloyTriggers.emitWith(buttonComp, updateMenuIcon, {
-            icon
-          }))
-      ),
-    setTooltip: (tooltip: string) => {
-      const translatedTooltip = sharedBackstage.providers.translate(tooltip);
-      Attribute.set(comp.element, 'aria-label', translatedTooltip);
-      tooltipString.set(tooltip);
-    }
-  });
+    const getComponents = () => {
+      const isChevron = Class.has(element, ToolbarButtonClasses.SplitButtonChevron);
+      const mainOpt = isChevron
+        ? Traverse.prevSibling(element).bind((el) => system.getByDom(el).toOptional())
+        : Optional.some(component);
+      const chevronOpt = isChevron
+        ? Optional.some(component)
+        : Traverse.nextSibling(element).bind((el) => system.getByDom(el).toOptional().filter((comp) => Class.has(comp.element, ToolbarButtonClasses.SplitButtonChevron)));
+      return { mainOpt, chevronOpt };
+    };
 
-  const editorOffCell = Cell(Fun.noop);
-  const specialisation = {
-    getApi,
-    onSetup: spec.onSetup
+    const applyBoth = (f: (c: AlloyComponent) => void) => {
+      const { mainOpt, chevronOpt } = getComponents();
+      mainOpt.each(f);
+      chevronOpt.each(f);
+    };
+
+    return {
+      isEnabled: () => {
+        const { mainOpt } = getComponents();
+        return mainOpt.exists((c) => !Disabling.isDisabled(c));
+      },
+      setEnabled: (state: boolean) => applyBoth((c) => Disabling.set(c, !state)),
+      setText: (text: string) => {
+        const { mainOpt } = getComponents();
+        mainOpt.each((c) => AlloyTriggers.emitWith(c, updateMenuText, { text }));
+      },
+      setIcon: (icon: string) => {
+        const { mainOpt } = getComponents();
+        mainOpt.each((c) => AlloyTriggers.emitWith(c, updateMenuIcon, { icon }));
+      },
+      setIconFill: (id: string, value: string) => applyBoth((c) => {
+        SelectorFind.descendant(c.element, `svg path[class="${id}"], rect[class="${id}"]`).each((underlinePath) => {
+          Attribute.set(underlinePath, 'fill', value);
+        });
+      }),
+      isActive: () => {
+        const { mainOpt } = getComponents();
+        return mainOpt.exists((c) => Toggling.isOn(c));
+      },
+      setActive: (state: boolean) => {
+        const { mainOpt } = getComponents();
+        mainOpt.each((c) => Toggling.set(c, state));
+      },
+      setTooltip: (tooltip: string) => {
+        tooltipString.set(tooltip);
+        const { mainOpt, chevronOpt } = getComponents();
+        const translatedTooltip = sharedBackstage.providers.translate(tooltip);
+        mainOpt.each((c) => Attribute.set(c.element, 'aria-label', translatedTooltip));
+        chevronOpt.each((c) => Attribute.set(c.element, 'aria-label', translatedTooltip));
+      }
+    };
   };
-  return AlloySplitDropdown.sketch({
+
+const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: UiFactoryBackstageShared, btnName?: string): AlloySpec[] => {
+  const editorOffCell = Cell(Fun.noop);
+  const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+  const getApi = makeSplitButtonApi(tooltipString, sharedBackstage);
+
+  const structure = renderCommonStructure(spec.icon, spec.text, Optional.none(), Optional.some([
+    Toggling.config({ toggleClass: ToolbarButtonClasses.Ticked, aria: { mode: 'pressed' }, toggleOnExecute: false }),
+    ...(spec.tooltip.isSome() ? [
+      Tooltipping.config(
+        sharedBackstage.providers.tooltips.getConfig({
+          tooltipText: sharedBackstage.providers.translate(spec.tooltip.getOr('')),
+          onShow: (comp) => {
+            if (tooltipString.get() !== spec.tooltip.getOr('')) {
+              const translatedTooltip = sharedBackstage.providers.translate(tooltipString.get());
+              Tooltipping.setComponents(comp,
+                sharedBackstage.providers.tooltips.getComponents({ tooltipText: translatedTooltip })
+              );
+            }
+          }
+        })
+      )
+    ] : [])
+  ]), sharedBackstage.providers);
+
+  const mainButton = AlloyButton.sketch({
     dom: {
-      tag: 'div',
-      classes: [ ToolbarButtonClasses.SplitButton ],
+      ...structure.dom,
+      classes: [
+        ToolbarButtonClasses.Button,
+        ToolbarButtonClasses.SplitButtonMain
+      ].concat(spec.text.isSome() ? [ ToolbarButtonClasses.MatchWidth ] : []),
       attributes: {
-        'aria-pressed': false,
-        ...getTooltipAttributes(spec.tooltip, sharedBackstage.providers),
+        ...spec.tooltip.map((t) => ({ 'aria-label': sharedBackstage.providers.translate(t) })).getOr({}),
         ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {})
       }
     },
-
-    onExecute: (button: AlloyComponent) => {
+    components: structure.components,
+    eventOrder: structure.eventOrder,
+    buttonBehaviours: structure.buttonBehaviours,
+    action: (button) => {
       const api = getApi(button);
       if (api.isEnabled()) {
         spec.onAction(api);
       }
+    }
+  });
+
+  const arrow = AlloyDropdown.sketch({
+    dom: {
+      tag: 'button',
+      classes: [ ToolbarButtonClasses.Button, ToolbarButtonClasses.SplitButtonChevron ],
+      innerHtml: Icons.get('chevron-down', sharedBackstage.providers.icons),
+      attributes: {
+        ...spec.tooltip.map((t) => ({ 'aria-label': sharedBackstage.providers.translate(t) })).getOr({}),
+        ...(Type.isNonNullable(btnName) ? { 'data-mce-name': `${btnName}-chevron` } : {})
+      }
     },
-
-    onItemExecute: (_a, _b, _c) => { },
-
-    splitDropdownBehaviours: Behaviour.derive([
-      DisablingConfigs.splitButton(sharedBackstage.providers.isDisabled),
-      ReadOnly.receivingConfig(),
+    components: [],
+    toggleClass: ToolbarButtonClasses.Ticked,
+    dropdownBehaviours: Behaviour.derive([
       AddEventsBehaviour.config('split-dropdown-events', [
         AlloyEvents.runOnAttached((comp, _se) => UiUtils.forceInitialSize(comp)),
-        AlloyEvents.run(focusButtonEvent, Focusing.focus),
-        onControlAttached(specialisation, editorOffCell),
-        onControlDetached(specialisation, editorOffCell)
+        onControlAttached({ getApi, onSetup: spec.onSetup }, editorOffCell),
+        onControlDetached({ getApi }, editorOffCell)
       ]),
-      Unselecting.config({ }),
-      ...(spec.tooltip.map((tooltip) => {
-        return Tooltipping.config(
-          {
-            ...sharedBackstage.providers.tooltips.getConfig({
-              tooltipText: sharedBackstage.providers.translate(tooltip),
-              onShow: (comp) => {
-                if (tooltipString.get() !== tooltip) {
-                  const translatedTooltip = sharedBackstage.providers.translate(tooltipString.get());
-                  Tooltipping.setComponents(comp,
-                    sharedBackstage.providers.tooltips.getComponents({ tooltipText: translatedTooltip })
-                  );
-                }
+      DisablingConfigs.toolbarButton(sharedBackstage.providers.isDisabled),
+      ReadOnly.receivingConfig(),
+      Unselecting.config({}),
+      Icons.addFocusableBehaviour(),
+      ...(spec.tooltip.isSome() ? [
+        Tooltipping.config(
+          sharedBackstage.providers.tooltips.getConfig({
+            tooltipText: sharedBackstage.providers.translate(spec.tooltip.getOr('')),
+            onShow: (comp) => {
+              if (tooltipString.get() !== spec.tooltip.getOr('')) {
+                const translatedTooltip = sharedBackstage.providers.translate(tooltipString.get());
+                Tooltipping.setComponents(comp,
+                  sharedBackstage.providers.tooltips.getComponents({ tooltipText: translatedTooltip })
+                );
               }
-            }),
-          }
-        );
-      }).toArray())
+            }
+          })
+        )
+      ] : [])
     ]),
-
     eventOrder: {
       [SystemEvents.attachedToDom()]: [ 'alloy.base.behaviour', 'split-dropdown-events', 'tooltipping' ],
       [SystemEvents.detachedFromDom()]: [ 'split-dropdown-events', 'tooltipping' ]
     },
-
-    toggleClass: ToolbarButtonClasses.Ticked,
     lazySink: sharedBackstage.getSink,
     fetch: fetchChoices(getApi, spec, sharedBackstage.providers),
-
+    getHotspot: (comp) => Traverse.prevSibling(comp.element).bind((el) => comp.getSystem().getByDom(el).toOptional()),
     parts: {
       // FIX: hasIcons
       menu: MenuParts.part(false, spec.columns, spec.presets)
-    },
-
-    components: [
-      AlloySplitDropdown.parts.button(
-        renderCommonStructure(spec.icon, spec.text, Optional.none(), Optional.some([
-          Toggling.config({ toggleClass: ToolbarButtonClasses.Ticked, toggleOnExecute: false })
-        ]), sharedBackstage.providers)
-      ),
-      AlloySplitDropdown.parts.arrow({
-        dom: {
-          tag: 'button',
-          classes: [ ToolbarButtonClasses.Button, 'tox-split-button__chevron' ],
-          innerHtml: Icons.get('chevron-down', sharedBackstage.providers.icons)
-        },
-        buttonBehaviours: Behaviour.derive([
-          DisablingConfigs.splitButton(sharedBackstage.providers.isDisabled),
-          ReadOnly.receivingConfig(),
-          Icons.addFocusableBehaviour()
-        ])
-      }),
-      AlloySplitDropdown.parts['aria-descriptor']({
-        text: sharedBackstage.providers.translate('To open the popup, press Shift+Enter')
-      })
-    ]
+    }
   });
+
+  return [ mainButton, arrow ];
 };
 
 export {
