@@ -900,6 +900,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
     TinyContentActions.keystroke(editor, Keys.enter(), { shiftKey: true }); // Shift+Enter removes caret container and inserts <br>
     applyCaretFormat(editor, 'italic', {}); // should not throw IndexSizeError
     TinyAssertions.assertContent(editor, '<p><strong>text</strong><br></p>');
+    // [0, 2, 0, 0]: body → p → caret span (index 2, after <strong> and <br>) → <em> → ZWSP text node
     TinyAssertions.assertSelection(editor, [ 0, 2, 0, 0 ], 1, [ 0, 2, 0, 0 ], 1);
   });
 });
