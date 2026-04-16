@@ -21,7 +21,7 @@ const createBlobInfo = (blobCache: BlobCache, image: HTMLImageElement, blob: Blo
         resolve(existingBlobInfo);
       } else {
         const name = extractFilename(image.src);
-        const blobInfo = blobCache.create(createId(), blob, base64, name || undefined);
+        const blobInfo = blobCache.create(createId(), blob, base64, name !== '' ? name : undefined);
         blobCache.add(blobInfo);
         resolve(blobInfo);
       }
@@ -63,18 +63,24 @@ const downloadAndReplaceImages = (editor: Editor): Promise<void> => {
   }
 
   const downloadPromises = Arr.map(images, (image) =>
-    downloadImage(blobCache, image).then((blobInfo) => {
-      editor.undoManager.transact(() => {
-        image.src = blobInfo.blobUri();
-        image.removeAttribute('data-mce-src');
-      });
-    }).catch((error: unknown) => {
-      const message = typeof error === 'string' ? error : (error instanceof Error ? error.message : 'Unknown error');
-      editor.notificationManager.open({ type: 'error', text: message });
-    })
+    downloadImage(blobCache, image).then((blobInfo) => ({ image, blobInfo }))
   );
 
-  return Promise.all(downloadPromises).then(() => {
+  return Promise.allSettled(downloadPromises).then((results) => {
+    editor.undoManager.transact(() => {
+      Arr.each(results, (result) => {
+        if (result.status === 'fulfilled') {
+          const { image, blobInfo } = result.value;
+          image.src = blobInfo.blobUri();
+          image.removeAttribute('data-mce-src');
+        } else {
+          const message = typeof result.reason === 'string' ? result.reason :
+            (result.reason instanceof Error ? result.reason.message : 'Unknown error');
+          editor.notificationManager.open({ type: 'error', text: message });
+        }
+      });
+    });
+
     if (editor.options.get('automatic_uploads')) {
       editor.editorUpload.uploadImages();
     }
