@@ -16,6 +16,8 @@ jobs:
   build-and-lint:
     name: Build & Lint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -40,6 +42,8 @@ jobs:
     name: Headless Tests
     runs-on: ubuntu-latest
     needs: build-and-lint
+    permissions:
+      contents: read
     # Run on pushes to main branches, or when manually triggered with run_tests=true
     if: >
       github.event_name == 'push' ||
