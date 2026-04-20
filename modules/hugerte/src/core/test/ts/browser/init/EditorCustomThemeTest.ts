@@ -3,8 +3,8 @@ import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
-import { Theme } from 'hugerte/core/api/ThemeManager';
 import { HugeRTE } from 'hugerte/core/api/Hugerte';
+import { Theme } from 'hugerte/core/api/ThemeManager';
 
 declare const hugerte: HugeRTE;
 

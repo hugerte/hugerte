@@ -3,7 +3,7 @@ import { Arr, Obj, Optional } from '@ephox/katamari';
 import Editor from '../Editor';
 import DOMUtils from './DOMUtils';
 
-type SelectorChangedCallback = (active: boolean, args: { node: Node; selector: String; parents: Node[] }) => void;
+type SelectorChangedCallback = (active: boolean, args: { node: Node; selector: string; parents: Node[] }) => void;
 
 interface SelectorChanged {
   selectorChangedWithUnbind: (selector: string, callback: SelectorChangedCallback) => { unbind: () => void };

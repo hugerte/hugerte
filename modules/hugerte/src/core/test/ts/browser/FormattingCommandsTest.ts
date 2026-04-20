@@ -267,7 +267,7 @@ describe('browser.hugerte.core.FormattingCommandsTest', () => {
 
     try {
       editor.execCommand('FormatBlock', false, 'div');
-    } catch (ex) {
+    } catch (_ex) {
       // t.log('Failed: ' + ex.message);
     }
 

@@ -47,7 +47,7 @@ const getActiveElement = (editor: Editor): Element => {
       () => document.body,
       (x) => x.dom
     );
-  } catch (ex) {
+  } catch (_ex) {
     // IE sometimes fails to get the activeElement when resizing table
     // TODO: Investigate this
     return document.body;

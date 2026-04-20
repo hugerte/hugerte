@@ -51,7 +51,7 @@ const buildBlob = (type: string, data: string, base64Encoded: boolean = true): O
     // Might throw error if data isn't proper base64
     try {
       str = atob(data);
-    } catch (e) {
+    } catch (_e) {
       return Optional.none();
     }
   }
