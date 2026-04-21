@@ -48,9 +48,9 @@ describe('browser.hugerte.models.dom.table.InsertTableWidthsTest', () => {
       Arr.each([ 'border-box', 'content-box' ], (boxSizing) => {
         context(`box-sizing: ${boxSizing}`, () => {
           it('TINY-7991: with only box-sizing', testTableSize(mode, 764, { 'box-sizing': boxSizing }));
-          it('TINY-7991: with margins', testTableSize(mode, 736, { 'box-sizing': boxSizing, 'margin': '30px' }));
-          it('TINY-7991: with padding', testTableSize(mode, 724, { 'box-sizing': boxSizing, 'padding': '20px' }));
-          it('TINY-7991: with borders', testTableSize(mode, 754, { 'box-sizing': boxSizing, 'border': '5px black solid' }));
+          it('TINY-7991: with margins', testTableSize(mode, 736, { 'box-sizing': boxSizing, margin: '30px' }));
+          it('TINY-7991: with padding', testTableSize(mode, 724, { 'box-sizing': boxSizing, padding: '20px' }));
+          it('TINY-7991: with borders', testTableSize(mode, 754, { 'box-sizing': boxSizing, border: '5px black solid' }));
         });
       });
     });

@@ -71,7 +71,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerAlertTest', ()
                         attrs: {
                           'aria-label': str.is('Close'),
                           'data-alloy-tabstop': str.is('true'),
-                          'type': str.is('button')
+                          type: str.is('button')
                         },
                         html: str.is('')
                       })
@@ -109,7 +109,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerAlertTest', ()
                               arr.has('tox-button')
                             ],
                             attrs: {
-                              'type': str.is('button'),
+                              type: str.is('button'),
                               'data-alloy-tabstop': str.is('true')
                             }
                           })

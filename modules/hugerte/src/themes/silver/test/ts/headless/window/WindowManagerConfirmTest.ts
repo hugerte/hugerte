@@ -71,7 +71,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerConfirmTest', 
                         attrs: {
                           'aria-label': str.is('Close'),
                           'data-alloy-tabstop': str.is('true'),
-                          'type': str.is('button')
+                          type: str.is('button')
                         },
                         html: str.is('')
                       })
@@ -110,7 +110,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerConfirmTest', 
                               arr.has('tox-button--secondary')
                             ],
                             attrs: {
-                              'type': str.is('button'),
+                              type: str.is('button'),
                               'data-alloy-tabstop': str.is('true')
                             }
                           }),
@@ -120,7 +120,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerConfirmTest', 
                               arr.has('tox-button')
                             ],
                             attrs: {
-                              'type': str.is('button'),
+                              type: str.is('button'),
                               'data-alloy-tabstop': str.is('true')
                             }
                           })

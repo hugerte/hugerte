@@ -135,7 +135,7 @@ const render = (editor: Editor, uiRefs: ReadyUiReferences, rawUiConfig: RenderUi
 
   if (isiOS12) {
     Css.setAll(socket.element, {
-      'overflow': 'scroll',
+      overflow: 'scroll',
       '-webkit-overflow-scrolling': 'touch' // required for ios < 13 content scrolling
     });
 

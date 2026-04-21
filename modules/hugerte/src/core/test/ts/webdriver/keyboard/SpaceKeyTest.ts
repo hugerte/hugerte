@@ -110,7 +110,7 @@ describe('webdriver.hugerte.core.keyboard.SpaceKeyTest', () => {
                 s.text(str.is('a')),
                 s.element('span', {
                   attrs: {
-                    'id': str.is('_mce_caret'),
+                    id: str.is('_mce_caret'),
                     'data-mce-bogus': str.is('1')
                   },
                   children: [

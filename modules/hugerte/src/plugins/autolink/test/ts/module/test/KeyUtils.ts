@@ -6,9 +6,9 @@ const isText = (node: Node): node is Text => node.nodeType === 3;
 
 const charCodeToKeyCode = (charCode: number): number => {
   const lookup: Record<string, number> = {
-    '0': 48, '1': 49, '2': 50, '3': 51, '4': 52, '5': 53, '6': 54, '7': 55, '8': 56, '9': 57, 'a': 65, 'b': 66, 'c': 67,
-    'd': 68, 'e': 69, 'f': 70, 'g': 71, 'h': 72, 'i': 73, 'j': 74, 'k': 75, 'l': 76, 'm': 77, 'n': 78, 'o': 79, 'p': 80,
-    'q': 81, 'r': 82, 's': 83, 't': 84, 'u': 85, 'v': 86, 'w': 87, 'x': 88, 'y': 89, 'z': 90, ' ': 32, ',': 188, '-': 189,
+    0: 48, 1: 49, 2: 50, 3: 51, 4: 52, 5: 53, 6: 54, 7: 55, 8: 56, 9: 57, a: 65, b: 66, c: 67,
+    d: 68, e: 69, f: 70, g: 71, h: 72, i: 73, j: 74, k: 75, l: 76, m: 77, n: 78, o: 79, p: 80,
+    q: 81, r: 82, s: 83, t: 84, u: 85, v: 86, w: 87, x: 88, y: 89, z: 90, ' ': 32, ',': 188, '-': 189,
     '.': 190, '/': 191, '\\': 220, '[': 219, ']': 221, '{': 219, '}': 221, '\'': 222, ';': 186, '=': 187, '(': 57, ')': 48
   };
 
@@ -17,8 +17,8 @@ const charCodeToKeyCode = (charCode: number): number => {
 
 const needsShiftModifier = (charCode: number | undefined): boolean => {
   const lookup: Record<string, boolean> = {
-    '(': true, ')': true, '{': true, '}': true, '+': true, '_': true, ':': true, '"': true,
-    '<': true, '>': true, '?': true, '!': true, '@': true, '#': true, '$': true, '%': true,
+    '(': true, ')': true, '{': true, '}': true, '+': true, _: true, ':': true, '"': true,
+    '<': true, '>': true, '?': true, '!': true, '@': true, '#': true, $: true, '%': true,
     '^': true, '&': true, '*': true, '|': true
   };
 

@@ -21,7 +21,7 @@ const renderClose = (providersBackstage: UiFactoryBackstageProviders) => Button.
     tag: 'button',
     classes: [ 'tox-button', 'tox-button--icon', 'tox-button--naked' ],
     attributes: {
-      'type': 'button',
+      type: 'button',
       'aria-label': providersBackstage.translate('Close'),
       'data-mce-name': 'close'
     }

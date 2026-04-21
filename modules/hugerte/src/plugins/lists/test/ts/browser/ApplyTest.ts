@@ -551,7 +551,7 @@ describe('browser.hugerte.plugins.lists.ApplyTest', () => {
     LegacyUnit.setSelection(editor, 'p', 0);
     editor.execCommand('InsertUnorderedList', false, {
       'list-attributes': {
-        'class': 'a',
+        class: 'a',
         'data-custom': 'c1'
       }
     });
@@ -566,12 +566,12 @@ describe('browser.hugerte.plugins.lists.ApplyTest', () => {
     LegacyUnit.setSelection(editor, 'p', 0);
     editor.execCommand('InsertUnorderedList', false, {
       'list-attributes': {
-        'class': 'a',
+        class: 'a',
         'data-custom': 'c1'
       },
 
       'list-item-attributes': {
-        'class': 'b',
+        class: 'b',
         'data-custom1': 'c2',
         'data-custom2': ''
       }

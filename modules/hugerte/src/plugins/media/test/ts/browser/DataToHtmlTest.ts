@@ -53,10 +53,10 @@ describe('browser.hugerte.plugins.media.core.DataToHtmlTest', () => {
 
   it('TBA: Assert html structure of a video element', () => pTestDataToHtml(hook.editor(),
     {
-      'type': 'video',
-      'source': 'a',
-      'altsource': '',
-      'poster': '',
+      type: 'video',
+      source: 'a',
+      altsource: '',
+      poster: '',
       'data-ephox-embed': 'a'
     },
     videoStruct
@@ -64,10 +64,10 @@ describe('browser.hugerte.plugins.media.core.DataToHtmlTest', () => {
 
   it('TBA: Assert html structure of an iframe element', () => pTestDataToHtml(hook.editor(),
     {
-      'type': 'iframe',
-      'source': 'a',
-      'altsource': '',
-      'poster': '',
+      type: 'iframe',
+      source: 'a',
+      altsource: '',
+      poster: '',
       'data-ephox-embed': 'a'
     },
     iframeStruct

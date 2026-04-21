@@ -173,7 +173,7 @@ const getRangeBookmark = (selection: EditorSelection): RangeBookmark => {
 };
 
 const createBookmarkSpan = (dom: DOMUtils, id: string, filled: boolean) => {
-  const args = { 'data-mce-type': 'bookmark', id, 'style': 'overflow:hidden;line-height:0px' };
+  const args = { 'data-mce-type': 'bookmark', id, style: 'overflow:hidden;line-height:0px' };
   return filled ? dom.create('span', args, '&#xFEFF;') : dom.create('span', args);
 };
 

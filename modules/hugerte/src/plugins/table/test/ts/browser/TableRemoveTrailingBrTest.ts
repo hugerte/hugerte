@@ -56,7 +56,7 @@ describe('browser.hugerte.plugins.table.TableRemoveTrailingBrTest', () => {
       editor.setContent('');
       await TableTestUtils.pInsertTableViaGrid(editor, 2, 2);
       TinyAssertions.assertCursor(editor, [ 0, 1, 0, 0 ], 0);
-      TinyAssertions.assertContentPresence(editor, { 'br': 4, 'br:not([data-mce-bogus])': 4 });
+      TinyAssertions.assertContentPresence(editor, { br: 4, 'br:not([data-mce-bogus])': 4 });
     });
 
     it('TINY-9860: should have correct number of non-bogus brs for nested table', async () => {
@@ -65,7 +65,7 @@ describe('browser.hugerte.plugins.table.TableRemoveTrailingBrTest', () => {
       await TableTestUtils.pInsertTableViaGrid(editor, 2, 2);
       await TableTestUtils.pInsertTableViaGrid(editor, 2, 2);
       // Three brs for the outer table and four brs for the inner table
-      TinyAssertions.assertContentPresence(editor, { 'br': 7, 'br:not([data-mce-bogus])': 7 });
+      TinyAssertions.assertContentPresence(editor, { br: 7, 'br:not([data-mce-bogus])': 7 });
     });
   });
 
@@ -113,7 +113,7 @@ describe('browser.hugerte.plugins.table.TableRemoveTrailingBrTest', () => {
       editor.setContent('');
       await TableTestUtils.pInsertTableViaGrid(editor, 2, 2);
       TinyAssertions.assertCursor(editor, [ 0, 1, 0, 0 ], 0);
-      TinyAssertions.assertContentPresence(editor, { 'br': 4, 'br:not([data-mce-bogus])': 4 });
+      TinyAssertions.assertContentPresence(editor, { br: 4, 'br:not([data-mce-bogus])': 4 });
     });
 
     it('TINY-9860: should have correct number of non-bogus brs for nested table', async () => {
@@ -122,7 +122,7 @@ describe('browser.hugerte.plugins.table.TableRemoveTrailingBrTest', () => {
       await TableTestUtils.pInsertTableViaGrid(editor, 2, 2);
       await TableTestUtils.pInsertTableViaGrid(editor, 2, 2);
       // Three brs for the outer table and four brs for the inner table
-      TinyAssertions.assertContentPresence(editor, { 'br': 7, 'br:not([data-mce-bogus])': 7 });
+      TinyAssertions.assertContentPresence(editor, { br: 7, 'br:not([data-mce-bogus])': 7 });
     });
   });
 });

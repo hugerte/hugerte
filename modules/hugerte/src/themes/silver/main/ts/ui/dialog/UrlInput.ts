@@ -67,7 +67,7 @@ export const renderUrlInput = (
     sandboxClasses: [ 'tox-dialog__popups' ],
     inputAttributes: {
       'aria-errormessage': errorId,
-      'type': 'url'
+      type: 'url'
     },
     minChars: 0,
     responseTime: 0,
@@ -193,7 +193,7 @@ export const renderUrlInput = (
       tag: 'div',
       classes: [ 'tox-icon', 'tox-control-wrap__status-icon-' + name ],
       attributes: {
-        'title': providersBackstage.translate(label),
+        title: providersBackstage.translate(label),
         'aria-live': 'polite',
         ...errId.fold(() => ({}), (id) => ({ id }))
       }

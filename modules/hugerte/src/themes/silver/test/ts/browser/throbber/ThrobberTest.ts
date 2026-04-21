@@ -42,7 +42,7 @@ describe('browser.hugerte.themes.silver.throbber.ThrobberTest', () => {
           s.element('div', {
             attrs: {
               'aria-label': str.is('Loading...'),
-              'tabindex': str.is('0'),
+              tabindex: str.is('0'),
             },
             classes: [ arr.has('tox-throbber__busy-spinner') ],
             children: [

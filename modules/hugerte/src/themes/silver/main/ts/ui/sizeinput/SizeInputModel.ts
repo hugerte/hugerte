@@ -14,16 +14,16 @@ export const nuSize = (value: number, unit: SizeUnit): Size => {
 export const formatSize = (size: Size): string => {
   const unitDec: Record<string, number> = {
     '': 0,
-    'px': 0,
-    'pt': 1,
-    'mm': 1,
-    'pc': 2,
-    'ex': 2,
-    'em': 2,
-    'ch': 2,
-    'rem': 2,
-    'cm': 3,
-    'in': 4,
+    px: 0,
+    pt: 1,
+    mm: 1,
+    pc: 2,
+    ex: 2,
+    em: 2,
+    ch: 2,
+    rem: 2,
+    cm: 3,
+    in: 4,
     '%': 4
   };
   const maxDecimal = (unit: SizeUnit) => unit in unitDec ? unitDec[unit] : 1;
@@ -49,12 +49,12 @@ export const parseSize = (sizeText: string): Result<Size, string> => {
 export const convertUnit = (size: Size, unit: SizeUnit): Optional<number> => {
   const inInch: Record<string, number> = {
     '': 96,
-    'px': 96,
-    'pt': 72,
-    'cm': 2.54,
-    'pc': 12,
-    'mm': 25.4,
-    'in': 1
+    px: 96,
+    pt: 72,
+    cm: 2.54,
+    pc: 12,
+    mm: 25.4,
+    in: 1
   };
   const supported = (u: SizeUnit) => Obj.has(inInch, u);
 

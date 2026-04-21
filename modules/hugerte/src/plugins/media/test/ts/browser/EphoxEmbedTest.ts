@@ -23,7 +23,7 @@ describe('browser.hugerte.plugins.media.core.EphoxEmbedTest', () => {
       ],
       attrs: {
         'data-ephox-embed-iri': str.is('embed-iri'),
-        'contenteditable': str.is('false')
+        contenteditable: str.is('false')
       }
     });
   });

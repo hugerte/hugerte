@@ -56,7 +56,7 @@ describe('browser.hugerte.models.dom.table.command.ApplyCellStyleCommandTest', (
   const assertTableCellStructure = (editor: Editor, styles: Record<string, string> = {}) =>
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {
       styles: {
-        'width': str.is('100%'),
+        width: str.is('100%'),
         'border-collapse': str.is('collapse')
       },
       attrs: {

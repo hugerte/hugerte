@@ -36,7 +36,7 @@ describe('browser.hugerte.plugins.link.SelectedImageTest', () => {
     await TestLinkUi.pAssertContentPresence(editor, {
       'a[href="http://something"]': 1,
       'img[src="image.png"]': 1,
-      'p': 1
+      p: 1
     });
   });
 
@@ -51,7 +51,7 @@ describe('browser.hugerte.plugins.link.SelectedImageTest', () => {
     await TestLinkUi.pAssertContentPresence(editor, {
       'a[href="http://something"]': 1,
       'img[src="image.png"]': 1,
-      'p': 1
+      p: 1
     });
   });
 

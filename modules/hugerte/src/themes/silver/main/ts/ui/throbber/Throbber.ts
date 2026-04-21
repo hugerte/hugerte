@@ -16,7 +16,7 @@ const getBusySpec = (providerBackstage: UiFactoryBackstageProviders) => (_root: 
     tag: 'div',
     attributes: {
       'aria-label': providerBackstage.translate('Loading...'),
-      'tabindex': '0'
+      tabindex: '0'
     },
     classes: [ 'tox-throbber__busy-spinner' ]
   },

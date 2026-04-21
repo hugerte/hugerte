@@ -50,7 +50,7 @@ describe('webdriver.hugerte.core.delete.ShortcutDeleteTest', () => {
                             children: [
                               s.element('span', {
                                 attrs: {
-                                  'id': str.is('_mce_caret'),
+                                  id: str.is('_mce_caret'),
                                   'data-mce-bogus': str.is('1'),
                                   'data-mce-type': str.is('format-caret')
                                 },
@@ -68,7 +68,7 @@ describe('webdriver.hugerte.core.delete.ShortcutDeleteTest', () => {
                 : [
                   s.element('span', {
                     attrs: {
-                      'id': str.is('_mce_caret'),
+                      id: str.is('_mce_caret'),
                       'data-mce-bogus': str.is('1'),
                       'data-mce-type': str.is('format-caret')
                     },
@@ -95,7 +95,7 @@ describe('webdriver.hugerte.core.delete.ShortcutDeleteTest', () => {
               children: [
                 s.element('span', {
                   attrs: {
-                    'id': str.is('_mce_caret'),
+                    id: str.is('_mce_caret'),
                     'data-mce-bogus': str.is('1'),
                     'data-mce-type': str.is('format-caret')
                   },
@@ -181,7 +181,7 @@ describe('webdriver.hugerte.core.delete.ShortcutDeleteTest', () => {
               children: [
                 s.element('span', {
                   attrs: {
-                    'id': str.is('_mce_caret'),
+                    id: str.is('_mce_caret'),
                     'data-mce-bogus': str.is('1'),
                     'data-mce-type': str.is('format-caret')
                   },

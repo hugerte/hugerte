@@ -66,7 +66,7 @@ describe('browser.hugerte.core.util.QuirksFirefoxTest', () => {
             s.element('div', {
               children: [
                 s.element('a', {
-                  attrs: { 'href': str.is('#'), 'data-mce-block': str.is('true') },
+                  attrs: { href: str.is('#'), 'data-mce-block': str.is('true') },
                   children: [
                     s.element('p', { children: [ s.text(str.is('test')) ] })
                   ]

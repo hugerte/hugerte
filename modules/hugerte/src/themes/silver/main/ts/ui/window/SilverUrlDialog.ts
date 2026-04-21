@@ -70,8 +70,8 @@ const renderUrlDialog = (internalDialog: Dialog.UrlDialog, extra: SilverDialogCo
 
   // Add the styles for the modal width/height
   const styles = {
-    ...internalDialog.height.fold(() => ({}), (height) => ({ 'height': height + 'px', 'max-height': height + 'px' })),
-    ...internalDialog.width.fold(() => ({}), (width) => ({ 'width': width + 'px', 'max-width': width + 'px' }))
+    ...internalDialog.height.fold(() => ({}), (height) => ({ height: height + 'px', 'max-height': height + 'px' })),
+    ...internalDialog.width.fold(() => ({}), (width) => ({ width: width + 'px', 'max-width': width + 'px' }))
   };
 
   // Default back to using a large sized dialog, if no dimensions are specified

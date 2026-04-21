@@ -324,7 +324,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
           startScrollHeight = rootElement.scrollHeight;
 
           resizeBackdrop = dom.add(rootElement, 'div', {
-            'class': 'mce-resize-backdrop',
+            class: 'mce-resize-backdrop',
             'data-mce-bogus': 'all'
           });
           dom.setStyles(resizeBackdrop, {
@@ -360,7 +360,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
           }
 
           resizeHelper = dom.add(rootElement, 'div', {
-            'class': 'mce-resize-helper',
+            class: 'mce-resize-helper',
             'data-mce-bogus': 'all'
           }, startW + ' &times; ' + startH);
         };
@@ -372,11 +372,11 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
         }
 
         handleElm = dom.add(rootElement, 'div', {
-          'id': 'mceResizeHandle' + name,
+          id: 'mceResizeHandle' + name,
           'data-mce-bogus': 'all',
-          'class': 'mce-resizehandle',
-          'unselectable': true,
-          'style': 'cursor:' + name + '-resize; margin:0; padding:0'
+          class: 'mce-resizehandle',
+          unselectable: true,
+          style: 'cursor:' + name + '-resize; margin:0; padding:0'
         });
 
         dom.bind(handleElm, 'mousedown', (e) => {

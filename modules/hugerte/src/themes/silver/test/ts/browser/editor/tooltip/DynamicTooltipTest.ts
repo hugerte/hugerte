@@ -71,7 +71,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
       { label: 'no translations', buttonColor: 'Black', expectedColor: 'Light Green', setup: () => I18n.setCode('en') },
       { label: 'translations', buttonColor: 'Schwarz', expectedColor: 'Hellgrun',
         setup: () => {
-          I18n.add('test', { 'Black': 'Schwarz', 'Light Green': 'Hellgrun' });
+          I18n.add('test', { Black: 'Schwarz', 'Light Green': 'Hellgrun' });
           I18n.setCode('test');
         }
       }], (scenario: ColorTestScenario) => {

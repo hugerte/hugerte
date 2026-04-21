@@ -22,7 +22,7 @@ describe('browser.hugerte.plugins.table.TableDefaultStylesTest', () => {
     await TableTestUtils.pInsertTableViaGrid(editor, 1, 1);
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {
       styles: {
-        'width': str.is('100%'),
+        width: str.is('100%'),
         'border-collapse': str.is('collapse')
       },
       attrs: {
@@ -56,7 +56,7 @@ describe('browser.hugerte.plugins.table.TableDefaultStylesTest', () => {
     await TableTestUtils.pInsertTableViaGrid(editor, 1, 1);
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {
       styles: {
-        'width': str.is('100%'),
+        width: str.is('100%'),
         'border-collapse': str.is('collapse')
       },
       attrs: {
@@ -99,9 +99,9 @@ describe('browser.hugerte.plugins.table.TableDefaultStylesTest', () => {
     await TableTestUtils.pInsertTableViaGrid(editor, 1, 1);
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {
       styles: {
-        'width': str.none('Should not have default width'),
+        width: str.none('Should not have default width'),
         'border-collapse': str.none('Should not have default border-collapse'),
-        'border': str.is('3px solid blue')
+        border: str.is('3px solid blue')
       },
       attrs: {
         border: str.is('1')

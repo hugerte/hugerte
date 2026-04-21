@@ -44,9 +44,9 @@ const legacyFontSizes: Record<string, string> = {
 const keywordFontSizes: Record<string, string> = {
   'xx-small': '7pt',
   'x-small': '8pt',
-  'small': '10pt',
-  'medium': '12pt',
-  'large': '14pt',
+  small: '10pt',
+  medium: '12pt',
+  large: '14pt',
   'x-large': '18pt',
   'xx-large': '24pt'
 };

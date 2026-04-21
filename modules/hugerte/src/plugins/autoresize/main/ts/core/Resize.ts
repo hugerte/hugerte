@@ -142,8 +142,8 @@ const setup = (editor: Editor, oldSize: Cell<number>): void => {
 
     if (Env.browser.isEdge() || Env.browser.isIE()) {
       dom.setStyles(editor.getBody(), {
-        'paddingLeft': overflowPadding,
-        'paddingRight': overflowPadding,
+        paddingLeft: overflowPadding,
+        paddingRight: overflowPadding,
         // IE & Edge have a min height of 150px by default on the body, so override that
         'min-height': 0
       });

@@ -41,7 +41,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       classes: [ arr.has('tox-collection__group') ],
       children: Arr.map(expectedTicks, (expected) => s.element('div', {
         attrs: {
-          'role': str.is('menuitemcheckbox'),
+          role: str.is('menuitemcheckbox'),
           'aria-checked': str.is(expected ? 'true' : 'false')
         }
       }))

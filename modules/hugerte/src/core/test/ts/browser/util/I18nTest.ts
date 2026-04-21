@@ -9,7 +9,7 @@ describe('browser.hugerte.core.util.I18nTest', () => {
     const translate = I18n.translate;
 
     I18n.add('code', {
-      'text': 'text translation',
+      text: 'text translation',
       'text translation': 'this should return the wrong translation when a translation matches a key, in nested translate calls',
       'value:{0}{1}': 'value translation:{0}{1}',
       'text{context:something}': 'text translation with context',

@@ -104,7 +104,7 @@ describe('browser.hugerte.plugins.link.QuickLinkTest', () => {
     TinyUiActions.keydown(editor, Keys.right());
     TinyUiActions.keydown(editor, Keys.enter());
     TinyAssertions.assertContentPresence(editor, {
-      'a': 0,
+      a: 0,
       'p:contains("Word")': 1
     });
     UiFinder.notExists(SugarBody.body(), '.tox-pop__dialog');
@@ -121,7 +121,7 @@ describe('browser.hugerte.plugins.link.QuickLinkTest', () => {
     // undo
     editor.execCommand('undo');
     TinyAssertions.assertContentPresence(editor, {
-      'a': 0,
+      a: 0,
       'p:contains("Word")': 1
     });
   });

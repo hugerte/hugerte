@@ -625,8 +625,8 @@ describe('browser.hugerte.plugins.image.core.ImageDataTest', () => {
           title: str.none('no title')
         },
         styles: {
-          'width': str.is('100px'),
-          'height': str.is('200px'),
+          width: str.is('100px'),
+          height: str.is('200px'),
           'border-width': str.none('no width'),
           'border-style': str.none('no style'),
           'border-color': str.none('no color'),
@@ -672,8 +672,8 @@ describe('browser.hugerte.plugins.image.core.ImageDataTest', () => {
           title: str.none('no title')
         },
         styles: {
-          'width': str.is('150px'),
-          'height': str.is('250px'),
+          width: str.is('150px'),
+          height: str.is('250px'),
           'border-width': str.none('no width'),
           'border-style': str.none('no style'),
           'border-color': str.none('no color'),

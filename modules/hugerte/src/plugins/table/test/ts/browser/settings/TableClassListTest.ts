@@ -61,7 +61,7 @@ describe('browser.hugerte.plugins.table.TableClassListTest', () => {
     await TableTestUtils.openPropsDialog(editor, 'mceTableProps');
     await TableTestUtils.selectListBoxValue(editor, 'Class', 'none');
     await TableTestUtils.pClickDialogButton(editor, true);
-    TinyAssertions.assertContentPresence(editor, { 'table[class]': 0, 'table': 1 });
+    TinyAssertions.assertContentPresence(editor, { 'table[class]': 0, table: 1 });
   });
 
   it('TINY-6653: Selecting "none" will remove all classes from a table that has an unrelated class', async () => {
@@ -76,7 +76,7 @@ describe('browser.hugerte.plugins.table.TableClassListTest', () => {
     await TableTestUtils.openPropsDialog(editor, 'mceTableProps');
     await TableTestUtils.selectListBoxValue(editor, 'Class', 'none');
     await TableTestUtils.pClickDialogButton(editor, true);
-    TinyAssertions.assertContentPresence(editor, { 'table[class]': 0, 'table': 1 });
+    TinyAssertions.assertContentPresence(editor, { 'table[class]': 0, table: 1 });
   });
 
   it('TINY-6653: Selecting "Select..." will do nothing', async () => {

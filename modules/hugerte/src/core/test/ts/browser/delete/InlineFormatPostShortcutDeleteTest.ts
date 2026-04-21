@@ -54,7 +54,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
                   children: [
                     s.element('span', {
                       attrs: {
-                        'id': str.is('_mce_caret'),
+                        id: str.is('_mce_caret'),
                         'data-mce-bogus': str.is('1'),
                         'data-mce-type': str.is('format-caret')
                       },
@@ -93,7 +93,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
                     s.text(str.is('')),
                     s.element('span', {
                       attrs: {
-                        'id': str.is('_mce_caret'),
+                        id: str.is('_mce_caret'),
                         'data-mce-bogus': str.is('1'),
                         'data-mce-type': str.is('format-caret')
                       },
@@ -138,7 +138,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
                         s.text(str.is('')),
                         s.element('span', {
                           attrs: {
-                            'id': str.is('_mce_caret'),
+                            id: str.is('_mce_caret'),
                             'data-mce-bogus': str.is('1'),
                             'data-mce-type': str.is('format-caret')
                           },
@@ -180,7 +180,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
                     s.text(str.is('a')),
                     s.element('span', {
                       attrs: {
-                        'id': str.is('_mce_caret'),
+                        id: str.is('_mce_caret'),
                         'data-mce-bogus': str.is('1'),
                         'data-mce-type': str.is('format-caret')
                       },
@@ -288,7 +288,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
                     s.text(str.is('a')),
                     s.element('span', {
                       attrs: {
-                        'id': str.is('_mce_caret'),
+                        id: str.is('_mce_caret'),
                         'data-mce-bogus': str.is('1'),
                         'data-mce-type': str.is('format-caret')
                       },

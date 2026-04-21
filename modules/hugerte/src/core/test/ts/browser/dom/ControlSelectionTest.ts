@@ -256,7 +256,7 @@ describe('browser.hugerte.core.dom.ControlSelectionTest', () => {
       (ghostElm) => {
         Assertions.assertPresence(
           'correct number of height styles',
-          { 'tr': 2, 'td': 4, 'tr[style*="height"]': 1, 'td[style*="height"]': 2, 'tr:last-child[style*="height"]': 0 },
+          { tr: 2, td: 4, 'tr[style*="height"]': 1, 'td[style*="height"]': 2, 'tr:last-child[style*="height"]': 0 },
           ghostElm
         );
       }

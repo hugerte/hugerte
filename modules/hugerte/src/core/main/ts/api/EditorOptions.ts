@@ -17,15 +17,15 @@ type SimpleProcessor = (value: unknown) => boolean;
 type Processor<T> = (value: unknown) => ProcessorSuccess<T> | ProcessorError;
 
 export interface BuiltInOptionTypeMap {
-  'string': string;
-  'number': number;
-  'boolean': boolean;
-  'array': any[];
-  'function': Function;
-  'object': any;
+  string: string;
+  number: number;
+  boolean: boolean;
+  array: any[];
+  function: Function;
+  object: any;
   'string[]': string[];
   'object[]': any[];
-  'regexp': RegExp;
+  regexp: RegExp;
 }
 
 export type BuiltInOptionType = keyof BuiltInOptionTypeMap;

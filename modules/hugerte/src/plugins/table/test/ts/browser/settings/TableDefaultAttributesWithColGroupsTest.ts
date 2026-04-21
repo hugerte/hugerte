@@ -25,7 +25,7 @@ describe('browser.hugerte.plugins.table.TableDefaultAttributesWithColGroupsTest'
     await TableTestUtils.pInsertTableViaGrid(editor, 2, 2);
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str) => s.element('table', {
       styles: {
-        'width': str.is('100%'),
+        width: str.is('100%'),
         'border-collapse': str.is('collapse')
       },
       attrs: {
@@ -41,7 +41,7 @@ describe('browser.hugerte.plugins.table.TableDefaultAttributesWithColGroupsTest'
     await TableTestUtils.pInsertTableViaGrid(editor, 2, 2);
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str) => s.element('table', {
       styles: {
-        'width': str.is('100%'),
+        width: str.is('100%'),
         'border-collapse': str.is('collapse')
       },
       attrs: {

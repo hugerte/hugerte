@@ -28,14 +28,14 @@ describe('browser.hugerte.plugins.link.DefaultLinkTargetTest', () => {
   it('TBA: does not add target if no default is set', async () => {
     const editor = hook.editor();
     await TestLinkUi.pInsertLink(editor, 'http://www.google.com');
-    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 0, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 0, a: 1 });
   });
 
   it('TBA: adds target if default is set', async () => {
     const editor = hook.editor();
     editor.options.set('link_default_target', '_blank');
     await TestLinkUi.pInsertLink(editor, 'http://www.google.com');
-    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 1, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 1, a: 1 });
   });
 
   it('TBA: adds target if default is set and link_target_list is enabled', async () => {
@@ -46,7 +46,7 @@ describe('browser.hugerte.plugins.link.DefaultLinkTargetTest', () => {
       { title: 'New', value: '_blank' }
     ]);
     await TestLinkUi.pInsertLink(editor, 'http://www.google.com');
-    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 1, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 1, a: 1 });
   });
 
   it('TBA: adds target if default is set and link_target_list is disabled', async () => {
@@ -54,7 +54,7 @@ describe('browser.hugerte.plugins.link.DefaultLinkTargetTest', () => {
     editor.options.set('link_default_target', '_blank');
     editor.options.set('link_target_list', false);
     await TestLinkUi.pInsertLink(editor, 'http://www.google.com');
-    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 1, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 1, a: 1 });
     editor.options.unset('link_target_list');
   });
 
@@ -62,20 +62,20 @@ describe('browser.hugerte.plugins.link.DefaultLinkTargetTest', () => {
     const editor = hook.editor();
     editor.options.set('link_default_target', '_blank');
     await TestLinkUi.pInsertLink(editor, 'http://www.google.com');
-    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 1, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a[target="_blank"]': 1, a: 1 });
     await TestLinkUi.pOpenLinkDialog(editor);
     await TestLinkUi.pSetListBoxItem(editor, 'Open link in...', 'Current window');
     await TestLinkUi.pClickSave(editor);
-    await TestLinkUi.pAssertContentPresence(editor, { 'a:not([target="_blank"])': 1, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a:not([target="_blank"])': 1, a: 1 });
   });
 
   it(`TBA: default isn't applied to an existing link`, async () => {
     const editor = hook.editor();
     editor.options.set('link_default_target', '_blank');
     editor.setContent('<a href="http://www.google.com">https://www.google.com/</a>');
-    await TestLinkUi.pAssertContentPresence(editor, { 'a:not([target="_blank"])': 1, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a:not([target="_blank"])': 1, a: 1 });
     await TestLinkUi.pOpenLinkDialog(editor);
     await TestLinkUi.pClickSave(editor);
-    await TestLinkUi.pAssertContentPresence(editor, { 'a:not([target="_blank"])': 1, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a:not([target="_blank"])': 1, a: 1 });
   });
 });

@@ -15,8 +15,8 @@ interface IconSpec {
 
 // Icons that need to be transformed in RTL
 const rtlTransform: Record<string, boolean> = {
-  'indent': true,
-  'outdent': true,
+  indent: true,
+  outdent: true,
   'table-insert-column-after': true,
   'table-insert-column-before': true,
   'paste-column-after': true,

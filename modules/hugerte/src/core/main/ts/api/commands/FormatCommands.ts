@@ -21,39 +21,39 @@ const registerExecCommands = (editor: Editor): void => {
       toggleFormat(command, { value });
     },
 
-    'BackColor': (_command, _ui, value) => {
+    BackColor: (_command, _ui, value) => {
       toggleFormat('hilitecolor', { value });
     },
 
-    'FontName': (_command, _ui, value) => {
+    FontName: (_command, _ui, value) => {
       Font.fontNameAction(editor, value);
     },
 
-    'FontSize': (_command, _ui, value) => {
+    FontSize: (_command, _ui, value) => {
       Font.fontSizeAction(editor, value);
     },
 
-    'LineHeight': (_command, _ui, value) => {
+    LineHeight: (_command, _ui, value) => {
       LineHeight.lineHeightAction(editor, value);
     },
 
-    'Lang': (command, _ui, lang: ContentLanguage) => {
+    Lang: (command, _ui, lang: ContentLanguage) => {
       toggleFormat(command, { value: lang.code, customValue: lang.customCode ?? null });
     },
 
-    'RemoveFormat': (command) => {
+    RemoveFormat: (command) => {
       editor.formatter.remove(command);
     },
 
-    'mceBlockQuote': () => {
+    mceBlockQuote: () => {
       toggleFormat('blockquote');
     },
 
-    'FormatBlock': (_command, _ui, value) => {
+    FormatBlock: (_command, _ui, value) => {
       toggleFormat(Type.isString(value) ? value : 'p');
     },
 
-    'mceToggleFormat': (_command, _ui, value) => {
+    mceToggleFormat: (_command, _ui, value) => {
       toggleFormat(value);
     }
   });
@@ -64,7 +64,7 @@ const registerQueryValueCommands = (editor: Editor): void => {
 
   editor.editorCommands.addCommands({
     'Bold,Italic,Underline,Strikethrough,Superscript,Subscript': (command) => isFormatMatch(command),
-    'mceBlockQuote': () => isFormatMatch('blockquote')
+    mceBlockQuote: () => isFormatMatch('blockquote')
   }, 'state');
 
   editor.editorCommands.addQueryValueHandler('FontName', () => Font.fontNameQuery(editor));

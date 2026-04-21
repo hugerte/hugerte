@@ -32,7 +32,7 @@ describe('browser.hugerte.plugins.link.AllowUnsafeLinkTargetTest', () => {
     const editor = hook.editor();
     editor.options.set('allow_unsafe_link_target', true);
     await TestLinkUi.pInsertLink(editor, 'http://www.google.com');
-    await TestLinkUi.pAssertContentPresence(editor, { 'a[rel="noopener"]': 0, 'a': 1 });
+    await TestLinkUi.pAssertContentPresence(editor, { 'a[rel="noopener"]': 0, a: 1 });
   });
 
   it('TBA: adds if allow_unsafe_link_target: false', async () => {

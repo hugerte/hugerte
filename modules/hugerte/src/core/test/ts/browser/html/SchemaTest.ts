@@ -119,7 +119,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     assert.deepEqual(
       getElementRule(schema, 'a'),
       {
-        attributes: { 'href': { forcedValue: 'a' }, 'xlink:href': { forcedValue: 'b' }},
+        attributes: { href: { forcedValue: 'a' }, 'xlink:href': { forcedValue: 'b' }},
         attributesOrder: [ 'href', 'xlink:href' ],
         attributesForced: [{ name: 'href', value: 'a' }, { name: 'xlink:href', value: 'b' }]
       }
@@ -170,7 +170,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     assert.deepEqual(
       getElementRule(schema, 'custom-element'),
       {
-        attributes: { 'id': {}, 'style': {}, 'custom-attribute': {}},
+        attributes: { id: {}, style: {}, 'custom-attribute': {}},
         attributesOrder: [ 'id', 'style', 'custom-attribute' ]
       }
     );
@@ -483,7 +483,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     schema = Schema({
       valid_styles: {
         '*': 'color font-size',
-        'a': 'background font-family'
+        a: 'background font-family'
       }
     });
     assert.deepEqual(schema.getValidStyles(), {
@@ -492,12 +492,12 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
         'font-size'
       ],
 
-      'a': [
+      a: [
         'background',
         'font-family'
       ],
 
-      'A': [
+      A: [
         'background',
         'font-family'
       ]
@@ -508,7 +508,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     let schema = Schema({ invalid_styles: 'color,font-size' });
     assert.deepEqual(schema.getInvalidStyles(), {
       '*': {
-        'color': {},
+        color: {},
         'font-size': {}
       }
     });
@@ -516,7 +516,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     schema = Schema({ invalid_styles: 'color font-size' });
     assert.deepEqual(schema.getInvalidStyles(), {
       '*': {
-        'color': {},
+        color: {},
         'font-size': {}
       }
     });
@@ -524,22 +524,22 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     schema = Schema({
       invalid_styles: {
         '*': 'color font-size',
-        'a': 'background font-family'
+        a: 'background font-family'
       }
     });
     assert.deepEqual(schema.getInvalidStyles(), {
       '*': {
-        'color': {},
+        color: {},
         'font-size': {}
       },
 
-      'a': {
-        'background': {},
+      a: {
+        background: {},
         'font-family': {}
       },
 
-      'A': {
-        'background': {},
+      A: {
+        background: {},
         'font-family': {}
       }
     });
@@ -565,7 +565,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     schema = Schema({
       valid_classes: {
         '*': 'classA classB',
-        'a': 'classC classD'
+        a: 'classC classD'
       }
     });
     assert.deepEqual(schema.getValidClasses(), {
@@ -574,12 +574,12 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
         classB: {}
       },
 
-      'a': {
+      a: {
         classC: {},
         classD: {}
       },
 
-      'A': {
+      A: {
         classC: {},
         classD: {}
       }
@@ -819,9 +819,9 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
           'dropzone', 'hidden', 'spellcheck', 'translate', 'xml:lang', 'bar'
         ],
         attributes: {
-          'id': {}, 'accesskey': {}, 'class': {}, 'dir': {}, 'lang': {}, 'style': {}, 'tabindex': {}, 'title': {}, 'role': {},
-          'contenteditable': {}, 'contextmenu': {}, 'draggable': {}, 'dropzone': {}, 'hidden': {},
-          'spellcheck': {}, 'translate': {}, 'xml:lang': {}, 'bar': {}
+          id: {}, accesskey: {}, class: {}, dir: {}, lang: {}, style: {}, tabindex: {}, title: {}, role: {},
+          contenteditable: {}, contextmenu: {}, draggable: {}, dropzone: {}, hidden: {},
+          spellcheck: {}, translate: {}, 'xml:lang': {}, bar: {}
         }
       });
     });

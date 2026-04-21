@@ -247,7 +247,7 @@ describe('browser.hugerte.themes.silver.editor.SilverEditorTest', () => {
                                   s.element('span', {
                                     attrs: {
                                       'aria-hidden': str.is('true'),
-                                      'style': str.is('display: none;')
+                                      style: str.is('display: none;')
                                     },
                                     children: [
                                       s.text(str.is('To open the popup, press Shift+Enter'))
@@ -279,7 +279,7 @@ describe('browser.hugerte.themes.silver.editor.SilverEditorTest', () => {
                                   s.element('span', {
                                     attrs: {
                                       'aria-hidden': str.is('true'),
-                                      'style': str.is('display: none;')
+                                      style: str.is('display: none;')
                                     },
                                     children: [
                                       s.text(str.is('To open the popup, press Shift+Enter'))

@@ -335,7 +335,7 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.InlineToolbarPositio
           Assertions.assertStructure('Assert no header width or max-width set', ApproxStructure.build((s, str) =>
             s.element('div', {
               styles: {
-                'width': str.none(),
+                width: str.none(),
                 'max-width': str.none()
               }
             })

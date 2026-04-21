@@ -246,7 +246,7 @@ describe('browser.hugerte.core.fmt.PreviewTest', () => {
         inline: 'span',
         styles: { color: '#00ff00' },
         attributes: {
-          'lang': '%value',
+          lang: '%value',
           'data-mce-lang': Fun.constant(null)
         }
       })), 'Format with variable attribute values');

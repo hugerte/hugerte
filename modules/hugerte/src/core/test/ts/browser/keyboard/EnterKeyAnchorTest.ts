@@ -52,7 +52,7 @@ describe('browser.hugerte.core.keyboard.EnterKeyAnchorTest', () => {
                 s.element('a', {
                   attrs: {
                     'data-mce-href': str.is('#'),
-                    'href': str.is('#')
+                    href: str.is('#')
                   },
                   children: [
                     s.text(str.is(Zwsp.ZWSP + 'a'))
@@ -80,7 +80,7 @@ describe('browser.hugerte.core.keyboard.EnterKeyAnchorTest', () => {
                 s.element('a', {
                   attrs: {
                     'data-mce-href': str.is('#'),
-                    'href': str.is('#')
+                    href: str.is('#')
                   },
                   children: [
                     s.text(str.is('a' + Zwsp.ZWSP))
@@ -118,7 +118,7 @@ describe('browser.hugerte.core.keyboard.EnterKeyAnchorTest', () => {
                 s.element('a', {
                   attrs: {
                     'data-mce-href': str.is('#'),
-                    'href': str.is('#')
+                    href: str.is('#')
                   }
                 })
               ]
@@ -128,7 +128,7 @@ describe('browser.hugerte.core.keyboard.EnterKeyAnchorTest', () => {
                 s.element('a', {
                   attrs: {
                     'data-mce-href': str.is('#'),
-                    'href': str.is('#')
+                    href: str.is('#')
                   },
                   children: [
                     s.text(str.is(Zwsp.ZWSP + 'b'))
@@ -158,7 +158,7 @@ describe('browser.hugerte.core.keyboard.EnterKeyAnchorTest', () => {
                 s.element('a', {
                   attrs: {
                     'data-mce-href': str.is('#'),
-                    'href': str.is('#')
+                    href: str.is('#')
                   },
                   children: [
                     s.text(str.is('b'))

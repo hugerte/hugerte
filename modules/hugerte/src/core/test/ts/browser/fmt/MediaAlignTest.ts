@@ -17,7 +17,7 @@ describe('browser.hugerte.core.fmt.MediaAlignTest', () => {
       if (alignment === 'left') {
         return { float: str.is('left') };
       } else if (alignment === 'center') {
-        return { 'display': str.is('block'), 'margin-left': str.is('auto'), 'margin-right': str.is('auto') };
+        return { display: str.is('block'), 'margin-left': str.is('auto'), 'margin-right': str.is('auto') };
       } else if (alignment === 'right') {
         return { float: str.is('right') };
       } else {

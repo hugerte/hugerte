@@ -233,7 +233,7 @@ const get = (editor: Editor): Formats => {
       clear_child_styles: true,
       remove_similar: true,
       attributes: {
-        'lang': '%value',
+        lang: '%value',
         'data-mce-lang': (vars) => vars?.customValue ?? null
       }
     },
