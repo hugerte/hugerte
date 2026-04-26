@@ -33,7 +33,7 @@ describe('headless.hugerte.themes.silver.toolbar.SearchableMenuButtonTest', () =
           text: 'MailMerge',
           icon: null,
           tooltip: null,
-          onSetup: () => () = {}),
+          onSetup: () => () => {},
           search: { placeholder: null },
           fetch: fetchMailMergeData({
             // If a search pattern is present, collapse into one menu

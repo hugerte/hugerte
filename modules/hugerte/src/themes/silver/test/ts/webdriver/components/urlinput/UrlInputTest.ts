@@ -25,10 +25,10 @@ describe('webdriver.hugerte.themes.silver.components.urlinput.UrlInputTest', () 
       addToHistory: (_url, _filetype) => store.adder('addToHistory')(),
       getLinkInformation: () => null,
       getValidationHandler: () => null,
-      getUrlPicker: (_filetype) => (entry: ApiUrlData) = {
+      getUrlPicker: (_filetype) => (entry: ApiUrlData) => {
         store.adder('urlpicker')();
         return Future.pure({ value: 'http://tiny.cloud', meta: { before: entry.value }, fieldname: 'test' });
-      })
+      }
     }, null)
   ));
 

@@ -167,12 +167,6 @@ describe('atomic.polaris.api.RegexesTest', () => {
           });
           Assert.fail('link regex must not capture any groups');
         }
-      })matched.forEach((s, i) => {
-            // eslint-disable-next-line no-console
-            console.log(i, s);
-          });
-          Assert.fail('link regex must not capture any groups');
-        }
       });
     });
 

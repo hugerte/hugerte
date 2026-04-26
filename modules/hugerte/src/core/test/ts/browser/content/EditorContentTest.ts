@@ -300,10 +300,10 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
         const initialContent = '<p>initial</p>';
         const newContent = '<p>new content</p>';
         const manipulatedContent = '<p>manipulated</p>';
-        [
+        ([
           [ 'setContent', manipulatedContent ],
           [ 'insertContent', `${manipulatedContent}\n${initialContent}` ]
-        ] as const.forEach(([ action, result ]) => {
+        ] as const).forEach(([ action, result ]) => {
           it(`TINY-9143: Can manipulate content in "BeforeSetContent" callback when called from "${action}" function`, () => {
             const editor = hook.editor();
             editor.setContent(initialContent);

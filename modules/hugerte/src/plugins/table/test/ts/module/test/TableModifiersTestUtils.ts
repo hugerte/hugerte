@@ -50,11 +50,6 @@ const setEditorContentTableAndSelection = (editor: Editor, rows: number, columns
                 }).join('') +
             '</tr>'
           );
-        })Array.from({ length: columns }, (column) => {
-                  return `<td data-mce-selected="1" ${getSelectionStartEnd(row, column)}>Filler</td>`;
-                }).join('') +
-            '</tr>'
-          );
         }).join('') +
       '</tbody>' +
     '</table>'
@@ -73,9 +68,6 @@ const assertStructureIsRestoredToDefault = (editor: Editor, rows: number, column
                 Array.from({ length: columns }, () => '<td>Filler</td>').join('') +
             '</tr>'
           );
-        })Array.from({ length: columns }, () => '<td>Filler</td>').join('') +
-            '</tr>'
-          );
         }).join('') +
       '</tbody>' +
     '</table>');
@@ -89,11 +81,6 @@ const assertStructureHasCustomStyle = (editor: Editor, rows: number, columns: nu
           return (
             '<tr>' +
                 Array.from({ length: columns }, () => {
-                  return `<td style="${expectedStyle};">Filler</td>`;
-                }).join('') +
-            '</tr>'
-          );
-        })Array.from({ length: columns }, () => {
                   return `<td style="${expectedStyle};">Filler</td>`;
                 }).join('') +
             '</tr>'

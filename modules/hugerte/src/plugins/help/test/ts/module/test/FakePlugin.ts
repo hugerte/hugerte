@@ -6,10 +6,10 @@ import PluginManager from 'hugerte/core/api/PluginManager';
 export default (): void => {
   const Plugin = (_editor: Editor, _url: string) => {
     return {
-      getMetadata: () => {
+      getMetadata: () => ({
         name: 'Fake',
         url: 'http://www.fake.com'
-      }
+      })
     };
   };
 

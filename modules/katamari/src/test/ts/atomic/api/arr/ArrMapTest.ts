@@ -33,7 +33,7 @@ describe('atomic.katamari.api.arr.ArrMapTest', () => {
       const g = dbl;
 
       fc.assert(fc.property(fc.array(fc.nat()), (xs) =>
-        assert.deepEqual(xs.map(g).map(f)xs.map(g), f), xs.map(Fun.compose(f, g)))
+        assert.deepEqual(xs.map(g).map(f), xs.map(Fun.compose(f, g)))
       ));
     });
   });

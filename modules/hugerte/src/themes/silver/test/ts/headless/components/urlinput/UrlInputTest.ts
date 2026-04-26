@@ -45,10 +45,10 @@ describe('headless.hugerte.themes.silver.components.urlinput.UrlInputTest', () =
         anchorBottom: undefined
       },
       getValidationHandler: () => null,
-      getUrlPicker: (_filetype) => (entry: ApiUrlData) = {
+      getUrlPicker: (_filetype) => (entry: ApiUrlData) => {
         store.adder('urlpicker')();
         return Future.pure({ value: 'http://tiny.cloud', meta: { before: entry.value }, fieldname: 'test' });
-      })
+      }
     }, null);
 
   const hook = TestHelpers.GuiSetup.bddSetup((store, _doc, _body) => GuiFactory.build(

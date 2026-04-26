@@ -26,9 +26,7 @@ const generateTestTableBody = (rows: number, cols: number, tdContent: (row: numb
   Array.from({ length: rows }, (row) =>
       '<tr>' +
       Array.from({ length: cols }, (column) => '<td>' + tdContent(row, column) + '</td>').join('') +
-      '</tr>')Array.from({ length: cols }, (column) => '<td>' + tdContent(row, column) + '</td>').join('') +
-      '</tr>'
-  );
+      '</tr>');
 
 export {
   generateTestTable,

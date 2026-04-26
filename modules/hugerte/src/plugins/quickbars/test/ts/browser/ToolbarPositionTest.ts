@@ -68,11 +68,7 @@ describe.skip('browser.hugerte.plugins.quickbars.ToolbarPositionTest', () => {
       '<tr>' + Array.from({ length: cols }, (col) => {
         const cellNum = (row * cols) + col + 1;
         return `<td${getCellStyle}>${cellNum}</td>`;
-      }).join('') + '</tr>')Array.from({ length: cols }, (col) => {
-        const cellNum = (row * cols) + col + 1;
-        return `<td${getCellStyle}>${cellNum}</td>`;
-      }).join('') + '</tr>'
-    ).join('');
+      }).join('') + '</tr>').join('');
 
     const renderedColumns = Array.from({ length: cols }, () =>
       `<col style="${cellWidth}"></col>`).join('');

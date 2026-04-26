@@ -80,4 +80,4 @@ describe('browser.hugerte.core.delete.MediaDeleteTest', () => {
       });
     });
   });
-});)
+});

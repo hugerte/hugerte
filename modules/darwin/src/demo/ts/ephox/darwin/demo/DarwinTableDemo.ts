@@ -85,7 +85,7 @@ Insert.append(SugarBody.body(), cloneDiv);
 
 Insert.append(SugarBody.body(), SugarElement.fromHtml('<span id="coords">(0, 0)</span>'));
 DomEvent.bind(SugarBody.body(), 'mousemove', (event) => {
-  document.querySelector('#coords') ?? null.getOrDie('Could not find ID "coords"').innerHTML = '(' + event.raw.clientX + ', ' + event.raw.clientY + ')';
+  (document.querySelector('#coords') as HTMLElement)!.innerHTML = '(' + event.raw.clientX + ', ' + event.raw.clientY + ')';
 });
 
 const annotations = SelectionAnnotation.byClass(Ephemera);

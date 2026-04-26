@@ -84,9 +84,9 @@ UnitTest.test('LanguageGetTest', () => {
   // Make sure it's using getLanguage, and that getLanguage can be overridden
   const fakeUniverse: TestUniverse = {
     ...doc,
-    property: () => {
+    property: () => ({
       ...doc.property(),
-      getLanguage: (e) => doc.property().getLanguage(e).map((lang) => 'custom:' + lang
+      getLanguage: (e) => doc.property().getLanguage(e).map((lang) => 'custom:' + lang)
     })
   };
 

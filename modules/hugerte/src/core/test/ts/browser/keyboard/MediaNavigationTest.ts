@@ -110,4 +110,4 @@ describe('browser.hugerte.core.keyboard.MediaNavigationTest', () => {
       });
     });
   });
-});)
+});

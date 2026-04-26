@@ -14,7 +14,7 @@ UnitTest.test('CommentsTest', () => {
   Assert.eq('', 'two', SugarComment.get(all[1]));
   Assert.eq('', 'three', SugarComment.get(all[2]));
 
-  const one = SugarComments.find(testPage, (value) = value === 'one'));
+  const one = SugarComments.find(testPage, (value) => value === 'one');
   Assert.eq('', 1, one.length);
   Assert.eq('', 'one', SugarComment.get(one[0]));
 });

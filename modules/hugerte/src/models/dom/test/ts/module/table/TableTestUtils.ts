@@ -217,17 +217,7 @@ const assertTableStructureWithSizes = (
                 ])
               ]
             }))
-        }))Array.from({ length: cols }, (colIndex) =>
-            s.element(colIndex < options.headerCols || rowIndex < options.headerRows ? 'th' : 'td', {
-              children: [
-                s.either([
-                  s.element('br', { }),
-                  s.text(str.contains('Cell'))
-                ])
-              ]
-            }))
-        })
-      )
+        }))
     });
 
     const colGroup = s.element('colgroup', {

@@ -33,9 +33,9 @@ describe('browser.robin.LanguageOverrideTest', () => {
   const normal = DomUniverse();
   const override: Universe<SugarElement, Document> = {
     ...normal,
-    property: () => {
+    property: () => ({
       ...normal.property(),
-      getLanguage: (ele: SugarElement) => normal.property().getLanguage(ele).map((lang) => 'custom:' + lang
+      getLanguage: (ele: SugarElement) => normal.property().getLanguage(ele).map((lang) => 'custom:' + lang)
     })
   };
 

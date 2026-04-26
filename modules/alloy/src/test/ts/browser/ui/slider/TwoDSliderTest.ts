@@ -28,7 +28,7 @@ UnitTest.asynctest('Browser Test: ui.slider.TwoDSliderTest', (success, failure) 
         mode: 'xy',
         minX: 50,
         maxX: 200,
-        getInitialValue: () => { x: 200, y: 200 },
+        getInitialValue: () => ({ x: 200, y: 200 }),
         minY: 50,
         maxY: 200
       },

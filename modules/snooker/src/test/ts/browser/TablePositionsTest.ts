@@ -77,8 +77,8 @@ UnitTest.test('RectangularTest', () => {
     tableTarget.dom.querySelectorAll('td').forEach((td) => {
       td.style.background = '';
     });
-    document.querySelector(from) as HTMLTableCellElement ?? null.getOrDie('Missing element for "from" selector').style.background = '#cadbee';
-    document.querySelector(to) as HTMLTableCellElement ?? null.getOrDie('Missing element for "to" selector').style.background = '#5adb33';
+    (document.querySelector(from) as HTMLTableCellElement)!.style.background = '#cadbee';
+    (document.querySelector(to) as HTMLTableCellElement)!.style.background = '#5adb33';
     const start = SelectorFilter.descendants<HTMLTableCellElement>(tableTarget, from)[0];
     const finish = SelectorFilter.descendants<HTMLTableCellElement>(tableTarget, to)[0];
     const c = TablePositions.getBox(tableTarget, start, finish);

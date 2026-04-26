@@ -111,4 +111,11 @@ describe('browser.hugerte.core.FontSelectTest', () => {
     it('TBA: System font stack variants on a paragraph show "System Font" as the font name', () => {
       const editor = hook.editor();
       editor.setContent(systemFontStackVariants.reduce((acc, font) => acc + '<p style="font-family: ' + font.replace(/"/g, `'`) + '"></p>', ''));
-      systemFontStackVariants.forEach((_)
+      systemFontStackVariants.forEach((_, i) => {
+        TinySelections.setCursor(editor, [ i, 0 ], 0);
+        editor.nodeChanged();
+        assertSelectBoxDisplayValue('fontfamily', 'System Font');
+      });
+    });
+  });
+});

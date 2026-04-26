@@ -74,14 +74,14 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
       const dialogChange = DialogChanges.init({ title: '', text: '' } as LinkDialogData, { } as LinkDialogCatalog);
 
       fc.assert(fc.property(fc.webUrl(), fc.asciiString(), fc.asciiString(), (url, title, text) => {
-        const data = () => { url: {
+        const data = () => ({ url: {
           value: url,
           meta: { title, text }
-        }} as LinkDialogData;
-        const dataNoMeta = () => { url: {
+        }} as LinkDialogData);
+        const dataNoMeta = () => ({ url: {
           value: url,
           meta: { }
-        }} as LinkDialogData;
+        }} as LinkDialogData);
 
         Assert.eq('on url change should include url title and text',
           { title, text },
@@ -103,10 +103,10 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
       const dialogChangeNoText = DialogChanges.init({ title: 'orig title', text: '' } as LinkDialogData, { } as LinkDialogCatalog);
 
       fc.assert(fc.property(fc.webUrl(), fc.asciiString(), fc.asciiString(), (url, title, text) => {
-        const data = () => { url: {
+        const data = () => ({ url: {
           value: url,
           meta: { title, text }
-        }} as LinkDialogData;
+        }} as LinkDialogData);
 
         Assert.eq('on url change should not try to change title and text',
           null,

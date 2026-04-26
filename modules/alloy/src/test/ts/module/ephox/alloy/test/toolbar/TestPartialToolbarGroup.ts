@@ -12,8 +12,7 @@ const mungeItem = (itemSpec: AlloySpec) => ({ ...itemSpec, ...{
     behaviours: Behaviour.derive([
       Focusing.config({ })
     ])
-  },
-  {
+  }, ...{
     domModification: {
       classes: [ 'toolbar-item' ]
     }

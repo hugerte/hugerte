@@ -55,4 +55,4 @@ UnitTest.test('LeftBlockTest', () => {
 
   cleanup();
 
-});)
+});

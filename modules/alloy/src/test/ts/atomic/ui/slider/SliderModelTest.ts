@@ -148,14 +148,14 @@ UnitTest.test('Atomic Test: ui.slider.SliderModelTest', () => {
       value: xValue,
       step: data.stepSize,
       snap: data.snapToGrid,
-      snapStart: snapOffset + data.min <= data.max ? snapOffset + data.min : data.max),
+      snapStart: snapOffset + data.min <= data.max ? snapOffset + data.min : data.max,
       rounded: data.rounded,
       hasMinEdge: data.hasLedge,
       hasMaxEdge: data.hasRedge,
       minBound: bounds.left,
       maxBound: bounds.right,
       screenRange: bounds.width
-    ;
+    };
     const newValue = SliderModel.findValueOf(args);
     Assert.eq(
       'Assert within range: ' + newValue, true,

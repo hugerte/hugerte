@@ -116,10 +116,7 @@ UnitTest.asynctest('MultipleToolbarTest', (success, failure) => {
           { items: [{ text: 'A' }, { text: 'B' }].map(makeToolbarItem) },
           { items: [{ text: 'C' }, { text: 'D' }].map(makeToolbarItem) },
           { items: [{ text: 'E' }, { text: 'F' }, { text: 'G' }].map(makeToolbarItem) }
-        ].map(makeToolbarGroup)[{ text: 'A' }, { text: 'B' }].map(makeToolbarItem) },
-          { items: [{ text: 'C' }, { text: 'D' }].map(makeToolbarItem) },
-          { items: [{ text: 'E' }, { text: 'F' }, { text: 'G' }].map(makeToolbarItem) }
-        ], makeToolbarGroup);
+        ].map(makeToolbarGroup);
 
         CustomList.setItems(toolbarList, [
           groups.map(ToolbarGroup.sketch),

@@ -30,22 +30,22 @@ describe('atomic.hugerte.plugins.lists.core.ListNumberingTest', () => {
   it('TINY-6891: Converts lowercase letter -> lower-alpha list type detail -> back to initial lowercase letter', () => {
     check(
       'a',
-      { start: '1', listStyleType: 'lower-alpha' }'lower-alpha' })
+      { start: '1', listStyleType: 'lower-alpha' }
     );
     check(
       'z',
-      { start: '26', listStyleType: 'lower-alpha' }'lower-alpha' })
+      { start: '26', listStyleType: 'lower-alpha' }
     );
   });
 
   it('TINY-6891: Converts uppercase letters -> upper-alpha list type detail -> back to initial uppercase letters', () => {
     check(
       'A',
-      { start: '1', listStyleType: 'upper-alpha' }'upper-alpha' })
+      { start: '1', listStyleType: 'upper-alpha' }
     );
     check(
       'ABCD',
-      { start: '19010', listStyleType: 'upper-alpha' }'upper-alpha' })
+      { start: '19010', listStyleType: 'upper-alpha' }
     );
   });
 

@@ -68,7 +68,7 @@ export default (sink?: AlloyComponent): UiFactoryBackstage => {
       addToHistory: () => {},
       getLinkInformation: () => null,
       getValidationHandler: () => null,
-      getUrlPicker: (_filetype) => (entry: ApiUrlData) = Future.pure(entry))
+      getUrlPicker: (_filetype) => (entry: ApiUrlData) => Future.pure(entry)
     },
     styles: {
       getData: () => []

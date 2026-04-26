@@ -105,7 +105,7 @@ describe('webdriver.hugerte.themes.silver.toolbar.SearchableMenuTypingTest', () 
           text: 'MailMerge',
           icon: null,
           tooltip: null,
-          onSetup: () => () = {}),
+          onSetup: () => () => {},
           search: { placeholder: null },
           fetch: fetchMailMergeData({
             // To test that <left> and <right> etc. are not being

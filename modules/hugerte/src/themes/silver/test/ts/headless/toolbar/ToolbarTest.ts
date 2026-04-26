@@ -126,12 +126,7 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarTest', () => {
         {
           title: null, items: [ 'C' ].map(makeButton)
         }
-      ].map(renderToolbarGroup)[ 'A', 'B' ].map(makeButton)
-        },
-        {
-          title: null, items: [ 'C' ].map(makeButton)
-        }
-      ], renderToolbarGroup);
+      ].map(renderToolbarGroup);
 
       Toolbar.setGroups(toolbar, groups);
       Keying.focusIn(toolbar);

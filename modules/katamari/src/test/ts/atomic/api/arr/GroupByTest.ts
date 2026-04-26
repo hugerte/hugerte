@@ -71,13 +71,6 @@ describe('atomic.katamari.api.arr.GroupByTest', () => {
             assert.fail('Not everything in a group has the same g(..) value');
           }
           return first;
-        })group.map((g) => f(g));
-
-          const isSame = mapped.every((m) => m === first);
-          if (!isSame) {
-            assert.fail('Not everything in a group has the same g(..) value');
-          }
-          return first;
         });
 
         const hasSameGroup = values.some((v, i) => i > 0 ? values[i - 1] === values[i] : false);

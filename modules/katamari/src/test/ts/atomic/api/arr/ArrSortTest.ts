@@ -13,7 +13,7 @@ describe('atomic.katamari.api.arr.ArrSortTest', () => {
   it('is idempotent', () => {
     fc.assert(fc.property(
       fc.array(fc.nat()), (arr) => {
-        assert.deepEqual([...[...arr].sort()].sort()[...arr].sort()), [...arr].sort());
+        assert.deepEqual([...[...arr].sort()].sort(), [...arr].sort());
       }
     ));
   });

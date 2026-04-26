@@ -80,7 +80,7 @@ describe('browser.alloy.behaviour.blocking.BlockingFocusTest', () => {
     it('does not focus if busy component does not have Keying configured', async () => {
       const comp = hook.component();
       Focusing.focus(memFocusDiv.get(comp));
-      Blocking.block(comp, () => { dom: { tag: 'div', classes: [ busyComponentClass ] }});
+      Blocking.block(comp, () => ({ dom: { tag: 'div', classes: [ busyComponentClass ] }}));
       await pAssertBusyComponentFocus(false);
       Blocking.unblock(comp);
     });

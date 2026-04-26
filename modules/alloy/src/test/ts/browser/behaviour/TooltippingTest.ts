@@ -179,7 +179,7 @@ UnitTest.asynctest('Tooltipping Behaviour', (success, failure) => {
           // NOTE: This won't actual fail is this throws an error to the console :( It's
           // disconnected from the event queue.
         ]
-      .flat()
-    ]);
+      )
+    ];
   }, success, failure);
 });

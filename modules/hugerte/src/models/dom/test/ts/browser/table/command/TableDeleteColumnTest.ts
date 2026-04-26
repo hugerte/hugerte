@@ -83,7 +83,7 @@ describe('browser.hugerte.models.dom.table.command.TableDeleteColumnTest', () =>
 
   /** Create `rows` number of `tr` elements, with `cols` number of `td` elements inside each.  */
   const tr = (rows: number, cols: number): string[] =>
-    Array.from({ length: rows }, (r) => '<tr>' + Array.from({ length: cols }, (c) => `<td>${r}-${c}</td>`).join('') + '</tr>')Array.from({ length: cols }, (c) => `<td>${r}-${c}</td>`).join('') + '</tr>');
+    Array.from({ length: rows }, (r) => '<tr>' + Array.from({ length: cols }, (c) => `<td>${r}-${c}</td>`).join('') + '</tr>');
   const textOffset = (row: number, col: number) => `${row}-${col}`.length;
 
   [

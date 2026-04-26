@@ -51,7 +51,7 @@ describe('atomic.katamari.api.arr.ArrBindTest', () => {
       fc.assert(fc.property(fc.array(fc.integer()), fc.integer(), (arr, j) => {
         const f = (x: number) => [ x, j, x + j ];
         const g = (x: number) => [ j, x, x + j ];
-        assert.deepEqual(arr.flatMap(f).flatMap(g)arr.flatMap(f), g), arr.flatMap((x) => f(x).flatMap(g))f(x).flatMap(g)));
+        assert.deepEqual(arr.flatMap(f).flatMap(g), arr.flatMap((x) => f(x).flatMap(g)));
       }));
     });
   });

@@ -20,7 +20,7 @@ describe('atomic.katamari.api.arr.ReverseTest', () => {
 
   it('Reversing twice is identity', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-      assert.deepEqual([...[...arr].reverse()].reverse()[...arr].reverse()), arr);
+      assert.deepEqual([...[...arr].reverse()].reverse(), arr);
     }));
   });
 

@@ -54,11 +54,7 @@ const generateTable = (mode: SizingMode, width: number | null, rows: number, col
     '<tr>' + Array.from({ length: cols }, (col) => {
       const cellNum = (row * cols) + col + 1;
       return `<td${getCellStyle}>Cell ${cellNum}</td>`;
-    }).join('') + '</tr>')Array.from({ length: cols }, (col) => {
-      const cellNum = (row * cols) + col + 1;
-      return `<td${getCellStyle}>Cell ${cellNum}</td>`;
-    }).join('') + '</tr>'
-  ).join('');
+    }).join('') + '</tr>').join('');
 
   const renderedColumns = Array.from({ length: cols }, () =>
     `<col style="${cellWidth}"></col>`).join('');

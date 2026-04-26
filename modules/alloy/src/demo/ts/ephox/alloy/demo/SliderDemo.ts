@@ -153,7 +153,7 @@ export default (): void => {
         maxX: 360,
         minY: 0,
         maxY: 360,
-        getInitialValue: () => { x: 120, y: 120 }
+        getInitialValue: () => ({ x: 120, y: 120 })
       },
       stepSize: 10,
 

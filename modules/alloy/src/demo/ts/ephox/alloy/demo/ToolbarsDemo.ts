@@ -91,66 +91,7 @@ export default (): void => {
 
       ].map(DemoRenders.toolbarItem)
     }
-  ].map(DemoRenders.toolbarGroup)[
-        { text: '1a', action: () => {} },
-        { text: '1b', action: () => {} },
-        { text: '1c', action: () => {} }
-
-      ].map(DemoRenders.toolbarItem)
-    },
-    {
-      label: 'group-2',
-      items: [
-        { text: '2a', action: () => {} },
-        { text: '2b', action: () => {} },
-        { text: '2c', action: () => {} }
-
-      ].map(DemoRenders.toolbarItem)
-    },
-    {
-      label: 'group-3',
-      items: [
-        { text: '3a', action: () => {} },
-        { text: '3b', action: () => {} },
-        { text: '3c', action: () => {} }
-
-      ].map(DemoRenders.toolbarItem)
-    },
-    {
-      label: 'group-4',
-      items: [
-        { text: '4a', action: () => {} },
-        { text: '4b', action: () => {} },
-        { text: '4c', action: () => {} }
-
-      ].map(DemoRenders.toolbarItem)
-    },
-    {
-      label: 'group-5',
-      items: [
-        { text: '5a', action: () => {} },
-        { text: '5b', action: () => {} },
-        { text: '5c', action: () => {} }
-
-      ].map(DemoRenders.toolbarItem)
-    },
-    {
-      label: 'group-6',
-      items: [
-        { text: '6a', action: () => {} },
-        { text: '6b', action: () => {} }
-
-      ].map(DemoRenders.toolbarItem)
-    },
-    {
-      label: 'group-7',
-      items: [
-        { text: '7a', action: () => {} },
-        { text: '7b', action: () => {} }
-
-      ].map(DemoRenders.toolbarItem)
-    }
-  ], DemoRenders.toolbarGroup);
+  ].map(DemoRenders.toolbarGroup);
 
   const subject = HtmlDisplay.section(
     gui,

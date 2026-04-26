@@ -115,17 +115,6 @@ describe('Table Sizes Test (fusebox)', () => {
       });
       InsertAll.append(tr, cells);
       trows.push(tr);
-    })Array.from({ length: numCells }, (c) => {
-        const td = SugarElement.fromTag('td');
-        const height = tdInfo[r][c];
-        if (height != null) {
-          Css.set(td, 'height', height);
-        }
-        Insert.append(td, SugarElement.fromText(String.fromCharCode('A'.charCodeAt(0) + c) + r));
-        cells.push(td);
-      });
-      InsertAll.append(tr, cells);
-      trows.push(tr);
     });
     InsertAll.append(tbody, trows);
     Insert.append(table, tbody);

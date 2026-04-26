@@ -121,35 +121,6 @@ UnitTest.test('Runtime Size Test', () => {
       });
 
       return row;
-    })Array.from({ length: cols }, () => {
-        const cell = SugarElement.fromTag('td');
-
-        Css.setAll(cell, {
-          'width': randomSize(1, 100),
-          'height': randomSize(1, 100),
-          'box-sizing': randomValue([ 'content-box', 'border-box' ]),
-          'padding-top': randomSize(0, 5),
-          'padding-left': randomSize(0, 5),
-          'padding-bottom': randomSize(0, 5),
-          'padding-right': randomSize(0, 5),
-          'border-top': randomBorder(0, 5, 'green'),
-          'border-left': randomBorder(0, 5, 'green'),
-          'border-bottom': randomBorder(0, 5, 'green'),
-          'border-right': randomBorder(0, 5, 'green')
-        });
-
-        const content = SugarElement.fromTag('div');
-
-        Css.setAll(content, {
-          width: '10px',
-          height: randomSize(1, 200)
-        });
-
-        Insert.append(cell, content);
-        Insert.append(row, cell);
-      });
-
-      return row;
     });
 
     Insert.append(table, tbody);
