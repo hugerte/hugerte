@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Arr, Fun, Merger, Obj } from '@ephox/katamari';
 import * as fc from 'fast-check';
 

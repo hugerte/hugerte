@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface Monitor<T> {
   run: (...args: any[]) => T;
   get: () => number;

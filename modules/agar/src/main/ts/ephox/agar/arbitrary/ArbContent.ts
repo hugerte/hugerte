@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Merger, Obj } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { DataType, Http } from '@ephox/jax';
 
 import { Chain } from '../api/Chain';

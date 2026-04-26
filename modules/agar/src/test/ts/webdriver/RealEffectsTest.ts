@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
 import { PlatformDetection } from '@ephox/sand';
 import { Class, Css, Html, Insert, Remove, SugarElement } from '@ephox/sugar';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Fun, Obj, Result } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';

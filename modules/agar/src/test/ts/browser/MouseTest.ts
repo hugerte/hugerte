@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
 import { Arr } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';

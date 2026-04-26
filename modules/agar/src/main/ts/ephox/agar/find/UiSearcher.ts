@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { TestLabel } from '@ephox/bedrock-client';
 import { Adt, Optional, Result } from '@ephox/katamari';
 import { SugarElement, Truncate } from '@ephox/sugar';

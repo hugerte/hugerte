@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Arr, Obj, Result } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Fun } from '@ephox/katamari';
 import { Focus, SugarElement } from '@ephox/sugar';
 

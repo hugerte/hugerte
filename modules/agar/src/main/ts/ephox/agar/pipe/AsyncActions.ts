@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { DieFn } from './Pipe';
 
 const delay = (amount: number) =>

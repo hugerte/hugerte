@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Singleton } from '@ephox/katamari';
 import { DomEvent, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';

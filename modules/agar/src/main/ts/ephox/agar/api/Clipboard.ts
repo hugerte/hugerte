@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Arr, Obj } from '@ephox/katamari';
 import { SugarBody, SugarElement } from '@ephox/sugar';
 

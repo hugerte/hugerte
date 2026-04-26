@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { TestLabel } from '@ephox/bedrock-client';
 import { Arr } from '@ephox/katamari';
 

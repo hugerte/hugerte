@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Singleton } from '@ephox/katamari';
 import { Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';

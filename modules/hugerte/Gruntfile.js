@@ -55,7 +55,7 @@ module.exports = function (grunt) {
 
     shell: {
       prismjs: { command: 'node ./bin/build-prism.js', cwd: '../../' },
-      tsc: { command: 'tsc -b' },
+      tsc: { command: 'tsc -p tsconfig.json' },
       moxiedoc: { command: 'moxiedoc "src/core/main/ts" -t hugertenext --fail-on-warning --dry' }
     },
 

@@ -4,7 +4,6 @@
     "outDir": "lib",
     "rootDir": "src",
     "baseUrl": ".",
-    "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
     "allowSyntheticDefaultImports": true,
     "paths": {
       "hugerte": ["src/core/main/ts/api/Main"],
@@ -64,21 +63,5 @@
     "src/models/*/test/ts",
     "src/core/dist/globals/hugerte/core/",
     "src/core/dist/globals/**/*.ts"
-  ],
-  "references": [
-    { "path": "../acid" },
-    { "path": "../agar" },
-    { "path": "../alloy" },
-    { "path": "../boulder" },
-    { "path": "../bridge" },
-    { "path": "../darwin" },
-    { "path": "../katamari" },
-    { "path": "../katamari-assertions" },
-    { "path": "../mcagar" },
-    { "path": "../polaris" },
-    { "path": "../robin" },
-    { "path": "../sand" },
-    { "path": "../snooker" },
-    { "path": "../sugar" }
   ]
 }

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Arr, Result } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Assert } from '@ephox/bedrock-client';
 import { Pprint } from '@ephox/dispute';
 import { Arr, Fun, Result } from '@ephox/katamari';

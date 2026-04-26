@@ -1,5 +1,5 @@
 import { AlloyParts, AlloySpec, FormTypes, SimpleOrSketchSpec } from '@ephox/alloy';
-import { Dialog } from '@ephox/bridge/';
+import { Dialog } from '@ephox/bridge';
 import { Fun, Merger, Obj, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';

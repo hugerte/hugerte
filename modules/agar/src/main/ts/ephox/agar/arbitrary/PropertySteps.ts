@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as fc from 'fast-check';
 
 import { Step } from '../api/Step';

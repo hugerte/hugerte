@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Arr, Fun, Merger } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';

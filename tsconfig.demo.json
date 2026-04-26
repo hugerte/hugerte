@@ -3,10 +3,7 @@
 
   "compilerOptions": {
     "paths": {
-      // duplicate paths, copied from tsconfig.json
-      // the exception is the hugerte core paths which point to the lib directories
-      // once there is a webpack path plugin that supports project references most of this can be deleted
-      "hugerte": ["modules/hugerte/lib/core/main/ts/api/Main"],
+      "hugerte": ["modules/hugerte/src/core/main/ts/api/Main"],
       "hugerte/core/*": ["modules/hugerte/lib/globals/hugerte/core/*"],
       "hugerte/themes/silver/resources/*": ["modules/hugerte/src/themes/silver/main/resources/*"],
       "hugerte/themes/silver/demo/*": ["modules/hugerte/src/themes/silver/demo/ts/*"],

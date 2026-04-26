@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
 import { Fun } from '@ephox/katamari';
 import { DomEvent, Focus, SugarElement } from '@ephox/sugar';

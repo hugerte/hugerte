@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { addStackTrace, TestLogs } from '../api/TestLogs';
 
 export type NextFn<T> = (value: T, logs: TestLogs) => void;

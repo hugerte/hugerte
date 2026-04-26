@@ -90,8 +90,7 @@ let create = (entries, tsConfig, outDir = '.') => {
               loader: 'ts-loader',
               options: {
                 configFile: tsConfigPath,
-                transpileOnly: true,
-                projectReferences: true
+                transpileOnly: true
               }
             }
           ]
@@ -102,8 +101,6 @@ let create = (entries, tsConfig, outDir = '.') => {
       // See https://github.com/TypeStrong/ts-loader#usage-with-webpack-watch
       new webpack.WatchIgnorePlugin({
         paths: [
-          // Ignore generated .js, .map and .d.ts output files
-          /hugerte\/modules\/.*\/lib\/.*\.(js|map|d\.ts)$/,
           // Something seems to trigger that node module package.json files change when they
           // haven't, so lets just ignore them entirely
           /node_modules\/.*\/package\.json$/

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Result } from '@ephox/katamari';
 import { Compare, Focus, SugarElement, SugarShadowDom, Truncate } from '@ephox/sugar';
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
 import { DomEvent, Insert, Remove, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';

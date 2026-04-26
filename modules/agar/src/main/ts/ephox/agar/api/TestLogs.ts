@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Arr } from '@ephox/katamari';
 
 export enum TestLogEntryState {

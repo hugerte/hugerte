@@ -1,34 +1,21 @@
 {
-  "extends": "./tsconfig.shared.json",
-
-  // Compile nothing here but instead let it be compiled by the project references
-  "files": [],
-  "references": [
-    { "path": "modules/acid" },
-    { "path": "modules/agar" },
-    { "path": "modules/alloy" },
-    { "path": "modules/boss" },
-    { "path": "modules/boulder" },
-    { "path": "modules/bridge" },
-    { "path": "modules/darwin" },
-    { "path": "modules/dragster" },
-    { "path": "modules/katamari" },
-    { "path": "modules/katamari-assertions" },
-    { "path": "modules/mcagar" },
-    { "path": "modules/phoenix" },
-    { "path": "modules/polaris" },
-    { "path": "modules/porkbun" },
-    { "path": "modules/robin" },
-    { "path": "modules/sand" },
-    { "path": "modules/snooker" },
-    { "path": "modules/sugar" },
-    { "path": "modules/hugerte" }
-  ],
-
   "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es2018",
+    "module": "es2015",
+    "lib": ["es2020", "dom"],
+    "importHelpers": true,
+    "noEmit": true,
+    "declaration": false,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "types": [],
     "paths": {
-      // duplicate paths, copied from each individual tsconfig.json
-      // once there is a webpack path plugin that supports project references this can be deleted
       "hugerte": ["modules/hugerte/src/core/main/ts/api/Main"],
       "hugerte/core/*": ["modules/hugerte/src/core/main/ts/*"],
       "hugerte/themes/silver/resources/*": ["modules/hugerte/src/themes/silver/main/resources/*"],
@@ -70,7 +57,8 @@
 
       "@ephox/wrap-mcagar": ["modules/hugerte/src/core/test/ts/module/McAgar"],
 
-      "@ephox/oxide-icons-default": ["modules/oxide-icons-default/dist/js/Main.d.js"],
+      "@ephox/oxide-icons-default": ["modules/oxide-icons-default/dist/js/icons.d.ts"],
+      "@tinymce/oxide-icons-default": ["modules/oxide-icons-default/dist/js/icons.d.ts"],
 
       "ephox/acid/test/*": ["modules/acid/src/test/ts/module/ephox/acid/test/*"],
       "ephox/acid/demo/*": ["modules/acid/src/demo/ts/ephox/acid/demo/*"],
@@ -132,6 +120,48 @@
       "ephox/hugerte/test/*": ["modules/hugerte/src/test/ts/module/ephox/hugerte/test/*"],
       "ephox/hugerte/demo/*": ["modules/hugerte/src/demo/ts/ephox/hugerte/demo/*"],
       "ephox/hugerte/*": ["modules/hugerte/src/main/ts/ephox/hugerte/*"],
+
+      "@ephox/acid": ["modules/acid/src/main/ts/ephox/acid/api/Main"],
+      "@ephox/agar": ["modules/agar/src/main/ts/ephox/agar/api/Main"],
+      "@ephox/alloy": ["modules/alloy/src/main/ts/ephox/alloy/api/Main"],
+      "@ephox/boss": ["modules/boss/src/main/ts/ephox/boss/api/Main"],
+      "@ephox/boulder": ["modules/boulder/src/main/ts/ephox/boulder/api/Main"],
+      "@ephox/bridge": ["modules/bridge/src/main/ts/ephox/bridge/api/Main"],
+      "@ephox/darwin": ["modules/darwin/src/main/ts/ephox/darwin/api/Main"],
+      "@ephox/dragster": ["modules/dragster/src/main/ts/ephox/dragster/api/Main"],
+      "@ephox/jax": ["modules/jax/src/main/ts/ephox/jax/api/Main"],
+      "@ephox/katamari": ["modules/katamari/src/main/ts/ephox/katamari/api/Main"],
+      "@ephox/katamari-assertions": ["modules/katamari-assertions/src/main/ts/ephox/katamari-assertions/api/Main"],
+      "@ephox/mcagar": ["modules/mcagar/src/main/ts/ephox/mcagar/api/Main"],
+      "@ephox/phoenix": ["modules/phoenix/src/main/ts/ephox/phoenix/api/Main"],
+      "@ephox/polaris": ["modules/polaris/src/main/ts/ephox/polaris/api/Main"],
+      "@ephox/porkbun": ["modules/porkbun/src/main/ts/ephox/porkbun/api/Main"],
+      "@ephox/robin": ["modules/robin/src/main/ts/ephox/robin/api/Main"],
+      "@ephox/sand": ["modules/sand/src/main/ts/ephox/sand/api/Main"],
+      "@ephox/snooker": ["modules/snooker/src/main/ts/ephox/snooker/api/Main"],
+      "@ephox/sugar": ["modules/sugar/src/main/ts/ephox/sugar/api/Main"]
     }
-  }
+  },
+  "include": [
+    "modules/acid/src/**/*.ts",
+    "modules/agar/src/**/*.ts",
+    "modules/alloy/src/**/*.ts",
+    "modules/boss/src/**/*.ts",
+    "modules/boulder/src/**/*.ts",
+    "modules/bridge/src/**/*.ts",
+    "modules/darwin/src/**/*.ts",
+    "modules/dragster/src/**/*.ts",
+    "modules/jax/src/**/*.ts",
+    "modules/katamari/src/**/*.ts",
+    "modules/katamari-assertions/src/**/*.ts",
+    "modules/mcagar/src/**/*.ts",
+    "modules/phoenix/src/**/*.ts",
+    "modules/polaris/src/**/*.ts",
+    "modules/porkbun/src/**/*.ts",
+    "modules/robin/src/**/*.ts",
+    "modules/sand/src/**/*.ts",
+    "modules/snooker/src/**/*.ts",
+    "modules/sugar/src/**/*.ts",
+    "modules/hugerte/src/**/*.ts"
+  ]
 }

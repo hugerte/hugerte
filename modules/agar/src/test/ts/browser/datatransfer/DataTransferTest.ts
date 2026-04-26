@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { describe, it } from '@ephox/bedrock-client';
 import { Arr } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';

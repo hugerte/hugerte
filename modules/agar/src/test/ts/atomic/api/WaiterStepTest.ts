@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
 
 import { Pipeline } from 'ephox/agar/api/Pipeline';

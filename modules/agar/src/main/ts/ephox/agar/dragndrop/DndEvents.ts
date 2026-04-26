@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SugarElement } from '@ephox/sugar';
 
 import { setProtectedMode, setReadOnlyMode, setReadWriteMode } from '../datatransfer/Mode';

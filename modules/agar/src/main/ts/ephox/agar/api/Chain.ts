@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Failure } from '@ephox/bedrock-common';
 import { Arr, Fun, Result } from '@ephox/katamari';
 

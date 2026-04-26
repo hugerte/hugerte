@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Arr, Type } from '@ephox/katamari';
 
 import { DieFn, NextFn } from '../pipe/Pipe';

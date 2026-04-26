@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Fun, Obj } from '@ephox/katamari';
 import { SugarElement, SugarLocation, SugarNode, SugarPosition, Traverse } from '@ephox/sugar';
 

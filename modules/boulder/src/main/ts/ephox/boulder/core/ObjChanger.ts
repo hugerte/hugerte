@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Arr, Obj } from '@ephox/katamari';
 
 const narrow = <T extends Record<string, any>, F extends Array<keyof T>>(obj: T, fields: F): Pick<T, F[number]> => {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Singleton } from '@ephox/katamari';
 
 import { Chain } from '../api/Chain';

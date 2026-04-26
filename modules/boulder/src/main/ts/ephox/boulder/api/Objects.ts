@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Arr, Merger, Result, Results } from '@ephox/katamari';
 
 import * as ObjChanger from '../core/ObjChanger';

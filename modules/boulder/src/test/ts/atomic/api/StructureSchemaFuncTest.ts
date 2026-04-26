@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Logger } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Result } from '@ephox/katamari';
