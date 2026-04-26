@@ -130,8 +130,8 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
           s.element('button', {
             classes: Arr.map(classes, (cls) => arr.has(cls)),
             attrs: {
-              'type': str.is('button'),
-              'tabindex': str.is('-1'),
+              type: str.is('button'),
+              tabindex: str.is('-1'),
               'data-alloy-tabstop': str.is('true')
             },
             children: [ s.text(str.is(title)) ]

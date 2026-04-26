@@ -52,7 +52,7 @@ export const renderCollection = (
       // to ensure the screen readers pronounce the words correctly.
       // This is only for aria purposes. Emoticon and Special Character names will still use _ and - for autocompletion.
       const mapItemName: Record<string, string> = {
-        '_': ' ',
+        _: ' ',
         ' - ': ' ',
         '-': ' '
       };

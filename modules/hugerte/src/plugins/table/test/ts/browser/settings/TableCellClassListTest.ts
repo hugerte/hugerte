@@ -61,7 +61,7 @@ describe('browser.hugerte.plugins.table.TableCellClassListTest', () => {
     await TableTestUtils.openPropsDialog(editor, 'mceTableCellProps');
     await TableTestUtils.selectListBoxValue(editor, 'Class', 'none');
     await TableTestUtils.pClickDialogButton(editor, true);
-    TinyAssertions.assertContentPresence(editor, { 'td[class]': 0, 'td': 1 });
+    TinyAssertions.assertContentPresence(editor, { 'td[class]': 0, td: 1 });
   });
 
   it('TINY-6653: Selecting the "none" selection will remove all classes from a cell that has an unrelated class', async () => {
@@ -75,7 +75,7 @@ describe('browser.hugerte.plugins.table.TableCellClassListTest', () => {
     await TableTestUtils.openPropsDialog(editor, 'mceTableCellProps');
     await TableTestUtils.selectListBoxValue(editor, 'Class', 'none');
     await TableTestUtils.pClickDialogButton(editor, true);
-    TinyAssertions.assertContentPresence(editor, { 'td[class]': 0, 'td': 1 });
+    TinyAssertions.assertContentPresence(editor, { 'td[class]': 0, td: 1 });
   });
 
   it('TINY-6653: Selecting "Select..." will do nothing', async () => {

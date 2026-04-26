@@ -41,9 +41,9 @@ describe('browser.hugerte.core.paste.DragDropSummaryTest', () => {
     const editor = hook.editor();
 
     editor.setContent('<details><div>body</div></details>', { format: 'raw' });
-    TinyAssertions.assertContentPresence(editor, { 'summary': 0, 'summary > br': 0 });
+    TinyAssertions.assertContentPresence(editor, { summary: 0, 'summary > br': 0 });
     editor.dispatch('input', InputEventUtils.makeInputEvent('input', { inputType: 'deleteByDrag' }));
-    TinyAssertions.assertContentPresence(editor, { 'summary': 1, 'summary > br': 1 });
+    TinyAssertions.assertContentPresence(editor, { summary: 1, 'summary > br': 1 });
     TinyAssertions.assertContent(editor, '<details><summary>&nbsp;</summary><div>body</div></details>');
   });
 
@@ -51,9 +51,9 @@ describe('browser.hugerte.core.paste.DragDropSummaryTest', () => {
     const editor = hook.editor();
 
     editor.setContent('<details><br><div>body</div></details>', { format: 'raw' });
-    TinyAssertions.assertContentPresence(editor, { 'summary': 0, 'details > br': 1, 'summary > br': 0 });
+    TinyAssertions.assertContentPresence(editor, { summary: 0, 'details > br': 1, 'summary > br': 0 });
     editor.dispatch('input', InputEventUtils.makeInputEvent('input', { inputType: 'deleteByDrag' }));
-    TinyAssertions.assertContentPresence(editor, { 'summary': 1, 'details > br': 0, 'summary > br': 1 });
+    TinyAssertions.assertContentPresence(editor, { summary: 1, 'details > br': 0, 'summary > br': 1 });
     TinyAssertions.assertContent(editor, '<details><summary>&nbsp;</summary><div>body</div></details>');
   });
 });

@@ -80,7 +80,7 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
       };
       const cell = s.element('td', {
         styles: transformMap({
-          'padding': spec.cellPaddingStyle,
+          padding: spec.cellPaddingStyle,
           'border-width': spec.cellBorderWidthStyle
         })
       });

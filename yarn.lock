@@ -2081,7 +2081,7 @@
   dependencies:
     defer-to-connect "^2.0.1"
 
-"@tinymce/eslint-plugin@^2.3.0":
+"@tinymce/eslint-plugin@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@tinymce/eslint-plugin/-/eslint-plugin-2.4.0.tgz#e2d4d3fe97a38743cb9a5edaa5da1b7afda62171"
   integrity sha512-5G/BN3yHWNdZjGjC5q9Sn8byxlmjZYGdyd8jgz6vW787rvau5vA9XbrOfhY4SUnxkpPei2j+ttHTfrg459o8bQ==

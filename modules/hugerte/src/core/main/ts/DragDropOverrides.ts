@@ -72,10 +72,10 @@ const createGhost = (editor: Editor, elm: HTMLElement, width: number, height: nu
   dom.setAttrib(clonedElm, 'data-mce-selected', null);
 
   const ghostElm = dom.create('div', {
-    'class': 'mce-drag-container',
+    class: 'mce-drag-container',
     'data-mce-bogus': 'all',
-    'unselectable': 'on',
-    'contenteditable': 'false'
+    unselectable: 'on',
+    contenteditable: 'false'
   });
 
   dom.setStyles(ghostElm, {

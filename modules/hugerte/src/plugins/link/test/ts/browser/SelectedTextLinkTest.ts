@@ -50,7 +50,7 @@ describe('browser.hugerte.plugins.link.SelectedTextLinkTest', () => {
     await TestLinkUi.pAssertContentPresence(editor, {
       'a[href="http://something"]': 1,
       'p:contains(word)': 1,
-      'p': 1
+      p: 1
     });
   });
 
@@ -65,7 +65,7 @@ describe('browser.hugerte.plugins.link.SelectedTextLinkTest', () => {
       'a[href="http://something"]': 2,
       'p:contains(word)': 1,
       'p:contains(other)': 1,
-      'p': 2
+      p: 2
     });
   });
 
@@ -80,7 +80,7 @@ describe('browser.hugerte.plugins.link.SelectedTextLinkTest', () => {
       'a[href="http://something"]': 1,
       'strong:contains(word)': 1,
       'em:contains(other)': 1,
-      'p': 1
+      p: 1
     });
   });
 
@@ -96,9 +96,9 @@ describe('browser.hugerte.plugins.link.SelectedTextLinkTest', () => {
     await TestLinkUi.pAssertContentPresence(editor, {
       'a[href="http://something"]': 1,
       'a:contains(new text)': 1,
-      'strong': 0,
-      'em': 0,
-      'p': 1
+      strong: 0,
+      em: 0,
+      p: 1
     });
   });
 
@@ -113,7 +113,7 @@ describe('browser.hugerte.plugins.link.SelectedTextLinkTest', () => {
       'a[href="http://something"]': 1,
       'strong:contains(word)': 1,
       'em:contains(other)': 1,
-      'p': 1
+      p: 1
     });
   });
 
@@ -126,8 +126,8 @@ describe('browser.hugerte.plugins.link.SelectedTextLinkTest', () => {
     await TestLinkUi.pClickSave(editor);
     await TestLinkUi.pAssertContentPresence(editor, {
       'a[href="http://something"]': 1,
-      'a': 1,
-      'p': 1
+      a: 1,
+      p: 1
     });
   });
 
@@ -141,8 +141,8 @@ describe('browser.hugerte.plugins.link.SelectedTextLinkTest', () => {
     await TestLinkUi.pAssertContentPresence(editor, {
       'a[href="http://www.google.com/"]': 1,
       'a[href="http://something"]': 1,
-      'a': 2,
-      'p': 1
+      a: 2,
+      p: 1
     });
   });
 

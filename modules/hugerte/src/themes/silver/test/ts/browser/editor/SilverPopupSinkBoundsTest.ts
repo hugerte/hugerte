@@ -53,8 +53,8 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
 
     const banner = SugarElement.fromTag('div');
     Css.setAll(banner, {
-      'width': '100%',
-      'height': '150px',
+      width: '100%',
+      height: '150px',
       'background-color': 'purple'
     });
 

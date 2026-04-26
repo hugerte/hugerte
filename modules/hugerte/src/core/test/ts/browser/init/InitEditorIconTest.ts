@@ -22,7 +22,7 @@ describe('browser.hugerte.core.init.InitEditorIconTest', () => {
   // Copy of '/src/core/test/assets/icons/custom''. For assertion in test.
   const customIconPack = {
     icons: {
-      'bold': '<svg>bold-custom</svg>',
+      bold: '<svg>bold-custom</svg>',
       'custom-icon': '<svg>custom</svg>'
     }
   };

@@ -146,10 +146,10 @@ describe('browser.hugerte.plugins.image.core.ImageSelectionTest', () => {
             children: [
               s.element('img', {
                 attrs: {
-                  'src': str.is('updated-image.png'),
-                  'alt': str.is(''),
-                  'width': str.is('100'),
-                  'height': str.is('100'),
+                  src: str.is('updated-image.png'),
+                  alt: str.is(''),
+                  width: str.is('100'),
+                  height: str.is('100'),
                   'data-mce-src': str.is('updated-image.png')
                 }
               }),
@@ -192,10 +192,10 @@ describe('browser.hugerte.plugins.image.core.ImageSelectionTest', () => {
             children: [
               s.element('img', {
                 attrs: {
-                  'src': str.is('updated-image.png'),
-                  'alt': str.is(''),
-                  'width': str.is('100'),
-                  'height': str.is('100'),
+                  src: str.is('updated-image.png'),
+                  alt: str.is(''),
+                  width: str.is('100'),
+                  height: str.is('100'),
                   'data-mce-src': str.is('updated-image.png')
                 }
               })

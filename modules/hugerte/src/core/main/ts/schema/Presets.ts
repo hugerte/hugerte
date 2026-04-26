@@ -6,8 +6,8 @@ import * as SchemaTypes from './SchemaTypes';
 export type PresetName = 'blocks' | 'phrasing' | 'flow';
 
 const cachedSets = {
-  'html4': Thunk.cached(() => SchemaElementSets.getElementSets('html4')),
-  'html5': Thunk.cached(() => SchemaElementSets.getElementSets('html5')),
+  html4: Thunk.cached(() => SchemaElementSets.getElementSets('html4')),
+  html5: Thunk.cached(() => SchemaElementSets.getElementSets('html5')),
   'html5-strict': Thunk.cached(() => SchemaElementSets.getElementSets('html5-strict'))
 };
 

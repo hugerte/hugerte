@@ -59,7 +59,7 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
                   { value: 'h', text: 'text-H', icon: 'icon-H' },
                   { value: 'i', text: 'text-I', icon: 'icon-I' }
                 ],
-                'input1': ''
+                input1: ''
               },
               body: {
                 type: 'panel',

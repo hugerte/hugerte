@@ -202,8 +202,8 @@ describe('headless.modes.ScrollingContextTest', () => {
       const innerScroller = makeWith(
         'div',
         {
-          'overflow': 'scroll',
-          'height': '2000px',
+          overflow: 'scroll',
+          height: '2000px',
           'background-color': 'black'
         },
         [ ]
@@ -214,19 +214,19 @@ describe('headless.modes.ScrollingContextTest', () => {
       const outerScroller = makeWith(
         'div',
         {
-          'position': 'absolute',
-          'left': '300px',
-          'top': '100px',
-          'height': '400px',
+          position: 'absolute',
+          left: '300px',
+          top: '100px',
+          height: '400px',
           // This width will put a horizontal scrollbar on the window
           // We use such a big width to check that the window is being considered
           // when constraining it.
-          'width': '4000px',
+          width: '4000px',
           'background-color': 'purple',
-          'overflow': 'auto'
+          overflow: 'auto'
         },
         [
-          makeWith('div', { 'height': `${bannerHeight}px`, 'background-color': 'green' }, [ ]),
+          makeWith('div', { height: `${bannerHeight}px`, 'background-color': 'green' }, [ ]),
           innerScroller
         ]
       ) as SugarElement<HTMLElement>;

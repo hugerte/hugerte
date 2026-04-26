@@ -35,9 +35,9 @@ describe('webdriver.hugerte.plugins.codesample.CodeSampleCopyAndPasteTest', () =
   const getMockPreStructure = (s: ApproxStructure.StructApi, str: ApproxStructure.StringApi): StructAssert =>
     s.element('pre', {
       attrs: {
-        'class': str.is('language-markup'),
+        class: str.is('language-markup'),
         'data-mce-highlighted': str.is('true'),
-        'contenteditable': str.is('false'),
+        contenteditable: str.is('false'),
       },
       children: [
         s.text(str.is('test content'))

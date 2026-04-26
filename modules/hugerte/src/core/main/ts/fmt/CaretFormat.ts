@@ -40,7 +40,7 @@ const createCaretContainer = (fill: boolean) => {
 
   Attribute.setAll(caretContainer, {
     // style: 'color:red',
-    'id': CARET_ID,
+    id: CARET_ID,
     'data-mce-bogus': '1',
     'data-mce-type': 'format-caret'
   });

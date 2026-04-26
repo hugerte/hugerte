@@ -56,7 +56,7 @@ const figureImageApproxStructure = (alignment: Alignment, isSelectAll: boolean) 
 const imageApproxStructure = (alignment: Alignment, isSelectAll: boolean) => {
   const alignStyles = (str: ApproxStructure.StringApi) => ({
     left: { float: str.is('left') },
-    center: { 'display': str.is('block'), 'margin-left': str.is('auto'), 'margin-right': str.is('auto') },
+    center: { display: str.is('block'), 'margin-left': str.is('auto'), 'margin-right': str.is('auto') },
     right: { float: str.is('right') },
     justify: {}
   });

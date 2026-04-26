@@ -19,7 +19,7 @@ describe('browser.hugerte.plugins.link.AssumeExternalTargetsTest', () => {
       await TestLinkUi.pInsertLink(editor, 'www.google.com');
       await TinyUiActions.pWaitForPopup(editor, 'p:contains("The URL you entered seems to be an external link. Do you want to add the required https:// prefix?")');
       await TestLinkUi.pClickConfirmYes(editor);
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="https://www.google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="https://www.google.com"]': 1 });
     });
 
     it('TBA: www-urls are prompted to add https:// prefix, cancel', async () => {
@@ -27,13 +27,13 @@ describe('browser.hugerte.plugins.link.AssumeExternalTargetsTest', () => {
       await TestLinkUi.pInsertLink(editor, 'www.google.com');
       await TinyUiActions.pWaitForPopup(editor, 'p:contains("The URL you entered seems to be an external link. Do you want to add the required https:// prefix?")');
       await TestLinkUi.pClickConfirmNo(editor);
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="www.google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="www.google.com"]': 1 });
     });
 
     it('TBA: other urls are not prompted', async () => {
       const editor = hook.editor();
       await TestLinkUi.pInsertLink(editor, 'google.com');
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="google.com"]': 1 });
     });
   });
 
@@ -48,7 +48,7 @@ describe('browser.hugerte.plugins.link.AssumeExternalTargetsTest', () => {
       await TestLinkUi.pInsertLink(editor, 'www.google.com');
       await TinyUiActions.pWaitForPopup(editor, 'p:contains("The URL you entered seems to be an external link. Do you want to add the required https:// prefix?")');
       await TestLinkUi.pClickConfirmYes(editor);
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="https://www.google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="https://www.google.com"]': 1 });
     });
 
     it('TBA: other urls are prompted to add https:// prefix', async () => {
@@ -56,7 +56,7 @@ describe('browser.hugerte.plugins.link.AssumeExternalTargetsTest', () => {
       await TestLinkUi.pInsertLink(editor, 'google.com');
       await TinyUiActions.pWaitForPopup(editor, 'p:contains("The URL you entered seems to be an external link. Do you want to add the required https:// prefix?")');
       await TestLinkUi.pClickConfirmYes(editor);
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="https://google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="https://google.com"]': 1 });
     });
 
     it('TBA: url not updated when prompt canceled', async () => {
@@ -64,7 +64,7 @@ describe('browser.hugerte.plugins.link.AssumeExternalTargetsTest', () => {
       await TestLinkUi.pInsertLink(editor, 'google.com');
       await TinyUiActions.pWaitForPopup(editor, 'p:contains("The URL you entered seems to be an external link. Do you want to add the required https:// prefix?")');
       await TestLinkUi.pClickConfirmNo(editor);
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="google.com"]': 1 });
     });
   });
 
@@ -77,13 +77,13 @@ describe('browser.hugerte.plugins.link.AssumeExternalTargetsTest', () => {
     it('TBA: add http:// prefix to www-urls', async () => {
       const editor = hook.editor();
       await TestLinkUi.pInsertLink(editor, 'www.google.com');
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="http://www.google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="http://www.google.com"]': 1 });
     });
 
     it('TBA: add http:// prefix to other urls', async () => {
       const editor = hook.editor();
       await TestLinkUi.pInsertLink(editor, 'google.com');
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="http://google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="http://google.com"]': 1 });
     });
   });
 
@@ -96,13 +96,13 @@ describe('browser.hugerte.plugins.link.AssumeExternalTargetsTest', () => {
     it('TBA: add https:// prefix to www-urls', async () => {
       const editor = hook.editor();
       await TestLinkUi.pInsertLink(editor, 'www.google.com');
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="https://www.google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="https://www.google.com"]': 1 });
     });
 
     it('TBA: add https:// prefix to other urls', async () => {
       const editor = hook.editor();
       await TestLinkUi.pInsertLink(editor, 'google.com');
-      await TestLinkUi.pAssertContentPresence(editor, { 'a': 1, 'a[href="https://google.com"]': 1 });
+      await TestLinkUi.pAssertContentPresence(editor, { a: 1, 'a[href="https://google.com"]': 1 });
     });
   });
 });

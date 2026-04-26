@@ -155,14 +155,14 @@ describe('browser.hugerte.themes.silver.editor.bespoke.BespokeSelectAriaLabelTes
       setup: () => {
         I18n.add('test', {
           'Alignment {0}': 'Aalignment {0}',
-          'left': 'left translated',
-          'right': 'right translated',
-          'Left': 'Left translated',
-          'Right': 'Right translated',
+          left: 'left translated',
+          right: 'right translated',
+          Left: 'Left translated',
+          Right: 'Right translated',
 
           'Font {0}': 'Ffont {0}',
-          'Verdana': 'Verdana translated',
-          'Arial': 'Arial translated',
+          Verdana: 'Verdana translated',
+          Arial: 'Arial translated',
 
           'Font size {0}': 'Ffont size {0}',
           '12pt': '12pt translated',
@@ -170,9 +170,9 @@ describe('browser.hugerte.themes.silver.editor.bespoke.BespokeSelectAriaLabelTes
 
           'Block {0}': 'Bblock {0}',
           'Format {0}': 'Fformat {0}',
-          'Paragraph': 'Paragraph translated',
+          Paragraph: 'Paragraph translated',
           'Heading 1': 'Heading 1 translated',
-          'Div': 'Div translated'
+          Div: 'Div translated'
         });
       }
     });

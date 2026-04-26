@@ -31,13 +31,13 @@ describe('browser.hugerte.models.dom.table.TableSizingModeTest', () => {
     test(editor, (s, str) => s.element('table', {
       styles: {
         'border-collapse': str.is('collapse'),
-        'width': str.is('100%')
+        width: str.is('100%')
       }
     }));
     test(editor, (s, str) => s.element('table', {
       styles: {
         'border-collapse': str.none(),
-        'width': str.is('600px')
+        width: str.is('600px')
       }
     }), { width: '600px' });
   });
@@ -48,13 +48,13 @@ describe('browser.hugerte.models.dom.table.TableSizingModeTest', () => {
     test(editor, (s, str) => s.element('table', {
       styles: {
         'border-collapse': str.is('collapse'),
-        'width': str.is('100%')
+        width: str.is('100%')
       }
     }));
     test(editor, (s, str) => s.element('table', {
       styles: {
         'border-collapse': str.none(),
-        'width': str.contains('%')
+        width: str.contains('%')
       }
     }), { width: '750px' });
   });
@@ -65,7 +65,7 @@ describe('browser.hugerte.models.dom.table.TableSizingModeTest', () => {
     test(editor, (s, str) => s.element('table', {
       styles: {
         'border-collapse': str.is('collapse'),
-        'width': str.contains('px')
+        width: str.contains('px')
       }
     }));
 
@@ -74,7 +74,7 @@ describe('browser.hugerte.models.dom.table.TableSizingModeTest', () => {
     test(editor, (s, str) => s.element('table', {
       styles: {
         'border-collapse': str.none(),
-        'width': str.contains('px')
+        width: str.contains('px')
       }
     }), { width: '100%' });
   });
@@ -85,13 +85,13 @@ describe('browser.hugerte.models.dom.table.TableSizingModeTest', () => {
     test(editor, (s, str) => s.element('table', {
       styles: {
         'border-collapse': str.is('collapse'),
-        'width': str.none()
+        width: str.none()
       }
     }));
     test(editor, (s, str) => s.element('table', {
       styles: {
         'border-collapse': str.none(),
-        'width': str.none()
+        width: str.none()
       }
     }), { width: '400px' });
   });

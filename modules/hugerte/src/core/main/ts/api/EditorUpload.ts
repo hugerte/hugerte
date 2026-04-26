@@ -170,7 +170,7 @@ const EditorUpload = (editor: Editor): EditorUpload => {
     replaceUrlInUndoStack(image.src, resultUri);
 
     Attribute.setAll(SugarElement.fromDom(image), {
-      'src': Options.shouldReuseFileName(editor) ? cacheInvalidator(resultUri) : resultUri,
+      src: Options.shouldReuseFileName(editor) ? cacheInvalidator(resultUri) : resultUri,
       'data-mce-src': src
     });
   };

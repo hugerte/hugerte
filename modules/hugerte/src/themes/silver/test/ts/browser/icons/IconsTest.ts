@@ -28,7 +28,7 @@ describe('browser.hugerte.themes.silver.icons.IconsTest', () => {
   const iconProvider: IconProvider = () => hook.editor().ui.registry.getAll().icons;
   const emptyIconProvider: IconProvider = () => ({ });
   const lowerCaseProvider: IconProvider = () => ({ mycustomicon: myCustomIcon });
-  const rtlProvider: IconProvider = () => ({ 'mycustomicon': myCustomIcon, 'mycustomicon-rtl': myCustomRtlIcon });
+  const rtlProvider: IconProvider = () => ({ mycustomicon: myCustomIcon, 'mycustomicon-rtl': myCustomRtlIcon });
 
   const assertIconSpec = (spec: SimpleOrSketchSpec, svg: string, flip: boolean = false) => {
     assert.deepEqual(spec.dom, {

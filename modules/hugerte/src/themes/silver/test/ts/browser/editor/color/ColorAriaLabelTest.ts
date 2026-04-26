@@ -119,7 +119,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorAriaLabelTest', () => 
     { label: 'no translations - toolbar', buttonColor: 'Black', expectedColor: 'Light Green', setup: () => I18n.setCode('en') },
     { label: 'translations - toolbar', buttonColor: 'Schwarz', expectedColor: 'Hellgrun',
       setup: () => {
-        I18n.add('test', { 'Black': 'Schwarz', 'Light Green': 'Hellgrun' });
+        I18n.add('test', { Black: 'Schwarz', 'Light Green': 'Hellgrun' });
         I18n.setCode('test');
       }
     },
@@ -192,7 +192,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorAriaLabelTest', () => 
     { label: 'no translations - menu', buttonColor: 'Black', expectedColor: 'Light Green', setup: () => I18n.setCode('en') },
     { label: 'translations - menu', buttonColor: 'Schwarz', expectedColor: 'Hellgrun',
       setup: () => {
-        I18n.add('test', { 'Black': 'Schwarz', 'Light Green': 'Hellgrun' });
+        I18n.add('test', { Black: 'Schwarz', 'Light Green': 'Hellgrun' });
         I18n.setCode('test');
       }
     },

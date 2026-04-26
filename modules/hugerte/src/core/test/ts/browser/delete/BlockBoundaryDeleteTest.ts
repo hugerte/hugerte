@@ -393,7 +393,7 @@ describe('browser.hugerte.core.delete.BlockBoundaryDeleteTest', () => {
           children: [
             s.element('a', {
               attrs: {
-                'href': str.is('#1'),
+                href: str.is('#1'),
                 'data-mce-block': str.is('true')
               },
               children: [
@@ -422,7 +422,7 @@ describe('browser.hugerte.core.delete.BlockBoundaryDeleteTest', () => {
           children: [
             s.element('a', {
               attrs: {
-                'href': str.is('#1'),
+                href: str.is('#1'),
                 'data-mce-block': str.is('true')
               },
               children: [
@@ -463,7 +463,7 @@ describe('browser.hugerte.core.delete.BlockBoundaryDeleteTest', () => {
             children: [
               s.element('span', {
                 attrs: {
-                  'style': str.is('font-family: symbol;'),
+                  style: str.is('font-family: symbol;'),
                   'data-mce-style': str.is('font-family: symbol;'),
                 },
                 children: [

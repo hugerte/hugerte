@@ -9,7 +9,7 @@ describe('browser.hugerte.core.init.InitIframeEditorWithCustomAttrsTest', () => 
   const hook = TinyHooks.bddSetupLight<Editor>({
     base_url: '/project/hugerte/js/hugerte',
     iframe_attrs: {
-      'id': 'x',
+      id: 'x',
       'data-custom1': 'a',
       'data-custom2': 'b'
     }

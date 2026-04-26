@@ -76,7 +76,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
               s.text(str.is('a')),
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [
@@ -132,7 +132,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
               }),
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [
@@ -208,7 +208,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
               s.element('strong', { children: [ s.text(str.is('a')) ] }),
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [
@@ -242,7 +242,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
               s.text(str.is('a')),
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [
@@ -277,7 +277,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
               s.element('strong', { children: [ s.text(str.is('a')) ] }),
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [ s.text(str.is(Zwsp.ZWSP + 'x')) ]
@@ -306,7 +306,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
             children: [
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [
@@ -357,7 +357,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
               s.element('strong', { children: [ s.text(str.is('Hello')) ] }),
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [ s.text(str.is(Zwsp.ZWSP + 'world')) ]
@@ -405,13 +405,13 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
             children: [
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [
                   s.element('span', {
                     attrs: {
-                      'style': str.is('font-family: Arial;'),
+                      style: str.is('font-family: Arial;'),
                       'data-mce-bogus': str.none('1') // shouldn't be set
                     },
                     children: [
@@ -457,7 +457,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
           children: [
             s.element('span', {
               attrs: {
-                'id': str.is('_mce_caret'),
+                id: str.is('_mce_caret'),
                 'data-mce-bogus': str.is('1')
               },
               children: [
@@ -506,7 +506,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
             s.element('span', { children: [ s.text(str.is('a')) ] }),
             s.element('span', {
               attrs: {
-                'id': str.is('_mce_caret'),
+                id: str.is('_mce_caret'),
                 'data-mce-bogus': str.is('1')
               },
               children: [
@@ -536,7 +536,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
           children: [
             s.element('span', {
               attrs: {
-                'id': str.is('_mce_caret'),
+                id: str.is('_mce_caret'),
                 'data-mce-bogus': str.is('1')
               },
               children: [
@@ -566,7 +566,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
           children: [
             s.element('span', {
               attrs: {
-                'id': str.is('_mce_caret'),
+                id: str.is('_mce_caret'),
                 'data-mce-bogus': str.is('1')
               },
               children: [
@@ -603,7 +603,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
             children: [
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1') },
                 children: [
                   s.element('span', {
@@ -645,7 +645,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
             children: [
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1')
                 },
                 children: [
@@ -692,7 +692,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
                           }),
                           s.element('span', {
                             attrs: {
-                              'id': str.is('_mce_caret'),
+                              id: str.is('_mce_caret'),
                               'data-mce-bogus': str.is('1')
                             },
                             children: [
@@ -749,7 +749,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
                           }),
                           s.element('span', {
                             attrs: {
-                              'id': str.is('_mce_caret'),
+                              id: str.is('_mce_caret'),
                               'data-mce-bogus': str.is('1'),
                               'data-mce-type': str.is('format-caret')
                             },
@@ -763,14 +763,14 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
                   }),
                   s.element('span', {
                     attrs: {
-                      'id': str.is('_mce_caret'),
+                      id: str.is('_mce_caret'),
                       'data-mce-bogus': str.is('1'),
                       'data-mce-type': str.is('format-caret')
                     },
                     children: [
                       s.element('span', {
                         attrs: {
-                          'id': str.is('_mce_caret'),
+                          id: str.is('_mce_caret'),
                           'data-mce-bogus': str.is('1'),
                           'data-mce-type': str.is('format-caret')
                         },
@@ -784,21 +784,21 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
               }),
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1'),
                   'data-mce-type': str.is('format-caret')
                 },
                 children: [
                   s.element('span', {
                     attrs: {
-                      'id': str.is('_mce_caret'),
+                      id: str.is('_mce_caret'),
                       'data-mce-bogus': str.is('1'),
                       'data-mce-type': str.is('format-caret')
                     },
                     children: [
                       s.element('span', {
                         attrs: {
-                          'id': str.is('_mce_caret'),
+                          id: str.is('_mce_caret'),
                           'data-mce-bogus': str.is('1'),
                           'data-mce-type': str.is('format-caret')
                         },
@@ -872,7 +872,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
               }),
               s.element('span', {
                 attrs: {
-                  'id': str.is('_mce_caret'),
+                  id: str.is('_mce_caret'),
                   'data-mce-bogus': str.is('1'),
                   'data-mce-type': str.is('format-caret')
                 },

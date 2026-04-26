@@ -26,10 +26,10 @@ describe('browser.hugerte.core.ReadOnlyModeTest', () => {
   const assertNestedContentEditableTrueDisabled = (editor: Editor, state: boolean, offscreen: boolean) => TinyAssertions.assertContentStructure(editor,
     ApproxStructure.build((s, str, _arr) => {
       const attrs = state ? {
-        'contenteditable': str.is('false'),
+        contenteditable: str.is('false'),
         'data-mce-contenteditable': str.is('true')
       } : {
-        'contenteditable': str.is('true'),
+        contenteditable: str.is('true'),
         'data-mce-contenteditable': str.none()
       };
 

@@ -107,7 +107,7 @@ export const renderMenuSearcher = (spec: MenuSearcherSpec): AlloySpec => {
             { placeholder: spec.i18n(placeholder) }
           )).getOr({ })),
           // This ARIA is based on the algolia example documented in TINY-8952
-          'type': 'search',
+          type: 'search',
           'aria-autocomplete': 'list'
         },
         inputBehaviours: Behaviour.derive([

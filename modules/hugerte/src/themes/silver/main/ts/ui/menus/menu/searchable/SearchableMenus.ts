@@ -12,7 +12,7 @@ export const augmentWithAria = (item: ItemTypes.ItemSpec): ItemTypes.ItemSpec =>
         ...item.dom,
         attributes: {
           ...item.dom.attributes ?? { },
-          'id': Id.generate('aria-item-search-result-id'),
+          id: Id.generate('aria-item-search-result-id'),
           'aria-selected': 'false'
         }
       }

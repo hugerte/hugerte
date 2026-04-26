@@ -57,10 +57,10 @@ const createPlaceholderNode = (editor: Editor, node: AstNode): AstNode => {
 
   setDimensions(node, placeHolder, {});
   placeHolder.attr({
-    'style': node.attr('style'),
-    'src': Env.transparentSrc,
+    style: node.attr('style'),
+    src: Env.transparentSrc,
     'data-mce-object': name,
-    'class': 'mce-object mce-object-' + name
+    class: 'mce-object mce-object-' + name
   });
 
   return placeHolder;
@@ -71,10 +71,10 @@ const createPreviewNode = (editor: Editor, node: AstNode): AstNode => {
 
   const previewWrapper = new AstNode('span', 1);
   previewWrapper.attr({
-    'contentEditable': 'false',
-    'style': node.attr('style'),
+    contentEditable: 'false',
+    style: node.attr('style'),
     'data-mce-object': name,
-    'class': 'mce-preview-object mce-object-' + name
+    class: 'mce-preview-object mce-object-' + name
   });
 
   retainAttributesAndInnerHtml(editor, node, previewWrapper);

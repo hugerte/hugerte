@@ -61,26 +61,26 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           ] as unknown as Attributes,
           'Element attributes'
         );
-        assert.deepEqual(countNodes(root), { 'body': 1, 'b': 1, '#text': 1 }, 'Element attributes (count)');
+        assert.deepEqual(countNodes(root), { body: 1, b: 1, '#text': 1 }, 'Element attributes (count)');
       });
 
       it('Retains code inside a script', () => {
         const parser = DomParser(scenario.settings, schema);
         const root = parser.parse('  \t\r\n  <SCRIPT>  \t\r\n   a < b > \t\r\n   </S' + 'CRIPT>   \t\r\n  ');
         assert.equal(serializer.serialize(root), '<script>  \t\n   a < b > \t\n   </s' + 'cript>', 'Retain code inside SCRIPT');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'script': 1, '#text': 1 }, 'Retain code inside SCRIPT (count)');
+        assert.deepEqual(countNodes(root), { body: 1, script: 1, '#text': 1 }, 'Retain code inside SCRIPT (count)');
       });
 
       it('Whitespace', () => {
         let parser = DomParser(scenario.settings, schema);
         let root = parser.parse('  \t\r\n  <B>  \t\r\n   test  \t\r\n   </B>   \t\r\n  ');
         assert.equal(serializer.serialize(root), ' <b> test </b> ', 'Redundant whitespace (inline element)');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'b': 1, '#text': 3 }, 'Redundant whitespace (inline element) (count)');
+        assert.deepEqual(countNodes(root), { body: 1, b: 1, '#text': 3 }, 'Redundant whitespace (inline element) (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('  \t\r\n  <P>  \t\r\n   test  \t\r\n   </P>   \t\r\n  ');
         assert.equal(serializer.serialize(root), '<p>test</p>', 'Redundant whitespace (block element)');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'p': 1, '#text': 1 }, 'Redundant whitespace (block element) (count)');
+        assert.deepEqual(countNodes(root), { body: 1, p: 1, '#text': 1 }, 'Redundant whitespace (block element) (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('  \t\r\n  <SCRIPT>  \t\r\n   test  \t\r\n   </S' + 'CRIPT>   \t\r\n  ');
@@ -89,12 +89,12 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           '<script>  \t\n   test  \t\n   </s' + 'cript>',
           'Whitespace around and inside SCRIPT'
         );
-        assert.deepEqual(countNodes(root), { 'body': 1, 'script': 1, '#text': 1 }, 'Whitespace around and inside SCRIPT (count)');
+        assert.deepEqual(countNodes(root), { body: 1, script: 1, '#text': 1 }, 'Whitespace around and inside SCRIPT (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('  \t\r\n  <STYLE>  \t\r\n   test  \t\r\n   </STYLE>   \t\r\n  ');
         assert.equal(serializer.serialize(root), '<style>  \t\n   test  \t\n   </style>', 'Whitespace around and inside STYLE');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'style': 1, '#text': 1 }, 'Whitespace around and inside STYLE (count)');
+        assert.deepEqual(countNodes(root), { body: 1, style: 1, '#text': 1 }, 'Whitespace around and inside STYLE (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<ul>\n<li>Item 1\n<ul>\n<li>\n \t Indented \t \n</li>\n</ul>\n</li>\n</ul>\n');
@@ -103,7 +103,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           '<ul><li>Item 1<ul><li>Indented</li></ul></li></ul>',
           'Whitespace around and inside blocks (ul/li)'
         );
-        assert.deepEqual(countNodes(root), { 'body': 1, 'li': 2, 'ul': 2, '#text': 2 }, 'Whitespace around and inside blocks (ul/li) (count)');
+        assert.deepEqual(countNodes(root), { body: 1, li: 2, ul: 2, '#text': 2 }, 'Whitespace around and inside blocks (ul/li) (count)');
 
         parser = DomParser(scenario.settings, Schema({ invalid_elements: 'hr,br' }));
         root = parser.parse(
@@ -137,12 +137,12 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
         let parser = DomParser(scenario.settings, schema);
         let root = parser.parse('  \t\r\n  <PRE>  \t\r\n   test  \t\r\n   </PRE>   \t\r\n  ');
         assert.equal(serializer.serialize(root), '<pre>  \t\n   test  \t\n   </pre>', 'Whitespace around and inside PRE');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'pre': 1, '#text': 1 }, 'Whitespace around and inside PRE (count)');
+        assert.deepEqual(countNodes(root), { body: 1, pre: 1, '#text': 1 }, 'Whitespace around and inside PRE (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<PRE>  </PRE>');
         assert.equal(serializer.serialize(root), '<pre>  </pre>', 'Whitespace around and inside PRE');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'pre': 1, '#text': 1 }, 'Whitespace around and inside PRE (count)');
+        assert.deepEqual(countNodes(root), { body: 1, pre: 1, '#text': 1 }, 'Whitespace around and inside PRE (count)');
       });
 
       it('Whitespace preserved in SPAN inside PRE', () => {
@@ -153,26 +153,26 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           '<pre>  \t\n  <span>    test    </span> \t\n   </pre>',
           'Whitespace around and inside PRE'
         );
-        assert.deepEqual(countNodes(root), { 'body': 1, 'pre': 1, 'span': 1, '#text': 3 }, 'Whitespace around and inside PRE (count)');
+        assert.deepEqual(countNodes(root), { body: 1, pre: 1, span: 1, '#text': 3 }, 'Whitespace around and inside PRE (count)');
       });
 
       it('Whitespace preserved in code', () => {
         let parser = DomParser(scenario.settings, schema);
         let root = parser.parse('<code>  a  </code>');
         assert.equal(serializer.serialize(root), '<code>  a  </code>', 'Whitespace inside code');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'code': 1, '#text': 1 }, 'Whitespace inside code (count)');
+        assert.deepEqual(countNodes(root), { body: 1, code: 1, '#text': 1 }, 'Whitespace inside code (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<code>  </code>');
         assert.equal(serializer.serialize(root), '<code>  </code>', 'Whitespace inside code');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'code': 1, '#text': 1 }, 'Whitespace inside code (count)');
+        assert.deepEqual(countNodes(root), { body: 1, code: 1, '#text': 1 }, 'Whitespace inside code (count)');
       });
 
       it('Parse invalid contents', () => {
         let parser = DomParser(scenario.settings, schema);
         let root = parser.parse('<p class="a"><p class="b">123</p></p>');
         assert.equal(serializer.serialize(root), '<p class="a"></p><p class="b">123</p><p></p>', 'P in P, splits outer P');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'p': 3, '#text': 1 }, 'P in P, splits outer P (count)');
+        assert.deepEqual(countNodes(root), { body: 1, p: 3, '#text': 1 }, 'P in P, splits outer P (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<p class="a">a<p class="b">b</p><p class="c">c</p>d</p>');
@@ -181,22 +181,22 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           '<p class="a">a</p><p class="b">b</p><p class="c">c</p>d<p></p>',
           'Two P in P, splits outer P'
         );
-        assert.deepEqual(countNodes(root), { 'body': 1, 'p': 4, '#text': 4 }, 'Two P in P, splits outer P (count)');
+        assert.deepEqual(countNodes(root), { body: 1, p: 4, '#text': 4 }, 'Two P in P, splits outer P (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<p class="a">abc<p class="b">def</p></p>');
         assert.equal(serializer.serialize(root), '<p class="a">abc</p><p class="b">def</p><p></p>', 'P in P with nodes before');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'p': 3, '#text': 2 }, 'P in P with nodes before (count)');
+        assert.deepEqual(countNodes(root), { body: 1, p: 3, '#text': 2 }, 'P in P with nodes before (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<p class="a"><p class="b">abc</p>def</p>');
         assert.equal(serializer.serialize(root), '<p class="a"></p><p class="b">abc</p>def<p></p>', 'P in P with nodes after');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'p': 3, '#text': 2 }, 'P in P with nodes after (count)');
+        assert.deepEqual(countNodes(root), { body: 1, p: 3, '#text': 2 }, 'P in P with nodes after (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<p class="a"><p class="b">abc</p><br></p>');
         assert.equal(serializer.serialize(root), '<p class="a"></p><p class="b">abc</p><br><p></p>', 'P in P with BR after');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'p': 3, 'br': 1, '#text': 1 }, 'P in P with BR after (count)');
+        assert.deepEqual(countNodes(root), { body: 1, p: 3, br: 1, '#text': 1 }, 'P in P with BR after (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<p class="a">a<strong>b<span>c<em>d<p class="b">e</p>f</em>g</span>h</strong>i</p>');
@@ -209,7 +209,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
         );
         assert.deepEqual(
           countNodes(root),
-          { 'body': 1, 'p': 3, '#text': 8, 'strong': 3, 'span': 1, 'em': 3 },
+          { body: 1, p: 3, '#text': 8, strong: 3, span: 1, em: 3 },
           'P in P wrapped in inline elements (count)'
         );
 
@@ -220,22 +220,22 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           '<p class="a">a</p><p class="b">b</p><p class="c">c</p>d<p></p>e<p></p>',
           'P in P in P with text before/after'
         );
-        assert.deepEqual(countNodes(root), { 'body': 1, 'p': 5, '#text': 5 }, 'P in P in P with text before/after (count)');
+        assert.deepEqual(countNodes(root), { body: 1, p: 5, '#text': 5 }, 'P in P in P with text before/after (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<p>a<ul><li>b</li><li>c</li></ul>d</p>');
         assert.equal(serializer.serialize(root), '<p>a</p><ul><li>b</li><li>c</li></ul>d<p></p>', 'UL inside P');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'p': 2, 'ul': 1, 'li': 2, '#text': 4 }, 'UL inside P (count)');
+        assert.deepEqual(countNodes(root), { body: 1, p: 2, ul: 1, li: 2, '#text': 4 }, 'UL inside P (count)');
 
         parser = DomParser(scenario.settings, schema);
         root = parser.parse('<table><tr><td><tr>a</tr></td></tr></table>');
         assert.equal(serializer.serialize(root), 'a<table><tbody><tr><td></td></tr><tr></tr></tbody></table>', 'TR inside TD');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'table': 1, 'tbody': 1, 'tr': 2, 'td': 1, '#text': 1 }, 'TR inside TD (count)');
+        assert.deepEqual(countNodes(root), { body: 1, table: 1, tbody: 1, tr: 2, td: 1, '#text': 1 }, 'TR inside TD (count)');
 
         parser = DomParser(scenario.settings, Schema({ valid_elements: 'p,section,div' }));
         root = parser.parse('<div><section><p>a</p></section></div>');
         assert.equal(serializer.serialize(root), '<div><section><p>a</p></section></div>', 'P inside SECTION');
-        assert.deepEqual(countNodes(root), { 'body': 1, 'div': 1, 'section': 1, 'p': 1, '#text': 1 }, 'P inside SECTION (count)');
+        assert.deepEqual(countNodes(root), { body: 1, div: 1, section: 1, p: 1, '#text': 1 }, 'P inside SECTION (count)');
       });
 
       it('Remove empty nodes', () => {
@@ -663,7 +663,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
       });
 
       it('Valid classes multiple elements', () => {
-        const schema = Schema({ valid_classes: { '*': 'classA classB', 'strong': 'classC' }});
+        const schema = Schema({ valid_classes: { '*': 'classA classB', strong: 'classC' }});
 
         const parser = DomParser(scenario.settings, schema);
         const root = parser.parse('<p class="classA classB classC"><strong class="classA classB classC classD">a</strong></p>');
@@ -1373,11 +1373,11 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           const parser = DomParser({ validate: false, ...scenario.settings }, schema);
           let root = parser.parse('  \t\r\n  <P>  \t\r\n   test  \t\r\n   </P>   \t\r\n  ');
           assert.equal(serializer.serialize(root), '<p>test</p>', 'Redundant whitespace (block element)');
-          assert.deepEqual(countNodes(root), { 'body': 1, 'p': 1, '#text': 1 }, 'Redundant whitespace (block element) (count)');
+          assert.deepEqual(countNodes(root), { body: 1, p: 1, '#text': 1 }, 'Redundant whitespace (block element) (count)');
 
           root = parser.parse('  \t\r\n  <PRE>  \t\r\n   test  \t\r\n   </PRE>   \t\r\n  ');
           assert.equal(serializer.serialize(root), '<pre>  \t\n   test  \t\n   </pre>', 'Whitespace around and inside PRE');
-          assert.deepEqual(countNodes(root), { 'body': 1, 'pre': 1, '#text': 1 }, 'Whitespace around and inside PRE (count)');
+          assert.deepEqual(countNodes(root), { body: 1, pre: 1, '#text': 1 }, 'Whitespace around and inside PRE (count)');
         });
 
         it('unsafe content should still be removed', () => {

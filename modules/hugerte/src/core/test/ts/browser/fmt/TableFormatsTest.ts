@@ -40,7 +40,7 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
     const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Obj.map(styles, (val, _key) => str.is(val));
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {
       styles: {
-        'width': str.is('100%'),
+        width: str.is('100%'),
         'border-collapse': str.is('collapse')
       },
       attrs: {

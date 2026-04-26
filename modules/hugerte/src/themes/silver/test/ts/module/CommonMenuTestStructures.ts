@@ -33,10 +33,10 @@ const structSearchField = (placeholderOpt: Optional<string>): StructAssert => Ap
     children: [
       s.element('input', {
         attrs: {
-          'type': str.is('search'),
+          type: str.is('search'),
           'aria-controls': str.startsWith('aria-controls-search-results'),
           'aria-autocomplete': str.is('list'),
-          'placeholder': placeholderOpt.fold(
+          placeholder: placeholderOpt.fold(
             () => str.none('No placeholder should be set'),
             str.is
           )
@@ -50,11 +50,11 @@ const structSearchField = (placeholderOpt: Optional<string>): StructAssert => Ap
 const structSearchLeafItem = (state: { selected: boolean }): StructAssert => ApproxStructure.build(
   (s, str, _arr) => s.element('div', {
     attrs: {
-      'role': str.is('menuitem'),
+      role: str.is('menuitem'),
       'aria-selected': str.is(`${state.selected}`),
       'aria-haspopup': str.is('false'),
       'aria-expanded': str.none(),
-      'id': str.startsWith('aria-item-search-result')
+      id: str.startsWith('aria-item-search-result')
     }
   })
 );
@@ -62,11 +62,11 @@ const structSearchLeafItem = (state: { selected: boolean }): StructAssert => App
 const structSearchParentItem = (state: { selected: boolean; expanded: boolean }): StructAssert => ApproxStructure.build(
   (s, str, _arr) => s.element('div', {
     attrs: {
-      'role': str.is('menuitem'),
+      role: str.is('menuitem'),
       'aria-selected': str.is(`${state.selected}`),
       'aria-expanded': str.is(`${state.expanded}`),
       'aria-haspopup': str.is('true'),
-      'id': str.startsWith('aria-item-search-result')
+      id: str.startsWith('aria-item-search-result')
     }
   })
 );

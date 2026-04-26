@@ -1,8 +1,8 @@
 import { Arr } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
-import * as Options from '../api/Options';
 import { HugeRTE } from '../api/Hugerte';
+import * as Options from '../api/Options';
 
 declare let hugerte: HugeRTE;
 

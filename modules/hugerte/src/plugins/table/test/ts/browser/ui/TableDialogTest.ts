@@ -67,8 +67,8 @@ describe('browser.hugerte.plugins.table.TableDialogTest', () => {
           border: str.is('1'),
         },
         styles: {
-          'height': str.is('500px'),
-          'width': str.is('500px'),
+          height: str.is('500px'),
+          width: str.is('500px'),
           'margin-left': str.is('0px'),
           'margin-right': str.is('auto'),
           'border-spacing': str.is('5px')
@@ -82,7 +82,7 @@ describe('browser.hugerte.plugins.table.TableDialogTest', () => {
                   s.element('td', {
                     styles: {
                       'border-width': str.is('1px'),
-                      'padding': str.is('5px')
+                      padding: str.is('5px')
                     },
                     children: [
                       s.text(str.is('X'))
@@ -153,8 +153,8 @@ describe('browser.hugerte.plugins.table.TableDialogTest', () => {
     const htmlFilledAllOnTable = ApproxStructure.build((s, str/* , arr*/) => {
       return s.element('table', {
         styles: {
-          'height': str.is('500px'),
-          'width': str.is('500px'),
+          height: str.is('500px'),
+          width: str.is('500px'),
           'margin-left': str.is('0px'),
           'margin-right': str.is('auto'),
           'border-width': str.is('1px'),

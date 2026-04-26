@@ -45,7 +45,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item--active')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Default')
                     },
                     children: [
@@ -60,7 +60,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Circle')
                     },
                     children: [
@@ -75,7 +75,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Square')
                     },
                     children: [
@@ -118,7 +118,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item--active')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Default')
                     },
                     children: [
@@ -133,7 +133,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Lower Alpha')
                     },
                     children: [
@@ -148,7 +148,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Lower Greek')
                     },
                     children: [
@@ -169,7 +169,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Lower Roman')
                     },
                     children: [
@@ -184,7 +184,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Upper Alpha')
                     },
                     children: [
@@ -199,7 +199,7 @@ describe('browser.hugerte.plugins.advlist.SplitButtonTest', () => {
                       arr.has('tox-collection__item')
                     ],
                     attrs: {
-                      'role': str.is('menuitemradio'),
+                      role: str.is('menuitemradio'),
                       'aria-label': str.is('Upper Roman')
                     },
                     children: [

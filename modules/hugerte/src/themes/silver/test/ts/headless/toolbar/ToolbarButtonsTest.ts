@@ -193,7 +193,7 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
       ApproxStructure.build((s, str, arr) => s.element('button', {
         classes: [ arr.has('tox-tbtn') ],
         attrs: {
-          'type': str.is('button'),
+          type: str.is('button'),
           'aria-label': str.is('tooltip')
         },
         children: [
@@ -264,7 +264,7 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
       ApproxStructure.build((s, str, arr) => s.element('div', {
         classes: [ arr.has('tox-split-button') ],
         attrs: {
-          'role': str.is('button'),
+          role: str.is('button'),
           'aria-label': str.is('tooltip'),
           'aria-expanded': str.is('false'),
           'aria-haspopup': str.is('true'),
@@ -286,7 +286,7 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
           s.element('span', {
             attrs: {
               'aria-hidden': str.is('true'),
-              'style': str.contains('display: none;')
+              style: str.contains('display: none;')
             },
             children: [
               s.text(str.is('To open the popup, press Shift+Enter'))
@@ -357,7 +357,7 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
           arr.has('tox-mbtn--select')
         ],
         attrs: {
-          'type': str.is('button'),
+          type: str.is('button'),
           'aria-label': str.is('tooltip'),
           'aria-expanded': str.is('false'),
           'aria-haspopup': str.is('true')

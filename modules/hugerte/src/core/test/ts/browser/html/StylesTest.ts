@@ -168,7 +168,7 @@ describe('browser.hugerte.core.html.StylesTest', () => {
   });
 
   it('Valid styles', () => {
-    const styles = Styles({}, Schema({ valid_styles: { '*': 'color,font-size', 'a': 'margin-left' }}));
+    const styles = Styles({}, Schema({ valid_styles: { '*': 'color,font-size', a: 'margin-left' }}));
 
     assert.equal(
       styles.serialize(styles.parse('color: #ff0000; font-size: 10px; margin-left: 10px; invalid: 1;'), 'b'),
@@ -181,7 +181,7 @@ describe('browser.hugerte.core.html.StylesTest', () => {
   });
 
   it('Invalid styles', () => {
-    const styles = Styles({}, Schema({ invalid_styles: { '*': 'color,font-size', 'a': 'margin-left' }}));
+    const styles = Styles({}, Schema({ invalid_styles: { '*': 'color,font-size', a: 'margin-left' }}));
 
     assert.equal(styles.serialize(styles.parse('color: #ff0000; font-size: 10px; margin-left: 10px'), 'b'), 'margin-left: 10px;');
     assert.equal(

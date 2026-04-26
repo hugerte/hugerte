@@ -36,7 +36,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
                 attrs: {
                   'data-mce-selected': str.is('inline-boundary'),
                   'data-mce-href': str.is('#'),
-                  'href': str.is('#')
+                  href: str.is('#')
                 },
                 children: [
                   s.text(str.is(expectedText))
@@ -65,7 +65,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
                 attrs: {
                   'data-mce-selected': str.none('inline-boundary'),
                   'data-mce-href': str.is('#'),
-                  'href': str.is('#')
+                  href: str.is('#')
                 },
                 children: [
                   s.text(str.is('b'))
@@ -91,7 +91,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
                 attrs: {
                   'data-mce-selected': str.none('inline-boundary'),
                   'data-mce-href': str.is('#'),
-                  'href': str.is('#')
+                  href: str.is('#')
                 },
                 children: [
                   s.text(str.is(text))
@@ -124,7 +124,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
             attrs: {
               'data-mce-selected': i === index ? str.is('inline-boundary') : str.none('1'),
               'data-mce-href': str.is('#'),
-              'href': str.is('#')
+              href: str.is('#')
             },
             children: [
               s.text(str.is(i === index ? zwspText : text))

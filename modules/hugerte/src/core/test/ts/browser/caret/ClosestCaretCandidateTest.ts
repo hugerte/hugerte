@@ -25,12 +25,12 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
     const elm = SugarElement.fromTag('div');
 
     Css.setAll(elm, {
-      'position': 'absolute',
-      'left': `${x - cpos.left}px`,
-      'top': `${y - cpos.top}px`,
-      'width': '1px',
-      'height': '1px',
-      'outline': '1px solid red',
+      position: 'absolute',
+      left: `${x - cpos.left}px`,
+      top: `${y - cpos.top}px`,
+      width: '1px',
+      height: '1px',
+      outline: '1px solid red',
       'background-color': color,
     });
 

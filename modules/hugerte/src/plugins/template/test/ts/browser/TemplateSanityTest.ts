@@ -71,7 +71,7 @@ describe('browser.hugerte.plugins.template.TemplateSanityTest', () => {
   it('TINY-7433: Replace template values with regex like keys', () => {
     const editor = hook.editor();
     addSettings({
-      template_replace_values: { 'first+name': 'Tester', 'email': 'test@test.com' },
+      template_replace_values: { 'first+name': 'Tester', email: 'test@test.com' },
     });
     editor.execCommand('mceInsertTemplate', false, '<p>{$first+name}</p>');
     TinyAssertions.assertContent(editor, '<p>Tester</p>');

@@ -33,7 +33,7 @@ const getTextContent = (editor: Editor): string =>
 
     const bin = editor.dom.add(body, contextNodeName, {
       'data-mce-bogus': 'all',
-      'style': 'overflow: hidden; opacity: 0;'
+      style: 'overflow: hidden; opacity: 0;'
     }, rangeContentClone.dom);
 
     const text = getInnerText(bin);

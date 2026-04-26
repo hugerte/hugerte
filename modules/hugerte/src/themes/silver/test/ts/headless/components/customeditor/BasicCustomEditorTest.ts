@@ -4,8 +4,8 @@ import { after, before, describe, it } from '@ephox/bedrock-client';
 import { Cell, Fun, Global, Optional } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
-import Resource from 'hugerte/core/api/Resource';
 import { HugeRTE } from 'hugerte/core/api/Hugerte';
+import Resource from 'hugerte/core/api/Resource';
 import { renderCustomEditor } from 'hugerte/themes/silver/ui/dialog/CustomEditor';
 
 import * as RepresentingUtils from '../../../module/RepresentingUtils';

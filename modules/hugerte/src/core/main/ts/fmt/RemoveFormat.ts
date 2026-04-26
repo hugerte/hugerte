@@ -556,7 +556,7 @@ const removeFormatInternal = (ed: Editor, name: string, vars?: FormatVars, node?
         // Wrap and split if nested
         if (isChildOfInlineParent(dom, startContainer, endContainer)) {
           const marker = Optional.from(startContainer.firstChild).getOr(startContainer);
-          splitToFormatRoot(wrapWithSiblings(dom, marker, true, 'span', { 'id': '_start', 'data-mce-type': 'bookmark' }));
+          splitToFormatRoot(wrapWithSiblings(dom, marker, true, 'span', { id: '_start', 'data-mce-type': 'bookmark' }));
           unwrap(true);
           return;
         }
@@ -564,14 +564,14 @@ const removeFormatInternal = (ed: Editor, name: string, vars?: FormatVars, node?
         // Wrap and split if nested
         if (isChildOfInlineParent(dom, endContainer, startContainer)) {
           const marker = Optional.from(endContainer.lastChild).getOr(endContainer);
-          splitToFormatRoot(wrapWithSiblings(dom, marker, false, 'span', { 'id': '_end', 'data-mce-type': 'bookmark' }));
+          splitToFormatRoot(wrapWithSiblings(dom, marker, false, 'span', { id: '_end', 'data-mce-type': 'bookmark' }));
           unwrap(false);
           return;
         }
 
         // Wrap start/end nodes in span element since these might be cloned/moved
-        startContainer = wrap(dom, startContainer, 'span', { 'id': '_start', 'data-mce-type': 'bookmark' });
-        endContainer = wrap(dom, endContainer, 'span', { 'id': '_end', 'data-mce-type': 'bookmark' });
+        startContainer = wrap(dom, startContainer, 'span', { id: '_start', 'data-mce-type': 'bookmark' });
+        endContainer = wrap(dom, endContainer, 'span', { id: '_end', 'data-mce-type': 'bookmark' });
 
         // Split start/end and anything in between
         const newRng = dom.createRng();

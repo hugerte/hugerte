@@ -22,7 +22,7 @@ const setHtml5Clipboard = (clipboardData: DataTransfer | null, html: string, tex
       clipboardData.setData('text/plain', text);
       clipboardData.setData(InternalHtml.internalHtmlMime(), html);
       return true;
-    } catch (e) {
+    } catch (_e) {
       return false;
     }
   } else {
@@ -42,7 +42,7 @@ const setClipboardData = (evt: ClipboardEvent, data: SelectionContentData, fallb
 const fallback = (editor: Editor): FallbackFn => (html, done) => {
   const { dom, selection } = editor;
 
-  const outer = dom.create('div', { 'contenteditable': 'false', 'data-mce-bogus': 'all' });
+  const outer = dom.create('div', { contenteditable: 'false', 'data-mce-bogus': 'all' });
   const inner = dom.create('div', { contenteditable: 'true' }, html);
   dom.setStyles(outer, {
     position: 'fixed',

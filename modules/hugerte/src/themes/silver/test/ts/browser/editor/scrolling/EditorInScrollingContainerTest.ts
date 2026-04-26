@@ -771,9 +771,9 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
 
           const outerScroller = SugarElement.fromTag('div');
           Css.setAll(outerScroller, {
-            'overflow': 'auto',
-            'height': `${heights.outerScroller}px`,
-            'padding': '0em 2em 0em 2em',
+            overflow: 'auto',
+            height: `${heights.outerScroller}px`,
+            padding: '0em 2em 0em 2em',
             'margin-bottom': '2000px',
             'background-color': 'darkgreen'
           });

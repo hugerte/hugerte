@@ -26,11 +26,11 @@ const create = (editor: Editor, lastRngCell: Cell<Range | null>): void => {
 
   // Create a pastebin
   const pasteBinElm = dom.add(editor.getBody(), 'div', {
-    'id': 'mcepastebin',
-    'class': 'mce-pastebin',
-    'contentEditable': true,
+    id: 'mcepastebin',
+    class: 'mce-pastebin',
+    contentEditable: true,
     'data-mce-bogus': 'all',
-    'style': 'position: fixed; top: 50%; width: 10px; height: 10px; overflow: hidden; opacity: 0'
+    style: 'position: fixed; top: 50%; width: 10px; height: 10px; overflow: hidden; opacity: 0'
   }, pasteBinDefaultContent);
 
   // Move paste bin out of sight since the controlSelection rect gets displayed otherwise on Gecko
