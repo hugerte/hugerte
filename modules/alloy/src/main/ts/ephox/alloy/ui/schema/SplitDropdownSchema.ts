@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Coupling } from '../../api/behaviour/Coupling';
@@ -23,7 +23,7 @@ const schema = () => [
   FieldSchema.required('toggleClass'),
   FieldSchema.required('fetch'),
   Fields.onStrictHandler('onExecute'),
-  FieldSchema.defaulted('getHotspot', Optional.some),
+  FieldSchema.defaulted('getHotspot', (x) => x),
   FieldSchema.defaulted('getAnchorOverrides', () => ({ })),
   AnchorLayouts.schema(),
   Fields.onStrictHandler('onItemExecute'),

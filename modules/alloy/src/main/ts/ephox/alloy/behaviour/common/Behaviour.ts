@@ -1,5 +1,5 @@
 import { StructureProcessor, FieldSchema, StructureSchema, FieldProcessor } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as AlloyEvents from '../../api/events/AlloyEvents';
@@ -92,7 +92,7 @@ const doCreate = <
   A extends BehaviourApisRecord<D, S>,
   E extends BehaviourExtraRecord<E>
 >(configSchema: StructureProcessor, schemaSchema: FieldProcessor, name: string, active: BehaviourActiveSpec<D, S>, apis: A, extra: E, state: BehaviourStateInitialiser<D, S>): AlloyBehaviourWithApis<C, D, S, A, E> => {
-  const getConfig = (info: BehaviourInfo<D, S>) => (Object.prototype.hasOwnProperty.call(info, name) && (info)[name] != null) ? info[name]() : Optional.none<BehaviourConfigAndState<D, S>>();
+  const getConfig = (info: BehaviourInfo<D, S>) => (Object.prototype.hasOwnProperty.call(info, name) && (info)[name] != null) ? info[name]() : null;
 
   const wrappedApis = Object.fromEntries(Object.entries(apis).map(([_k, _v]: [any, any]) => [_k, ((apiF, apiName) => wrapApi(name, apiF, apiName))(_v, _k as any)])) as { [K in keyof A]: WrappedApiFunc<A[K]> };
 

@@ -1,4 +1,4 @@
-import { Adt, Optional } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { DomGather } from '@ephox/phoenix';
 import { DomStructure } from '@ephox/robin';
 import { PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
@@ -135,10 +135,10 @@ const adjustTil = (bridge: WindowBridge, movement: CaretMovement, original: Care
   }
 
   return bridge.situsFromPoint(caret.left, movement.point(caret)).bind((guess) => {
-    return guess.start.fold<(Carets) | null>(Optional.none, (element) => {
+    return guess.start.fold<(Carets) | null>(() => null, (element) => {
       return Rectangles.getEntireBox(bridge, element).bind((guessBox) => {
         return movement.adjuster(bridge, element, guessBox, original, caret).fold<(Carets) | null>(
-          Optional.none,
+          () => null,
           (newCaret) => {
             return adjustTil(bridge, movement, original, newCaret, numRetries - 1);
           }
@@ -146,7 +146,7 @@ const adjustTil = (bridge: WindowBridge, movement: CaretMovement, original: Care
       }).orThunk(() => {
         return caret;
       });
-    }, Optional.none);
+    }, () => null);
   });
 };
 

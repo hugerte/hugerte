@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 
 import { Composing } from '../../api/behaviour/Composing';
 import { Highlighting } from '../../api/behaviour/Highlighting';
@@ -110,7 +110,7 @@ const schema = () => [
       matrix: [
         Fields.output('config', configureMatrix),
         FieldSchema.required('rowSelector'),
-        FieldSchema.defaulted('previousSelector', Optional.none),
+        FieldSchema.defaulted('previousSelector', () => null),
       ],
       menu: [
         FieldSchema.defaulted('moveOnTab', true),

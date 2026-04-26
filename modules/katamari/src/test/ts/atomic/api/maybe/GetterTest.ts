@@ -11,7 +11,7 @@ describe('atomic.katamari.maybe.GetterTest', () => {
       const input = 4;
       const output = Fun.pipe(
         Maybes.nothing(),
-        Maybes.getOr(input)
+        Maybes ?? input
       );
       assert.equal(output, input);
     });
@@ -20,7 +20,7 @@ describe('atomic.katamari.maybe.GetterTest', () => {
       const input = 4;
       const output = Fun.pipe(
         Maybes.just(input),
-        Maybes.getOr('wrong-value')
+        Maybes ?? 'wrong-value'
       );
       assert.equal(output, input);
     });

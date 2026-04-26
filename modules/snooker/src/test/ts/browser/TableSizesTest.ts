@@ -74,9 +74,9 @@ describe('Table Sizes Test (fusebox)', () => {
     const table = SugarElement.fromTag('table');
     Css.set(table, 'width', totalWidth);
     const tbody = SugarElement.fromTag('tbody');
-    const trows = info.map((row, r) =) {
+    const trows = info.map((row, r) => {
       const tr = SugarElement.fromTag('tr');
-      const cells = row.map((width, c) =) {
+      const cells = row.map((width, c) => {
         const td = SugarElement.fromTag('td');
         Css.set(td, 'width', width);
         Insert.append(td, SugarElement.fromText(String.fromCharCode('A'.charCodeAt(0) + c) + r));

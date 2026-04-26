@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { after, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement, SugarShadowDom } from '@ephox/sugar';
 import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -9,8 +9,8 @@ import Editor from 'hugerte/core/api/Editor';
 import PluginManager from 'hugerte/core/api/PluginManager';
 
 interface RenderState {
-  readonly container: Optional<SugarElement<Element>>;
-  readonly sink: Optional<SugarElement<Element>>;
+  readonly container: SugarElement<Element> | null;
+  readonly sink: SugarElement<Element> | null;
 }
 
 describe('browser.hugerte.themes.silver.editor.SilverRenderTest', () => {
@@ -50,15 +50,15 @@ describe('browser.hugerte.themes.silver.editor.SilverRenderTest', () => {
     const editor = hook.editor();
 
     // At plugin init
-    assert.isFalse(initStates.plugin.container.isSome(), 'The editor container should not be rendered before the plugins initialize');
-    assert.isFalse(initStates.plugin.sink.isSome(), 'The editor sink should not be rendered before the plugins initialize');
+    assert.isFalse(initStates.plugin.container !== null, 'The editor container should not be rendered before the plugins initialize');
+    assert.isFalse(initStates.plugin.sink !== null, 'The editor sink should not be rendered before the plugins initialize');
 
     // At PostRender
     assert.equal(initStates.postrender.container.getOrDie().dom, editor.getContainer(), 'The editor container should be rendered when PostRender fires');
-    assert.isTrue(initStates.postrender.sink.isSome(), 'The editor sink should be rendered when PostRender fires');
+    assert.isTrue(initStates.postrender.sink !== null, 'The editor sink should be rendered when PostRender fires');
 
     // At editor init
     assert.equal(initStates.init.container.getOrDie().dom, editor.getContainer(), 'The editor container should be rendered when init fires');
-    assert.isTrue(initStates.init.sink.isSome(), 'The editor sink should be rendered when init fires');
+    assert.isTrue(initStates.init.sink !== null, 'The editor sink should be rendered when init fires');
   });
 });

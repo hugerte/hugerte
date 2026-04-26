@@ -36,7 +36,7 @@ describe('browser.hugerte.themes.silver.editor.AutocompleterTooltipTest', () => 
           minChars: 0,
           columns: 'auto',
           fetch: () => {
-            return Promise.resolve([ 'aa', 'ab' ].map((letter) =) ({
+            return Promise.resolve([ 'aa', 'ab' ].map((letter) => ({
               value: `${letter}`,
               text: `p-${letter}`,
               icon: letter
@@ -87,7 +87,7 @@ describe('browser.hugerte.themes.silver.editor.AutocompleterTooltipTest', () => 
           minChars: 0,
           columns: 1,
           fetch: () => {
-            return Promise.resolve([ 'aa', 'ab' ].map((letter) =) ({
+            return Promise.resolve([ 'aa', 'ab' ].map((letter) => ({
               value: `${letter}`,
               text: `p-${letter}`,
               icon: letter
@@ -114,7 +114,7 @@ describe('browser.hugerte.themes.silver.editor.AutocompleterTooltipTest', () => 
           minChars: 0,
           columns: 1,
           fetch: () => {
-            return Promise.resolve([ 'aa', 'ab' ].map((letter) =) ({
+            return Promise.resolve([ 'aa', 'ab' ].map((letter) => ({
               value: `euro-${letter}`,
               ariaLabel: letter,
               type: 'cardmenuitem',

@@ -112,7 +112,7 @@ describe('browser.hugerte.plugins.image.ImageAlignTest', () => {
       justify: 'Justify'
     };
     const ariaLabel = ariaLabels[alignment];
-    const otherLabels = Object.values(Object.fromEntries(Object.entries(ariaLabels).filter(([k, v]) => ((_, key) =)(v, k))) key !== alignment));
+    const otherLabels = Object.values(Object.fromEntries(Object.entries(ariaLabels).filter(([k, v]) => ((_, key) =>(v, k))) key !== alignment));
     // Justify is the default for figures so it never gets highlighted
     const ariaPressed = isFigure && !isSelectAll && alignment === 'justify' ? 'false' : 'true';
 
@@ -193,7 +193,7 @@ describe('browser.hugerte.plugins.image.ImageAlignTest', () => {
   [
     { label: 'Testing image alignment using the toolbar', pAlignImage: pApplyAlignmentFromToolbar },
     { label: 'Testing image alignment using the menu', pAlignImage: pApplyAlignmentFromMenu }
-  ].forEach((test) =) {
+  ].forEach((test) => {
     context(test.label, () => {
       testConsecutiveAlignments('Align: left -> center -> left', test.pAlignImage, [ 'left', 'center', 'left' ]);
       testConsecutiveAlignments('Align: left -> right -> left', test.pAlignImage, [ 'left', 'right', 'left' ]);

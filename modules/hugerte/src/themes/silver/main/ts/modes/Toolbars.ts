@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -15,7 +15,7 @@ const setToolbar = (editor: Editor, uiRefs: ReadyUiReferences, rawUiConfig: Rend
   const toolbarButtonsConfig = rawUiConfig.buttons;
 
   // Check if toolbar type is a non-empty string array
-  if ((Array.isArray(toolbarConfig) && (toolbarConfig).every(Type.isString))) {
+  if ((Array.isArray(toolbarConfig) && (toolbarConfig).every((x: any): x is string => typeof x === 'string'))) {
     const toolbars = toolbarConfig.map((t) => {
       const config = { toolbar: t, buttons: toolbarButtonsConfig, allowToolbarGroups: rawUiConfig.allowToolbarGroups };
       return identifyButtons(editor, config, backstage, null);

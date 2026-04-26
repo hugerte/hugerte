@@ -16,7 +16,7 @@ describe('browser.hugerte.plugins.charmap.DialogHeightTest', () => {
   [
     { label: 'IFrame Editor', setup: TinyHooks.bddSetupLight },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot },
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(tester.label, () => {
       const hook = tester.setup<Editor>({
         plugins: 'charmap',

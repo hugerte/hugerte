@@ -16,8 +16,8 @@ UnitTest.test('MergeOperationsTest', () => {
     const check = (expected: Structs.RowCells[], grid: Structs.RowCells[], bounds: Structs.Bounds, lead: string) => {
       const actual = MergingOperations.merge(grid, bounds, (a, b) => a === b, () => lead as unknown as SugarElement<any>);
       Assert.eq('', expected.length, actual.length);
-      expected.forEach((row, i) =) {
-        row.cells.forEach((cell, j) =) {
+      expected.forEach((row, i) => {
+        row.cells.forEach((cell, j) => {
           Assert.eq('', cell.element, actual[i].cells[j].element);
           Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
         });
@@ -110,8 +110,8 @@ UnitTest.test('MergeOperationsTest', () => {
     const check = (expected: Structs.RowCells[], grid: Structs.RowCells[], target: string) => {
       const actual = MergingOperations.unmerge(grid, target as unknown as SugarElement<any>, (a, b) => a === b, () => '?' as any);
       Assert.eq('', expected.length, actual.length);
-      expected.forEach((row, i) =) {
-        row.cells.forEach((cell, j) =) {
+      expected.forEach((row, i) => {
+        row.cells.forEach((cell, j) => {
           Assert.eq('', cell.element, actual[i].cells[j].element);
           Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
         });

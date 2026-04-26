@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Adt, Optional } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { Descent, Direction, Gather, Seeker, Spot, SpotPoint, Transition } from '@ephox/phoenix';
 
 import * as Structure from '../api/general/Structure';
@@ -95,7 +95,7 @@ const repeat = <E, D>(universe: Universe<E, D>, item: E, mode: Transition, offse
 const descendToLeft = <E, D>(universe: Universe<E, D>, item: E, offset: number, isRoot: (e: E) => boolean): (SpotPoint<E>) | null => {
   const descended = Descent.toLeaf(universe, item, offset);
   if (universe.property().isText(item)) {
-    return Optional.none<SpotPoint<E>>();
+    return null;
   } else {
     return Seeker.left(universe, descended.element, universe.property().isText, isRoot).map((t) => {
       return Spot.point(t, universe.property().getText(t).length);
@@ -106,7 +106,7 @@ const descendToLeft = <E, D>(universe: Universe<E, D>, item: E, offset: number, 
 const descendToRight = <E, D>(universe: Universe<E, D>, item: E, offset: number, isRoot: (e: E) => boolean): (SpotPoint<E>) | null => {
   const descended = Descent.toLeaf(universe, item, offset);
   if (universe.property().isText(item)) {
-    return Optional.none<SpotPoint<E>>();
+    return null;
   } else {
     return Seeker.right(universe, descended.element, universe.property().isText, isRoot).map((t) => {
       return Spot.point(t, 0);

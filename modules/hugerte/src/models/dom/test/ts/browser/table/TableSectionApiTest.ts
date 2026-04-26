@@ -183,9 +183,9 @@ describe('browser.hugerte.models.dom.table.TableSectionApiTest', () => {
 
   const clearEvents = () => events = [];
   const assertEvents = (label: string, expectedEvents: string[]) => {
-    assert.deepEqual(events.map((event) =) event.type), expectedEvents, label);
+    assert.deepEqual(events.map((event) => event.type), expectedEvents, label);
     if (expectedEvents.includes('tablemodified')) {
-      const tableModifiedEvents = events.filter((event) =) event.type === 'tablemodified');
+      const tableModifiedEvents = events.filter((event) => event.type === 'tablemodified');
       assert.lengthOf(tableModifiedEvents, 1, 'TINY-6629: Assert table modified events length');
       assert.isTrue(tableModifiedEvents[0].structure, 'TINY-6643: Should have structure modified');
       assert.isFalse(tableModifiedEvents[0].style, 'TINY-6643: Should not have style modified');

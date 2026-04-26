@@ -1,5 +1,5 @@
 import { Assert, describe, context, it } from '@ephox/bedrock-client';
-import { Optional, OptionalInstances } from '@ephox/katamari';
+import { OptionalInstances } from '@ephox/katamari';
 import fc from 'fast-check';
 
 import { DialogChanges, DialogDelta } from 'hugerte/plugins/link/ui/DialogChanges';
@@ -84,13 +84,13 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
         }} as LinkDialogData;
 
         Assert.eq('on url change should include url title and text',
-          Optional.some<Partial<LinkDialogData>>({ title, text }),
+          { title, text },
           dialogChange.onChange(data, { name: 'url' }),
           tOptional()
         );
 
         Assert.eq('on url change should fallback to url for text',
-          Optional.some<Partial<LinkDialogData>>({ title: '', text: url }),
+          { title: '', text: url },
           dialogChange.onChange(dataNoMeta, { name: 'url' }),
           tOptional()
         );
@@ -115,13 +115,13 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
         );
 
         Assert.eq('No Title - on url change should only try to change title',
-          Optional.some<Partial<LinkDialogData>>({ title }),
+          { title },
           dialogChangeNoTitle.onChange(data, { name: 'url' }),
           tOptional()
         );
 
         Assert.eq('No Text - on url change should only try to change text',
-          Optional.some<Partial<LinkDialogData>>({ text }),
+          { text },
           dialogChangeNoText.onChange(data, { name: 'url' }),
           tOptional()
         );

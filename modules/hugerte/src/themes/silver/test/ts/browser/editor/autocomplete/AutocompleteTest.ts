@@ -39,7 +39,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 1,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            [ 'aA', 'bB', 'cC', 'dD' ].map((letter) =) ({
+            [ 'aA', 'bB', 'cC', 'dD' ].map((letter) => ({
               value: `plus-${letter}`,
               text: `p-${letter}`,
               icon: '+'
@@ -59,7 +59,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 2,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            [ 'a' ].map((letter) =) ({
+            [ 'a' ].map((letter) => ({
               value: `colon1-${letter}`,
               text: `c1-${letter}`,
               icon: ':'
@@ -78,7 +78,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 2,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            [ 'a', 'b' ].map((letter) =) ({
+            [ 'a', 'b' ].map((letter) => ({
               value: `colon2-${letter}`,
               text: `c2-${letter}`,
               icon: ':'
@@ -97,7 +97,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 'auto',
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
+            [ 'a', 'b', 'c', 'd' ].map((letter) => ({
               value: `tilde-${letter}`,
               text: `t-${letter}`,
               icon: '~'
@@ -116,7 +116,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 1,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
+            [ 'a', 'b', 'c', 'd' ].map((letter) => ({
               value: `exclamation-${letter}`,
               text: `exclamation-${letter}`
             }))
@@ -136,9 +136,9 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
           // Check the '=' is in the middle of a word
           rng.startOffset !== 0 && !/\s/.test(text.charAt(rng.startOffset - 1)),
         fetch: (pattern, _maxResults) => new Promise((resolve) => {
-          const filteredItems = [ 'two', 'three' ].filter((number) =) number.indexOf(pattern) !== -1);
+          const filteredItems = [ 'two', 'three' ].filter((number) => number.indexOf(pattern) !== -1);
           resolve(
-            filteredItems.map((number) =) ({
+            filteredItems.map((number) => ({
               value: `${number}`,
               text: `${number}`,
               icon: '='
@@ -158,7 +158,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 'auto',
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
+            [ 'a', 'b', 'c', 'd' ].map((letter) => ({
               value: `asterisk-${letter}`,
               text: `asterisk-${letter}`,
               icon: '*'
@@ -182,10 +182,10 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
             { text: 'dollar sign', value: '$' },
             { text: 'equals sign', value: '=' },
             { text: 'some name', value: '`' }
-          ].filter((item) =) item.text.indexOf(pattern) !== -1);
+          ].filter((item) => item.text.indexOf(pattern) !== -1);
           return new Promise((resolve) => {
             resolve(
-              filteredItems.map((item) =) ({
+              filteredItems.map((item) => ({
                 value: `hash-${item.value}`,
                 text: `${item.text}`
               }))
@@ -209,10 +209,10 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
           const filteredItems = [
             { text: 'equals sign', value: '=' },
             { text: 'plus sign', value: '+' }
-          ].filter((item) =) item.text.indexOf(pattern) !== -1);
+          ].filter((item) => item.text.indexOf(pattern) !== -1);
           return new Promise((resolve) => {
             resolve(
-              filteredItems.map((item) =) ({
+              filteredItems.map((item) => ({
                 value: `euro-${item.value}`,
                 ariaLabel: item.text,
                 type: 'cardmenuitem',
@@ -255,7 +255,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
 
       const dollarsFetch = Throttler.last((resolve) => {
         resolve(
-          [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
+          [ 'a', 'b', 'c', 'd' ].map((letter) => ({
             value: `dollars-${letter}`,
             text: `d-${letter}`,
             icon: '$'
@@ -281,7 +281,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 1,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            [ 'aA', 'bB', 'cC', 'dD' ].map((letter) =) ({
+            [ 'aA', 'bB', 'cC', 'dD' ].map((letter) => ({
               value: `multi-${letter}`,
               text: `mu-${letter}`,
               icon: '^'

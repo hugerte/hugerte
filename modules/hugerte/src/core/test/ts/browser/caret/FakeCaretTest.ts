@@ -124,7 +124,7 @@ describe('browser.hugerte.core.caret.FakeCaretTest', () => {
   });
 
   it('TINY-10314: fakeCaretContainer after/before a block should have caret-color set to `transparent` to avoid double caret in FireFox', () => {
-    [ true, false ].forEach((before) =) {
+    [ true, false ].forEach((before) => {
       Html.set(getRoot(), '<div>a</div><div id="nonEditable" contenteditable="false">b</div>');
 
       const rng = fakeCaret.show(before, SelectorFind.descendant(getRoot(), '#nonEditable').getOrDie().dom) as Range;
@@ -133,7 +133,7 @@ describe('browser.hugerte.core.caret.FakeCaretTest', () => {
       assert.equal(SugarNode.name(fakeCaretElm), 'p');
       assert.equal(Attribute.get(fakeCaretElm, 'data-mce-caret'), before ? 'before' : 'after');
       assert.equal(fakeCaretElm.dom.style.getPropertyValue('caret-color'), 'transparent', `is not transparent for before: ${before}`);
-      assert.equal(Css.getRaw(fakeCaretElm, 'caret-color').getOr(''), 'transparent', `is not transparent for before: ${before}`);
+      assert.equal(Css.getRaw(fakeCaretElm, 'caret-color') ?? '', 'transparent', `is not transparent for before: ${before}`);
       CaretAsserts.assertRange(rng, CaretAsserts.createRange(fakeCaretElm.dom, 0, fakeCaretElm.dom, 0));
 
       fakeCaret.hide();

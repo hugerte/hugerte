@@ -122,7 +122,7 @@ describe('atomic.acid.HexColourTest', () => {
           expected: 'DE979C',
         },
       ];
-      tests.forEach(({ rgba, expected }) =) assertHexFromRgba(rgba, expected));
+      tests.forEach(({ rgba, expected }) => assertHexFromRgba(rgba, expected));
     });
   });
 

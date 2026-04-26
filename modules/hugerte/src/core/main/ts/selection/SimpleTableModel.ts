@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+
 import { Attribute, Compare, Insert, InsertAll, Replication, SelectorFilter, SugarElement } from '@ephox/sugar';
 
 export interface TableModel {
@@ -34,7 +34,7 @@ const cellPosition = (x: number, y: number): CellPosition => ({
 });
 
 const getSpan = (td: SugarElement<HTMLTableCellElement>, key: string) => {
-  return Attribute.getOpt(td, key).bind(Strings.toInt) ?? (1);
+  return Attribute.getOpt(td, key).bind((s: string) => parseInt(s, 10)) ?? (1);
 };
 
 const fillout = (table: TableModel, x: number, y: number, tr: SugarElement<HTMLTableRowElement>, td: SugarElement<HTMLTableCellElement>) => {

@@ -1,11 +1,11 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 
 import { WordScope } from 'ephox/robin/data/WordScope';
 import * as WordSanitiser from 'ephox/robin/util/WordSanitiser';
 
 UnitTest.test('Word Sanitiser', () => {
-  const some = Optional.some;
+  const some = (x) => x;
 
   const ss = (word: string, v1: string, v2: string) => {
     return WordScope(word, some(v1), some(v2));

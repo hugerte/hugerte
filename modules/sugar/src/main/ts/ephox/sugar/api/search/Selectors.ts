@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { DOCUMENT, DOCUMENT_FRAGMENT, ELEMENT } from '../node/NodeTypes';
 import { SugarElement } from '../node/SugarElement';
@@ -41,9 +41,9 @@ const all = <T extends Element = Element> (selector: string, scope?: SugarElemen
   return bypassSelector(base) ? [] : (base as Element | Document).querySelectorAll<T>(selector).map(SugarElement.fromDom);
 };
 
-const one = <T extends Element = Element> (selector: string, scope?: SugarElement<Node>): Optional<SugarElement<T>> => {
+const one = <T extends Element = Element> (selector: string, scope?: SugarElement<Node>): SugarElement<T> | null => {
   const base = scope === undefined ? document : scope.dom;
-  return bypassSelector(base) ? Optional.none<SugarElement<T>>() : (base as Element | Document).querySelector<T>(selector) ?? null.map(SugarElement.fromDom);
+  return bypassSelector(base) ? null : (base as Element | Document).querySelector<T>(selector) ?? null.map(SugarElement.fromDom);
 };
 
 export {

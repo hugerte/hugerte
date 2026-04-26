@@ -1,7 +1,7 @@
 import { Logger } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 import * as fc from 'fast-check';
 
 import { arbTextIds } from 'ephox/robin/test/Arbitraries';
@@ -11,13 +11,13 @@ import { LanguageZones } from 'ephox/robin/zone/LanguageZones';
 
 UnitTest.test('ClusteringTest', () => {
   const checkWords = (universe: TestUniverse, words: WordDecisionItem<Gene>[]) => {
-    return words.map((a) =) {
+    return words.map((a) => {
       const text = universe.property().getText(a.item);
       return text.substring(a.start, a.finish);
     });
   };
 
-  const check = (label: string, universe: TestUniverse, expLeft: string[], expMiddle: string[], expRight: string[], expLang: Optional<string>, id: string) => {
+  const check = (label: string, universe: TestUniverse, expLeft: string[], expMiddle: string[], expRight: string[], expLang: string | null, id: string) => {
     Logger.sync(
       id + ' => check: ' + label,
       () => {
@@ -182,16 +182,16 @@ UnitTest.test('ClusteringTest', () => {
     readonly left: WordDecisionItem<Gene>[];
     readonly middle: WordDecisionItem<Gene>[];
     readonly right: WordDecisionItem<Gene>[];
-    readonly lang: Optional<string>;
+    readonly lang: string | null;
   }
 
   const checkProps = (universe: TestUniverse, textIds: string[], start: Gene, actual: ClusteringLangs) => {
     const checkGroup = (label: string, group: WordDecisionItem<Gene>[]) => {
-      const items = group.map((g) =) {
+      const items = group.map((g) => {
         return g.item;
       });
-      items.forEach((x) =) {
-        Assert.eq('Checking everything in ' + label + ' has same language', LanguageZones.calculate(universe, x).getOr('none'), actual.lang.getOr('none'));
+      items.forEach((x) => {
+        Assert.eq('Checking everything in ' + label + ' has same language', LanguageZones.calculate(universe, x) ?? 'none', actual.lang ?? 'none');
         Assert.eq(
           'Check that everything in the ' + label + ' is a text node',
           true,
@@ -200,12 +200,12 @@ UnitTest.test('ClusteringTest', () => {
       });
     };
 
-    Assert.eq('Check that the language matches the start', LanguageZones.calculate(universe, start).getOr('none'), actual.lang.getOr('none'));
+    Assert.eq('Check that the language matches the start', LanguageZones.calculate(universe, start) ?? 'none', actual.lang ?? 'none');
     checkGroup('left', actual.left);
     checkGroup('middle', actual.middle);
     checkGroup('right', actual.right);
 
-    actual.all.forEach((x, i) =) {
+    actual.all.forEach((x, i) => {
       if (i > 0) {
         const prev = actual.all[i - 1].item.id;
         const current = x.item.id;
@@ -218,7 +218,7 @@ UnitTest.test('ClusteringTest', () => {
     });
 
     const blockParent = universe.up().predicate(start, universe.property().isBoundary).getOrDie('No block parent tag found');
-    actual.all.forEach((x) =) {
+    actual.all.forEach((x) => {
       Assert.eq(
         'All block ancestor tags should be the same as the original',
         blockParent,

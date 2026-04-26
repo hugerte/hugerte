@@ -23,7 +23,7 @@ describe('atomic.katamari.api.str.ToIntTest', () => {
   it('convert invalid string to integer', () => {
     const checkNone = (value: string) => {
       const numOpt = Strings.toInt(value);
-      assert.isFalse(numOpt.isSome());
+      assert.isFalse(numOpt !== null);
     };
 
     checkNone('abc');

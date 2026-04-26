@@ -84,7 +84,7 @@ describe.skip('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolba
   };
   const resetNames = () => predicateNodeNames.set({ });
   const assertTypesNames = (type: string, names: string[]) => {
-    const actualNames = (predicateNodeNames.get() as any)[type].getOr([]);
+    const actualNames = (predicateNodeNames.get() as any)[type] ?? [];
     assert.deepEqual(actualNames, names, `Check ${type} lookup node names`);
   };
 

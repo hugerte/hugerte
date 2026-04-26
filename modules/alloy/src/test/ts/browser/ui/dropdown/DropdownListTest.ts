@@ -64,7 +64,7 @@ UnitTest.asynctest('Dropdown List', (success, failure) => {
         toggleClass: 'alloy-selected',
 
         dropdownBehaviours: Behaviour.derive(
-          [ '1', '2', '3' ].map((num) =) AddEventsBehaviour.config(`test-listener-${num}`, [
+          [ '1', '2', '3' ].map((num) => AddEventsBehaviour.config(`test-listener-${num}`, [
             AlloyEvents.run('test-listener', store.adder(`test.listener.${num}`))
           ]))
         ),

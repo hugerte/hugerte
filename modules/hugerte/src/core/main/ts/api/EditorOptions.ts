@@ -153,7 +153,7 @@ export interface Options {
 const stringListProcessor: Processor<string[]> = (value: unknown) => {
   if (typeof (value) === 'string') {
     return { value: value.split(/[ ,]/), valid: true };
-  } else if ((Array.isArray(value) && (value).every(Type.isString))) {
+  } else if ((Array.isArray(value) && (value).every((x: any): x is string => typeof x === 'string'))) {
     return { value, valid: true };
   } else {
     return { valid: false, message: `The value must be a string[] or a comma/space separated string.` };
@@ -164,17 +164,17 @@ const getBuiltInProcessor = <K extends BuiltInOptionType>(type: K): Processor<Bu
   const validator = (() => {
     switch (type) {
       case 'array':
-        return Type.isArray;
+        return Array.isArray;
       case 'boolean':
-        return Type.isBoolean;
+        return (x: any): x is boolean => typeof x === 'boolean';
       case 'function':
-        return Type.isFunction;
+        return (x: any): x is Function => typeof x === 'function';
       case 'number':
-        return Type.isNumber;
+        return (x: any): x is number => typeof x === 'number';
       case 'object':
         return Type.isObject;
       case 'string':
-        return Type.isString;
+        return (x: any): x is string => typeof x === 'string';
       case 'string[]':
         return stringListProcessor;
       case 'object[]':

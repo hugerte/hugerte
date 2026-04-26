@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Focusing, Sketcher, SketchSpec, Slider, SliderTypes, UiSketcher } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+
 import { Attribute } from '@ephox/sugar';
 
 import { Untranslated } from '../../alien/I18n';
@@ -102,7 +102,7 @@ const paletteFactory = (translate: (key: Untranslated) => string, getClass: (key
 
     const sliderBehaviours = Behaviour.derive([
       Composing.config({
-        find: Optional.some
+        find: (x) => x
       }),
       Focusing.config({})
     ]);

@@ -155,13 +155,13 @@ describe('atomic.polaris.api.RegexesTest', () => {
     const falseCases = [ ...ephoxFalseCases, ...mathiasBynensFalse, ...invalidSchemes ];
 
     it('should match true cases', () => {
-      trueCases.forEach((cs) =) {
+      trueCases.forEach((cs) => {
         const matched = Regexes.link().exec(cs);
         Assert.eq(`expected true but was false: ${cs}`, cs, matched !== null && matched[0]);
         if (matched !== null && matched.length > 1) {
           // eslint-disable-next-line no-console
           console.log('matched groups:');
-          matched.forEach((s, i) =) {
+          matched.forEach((s, i) => {
             // eslint-disable-next-line no-console
             console.log(i, s);
           });
@@ -171,7 +171,7 @@ describe('atomic.polaris.api.RegexesTest', () => {
     });
 
     it('should not match false cases', () => {
-      falseCases.forEach((cs) =) {
+      falseCases.forEach((cs) => {
         const match = Regexes.link().exec(cs);
         Assert.eq(`expected false but was true: ${cs}`, false, match !== null && cs === match[0]);
       });
@@ -213,7 +213,7 @@ describe('atomic.polaris.api.RegexesTest', () => {
       };
 
       it('should match only with path', () => {
-        Object.entries(onlyWithPathLinks).forEach(([k, v]) => ((v, k) =)(v, k)) {
+        Object.entries(onlyWithPathLinks).forEach(([k, v]) => ((v, k) =>(v, k)) {
           const match = Regexes.link().exec(k);
           if (match !== null) {
             const url = match[0];
@@ -301,7 +301,7 @@ describe('atomic.polaris.api.RegexesTest', () => {
 
     it('should match autolinks', () => {
       // remember don't inline the module function execution, JS regexes have state!
-      Object.entries(autolinks).forEach(([k, v]) => ((v, k) =)(v, k)) {
+      Object.entries(autolinks).forEach(([k, v]) => ((v, k) =>(v, k)) {
         const match = Regexes.autolink().exec(k);
         if (match !== null) {
           const url = match[1];

@@ -31,7 +31,7 @@ const renderColorStructure = (item: ItemStructureSpec, providerBackstage: UiFact
   const removeColorCommand = 'remove';
 
   const itemValue = item.value;
-  const iconSvg = item.iconContent.map((name) => Icons.getOr(name, providerBackstage.icons, fallbackIcon));
+  const iconSvg = item.iconContent.map((name) => Icons ?? name, providerBackstage.icons, fallbackIcon);
 
   const attributes = item.ariaLabel.map(
     (al) => ({

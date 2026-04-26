@@ -32,7 +32,7 @@ UnitTest.test('ClumpsTest', () => {
     const finish = doc.find(doc.get(), finishId).getOrDie();
     const rawActual = Clumps.collect(doc, isRoot, start, soffset, finish, foffset);
 
-    const actual = rawActual.map((a): RawRange =) {
+    const actual = rawActual.map((a): RawRange => {
       return { start: a.start.id, soffset: a.soffset, finish: a.finish.id, foffset: a.foffset };
     });
 

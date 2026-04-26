@@ -10,68 +10,68 @@ const { tString } = Testable;
 
 describe('atomic.katamari.api.optional.OptionalInstancesTest', () => {
   it('OptionalInstances.testable<number>', () => {
-    assertOptional(Optional.some(3), Optional.some(3));
-    assertOptional(Optional.some(3), Optional.some(3));
+    assertOptional(3, 3);
+    assertOptional(3, 3);
 
     assert.throws(() => {
-      assertOptional(Optional.some(2), Optional.some(3));
+      assertOptional(2, 3);
     });
 
     assert.throws(() => {
-      assertOptional(Optional.none(), Optional.some(3));
+      assertOptional(null, 3);
     });
 
     assert.throws(() => {
-      assertOptional(Optional.some(3), Optional.none());
+      assertOptional(3, null);
     });
 
     assert.throws(() => {
-      assertOptional(Optional.some(2), Optional.some(3));
+      assertOptional(2, 3);
     });
 
     assert.throws(() => {
-      assertOptional(Optional.none(), Optional.some(3));
+      assertOptional(null, 3);
     });
 
     assert.throws(() => {
-      assertOptional(Optional.some(3), Optional.none());
+      assertOptional(3, null);
     });
   });
 
   it('OptionalInstances.testable<string>', () => {
-    assertOptional(Optional.some('a'), Optional.some('a'));
-    assertOptional(Optional.some('a'), Optional.some('a'));
+    assertOptional('a', 'a');
+    assertOptional('a', 'a');
 
     assert.throws(() => {
-      assertOptional(Optional.none(), Optional.some('a'));
+      assertOptional(null, 'a');
     });
 
     assert.throws(() => {
-      assertOptional(Optional.some('a'), Optional.none());
+      assertOptional('a', null);
     });
 
     assert.throws(() => {
-      assertOptional(Optional.some('b'), Optional.some('a'));
+      assertOptional('b', 'a');
     });
 
     assert.throws(() => {
-      assertOptional(Optional.none(), Optional.some('a'));
+      assertOptional(null, 'a');
     });
 
     assert.throws(() => {
-      assertOptional(Optional.some('a'), Optional.none());
+      assertOptional('a', null);
     });
 
     assert.throws(() => {
-      assertOptional(Optional.some('b'), Optional.some('a'));
+      assertOptional('b', 'a');
     });
   });
 
   it('OptionalInstances pprint', () => {
-    assert.equal(Pprint.render(Optional.none(), tOptional(tString)), 'Optional.none()');
-    assert.equal(Pprint.render(Optional.some('cat'), tOptional(tString)), 'Optional.some(\n  "cat"\n)');
+    assert.equal(Pprint.render(null, tOptional(tString)), 'null');
+    assert.equal(Pprint.render('cat', tOptional(tString)), '\n  "cat"\n');
 
-    assert.equal(Pprint.render(Optional.none(), tOptional()), 'Optional.none()');
-    assert.equal(Pprint.render(Optional.some('cat'), tOptional()), 'Optional.some(\n  "cat"\n)');
+    assert.equal(Pprint.render(null, tOptional()), 'null');
+    assert.equal(Pprint.render('cat', tOptional()), '\n  "cat"\n');
   });
 });

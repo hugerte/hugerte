@@ -10,7 +10,7 @@ describe('atomic.katamari.api.obj.ObjFindTest', () => {
   it('ObjFindTest', () => {
     const checkNone = <T>(input: Record<string, T>, pred: (val: T, key: string, obj: Record<string, T>) => boolean) => {
       const actual = Obj.find(input, pred);
-      assert.isTrue(actual.isNone());
+      assert.isTrue(actual === null);
     };
 
     const checkObj = <T>(expected: T, input: Record<string, T>, pred: (val: T, key: string, obj: Record<string, T>) => boolean) => {
@@ -66,8 +66,8 @@ describe('atomic.katamari.api.obj.ObjFindTest', () => {
     fc.assert(fc.property(
       fc.dictionary(fc.asciiString(), fc.json()),
       (obj) => {
-        const value = Obj.find(obj, Fun.never);
-        return value.isNone();
+        const value = Obj.find(obj, () => false);
+        return value === null;
       }
     ));
   });
@@ -77,7 +77,7 @@ describe('atomic.katamari.api.obj.ObjFindTest', () => {
       fc.func(fc.boolean()),
       (pred) => {
         const value = Obj.find({}, pred);
-        return value.isNone();
+        return value === null;
       }
     ));
   });
@@ -86,9 +86,9 @@ describe('atomic.katamari.api.obj.ObjFindTest', () => {
     fc.assert(fc.property(
       fc.dictionary(fc.asciiString(), fc.json()),
       (obj) => {
-        const value = Obj.find(obj, Fun.always);
+        const value = Obj.find(obj, () => true);
         // No order is specified, so we cannot know what "first" is
-        return Obj.keys(obj).length === 0 ? value.isNone() : true;
+        return Obj.keys(obj).length === 0 ? value === null : true;
       }
     ));
   });

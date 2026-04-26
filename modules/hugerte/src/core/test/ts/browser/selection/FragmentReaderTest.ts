@@ -25,7 +25,7 @@ describe('browser.hugerte.core.selection.FragmentReaderTest', () => {
   };
 
   const readFragmentCells = (paths: number[][]) => {
-    const ranges = paths.map((path) =) {
+    const ranges = paths.map((path) => {
       const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), path).getOrDie();
       const rng = document.createRange();
       rng.selectNode(container.dom);

@@ -278,7 +278,7 @@ describe('browser.hugerte.core.SelectionOverridesTest', () => {
 
   it('set range in short ended element', () => {
     const editor = hook.editor();
-    [ 'br', 'img', 'input' ].forEach((elmName) =) {
+    [ 'br', 'img', 'input' ].forEach((elmName) => {
       editor.setContent('<p><' + elmName + '/></p>');
       const paraElem = editor.dom.select('p')[0];
       const elem = editor.dom.select(elmName)[0];

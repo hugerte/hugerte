@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Obj } from '@ephox/katamari';
+
 import { Attribute, Css, InsertAll, SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
@@ -59,7 +59,7 @@ const isTagsDetail = (detail: TagsDetail | TagDetail): detail is TagsDetail =>
   (detail as TagsDetail).tags !== undefined;
 
 const toTags = (detail: TagsDetail): Tag[] =>
-  Obj.mapToArray(detail.tags, (v, k) => ({ ...v, ...{ tag: k } }));
+  Object.entries(detail.tags).map(([k, v]) => ((v, k) => ({ ...v, ...{ tag: k } }))(v as any, k as any));
 
 const flattenTag = (tag: string): Record<string, WeightedChoice.WeightedItem & Decorations> => {
   const r = {};

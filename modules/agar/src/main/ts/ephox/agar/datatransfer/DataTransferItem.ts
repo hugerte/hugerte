@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { isInProtectedMode } from './Mode';
 
@@ -9,7 +9,7 @@ const setData = (item: DataTransferItem, data: string): void => {
   itemObj[dataId] = data;
 };
 
-const getData = (item: DataTransferItem): Optional<string> => {
+const getData = (item: DataTransferItem): string | null => {
   const itemObj: any = item;
   return itemObj[dataId] ?? null;
 };

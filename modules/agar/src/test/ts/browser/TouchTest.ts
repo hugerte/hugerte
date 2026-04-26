@@ -23,7 +23,7 @@ UnitTest.asynctest('TouchTest', (success, failure) => {
 
   let repository = [];
 
-  const handlers = [ 'touchstart', 'touchend', 'touchmove', 'focus' ].flatMap((evt) =) [
+  const handlers = [ 'touchstart', 'touchend', 'touchmove', 'focus' ].flatMap((evt) => [
     DomEvent.bind(container, evt, () => repository.push('container.' + evt)),
     DomEvent.bind(input, evt, () => repository.push('input.' + evt))
   ]);
@@ -109,13 +109,13 @@ UnitTest.asynctest('TouchTest', (success, failure) => {
     )
 
   ], () => {
-    handlers.forEach((h) =) {
+    handlers.forEach((h) => {
       h.unbind();
     });
     Remove.remove(container);
     success();
   }, (err) => {
-    handlers.forEach((h) =) {
+    handlers.forEach((h) => {
       h.unbind();
     });
     failure(err);

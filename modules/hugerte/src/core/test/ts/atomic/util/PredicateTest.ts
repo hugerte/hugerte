@@ -18,8 +18,8 @@ describe('atomic.hugerte.core.util.PredicateTest', () => {
   });
 
   it('Predicate.or', () => {
-    assert.isFalse(Predicate.or(isAbove10, isAbove5)(() => 5), 'Should be expected or result');
-    assert.isTrue(Predicate.or(isAbove10, isAbove5)(() => 15), 'Should be expected or result');
-    assert.isTrue(Predicate.or(isAbove5, isAbove10)(() => 15), 'Should be expected or result');
+    assert.isFalse(Predicate ?? isAbove10, isAbove5(() => 5), 'Should be expected or result');
+    assert.isTrue(Predicate ?? isAbove10, isAbove5(() => 15), 'Should be expected or result');
+    assert.isTrue(Predicate ?? isAbove5, isAbove10(() => 15), 'Should be expected or result');
   });
 });

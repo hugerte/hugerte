@@ -101,7 +101,7 @@ describe('browser.hugerte.themes.silver.editor.contextmenu.MobileContextMenuTest
 
   const assertMenuItems = (items: string[]) => {
     const contextMenu = UiFinder.findIn(SugarBody.body(), mobileContextMenuSelector).getOrDie();
-    items.forEach((item) =) UiFinder.exists(contextMenu, item));
+    items.forEach((item) => UiFinder.exists(contextMenu, item));
   };
 
   const mobileContextMenuSelector = 'div.tox-collection--horizontal';

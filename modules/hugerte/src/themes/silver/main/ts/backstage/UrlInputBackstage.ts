@@ -1,4 +1,4 @@
-import { Future, Type } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { FilePickerCallback, FilePickerValidationCallback } from 'hugerte/core/api/OptionTypes';
@@ -81,7 +81,7 @@ const getUrlPicker = (editor: Editor, filetype: string): (UrlPicker) | null => g
 }));
 
 const getTextSetting = (value: string | boolean): string | undefined =>
-  (value ?? null).filter(Type.isString) ?? undefined;
+  (value ?? null).filter((x: any): x is string => typeof x === 'string') ?? undefined;
 
 export const getLinkInformation = (editor: Editor): (LinkInformation) | null => {
   if (!Options.useTypeaheadUrls(editor)) {

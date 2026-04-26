@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -31,7 +31,7 @@ describe('browser.hugerte.core.delete.CefDeleteActionTest', () => {
     return CefDeleteAction.read(viewBlock.get(), forward, rng, baseSchema);
   };
 
-  const assertRemoveElementAction = (actionOpt: Optional<DeleteActionAdt>, elementPath: number[]) => {
+  const assertRemoveElementAction = (actionOpt: DeleteActionAdt | null, elementPath: number[]) => {
     const element = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), elementPath).getOrDie();
     const action = actionOpt.getOrDie();
     const value = actionValue(action) as SugarElement<Element>;
@@ -39,7 +39,7 @@ describe('browser.hugerte.core.delete.CefDeleteActionTest', () => {
     Assertions.assertDomEq('Should be expected element', element, value);
   };
 
-  const assertMoveToElementAction = (actionOpt: Optional<DeleteActionAdt>, elementPath: number[]) => {
+  const assertMoveToElementAction = (actionOpt: DeleteActionAdt | null, elementPath: number[]) => {
     const element = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), elementPath).getOrDie();
     const action = actionOpt.getOrDie();
     const value = actionValue(action) as SugarElement<Element>;
@@ -47,7 +47,7 @@ describe('browser.hugerte.core.delete.CefDeleteActionTest', () => {
     Assertions.assertDomEq('Should be expected element', element, value);
   };
 
-  const assertMoveToPositionAction = (actionOpt: Optional<DeleteActionAdt>, elementPath: number[], offset: number) => {
+  const assertMoveToPositionAction = (actionOpt: DeleteActionAdt | null, elementPath: number[], offset: number) => {
     const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), elementPath).getOrDie();
     const action = actionOpt.getOrDie();
     const value = actionValue(action) as CaretPosition;
@@ -56,8 +56,8 @@ describe('browser.hugerte.core.delete.CefDeleteActionTest', () => {
     assert.equal(value.offset(), offset, 'Should be expected offset');
   };
 
-  const assertActionNone = (action: Optional<DeleteActionAdt>) => {
-    assert.isTrue(action.isNone(), 'Action value should be none');
+  const assertActionNone = (action: DeleteActionAdt | null) => {
+    assert.isTrue(action === null, 'Action value should be none');
   };
 
   const actionName = (action: DeleteActionAdt) => {

@@ -14,10 +14,10 @@ describe('atomic.katamari.api.arr.ResultValueTest', () => {
     assert.isTrue(Results.is(s, 5));
     assert.isTrue(s.isValue());
     assert.isFalse(s.isError());
-    assert.equal(s.getOr(6), 5);
+    assert.equal(s ?? 6, 5);
     assert.equal(s.getOrThunk(Fun.constant(6)), 5);
     assert.equal(s.getOrDie(), 5);
-    assert.equal(s.or(Result.value(6)).getOrDie(), 5);
+    assert.equal(s ?? Result.value(6).getOrDie(), 5);
     assert.equal(s.orThunk(() => Result.error('Should not get here.')).getOrDie(), 5);
 
     assert.equal(s.fold((_e) => {
@@ -28,10 +28,10 @@ describe('atomic.katamari.api.arr.ResultValueTest', () => {
 
     assert.equal(s.bind((v) => Result.value('test' + v)).getOrDie(), 'test5');
 
-    assert.isTrue(s.exists(Fun.always));
-    assert.isFalse(s.forall(Fun.never));
+    assert.isTrue(s.exists(() => true));
+    assert.isFalse(s.forall(() => false));
 
-    assert.isTrue(Result.value(5).toOptional().isSome());
+    assert.isTrue(Result.value(5).toOptional() !== null);
   });
 
   it('Checking value.is(value.getOrDie()) === true', () => {
@@ -52,9 +52,9 @@ describe('atomic.katamari.api.arr.ResultValueTest', () => {
     }));
   });
 
-  it('Checking value.getOr(v) === value.value', () => {
+  it('Checking value ?? v === value.value', () => {
     fc.assert(fc.property(fc.integer(), (a) => {
-      assert.equal(Result.value(a).getOr(a), a);
+      assert.equal(Result.value(a) ?? a, a);
     }));
   });
 
@@ -64,15 +64,15 @@ describe('atomic.katamari.api.arr.ResultValueTest', () => {
     }));
   });
 
-  it('Checking value.or(oValue) === value', () => {
+  it('Checking value ?? oValue === value', () => {
     fc.assert(fc.property(fc.integer(), fc.integer(), (a, b) => {
-      assertResult(Result.value(a).or(Result.value(b)), Result.value(a));
+      assertResult(Result.value(a) ?? Result.value(b), Result.value(a));
     }));
   });
 
-  it('Checking error.or(value) === value', () => {
+  it('Checking error ?? value === value', () => {
     fc.assert(fc.property(fc.integer(), fc.integer(), (a, b) => {
-      assertResult(Result.error(a).or(Result.value(b)), Result.value(b));
+      assertResult(Result.error(a) ?? Result.value(b), Result.value(b));
     }));
   });
 
@@ -85,7 +85,7 @@ describe('atomic.katamari.api.arr.ResultValueTest', () => {
   it('Checking value.fold(die, id) === value.getOrDie()', () => {
     fc.assert(fc.property(arbResultValue(fc.integer()), (res) => {
       const actual = res.getOrDie();
-      assert.equal(res.fold(Fun.die('should not get here'), Fun.identity), actual);
+      assert.equal(res.fold(Fun.die('should not get here'), (x: any) => x), actual);
     }));
   });
 
@@ -110,7 +110,7 @@ describe('atomic.katamari.api.arr.ResultValueTest', () => {
 
   it('Given f :: s -> RE, checking value.bind(f).fold(id, die) === f(value.getOrDie()).fold(id, die)', () => {
     fc.assert(fc.property(arbResultValue<number, number>(fc.integer()), fc.func(arbResultError<number, number>(fc.integer())), (res, f) => {
-      const toErrString = (r: Result<number, number>) => r.fold(Fun.identity, Fun.die('Not a Result.error'));
+      const toErrString = (r: Result<number, number>) => r.fold((x: any) => x, Fun.die('Not a Result.error'));
       assert.equal(toErrString(f(res.getOrDie())), toErrString(res.bind(f)));
     }));
   });
@@ -127,7 +127,7 @@ describe('atomic.katamari.api.arr.ResultValueTest', () => {
     }));
   });
 
-  it('Checking value.toOptional is always Optional.some(value.getOrDie())', () => {
+  it('Checking value.toOptional is always value.getOrDie()', () => {
     fc.assert(fc.property(arbResultValue(fc.integer()), (res) => {
       assert.equal(res.toOptional().getOrDie(), res.getOrDie());
     }));

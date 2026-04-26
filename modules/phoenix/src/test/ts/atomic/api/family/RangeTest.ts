@@ -42,7 +42,7 @@ UnitTest.test('RangeTest', () => {
     const start = Finder.get(doc, startId);
     const finish = Finder.get(doc, finishId);
     const actual = Family.range(doc, start, delta1, finish, delta2);
-    Assert.eq('', expected, actual.map((x) =) {
+    Assert.eq('', expected, actual.map((x) => {
       return x.id;
     }));
   };

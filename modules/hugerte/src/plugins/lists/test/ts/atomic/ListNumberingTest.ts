@@ -1,5 +1,5 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Optional, OptionalInstances } from '@ephox/katamari';
+import { OptionalInstances } from '@ephox/katamari';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
@@ -8,7 +8,7 @@ import { parseStartValue, parseDetail, ListDetail } from 'hugerte/plugins/lists/
 describe('atomic.hugerte.plugins.lists.core.ListNumberingTest', () => {
   const tOptional = OptionalInstances.tOptional;
 
-  const check = (startValue: string, expectedDetail: Optional<ListDetail>) => {
+  const check = (startValue: string, expectedDetail: ListDetail | null) => {
     expectedDetail.each((expected) => {
       // Test conversion of: start value -> detail
       const actualDetail = parseStartValue(startValue);

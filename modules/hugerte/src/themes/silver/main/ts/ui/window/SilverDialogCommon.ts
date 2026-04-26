@@ -95,7 +95,7 @@ const updateDialogSizeClass = (size: Dialog.DialogSize, component: AlloyComponen
 const toggleFullscreen = (comp: AlloyComponent, currentSize: Dialog.DialogSize): void => {
   const dialogBody = SugarElement.fromDom(comp.element.dom);
   const classes = Classes.get(dialogBody);
-  const currentSizeClass = ((classes).find((c) => c === largeDialogClass || c === mediumDialogClass) ?? null).or(getDialogSizeClass(currentSize));
+  const currentSizeClass = ((classes).find((c) => c === largeDialogClass || c === mediumDialogClass) ?? null) ?? getDialogSizeClass(currentSize);
   Classes.toggle(dialogBody, [ fullscreenClass, ...currentSizeClass.toArray() ]);
 };
 

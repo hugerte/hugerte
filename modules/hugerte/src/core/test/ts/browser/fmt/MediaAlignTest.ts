@@ -43,7 +43,7 @@ describe('browser.hugerte.core.fmt.MediaAlignTest', () => {
   [
     { type: 'video', content: '<p><video controls="controls"><source src="custom/video.mp4"></video></p>' },
     { type: 'audio', content: '<p><audio controls="controls"><source src="custom/audio.mp3"></audio></p>' },
-  ].forEach((test) =) {
+  ].forEach((test) => {
     const { type, content } = test;
 
     context(`${type} media`, () => {

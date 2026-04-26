@@ -4,17 +4,17 @@ import { Optional } from '@ephox/katamari';
 import * as CurrentWord from 'ephox/robin/util/CurrentWord';
 
 UnitTest.test('CurrentWordTest', () => {
-  const check = (expected: { before: Optional<number>; after: Optional<number> }, text: string, position: number) => {
+  const check = (expected: { before: number | null; after: number | null }, text: string, position: number) => {
     const actual = CurrentWord.around(text, position);
     Assert.eq(
       'Checking before :: Optional',
-      (expected.before as Optional<number | string>).getOr('none'),
-      (actual.before as Optional<number | string>).getOr('none')
+      (expected.before as number | string | null) ?? 'none',
+      (actual.before as number | string | null) ?? 'none'
     );
     Assert.eq(
       'Checking after :: Optional',
-      (expected.after as Optional<number | string>).getOr('none'),
-      (actual.after as Optional<number | string>).getOr('none')
+      (expected.after as number | string | null) ?? 'none',
+      (actual.after as number | string | null) ?? 'none'
     );
   };
 

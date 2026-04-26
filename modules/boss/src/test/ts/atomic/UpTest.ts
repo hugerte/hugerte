@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import { Gene } from 'ephox/boss/api/Gene';
@@ -21,10 +21,10 @@ UnitTest.test('UpTest', () => {
 
   const getId = (x: Gene) => x.id;
 
-  const selectorId = (item: Gene, query: string): Optional<string> =>
+  const selectorId = (item: Gene, query: string): string | null =>
     Up.selector(item, query).map(getId);
 
-  const closestId = (item: Gene, query: string): Optional<string> =>
+  const closestId = (item: Gene, query: string): string | null =>
     Up.closest(item, query).map(getId);
 
   const d = Locator.byId(family, 'D').getOrDie();

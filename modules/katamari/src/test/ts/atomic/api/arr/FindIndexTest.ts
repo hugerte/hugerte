@@ -10,7 +10,7 @@ import { assertNone, assertOptional, assertSome } from 'ephox/katamari/test/Asse
 describe('atomic.katamari.api.arr.FindIndexTest', () => {
   it('unit tests', () => {
     const checkNoneHelper = (input: ArrayLike<number>, pred: (x: number) => boolean): void => {
-      assertNone(Arr.findIndex(input, pred));
+      assertNone(input.findIndex(pred));
     };
 
     const checkNone = (input: number[], pred: (x: number) => boolean): void => {
@@ -19,7 +19,7 @@ describe('atomic.katamari.api.arr.FindIndexTest', () => {
     };
 
     const checkHelper = (expected: number, input: ArrayLike<number>, pred: (x: number) => boolean): void => {
-      assertSome(Arr.findIndex(input, pred), expected);
+      assertSome(input.findIndex(pred), expected);
     };
 
     const check = (expected: number, input: number[], pred: (x: number) => boolean): void => {
@@ -39,7 +39,7 @@ describe('atomic.katamari.api.arr.FindIndexTest', () => {
     fc.assert(fc.property(fc.array(fc.nat()), arbNegativeInteger(), fc.array(fc.nat()), (prefix, element, suffix) => {
       const arr = [ ...prefix, element, ...suffix ];
       assertSome(
-        Arr.findIndex(arr, (x) => x === element),
+        arr.findIndex((x) => x === element),
         prefix.length
       );
     }));
@@ -48,27 +48,27 @@ describe('atomic.katamari.api.arr.FindIndexTest', () => {
   it('finds elements that pass the predicate', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
       const pred = (x: number) => x % 3 === 0;
-      assert.isTrue(Arr.findIndex(arr, pred).forall((x) => pred(arr[x])));
+      assert.isTrue(arr.findIndex(pred).forall((x) => pred(arr[x])));
     }));
   });
 
   it('returns none if predicate always returns false', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-      assertNone(Arr.findIndex(arr, Fun.never));
+      assertNone(arr.findIndex(() => false));
     }));
   });
 
   it('is consistent with find', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
       const pred = (x: number) => x % 5 === 0;
-      assertOptional(Arr.findIndex(arr, pred).map((x) => arr[x]), Arr.find(arr, pred));
+      assertOptional(arr.findIndex(pred).map((x) => arr[x]), (arr.find(pred) ?? null));
     }));
   });
 
   it('is consistent with exists', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
       const pred = (x: number) => x % 6 === 0;
-      assert.equal(Arr.findIndex(arr, pred).isSome(), Arr.exists(arr, pred));
+      assert.equal(arr.findIndex(pred) !== null, Arr.exists(arr, pred));
     }));
   });
 });

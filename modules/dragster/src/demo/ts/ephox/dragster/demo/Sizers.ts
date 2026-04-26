@@ -76,13 +76,13 @@ export const Sizers = (): Sizers => {
   };
 
   const hide = () => {
-    [ northwest, north, northeast, southeast ].forEach((x) =) {
+    [ northwest, north, northeast, southeast ].forEach((x) => {
       x.hide();
     });
   };
 
   const show = () => {
-    [ northwest, north, northeast, southeast ].forEach((x) =) {
+    [ northwest, north, northeast, southeast ].forEach((x) => {
       x.show();
     });
   };

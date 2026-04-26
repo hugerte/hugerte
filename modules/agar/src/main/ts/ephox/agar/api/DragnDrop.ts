@@ -74,7 +74,7 @@ const drop = (to: SugarElement<Element>, prevented: boolean, addItems: (transfer
 
 const dropFiles = (files: File[], to: SugarElement<Element>, prevented: boolean = true): void => {
   drop(to, prevented, (transfer) => {
-    files.forEach((file) =) {
+    files.forEach((file) => {
       transfer.items.add(file);
     });
   });
@@ -82,7 +82,7 @@ const dropFiles = (files: File[], to: SugarElement<Element>, prevented: boolean 
 
 const dropItems = (items: Item[], to: SugarElement<Element>, prevented: boolean = true): void => {
   drop(to, prevented, (transfer) => {
-    items.forEach((item) =) {
+    items.forEach((item) => {
       transfer.items.add(item.data, item.type);
     });
   });

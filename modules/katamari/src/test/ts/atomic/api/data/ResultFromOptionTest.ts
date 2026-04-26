@@ -6,15 +6,15 @@ import { Result } from 'ephox/katamari/api/Result';
 
 describe('atomic.katamari.api.data.ResultFromOptionTest', () => {
   it('unit tests', () => {
-    const extractError = <T, E>(result: Result<T, E>): Optional<E> => result.fold(
-      (e) => Optional.some(e),
-      () => Optional.none()
+    const extractError = <T, E>(result: Result<T, E>): E | null => result.fold(
+      (e) => e,
+      () => null
     );
 
-    const err = Result.fromOption(Optional.none(), 'err');
+    const err = Result.fromOption(null, 'err');
     assert.equal(extractError(err).getOrDie('Could not get error value'), 'err');
 
-    const val = Result.fromOption(Optional.some('val'), 'err');
+    const val = Result.fromOption('val', 'err');
     assert.equal(val.getOrDie(), 'val');
   });
 });

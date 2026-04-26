@@ -1,5 +1,5 @@
 import { Assertions, Chain, Mouse, Step, UiFinder } from '@ephox/agar';
-import { Arr, Fun } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import { SugarElement, SugarShadowDom, Visibility } from '@ephox/sugar';
 
 import { Editor } from '../../alien/EditorTypes';
@@ -107,9 +107,9 @@ export const TinyUi = (editor: Editor): TinyUi => {
   };
 
   const getDialogByElement = (element: SugarElement<Element>) => {
-    return Arr.find(editor.windowManager.getWindows(), (win: any) => {
+    return (editor.windowManager.getWindows().find((win: any) => {
       return element.dom.id === win._id;
-    });
+    }) ?? null);
   };
 
   const cAssertDialogContents = <T extends Element> (data: Record<string, any>) => {

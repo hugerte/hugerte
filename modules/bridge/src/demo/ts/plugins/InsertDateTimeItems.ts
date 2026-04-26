@@ -8,7 +8,7 @@ export const registerInsertDateTimeItems = (): void => {
   getDemoRegistry().addSplitButton('insertdatetime', {
     type: 'splitbutton',
     fetch: (callback) => {
-      const items = [ '%H:%M:%S', '%Y-%m-%d', '%I:%M:%S %p', '%D' ].map((fmt) =) ({
+      const items = [ '%H:%M:%S', '%Y-%m-%d', '%I:%M:%S %p', '%D' ].map((fmt) => ({
         type: 'choiceitem',
         value: fmt,
         // Convert current time

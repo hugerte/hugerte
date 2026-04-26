@@ -29,7 +29,7 @@ describe('browser.hugerte.core.util.ImageUploaderTest', () => {
 
   const assertUploadResultSuccess = (uploadResults: UploadResult[], expectedLength: number, expectedUrl: string) => {
     assert.lengthOf(uploadResults, expectedLength, 'Upload results length matches expected length');
-    uploadResults.forEach((uploadResult) =) {
+    uploadResults.forEach((uploadResult) => {
       assert.equal(uploadResult.url, expectedUrl, 'Url is Image.png');
       assert.isTrue(uploadResult.status, 'Upload result status is true upon success');
     });
@@ -37,7 +37,7 @@ describe('browser.hugerte.core.util.ImageUploaderTest', () => {
 
   const assertUploadResultFailure = (uploadResults: UploadResult[], expectedLength: number, errorMsg: string) => {
     assert.lengthOf(uploadResults, expectedLength, 'Upload results length matches expected length');
-    uploadResults.forEach((uploadResult) =) {
+    uploadResults.forEach((uploadResult) => {
       assert.isFalse(uploadResult.status, 'Upload result status is false upon failure');
       assert.equal(uploadResult.url, '', 'Url is empty string upon failure');
       assert.equal(uploadResult.error?.message, errorMsg, 'Upload result error message matches failure message');

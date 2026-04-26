@@ -16,7 +16,7 @@ interface TestScenario {
 }
 
 describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteAriaTest', () => {
-  [ 'iframe', 'inline' ].forEach((mode: string) =) {
+  [ 'iframe', 'inline' ].forEach((mode: string) => {
     context(mode, () => {
       afterEach(() => assertAutocompleteClosed());
 
@@ -61,9 +61,9 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteAriaTest
             minChars: 0,
             columns: 1,
             fetch: (pattern, _maxResults) => new Promise((resolve) => {
-              const filteredItems = [ 'aA', 'bB', 'cC', 'dD' ].filter((letter) =) letter.indexOf(pattern) !== -1);
+              const filteredItems = [ 'aA', 'bB', 'cC', 'dD' ].filter((letter) => letter.indexOf(pattern) !== -1);
               resolve(
-                filteredItems.map((letter) =) ({
+                filteredItems.map((letter) => ({
                   value: `plus-${letter}`,
                   text: `p-${letter}`,
                   icon: '+'
@@ -86,10 +86,10 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteAriaTest
               const filteredItems = [
                 { text: 'equals sign', value: '=' },
                 { text: 'plus sign - D', value: '+' }
-              ].filter((item) =) item.text.indexOf(pattern) !== -1);
+              ].filter((item) => item.text.indexOf(pattern) !== -1);
               return new Promise((resolve) => {
                 resolve(
-                  filteredItems.map((item) =) ({
+                  filteredItems.map((item) => ({
                     value: `euro-${item.value}`,
                     ariaLabel: item.text,
                     type: 'cardmenuitem',
@@ -131,7 +131,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteAriaTest
       [
         { triggerChar: '+', label: 'autocomplete item' },
         { triggerChar: ':', label: 'cardmenu item' }
-      ].forEach((scenario: TestScenario) =) {
+      ].forEach((scenario: TestScenario) => {
         context(scenario.label, () => {
           it('TINY-9393: Attributes of editor body should be updated when autocomplete is shown', async () => {
             const editor = hook.editor();

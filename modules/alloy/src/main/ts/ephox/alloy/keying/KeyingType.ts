@@ -1,5 +1,5 @@
 import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import * as EventRoot from '../alien/EventRoot';
@@ -47,7 +47,7 @@ const typical = <C extends GeneralKeyingConfig, S extends BehaviourState>(
   const toEvents = (keyingConfig: C, keyingState: S): AlloyEvents.AlloyEventRecord => {
 
     const onFocusHandler = keyingConfig.focusInside !== FocusInsideModes.OnFocusMode
-      ? Optional.none<AlloyEvents.AlloyEventKeyAndHandler<EventFormat>>()
+      ? null
       : optFocusIn(keyingConfig).map((focusIn) =>
         AlloyEvents.run<EventArgs<FocusEvent>>(SystemEvents.focus(), (component, simulatedEvent) => {
           focusIn(component, keyingConfig, keyingState);

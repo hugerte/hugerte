@@ -12,7 +12,7 @@ describe('browser.hugerte.core.NotificationManagerTest', () => {
   [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(tester.label, () => {
       let beforeOpenEvents: BeforeOpenNotificationEvent[] = [];
       let openEvents: OpenNotificationEvent[] = [];
@@ -32,7 +32,7 @@ describe('browser.hugerte.core.NotificationManagerTest', () => {
       const resetNotifications = () => {
         const editor = hook.editor();
         const notifications = [ ...editor.notificationManager.getNotifications() ];
-        notifications.forEach((notification) =) notification.close());
+        notifications.forEach((notification) => notification.close());
         beforeOpenEvents = [];
         openEvents = [];
       };
@@ -148,7 +148,7 @@ describe('browser.hugerte.core.NotificationManagerTest', () => {
         const n2 = editor.notificationManager.open(testMsg2);
         assert.lengthOf(notifications, 2, 'Should have two messages added.');
 
-        const hasFocus = (node: Node) => Focus.search(SugarElement.fromDom(node)).isSome();
+        const hasFocus = (node: Node) => Focus.search(SugarElement.fromDom(node)) !== null;
 
         Focus.focus(SugarElement.fromDom(n2.getEl()));
         assert.isTrue(hasFocus(n2.getEl()), 'Focus should be on notification 2');
@@ -181,7 +181,7 @@ describe('browser.hugerte.core.NotificationManagerTest', () => {
           const notifications = editor.notificationManager.getNotifications();
 
           const hasFocus = (node: SugarElement<Node>) =>
-            Focus.search(node).isSome();
+            Focus.search(node) !== null;
 
           const n1 = editor.notificationManager.open(testMsg1);
           const n2 = editor.notificationManager.open(testMsg2);

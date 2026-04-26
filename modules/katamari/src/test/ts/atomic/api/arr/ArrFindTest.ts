@@ -28,7 +28,7 @@ describe('atomic.katamari.api.arr.ArrFindTest', () => {
     };
 
     const checkArrGuard = <T, U extends T>(expected: U, input: ArrayLike<T>, pred: (n: T, i: number) => n is U): void => {
-      const actual: Optional<U> = Arr.find(input, pred);
+      const actual: U | null = Arr.find(input, pred);
       assertSome(actual, expected);
     };
 
@@ -58,7 +58,7 @@ describe('atomic.katamari.api.arr.ArrFindTest', () => {
 
   it('cannot find a nonexistent value', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-      const result = Arr.find(arr, Fun.never);
+      const result = Arr.find(arr, () => false);
       assertNone(result);
     }));
   });

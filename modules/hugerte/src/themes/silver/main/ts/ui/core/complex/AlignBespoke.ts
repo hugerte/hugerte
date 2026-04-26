@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
@@ -27,7 +27,7 @@ const getSpec = (editor: Editor): SelectSpec => {
 
   const isSelectedFor = (format: string) => () => editor.formatter.match(format);
 
-  const getPreviewFor = (_format: string) => Optional.none;
+  const getPreviewFor = (_format: string) => () => null;
 
   const updateSelectMenuIcon = (comp: AlloyComponent) => {
     const match = getMatchingValue();
@@ -49,7 +49,7 @@ const getSpec = (editor: Editor): SelectSpec => {
     text: null,
     icon: 'align-left',
     isSelectedFor,
-    getCurrentValue: Optional.none,
+    getCurrentValue: () => null,
     getPreviewFor,
     onAction,
     updateText: updateSelectMenuIcon,

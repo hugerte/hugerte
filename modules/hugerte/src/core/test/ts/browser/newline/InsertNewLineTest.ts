@@ -840,7 +840,7 @@ describe('browser.hugerte.core.newline.InsertNewLineTest', () => {
 
   it('TINY-10560: Press Enter after a `selection.setContent` should create a new line and not throw errors', () => {
     const editor = hook.editor();
-    [ 'pre', 'h1', 'div', 'p' ].forEach((tagName) =) {
+    [ 'pre', 'h1', 'div', 'p' ].forEach((tagName) => {
       editor.setContent('abc');
       TinySelections.setSelection(editor, [ 0, 0 ], 0, [ 0, 0 ], 3);
 

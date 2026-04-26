@@ -133,7 +133,7 @@ describe('browser.hugerte.plugins.autosave.AutoSavePluginTest', () => {
     it('TINY-10236: Excluding ZWNBSP in comment nodes does not cause mXSS',
       testContentMxssOnRestoreDraft(`<!--\uFEFF><iframe onload="window.${xssFnName}();">->`));
 
-    [ 'noscript', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) =) {
+    [ 'noscript', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) => {
       it(`TINY-10305: Excluding ZWNBSP in ${parent} does not cause mXSS`,
         testContentMxssOnRestoreDraft(`<${parent}><\uFEFF/${parent}><\uFEFFiframe onload="window.${xssFnName}();"></${parent}>`));
     });

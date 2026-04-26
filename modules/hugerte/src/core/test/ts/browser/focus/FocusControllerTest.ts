@@ -12,7 +12,7 @@ describe('browser.hugerte.core.focus.FocusControllerTest', () => {
   [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(tester.label, () => {
       const hook = tester.setup<Editor>({
         add_unload_trigger: false,

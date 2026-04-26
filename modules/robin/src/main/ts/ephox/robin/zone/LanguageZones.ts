@@ -59,7 +59,7 @@ const nu = <E>(defaultLang: string): LanguageZones<E> => {
   };
 
   const getLang = (optLang: (string) | null) => {
-    return optLang.or(topOfStack()) ?? (defaultLang);
+    return optLang ?? topOfStack() ?? (defaultLang);
   };
 
   const openInline = (optLang: (string) | null, _elem: E) => {

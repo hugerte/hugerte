@@ -20,7 +20,7 @@ const isTextNodeWithCursorPosition = (el: SugarElement<Node>) => SugarText.getOp
   // For the purposes of finding cursor positions only allow text nodes with content,
   // but trim removes &nbsp; and that's allowed
   text.trim().length !== 0 || text.indexOf('\u00A0') > -1
-).isSome();
+) !== null;
 
 const isContentEditableFalse = (elem: SugarElement<Node>) => SugarNode.isHTMLElement(elem) && (Attribute.get(elem, 'contenteditable') === 'false');
 

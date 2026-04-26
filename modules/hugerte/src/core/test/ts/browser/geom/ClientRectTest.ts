@@ -100,7 +100,7 @@ describe('browser.hugerte.core.geom.ClientRectTest', () => {
   });
 
   it('boundingClientRectFromRects', () => {
-    assert.isTrue(ClientRect.boundingClientRectFromRects([]).isNone(), 'no rects no bounding rect');
+    assert.isTrue(ClientRect.boundingClientRectFromRects([]) === null, 'no rects no bounding rect');
     assert.deepEqual(ClientRect.boundingClientRectFromRects([ rect(11, 12, 13, 14) ]).getOrDie(), rect(11, 12, 13, 14), 'should be the same rect');
     assert.deepEqual(ClientRect.boundingClientRectFromRects([ rect(10, 10, 10, 10), rect(30, 30, 10, 10) ]).getOrDie(), rect(10, 10, 30, 30), 'expand bottom right');
     assert.deepEqual(ClientRect.boundingClientRectFromRects([ rect(10, 10, 10, 10), rect(5, 5, 10, 10) ]).getOrDie(), rect(5, 5, 15, 15), 'expand top left');

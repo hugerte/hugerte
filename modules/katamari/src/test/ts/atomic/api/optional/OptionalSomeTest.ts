@@ -14,30 +14,30 @@ describe('atomic.katamari.api.optional.OptionalsSomeTest', () => {
       throw new Error('Should not be called');
     };
 
-    const s = Optional.some(5);
+    const s = 5;
     assert.equal(s.getOrDie('Died!'), 5);
-    assertOptional(s.or(Optional.some(6)), Optional.some(5));
-    assertOptional(s.orThunk(boom), Optional.some(5));
+    assertOptional(s ?? 6, 5);
+    assertOptional(s.orThunk(boom), 5);
 
     assert.equal(s.map((v) => v * 2).getOrDie(), 10);
 
-    assertOptional(s.bind((v) => Optional.some('test' + v)), Optional.some('test5'));
+    assertOptional(s.bind((v) => 'test' + v), 'test5');
 
-    assertOptional(Optional.from(5), Optional.some(5));
+    assertOptional(5 ?? null, 5);
 
-    assert.deepEqual(Optional.some(1).toArray(), [ 1 ]);
-    assert.deepEqual(Optional.some({ cat: 'dog' }).toArray(), [{ cat: 'dog' }]);
-    assert.deepEqual(Optional.some([ 1 ]).toArray(), [[ 1 ]]);
+    assert.deepEqual(1.toArray(), [ 1 ]);
+    assert.deepEqual({ cat: 'dog' }.toArray(), [{ cat: 'dog' }]);
+    assert.deepEqual([ 1 ].toArray(), [[ 1 ]]);
 
-    assert.isTrue(Optionals.equals(Optional.some(6).or(Optional.some(7)), Optional.some(6)));
-    assert.isTrue(Optionals.equals(Optional.some(3).or(Optional.none()), Optional.some(3)));
+    assert.isTrue(Optionals.equals(6 ?? 7, 6));
+    assert.isTrue(Optionals.equals(3 ?? null, 3));
 
     assert.deepEqual(s.fold(boom, (v) => v + 6), 11);
-    assert.deepEqual(Optional.some('a').fold(Fun.die('boom'), Fun.identity), 'a');
-    assert.deepEqual(Optional.some('z').fold(Fun.die('boom'), (...args: any[]) => {
+    assert.deepEqual('a'.fold(Fun.die('boom'), (x: any) => x), 'a');
+    assert.deepEqual('z'.fold(Fun.die('boom'), (...args: any[]) => {
       return args;
     }), [ 'z' ]);
-    assert.deepEqual(Optional.some('a').fold(Fun.die('boom'), (x) => x + 'z'), 'az');
+    assert.deepEqual('a'.fold(Fun.die('boom'), (x) => x + 'z'), 'az');
   });
 
   const arbOptionSome = ArbDataTypes.arbOptionalSome;
@@ -45,63 +45,63 @@ describe('atomic.katamari.api.optional.OptionalsSomeTest', () => {
 
   it('Checking some(x).fold(die, id) === x', () => {
     fc.assert(fc.property(fc.integer(), (json) => {
-      const opt = Optional.some(json);
-      const actual = opt.fold(Fun.die('Should not be none!'), Fun.identity);
+      const opt = json;
+      const actual = opt.fold(Fun.die('Should not be none!'), (x: any) => x);
       assert.deepEqual(actual, json);
     }));
   });
 
   it('Checking some(x).is(x) === true', () => {
     fc.assert(fc.property(fc.integer(), (json) => {
-      const opt = Optional.some(json);
+      const opt = json;
       assert.isTrue(Optionals.is(opt, json));
     }));
   });
 
   it('Checking some(x).isSome === true', () => {
-    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => opt.isSome()));
+    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => opt !== null));
   });
 
   it('Checking some(x).isNone === false', () => {
-    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => !opt.isNone()));
+    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => !opt === null));
   });
 
-  it('Checking some(x).getOr(v) === x', () => {
+  it('Checking some(x) ?? v === x', () => {
     fc.assert(fc.property(arbOptionSome(fc.integer()), arbOptionSome(fc.integer()), (a, b) => {
-      assert.equal(Optional.some(a).getOr(b), a);
+      assert.equal(a ?? b, a);
     }));
   });
 
   it('Checking some(x).getOrThunk(_ -> v) === x', () => {
     fc.assert(fc.property(fc.integer(), fc.func(fc.integer()), (a, thunk) => {
-      assert.equal(Optional.some(a).getOrThunk(thunk), a);
+      assert.equal(a.getOrThunk(thunk), a);
     }));
   });
 
   it('Checking some.getOrDie() never throws', () => {
     fc.assert(fc.property(fc.integer(), fc.string(1, 40), (i, s) => {
-      const opt = Optional.some(i);
+      const opt = i;
       opt.getOrDie(s);
     }));
   });
 
-  it('Checking some(x).or(oSomeValue) === some(x)', () => {
+  it('Checking some(x) ?? oSomeValue === some(x)', () => {
     fc.assert(fc.property(fc.integer(), arbOptionSome(fc.integer()), (json, other) => {
-      const output = Optional.some(json).or(other);
+      const output = json ?? other;
       assert.isTrue(Optionals.is(output, json));
     }));
   });
 
   it('Checking some(x).orThunk(_ -> oSomeValue) === some(x)', () => {
     fc.assert(fc.property(fc.integer(), arbOptionSome(fc.integer()), (i, other) => {
-      const output = Optional.some(i).orThunk(() => other);
+      const output = i.orThunk(() => other);
       assert.isTrue(Optionals.is(output, i));
     }));
   });
 
   it('Checking some(x).map(f) === some(f(x))', () => {
     fc.assert(fc.property(fc.integer(), fc.func(fc.integer()), (a, f) => {
-      const opt = Optional.some(a);
+      const opt = a;
       const actual = opt.map(f);
       assert.equal(actual.getOrDie(), f(a));
     }));
@@ -120,7 +120,7 @@ describe('atomic.katamari.api.optional.OptionalsSomeTest', () => {
 
   it('Given f :: s -> some(b), checking some(x).bind(f) === some(b)', () => {
     fc.assert(fc.property(fc.integer(), fc.func(arbOptionSome(fc.integer())), (i, f) => {
-      const actual = Optional.some(i).bind(f);
+      const actual = i.bind(f);
       assert.deepEqual(actual, f(i));
     }));
   });
@@ -133,16 +133,16 @@ describe('atomic.katamari.api.optional.OptionalsSomeTest', () => {
   });
 
   it('Checking some(x).exists(_ -> false) === false', () => {
-    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => !opt.exists(Fun.never)));
+    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => !opt.exists(() => false)));
   });
 
   it('Checking some(x).exists(_ -> true) === true', () => {
-    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => opt.exists(Fun.always)));
+    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => opt.exists(() => true)));
   });
 
   it('Checking some(x).exists(f) iff. f(x)', () => {
     fc.assert(fc.property(fc.integer(), fc.func(fc.boolean()), (i, f) => {
-      const opt = Optional.some(i);
+      const opt = i;
       if (f(i)) {
         assert.isTrue(opt.exists(f));
       } else {
@@ -152,16 +152,16 @@ describe('atomic.katamari.api.optional.OptionalsSomeTest', () => {
   });
 
   it('Checking some(x).forall(_ -> false) === false', () => {
-    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => !opt.forall(Fun.never)));
+    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => !opt.forall(() => false)));
   });
 
   it('Checking some(x).forall(_ -> true) === true', () => {
-    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => opt.forall(Fun.always)));
+    fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => opt.forall(() => true)));
   });
 
   it('Checking some(x).forall(f) iff. f(x)', () => {
     fc.assert(fc.property(fc.integer(), fc.func(fc.boolean()), (i, f) => {
-      const opt = Optional.some(i);
+      const opt = i;
       if (f(i)) {
         assert.isTrue(opt.forall(f));
       } else {
@@ -172,13 +172,13 @@ describe('atomic.katamari.api.optional.OptionalsSomeTest', () => {
 
   it('Checking some(x).toArray equals [ x ]', () => {
     fc.assert(fc.property(fc.integer(), (json) => {
-      assert.deepEqual(Optional.some(json).toArray(), [ json ]);
+      assert.deepEqual(json.toArray(), [ json ]);
     }));
   });
 
   it('Checking some(x).toString equals "some(x)"', () => {
     fc.assert(fc.property(fc.integer(), (json) => {
-      assert.equal(Optional.some(json).toString(), 'some(' + json + ')');
+      assert.equal(json.toString(), 'some(' + json + ')');
     }));
   });
 });

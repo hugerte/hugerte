@@ -18,7 +18,7 @@ describe('browser.hugerte.themes.silver.skin.OxideToolbarCollectionMenuTest', ()
         presets: 'listpreview',
         fetch: (callback) => {
           callback(
-            [ 'A', 'B', 'C', 'D', 'E', 'F' ].map((letter) =) ({
+            [ 'A', 'B', 'C', 'D', 'E', 'F' ].map((letter) => ({
               type: 'choiceitem',
               value: `${letter}`,
               icon: 'fake-icon-name',

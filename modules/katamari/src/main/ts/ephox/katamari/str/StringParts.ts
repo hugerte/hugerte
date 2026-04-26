@@ -14,10 +14,10 @@ export const last = (str: string, count: number): string => {
   return str.substr(str.length - count, str.length);
 };
 
-export const head = (str: string): Optional<string> => {
-  return str === '' ? Optional.none() : Optional.some(str.substr(0, 1));
+export const head = (str: string): string | null => {
+  return str === '' ? null : str.substr(0, 1);
 };
 
-export const tail = (str: string): Optional<string> => {
-  return str === '' ? Optional.none() : Optional.some(str.substring(1));
+export const tail = (str: string): string | null => {
+  return str === '' ? null : str.substring(1);
 };

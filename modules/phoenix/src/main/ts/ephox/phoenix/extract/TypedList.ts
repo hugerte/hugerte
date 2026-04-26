@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { Arrays } from '@ephox/polaris';
 
 import * as Spot from '../api/data/Spot';
@@ -27,7 +27,7 @@ const gen = <E, D>(unit: TypedItem<E, D>, start: number): (SpotRange<E>) | null 
     return Spot.range(e, start, start + 1);
   }, (t) => {
     return Spot.range(t, start, start + unit.len());
-  }, Optional.none);
+  }, () => null);
 };
 
 const empty = () => [];

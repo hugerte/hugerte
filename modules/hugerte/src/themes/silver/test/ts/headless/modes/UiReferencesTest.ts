@@ -26,7 +26,7 @@ describe('headless.modes.UiReferencesTest', () => {
     };
 
     const assertClasses = (expected: string[][], motherships: Gui.GuiSystem[]) => {
-      const actual = motherships.map((m) =) Classes.get(m.element));
+      const actual = motherships.map((m) => Classes.get(m.element));
       assert.deepEqual(actual, expected, 'Checking classes of motherships');
     };
 

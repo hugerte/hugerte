@@ -187,7 +187,7 @@ describe('browser.hugerte.core.fmt.TextDecorationColorTest', () => {
       text: { before: '', selected: 'abc def', after: '' },
       selection: { startPath: [ 0, 0 ], sOffset: 0, finishPath: [ 0, 0 ], fOffset: 'abc def'.length }
     }
-  ].forEach((test) =) {
+  ].forEach((test) => {
     context(test.label, () => {
       mergeForecolorAndTextDecoration('Underline', 'underline', test.text, test.selection);
       mergeForecolorAndTextDecoration('Strikethrough', 'line-through', test.text, test.selection);

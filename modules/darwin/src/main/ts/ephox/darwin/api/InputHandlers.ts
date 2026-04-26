@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { ContentEditable, EventArgs, PredicateFind, Situ, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as KeySelection from '../keyboard/KeySelection';
@@ -63,7 +63,7 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
 
       // Shift down should predict the movement and set the selection.
       if (SelectionKeys.isNavigation(keycode) && shiftKey && !isEditableSelection(start, finish)) {
-        return Optional.none;
+        return () => null;
       } else if (SelectionKeys.isDown(keycode) && shiftKey) {
         return ((..._rest: any[]) => (VerticalMovement.select)(bridge, container, isRoot, KeyDirection.down, finish, start, annotations.selectRange, ..._rest));
       } else if (SelectionKeys.isUp(keycode) && shiftKey) { // Shift up should predict the movement and set the selection.
@@ -73,7 +73,7 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
       } else if (SelectionKeys.isUp(keycode)) { // Up should predict the movement and set the cursor
         return ((..._rest: any[]) => (VerticalMovement.navigate)(bridge, isRoot, KeyDirection.up, finish, start, VerticalMovement.firstUpCheck, ..._rest));
       } else {
-        return Optional.none;
+        return () => null;
       }
     }, (selected) => {
 
@@ -100,7 +100,7 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
       };
 
       if (SelectionKeys.isNavigation(keycode) && shiftKey && !isEditableSelection(start, finish)) {
-        return Optional.none;
+        return () => null;
       } else if (SelectionKeys.isDown(keycode) && shiftKey) {
         return update([ rc(+1, 0) ]);
       } else if (SelectionKeys.isUp(keycode) && shiftKey) {
@@ -112,7 +112,7 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
       } else if (SelectionKeys.isNavigation(keycode) && !shiftKey) { // Clear the selection on normal arrow keys.
         return clearToNavigate;
       } else {
-        return Optional.none;
+        return () => null;
       }
     });
 
@@ -132,7 +132,7 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
       } else {
         return null;
       }
-    }, Optional.none);
+    }, () => null);
   };
 
   return {

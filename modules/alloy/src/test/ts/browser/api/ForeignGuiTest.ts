@@ -58,7 +58,7 @@ UnitTest.asynctest('Browser Test: api.ForeignGuiTest', (success, failure) => {
     Step.sync(() => {
       const child = Traverse.child(root, index).getOrDie('Could not find child at index: ' + index);
       const optUid = Tagger.read(child);
-      Assertions.assertEq('Uid should NOT be set', true, optUid.isNone());
+      Assertions.assertEq('Uid should NOT be set', true, optUid === null);
     })
   );
 

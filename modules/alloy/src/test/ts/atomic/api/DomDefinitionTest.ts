@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Obj, Optional } from '@ephox/katamari';
+
 import * as fc from 'fast-check';
 
 import { DomDefinitionDetail } from 'ephox/alloy/dom/DomDefinition';
@@ -25,7 +25,7 @@ UnitTest.test('DomDefinitionTest', () => {
     fc.dictionary(nestring, nestring),
     arbOptionOf(fc.string()),
     arbOptionOf(fc.string())
-  ).map((arr: [string, string, string[], Record<string, string>, Record<string, string>, Optional<string>, Optional<string>]): DomDefinitionDetail => ({
+  ).map((arr: [string, string, string[], Record<string, string>, Record<string, string>, string | null, string | null]): DomDefinitionDetail => ({
     uid: arr[0],
     tag: arr[1],
     classes: arr[2],
@@ -61,10 +61,10 @@ UnitTest.test('DomDefinitionTest', () => {
     Assert.eq(
       () => 'All styles from modification should be in final result' + JSON.stringify(result, null, 2) + '.',
       true,
-      Obj.find(mod.styles, (v, k) => result.styles[k] !== v).isNone()
+      (Object.values(mod.styles) as any[]).find((v) => ((v, k) => result.styles[k] !== v)(v, '')) ?? null === null
     );
 
-    Object.entries(defn.styles).forEach(([k, v]) => ((v, k) =)(v, k)) {
+    Object.entries(defn.styles).forEach(([k, v]) => ((v, k) =>(v, k)) {
       Assert.eq(
         () => 'Defn Style: ' + k + '=' + v + ' should appear in result: ' + JSON.stringify(result, null, 2) + '., unless modification changed it',
         true,
@@ -75,10 +75,10 @@ UnitTest.test('DomDefinitionTest', () => {
     Assert.eq(
       () => 'All attributes from modification should be in final result' + JSON.stringify(result, null, 2) + '.',
       true,
-      Obj.find(mod.attributes, (v, k) => result.attributes[k] !== v).isNone()
+      (Object.values(mod.attributes) as any[]).find((v) => ((v, k) => result.attributes[k] !== v)(v, '')) ?? null === null
     );
 
-    Object.entries(defn.attributes).forEach(([k, v]) => ((v, k) =)(v, k)) {
+    Object.entries(defn.attributes).forEach(([k, v]) => ((v, k) =>(v, k)) {
       Assert.eq(
         () => 'Defn attribute: ' + k + '=' + v + ' should appear in result: ' + JSON.stringify(result, null, 2) + '., unless modification changed it',
         true,

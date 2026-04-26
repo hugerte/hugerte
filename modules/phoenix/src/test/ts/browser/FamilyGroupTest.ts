@@ -22,7 +22,7 @@ UnitTest.test('FamilyGroupTest', () => {
 
   const check = (expected: string[][], input: SugarElement[]) => {
     const rawActual = Family.group(universe, input, () => false as (e: SugarElement) => boolean);
-    const actual = rawActual.map((a) =) {
+    const actual = rawActual.map((a) => {
       return a.map(toStr);
     });
     Assert.eq('', expected, actual);

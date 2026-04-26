@@ -7,7 +7,7 @@ import * as ObjIndex from 'ephox/alloy/alien/ObjIndex';
 UnitTest.test('ObjIndexTest', () => {
   const tuple = <T>(k: string, v: T) => ({ country: k, value: v });
 
-  const sortObjValue = (obj: Record<string, any[]>) => Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, ((array, _k) =)(v, k)])) array.slice(0).sort((a, b) => {
+  const sortObjValue = (obj: Record<string, any[]>) => Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, ((array, _k) =>(v, k)])) array.slice(0).sort((a, b) => {
     if (a.country < b.country) {
       return -1;
     } else if (a.country > b.country) {

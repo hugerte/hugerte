@@ -61,7 +61,7 @@ DomEvent.bind(buttonWord, 'click', (_event) => {
 });
 
 const highlight = (matches: SearchResult<SugarElement>[]) => {
-  matches.forEach((x) =) {
+  matches.forEach((x) => {
     DomWrapping.wrapper(x.elements, wrapper);
   });
 };

@@ -18,8 +18,8 @@ describe('browser.hugerte.plugins.help.CustomTabsTest', () => {
     editor.execCommand('mceHelp');
     const dialogEl = await TinyUiActions.pWaitForDialog(editor);
     const actualTabs = UiFinder.findAllIn<HTMLDivElement>(dialogEl, 'div.tox-dialog__body-nav-item.tox-tab');
-    const actualNames = actualTabs.map((tab) =) Html.get(tab));
-    expectedNames.map((x, i) =) {
+    const actualNames = actualTabs.map((tab) => Html.get(tab));
+    expectedNames.map((x, i) => {
       assert.equal(actualNames[i], x, 'Tab names did not match');
     });
   };

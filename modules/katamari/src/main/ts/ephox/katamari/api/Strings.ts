@@ -91,12 +91,12 @@ export const repeat = (s: string, count: number): string => count <= 0 ? '' : ne
 
 export const fromCodePoint = String.fromCodePoint;
 
-export const toInt = (value: string, radix: number = 10): Optional<number> => {
+export const toInt = (value: string, radix: number = 10): number | null => {
   const num = parseInt(value, radix);
-  return isNaN(num) ? Optional.none() : Optional.some(num);
+  return isNaN(num) ? null : num;
 };
 
-export const toFloat = (value: string): Optional<number> => {
+export const toFloat = (value: string): number | null => {
   const num = parseFloat(value);
-  return isNaN(num) ? Optional.none() : Optional.some(num);
+  return isNaN(num) ? null : num;
 };

@@ -51,7 +51,7 @@ export default (): void => {
           containerBehaviours: Behaviour.derive([
             Reflecting.config({
               channel: 'reflecting-channel',
-              renderComponents: (data: { items: string [] }) => data.items.map((d) =) ({
+              renderComponents: (data: { items: string [] }) => data.items.map((d) => ({
                 dom: { tag: 'li', innerHtml: d }
               })),
               updateState: (comp, data) => data,

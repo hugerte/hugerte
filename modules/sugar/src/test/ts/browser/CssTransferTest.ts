@@ -34,13 +34,13 @@ UnitTest.test('CssTransfer', () => {
 
   const check = (expectedPresent: Record<string, string>, expectedAbsent: string[], source: SugarElement<Element>, destination: SugarElement<Element>, styles: string[]) => {
     Css.transfer(source, destination, styles);
-    expectedAbsent.forEach((k) =) {
-      if (Css.getRaw(destination, k).isSome()) {
+    expectedAbsent.forEach((k) => {
+      if (Css.getRaw(destination, k) !== null) {
         Assert.fail('Result should not have style: ' + k);
       }
     });
 
-    Object.entries(expectedPresent).forEach(([k, v]) => ((v, k) =)(v, k)) {
+    Object.entries(expectedPresent).forEach(([k, v]) => ((v, k) =>(v, k)) {
       const value = Css.getRaw(destination, k).getOrDie('Result should have style: ' + k);
       Assert.eq('', v, value);
     });

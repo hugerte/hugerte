@@ -203,7 +203,7 @@ const structActiveItem = ApproxStructure.build((s, str, arr) => s.element('li', 
   classes: [ arr.has('item'), arr.has('selected-item') ]
 }));
 
-const itemsHaveActiveStates = (states: boolean[]): StructAssert[] => states.map((s) =) {
+const itemsHaveActiveStates = (states: boolean[]): StructAssert[] => states.map((s) => {
   return s ? structActiveItem : structNotActiveItem;
 });
 

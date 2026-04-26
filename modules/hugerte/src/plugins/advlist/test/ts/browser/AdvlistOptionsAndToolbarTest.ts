@@ -222,7 +222,7 @@ describe('browser.hugerte.plugins.advlist.AdvlistOptionsAndToolbarTest', () => {
         expectedContent: '<ol style="list-style-type: upper-roman;">\n<li>a</li>\n</ol>',
         finalExpectedContent: '<p>a</p>',
       },
-    ] as Scenario[].forEach((scenario) =) {
+    ] as Scenario[].forEach((scenario) => {
       const { splitBtns, type } = scenario;
 
       it(scenario.label, async () => {

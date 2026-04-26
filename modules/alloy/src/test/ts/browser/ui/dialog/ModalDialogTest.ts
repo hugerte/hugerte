@@ -261,7 +261,7 @@ describe('browser.alloy.ui.dialog.ModalDialogTest', () => {
     const dialog = hook.component();
     const dialogTitle = UiFinder.findIn(dialog.element, dialogSelectors.title).getOrDie();
 
-    const titleId = Attribute.getOpt(dialogTitle, 'id').getOr('');
+    const titleId = Attribute.getOpt(dialogTitle, 'id') ?? '';
 
     Assertions.assertEq('titleId should be set', true, Attribute.has(dialogTitle, 'id'));
     Assertions.assertEq('titleId should not be empty', true, titleId.length > 0);

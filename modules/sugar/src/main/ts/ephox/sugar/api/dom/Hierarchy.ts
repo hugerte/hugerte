@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 
 import { SugarElement } from '../node/SugarElement';
 import * as Traverse from '../search/Traverse';
@@ -9,7 +9,7 @@ import * as Compare from './Compare';
  * a) path: Generates a list of child indices from the ancestor to the descendant
  * b) follow: Follows a path of child indices from an ancestor to reach a descendant
  */
-const up = (descendant: SugarElement<Node>, stopper: (e: SugarElement<Node>) => boolean): Optional<number[]> => {
+const up = (descendant: SugarElement<Node>, stopper: (e: SugarElement<Node>) => boolean): number[] | null => {
   if (stopper(descendant)) {
     return [] as number[];
   } else {
@@ -19,12 +19,12 @@ const up = (descendant: SugarElement<Node>, stopper: (e: SugarElement<Node>) => 
   }
 };
 
-const path = (ancestor: SugarElement<Node>, descendant: SugarElement<Node>): Optional<number[]> => {
+const path = (ancestor: SugarElement<Node>, descendant: SugarElement<Node>): number[] | null => {
   const stopper = Fun.curry(Compare.eq, ancestor);
   return Compare.eq(ancestor, descendant) ? [] : up(descendant, stopper);
 };
 
-const follow = (ancestor: SugarElement<Node>, descendantPath: number[]): Optional<SugarElement<Node>> => {
+const follow = (ancestor: SugarElement<Node>, descendantPath: number[]): SugarElement<Node> | null => {
   if (descendantPath.length === 0) {
     return ancestor;
   } else {

@@ -20,7 +20,7 @@ UnitTest.asynctest('Browser Test: behaviour.keying.FocusManagersTest', (success,
         tag: 'div',
         classes: [ 'container' ]
       },
-      components: [ 1, 2, 3 ].map((num) =) ({
+      components: [ 1, 2, 3 ].map((num) => ({
         dom: {
           tag: 'div',
           classes: [ 'candidate' ],
@@ -44,8 +44,8 @@ UnitTest.asynctest('Browser Test: behaviour.keying.FocusManagersTest', (success,
           AlloyEvents.run<SystemEvents.AlloyFocusShiftedEvent>(SystemEvents.focusShifted(), (_comp, se) => {
             const prevFocus = se.event.prevFocus;
             const newFocus = se.event.newFocus;
-            const prevIndex = prevFocus.map((p) => Attribute.get(p, 'data-index')).getOr('{none}');
-            const newIndex = newFocus.map((p) => Attribute.get(p, 'data-index')).getOr('{none}');
+            const prevIndex = prevFocus.map((p) => Attribute.get(p, 'data-index')) ?? '{none}';
+            const newIndex = newFocus.map((p) => Attribute.get(p, 'data-index')) ?? '{none}';
             store.adder(prevIndex + '->' + newIndex)();
           })
         ])

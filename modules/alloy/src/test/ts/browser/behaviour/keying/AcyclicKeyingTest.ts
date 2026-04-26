@@ -42,7 +42,7 @@ UnitTest.asynctest('Browser Test: behaviour.keying.AcyclicKeyingTest', (success,
             tag: 'div',
             classes: [ 'acyclic-container' ]
           },
-          components: [ 'alpha', 'beta', 'gamma' ].map((n) =) ({
+          components: [ 'alpha', 'beta', 'gamma' ].map((n) => ({
             dom: {
               tag: 'div',
               innerHtml: 'inner-' + n,

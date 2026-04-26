@@ -7,7 +7,7 @@ import { Step } from './Step';
 export interface TestStore<T = string> {
   add: (value: T) => void;
   adder: (value: T) => () => void;
-  adderH: (value: T) => () => Optional<boolean>;
+  adderH: (value: T) => () => boolean | null;
   clear: () => void;
   sClear: Step<any, any>;
   cClear: Chain<any, any>;

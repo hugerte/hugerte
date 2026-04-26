@@ -87,7 +87,7 @@ describe('browser.hugerte.themes.silver.window.SilverDialogBlockTest', () => {
   [
     { label: 'Modal', params: { }},
     { label: 'Inline', params: { inline: 'toolbar' as 'toolbar' }}
-  ].forEach((test) =) {
+  ].forEach((test) => {
     context(test.label, () => {
       beforeEach(() => {
         store.clear();

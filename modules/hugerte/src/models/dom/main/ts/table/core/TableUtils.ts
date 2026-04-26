@@ -5,7 +5,7 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { Strings } from '@ephox/katamari';
+
 import { TableLookup } from '@ephox/snooker';
 import { Attribute, Compare, ContentEditable, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
 
@@ -41,7 +41,7 @@ const getPixelHeight = (elm: HTMLElement): number =>
 
 const getRawValue = (prop: string) => (editor: Editor, elm: HTMLElement): (string) | null => {
   const raw = editor.dom.getStyle(elm, prop) || editor.dom.getAttrib(elm, prop);
-  return (raw ?? null).filter(Strings.isNotEmpty);
+  return (raw ?? null).filter((s: string) => s.length > 0);
 };
 
 const getRawWidth = getRawValue('width');

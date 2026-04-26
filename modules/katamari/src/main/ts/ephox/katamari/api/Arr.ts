@@ -18,10 +18,10 @@ const nativePush = Array.prototype.push;
 const rawIndexOf = <T> (ts: ArrayLike<T>, t: T): number =>
   nativeIndexOf.call(ts, t);
 
-export const indexOf = <T = any>(xs: ArrayLike<T>, x: T): Optional<number> => {
+export const indexOf = <T = any>(xs: ArrayLike<T>, x: T): number | null => {
   // The rawIndexOf method does not wrap up in an option. This is for performance reasons.
   const r = rawIndexOf(xs, x);
-  return r === -1 ? Optional.none() : Optional.some(r);
+  return r === -1 ? null : r;
 };
 
 export const contains = <T>(xs: ArrayLike<T>, x: T): boolean => rawIndexOf(xs, x) > -1;
@@ -119,7 +119,7 @@ export const filter: {
  * Groups an array into contiguous arrays of like elements. Whether an element is like or not depends on f.
  *
  * f is a function that derives a value from an element - e.g. true or false, or a string.
- * Elements are like if this function generates the same value for them (according to ===).
+ * Elements are like if this function generates the same value for them (according to ===>.
  *
  *
  * Order of the elements is preserved. Arr.flatten() on the result will return the original list, as with Haskell groupBy function.
@@ -166,36 +166,36 @@ export const foldl = <T = any, U = any>(xs: ArrayLike<T>, f: (acc: U, x: T, i: n
 };
 
 export const findUntil: {
-  <T, U extends T>(xs: ArrayLike<T>, pred: ArrayGuardPredicate<T, U>, until: ArrayPredicate<T>): Optional<U>;
-  <T = any>(xs: ArrayLike<T>, pred: ArrayPredicate<T>, until: ArrayPredicate<T>): Optional<T>;
-} = <T>(xs: ArrayLike<T>, pred: ArrayPredicate<T>, until: ArrayPredicate<T>): Optional<T> => {
+  <T, U extends T>(xs: ArrayLike<T>, pred: ArrayGuardPredicate<T, U>, until: ArrayPredicate<T>): U | null;
+  <T = any>(xs: ArrayLike<T>, pred: ArrayPredicate<T>, until: ArrayPredicate<T>): T | null;
+} = <T>(xs: ArrayLike<T>, pred: ArrayPredicate<T>, until: ArrayPredicate<T>): T | null => {
   for (let i = 0, len = xs.length; i < len; i++) {
     const x = xs[i];
     if (pred(x, i)) {
-      return Optional.some(x);
+      return x;
     } else if (until(x, i)) {
       break;
     }
   }
-  return Optional.none();
+  return null;
 };
 
 export const find: {
-  <T, U extends T>(xs: ArrayLike<T>, pred: ArrayGuardPredicate<T, U>): Optional<U>;
-  <T = any>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): Optional<T>;
-} = <T>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): Optional<T> => {
-  return findUntil(xs, pred, Fun.never);
+  <T, U extends T>(xs: ArrayLike<T>, pred: ArrayGuardPredicate<T, U>): U | null;
+  <T = any>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): T | null;
+} = <T>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): T | null => {
+  return findUntil(xs, pred, () => false);
 };
 
-export const findIndex = <T>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): Optional<number> => {
+export const findIndex = <T>(xs: ArrayLike<T>, pred: ArrayPredicate<T>): number | null => {
   for (let i = 0, len = xs.length; i < len; i++) {
     const x = xs[i];
     if (pred(x, i)) {
-      return Optional.some(i);
+      return i;
     }
   }
 
-  return Optional.none();
+  return null;
 };
 
 export const flatten = <T>(xs: ArrayLike<T[]>): T[] => {
@@ -258,22 +258,22 @@ export const sort = <T>(xs: ArrayLike<T>, comparator?: Comparator<T>): T[] => {
   return copy;
 };
 
-export const get = <T>(xs: ArrayLike<T>, i: number): Optional<T> => i >= 0 && i < xs.length ? Optional.some(xs[i]) : Optional.none();
+export const get = <T>(xs: ArrayLike<T>, i: number): T | null => i >= 0 && i < xs.length ? xs[i] : null;
 
-export const head = <T>(xs: ArrayLike<T>): Optional<T> => get(xs, 0);
+export const head = <T>(xs: ArrayLike<T>): T | null => get(xs, 0);
 
-export const last = <T>(xs: ArrayLike<T>): Optional<T> => get(xs, xs.length - 1);
+export const last = <T>(xs: ArrayLike<T>): T | null => get(xs, xs.length - 1);
 
 export const from: <T>(x: ArrayLike<T>) => T[] = Type.isFunction(Array.from) ? Array.from : (x) => nativeSlice.call(x);
 
-export const findMap = <A, B>(arr: ArrayLike<A>, f: (a: A, index: number) => Optional<B>): Optional<B> => {
+export const findMap = <A, B>(arr: ArrayLike<A>, f: (a: A, index: number) => B | null): B | null => {
   for (let i = 0; i < arr.length; i++) {
     const r = f(arr[i], i);
-    if (r.isSome()) {
+    if (r !== null) {
       return r;
     }
   }
-  return Optional.none<B>();
+  return null;
 };
 
 export const unique = <T>(xs: ArrayLike<T>, comparator?: (a: T, b: T) => boolean): T[] => {

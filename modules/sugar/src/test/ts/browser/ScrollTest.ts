@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
@@ -27,8 +27,8 @@ interface TestDocSpec {
 type AttrMap = Record<string, string | boolean | number>;
 interface TestAttrMap {
   iframe: AttrMap;
-  html: Optional<AttrMap>;
-  body: Optional<AttrMap>;
+  html: AttrMap | null;
+  body: AttrMap | null;
 }
 
 UnitTest.asynctest('ScrollTest', (success, failure) => {

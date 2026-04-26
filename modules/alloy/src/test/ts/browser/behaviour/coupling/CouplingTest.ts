@@ -24,7 +24,7 @@ UnitTest.asynctest('CouplingTest', (success, failure) => {
                 dom: {
                   tag: 'button'
                 },
-                action: store.adder('clicked on coupled button of: ' + Tagger.read(primary.element).getOr('No UID'))
+                action: store.adder('clicked on coupled button of: ' + Tagger.read(primary.element) ?? 'No UID')
               });
             }
           }
@@ -52,11 +52,11 @@ UnitTest.asynctest('CouplingTest', (success, failure) => {
       'Testing getCoupled and getExistingCoupled with valid name: secondary-1',
       Step.sync(() => {
         const existingSecondary1 = Coupling.getExistingCoupled(component, 'secondary-1');
-        Assertions.assertEq('secondary1 should not exist yet', true, existingSecondary1.isNone());
+        Assertions.assertEq('secondary1 should not exist yet', true, existingSecondary1 === null);
 
         const secondary1 = Coupling.getCoupled(component, 'secondary-1');
         const postCreateExistingSecondary1 = Coupling.getExistingCoupled(component, 'secondary-1');
-        Assertions.assertEq('secondary1 should now exist', true, postCreateExistingSecondary1.isSome());
+        Assertions.assertEq('secondary1 should now exist', true, postCreateExistingSecondary1 !== null);
         const button1 = secondary1.element;
         Assertions.assertEq('secondary1 should be a button', 'button', SugarNode.name(button1));
         Attribute.set(button1, 'data-test', 'marked');

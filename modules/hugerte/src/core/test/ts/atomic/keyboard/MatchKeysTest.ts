@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Cell } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import * as MatchKeys from 'hugerte/core/keyboard/MatchKeys';
@@ -34,9 +34,9 @@ describe('atomic.hugerte.core.keyboard.MatchKeysTest', () => {
       const matches = MatchKeys.match(patterns, event);
       assert.isAbove(matches.length, 0, 'Should have some matches');
 
-      Arr.find(matches, (pattern) => {
+      (matches.find((pattern) => {
         return pattern.action();
-      });
+      }) ?? null);
 
       assert.deepEqual(state.get(), expectedData, 'Should have the expected state');
     });

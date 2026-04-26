@@ -23,13 +23,13 @@ UnitTest.test('QueryTest', () => {
 
   const checkPrev = (expected: string, id: string) => {
     const first = universe.find(universe.get(), id).getOrDie();
-    const actual = Query.prevSibling(first).map((e) => e.id).getOr('_nope_');
+    const actual = Query.prevSibling(first).map((e) => e.id) ?? '_nope_';
     Assert.eq('', expected, actual);
   };
 
   const checkNext = (expected: string, id: string) => {
     const first = universe.find(universe.get(), id).getOrDie();
-    const actual = Query.nextSibling(first).map((e) => e.id).getOr('_nope_');
+    const actual = Query.nextSibling(first).map((e) => e.id) ?? '_nope_';
     Assert.eq('', expected, actual);
   };
 

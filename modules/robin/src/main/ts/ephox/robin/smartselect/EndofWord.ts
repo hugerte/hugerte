@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 
 import { WordRange } from '../data/WordRange';
 import * as Clustering from '../words/Clustering';
@@ -14,7 +14,7 @@ interface ScanResult<E> {
 
 const toEnd = <E>(cluster: WordDecisionItem<E>[], start: E, soffset: number): (WordRange<E>) | null => {
   if (cluster.length === 0) {
-    return Optional.none<WordRange<E>>();
+    return null;
   }
   const last = cluster[cluster.length - 1];
   return WordRange(start, soffset, last.item, last.finish);
@@ -22,7 +22,7 @@ const toEnd = <E>(cluster: WordDecisionItem<E>[], start: E, soffset: number): (W
 
 const fromStart = <E>(cluster: WordDecisionItem<E>[], finish: E, foffset: number): (WordRange<E>) | null => {
   if (cluster.length === 0) {
-    return Optional.none<WordRange<E>>();
+    return null;
   }
   const first = cluster[0];
   return WordRange(first.item, first.start, finish, foffset);
@@ -30,7 +30,7 @@ const fromStart = <E>(cluster: WordDecisionItem<E>[], finish: E, foffset: number
 
 const all = <E>(cluster: WordDecisionItem<E>[]): (WordRange<E>) | null => {
   if (cluster.length === 0) {
-    return Optional.none<WordRange<E>>();
+    return null;
   }
   const first = cluster[0];
   const last = cluster[cluster.length - 1];
@@ -66,7 +66,7 @@ const scan = <E, D>(universe: Universe<E, D>, item: E, offset: number): ScanResu
 // end of the cluster.
 const before = <E, D>(universe: Universe<E, D>, item: E, offset: number, bindex: number): (WordRange<E>) | null => {
   const info = scan(universe, item, offset);
-  return info.rightEdge ? Optional.none<WordRange<E>>() : toEnd(info.all, item, bindex);
+  return info.rightEdge ? null : toEnd(info.all, item, bindex);
 };
 
 // There was only a break in the node after the current position, so
@@ -74,20 +74,20 @@ const before = <E, D>(universe: Universe<E, D>, item: E, offset: number, bindex:
 // start of the cluster to the index.
 const after = <E, D>(universe: Universe<E, D>, item: E, offset: number, aindex: number): (WordRange<E>) | null => {
   const info = scan(universe, item, offset);
-  return info.leftEdge ? Optional.none<WordRange<E>>() : fromStart(info.all, item, aindex);
+  return info.leftEdge ? null : fromStart(info.all, item, aindex);
 };
 
 // We don't need to use the cluster, because we are in the middle of two breaks. Only return something
 // if the breaks aren't at the same position.
 const both = <E, D>(universe: Universe<E, D>, item: E, offset: number, bindex: number, aindex: number): (WordRange<E>) | null => {
-  return bindex === aindex ? Optional.none<WordRange<E>>() : WordRange(item, bindex, item, aindex);
+  return bindex === aindex ? null : WordRange(item, bindex, item, aindex);
 };
 
 // There are no breaks in the current node, so as long as we aren't at either edge of node/cluster,
 // then we extend the length of the cluster.
 const neither = <E, D>(universe: Universe<E, D>, item: E, offset: number): (WordRange<E>) | null => {
   const info = scan(universe, item, offset);
-  return info.leftEdge || info.rightEdge ? Optional.none<WordRange<E>>() : all(info.all);
+  return info.leftEdge || info.rightEdge ? null : all(info.all);
 };
 
 export {

@@ -1,4 +1,4 @@
-import { Cell, Obj, Singleton } from '@ephox/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { MenuPreparation } from '../../ui/single/TieredMenuSpec';
@@ -68,7 +68,7 @@ const init = (): LayeredState => {
     paths.set(sPaths);
   };
 
-  const getTriggeringItem = (menuValue: string): (string) | null => Obj.find(expansions.get(), (v, _k) => v === menuValue);
+  const getTriggeringItem = (menuValue: string): (string) | null => (Object.values(expansions.get()) as any[]).find((v) => ((v, _k) => v === menuValue)(v, '')) ?? null;
 
   const getTriggerData = (menuValue: string, getItemByValue: (v: string) => (AlloyComponent) | null, path: string[]): (LayeredItemTrigger) | null =>
     getPreparedMenu(menuValue).bind((menu) => getTriggeringItem(menuValue).bind((triggeringItemValue) => getItemByValue(triggeringItemValue).map((triggeredItem) => ({

@@ -9,7 +9,7 @@ UnitTest.test('TableMergeContentTest', () => {
     const table = SugarElement.fromTag('table');
     const row = SugarElement.fromTag('tr');
     Insert.append(table, row);
-    const cells = specs.map((item) =) {
+    const cells = specs.map((item) => {
       const cell = SugarElement.fromTag('td');
       cell.dom.innerHTML = item.html;
 
@@ -20,7 +20,7 @@ UnitTest.test('TableMergeContentTest', () => {
     Insert.append(SugarBody.body(), table);
 
     TableContent.merge(cells);
-    specs.forEach((spec, i) =) {
+    specs.forEach((spec, i) => {
       Assert.eq(() => spec.label + ' expected:\n' + spec.expected + '\n got: \n' + Html.get(cells[i]), spec.expected, Html.get(cells[i]));
     });
 

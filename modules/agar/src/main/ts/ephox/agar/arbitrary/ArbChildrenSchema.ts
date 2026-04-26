@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Obj } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import * as fc from 'fast-check';
 
 import * as WeightedChoice from './WeightedChoice';
@@ -29,10 +29,9 @@ export type Construct<T> = (component: string, depth: number) => fc.Arbitrary<T>
 const skipChild = '_';
 
 const toComponents = <T>(detail: Detail<T>): Component<T>[] =>
-  Obj.mapToArray(detail.components, (v, k) =>
+  Object.entries(detail.components).map(([k, v]) => ((v, k) =>
     // If there is no component, then the choice will be None.
-    k !== skipChild ? ({ ...v, ...{ component: k } }) : v
-  );
+    k !== skipChild ? ({ ...v, ...{ component: k } }) : v)(v as any, k as any));
 
 const none = fc.constant([]);
 
@@ -62,14 +61,10 @@ const structure = <T>(rawDepth: number | undefined, detail: StructureDetail, con
   const components = toComponents(detail);
   return fc.float({ min: 0, max: 1 }).chain((random) => {
     // TODO: Allow the order to be mixed up?
-    const children = Arr.foldl<Component<ChanceItem>, fc.Arbitrary<T>[]>(
-      components,
-      (b, component) =>
+    const children = components.reduce((b, component) =>
         random <= component.chance ?
           b.concat([ construct(component.component, rawDepth) ]) :
-          b,
-      []
-    );
+          b, []);
     return fc.tuple(...children);
   });
 };

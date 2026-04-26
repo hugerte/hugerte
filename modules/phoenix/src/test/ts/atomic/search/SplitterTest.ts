@@ -20,7 +20,7 @@ UnitTest.test('SplitterTest', () => {
     const item = Finder.get(universe, id);
     const actual = Splitter.subdivide(universe, item, positions);
     Assert.eq('Incorrect size for subdivide test', expected.length, actual.length);
-    expected.forEach((exp, i) =) {
+    expected.forEach((exp, i) => {
       const act = actual[i];
       // TODO: Consider removing an expected id from the test case as it isn't really representing anything meaningful
       Assert.eq('', exp.id, act.element.id);

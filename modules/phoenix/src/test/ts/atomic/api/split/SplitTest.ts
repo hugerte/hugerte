@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 
 import * as Split from 'ephox/phoenix/api/general/Split';
 import * as Finder from 'ephox/phoenix/test/Finder';
@@ -17,9 +17,9 @@ UnitTest.test('api.Split.(split,splitByPair)', () => {
     return { universe, item };
   };
 
-  const isEq = (opt1: Optional<string>, opt2: Optional<Gene>) => {
+  const isEq = (opt1: string | null, opt2: Gene | null) => {
     return opt1.fold(() => {
-      return opt2.isNone();
+      return opt2 === null;
     }, (a) => {
       return opt2.exists((x) => {
         return a === x.text;
@@ -27,7 +27,7 @@ UnitTest.test('api.Split.(split,splitByPair)', () => {
     });
   };
 
-  const checkSplit = (before: Optional<string>, after: Optional<string>, text: string, position: number) => {
+  const checkSplit = (before: string | null, after: string | null, text: string, position: number) => {
     const input = generate(text);
     const actual = Split.split(input.universe, input.item, position);
     Assert.eq('', true, isEq(before, actual.before));

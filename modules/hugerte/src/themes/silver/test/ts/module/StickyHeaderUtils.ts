@@ -218,7 +218,7 @@ const pCloseMenus = (numOpenedMenus: number) => {
   return menuArray.reduce((p) => p.then(async () => {
     const menuElem = await UiFinder.pWaitForVisible('Wait for selected menu to be visible', SugarBody.body(), '.tox-selected-menu');
     await Waiter.pTryUntil('Wait for menu item to be focused', () => {
-      assert.isTrue(Focus.search(menuElem).isSome(), 'Assert menu item is focused');
+      assert.isTrue(Focus.search(menuElem) !== null, 'Assert menu item is focused');
     });
     const focusedElem = Focus.active(SugarDocument.getDocument()).getOrDie('Could not find active menu item');
     Keyboard.keyup(Keys.escape(), { }, focusedElem);

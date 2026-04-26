@@ -92,7 +92,7 @@ const read = (name: string, chain: Chain<any, any>): Chain<NamedData, NamedData>
 const merge = (names: string[], combinedName: string): Chain<NamedData, NamedData> =>
   Chain.mapper((input) => {
     const r: NamedData = {};
-    names.forEach((name) =) {
+    names.forEach((name) => {
       r[name] = input[name];
     });
     return combine(input, combinedName, r);

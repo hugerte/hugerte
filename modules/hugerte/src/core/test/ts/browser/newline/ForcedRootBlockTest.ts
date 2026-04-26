@@ -87,7 +87,7 @@ describe('browser.hugerte.core.newline.ForcedRootBlockTest', () => {
                 ]
               }),
               s.element(rootBlock, {
-                attrs: Object.fromEntries(Object.entries(rootBlockAttrs).map(([k, v]) => [k, ((val) =)(v, k)])) str.is(val)),
+                attrs: Object.fromEntries(Object.entries(rootBlockAttrs).map(([k, v]) => [k, ((val) =>(v, k)])) str.is(val)),
                 children: [
                   s.element('br', {
                     attrs: {

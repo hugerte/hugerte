@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -29,7 +29,7 @@ const register = (editor: Editor): void => {
     processor: (value) => {
       if (value === false) {
         return { value: [], valid: true };
-      } else if (typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isString))) {
+      } else if (typeof (value) === 'string' || (Array.isArray(value) && (value).every((x: any): x is string => typeof x === 'string'))) {
         return { value: patchPipeConfig(value), valid: true };
       } else {
         return { valid: false, message: 'Must be false or a string.' };

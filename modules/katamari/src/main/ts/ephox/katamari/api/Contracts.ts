@@ -16,7 +16,7 @@ type HandleFn = (required: string[], keys: string[]) => void;
 // Ensure that the object has all required fields. They must be functions.
 const base = (handleUnsupported: HandleFn, required: string[]) => {
   return baseWith(handleUnsupported, required, {
-    validate: Type.isFunction,
+    validate: (x: any): x is Function => typeof x === 'function',
     label: 'function'
   });
 };
@@ -67,7 +67,7 @@ const handleExact = (required: string[], keys: string[]) => {
   }
 };
 
-const allowExtra = Fun.noop;
+const allowExtra = () => {};
 
 export const exactly = (required: string[]): IdentityFn => base(handleExact, required);
 export const ensure = (required: string[]): IdentityFn => base(allowExtra, required);

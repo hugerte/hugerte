@@ -16,7 +16,7 @@ export const Cleaner = (): Cleaner => {
   };
 
   const run = () => {
-    tasks.forEach((task) =) {
+    tasks.forEach((task) => {
       try {
         task();
       } catch (e) {

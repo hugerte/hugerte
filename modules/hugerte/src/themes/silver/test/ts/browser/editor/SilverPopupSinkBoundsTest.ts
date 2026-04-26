@@ -309,7 +309,7 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
             () => setupSingleScrollerElement(shadow)
           );
 
-          contextMenuScenarios.forEach((scenario) =) {
+          contextMenuScenarios.forEach((scenario) => {
             it(`TINY-9743: Context Menu to be within scrollable container - position: ${scenario.label}`, async () => {
               const editor = hook.editor();
 
@@ -333,7 +333,7 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
             const wrapper = SugarShadowDom.getShadowRoot(SugarElement.fromDom(editor.targetElm)).map(SugarShadowDom.getShadowHost).getOrDie();
             const wrapperRect = wrapper.dom.getBoundingClientRect();
 
-            menuRects.forEach((menuRect, index) =) {
+            menuRects.forEach((menuRect, index) => {
               assertMenuWithinWrapperBounds(menuRect, wrapperRect, `Nested Menu Item ${index}`);
             });
           });

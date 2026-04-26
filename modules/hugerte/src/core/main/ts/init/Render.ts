@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+
 import { Attribute, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -68,7 +68,7 @@ const loadModel = (editor: Editor, suffix: string): void => {
 };
 
 const getIconsUrlMetaFromUrl = (editor: Editor): (UrlMeta) | null => (Options.getIconsUrl(editor) ?? null)
-  .filter(Strings.isNotEmpty)
+  .filter((s: string) => s.length > 0)
   .map((url) => ({
     url,
     name: null

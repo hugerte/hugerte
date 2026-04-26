@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Cell, Optional, Result } from '@ephox/katamari';
+import { Cell, Result } from '@ephox/katamari';
 import { SugarElement, Traverse } from '@ephox/sugar';
 
 import * as DefaultEvents from '../../events/DefaultEvents';
@@ -78,7 +78,7 @@ const external = (spec: ExternalElement): PremadeSpec => {
   const me: AlloyComponent = {
     uid,
     getSystem: systemApi.get,
-    config: Optional.none,
+    config: () => null,
     hasConfigured: (() => false as const),
     connect,
     disconnect,

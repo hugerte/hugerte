@@ -140,7 +140,7 @@ describe('atomic.katamari.api.struct.AdtTest', () => {
       const original = Arr.filter(allKeys, (k) => !Arr.contains(exclusions, k));
 
       try {
-        const branches = Arr.mapToObject(original, () => Fun.identity);
+        const branches = Arr.mapToObject(original, () => (x: any) => x);
         subject.match(branches);
         return false;
       } catch (err: any) {
@@ -229,9 +229,9 @@ describe('atomic.katamari.api.struct.AdtTest', () => {
     fc.assert(fc.property(arbAdt, (subject) => {
       try {
         subject.match({
-          not: Fun.identity,
-          the: Fun.identity,
-          right: Fun.identity
+          not: (x: any) => x,
+          the: (x: any) => x,
+          right: (x: any) => x
         });
         return false;
       } catch (err: any) {

@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import { SugarElement } from '../../api/node/SugarElement';
 import * as SugarText from '../../api/node/SugarText';
@@ -22,7 +22,7 @@ const locateOffset = (doc: SugarElement<Document>, textnode: SugarElement<Text>,
   return rangeForOffset(offset);
 };
 
-const locate = (doc: SugarElement<Document>, node: SugarElement<Text>, x: number, y: number): Optional<Range> => {
+const locate = (doc: SugarElement<Document>, node: SugarElement<Text>, x: number, y: number): Range | null => {
   const r = doc.dom.createRange();
   r.selectNode(node.dom);
   const rects = r.getClientRects();

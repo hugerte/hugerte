@@ -41,7 +41,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
     { button: 'save', expectedTooltip: `Save (${meta}S)` },
     { button: 'searchreplace', expectedTooltip: `Find and replace (${meta}F)` },
     { button: 'fullscreen', expectedTooltip: `Fullscreen (${meta}${shift}F)` },
-  ].forEach((test) =) {
+  ].forEach((test) => {
     it(`TINY-10487: Assert keyboard shortcut present in tooltip for ${test.button}`, async () => {
       const editor = hook.editor();
       const buttonSelector = `button[data-mce-name="${test.button}"]`;

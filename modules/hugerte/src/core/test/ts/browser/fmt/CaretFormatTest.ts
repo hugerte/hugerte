@@ -52,7 +52,7 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
   }
 
   const handleCaretFormat = (editor: Editor, actions: Action[]) => {
-    actions.forEach(({ type, format, options }) =) {
+    actions.forEach(({ type, format, options }) => {
       if (type === 'apply') {
         applyCaretFormat(editor, format, options);
       } else if (type === 'remove') {

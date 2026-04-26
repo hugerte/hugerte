@@ -154,7 +154,7 @@ const unselectCells = (rng: Range, selectionDetails: SelectionDetails): Range =>
 
 const handleSingleTable = (cellRng: (TableCellRng) | null, selectionDetails: SelectionDetails, rng: Range, isRoot: IsRootFn): (DeleteActionAdt) | null =>
   getTableSelections(cellRng, selectionDetails, rng, isRoot)
-    .bind(({ start, end }) => start.or(end))
+    .bind(({ start, end }) => start ?? end)
     .bind((tableSelection) => {
       const { isSameTable } = selectionDetails;
       const selectedCells = getSelectedCells(tableSelection) ?? ([]);

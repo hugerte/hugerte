@@ -33,7 +33,7 @@ describe('browser.hugerte.core.EditorManagerCommandsTest', () => {
     { label: 'id', value: 'ed_1' },
     { label: 'object with index', value: { index: 0 }},
     { label: 'object with id', value: { id: 'ed_1' }}
-  ].forEach((test) =) {
+  ].forEach((test) => {
     it(`mceToggleEditor (${test.label})`, (done) => {
       viewBlock.update('<textarea id="ed_1" class="hugerte"></textarea>');
       EditorManager.init({

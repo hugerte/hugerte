@@ -38,7 +38,7 @@ describe('browser.hugerte.core.dom.ControlSelectionTest', () => {
   const resetEventCounter = () => eventCounter.set({});
 
   const assertEventCount = (type: string, count: number) => {
-    assert.equal((eventCounter.get() as any)[type.toLowerCase()].getOr(0), count, `Check ${type} event count is ${count}`);
+    assert.equal((eventCounter.get() as any)[type.toLowerCase()] ?? 0, count, `Check ${type} event count is ${count}`);
   };
 
   const pResizeAndAssertEventCount = async (editor: Editor, resizeSelector: string, delta: number, expectedCount: number) => {
@@ -55,7 +55,7 @@ describe('browser.hugerte.core.dom.ControlSelectionTest', () => {
   const assertElementDimension = (label: string, element: SugarElement<Element>, name: string, expectedDimension: number) => {
     const dimension = Css.getRaw(element, name).orThunk(() => Attribute.getOpt(element, name))
       .map((v) => parseInt(v, 10))
-      .getOr(0);
+       ?? 0;
     assert.approximately(dimension, expectedDimension, 3, `${label} ${dimension}px ~= ${expectedDimension}px`);
   };
 

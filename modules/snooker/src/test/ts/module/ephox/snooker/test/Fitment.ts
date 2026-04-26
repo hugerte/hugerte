@@ -6,15 +6,15 @@ import * as Structs from 'ephox/snooker/api/Structs';
 import * as Fitment from 'ephox/snooker/model/Fitment';
 
 const mapToStructGrid = (grid: Structs.ElementNew[][]): Structs.RowCells[] => {
-  return grid.map((row) =) {
+  return grid.map((row) => {
     return Structs.rowcells('tr' as any, row, 'tbody', false);
   });
 };
 
 const assertGrids = (expected: Structs.RowCells[], actual: Structs.RowCells[]): void => {
   Assert.eq('', expected.length, actual.length);
-  expected.forEach((row, i) =) {
-    row.cells.forEach((cell, j) =) {
+  expected.forEach((row, i) => {
+    row.cells.forEach((cell, j) => {
       Assert.eq('', cell.element, actual[i].cells[j].element);
       Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
     });

@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { NodeValue } from '../../impl/NodeValue';
 import { SugarElement } from './SugarElement';
@@ -9,7 +9,7 @@ const api = NodeValue(SugarNode.isComment, 'comment');
 const get = (element: SugarElement<Comment>): string =>
   api.get(element);
 
-const getOption = (element: SugarElement<Node>): Optional<string> =>
+const getOption = (element: SugarElement<Node>): string | null =>
   api.getOption(element);
 
 const set = (element: SugarElement<Comment>, value: string): void =>

@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { assert } from 'chai';
 import fc from 'fast-check';
 
@@ -73,7 +73,7 @@ describe('atomic.alloy.alien.BoxesTest', () => {
 
     context('Properties', () => {
       const sortNumbers = (xs: number[]): number[] => {
-        return [...xs].sort((a, b) =) {
+        return [...xs].sort((a, b) => {
           if (a < b) {
             return -1;
           } else if (b < a) {
@@ -98,12 +98,12 @@ describe('atomic.alloy.alien.BoxesTest', () => {
             const constraints = [ first ].concat(rest);
             const all = [ original ].concat(constraints);
             const actual = Boxes.constrainByMany(original, constraints);
-            const optLargestLeft = Arr.last(sortNumbers(all.map((c) =) c.x)));
-            const optLargestTop = Arr.last(sortNumbers(all.map((c) =) c.y)));
-            const optSmallestRight = Arr.head(sortNumbers(all.map((c) =) c.right)));
-            const optSmallestBottom = Arr.head(sortNumbers(all.map((c) =) c.bottom)));
+            const optLargestLeft = Arr.last(sortNumbers(all.map((c) => c.x)));
+            const optLargestTop = Arr.last(sortNumbers(all.map((c) => c.y)));
+            const optSmallestRight = (sortNumbers(all.map((c) => c.right)[0] ?? null));
+            const optSmallestBottom = (sortNumbers(all.map((c) => c.bottom)[0] ?? null));
 
-            const assertOpt = (label: string, optValue: Optional<number>, actualValue: number): void => {
+            const assertOpt = (label: string, optValue: number | null, actualValue: number): void => {
               optValue.fold(
                 () => assert.fail('There were no candidates. Actual value: ' + actualValue),
                 (v) => assert.equal(

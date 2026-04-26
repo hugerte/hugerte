@@ -1,6 +1,6 @@
 import { Keys } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { Scroll } from '@ephox/sugar';
 import { TinyDom, LegacyUnit, TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyApis } from '@ephox/wrap-mcagar';
@@ -602,7 +602,7 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
     it('TINY-8641: Dispatch change with current editor status as level and current undoManager layer as lastLevel', () => {
       assert.equal(changeEventCounter, 0, 'No events should be detected at start');
 
-      Arr.last(editor.undoManager.data).each((lastLevel) => {
+      (editor.undoManager.data[editor.undoManager.data.length - 1] ?? null).each((lastLevel) => {
         lastLevel.content = manualModifiedLevelContent;
       });
       assert.isFalse(editor.isDirty(), 'Editor should not be dirty before dispatchChange');
@@ -667,7 +667,7 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
         }
       });
 
-      exclusions.forEach((exclusion, i) =) {
+      exclusions.forEach((exclusion, i) => {
         apis.setRawContent(exclusion.content);
         editor.undoManager.add();
         assert.equal(count, i + 1);
@@ -707,7 +707,7 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
       expected: '<p>test0</p><!----><!-- test2 --><!---->'
     }]));
 
-    [ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) =) {
+    [ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) => {
       it(`TINY-10305: Unescaped text nodes containing ZWNBSP within ${parent} are emptied`, testContentExclusions([{
         content: `<p>test0</p><${parent}>te\uFEFFst1</${parent}><${parent}>test2</${parent}><${parent}>te\uFEFFst3</${parent}>`,
         expected: `<p>test0</p><${parent}></${parent}><${parent}>test2</${parent}><${parent}></${parent}>`
@@ -751,7 +751,7 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
     it('TINY-10180: Excluding ZWNBSP in comments does not cause mXSS',
       testContentMxssOnRestore(`<!--\uFEFF><iframe onload="window.${xssFnName}();">->`));
 
-    [ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) =) {
+    [ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) => {
       it(`TINY-10305: Excluding ZWNBSP in ${parent} does not cause mXSS`,
         testContentMxssOnRestore(`<${parent}><\uFEFF/${parent}><\uFEFFiframe onload="window.${xssFnName}();"></${parent}>`));
     });

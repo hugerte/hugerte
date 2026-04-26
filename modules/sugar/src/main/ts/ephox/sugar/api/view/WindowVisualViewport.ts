@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 
 import { fromRawEvent } from '../../impl/FilteredEvent';
@@ -15,7 +15,7 @@ export interface Bounds {
   readonly bottom: number;
 }
 
-const get = (_win?: Window): Optional<VisualViewport> => {
+const get = (_win?: Window): VisualViewport | null => {
   const win = _win === undefined ? window : _win;
   if (PlatformDetection.detect().browser.isFirefox()) {
     // TINY-7984: Firefox 91 is returning incorrect values for visualViewport.pageTop, so disable it for now

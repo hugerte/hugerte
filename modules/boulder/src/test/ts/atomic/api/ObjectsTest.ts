@@ -27,7 +27,7 @@ UnitTest.test('ObjectsTest', () => {
 
     check(narrowGen, (input) => {
       const narrowed = Objects.narrow(input.obj, input.fields);
-      Object.entries(narrowed).forEach(([k, v]) => ((_, k) =)(v, k)) {
+      Object.entries(narrowed).forEach(([k, v]) => ((_, k) =>(v, k)) {
         if (!input.fields.includes(k)) {
           throw new Error('Narrowed object contained property: ' + k + ' which was not in fields: [' + input.fields.join(', ') + ']');
         }
@@ -54,7 +54,7 @@ UnitTest.test('ObjectsTest', () => {
 
     check(excludeGen, (input) => {
       const excluded = Objects.exclude(input.obj, input.fields);
-      Object.entries(excluded).forEach(([k, v]) => ((_, k) =)(v, k)) {
+      Object.entries(excluded).forEach(([k, v]) => ((_, k) =>(v, k)) {
         if (input.fields.includes(k)) {
           throw new Error('Excluded object contained property: ' + ' which should have been excluded by: [' +
             input.fields.join(', ') + ']');
@@ -173,7 +173,7 @@ UnitTest.test('ObjectsTest', () => {
     check(inputList, (input) => {
       const actual = Objects.consolidate(input.results, input.base);
 
-      const hasError = input.results.some((res) =) res.isError());
+      const hasError = input.results.some((res) => res.isError());
 
       if (hasError) {
         Assert.eq('Error contained in list, so should be error overall', true, actual.isError());
@@ -186,7 +186,7 @@ UnitTest.test('ObjectsTest', () => {
     // Testing consolidate with base
     fc.assert(fc.property(inputList, smallSet, fc.json(), (input, baseKey, baseValue) => {
       const actual = Objects.consolidate(input.results, Objects.wrap(baseKey, baseValue));
-      const hasError = input.results.some((res) =) res.isError());
+      const hasError = input.results.some((res) => res.isError());
 
       if (hasError) {
         Assert.eq('Error contained in list, so should be error overall', true, actual.isError());

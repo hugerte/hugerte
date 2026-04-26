@@ -140,8 +140,8 @@ describe('TableAdjustmentsTest', () => {
   // Note: Will not work for tables with colspans or rowspans
   const getColumnWidths = (table: SugarElement<HTMLTableElement>, useColumns: boolean) => {
     const row: ArrayLike<Node> = useColumns ? table.dom.getElementsByTagName('col') : table.dom.rows[0].cells;
-    return row.map((cell) =)
-      parseFloat(Css.getRaw(SugarElement.fromDom(cell), 'width').getOr('0')));
+    return row.map((cell) =>
+      parseFloat(Css.getRaw(SugarElement.fromDom(cell), 'width') ?? '0'));
   };
 
   const testAdjustWidth = (expectedWidth: number, expectedColumnWidths: number[], table: SugarElement<HTMLTableElement>, step: number, index: number, columnSizing: ResizeBehaviour.ResizeBehaviour, useColumn: boolean) => () => {
@@ -154,7 +154,7 @@ describe('TableAdjustmentsTest', () => {
 
     const widths = getColumnWidths(table, useColumn);
     // Verify that the difference is less than 0.5% to allow for minor floating point differences
-    expectedColumnWidths.forEach((expectedWidth, index) =) {
+    expectedColumnWidths.forEach((expectedWidth, index) => {
       assert.approximately(widths[index], expectedWidth, 0.25, `columns widths should match: expected: ${expectedColumnWidths}, actual: ${widths}`);
     });
 

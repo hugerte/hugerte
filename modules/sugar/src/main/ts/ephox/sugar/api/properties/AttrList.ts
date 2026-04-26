@@ -17,7 +17,7 @@ const add = (element: SugarElement<Element>, attr: string, id: string): boolean 
 };
 
 const remove = (element: SugarElement<Element>, attr: string, id: string): boolean => {
-  const nu = read(element, attr).filter((v) =) v !== id);
+  const nu = read(element, attr).filter((v) => v !== id);
   if (nu.length > 0) {
     Attribute.set(element, attr, nu.join(' '));
   } else {

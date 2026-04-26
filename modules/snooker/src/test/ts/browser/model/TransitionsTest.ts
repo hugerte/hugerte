@@ -43,8 +43,8 @@ describe('TransitionsTest', () => {
     const actual = Transitions.toDetails(input, (a, b) => TextContent.get(a) === TextContent.get(b));
 
     const cleaner = (obj: Structs.RowDetailNew<Structs.DetailNew>[]) => {
-      return obj.map((row) =) {
-        return row.cells.map((cell) =) ({
+      return obj.map((row) => {
+        return row.cells.map((cell) => ({
           ...cell,
           element: TextContent.get(cell.element) ?? '?'
         }));
@@ -58,8 +58,8 @@ describe('TransitionsTest', () => {
     const actualGrid = tableToGrid(inputTable);
 
     const cleaner = (grid: Structs.RowCells[]) => {
-      return grid.map((row) =) {
-        const cells = row.cells.map((cell) =) {
+      return grid.map((row) => {
+        const cells = row.cells.map((cell) => {
           const id = row.section === 'colgroup' ? Attribute.get(cell.element, 'data-id') : TextContent.get(cell.element);
           return {
             ...cell,

@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+
 
 import { LinkDialogCatalog, LinkDialogData, LinkDialogUrlData, ListGroup, ListItem, ListValue } from './DialogTypes';
 
@@ -12,7 +12,7 @@ export interface DialogChanges {
 }
 
 const isListGroup = (item: ListItem): item is ListGroup =>
-  Obj.hasNonNullableKey(item as Record<string, any>, 'items');
+  (item as Record<string)[any>, 'items'] != null;
 
 const findTextByValue = (value: string, catalog: ListItem[]): (ListValue) | null =>
   ((catalog) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((item) => {

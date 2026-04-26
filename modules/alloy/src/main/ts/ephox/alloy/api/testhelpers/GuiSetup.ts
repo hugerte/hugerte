@@ -1,5 +1,5 @@
 import { Assertions, Pipeline, Step, TestLogs, TestStore } from '@ephox/agar';
-import { Global, Optional } from '@ephox/katamari';
+import { Global } from '@ephox/katamari';
 import { DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarDocument, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
 
 import { AlloyComponent } from '../component/ComponentApi';
@@ -253,7 +253,7 @@ const removeStyles = (style: SugarElement<HTMLStyleElement>): void =>
   Remove.remove(style);
 
 const bddAddStyles = (dos: RootNode, styles: string[]): void => {
-  let style = Optional.none<SugarElement<HTMLStyleElement>>();
+  let style = null;
 
   // Note: Don't use bedrock imports here so as to avoid requiring bedrock as a
   // dependency. It'll still work the same, but we'll be missing the types.

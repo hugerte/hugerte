@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
@@ -9,7 +9,7 @@ import { convertibleUnits, largeSensible, units } from './SizeInputShared';
 
 describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConvertTest', () => {
 
-  const check = (expected: Optional<number>, size: Size, unit: SizeUnit) => {
+  const check = (expected: number | null, size: Size, unit: SizeUnit) => {
     const result = convertUnit(size, unit);
     assert.isTrue(Optionals.equals(expected, result),
       'Expected conversion of ' + JSON.stringify(size) +
@@ -28,7 +28,7 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConvertTest
     fc.assert(fc.property(
       fc.integer(0, largeSensible), fc.constantFrom(...units),
       (value: number, unit: SizeUnit) => {
-        const outValue = convertUnit(nuSize(value, unit), unit).getOrNull();
+        const outValue = convertUnit(nuSize(value, unit), unit);
         assert.equal(outValue, value);
       }
     ));
@@ -40,7 +40,7 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConvertTest
       (value: number, unit1: SizeUnit, unit2: SizeUnit) => {
         const outValue = convertUnit(nuSize(value, unit1), unit2).bind(
           (unit2Value) => convertUnit(nuSize(unit2Value, unit2), unit1)
-        ).getOrNull();
+        );
         assert.isNotNull(outValue);
         assert.approximately(outValue as number, value, 0.000001);
       }
@@ -48,11 +48,11 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConvertTest
   });
 
   it('All non-convertible units can only convert to themselves', () => {
-    const nonConvertible = units.filter((unit) =) !convertibleUnits.includes(unit));
+    const nonConvertible = units.filter((unit) => !convertibleUnits.includes(unit));
     fc.assert(fc.property(
       fc.integer(0, largeSensible), fc.constantFrom(...nonConvertible), fc.constantFrom(...units),
       (value: number, unit1: SizeUnit, unit2: SizeUnit) => {
-        assert.equal(convertUnit(nuSize(value, unit1), unit2).isSome(), unit1 === unit2);
+        assert.equal(convertUnit(nuSize(value, unit1), unit2) !== null, unit1 === unit2);
       }
     ));
   });

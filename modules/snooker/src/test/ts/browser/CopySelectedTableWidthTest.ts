@@ -374,6 +374,6 @@ const testCases: TestCase[] = [
   },
 ];
 
-testCases.forEach((testCase) =) {
+testCases.forEach((testCase) => {
   UnitTest.test(testCase.label, assertWidth(testCase));
 });

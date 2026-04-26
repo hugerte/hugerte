@@ -51,7 +51,7 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputParsingTest
   });
 
   it('check that all units work', () => {
-    units.forEach((unit) =) {
+    units.forEach((unit) => {
       check(Result.error(unit), unit);
       check(Result.value(nuSize(4, unit)), '4' + unit);
     });
@@ -67,7 +67,7 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputParsingTest
       (pad1: string, nonNegNumber: number, pad2: string, unit: SizeUnit, pad3: string) => {
         const str = pad1 + nonNegNumber + pad2 + unit + pad3;
         const parsed = parseSize(str);
-        const size = parsed.toOptional().getOrNull();
+        const size = parsed.toOptional();
         assert.deepEqual(size, nuSize(nonNegNumber, unit));
       }
     ));

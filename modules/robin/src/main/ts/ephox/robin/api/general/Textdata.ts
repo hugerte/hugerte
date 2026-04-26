@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 import { Spot, SpotRange } from '@ephox/phoenix';
 import { PositionArray } from '@ephox/polaris';
 
@@ -19,7 +19,7 @@ const get = <E, D>(universe: Universe<E, D>, elements: E[]): TextdataGet<E> => {
   const list = PositionArray.generate(elements, (x, start) => {
     return universe.property().isText(x) ?
       Spot.range(x, start, start + universe.property().getText(x).length) :
-      Optional.none<SpotRange<E>>();
+      null;
   });
 
   const allText = (list).reduceRight((b, a) => {

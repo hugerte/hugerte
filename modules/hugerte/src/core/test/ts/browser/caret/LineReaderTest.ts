@@ -26,7 +26,7 @@ describe('browser.hugerte.core.caret.LineReader', () => {
   const setHtml = viewBlock.update;
 
   const logPositions = (msg: string, positions: CaretPosition[]) => {
-    positions.forEach((pos) =) {
+    positions.forEach((pos) => {
       // eslint-disable-next-line no-console
       console.log(msg, pos.container(), pos.offset(), pos.getClientRects());
     });
@@ -64,7 +64,7 @@ describe('browser.hugerte.core.caret.LineReader', () => {
 
   const assertPositions = (actualPositions: CaretPosition[], expectedPositions: Path[]) => {
     assert.lengthOf(actualPositions, expectedPositions.length, 'Should be the expected amount of positions');
-    expectedPositions.forEach((p: Path, i) =) {
+    expectedPositions.forEach((p: Path, i) => {
       const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), p.path).getOrDie();
       Assertions.assertDomEq('Should be the expected container', container, SugarElement.fromDom(actualPositions[i].container()));
       assert.equal(actualPositions[i].offset(), p.offset, 'Should be the expected offset');
@@ -78,8 +78,8 @@ describe('browser.hugerte.core.caret.LineReader', () => {
     assertPositions(actualPositions, expectedPositions);
   };
 
-  const assertNone = (a: Optional<CaretPosition>) => {
-    assert.isTrue(a.isNone(), 'Optional return value should be none');
+  const assertNone = (a: CaretPosition | null) => {
+    assert.isTrue(a === null, 'Optional return value should be none');
   };
 
   const assertLineInfoCaretPositions = (lineInfo: LineInfo, expectedPositions: Path[]) => {
@@ -91,7 +91,7 @@ describe('browser.hugerte.core.caret.LineReader', () => {
   };
 
   const assertBreakPositionNone = (linebreak: LineInfo) => {
-    assert.isTrue(linebreak.breakAt.isNone(), 'Should not be a line break position');
+    assert.isTrue(linebreak.breakAt === null, 'Should not be a line break position');
   };
 
   const assertBreakPosition = (linebreak: LineInfo, path: number[], offset: number) => {
@@ -107,7 +107,7 @@ describe('browser.hugerte.core.caret.LineReader', () => {
     assert.equal(actualBreakType, expectedBreakType, 'Should be the expected break type');
   };
 
-  const assertCaretPosition = (posOpt: Optional<CaretPosition>, path: number[], offset: number) => {
+  const assertCaretPosition = (posOpt: CaretPosition | null, path: number[], offset: number) => {
     const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), path).getOrDie();
     const pos = posOpt.getOrDie('Needs to return a caret');
 

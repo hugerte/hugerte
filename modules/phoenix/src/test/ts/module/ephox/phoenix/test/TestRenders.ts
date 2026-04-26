@@ -32,7 +32,7 @@ const texts = (items: Gene[]): string[] => {
 };
 
 const text = (item: Gene): string => {
-  return item.text ?? null.getOr('');
+  return item.text ?? null ?? '';
 };
 
 export {

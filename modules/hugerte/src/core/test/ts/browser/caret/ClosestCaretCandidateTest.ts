@@ -1,6 +1,6 @@
 import { Cursors } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { ContentEditable, Css, Html, Insert, Remove, SugarBody, SugarElement, SugarLocation } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -16,7 +16,7 @@ interface TestArgs<T> {
   readonly targetPath: number[];
   readonly dx: number;
   readonly dy: number;
-  readonly expected: Optional<T>;
+  readonly expected: T | null;
 }
 
 describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {

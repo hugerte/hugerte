@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement, SugarNode } from '@ephox/sugar';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -16,10 +16,10 @@ describe('browser.hugerte.core.init.ContentStylePositionTest', () => {
   it('content styles should be after content css', () => {
     const editor = hook.editor();
     const headStuff = editor.getDoc().head.querySelectorAll<HTMLElement>('link, style');
-    const linkIndex = Arr.findIndex(headStuff, (elm) => {
+    const linkIndex = headStuff.findIndex((elm) => {
       return SugarNode.name(SugarElement.fromDom(elm)) === 'link';
     }).getOrDie('could not find link element');
-    const styleIndex = Arr.findIndex(headStuff, (elm) => {
+    const styleIndex = headStuff.findIndex((elm) => {
       return elm.innerText === contentStyle;
     }).getOrDie('could not find content style tag');
 

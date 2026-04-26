@@ -5,14 +5,14 @@ import { Optional } from './Optional';
 interface Singleton<T> {
   readonly clear: () => void;
   readonly isSet: () => boolean;
-  readonly get: () => Optional<T>;
+  readonly get: () => T | null;
   readonly set: (value: T) => void;
 }
 
 export interface Repeatable {
   readonly clear: () => void;
   readonly isSet: () => boolean;
-  readonly get: () => Optional<number>;
+  readonly get: () => number | null;
   readonly set: (functionToRepeat: () => void) => void;
 }
 
@@ -27,22 +27,22 @@ export interface Value<T> extends Singleton<T> {
 }
 
 const singleton = <T> (doRevoke: (data: T) => void): Singleton<T> => {
-  const subject = Cell(Optional.none<T>());
+  const subject = Cell(null);
 
   const revoke = (): void => subject.get().each(doRevoke);
 
   const clear = () => {
     revoke();
-    subject.set(Optional.none());
+    subject.set(null);
   };
 
-  const isSet = () => subject.get().isSome();
+  const isSet = () => subject.get() !== null;
 
-  const get = (): Optional<T> => subject.get();
+  const get = (): T | null => subject.get();
 
   const set = (s: T) => {
     revoke();
-    subject.set(Optional.some(s));
+    subject.set(s);
   };
 
   return {
@@ -54,22 +54,22 @@ const singleton = <T> (doRevoke: (data: T) => void): Singleton<T> => {
 };
 
 export const repeatable = (delay: number): Repeatable => {
-  const intervalId = Cell(Optional.none<number>());
+  const intervalId = Cell(null);
 
   const revoke = (): void => intervalId.get().each((id) => clearInterval(id));
 
   const clear = () => {
     revoke();
-    intervalId.set(Optional.none());
+    intervalId.set(null);
   };
 
-  const isSet = () => intervalId.get().isSome();
+  const isSet = () => intervalId.get() !== null;
 
-  const get = (): Optional<number> => intervalId.get();
+  const get = (): number | null => intervalId.get();
 
   const set = (functionToRepeat: () => void) => {
     revoke();
-    intervalId.set(Optional.some(setInterval(functionToRepeat, delay)));
+    intervalId.set(setInterval(functionToRepeat, delay));
   };
 
   return {
@@ -96,7 +96,7 @@ export const api = <T extends { destroy: () => void }> (): Api<T> => {
 };
 
 export const value = <T> (): Value<T> => {
-  const subject = singleton(Fun.noop);
+  const subject = singleton(() => {});
 
   const on = (f: (data: T) => void) => subject.get().each(f);
 

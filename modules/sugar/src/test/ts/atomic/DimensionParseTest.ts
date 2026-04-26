@@ -30,8 +30,8 @@ UnitTest.test('All valid integers are valid', () => {
 UnitTest.test('Accepts known units', () => {
   Assert.succeeds('Accepts % in relative', () => Optionals.is(Dimension.parse('1%', [ 'relative' ]), { value: 1, unit: '%' as const }));
   Assert.succeeds('Accepts px in fixed', () => Optionals.is(Dimension.parse('20px', [ 'fixed' ]), { value: 20, unit: 'px' as const }));
-  Assert.succeeds('Does not accept % in fixed', () => Dimension.parse('1%', [ 'fixed' ]).isNone());
+  Assert.succeeds('Does not accept % in fixed', () => Dimension.parse('1%', [ 'fixed' ]) === null);
   Assert.succeeds('Accepts px in fixed/relative', () => Optionals.is(Dimension.parse('20px', [ 'fixed', 'relative' ]), { value: 20, unit: 'px' as const }));
   Assert.succeeds('Accepts unitless in unitless', () => Optionals.is(Dimension.parse('1.4', [ 'empty' ]), { value: 1.4, unit: '' as const }));
-  Assert.succeeds('Does not accept unitless without unitless', () => Dimension.parse('1.4', [ 'fixed', 'unsupportedLength', 'relative' ]).isNone());
+  Assert.succeeds('Does not accept unitless without unitless', () => Dimension.parse('1.4', [ 'fixed', 'unsupportedLength', 'relative' ]) === null);
 });

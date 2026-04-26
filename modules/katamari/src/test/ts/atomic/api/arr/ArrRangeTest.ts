@@ -22,7 +22,7 @@ describe('atomic.katamari.api.arr.ArrRangeTest', () => {
     fc.assert(fc.property(
       fc.nat(30),
       (num) => {
-        const range = Arr.range(num, Fun.identity);
+        const range = Arr.range(num, (x: any) => x);
         assert.deepEqual(num, range.length);
         assert.isTrue(Arr.forall(range, (x, i) => x === i));
       }));

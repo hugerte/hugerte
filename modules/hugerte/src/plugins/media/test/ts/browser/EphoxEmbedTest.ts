@@ -69,7 +69,7 @@ describe('browser.hugerte.plugins.media.core.EphoxEmbedTest', () => {
       setup: (editor: Editor) => {
         editor.on('PreInit', () => {
           const converter = (nodes: AstNode[]): void => {
-            nodes.forEach((node) =) {
+            nodes.forEach((node) => {
               const shimNode = new AstNode('span', 1);
               shimNode.attr('class', 'mce-shim');
 

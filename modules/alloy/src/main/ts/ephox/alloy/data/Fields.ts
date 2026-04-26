@@ -1,5 +1,5 @@
 import { FieldPresence, FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as Debugging from '../debugging/Debugging';
 import * as MenuMarkers from '../menu/util/MenuMarkers';
@@ -39,7 +39,7 @@ const onPresenceHandler = (label: string, fieldName: string, presence: any): Fie
 
 const onHandler = (fieldName: string): FieldProcessor => onPresenceHandler('onHandler', fieldName, FieldPresence.defaulted(() => {}));
 
-const onKeyboardHandler = (fieldName: string): FieldProcessor => onPresenceHandler('onKeyboardHandler', fieldName, FieldPresence.defaulted(Optional.none));
+const onKeyboardHandler = (fieldName: string): FieldProcessor => onPresenceHandler('onKeyboardHandler', fieldName, FieldPresence.defaulted(() => null));
 
 const onStrictHandler = (fieldName: string): FieldProcessor => onPresenceHandler('onHandler', fieldName, FieldPresence.required());
 

@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from '@ephox/sugar';
 
@@ -196,7 +196,7 @@ UnitTest.test(
       [ 0, 0 ], [ 0, 0, 1, 0 ]);
 
     (() => {
-      const check = (expected: Optional<string[]>, s: string, f: string) => {
+      const check = (expected: string[] | null, s: string, f: string) => {
         const container = SugarElement.fromTag('div');
         container.dom.innerHTML =
           '<ol class="one-nine" style="list-style-type: decimal;">' +
@@ -221,7 +221,7 @@ UnitTest.test(
         const child = SelectorFind.descendant(container, '.' + f).getOrDie();
         const subset = DomParent.subset(parent, child);
 
-        const actual = subset.map((ss) => ss.map((x) =) Attribute.get(x, 'class')));
+        const actual = subset.map((ss) => ss.map((x) => Attribute.get(x, 'class')));
         const expected_ = expected.map((ss) => (ss).map((x) => x));
 
         KAssert.eqOptional('eq', expected_, actual);

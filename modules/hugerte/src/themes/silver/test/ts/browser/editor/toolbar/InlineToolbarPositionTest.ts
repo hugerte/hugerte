@@ -78,7 +78,7 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.InlineToolbarPositio
 
   const getHeader = (editor: Editor) => {
     const container = TinyDom.container(editor);
-    return SelectorFind.descendant<HTMLElement>(container, '.tox-editor-header').getOr(container);
+    return SelectorFind.descendant<HTMLElement>(container, '.tox-editor-header') ?? container;
   };
 
   const setUpRelativeContainer = (margin = 0, padding = 0) => {
@@ -232,7 +232,7 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.InlineToolbarPositio
     });
   };
 
-  [ 'split', 'combined' ].map((uiMode: 'split' | 'combined') =) {
+  [ 'split', 'combined' ].map((uiMode: 'split' | 'combined') => {
     context(`ui_mode: ${uiMode}`, () => {
       context('Toolbar position with toolbar_location: "top"', () => {
         const hook = TinyHooks.bddSetup<Editor>({

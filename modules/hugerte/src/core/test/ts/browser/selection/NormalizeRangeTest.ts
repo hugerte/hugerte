@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -13,7 +13,7 @@ import * as ViewBlock from '../../module/test/ViewBlock';
 describe('browser.hugerte.core.selection.NormalizeRangeTest', () => {
   const viewBlock = ViewBlock.bddSetup();
 
-  const assertRange = (root: Node, range: Optional<Range>, startPath: number[], startOffset: number, endPath: number[], endOffset: number) => {
+  const assertRange = (root: Node, range: Range | null, startPath: number[], startOffset: number, endPath: number[], endOffset: number) => {
     const sc = Hierarchy.follow(SugarElement.fromDom(root), startPath).getOrDie();
     const ec = Hierarchy.follow(SugarElement.fromDom(root), endPath).getOrDie();
     const actualRange = range.getOrDie('Should be some');
@@ -37,8 +37,8 @@ describe('browser.hugerte.core.selection.NormalizeRangeTest', () => {
     return NormalizeRange.normalize(DOMUtils(document, { root_element: viewBlock.get() }), rng);
   };
 
-  const assertRangeNone = (range: Optional<Range>) => {
-    assert.isTrue(range.isNone(), 'Should be none');
+  const assertRangeNone = (range: Range | null) => {
+    assert.isTrue(range === null, 'Should be none');
   };
 
   context('Non normalize non collapsed selections', () => {

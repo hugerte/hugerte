@@ -23,10 +23,10 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteCancelTe
         minChars: 1,
         columns: 'auto',
         fetch: (pattern, _maxResults) => {
-          const filteredItems = [ 'a', 'b', 'c', 'd' ].filter((item) =) item.indexOf(pattern) !== -1);
+          const filteredItems = [ 'a', 'b', 'c', 'd' ].filter((item) => item.indexOf(pattern) !== -1);
           return new Promise((resolve) => {
             resolve(
-              filteredItems.map((item) =) ({
+              filteredItems.map((item) => ({
                 value: `colon-${item}`,
                 text: `${item}`,
                 icon: ':'

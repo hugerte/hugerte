@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 
 import { WordDecision } from 'ephox/robin/words/WordDecision';
 import { WordWalking } from 'ephox/robin/words/WordWalking';
@@ -24,10 +24,10 @@ UnitTest.test('WordDecisionTest', () => {
     ])
   );
 
-  const check = (items: string[], abort: boolean, id: string, slicer: (text: string) => Optional<[number, number]>, _currLanguage: Optional<string>) => {
+  const check = (items: string[], abort: boolean, id: string, slicer: (text: string) => [number, number] | null, _currLanguage: string | null) => {
     const isCustomBoundary = () => false;
     const actual = WordDecision.decide(universe, universe.find(universe.get(), id).getOrDie(), slicer, isCustomBoundary);
-    Assert.eq('', items, actual.items.map((item) =) {
+    Assert.eq('', items, actual.items.map((item) => {
       return item.item.id;
     }));
     Assert.eq('', abort, actual.abort);

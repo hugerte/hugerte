@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -11,7 +11,7 @@ describe('browser.hugerte.models.dom.table.InvalidColCountTest', () => {
     base_url: '/project/hugerte/js/hugerte',
   }, [], true);
 
-  const assertBasicTablePresence = (editor: Editor, tdCount: number, colCountOpt: Optional<number>) => {
+  const assertBasicTablePresence = (editor: Editor, tdCount: number, colCountOpt: number | null) => {
     TinyAssertions.assertContentPresence(editor, {
       td: tdCount,
     });
@@ -51,7 +51,7 @@ describe('browser.hugerte.models.dom.table.InvalidColCountTest', () => {
       label: 'single col with span greater than cells',
       colgroupHtml: '<colgroup><col span="4" /></colgroup>',
     }
-  ].forEach((scenario) =) {
+  ].forEach((scenario) => {
     context(scenario.label, () => {
       const tableHtml = '<table>' +
         scenario.colgroupHtml +

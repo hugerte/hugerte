@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Mouse, UiFinder } from '@ephox/agar';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { McEditor, TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -22,7 +22,7 @@ interface MenuSubmenuDetails {
 type MenuDetails = MenuTagDetails | MenuSubmenuDetails;
 
 interface Assertion {
-  readonly choice: Optional<string>;
+  readonly choice: string | null;
   readonly menuHasIcons?: boolean;
   readonly menuContents: MenuDetails[];
 }
@@ -39,7 +39,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
       children: [
         s.element('div', {
           classes: [ arr.has('tox-collection__group') ],
-          children: expected.map((exp) =) s.element('div', {
+          children: expected.map((exp) => s.element('div', {
             classes: [ arr.has('tox-collection__item') ],
             children: [
               s.element('div', exp.submenu ? {

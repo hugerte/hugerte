@@ -123,7 +123,7 @@ const setup = (editor: Editor, sink: AlloyComponent): void => {
   const getTopLeftSnaps = () =>
     // const body = SugarBody.body();
     // const debugs = SelectorFilter.descendants(body, '.top-left-snap-debug');
-    // debugs.forEach((debugArea) =) {
+    // debugs.forEach((debugArea) => {
     //   Remove.remove(debugArea);
     // });
     (tlTds.get()).map((td) => getTopLeftSnap(td));
@@ -136,7 +136,7 @@ const setup = (editor: Editor, sink: AlloyComponent): void => {
   const getBottomRightSnaps = () =>
     // const body = SugarBody.body();
     // const debugs = SelectorFilter.descendants(body, '.bottom-right-snap-debug');
-    // debugs.forEach((debugArea) =) {
+    // debugs.forEach((debugArea) => {
     //   Remove.remove(debugArea);
     // });
     (brTds.get()).map((td) => getBottomRightSnap(td));

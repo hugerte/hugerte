@@ -1,5 +1,5 @@
 import { FieldPresence, FieldProcessor, FieldSchema, Objects, StructureSchema, ValueType } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { AlloySpec, SimpleOrSketchSpec, SketchSpec } from '../api/component/SpecTypes';
@@ -70,10 +70,10 @@ const schemas = (parts: PartType.PartTypeAdt[]): FieldProcessor[] =>
   // This actually has to change. It needs to return the schemas for things that will
   // not appear in the components list, which is only externals
   (parts).flatMap((part: PartType.PartTypeAdt) => part.fold<(PartType.BasePartDetail<any, any>) | null>(
-    Optional.none,
-    Optional.some,
-    Optional.none,
-    Optional.none
+    () => null,
+    (x) => x,
+    () => null,
+    () => null
   ).map((data) => FieldSchema.requiredObjOf(data.name, data.schema.concat([
     Fields.snapshot(PartType.original())
   ]))).toArray());

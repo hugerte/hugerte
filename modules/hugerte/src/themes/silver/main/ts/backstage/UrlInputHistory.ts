@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+
 
 import LocalStorage from 'hugerte/core/api/util/LocalStorage';
 
@@ -10,7 +10,7 @@ const isHttpUrl = (url: any): boolean => typeof (url) === 'string' && /^https?/.
 
 const isArrayOfUrl = (a: any): boolean => Array.isArray(a) && a.length <= HISTORY_LENGTH && (a).every(isHttpUrl);
 
-const isRecordOfUrlArray = (r: any): boolean => (typeof (r) === 'object' && (r) !== null) && Obj.find(r, (value) => !isArrayOfUrl(value)) === null;
+const isRecordOfUrlArray = (r: any): boolean => (typeof (r) === 'object' && (r) !== null) && (Object.values(r) as any[]).find((v) => ((value) => !isArrayOfUrl(value))(v, '')) ?? null === null;
 
 const getAllHistory = (): Record<string, string[]> => {
   const unparsedHistory = LocalStorage.getItem(STORAGE_KEY);

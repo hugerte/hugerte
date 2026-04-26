@@ -1,4 +1,4 @@
-import { Strings, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Pattern from '../textpatterns/core/Pattern';
@@ -281,11 +281,11 @@ const register = (editor: Editor): void => {
 
   registerOption('content_css', {
     processor: (value) => {
-      const valid = value === false || typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isString));
+      const valid = value === false || typeof (value) === 'string' || (Array.isArray(value) && (value).every((x: any): x is string => typeof x === 'string'));
 
       if (valid) {
         if (typeof (value) === 'string') {
-          return { value: (value.split(',')).map(Strings.trim), valid };
+          return { value: (value.split(',')).map((s: string) => s.trim()), valid };
         } else if (Array.isArray(value)) {
           return { value, valid };
         } else if (value === false) {
@@ -311,10 +311,10 @@ const register = (editor: Editor): void => {
 
   registerOption('font_css', {
     processor: (value) => {
-      const valid = typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isString));
+      const valid = typeof (value) === 'string' || (Array.isArray(value) && (value).every((x: any): x is string => typeof x === 'string'));
 
       if (valid) {
-        const newValue = Array.isArray(value) ? value : (value.split(',')).map(Strings.trim);
+        const newValue = Array.isArray(value) ? value : (value.split(',')).map((s: string) => s.trim());
         return { value: newValue, valid };
       } else {
         return { valid: false, message: 'Must be a string or an array of strings.' };

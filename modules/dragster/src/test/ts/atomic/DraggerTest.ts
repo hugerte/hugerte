@@ -1,12 +1,12 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement, SugarPosition } from '@ephox/sugar';
 
 import { DragApi, DragMode, DragSink } from 'ephox/dragster/api/DragApis';
 import * as Dragging from 'ephox/dragster/core/Dragging';
 
 UnitTest.test('DraggerTest', () => {
-  let optApi: Optional<DragApi<any>> = null;
+  let optApi: DragApi<any> | null = null;
 
   const argumentToStart: any = 'start';
   const argumentToMutate: any = 'mutate';

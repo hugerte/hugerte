@@ -87,9 +87,9 @@ describe('headless.hugerte.themes.silver.sketchers.SilverMenubar Test', () => {
     Assertions.assertStructure(
       label + '. Checking contents of menu',
       ApproxStructure.build((s, str, arr) => s.element('div', {
-        children: groups.map((items) =) s.element('div', {
+        children: groups.map((items) => s.element('div', {
           classes: [ arr.has('tox-collection__group') ],
-          children: items.map((itemText) =) {
+          children: items.map((itemText) => {
             // itemText can have a trailing >, which means it has a caret
             const hasCaret = itemText.endsWith('>');
             const caretOrCheckmark = hasCaret || hasCheckmark ? [

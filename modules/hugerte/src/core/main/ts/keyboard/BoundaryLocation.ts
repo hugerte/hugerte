@@ -1,4 +1,4 @@
-import { Adt, Optional } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 
 import * as CaretFinder from '../caret/CaretFinder';
 import CaretPosition from '../caret/CaretPosition';
@@ -42,7 +42,7 @@ const before = (isInlineTarget: (node: Node) => boolean, rootNode: Node, pos: Ca
     () => CaretFinder.nextPosition(scope, nPos)
       .bind(((..._rest: any[]) => (InlineUtils.findRootInline)(isInlineTarget, scope, ..._rest)))
       .map((inline) => Location.before(inline)),
-    Optional.none
+    () => null
   );
 };
 
@@ -75,7 +75,7 @@ const after = (isInlineTarget: (node: Node) => boolean, rootNode: Node, pos: Car
     () => CaretFinder.prevPosition(scope, nPos)
       .bind(((..._rest: any[]) => (InlineUtils.findRootInline)(isInlineTarget, scope, ..._rest)))
       .map((inline) => Location.after(inline)),
-    Optional.none
+    () => null
   );
 };
 
@@ -155,17 +155,17 @@ const findLocationTraverse = (forward: boolean, isInlineTarget: (node: Node) => 
 const findLocationSimple = (forward: boolean, location: LocationAdt): (LocationAdt) | null => {
   if (forward) {
     return location.fold<(LocationAdt) | null>(
-      ((x: any) => (Optional.some)((Location.start)(x))), // Before -> Start
-      Optional.none,
-      ((x: any) => (Optional.some)((Location.after)(x))), // End -> After
-      Optional.none
+      ((x: any) => ((x) => x)((Location.start)(x))), // Before -> Start
+      () => null,
+      ((x: any) => ((x) => x)((Location.after)(x))), // End -> After
+      () => null
     );
   } else {
     return location.fold<(LocationAdt) | null>(
-      Optional.none,
-      ((x: any) => (Optional.some)((Location.before)(x))), // Before <- Start
-      Optional.none,
-      ((x: any) => (Optional.some)((Location.end)(x))) // End <- After
+      () => null,
+      ((x: any) => ((x) => x)((Location.before)(x))), // Before <- Start
+      () => null,
+      ((x: any) => ((x) => x)((Location.end)(x))) // End <- After
     );
   }
 };

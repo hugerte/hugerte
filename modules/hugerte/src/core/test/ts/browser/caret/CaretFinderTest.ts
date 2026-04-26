@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -19,15 +19,15 @@ describe('browser.hugerte.core.CaretFinderTest', () => {
     return CaretPosition(container.dom, offset);
   };
 
-  const assertCaretPosition = (posOption: Optional<any>, path: number[], expectedOffset: number) => {
+  const assertCaretPosition = (posOption: any | null, path: number[], expectedOffset: number) => {
     const pos = posOption.getOrDie();
     const expectedContainer = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), path).getOrDie();
     Assertions.assertDomEq('Should be the expected container', expectedContainer, SugarElement.fromDom(pos.container()));
     assert.equal(pos.offset(), expectedOffset, 'Should be the expected offset');
   };
 
-  const assertNone = (pos: Optional<CaretPosition>) => {
-    assert.isTrue(pos.isNone(), 'Should be the none but got some');
+  const assertNone = (pos: CaretPosition | null) => {
+    assert.isTrue(pos === null, 'Should be the none but got some');
   };
 
   const fromPosition = (from: CaretPosition, forward: boolean) => {

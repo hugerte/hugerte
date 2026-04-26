@@ -18,15 +18,15 @@ describe('browser.hugerte.themes.silver.window.SilverInlineDialogPersistenceTest
   [
     { label: 'Inline Mode', inline: true },
     { label: 'Iframe Mode', inline: false }
-  ].forEach((editorMode) =) {
+  ].forEach((editorMode) => {
     [
       { label: 'Inline dialog (bottom)', location: 'bottom' },
       { label: 'Inline dialog (toolbar)', location: 'toolbar' }
-    ].forEach((dialogLocation: TestSpec) =) {
+    ].forEach((dialogLocation: TestSpec) => {
       [
         { label: 'Persistent mode: true', persistent: true },
         { label: 'Persistent mode: false', persistent: false }
-      ].forEach((persistentMode) =) {
+      ].forEach((persistentMode) => {
         context(`${editorMode.label} ${dialogLocation.label} - ${persistentMode.label} `, () => {
           const hook = TinyHooks.bddSetup<Editor>({
             base_url: '/project/hugerte/js/hugerte',

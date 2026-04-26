@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { Attribute, Class, Html, InsertAll, SugarElement } from '@ephox/sugar';
 
 import * as CopySelected from 'ephox/snooker/api/CopySelected';
@@ -64,9 +64,9 @@ UnitTest.test('CopySelectedTest', () => {
   const generateInput = (input: TestData[][]): SugarElement<HTMLTableElement> => {
     const lockedCols: Record<number, true> = {};
     const table = SugarElement.fromTag('table');
-    const rows = input.map((row) =) {
+    const rows = input.map((row) => {
       let isCellRow = true;
-      const cells = row.map((cell, idx) =) {
+      const cells = row.map((cell, idx) => {
         if (cell.type === 'cell') {
           const td = SugarElement.fromTag('td');
           if (cell.rowspan !== undefined) {
@@ -104,12 +104,12 @@ UnitTest.test('CopySelectedTest', () => {
         return colgroup;
       }
     });
-    const withNewlines = rows.flatMap((row) =) {
+    const withNewlines = rows.flatMap((row) => {
       return [ SugarElement.fromText('\n'), row ];
     });
     InsertAll.append(table, withNewlines.concat(SugarElement.fromText('\n')));
     // Add locked col attribute to table
-    if (Obj.size(lockedCols) > 0) {
+    if (Object.keys(lockedCols).length > 0) {
       const lockedColStr = Object.keys(lockedCols).join(',');
       Attribute.set(table, LOCKED_COL_ATTR, lockedColStr);
     }
@@ -126,7 +126,7 @@ UnitTest.test('CopySelectedTest', () => {
 
     // Verify specified table attributes are not present in replica table
     if (tableAttributes != null) {
-      tableAttributes.afterCopy.forEach((attrName) =) {
+      tableAttributes.afterCopy.forEach((attrName) => {
         Assert.eq('', false, Attribute.has(replica, attrName));
       });
     }
@@ -138,10 +138,10 @@ UnitTest.test('CopySelectedTest', () => {
 
     const domRows = traverseChildElements(replica);
     assertWithInfo(expected.length, domRows.length, 'number of rows');
-    expected.forEach((row, i) =) {
+    expected.forEach((row, i) => {
       const domCells = traverseChildElements(domRows[i]);
       assertWithInfo(row.length, domCells.length, 'number of cells in output row ' + i + ' to be ');
-      row.forEach((cell, j) =) {
+      row.forEach((cell, j) => {
         if (cell.type === 'cell') {
           const domCell = domCells[j] as SugarElement<HTMLTableCellElement>;
           assertWithInfo(cell.html, Html.get(domCell), 'cell text');

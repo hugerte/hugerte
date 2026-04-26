@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import { createFileList } from '../file/FileList';
 import { getData } from './DataTransferItem';
@@ -24,7 +24,7 @@ const setDragImage = (transfer: DataTransfer, imageData: DragImageData) => {
   dt[imageId] = imageData;
 };
 
-const getDragImage = (transfer: DataTransfer): Optional<DragImageData> => {
+const getDragImage = (transfer: DataTransfer): DragImageData | null => {
   const dt: any = transfer;
   return dt[imageId] ?? null;
 };
@@ -81,7 +81,7 @@ const createDataTransfer = (): DataTransfer => {
           return createFileList([]);
         }
 
-        const files = Array.from(items).flatMap((item) =) {
+        const files = Array.from(items).flatMap((item) => {
           if (item.kind === 'file') {
             const file = item.getAsFile();
             return file === null ? [] : [ file ];
@@ -96,8 +96,8 @@ const createDataTransfer = (): DataTransfer => {
 
     types: {
       get: () => {
-        const types = Array.from(items).map((item) =) item.type);
-        const hasFiles = Array.from(items).some((item) =) item.kind === 'file');
+        const types = Array.from(items).map((item) => item.type);
+        const hasFiles = Array.from(items).some((item) => item.kind === 'file');
         return types.concat(hasFiles ? [ 'Files' ] : []);
       }
     },
@@ -116,7 +116,7 @@ const createDataTransfer = (): DataTransfer => {
           return '';
         }
 
-        return Arr.find(Array.from(items), (item) => item.type === normalize(format)).bind((item) => getData(item)).getOr('');
+        return (Array.from(items).find((item) => item.type === normalize(format)) ?? null).bind((item) => getData(item)) ?? '';
       }
     },
 
@@ -134,7 +134,7 @@ const createDataTransfer = (): DataTransfer => {
         if (isInReadWriteMode(dataTransfer)) {
           if (typeof format === 'string') {
             const normalizedFormat = normalize(format);
-            Arr.findIndex(Array.from(items), (item) => item.type === normalizedFormat).each((idx) => {
+            Array.from(items).findIndex((item) => item.type === normalizedFormat).each((idx) => {
               items.remove(idx);
             });
           } else {

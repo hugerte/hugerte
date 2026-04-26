@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr } from '@ephox/katamari';
+
 
 export enum TestLogEntryState {
   Original,
@@ -21,12 +21,12 @@ export interface TestLogs {
 const DISABLE_LOGGING = false;
 
 // Pop level needs to change the parent. This would be so much easier with zippers.
-const modifyStartedEntryTo = (entries: TestLogEntry[], f): TestLogEntry[] => Arr.last(entries).fold(
+const modifyStartedEntryTo = (entries: TestLogEntry[], f): TestLogEntry[] => (entries[entries.length - 1] ?? null).fold(
   () => entries,
   (lastEntry) => {
     // If the last entry has started, and has entries,
     if (lastEntry.state === TestLogEntryState.Started) {
-      return Arr.last(lastEntry.entries).fold(
+      return (lastEntry.entries[lastEntry.entries.length - 1] ?? null).fold(
         // We have no entries, so just modify us
         () => entries.slice(0, entries.length - 1).concat([ f(lastEntry) ]),
         // Great name!
@@ -57,7 +57,7 @@ const modifyStartedEntry = (logs: TestLogs, f): TestLogs => ({
 
 const modifyLastEntryTo = (entries: TestLogEntry[], f): TestLogEntry[] =>
   // Consider consolidating with modifyStartedEntryTo
-  Arr.last(entries).fold(
+  (entries[entries.length - 1] ?? null).fold(
     () => [
       f({
         message: 'Unknown',

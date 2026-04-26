@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import * as Remove from 'ephox/sugar/api/dom/Remove';
 import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
@@ -21,8 +21,8 @@ UnitTest.test('SelectorTest', () => {
   Assert.eq('', false, Selectors.is(commentnode, 'anything'));
   Assert.eq('', [], Selectors.all('anything', textnode));
   Assert.eq('', [], Selectors.all('anything', commentnode));
-  Checkers.checkOpt(Optional.none<SugarElement<Element>>(), Selectors.one('anything', textnode));
-  Checkers.checkOpt(Optional.none<SugarElement<Element>>(), Selectors.one('anything', commentnode));
+  Checkers.checkOpt(null, Selectors.one('anything', textnode));
+  Checkers.checkOpt(null, Selectors.one('anything', commentnode));
   Assert.eq('', [], SelectorFilter.ancestors(textnode, 'anything'));
   Assert.eq('', [], SelectorFilter.siblings(textnode, 'anything'));
   Assert.eq('', [], SelectorFilter.children(textnode, 'anything'));
@@ -38,19 +38,19 @@ UnitTest.test('SelectorTest', () => {
 
   TestPage.connect(); // description of structure is in TestPage
 
-  Checkers.checkOpt(Optional.none<SugarElement<Element>>(), Selectors.one('asdf'));
+  Checkers.checkOpt(null, Selectors.one('asdf'));
 
   Checkers.checkOpt(TestPage.p1, SelectorFind.first('p'));
   Checkers.checkOpt(TestPage.p1, Selectors.one('p'));
-  Checkers.checkOpt(Optional.none<SugarElement<Element>>(), SelectorFind.sibling(TestPage.s1, 'p'));
+  Checkers.checkOpt(null, SelectorFind.sibling(TestPage.s1, 'p'));
   Checkers.checkOpt(TestPage.s3, SelectorFind.sibling(TestPage.s4, 'span'));
-  Checkers.checkOpt(Optional.none<SugarElement<Element>>(), SelectorFind.ancestor(TestPage.s1, 'li'));
+  Checkers.checkOpt(null, SelectorFind.ancestor(TestPage.s1, 'li'));
   Checkers.checkOpt(TestPage.container, SelectorFind.ancestor(TestPage.s4, 'div'));
   Checkers.checkOpt(TestPage.s2, SelectorFind.descendant(TestPage.p2, 'span'));
   Checkers.checkOpt(TestPage.s3, SelectorFind.descendant(TestPage.p2, 'span span'));
-  Checkers.checkOpt(Optional.none<SugarElement<Element>>(), SelectorFind.child(TestPage.p2, 'li'));
+  Checkers.checkOpt(null, SelectorFind.child(TestPage.p2, 'li'));
   Checkers.checkOpt(TestPage.s1, SelectorFind.child(TestPage.p1, 'span'));
-  Checkers.checkOpt(Optional.none<SugarElement<Element>>(), SelectorFind.closest(TestPage.p1, 'span'));
+  Checkers.checkOpt(null, SelectorFind.closest(TestPage.p1, 'span'));
   Checkers.checkOpt(TestPage.p1, SelectorFind.closest(TestPage.p1, 'p'));
   Checkers.checkOpt(TestPage.p1, SelectorFind.closest(TestPage.s1, 'p'));
   Checkers.checkOpt(TestPage.p1, SelectorFind.closest(TestPage.t1, 'p'));

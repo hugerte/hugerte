@@ -39,7 +39,7 @@ UnitTest.test('Runtime Size Test', () => {
 
   const resizeTableBy = (table: SugarElement<HTMLElement>, setSize: (e: SugarElement<HTMLElement>, v: string) => void, tableInfo: { total: number; cells: number[] }, delta: number) => {
     setSize(table, '');
-    SelectorFilter.descendants<HTMLTableCellElement>(table, 'td').map((cell, i) =) {
+    SelectorFilter.descendants<HTMLTableCellElement>(table, 'td').map((cell, i) => {
       setSize(cell, (tableInfo.cells[i] + delta) + 'px');
     });
   };
@@ -50,7 +50,7 @@ UnitTest.test('Runtime Size Test', () => {
 
     assert.equal(s1.total, s2.total, `${message}, expected table size: ${s1.total}, actual: ${s2.total}, table: ${tableHtml}`);
 
-    s1.cells.forEach((cz1, i) =) {
+    s1.cells.forEach((cz1, i) => {
       const cz2 = s2.cells[i];
       assert.equal(cz1, cz2, `${message}, expected cell size: ${cz1}, actual: ${cz2}, table: ${tableHtml}`);
     });
@@ -161,7 +161,7 @@ UnitTest.test('Runtime Size Test', () => {
 
   const resizeModel = (model: TableModel, delta: number, getTotalDelta: (model: TableModel, delta: number) => number) => {
     const deltaTotal = getTotalDelta(model, delta);
-    const cells = model.cells.map((cz) =) cz + delta);
+    const cells = model.cells.map((cz) => cz + delta);
 
     return {
       total: model.total + deltaTotal,

@@ -1,6 +1,6 @@
 import { FocusTools, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Attribute, SelectorFilter, SugarDocument, SugarElement, SugarShadowDom } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -17,7 +17,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorPickerSanityTest', () 
   [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(`${tester.label}, Test of different color types`, () => {
       const hook = tester.setup<Editor>({
         base_url: '/project/hugerte/js/hugerte',
@@ -70,7 +70,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorPickerSanityTest', () 
         elem.dom.dispatchEvent(evt);
       };
 
-      const setColor = (hexOpt: Optional<string>) => {
+      const setColor = (hexOpt: string | null) => {
         hexOpt.each((hex) => {
           currentColor = hex;
         });

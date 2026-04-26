@@ -1,6 +1,6 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import { oneAll } from 'ephox/robin/parent/Shared';
@@ -34,8 +34,8 @@ UnitTest.test('SharedTest', () => {
     ])
   ]));
 
-  const checker = (target: string, ids: string[], f: (look: (universe: Universe<Gene, undefined>, item: Gene) => Optional<Gene>, items: Gene[]) => void) => {
-    const items = ids.map((id) =) {
+  const checker = (target: string, ids: string[], f: (look: (universe: Universe<Gene, undefined>, item: Gene) => Gene | null, items: Gene[]) => void) => {
+    const items = ids.map((id) => {
       return data.find(data.get(), id).getOrDie();
     });
 

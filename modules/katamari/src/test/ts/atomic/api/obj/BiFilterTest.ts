@@ -27,7 +27,7 @@ describe('atomic.katamari.api.obj.BiFilterTest', () => {
     fc.assert(fc.property(
       fc.dictionary(fc.asciiString(), fc.string(1, 40)),
       (obj) => {
-        const output = Obj.bifilter(obj, Fun.never);
+        const output = Obj.bifilter(obj, () => false);
         assert.lengthOf(Obj.keys(output.f), Obj.keys(obj).length);
         assert.lengthOf(Obj.keys(output.t), 0);
         return true;
@@ -39,7 +39,7 @@ describe('atomic.katamari.api.obj.BiFilterTest', () => {
     fc.assert(fc.property(
       fc.dictionary(fc.asciiString(), fc.string(1, 40)),
       (obj) => {
-        const output = Obj.bifilter(obj, Fun.always);
+        const output = Obj.bifilter(obj, () => true);
         assert.lengthOf(Obj.keys(output.f), 0);
         assert.lengthOf(Obj.keys(output.t), Obj.keys(obj).length);
         return true;

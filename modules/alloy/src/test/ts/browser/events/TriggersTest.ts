@@ -119,7 +119,7 @@ UnitTest.asynctest('TriggersTest', (success, failure) => {
     { expected: [ 'alpha' ], target: 'alpha', type: 'all.stop' }
   ];
 
-  const steps = cases.map((c) =) sCheck(
+  const steps = cases.map((c) => sCheck(
     'fire(' + c.target + ') using event: ' + c.type,
     c.expected,
     c.target,

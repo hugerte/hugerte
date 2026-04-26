@@ -41,12 +41,12 @@ describe('browser.hugerte.plugins.table.TableRowDialogTest', () => {
 
   const defaultEvents = [{ type: 'tablemodified', structure: false, style: true }];
   const assertEvents = (expectedEvents: Array<{ type: string; structure: boolean; style: boolean }> = defaultEvents) => {
-    events.forEach((event) =) {
+    events.forEach((event) => {
       const tableElm = SugarElement.fromDom(event.table);
       assert.isTrue(SugarNode.isTag('table')(tableElm), 'Expected events should have been fired');
     });
 
-    const actualEvents = events.map((event) =) ({
+    const actualEvents = events.map((event) => ({
       type: event.type,
       structure: event.structure,
       style: event.style,

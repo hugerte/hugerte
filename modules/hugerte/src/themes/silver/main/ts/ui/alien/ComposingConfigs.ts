@@ -1,12 +1,12 @@
 import { AlloyComponent, Composing, MementoRecord } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+
 import { Traverse } from '@ephox/sugar';
 
 type ComposingBehaviour = ReturnType<typeof Composing['config']>;
 
 // TODO: Move this to alloy if the concept works out
 const self = (): ComposingBehaviour => Composing.config({
-  find: Optional.some
+  find: (x) => x
 });
 
 const memento = (mem: MementoRecord): ComposingBehaviour => Composing.config({

@@ -186,7 +186,7 @@ const assertTableStructureWithSizes = (
     const table = editor.dom.select('table')[0];
     assertWidth(editor, table, tableWidth, unit);
     const row = editor.dom.select('colgroup', table)[0];
-    widths[0].forEach((columnWidth, columnIndex) =) {
+    widths[0].forEach((columnWidth, columnIndex) => {
       const column = editor.dom.select('col', row)[columnIndex];
       assertWidth(editor, column, columnWidth, unit);
     });
@@ -195,9 +195,9 @@ const assertTableStructureWithSizes = (
   const tableWithoutColGroup = () => {
     const table = editor.dom.select('table')[0];
     assertWidth(editor, table, tableWidth, unit);
-    widths.forEach((rowWidths, rowIndex) =) {
+    widths.forEach((rowWidths, rowIndex) => {
       const row = editor.dom.select('tr', table)[rowIndex];
-      rowWidths.forEach((cellWidth, cellIndex) =) {
+      rowWidths.forEach((cellWidth, cellIndex) => {
         const cell = editor.dom.select('td,th', row)[cellIndex];
         assertWidth(editor, cell, cellWidth, unit);
       });

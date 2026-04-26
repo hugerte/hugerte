@@ -33,7 +33,7 @@ UnitTest.test('Contiguous Text Nodes Test', () => {
   const check = (expected: CheckItem[], ids: string[]) => {
     const actual = Contiguous.textnodes(doc, Finder.getAll(doc, ids));
     Assert.eq('', expected.length, actual.length);
-    expected.forEach((exp, i) =) {
+    expected.forEach((exp, i) => {
       const act = actual[i];
       Assert.eq('', exp.parent, act.parent.id);
       Assert.eq('', exp.children, TestRenders.ids(act.children));

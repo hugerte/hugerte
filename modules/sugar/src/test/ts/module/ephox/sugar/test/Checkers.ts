@@ -1,6 +1,6 @@
 import { Assert } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
@@ -9,7 +9,7 @@ import * as SugarNode from 'ephox/sugar/api/node/SugarNode';
 
 const { tArray } = Testable;
 
-const checkOpt = <T extends Node>(expected: Optional<SugarElement<T>>, actual: Optional<SugarElement<T>>): void => {
+const checkOpt = <T extends Node>(expected: SugarElement<T> | null, actual: SugarElement<T> | null): void => {
   KAssert.eqOptional('eq', expected, actual, tElement());
 };
 

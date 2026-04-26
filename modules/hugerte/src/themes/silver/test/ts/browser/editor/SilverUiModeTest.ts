@@ -140,7 +140,7 @@ describe('browser.hugerte.themes.silver.editor.SilverUiModeTest', () => {
     [
       { name: 'inline', settings: { inline: true }},
       { name: 'normal', settings: { inline: false }}
-    ].forEach((tester) =) {
+    ].forEach((tester) => {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetupFromElement<Editor>(
           {
@@ -180,7 +180,7 @@ describe('browser.hugerte.themes.silver.editor.SilverUiModeTest', () => {
     [
       { name: 'inline', settings: { inline: true }},
       { name: 'normal', settings: { inline: false }}
-    ].forEach((tester) =) {
+    ].forEach((tester) => {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetupFromElement<Editor>(
           {

@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { SugarElement } from '../../api/node/SugarElement';
 import { RawRect } from '../../api/selection/Rect';
@@ -85,14 +85,14 @@ const toRect = (rect: ClientRect | DOMRect): RawRect => ({
   height: rect.height
 });
 
-const getFirstRect = (rng: Range): Optional<RawRect> => {
+const getFirstRect = (rng: Range): RawRect | null => {
   const rects = rng.getClientRects();
   // ASSUMPTION: The first rectangle is the start of the selection
   const rect = rects.length > 0 ? rects[0] : rng.getBoundingClientRect();
   return rect.width > 0 || rect.height > 0 ? rect.map(toRect) : null;
 };
 
-const getBounds = (rng: Range): Optional<RawRect> => {
+const getBounds = (rng: Range): RawRect | null => {
   const rect = rng.getBoundingClientRect();
   return rect.width > 0 || rect.height > 0 ? rect.map(toRect) : null;
 };

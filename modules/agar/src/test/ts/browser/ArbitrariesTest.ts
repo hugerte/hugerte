@@ -72,7 +72,7 @@ UnitTest.test('Arbitraries Test', () => {
     }
   }), (data: SugarElement<HTMLElement>) =>
     assertProperty('style and attr api', data, (elem) => SugarNode.isTag('span')(elem) && (
-      Attribute.get(elem, 'data-a') !== 'b' || Css.getRaw(elem, 'color').getOr('') !== 'red'
+      Attribute.get(elem, 'data-a') !== 'b' || Css.getRaw(elem, 'color') ?? '' !== 'red'
     )));
 
   checkProperty('Testing out attribute and style decorators', Arbitraries.content('test-data', {
@@ -91,14 +91,14 @@ UnitTest.test('Arbitraries Test', () => {
   }), (leaf: SugarElement<HTMLElement>) => {
     const hasDataCustom = Attribute.get(leaf, 'data-custom') === 'hi';
     const hasContentEditable = Attribute.get(leaf, 'contenteditable') === 'true';
-    const hasColor = Css.getRaw(leaf, 'color').isSome();
-    const hasVisibility = Css.getRaw(leaf, 'visibility').isSome();
+    const hasColor = Css.getRaw(leaf, 'color') !== null;
+    const hasVisibility = Css.getRaw(leaf, 'visibility') !== null;
     return (
       !(hasDataCustom && hasContentEditable) && (hasDataCustom || hasContentEditable)
     ) && (
       !(hasColor && hasVisibility) && (hasColor || hasVisibility)
     ) && (
-      Traverse.firstChild(leaf).isNone()
+      Traverse.firstChild(leaf) === null
     );
   });
 

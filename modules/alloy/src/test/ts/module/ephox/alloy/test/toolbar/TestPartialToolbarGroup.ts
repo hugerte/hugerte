@@ -41,7 +41,7 @@ const setGroups = (tb: AlloyComponent, gs: Array<{ items: AlloySpec[] }>): void 
 };
 
 const createGroups = (gs: Array<{ items: AlloySpec[] }>): SketchSpec[] =>
-  gs.map((...args: any[]) =) (ToolbarGroup.sketch)((munge)(...args)));
+  gs.map((...args: any[]) => (ToolbarGroup.sketch)((munge)(...args)));
 
 const markers = () => itemMarkers;
 

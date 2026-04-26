@@ -1,6 +1,6 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as Subset from 'ephox/robin/parent/Subset';
@@ -27,11 +27,11 @@ UnitTest.test('SubsetTest', () => {
     ])
   ]));
 
-  const check = (expected: Optional<string[]>, startId: string, finishId: string) => {
+  const check = (expected: string[] | null, startId: string, finishId: string) => {
     const start = universe.find(universe.get(), startId).getOrDie();
     const finish = universe.find(universe.get(), finishId).getOrDie();
 
-    const actual = Subset.subset(universe, start, finish).map((g) => g.map((x) =) x.id));
+    const actual = Subset.subset(universe, start, finish).map((g) => g.map((x) => x.id));
     KAssert.eqOptional('eq', expected, actual);
   };
 

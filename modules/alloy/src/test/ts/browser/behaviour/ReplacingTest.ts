@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Logger, Step, UiFinder, Chain, Log } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Compare, SugarBody } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -56,30 +56,30 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
       components: [ ]
     });
 
-    const sCheckReplaceAtWith = (label: string, comp: AlloyComponent, expectedClasses: string[], inputClasses: string[], replaceeIndex: number, replaceSpec: Optional<AlloySpec>) => Logger.t(
+    const sCheckReplaceAtWith = (label: string, comp: AlloyComponent, expectedClasses: string[], inputClasses: string[], replaceeIndex: number, replaceSpec: AlloySpec | null) => Logger.t(
       `${label}: Check replaceAt(${replaceeIndex}, with spec for data: [${inputClasses.join(', ')}]`,
       Step.sync(() => {
         Replacing.set(comp,
-          inputClasses.map((ic) =) makeTag('div', [ ic ]))
+          inputClasses.map((ic) => makeTag('div', [ ic ]))
         );
         Replacing.replaceAt(comp, replaceeIndex, replaceSpec);
         Assertions.assertStructure(
           'Asserting structure',
           ApproxStructure.build((s, _str, arr) => s.element('div', {
-            children: expectedClasses.map((ec) =) s.element('div', { classes: [ arr.has(ec) ] }))
+            children: expectedClasses.map((ec) => s.element('div', { classes: [ arr.has(ec) ] }))
           })),
           comp.element
         );
       })
     );
 
-    const sCheckReplaceAt = (label: string, comp: AlloyComponent, expectedClasses: string[], inputClasses: string[], replaceeIndex: number, replaceClass: Optional<string>) =>
+    const sCheckReplaceAt = (label: string, comp: AlloyComponent, expectedClasses: string[], inputClasses: string[], replaceeIndex: number, replaceClass: string | null) =>
       sCheckReplaceAtWith(label, comp, expectedClasses, inputClasses, replaceeIndex, replaceClass.map((clazz) => makeTag('div', [ clazz ])));
 
     return [
       { comp: withoutReuseComp, label: 'Without reuse' },
       { comp: withReuseComp, label: 'With reuse' },
-    ].map((spec) =) {
+    ].map((spec) => {
       return Log.stepsAsStep('TBA', spec.label, [
         Assertions.sAssertStructure(
           'Initially, has a single span',

@@ -6,7 +6,7 @@ const createFileList = (inputFiles: File[]): FileList => {
     item: (idx: number) => inputFiles[idx]
   };
 
-  inputFiles.forEach((file, idx) =) {
+  inputFiles.forEach((file, idx) => {
     files[idx] = file;
   });
 

@@ -58,7 +58,7 @@ UnitTest.asyncTest('atomic.robin.zone.InViewportTest', (success, failure) => {
     const transform = WordDecision.fromItem;
     const zones = ZoneWalker.walk<Gene, undefined>(doc, start, end, 'en', transform, viewport);
     const indexedZones = new Map<string, ZoneDetails<Gene>>();
-    zones.forEach((zone) =) zone.details.forEach((detail) =) indexedZones.set(detail.item.id, zone)));
+    zones.forEach((zone) => zone.details.forEach((detail) => indexedZones.set(detail.item.id, zone)));
 
     let elements: Gene[] = [];
     // TODO: see if there's an existing function for this so we can lose the cheap / nasty DFS
@@ -69,7 +69,7 @@ UnitTest.asyncTest('atomic.robin.zone.InViewportTest', (success, failure) => {
     };
     visit(doc.get());
 
-    elements.forEach((el) =) {
+    elements.forEach((el) => {
       const isText = doc.property().isText(el);
       const withinViewport = viewport.assess(el).fold(() => false, () => true, () => false);
 
@@ -78,7 +78,7 @@ UnitTest.asyncTest('atomic.robin.zone.InViewportTest', (success, failure) => {
           return true;
         }
 
-        if (doc.up().predicate(g1, (g2) => g2.id === g2Id).isSome()) {
+        if (doc.up().predicate(g1, (g2) => g2.id === g2Id) !== null) {
           return true;
         }
 

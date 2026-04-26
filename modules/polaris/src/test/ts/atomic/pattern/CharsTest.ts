@@ -107,7 +107,7 @@ UnitTest.test('CharsTest', () => {
 
   const checkAllKnown = (label: string, str: string) => {
     const chars = str.split('');
-    const breaks = chars.filter((c) =) {
+    const breaks = chars.filter((c) => {
       return !regex.test(c);
     });
 
@@ -119,7 +119,7 @@ UnitTest.test('CharsTest', () => {
     );
   };
 
-  supported.forEach((code) =) {
+  supported.forEach((code) => {
     const info = extras[code];
     checkAllKnown(info.label, info.chars);
   });

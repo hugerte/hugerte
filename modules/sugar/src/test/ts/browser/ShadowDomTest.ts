@@ -205,6 +205,6 @@ if (SugarShadowDom.isSupported()) {
     withShadowElement((sr) => {
       roots.push(sr);
     });
-    Assert.eq('open then closed', [ 'open', 'closed' ], roots.map((r) =) (r.dom as any).mode ));
+    Assert.eq('open then closed', [ 'open', 'closed' ], roots.map((r) => (r.dom as any).mode ));
   });
 }

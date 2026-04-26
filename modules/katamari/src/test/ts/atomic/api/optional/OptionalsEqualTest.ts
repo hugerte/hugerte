@@ -11,87 +11,87 @@ const boom = Fun.die('boom');
 
 describe('atomic.katamari.api.optional.OptionalsEqualTest', () => {
   it('none === none', () => {
-    assert.isTrue(Optionals.equals(Optional.none(), Optional.none()));
+    assert.isTrue(Optionals.equals(null, null));
   });
 
-  it('Optional.none() !== Optional.some(x)', () => {
+  it('null !== x', () => {
     fc.assert(fc.property(fc.integer(), (i) => {
-      assert.isFalse(Optionals.equals(Optional.none(), Optional.some(i)));
+      assert.isFalse(Optionals.equals(null, i));
     }));
   });
 
-  it('Optional.some(x) !== Optional.none()', () => {
+  it('x !== null', () => {
     fc.assert(fc.property(fc.integer(), (i) => {
-      assert.isFalse((Optionals.equals(Optional.some(i), Optional.none())));
+      assert.isFalse((Optionals.equals(i, null)));
     }));
   });
 
-  it('Optional.some(x) === Optional.some(x)', () => {
-    fc.assert(fc.property(fc.integer(), (i) => assert.isTrue(Optionals.equals(Optional.some(i), Optional.some(i)))));
+  it('x === x', () => {
+    fc.assert(fc.property(fc.integer(), (i) => assert.isTrue(Optionals.equals(i, i))));
   });
 
-  it('Optional.some(x) === Optional.some(x) (same ref)', () => {
+  it('x === x (same ref)', () => {
     fc.assert(fc.property(fc.integer(), (i) => {
-      const ob = Optional.some(i);
+      const ob = i;
       assert.isTrue(Optionals.equals(ob, ob));
     }));
   });
 
-  it('Optional.some(x) !== Optional.some(x + y) where y is not identity', () => {
+  it('x !== x + y where y is not identity', () => {
     fc.assert(fc.property(fc.string(), fc.string(1, 40), (a, b) => {
-      assert.isFalse(Optionals.equals(Optional.some(a), Optional.some(a + b)));
+      assert.isFalse(Optionals.equals(a, a + b));
     }));
   });
 
   it('unit tests', () => {
-    assert.isTrue(Optionals.equals(Optional.none(), Optional.none()));
-    assert.isFalse(Optionals.equals(Optional.none(), Optional.some(3)));
+    assert.isTrue(Optionals.equals(null, null));
+    assert.isFalse(Optionals.equals(null, 3));
 
-    assert.isFalse(Optionals.equals(Optional.some(4), Optional.none()));
-    assert.isFalse(Optionals.equals(Optional.some(2), Optional.some(4)));
-    assert.isTrue(Optionals.equals(Optional.some(5), Optional.some(5)));
-    assert.isFalse(Optionals.equals(Optional.some(5.1), Optional.some(5.3)));
+    assert.isFalse(Optionals.equals(4, null));
+    assert.isFalse(Optionals.equals(2, 4));
+    assert.isTrue(Optionals.equals(5, 5));
+    assert.isFalse(Optionals.equals(5.1, 5.3));
 
     const comparator = (a: number, b: number) => Math.round(a) === Math.round(b);
 
-    assert.isTrue(Optionals.equals(Optional.some(5.1), Optional.some(5.3), comparator));
-    assert.isFalse(Optionals.equals(Optional.some(5.1), Optional.some(5.9), comparator));
+    assert.isTrue(Optionals.equals(5.1, 5.3, comparator));
+    assert.isFalse(Optionals.equals(5.1, 5.9, comparator));
   });
 
   it('Optionals.equals with comparator', () => {
-    assert.isTrue(Optionals.equals(Optional.none(), Optional.none(), boom));
+    assert.isTrue(Optionals.equals(null, null, boom));
   });
 
   it('some !== none, for any predicate', () => {
     fc.assert(fc.property(arbOptionSome(fc.integer()), (opt1) => {
-      assert.isFalse(Optionals.equals(opt1, Optional.none(), boom));
+      assert.isFalse(Optionals.equals(opt1, null, boom));
     }));
   });
 
   it('none !== some, for any predicate', () => {
     fc.assert(fc.property(arbOptionSome(fc.integer()), (opt1) => {
-      assert.isFalse(Optionals.equals(Optional.none(), opt1, boom));
+      assert.isFalse(Optionals.equals(null, opt1, boom));
     }));
   });
 
   it('Checking Optionals.equals(some(x), some(y), _, _ -> false) === false', () => {
     fc.assert(fc.property(arbOptionSome(fc.integer()), arbOptionSome(fc.integer()), (opt1, opt2) => {
-      assert.isFalse(Optionals.equals(opt1, opt2, Fun.never));
+      assert.isFalse(Optionals.equals(opt1, opt2, () => false));
     }));
   });
 
   it('Checking Optionals.equals(some(x), some(y), _, _ -> true) === true', () => {
     fc.assert(fc.property(fc.integer(), fc.integer(), (a, b) => {
-      const opt1 = Optional.some(a);
-      const opt2 = Optional.some(b);
-      assert.isTrue(Optionals.equals(opt1, opt2, Fun.always));
+      const opt1 = a;
+      const opt2 = b;
+      assert.isTrue(Optionals.equals(opt1, opt2, () => true));
     }));
   });
 
   it('Checking Optionals.equals(some(x), some(y), f) iff. f(x, y)', () => {
     fc.assert(fc.property(arbOptionSome(fc.integer()), arbOptionSome(fc.integer()), fc.func(fc.boolean()), (a, b, f) => {
-      const opt1 = Optional.some(a);
-      const opt2 = Optional.some(b);
+      const opt1 = a;
+      const opt2 = b;
       return f(a, b) === Optionals.equals(opt1, opt2, f);
     }));
   });

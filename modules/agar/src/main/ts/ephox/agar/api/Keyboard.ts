@@ -14,7 +14,7 @@ export type KeyModifiers = MixedKeyModifiers;
 */
 const fakeKeys = (types: string[]) => (value: number, modifiers: KeyModifiers = {}, dispatcher: SugarElement<Node>) => {
   const doc = Traverse.owner(dispatcher);
-  types.forEach((type) =) {
+  types.forEach((type) => {
     keyevent(type, doc, value, modifiers, dispatcher);
   });
 };

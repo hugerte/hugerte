@@ -63,7 +63,7 @@ describe.skip('browser.hugerte.core.EditorAutoFocusTest', () => {
   [
     { label: 'Iframe Editor', settings: {}},
     { label: 'Inline Editor', settings: { inline: true }},
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(tester.label, () => {
       it('TINY-8785: should autofocus the first editor and skip scrolling', async () => {
         await pTestEditorAutoFocus('mce_0', tester.settings);

@@ -85,7 +85,7 @@ describe('browser.hugerte.themes.silver.window.SilverDialogApiAccessTest', () =>
   [
     { label: 'Modal', params: { }},
     { label: 'Inline', params: { inline: 'toolbar' as 'toolbar' }}
-  ].forEach((test) =) {
+  ].forEach((test) => {
     context(test.label, () => {
       it('Open dialog, click a button, close the dialog and assert API data', async () => {
         const editor = hook.editor();

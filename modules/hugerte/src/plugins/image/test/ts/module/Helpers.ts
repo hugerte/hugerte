@@ -65,7 +65,7 @@ const setFieldValue = (selector: string, value: string | boolean): SugarElement<
 };
 
 const setTabFieldValues = (data: Partial<ImageDialogData>, tabSelectors: Record<string, string>): void => {
-  Object.entries(tabSelectors).forEach(([k, v]) => ((value, key) =)(v, k)) {
+  Object.entries(tabSelectors).forEach(([k, v]) => ((value, key) =>(v, k)) {
     (data as any)[key as keyof Omit<ImageDialogData, 'dimensions'>]
       .orThunk(() => Object.prototype.hasOwnProperty.call(data, 'dimensions') ? (data.dimensions as Record<string as any)[string>, key] : null)
       .each((obj) => {

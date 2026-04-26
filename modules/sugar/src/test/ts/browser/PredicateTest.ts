@@ -1,5 +1,5 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import * as Remove from 'ephox/sugar/api/dom/Remove';
 import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
@@ -16,19 +16,19 @@ describe('PredicateTest', () => {
 
     Checkers.checkOpt(TestPage.p1, PredicateFind.first(Checkers.isName('p')));
 
-    Checkers.checkOpt(Optional.none<SugarElement<Text>>(), PredicateFind.sibling(TestPage.t5, SugarNode.isText));
+    Checkers.checkOpt(null, PredicateFind.sibling(TestPage.t5, SugarNode.isText));
     Checkers.checkOpt(TestPage.s3, PredicateFind.sibling(TestPage.s4, Checkers.isName('span')));
 
-    Checkers.checkOpt(Optional.none<SugarElement<HTMLLIElement>>(), PredicateFind.ancestor(TestPage.t4, Checkers.isName('li')));
+    Checkers.checkOpt(null, PredicateFind.ancestor(TestPage.t4, Checkers.isName('li')));
     Checkers.checkOpt(TestPage.container, PredicateFind.ancestor(TestPage.s4, Checkers.isName('div')));
 
-    Checkers.checkOpt(Optional.none<SugarElement<HTMLSpanElement>>(), PredicateFind.ancestor(TestPage.s2, Checkers.isName('span')));
+    Checkers.checkOpt(null, PredicateFind.ancestor(TestPage.s2, Checkers.isName('span')));
     Checkers.checkOpt(TestPage.s2, PredicateFind.closest(TestPage.s2, Checkers.isName('span')));
 
     Checkers.checkOpt(TestPage.s2, PredicateFind.descendant(TestPage.p2, Checkers.isName('span')));
     Checkers.checkOpt(TestPage.t4, PredicateFind.descendant(TestPage.p2, SugarNode.isText));
 
-    Checkers.checkOpt(Optional.none<SugarElement<Text>>(), PredicateFind.child(TestPage.p2, SugarNode.isText));
+    Checkers.checkOpt(null, PredicateFind.child(TestPage.p2, SugarNode.isText));
     Checkers.checkOpt(TestPage.t4, PredicateFind.child(TestPage.s3, SugarNode.isText));
 
     Checkers.checkList([ TestPage.p1, TestPage.p3, TestPage.p2 ], PredicateFilter.all(Checkers.isName('p')));

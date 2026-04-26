@@ -25,7 +25,7 @@ const assertHtmlContent = (editor: Editor, children: string[], allowExtras?: boo
 
 const assertMarker = (editor: Editor, expected: { uid: string; name: string }, nodes: Element[]): void => {
   const { uid, name } = expected;
-  nodes.forEach((node) =) {
+  nodes.forEach((node) => {
     Assertions.assertEq('Wrapper must be in content', true, editor.getBody().contains(node));
     Assertions.assertStructure(
       'Checking wrapper has correct decoration',
@@ -45,7 +45,7 @@ const assertGetAll = (editor: Editor, expected: Record<string, number>, name: st
   const keys = Object.keys(annotations);
   const expectedKeys = Object.keys(expected);
   assert.sameMembers(keys, expectedKeys, 'Checking keys of getAll response');
-  Object.entries(annotations).forEach(([k, v]) => ((markers, uid) =)(v, k)) {
+  Object.entries(annotations).forEach(([k, v]) => ((markers, uid) =>(v, k)) {
     Assertions.assertEq('Checking number of markers for uid', expected[uid], markers.length);
     assertMarker(editor, { uid, name }, markers);
   });

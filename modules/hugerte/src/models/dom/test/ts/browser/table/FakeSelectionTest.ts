@@ -1,6 +1,6 @@
 import { Assertions, Keys } from '@ephox/agar';
 import { afterEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -44,14 +44,14 @@ describe('browser.hugerte.models.dom.table.FakeSelectionTest', () => {
   const selectCellsWithMouse = (editor: Editor, selectCells: [ string, string ]) => {
     const table = SelectorFind.descendant<HTMLTableElement>(TinyDom.body(editor), 'table').getOrDie('Could not find table');
     const cells = getCells(table);
-    const startTd = Arr.find(cells, (elm) => Html.get(elm) === selectCells[0]).getOrDie('Could not find start TD');
-    const endTd = Arr.find(cells, (elm) => Html.get(elm) === selectCells[1]).getOrDie('Could not find end TD');
+    const startTd = (cells.find((elm) => Html.get(elm) === selectCells[0]) ?? null).getOrDie('Could not find start TD');
+    const endTd = (cells.find((elm) => Html.get(elm) === selectCells[1]) ?? null).getOrDie('Could not find end TD');
 
     TableTestUtils.selectWithMouse(startTd, endTd);
   };
 
   const assertTableSelectionChangeEvent = (editor: Editor, event: EditorEvent<TableSelectionChangeEvent>) => {
-    const cells = TableTestUtils.getSelectedCells(editor).map((cell) =) cell.dom);
+    const cells = TableTestUtils.getSelectedCells(editor).map((cell) => cell.dom);
     const start = cells[0];
     const finish = cells[cells.length - 1];
 

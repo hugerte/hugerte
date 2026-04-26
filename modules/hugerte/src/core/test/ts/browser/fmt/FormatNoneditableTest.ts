@@ -110,7 +110,7 @@ describe('browser.hugerte.core.fmt.FormatNoneditableTest', () => {
       TinySelections.select(editor, 'span[contenteditable="false"]', []);
 
     // Make sure different inline formats are tested
-    [ boldFormat, underlineFormat, forecolorFormat ].forEach((format) =) {
+    [ boldFormat, underlineFormat, forecolorFormat ].forEach((format) => {
       const pAssertToolbar = (state: boolean) =>
         format.useToolbar ? pAssertToolbarButtonState(format.label, state) : () => Promise.resolve();
       const pTest = pTestFormat(format.toggle);
@@ -125,7 +125,7 @@ describe('browser.hugerte.core.fmt.FormatNoneditableTest', () => {
             label: 'wrappable noneditable span with inner format',
             noneditableHtml: `<span contenteditable="false" data-wrappable="true">s<${format.html}>eco</${format.tag}>nd</span>`
           },
-        ].forEach((scenario) =) {
+        ].forEach((scenario) => {
           const { label, noneditableHtml } = scenario;
           const initialHtml = `<p>first ${noneditableHtml} third</p>`;
 
@@ -254,7 +254,7 @@ describe('browser.hugerte.core.fmt.FormatNoneditableTest', () => {
             label: 'noneditable span with inner format',
             noneditableHtml: `<span contenteditable="false">s<${format.html}>eco</${format.tag}>nd</span>`
           },
-        ].forEach((scenario) =) {
+        ].forEach((scenario) => {
           const { label, noneditableHtml } = scenario;
           const initialHtml = `<p>first ${noneditableHtml} third</p>`;
 
@@ -307,7 +307,7 @@ describe('browser.hugerte.core.fmt.FormatNoneditableTest', () => {
             noneditableBeforeHtml: '<span contenteditable="false">a',
             noneditableAfterHtml: 'b</span>'
           },
-        ].forEach((scenario) =) {
+        ].forEach((scenario) => {
           const { label, noneditableBeforeHtml, noneditableAfterHtml } = scenario;
           const editableHtml = `<span contenteditable="true">editable</span>`;
           const noneditableHtml = `${noneditableBeforeHtml}${editableHtml}${noneditableAfterHtml}`;
@@ -417,7 +417,7 @@ describe('browser.hugerte.core.fmt.FormatNoneditableTest', () => {
           format: forecolorFormat,
           noneditableHtml: `<${forecolorFormat.html} contenteditable="false" data-mce-cef-wrappable="true">s<${forecolorFormat.html}>econ</${forecolorFormat.tag}>d</${forecolorFormat.tag}>`
         }
-      ].forEach((scenario) =) {
+      ].forEach((scenario) => {
         const { noneditableHtml, format } = scenario;
 
         const initialHtml = `<p>first ${noneditableHtml} third</p>`;

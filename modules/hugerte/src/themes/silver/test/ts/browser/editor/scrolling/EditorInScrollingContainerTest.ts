@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Class, Css, Html, Insert, InsertAll, Remove, SelectorFind, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -100,7 +100,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
       assert.equal(editor.getWin().scrollY, 0, 'scrollY of editor.getWin() should be 0');
       assert.equal(scroller.dom.scrollTop, 0, 'scrollTop of scrollingWrapper should be 0');
       assert.equal(window.scrollY, 0, 'scrollY of window should be 0');
-      assert.isTrue(Css.getRaw(header, 'position').isNone(), 'We have not yet docked the sticky toolbar');
+      assert.isTrue(Css.getRaw(header, 'position') === null, 'We have not yet docked the sticky toolbar');
     });
   };
 
@@ -144,7 +144,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
     }
   );
 
-  const pWaitUntilDockedAtPosition = (header: SugarElement<HTMLElement>, optPosition: Optional<{ location: 'top' | 'bottom'; value: number }>): Promise<void> => Waiter.pTryUntil(
+  const pWaitUntilDockedAtPosition = (header: SugarElement<HTMLElement>, optPosition: { location: 'top' | 'bottom'; value: number } | null): Promise<void> => Waiter.pTryUntil(
     'Waiting for sticky element to dock',
     () => {
       Assertions.assertStructure(
@@ -155,7 +155,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
             ...(optPosition.map((position) => ({
               // Allow 5px of error.
               [position.location]: str.measurement(position.value, 'px', 5)
-            })).getOr({ }))
+            })) ?? { })
           }
         })),
         header
@@ -243,7 +243,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
   const pRunMenuDisconnectTestWithAdjustment = async (editor: Editor, adjustScrollPosition: () => Promise<void>): Promise<void> => {
     const header = getEditorUi(editor, ui.editor.stickyHeader);
     // It should not be fixed yet.
-    assert.isTrue(Css.getRaw(header, 'position').isNone(), 'We have not yet docked the sticky toolbar');
+    assert.isTrue(Css.getRaw(header, 'position') === null, 'We have not yet docked the sticky toolbar');
 
     // Open the menu
     TinyUiActions.clickOnMenu(editor, `${ui.editor.menuButton.selector}:contains("File")`);
@@ -387,7 +387,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
     // TINY-9425: Add support for ShadowDom where scroller is outside the Shadow Root
   ];
 
-  scenarios.forEach((scenario) =) {
+  scenarios.forEach((scenario) => {
     context(`${scenario.label} editor`, () => {
       context('Single scroller', () => {
         const hook = TinyHooks.bddSetupFromElement<Editor>(

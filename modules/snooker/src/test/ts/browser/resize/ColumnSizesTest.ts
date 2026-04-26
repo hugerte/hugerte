@@ -56,7 +56,7 @@ UnitTest.test('ColumnSizes.getPercentageWidths', () => {
     const percentWidths = ColumnSizes.getPercentageWidths(Warehouse.fromTable(table), table, TableSize.getTableSize(table));
 
     // Round to account for precision issues
-    const roundedPercentWidths = percentWidths.map((width) =) parseFloat(width.toFixed(1)));
+    const roundedPercentWidths = percentWidths.map((width) => parseFloat(width.toFixed(1)));
     Assert.eq(label, expectedWidths, roundedPercentWidths);
 
     Remove.remove(container);

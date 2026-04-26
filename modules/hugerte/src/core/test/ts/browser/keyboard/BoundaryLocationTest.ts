@@ -55,7 +55,7 @@ describe('browser.hugerte.core.keyboard.BoundaryLocationTest', () => {
   const testValidLocation = (html: string, elementPath: number[], offset: number, expectedLocationName: string, expectedInline: string) => {
     const elm = createViewElement(html);
     const location = createLocation(elm, elementPath, offset);
-    assert.isTrue(location.isSome(), 'Should be a valid location: ' + html);
+    assert.isTrue(location !== null, 'Should be a valid location: ' + html);
     assert.equal(locationName(location.getOrDie()), expectedLocationName, 'Should be expected location');
     Assertions.assertDomEq('Should be expected element', SelectorFind.descendant(elm, expectedInline).getOrDie(), locationElement(location.getOrDie()));
   };
@@ -63,7 +63,7 @@ describe('browser.hugerte.core.keyboard.BoundaryLocationTest', () => {
   const testInvalidLocation = (html: string, elementPath: number[], offset: number) => {
     const elm = createViewElement(html);
     const location = createLocation(elm, elementPath, offset);
-    assert.isTrue(location.isNone(), 'Should not be a valid location: ' + html);
+    assert.isTrue(location === null, 'Should not be a valid location: ' + html);
   };
 
   const testFindLocation = (forward: boolean, html: string, elementPath: number[], offset: number, expectedLocationName: string, expectedInline: string) => {
@@ -72,7 +72,7 @@ describe('browser.hugerte.core.keyboard.BoundaryLocationTest', () => {
     const location = BoundaryLocation.findLocation(forward, isInlineTarget, elm.dom, position);
 
     Assertions.assertDomEq('Should be expected element', SelectorFind.descendant(elm, expectedInline).getOrDie(), locationElement(location.getOrDie()));
-    assert.isTrue(location.isSome(), 'Should be a valid location: ' + html);
+    assert.isTrue(location !== null, 'Should be a valid location: ' + html);
     assert.equal(locationName(location.getOrDie()), expectedLocationName, 'Should be expected location');
   };
 
@@ -80,7 +80,7 @@ describe('browser.hugerte.core.keyboard.BoundaryLocationTest', () => {
     const elm = createViewElement(html);
     const position = createPosition(elm, elementPath, offset);
     const location = BoundaryLocation.findLocation(forward, isInlineTarget, elm.dom, position);
-    assert.isTrue(location.isNone(), 'Should not be a valid location: ' + html);
+    assert.isTrue(location === null, 'Should not be a valid location: ' + html);
   };
 
   const testPrevLocation = Fun.curry(testFindLocation, false);

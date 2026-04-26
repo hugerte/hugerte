@@ -76,7 +76,7 @@ describe('browser.ui.dropdown.MatrixMenuTest', () => {
             Menu.parts.items({
               preprocess: (items: AlloySpec[]) => {
                 const chunks = Arr.chunk(items, 2);
-                return chunks.map((c) =) ({
+                return chunks.map((c) => ({
                   dom: {
                     tag: 'div',
                     classes: [ 'row-class' ]

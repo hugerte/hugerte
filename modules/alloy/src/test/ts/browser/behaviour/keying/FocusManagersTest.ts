@@ -34,7 +34,7 @@ UnitTest.asynctest('Browser Test: behaviour.keying.FocusManagersTest', (success,
     };
   };
 
-  const makeItems = (tag: string, prefix: string, haveTabstop: boolean, firstNum: number) => [ firstNum, firstNum + 1, firstNum + 2 ].map((num) =) ({
+  const makeItems = (tag: string, prefix: string, haveTabstop: boolean, firstNum: number) => [ firstNum, firstNum + 1, firstNum + 2 ].map((num) => ({
     dom: {
       tag,
       classes: [ prefix + '-' + num ],

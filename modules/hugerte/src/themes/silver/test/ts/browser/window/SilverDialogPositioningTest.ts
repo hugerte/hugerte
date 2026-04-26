@@ -15,13 +15,13 @@ describe('browser.hugerte.themes.silver.window.SilverDialogPositioningTest', () 
   [
     { label: 'Inline Mode', inline: true },
     { label: 'Iframe Mode', inline: false }
-  ].forEach((editorMode) =) [
+  ].forEach((editorMode) => [
     { label: 'LTR Direction', directionality: 'ltr' },
     { label: 'RTL Direction', directionality: 'rtl' },
-  ].forEach((editorDirectionality) =) [
+  ].forEach((editorDirectionality) => [
     { label: 'Location Top', location: 'top' },
     { label: 'Location Bottom', location: 'bottom' }
-  ].forEach((toolbarLocation) =) context(`${editorMode.label} ${editorDirectionality.label} Toolbar ${toolbarLocation.label}`, () => {
+  ].forEach((toolbarLocation) => context(`${editorMode.label} ${editorDirectionality.label} Toolbar ${toolbarLocation.label}`, () => {
     const hook = TinyHooks.bddSetupLight<Editor>({
       base_url: '/project/hugerte/js/hugerte',
       inline: editorMode.inline,

@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 
 import * as Spot from '../api/data/Spot';
 import { SpanWrapRange, SpotPoint } from '../api/data/Types';
@@ -21,11 +21,11 @@ const point = <E, D>(universe: Universe<E, D>, start: E, soffset: number, _finis
     Spot.point(cursor.element, cursor.offset)
   );
 
-  return Optional.some<SpanWrapRange<E>>({
+  return {
     range,
     temporary: scanned.temporary,
     wrappers: scanned.wrappers
-  });
+  };
 };
 
 const temporary = <E, D>(universe: Universe<E, D>, start: E, soffset: number): SpanWrapPoint<E> => {
@@ -54,11 +54,11 @@ const scan = <E, D>(universe: Universe<E, D>, start: E, soffset: number, exclusi
   return universe.property().parent(start).bind((parent): (SpanWrapPoint<E>) | null => {
     const cursor = Spot.point(start, soffset);
     const canReuse = isSpan(universe, exclusions)(parent) && universe.property().children(parent).length === 1 && isUnicode(universe, start);
-    return canReuse ? Optional.some<SpanWrapPoint<E>>({
+    return canReuse ? {
       cursor,
       temporary: false,
       wrappers: [ parent ]
-    }) : null;
+    } : null;
   }).getOrThunk(() => {
     return temporary(universe, start, soffset);
   });

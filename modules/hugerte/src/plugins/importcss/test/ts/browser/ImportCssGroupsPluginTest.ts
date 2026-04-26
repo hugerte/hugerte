@@ -47,7 +47,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssGroupsTest', () => {
     );
     TinyUiActions.clickOnToolbar(editor, 'button');
     await pProcessNavigation(SugarDocument.getDocument(), assertion.navigation);
-    assertion.choice.keysBeforeExecute.forEach((k) =) TinyUiActions.keydown(editor, k));
+    assertion.choice.keysBeforeExecute.forEach((k) => TinyUiActions.keydown(editor, k));
     TinyUiActions.keydown(editor, Keys.enter());
     Assertions.assertPresence(
       `${assertion.choice.presence} should now be present`,

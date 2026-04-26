@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { describe, it, before, after, context } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
@@ -10,7 +10,7 @@ import Plugin from 'hugerte/plugins/link/Plugin';
 import { TestLinkUi } from '../module/TestLinkUi';
 
 interface TestSection {
-  readonly option: { key: string; value: Optional<any> };
+  readonly option: { key: string; value: any | null };
   readonly selector: string;
   readonly exists: boolean;
 }
@@ -32,8 +32,8 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
 
   const getStr = (sections: TestSection[]) => {
     const r: Record<string, string> = {};
-    sections.forEach((section) =) {
-      r[section.option.key] = section.option.value.getOr('{ default }');
+    sections.forEach((section) => {
+      r[section.option.key] = section.option.value ?? '{ default }';
     });
     return JSON.stringify(r, null, 2);
   };
@@ -45,7 +45,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
     it('Settings: ' + getStr(sections), async () => {
       const editor = hook.editor();
 
-      sections.forEach(({ option }) =) {
+      sections.forEach(({ option }) => {
         option.value.fold(
           () => {
             editor.options.unset(option.key);
@@ -58,7 +58,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
 
       await TestLinkUi.pOpenLinkDialog(editor);
 
-      sections.forEach(({ selector, exists }) =) {
+      sections.forEach(({ selector, exists }) => {
           // eslint-disable-next-line no-console
           console.log('selector', selector, 'exists', exists);
           const existence = exists ? UiFinder.exists : UiFinder.notExists;
@@ -70,7 +70,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
     });
   };
 
-  const checkTargetSection = (exists: boolean, value: Optional<boolean>) => {
+  const checkTargetSection = (exists: boolean, value: boolean | null) => {
     checkSections([
       {
         option: { key: 'link_target_list', value },
@@ -80,7 +80,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
     ]);
   };
 
-  const checkTitleSection = (exists: boolean, value: Optional<boolean>) => {
+  const checkTitleSection = (exists: boolean, value: boolean | null) => {
     checkSections([
       {
         option: { key: 'link_title', value },
@@ -90,7 +90,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
     ]);
   };
 
-  const checkRelSection = (exists: boolean, value: Optional<Array<{ value: string; title: string }>>) => {
+  const checkRelSection = (exists: boolean, value: Array<{ value: string; title: string }> | null) => {
     checkSections([
       {
         option: { key: 'link_rel_list', value },
@@ -100,7 +100,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
     ]);
   };
 
-  const checkClassSection = (exists: boolean, value: Optional<Array<{ value: string; title: string }>>) => {
+  const checkClassSection = (exists: boolean, value: Array<{ value: string; title: string }> | null) => {
     checkSections([
       {
         option: { key: 'link_class_list', value },
@@ -110,7 +110,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
     ]);
   };
 
-  const checkLinkListSection = (exists: boolean, value: Optional<Array<{ value: string; title: string }>>) => {
+  const checkLinkListSection = (exists: boolean, value: Array<{ value: string; title: string }> | null) => {
     checkSections([
       {
         option: { key: 'link_list', value },

@@ -30,7 +30,7 @@ const setFocusedRange = (editor: Editor, rng: Range | undefined): void => {
 };
 
 const hasImage = (dataTransfer: DataTransfer): boolean =>
-  dataTransfer.files.some((file) =) /^image\//.test(file.type));
+  dataTransfer.files.some((file) => /^image\//.test(file.type));
 
 const needsCustomInternalDrop = (dom: DOMUtils, schema: Schema, target: Node, dropContent: Clipboard.ClipboardContents) => {
   const parentTransparent = dom.getParent(target, (node) => TransparentElements.isTransparentBlock(schema, node));

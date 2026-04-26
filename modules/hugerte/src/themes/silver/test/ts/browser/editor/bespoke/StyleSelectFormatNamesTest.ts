@@ -59,7 +59,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.StyleSelectFormatNamesTes
     const group = UiFinder.findIn(SugarBody.body(), '.tox-selected-menu .tox-collection__group').getOrDie();
     Assertions.assertStructure('Checking structure', ApproxStructure.build((s, str, arr) => s.element('div', {
       classes: [ arr.has('tox-collection__group') ],
-      children: expectedItems.map((expected) =) s.element('div', {
+      children: expectedItems.map((expected) => s.element('div', {
         attrs: {
           'role': str.is('menuitemcheckbox'),
           'aria-label': str.is(expected.title)

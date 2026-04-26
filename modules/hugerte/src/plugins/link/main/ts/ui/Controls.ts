@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { InlineContent } from 'hugerte/core/api/ui/Ui';
@@ -84,7 +84,7 @@ const setupContextToolbars = (editor: Editor): void => {
   /**
    * if we're editing a link, don't change the text.
    * if anything other than text is selected, don't change the text.
-   * TINY-9593: If there is a text selection return `Optional.none`
+   * TINY-9593: If there is a text selection return `() => null`
    * because `mceInsertLink` command will handle the selection.
    */
   const getLinkText = (value: string) => {

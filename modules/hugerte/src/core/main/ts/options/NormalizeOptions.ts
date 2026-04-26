@@ -1,4 +1,4 @@
-import { Obj, Strings } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import { NormalizedEditorOptions, RawEditorOptions } from '../api/OptionTypes';
@@ -23,8 +23,8 @@ const normalizePlugins = (plugins: string | string[] | undefined) => {
     return [];
   } else {
     const pluginNames = Array.isArray(plugins) ? plugins : plugins.split(/[ ,]/);
-    const trimmedPlugins = (pluginNames).map(Strings.trim);
-    return (trimmedPlugins).filter(Strings.isNotEmpty);
+    const trimmedPlugins = (pluginNames).map((s: string) => s.trim());
+    return (trimmedPlugins).filter((s: string) => s.length > 0);
   }
 };
 

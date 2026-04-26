@@ -1,16 +1,16 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as WordUtil from 'ephox/robin/util/WordUtil';
 
 UnitTest.test('Word Util', () => {
-  const checkNone = (text: string, word: (w: string) => Optional<string>) => {
+  const checkNone = (text: string, word: (w: string) => string | null) => {
     const actual = word(text);
     KAssert.eqNone('eq', actual);
   };
 
-  const check = (expected: string, text: string, word: (w: string) => Optional<string>) => {
+  const check = (expected: string, text: string, word: (w: string) => string | null) => {
     const actual = word(text);
     KAssert.eqSome('eq', expected, actual);
   };
@@ -20,7 +20,7 @@ UnitTest.test('Word Util', () => {
     Assert.eq('eq', expected, actual);
   };
 
-  const checkBreakPosition = (expected: Optional<number>, text: string, direction: (w: string) => Optional<number>) => {
+  const checkBreakPosition = (expected: number | null, text: string, direction: (w: string) => number | null) => {
     const actual = direction(text);
     KAssert.eqOptional('eq', expected, actual);
   };

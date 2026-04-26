@@ -40,7 +40,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarLook
   const assertMatch = (nodeCandidates: ContextType[], editorCandidates: ContextType[], expectedCandidates: ContextType[]) => {
     const elem = SugarElement.fromHtml<HTMLSpanElement>('<span>test</span>');
     matchStartNode(elem, nodeCandidates, editorCandidates).each((result) => {
-      result.toolbars.forEach((t, i) =) {
+      result.toolbars.forEach((t, i) => {
         assert.equal(t, expectedCandidates[i], 'Assert toolbars are equal');
       });
     });

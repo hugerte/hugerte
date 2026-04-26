@@ -62,7 +62,7 @@ describe('browser.hugerte.textpatterns.TextPatternsPublicApiTest', () => {
             // This extracted value is meaningless. It's just testing that we have access to
             // all the types we need to classify the various formats. We do test to see if
             // the values go into the content, though.
-            const information: string[] = lookups.flatMap((l) =) {
+            const information: string[] = lookups.flatMap((l) => {
               // case match on the types of patterns.
               switch (l.type) {
                 case 'block-command': {
@@ -92,7 +92,7 @@ describe('browser.hugerte.textpatterns.TextPatternsPublicApiTest', () => {
             });
 
             editor.setContent(
-              information.map((inf) =) `<p>${inf}</p>`).join('\n')
+              information.map((inf) => `<p>${inf}</p>`).join('\n')
             );
           }
         }

@@ -10,7 +10,7 @@ describe('browser.hugerte.plugins.lists.StyleTest', () => {
   [
     { plugins: '', setupModules: [] },
     { plugins: 'lists', setupModules: [ Plugin ] },
-  ].forEach(({ plugins, setupModules }) =) {
+  ].forEach(({ plugins, setupModules }) => {
     const hook = TinyHooks.bddSetup<Editor>({
       plugins,
       toolbar: false,

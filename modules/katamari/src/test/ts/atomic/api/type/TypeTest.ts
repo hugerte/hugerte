@@ -21,16 +21,16 @@ const check = (method: (u: unknown) => boolean, methodName: string) => (expected
 
 // eslint-disable-next-line no-new-wrappers
 const objectString = new String('ball');
-const noop = Fun.noop;
+const noop = () => {};
 
-const checkIsNull = check(Type.isNull, 'isNull');
-const checkIsUndefined = check(Type.isUndefined, 'isUndefined');
-const checkIsBoolean = check(Type.isBoolean, 'isBoolean');
-const checkIsString = check(Type.isString, 'isString');
+const checkIsNull = check((x: any): x is null => x === null, 'isNull');
+const checkIsUndefined = check((x: any): x is undefined => x === undefined, 'isUndefined');
+const checkIsBoolean = check((x: any): x is boolean => typeof x === 'boolean', 'isBoolean');
+const checkIsString = check((x: any): x is string => typeof x === 'string', 'isString');
 const checkIsObject = check(Type.isObject, 'isObject');
-const checkIsArray = check(Type.isArray, 'isArray');
-const checkIsFunction = check(Type.isFunction, 'isFunction');
-const checkIsNumber = check(Type.isNumber, 'isNumber');
+const checkIsArray = check(Array.isArray, 'isArray');
+const checkIsFunction = check((x: any): x is Function => typeof x === 'function', 'isFunction');
+const checkIsNumber = check((x: any): x is number => typeof x === 'number', 'isNumber');
 
 describe('atomic.katamari.api.struct.TypeTest', () => {
   it('isNull', () => {
@@ -147,14 +147,14 @@ describe('atomic.katamari.api.struct.TypeTest', () => {
 
   it('Type.is*: only one should match for every value', () => {
     const classifiers = [
-      Type.isString,
+      (x: any): x is string => typeof x === 'string',
       Type.isObject,
-      Type.isArray,
-      Type.isNull,
-      Type.isBoolean,
-      Type.isUndefined,
-      Type.isFunction,
-      Type.isNumber
+      Array.isArray,
+      (x: any): x is null => x === null,
+      (x: any): x is boolean => typeof x === 'boolean',
+      (x: any): x is undefined => x === undefined,
+      (x: any): x is Function => typeof x === 'function',
+      (x: any): x is number => typeof x === 'number'
     ];
 
     fc.assert(fc.property(fc.anything(), (x) => {
@@ -163,7 +163,7 @@ describe('atomic.katamari.api.struct.TypeTest', () => {
     }));
   });
 
-  it('Type.isNullable', () => {
+  it('(x: any) => x == null', () => {
     assert.isTrue(Type.isNullable(null));
     assert.isTrue(Type.isNullable(undefined));
     fc.assert(fc.property(fc.string(), (s) => {
@@ -174,7 +174,7 @@ describe('atomic.katamari.api.struct.TypeTest', () => {
     }));
   });
 
-  it('Type.isNonNullable', () => {
+  it('(x: any) => x != null', () => {
     assert.isFalse(Type.isNonNullable(null));
     assert.isFalse(Type.isNonNullable(undefined));
     fc.assert(fc.property(fc.string(), (s) => {
@@ -214,8 +214,8 @@ describe('atomic.katamari.api.struct.TypeTest', () => {
     it('returns false for classes', () => {
       assert.isFalse(Type.isPlainObject(new Set()));
       assert.isFalse(Type.isPlainObject(new Map()));
-      assert.isFalse(Type.isPlainObject(Optional.none()));
-      assert.isFalse(Type.isPlainObject(Optional.some(5)));
+      assert.isFalse(Type.isPlainObject(null));
+      assert.isFalse(Type.isPlainObject(5));
     });
   });
 

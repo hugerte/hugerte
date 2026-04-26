@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import * as NativeRange from '../../selection/core/NativeRange';
 import * as SelectionDirection from '../../selection/core/SelectionDirection';
@@ -86,7 +86,7 @@ const toNative = (selection: SimSelection): Range => {
 // NOTE: We are still reading the range because it gives subtly different behaviour
 // than using the anchorNode and focusNode. I'm not sure if this behaviour is any
 // better or worse; it's just different.
-const readRange = (selection: Selection): Optional<SimRange> => {
+const readRange = (selection: Selection): SimRange | null => {
   if (selection.rangeCount > 0) {
     const firstRng = selection.getRangeAt(0);
     const lastRng = selection.getRangeAt(selection.rangeCount - 1);
@@ -102,7 +102,7 @@ const readRange = (selection: Selection): Optional<SimRange> => {
   }
 };
 
-const doGetExact = (selection: Selection): Optional<SimRange> => {
+const doGetExact = (selection: Selection): SimRange | null => {
   if (selection.anchorNode === null || selection.focusNode === null) {
     return readRange(selection);
   } else {
@@ -135,27 +135,27 @@ const forElement = (win: Window, element: SugarElement<Node>): SimRange => {
   );
 };
 
-const getExact = (win: Window): Optional<SimRange> =>
+const getExact = (win: Window): SimRange | null =>
   // We want to retrieve the selection as it is.
   getNativeSelection(win)
     .filter((sel) => sel.rangeCount > 0)
     .bind(doGetExact);
 
 // TODO: Test this.
-const get = (win: Window): Optional<SimSelection> =>
+const get = (win: Window): SimSelection | null =>
   getExact(win).map((range) => SimSelection.exact(range.start, range.soffset, range.finish, range.foffset));
 
-const getFirstRect = (win: Window, selection: SimSelection): Optional<RawRect> => {
+const getFirstRect = (win: Window, selection: SimSelection): RawRect | null => {
   const rng = SelectionDirection.asLtrRange(win, selection);
   return NativeRange.getFirstRect(rng);
 };
 
-const getBounds = (win: Window, selection: SimSelection): Optional<RawRect> => {
+const getBounds = (win: Window, selection: SimSelection): RawRect | null => {
   const rng = SelectionDirection.asLtrRange(win, selection);
   return NativeRange.getBounds(rng);
 };
 
-const getAtPoint = (win: Window, x: number, y: number): Optional<SimRange> =>
+const getAtPoint = (win: Window, x: number, y: number): SimRange | null =>
   CaretRange.fromPoint(win, x, y);
 
 const getAsString = (win: Window, selection: SimSelection): string => {

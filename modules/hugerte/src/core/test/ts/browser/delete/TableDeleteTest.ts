@@ -19,7 +19,7 @@ describe('browser.hugerte.core.delete.TableDeleteTest', () => {
 
     // Remove internal selection dom items
     SelectorFilter.descendants(element, '*[data-mce-bogus="all"]').forEach(Remove.remove);
-    SelectorFilter.descendants(element, '*').forEach((elm) =) {
+    SelectorFilter.descendants(element, '*').forEach((elm) => {
       Attribute.remove(elm, 'data-mce-selected');
     });
 
@@ -29,7 +29,7 @@ describe('browser.hugerte.core.delete.TableDeleteTest', () => {
   const doCommand = (editor: Editor, forward: boolean) => {
     const returnVal = TableDelete.backspaceDelete(editor, forward);
     returnVal.each((apply) => apply());
-    return returnVal.isSome();
+    return returnVal !== null;
   };
 
   const doDelete = (editor: Editor) => {

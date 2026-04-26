@@ -10,7 +10,7 @@ describe('atomic.polaris.api.SearchFindTest', () => {
   const checkAll = (expected: [number, number][], input: string, pattern: PRegExp) => {
     const actual = Search.findall(input, pattern);
     Assert.eq(`Checking length of result for "${input}"`, expected.length, actual.length);
-    expected.forEach((exp, i) =) {
+    expected.forEach((exp, i) => {
       Assert.eq(`Checking result of start for "${exp}"`, exp[0], actual[i].start);
       Assert.eq(`Checking result of finish for "${exp}"`, exp[1], actual[i].finish);
     });
@@ -24,7 +24,7 @@ describe('atomic.polaris.api.SearchFindTest', () => {
   const checkMany = (expected: [number, number, string][], text: string, targets: ReturnType<typeof testData>[]) => {
     const actual = Search.findmany(text, targets);
     Assert.eq(`Checking length of result for "${text}"`, expected.length, actual.length);
-    expected.forEach((exp, i) =) {
+    expected.forEach((exp, i) => {
       Assert.eq(`Checking result of start for "${exp}"`, exp[0], actual[i].start);
       Assert.eq(`Checking result of finish for "${exp}"`, exp[1], actual[i].finish);
       Assert.eq(`Checking result of name for "${exp}"`, exp[2], actual[i].name);

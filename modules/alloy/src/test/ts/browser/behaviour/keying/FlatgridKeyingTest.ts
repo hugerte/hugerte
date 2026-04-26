@@ -67,14 +67,14 @@ UnitTest.asynctest('Flat Grid Keying Test', (success, failure) => {
           })
         ]),
         // 4 x 6 grid size
-        components: squares.map((num) =) item([ num ]))
+        components: squares.map((num) => item([ num ]))
       })
     );
 
   }, (doc, body, gui, component, store) => {
 
     const targets: any = Objects.wrapAll(
-      squares.map((sq) =) ({
+      squares.map((sq) => ({
         key: sq,
         value: {
           label: sq,

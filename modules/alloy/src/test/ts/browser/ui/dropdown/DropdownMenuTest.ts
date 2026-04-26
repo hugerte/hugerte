@@ -169,18 +169,18 @@ UnitTest.asynctest('DropdownMenuTest', (success, failure) => {
 
     const sTestMenus = (label: string, stored: string[], focused: TestFocusable, active: TestFocusable[], background: TestFocusable[], others: TestFocusable[]) => {
       const sCheckBackground = GeneralSteps.sequence(
-        background.flatMap((bg) =) [
+        background.flatMap((bg) => [
           UiFinder.sExists(gui.element, bg.selector),
           UiFinder.sNotExists(gui.element, bg.selector + '.selected-menu')
         ])
       );
 
       const sCheckActive = GeneralSteps.sequence(
-        active.map((o) =) UiFinder.sExists(gui.element, o.selector + '.selected-menu'))
+        active.map((o) => UiFinder.sExists(gui.element, o.selector + '.selected-menu'))
       );
 
       const sCheckOthers = GeneralSteps.sequence(
-        others.map((o) =) UiFinder.sNotExists(gui.element, o.selector))
+        others.map((o) => UiFinder.sNotExists(gui.element, o.selector))
       );
 
       return Logger.t(

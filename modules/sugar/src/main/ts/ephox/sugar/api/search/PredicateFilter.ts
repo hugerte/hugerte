@@ -37,7 +37,7 @@ const descendants: {
   let result: SugarElement<Node>[] = [];
 
   // Recurse.toArray() might help here
-  Traverse.children(scope).forEach((x) =) {
+  Traverse.children(scope).forEach((x) => {
     if (predicate(x)) {
       result = result.concat([ x ]);
     }

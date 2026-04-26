@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 
 import * as Parent from '../api/general/Parent';
 import { ZoneViewports } from '../api/general/ZoneViewports';
@@ -22,7 +22,7 @@ const rangeOn = <E, D>(universe: Universe<E, D>, first: E, last: E, envLang: str
 const fromBoundedWith = <E, D>(universe: Universe<E, D>, left: E, right: E, envLang: string, transform: (universe: Universe<E, D>, item: E) => WordDecisionItem<E>, viewport: ZoneViewports<E>): Zones<E> => {
   const groups: ZoneDetails<E>[] = Parent.subset(universe, left, right).bind((children) => {
     if (children.length === 0) {
-      return Optional.none<ZoneDetails<E>[]>();
+      return null;
     }
     const first = children[0];
     const last = children[children.length - 1];

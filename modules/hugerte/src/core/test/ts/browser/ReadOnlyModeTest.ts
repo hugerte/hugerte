@@ -80,7 +80,7 @@ describe('browser.hugerte.core.ReadOnlyModeTest', () => {
     assert.equal(Class.has(elm, 'tox-tbtn--disabled'), expectedState, 'Button should have expected disabled state');
   };
 
-  const assertHrefOpt = (editor: Editor, selector: string, expectedHref: Optional<string>) => {
+  const assertHrefOpt = (editor: Editor, selector: string, expectedHref: string | null) => {
     const elm = SugarElement.fromDom(editor.dom.select(selector)[0]);
     const hrefOpt = Readonly.getAnchorHrefOpt(editor, elm);
     Assert.eq('href options match', expectedHref, hrefOpt, tOptional());

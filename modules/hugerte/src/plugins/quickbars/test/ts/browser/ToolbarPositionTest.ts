@@ -1,7 +1,7 @@
 import { Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { Boxes } from '@ephox/alloy';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { Html, SelectorFilter, SelectorFind, SimSelection, SugarBody, SugarElement, WindowSelection } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
@@ -41,8 +41,8 @@ describe.skip('browser.hugerte.plugins.quickbars.ToolbarPositionTest', () => {
   const selectCellsWithMouse = (editor: Editor, selectCells: [ string, string ]) => {
     const table = SelectorFind.descendant<HTMLTableElement>(TinyDom.body(editor), 'table').getOrDie('Could not find table');
     const cells = getCells(table);
-    const startTd = Arr.find(cells, (elm) => Html.get(elm) === selectCells[0]).getOrDie('Could not find start TD');
-    const endTd = Arr.find(cells, (elm) => Html.get(elm) === selectCells[1]).getOrDie('Could not find end TD');
+    const startTd = (cells.find((elm) => Html.get(elm) === selectCells[0]) ?? null).getOrDie('Could not find start TD');
+    const endTd = (cells.find((elm) => Html.get(elm) === selectCells[1]) ?? null).getOrDie('Could not find end TD');
 
     selectWithMouse(startTd, endTd);
   };
@@ -206,7 +206,7 @@ describe.skip('browser.hugerte.plugins.quickbars.ToolbarPositionTest', () => {
   };
 
   // Test with different tableLayout, as the toolbar is positioned differently, when it has sufficient space to show the toolbar in the middle of the selection
-  [ 'fixed', 'relative' ].forEach((tableLayout: TableSizingMode) =) {
+  [ 'fixed', 'relative' ].forEach((tableLayout: TableSizingMode) => {
     context(`Table layout: ${tableLayout}`, () => {
 
       // Traverse row to row, selects 2 cells initially, then it expands the selection to the right and once it has reaches the end, moves the starting position to the next column
@@ -358,7 +358,7 @@ describe.skip('browser.hugerte.plugins.quickbars.ToolbarPositionTest', () => {
 
         const table = SelectorFind.descendant<HTMLTableElement>(TinyDom.body(editor), 'table').getOrDie('Could not find table');
         const cells = getCells(table);
-        const td = Arr.find(cells, (elm) => Html.get(elm) === '9').getOrDie('Could not find TD');
+        const td = (cells.find((elm) => Html.get(elm) === '9') ?? null).getOrDie('Could not find TD');
         const tableBounds = WindowSelection.getBounds(window, SimSelection.exact(td, 0, td, 1)).getOrDie('Could not get bounds of table cell');
 
         const paragraph = SelectorFind.descendant<HTMLParagraphElement>(TinyDom.body(editor), 'p').getOrDie('Could not find paragraph');

@@ -1,6 +1,6 @@
 import { Assert, TestLabel } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
-import { Optional, OptionalInstances, Result, ResultInstances } from '@ephox/katamari';
+import { OptionalInstances, Result, ResultInstances } from '@ephox/katamari';
 
 const { tOptional } = OptionalInstances;
 const { tResult } = ResultInstances;
@@ -9,13 +9,13 @@ type Testable<A> = Testable.Testable<A>;
 
 // NOTE: Don't use this within Agar - use tOptional directly
 
-export const eqOptional = <A> (message: TestLabel, expected: Optional<A>, actual: Optional<A>, testableA: Testable<A> = tAny): void =>
+export const eqOptional = <A> (message: TestLabel, expected: A | null, actual: A | null, testableA: Testable<A> = tAny): void =>
   Assert.eq(message, expected, actual, tOptional(testableA));
 
-export const eqNone = <A> (message: TestLabel, actual: Optional<A>): void =>
+export const eqNone = <A> (message: TestLabel, actual: A | null): void =>
   eqOptional(message, null, actual, tAny);
 
-export const eqSome = <A> (message: TestLabel, expected: A, actual: Optional<A>, testableA: Testable<A> = tAny): void =>
+export const eqSome = <A> (message: TestLabel, expected: A, actual: A | null, testableA: Testable<A> = tAny): void =>
   eqOptional(message, expected, actual, testableA);
 
 export const eqResult = <A, E> (message: TestLabel, expected: Result<A, E>, actual: Result<A, E>, testableA: Testable<A> = tAny, testableE: Testable<E> = tAny): void =>

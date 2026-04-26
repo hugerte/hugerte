@@ -81,7 +81,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
 
   const anchorsZwspOutside = (texts: string[], before: boolean, index: number) => {
     return ApproxStructure.build((s, str) => {
-      const children = texts.map((text, i) =) {
+      const children = texts.map((text, i) => {
         return [
           index === i && before ? [ s.text(str.is(Zwsp.ZWSP)) ] : [ ],
           [
@@ -115,7 +115,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
 
   const anchorsZwspInside = (texts: string[], start: boolean, index: number) => {
     return ApproxStructure.build((s, str) => {
-      const children = texts.map((text, i) =) {
+      const children = texts.map((text, i) => {
         const zwspText = start ? Zwsp.ZWSP + text : text + Zwsp.ZWSP;
 
         return s.element(

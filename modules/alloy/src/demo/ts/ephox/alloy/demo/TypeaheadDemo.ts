@@ -1,4 +1,4 @@
-import { Future, Result, Strings } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Class, SugarElement, Value } from '@ephox/sugar';
 
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';
@@ -52,9 +52,9 @@ export default (): void => {
     'x',
     'yak',
     'zebra'
-  ].map((s) =) ({
+  ].map((s) => ({
     value: s,
-    text: Strings.capitalize(s)
+    text: (s.charAt(0).toUpperCase() + s.slice(1))
   }));
 
   const lazySink = () => Result.value(sink);
@@ -86,7 +86,7 @@ export default (): void => {
     fetch: (input) => {
       const inputValue = Value.get(input.element);
       console.log('text', inputValue);
-      const matching: DemoRenders.DemoItems[] = dataset.flatMap((d) =) {
+      const matching: DemoRenders.DemoItems[] = dataset.flatMap((d) => {
         const lText = d.text.toLowerCase();
         const index = lText.indexOf(inputValue.toLowerCase());
         if (index > -1) {

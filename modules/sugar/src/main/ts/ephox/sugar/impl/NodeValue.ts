@@ -1,10 +1,10 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { SugarElement } from '../api/node/SugarElement';
 
 export interface NodeValue {
   readonly get: (element: SugarElement<Node>) => string;
-  readonly getOption: (element: SugarElement<Node>) => Optional<string>;
+  readonly getOption: (element: SugarElement<Node>) => string | null;
   readonly set: (element: SugarElement<Node>, value: string) => void;
 }
 
@@ -13,10 +13,10 @@ export const NodeValue = (is: (e: SugarElement<Node>) => boolean, name: string):
     if (!is(element)) {
       throw new Error('Can only get ' + name + ' value of a ' + name + ' node');
     }
-    return getOption(element).getOr('');
+    return getOption(element) ?? '';
   };
 
-  const getOption = (element: SugarElement<Node>): Optional<string> =>
+  const getOption = (element: SugarElement<Node>): string | null =>
     is(element) ? element.dom.nodeValue ?? null : null;
 
   const set = (element: SugarElement<Node>, value: string): void => {

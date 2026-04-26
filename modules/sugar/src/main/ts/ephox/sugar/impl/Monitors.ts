@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import * as Compare from '../api/dom/Compare';
 import { SugarElement } from '../api/node/SugarElement';
@@ -19,7 +19,7 @@ const polls: Polling[] = [];
 const poll = (element: SugarElement<Node>, unbind: () => void): Polling => ({ element, unbind });
 
 const findPoller = (element: SugarElement<Node>): number =>
-  Arr.findIndex(polls, (p) => Compare.eq(p.element, element)).getOr(-1);
+  polls.findIndex((p) => Compare.eq(p.element, element)) ?? -1;
 
 const begin = (element: SugarElement<Node>, f: () => (() => void)): void => {
   const index = findPoller(element);
@@ -29,7 +29,7 @@ const begin = (element: SugarElement<Node>, f: () => (() => void)): void => {
   }
 };
 
-const query = (element: SugarElement<Node>): Optional<Polling> => {
+const query = (element: SugarElement<Node>): Polling | null => {
   // Used in tests to determine whether an element is still being monitored
   const index = findPoller(element);
   return index === -1 ? null : polls[index];

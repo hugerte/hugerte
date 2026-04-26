@@ -36,7 +36,7 @@ UnitTest.test('ClumpsTest', () => {
   const check = (expected: Expected[], start: number[], soffset: number, finish: number[], foffset: number) => {
     const actual = Clumps.collect(DomUniverse(), isRoot, find(start), soffset, find(finish), foffset);
     Assert.eq('The length of Clumps was different. Expected: ' + expected.length + ', actual: ' + actual.length, expected.length, actual.length);
-    expected.forEach((exp, i) =) {
+    expected.forEach((exp, i) => {
       const act = actual[i];
       Assert.eq('', true, Compare.eq(find(exp.start), act.start));
       Assert.eq('', true, Compare.eq(find(exp.end), act.finish));

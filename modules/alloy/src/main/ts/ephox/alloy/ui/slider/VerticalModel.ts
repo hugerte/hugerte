@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { Css, Height } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -123,8 +123,8 @@ const setPositionFromValue = (slider: AlloyComponent, thumb: AlloyComponent, det
 };
 
 // Key Events
-const onLeft = Optional.none;
-const onRight = Optional.none;
+const onLeft = () => null;
+const onRight = () => null;
 const onUp = handleMovement(-1);
 const onDown = handleMovement(1);
 

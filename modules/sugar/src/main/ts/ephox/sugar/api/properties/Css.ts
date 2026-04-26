@@ -1,4 +1,4 @@
-import { Optional, Optionals, Strings } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 
 import * as Style from '../../impl/Style';
 import * as SugarBody from '../node/SugarBody';
@@ -42,15 +42,15 @@ const set = (element: SugarElement<Node>, property: string, value: string): void
 const setAll = (element: SugarElement<Node>, css: Record<string, string>): void => {
   const dom = element.dom;
 
-  Object.entries(css).forEach(([k, v]) => ((v, k) =)(v, k)) {
+  Object.entries(css).forEach(([k, v]) => ((v, k) =>(v, k)) {
     internalSet(dom, k, v);
   });
 };
 
-const setOptions = (element: SugarElement<Node>, css: Record<string, Optional<string>>): void => {
+const setOptions = (element: SugarElement<Node>, css: Record<string, string | null>): void => {
   const dom = element.dom;
 
-  Object.entries(css).forEach(([k, v]) => ((v, k) =)(v, k)) {
+  Object.entries(css).forEach(([k, v]) => ((v, k) =>(v, k)) {
     v.fold(() => {
       internalRemove(dom, k);
     }, (value) => {
@@ -95,7 +95,7 @@ const getUnsafeProperty = (dom: Node, property: string): string =>
  *
  * Returns NONE if the property isn't set, or the value is an empty string.
  */
-const getRaw = (element: SugarElement<Node>, property: string): Optional<string> => {
+const getRaw = (element: SugarElement<Node>, property: string): string | null => {
   const dom = element.dom;
   const raw = getUnsafeProperty(dom, property);
 
@@ -119,7 +119,7 @@ const isValidValue = (tag: string, property: string, value: string): boolean => 
   const element = SugarElement.fromTag(tag);
   set(element, property, value);
   const style = getRaw(element, property);
-  return style.isSome();
+  return style !== null;
 };
 
 const remove = (element: SugarElement<Node>, property: string): void => {
@@ -127,7 +127,7 @@ const remove = (element: SugarElement<Node>, property: string): void => {
 
   internalRemove(dom, property);
 
-  if (Optionals.is(Attribute.getOpt(element as SugarElement<Element>, 'style').map(Strings.trim), '')) {
+  if (Optionals.is(Attribute.getOpt(element as SugarElement<Element>, 'style').map((s: string) => s.trim()), '')) {
     // No more styles left, remove the style attribute as well
     Attribute.remove(element as SugarElement<Element>, 'style');
   }
@@ -162,7 +162,7 @@ const reflow = (e: SugarElement<HTMLElement>): void =>
 const transferOne = (source: SugarElement<Node>, destination: SugarElement<Node>, style: string): void => {
   getRaw(source, style).each((value) => {
     // NOTE: We don't want to clobber any existing inline styles.
-    if (getRaw(destination, style).isNone()) {
+    if (getRaw(destination, style) === null) {
       set(destination, style, value);
     }
   });
@@ -172,7 +172,7 @@ const transfer = (source: SugarElement<Node>, destination: SugarElement<Node>, s
   if (!SugarNode.isElement(source) || !SugarNode.isElement(destination)) {
     return;
   }
-  styles.forEach((style) =) {
+  styles.forEach((style) => {
     transferOne(source, destination, style);
   });
 };

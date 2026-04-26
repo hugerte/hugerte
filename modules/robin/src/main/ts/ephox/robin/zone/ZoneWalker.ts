@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 import { Gather, Traverse } from '@ephox/phoenix';
 
 import { ZonePosition } from '../api/general/ZonePosition';
@@ -96,7 +96,7 @@ const walk = <E, D>(
 
   // INVESTIGATE: Make the language zone stack immutable *and* performant
   const stack = LanguageZones.nu<E>(defaultLang);
-  let state = Optional.some<Traverse<E>>({ item: start, mode: Gather.advance })
+  let state = { item: start, mode: Gather.advance }
     .filter(shouldContinue);
 
   while (state !== null) {

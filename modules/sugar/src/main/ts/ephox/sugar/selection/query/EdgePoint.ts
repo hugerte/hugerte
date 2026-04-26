@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { SugarElement } from '../../api/node/SugarElement';
 import * as Traverse from '../../api/search/Traverse';
@@ -26,7 +26,7 @@ const createCollapsedNode = (doc: SugarElement<Document>, target: SugarElement<N
   return r;
 };
 
-const locateInElement = (doc: SugarElement<Document>, node: SugarElement<Element>, x: number): Optional<Range> => {
+const locateInElement = (doc: SugarElement<Document>, node: SugarElement<Element>, x: number): Range | null => {
   const cursorRange = doc.dom.createRange();
   cursorRange.selectNode(node.dom);
   const rect = cursorRange.getBoundingClientRect();
@@ -36,13 +36,13 @@ const locateInElement = (doc: SugarElement<Document>, node: SugarElement<Element
   return f(node).map((target) => createCollapsedNode(doc, target, collapseDirection));
 };
 
-const locateInEmpty = (doc: SugarElement<Document>, node: SugarElement<Element>, x: number): Optional<Range> => {
+const locateInEmpty = (doc: SugarElement<Document>, node: SugarElement<Element>, x: number): Range | null => {
   const rect = node.dom.getBoundingClientRect();
   const collapseDirection = getCollapseDirection(rect, x);
   return createCollapsedNode(doc, node, collapseDirection);
 };
 
-const search = (doc: SugarElement<Document>, node: SugarElement<Element>, x: number): Optional<Range> => {
+const search = (doc: SugarElement<Document>, node: SugarElement<Element>, x: number): Range | null => {
   const f = Traverse.children(node).length === 0 ? locateInEmpty : locateInElement;
   return f(doc, node, x);
 };

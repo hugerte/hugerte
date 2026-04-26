@@ -73,7 +73,7 @@ describe('browser.hugerte.core.paste.SmartPasteTest', () => {
       'webp',
       'PNG',
       'WEBP',
-    ].map((image_file_type) =) assert.isTrue(
+    ].map((image_file_type) => assert.isTrue(
       SmartPaste.isImageUrl(editor, `https://www.site.com/file.${image_file_type}`),
       `File type "${image_file_type}" is valid`
     ));

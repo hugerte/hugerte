@@ -36,18 +36,18 @@ UnitTest.test('RecalculationsTest', () => {
     const actualColumnWidth = Recalculations.recalculateWidthForColumns(warehouse, sizes.width);
     const actualCellHeight = Recalculations.recalculateHeightForCells(warehouse, sizes.height);
 
-    expected.forEach((expt) =) {
-      Assert.eq('', expt.columns, actualColumnWidth.map((cell) =) ({
+    expected.forEach((expt) => {
+      Assert.eq('', expt.columns, actualColumnWidth.map((cell) => ({
         element: TextContent.get(cell.element),
         width: cell.width
       })));
 
-      Assert.eq('', expt.widths, actualCellWidth.map((cell) =) ({
+      Assert.eq('', expt.widths, actualCellWidth.map((cell) => ({
         element: TextContent.get(cell.element),
         width: cell.width
       })));
 
-      Assert.eq('', expt.heights, actualCellHeight.map((cell) =) ({
+      Assert.eq('', expt.heights, actualCellHeight.map((cell) => ({
         element: TextContent.get(cell.element),
         height: cell.height
       })));

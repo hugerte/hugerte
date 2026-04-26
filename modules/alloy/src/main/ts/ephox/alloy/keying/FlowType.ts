@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 import { SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -17,7 +17,7 @@ import * as KeyingTypes from './KeyingTypes';
 
 const schema = [
   FieldSchema.required('selector'),
-  FieldSchema.defaulted('getInitial', Optional.none),
+  FieldSchema.defaulted('getInitial', () => null),
   FieldSchema.defaulted('execute', KeyingTypes.defaultExecute),
   Fields.onKeyboardHandler('onEscape'),
   FieldSchema.defaulted('executeOnMove', false),

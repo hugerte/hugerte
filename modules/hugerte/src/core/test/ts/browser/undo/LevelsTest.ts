@@ -107,7 +107,7 @@ describe('browser.hugerte.core.undo.LevelsTest', () => {
     });
   });
 
-  [ 'noscript', 'style', 'script', 'xmp', 'noembed', 'noframes' ].forEach((parent) =) {
+  [ 'noscript', 'style', 'script', 'xmp', 'noembed', 'noframes' ].forEach((parent) => {
     it(`TINY-10305: createFromEditor empties ${parent} containing ZWNBSP`, () => {
       const editor = hook.editor();
       TinyApis(editor).setRawContent(`<p>a</p> <${parent}>b\ufeffc</${parent}> <p>d</p> <${parent}>e</${parent}>`);

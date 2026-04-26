@@ -9,7 +9,7 @@ UnitTest.test('PrioritySortTest', () => {
     const actual = PrioritySort.sortKeys('test.sort', 'letter', input, order);
     // TODO: Use ResultAssertions test?
     actual.fold((err) => {
-      const errMessage = err.map((e) =) e.message !== undefined ? e.message : e).join('');
+      const errMessage = err.map((e) => e.message !== undefined ? e.message : e).join('');
       Assert.eq('Checking the error of priority sort', errMessage.indexOf(expected) > -1, true);
     }, (val) => {
       Assert.fail('Priority sort should have thrown error: ' + expected + '\nWas: ' + JSON.stringify(val, null, 2));
@@ -21,11 +21,11 @@ UnitTest.test('PrioritySortTest', () => {
     actual.fold((err) => {
       Assert.fail('Unexpected error: ' + err + '\nWas wanting value(' + JSON.stringify(expected, null, 2) + ')');
     }, (val) => {
-      Assert.eq('Checking the value of priority sort', expected, val.map((v) =) v.letter));
+      Assert.eq('Checking the value of priority sort', expected, val.map((v) => v.letter));
     });
   };
 
-  const letters = (ls: string[]) => ls.map((l) =) ({ letter: l }));
+  const letters = (ls: string[]) => ls.map((l) => ({ letter: l }));
 
   Logger.sync(
     'Checking [ a, d, f ] ordering',

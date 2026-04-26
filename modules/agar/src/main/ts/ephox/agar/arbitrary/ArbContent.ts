@@ -29,7 +29,7 @@ const makeArbOf = <T extends Node>(component: string, schema: ContentSchema, dep
 const createSchema = (factory: Schema, extras: Record<string, Partial<SchemaDetail>>): ContentSchema => {
   const base = ArbSchema;
   const schema = ({ ...base, ...extras });
-  return Object.fromEntries(Object.entries(schema).map(([k, v]) => [k, ((s, k) =)(v, k)])) {
+  return Object.fromEntries(Object.entries(schema).map(([k, v]) => [k, ((s, k) =>(v, k)])) {
     const type: string = s.type;
     if (factory[type] === undefined && base[k] !== undefined) {
       throw new Error('Component: ' + k + ' has invalid type: ' + type);

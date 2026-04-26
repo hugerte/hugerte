@@ -48,7 +48,7 @@ describe('browser.hugerte.themes.silver.window.SilverDialogAriaLabelTest', () =>
   [
     { label: 'Modal', params: { }},
     { label: 'Inline', params: { inline: 'toolbar' as 'toolbar' }}
-  ].forEach((test) =) {
+  ].forEach((test) => {
     context(test.label, () => {
       it(`Dialog should have "aria-labelledby" for config "${JSON.stringify(test.params)}"`, () => {
         const editor = hook.editor();

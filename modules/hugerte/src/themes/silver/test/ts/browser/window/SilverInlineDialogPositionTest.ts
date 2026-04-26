@@ -45,14 +45,14 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
   const openDialog = (editor: Editor, inline: 'toolbar' | 'bottom' = 'toolbar'): SugarElement<HTMLElement> => {
     DialogUtils.open(editor, dialogSpec, { inline });
     const dialog = UiFinder.findIn(SugarBody.body(), '.tox-dialog-inline').getOrDie();
-    return Traverse.parent(dialog).getOr(dialog) as SugarElement<HTMLElement>;
+    return Traverse.parent(dialog) ?? dialog as SugarElement<HTMLElement>;
   };
 
   context('Top toolbar positioning', () => {
     [
       { name: 'normal', settings: { ui_mode: 'combined' }},
       { name: 'normal-split-ui-mode', settings: { ui_mode: 'split' }}
-    ].forEach((tester) =) {
+    ].forEach((tester) => {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetup<Editor>({
           base_url: '/project/hugerte/js/hugerte',
@@ -169,7 +169,7 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
     [
       { name: 'normal', settings: { ui_mode: 'combined' }},
       { name: 'normal-split-ui-mode', settings: { ui_mode: 'split' }}
-    ].forEach((tester) =) {
+    ].forEach((tester) => {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetup<Editor>({
           base_url: '/project/hugerte/js/hugerte',
@@ -224,7 +224,7 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
     [
       { name: 'inline', settings: { ui_mode: 'combined' }, sinkSeparatedByScrollDiv: false },
       { name: 'inline-split-ui-mode', settings: { ui_mode: 'split' }, sinkSeparatedByScrollDiv: true }
-    ].forEach((tester) =) {
+    ].forEach((tester) => {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetupFromElement<Editor>({
           theme: 'silver',
@@ -381,7 +381,7 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
         });
       });
 
-      [ 'inline', 'iframe toolbar sticky' ].forEach((editorType: string) =) {
+      [ 'inline', 'iframe toolbar sticky' ].forEach((editorType: string) => {
         context(editorType, () => {
           const hook = TinyHooks.bddSetup<Editor>({
             base_url: '/project/hugerte/js/hugerte',

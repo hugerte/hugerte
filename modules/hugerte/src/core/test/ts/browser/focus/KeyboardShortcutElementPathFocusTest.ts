@@ -9,7 +9,7 @@ describe('browser.hugerte.core.focus.KeyboardShortcutElementPathFocusTest ', () 
   [
     { label: 'classic mode', options: {}},
     { label: 'class bottom', options: { toolbar_location: 'bottom' }}
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(tester.label, () => {
       const hook = TinyHooks.bddSetup({
         menubar: false,

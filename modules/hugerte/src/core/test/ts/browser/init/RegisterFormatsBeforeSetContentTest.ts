@@ -16,7 +16,7 @@ describe('browser.hugerte.core.init.RegisterFormatsBeforeSetContentTest', () => 
     ],
     setup: (editor: Editor) => {
       editor.on('BeforeSetContent', (_) => {
-        const names = Object.keys(editor.formatter.get()).filter((key) =) key.startsWith('custom-'));
+        const names = Object.keys(editor.formatter.get()).filter((key) => key.startsWith('custom-'));
         customFormatNames.set(names);
       });
     }

@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -18,7 +18,7 @@ interface ScenarioWithPostAction extends Scenario {
 }
 
 const hasPostActions = (scenario: any): scenario is ScenarioWithPostAction =>
-  Obj.hasNonNullableKey(scenario, 'postAction');
+  (scenario)['postAction'] != null;
 
 describe('Editor Autocompleter Reload test', () => {
   const hook = TinyHooks.bddSetupLight<Editor>({
@@ -29,9 +29,9 @@ describe('Editor Autocompleter Reload test', () => {
         minChars: 1,
         columns: 1,
         fetch: (pattern, maxResults, meta) => {
-          const prefix = (meta as any)['prefix'].getOr('');
+          const prefix = (meta as any)['prefix'] ?? '';
           return new Promise((resolve) => {
-            const items: InlineContent.AutocompleterContents[] = [ 'a', 'b', 'c', 'd' ].map((item) =) ({
+            const items: InlineContent.AutocompleterContents[] = [ 'a', 'b', 'c', 'd' ].map((item) => ({
               value: `item-${item}`,
               text: `${prefix}${item}`
             }));

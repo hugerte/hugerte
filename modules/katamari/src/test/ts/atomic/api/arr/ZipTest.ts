@@ -10,7 +10,7 @@ import * as Zip from 'ephox/katamari/api/Zip';
 
 describe('atomic.katamari.api.arr.ZipTest', () => {
   it('unit tests', () => {
-    const check1 = (expectedZipToObject: Optional<Record<string, string>>, expectedZipToTuples: Optional<Array<{ k: string; v: string }>>, keys: string[], values: string[]) => {
+    const check1 = (expectedZipToObject: Record<string, string> | null, expectedZipToTuples: Array<{ k: string; v: string }> | null, keys: string[], values: string[]) => {
       const sort = <T>(a: T[], ord: (a: T, b: T) => -1 | 0 | 1) => {
         const c = a.slice();
         c.sort(ord);
@@ -46,45 +46,45 @@ describe('atomic.katamari.api.arr.ZipTest', () => {
     };
 
     check1(
-      Optional.some({ q: 'a', r: 'x' }),
-      Optional.some([{ k: 'q', v: 'a' }, { k: 'r', v: 'x' }]),
+      { q: 'a', r: 'x' },
+      [{ k: 'q', v: 'a' }, { k: 'r', v: 'x' }],
       [ 'q', 'r' ],
       [ 'a', 'x' ]
     );
 
     check1(
-      Optional.some({}),
-      Optional.some([]),
+      {},
+      [],
       [],
       []
     );
     check1(
-      Optional.none(),
-      Optional.none(),
+      null,
+      null,
       [],
       [ 'x' ]
     );
     check1(
-      Optional.none(),
-      Optional.none(),
+      null,
+      null,
       [],
       [ 'x', 'y' ]
     );
     check1(
-      Optional.none(),
-      Optional.none(),
+      null,
+      null,
       [ 'q' ],
       []
     );
     check1(
-      Optional.none(),
-      Optional.none(),
+      null,
+      null,
       [ 'q', 'r' ],
       []
     );
     check1(
-      Optional.none(),
-      Optional.none(),
+      null,
+      null,
       [ 'q', 'r' ],
       [ 'a' ]
     );

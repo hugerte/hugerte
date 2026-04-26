@@ -25,7 +25,7 @@ describe('atomic.phoenix.search.MatchSplitterTest', () => {
 
     const actual = MatchSplitter.separate(universe, list, matches);
     Assert.eq('Asserting length of result', expected.length, actual.length);
-    Assert.eq(`Asserting result of MatchSplitter.separate for word: "${all.join('')}"`, expected, actual.map((a) =) {
+    Assert.eq(`Asserting result of MatchSplitter.separate for word: "${all.join('')}"`, expected, actual.map((a) => {
       return {
         text: TestRenders.texts(a.elements),
         exact: a.exact,

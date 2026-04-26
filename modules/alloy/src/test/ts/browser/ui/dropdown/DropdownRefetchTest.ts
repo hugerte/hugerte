@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Cell, Future, Result, Strings } from '@ephox/katamari';
+import { Arr, Cell, Future, Result } from '@ephox/katamari';
 import { Compare, SelectorFind } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -122,7 +122,7 @@ UnitTest.asynctest('DropdownRefetchTest', (success, failure) => {
       'hippo',
       'iguana'
     ], (animalName): TestDatum => {
-      const text = Strings.capitalize(animalName);
+      const text = (animalName.charAt(0).toUpperCase() + animalName.slice(1));
       const selector = `li:contains(${text})`;
       return {
         code: animalName,

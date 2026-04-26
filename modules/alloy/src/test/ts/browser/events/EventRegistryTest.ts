@@ -32,7 +32,7 @@ UnitTest.asynctest('EventRegistryTest', (success, failure) => {
 
   // Add alloy UID tags to match these attributes.
   const pageBits = SelectorFilter.descendants(page, '[data-test-uid]');
-  pageBits.forEach((bit) =) {
+  pageBits.forEach((bit) => {
     Attribute.getOpt(bit, 'data-test-uid').each((testUid) => Tagger.writeOnly(bit, testUid));
   });
 
@@ -62,7 +62,7 @@ UnitTest.asynctest('EventRegistryTest', (success, failure) => {
 
   const sAssertFilterByType = (expected: ExpectedType[], type: string) => Step.sync(() => {
     const filtered = events.filterByType(type);
-    const raw = filtered.map((f) =) ({
+    const raw = filtered.map((f) => ({
       // Invoke the handler
       handler: f.descHandler.cHandler(),
       purpose: f.descHandler.purpose,

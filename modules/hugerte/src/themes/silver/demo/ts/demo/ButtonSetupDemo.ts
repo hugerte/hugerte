@@ -160,7 +160,7 @@ export default {
           personHomeEmail
         ];
 
-        const matches = allMerges.filter((m): boolean =) {
+        const matches = allMerges.filter((m): boolean => {
           const valueMatches = m.value.toLowerCase().indexOf(searchPattern.toLowerCase()) > -1;
           return valueMatches || (
             m.title !== undefined && (m.title.toLowerCase().indexOf(searchPattern.toLowerCase()) > -1)

@@ -33,7 +33,7 @@ const describeSelection = (root: SugarElement<Node>, generated: SimRange): Descr
         finishPath,
         finishOffset: generated.foffset
       }
-    }))).getOr(generated);
+    }))) ?? generated;
 
 const chooseOne = <T>(choices: TagDecorator.Decorator<T>[]): fc.Arbitrary<Record<string, T>> =>
   TagDecorator.gOne(choices);

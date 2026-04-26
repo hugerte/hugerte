@@ -32,7 +32,7 @@ const ModernThemeSelectors: ThemeSelectors = {
 };
 
 const SilverThemeSelectors: ThemeSelectors = {
-  toolBarSelector: (editor: Editor) => [ getOption(editor, 'toolbar_mode'), getOption(editor, 'toolbar_drawer') ].some((s) =) s === 'floating' || s === 'sliding') ? '.tox-toolbar-overlord' : '.tox-toolbar',
+  toolBarSelector: (editor: Editor) => [ getOption(editor, 'toolbar_mode'), getOption(editor, 'toolbar_drawer') ].some((s) => s === 'floating' || s === 'sliding') ? '.tox-toolbar-overlord' : '.tox-toolbar',
   menuBarSelector: '.tox-menubar',
   dialogSelector: 'div[role="dialog"]',
   dialogCancelSelector: '.tox-button:contains("Cancel")',

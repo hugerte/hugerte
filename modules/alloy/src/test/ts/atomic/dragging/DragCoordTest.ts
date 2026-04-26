@@ -33,7 +33,7 @@ UnitTest.test('DragCoordTest', () => {
     (original, transformations, coord, scroll, origin) => {
       const o = original.nu(coord.left, coord.top);
 
-      const label = [ original.mode ].concat(transformations.map((t) =) t.mode));
+      const label = [ original.mode ].concat(transformations.map((t) => t.mode));
 
       const result = transformations.reduce((b, transformation) => {
         const pt = transformation.asPoint(b, scroll, origin);

@@ -25,7 +25,7 @@ const choice = <T> (options: ChoiceOption<T>[], fallback: T): T => {
     option.predicate() ? option.value() : null
   ), null);
 
-  return target.getOr(fallback);
+  return target ?? fallback;
 };
 
 const isLargeTouch = (): boolean =>

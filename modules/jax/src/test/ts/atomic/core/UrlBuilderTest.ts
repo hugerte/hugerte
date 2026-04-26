@@ -1,10 +1,10 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import { buildUrl } from 'ephox/jax/core/UrlBuilder';
 
 UnitTest.test('UrlBuilderTest', () => {
-  const createRecord = (record: any) => Optional.some<Record<string, string>>(record);
+  const createRecord = (record: any) => record;
 
   // copied from agar, perhaps we should move it to bedrock
   const assertEq = (label: string, expected: string, actual: string) => {

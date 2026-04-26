@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -21,11 +21,11 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
 
   const fail = (message: string) => () => assert.fail(message);
 
-  const assertNone = (x: Optional<unknown>) => {
-    assert.isTrue(x.isNone(), 'Is none');
+  const assertNone = (x: unknown | null) => {
+    assert.isTrue(x === null, 'Is none');
   };
 
-  const extractSingleCellTableAction = (actionOpt: Optional<TableDeleteAction.DeleteActionAdt>) => {
+  const extractSingleCellTableAction = (actionOpt: TableDeleteAction.DeleteActionAdt | null) => {
     return actionOpt.fold(
       fail('unexpected nothing'),
       (action) => action.fold(
@@ -37,7 +37,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
     );
   };
 
-  const extractFullTableAction = (actionOpt: Optional<TableDeleteAction.DeleteActionAdt>) => {
+  const extractFullTableAction = (actionOpt: TableDeleteAction.DeleteActionAdt | null) => {
     return actionOpt.fold(
       fail('unexpected nothing'),
       (action) => {
@@ -51,7 +51,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
     );
   };
 
-  const extractPartialTableAction = (actionOpt: Optional<TableDeleteAction.DeleteActionAdt>) => {
+  const extractPartialTableAction = (actionOpt: TableDeleteAction.DeleteActionAdt | null) => {
     return actionOpt.fold(
       fail('unexpected nothing'),
       (action) => {
@@ -60,7 +60,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
           fail('unexpected action'),
           (cells, outsideDetails) => ({
             cells: cells.map(Html.getOuter).join(''),
-            otherContent: outsideDetails.map(({ rng }) => rng.extractContents().textContent).getOr(''),
+            otherContent: outsideDetails.map(({ rng }) => rng.extractContents().textContent) ?? '',
             details: outsideDetails
           }),
           fail('unexpected action')
@@ -69,7 +69,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
     );
   };
 
-  const extractMultiTableAction = (actionOpt: Optional<TableDeleteAction.DeleteActionAdt>) => {
+  const extractMultiTableAction = (actionOpt: TableDeleteAction.DeleteActionAdt | null) => {
     return actionOpt.fold(
       fail('unexpected nothing'),
       (action) => {
@@ -97,7 +97,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
     const { cells, otherContent, details } = extractPartialTableAction(action);
     assert.equal(cells, '<td>a</td><td>b</td>', 'Should be cells');
     assert.isEmpty(otherContent);
-    assert.isTrue(details.isNone(), 'No outside details');
+    assert.isTrue(details === null, 'No outside details');
   });
 
   it('select two out of three header cells returns the partialTable action', () => {
@@ -105,7 +105,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
     const { cells, otherContent, details } = extractPartialTableAction(action);
     assert.equal(cells, '<th>a</th><th>b</th>', 'Should be cells');
     assert.isEmpty(otherContent);
-    assert.isTrue(details.isNone(), 'No outside details');
+    assert.isTrue(details === null, 'No outside details');
   });
 
   it('select three out of three cells returns the fullTable action', () => {
@@ -122,7 +122,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
     const { cells, otherContent, details } = extractPartialTableAction(action);
     assert.equal(cells, '<th>b</th><th>c</th><td>d</td>', 'should be cells');
     assert.isEmpty(otherContent);
-    assert.isTrue(details.isNone(), 'No outside details');
+    assert.isTrue(details === null, 'No outside details');
   });
 
   it('select between rows, all cells', () => {
@@ -172,7 +172,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
     const { cells, otherContent, details } = extractPartialTableAction(action);
     assert.equal(cells, '<td>a</td>', 'should be cells from partially selected table');
     assert.equal(otherContent, 'b');
-    assert.isTrue(details.isSome(), 'Has outside details');
+    assert.isTrue(details !== null, 'Has outside details');
   });
 
   it('select table and content before', () => {
@@ -183,7 +183,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
     const { cells, otherContent, details } = extractPartialTableAction(action);
     assert.equal(cells, '<td>b</td>', 'should be cells from partially selected table');
     assert.equal(otherContent, 'a');
-    assert.isTrue(details.isSome(), 'Has outside details');
+    assert.isTrue(details !== null, 'Has outside details');
   });
 
   it('single cell table with all content selected', () => {

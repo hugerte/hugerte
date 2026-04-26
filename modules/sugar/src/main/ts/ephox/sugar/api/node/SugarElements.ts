@@ -13,10 +13,10 @@ const fromHtml = <T extends Node[]> (html: string, scope?: Document | null): Ele
 };
 
 const fromTags = (tags: string[], scope?: Document | null): SugarElement<HTMLElement>[] =>
-  tags.map((x) =) SugarElement.fromTag(x, scope));
+  tags.map((x) => SugarElement.fromTag(x, scope));
 
 const fromText = (texts: string[], scope?: Document | null): SugarElement<Text>[] =>
-  texts.map((x) =) SugarElement.fromText(x, scope));
+  texts.map((x) => SugarElement.fromText(x, scope));
 
 const fromDom = <T extends (Node | Window)>(nodes: ArrayLike<T>): SugarElement<T>[] =>
   nodes.map(SugarElement.fromDom);

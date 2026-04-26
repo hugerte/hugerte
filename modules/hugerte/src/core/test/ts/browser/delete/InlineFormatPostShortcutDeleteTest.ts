@@ -71,7 +71,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
         TinyAssertions.assertCursor(editor, [ 0, 0, 0 ], 0);
       };
 
-      shortcutDeleteScenarios.forEach((shortcutDeleteScenario) =) {
+      shortcutDeleteScenarios.forEach((shortcutDeleteScenario) => {
         it(`Collapsed selection in empty unformatted block should trigger caret refresh after ${shortcutDeleteScenario.name}`, () => {
           const editor = hook.editor();
           editor.setContent('<p></p>');
@@ -111,7 +111,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
         TinyAssertions.assertCursor(editor, [ 0, 1, 0 ], 0);
       };
 
-      shortcutDeleteScenarios.forEach((shortcutDeleteScenario) =) {
+      shortcutDeleteScenarios.forEach((shortcutDeleteScenario) => {
         it(`Collapsed selection in non-empty unformatted block should trigger caret refresh after ${shortcutDeleteScenario.name}`, () => {
           const editor = hook.editor();
           editor.setContent('<p>abc</p>');
@@ -158,7 +158,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
         TinyAssertions.assertCursor(editor, [ 0, 0, 1, 0 ], 0);
       };
 
-      shortcutDeleteScenarios.forEach((shortcutDeleteScenario) =) {
+      shortcutDeleteScenarios.forEach((shortcutDeleteScenario) => {
         it(`Collapsed selection in formatted block should trigger caret refresh after ${shortcutDeleteScenario.name}`, () => {
           const editor = hook.editor();
           editor.setContent('<p><span style="text-decoration: underline;">a</span></p>');
@@ -203,7 +203,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
         TinyAssertions.assertCursor(editor, [ 0, 1, 0 ], 0);
       };
 
-      shortcutDeleteScenarios.forEach((shortcutDeleteScenario) =) {
+      shortcutDeleteScenarios.forEach((shortcutDeleteScenario) => {
         it(`Collapsed selection in block containing non-text nodes should trigger caret refresh after ${shortcutDeleteScenario.name}`, () => {
           const editor = hook.editor();
           editor.setContent('<div>a<img src="about:blank"></div>');
@@ -237,7 +237,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
         TinyAssertions.assertCursor(editor, [ 0 ], 0);
       };
 
-      shortcutDeleteScenariosNoMeta.forEach((shortcutDeleteScenario) =) {
+      shortcutDeleteScenariosNoMeta.forEach((shortcutDeleteScenario) => {
         it(`Collapsed selection in block containing non-text nodes should not trigger caret refresh after ${shortcutDeleteScenario.name}`, () => {
           const editor = hook.editor();
           editor.setContent('<div><img src="about:blank">a</div>');
@@ -266,7 +266,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
         TinyAssertions.assertSelection(editor, [ 0, 0 ], 0, [ 0, 0 ], 'a'.length);
       };
 
-      shortcutDeleteScenariosNoMeta.forEach((shortcutDeleteScenario) =) {
+      shortcutDeleteScenariosNoMeta.forEach((shortcutDeleteScenario) => {
         it(`Non-collapsed selection should not trigger caret refresh after ${shortcutDeleteScenario.name}`, () => {
           const editor = hook.editor();
           editor.setContent('<p>a</p>');
@@ -310,7 +310,7 @@ describe('browser.hugerte.core.delete.InlineFormatPostShortcutDeleteTest', () =>
         TinyAssertions.assertCursor(editor, [ 0, 1, 0, 0 ], 'b'.length);
       };
 
-      shortcutDeleteScenariosNoMeta.forEach((shortcutDeleteScenario) =) {
+      shortcutDeleteScenariosNoMeta.forEach((shortcutDeleteScenario) => {
         it(`Collapsed selection within an ancestor caret should not trigger caret refresh after ${shortcutDeleteScenario.name}`, () => {
           const editor = hook.editor();
           TinyApis(editor).setRawContent('<p>a<span id="_mce_caret" data-mce-bogus="1" data-mce-type="format-caret"><strong>b' + Zwsp.ZWSP + '</strong></span>c</p>');

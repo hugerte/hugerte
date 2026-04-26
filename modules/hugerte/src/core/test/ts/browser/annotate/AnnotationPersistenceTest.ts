@@ -89,11 +89,11 @@ describe('browser.hugerte.core.annotate.AnnotationPersistenceTest', () => {
   const contentContains = (editor: Editor, patterns: string[], isContained: boolean) => {
     const content = editor.getContent();
     if (isContained) {
-      patterns.forEach((pattern) =) {
+      patterns.forEach((pattern) => {
         assert.include(content, pattern, 'editor.getContent() should contain: ' + pattern);
       });
     } else {
-      patterns.forEach((pattern) =) {
+      patterns.forEach((pattern) => {
         assert.notInclude(content, pattern, 'editor.getContent() should not contain: ' + pattern);
       });
     }

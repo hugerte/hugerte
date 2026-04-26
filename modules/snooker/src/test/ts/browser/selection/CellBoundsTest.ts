@@ -93,7 +93,7 @@ UnitTest.test('CellBounds.isWithin Test', () => {
     { expected: false, label: 'p', row: 4, column: 4 }
   ];
 
-  cases.forEach((c) =) {
+  cases.forEach((c) => {
     checkInSelection(c.expected, inputC, boundsC, c.row, c.column);
   });
 });

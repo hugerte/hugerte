@@ -6,7 +6,7 @@ import { Step } from './Step';
 import { TestLogs } from './TestLogs';
 
 const assertSteps = (steps: Step<any, any>[]) => {
-  steps.forEach((s: Step<any, any>, i: number) =) {
+  steps.forEach((s: Step<any, any>, i: number) => {
     let msg: string;
     if (s === undefined) {
       msg = 'step ' + i + ' was undefined. All steps: ' + JSON.stringify(steps) + '\n';

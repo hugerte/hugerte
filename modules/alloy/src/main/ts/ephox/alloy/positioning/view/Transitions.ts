@@ -1,4 +1,4 @@
-import { Obj, Singleton, Strings } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Attribute, Classes, Compare, Css, DomEvent, EventArgs, SugarElement } from '@ephox/sugar';
 
 import * as NativeEvents from '../../api/events/NativeEvents';
@@ -33,18 +33,18 @@ const hasChanges = (position: PositionCss, intermediate: Record<TransitionProp, 
   // Round to 3 decimal points
   const round = (value: string) => parseFloat(value).toFixed(3);
 
-  return Obj.find(intermediate, (value, key) => {
+  return (Object.values(intermediate) as any[]).find((v) => ((value, key) => {
     const newValue = position[key as TransitionProp].map(round);
     const val = value.map(round);
     return !(newValue === null && val === null || (newValue !== null && val !== null && (newValue) === (val)));
-  }) !== null;
+  })(v, '')) ?? null !== null;
 };
 
 const getTransitionDuration = (element: SugarElement<HTMLElement>): number => {
   const get = (name: string) => {
     const style = Css.get(element, name);
     const times = style.split(/\s*,\s*/);
-    return (times).filter(Strings.isNotEmpty);
+    return (times).filter((s: string) => s.length > 0);
   };
 
   const parse = (value: string | undefined) => {

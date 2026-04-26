@@ -19,7 +19,7 @@ UnitTest.asynctest('ResizeRaceTest', (success, failure) => {
   Resize.unbind(div, handler);
 
   setTimeout(() => {
-    if (Monitors.query(div).isSome()) {
+    if (Monitors.query(div) !== null) {
       failure('Monitor added to div after resize was unbound');
     } else {
       success();

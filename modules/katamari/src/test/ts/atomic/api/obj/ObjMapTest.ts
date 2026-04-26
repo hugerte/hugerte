@@ -46,7 +46,7 @@ describe('atomic.katamari.api.obj.ObjMapTest', () => {
 
   it('map id obj = obj', () => {
     fc.assert(fc.property(fc.dictionary(fc.asciiString(), fc.integer()), (obj) => {
-      const actual = Obj.map(obj, Fun.identity);
+      const actual = Obj.map(obj, (x: any) => x);
       assert.deepEqual(actual, obj);
     }));
   });

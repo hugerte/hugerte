@@ -20,7 +20,7 @@ UnitTest.test('TableLookupTest - cells', () => {
   const testerFound = (html: string, triggerSelector: string, resultSelector: string, label: string) => {
     testWithSelector(html, triggerSelector, (triggerElement) => {
       const result = TableLookup.cell(triggerElement);
-      Assert.eq(label + ': Expected the result to find something', true, result.isSome());
+      Assert.eq(label + ': Expected the result to find something', true, result !== null);
       const expectedElement = SelectorFilter.descendants(SugarBody.body(), resultSelector);
       Assert.eq(label + ': Expected to find only one element in the DOM with the selector ' + resultSelector + ' found: ' + expectedElement.length, true, expectedElement.length === 1);
       Assert.eq(label + ': The result and the expectation should be the same element', true, Compare.eq(expectedElement[0], result.getOrDie()));
@@ -30,7 +30,7 @@ UnitTest.test('TableLookupTest - cells', () => {
   const testerShouldNotFind = (html: string, selector: string, label: string) => {
     testWithSelector(html, selector, (triggerElement) => {
       const result = TableLookup.cell(triggerElement);
-      Assert.eq(label + ': Expected the result to find nothing', false, result.isSome());
+      Assert.eq(label + ': Expected the result to find nothing', false, result !== null);
     });
   };
 
@@ -124,9 +124,9 @@ UnitTest.test('TableLookupTest - cells', () => {
     if (cells.length === 0) {
       Assert.fail('Could not find any table cell element');
     } else {
-      cells.forEach((cell) =) {
+      cells.forEach((cell) => {
         const result = TableLookup.cell(cell);
-        Assert.eq(label + ': Expected the result to find something', true, result.isSome());
+        Assert.eq(label + ': Expected the result to find something', true, result !== null);
         Assert.eq(label + ': The result and the expectation should be the same element', true, Compare.eq(cell, result.getOrDie()));
       });
 
@@ -143,9 +143,9 @@ UnitTest.test('TableLookupTest - cells', () => {
     if (rows.length === 0) {
       Assert.fail('Could not find any table row elements');
     } else {
-      rows.forEach((row) =) {
+      rows.forEach((row) => {
         const result = TableLookup.cell(row);
-        Assert.eq(label + ': Expected the result to find nothing', false, result.isSome());
+        Assert.eq(label + ': Expected the result to find nothing', false, result !== null);
       });
       Remove.remove(element);
     }

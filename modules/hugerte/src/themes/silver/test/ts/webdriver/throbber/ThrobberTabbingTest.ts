@@ -25,7 +25,7 @@ describe('webdriver.hugerte.themes.silver.throbber.ThrobberTabbingTest', () => {
   });
 
   after(() => {
-    [ '#beforeInput', '#afterInput' ].forEach((selector) =) {
+    [ '#beforeInput', '#afterInput' ].forEach((selector) => {
       Remove.remove(SelectorFind.descendant(SugarBody.body(), selector).getOrDie());
     });
   });

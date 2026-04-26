@@ -24,7 +24,7 @@ const underline = () => {
 const allWords = (() => {
   const duplicates = SugarText.get(text).split(/\W/);
   const set: Record<string, string> = {};
-  duplicates.forEach((x) =) {
+  duplicates.forEach((x) => {
     if (x.length) {
       set[x] = x;
     }
@@ -39,7 +39,7 @@ DomEvent.bind(button, 'click', (_event) => {
 
 const highlight = (words: string[], nu: () => Wrapter<SugarElement>) => {
   const matches = DomSearch.safeWords([ p ], words);
-  matches.forEach((x) =) {
+  matches.forEach((x) => {
     DomWrapping.wrapper(x.elements, nu);
   });
 };

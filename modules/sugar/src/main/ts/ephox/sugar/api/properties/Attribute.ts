@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as SugarNode from '../node/SugarNode';
@@ -24,13 +24,13 @@ const set = (element: SugarElement<Element>, key: string, value: string | boolea
 
 const setAll = (element: SugarElement<Element>, attrs: Record<string, string | boolean | number>): void => {
   const dom = element.dom;
-  Object.entries(attrs).forEach(([k, v]) => ((v, k) =)(v, k)) {
+  Object.entries(attrs).forEach(([k, v]) => ((v, k) =>(v, k)) {
     rawSet(dom, k, v);
   });
 };
 
-const setOptions = (element: SugarElement<Element>, attrs: Record<string, Optional<string | boolean | number>>): void => {
-  Object.entries(attrs).forEach(([k, v]) => ((v, k) =)(v, k)) {
+const setOptions = (element: SugarElement<Element>, attrs: Record<string, string | boolean | number | null>): void => {
+  Object.entries(attrs).forEach(([k, v]) => ((v, k) =>(v, k)) {
     v.fold(() => {
       remove(element, k);
     }, (value) => {
@@ -46,7 +46,7 @@ const get = (element: SugarElement<Element>, key: string): undefined | string =>
   return v === null ? undefined : v;
 };
 
-const getOpt = (element: SugarElement<Element>, key: string): Optional<string> =>
+const getOpt = (element: SugarElement<Element>, key: string): string | null =>
   get(element, key) ?? null;
 
 const has = (element: SugarElement<Node>, key: string): boolean => {
@@ -83,7 +83,7 @@ const transfer = (source: SugarElement<Element>, destination: SugarElement<Eleme
   if (!SugarNode.isElement(source) || !SugarNode.isElement(destination)) {
     return;
   }
-  attrs.forEach((attr) =) {
+  attrs.forEach((attr) => {
     transferOne(source, destination, attr);
   });
 };

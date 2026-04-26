@@ -25,7 +25,7 @@ UnitTest.asynctest('MouseTest', (success, failure) => {
   let repository = [];
 
   // TODO: Free handlers.
-  const handlers = [ 'mousedown', 'mouseup', 'mouseover', 'click', 'focus', 'contextmenu' ].flatMap((evt) =)
+  const handlers = [ 'mousedown', 'mouseup', 'mouseover', 'click', 'focus', 'contextmenu' ].flatMap((evt) =>
     [
       DomEvent.bind(container, evt, () => {
         repository.push('container.' + evt);
@@ -140,13 +140,13 @@ UnitTest.asynctest('MouseTest', (success, failure) => {
     )
 
   ], () => {
-    handlers.forEach((h) =) {
+    handlers.forEach((h) => {
       h.unbind();
     });
     Remove.remove(container);
     success();
   }, (err) => {
-    handlers.forEach((h) =) {
+    handlers.forEach((h) => {
       h.unbind();
     });
     failure(err);

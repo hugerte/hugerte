@@ -233,7 +233,7 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
           'Wait until is undocked',
           () => {
             assert.isFalse(
-              Css.getRaw(staticBox.element, 'position').isSome(),
+              Css.getRaw(staticBox.element, 'position') !== null,
               'Checking "position" style'
             );
 
@@ -269,7 +269,7 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
           'Wait until is undocked post the scroll',
           () => {
             assert.isFalse(
-              Css.getRaw(staticBox.element, 'position').isSome(),
+              Css.getRaw(staticBox.element, 'position') !== null,
               'Checking "position" style'
             );
 
@@ -373,7 +373,7 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
           'Wait until is undocked even though the outer scroll has changed',
           () => {
             assert.isFalse(
-              Css.getRaw(staticBox.element, 'position').isSome(),
+              Css.getRaw(staticBox.element, 'position') !== null,
               'Checking "position" style'
             );
 

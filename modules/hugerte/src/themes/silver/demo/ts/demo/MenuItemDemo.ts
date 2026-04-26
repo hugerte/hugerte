@@ -36,7 +36,7 @@ export default (): void => {
       });
 
       ed.ui.registry.addMenuItem('x2', {
-        // icon: Icons.getOr('bold', () => 'oh no'),
+        // icon: Icons ?? 'bold', () => 'oh no',
         text: 'Just Text',
         onAction: () => {
           console.log('Just Text click');
@@ -44,7 +44,7 @@ export default (): void => {
       });
 
       ed.ui.registry.addMenuItem('x3', {
-        // icon: Icons.getOr('bold', () => 'oh no'),
+        // icon: Icons ?? 'bold', () => 'oh no',
         text: 'Just Text with shortcut',
         shortcut: 'Ctrl+Alt+Delete',
         onAction: () => {
@@ -72,7 +72,7 @@ export default (): void => {
       });
 
       ed.ui.registry.addNestedMenuItem('d1', {
-        // icon: Icons.getOr('drop', () => 'oh no'),
+        // icon: Icons ?? 'drop', () => 'oh no',
         text: 'nested',
         getSubmenuItems: () => [
           {

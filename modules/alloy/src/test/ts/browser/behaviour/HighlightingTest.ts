@@ -258,7 +258,7 @@ UnitTest.asynctest('HighlightingTest', (success, failure) => {
             const expected = [ output.alpha, output.beta, output.gamma ];
 
             Assertions.assertEq('Checking length of getCandidates array', expected.length, candidates.length);
-            expected.forEach((exp, i) =) {
+            expected.forEach((exp, i) => {
               const actual = candidates[i];
               Assertions.assertEq(
                 'Checking DOM element at index: ' + i, true,

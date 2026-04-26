@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 import { SelectorFind, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -364,7 +364,7 @@ const isToolbarEnabled = (editor: Editor): boolean => {
 // Convert toolbar<n> into toolbars array
 const getMultipleToolbarsOption = (editor: Editor): (string[]) | null => {
   const toolbars = Array.from({length: 9}, (_, _i) => ((num) => editor.options.get('toolbar' + (num + 1)))(_i));
-  const toolbarArray = (toolbars).filter(Type.isString);
+  const toolbarArray = (toolbars).filter((x: any): x is string => typeof x === 'string');
   return (toolbarArray.length > 0 ? toolbarArray : null);
 };
 
@@ -373,7 +373,7 @@ const getMultipleToolbarsOption = (editor: Editor): (string[]) | null => {
 const isMultipleToolbars = (editor: Editor): boolean => getMultipleToolbarsOption(editor).fold(
   () => {
     const toolbar = getToolbar(editor);
-    return (Array.isArray(toolbar) && (toolbar).every(Type.isString)) && toolbar.length > 0;
+    return (Array.isArray(toolbar) && (toolbar).every((x: any): x is string => typeof x === 'string')) && toolbar.length > 0;
   },
   (() => true as const)
 );

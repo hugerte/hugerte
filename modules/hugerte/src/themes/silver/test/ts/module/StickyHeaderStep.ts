@@ -1,6 +1,6 @@
 import { UiFinder, Waiter } from '@ephox/agar';
 import { after, before, context, it } from '@ephox/bedrock-client';
-import { Strings } from '@ephox/katamari';
+
 import { Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -162,7 +162,7 @@ const testStickyHeader = (toolbarMode: ToolbarMode, toolbarLocation: ToolbarLoca
   });
 
   context('Test inline editor editor with toolbar_mode: ' + toolbarMode, () => {
-    const element: SugarElement<HTMLElement> = SugarElement.fromHtml(`<p id="content">${Strings.repeat('some content ', 1000)}</p>`);
+    const element: SugarElement<HTMLElement> = SugarElement.fromHtml(`<p id="content">${'some content '.repeat(1000)}</p>`);
     const setupElement = () => {
 
       Insert.append(SugarBody.body(), element);

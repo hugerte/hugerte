@@ -1,6 +1,6 @@
 import { FocusTools, Keys, Mouse } from '@ephox/agar';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -73,7 +73,7 @@ describe('browser.hugerte.plugins.help.DialogKeyboardNavTest', () => {
     pressTabKey(editor);
     await pAssertFocusOnItem('Installed Plugins', 'div[role="document"]');
     pressTabKey(editor);
-    const installedPlugins = Obj.mapToArray(editor.plugins, (v, k) => k);
+    const installedPlugins = Object.entries(editor.plugins).map(([k, v]) => ((v, k) => k)(v as any, k as any));
     for (const installedPlugin of installedPlugins) {
       await pAssertFocusOnItem(`Installed Plugins link:${installedPlugin}`, `a[href*="${installedPlugin}"]`);
       pressTabKey(editor);

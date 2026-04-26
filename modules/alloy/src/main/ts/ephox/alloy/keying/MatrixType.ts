@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 import { Focus, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -22,7 +22,7 @@ const schema = [
 
   // Used to determine whether pressing right/down at the end cycles back to the start/top
   FieldSchema.defaulted('cycles', true),
-  FieldSchema.defaulted('previousSelector', Optional.none),
+  FieldSchema.defaulted('previousSelector', () => null),
   FieldSchema.defaulted('execute', KeyingTypes.defaultExecute)
 ];
 

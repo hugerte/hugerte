@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
@@ -11,7 +11,7 @@ import {
 import { largeSensible, units } from './SizeInputShared';
 
 describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConverterTest', () => {
-  const check = (converter: SizeConversion) => (expected: Optional<Size>, input: Size) => {
+  const check = (converter: SizeConversion) => (expected: Size | null, input: Size) => {
     const result = converter(input);
     KAssert.eqOptional('eq', expected, result);
   };
@@ -39,7 +39,7 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConverterTe
     fc.assert(fc.property(
       fc.nat(100), fc.nat(100), fc.constantFrom(...units),
       (scale: number, value: number, unit: SizeUnit) => {
-        const v = ratioSizeConversion(scale, unit)({ value, unit }).getOrNull();
+        const v = ratioSizeConversion(scale, unit)({ value, unit });
         assert.deepEqual(v, { value: scale * value, unit });
       }
     ));
@@ -49,7 +49,7 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConverterTe
     fc.assert(fc.property(
       fc.integer(0, largeSensible), fc.constantFrom(...units),
       (value: number, unit: SizeUnit) => {
-        assert.isTrue(noSizeConversion({ value, unit }).isNone());
+        assert.isTrue(noSizeConversion({ value, unit }) === null);
       }
     ));
   });

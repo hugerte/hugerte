@@ -69,7 +69,7 @@ describe('browser.hugerte.core.paste.PasteBin', () => {
 
   const assertCases = (editor: Editor, cases: TestCase[]) => {
     const pasteBin = PasteBin(editor);
-    cases.forEach((c) =) {
+    cases.forEach((c) => {
       editor.getBody().appendChild(editor.dom.createFragment(c.content));
       assert.equal(pasteBin.getHtml(), c.result, c.label);
       pasteBin.remove();

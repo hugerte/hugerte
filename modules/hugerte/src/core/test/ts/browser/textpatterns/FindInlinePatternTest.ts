@@ -27,7 +27,7 @@ describe('browser.hugerte.textpatterns.FindInlinePatternTest', () => {
       const expected = expectedMatches[i];
       const actual = actualMatches[i];
       const pattern = actual.pattern as Record<string, any>;
-      Object.entries(expected.pattern).forEach(([k, v]) => ((value, key) =)(v, k)) {
+      Object.entries(expected.pattern).forEach(([k, v]) => ((value, key) =>(v, k)) {
         if (Object.prototype.hasOwnProperty.call(pattern, key)) {
           assert.deepEqual(pattern[key], value, 'Pattern ' + (i + 1) + ' property `' + key + '` is not equal');
         } else {
@@ -61,7 +61,7 @@ describe('browser.hugerte.textpatterns.FindInlinePatternTest', () => {
     const beforeText = getBeforeText(editor.dom, block, rng.startContainer, offset);
     const dynamicPatternSet = resolveFromDynamicPatterns(patternSet, block, beforeText);
     return InlinePattern.findPatterns(editor, block, rng.startContainer, offset, dynamicPatternSet, normalized);
-  }).getOr([]);
+  }) ?? [];
 
   context('no text_patterns_lookup', () => {
     const hook = TinyHooks.bddSetupLight<Editor>({

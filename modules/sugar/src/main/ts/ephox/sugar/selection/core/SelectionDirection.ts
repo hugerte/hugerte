@@ -1,4 +1,4 @@
-import { Adt, Optional, Thunk } from '@ephox/katamari';
+import { Adt, Thunk } from '@ephox/katamari';
 
 import { SugarElement } from '../../api/node/SugarElement';
 import { SimSelection } from '../../api/selection/SimSelection';
@@ -22,7 +22,7 @@ type SelectionDirectionConstructor = (start: SugarElement<Node>, soffset: number
 
 interface LtrRtlRanges {
   readonly ltr: () => Range;
-  readonly rtl: () => Optional<Range>;
+  readonly rtl: () => Range | null;
 }
 
 const adt: {
@@ -40,7 +40,7 @@ const getRanges = (win: Window, selection: SimSelection): LtrRtlRanges => select
   domRange: (rng) => {
     return {
       ltr: () => rng,
-      rtl: Optional.none
+      rtl: () => null
     };
   },
   relative: (startSitu, finishSitu) => {

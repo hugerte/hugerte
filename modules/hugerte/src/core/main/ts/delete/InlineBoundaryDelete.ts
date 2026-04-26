@@ -1,4 +1,4 @@
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -67,15 +67,15 @@ const backspaceDeleteCollapsed = (editor: Editor, caret: Cell<Text | null>, forw
     if (forward) {
       return location.fold(
         () => BoundaryLocation.inside(location), // Before
-        Optional.none, // Start
+        () => null, // Start
         () => BoundaryLocation.outside(location), // End
-        Optional.none  // After
+        () => null  // After
       );
     } else {
       return location.fold(
-        Optional.none, // Before
+        () => null, // Before
         () => BoundaryLocation.outside(location), // Start
-        Optional.none, // End
+        () => null, // End
         () => BoundaryLocation.inside(location)  // After
       );
     }

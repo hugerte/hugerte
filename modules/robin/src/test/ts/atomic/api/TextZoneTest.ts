@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 
 import * as TextZone from 'ephox/robin/api/general/TextZone';
 import { ArbIds, arbIds, ArbRangeIds, arbRangeIds } from 'ephox/robin/test/Arbitraries';
@@ -49,7 +49,7 @@ UnitTest.test('TextZoneTest', () => {
     ], {}, { lang: 'fr' })
   ]));
 
-  const checkZone = (label: string, expected: Optional<RawZone>, actual: Optional<Zone<Gene>>) => {
+  const checkZone = (label: string, expected: RawZone | null, actual: Zone<Gene> | null) => {
     expected.fold(() => {
       actual.fold(
         // Good
@@ -69,13 +69,13 @@ UnitTest.test('TextZoneTest', () => {
     });
   };
 
-  const checkSingle = (label: string, expected: Optional<RawZone>, startId: string, onlyLang: string) => {
+  const checkSingle = (label: string, expected: RawZone | null, startId: string, onlyLang: string) => {
     const item = doc1.find(doc1.get(), startId).getOrDie();
     const actual = TextZone.single(doc1, item, 'en', onlyLang);
     checkZone(label + ' ' + startId, expected, actual);
   };
 
-  const checkRange = (label: string, expected: Optional<RawZone>, startId: string, finishId: string, onlyLang: string) => {
+  const checkRange = (label: string, expected: RawZone | null, startId: string, finishId: string, onlyLang: string) => {
     const item1 = doc1.find(doc1.get(), startId).getOrDie();
     const item2 = doc1.find(doc1.get(), finishId).getOrDie();
     const actual = TextZone.range(doc1, item1, 0, item2, 0, 'en', onlyLang);
@@ -175,7 +175,7 @@ UnitTest.test('TextZoneTest', () => {
     const item = doc1.find(doc1.get(), info.startId).getOrDie();
     // Consider other offsets
     const actual = TextZone.range(doc1, item, 0, item, 0, 'en', 'en');
-    return actual.isNone();
+    return actual === null;
   });
 
   PropertyAssertions.check(

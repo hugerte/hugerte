@@ -115,11 +115,11 @@ describe('browser.hugerte.plugins.table.NoneditableRootTest', () => {
       };
     };
 
-    Object.entries(simpleTableButtons).forEach(([k, v]) => ((title, key) =)(v, k)) {
+    Object.entries(simpleTableButtons).forEach(([k, v]) => ((title, key) =>(v, k)) {
       it(`TINY-9669: Disable ${key} on noneditable content`, testDisableButtonOnNoneditable(title));
     });
 
-    Object.entries(menuButtonTableButtons).forEach(([k, v]) => ((title, key) =)(v, k)) {
+    Object.entries(menuButtonTableButtons).forEach(([k, v]) => ((title, key) =>(v, k)) {
       it(`TINY-9669: Disable ${key} button on noneditable content`, () => testDisableButtonOnNoneditable(title, false));
     });
 
@@ -173,7 +173,7 @@ describe('browser.hugerte.plugins.table.NoneditableRootTest', () => {
       };
     };
 
-    Object.entries(simpleTableMenuItems).forEach(([k, v]) => ((title, key) =)(v, k)) {
+    Object.entries(simpleTableMenuItems).forEach(([k, v]) => ((title, key) =>(v, k)) {
       it(`TINY-9669: Disable ${key} on noneditable content`, testDisableMenuitemOnNoneditable(title));
     });
 

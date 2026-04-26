@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { Class, Css, DomEvent, SelectorFind, SugarElement, SugarLocation } from '@ephox/sugar';
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';
@@ -119,7 +119,7 @@ export default (): void => {
     settings: {
       boxId: number;
       label: string;
-      scrollableContainerStyles: Optional<Record<string, string>>;
+      scrollableContainerStyles: Record<string, string> | null;
       extraRedPanelStyles: Record<string, string>;
       extraBarStyles: Record<string, string>;
       lazyViewport: DockingConfigSpec['lazyViewport'];
@@ -229,7 +229,7 @@ export default (): void => {
               })
             ])
           ]),
-        })).getOr(redPanel)
+        })) ?? redPanel
       ]
     };
   };

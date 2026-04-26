@@ -32,7 +32,7 @@ describe('browser.hugerte.themes.silver.editor.toolbar.EditorToolbarOptionsTest'
     'Checking structure of tox-toolbar is "default"',
     ApproxStructure.build((s, str, arr) => s.element('div', {
       classes: [ arr.has('tox-toolbar') ],
-      children: [ 1, 2, 3, 4, 5 ].map((_) =) // Technically meant to be 6 groups by default but the link and image plugins aren't loaded here so whatever
+      children: [ 1, 2, 3, 4, 5 ].map((_) => // Technically meant to be 6 groups by default but the link and image plugins aren't loaded here so whatever
         s.element('div', { classes: [ arr.has('tox-toolbar__group') ] }))
     })),
     toolbar

@@ -1,5 +1,5 @@
 import { Assert, TestLabel } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Attribute, Classes, Css, Html, SugarElement, SugarNode, SugarText, Traverse, Truncate, Value } from '@ephox/sugar';
 
 import * as ApproxComparisons from './ApproxComparisons';
@@ -16,9 +16,9 @@ export interface ArrayAssert {
 
 export interface ElementQueue {
   context(): string;
-  current(): Optional<SugarElement<Node>>;
-  peek(): Optional<SugarElement<Node>>;
-  take(): Optional<SugarElement<Node>>;
+  current(): SugarElement<Node> | null;
+  peek(): SugarElement<Node> | null;
+  take(): SugarElement<Node> | null;
   mark(): {
     reset: () => void ;
     atMark: () => boolean;
@@ -49,7 +49,7 @@ export interface ElementFields {
   exactStyles?: Record<string, StringAssert>;
 }
 
-const elementQueue = (items: SugarElement<Node>[], container: Optional<SugarElement<Node>>): ElementQueue => {
+const elementQueue = (items: SugarElement<Node>[], container: SugarElement<Node> | null): ElementQueue => {
   let i = -1;
 
   const context = () => {
@@ -72,9 +72,9 @@ const elementQueue = (items: SugarElement<Node>[], container: Optional<SugarElem
     );
   };
 
-  const current = () => i >= 0 && i < items.length ? items[i] : Optional.none<SugarElement<Node>>();
+  const current = () => i >= 0 && i < items.length ? items[i] : null;
 
-  const peek = () => i + 1 < items.length ? items[i + 1] : Optional.none<SugarElement<Node>>();
+  const peek = () => i + 1 < items.length ? items[i + 1] : null;
 
   const take = () => {
     i += 1;
@@ -155,7 +155,7 @@ const text = (s: StringAssert, combineSiblings = false): StructAssert => {
         let text = t;
         if (combineSiblings) {
           while (queue.peek().exists(SugarNode.isText)) {
-            text += queue.take().bind(SugarText.getOption).getOr('');
+            text += queue.take().bind(SugarText.getOption) ?? '';
           }
         }
         if (s.strAssert === undefined) {
@@ -211,7 +211,7 @@ const repeat = (min: number, max: number | true = min) => (structAssert: StructA
     for (; i < min; i++) {
       applyAssert(structAssert, queue);
     }
-    for (; (max === true || i < max) && queue.peek().isSome(); i++) {
+    for (; (max === true || i < max) && queue.peek() !== null; i++) {
       const mark = queue.mark();
       try {
         applyAssert(structAssert, queue);
@@ -240,7 +240,7 @@ const anythingStruct: StructAssert = {
 };
 
 const assertAttrs = (expectedAttrs: Record<string, StringAssert>, actual: SugarElement<Element>) => {
-  Object.entries(expectedAttrs).forEach(([k, v]) => ((v, k) =)(v, k)) {
+  Object.entries(expectedAttrs).forEach(([k, v]) => ((v, k) =>(v, k)) {
     if (v.strAssert === undefined) {
       throw new Error(JSON.stringify(v) + ' is not a *string assertion*.\nSpecified in *expected* attributes of ' + Truncate.getHtml(actual));
     }
@@ -254,7 +254,7 @@ const assertAttrs = (expectedAttrs: Record<string, StringAssert>, actual: SugarE
 
 const assertExactMatchAttrs = (expectedAttrs: Record<string, StringAssert>, actual: SugarElement<Element>) => {
   const allDefinedAttrs = Object.keys(expectedAttrs);
-  const actualDefinedAttrs = Object.keys(Attribute.clone(actual)).filter((attr) =) attr !== 'class' && attr !== 'style');
+  const actualDefinedAttrs = Object.keys(Attribute.clone(actual)).filter((attr) => attr !== 'class' && attr !== 'style');
 
   const isEqual = assertEqualArray(
     allDefinedAttrs,
@@ -270,7 +270,7 @@ const assertExactMatchAttrs = (expectedAttrs: Record<string, StringAssert>, actu
 
 const assertClasses = (expectedClasses: ArrayAssert[], actual: SugarElement<Element>) => {
   const actualClasses = Classes.get(actual);
-  expectedClasses.forEach((eCls) =) {
+  expectedClasses.forEach((eCls) => {
     if (eCls.arrAssert === undefined) {
       throw new Error(JSON.stringify(eCls) + ' is not an *array assertion*.\nSpecified in *expected* classes of ' + Truncate.getHtml(actual));
     }
@@ -292,7 +292,7 @@ const assertExactMatchClasses = (expectedClasses: string[], actual: SugarElement
 };
 
 const assertStyles = (expectedStyles: Record<string, StringAssert>, actual: SugarElement<Element>) => {
-  Object.entries(expectedStyles).forEach(([k, v]) => ((v, k) =)(v, k)) {
+  Object.entries(expectedStyles).forEach(([k, v]) => ((v, k) =>(v, k)) {
     const actualValue = Css.getRaw(actual, k).getOrThunk(ApproxComparisons.missing);
     if (v.strAssert === undefined) {
       throw new Error(JSON.stringify(v) + ' is not a *string assertion*.\nSpecified in *expected* styles of ' + Truncate.getHtml(actual));
@@ -320,7 +320,7 @@ const assertExactMatchStyles = (expectedStyles: Record<string, StringAssert>, ac
   assertStyles(expectedStyles, actual);
 };
 
-const assertHtml = (expectedHtml: Optional<StringAssert>, actual: SugarElement<HTMLElement>) => {
+const assertHtml = (expectedHtml: StringAssert | null, actual: SugarElement<HTMLElement>) => {
   expectedHtml.each((expected) => {
     const actualHtml = Html.get(actual);
     if (expected.strAssert === undefined) {
@@ -330,7 +330,7 @@ const assertHtml = (expectedHtml: Optional<StringAssert>, actual: SugarElement<H
   });
 };
 
-const assertValue = (expectedValue: Optional<StringAssert>, actual: SugarElement<HTMLElement>) => {
+const assertValue = (expectedValue: StringAssert | null, actual: SugarElement<HTMLElement>) => {
   expectedValue.each((v) => {
     if (v.strAssert === undefined) {
       throw new Error(JSON.stringify(v) + ' is not a *string assertion*.\nSpecified in *expected* value of ' + Truncate.getHtml(actual));
@@ -342,10 +342,10 @@ const assertValue = (expectedValue: Optional<StringAssert>, actual: SugarElement
   });
 };
 
-const assertChildren = (expectedChildren: Optional<StructAssert[]>, actual: SugarElement<Node>) => {
+const assertChildren = (expectedChildren: StructAssert[] | null, actual: SugarElement<Node>) => {
   expectedChildren.each((expected) => {
     const children = elementQueue(Traverse.children(actual), actual);
-    expected.forEach((structExpectation, i) =) {
+    expected.forEach((structExpectation, i) => {
       if (structExpectation.doAssert === undefined) {
         throw new Error(JSON.stringify(structExpectation) + ' is not a *structure assertion*.\n' +
           'Specified in *expected* children of ' + Truncate.getHtml(actual));
@@ -360,7 +360,7 @@ const assertChildren = (expectedChildren: Optional<StructAssert[]>, actual: Suga
         });
       }
     });
-    if (children.peek().isSome()) {
+    if (children.peek() !== null) {
       Assert.fail('More children than expected for ' + children.context());
     }
   });

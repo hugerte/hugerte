@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { DomDescent } from '@ephox/phoenix';
 import {
   CellMutations, ResizeBehaviour, RunOperation, TableFill, TableGridSize, TableSection, TableOperations, TableLookup
@@ -64,7 +64,7 @@ export const TableActions = (editor: Editor, resizeHandler: TableResizeHandler, 
   const lastColumnGuard = (table: SugarElement<HTMLTableElement>): boolean =>
     !isTableBody(editor) || TableGridSize.getGridSize(table).columns > 1;
 
-  // Optional.none gives the default cloneFormats.
+  // () => null gives the default cloneFormats.
   const cloneFormats = Options.getTableCloneElements(editor);
 
   const colMutationOp = Options.isResizeTableColumnResizing(editor) ? () => {} : CellMutations.halve;

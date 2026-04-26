@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as DomGather from 'ephox/phoenix/api/dom/DomGather';
@@ -16,7 +16,7 @@ UnitTest.test('DomGatherTest', () => {
   };
 
   interface CheckItem {
-    seek: (element: SugarElement, predicate: (e: SugarElement) => boolean, isRoot: (e: SugarElement) => boolean) => Optional<SugarElement>;
+    seek: (element: SugarElement, predicate: (e: SugarElement) => boolean, isRoot: (e: SugarElement) => boolean) => SugarElement | null;
     element: SugarElement;
     predicate: (e: SugarElement) => boolean;
     expected: SugarElement;

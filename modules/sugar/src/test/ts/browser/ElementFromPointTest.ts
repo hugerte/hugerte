@@ -40,7 +40,7 @@ UnitTest.test('ElementFromPointTest', () => {
     KAssert.eqNone('Should be none', getAt(p, placeX, placeY, testX, testY));
   };
 
-  [ bg, a ].forEach((elm) =) {
+  [ bg, a ].forEach((elm) => {
     Insert.append(SugarBody.body(), elm);
   });
 

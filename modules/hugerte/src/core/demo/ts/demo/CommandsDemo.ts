@@ -92,7 +92,7 @@ export default (): void => {
   ];
 
   const container = SelectorFind.descendant(SugarBody.body(), '#ephox-ui').getOrDie();
-  commands.forEach((cmd) =) {
+  commands.forEach((cmd) => {
     const btn = SugarElement.fromTag('button');
     Html.set(btn, cmd.command);
     DomEvent.bind(btn, 'click', () => {

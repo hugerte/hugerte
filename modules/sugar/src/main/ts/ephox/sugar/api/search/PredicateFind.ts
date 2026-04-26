@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import ClosestOrAncestor from '../../impl/ClosestOrAncestor';
 import * as Compare from '../dom/Compare';
@@ -6,14 +6,14 @@ import * as SugarBody from '../node/SugarBody';
 import { SugarElement } from '../node/SugarElement';
 
 const first: {
-  <T extends Node = Node> (predicate: (e: SugarElement<Node>) => e is SugarElement<T>): Optional<SugarElement<T & ChildNode>>;
-  (predicate: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node & ChildNode>>;
+  <T extends Node = Node> (predicate: (e: SugarElement<Node>) => e is SugarElement<T>): SugarElement<T & ChildNode> | null;
+  (predicate: (e: SugarElement<Node>) => boolean): SugarElement<Node & ChildNode> | null;
 } = (predicate: (e: SugarElement<Node>) => boolean) =>
   descendant(SugarBody.body(), predicate);
 
 const ancestor: {
-  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>, isRoot?: (e: SugarElement<Node>) => boolean): Optional<SugarElement<T>>;
-  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node>>;
+  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>, isRoot?: (e: SugarElement<Node>) => boolean): SugarElement<T> | null;
+  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean): SugarElement<Node> | null;
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean) => {
   let element = scope.dom;
   const stop = typeof isRoot === 'function' ? isRoot : () => false;
@@ -28,12 +28,12 @@ const ancestor: {
       break;
     }
   }
-  return Optional.none<SugarElement<Node>>();
+  return null;
 };
 
 const closest: {
-  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>, isRoot?: (e: SugarElement<Node>) => boolean): Optional<SugarElement<T>>;
-  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node>>;
+  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>, isRoot?: (e: SugarElement<Node>) => boolean): SugarElement<T> | null;
+  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean): SugarElement<Node> | null;
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean) => {
   // This is required to avoid ClosestOrAncestor passing the predicate to itself
   const is = (s: SugarElement<Node>, test: (e: SugarElement<Node>) => boolean): s is SugarElement<Node> => test(s);
@@ -41,31 +41,31 @@ const closest: {
 };
 
 const sibling: {
-  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): Optional<SugarElement<T & ChildNode>>;
-  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node & ChildNode>>;
-} = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node & ChildNode>> => {
+  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): SugarElement<T & ChildNode> | null;
+  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): SugarElement<Node & ChildNode> | null;
+} = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): SugarElement<Node & ChildNode> | null => {
   const element = scope.dom;
   if (!element.parentNode) {
-    return Optional.none<SugarElement<Node & ChildNode>>();
+    return null;
   }
 
   return child(SugarElement.fromDom(element.parentNode), (x) => !Compare.eq(scope, x) && predicate(x));
 };
 
 const child: {
-  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): Optional<SugarElement<T & ChildNode>>;
-  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node & ChildNode>>;
+  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): SugarElement<T & ChildNode> | null;
+  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): SugarElement<Node & ChildNode> | null;
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean) => {
   const pred = (node: Node) => predicate(SugarElement.fromDom(node));
-  const result = Arr.find(scope.dom.childNodes, pred);
+  const result = (scope.dom.childNodes.find(pred) ?? null);
   return result.map(SugarElement.fromDom);
 };
 
 const descendant: {
-  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): Optional<SugarElement<T & ChildNode>>;
-  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node & ChildNode>>;
+  <T extends Node = Node> (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): SugarElement<T & ChildNode> | null;
+  (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): SugarElement<Node & ChildNode> | null;
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean) => {
-  const descend = (node: Node): Optional<SugarElement<Node & ChildNode>> => {
+  const descend = (node: Node): SugarElement<Node & ChildNode> | null => {
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < node.childNodes.length; i++) {
       const child = SugarElement.fromDom(node.childNodes[i]);
@@ -74,12 +74,12 @@ const descendant: {
       }
 
       const res = descend(node.childNodes[i]);
-      if (res.isSome()) {
+      if (res !== null) {
         return res;
       }
     }
 
-    return Optional.none<SugarElement<Node & ChildNode>>();
+    return null;
   };
 
   return descend(scope.dom);

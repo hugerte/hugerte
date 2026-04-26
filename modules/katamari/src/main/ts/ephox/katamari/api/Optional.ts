@@ -2,7 +2,7 @@ import * as Type from './Type';
 
 /**
  * The `Optional` type represents a value (of any type) that potentially does
- * not exist. Any `Optional<T>` can either be a `Some<T>` (in which case the
+ * not exist. Any `T | null` can either be a `Some<T>` (in which case the
  * value does exist) or a `None` (in which case the value does not exist). This
  * module defines a whole lot of FP-inspired utility functions for dealing with
  * `Optional` objects.
@@ -15,13 +15,13 @@ import * as Type from './Type';
  * - There is no option to turn off strict-optional-checks like there is for
  * strict-null-checks
  */
-export class Optional<T> {
+export class T | null {
   private readonly tag: boolean;
   private readonly value?: T;
 
-  // Sneaky optimisation: every instance of Optional.none is identical, so just
+  // Sneaky optimisation: every instance of () => null is identical, so just
   // reuse the same object
-  private static singletonNone = new Optional<any>(false);
+  private static singletonNone = new any | null(false);
 
   // The internal representation has a `tag` and a `value`, but both are
   // private: able to be console.logged, but not able to be accessed by code
@@ -33,17 +33,17 @@ export class Optional<T> {
   // --- Identities ---
 
   /**
-   * Creates a new `Optional<T>` that **does** contain a value.
+   * Creates a new `T | null` that **does** contain a value.
    */
-  public static some<T>(this: void, value: T): Optional<T> {
+  public static some<T>(this: void, value: T): T | null {
     return new Optional(true, value);
   }
 
   /**
-   * Create a new `Optional<T>` that **does not** contain a value. `T` can be
+   * Create a new `T | null` that **does not** contain a value. `T` can be
    * any type because we don't actually have a `T`.
    */
-  public static none<T = never>(this: void): Optional<T> {
+  public static none<T = never>(this: void): T | null {
     return Optional.singletonNone;
   }
 
@@ -85,16 +85,16 @@ export class Optional<T> {
   /**
    * Perform a transform on an `Optional` object, **if** there is a value. If
    * you provide a function to turn a T into a U, this is the function you use
-   * to turn an `Optional<T>` into an `Optional<U>`. If this **does** contain
+   * to turn an `T | null` into an `U | null`. If this **does** contain
    * a value then the output will also contain a value (that value being the
    * output of `mapper(this.value)`), and if this **does not** contain a value
    * then neither will the output.
    */
-  public map<U>(mapper: (value: T) => U): Optional<U> {
+  public map<U>(mapper: (value: T) => U): U | null {
     if (this.tag) {
-      return Optional.some(mapper(this.value as T));
+      return mapper(this.value as T);
     } else {
-      return Optional.none();
+      return null;
     }
   }
 
@@ -104,11 +104,11 @@ export class Optional<T> {
    * Perform a transform on an `Optional` object, **if** there is a value.
    * Unlike `map`, here the transform itself also returns an `Optional`.
    */
-  public bind<U>(binder: (value: T) => Optional<U>): Optional<U> {
+  public bind<U>(binder: (value: T) => U | null): U | null {
     if (this.tag) {
       return binder(this.value as T);
     } else {
-      return Optional.none();
+      return null;
     }
   }
 
@@ -141,13 +141,13 @@ export class Optional<T> {
    * the output will keep the (single) input object (if it exists) as long as
    * it passes the predicate.
    */
-  public filter<U extends T>(predicate: (value: T) => value is U): Optional<U>;
-  public filter(predicate: (value: T) => boolean): Optional<T>;
-  public filter(predicate: (value: T) => boolean): Optional<T> {
+  public filter<U extends T>(predicate: (value: T) => value is U): U | null;
+  public filter(predicate: (value: T) => boolean): T | null;
+  public filter(predicate: (value: T) => boolean): T | null {
     if (!this.tag || predicate(this.value as T)) {
       return this;
     } else {
-      return Optional.none();
+      return null;
     }
   }
 
@@ -168,7 +168,7 @@ export class Optional<T> {
    * value.  Unlike `getOr`, in this method the `replacement` object is also
    * `Optional` - meaning that this method will always return an `Optional`.
    */
-  public or<U = T>(replacement: Optional<U>): Optional<T | U> {
+  public or<U = T>(replacement: U | null): T | U | null {
     return this.tag ? this : replacement;
   }
 
@@ -196,7 +196,7 @@ export class Optional<T> {
    * Unlike `getOrThunk`, in this method the `replacement` value is also
    * `Optional`, meaning that this method will always return an `Optional`.
    */
-  public orThunk<U = T>(thunk: () => Optional<U>): Optional<T | U> {
+  public orThunk<U = T>(thunk: () => U | null): T | U | null {
     return this.tag ? this : thunk();
   }
 
@@ -228,8 +228,8 @@ export class Optional<T> {
    * Null, or undefined, is converted to `None`, and anything else is converted
    * to `Some`.
    */
-  public static from<T>(this: void, value: T | null | undefined): Optional<NonNullable<T>> {
-    return Type.isNonNullable(value) ? Optional.some(value) : Optional.none();
+  public static from<T>(this: void, value: T | null | undefined): NonNullable<T> | null {
+    return Type.isNonNullable(value) ? value : null;
   }
 
   /**
@@ -253,8 +253,8 @@ export class Optional<T> {
   /**
    * If the `Optional` contains a value, perform an action on that value.
    * Unlike the rest of the methods on this type, `.each` has side-effects. If
-   * you want to transform an `Optional<T>` **into** something, then this is not
-   * the method for you. If you want to use an `Optional<T>` to **do**
+   * you want to transform an `T | null` **into** something, then this is not
+   * the method for you. If you want to use an `T | null` to **do**
    * something, then this is the method for you - provided you're okay with not
    * doing anything in the case where the `Optional` doesn't have a value inside
    * it. If you're not sure whether your use-case fits into transforming

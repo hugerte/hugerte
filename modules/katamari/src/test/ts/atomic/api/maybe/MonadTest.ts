@@ -40,7 +40,7 @@ describe('atomic.katamari.maybe.MonadTest', () => {
       });
       fc.assert(fc.property(arbNested, (maybe) => {
         const flattened = Maybes.flatten(maybe);
-        const bound = Maybes.bind<Maybe<string>, string>(Fun.identity)(maybe);
+        const bound = Maybes.bind<Maybe<string>, string>((x: any) => x)(maybe);
         assert.deepEqual(flattened, bound);
       }));
     });

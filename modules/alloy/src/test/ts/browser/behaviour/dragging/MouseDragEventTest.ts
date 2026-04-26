@@ -37,8 +37,8 @@ UnitTest.asynctest('MouseDragEventTest', (success, failure) => {
     })
   ), (_doc, _body, gui, component, store) => {
     const cAssertNoPositionInfo = Chain.op((box: SugarElement<HTMLElement>) => {
-      Assertions.assertEq('Should be no "left"', true, Css.getRaw(box, 'left').isNone());
-      Assertions.assertEq('Should be no "top"', true, Css.getRaw(box, 'top').isNone());
+      Assertions.assertEq('Should be no "left"', true, Css.getRaw(box, 'left') === null);
+      Assertions.assertEq('Should be no "top"', true, Css.getRaw(box, 'top') === null);
     });
 
     return [

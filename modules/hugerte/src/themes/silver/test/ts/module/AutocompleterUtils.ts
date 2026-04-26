@@ -116,7 +116,7 @@ const pAssertAutocompleterStructure = async (structure: AutocompleterStructure):
                 },
                 children: structure.groups.map((group) => s.element('div', {
                   classes: [ arr.has('tox-collection__group') ],
-                  children: group.map((d) =) {
+                  children: group.map((d) => {
                     if (typeof d === 'function') {
                       return d(s, str, arr);
                     } else if (structure.type === 'list') {

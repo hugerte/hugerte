@@ -22,7 +22,7 @@ const getAlignment = (element: SugarElement<Element>, property: string): string 
   const raw = Css.get(element, property);
   return (lookups as any)[raw]
     .map((f) => f(element))
-    .getOr(raw);
+     ?? raw;
 };
 
 const hasAlignment = (element: SugarElement<Element> | SugarElement<Text>, property: string, value: string): boolean =>

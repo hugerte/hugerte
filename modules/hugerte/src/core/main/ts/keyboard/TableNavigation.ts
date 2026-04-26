@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { CellLocation, CellNavigation, TableLookup } from '@ephox/snooker';
 import { Compare, ContentEditable, CursorPosition, Insert, SimSelection, SugarElement, SugarNode, WindowSelection } from '@ephox/sugar';
 
@@ -128,7 +128,7 @@ const getCellFirstCursorPosition = (cell: SugarElement<Node>): Range => {
 };
 
 const tabGo = (editor: Editor, isRoot: (e: SugarElement<Node>) => boolean, cell: CellLocation): (Range) | null => {
-  return cell.fold<(Range) | null>(Optional.none, Optional.none, (_current, next) => {
+  return cell.fold<(Range) | null>(() => null, () => null, (_current, next) => {
     return CursorPosition.first(next).map((cell) => {
       return getCellFirstCursorPosition(cell);
     });

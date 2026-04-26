@@ -28,7 +28,7 @@ describe('browser.hugerte.core.delete.InlineBoundaryDeleteTest', () => {
     return BoundaryLocation
       .readLocation(isInlineTarget, editor.getBody(), CaretPosition.fromRangeStart(editor.selection.getRng()))
       .map(locationName)
-      .getOr('none');
+       ?? 'none';
   };
 
   const testDeleteOrBackspaceKey = (key: number) => (

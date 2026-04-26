@@ -27,7 +27,7 @@ const systemStackFonts = [ '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neu
 // Split the fonts into an array and strip away any start/end quotes
 const splitFonts = (fontFamily: string): string[] => {
   const fonts = fontFamily.split(/\s*,\s*/);
-  return fonts.map((font) =) font.replace(/^['"]+|['"]+$/g, ''));
+  return fonts.map((font) => font.replace(/^['"]+|['"]+$/g, ''));
 };
 
 const matchesStack = (fonts: string[], stack: string[]): boolean => stack.length > 0 && (stack).every((font) => fonts.indexOf(font.toLowerCase()) > -1);

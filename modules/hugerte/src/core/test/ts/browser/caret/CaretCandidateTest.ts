@@ -15,7 +15,7 @@ describe('browser.hugerte.core.CaretCandidateTest', () => {
   const setupHtml = viewBlock.update;
 
   it('isCaretCandidate', () => {
-    'img input textarea hr table iframe video audio object'.split(' ').forEach((name) =) {
+    'img input textarea hr table iframe video audio object'.split(' ').forEach((name) => {
       assert.isTrue(CaretCandidate.isCaretCandidate(document.createElement(name)));
     });
 
@@ -40,7 +40,7 @@ describe('browser.hugerte.core.CaretCandidateTest', () => {
   });
 
   it('isAtomic', () => {
-    [ 'img', 'input', 'textarea', 'hr' ].forEach((name) =) {
+    [ 'img', 'input', 'textarea', 'hr' ].forEach((name) => {
       assert.isTrue(CaretCandidate.isAtomic(document.createElement(name)));
     });
 

@@ -151,7 +151,7 @@ describe('headless.modes.ScrollingContextTest', () => {
       const target = Cursors.follow(situation, [ 0, 0, 0 ]).getOrDie() as SugarElement<HTMLElement>;
 
       const optActual = ScrollingContext.detect(target);
-      assert.isTrue(optActual.isNone(), 'There should be no scrolling context');
+      assert.isTrue(optActual === null, 'There should be no scrolling context');
     });
 
     it('TINY-9226: several scrolling contexts', () => {

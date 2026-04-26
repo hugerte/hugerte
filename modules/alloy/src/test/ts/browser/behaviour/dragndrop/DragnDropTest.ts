@@ -59,7 +59,7 @@ UnitTest.asynctest('DragnDropTest', (success, failure) => {
       DragnDrop.config({
         mode: 'drop',
         onDrop: (_comp, dropEvent) => {
-          const files = dropEvent.files.map(({ name, size, type, lastModified }) =) ({ name, size, type, lastModified }));
+          const files = dropEvent.files.map(({ name, size, type, lastModified }) => ({ name, size, type, lastModified }));
           store.add({ type: 'drop', files, data: dropEvent.data });
         },
         onDrag: (_component, _simulatedEvent) => {

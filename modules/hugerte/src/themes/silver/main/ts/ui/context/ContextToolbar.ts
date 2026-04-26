@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, AnchorSpec, Behaviour, GuiFactory, InlineView, Keying, Positioning
 } from '@ephox/alloy';
 import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Optional, Singleton, Throttler } from '@ephox/katamari';
+import { Singleton, Throttler } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Class, Compare, Css, Focus, SugarElement } from '@ephox/sugar';
 
@@ -162,7 +162,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
       type: toolbarType,
       uid: (('context-toolbar') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
       initGroups,
-      onEscape: Optional.none,
+      onEscape: () => null,
       cyclicKeying: true,
       providers: sharedBackstage.providers
     });

@@ -39,7 +39,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
     const group = UiFinder.findIn(SugarBody.body(), '.tox-selected-menu .tox-collection__group').getOrDie();
     Assertions.assertStructure(label, ApproxStructure.build((s, str, arr) => s.element('div', {
       classes: [ arr.has('tox-collection__group') ],
-      children: expectedTicks.map((expected) =) s.element('div', {
+      children: expectedTicks.map((expected) => s.element('div', {
         attrs: {
           'role': str.is('menuitemcheckbox'),
           'aria-checked': str.is(expected ? 'true' : 'false')

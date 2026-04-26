@@ -103,7 +103,7 @@ UnitTest.asynctest('ReflectingTest', (success, failure) => {
             behaviours: Behaviour.derive([
               Reflecting.config({
                 channel: 'channel-3',
-                renderComponents: (_input, state) => state.map((s) => s.state).getOr([ ]).map(makeChild),
+                renderComponents: (_input, state) => state.map((s) => s.state) ?? [ ].map(makeChild),
                 updateState: (_c, input) => { state: input }
               })
             ])

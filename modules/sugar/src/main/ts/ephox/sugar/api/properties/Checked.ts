@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as SelectorFind from '../search/SelectorFind';
@@ -12,7 +12,7 @@ const get = (element: SugarElement<HTMLInputElement>): boolean =>
 
 // :checked selector requires IE9
 // http://www.quirksmode.org/css/selectors/#t60
-const find = (parent: SugarElement<Node>): Optional<SugarElement<HTMLInputElement>> =>
+const find = (parent: SugarElement<Node>): SugarElement<HTMLInputElement> | null =>
   SelectorFind.descendant<HTMLInputElement>(parent, 'input:checked');
 
 export {

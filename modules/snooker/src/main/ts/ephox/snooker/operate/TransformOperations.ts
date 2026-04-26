@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { Attribute, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -154,7 +154,7 @@ const replaceCell = (grid: Structs.RowCells[], detail: Structs.DetailExt, compar
 const replaceCells = (grid: Structs.RowCells[], details: Structs.DetailExt[], comparator: CompElm, substitution: Subst): Structs.RowCells[] => {
   const rows = GridRow.extractGridDetails(grid).rows;
   const targetCells = (details).map((detail) => GridRow.getCell(rows[detail.row], detail.column));
-  return replaceIn(grid, targetCells, comparator, substitution, replace, Optional.none, (() => true as const));
+  return replaceIn(grid, targetCells, comparator, substitution, replace, () => null, (() => true as const));
 };
 
 export {

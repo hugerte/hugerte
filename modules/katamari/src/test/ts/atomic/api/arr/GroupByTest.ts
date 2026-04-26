@@ -9,7 +9,7 @@ describe('atomic.katamari.api.arr.GroupByTest', () => {
 
   it('unit tests', () => {
     const check = <T>(input: T[], expected: T[][]) => {
-      const f = Fun.identity;
+      const f = (x: any) => x;
       assert.deepEqual(Arr.groupBy(input, f), expected);
       assert.deepEqual(Arr.groupBy(Object.freeze(input.slice()), f), expected);
     };

@@ -19,7 +19,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
   [
     { label: 'Mouse', pTriggerTooltip: TooltipUtils.pTriggerTooltipWithMouse },
     { label: 'Keyboard', pTriggerTooltip: TooltipUtils.pTriggerTooltipWithKeyboard },
-  ].forEach((test: TestScenario) =) {
+  ].forEach((test: TestScenario) => {
     context('Basic buttons', () => {
       const hook = TinyHooks.bddSetup<Editor>({
         base_url: '/project/hugerte/js/hugerte',

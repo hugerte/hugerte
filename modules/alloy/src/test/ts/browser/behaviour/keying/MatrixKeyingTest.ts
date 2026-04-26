@@ -67,12 +67,12 @@ UnitTest.asynctest('Matrix Keying Test', (success, failure) => {
           })
         ]),
         // 4 x 6 grid size
-        components: rows.map((row) =) Container.sketch({
+        components: rows.map((row) => Container.sketch({
           dom: {
             tag: 'span',
             classes: [ 'row' ]
           },
-          components: row.map((c) =) item([ c ]))
+          components: row.map((c) => item([ c ]))
         }))
       })
     );
@@ -80,7 +80,7 @@ UnitTest.asynctest('Matrix Keying Test', (success, failure) => {
   }, (doc, body, gui, _component, store) => {
 
     const targets: any = Objects.wrapAll(
-      cells.map((sq) =) ({
+      cells.map((sq) => ({
         key: sq,
         value: {
           label: sq,

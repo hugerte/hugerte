@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -37,7 +37,7 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
 
   const assertTableCellStructure = (editor: Editor, styles: Record<string, string> = {}, selectedCells: SelectedCells = {}) => {
     const { cell1, cell2, cell3, cell4 } = selectedCells;
-    const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((val, _key) =)(v, k)])) str.is(val));
+    const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((val, _key) =>(v, k)])) str.is(val));
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {
       styles: {
         'width': str.is('100%'),
@@ -102,12 +102,12 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
   const applyFormat = (editor: Editor, formatName: string, vars: Record<string, string>) => editor.formatter.apply(formatName, vars);
   const removeFormat = (editor: Editor, formatName: string, vars: Record<string, string>) => editor.formatter.remove(formatName, vars);
 
-  Arr.each<{ formatName: string; vars: Record<string, string>; styles: Record<string, string> }>([
+  [
     { formatName: 'tablecellbackgroundcolor', vars: { value: 'red' }, styles: { 'background-color': 'red' }},
     { formatName: 'tablecellbordercolor', vars: { value: 'red' }, styles: { 'border-color': 'red' }},
     { formatName: 'tablecellborderstyle', vars: { value: 'dashed' }, styles: { 'border-style': 'dashed' }},
     { formatName: 'tablecellborderwidth', vars: { value: '5px' }, styles: { 'border-width': '5px' }}
-  ], (test) => {
+  ].forEach((test) => {
     const { formatName, vars, styles } = test;
 
     context(`Table cell format for ${formatName}`, () => {

@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { Hex, Hsv, Rgba } from './ColourTypes';
 import * as HexColour from './HexColour';
@@ -105,7 +105,7 @@ const fromStringValues = (red: string, green: string, blue: string, alpha: strin
   return rgbaColour(r, g, b, a);
 };
 
-const fromString = (rgbaString: string): Optional<Rgba> => {
+const fromString = (rgbaString: string): Rgba | null => {
   if (rgbaString === 'transparent') {
     return rgbaColour(0, 0, 0, 0);
   }

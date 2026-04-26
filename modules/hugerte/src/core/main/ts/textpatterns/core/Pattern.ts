@@ -1,4 +1,4 @@
-import { Result, Results, Type } from '@ephox/katamari';
+import { Result, Results } from '@ephox/katamari';
 
 import { BlockPattern, DynamicPatternContext, DynamicPatternsLookup, InlineCmdPattern, InlinePattern, Pattern, PatternError, PatternSet, RawDynamicPatternsLookup, RawPattern, BlockPatternTrigger } from './PatternTypes';
 
@@ -17,7 +17,7 @@ const normalizePattern = (pattern: RawPattern): Result<Pattern, PatternError> =>
     if (pattern.format !== undefined) {
       let formats: string[];
       if (Array.isArray(pattern.format)) {
-        if (!(pattern.format).every(Type.isString)) {
+        if (!(pattern.format).every((x: any): x is string => typeof x === 'string')) {
           return err(name + ' pattern has non-string items in the `format` array');
         }
         formats = pattern.format as string[];

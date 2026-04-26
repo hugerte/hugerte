@@ -36,7 +36,7 @@ const ts = <T, U>(label: string, fs: Step<T, U>[]): Step<T, U>[] => {
   if (fs.length === 0) {
     return fs;
   }
-  return fs.map((f: Step<T, U>, i: number) =) t(label + '(' + i + ')', f));
+  return fs.map((f: Step<T, U>, i: number) => t(label + '(' + i + ')', f));
 };
 
 const spec = (msg: string): void => {

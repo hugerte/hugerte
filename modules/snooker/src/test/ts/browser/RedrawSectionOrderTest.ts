@@ -18,7 +18,7 @@ UnitTest.asynctest('Redraw Section Order Test', (success, failure) => {
   };
 
   const changeTableSections = (table: SugarElement<HTMLTableElement>, rowIndex: number, newSection: Structs.Section) => {
-    const updatedModelData = getRowData(table).map((row, i) =)
+    const updatedModelData = getRowData(table).map((row, i) =>
       i === rowIndex ? Structs.rowdetailnew(row.element, row.cells, newSection, row.isNew) : row);
     Redraw.render(table, updatedModelData);
   };

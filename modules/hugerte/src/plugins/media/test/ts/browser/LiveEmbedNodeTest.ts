@@ -31,7 +31,7 @@ describe('browser.hugerte.plugins.media.core.LiveEmbedNodeTest', () => {
         height: str.none('should not have height style'),
         width: str.none('should not have width style'),
         // TINY-7074: The wrapper span should have the same width/height styles
-        ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) =)(v, k)])) str.is(value))
+        ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) =>(v, k)])) str.is(value))
       },
       children: [
         s.element(tag, {
@@ -39,12 +39,12 @@ describe('browser.hugerte.plugins.media.core.LiveEmbedNodeTest', () => {
           attrs: {
             height: str.none('should not have height'),
             width: str.none('should not have width'),
-            ...Object.fromEntries(Object.entries(attrs).map(([k, v]) => [k, ((value) =)(v, k)])) value === null ? str.none() : str.is(value))
+            ...Object.fromEntries(Object.entries(attrs).map(([k, v]) => [k, ((value) =>(v, k)])) value === null ? str.none() : str.is(value))
           },
           styles: {
             height: str.none('should not have height style'),
             width: str.none('should not have width style'),
-            ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) =)(v, k)])) str.is(value))
+            ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) =>(v, k)])) str.is(value))
           },
           children: getChildren(s, str, arr)
         }),

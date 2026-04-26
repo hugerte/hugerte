@@ -1,5 +1,5 @@
 import { FieldPresence, FieldProcessor, FieldSchema, StructureProcessor, StructureSchema, ValueType } from '@ephox/boulder';
-import { Adt, Optional } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 
 import { SimpleOrSketchSpec } from '../api/component/SpecTypes';
 import { CompositeSketchDetail } from '../api/ui/Sketcher';
@@ -109,7 +109,7 @@ const groupSpec = StructureSchema.objOf([
 ]);
 
 const asNamedPart = <T>(part: PartTypeAdt<T>): (T) | null => {
-  return part.fold(Optional.some, Optional.none as () => (T) | null, Optional.some, Optional.some);
+  return part.fold((x) => x, () => null as () => (T) | null, (x) => x, (x) => x);
 };
 
 const name = <T extends { name: string }>(part: PartTypeAdt<T>): string => {

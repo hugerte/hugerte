@@ -49,7 +49,7 @@ interface State {
 }
 
 const isContentEditableFalse = NodeType.isContentEditableFalse;
-const isContentEditable = Predicate.or(isContentEditableFalse, NodeType.isContentEditableTrue) as (node: Node) => node is HTMLElement;
+const isContentEditable = Predicate ?? isContentEditableFalse, NodeType.isContentEditableTrue as (node: Node) => node is HTMLElement;
 
 const isDraggable = (dom: DOMUtils, rootElm: HTMLElement, elm: HTMLElement) =>
   isContentEditableFalse(elm) && elm !== rootElm && dom.isEditable(elm.parentElement);

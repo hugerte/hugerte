@@ -18,8 +18,8 @@ describe('browser.snooker.lookup.TypeTest', () => {
 
   context('findCommonCellType', () => {
     const assertCommonCellType = (expectedType: string) => assertWithWarehouse((warehouse) => {
-      const cells = warehouse.all.flatMap((row) =) row.cells);
-      const cellType = Type.findCommonCellType(cells).getOr('');
+      const cells = warehouse.all.flatMap((row) => row.cells);
+      const cellType = Type.findCommonCellType(cells) ?? '';
       assert.equal(cellType, expectedType);
     });
 
@@ -64,12 +64,12 @@ describe('browser.snooker.lookup.TypeTest', () => {
 
   context('findCommonRowType', () => {
     const assertCommonRowType = (expectedType: string) => assertWithWarehouse((warehouse) => {
-      const rowType = Type.findCommonRowType(warehouse.all).getOr('');
+      const rowType = Type.findCommonRowType(warehouse.all) ?? '';
       assert.equal(rowType, expectedType);
     });
 
     const assertRowTypes = (expectedTypes: string[]) => assertWithWarehouse((warehouse) => {
-      const rowTypes = warehouse.all.map((row) =)
+      const rowTypes = warehouse.all.map((row) =>
         Type.findCommonRowType([ row ]).getOrDie('Unable to find row type')
       );
       assert.deepEqual(rowTypes, expectedTypes);
@@ -204,7 +204,7 @@ describe('browser.snooker.lookup.TypeTest', () => {
 
   context('findTableRowHeaderType', () => {
     const assertRowHeaderType = (expectedType: string) => assertWithWarehouse((warehouse) => {
-      const rowType = Type.findTableRowHeaderType(warehouse).getOr('');
+      const rowType = Type.findTableRowHeaderType(warehouse) ?? '';
       assert.equal(rowType, expectedType);
     });
 

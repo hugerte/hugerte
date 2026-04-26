@@ -1,4 +1,4 @@
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 import { Attribute, Css, DomEvent, EventArgs, Insert, InsertAll, Ready, Replication, SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { Generators } from 'ephox/snooker/api/Generators';
@@ -187,7 +187,7 @@ Ready.document(() => {
   const makeRowHeader = makeButton('Make row header');
   const makeRowBody = makeButton('Unmake row header');
 
-  const detection = (): Optional<SugarElement<Element>> =>
+  const detection = (): SugarElement<Element> | null =>
     window.getSelection() ?? null.bind((selection) => {
       if (selection.rangeCount > 0) {
         const range = selection.getRangeAt(0);
@@ -222,7 +222,7 @@ Ready.document(() => {
 
   const replace: Generators['replace'] = (cell, tag, attrs) => {
     const replica = Replication.copy(cell, tag);
-    Object.entries(attrs).forEach(([k, v]) => ((v, k) =)(v, k)) {
+    Object.entries(attrs).forEach(([k, v]) => ((v, k) =>(v, k)) {
       if (v !== null) {
         Attribute.set(replica, k, v);
       }

@@ -36,7 +36,7 @@ const rgbaToHexString = (color: string): string =>
   RgbaColour.fromString(color)
     .map(HexColour.fromRgba)
     .map((h) => '#' + h.value)
-    .getOr(color);
+     ?? color;
 
 export {
   anyToHex,

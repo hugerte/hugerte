@@ -1,5 +1,5 @@
 import { AlloyComponent, Boxes, Channels, Docking, OffsetOrigin, VerticalDir } from '@ephox/alloy';
-import { Cell, Optional, Singleton } from '@ephox/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 import { Attribute, Compare, Css, Height, Scroll, SugarBody, SugarElement, SugarLocation, Traverse, Width } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -37,7 +37,7 @@ export const InlineHeader = (
   const DOM = DOMUtils.DOM;
   const useFixedToolbarContainer = Options.useFixedContainer(editor);
   const isSticky = Options.isStickyToolbar(editor);
-  const editorMaxWidthOpt = Options.getMaxWidthOption(editor).or(EditorSize.getWidth(editor));
+  const editorMaxWidthOpt = Options.getMaxWidthOption(editor) ?? EditorSize.getWidth(editor);
   const headerBackstage = backstage.shared.header;
   const isPositionedAtTop = headerBackstage.isPositionedAtTop;
   const minimumToolbarWidth = 150; // Value is arbitrary.
@@ -222,7 +222,7 @@ export const InlineHeader = (
     });
   };
 
-  // This would return Optional.none, for ui_mode: combined, which will fallback to the default code block
+  // This would return () => null, for ui_mode: combined, which will fallback to the default code block
   // For ui_mode: split, the offsetParent would be the body if there were no relative div set as parent
   const getOffsetParent = (editor: Editor, element: SugarElement<HTMLElement>) => Options.isSplitUiMode(editor) ? OffsetOrigin.getOffsetParent(element) : null;
 

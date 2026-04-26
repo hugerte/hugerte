@@ -100,8 +100,8 @@ describe('browser.hugerte.core.annotate.AnnotationStylingTest', () => {
         const children = SelectorFilter.children(elm, '*:not(source)'); // Source is a hidden element and Firefox returns empty strings for runtime style properties
         const isFigCaption = SugarNode.isTag('figcaption');
 
-        parents.forEach((e) =) assert.deepEqual(getOutline(e), noOutline, 'parent should not have outline'));
-        children.forEach((e) =) assert.deepEqual(getOutline(e), isFigCaption(e) ? emptyFigCaptionOutline : noOutline, 'child should not have outline'));
+        parents.forEach((e) => assert.deepEqual(getOutline(e), noOutline, 'parent should not have outline'));
+        children.forEach((e) => assert.deepEqual(getOutline(e), isFigCaption(e) ? emptyFigCaptionOutline : noOutline, 'child should not have outline'));
       }
     });
 
@@ -165,7 +165,7 @@ describe('browser.hugerte.core.annotate.AnnotationStylingTest', () => {
     { label: 'mediaembed video', name: 'video', outlineSelector: 'div[data-ephox-embed-iri]', html: videoMediaEmbedHtml },
     { label: 'mediaembed audio', name: 'audio', outlineSelector: 'div[data-ephox-embed-iri]', html: audioMediaEmbedHtml },
     { label: 'pageembed website', name: 'iframe', outlineSelector: 'div.tiny-pageembed', html: pageEmbedHtml },
-  ].forEach((scenario) =) {
+  ].forEach((scenario) => {
     const { label, name, outlineSelector, html } = scenario;
     context(label, () => {
       const editorHtml = `<p>Before</p>${html}<p>After</p>`;

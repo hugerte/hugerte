@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import * as Recurse from '../../alien/Recurse';
 import * as Compare from '../dom/Compare';
@@ -29,21 +29,21 @@ const documentElement = (element: SugarElement<Node>): SugarElement<HTMLElement>
 const defaultView = (element: SugarElement<Node>): SugarElement<Window> =>
   SugarElement.fromDom(documentOrOwner(element).dom.defaultView as Window);
 
-const parent = (element: SugarElement<Node>): Optional<SugarElement<Node & ParentNode>> =>
+const parent = (element: SugarElement<Node>): SugarElement<Node & ParentNode> | null =>
   element.dom.parentNode ?? null.map(SugarElement.fromDom);
 
 // Cast down to just be SugarElement<Node>
-const parentNode = (element: SugarElement<Node>): Optional<SugarElement<Node>> =>
+const parentNode = (element: SugarElement<Node>): SugarElement<Node> | null =>
   parent(element) as any;
 
-const parentElement = (element: SugarElement<Node>): Optional<SugarElement<HTMLElement>> =>
+const parentElement = (element: SugarElement<Node>): SugarElement<HTMLElement> | null =>
   element.dom.parentElement ?? null.map(SugarElement.fromDom);
 
-const findIndex = (element: SugarElement<Node>): Optional<number> =>
+const findIndex = (element: SugarElement<Node>): number | null =>
   parent(element).bind((p) => {
     // TODO: Refactor out children so we can avoid the constant unwrapping
     const kin = children(p);
-    return Arr.findIndex(kin, (elem) => Compare.eq(element, elem));
+    return kin.findIndex((elem) => Compare.eq(element, elem));
   });
 
 const parents = (element: SugarElement<Node>, isRoot?: (e: SugarElement<Node>) => boolean): SugarElement<Node>[] => {
@@ -69,18 +69,18 @@ const parents = (element: SugarElement<Node>, isRoot?: (e: SugarElement<Node>) =
 
 const siblings = (element: SugarElement<Node>): SugarElement<Node>[] => {
   // TODO: Refactor out children so we can just not add self instead of filtering afterwards
-  const filterSelf = <E> (elements: SugarElement<E>[]) => elements.filter((x) =) !Compare.eq(element, x));
+  const filterSelf = <E> (elements: SugarElement<E>[]) => elements.filter((x) => !Compare.eq(element, x));
 
-  return parent(element).map(children).map(filterSelf).getOr([]);
+  return parent(element).map(children).map(filterSelf) ?? [];
 };
 
-const offsetParent = (element: SugarElement<HTMLElement>): Optional<SugarElement<HTMLElement>> =>
+const offsetParent = (element: SugarElement<HTMLElement>): SugarElement<HTMLElement> | null =>
   element.dom.offsetParent as HTMLElement ?? null.map(SugarElement.fromDom);
 
-const prevSibling = (element: SugarElement<Node>): Optional<SugarElement<Node & ChildNode>> =>
+const prevSibling = (element: SugarElement<Node>): SugarElement<Node & ChildNode> | null =>
   element.dom.previousSibling ?? null.map(SugarElement.fromDom);
 
-const nextSibling = (element: SugarElement<Node>): Optional<SugarElement<Node & ChildNode>> =>
+const nextSibling = (element: SugarElement<Node>): SugarElement<Node & ChildNode> | null =>
   element.dom.nextSibling ?? null.map(SugarElement.fromDom);
 
 // This one needs to be reversed, so they're still in DOM order
@@ -93,15 +93,15 @@ const nextSiblings = (element: SugarElement<Node>): SugarElement<Node & ChildNod
 const children = (element: SugarElement<Node>): SugarElement<Node & ChildNode>[] =>
   element.dom.childNodes.map(SugarElement.fromDom);
 
-const child = (element: SugarElement<Node>, index: number): Optional<SugarElement<Node & ChildNode>> => {
+const child = (element: SugarElement<Node>, index: number): SugarElement<Node & ChildNode> | null => {
   const cs = element.dom.childNodes;
   return cs[index] ?? null.map(SugarElement.fromDom);
 };
 
-const firstChild = (element: SugarElement<Node>): Optional<SugarElement<Node & ChildNode>> =>
+const firstChild = (element: SugarElement<Node>): SugarElement<Node & ChildNode> | null =>
   child(element, 0);
 
-const lastChild = (element: SugarElement<Node>): Optional<SugarElement<Node & ChildNode>> =>
+const lastChild = (element: SugarElement<Node>): SugarElement<Node & ChildNode> | null =>
   child(element, element.dom.childNodes.length - 1);
 
 const childNodesCount = (element: SugarElement<Node>): number =>

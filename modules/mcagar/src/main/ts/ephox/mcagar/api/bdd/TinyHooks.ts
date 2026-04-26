@@ -1,5 +1,5 @@
 import { after, afterEach, before } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import { Insert, Remove, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor as EditorType } from '../../alien/EditorTypes';
@@ -25,11 +25,11 @@ const setupHooks = <T extends EditorType = EditorType>(
   settings: Record<string, any>,
   setupModules: Array<() => void>,
   focusOnInit: boolean,
-  setupElement: () => Optional<SetupElement>
+  setupElement: () => SetupElement | null
 ): Hook<T> => {
   let lazyEditor: () => T = hookNotRun;
   let teardownEditor: () => void = () => {};
-  let setup: Optional<SetupElement> = null;
+  let setup: SetupElement | null = null;
   let hasFailure = false;
 
   before(function (done) {
@@ -78,7 +78,7 @@ const setupHooks = <T extends EditorType = EditorType>(
 };
 
 const bddSetup = <T extends EditorType = EditorType>(settings: Record<string, any>, setupModules: Array<() => void> = [], focusOnInit: boolean = false): Hook<T> => {
-  return setupHooks(settings, setupModules, focusOnInit, Optional.none);
+  return setupHooks(settings, setupModules, focusOnInit, () => null);
 };
 
 const bddSetupLight = <T extends EditorType = EditorType>(settings: Record<string, any>, setupModules: Array<() => void> = [], focusOnInit: boolean = false): Hook<T> => {
@@ -87,7 +87,7 @@ const bddSetupLight = <T extends EditorType = EditorType>(settings: Record<strin
     menubar: false,
     statusbar: false,
     ...settings
-  }, setupModules, focusOnInit, Optional.none);
+  }, setupModules, focusOnInit, () => null);
 };
 
 const bddSetupFromElement = <T extends EditorType = EditorType>(settings: Record<string, any>, setupElement: () => SetupElement, setupModules: Array<() => void> = [], focusOnInit: boolean = false): Hook<T> => {
@@ -96,7 +96,7 @@ const bddSetupFromElement = <T extends EditorType = EditorType>(settings: Record
 
 const bddSetupInShadowRoot = <T extends EditorType = EditorType>(settings: Record<string, any>, setupModules: Array<() => void> = [], focusOnInit: boolean = false): ShadowRootHook<T> => {
   let lazyShadowRoot: () => SugarElement<ShadowRoot> = hookNotRun;
-  let editorDiv: Optional<SugarElement<HTMLElement>>;
+  let editorDiv: SugarElement<HTMLElement> | null;
   let teardown: () => void = () => {};
 
   before(function () {

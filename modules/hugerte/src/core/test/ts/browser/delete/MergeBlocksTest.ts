@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -27,7 +27,7 @@ describe('browser.hugerte.core.delete.MergeBlocksTest', () => {
     return MergeBlocks.mergeBlocks(SugarElement.fromDom(viewBlock.get()), forward, block1, block2, baseSchema);
   };
 
-  const assertPosition = (position: Optional<CaretPosition>, expectedPath: number[], expectedOffset: number) => {
+  const assertPosition = (position: CaretPosition | null, expectedPath: number[], expectedOffset: number) => {
     const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), expectedPath).getOrDie();
 
     Assertions.assertDomEq('Should be expected container', container, SugarElement.fromDom(position.getOrDie().container()));

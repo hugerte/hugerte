@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as FieldSchema from 'ephox/boulder/api/FieldSchema';
@@ -32,7 +32,7 @@ UnitTest.test('Atomic Test: api.FieldSchemaTest', () => {
     );
   };
 
-  const assertOptionalFieldValue = (expected: Record<string, Optional<any>>, input: any, field: FieldProcessor) => {
+  const assertOptionalFieldValue = (expected: Record<string, any | null>, input: any, field: FieldProcessor) => {
     const schema = StructureSchema.objOf([
       field
     ]);
@@ -40,7 +40,7 @@ UnitTest.test('Atomic Test: api.FieldSchemaTest', () => {
     StructureSchema.asRaw('spec', schema, input).fold(
       (_err) => Assert.fail('Should not fail'),
       (actual: any) => {
-        Object.entries(expected).forEach(([k, v]) => ((expectedValueOpt, expectedKey) =)(v, k)) {
+        Object.entries(expected).forEach(([k, v]) => ((expectedValueOpt, expectedKey) =>(v, k)) {
           KAssert.eqOptional('eq', expectedValueOpt, actual[expectedKey]);
         });
       }

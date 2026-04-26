@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloySpec, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+
 import { Dimension } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -92,7 +92,7 @@ const getSpec = (editor: Editor): SelectSpec => {
     return matchOpt;
   };
 
-  const getPreviewFor: FormatRegister.GetPreviewForType = () => Optional.none;
+  const getPreviewFor: FormatRegister.GetPreviewForType = () => () => null;
 
   const onAction = (rawItem: FormatterFormatItem) => () => {
     editor.undoManager.transact(() => {
@@ -162,9 +162,9 @@ const getNumberInputSpec = (editor: Editor): NumberInputSpec => {
       Dimension.parse(text, [ 'unsupportedLength', 'empty' ]);
 
       const currentValue = getCurrentValue();
-      const parsedText = Dimension.parse(text, [ 'unsupportedLength', 'empty' ]).or(
+      const parsedText = Dimension.parse(text, [ 'unsupportedLength', 'empty' ]) ?? 
         Dimension.parse(currentValue, [ 'unsupportedLength', 'empty' ])
-      );
+      ;
       const value = parsedText.map((res) => res.value) ?? (defaultValue);
       const defaultUnit = Options.getFontSizeInputDefaultUnit(editor);
       const unit = parsedText.map((res) => res.unit).filter((u) => u !== '') ?? (defaultUnit);

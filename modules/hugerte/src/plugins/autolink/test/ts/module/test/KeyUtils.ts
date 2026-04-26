@@ -12,7 +12,7 @@ const charCodeToKeyCode = (charCode: number): number => {
     '.': 190, '/': 191, '\\': 220, '[': 219, ']': 221, '{': 219, '}': 221, '\'': 222, ';': 186, '=': 187, '(': 57, ')': 48
   };
 
-  return (lookup as any)[String.fromCharCode(charCode)].getOr(charCode);
+  return (lookup as any)[String.fromCharCode(charCode)] ?? charCode;
 };
 
 const needsShiftModifier = (charCode: number | undefined): boolean => {

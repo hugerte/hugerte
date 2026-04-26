@@ -1,6 +1,6 @@
 import { Attachment, Behaviour, DomFactory, Gui, GuiFactory, Positioning } from '@ephox/alloy';
 import { after, afterEach, before } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Class, SugarBody, SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -119,7 +119,7 @@ export const TestExtras = (): TestExtras => {
 };
 
 export const bddSetup = (): BddTestExtrasHook => {
-  let helpers: Optional<TestExtras> = null;
+  let helpers: TestExtras | null = null;
   let hasFailure = false;
 
   before(() => {

@@ -18,7 +18,7 @@ describe('browser.hugerte.themes.silver.editor.NotificationManagerImplTest', () 
   const assertFocusable = (notification: NotificationApi) => {
     const elm = SugarElement.fromDom(notification.getEl());
     Focus.focus(elm);
-    const notificationFocused = Focus.search(elm).isSome();
+    const notificationFocused = Focus.search(elm) !== null;
     assert.isTrue(notificationFocused, 'Notification should be focused');
   };
 
@@ -192,7 +192,7 @@ describe('browser.hugerte.themes.silver.editor.NotificationManagerImplTest', () 
       const notifications = Array.from({ length: 9 }, (i) => openNotification(editor, 'success', `Message ${i + 1}`));
       assertPosition('Last notification is outside the content area', notifications[notifications.length - 1], 220, 192);
 
-      notifications.forEach((notification) =) notification.close());
+      notifications.forEach((notification) => notification.close());
     });
 
     it('TINY-10286: Notification displays plain text', () => {

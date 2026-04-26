@@ -18,7 +18,7 @@ describe('atomic.polaris.search.SearcherTest', () => {
     const items = Finder.getAll(universe, itemIds);
     const actual = Searcher.safeWords(universe, items, words, () => false);
 
-    const processed = actual.map((match): CheckItem =) {
+    const processed = actual.map((match): CheckItem => {
       return {
         items: TestRenders.texts(match.elements),
         word: match.word,

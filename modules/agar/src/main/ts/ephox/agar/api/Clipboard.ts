@@ -28,14 +28,14 @@ const pasteDataTransfer = (target: SugarElement<Element>, mutator: (dataTransfer
 
 const pasteItems = (target: SugarElement<Element>, items: Record<string, string>): void =>
   pasteDataTransfer(target, (dataTransfer) => {
-    Object.entries(items).forEach(([k, v]) => ((data, mime) =)(v, k)) {
+    Object.entries(items).forEach(([k, v]) => ((data, mime) =>(v, k)) {
       dataTransfer.setData(mime, data);
     });
   });
 
 const pasteFiles = (target: SugarElement<Element>, files: File[]): void =>
   pasteDataTransfer(target, (dataTransfer) => {
-    files.forEach((file) =) {
+    files.forEach((file) => {
       dataTransfer.items.add(file);
     });
   });
@@ -71,12 +71,12 @@ const sPasteFiles = <T>(files: File[], selector: string): Step<T, T> =>
   ]));
 
 const pPasteUrlItems = async (target: SugarElement<Element>, items: PasteUrlItem[]): Promise<void> => {
-  const dataItems = await Promise.all(items.map(async (item) =) {
+  const dataItems = await Promise.all(items.map(async (item) => {
     const resp = await window.fetch(item.url);
 
     if (resp.ok) {
       const blob = await resp.blob();
-      const fileName = Arr.last(item.url.split('/')).getOr('filename.dat');
+      const fileName = Arr.last(item.url.split('/')) ?? 'filename.dat';
       const mime = blob.type.split(';')[0]; // Only grab mime type not charset encoding
 
       if (item.kind === 'string') {
@@ -90,7 +90,7 @@ const pPasteUrlItems = async (target: SugarElement<Element>, items: PasteUrlItem
   }));
 
   pasteDataTransfer(target, (dataTransfer) => {
-    dataItems.forEach((dataItem) =) {
+    dataItems.forEach((dataItem) => {
       if (dataItem.kind === 'string') {
         dataTransfer.items.add(dataItem.text, dataItem.mime);
       } else {

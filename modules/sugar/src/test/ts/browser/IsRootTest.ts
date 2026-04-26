@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import * as Compare from 'ephox/sugar/api/dom/Compare';
 import * as Remove from 'ephox/sugar/api/dom/Remove';
@@ -19,7 +19,7 @@ UnitTest.test('IsRootTest', () => {
 
   const isRoot = (e: SugarElement<unknown>) => Compare.eq(TestPage.d1, e);
 
-  const checkNone = <T extends Node>(optElement: Optional<SugarElement<T>>) => Checkers.checkOpt(Optional.none<SugarElement<T>>(), optElement);
+  const checkNone = <T extends Node>(optElement: SugarElement<T> | null) => Checkers.checkOpt(null, optElement);
 
   checkNone(SelectorFind.ancestor(TestPage.t6, 'li', isRoot));
   checkNone(SelectorFind.ancestor(TestPage.t6, 'ol,ul', isRoot));

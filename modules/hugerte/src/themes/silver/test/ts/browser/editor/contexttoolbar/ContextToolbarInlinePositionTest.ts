@@ -60,7 +60,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarInli
   const pAssertPosition = (position: string, direction: string, value: number, diff = 5) => Waiter.pTryUntil('Wait for toolbar to be positioned', () => {
     const ele = UiFinder.findIn(SugarBody.body(), '.tox-pop').getOrDie();
     const posStyle = Css.get(ele, 'position');
-    const dirStyle = parseInt(Css.getRaw(ele, direction).getOr('0').replace('px', ''), 10);
+    const dirStyle = parseInt(Css.getRaw(ele, direction) ?? '0'.replace('px', ''), 10);
     assert.equal(posStyle, position, 'Assert toolbar positioning');
     assert.approximately(dirStyle, value, diff, `Assert toolbar position - ${direction} ${dirStyle}px ~= ${value}px`);
   });

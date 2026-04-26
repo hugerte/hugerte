@@ -1,6 +1,6 @@
 import { Keys, UiFinder, Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { Attribute, SugarBody } from '@ephox/sugar';
 import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
@@ -45,7 +45,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
     TinyUiActions.clickOnUi(editor, `[role="menuitemcheckbox"][aria-label="${value}"]`);
   };
 
-  const pAssertOptions = async (editor: Editor, selector: string, ideal: string[], current: Optional<string>) => {
+  const pAssertOptions = async (editor: Editor, selector: string, ideal: string[], current: string | null) => {
     const menu = await TinyUiActions.pWaitForUi(editor, selector);
     // ensure that there aren't two checked options
     UiFinder.notExists(menu, '[aria-checked="true"]~[aria-checked="true"]');
@@ -56,7 +56,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
     );
     // ensure that the list of options is correct
     const elements = UiFinder.findAllIn(menu, '[role="menuitemcheckbox"]');
-    const actual = elements.map((element) =) Attribute.get(element, 'aria-label'));
+    const actual = elements.map((element) => Attribute.get(element, 'aria-label'));
     assert.deepEqual(actual, ideal, 'Correct menu items are displayed');
   };
 
@@ -71,7 +71,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
         ...baseSettings
       }, []);
 
-      [ menuSpec, toolbarSpec ].forEach((spec) =) {
+      [ menuSpec, toolbarSpec ].forEach((spec) => {
         it(`TINY-4843: ${spec.name} lists correct line heights`, async () => {
           const editor = hook.editor();
           editor.setContent('<p style="line-height: 1.4;">Hello</p>');
@@ -176,7 +176,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
         line_height_formats: '1 1.1 1.11 1.111'
       }, []);
 
-      [ menuSpec, toolbarSpec ].forEach((spec) =) {
+      [ menuSpec, toolbarSpec ].forEach((spec) => {
         it(`TINY-4843: ${spec.name} lists specified line heights`, async () => {
           const editor = hook.editor();
           await spec.pOpen(editor, 'Line height');
@@ -196,7 +196,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
         hook.editor().setContent('');
       });
 
-      [ menuSpec, toolbarSpec ].forEach((spec) =) {
+      [ menuSpec, toolbarSpec ].forEach((spec) => {
         it(`TINY-4843: ${spec.name} preserves original line height formats`, async () => {
           const editor = hook.editor();
           await spec.pOpen(editor, 'Line height');
@@ -237,7 +237,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
 
       const defaultLanguages = [ 'English', 'Spanish', 'French', 'German', 'Portuguese', 'Chinese' ];
 
-      [ menuSpec, toolbarSpec ].forEach((spec) =) {
+      [ menuSpec, toolbarSpec ].forEach((spec) => {
         it(`TINY-6149: ${spec.name} shows the correct default languages`, async () => {
           const editor = hook.editor();
           await spec.pOpen(editor, 'Language');
@@ -339,7 +339,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
     });
 
     context('Advanced settings', () => {
-      [ menuSpec, toolbarSpec ].forEach((spec) =) {
+      [ menuSpec, toolbarSpec ].forEach((spec) => {
         it(`TINY-6149: ${spec.name} applies custom language attributes`, async () => {
           const editor = await McEditor.pFromSettings<Editor>({
             ...baseSettings,

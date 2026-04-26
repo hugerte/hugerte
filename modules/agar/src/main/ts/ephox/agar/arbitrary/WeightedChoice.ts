@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import * as fc from 'fast-check';
 
 export interface WeightedItem {
@@ -36,17 +36,16 @@ const choose = <T extends WeightedItem>(candidates: T[]): WeightedList<T> => {
   return weighted(result.list, result.total);
 };
 
-const gChoose = <T extends WeightedItem>(weighted: WeightedList<T>): fc.Arbitrary<Optional<T & AccWeightItem>> =>
-  fc.float({ min: 0, max: weighted.total }).map((w): Optional<T & AccWeightItem> => {
-    const raw = Arr.find(weighted.list, (d) =>
-      w <= d.accWeight
-    );
+const gChoose = <T extends WeightedItem>(weighted: WeightedList<T>): fc.Arbitrary<T & AccWeightItem | null> =>
+  fc.float({ min: 0, max: weighted.total }).map((w): T & AccWeightItem | null => {
+    const raw = (weighted.list.find((d) =>
+      w <= d.accWeight) ?? null);
 
-    const keys = raw.map(Obj.keys).getOr([]);
+    const keys = raw.map(Obj.keys) ?? [];
     return keys.length === [ 'weight', 'accWeight' ].length ? null : raw;
   });
 
-const generator = <T extends WeightedItem>(candidates: T[]): fc.Arbitrary<Optional<T & AccWeightItem>> => {
+const generator = <T extends WeightedItem>(candidates: T[]): fc.Arbitrary<T & AccWeightItem | null> => {
   const list = choose(candidates);
   return gChoose(list);
 };

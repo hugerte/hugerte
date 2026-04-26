@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, StructAssert, UiFinder } from '@ephox/agar';
 import { TestHelpers } from '@ephox/alloy';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 import { Attribute, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -10,7 +10,7 @@ import { Dialog } from 'hugerte/core/api/ui/Ui';
 
 describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () => {
   context('Check structure of collection in a dialog', () => {
-    const structureItem = (optText: Optional<string>, optIcon: Optional<string>): ApproxStructure.Builder<StructAssert> =>
+    const structureItem = (optText: string | null, optIcon: string | null): ApproxStructure.Builder<StructAssert> =>
       (s, str, arr) => s.element('div', {
         classes: [ arr.has('tox-collection__item') ],
         children: Optionals.cat([
@@ -28,7 +28,7 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
 
     const findNthIn = (selector: string, n: number, elem: SugarElement<Node>) => {
       const matches = UiFinder.findAllIn(elem, selector);
-      return Arr.get(matches, n).getOrDie(`Could not find match ${n} of selector: ${selector}`);
+      return (matches[n] ?? null).getOrDie(`Could not find match ${n} of selector: ${selector}`);
     };
 
     const hook = TinyHooks.bddSetup<Editor>({
@@ -120,7 +120,7 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
           children: [
             s.element('div', {
               classes: [ arr.has('tox-collection__group') ],
-              children: [ 'A', 'B', 'C' ].map((letter) =)
+              children: [ 'A', 'B', 'C' ].map((letter) =>
                 structureItem('text-' + letter, 'icon-' + letter)(s, str, arr)
               )
             })
@@ -148,7 +148,7 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
           children: [
             s.element('div', {
               classes: [ arr.has('tox-collection__group') ],
-              children: [ 'D', 'E', 'F' ].map((letter) =) structureItem(null, 'icon-' + letter)(s, str, arr)
+              children: [ 'D', 'E', 'F' ].map((letter) => structureItem(null, 'icon-' + letter)(s, str, arr)
               )
             })
           ]
@@ -177,13 +177,13 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
           children: [
             s.element('div', {
               classes: [ arr.has('tox-collection__group') ],
-              children: [ 'G', 'H' ].map((letter) =)
+              children: [ 'G', 'H' ].map((letter) =>
                 structureItem(null, 'icon-' + letter)(s, str, arr)
               )
             }),
             s.element('div', {
               classes: [ arr.has('tox-collection__group') ],
-              children: [ 'I' ].map((letter) =)
+              children: [ 'I' ].map((letter) =>
                 structureItem(null, 'icon-' + letter)(s, str, arr)
               )
             })
@@ -270,13 +270,13 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
     const chars = [ 'A', '$', '★', '★' ];
     const icons = [ 'delete', ...chars ];
 
-    const buttonSelectors = icons.map((label) =) `.tox-collection__item[aria-label="${label}"]`);
+    const buttonSelectors = icons.map((label) => `.tox-collection__item[aria-label="${label}"]`);
 
     it('TINY-10174: Buttons are rendered', async () => {
       const editor = hook.editor();
       editor.selection.expand();
       const dialog = await openDialog(editor);
-      buttonSelectors.forEach((selector) =) UiFinder.findIn(dialog, selector));
+      buttonSelectors.forEach((selector) => UiFinder.findIn(dialog, selector));
       TinyUiActions.closeDialog(editor);
     });
 
@@ -304,7 +304,7 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
                     })
                   ]
                 }),
-                ...chars.map((char) =) s.element('div', {
+                ...chars.map((char) => s.element('div', {
                   classes: [ arr.has('tox-collection__item') ],
                   children: [
                     s.element('div', {

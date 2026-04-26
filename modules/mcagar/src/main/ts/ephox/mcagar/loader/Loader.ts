@@ -1,5 +1,5 @@
 import { TestLogs } from '@ephox/agar';
-import { FutureResult, Global, Optional, Result } from '@ephox/katamari';
+import { FutureResult, Global, Result } from '@ephox/katamari';
 import { Attribute, DomEvent, Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor } from '../alien/EditorTypes';
@@ -49,7 +49,7 @@ const loadScript = (url: string): FutureResult<string, Error> => FutureResult.nu
   Insert.append(SugarBody.body(), script);
 });
 
-const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: Optional<SugarElement<Element>>): void => {
+const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: SugarElement<Element> | null): void => {
   const target = elementOpt.getOrThunk(() => createTarget(settings.inline));
   const randomId = '_' + Math.random().toString(36).slice(2);
   Attribute.set(target, 'id', randomId);

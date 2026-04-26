@@ -74,7 +74,7 @@ UnitTest.test('RectangularTest', () => {
   InsertAll.append(div, [ table, table2 ] );
 
   const check = (tableTarget: SugarElement<HTMLTableElement>, from: string, to: string, expected: boolean) => {
-    tableTarget.dom.querySelectorAll('td').forEach((td) =) {
+    tableTarget.dom.querySelectorAll('td').forEach((td) => {
       td.style.background = '';
     });
     document.querySelector(from) as HTMLTableCellElement ?? null.getOrDie('Missing element for "from" selector').style.background = '#cadbee';
@@ -82,7 +82,7 @@ UnitTest.test('RectangularTest', () => {
     const start = SelectorFilter.descendants<HTMLTableCellElement>(tableTarget, from)[0];
     const finish = SelectorFilter.descendants<HTMLTableCellElement>(tableTarget, to)[0];
     const c = TablePositions.getBox(tableTarget, start, finish);
-    Assert.eq('', expected, c.isSome());
+    Assert.eq('', expected, c !== null);
   };
 
   check(table, '#tableA td#B1', '#tableA td#C3', false);

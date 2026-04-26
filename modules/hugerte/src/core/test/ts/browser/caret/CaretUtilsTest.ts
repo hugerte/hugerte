@@ -29,7 +29,7 @@ describe('browser.hugerte.core.CaretUtilTest', () => {
   };
 
   const replaceWithZwsp = (node: Node) => {
-    node.childNodes.forEach((childNode) =) {
+    node.childNodes.forEach((childNode) => {
       if (childNode.nodeType === 3) {
         childNode.nodeValue = (childNode as Text).data.replace(/__ZWSP__/, ZWSP);
       } else {

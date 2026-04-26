@@ -42,7 +42,7 @@ UnitTest.test('api.Extract.(from,all,extract,extractTo)', () => {
   const checkAll = (expected: string[], initial: string) => {
     const start = Finder.get(doc, initial);
     const actual = Extract.all(doc, start);
-    Assert.eq('', expected, actual.map((a) =) {
+    Assert.eq('', expected, actual.map((a) => {
       return a.id;
     }));
   };

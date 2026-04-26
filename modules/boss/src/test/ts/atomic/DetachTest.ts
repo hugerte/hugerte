@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import { Gene } from 'ephox/boss/api/Gene';
@@ -9,7 +9,7 @@ import * as Tracks from 'ephox/boss/mutant/Tracks';
 
 UnitTest.test('DetachTest', () => {
 
-  const check = (expectedRemain: string, expectedDetach: Optional<string>, input: Gene, id: string) => {
+  const check = (expectedRemain: string, expectedDetach: string | null, input: Gene, id: string) => {
     const family = Tracks.track(input, null);
     const actualDetach = Detach.detach(family, Gene(id, '.'));
     Assert.eq('expectedRemain', expectedRemain, Logger.basic(family));

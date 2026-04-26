@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import { SugarElement } from '../../api/node/SugarElement';
 import * as SugarNode from '../../api/node/SugarNode';
@@ -17,7 +17,7 @@ import * as TextPoint from './TextPoint';
  * (repartee does something similar).
  */
 
-const searchInChildren = (doc: SugarElement<Document>, node: SugarElement<Node>, x: number, y: number): Optional<Range> => {
+const searchInChildren = (doc: SugarElement<Document>, node: SugarElement<Node>, x: number, y: number): Range | null => {
   const r = doc.dom.createRange();
   const nodes = Traverse.children(node);
   return Arr.findMap(nodes, (n) => {
@@ -29,10 +29,10 @@ const searchInChildren = (doc: SugarElement<Document>, node: SugarElement<Node>,
   });
 };
 
-const locateNode = (doc: SugarElement<Document>, node: SugarElement<Node>, x: number, y: number): Optional<Range> =>
+const locateNode = (doc: SugarElement<Document>, node: SugarElement<Node>, x: number, y: number): Range | null =>
   SugarNode.isText(node) ? TextPoint.locate(doc, node, x, y) : searchInChildren(doc, node, x, y);
 
-const locate = (doc: SugarElement<Document>, node: SugarElement<Node>, x: number, y: number): Optional<Range> => {
+const locate = (doc: SugarElement<Document>, node: SugarElement<Node>, x: number, y: number): Range | null => {
   const r = doc.dom.createRange();
   r.selectNode(node.dom);
   const rect = r.getBoundingClientRect();

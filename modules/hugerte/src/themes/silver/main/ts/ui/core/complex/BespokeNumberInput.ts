@@ -1,6 +1,6 @@
 import { Keys } from '@ephox/agar';
 import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Button, Disabling, Focusing, FocusInsideModes, Input, Keying, Memento, NativeEvents, Representing, SystemEvents, Tooltipping } from '@ephox/alloy';
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Focus, SugarElement, Traverse } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -57,7 +57,7 @@ const createBespokeNumberInput = (editor: Editor, backstage: UiFactoryBackstage,
   const increase = (fromInput: boolean, focusBack: boolean) => changeValue((n, s) => n + s, fromInput, focusBack);
 
   const goToParent = (comp: AlloyComponent) =>
-    Traverse.parentElement(comp.element).fold(Optional.none, (parent) => {
+    Traverse.parentElement(comp.element).fold(() => null, (parent) => {
       Focus.focus(parent);
       return true;
     });

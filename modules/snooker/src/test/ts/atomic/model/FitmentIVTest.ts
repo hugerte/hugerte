@@ -48,7 +48,7 @@ UnitTest.test('FitmentIVTest', () => {
   };
 
   const grid = (isNew: boolean, rows: number, cols: number, prefix: string = '') =>
-    new Array(rows).map((_row, r) =) new Array(cols).map((_cs, c) =)
+    new Array(rows).map((_row, r) => new Array(cols).map((_cs, c) =>
       en(prefix + '-' + r + '-' + c, isNew)
     ));
 
@@ -193,8 +193,8 @@ UnitTest.test('FitmentIVTest', () => {
       const gridA = specA.grid;
       const gridB = specB.grid;
 
-      result.getOrDie().forEach((row, ri) =) {
-        row.cells.forEach((cell, ci) =) {
+      result.getOrDie().forEach((row, ri) => {
+        row.cells.forEach((cell, ci) => {
           const expected = (() => {
             // Assumption: both gridA and gridB are rectangular.
             if (ri >= offsetRow && ri <= offsetRow + gridB.length - 1 &&

@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import { PlatformInfo } from '../info/PlatformInfo';
 import { UaInfo } from '../info/UaInfo';
@@ -16,10 +16,10 @@ export interface UserAgentData {
   readonly mobile: boolean;
 }
 
-const detectBrowser = (browsers: PlatformInfo[], userAgentData: UserAgentData): Optional<UaInfo> => {
+const detectBrowser = (browsers: PlatformInfo[], userAgentData: UserAgentData): UaInfo | null => {
   return Arr.findMap<UserAgentDataBrand, UaInfo>(userAgentData.brands, (uaBrand) => {
     const lcBrand = uaBrand.brand.toLowerCase();
-    return Arr.find(browsers, (browser) => lcBrand === browser.brand?.toLowerCase())
+    return (browsers.find((browser) => lcBrand === browser.brand?.toLowerCase()) ?? null)
       .map((info) => ({
         current: info.name,
         version: Version.nu(parseInt(uaBrand.version, 10), 0)

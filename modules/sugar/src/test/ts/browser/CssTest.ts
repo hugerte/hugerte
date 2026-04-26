@@ -58,17 +58,17 @@ UnitTest.test('CssTest', () => {
     }
     KAssert.eqNone('getRaw bogus', Css.getRaw(d, 'bogus'));
 
-    Assert.eq('getRaw display 1', true, Css.getRaw(d, 'display').isNone());
+    Assert.eq('getRaw display 1', true, Css.getRaw(d, 'display') === null);
     Css.set(d, 'display', 'inline-block');
-    Assert.eq('getRaw display 2', true, Css.getRaw(d, 'display').isSome());
+    Assert.eq('getRaw display 2', true, Css.getRaw(d, 'display') !== null);
     Assert.eq('getRaw display 3', 'inline-block', Css.getRaw(d, 'display').getOrDie('Optional expecting: inline-block'));
     Css.remove(d, 'display');
-    Assert.eq('getRaw display 4', true, Css.getRaw(d, 'display').isNone());
+    Assert.eq('getRaw display 4', true, Css.getRaw(d, 'display') === null);
     Assert.eq('has', false, Attribute.has(d, 'style'));
     Css.set(d, 'font-size', '12px');
-    Assert.eq('getRaw font-size 1', true, Css.getRaw(d, 'font-size').isSome());
+    Assert.eq('getRaw font-size 1', true, Css.getRaw(d, 'font-size') !== null);
     Css.remove(d, 'font-size');
-    Assert.eq('getRaw font-size 2', false, Css.getRaw(d, 'font-size').isSome());
+    Assert.eq('getRaw font-size 2', false, Css.getRaw(d, 'font-size') !== null);
     Css.set(d, 'background-color', 'rgb(12, 213, 12)');
     Assert.eq('getRaw background-color', 'rgb(12, 213, 12)', Css.getRaw(d, 'background-color').getOrDie('Optional expecting: rgb(12,213,12)'));
     Css.remove(d, 'background-color');
@@ -113,12 +113,12 @@ UnitTest.test('CssTest', () => {
       'right': '0px',
       'font-size': '12px'
     });
-    Assert.eq('getRaw', true, Css.getRaw(play, 'font-size').isSome());
+    Assert.eq('getRaw', true, Css.getRaw(play, 'font-size') !== null);
     Css.preserve(play, (el) => {
       Css.remove(el, 'font-size');
-      Assert.eq('getRaw', false, Css.getRaw(play, 'font-size').isSome());
+      Assert.eq('getRaw', false, Css.getRaw(play, 'font-size') !== null);
     });
-    Assert.eq('Font size should have been preserved', true, Css.getRaw(play, 'font-size').isSome());
+    Assert.eq('Font size should have been preserved', true, Css.getRaw(play, 'font-size') !== null);
 
     Css.setOptions(play, {
       'left': null,

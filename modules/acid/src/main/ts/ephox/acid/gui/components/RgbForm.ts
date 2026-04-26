@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, EventFormat, Focusing, Form, FormField, FormTypes, GuiFactory, Input, Invalidating,
   Memento, Representing, SimulatedEvent, Sketcher, SketchSpec, Tabstopping, UiSketcher
 } from '@ephox/alloy';
-import { Cell, Future, Optional, Result } from '@ephox/katamari';
+import { Cell, Future, Result } from '@ephox/katamari';
 import { Css } from '@ephox/sugar';
 
 import { Hex, Rgba } from '../../api/colour/ColourTypes';
@@ -190,9 +190,9 @@ const rgbFormFactory = (
       setValueRgb(rgb);
     };
 
-    const get = (prop: keyof typeof state): Optional<any> => state[prop].get();
+    const get = (prop: keyof typeof state): any | null => state[prop].get();
 
-    const set = (prop: keyof typeof state, value: Optional<any>): void => {
+    const set = (prop: keyof typeof state, value: any | null): void => {
       state[prop].set(value);
     };
 

@@ -111,7 +111,7 @@ describe('browser.hugerte.core.FontSelectTest', () => {
     it('TBA: System font stack variants on a paragraph show "System Font" as the font name', () => {
       const editor = hook.editor();
       editor.setContent(Arr.foldl(systemFontStackVariants, (acc, font) => acc + '<p style="font-family: ' + font.replace(/"/g, `'`) + '"></p>', ''));
-      systemFontStackVariants.forEach((_, idx) =) {
+      systemFontStackVariants.forEach((_, idx) => {
         TinySelections.setCursor(editor, [ idx, 0 ], 0);
         editor.nodeChanged();
         assertSelectBoxDisplayValue('fontfamily', 'System Font');

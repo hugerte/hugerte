@@ -14,7 +14,7 @@ describe('atomic.katamari.api.str.SupplantTest', () => {
     check('', '', {});
     check('', '', { cat: 'dog' });
     check('a', 'a', {});
-    check('${a}', '${a}', { a: Fun.noop });
+    check('${a}', '${a}', { a: () => {} });
     check('toaster', '${a}', { a: 'toaster' });
     check('cattoastera', 'cat${a}a', { a: 'toaster' });
   });

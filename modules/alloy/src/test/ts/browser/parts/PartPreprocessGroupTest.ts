@@ -35,7 +35,7 @@ UnitTest.test('Browser Test: parts.PartProcessGroupTest', () => {
       placeholders.groupB({
         preprocess: (comps: AlloySpec[]) => {
           const chunks = Arr.chunk(comps, 2);
-          return chunks.map((c) =) ({
+          return chunks.map((c) => ({
             chunk: c
           }));
         }

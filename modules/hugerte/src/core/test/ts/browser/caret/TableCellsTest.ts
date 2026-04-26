@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, SelectorFind, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -14,14 +14,14 @@ describe('browser.hugerte.core.caret.TableCellsTest', () => {
 
   const setHtml = (html: string) => viewBlock.update(html.trim());
 
-  const assertCell = (cellOpt: Optional<HTMLTableCellElement | HTMLTableCaptionElement>, path: number[]) => {
+  const assertCell = (cellOpt: HTMLTableCellElement | HTMLTableCaptionElement | null, path: number[]) => {
     const cell = cellOpt.getOrDie('x');
     const expectedContainer = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), path).getOrDie();
     Assertions.assertDomEq('Should be the expected element', expectedContainer, SugarElement.fromDom(cell));
   };
 
-  const assertNone = (opt: Optional<HTMLTableCellElement | HTMLTableCaptionElement>) => {
-    assert.isTrue(opt.isNone(), 'Should be the none but got some');
+  const assertNone = (opt: HTMLTableCellElement | HTMLTableCaptionElement | null) => {
+    assert.isTrue(opt === null, 'Should be the none but got some');
   };
 
   const getClosestCellAbove = (x: number, y: number) => {
@@ -50,7 +50,7 @@ describe('browser.hugerte.core.caret.TableCellsTest', () => {
     return TableCells.findClosestPositionInBelowCell(table, pos);
   };
 
-  const assertCaretPosition = (posOpt: Optional<CaretPosition>, path: number[], offset: number) => {
+  const assertCaretPosition = (posOpt: CaretPosition | null, path: number[], offset: number) => {
     const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), path).getOrDie();
     const pos = posOpt.getOrDie('Needs to return a caret');
 

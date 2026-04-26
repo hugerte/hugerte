@@ -25,15 +25,15 @@ describe('atomic.agar.api.TestStoreTest', () => {
     { name: 'MMM', age: 20, isHappy: true }
   ];
 
-  const objectsSortedByName = [...objects].sort((a, b) =) a.name.length - b.name.length);
-  const objectsSortedByAge = [...objects].sort((a, b) =) a.age - b.age);
-  const objectsSortedByIsHappy = [...objects].sort((a, b) =) Number(a.isHappy) - Number(b.isHappy));
+  const objectsSortedByName = [...objects].sort((a, b) => a.name.length - b.name.length);
+  const objectsSortedByAge = [...objects].sort((a, b) => a.age - b.age);
+  const objectsSortedByIsHappy = [...objects].sort((a, b) => Number(a.isHappy) - Number(b.isHappy));
 
   context('Step based', () => {
     it('TINY-9157: TestStore strings', () => {
       const store = TestStore<string>();
       const sAddItemToStore = () => {
-        return strings.map((s: string) =) {
+        return strings.map((s: string) => {
           return Step.sync(() => {
             store.add(s);
           });
@@ -54,7 +54,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
     it('TINY-9157: TestStore numbers', () => {
       const store = TestStore<number>();
       const sAddToStore = () => {
-        return numbers.map((s: number) =) {
+        return numbers.map((s: number) => {
           return Step.sync(() => {
             store.add(s);
           });
@@ -75,7 +75,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
     it('TINY-9157: TestStore objects', () => {
       const store = TestStore<TestData>();
       const sAddItemToStore = () => {
-        return objects.map((s: TestData) =) {
+        return objects.map((s: TestData) => {
           return Step.sync(() => {
             store.add(s);
           });
@@ -102,7 +102,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
     it('TINY-9157: TestStore strings', () => {
       const store = TestStore<string>();
 
-      strings.forEach((s) =) store.adder(s)());
+      strings.forEach((s) => store.adder(s)());
 
       store.assertEq('String store', strings);
       store.assertSortedEq('String store sorted', stringsSorted);
@@ -113,7 +113,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
 
     it('TINY-9157: TestStore numbers', () => {
       const store = TestStore<number>();
-      numbers.forEach((s) =) store.adder(s)());
+      numbers.forEach((s) => store.adder(s)());
 
       store.assertEq('Number store', numbers);
       store.assertSortedEq('Number store', numbersSorted);
@@ -125,7 +125,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
     it('TINY-9157: TestStore objects', () => {
       const store = TestStore<TestData>();
 
-      objects.forEach((s) =) store.adder(s)());
+      objects.forEach((s) => store.adder(s)());
 
       store.assertEq('Object store', objects);
       store.assertSortedEq('Object store sorted by name', objectsSortedByName, (a, b) => a.name.length - b.name.length);

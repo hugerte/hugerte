@@ -92,15 +92,15 @@ const getTextNodes = (list: ArbListElement) => {
 
   const helper = (list: ArbListElement) => {
     const collectTextNodesInElement = (child: ArbElementNode) => {
-      child.children.forEach((child) =) {
+      child.children.forEach((child) => {
         if (isArbTextNode(child)) {
           textNodes.push(child);
         }
       });
     };
 
-    list.children.forEach((li) =) {
-      li.children.forEach((child) =) {
+    list.children.forEach((li) => {
+      li.children.forEach((child) => {
         if (isArbTextNode(child)) {
           textNodes.push(child);
         } else if (isArbListElement(child)) {
@@ -139,7 +139,7 @@ const toDomListElementWithSelection = (arbList: ArbListElementWithSelection) => 
     const toDomElement = (child: ArbElementNode) => {
       const el = document.createElement(child.type);
 
-      child.children.forEach((child) =) {
+      child.children.forEach((child) => {
         if (isArbTextNode(child)) {
           const textNode = document.createTextNode(child.value);
           el.appendChild(textNode);
@@ -153,10 +153,10 @@ const toDomListElementWithSelection = (arbList: ArbListElementWithSelection) => 
       return el;
     };
 
-    list.children.forEach((li) =) {
+    list.children.forEach((li) => {
       const liEl = document.createElement(li.type);
 
-      li.children.forEach((child) =) {
+      li.children.forEach((child) => {
         if (isArbTextNode(child)) {
           const textNode = document.createTextNode(child.value);
           liEl.appendChild(textNode);

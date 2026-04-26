@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { Bindable, Event, Events } from '@ephox/porkbun';
 import { SugarElement } from '@ephox/sugar';
 
@@ -31,7 +31,7 @@ export const BarMutation = (): BarMutation => {
     drag: Event([ 'xDelta', 'yDelta', 'target' ])
   });
 
-  let target = Optional.none<SugarElement<Element>>();
+  let target = null;
 
   const delegate = Mutation();
 

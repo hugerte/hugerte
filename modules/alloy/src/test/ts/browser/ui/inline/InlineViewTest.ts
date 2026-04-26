@@ -84,7 +84,7 @@ UnitTest.asynctest('InlineViewTest', (success, failure) => {
         'Check that getContent is none for an inline menu that has not shown anything',
         Step.sync(() => {
           const contents = InlineView.getContent(inline);
-          Assertions.assertEq('Should be none', true, contents.isNone());
+          Assertions.assertEq('Should be none', true, contents === null);
         })
       ),
 
@@ -155,7 +155,7 @@ UnitTest.asynctest('InlineViewTest', (success, failure) => {
         'Check that getContent is none not that inline view has been hidden again',
         Step.sync(() => {
           const contents = InlineView.getContent(inline);
-          Assertions.assertEq('Should be none', true, contents.isNone());
+          Assertions.assertEq('Should be none', true, contents === null);
         })
       ),
 
@@ -181,8 +181,8 @@ UnitTest.asynctest('InlineViewTest', (success, failure) => {
         Chain.asStep(gui.element, [
           UiFinder.cFindIn('.test-inline'),
           Chain.op((value) => {
-            Assertions.assertEq('Check view CSS top is 50px', '50px', Css.getRaw(value, 'top').getOr('no top found'));
-            Assertions.assertEq('Check view CSS left is 50px', '50px', Css.getRaw(value, 'left').getOr('no left found'));
+            Assertions.assertEq('Check view CSS top is 50px', '50px', Css.getRaw(value, 'top') ?? 'no top found');
+            Assertions.assertEq('Check view CSS left is 50px', '50px', Css.getRaw(value, 'left') ?? 'no left found');
           })
         ])
       ),

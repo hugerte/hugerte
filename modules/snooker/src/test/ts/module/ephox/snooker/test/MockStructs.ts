@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement, SugarNode, TextContent } from '@ephox/sugar';
 
 import * as Structs from 'ephox/snooker/api/Structs';
@@ -11,9 +11,7 @@ const getElementNew = (elements: Structs.ElementNew[], tagName: 'td' | 'th' | 'c
     return Structs.elementnew(elm, isNew, isLocked);
   };
 
-  return Arr.find(elements,
-    (elementNew) => SugarNode.name(elementNew.element) === tagName && TextContent.get(elementNew.element) === text
-  ).getOrThunk(createAndAppendElement);
+  return (elements.find((elementNew) => SugarNode.name(elementNew.element) === tagName && TextContent.get(elementNew.element) === text) ?? null).getOrThunk(createAndAppendElement);
 };
 
 export {

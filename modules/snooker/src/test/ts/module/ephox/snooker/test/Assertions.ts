@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { Assert } from '@ephox/bedrock-client';
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 import { Attribute, Css, Hierarchy, Html, Insert, Remove, SelectorFilter, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 
 import * as TableOperations from 'ephox/snooker/api/TableOperations';
@@ -27,7 +27,7 @@ const makeContainer = () =>
 
 const checkOld = (
   label: string,
-  optExpCell: Optional<ExpCell>,
+  optExpCell: ExpCell | null,
   expectedHtml: string,
   input: string,
   operation: OperationCallback<TargetElement>,
@@ -54,7 +54,7 @@ const checkOld = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  all.forEach((elem) =) Css.remove(elem, 'width') );
+  all.forEach((elem) => Css.remove(elem, 'width') );
 
   Assertions.assertHtml(label, expectedHtml, Html.getOuter(table));
   Remove.remove(container);
@@ -63,7 +63,7 @@ const checkOld = (
 
 const checkOldMultiple = (
   label: string,
-  optExpCell: Optional<ExpCell>,
+  optExpCell: ExpCell | null,
   expectedHtml: string,
   input: string,
   operation: OperationCallback<TargetSelection>,
@@ -76,7 +76,7 @@ const checkOldMultiple = (
   Insert.append(SugarBody.body(), container);
   const result = operation(table,
     {
-      selection: paths.map((path) =)
+      selection: paths.map((path) =>
         Hierarchy.follow(table, [ path.section, path.row, path.column, 0 ]).getOrDie(label + ': could not follow path')
       )
     },
@@ -94,7 +94,7 @@ const checkOldMultiple = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  all.forEach((elem) =) Css.remove(elem, 'width') );
+  all.forEach((elem) => Css.remove(elem, 'width') );
   Assertions.assertHtml(label, expectedHtml, Html.getOuter(table));
   Remove.remove(container);
   // Ensure all the resize bars are destroyed before of running the next test.
@@ -194,7 +194,7 @@ const checkStructure = (
 
   // Presence.assertHas(expected, table, 'checking the operation on table: ' + Html.getOuter(table));
   const rows = SelectorFilter.descendants(table, 'tr');
-  const actual = rows.map((r) =) {
+  const actual = rows.map((r) => {
     const cells = SelectorFilter.descendants<HTMLTableCellElement>(r, 'td,th');
     return cells.map(Html.get);
   });
@@ -204,8 +204,8 @@ const checkStructure = (
 
 const checkDelete = (
   label: string,
-  optExpCell: Optional<ExpCell>,
-  optExpectedHtml: Optional<string>,
+  optExpCell: ExpCell | null,
+  optExpectedHtml: string | null,
   input: string,
   operation: OperationCallback<TargetSelection>,
   cells: ExpCell[]
@@ -214,7 +214,7 @@ const checkDelete = (
   const container = makeContainer();
   Insert.append(container, table);
   Insert.append(SugarBody.body(), container);
-  const cellz = cells.map((cell) =)
+  const cellz = cells.map((cell) =>
     Hierarchy.follow(table, [ cell.section, cell.row, cell.column, 0 ])
       .getOrDie(label + `: could not find cell: { section: ${cell.section}, row: ${cell.row}, column: ${cell.column} }`)
   );
@@ -234,13 +234,13 @@ const checkDelete = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  all.forEach((elem) =) Css.remove(elem, 'width') );
+  all.forEach((elem) => Css.remove(elem, 'width') );
 
   optExpectedHtml.fold(() => {
     // the result of a delete operation can be by definition the deletion of the table itself.
     // If that is the case our table should not have any parent element because has been removed
     // from the DOM
-    Assertions.assertEq(label + ': The table was expected to be removed from the DOM', false, Traverse.parent(table).isSome());
+    Assertions.assertEq(label + ': The table was expected to be removed from the DOM', false, Traverse.parent(table) !== null);
 
   }, (expectedHtml) => {
     Assertions.assertHtml(label, expectedHtml, Html.getOuter(table));
@@ -272,7 +272,7 @@ const checkMerge = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  all.forEach((elem) =) Css.remove(elem, 'width') );
+  all.forEach((elem) => Css.remove(elem, 'width') );
 
   Assert.eq('', '1', Attribute.get(table, 'border'));
   // Get around ordering of attribute differences.
@@ -292,8 +292,8 @@ const checkUnmerge = (
   const container = makeContainer();
   Insert.append(container, table);
   Insert.append(SugarBody.body(), container);
-  const unmergables = unmergablePaths.map((path) =)
-    Hierarchy.follow(table, [ path.section, path.row, path.column ]) as Optional<SugarElement<HTMLTableCellElement>>
+  const unmergables = unmergablePaths.map((path) =>
+    Hierarchy.follow(table, [ path.section, path.row, path.column ]) as SugarElement<HTMLTableCellElement> | null
   );
 
   const unmergable = Optionals.cat(unmergables);
@@ -303,7 +303,7 @@ const checkUnmerge = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  all.forEach((elem) =) Css.remove(elem, 'width') );
+  all.forEach((elem) => Css.remove(elem, 'width') );
 
   Assertions.assertEq(label, expected, Html.getOuter(table));
   Remove.remove(container);

@@ -1,6 +1,6 @@
 import { Arbitraries } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
@@ -35,9 +35,9 @@ describe('browser.hugerte.plugins.lists.ListModelTest', () => {
 
     const composeParse = (entries: Entry[]): Entry[] => composeList(document, entries)
       .map((list) => parseLists([ list ], null))
-      .bind(Arr.head)
+      .bind((arr: any[]) => arr[0] ?? null)
       .map((entrySet) => entrySet.entries)
-      .getOr([]);
+       ?? [];
 
     const isEqualEntries = (a: Entry[], b: Entry[]): boolean => stringifyEntries(a) === stringifyEntries(b);
 
@@ -58,7 +58,7 @@ describe('browser.hugerte.plugins.lists.ListModelTest', () => {
         itemAttributes: ${JSON.stringify(entry.itemAttributes)}
       }` : '';
 
-    const serializeElements = (elms: SugarElement[]): string => elms.map((el) =) el.dom.outerHTML).join('');
+    const serializeElements = (elms: SugarElement[]): string => elms.map((el) => el.dom.outerHTML).join('');
 
     fc.assert(composeParseProperty, { numRuns: 200 });
   });

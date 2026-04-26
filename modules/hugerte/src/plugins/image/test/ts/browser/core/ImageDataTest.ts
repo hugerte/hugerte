@@ -20,7 +20,7 @@ describe('browser.hugerte.plugins.image.core.ImageDataTest', () => {
     const css = DOMUtils.DOM.styles.parse(cssText);
     const newCss: Record<string, string> = {};
 
-    Object.keys(css).sort().forEach((key) =) {
+    Object.keys(css).sort().forEach((key) => {
       newCss[key] = css[key];
     });
 

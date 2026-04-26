@@ -25,7 +25,7 @@ UnitTest.test('LeftBlockTest', () => {
   const check = (expected: string, path: number[], method: <E, D>(universe: Universe<E, D>, item: E) => E[]) => {
     reset();
     const ele = Hierarchy.follow(editor, path);
-    Assert.eq('Could not find element at path: ' + path, true, ele.isSome());
+    Assert.eq('Could not find element at path: ' + path, true, ele !== null);
     ele.each((start) => {
       const group = method(universe, start);
       const clones = group.map(Replication.deep);

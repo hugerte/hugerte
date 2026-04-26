@@ -13,7 +13,7 @@ describe('browser.hugerte.themes.silver.editor.header.StickyHeaderInitialPlaceme
     { location: ToolbarLocation.top, height: 2000, expectDocked: false },
     { location: ToolbarLocation.bottom, height: 200, expectDocked: false },
     { location: ToolbarLocation.bottom, height: 2000, expectDocked: true }
-  ].forEach((test) =) {
+  ].forEach((test) => {
     it(`Test toolbar initial placement with toolbar_location: ${test.location} and height: ${test.height}`, async () => {
       const editor = await McEditor.pFromSettings<Editor>({
         base_url: '/project/hugerte/js/hugerte',

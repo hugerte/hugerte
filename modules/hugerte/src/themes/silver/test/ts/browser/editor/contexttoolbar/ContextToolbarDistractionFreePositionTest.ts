@@ -54,7 +54,7 @@ describe.skip('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolba
 
   const assertPosition = (position: string, value: number, diff = 5) => {
     const ele = UiFinder.findIn(SugarBody.body(), '.tox-pop').getOrDie();
-    const styles = parseInt(Css.getRaw(ele, position).getOr('0').replace('px', ''), 10);
+    const styles = parseInt(Css.getRaw(ele, position) ?? '0'.replace('px', ''), 10);
     assert.approximately(styles, value, diff, `Assert toolbar position - ${position} ${styles}px ~= ${value}px`);
   };
 

@@ -21,7 +21,7 @@ UnitTest.test('DataTransferItemListTest', () => {
     items.add('123', 'text/plain');
     assert.equal(items[1].kind, 'string', 'Should be expected kind');
     assert.lengthOf(items, 2, 'Should be expected length');
-    assert.equal(getData(items[1]).getOr(''), '123', 'Should be expected data');
+    assert.equal(getData(items[1]) ?? '', '123', 'Should be expected data');
 
     assert.throws(() => {
       items.add('123', 'text/plain');

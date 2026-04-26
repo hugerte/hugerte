@@ -23,7 +23,7 @@ DomEvent.bind(SugarElement.fromDom(document), 'keydown', (event) => {
           return DomWrapping.nu(SugarElement.fromTag('span'));
         });
 
-        spans.forEach((span) =) {
+        spans.forEach((span) => {
           Css.set(span, 'border-bottom', '1px solid red');
         });
       }

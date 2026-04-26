@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import AstNode from 'hugerte/core/api/html/Node';
@@ -10,7 +10,7 @@ type Branch = [AstNode, AstNode[]];
 
 describe('browser.hugerte.core.html.ParserUtilsTest', () => {
   context('findClosestEditingHost', () => {
-    const generateContentEditableBranch = (states: CeType[]): Optional<Branch> => {
+    const generateContentEditableBranch = (states: CeType[]): Branch | null => {
       const generateNode = (type: CeType) => {
         const node = AstNode.create('div');
         if (type !== 'none') {
@@ -19,7 +19,7 @@ describe('browser.hugerte.core.html.ParserUtilsTest', () => {
         return node;
       };
 
-      return Arr.head(states).map((first) => {
+      return (states[0] ?? null).map((first) => {
         const firstNode = generateNode(first);
         return states.slice(1).reduce(([ node, nodes ], type) => {
           const newNode = generateNode(type);
@@ -30,7 +30,7 @@ describe('browser.hugerte.core.html.ParserUtilsTest', () => {
 
     const testFindClosestEditingHost = (states: CeType[], expectedIndex: number) => {
       const [ node, nodes ] = generateContentEditableBranch(states).getOrDie('Failed to generate branch');
-      const actualIndex = ParserUtils.findClosestEditingHost(node).bind((host) => Arr.findIndex(nodes, (bnode) => bnode === host)).getOr(-1);
+      const actualIndex = ParserUtils.findClosestEditingHost(node).bind((host) => nodes.findIndex((bnode) => bnode === host)) ?? -1;
       assert.equal(actualIndex, expectedIndex, 'Expect to find editing host at specified index in branch.');
     };
 

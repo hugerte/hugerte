@@ -1,13 +1,13 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as Gather from 'ephox/phoenix/api/general/Gather';
 import * as Finder from 'ephox/phoenix/test/Finder';
 
 UnitTest.test('Seeker Test', () => {
-  const some = Optional.some;
+  const some = (x) => x;
 
   const universe = TestUniverse(
     Gene('root', 'root', [
@@ -44,17 +44,17 @@ UnitTest.test('Seeker Test', () => {
     return item.id === 'root';
   };
 
-  const check = (expected: Optional<string>, actual: Optional<Gene>) => {
+  const check = (expected: string | null, actual: Gene | null) => {
     KAssert.eqOptional('eq', expected, actual.map((x) => x.id));
   };
 
-  const checkBefore = (expected: Optional<string>, id: string) => {
+  const checkBefore = (expected: string | null, id: string) => {
     const item = Finder.get(universe, id);
     const actual = Gather.before(universe, item, isRoot);
     check(expected, actual);
   };
 
-  const checkAfter = (expected: Optional<string>, id: string) => {
+  const checkAfter = (expected: string | null, id: string) => {
     const item = Finder.get(universe, id);
     const actual = Gather.after(universe, item, isRoot);
     check(expected, actual);

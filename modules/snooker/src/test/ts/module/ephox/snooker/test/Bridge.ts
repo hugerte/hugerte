@@ -1,4 +1,4 @@
-import { Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 import { Attribute, Css, Hierarchy, Insert, Replication, SugarElement, SugarNode, TextContent } from '@ephox/sugar';
 
 import { Generators, SimpleGenerators } from 'ephox/snooker/api/Generators';
@@ -8,8 +8,8 @@ import { TargetMergable } from 'ephox/snooker/model/RunOperation';
 // Mock/Stub out helper functions
 
 const targetStub = (selection: Array<{ section: number; row: number; column: number }>, bounds: { startRow: number; startCol: number; finishRow: number; finishCol: number }, table: SugarElement<HTMLTableElement>): TargetMergable => {
-  const cells = Optionals.cat(selection.map((path) =) {
-    return Hierarchy.follow(table, [ path.section, path.row, path.column ]) as Optional<SugarElement<HTMLTableCellElement>>;
+  const cells = Optionals.cat(selection.map((path) => {
+    return Hierarchy.follow(table, [ path.section, path.row, path.column ]) as SugarElement<HTMLTableCellElement> | null;
   }));
 
   return {
@@ -37,7 +37,7 @@ const generators: Generators = {
   replace: (cell, tag, attrs) => {
     const replica = Replication.copy(cell, tag);
     // TODO: Snooker passes null to indicate 'remove attribute'
-    Object.entries(attrs).forEach(([k, v]) => ((v, k) =)(v, k)) {
+    Object.entries(attrs).forEach(([k, v]) => ((v, k) =>(v, k)) {
       if (v === null) {
         Attribute.remove(replica, k);
       } else {

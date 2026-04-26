@@ -26,7 +26,7 @@ describe('browser.hugerte.core.keyboard.BoundaryCaretTest', () => {
     const location = createLocation(elm, elementPath, offset);
     const caret = Cell<Text | null>(null);
 
-    assert.isTrue(location.isSome(), 'Should be a valid location: ' + html);
+    assert.isTrue(location !== null, 'Should be a valid location: ' + html);
 
     const pos = BoundaryCaret.renderCaret(caret, location.getOrDie()).getOrDie();
     Assertions.assertHtml('Should be equal html', expectedHtml, elm.dom.innerHTML);

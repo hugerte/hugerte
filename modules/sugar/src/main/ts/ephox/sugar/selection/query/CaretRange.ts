@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { SugarElement } from '../../api/node/SugarElement';
 import { SimRange } from '../../api/selection/SimRange';
@@ -15,7 +15,7 @@ interface VendorDocument {
 
 declare const document: VendorDocument;
 
-const caretPositionFromPoint = (doc: SugarElement<Document>, x: number, y: number): Optional<Range> =>
+const caretPositionFromPoint = (doc: SugarElement<Document>, x: number, y: number): Range | null =>
   (doc.dom as VendorDocument).caretPositionFromPoint?.(x, y) ?? null
     .bind((pos) => {
       // It turns out that Firefox can return null for pos.offsetNode
@@ -28,7 +28,7 @@ const caretPositionFromPoint = (doc: SugarElement<Document>, x: number, y: numbe
       return r;
     });
 
-const caretRangeFromPoint = (doc: SugarElement<Document>, x: number, y: number): Optional<Range> =>
+const caretRangeFromPoint = (doc: SugarElement<Document>, x: number, y: number): Range | null =>
   (doc.dom as VendorDocument).caretRangeFromPoint?.(x, y) ?? null;
 
 const availableSearch = (() => {
@@ -37,11 +37,11 @@ const availableSearch = (() => {
   } else if (document.caretRangeFromPoint) {
     return caretRangeFromPoint; // webkit implementation
   } else {
-    return Optional.none; // unsupported browser
+    return () => null; // unsupported browser
   }
 })();
 
-const fromPoint = (win: Window, x: number, y: number): Optional<SimRange> => {
+const fromPoint = (win: Window, x: number, y: number): SimRange | null => {
   const doc = SugarElement.fromDom(win.document);
   return availableSearch(doc, x, y).map((rng) => SimRange.create(
     SugarElement.fromDom(rng.startContainer),

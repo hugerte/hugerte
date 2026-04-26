@@ -53,10 +53,10 @@ describe('browser.hugerte.themes.silver.editor.header.InlineHeaderTest', () => {
       const width = Css.getRaw(headerWrapper, 'width');
       const maxWidth = Css.getRaw(header, 'max-width');
       if (maxWidth.getOrDie() !== expectedMaxWidth) {
-        throw new Error(`maxWidth is ${maxWidth.isSome()}, ${maxWidth.getOrNull()} and expectedMaxWidth is ${expectedMaxWidth}`);
+        throw new Error(`maxWidth is ${maxWidth !== null}, ${maxWidth} and expectedMaxWidth is ${expectedMaxWidth}`);
       }
       if (width.getOrDie() !== expectedWidth) {
-        throw new Error(`Width is ${width.isSome()}, ${width.getOrNull()} and expectedWidth is ${expectedWidth}`);
+        throw new Error(`Width is ${width !== null}, ${width} and expectedWidth is ${expectedWidth}`);
       }
     });
 

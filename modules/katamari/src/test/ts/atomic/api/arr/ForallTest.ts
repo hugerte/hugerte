@@ -28,7 +28,7 @@ describe('atomic.katamari.api.arr.ForallTest', () => {
     fc.assert(fc.property(
       fc.array(fc.integer(), 1, 30),
       (xs) => {
-        assert.isFalse(Arr.forall(xs, Fun.never));
+        assert.isFalse(Arr.forall(xs, () => false));
       }
     ));
   });
@@ -37,7 +37,7 @@ describe('atomic.katamari.api.arr.ForallTest', () => {
     fc.assert(fc.property(
       fc.array(fc.integer(), 1, 30),
       (xs) => {
-        assert.isTrue(Arr.forall(xs, Fun.always));
+        assert.isTrue(Arr.forall(xs, () => true));
       }
     ));
   });

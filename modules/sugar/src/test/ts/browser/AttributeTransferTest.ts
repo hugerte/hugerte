@@ -34,13 +34,13 @@ UnitTest.test('AttributeTransfer', () => {
 
   const check = (expectedPresent: Record<string, any>, expectedAbsent: string[], source: SugarElement<Element>, destination: SugarElement<Element>, attributes: string[]) => {
     Attribute.transfer(source, destination, attributes);
-    expectedAbsent.forEach((k) =) {
+    expectedAbsent.forEach((k) => {
       if (Attribute.has(destination, k)) {
         Assert.fail('Result should not have attribute: ' + k);
       }
     });
 
-    Object.entries(expectedPresent).forEach(([k, v]) => ((v, k) =)(v, k)) {
+    Object.entries(expectedPresent).forEach(([k, v]) => ((v, k) =>(v, k)) {
       if (!Attribute.has(destination, k)) {
         Assert.fail('Result should have attribute: ' + k);
       } else {

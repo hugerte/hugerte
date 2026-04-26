@@ -24,7 +24,7 @@ describe('atomic.katamari.api.arr.ArrMapTest', () => {
   context('functor laws', () => {
     it('obeys identity law', () => {
       fc.assert(fc.property(fc.array(fc.nat()), (xs) =>
-        assert.deepEqual(Arr.map(xs, Fun.identity), xs)
+        assert.deepEqual(Arr.map(xs, (x: any) => x), xs)
       ));
     });
 

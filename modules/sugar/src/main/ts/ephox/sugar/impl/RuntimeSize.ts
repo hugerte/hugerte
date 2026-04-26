@@ -4,7 +4,7 @@ import { SugarElement } from '../api/node/SugarElement';
 import * as Css from '../api/properties/Css';
 
 const toNumber = (px: string, fallback: number): number =>
-  parseFloat(px).getOr(fallback);
+  parseFloat(px) ?? fallback;
 
 const getProp = (element: SugarElement<HTMLElement>, name: string, fallback: number): number =>
   toNumber(Css.get(element, name), fallback);

@@ -100,7 +100,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
       const editorContainer = UiFinder.findIn(TinyDom.container(editor), '.tox-editor-container').getOrDie();
 
       assert.isFalse(Attribute.has(editorContainer, 'aria-hidden'), 'Should not have aria-hidden');
-      assert.isTrue(Css.getRaw(editorContainer, 'display').isNone(), 'Should not have display none');
+      assert.isTrue(Css.getRaw(editorContainer, 'display') === null, 'Should not have display none');
     };
 
     const assertViewHtml = (viewIndex: number, expectedHtml: string) => {
@@ -128,7 +128,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
       Assertions.assertStructure('Checking structure', ApproxStructure.build((s, str, arr) => {
         const button = (title: string, classes: string[]) =>
           s.element('button', {
-            classes: classes.map((cls) =) arr.has(cls)),
+            classes: classes.map((cls) => arr.has(cls)),
             attrs: {
               'type': str.is('button'),
               'tabindex': str.is('-1'),
@@ -405,7 +405,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
       const editorContainer = UiFinder.findIn(TinyDom.container(editor), '.tox-editor-container').getOrDie();
 
       assert.isFalse(Attribute.has(editorContainer, 'aria-hidden'), 'Should not have aria-hidden');
-      assert.isTrue(Css.getRaw(editorContainer, 'display').isNone(), 'Should not have display none');
+      assert.isTrue(Css.getRaw(editorContainer, 'display') === null, 'Should not have display none');
     };
 
     const assertViewHtml = (viewIndex: number, expectedHtml: string) => {
@@ -463,7 +463,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
       const editorContainer = UiFinder.findIn(TinyDom.container(editor), '.tox-editor-container').getOrDie();
 
       assert.isFalse(Attribute.has(editorContainer, 'aria-hidden'), 'Should not have aria-hidden');
-      assert.isTrue(Css.getRaw(editorContainer, 'display').isNone(), 'Should not have display none');
+      assert.isTrue(Css.getRaw(editorContainer, 'display') === null, 'Should not have display none');
     };
 
     const assertViewHtml = (viewIndex: number, expectedHtml: string) => {

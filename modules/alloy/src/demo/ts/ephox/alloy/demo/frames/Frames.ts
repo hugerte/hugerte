@@ -1,9 +1,9 @@
-import { Optional } from '@ephox/katamari';
+
 import { SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 
 /* eslint-disable no-console */
 
-const iframeDoc = (element: SugarElement<HTMLIFrameElement>): Optional<SugarElement<Document>> => {
+const iframeDoc = (element: SugarElement<HTMLIFrameElement>): SugarElement<Document> | null => {
   const dom = element.dom;
   try {
     const idoc = dom.contentWindow ? dom.contentWindow.document : dom.contentDocument;

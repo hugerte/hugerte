@@ -43,7 +43,7 @@ const image = (image: SugarElement<HTMLImageElement>): Promise<SugarElement<HTML
     }),
   ];
 
-  const destroy = () => listeners.forEach((l) =) l.unbind());
+  const destroy = () => listeners.forEach((l) => l.unbind());
 
   if (image.dom.complete) {
     loaded();

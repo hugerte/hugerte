@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -108,7 +108,7 @@ const factory: SingleSketchFactory<InlineViewDetail, InlineViewSpec> = (detail: 
   };
 
   const showAt = (sandbox: AlloyComponent, thing: AlloySpec, placementSpec: PlacementSpec) => {
-    const getBounds = Optional.none;
+    const getBounds = () => null;
     showWithinBounds(sandbox, thing, placementSpec, getBounds);
   };
 
@@ -124,7 +124,7 @@ const factory: SingleSketchFactory<InlineViewDetail, InlineViewSpec> = (detail: 
 
   // TODO AP-191 write a test for showMenuAt
   const showMenuAt = (sandbox: AlloyComponent, placementSpec: PlacementSpec, menuSpec: InlineMenuSpec) => {
-    showMenuWithinBounds(sandbox, placementSpec, menuSpec, Optional.none);
+    showMenuWithinBounds(sandbox, placementSpec, menuSpec, () => null);
   };
 
   const showMenuWithinBounds = (sandbox: AlloyComponent, placementSpec: PlacementSpec, menuSpec: InlineMenuSpec, getBounds: () => (Boxes.Bounds) | null) => {
@@ -233,9 +233,9 @@ const InlineView: InlineViewSketcher = Sketcher.single<InlineViewSpec, InlineVie
     FieldSchema.optionObjOf('fireRepositionEventInstead', [
       FieldSchema.defaulted('event', SystemEvents.repositionRequested())
     ]),
-    FieldSchema.defaulted('getRelated', Optional.none),
+    FieldSchema.defaulted('getRelated', () => null),
     FieldSchema.defaulted('isExtraPart', (() => false as const)),
-    FieldSchema.defaulted('eventOrder', Optional.none)
+    FieldSchema.defaulted('eventOrder', () => null)
   ],
   factory,
   apis: {

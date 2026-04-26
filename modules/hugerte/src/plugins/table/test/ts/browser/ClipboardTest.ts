@@ -402,7 +402,7 @@ describe('browser.hugerte.plugins.table.ClipboardTest', () => {
     LegacyUnit.setSelection(editor, 'tr:nth-child(1) td', 0);
     editor.execCommand('mceTableCopyRow');
 
-    const clipboardRows = FakeClipboard.getRows().getOr([] as SugarElement<HTMLTableRowElement>[]);
+    const clipboardRows = FakeClipboard.getRows() ?? [] as SugarElement<HTMLTableRowElement>[];
 
     assert.equal(clipboardRows.length, 1);
     assert.isTrue(SugarNode.isTag('tr')(clipboardRows[0]));
@@ -524,7 +524,7 @@ describe('browser.hugerte.plugins.table.ClipboardTest', () => {
     LegacyUnit.setSelection(editor, 'tr td:nth-child(1)', 0);
     editor.execCommand('mceTableCopyCol');
 
-    const clipboardCols = FakeClipboard.getColumns().getOr([]);
+    const clipboardCols = FakeClipboard.getColumns() ?? [];
 
     assert.equal(clipboardCols.length, 2);
     assert.isTrue(SugarNode.isTag('tr')(clipboardCols[0]));

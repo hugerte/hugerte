@@ -11,7 +11,7 @@ const delay = (ms: number): Promise<never> => {
 describe('browser.katamari.RepeatableTests', () => {
   it('Make a repeatable then clean it', async () => {
     const intervalId = Singleton.repeatable(100);
-    assert.strictEqual(intervalId.get(), Optional.none());
+    assert.strictEqual(intervalId.get(), null);
     let counter = 0;
     let start = Date.now();
     intervalId.set(() => {
@@ -37,7 +37,7 @@ describe('browser.katamari.RepeatableTests', () => {
     assert.isAbove(end - start, 200);
     intervalId.clear();
     assert.isFalse(intervalId.isSet());
-    assert.strictEqual(intervalId.get(), Optional.none());
+    assert.strictEqual(intervalId.get(), null);
     start = Date.now();
     await delay(150); // Waiting to make sure that interval did not run again
     end = Date.now();

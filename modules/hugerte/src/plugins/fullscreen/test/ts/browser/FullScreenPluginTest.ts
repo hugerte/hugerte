@@ -119,7 +119,7 @@ describe('browser.hugerte.plugins.fullscreen.FullScreenPluginTest', () => {
   [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(tester.label, () => {
       const hook = tester.setup<Editor>({
         plugins: 'fullscreen link',

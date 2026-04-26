@@ -1,6 +1,6 @@
 import { Clipboard, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { McEditor, TinyAssertions, TinyDom } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -31,7 +31,7 @@ describe('browser.hugerte.core.paste.PlainTextPaste', () => {
     });
 
   const pAssertClipboardPaste = (editor: Editor, expected: string, data: Record<string, Record<string, string>>) => {
-    const arr = Obj.mapToArray(data, (data, label): [ string, Record<string, string>] => [ label, data ]);
+    const arr = Object.entries(data).map(([k, v]) => ((data, label): [ string, Record<string, string>] => [ label, data ])(v as any, k as any));
     return arr.reduce((p, [ label, data ]) => p.then(async () => {
       editor.setContent('');
       Clipboard.pasteItems(TinyDom.body(editor), data);

@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { Css, Width } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -123,8 +123,8 @@ const setPositionFromValue = (slider: AlloyComponent, thumb: AlloyComponent, det
 // Key Events
 const onLeft = handleMovement(-1);
 const onRight = handleMovement(1);
-const onUp = Optional.none;
-const onDown = Optional.none;
+const onUp = () => null;
+const onDown = () => null;
 
 // Edge Click Actions
 const edgeActions = {

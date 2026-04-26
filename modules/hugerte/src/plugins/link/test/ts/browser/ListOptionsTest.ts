@@ -35,7 +35,7 @@ describe('browser.hugerte.plugins.link.ListOptionsTest', () => {
 
     const anchors = AnchorListOptions.getAnchors(editor);
     assert.deepEqual(
-      anchors.getOr([ ]),
+      anchors ?? [ ],
       [
         { text: 'None', value: '' },
         { text: 'Difference', value: '#Difference' }
@@ -53,7 +53,7 @@ describe('browser.hugerte.plugins.link.ListOptionsTest', () => {
 
     const classes = ClassListOptions.getClasses(editor);
     assert.deepEqual(
-      classes.getOr([ ]),
+      classes ?? [ ],
       [
         { text: 'Important', value: 'imp' },
         { text: 'Insignificant', value: 'insig' }
@@ -83,7 +83,7 @@ describe('browser.hugerte.plugins.link.ListOptionsTest', () => {
     const links = await LinkListOptions.getLinks(editor);
 
     assert.deepEqual(
-      links.getOr([ ]),
+      links ?? [ ],
       [
         { text: 'None', value: '' },
         {
@@ -111,7 +111,7 @@ describe('browser.hugerte.plugins.link.ListOptionsTest', () => {
 
     const rels = RelOptions.getRels(editor, 'initial-target');
     assert.deepEqual(
-      rels.getOr([ ]),
+      rels ?? [ ],
       [
         { value: '', text: 'None' },
         { value: 'just one', text: 'Just One' }
@@ -129,7 +129,7 @@ describe('browser.hugerte.plugins.link.ListOptionsTest', () => {
 
     const targets = TargetOptions.getTargets(editor);
     assert.deepEqual(
-      targets.getOr([ ]),
+      targets ?? [ ],
       [
         { value: 'target1', text: 'Target1' },
         { value: 'target2', text: 'Target2' }

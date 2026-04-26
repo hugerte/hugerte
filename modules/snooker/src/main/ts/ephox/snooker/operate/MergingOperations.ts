@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -82,7 +82,7 @@ const splitRows = (grid: Structs.RowCells[], index: number, comparator: CompElm,
     const cells = uniqueCells(rowPrevCells, comparator);
     (cells).forEach((cell) => {
       // only make a sub when we have to
-      let replacement = Optional.none<SugarElement<HTMLTableCellElement>>();
+      let replacement = null;
       for (let i = index; i < rows.length; i++) {
         for (let j = 0; j < GridRow.cellLength(rows[0]); j++) {
           const row = rows[i];

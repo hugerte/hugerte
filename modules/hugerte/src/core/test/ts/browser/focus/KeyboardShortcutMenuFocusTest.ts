@@ -10,7 +10,7 @@ describe('browser.hugerte.core.focus.KeyboardShortcutMenuFocusTest', () => {
     { label: 'classic mode', options: {}},
     { label: 'inline mode', options: { inline: true }},
     { label: 'class bottom', options: { toolbar_location: 'bottom' }}
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(tester.label, () => {
       const hook = TinyHooks.bddSetup({
         statusbar: false,

@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as GridRow from '../model/GridRow';
@@ -10,7 +10,7 @@ import { Warehouse } from './Warehouse';
 
 const copyRows = (table: SugarElement<HTMLTableElement>, target: TargetSelection, generators: Generators): (SugarElement<HTMLTableRowElement | HTMLTableColElement>[]) | null => {
   const warehouse = Warehouse.fromTable(table);
-  // Cannot use onUnlockedCells like extractor here as if only cells in a locked column are selected, then this will be Optional.none and
+  // Cannot use onUnlockedCells like extractor here as if only cells in a locked column are selected, then this will be () => null and
   // there is now no way of knowing which rows are selected
   const details = onCells(warehouse, target);
 

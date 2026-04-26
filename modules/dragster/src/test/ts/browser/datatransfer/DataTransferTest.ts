@@ -184,7 +184,7 @@ describe('browser.dragster.datatransfer.DataTransferTest', () => {
       addAndAssertFile(transfer, testFile1, 1);
       addAndAssertFile(transfer, testFile2, 2);
 
-      assert.deepEqual(transfer.items.map((x) =) x.kind), [ 'string', 'string', 'string', 'file', 'file' ], 'Should have expected kinds at the end');
+      assert.deepEqual(transfer.items.map((x) => x.kind), [ 'string', 'string', 'string', 'file', 'file' ], 'Should have expected kinds at the end');
     });
 
     it('TINY-9601: Files list cannot be modified', () => {

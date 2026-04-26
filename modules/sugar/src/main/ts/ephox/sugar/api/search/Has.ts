@@ -8,7 +8,7 @@ const ancestor = (element: SugarElement<Node>, target: SugarElement<Node>): bool
   PredicateExists.ancestor(element, Fun.curry(Compare.eq, target));
 
 const anyAncestor = (element: SugarElement<Node>, targets: SugarElement<Node>[]): boolean =>
-  targets.some((target) =) ancestor(element, target));
+  targets.some((target) => ancestor(element, target));
 
 const sibling = (element: SugarElement<Node>, targets: SugarElement<Node>[]): boolean =>
   PredicateExists.sibling(element, (elem) => targets.some(Fun.curry(Compare.eq, elem)));

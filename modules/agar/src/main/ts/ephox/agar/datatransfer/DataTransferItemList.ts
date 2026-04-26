@@ -16,7 +16,7 @@ const createDataTransferItemList = (dataTransfer: DataTransfer): DataTransferIte
     }
 
     list.length = items.length;
-    items.forEach((item, idx) =) {
+    items.forEach((item, idx) => {
       list[idx] = item;
     });
   };
@@ -32,7 +32,7 @@ const createDataTransferItemList = (dataTransfer: DataTransfer): DataTransferIte
       if (typeof data === 'string') {
         if (type === undefined) {
           throw new Error(`Failed to execute 'add' on 'DataTransferItemList': A type must be defined when adding string data.`);
-        } else if (items.some((item) =) item.type === type)) {
+        } else if (items.some((item) => item.type === type)) {
           throw new Error(`Failed to execute 'add' on 'DataTransferItemList': An item already exists for type '${type}'.`);
         }
 

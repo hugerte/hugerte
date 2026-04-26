@@ -64,7 +64,7 @@ UnitTest.test('DomExtractTest', () => {
     // Test from
     const check = (expected: string, input: SugarElement) => {
       const rawActual = DomExtract.from(input, optimise);
-      const actual = rawActual.map((x) =) {
+      const actual = rawActual.map((x) => {
         return x.fold(
           () => '\\w',
           () => '-',

@@ -25,7 +25,7 @@ describe('browser.hugerte.core.keyboard.AutocompleterTest', () => {
       };
 
       const fetch = (ch: string, type: string) => (resolve: (data: InlineContent.AutocompleterContents[]) => void) => {
-        resolve([ 'aa', 'ab' ].map((letter) =) ({
+        resolve([ 'aa', 'ab' ].map((letter) => ({
           value: `${type}-${letter}`,
           text: `p-${letter}`,
           icon: ch

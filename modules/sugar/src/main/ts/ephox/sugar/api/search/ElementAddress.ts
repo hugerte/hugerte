@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 
 import * as Compare from '../dom/Compare';
 import { SugarElement } from '../node/SugarElement';
@@ -35,26 +35,26 @@ const inParent = <P, C, E>(parent: SugarElement<P>, children: SugarElement<C>[],
   index
 });
 
-const childOf = (element: SugarElement<Node>, ancestor: SugarElement<Node>): Optional<SugarElement<Node>> =>
+const childOf = (element: SugarElement<Node>, ancestor: SugarElement<Node>): SugarElement<Node> | null =>
   PredicateFind.closest(element, (elem) =>
     Traverse.parent(elem).exists((parent) => Compare.eq(parent, ancestor)));
 
-const indexInParent = <E extends Node> (element: SugarElement<E>): Optional<AddressInParent<Node & ParentNode, Node & ChildNode, E>> =>
+const indexInParent = <E extends Node> (element: SugarElement<E>): AddressInParent<Node & ParentNode, Node & ChildNode, E> | null =>
   Traverse.parent(element).bind((parent) => {
     const children = Traverse.children(parent);
     return indexOf(children, element).map((index) => inParent(parent, children, element, index));
   });
 
-const indexOf = (elements: SugarElement<Node>[], element: SugarElement<Node>): Optional<number> =>
-  Arr.findIndex(elements, Fun.curry(Compare.eq, element));
+const indexOf = (elements: SugarElement<Node>[], element: SugarElement<Node>): number | null =>
+  elements.findIndex(Fun.curry(Compare.eq, element));
 
-const selectorsInParent = <E extends Node, S extends Element = Element> (element: SugarElement<E>, selector: string): Optional<AddressInParent<Node & ParentNode, S, E>> =>
+const selectorsInParent = <E extends Node, S extends Element = Element> (element: SugarElement<E>, selector: string): AddressInParent<Node & ParentNode, S, E> | null =>
   Traverse.parent(element).bind((parent) => {
     const children = SelectorFilter.children<S>(parent, selector);
     return indexOf(children, element).map((index) => inParent(parent, children, element, index));
   });
 
-const descendantsInAncestor = <E extends Node, A extends Element = Element, D extends Element = Element> (element: SugarElement<E>, ancestorSelector: string, descendantSelector: string): Optional<AddressInAncestor<A, D, E>> =>
+const descendantsInAncestor = <E extends Node, A extends Element = Element, D extends Element = Element> (element: SugarElement<E>, ancestorSelector: string, descendantSelector: string): AddressInAncestor<A, D, E> | null =>
   SelectorFind.closest<A>(element, ancestorSelector).bind((ancestor) => {
     const descendants = SelectorFilter.descendants<D>(ancestor, descendantSelector);
     return indexOf(descendants, element).map((index) => inAncestor(ancestor, descendants, element, index));

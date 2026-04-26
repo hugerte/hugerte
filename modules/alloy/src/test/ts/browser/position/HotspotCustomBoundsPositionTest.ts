@@ -58,7 +58,7 @@ UnitTest.asynctest('HotspotPositionTest', (success, failure) => {
       const popup = data.popup.element;
       // Swap the direction name, as the style used is opposite
       const style = direction === 'top' ? 'bottom' : 'top';
-      Assertions.assertEq(`Assert layout direction is ${direction}`, true, Css.getRaw(popup, style).isSome());
+      Assertions.assertEq(`Assert layout direction is ${direction}`, true, Css.getRaw(popup, style) !== null);
     });
 
     const win = Boxes.win();

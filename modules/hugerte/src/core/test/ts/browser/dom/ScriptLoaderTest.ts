@@ -19,7 +19,7 @@ describe('browser.hugerte.core.dom.ScriptLoaderTest', () => {
   });
 
   afterEach(() => {
-    [ testScript, nestedScript, invalidScript ].forEach((url) =) ScriptLoader.ScriptLoader.remove(url));
+    [ testScript, nestedScript, invalidScript ].forEach((url) => ScriptLoader.ScriptLoader.remove(url));
     loadedCount = 0;
   });
 

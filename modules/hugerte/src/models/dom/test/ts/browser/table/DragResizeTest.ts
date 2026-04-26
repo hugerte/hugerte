@@ -134,7 +134,7 @@ describe('browser.hugerte.models.dom.table.DragResizeTest', () => {
         title: 'height only table, trs and tds',
         content: '<table style="border-collapse: collapse;border: 0; height: 100px;"><tbody><tr style="height:45px;"><td style="height:45px;">a</td></tr><tr style="height:45px;"><td style="height:45px;">a</td></tr></tbody></table>',
       },
-    ].forEach((scenario) =) {
+    ].forEach((scenario) => {
       const { title, content } = scenario;
       it(`TBA: resize table height by dragging bottom (${title})`, async () => {
         const editor = hook.editor();
@@ -241,7 +241,7 @@ describe('browser.hugerte.models.dom.table.DragResizeTest', () => {
         '</tbody>' +
         '</table>'
       },
-    ].forEach((scenario) =) {
+    ].forEach((scenario) => {
       const { title, content } = scenario;
       context(title, () => {
         it('TBA: Resize table bigger with handle, then resize row height bigger by dragging middle border', async () => {

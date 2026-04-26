@@ -1,12 +1,12 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import * as PositionArray from 'ephox/polaris/api/PositionArray';
 
 import { PArrayTestItem } from '../../module/ephox/polaris/test/Parrays';
 
 UnitTest.test('api.PositionArray.generate', () => {
-  const generator = (item: string, start: number): Optional<PArrayTestItem> => {
+  const generator = (item: string, start: number): PArrayTestItem | null => {
     const firstletter = item[0];
     if (firstletter === 'a') {
       return null;
@@ -20,7 +20,7 @@ UnitTest.test('api.PositionArray.generate', () => {
 
   const check = (expected: string[], input: string[], start?: number) => {
     const result = PositionArray.generate(input, generator, start);
-    Assert.eq('', expected, result.map((item) =) {
+    Assert.eq('', expected, result.map((item) => {
       return item.start + '->' + item.finish + '@ ' + item.item;
     }));
   };

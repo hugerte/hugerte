@@ -31,8 +31,8 @@ UnitTest.test('TransformOperationsTest', () => {
   const enO = en(originalElements);
 
   const mapToStructGrid = (grid: Structs.ElementNew[][]) => {
-    return grid.map((row) =) {
-      const hasCol = row.some((elementNew) =) SugarNode.isTag('col')(elementNew.element));
+    return grid.map((row) => {
+      const hasCol = row.some((elementNew) => SugarNode.isTag('col')(elementNew.element));
       if (hasCol) {
         return Structs.rowcells(SugarElement.fromTag('colgroup'), row as Structs.ElementNew<HTMLTableColElement>[], 'colgroup', false);
       } else {
@@ -43,8 +43,8 @@ UnitTest.test('TransformOperationsTest', () => {
 
   const assertGrids = (actual: Structs.RowCells[], expected: Structs.RowCells[]) => {
     assert.lengthOf(actual, expected.length);
-    expected.forEach((row, i) =) {
-      row.cells.forEach((cell, j) =) {
+    expected.forEach((row, i) => {
+      row.cells.forEach((cell, j) => {
         const actualCell = actual[i].cells[j];
         assert.equal(TextContent.get(actualCell.element), TextContent.get(cell.element));
         assert.equal(actualCell.isNew, cell.isNew, `${i}x${j} cell is new`);

@@ -10,7 +10,7 @@ describe('browser.hugerte.models.dom.table.InsertTableTest', () => {
   [
     { label: 'no colgroup', withColgroup: false },
     { label: 'colgroup', withColgroup: true },
-  ].forEach(({ label, withColgroup }) =) {
+  ].forEach(({ label, withColgroup }) => {
     const hook = TinyHooks.bddSetup<Editor>({
       indent: false,
       valid_styles: {

@@ -1,5 +1,5 @@
 import { FocusTools, Mouse, UiControls, UiFinder, Waiter } from '@ephox/agar';
-import { Obj } from '@ephox/katamari';
+
 import { Attribute, Class, SugarBody, SugarDocument, SugarElement, Traverse, Value } from '@ephox/sugar';
 import { TinyAssertions, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -48,11 +48,11 @@ const assertInputValue = (label: string, selector: string, expected: string | bo
 };
 
 const assertDialogContents = (expected: Record<string, any>): void => {
-  Obj.mapToArray(selectors, (value, key) => {
+  Object.entries(selectors).map(([k, v]) => ((value, key) => {
     if (Object.prototype.hasOwnProperty.call(expected, key)) {
       assertInputValue(key, value, expected[key]);
     }
-  });
+  })(v as any, k as any));
 };
 
 const pInsertLink = async (editor: Editor, url: string): Promise<void> => {

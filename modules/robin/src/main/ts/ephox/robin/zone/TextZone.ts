@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 import { Descent } from '@ephox/phoenix';
 
 import { ZoneViewports } from '../api/general/ZoneViewports';
@@ -9,16 +9,16 @@ import { LanguageZones } from './LanguageZones';
 import * as TextZones from './TextZones';
 import { Zone } from './Zones';
 
-// a Text Zone enforces a language, and returns Optional.some only if a single zone was identified
+// a Text Zone enforces a language, and returns (x) => x only if a single zone was identified
 // with that language.
 const filterZone = <E>(zone: Zone<E>, onlyLang: string): (Zone<E>) | null => {
-  return zone.lang === onlyLang ? zone : Optional.none<Zone<E>>();
+  return zone.lang === onlyLang ? zone : null;
 };
 
 const fromBoundedWith = <E, D>(universe: Universe<E, D>, left: E, right: E, envLang: string, onlyLang: string, transform: (universe: Universe<E, D>, item: E) => WordDecisionItem<E>): (Zone<E>) | null => {
   const output = TextZones.fromBoundedWith(universe, left, right, envLang, transform, ZoneViewports.anything());
   const zones = output.zones;
-  return zones.length === 1 ? filterZone(zones[0], onlyLang) : Optional.none<Zone<E>>();
+  return zones.length === 1 ? filterZone(zones[0], onlyLang) : null;
 };
 
 const fromBounded = <E, D>(universe: Universe<E, D>, left: E, right: E, envLang: string, onlyLang: string): (Zone<E>) | null => {
@@ -48,7 +48,7 @@ const scour = <E, D>(universe: Universe<E, D>, element: E, envLang: string, only
 };
 
 const empty = <E>(): (Zone<E>) | null => {
-  return Optional.none<Zone<E>>();
+  return null;
 };
 
 export {

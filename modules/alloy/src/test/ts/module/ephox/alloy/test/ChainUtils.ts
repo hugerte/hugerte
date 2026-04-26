@@ -7,7 +7,7 @@ import { GuiSystem } from 'ephox/alloy/api/system/Gui';
 
 // INVESTIGATE: Does cLogging have a place in vanilla agar?
 const cLogging = <T, U>(label: string, chains: Array<Chain<T, U>>): Chain<T, U> => {
-  const logChains = chains.map((c) =) Chain.control(c, Guard.addLogging(label)));
+  const logChains = chains.map((c) => Chain.control(c, Guard.addLogging(label)));
 
   return Chain.fromChains(logChains);
 };
@@ -17,7 +17,7 @@ const cFindUid = (uid: string): Chain<GuiSystem, AlloyComponent> =>
 
 const cFindUids = <T>(gui: Record<string, any>, lookups: Record<string, string>): Chain<T, any> => {
   const keys = Object.keys(lookups);
-  const others = keys.map((k) =) NamedChain.direct('context', cFindUid(lookups[k]), k));
+  const others = keys.map((k) => NamedChain.direct('context', cFindUid(lookups[k]), k));
 
   return NamedChain.asChain(
     [

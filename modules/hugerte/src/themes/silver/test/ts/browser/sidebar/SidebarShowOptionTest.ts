@@ -15,7 +15,7 @@ describe('browser.hugerte.themes.silver.sidebar.SidebarShowOptionTest', () => {
   const store = TestStore<EventLog>();
   const settingsFactory = (store: TestStore<EventLog>) => {
     const logEvent = (name: string) => (api: Sidebar.SidebarInstanceApi) => {
-      const index = Traverse.findIndex(SugarElement.fromDom(api.element())).getOr(-1);
+      const index = Traverse.findIndex(SugarElement.fromDom(api.element())) ?? -1;
       const entry: EventLog = { name, index };
       store.adder(entry)();
     };

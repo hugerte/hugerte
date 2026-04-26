@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { Attribute, Css, Html, SelectorFilter, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -62,10 +62,10 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
       Css.set(defaultTable, 'border-spacing', cellSpacingStyle);
     }
     if (cellPaddingStyle != null) {
-      SelectorFilter.descendants(defaultTable, 'td,th').forEach((cell) =) Css.set(cell, 'padding', cellPaddingStyle));
+      SelectorFilter.descendants(defaultTable, 'td,th').forEach((cell) => Css.set(cell, 'padding', cellPaddingStyle));
     }
     if (cellBorderWidthStyle != null) {
-      SelectorFilter.descendants(defaultTable, 'td').forEach((cell) =) Css.set(cell, 'border-width', cellBorderWidthStyle));
+      SelectorFilter.descendants(defaultTable, 'td').forEach((cell) => Css.set(cell, 'border-width', cellBorderWidthStyle));
     }
 
     editor.setContent(Html.getOuter(defaultTable));
@@ -75,8 +75,8 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
   const assertTable = (editor: Editor, spec: TableSpec) => {
     TinyAssertions.assertContentStructure(editor, ApproxStructure.build((s, str, _arr) => {
       const transformMap = (record: Record<string, undefined | string>) => {
-        const definedOnly = Object.fromEntries(Object.entries(record).filter(([k, v]) => (Type.isNonNullable)(v, k))) as Record<string, string>;
-        return Object.fromEntries(Object.entries(definedOnly).map(([k, v]) => [k, ((val) =)(v, k)])) val !== '' ? str.is(val) : str.none());
+        const definedOnly = Object.fromEntries(Object.entries(record).filter(([k, v]) => ((x: any) => x != null)(v, k))) as Record<string, string>;
+        return Object.fromEntries(Object.entries(definedOnly).map(([k, v]) => [k, ((val) =>(v, k)])) val !== '' ? str.is(val) : str.none());
       };
       const cell = s.element('td', {
         styles: transformMap({
@@ -109,7 +109,7 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
   [
     { title: 'attributes', style_by_css: false },
     { title: 'styles', style_by_css: true }
-  ].forEach((spec) =) {
+  ].forEach((spec) => {
     context(`Table layout using ${spec.title}`, () => {
       const hook = TinyHooks.bddSetup<Editor>({
         plugins: 'table',

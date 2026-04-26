@@ -1,12 +1,12 @@
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 
-const getValueFromIndex = (options: HTMLOptionsCollection, index: number): Optional<string> => {
-  return Arr.get(options, index).bind((optionVal) => optionVal.value ?? null);
+const getValueFromIndex = (options: HTMLOptionsCollection, index: number): string | null => {
+  return (options[index] ?? null).bind((optionVal) => optionVal.value ?? null);
 };
 
-const getValue = (select: SugarElement<HTMLSelectElement>): Optional<string> => {
+const getValue = (select: SugarElement<HTMLSelectElement>): string | null => {
   const selectDom = select.dom;
   return getValueFromIndex(selectDom.options, selectDom.selectedIndex);
 };
@@ -16,7 +16,7 @@ const add = (select: SugarElement<HTMLSelectElement>, option: SugarElement<HTMLO
 };
 
 const addAll = (select: SugarElement<HTMLSelectElement>, options: SugarElement<HTMLOptionElement>[]): void => {
-  options.forEach((option) =) {
+  options.forEach((option) => {
     add(select, option);
   });
 };

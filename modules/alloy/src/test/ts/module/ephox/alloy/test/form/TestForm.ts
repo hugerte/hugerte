@@ -1,5 +1,5 @@
 import { Assertions, Step } from '@ephox/agar';
-import { Optional } from '@ephox/katamari';
+
 
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
@@ -11,12 +11,12 @@ interface TestForm {
 
 const helper = (component: AlloyComponent): TestForm => {
   const sAssertRep = <T>(expected: Record<string, string>) => Step.sync<T>(() => {
-    const val: Record<string, Optional<string>> = Representing.getValue(component);
+    const val: Record<string, string | null> = Representing.getValue(component);
     Assertions.assertEq(
       'Checking form value',
       expected,
 
-      Object.fromEntries(Object.entries(val).map(([k, v]) => [k, ((v, k) =)(v, k)])) v.getOrDie(k + ' field is "None"'))
+      Object.fromEntries(Object.entries(val).map(([k, v]) => [k, ((v, k) =>(v, k)])) v.getOrDie(k + ' field is "None"'))
     );
   });
 

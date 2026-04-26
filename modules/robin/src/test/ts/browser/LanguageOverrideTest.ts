@@ -24,8 +24,8 @@ describe('browser.robin.LanguageOverrideTest', () => {
     const start = Traverse.firstChild(top).getOrDie();
     const end = Traverse.lastChild(top).getOrDie();
     const walkResult = TextZones.range(universe, start, 0, end, 2, 'default', ZoneViewports.anything());
-    return walkResult.zones.map((zone) =) ({
-      words: zone.words.map((w) =) w.word),
+    return walkResult.zones.map((zone) => ({
+      words: zone.words.map((w) => w.word),
       lang: zone.lang
     }));
   };

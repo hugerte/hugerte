@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
@@ -26,8 +26,8 @@ interface TestDocSpec {
 type AttrMap = Record<string, string | boolean | number>;
 interface TestAttrMap {
   iframe: AttrMap;
-  html: Optional<AttrMap>;
-  body: Optional<AttrMap>;
+  html: AttrMap | null;
+  body: AttrMap | null;
 }
 
 interface CheckSpec {
@@ -119,7 +119,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
       tableChecks,
       fixedChecks, // recommend making these last, as they adjust the iframe scroll
       bodyChecks
-    ].forEach((f) =) {
+    ].forEach((f) => {
       f(doc);
     });
   };
@@ -331,7 +331,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
     // Firefox 71 has also started behaving the same as chrome
     if (platform.browser.isChromium() || platform.browser.isFirefox() && platform.browser.version.major >= 71) {
       const chromeDifference = -2;
-      tests.forEach((t) =) {
+      tests.forEach((t) => {
         if (t.id !== 'table-1') {
           // eslint-disable-next-line no-console
           console.log('> Note - fix for Chrome bug - subtracting from relative top and left: ', chromeDifference);
@@ -432,7 +432,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
 
   /* Simple verification logic */
   const runChecks = (doc: TestDocSpec, tests: CheckSpec[]) => {
-    tests.forEach((t) =) {
+    tests.forEach((t) => {
       const div = doc.byId(t.id);
 
       let pos = SugarLocation.absolute(div);

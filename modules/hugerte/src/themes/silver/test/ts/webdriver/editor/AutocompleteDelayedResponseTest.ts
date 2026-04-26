@@ -32,7 +32,7 @@ describe('webdriver.hugerte.themes.silver.editor.AutocompleteDelayedResponseTest
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           setTimeout(() => {
             resolve(
-              [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
+              [ 'a', 'b', 'c', 'd' ].map((letter) => ({
                 value: `dollar-${letter}`,
                 text: `dollar-${letter}`,
                 icon: '$'

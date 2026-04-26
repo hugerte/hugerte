@@ -31,14 +31,14 @@ describe('browser.phoenix.api.DomSearchTest', () => {
   after(() => Remove.remove(container));
 
   const check = (expected: string, rawTexts: string[], words: string[]) => {
-    const elements = rawTexts.map((x) =) SugarElement.fromText(x));
+    const elements = rawTexts.map((x) => SugarElement.fromText(x));
 
     Remove.empty(container);
     InsertAll.append(container, elements);
 
     const snapshots = DomSearch.safeWords(elements, words, () => false);
 
-    snapshots.forEach((x) =) {
+    snapshots.forEach((x) => {
       DomWrapping.wrapper(x.elements, () => {
         const span = SugarElement.fromTag('span');
         Attribute.set(span, 'data-word', x.word);

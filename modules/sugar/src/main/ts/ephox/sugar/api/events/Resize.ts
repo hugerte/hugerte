@@ -25,16 +25,16 @@ const elem = (element: SugarElement<HTMLElement>): Monitored => ({
 });
 const elems: Monitored[] = [];
 
-const findElem = (element: SugarElement<Node>) => Arr.findIndex(elems, (el) => Compare.eq(el.element, element)).getOr(-1);
+const findElem = (element: SugarElement<Node>) => elems.findIndex((el) => Compare.eq(el.element, element)) ?? -1;
 
 const bind = (element: SugarElement<HTMLElement>, handler: () => void): void => {
-  const el = Arr.find(elems, (elm) => Compare.eq(elm.element, element)).getOrThunk(() => {
+  const el = (elems.find((elm) => Compare.eq(elm.element, element)) ?? null).getOrThunk(() => {
     const newEl = elem(element);
     elems.push(newEl);
     return newEl;
   });
   el.handlers.push(handler);
-  if (interval.isNone()) {
+  if (interval === null) {
     start();
   }
 
@@ -58,11 +58,11 @@ const unbind = (element: SugarElement<Node>, handler: () => void): void => {
   }
 
   const handlerIndex = Arr.indexOf(elems[index].handlers, handler);
-  if (handlerIndex.isNone()) {
+  if (handlerIndex === null) {
     return;
   }
 
-  elems[index].handlers.splice(handlerIndex.getOr(0), 1);
+  elems[index].handlers.splice(handlerIndex ?? 0, 1);
   if (elems[index].handlers.length === 0) {
     elems.splice(index, 1);
   }

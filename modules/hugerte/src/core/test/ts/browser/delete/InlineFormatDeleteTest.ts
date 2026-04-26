@@ -18,23 +18,23 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
   const doDelete = (editor: Editor) => {
     const returnVal = InlineFormatDelete.backspaceDelete(editor, true);
     returnVal.each((apply) => apply());
-    assert.isTrue(returnVal.isSome(), 'Should return true since the operation should have done something');
+    assert.isTrue(returnVal !== null, 'Should return true since the operation should have done something');
   };
 
   const noopDelete = (editor: Editor) => {
     const returnVal = InlineFormatDelete.backspaceDelete(editor, true);
-    assert.isFalse(returnVal.isSome(), 'Should return false since the operation is a noop');
+    assert.isFalse(returnVal !== null, 'Should return false since the operation is a noop');
   };
 
   const doBackspace = (editor: Editor, shouldBeSome: boolean = true) => {
     const returnVal = InlineFormatDelete.backspaceDelete(editor, false);
     returnVal.each((apply) => apply());
-    assert.isTrue(shouldBeSome === returnVal.isSome(), 'Should return true since the operation should have done something');
+    assert.isTrue(shouldBeSome === returnVal !== null, 'Should return true since the operation should have done something');
   };
 
   const noopBackspace = (editor: Editor) => {
     const returnVal = InlineFormatDelete.backspaceDelete(editor, false);
-    assert.isFalse(returnVal.isSome(), 'Should return false since the operation is a noop');
+    assert.isFalse(returnVal !== null, 'Should return false since the operation is a noop');
   };
 
   context('Backspace/delete in unformatted plain text', () => {
@@ -511,7 +511,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                       })
                     ]
                   }),
-                  ...outerText.map((text) =) s.text(str.is(text)))
+                  ...outerText.map((text) => s.text(str.is(text)))
                 ]
               })
             ]
@@ -534,7 +534,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
             children: [
               s.element('p', {
                 children: [
-                  ...firstOuterText.map((text) =) s.text(str.is(text))),
+                  ...firstOuterText.map((text) => s.text(str.is(text))),
                   s.element('span', {
                     attrs: {
                       'id': str.is('_mce_caret'),
@@ -560,7 +560,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                       })
                     ]
                   }),
-                  ...secondOuterText.map((text) =) s.text(str.is(text))),
+                  ...secondOuterText.map((text) => s.text(str.is(text))),
                 ]
               })
             ]
@@ -626,7 +626,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                 children: [
                   s.element('li', {
                     children: [
-                      ...firstOuterText.map((text) =) s.text(str.is(text))),
+                      ...firstOuterText.map((text) => s.text(str.is(text))),
                       s.element('span', {
                         attrs: {
                           'id': str.is('_mce_caret'),
@@ -652,7 +652,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                           })
                         ]
                       }),
-                      ...secondOuterText.map((text) =) s.text(str.is(text))),
+                      ...secondOuterText.map((text) => s.text(str.is(text))),
                     ]
                   })
                 ]
@@ -683,7 +683,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                         children: [
                           s.element('td', {
                             children: [
-                              ...outerText.map((text) =) s.text(str.is(text))),
+                              ...outerText.map((text) => s.text(str.is(text))),
                               s.element('span', {
                                 attrs: {
                                   'id': str.is('_mce_caret'),

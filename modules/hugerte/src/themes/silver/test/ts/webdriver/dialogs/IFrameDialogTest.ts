@@ -73,7 +73,7 @@ describe('webdriver.hugerte.themes.silver.dialogs.IFrameDialogTest', () => {
       frame1: '<!doctype html><html><head>' +
           '</head>' +
           '<body><h1>Heading</h1>' +
-          [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].map((n) =) '<p>This is paragraph: ' + n + '</p>').join('\n') +
+          [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].map((n) => '<p>This is paragraph: ' + n + '</p>').join('\n') +
           '</body>'
     }
   };
@@ -122,7 +122,7 @@ describe('webdriver.hugerte.themes.silver.dialogs.IFrameDialogTest', () => {
       // console.log(UiFinder.notExists(SugarDocument.getDocument(), '.tox-dialog .tox-dialog__body .tox-navobj-bordered-focus'));
       // console.log(SelectorFind.descendant(SugarDocument.getDocument(), '.tox-dialog .tox-dialog__body .tox-navobj-bordered').getOrDie().dom.classList);
       return Waiter.pTryUntil('Waiting for container with border focus class',
-        () => assert.equal((SelectorFind.descendant)(SugarDocument.getDocument(), '.tox-dialog .tox-dialog__body .tox-navobj-bordered-focus').isSome(), hasFocus));
+        () => assert.equal((SelectorFind.descendant)(SugarDocument.getDocument(), '.tox-dialog .tox-dialog__body .tox-navobj-bordered-focus') !== null, hasFocus));
     };
 
     const input = await FocusTools.pTryOnSelector('focus should be on the input initially', SugarDocument.getDocument(), 'input');

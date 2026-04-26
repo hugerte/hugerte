@@ -43,7 +43,7 @@ UnitTest.test('Atomic Test: parts.GenerateTest', () => {
       const generated = AlloyParts.generate('owner', parts);
 
       // Check that config and validated match what was passed through
-      Object.entries(generated).forEach(([k, v]) => ((g) =)(v, k)) {
+      Object.entries(generated).forEach(([k, v]) => ((g) =>(v, k)) {
         const output = g(data);
         Assert.eq('Checking config', data, output.config);
         Assert.eq('Checking validated', {
@@ -55,7 +55,7 @@ UnitTest.test('Atomic Test: parts.GenerateTest', () => {
       Assert.eq(
         'Checking PartType.generate',
         expected,
-        Object.fromEntries(Object.entries(generated).map(([k, v]) => [k, ((g) =)(v, k)])) {
+        Object.fromEntries(Object.entries(generated).map(([k, v]) => [k, ((g) =>(v, k)])) {
           const output = g(data);
           return Objects.exclude(output, [ 'config', 'validated' ]);
         })
@@ -69,17 +69,17 @@ UnitTest.test('Atomic Test: parts.GenerateTest', () => {
       const generated = AlloyParts.generate('owner', parts);
 
       // Check that config, and ensure that preprocessor is all that is in validated
-      Object.entries(generated).forEach(([k, v]) => ((g) =)(v, k)) {
+      Object.entries(generated).forEach(([k, v]) => ((g) =>(v, k)) {
         const output = g(data);
         Assert.eq('Checking config', data, output.config);
-        Assert.eq('Checking validated', 'PREPROCESSOR', output.validated.preprocess.getOr('none'));
+        Assert.eq('Checking validated', 'PREPROCESSOR', output.validated.preprocess ?? 'none');
         Assert.eq('Should only be one key: preprocess', [ 'preprocess' ], Object.keys(output.validated));
       });
 
       Assert.eq(
         'Checking PartType.generate',
         expected,
-        Object.fromEntries(Object.entries(generated).map(([k, v]) => [k, ((g) =)(v, k)])) {
+        Object.fromEntries(Object.entries(generated).map(([k, v]) => [k, ((g) =>(v, k)])) {
           const output = g(data);
           return Objects.exclude(output, [ 'config', 'validated' ]);
         })

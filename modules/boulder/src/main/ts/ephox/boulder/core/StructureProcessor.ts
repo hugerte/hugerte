@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Obj } from '@ephox/katamari';
 
 import { SimpleResult, SimpleResultType } from '../alien/SimpleResult';
 import { FieldPresence, FieldPresenceTag, required } from '../api/FieldPresence';
@@ -67,7 +67,7 @@ const extractField = <T, U>(
     () => SimpleResult.svalue(null),
     (ov) => {
       const result = prop.extract(path.concat([ key ]), ov);
-      return SimpleResult.map(result, Optional.some);
+      return SimpleResult.map(result, (x) => x);
     }
   );
 
@@ -130,7 +130,7 @@ const valueThunk = (getDelegate: () => StructureProcessor): StructureProcessor =
 };
 
 // This is because Obj.keys can return things where the key is set to undefined.
-const getSetKeys = (obj: Record<string, unknown>) => Object.keys(Object.fromEntries(Object.entries(obj).filter(([_k, _v]: [any, any]) => (Type.isNonNullable)(_v, _k as any))));
+const getSetKeys = (obj: Record<string, unknown>) => Object.keys(Object.fromEntries(Object.entries(obj).filter(([_k, _v]: [any, any]) => ((x: any) => x != null)(_v, _k as any))));
 
 const objOfOnly = (fields: FieldProcessor[]): StructureProcessor => {
   const delegate = objOf(fields);

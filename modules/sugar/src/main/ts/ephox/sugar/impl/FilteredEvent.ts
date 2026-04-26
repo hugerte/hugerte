@@ -29,7 +29,7 @@ const mkEvent = <E extends Event, T extends Node | Window>(
  * See SugarShadowDom.getOriginalEventTarget
  */
 const fromRawEvent = <E extends Event, T extends Node | Window = Node>(rawEvent: E): EventArgs<E, T> => {
-  const target = SugarElement.fromDom(SugarShadowDom.getOriginalEventTarget(rawEvent).getOr(rawEvent.target) as T);
+  const target = SugarElement.fromDom(SugarShadowDom.getOriginalEventTarget(rawEvent) ?? rawEvent.target as T);
 
   const stop = () => rawEvent.stopPropagation();
 

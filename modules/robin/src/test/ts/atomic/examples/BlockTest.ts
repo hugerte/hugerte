@@ -32,12 +32,12 @@ UnitTest.test('BlockTest', () => {
     ])
   ]));
 
-  const check = (expected: Optional<string>, ids: string[], look: (universe: Universe<Gene, undefined>, item: Gene) => Optional<Gene>) => {
-    const items = ids.map((id) =) {
+  const check = (expected: string | null, ids: string[], look: (universe: Universe<Gene, undefined>, item: Gene) => Gene | null) => {
+    const items = ids.map((id) => {
       return doc.find(doc.get(), id).getOrDie();
     });
     const actual = Parent.sharedOne(doc, look, items);
-    Assert.eq('Checking parent :: Optional', expected.getOr('none'), actual.getOr(Gene('none', 'none')).id);
+    Assert.eq('Checking parent :: Optional', expected ?? 'none', actual ?? Gene('none', 'none').id);
   };
 
   check('ol1', [ 'li2' ], Look.selector(doc, 'ol'));

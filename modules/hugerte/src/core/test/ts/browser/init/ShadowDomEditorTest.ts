@@ -22,7 +22,7 @@ describe('browser.hugerte.core.init.ShadowDomEditorTest', () => {
     { type: 'inline', settings: { inline: true }, numSinks: 1 },
     { type: 'normal-split-ui-mode', settings: { ui_mode: 'split' }, numSinks: 2 },
     { type: 'inline-split-ui-mode', settings: { ui_mode: 'split', inline: true }, numSinks: 2 }
-  ].forEach((tester) =) {
+  ].forEach((tester) => {
     context(`${tester.type} editor`, () => {
       const hook = TinyHooks.bddSetupInShadowRoot<Editor>({
         toolbar_sticky: false,

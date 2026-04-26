@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 /**
  * Applies f repeatedly until it completes (by returning null).
@@ -7,7 +7,7 @@ import { Optional } from '@ephox/katamari';
  *
  * This is what recursion looks like when manually unravelled :)
  */
-const toArray = <T = any, U extends T = T> (target: T, f: (t: T) => Optional<U>): U[] => {
+const toArray = <T = any, U extends T = T> (target: T, f: (t: T) => U | null): U[] => {
   const r: U[] = [];
 
   const recurse = (e: U) => {
@@ -18,7 +18,7 @@ const toArray = <T = any, U extends T = T> (target: T, f: (t: T) => Optional<U>)
   let cur = f(target);
   do {
     cur = cur.bind(recurse);
-  } while (cur.isSome());
+  } while (cur !== null);
 
   return r;
 };

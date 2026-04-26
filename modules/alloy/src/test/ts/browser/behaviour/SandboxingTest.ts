@@ -79,7 +79,7 @@ UnitTest.asynctest('SandboxingTest', (success, failure) => {
         store.sClear,
         Step.sync(() => {
           const state = Sandboxing.getState(sandbox);
-          Assertions.assertEq(label + '\nChecking state is not set', true, state.isNone());
+          Assertions.assertEq(label + '\nChecking state is not set', true, state === null);
         })
       ])
     );

@@ -126,7 +126,7 @@ const exists = <T, U>(chains: Chain<T, U>[]): Chain<T, U> => {
 const fromParent = <T, U, V>(parent: Chain<T, U>, chains: Chain<U, V>[]): Chain<T, U> =>
   on((cvalue: T, cnext: NextFn<U>, cdie: DieFn, clogs: TestLogs) => {
     Pipeline.async(cvalue, [ extract(parent) ], (value: U, parentLogs: TestLogs) => {
-      const cs = chains.map((c) =)
+      const cs = chains.map((c) =>
         Step.raw((_, next, die, logs) => {
           // Replace _ with value
           c.runChain(value, next, die, logs);

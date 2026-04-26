@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -19,7 +19,7 @@ describe('browser.hugerte.core.delete.DeleteUtilsTest', () => {
     return DeleteUtils.getParentBlock(SugarElement.fromDom(viewBlock.get()), element);
   };
 
-  const assertBlock = (actualBlock: Optional<SugarElement<Node>>, elementPath: number[]) => {
+  const assertBlock = (actualBlock: SugarElement<Node> | null, elementPath: number[]) => {
     const expectedBlock = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), elementPath).getOrDie();
     Assertions.assertDomEq('Should be the expected block element', expectedBlock, actualBlock.getOrDie());
   };
@@ -31,8 +31,8 @@ describe('browser.hugerte.core.delete.DeleteUtilsTest', () => {
     return DeleteUtils.willDeleteLastPositionInElement(forward, CaretPosition(caretNode.dom, caretOffset), element.dom);
   };
 
-  const assertNone = (actualBlock: Optional<unknown>) => {
-    assert.isTrue(actualBlock.isNone(), 'Should be the none but got some');
+  const assertNone = (actualBlock: unknown | null) => {
+    assert.isTrue(actualBlock === null, 'Should be the none but got some');
   };
 
   context('getParentTextBlock', () => {

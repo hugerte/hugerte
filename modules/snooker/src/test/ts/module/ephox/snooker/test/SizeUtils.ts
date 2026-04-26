@@ -25,9 +25,9 @@ const reducePrecision = (value: string, precision: number = 1): string => {
 
 const readWidth = (element: SugarElement<HTMLTableElement>): (string | null)[][] => {
   const rows = SelectorFilter.descendants(element, 'tr');
-  return rows.map((row) =) {
+  return rows.map((row) => {
     const cells = SelectorFilter.descendants(row, 'td,th');
-    return cells.map((cell) =)
+    return cells.map((cell) =>
       Css.getRaw(cell, 'width').map(reducePrecision).getOrNull()
     );
   });
@@ -35,9 +35,9 @@ const readWidth = (element: SugarElement<HTMLTableElement>): (string | null)[][]
 
 const readCellHeights = (element: SugarElement<HTMLTableElement>): (string | null)[][] => {
   const rows = SelectorFilter.descendants(element, 'tr');
-  return rows.map((row) =) {
+  return rows.map((row) => {
     const cells = SelectorFilter.descendants(row, 'td,th');
-    return cells.map((cell) =)
+    return cells.map((cell) =>
       Css.getRaw(cell, 'height').map(reducePrecision).getOrNull()
     );
   });
@@ -45,14 +45,14 @@ const readCellHeights = (element: SugarElement<HTMLTableElement>): (string | nul
 
 const readRowHeights = (element: SugarElement<HTMLTableElement>): (string | null)[] => {
   const rows = SelectorFilter.descendants(element, 'tr');
-  return rows.map((row) =) {
+  return rows.map((row) => {
     return Css.getRaw(row, 'height').map(reducePrecision).getOrNull();
   });
 };
 
 const assertApproxCellSizes = (expectedSizes: (string | null)[][], actualSizes: (string | null)[][], diff: number = 2): void => {
-  expectedSizes.forEach((row, rowIdx) =) {
-    row.forEach((expectedSize, colIdx) =) {
+  expectedSizes.forEach((row, rowIdx) => {
+    row.forEach((expectedSize, colIdx) => {
       const actualSize = actualSizes[rowIdx][colIdx];
       const delta = parseFloat(expectedSize || '0') - parseFloat(actualSize || '0');
       Assert.eq(`Assert cell size [${rowIdx}][${colIdx}] should be ${expectedSize}`, true, Math.abs(delta) <= diff);

@@ -38,7 +38,7 @@ describe('browser.hugerte.plugins.emoticons.DifferentEmojiDatabaseTest', () => {
     );
 
     const tabs = UiFinder.findAllIn(SugarBody.body(), '[role="tab"]');
-    const actualCategories = tabs.map((elm) =) elm.dom.textContent);
+    const actualCategories = tabs.map((elm) => elm.dom.textContent);
     assert.deepEqual(actualCategories, categories, 'Categories match');
     McEditor.remove(editor);
   };

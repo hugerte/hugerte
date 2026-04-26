@@ -19,7 +19,7 @@ describe('browser.hugerte.themes.silver.sidebar.SidebarTest', () => {
     toolbar: 'mysidebar1 mysidebar2 mysidebar3',
     setup: (editor: Editor) => {
       const logEvent = (name: string) => (api: Sidebar.SidebarInstanceApi) => {
-        const index = Traverse.findIndex(SugarElement.fromDom(api.element())).getOr(-1);
+        const index = Traverse.findIndex(SugarElement.fromDom(api.element())) ?? -1;
         const entry: EventLog = { name, index };
         store.adder(entry)();
       };

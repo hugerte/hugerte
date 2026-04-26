@@ -28,16 +28,16 @@ describe('atomic.robin.zone.AvoidSpecialTest', () => {
   const root = doc.get();
 
   const idInZone = (id: string, zones: ZoneDetails<Gene>[]) =>
-    zones.some((zone) =)
-      zone.details.some((detail) =)
+    zones.some((zone) =>
+      zone.details.some((detail) =>
         detail.item.id === id
       )
     );
 
   it('skips special and CEF elements while walking the entire document', () => {
     const zones = ZoneWalker.walk(doc, root, root, 'en_us', WordDecision.fromItem, ZoneViewports.anything());
-    [ '1.1', '1.2', '3.1' ].forEach((id) =) assert.isTrue(idInZone(id, zones), 'Zones contains ' + id));
-    [ '2.1', '2.2', '4.1' ].forEach((id) =) assert.isFalse(idInZone(id, zones), 'Zone does not contain ' + id));
+    [ '1.1', '1.2', '3.1' ].forEach((id) => assert.isTrue(idInZone(id, zones), 'Zones contains ' + id));
+    [ '2.1', '2.2', '4.1' ].forEach((id) => assert.isFalse(idInZone(id, zones), 'Zone does not contain ' + id));
   });
 
   it('skips special elements while walking through special elements', () => {

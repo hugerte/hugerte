@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { DomParent } from '@ephox/robin';
 import { TablePositions } from '@ephox/snooker';
 import { Compare, SelectorFilter, SelectorFind, Selectors, SugarElement } from '@ephox/sugar';
@@ -76,7 +76,7 @@ const identify = (start: SugarElement<HTMLTableCellElement>, finish: SugarElemen
 
 const retrieve = <T extends Element> (container: SugarElement<Node>, selector: string): (SugarElement<T>[]) | null => {
   const sels = SelectorFilter.descendants<T>(container, selector);
-  return sels.length > 0 ? sels : Optional.none<SugarElement<T>[]>();
+  return sels.length > 0 ? sels : null;
 };
 
 const getLast = (boxes: SugarElement<HTMLTableCellElement>[], lastSelectedSelector: string): (SugarElement<HTMLTableCellElement>) | null => {

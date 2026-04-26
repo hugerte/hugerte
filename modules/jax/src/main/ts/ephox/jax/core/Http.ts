@@ -207,7 +207,7 @@ const fallbackDownload = (init: HttpTypes.DownloadHttpRequest): FutureResult<Blo
 };
 
 const download = (init: HttpTypes.DownloadHttpRequest): FutureResult<Blob, HttpError<DataType.Blob>> =>
-  ((Global)['fetch'] ?? null).exists(Type.isFunction) ?
+  ((Global)['fetch'] ?? null).exists((x: any): x is Function => typeof x === 'function') ?
     fetchDownload(init) :
     fallbackDownload(init);
 

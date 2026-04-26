@@ -88,7 +88,7 @@ const makeFactory = (
 
     const runUpdates = (anyInSystem: AlloyComponent, hex: Hex, hue: number, updates: ((anyInSystem: AlloyComponent, hex: Hex, hue: number) => void)[]) => {
       updateState(hex, hue);
-      updates.forEach((update) =) {
+      updates.forEach((update) => {
         update(anyInSystem, hex, hue);
       });
     };

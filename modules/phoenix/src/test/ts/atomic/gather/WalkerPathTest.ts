@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
+
 
 import { Direction, Traverse } from 'ephox/phoenix/api/data/Types';
 import * as Walker from 'ephox/phoenix/gather/Walker';
@@ -46,8 +46,8 @@ UnitTest.test('WalkerPathTest', () => {
   const checkPath = (expected: string[], id: string, direction: Direction) => {
     const start = Finder.get(universe, id);
     let path: string[] = [];
-    let current: Optional<Traverse<Gene>> = { item: start, mode: Walker.advance };
-    while (current.isSome()) {
+    let current: Traverse<Gene> | null = { item: start, mode: Walker.advance };
+    while (current !== null) {
       const c = current.getOrDie();
       path = path.concat(c.item.id);
       current = Walker.go(universe, c.item, c.mode, direction);

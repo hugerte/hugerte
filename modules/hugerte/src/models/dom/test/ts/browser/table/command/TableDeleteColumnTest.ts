@@ -27,7 +27,7 @@ describe('browser.hugerte.models.dom.table.command.TableDeleteColumnTest', () =>
 
   const assertEvents = (count: number) => {
     assert.lengthOf(events, count);
-    events.forEach((event) =) {
+    events.forEach((event) => {
       assert.equal(event.type, 'tablemodified', 'Event name');
       assert.isTrue(event.structure, 'Table modified structure');
       assert.isFalse(event.style, 'Table modified style');
@@ -107,7 +107,7 @@ describe('browser.hugerte.models.dom.table.command.TableDeleteColumnTest', () =>
       cols: 20,
       options: { colgroup: true }
     }
-  ].forEach(({ rows, cols, options }) =) {
+  ].forEach(({ rows, cols, options }) => {
     context(`${rows}x${cols} ${options.colgroup ? 'with colgroup' : ''}`, () => {
       const createTable = (tbody: string) => {
         const colgroup = options.colgroup ? `<colgroup>${Array.from({ length: cols }, () => '<col>').join('')}</colgroup>` : '';

@@ -73,7 +73,7 @@ export default (doc: SugarElement<HTMLDocument>, gui: GuiSystem, typeahead: Allo
   const sAssertAriaActiveDescendant = <T>(label: string, expected: string) => Logger.t<T, T>(
     label + ' sAssertAriaActiveDescendant',
     Chain.asStep(typeahead.element, [
-      Chain.mapper((input) => Attribute.getOpt(input, 'aria-activedescendant').getOr('')),
+      Chain.mapper((input) => Attribute.getOpt(input, 'aria-activedescendant') ?? ''),
       Assertions.cAssertEq('Checking aria-activedescendant of typeahead', expected)
     ])
   );

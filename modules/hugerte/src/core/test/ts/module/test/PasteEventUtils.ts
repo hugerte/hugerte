@@ -88,7 +88,7 @@ const pWaitForAndAssertEventsDoNotFire = async (events: SingletonEvent<any>[]): 
   const thrown = Cell<boolean>(false);
   try {
     await Waiter.pTryUntilPredicate('Did not fire any paste event',
-      () => events.some((e) =) e.isSet()));
+      () => events.some((e) => e.isSet()));
   } catch {
     thrown.set(true);
   }

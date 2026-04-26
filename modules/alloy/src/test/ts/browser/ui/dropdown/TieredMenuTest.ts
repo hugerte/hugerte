@@ -112,7 +112,7 @@ UnitTest.asynctest('TieredMenuTest', (success, failure) => {
   ), (doc, _body, _gui, component, store) => {
     const structureMenu = (selected: boolean, itemSelections: boolean[], hasPopups: boolean[], isExpandeds: boolean[], disabled: boolean[]) => (s: ApproxStructure.StructApi, str: ApproxStructure.StringApi, arr: ApproxStructure.ArrayApi) => s.element('ol', {
       classes: [ arr.has('menu'), (selected ? arr.has : arr.not)('selected-menu') ],
-      children: itemSelections.map((sel, i) =) s.element('li', {
+      children: itemSelections.map((sel, i) => s.element('li', {
         classes: [ arr.has('item'), (sel ? arr.has : arr.not)('selected-item') ],
         attrs: {
           'aria-haspopup': str.is(hasPopups[i].toString()),
@@ -128,7 +128,7 @@ UnitTest.asynctest('TieredMenuTest', (success, failure) => {
       label,
       ApproxStructure.build((s, str, arr) => s.element('div', {
         classes: [ arr.has('test-menu') ],
-        children: structureMenus.map((sm) =) sm(s, str, arr))
+        children: structureMenus.map((sm) => sm(s, str, arr))
       })),
       component.element
     );

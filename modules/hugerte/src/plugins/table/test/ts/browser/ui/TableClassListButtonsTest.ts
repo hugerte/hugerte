@@ -70,7 +70,7 @@ describe('browser.hugerte.plugins.table.ui.TableClassListButtonsTest', () => {
   };
 
   const toggleClasses = (editor: Editor, classes: string[], commandName: string) => {
-    classes.forEach((clazz) =) editor.execCommand(commandName, false, clazz));
+    classes.forEach((clazz) => editor.execCommand(commandName, false, clazz));
     assert.lengthOf(events, classes.length, 'Command executed successfully');
   };
 

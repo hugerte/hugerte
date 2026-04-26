@@ -21,10 +21,10 @@ UnitTest.test('DeltasTest', () => {
       isRelative: false
     };
     const actual = Deltas.determine(input, column, step, tableSize as TableSize, resizeBehaviour);
-    Assert.eq(`${msg}: expected: ${expected}, actual: ${actual}`, expected, actual.map((num) =) Math.round(num)));
+    Assert.eq(`${msg}: expected: ${expected}, actual: ${actual}`, expected, actual.map((num) => Math.round(num)));
   };
 
-  [ resizeTable, preserveTable ].forEach((mode) =) {
+  [ resizeTable, preserveTable ].forEach((mode) => {
     const modeName = mode === resizeTable ? 'resizeTable' : 'preserveTable';
     check(`deltas - columnSizing: "${modeName}" - single column (0)`, [ -70 ], [ 80 ], 0, -100, mode);
     check(`deltas - columnSizing: "${modeName}" - single column (1)`, [ -100 ], [ 115 ], 0, -100, mode);

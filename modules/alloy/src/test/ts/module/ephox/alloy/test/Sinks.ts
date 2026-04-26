@@ -1,5 +1,5 @@
 import { after, before } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Compare, PredicateExists, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -68,9 +68,9 @@ const isInside = (sinkComponent: AlloyComponent, popupComponent: AlloyComponent)
 };
 
 const bddSetup = (): Sinks => {
-  let fixed: Optional<AlloyComponent>;
-  let relative: Optional<AlloyComponent>;
-  let pop: Optional<AlloyComponent>;
+  let fixed: AlloyComponent | null;
+  let relative: AlloyComponent | null;
+  let pop: AlloyComponent | null;
 
   before(() => {
     fixed = fixedSink();

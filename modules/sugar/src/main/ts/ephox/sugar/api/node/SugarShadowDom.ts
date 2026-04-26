@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import { HTMLElementFullTagNameMap } from '../../alien/DomTypes';
 import * as Traverse from '../search/Traverse';
@@ -53,10 +53,10 @@ export const getContentContainer = (dos: RootNode): SugarElement<HTMLElement | S
 
 /** Is this element either a ShadowRoot or a descendent of a ShadowRoot. */
 export const isInShadowRoot = (e: SugarElement<Node>): boolean =>
-  getShadowRoot(e).isSome();
+  getShadowRoot(e) !== null;
 
 /** If this element is in a ShadowRoot, return it. */
-export const getShadowRoot = (e: SugarElement<Node>): Optional<SugarElement<ShadowRoot>> => {
+export const getShadowRoot = (e: SugarElement<Node>): SugarElement<ShadowRoot> | null => {
   const r = getRootNode(e);
   return isShadowRoot(r) ? r : null;
 };
@@ -75,7 +75,7 @@ export const getShadowHost = (e: SugarElement<ShadowRoot>): SugarElement<Element
  * This only works if the shadow tree is open - if the shadow tree is closed, event.target is returned.
  * See: https://developers.google.com/web/fundamentals/web-components/shadowdom#events
  */
-export const getOriginalEventTarget = (event: Event): Optional<EventTarget> => {
+export const getOriginalEventTarget = (event: Event): EventTarget | null => {
   if (isSupported() && event.target != null) {
     const el = SugarElement.fromDom(event.target as Node);
     if (SugarNode.isElement(el) && isOpenShadowHost(el)) {
@@ -84,7 +84,7 @@ export const getOriginalEventTarget = (event: Event): Optional<EventTarget> => {
       if (event.composed && event.composedPath) {
         const composedPath = event.composedPath();
         if (composedPath) {
-          return Arr.head(composedPath);
+          return (composedPath[0] ?? null);
         }
       }
     }

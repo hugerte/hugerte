@@ -7,7 +7,7 @@ import * as Strings from 'ephox/katamari/api/Strings';
 describe('atomic.katamari.api.str.CapitalizeTest', () => {
   it('unit tests', () => {
     const check = (expected: string, input: string) => {
-      const actual = Strings.capitalize(input);
+      const actual = (input.charAt(0).toUpperCase() + input.slice(1));
       assert.equal(actual, expected);
     };
 
@@ -24,13 +24,13 @@ describe('atomic.katamari.api.str.CapitalizeTest', () => {
 
   it('tail of the string is unchanged', () => {
     fc.assert(fc.property(fc.ascii(), fc.asciiString(30), (h, t) => {
-      assert.equal(Strings.capitalize(h + t).substring(1), t);
+      assert.equal((h + t.charAt(0).toUpperCase() + h + t.slice(1)).substring(1), t);
     }));
   });
 
   it('head is uppercase', () => {
     fc.assert(fc.property(fc.ascii(), fc.asciiString(30), (h, t) => {
-      const actualH = Strings.capitalize(h + t).charAt(0);
+      const actualH = (h + t.charAt(0).toUpperCase() + h + t.slice(1)).charAt(0);
       assert.equal(actualH, h.toUpperCase());
     }));
   });

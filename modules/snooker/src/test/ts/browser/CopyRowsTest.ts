@@ -20,7 +20,7 @@ UnitTest.test('CopyRowsTest', () => {
     const rowsOpt = copyRows(table, {
       selection: [ Hierarchy.follow(table, [ section, row, column, 0 ]).getOrDie(label + ': could not follow path') ]
     }, Bridge.generators);
-    const copiedHtml = rowsOpt.map((rows) => rows.map(Html.getOuter).join('')).getOr('');
+    const copiedHtml = rowsOpt.map((rows) => rows.map(Html.getOuter).join('')) ?? '';
 
     Assert.eq(label + ': Copied HTML should match', expectedHtml, copiedHtml);
     Remove.remove(table);

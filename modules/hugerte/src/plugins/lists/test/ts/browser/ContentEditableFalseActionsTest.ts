@@ -52,20 +52,20 @@ ${listContent}
 </${type1}>
 </div>`;
 
-  const nonEditableList: ListParameters[] = listTypes.map((type) =) ({
+  const nonEditableList: ListParameters[] = listTypes.map((type) => ({
     title: `non-editable ${type} list`,
     content: nonEditableListContents(type),
     startPath: [ 1, 0 ]
   }));
 
-  const divNestedNonEditableList: ListParameters[] = listTypes.map((type) =) ({
+  const divNestedNonEditableList: ListParameters[] = listTypes.map((type) => ({
     title: `non-editable div nested ${type} list`,
     content: divNestedNonEditableListContents(type),
     startPath: [ 0, 1, 0 ]
   }));
 
-  const nestedNonEditableList: ListParameters[] = listTypes.flatMap((type1) =)
-    listTypes.map((type2) =) ({
+  const nestedNonEditableList: ListParameters[] = listTypes.flatMap((type1) =>
+    listTypes.map((type2) => ({
       title: `non-editable ${type2} list within editable ${type1} list`,
       content: nestedNonEditableListContents(type1, type2),
       startPath: [ 1, 0, 0, 1, 0, 0 ]
@@ -91,7 +91,7 @@ ${listContent}
     TinyAssertions.assertContent(editor, list.content);
   };
 
-  contentCombinations.forEach((list) =)
+  contentCombinations.forEach((list) =>
     context(list.title, () => {
       it(`TINY-8920: Pressing Numbered list toolbar button is disabled when in ${list.title}`, () =>
         performActionAndAssertNoChange(list, (editor: Editor) => checkToolbarDisabled(editor, 'Numbered list'))

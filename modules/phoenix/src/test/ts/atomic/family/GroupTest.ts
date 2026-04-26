@@ -30,11 +30,11 @@ UnitTest.test('GroupTest', () => {
   );
 
   const check = (expected: string[][], ids: string[]) => {
-    const items = ids.map((id) =) {
+    const items = ids.map((id) => {
       return Finder.get(doc, id);
     });
     const actual = Group.group(doc, items);
-    Assert.eq('', expected, actual.map((xs) =) {
+    Assert.eq('', expected, actual.map((xs) => {
       return xs.map(TestRenders.typeditem);
     }));
   };

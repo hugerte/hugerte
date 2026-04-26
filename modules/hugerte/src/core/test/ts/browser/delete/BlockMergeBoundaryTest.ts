@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -24,7 +24,7 @@ describe('browser.hugerte.core.delete.BlockMergeBoundary', () => {
     return BlockMergeBoundary.read(Schema(), viewBlock.get(), forward, rng);
   };
 
-  const assertBlockBoundaryPositions = (blockBoundaryOpt: Optional<BlockBoundary>, fromPath: number[], fromOffset: number, toPath: number[], toOffset: number) => {
+  const assertBlockBoundaryPositions = (blockBoundaryOpt: BlockBoundary | null, fromPath: number[], fromOffset: number, toPath: number[], toOffset: number) => {
     const fromContainer = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), fromPath).getOrDie();
     const toContainer = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), toPath).getOrDie();
     const blockBoundary = blockBoundaryOpt.getOrDie();
@@ -35,7 +35,7 @@ describe('browser.hugerte.core.delete.BlockMergeBoundary', () => {
     assert.equal(blockBoundary.to.position.offset(), toOffset, 'Should be expected to offset');
   };
 
-  const assertBlockBoundaryBlocks = (blockBoundaryOpt: Optional<BlockBoundary>, fromBlockPath: number[], toBlockPath: number[]) => {
+  const assertBlockBoundaryBlocks = (blockBoundaryOpt: BlockBoundary | null, fromBlockPath: number[], toBlockPath: number[]) => {
     const expectedFromBlock = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), fromBlockPath).getOrDie();
     const expectedToBlock = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), toBlockPath).getOrDie();
     const blockBoundary = blockBoundaryOpt.getOrDie();
@@ -44,8 +44,8 @@ describe('browser.hugerte.core.delete.BlockMergeBoundary', () => {
     Assertions.assertDomEq('Should be expected to block', expectedToBlock, blockBoundary.to.block);
   };
 
-  const assertBlockBoundaryNone = (blockBoundaryOpt: Optional<BlockBoundary>) => {
-    assert.isTrue(blockBoundaryOpt.isNone(), 'BlockBoundary should be none');
+  const assertBlockBoundaryNone = (blockBoundaryOpt: BlockBoundary | null) => {
+    assert.isTrue(blockBoundaryOpt === null, 'BlockBoundary should be none');
   };
 
   context('None block boundaries', () => {

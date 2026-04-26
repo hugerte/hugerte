@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { BlockFormat, InlineFormat } from 'hugerte/core/api/fmt/Format';
@@ -49,7 +49,7 @@ const getSpec = (editor: Editor): SelectSpec => {
     text: fallbackFormat,
     icon: null,
     isSelectedFor,
-    getCurrentValue: Optional.none,
+    getCurrentValue: () => null,
     getPreviewFor,
     onAction: onActionToggleFormat(editor),
     updateText: updateSelectMenuText,

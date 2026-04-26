@@ -22,7 +22,7 @@ describe('atomic.katamari.api.arr.ArrBindTest', () => {
 
   it('binding an array of empty arrays with identity equals an empty array', () => {
     fc.assert(fc.property(fc.array(fc.constant<number[]>([])), (arr) => {
-      assert.deepEqual(Arr.bind(arr, Fun.identity), []);
+      assert.deepEqual(Arr.bind(arr, (x: any) => x), []);
     }));
   });
 

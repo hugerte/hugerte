@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement, SugarNode } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -28,4 +28,4 @@ export const bindRange = <T>(editor: Editor, binder: (node: SugarElement<Element
     .bind(binder);
 
 export const mapRange = <T>(editor: Editor, mapper: (node: SugarElement<Element>) => T): (T) | null =>
-  bindRange(editor, ((a: any) => (Optional.some)((mapper)(a))));
+  bindRange(editor, ((a: any) => ((x) => x)((mapper)(a))));

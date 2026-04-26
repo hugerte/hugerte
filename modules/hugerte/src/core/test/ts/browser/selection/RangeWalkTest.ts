@@ -32,7 +32,7 @@ describe('browser.hugerte.core.selection.RangeWalkTest', () => {
 
     const rng = editor.selection.getRng();
     RangeWalk.walk(editor.dom, rng, (nodes) => {
-      nodeNames.push(nodes.map((node) =) node.nodeName.toLowerCase()));
+      nodeNames.push(nodes.map((node) => node.nodeName.toLowerCase()));
     });
 
     assert.deepEqual(nodeNames, expected);

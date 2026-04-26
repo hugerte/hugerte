@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import { Coupling } from '../../api/behaviour/Coupling';
@@ -28,7 +28,7 @@ const schema = () => [
   FieldSchema.defaulted('responseTime', 1000),
   Fields.onHandler('onOpen'),
   // TODO: Remove dupe with Dropdown
-  FieldSchema.defaulted('getHotspot', Optional.some),
+  FieldSchema.defaulted('getHotspot', (x) => x),
   FieldSchema.defaulted('getAnchorOverrides', () => ({ })),
   FieldSchema.defaulted('layouts', null),
   FieldSchema.defaulted('eventOrder', { }),
@@ -56,7 +56,7 @@ const schema = () => [
     Focusing, Representing, Streaming, Keying, Toggling, Coupling
   ]),
 
-  FieldSchema.customField('lazyTypeaheadComp', () => Cell(Optional.none)),
+  FieldSchema.customField('lazyTypeaheadComp', () => Cell(() => null)),
 
   FieldSchema.customField('previewing', () => Cell(true))
 ].concat(

@@ -37,12 +37,12 @@ UnitTest.test('SimplifyTest', () => {
   ]));
 
   const check = (expected: string[], raw: string[]) => {
-    const path = raw.map((r) =) {
+    const path = raw.map((r) => {
       return doc.find(doc.get(), r).getOrDie('Could not find: ' + r);
     });
 
     const actual = Simplify.simplify(doc, path);
-    Assert.eq('', expected, actual.map((s) =) {
+    Assert.eq('', expected, actual.map((s) => {
       return s.id;
     }));
   };

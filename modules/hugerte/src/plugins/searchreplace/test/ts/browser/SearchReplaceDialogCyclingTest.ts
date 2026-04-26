@@ -31,7 +31,7 @@ describe('browser.hugerte.plugins.searchreplace.SearchReplaceDialogCyclingTest',
     { label: 'Test cycling using find', scenario: { cycle: Utils.clickFind, dir: Direction.FORWARDS }},
     { label: 'Test cycling using next', scenario: { cycle: Utils.clickNext, dir: Direction.FORWARDS }},
     { label: 'Test cycling using previous', scenario: { cycle: Utils.clickPrev, dir: Direction.BACKWARDS }},
-  ].forEach((testCase) =) {
+  ].forEach((testCase) => {
     context(testCase.label, () => {
       const { dir, cycle } = testCase.scenario;
 

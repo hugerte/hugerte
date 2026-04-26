@@ -27,7 +27,7 @@ describe('browser.hugerte.themes.silver.skin.OxideColorSwatchMenuTest', () => {
             'blue',
             'black',
             'white'
-          ].map((c): Menu.ChoiceMenuItemSpec =) ({ type: 'choiceitem', text: c, value: c }));
+          ].map((c): Menu.ChoiceMenuItemSpec => ({ type: 'choiceitem', text: c, value: c }));
           callback(items.concat([
             {
               type: 'choiceitem',
@@ -74,7 +74,7 @@ describe('browser.hugerte.themes.silver.skin.OxideColorSwatchMenuTest', () => {
     });
 
   const structColors = (values: string[]): ApproxStructure.Builder<StructAssert[]> =>
-    (s, str, arr) => values.map((v) =) structColor(v)(s, str, arr));
+    (s, str, arr) => values.map((v) => structColor(v)(s, str, arr));
 
   const assertFocusIsOnColor = (expected: string) => {
     const focused = FocusTools.getFocused(SugarDocument.getDocument()).getOrDie();

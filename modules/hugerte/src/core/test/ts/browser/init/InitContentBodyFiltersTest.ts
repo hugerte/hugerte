@@ -10,7 +10,7 @@ describe('browser.hugerte.core.init.InitContentBodyFiltersTest', () => {
     setup: (ed: Editor) => {
       ed.on('init', () => {
         ed.parser.addNodeFilter('p', (nodes) => {
-          nodes.forEach((node) =) {
+          nodes.forEach((node) => {
             // Remove style attributes from node
             node.attr('style', null);
             node.attr('data-mce-style', null);

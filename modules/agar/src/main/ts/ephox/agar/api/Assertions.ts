@@ -60,7 +60,7 @@ const assertHtmlStructure2 = (label: TestLabel, expected: string, actual: SugarE
 };
 
 const assertPresence = (label: TestLabel, expected: Record<string, number>, container: SugarElement<Node>): void => {
-  Object.entries(expected).forEach(([k, v]) => ((num: number, selector: string) =)(v, k)) {
+  Object.entries(expected).forEach(([k, v]) => ((num: number, selector: string) =>(v, k)) {
     const actual = UiFinder.findAllIn(container, selector).length;
     Assert.eq(TestLabel.concat('Did not find ' + num + ' of ' + selector + ', found: ' + actual + '. Test: ', label), num, actual);
   });

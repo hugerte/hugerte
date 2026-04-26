@@ -79,7 +79,7 @@ export const fetchMailMergeData = (settings: { collapseSearchResults: boolean },
       personHomeEmail
     ];
 
-    const matches = allMerges.filter((m): boolean =) {
+    const matches = allMerges.filter((m): boolean => {
       const valueMatches = m.value.toLowerCase().indexOf(fetchContext.pattern.toLowerCase()) > -1;
       return valueMatches || (
         m.title !== undefined && (m.title.toLowerCase().indexOf(fetchContext.pattern.toLowerCase()) > -1)

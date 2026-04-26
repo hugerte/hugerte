@@ -249,7 +249,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
       );
     };
 
-    [ true, false ].forEach((shouldContentHaveDoctype) =) {
+    [ true, false ].forEach((shouldContentHaveDoctype) => {
       const doctypeLabel = getDoctypeLabel(shouldContentHaveDoctype);
 
       it(`TINY-10032: Should keep scroll at top when streamContent: true, iframe is at top, and ${doctypeLabel}`,
@@ -316,7 +316,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
       assertIframeScrollAtBottomOverflow(iframe, shouldContentHaveDoctype, 'iframe should be scrolled to bottom');
     };
 
-    [ true, false ].forEach((shouldContentHaveDoctype) =) {
+    [ true, false ].forEach((shouldContentHaveDoctype) => {
       const doctypeLabel = getDoctypeLabel(shouldContentHaveDoctype);
       it(`TINY-10078 & TINY-10097: Check for throttled iframe load on Safari and iframe scroll position is at bottom after streaming when ${doctypeLabel}`, async () => {
         const frame = getFrameFromFrameNumber(streamFrameNumber);

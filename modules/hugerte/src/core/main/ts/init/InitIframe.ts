@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+
 import { Attribute, Class, DomEvent, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -64,7 +64,7 @@ const getIframeHtml = (editor: Editor) => {
 
 const createIframe = (editor: Editor, boxInfo: BoxInfo) => {
   const iframeTitle = editor.translate('Rich Text Area');
-  const tabindex = Attribute.getOpt(SugarElement.fromDom(editor.getElement()), 'tabindex').bind(Strings.toInt);
+  const tabindex = Attribute.getOpt(SugarElement.fromDom(editor.getElement()), 'tabindex').bind((s: string) => parseInt(s, 10));
   const ifr = createIframeElement(editor.id, iframeTitle, Options.getIframeAttrs(editor), tabindex).dom;
 
   ifr.onload = () => {

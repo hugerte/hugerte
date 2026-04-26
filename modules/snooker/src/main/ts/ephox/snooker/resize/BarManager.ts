@@ -1,5 +1,5 @@
 import { Dragger } from '@ephox/dragster';
-import { Optional } from '@ephox/katamari';
+
 import { Bindable, Event, Events } from '@ephox/porkbun';
 import { Attribute, Class, Compare, ContentEditable, Css, DomEvent, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
@@ -50,7 +50,7 @@ export const BarManager = (wire: ResizeWire): BarManager => {
   const mutation = BarMutation();
   const resizing = Dragger.transform(mutation, {});
 
-  let hoverTable = Optional.none<SugarElement<HTMLTableElement>>();
+  let hoverTable = null;
 
   const getResizer = (element: SugarElement<Element>, type: string) => {
     return (Attribute.get(element, type) ?? null);

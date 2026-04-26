@@ -25,7 +25,7 @@ UnitTest.test('DownTest', () => {
     ]), null);
 
   const check = (expected: string[], actual: Gene[]) => {
-    Assert.eq('', expected, actual.map((item) =) {
+    Assert.eq('', expected, actual.map((item) => {
       return item.id;
     }));
   };

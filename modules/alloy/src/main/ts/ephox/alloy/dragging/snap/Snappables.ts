@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { SugarPosition } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -110,7 +110,7 @@ const findClosestSnap = <E>(component: AlloyComponent, snapInfo: SnapsConfig<E>,
       });
     }, {
       deltas: null,
-      snap: Optional.none<SnapConfig<E>>()
+      snap: null
     });
     return bestSnap.snap.map((snap): SnapOutput<E> => ({
       output: DragCoord.absorb(snap.output, newCoord, scroll, origin),

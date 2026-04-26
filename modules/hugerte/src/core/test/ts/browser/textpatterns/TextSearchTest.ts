@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -26,17 +26,17 @@ describe('browser.hugerte.core.textpatterns.TextSearchTest', () => {
     const rng = editor.selection.getRng();
     return TextSearch.repeatLeft(editor.dom, rng.startContainer, rng.startOffset, process(content), editor.getBody())
       .map((spot) => spot.container)
-      .getOrNull();
+      ;
   };
 
   const repeatRightUntil = (editor: Editor, content: string) => {
     const rng = editor.selection.getRng();
     return TextSearch.repeatRight(editor.dom, rng.startContainer, rng.startOffset, process(content), editor.getBody())
       .map((spot) => spot.container)
-      .getOrNull();
+      ;
   };
 
-  const assertSpot = (label: string, spotOpt: Optional<SpotPoint<Text>>, elementText: string, offset: number) => {
+  const assertSpot = (label: string, spotOpt: SpotPoint<Text> | null, elementText: string, offset: number) => {
     const spot = spotOpt.getOrDie(`${label} - Spot not found`);
 
     assert.equal(spot.container.textContent, elementText, label);
@@ -85,7 +85,7 @@ describe('browser.hugerte.core.textpatterns.TextSearchTest', () => {
     assertSpot('Scan right same text node', start, '*', 1);
     assertSpot('Scan right into anchor element', anchor, 'a', 1);
     assertSpot('Scan right over anchor element', content, 'bc', 2);
-    assert.isTrue(outOfRange.isNone(), 'Scan right with out of range offset is none');
+    assert.isTrue(outOfRange === null, 'Scan right with out of range offset is none');
   });
 
   it('TBA: scan left over fragmented text', () => {
@@ -102,7 +102,7 @@ describe('browser.hugerte.core.textpatterns.TextSearchTest', () => {
     assertSpot('Scan left same text node', start, 'bc', 1);
     assertSpot('Scan left into anchor element', anchor, 'a', 0);
     assertSpot('Scan left over anchor element', content, '*', 0);
-    assert.isTrue(outOfRange.isNone(), 'Scan left with out of range offset is none');
+    assert.isTrue(outOfRange === null, 'Scan left with out of range offset is none');
   });
 
   it('TBA: repeat left over fragmented text', () => {

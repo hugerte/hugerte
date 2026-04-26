@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as FormCoupledInputsSchema from '../../ui/schema/FormCoupledInputsSchema';
@@ -21,7 +21,7 @@ const factory: CompositeSketchFactory<FormCoupledInputsDetail, FormCoupledInputs
   behaviours: SketchBehaviours.augment(
     detail.coupledFieldBehaviours,
     [
-      Composing.config({ find: Optional.some }),
+      Composing.config({ find: (x) => x }),
 
       Representing.config({
         store: {

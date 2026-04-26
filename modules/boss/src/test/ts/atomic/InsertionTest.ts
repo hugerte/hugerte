@@ -57,7 +57,7 @@ UnitTest.test('InsertionTest', () => {
   const checkAfterAll = (expected: string, input: Gene, anchorId: string, itemIds: string[]) => {
     const family = Tracks.track(input, null);
     const anchor = Locator.byId(family, anchorId).getOrDie('Did not find anchor: ' + anchorId);
-    const items = itemIds.map((itemId) =) {
+    const items = itemIds.map((itemId) => {
       return Locator.byId(family, itemId).getOrDie('Did not find item: ' + itemId);
     });
     Insertion.afterAll(anchor, items);

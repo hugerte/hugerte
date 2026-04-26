@@ -1,5 +1,5 @@
 import { Transformations } from '@ephox/acid';
-import { Type } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -37,7 +37,7 @@ const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
   const colorProcessor = (value: unknown): any => {
-    if ((Array.isArray(value) && (value).every(Type.isString))) {
+    if ((Array.isArray(value) && (value).every((x: any): x is string => typeof x === 'string'))) {
       return { value: mapColors(value), valid: true };
     } else {
       return { valid: false, message: 'Must be an array of strings.' };

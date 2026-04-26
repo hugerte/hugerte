@@ -19,15 +19,15 @@ UnitTest.test('ModificationOperationsTest', () => {
     return Structs.elementnew(elem, isNew, false);
   };
   const mapToStructGrid = (grid: Grid) => {
-    return grid.map((row) =) {
+    return grid.map((row) => {
       return Structs.rowcells(re(), row, 'tbody', false);
     });
   };
 
   const assertGrids = (expected: Structs.RowCells[], actual: Structs.RowCells[], checkIsNew: boolean) => {
     Assert.eq('', expected.length, actual.length);
-    expected.forEach((row, i) =) {
-      row.cells.forEach((cell, j) =) {
+    expected.forEach((row, i) => {
+      row.cells.forEach((cell, j) => {
         Assertions.assertHtml('Expected elements to have the same HTML', Html.getOuter(cell.element), Html.getOuter(actual[i].cells[j].element));
         Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
       });

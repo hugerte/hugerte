@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 
 import { Coupling } from '../../api/behaviour/Coupling';
 import { Focusing } from '../../api/behaviour/Focusing';
@@ -18,7 +18,7 @@ const schema = () => [
   FieldSchema.required('fetch'),
   Fields.onHandler('onOpen'),
   Fields.onKeyboardHandler('onExecute'),
-  FieldSchema.defaulted('getHotspot', Optional.some),
+  FieldSchema.defaulted('getHotspot', (x) => x),
   FieldSchema.defaulted('getAnchorOverrides', () => ({ })),
   AnchorLayouts.schema(),
   SketchBehaviours.field('dropdownBehaviours', [ Toggling, Coupling, Keying, Focusing ]),

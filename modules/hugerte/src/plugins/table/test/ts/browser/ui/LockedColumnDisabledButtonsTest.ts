@@ -63,7 +63,7 @@ describe('browser.hugerte.plugins.table.LockedColumnDisabledButtonsTest', () => 
     { name: 'tablesplitcells', label: 'Split cell' },
   ];
 
-  const toolbar = [ ...tableButtons, ...columnButtons, ...rowButtons, ...cellButtons ].map((buttonDetails) =) buttonDetails.name).join(' ');
+  const toolbar = [ ...tableButtons, ...columnButtons, ...rowButtons, ...cellButtons ].map((buttonDetails) => buttonDetails.name).join(' ');
 
   const hook = TinyHooks.bddSetup<Editor>({
     plugins: 'table',

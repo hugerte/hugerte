@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, Remove, SimRange, SimSelection, SugarElement, Traverse, WindowSelection } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -26,17 +26,17 @@ describe('browser.hugerte.core.selection.SelectionBookmarkTest', () => {
     return SelectionBookmark.getBookmark(root);
   };
 
-  const validateBookmark = (bookmark: Optional<SimRange>, rootPath: number[]) => {
+  const validateBookmark = (bookmark: SimRange | null, rootPath: number[]) => {
     const root = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), rootPath).getOrDie();
     return bookmark.bind((b) => SelectionBookmark.validate(root, b));
   };
 
-  const assertNone = (x: Optional<unknown>) => {
-    assert.isTrue(x.isNone(), 'should be none');
+  const assertNone = (x: unknown | null) => {
+    assert.isTrue(x === null, 'should be none');
   };
 
-  const assertSome = (x: Optional<unknown>) => {
-    assert.isTrue(x.isSome(), 'should be some');
+  const assertSome = (x: unknown | null) => {
+    assert.isTrue(x !== null, 'should be some');
   };
 
   const assertSelection = (startPath: number[], startOffset: number, finishPath: number[], finishOffset: number) => {
@@ -53,7 +53,7 @@ describe('browser.hugerte.core.selection.SelectionBookmarkTest', () => {
     assert.equal(sel.foffset, finishOffset, 'foffset');
   };
 
-  const manipulateBookmarkOffsets = (bookmark: Optional<SimRange>, startPad: number, finishPad: number) => {
+  const manipulateBookmarkOffsets = (bookmark: SimRange | null, startPad: number, finishPad: number) => {
     return bookmark.map((bm) => {
       return SimSelection.range(bm.start, bm.soffset + startPad, bm.finish, bm.foffset + finishPad);
     });
@@ -63,7 +63,7 @@ describe('browser.hugerte.core.selection.SelectionBookmarkTest', () => {
     Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), path).each(Remove.remove);
   };
 
-  const assertBookmark = (bookmark: Optional<SimRange>, startPath: number[], startOffset: number, finishPath: number[], finishOffset: number) => {
+  const assertBookmark = (bookmark: SimRange | null, startPath: number[], startOffset: number, finishPath: number[], finishOffset: number) => {
     const sc = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), startPath).getOrDie();
     const fc = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), finishPath).getOrDie();
 
@@ -75,7 +75,7 @@ describe('browser.hugerte.core.selection.SelectionBookmarkTest', () => {
     assert.equal(bookmarkRng.foffset, finishOffset, 'foffset');
   };
 
-  const setSelectionFromBookmark = (bookmark: Optional<SimRange>) => {
+  const setSelectionFromBookmark = (bookmark: SimRange | null) => {
     bookmark.each((b) => {
       const root = SugarElement.fromDom(viewBlock.get());
       const win = Traverse.defaultView(root);
@@ -181,7 +181,7 @@ describe('browser.hugerte.core.selection.SelectionBookmarkTest', () => {
     assertBookmark(validBookmark, [ 0, 0 ], 2, [ 1, 0 ], 3);
   });
 
-  it('readRange with with win without getSelection should return Optional.none', () => {
+  it('readRange with with win without getSelection should return () => null', () => {
     const mockWin = { getSelection: () => null } as Window;
     const rngOpt = SelectionBookmark.readRange(mockWin);
     assertNone(rngOpt);
