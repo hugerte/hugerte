@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 
@@ -22,9 +22,9 @@ export interface Button {
   /** @deprecated use `buttonType: "primary"` instead */
   primary: boolean;
   name: string;
-  icon: Optional<string>;
+  icon: (string) | null;
   borderless: boolean;
-  buttonType: Optional<'primary' | 'secondary' | 'toolbar'>;
+  buttonType: ('primary' | 'secondary' | 'toolbar') | null;
 }
 
 const buttonFields = [

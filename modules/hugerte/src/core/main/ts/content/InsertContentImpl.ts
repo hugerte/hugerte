@@ -1,4 +1,3 @@
-import { Arr, Optional, Type } from '@ephox/katamari';
 import { Remove, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -35,11 +34,11 @@ const shouldPasteContentOnly = (dom: DOMUtils, fragment: AstNode, parentNode: El
   const last = lastNode.attr('data-mce-type') === 'bookmark' ? lastNode.prev : lastNode;
 
   const isPastingSingleElement = firstNode === last;
-  const isWrappedElement = Arr.contains(mergeableWrappedElements, firstNode.name);
+  const isWrappedElement = (mergeableWrappedElements).includes(firstNode.name);
   if (isPastingSingleElement && isWrappedElement) {
     const isContentEditable = firstNode.attr('contenteditable') !== 'false';
     const isPastingInTheSameBlockTag = dom.getParent(parentNode, dom.isBlock)?.nodeName.toLowerCase() === firstNode.name;
-    const isPastingInContentEditable = Optional.from(CefUtils.getContentEditableRoot(root, parentNode)).forall(NodeType.isContentEditableTrue);
+    const isPastingInContentEditable = (CefUtils.getContentEditableRoot(root, parentNode) ?? null).forall(NodeType.isContentEditableTrue);
 
     return isContentEditable && isPastingInTheSameBlockTag && isPastingInContentEditable;
   } else {
@@ -50,7 +49,7 @@ const shouldPasteContentOnly = (dom: DOMUtils, fragment: AstNode, parentNode: El
 const isTableCell = NodeType.isTableCell;
 
 const isTableCellContentSelected = (dom: DOMUtils, rng: Range, cell: Node | null): boolean => {
-  if (Type.isNonNullable(cell)) {
+  if ((cell) != null) {
     const endCell = dom.getParent(rng.endContainer, isTableCell);
     return cell === endCell && SelectionUtils.hasAllContentsSelected(SugarElement.fromDom(cell), rng);
   } else {
@@ -76,7 +75,7 @@ const validInsertion = (editor: Editor, value: string, parentNode: Element): voi
 };
 
 const trimBrsFromTableCell = (dom: DOMUtils, elm: Element, schema: Schema): void => {
-  Optional.from(dom.getParent(elm, 'td,th')).map(SugarElement.fromDom).each((el) => PaddingBr.trimBlockTrailingBr(el, schema));
+  (dom.getParent(elm, 'td,th') ?? null).map(SugarElement.fromDom).each((el) => PaddingBr.trimBlockTrailingBr(el, schema));
 };
 
 // Remove children nodes that are exactly the same as a parent node - name, attributes, styles
@@ -89,9 +88,9 @@ const reduceInlineTextElements = (editor: Editor, merge: boolean | undefined): v
     const elementUtils = ElementUtils(editor);
 
     Tools.each(dom.select('*[data-mce-fragment]'), (node) => {
-      const isInline = Type.isNonNullable(textInlineElements[node.nodeName.toLowerCase()]);
+      const isInline = (textInlineElements[node.nodeName.toLowerCase()]) != null;
       if (isInline && StyleUtils.hasInheritableStyles(dom, node)) {
-        for (let parentNode = node.parentElement; Type.isNonNullable(parentNode) && parentNode !== root; parentNode = parentNode.parentElement) {
+        for (let parentNode = node.parentElement; (parentNode) != null && parentNode !== root; parentNode = parentNode.parentElement) {
           // Check if the parent has a style conflict that would prevent the child node from being safely removed,
           // even if a exact node match could be found further up the tree
           const styleConflict = StyleUtils.hasStyleConflict(dom, node, parentNode);
@@ -130,7 +129,7 @@ const isPartOfFragment = (node: Element): boolean => {
 };
 
 const canHaveChildren = (editor: Editor, node: Node | undefined): boolean => {
-  return Type.isNonNullable(node) && !editor.schema.getVoidElements()[node.nodeName];
+  return (node) != null && !editor.schema.getVoidElements()[node.nodeName];
 };
 
 const moveSelectionToMarker = (editor: Editor, marker: HTMLElement | null): void => {
@@ -222,18 +221,18 @@ const deleteSelectedContent = (editor: Editor): void => {
   }
 };
 
-const findMarkerNode = (scope: AstNode): Optional<AstNode> => {
+const findMarkerNode = (scope: AstNode): (AstNode) | null => {
   for (let markerNode: AstNode | null | undefined = scope; markerNode; markerNode = markerNode.walk()) {
     if (markerNode.attr('id') === 'mce_marker') {
-      return Optional.some(markerNode);
+      return markerNode;
     }
   }
 
-  return Optional.none();
+  return null;
 };
 
 const notHeadingsInSummary = (dom: DOMUtils, node: Element, fragment: AstNode) => {
-  return Arr.exists(fragment.children(), AstNodeType.isHeading) && dom.getParent(node, dom.isBlock)?.nodeName === 'SUMMARY';
+  return (fragment.children()).some(AstNodeType.isHeading) && dom.getParent(node, dom.isBlock)?.nodeName === 'SUMMARY';
 };
 
 export const insertHtmlAtCaret = (editor: Editor, value: string, details: InsertContentDetails): string => {
@@ -349,13 +348,13 @@ export const insertHtmlAtCaret = (editor: Editor, value: string, details: Insert
     value = parentNode === rootNode ? rootNode.innerHTML : dom.getOuterHTML(parentNode);
     const root = parser.parse(value);
     const markerNode = findMarkerNode(root);
-    const editingHost = markerNode.bind(ParserUtils.findClosestEditingHost).getOr(root);
+    const editingHost = markerNode.bind(ParserUtils.findClosestEditingHost) ?? (root);
     markerNode.each((marker) => marker.replace(fragment));
 
     const toExtract = fragment.children();
     const parent = fragment.parent ?? root;
     fragment.unwrap();
-    const invalidChildren = Arr.filter(toExtract, (node) => InvalidNodes.isInvalid(editor.schema, node, parent));
+    const invalidChildren = (toExtract).filter((node) => InvalidNodes.isInvalid(editor.schema, node, parent));
     InvalidNodes.cleanInvalidNodes(invalidChildren, editor.schema, editingHost);
     FilterNode.filter(parser.getNodeFilters(), parser.getAttributeFilters(), root);
     value = serializer.serialize(root);

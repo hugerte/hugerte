@@ -1,4 +1,4 @@
-import { Adt, Strings } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 
 export interface Size {
   fold: <T> (
@@ -31,10 +31,10 @@ const validateFor = (suffix: string, type: (value: number) => Size, value: strin
 };
 
 const from = (value: string): Size => {
-  if (Strings.endsWith(value, '%')) {
+  if ((value).endsWith('%')) {
     return validateFor('%', adt.percent, value);
   }
-  if (Strings.endsWith(value, 'px')) {
+  if ((value).endsWith('px')) {
     return validateFor('px', adt.pixels, value);
   }
   return adt.invalid(value);

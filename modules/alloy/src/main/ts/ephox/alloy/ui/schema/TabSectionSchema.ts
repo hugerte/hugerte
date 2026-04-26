@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import * as SketchBehaviours from '../../api/component/SketchBehaviours';
 import { Tabbar } from '../../api/ui/Tabbar';
@@ -10,13 +9,13 @@ import { TabbarSpec } from '../types/TabbarTypes';
 import { TabSectionDetail } from '../types/TabSectionTypes';
 import { TabviewSpec } from '../types/TabviewTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.defaulted('selectFirst', true),
   Fields.onHandler('onChangeTab'),
   Fields.onHandler('onDismissTab'),
   FieldSchema.defaulted('tabs', [ ]),
   SketchBehaviours.field('tabSectionBehaviours', [ ])
-]);
+];
 
 const barPart = PartType.required<TabSectionDetail, TabbarSpec>({
   factory: Tabbar,
@@ -40,11 +39,11 @@ const viewPart = PartType.required<TabSectionDetail, TabviewSpec>({
   name: 'tabview'
 });
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   barPart,
   viewPart
-]);
-const name = Fun.constant('TabSection');
+];
+const name = () => 'TabSection';
 
 export {
   name,

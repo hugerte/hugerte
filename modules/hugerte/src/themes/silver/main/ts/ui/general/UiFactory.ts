@@ -1,6 +1,6 @@
 import { AlloyParts, AlloySpec, FormTypes, SimpleOrSketchSpec } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Fun, Merger, Obj, Optional } from '@ephox/katamari';
+import { Merger, Obj } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderBar } from '../dialog/Bar';
@@ -30,13 +30,13 @@ import { renderHtmlPanel } from './HtmlPanel';
 /* eslint-disable no-console */
 
 export type FormPartRenderer<T extends Dialog.BodyComponent> = (parts: FormTypes.FormParts, spec: T, dialogData: Dialog.DialogData, backstage: UiFactoryBackstage) => AlloySpec;
-export type NoFormRenderer<T extends Dialog.BodyComponent, U> = (spec: T, backstage: UiFactoryBackstage, data: Optional<U>) => AlloySpec;
+export type NoFormRenderer<T extends Dialog.BodyComponent, U> = (spec: T, backstage: UiFactoryBackstage, data: (U) | null) => AlloySpec;
 
 const make = <T extends Dialog.BodyComponent, U = unknown>(render: NoFormRenderer<T, U>): FormPartRenderer<T> => {
   return (parts, spec, dialogData, backstage) =>
     Obj.get(spec as Record<string, any>, 'name').fold(
-      () => render(spec, backstage, Optional.none()),
-      (fieldName) => parts.field(fieldName, render(spec, backstage, Obj.get(dialogData, fieldName)) as SimpleOrSketchSpec)
+      () => render(spec, backstage, null),
+      (fieldName) => parts.field(fieldName, render(spec, backstage, ((dialogData)[fieldName] ?? null)) as SimpleOrSketchSpec)
     );
 };
 
@@ -77,7 +77,7 @@ const factories: Record<string, FormPartRenderer<any>> = {
 const noFormParts: FormTypes.FormParts = {
   // This is cast as we only actually want an alloy spec and don't need the actual part here
   field: (_name: string, spec: SimpleOrSketchSpec) => spec as unknown as AlloyParts.ConfiguredPart,
-  record: Fun.constant([])
+  record: () => []
 };
 
 const interpretInForm = <T extends Dialog.BodyComponent>(parts: FormTypes.FormParts, spec: T, dialogData: Dialog.DialogData, oldBackstage: UiFactoryBackstage): AlloySpec => {
@@ -96,7 +96,7 @@ const interpretInForm = <T extends Dialog.BodyComponent>(parts: FormTypes.FormPa
 };
 
 const interpretParts = <T extends Dialog.BodyComponent>(parts: FormTypes.FormParts, spec: T, dialogData: Dialog.DialogData, backstage: UiFactoryBackstage): AlloySpec =>
-  Obj.get(factories, spec.type).fold(
+  ((factories)[spec.type] ?? null).fold(
     () => {
       console.error(`Unknown factory type "${spec.type}", defaulting to container: `, spec);
       return spec as unknown as AlloySpec;

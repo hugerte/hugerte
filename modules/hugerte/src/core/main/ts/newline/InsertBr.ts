@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { Insert, SugarElement } from '@ephox/sugar';
 
 import DomTreeWalker from '../api/dom/TreeWalker';
@@ -127,7 +126,7 @@ const hasBrAfter = (rootNode: Node, startNode: Node) => {
   } else {
     return CaretFinder.nextPosition(rootNode, CaretPosition.after(startNode)).map((pos) => {
       return NodeType.isBr(pos.getNode());
-    }).getOr(false);
+    }) ?? (false);
   }
 };
 
@@ -137,33 +136,33 @@ const isAnchorLink = (elm: Node) => {
 
 const isInsideAnchor = (location: LocationAdt) => {
   return location.fold(
-    Fun.never,
+    (() => false as const),
     isAnchorLink,
     isAnchorLink,
-    Fun.never
+    (() => false as const)
   );
 };
 
 const readInlineAnchorLocation = (editor: Editor) => {
-  const isInlineTarget = Fun.curry(InlineUtils.isInlineTarget, editor);
+  const isInlineTarget = ((..._rest: any[]) => (InlineUtils.isInlineTarget)(editor, ..._rest));
   const position = CaretPosition.fromRangeStart(editor.selection.getRng());
   return BoundaryLocation.readLocation(isInlineTarget, editor.getBody(), position).filter(isInsideAnchor);
 };
 
 const insertBrOutsideAnchor = (editor: Editor, location: LocationAdt) => {
   location.fold(
-    Fun.noop,
-    Fun.curry(insertBrBefore, editor),
-    Fun.curry(insertBrAfter, editor),
-    Fun.noop
+    () => {},
+    ((..._rest: any[]) => (insertBrBefore)(editor, ..._rest)),
+    ((..._rest: any[]) => (insertBrAfter)(editor, ..._rest)),
+    () => {}
   );
 };
 
 const insert = (editor: Editor, evt?: EditorEvent<KeyboardEvent>): void => {
   const anchorLocation = readInlineAnchorLocation(editor);
 
-  if (anchorLocation.isSome()) {
-    anchorLocation.each(Fun.curry(insertBrOutsideAnchor, editor));
+  if (anchorLocation !== null) {
+    anchorLocation.each(((..._rest: any[]) => (insertBrOutsideAnchor)(editor, ..._rest)));
   } else {
     insertBrAtCaret(editor, evt);
   }

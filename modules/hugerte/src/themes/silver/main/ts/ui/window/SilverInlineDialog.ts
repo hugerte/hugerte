@@ -4,7 +4,7 @@ import {
   Receiving, Reflecting, Replacing, SystemEvents
 } from '@ephox/alloy';
 import { Dialog, DialogManager } from '@ephox/bridge';
-import { Cell, Fun, Id, Optional, Optionals } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute, Height, SugarNode } from '@ephox/sugar';
 
 import * as Backstage from '../../backstage/Backstage';
@@ -31,9 +31,9 @@ const renderInlineDialog = <T extends Dialog.DialogData>(
   ariaAttrs: boolean = false,
   refreshDocking: () => void
 ): RenderedDialog<T> => {
-  const dialogId = Id.generate('dialog');
-  const dialogLabelId = Id.generate('dialog-label');
-  const dialogContentId = Id.generate('dialog-content');
+  const dialogId = (('dialog') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+  const dialogLabelId = (('dialog-label') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+  const dialogContentId = (('dialog-content') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
   const internalDialog = dialogInit.internalDialog;
 
   const dialogSize = Cell<Dialog.DialogSize>(internalDialog.size);
@@ -46,7 +46,7 @@ const renderInlineDialog = <T extends Dialog.DialogData>(
     dialogSize.set(incoming.internalDialog.size);
     SilverDialogCommon.updateDialogSizeClass(incoming.internalDialog.size, comp);
     refreshDocking();
-    return Optional.some(incoming);
+    return incoming;
   };
 
   const memHeader = Memento.record(
@@ -67,13 +67,11 @@ const renderInlineDialog = <T extends Dialog.DialogData>(
 
   const objOfCells = SilverDialogCommon.extractCellsToObject(storagedMenuButtons);
 
-  const optMemFooter = Optionals.someIf(
-    storagedMenuButtons.length !== 0,
-    Memento.record(
+  const optMemFooter = (storagedMenuButtons.length !== 0 ? Memento.record(
       SilverDialogFooter.renderInlineFooter({
         buttons: storagedMenuButtons
       }, dialogId, backstage)
-    ));
+    ) : null);
 
   const dialogEvents = SilverDialogEvents.initDialog(
     () => instanceApi,
@@ -116,7 +114,7 @@ const renderInlineDialog = <T extends Dialog.DialogData>(
         mode: 'cyclic',
         onEscape: (c) => {
           AlloyTriggers.emit(c, FormEvents.formCloseEvent);
-          return Optional.some(true);
+          return true;
         },
         useTabstopAt: (elem) => !NavigableObject.isPseudoStop(elem) && (
           SugarNode.name(elem) !== 'button' || Attribute.get(elem, 'disabled') !== 'disabled'
@@ -144,7 +142,7 @@ const renderInlineDialog = <T extends Dialog.DialogData>(
           })
         ])
       ),
-      Blocking.config({ getRoot: () => Optional.some(dialog) }),
+      Blocking.config({ getRoot: () => dialog }),
       Replacing.config({}),
       RepresentingConfigs.memory({})
     ]),
@@ -162,13 +160,13 @@ const renderInlineDialog = <T extends Dialog.DialogData>(
 
   // TODO: Clean up the dupe between this (InlineDialog) and SilverDialog
   const instanceApi = SilverDialogInstanceApi.getDialogApi<T>({
-    getId: Fun.constant(dialogId),
-    getRoot: Fun.constant(dialog),
+    getId: () => dialogId,
+    getRoot: () => dialog,
     getFooter: () => optMemFooter.map((memFooter) => memFooter.get(dialog)),
     getBody: () => memBody.get(dialog),
     getFormWrapper: () => {
       const body = memBody.get(dialog);
-      return Composing.getCurrent(body).getOr(body);
+      return Composing.getCurrent(body) ?? (body);
     },
     toggleFullscreen
   }, extra.redial, objOfCells);

@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { NodeChangeEvent } from 'hugerte/core/api/EventTypes';
@@ -22,7 +21,7 @@ const styleValueToText = (styleValue: string): string => {
 };
 
 const normalizeStyleValue = (styleValue: string | undefined): string =>
-  Type.isNullable(styleValue) || styleValue === 'default' ? '' : styleValue;
+  (styleValue) == null || styleValue === 'default' ? '' : styleValue;
 
 const makeSetupHandler = (editor: Editor, nodeName: ListType) => (api: Toolbar.ToolbarSplitButtonInstanceApi | Toolbar.ToolbarToggleButtonInstanceApi) => {
   const updateButtonState = (editor: Editor, parents: Node[]) => {
@@ -62,7 +61,7 @@ const addSplitButton = (editor: Editor, id: string, tooltip: string, cmd: string
     },
     select: (value) => {
       const listStyleType = ListUtils.getSelectedStyleType(editor);
-      return listStyleType.map((listStyle) => value === listStyle).getOr(false);
+      return listStyleType.map((listStyle) => value === listStyle) ?? (false);
     },
     onSetup: makeSetupHandler(editor, nodeName)
   });

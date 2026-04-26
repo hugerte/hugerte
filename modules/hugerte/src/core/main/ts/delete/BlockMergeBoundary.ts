@@ -1,4 +1,3 @@
-import { Optional, Optionals } from '@ephox/katamari';
 import { Compare, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Schema from '../api/html/Schema';
@@ -30,7 +29,7 @@ const blockBoundary = (from: BlockPosition, to: BlockPosition): BlockBoundary =>
   to
 });
 
-const getBlockPosition = (rootNode: HTMLElement, pos: CaretPosition): Optional<BlockPosition> => {
+const getBlockPosition = (rootNode: HTMLElement, pos: CaretPosition): (BlockPosition) | null => {
   const rootElm = SugarElement.fromDom(rootNode);
   const containerElm = SugarElement.fromDom(pos.container());
   return DeleteUtils.getParentBlock(rootElm, containerElm).map((block) => blockPosition(block, pos));
@@ -42,7 +41,7 @@ const isDifferentBlocks = (blockBoundary: BlockBoundary): boolean =>
 const getClosestHost = (root: SugarElement<HTMLElement>, scope: SugarElement<Element>): SugarElement<HTMLElement> => {
   const isRoot = (node: SugarElement<Node>) => Compare.eq(node, root);
   const isHost = (node: SugarElement<Node>): node is SugarElement<HTMLElement> => ElementType.isTableCell(node) || NodeType.isContentEditableTrue(node.dom);
-  return PredicateFind.closest(scope, isHost, isRoot).filter(SugarNode.isElement).getOr(root);
+  return PredicateFind.closest(scope, isHost, isRoot).filter(SugarNode.isElement) ?? (root);
 };
 
 const hasSameHost = (rootNode: HTMLElement, blockBoundary: BlockBoundary): boolean => {
@@ -64,15 +63,15 @@ const skipLastBr = (schema: Schema, rootNode: HTMLElement, forward: boolean, blo
       if (lastPositionInBlock.isEqual(blockPosition.position)) {
         return CaretFinder.fromPosition(forward, rootNode, lastPositionInBlock).bind((to) => getBlockPosition(rootNode, to));
       } else {
-        return Optional.some(blockPosition);
+        return blockPosition;
       }
-    }).getOr(blockPosition);
+    }) ?? (blockPosition);
   } else {
     return blockPosition;
   }
 };
 
-const readFromRange = (schema: Schema, rootNode: HTMLElement, forward: boolean, rng: Range): Optional<BlockBoundary> => {
+const readFromRange = (schema: Schema, rootNode: HTMLElement, forward: boolean, rng: Range): (BlockBoundary) | null => {
   const fromBlockPos = getBlockPosition(rootNode, CaretPosition.fromRangeStart(rng));
   const toBlockPos = fromBlockPos.bind((blockPos) =>
     CaretFinder.fromPosition(forward, rootNode, blockPos.position).bind((to) =>
@@ -80,12 +79,12 @@ const readFromRange = (schema: Schema, rootNode: HTMLElement, forward: boolean, 
     )
   );
 
-  return Optionals.lift2(fromBlockPos, toBlockPos, blockBoundary).filter((blockBoundary) =>
+  return (fromBlockPos !== null && toBlockPos !== null ? (blockBoundary)(fromBlockPos, toBlockPos) : null).filter((blockBoundary) =>
     isDifferentBlocks(blockBoundary) && hasSameHost(rootNode, blockBoundary) && isEditable(blockBoundary) && hasValidBlocks(blockBoundary));
 };
 
-const read = (schema: Schema, rootNode: HTMLElement, forward: boolean, rng: Range): Optional<BlockBoundary> =>
-  rng.collapsed ? readFromRange(schema, rootNode, forward, rng) : Optional.none();
+const read = (schema: Schema, rootNode: HTMLElement, forward: boolean, rng: Range): (BlockBoundary) | null =>
+  rng.collapsed ? readFromRange(schema, rootNode, forward, rng) : null;
 
 export {
   read

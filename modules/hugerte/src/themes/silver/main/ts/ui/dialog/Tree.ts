@@ -2,7 +2,7 @@ import {
   Behaviour, Button as AlloyButton, Tabstopping, GuiFactory, SimpleSpec, Toggling, Replacing, Keying, AddEventsBehaviour, AlloyEvents, NativeEvents, AlloyComponent, CustomEvent, Receiving, Focusing, Sliding, AlloyTriggers, EventFormat
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Cell, Fun, Id, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { EventArgs, SelectorFind } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
@@ -26,7 +26,7 @@ interface RenderLeafLabelProps extends RenderItemProps {
   visible: boolean;
   treeId: string;
   onLeafAction: OnLeafAction;
-  selectedId: Optional<string>;
+  selectedId: (string) | null;
 }
 
 interface RenderDirectoryProps extends RenderItemProps {
@@ -35,7 +35,7 @@ interface RenderDirectoryProps extends RenderItemProps {
   treeId: string;
   onLeafAction: OnLeafAction;
   expandedIds: string[];
-  selectedId: Optional<string>;
+  selectedId: (string) | null;
 }
 
 interface RenderDirectoryLabelProps extends RenderItemProps {
@@ -50,7 +50,7 @@ interface RenderDirectoryChildrenProps extends RenderItemProps {
   treeId: string;
   onLeafAction: OnLeafAction;
   expandedIds: string[];
-  selectedId: Optional<string>;
+  selectedId: (string) | null;
 }
 
 const renderLabel = (text: string ): SimpleSpec => ({
@@ -66,7 +66,7 @@ const renderLabel = (text: string ): SimpleSpec => ({
   ],
 });
 
-const leafLabelEventsId = Id.generate('leaf-label-event-id');
+const leafLabelEventsId = (('leaf-label-event-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 const renderLeafLabel = ({
   leaf,
@@ -76,7 +76,7 @@ const renderLeafLabel = ({
   selectedId,
   backstage
 }: RenderLeafLabelProps): SimpleSpec => {
-  const internalMenuButton = leaf.menu.map((btn) => renderMenuButton(btn, 'tox-mbtn', backstage, Optional.none(), visible));
+  const internalMenuButton = leaf.menu.map((btn) => renderMenuButton(btn, 'tox-mbtn', backstage, null, visible));
   const components = [ renderLabel(leaf.title) ];
   internalMenuButton.each((btn) => components.push(btn));
 
@@ -160,7 +160,7 @@ const renderIcon = (iconName: string, iconsProvider: Icons.IconProvider, behavio
 const renderIconFromPack = (iconName: string, iconsProvider: Icons.IconProvider): SimpleSpec =>
   renderIcon(iconName, iconsProvider, []);
 
-const directoryLabelEventsId = Id.generate('directory-label-event-id');
+const directoryLabelEventsId = (('directory-label-event-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 const renderDirectoryLabel = ({
   directory,
@@ -168,7 +168,7 @@ const renderDirectoryLabel = ({
   noChildren,
   backstage
 }: RenderDirectoryLabelProps): SimpleSpec => {
-  const internalMenuButton = directory.menu.map((btn) => renderMenuButton(btn, 'tox-mbtn', backstage, Optional.none()));
+  const internalMenuButton = directory.menu.map((btn) => renderMenuButton(btn, 'tox-mbtn', backstage, null));
   const components: SimpleSpec[] = [
     {
       dom: {
@@ -273,7 +273,7 @@ const renderDirectoryChildren = ({
   };
 };
 
-const directoryEventsId = Id.generate('directory-event-id');
+const directoryEventsId = (('directory-event-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 const renderDirectory = ({
   directory,
   onLeafAction,
@@ -343,19 +343,19 @@ interface UpdateTreeSelectedItemEvent extends CustomEvent {
   readonly value: string;
 }
 
-const treeEventsId = Id.generate('tree-event-id');
+const treeEventsId = (('tree-event-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 const renderTree = (
   spec: TreeSpec,
   backstage: UiFactoryBackstage
 ): SimpleSpec => {
-  const onLeafAction = spec.onLeafAction.getOr(Fun.noop);
-  const onToggleExpand = spec.onToggleExpand.getOr(Fun.noop);
+  const onLeafAction = spec.onLeafAction ?? (() => {});
+  const onToggleExpand = spec.onToggleExpand ?? (() => {});
   const defaultExpandedIds: string[] = spec.defaultExpandedIds;
   const expandedIds = Cell(defaultExpandedIds);
   const selectedIdCell = Cell(spec.defaultSelectedId);
-  const treeId = Id.generate('tree-id');
-  const children = (selectedId: Optional<string>, expandedIds: string[]) => spec.items.map((item) => {
+  const treeId = (('tree-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+  const children = (selectedId: (string) | null, expandedIds: string[]) => spec.items.map((item) => {
     return item.type === 'leaf' ?
       renderLeafLabel({ leaf: item, selectedId, onLeafAction, visible: true, treeId, backstage }) :
       renderDirectory({ directory: item, selectedId, onLeafAction, expandedIds, labelTabstopping: true, treeId, backstage });
@@ -389,8 +389,8 @@ const renderTree = (
         channels: {
           [`update-active-item-${treeId}`]: {
             onReceive: (comp, message: UpdateTreeSelectedItemEvent) => {
-              selectedIdCell.set(Optional.some(message.value));
-              Replacing.set(comp, children(Optional.some(message.value), expandedIds.get()));
+              selectedIdCell.set(message.value);
+              Replacing.set(comp, children(message.value, expandedIds.get()));
             }
           }
         }

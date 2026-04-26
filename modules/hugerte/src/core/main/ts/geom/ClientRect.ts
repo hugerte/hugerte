@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 export interface ClientRect {
   left: number;
@@ -105,27 +104,27 @@ const containsXY = (rect: ClientRect, clientX: number, clientY: number): boolean
     clientY <= rect.bottom
 );
 
-const boundingClientRectFromRects = (rects: ClientRect[]): Optional<ClientRect> => {
-  return Arr.foldl(rects, (acc, rect) => {
+const boundingClientRectFromRects = (rects: ClientRect[]): (ClientRect) | null => {
+  return (rects).reduce((acc, rect) => {
     return acc.fold(
-      () => Optional.some(rect),
+      () => rect,
       (prevRect) => {
         const left = Math.min(rect.left, prevRect.left);
         const top = Math.min(rect.top, prevRect.top);
         const right = Math.max(rect.right, prevRect.right);
         const bottom = Math.max(rect.bottom, prevRect.bottom);
 
-        return Optional.some({
+        return {
           top,
           right,
           bottom,
           left,
           width: right - left,
           height: bottom - top
-        });
+        };
       }
     );
-  }, Optional.none());
+  }, null);
 };
 
 const distanceToRectEdgeFromXY = <T extends ClientRect>(rect: T, x: number, y: number): number => {

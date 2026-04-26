@@ -24,10 +24,8 @@ interface Version {
 
 interface Env {
   transparentSrc: string;
-  documentMode: number;
   cacheSuffix: any;
   container: any;
-  canHaveCSP: boolean;
   windowsPhone: boolean;
 
   browser: {
@@ -35,7 +33,6 @@ interface Env {
     version: Version;
     isEdge: () => boolean;
     isChromium: () => boolean;
-    isIE: () => boolean;
     isOpera: () => boolean;
     isFirefox: () => boolean;
     isSafari: () => boolean;
@@ -73,21 +70,8 @@ const Env: Env = {
    */
   transparentSrc: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
 
-  /**
-   * Returns the IE document mode. For non IE browsers, this will fake IE 10 document mode.
-   *
-   * @property documentMode
-   * @type Number
-   */
-  documentMode: browser.isIE() ? ((document as any).documentMode || 7) : 10,
-
   cacheSuffix: null,
   container: null,
-
-  /**
-   * Constant if CSP mode is possible or not. Meaning we can't use script urls for the iframe.
-   */
-  canHaveCSP: !browser.isIE(),
 
   windowsPhone,
 
@@ -100,7 +84,6 @@ const Env: Env = {
     isChromium: browser.isChromium,
     isEdge: browser.isEdge,
     isFirefox: browser.isFirefox,
-    isIE: browser.isIE,
     isOpera: browser.isOpera,
     isSafari: browser.isSafari
   },

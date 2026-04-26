@@ -1,5 +1,5 @@
 import { StructureProcessor, FieldSchema, StructureSchema, FieldProcessor } from '@ephox/boulder';
-import { Fun, Obj, Optional, Optionals, Thunk } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as AlloyEvents from '../../api/events/AlloyEvents';
@@ -65,7 +65,7 @@ const wrapApi = <D extends BehaviourConfigDetail, S extends BehaviourState>(bNam
   const f = (component: AlloyComponent, ...rest: any[]) => {
     const args = [ component ].concat(rest);
     return component.config({
-      name: Fun.constant(bName)
+      name: () => bName
     } as AlloyBehaviour<any, any, any>).fold(
       () => {
         throw new Error('We could not find any behaviour configuration for: ' + bName + '. Using API: ' + apiName);
@@ -92,16 +92,16 @@ const doCreate = <
   A extends BehaviourApisRecord<D, S>,
   E extends BehaviourExtraRecord<E>
 >(configSchema: StructureProcessor, schemaSchema: FieldProcessor, name: string, active: BehaviourActiveSpec<D, S>, apis: A, extra: E, state: BehaviourStateInitialiser<D, S>): AlloyBehaviourWithApis<C, D, S, A, E> => {
-  const getConfig = (info: BehaviourInfo<D, S>) => Obj.hasNonNullableKey(info, name) ? info[name]() : Optional.none<BehaviourConfigAndState<D, S>>();
+  const getConfig = (info: BehaviourInfo<D, S>) => (Object.prototype.hasOwnProperty.call(info, name) && (info)[name] != null) ? info[name]() : Optional.none<BehaviourConfigAndState<D, S>>();
 
-  const wrappedApis = Obj.map(apis, (apiF, apiName) => wrapApi(name, apiF, apiName)) as { [K in keyof A]: WrappedApiFunc<A[K]> };
+  const wrappedApis = Object.fromEntries(Object.entries(apis).map(([_k, _v]: [any, any]) => [_k, ((apiF, apiName) => wrapApi(name, apiF, apiName))(_v, _k as any)])) as { [K in keyof A]: WrappedApiFunc<A[K]> };
 
-  const wrappedExtra = Obj.map(extra, (extraF, extraName) => FunctionAnnotator.markAsExtraApi(extraF, extraName)) as E;
+  const wrappedExtra = Object.fromEntries(Object.entries(extra).map(([_k, _v]: [any, any]) => [_k, ((extraF, extraName) => FunctionAnnotator.markAsExtraApi(extraF, extraName))(_v, _k as any)])) as E;
 
   const me: AlloyBehaviour<C, D, S> & typeof wrappedApis & typeof extra = {
     ...wrappedExtra,
     ...wrappedApis,
-    revoke: Fun.curry(revokeBehaviour, name),
+    revoke: ((..._rest: any[]) => (revokeBehaviour)(name, ..._rest)),
     config: (spec) => {
       const prepared = StructureSchema.asRawOrDie(name + '-config', configSchema, spec);
 
@@ -110,28 +110,28 @@ const doCreate = <
         value: {
           config: prepared,
           me,
-          configAsRaw: Thunk.cached(() => StructureSchema.asRawOrDie(name + '-config', configSchema, spec)),
+          configAsRaw: ((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (() => StructureSchema.asRawOrDie(name + '-config', configSchema, spec))(..._a); } return _r; }; })()),
           initialConfig: spec,
           state
         }
       };
     },
 
-    schema: Fun.constant(schemaSchema),
+    schema: () => schemaSchema,
 
     exhibit: (info: BehaviourInfo<D, S>, base: DomDefinitionDetail) => {
-      return Optionals.lift2(getConfig(info), Obj.get(active, 'exhibit'), (behaviourInfo, exhibitor) => {
+      return (getConfig(info) !== null && ((active)['exhibit'] ?? null) !== null ? ((behaviourInfo, exhibitor) => {
         return exhibitor(base, behaviourInfo.config, behaviourInfo.state);
-      }).getOrThunk(() => DomModification.nu({ }));
+      })(getConfig(info), ((active)['exhibit'] ?? null)) : null).getOrThunk(() => DomModification.nu({ }));
     },
 
-    name: Fun.constant(name),
+    name: () => name,
 
     handlers: (info: BehaviourInfo<D, S>) => {
       return getConfig(info).map((behaviourInfo) => {
-        const getEvents = Obj.get(active, 'events').getOr(() => ({ }));
+        const getEvents = ((active)['events'] ?? null) ?? (() => ({ }));
         return getEvents(behaviourInfo.config, behaviourInfo.state);
-      }).getOr({ });
+      }) ?? ({ });
     }
   };
 

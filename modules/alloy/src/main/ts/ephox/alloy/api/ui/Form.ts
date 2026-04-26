@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Result } from '@ephox/katamari';
+import { Optional, Result } from '@ephox/katamari';
 
 import * as AlloyLogger from '../../log/AlloyLogger';
 import * as AlloyParts from '../../parts/AlloyParts';
@@ -31,7 +31,7 @@ const sketch = (fSpec: FormSpecBuilder): SketchSpec => {
 
     return {
       field,
-      record: Fun.constant(record)
+      record: () => record
     };
   })();
 
@@ -40,12 +40,12 @@ const sketch = (fSpec: FormSpecBuilder): SketchSpec => {
   const partNames = parts.record();
   // Unlike other sketches, a form does not know its parts in advance (as they represent each field
   // in a particular form). Therefore, it needs to calculate the part names on the fly
-  const fieldParts = Arr.map(partNames, (n) => PartType.required({ name: n, pname: getPartName(n) }));
+  const fieldParts = (partNames).map((n) => PartType.required({ name: n, pname: getPartName(n) }));
 
   return UiSketcher.composite(owner, schema, fieldParts, make, spec);
 };
 
-const toResult = <T, E>(o: Optional<T>, e: E) => o.fold(() => Result.error<T, E>(e), Result.value);
+const toResult = <T, E>(o: (T) | null, e: E) => o.fold(() => Result.error<T, E>(e), Result.value);
 
 const make = (detail: FormDetail, components: AlloySpec[]) => ({
   uid: detail.uid,
@@ -61,21 +61,21 @@ const make = (detail: FormDetail, components: AlloySpec[]) => ({
           mode: 'manual',
           getValue: (form) => {
             const resPs = AlloyParts.getAllParts(form, detail);
-            return Obj.map(resPs, (resPThunk, pName) => resPThunk().bind((v) => {
+            return Object.fromEntries(Object.entries(resPs).map(([_k, _v]: [any, any]) => [_k, ((resPThunk, pName) => resPThunk().bind((v) => {
               const opt = Composing.getCurrent(v);
               return toResult(opt, new Error(
                 `Cannot find a current component to extract the value from for form part '${pName}': ` + AlloyLogger.element(v.element)
               ));
-            }).map(Representing.getValue));
+            }).map(Representing.getValue))(_v, _k as any)]));
           },
           setValue: (form, values) => {
-            Obj.each(values, (newValue, key) => {
+            Object.entries(values).forEach(([_k, _v]: [any, any]) => ((newValue, key) => {
               AlloyParts.getPart(form, detail, key).each((wrapper) => {
                 Composing.getCurrent(wrapper).each((field) => {
                   Representing.setValue(field, newValue);
                 });
               });
-            });
+            })(_v, _k));
           }
         }
       })

@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr, Cell, Fun, Obj, Optional, Result } from '@ephox/katamari';
+import { Cell, Optional, Result } from '@ephox/katamari';
 import { SugarElement, Traverse } from '@ephox/sugar';
 
 import * as DefaultEvents from '../../events/DefaultEvents';
@@ -17,18 +17,18 @@ export interface ExternalElement {
   readonly element: SugarElement<Node>;
 }
 
-const buildSubcomponents = (spec: SimpleOrSketchSpec, obsoleted: Optional<SugarElement<Node>>): AlloyComponent[] => {
-  const components = Obj.get(spec, 'components').getOr([ ]);
+const buildSubcomponents = (spec: SimpleOrSketchSpec, obsoleted: (SugarElement<Node>) | null): AlloyComponent[] => {
+  const components = ((spec)['components'] ?? null) ?? ([ ]);
 
   return obsoleted.fold(
-    () => Arr.map(components, build),
-    (obs) => Arr.map(components, (c, i) => {
+    () => (components).map(build),
+    (obs) => (components).map((c, i) => {
       return buildOrPatch(c, Traverse.child(obs, i));
     })
   );
 };
 
-const buildFromSpec = (userSpec: SketchSpec, obsoleted: Optional<SugarElement<Node>>): Result<AlloyComponent, string> => {
+const buildFromSpec = (userSpec: SketchSpec, obsoleted: (SugarElement<Node>) | null): Result<AlloyComponent, string> => {
   const { events: specEvents, ...spec }: SketchSpec = CustomSpec.make(userSpec);
 
   // Build the subcomponents. A spec hierarchy is built from the bottom up.
@@ -57,7 +57,7 @@ const text = (textContent: string): PremadeSpec => {
 };
 
 const external = (spec: ExternalElement): PremadeSpec => {
-  const extSpec: { uid: Optional<string>; element: SugarElement<Node> } = StructureSchema.asRawOrDie('external.component', StructureSchema.objOfOnly([
+  const extSpec: { uid: (string) | null; element: SugarElement<Node> } = StructureSchema.asRawOrDie('external.component', StructureSchema.objOfOnly([
     FieldSchema.required('element'),
     FieldSchema.option('uid')
   ]), spec);
@@ -79,15 +79,15 @@ const external = (spec: ExternalElement): PremadeSpec => {
     uid,
     getSystem: systemApi.get,
     config: Optional.none,
-    hasConfigured: Fun.never,
+    hasConfigured: (() => false as const),
     connect,
     disconnect,
     getApis: <A>(): A => ({ } as any),
     element: extSpec.element,
     spec,
-    readState: Fun.constant('No state'),
-    syncComponents: Fun.noop,
-    components: Fun.constant([ ]),
+    readState: () => 'No state',
+    syncComponents: () => {},
+    components: () => [ ],
     events: { }
   };
   return GuiTypes.premade(me);
@@ -102,10 +102,10 @@ const external = (spec: ExternalElement): PremadeSpec => {
 const uids = Tagger.generate;
 
 const isSketchSpec = (spec: AlloySpec): spec is SketchSpec =>
-  Obj.has(spec as SimpleOrSketchSpec, 'uid');
+  Object.prototype.hasOwnProperty.call(spec as SimpleOrSketchSpec, 'uid');
 
 // INVESTIGATE: A better way to provide 'meta-specs'
-const buildOrPatch = (spec: AlloySpec, obsoleted: Optional<SugarElement<Node>>): AlloyComponent => GuiTypes.getPremade(spec).getOrThunk(() => {
+const buildOrPatch = (spec: AlloySpec, obsoleted: (SugarElement<Node>) | null): AlloyComponent => GuiTypes.getPremade(spec).getOrThunk(() => {
   // EFFICIENCY: Consider not merging here, and passing uid through separately
   const userSpecWithUid = isSketchSpec(spec) ? spec : {
     uid: uids(''),
@@ -115,7 +115,7 @@ const buildOrPatch = (spec: AlloySpec, obsoleted: Optional<SugarElement<Node>>):
 });
 
 const build = (spec: AlloySpec): AlloyComponent =>
-  buildOrPatch(spec, Optional.none());
+  buildOrPatch(spec, null);
 
 const premade = GuiTypes.premade;
 

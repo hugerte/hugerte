@@ -1,6 +1,5 @@
 import { AlloyComponent, AlloySpec, Behaviour, Disabling, ItemTypes } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
 import { SelectorFilter } from '@ephox/sugar';
 
 import { UiFactoryBackstageShared } from 'hugerte/themes/silver/backstage/Backstage';
@@ -21,7 +20,7 @@ export interface CardExtras {
   };
 }
 
-const render = (items: Menu.CardItem[], extras: CardExtras): Array<AlloySpec> => Arr.map(items, (item) => {
+const render = (items: Menu.CardItem[], extras: CardExtras): Array<AlloySpec> => (items).map((item) => {
   switch (item.type) {
     case 'cardcontainer':
       return renderContainer(item, render(item.items, extras));
@@ -31,8 +30,8 @@ const render = (items: Menu.CardItem[], extras: CardExtras): Array<AlloySpec> =>
 
     case 'cardtext':
       // Only highlight targeted text components
-      const shouldHighlight = item.name.exists((name) => Arr.contains(extras.cardText.highlightOn, name));
-      const matchText = shouldHighlight ? Optional.from(extras.cardText.matchText).getOr('') : '';
+      const shouldHighlight = item.name.exists((name) => (extras.cardText.highlightOn).includes(name));
+      const matchText = shouldHighlight ? (extras.cardText.matchText ?? null) ?? ('') : '';
       return renderHtml(replaceText(item.text, matchText), item.classes);
   }
 });
@@ -49,7 +48,7 @@ export const renderCardMenuItem = (
       Disabling.set(component, !state);
 
       // Disable sub components
-      Arr.each(SelectorFilter.descendants(component.element, '*'), (elm) => {
+      (SelectorFilter.descendants(component.element, '*')).forEach((elm) => {
         component.getSystem().getByDom(elm).each((comp: AlloyComponent) => {
           if (comp.hasConfigured(Disabling)) {
             Disabling.set(comp, !state);
@@ -62,23 +61,23 @@ export const renderCardMenuItem = (
   const structure = {
     dom: renderItemDomStructure(spec.label),
     optComponents: [
-      Optional.some({
+      {
         dom: {
           tag: 'div',
           classes: [ ItemClasses.containerClass, ItemClasses.containerRowClass ]
         },
         components: render(spec.items, extras)
-      })
+      }
     ]
   };
 
   return renderCommonItem({
-    data: buildData({ text: Optional.none(), ...spec }),
+    data: buildData({ text: null, ...spec }),
     enabled: spec.enabled,
     getApi,
     onAction: spec.onAction,
     onSetup: spec.onSetup,
     triggersSubmenu: false,
-    itemBehaviours: Optional.from(extras.itemBehaviours).getOr([])
+    itemBehaviours: (extras.itemBehaviours ?? null) ?? ([])
   }, structure, itemResponse, sharedBackstage.providers);
 };

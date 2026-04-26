@@ -1,5 +1,4 @@
 import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 import { Value } from '@ephox/sugar';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -10,7 +9,7 @@ import { RawDomSchema } from '../../api/component/SpecTypes';
 import * as Fields from '../../data/Fields';
 import { InputDetail } from '../types/InputTypes';
 
-const schema: () => FieldProcessor[] = Fun.constant([
+const schema: () => FieldProcessor[] = () => [
   FieldSchema.option('data'),
   FieldSchema.defaulted('inputAttributes', { }),
   FieldSchema.defaulted('inputStyles', { }),
@@ -21,11 +20,11 @@ const schema: () => FieldProcessor[] = Fun.constant([
   FieldSchema.defaulted('eventOrder', { }),
   SketchBehaviours.field('inputBehaviours', [ Representing, Focusing ]),
   FieldSchema.defaulted('selectOnFocus', true)
-]);
+];
 
 const focusBehaviours = (detail: InputDetail): Behaviour.AlloyBehaviourRecord => Behaviour.derive([
   Focusing.config({
-    onFocus: !detail.selectOnFocus ? Fun.noop : (component) => {
+    onFocus: !detail.selectOnFocus ? () => {} : (component) => {
       const input = component.element;
       const value = Value.get(input);
       input.dom.setSelectionRange(0, value.length);
@@ -42,7 +41,7 @@ const behaviours = (detail: InputDetail): Behaviour.AlloyBehaviourRecord => ({
         store: {
           mode: 'manual',
           // Propagating its Optional
-          ...detail.data.map((data) => ({ initialValue: data } as { initialValue?: string })).getOr({ }),
+          ...detail.data.map((data) => ({ initialValue: data } as { initialValue?: string })) ?? ({ }),
           getValue: (input) => {
             return Value.get(input.element);
           },

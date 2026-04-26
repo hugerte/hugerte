@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Replication, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -25,9 +24,9 @@ const indentDlItem = (item: SugarElement<Node>): void => {
 
 const dlIndentation = (editor: Editor, indentation: Indentation, dlItems: SugarElement<Node>[]): void => {
   if (indentation === Indentation.Indent) {
-    Arr.each(dlItems, indentDlItem);
+    (dlItems).forEach(indentDlItem);
   } else {
-    Arr.each(dlItems, (item) => outdentDlItem(editor, item));
+    (dlItems).forEach((item) => outdentDlItem(editor, item));
   }
 };
 

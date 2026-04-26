@@ -1,26 +1,25 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 import { WordScope } from '../data/WordScope';
 
 const quoteList = [ `'`, '\u2018', '\u2019' ];
-const whitelist = Arr.bind(quoteList, (q) => {
-  return Arr.map([ 'twas' ], (t) => {
+const whitelist = (quoteList).flatMap((q) => {
+  return ([ 'twas' ]).map((t) => {
     return q + t;
   });
 });
 
 const trimStart = (ws: WordScope): WordScope => {
   const word = ws.word;
-  return WordScope(word.substring(1), Optional.some(word.charAt(0)), ws.right);
+  return WordScope(word.substring(1), word.charAt(0), ws.right);
 };
 
 const trimEnd = (ws: WordScope): WordScope => {
   const word = ws.word;
-  return WordScope(word.substring(0, word.length - 1), ws.left, Optional.some(word.charAt(word.length - 1)));
+  return WordScope(word.substring(0, word.length - 1), ws.left, word.charAt(word.length - 1));
 };
 
 const isQuote = (s: string): boolean => {
-  return Arr.contains(quoteList, s);
+  return (quoteList).includes(s);
 };
 
 const rhs = (ws: WordScope): WordScope => {
@@ -31,14 +30,14 @@ const rhs = (ws: WordScope): WordScope => {
 
 const lhs = (ws: WordScope): WordScope => {
   const word = ws.word;
-  const whitelisted = Arr.exists(whitelist, (x) => {
+  const whitelisted = (whitelist).some((x) => {
     return word.indexOf(x) > -1;
   });
 
   const apostrophes = whitelisted ? 2 : 1;
   const quoted = word.substring(0, apostrophes);
 
-  const leading = Arr.forall(quoted, isQuote) && !isQuote(word.charAt(apostrophes));
+  const leading = (quoted).every(isQuote) && !isQuote(word.charAt(apostrophes));
 
   return leading ? trimStart(ws) : ws;
 };
@@ -57,7 +56,7 @@ const scope = (ws: WordScope): WordScope => {
  * Extracts the actual word from the text using scope()
  */
 const text = (word: string): string => {
-  const ws = WordScope(word, Optional.none(), Optional.none());
+  const ws = WordScope(word, null, null);
   const r = scope(ws);
   return r.word;
 };

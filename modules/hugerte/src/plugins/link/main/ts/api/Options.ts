@@ -19,7 +19,7 @@ const register = (editor: Editor): void => {
 
   registerOption('link_assume_external_targets', {
     processor: (value) => {
-      const valid = Type.isString(value) || Type.isBoolean(value);
+      const valid = typeof (value) === 'string' || typeof (value) === 'boolean';
       if (valid) {
         if (value === true) {
           return { value: AssumeExternalTargets.WARN, valid };
@@ -41,7 +41,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('link_list', {
-    processor: (value) => Type.isString(value) || Type.isFunction(value) || Type.isArrayOf(value, Type.isObject)
+    processor: (value) => typeof (value) === 'string' || typeof (value) === 'function' || (Array.isArray(value) && (value).every(Type.isObject))
   });
 
   registerOption('link_default_target', {
@@ -54,7 +54,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('link_target_list', {
-    processor: (value) => Type.isBoolean(value) || Type.isArrayOf(value, Type.isObject),
+    processor: (value) => typeof (value) === 'boolean' || (Array.isArray(value) && (value).every(Type.isObject)),
     default: true
   });
 

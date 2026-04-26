@@ -146,7 +146,7 @@ const lookupPreserveLayout = (lastPlacement: Placement) => {
 };
 
 const preserve: AnchorLayout = (anchor, element, bubbles, placee, bounds) => {
-  const layout = getPlacement(placee).map(lookupPreserveLayout).getOr(north);
+  const layout = getPlacement(placee).map(lookupPreserveLayout) ?? (north);
   return layout(anchor, element, bubbles, placee, bounds);
 };
 
@@ -172,7 +172,7 @@ const lookupFlippedLayout = (lastPlacement: Placement) => {
 };
 
 const flip: AnchorLayout = (anchor, element, bubbles, placee, bounds) => {
-  const layout = getPlacement(placee).map(lookupFlippedLayout).getOr(north);
+  const layout = getPlacement(placee).map(lookupFlippedLayout) ?? (north);
   return layout(anchor, element, bubbles, placee, bounds);
 };
 

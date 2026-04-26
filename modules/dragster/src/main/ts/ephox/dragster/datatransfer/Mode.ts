@@ -1,4 +1,3 @@
-import { Id, Optional } from '@ephox/katamari';
 
 export const enum Mode {
   ReadWrite,
@@ -6,11 +5,11 @@ export const enum Mode {
   ReadOnly
 }
 
-const modeId = Id.generate('mode');
+const modeId = (('mode') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
-const getMode = (transfer: DataTransfer): Optional<Mode> => {
+const getMode = (transfer: DataTransfer): (Mode) | null => {
   const dt: Record<string, any> = transfer;
-  return Optional.from(dt[modeId]);
+  return (dt[modeId] ?? null);
 };
 
 const mkSetModeFn = (mode: Mode) => (transfer: DataTransfer): void => {
@@ -26,7 +25,7 @@ const setProtectedMode = mkSetModeFn(Mode.Protected);
 
 const checkMode = (expectedMode: Mode) => (transfer: DataTransfer): boolean => {
   const dt: Record<string, any> = transfer;
-  return Optional.from(dt[modeId]).exists((mode) => mode === expectedMode);
+  return (dt[modeId] ?? null).exists((mode) => mode === expectedMode);
 };
 
 const isInReadWriteMode = checkMode(Mode.ReadWrite);

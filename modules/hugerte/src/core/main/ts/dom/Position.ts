@@ -1,11 +1,10 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Css, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 const browser = PlatformDetection.detect().browser;
 
-const firstElement = (nodes: SugarElement<Node>[]): Optional<SugarElement<HTMLElement>> =>
-  Arr.find(nodes, SugarNode.isElement) as Optional<SugarElement<HTMLElement>>;
+const firstElement = (nodes: SugarElement<Node>[]): (SugarElement<HTMLElement>) | null =>
+  ((nodes).find(SugarNode.isElement) ?? null) as (SugarElement<HTMLElement>) | null;
 
 // Firefox has a bug where caption height is not included correctly in offset calculations of tables
 // this tries to compensate for that by detecting if that offsets are incorrect and then remove the height
@@ -20,13 +19,13 @@ const getTableCaptionDeltaY = (elm: SugarElement<Node>) => {
         const captionHeight = caption.dom.offsetHeight;
         return bodyTop <= captionTop ? -captionHeight : 0;
       });
-    }).getOr(0);
+    }) ?? (0);
   } else {
     return 0;
   }
 };
 
-const hasChild = (elm: Element, child: Node) => elm.children && Arr.contains(elm.children, child);
+const hasChild = (elm: Element, child: Node) => elm.children && (elm.children).includes(child);
 
 const getPos = (body: HTMLElement, elm: Element | null, rootElm?: Node): { x: number; y: number } => {
   let x = 0, y = 0;

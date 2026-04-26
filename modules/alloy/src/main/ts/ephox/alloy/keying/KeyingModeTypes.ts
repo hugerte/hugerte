@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { EventArgs, SugarElement } from '@ephox/sugar';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
@@ -7,10 +6,10 @@ import { FocusManager } from '../api/focus/FocusManagers';
 import { BehaviourState, Stateless } from '../behaviour/common/BehaviourState';
 import { NativeSimulatedEvent, SimulatedEvent } from '../events/SimulatedEvent';
 
-export type KeyHandlerApi = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>) => Optional<boolean>;
+export type KeyHandlerApi = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>) => (boolean) | null;
 
-export type KeyRuleHandler<C, S> = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>, config: C, state: S) => Optional<boolean>;
-export type KeyRuleStatelessHandler<C> = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>, config: C) => Optional<boolean>;
+export type KeyRuleHandler<C, S> = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>, config: C, state: S) => (boolean) | null;
+export type KeyRuleStatelessHandler<C> = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>, config: C) => (boolean) | null;
 
 export enum FocusInsideModes {
   OnFocusMode = 'onFocus',
@@ -25,7 +24,7 @@ export interface GeneralKeyingConfigSpec {
 
 export interface GeneralKeyingConfig {
   focusManager: FocusManager;
-  sendFocusIn: <C extends GeneralKeyingConfig, S>(conf: C) => Optional<(comp: AlloyComponent, config: C, state: S, evt?: SimulatedEvent<EventArgs>) => void>;
+  sendFocusIn: <C extends GeneralKeyingConfig, S>(conf: C) => ((comp: AlloyComponent, config: C, state: S, evt?: SimulatedEvent<EventArgs>) =) | null void>;
   focusInside: FocusInsideModes;
   handler: {
     toEvents: <C extends GeneralKeyingConfig, S>(keyingConfig: C, keyingState: S) => AlloyEvents.AlloyEventRecord;
@@ -43,12 +42,12 @@ export interface TabbingConfigSpec extends GeneralKeyingConfigSpec {
 }
 
 export interface TabbingConfig extends GeneralKeyingConfig {
-  onEscape: Optional<KeyHandlerApi>;
-  onEnter: Optional<KeyHandlerApi>;
+  onEscape: (KeyHandlerApi) | null;
+  onEnter: (KeyHandlerApi) | null;
   selector: string;
   firstTabstop: number;
   useTabstopAt: (elem: SugarElement<HTMLElement>) => boolean;
-  visibilitySelector: Optional<string>;
+  visibilitySelector: (string) | null;
   cyclic: boolean;
 }
 
@@ -82,7 +81,7 @@ export interface EscapingConfig extends GeneralKeyingConfig {
 export interface ExecutingConfigSpec extends GeneralKeyingConfigSpec {
   mode: 'execution';
   // NOTE: inconsistent.
-  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
   useSpace?: boolean;
   useEnter?: boolean;
   useControlEnter?: boolean;
@@ -90,7 +89,7 @@ export interface ExecutingConfigSpec extends GeneralKeyingConfigSpec {
 }
 
 export interface ExecutingConfig extends GeneralKeyingConfig {
-  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
   useSpace: boolean;
   useEnter: boolean;
   useControlEnter: boolean;
@@ -101,7 +100,7 @@ export interface ExecutingConfig extends GeneralKeyingConfig {
 export interface FlatgridConfigSpec extends GeneralKeyingConfigSpec {
   mode: 'flatgrid';
   selector: string;
-  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
   onEscape?: KeyHandlerApi;
   captureTab?: boolean;
   initSize: {
@@ -112,7 +111,7 @@ export interface FlatgridConfigSpec extends GeneralKeyingConfigSpec {
 
 export interface FlatgridConfig extends GeneralKeyingConfig {
   selector: string;
-  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
   onEscape: KeyHandlerApi;
   captureTab: boolean;
   initSize: {
@@ -122,8 +121,8 @@ export interface FlatgridConfig extends GeneralKeyingConfig {
 }
 
 export interface FlatgridState extends BehaviourState {
-  getNumRows: () => Optional<number>;
-  getNumColumns: () => Optional<number>;
+  getNumRows: () => (number) | null;
+  getNumColumns: () => (number) | null;
   setGridSize: (numRows: number, numColumns: number) => void;
 }
 
@@ -131,9 +130,9 @@ export interface FlatgridState extends BehaviourState {
 export interface FlowConfigSpec extends GeneralKeyingConfigSpec {
   mode: 'flow';
   selector: string;
-  getInitial?: (comp: AlloyComponent) => Optional<SugarElement<HTMLElement>>;
+  getInitial?: (comp: AlloyComponent) => (SugarElement<HTMLElement>) | null;
   onEscape?: KeyHandlerApi;
-  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
   executeOnMove?: boolean;
   allowVertical?: boolean;
   allowHorizontal?: boolean;
@@ -142,9 +141,9 @@ export interface FlowConfigSpec extends GeneralKeyingConfigSpec {
 
 export interface FlowConfig extends GeneralKeyingConfig {
   selector: string;
-  getInitial: (comp: AlloyComponent) => Optional<SugarElement<HTMLElement>>;
+  getInitial: (comp: AlloyComponent) => (SugarElement<HTMLElement>) | null;
   onEscape: KeyHandlerApi;
-  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
   executeOnMove: boolean;
   allowVertical: boolean;
   allowHorizontal: boolean;
@@ -159,8 +158,8 @@ export interface MatrixConfigSpec extends GeneralKeyingConfigSpec {
     cell: string;
   };
   cycles?: boolean;
-  previousSelector?: (comp: AlloyComponent) => Optional<SugarElement<HTMLElement>>;
-  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  previousSelector?: (comp: AlloyComponent) => (SugarElement<HTMLElement>) | null;
+  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
 }
 
 export interface MatrixConfig extends GeneralKeyingConfig {
@@ -169,21 +168,21 @@ export interface MatrixConfig extends GeneralKeyingConfig {
     cell: string;
   };
   cycles: boolean;
-  previousSelector: (comp: AlloyComponent) => Optional<SugarElement<HTMLElement>>;
-  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  previousSelector: (comp: AlloyComponent) => (SugarElement<HTMLElement>) | null;
+  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
 }
 
 // Menu type
 export interface MenuConfigSpec extends GeneralKeyingConfigSpec {
   mode: 'menu';
   selector: string;
-  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  execute?: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
   moveOnTab?: boolean;
 }
 
 export interface MenuConfig extends GeneralKeyingConfig {
   selector: string;
-  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => Optional<boolean>;
+  execute: (comp: AlloyComponent, se: NativeSimulatedEvent, focused: SugarElement<HTMLElement>) => (boolean) | null;
   moveOnTab: boolean;
 }
 
@@ -215,5 +214,5 @@ export interface SpecialConfig extends GeneralKeyingConfig {
   onDown: KeyHandlerApi;
   onEscape: KeyHandlerApi;
   stopSpaceKeyup: boolean;
-  focusIn: Optional<(comp: AlloyComponent, info: SpecialConfig, state: Stateless) => void>;
+  focusIn: ((comp: AlloyComponent, info: SpecialConfig, state: Stateless) =) | null void>;
 }

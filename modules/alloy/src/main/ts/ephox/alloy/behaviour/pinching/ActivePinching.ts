@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
@@ -11,7 +10,7 @@ const mode: DragModeDeltas<TouchEvent, PinchDragData> = {
     const raw = e.raw;
     const touches = raw.touches;
     if (touches.length < 2) {
-      return Optional.none();
+      return null;
     }
 
     const deltaX = Math.abs(touches[0].clientX - touches[1].clientX);
@@ -19,11 +18,11 @@ const mode: DragModeDeltas<TouchEvent, PinchDragData> = {
 
     const deltaDistance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
 
-    return Optional.some({
+    return {
       deltaX,
       deltaY,
       deltaDistance
-    });
+    };
   },
 
   getDelta: (old, nu) => {

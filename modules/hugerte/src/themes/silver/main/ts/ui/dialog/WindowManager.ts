@@ -4,7 +4,7 @@ import {
 } from '@ephox/alloy';
 import { StructureProcessor, StructureSchema } from '@ephox/boulder';
 import { Dialog, DialogManager } from '@ephox/bridge';
-import { Optional, Singleton, Type } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { SelectorExists, SugarBody, SugarElement, SugarLocation } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -42,7 +42,7 @@ const inlineAdditionalBehaviours = (editor: Editor, isStickyToolbar: boolean, is
     return [
       Docking.config({
         contextual: {
-          lazyContext: () => Optional.some(Boxes.box(SugarElement.fromDom(editor.getContentAreaContainer()))),
+          lazyContext: () => Boxes.box(SugarElement.fromDom(editor.getContentAreaContainer())),
           fadeInClass: 'tox-dialog-dock-fadein',
           fadeOutClass: 'tox-dialog-dock-fadeout',
           transitionClass: 'tox-dialog-dock-transition'
@@ -58,16 +58,16 @@ const inlineAdditionalBehaviours = (editor: Editor, isStickyToolbar: boolean, is
                 const combinedBounds = ScrollingContext.getBoundsFrom(sc);
                 return {
                   bounds: combinedBounds,
-                  optScrollEnv: Optional.some({
+                  optScrollEnv: {
                     currentScrollTop: sc.element.dom.scrollTop,
                     scrollElmTop: SugarLocation.absolute(sc.element).top
-                  })
+                  }
                 };
               }
             ).getOrThunk(
               () => ({
                 bounds: Boxes.win(),
-                optScrollEnv: Optional.none()
+                optScrollEnv: null
               })
             );
         }
@@ -85,7 +85,7 @@ const setup = (extras: WindowManagerSetup): WindowManagerImpl => {
   const confirmDialog = ConfirmDialog.setup(extras.backstages.dialog);
 
   const open = <T extends Dialog.DialogData>(config: Dialog.DialogSpec<T>, params: WindowParams | undefined, closeWindow: (dialogApi: Dialog.DialogInstanceApi<T>) => void): Dialog.DialogInstanceApi<T> => {
-    if (!Type.isUndefined(params)) {
+    if (!(params) === undefined) {
       if (params.inline === 'toolbar') {
         return openInlineDialog(config, extras.backstages.popup.shared.anchors.inlineDialog(), closeWindow, params);
       } else if (params.inline === 'bottom') {
@@ -216,12 +216,12 @@ const setup = (extras: WindowManagerSetup): WindowManagerImpl => {
       }));
       inlineDialog.set(inlineDialogComp);
 
-      const getInlineDialogBounds = (): Optional<Boxes.Bounds> => {
+      const getInlineDialogBounds = (): (Boxes.Bounds) | null => {
         // At the moment the inline dialog is just put anywhere in the body, and docking is what is used to make
         // sure that it stays onscreen
         const elem = editor.inline ? SugarBody.body() : SugarElement.fromDom(editor.getContainer());
         const bounds = Boxes.box(elem);
-        return Optional.some(bounds);
+        return bounds;
       };
 
       // Position the inline dialog
@@ -301,7 +301,7 @@ const setup = (extras: WindowManagerSetup): WindowManagerImpl => {
           ]),
           Docking.config({
             contextual: {
-              lazyContext: () => Optional.some(Boxes.box(SugarElement.fromDom(editor.getContentAreaContainer()))),
+              lazyContext: () => Boxes.box(SugarElement.fromDom(editor.getContentAreaContainer())),
               fadeInClass: 'tox-dialog-dock-fadein',
               fadeOutClass: 'tox-dialog-dock-fadeout',
               transitionClass: 'tox-dialog-dock-transition'
@@ -313,14 +313,14 @@ const setup = (extras: WindowManagerSetup): WindowManagerImpl => {
                 const combinedBounds = ScrollingContext.getBoundsFrom(sc);
                 return {
                   bounds: combinedBounds,
-                  optScrollEnv: Optional.some({
+                  optScrollEnv: {
                     currentScrollTop: sc.element.dom.scrollTop,
                     scrollElmTop: SugarLocation.absolute(sc.element).top
-                  })
+                  }
                 };
               }).getOrThunk(() => ({
                 bounds: Boxes.win(),
-                optScrollEnv: Optional.none()
+                optScrollEnv: null
               }));
             }
           })
@@ -330,19 +330,19 @@ const setup = (extras: WindowManagerSetup): WindowManagerImpl => {
       }));
       inlineDialog.set(inlineDialogComp);
 
-      const getInlineDialogBounds = (): Optional<Boxes.Bounds> => {
+      const getInlineDialogBounds = (): (Boxes.Bounds) | null => {
         return extras.backstages.popup.shared.getSink().toOptional().bind((s) => {
           const optScrollingContext = ScrollingContext.detectWhenSplitUiMode(editor, s.element);
 
           // Margin between element and the bottom of the screen or the editor content area container
           const margin = 15;
 
-          const bounds = optScrollingContext.map((sc) => ScrollingContext.getBoundsFrom(sc)).getOr(Boxes.win());
+          const bounds = optScrollingContext.map((sc) => ScrollingContext.getBoundsFrom(sc)) ?? (Boxes.win());
           const contentAreaContainer = Boxes.box(SugarElement.fromDom(editor.getContentAreaContainer()));
 
           const constrainedBounds = Boxes.constrain(contentAreaContainer, bounds);
 
-          return Optional.some(Boxes.bounds(constrainedBounds.x, constrainedBounds.y, constrainedBounds.width, constrainedBounds.height - margin));
+          return Boxes.bounds(constrainedBounds.x, constrainedBounds.y, constrainedBounds.width, constrainedBounds.height - margin);
         });
       };
 

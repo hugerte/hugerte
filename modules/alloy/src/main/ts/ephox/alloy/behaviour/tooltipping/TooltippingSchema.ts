@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as Fields from '../../data/Fields';
@@ -12,15 +11,15 @@ export default [
   FieldSchema.required('tooltipDom'),
   FieldSchema.defaulted('exclusive', true),
   FieldSchema.defaulted('tooltipComponents', []),
-  FieldSchema.defaultedFunction('delayForShow', Fun.constant(300)),
-  FieldSchema.defaultedFunction('delayForHide', Fun.constant(300)),
+  FieldSchema.defaultedFunction('delayForShow', () => 300),
+  FieldSchema.defaultedFunction('delayForHide', () => 300),
   FieldSchema.defaultedStringEnum('mode', 'normal', [ 'normal', 'follow-highlight', 'children-keyboard-focus', 'children-normal' ]),
   FieldSchema.defaulted('anchor', (comp: AlloyComponent): AnchorSpec => ({
     type: 'hotspot',
     hotspot: comp,
     layouts: {
-      onLtr: Fun.constant([ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ]),
-      onRtl: Fun.constant([ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ])
+      onLtr: () => [ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ],
+      onRtl: () => [ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ]
     },
     bubble: Bubble.nu(0, -2, {}),
   })),

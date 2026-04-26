@@ -1,4 +1,3 @@
-import { Optional, Optionals } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -7,16 +6,16 @@ import { ListOptions } from '../../core/ListOptions';
 import * as Utils from '../../core/Utils';
 import { ListItem, UserListItem } from '../DialogTypes';
 
-const getRels = (editor: Editor, initialTarget: Optional<string>): Optional<ListItem[]> => {
+const getRels = (editor: Editor, initialTarget: (string) | null): (ListItem[]) | null => {
   const list = Options.getRelList(editor);
   if (list.length > 0) {
-    const isTargetBlank = Optionals.is(initialTarget, '_blank');
+    const isTargetBlank = (initialTarget !== null && (initialTarget) === ('_blank'));
     const enforceSafe = Options.allowUnsafeLinkTarget(editor) === false;
     const safeRelExtractor = (item: UserListItem) => Utils.applyRelTargetRules(ListOptions.getValue(item), isTargetBlank);
     const sanitizer = enforceSafe ? ListOptions.sanitizeWith(safeRelExtractor) : ListOptions.sanitize;
     return sanitizer(list);
   }
-  return Optional.none();
+  return null;
 };
 
 export const RelOptions = {

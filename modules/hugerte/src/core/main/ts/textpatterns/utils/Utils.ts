@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import DOMUtils from '../../api/dom/DOMUtils';
 import Editor from '../../api/Editor';
@@ -38,8 +37,8 @@ const deleteRng = (dom: DOMUtils, rng: Range, isRoot: (e: Node) => boolean, clea
   }
 };
 
-const getParentBlock = (editor: Editor, rng: Range): Optional<Element> =>
-  Optional.from(editor.dom.getParent(rng.startContainer, editor.dom.isBlock));
+const getParentBlock = (editor: Editor, rng: Range): (Element) | null =>
+  (editor.dom.getParent(rng.startContainer, editor.dom.isBlock) ?? null);
 
 const resolveFromDynamicPatterns = (patternSet: PatternSet, block: Element, beforeText: string): PatternSet => {
   const dynamicPatterns = patternSet.dynamicPatternsLookup({

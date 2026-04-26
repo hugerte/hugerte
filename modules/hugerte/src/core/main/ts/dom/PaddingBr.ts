@@ -1,4 +1,3 @@
-import { Arr, Unicode } from '@ephox/katamari';
 import { Attribute, Insert, Remove, SelectorFilter, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
 
 import Schema from '../api/html/Schema';
@@ -18,9 +17,9 @@ const getLastChildren = (elm: SugarElement<Node>): SugarElement<Node>[] => {
 
 const removeTrailingBr = (elm: SugarElement<Node>): void => {
   const allBrs = SelectorFilter.descendants(elm, 'br');
-  const brs = Arr.filter(getLastChildren(elm).slice(-1), ElementType.isBr);
+  const brs = (getLastChildren(elm).slice(-1)).filter(ElementType.isBr);
   if (allBrs.length === brs.length) {
-    Arr.each(brs, Remove.remove);
+    (brs).forEach(Remove.remove);
   }
 };
 
@@ -36,11 +35,11 @@ const fillWithPaddingBr = (elm: SugarElement<Node>): void => {
 };
 
 const isPaddingContents = (elm: SugarElement<Node>): boolean => {
-  return SugarNode.isText(elm) ? SugarText.get(elm) === Unicode.nbsp : ElementType.isBr(elm);
+  return SugarNode.isText(elm) ? SugarText.get(elm) === '\u00A0' : ElementType.isBr(elm);
 };
 
 const isPaddedElement = (elm: SugarElement<Node>): boolean => {
-  return Arr.filter(Traverse.children(elm), isPaddingContents).length === 1;
+  return (Traverse.children(elm)).filter(isPaddingContents).length === 1;
 };
 
 const trimBlockTrailingBr = (elm: SugarElement<Node>, schema: Schema): void => {

@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { BehaviourConfigAndState } from '../../behaviour/common/BehaviourBlob';
@@ -13,7 +12,7 @@ type ReadonlyRecord<K extends keyof any, T> = {
 export interface AlloyComponent {
   readonly uid: string;
   readonly getSystem: () => AlloySystemApi;
-  readonly config: (behaviour: AlloyBehaviour<any, any>) => Optional<BehaviourConfigAndState<any, any>>;
+  readonly config: (behaviour: AlloyBehaviour<any, any>) => (BehaviourConfigAndState<any, any>) | null;
   readonly hasConfigured: (behaviour: AlloyBehaviour<any, any>) => boolean;
   readonly spec: any;
   readonly readState: (behaviourName: string) => any;

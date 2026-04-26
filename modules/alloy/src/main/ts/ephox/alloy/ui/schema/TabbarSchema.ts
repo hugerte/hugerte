@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import { Highlighting } from '../../api/behaviour/Highlighting';
 import { Keying } from '../../api/behaviour/Keying';
@@ -13,7 +12,7 @@ import * as PartType from '../../parts/PartType';
 import { TabbarDetail } from '../types/TabbarTypes';
 import { TabButtonSpec } from '../types/TabButtonTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.required('tabs'),
 
   FieldSchema.required('dom'),
@@ -21,7 +20,7 @@ const schema = Fun.constant([
   FieldSchema.defaulted('clickToDismiss', false),
   SketchBehaviours.field('tabbarBehaviours', [ Highlighting, Keying ]),
   Fields.markers([ 'tabClass', 'selectedClass' ])
-]);
+];
 
 const tabsPart = PartType.group<TabbarDetail, TabButtonSpec>({
   factory: TabButton,
@@ -55,7 +54,7 @@ const tabsPart = PartType.group<TabbarDetail, TabButtonSpec>({
           } else if (!activeButton) {
             return changeTab;
           } else {
-            return Fun.noop;
+            return () => {};
           }
         })();
 
@@ -69,11 +68,11 @@ const tabsPart = PartType.group<TabbarDetail, TabButtonSpec>({
   }
 });
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   tabsPart
-]);
+];
 
-const name = Fun.constant('Tabbar');
+const name = () => 'Tabbar';
 
 export {
   name,

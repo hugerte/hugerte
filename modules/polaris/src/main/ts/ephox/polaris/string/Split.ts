@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 /**
  * Splits a string into multiple chunks
@@ -8,7 +7,7 @@ const splits = (value: string, indices: number[]): string[] => {
     return [ value ];
   }
 
-  const divisions = Arr.foldl(indices, (acc, x) => {
+  const divisions = (indices).reduce((acc, x) => {
     if (x === 0) {
       return acc;
     }

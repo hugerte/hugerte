@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 export interface IconPack {
   icons: Record<string, string>;
@@ -25,7 +24,7 @@ const CreateIconManager = (): IconManager => {
     }
   };
 
-  const has = (id: string) => Obj.has(lookup, id);
+  const has = (id: string) => Object.prototype.hasOwnProperty.call(lookup, id);
 
   return {
     add,

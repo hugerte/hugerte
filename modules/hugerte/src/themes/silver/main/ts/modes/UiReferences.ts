@@ -1,5 +1,5 @@
 import { AlloyComponent, Gui } from '@ephox/alloy';
-import { Optional, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Compare } from '@ephox/sugar';
 
 export interface SinkAndMothership {
@@ -31,7 +31,7 @@ export interface LazyUiReferences {
   // Unless ui_mode: split is set, there will only be one UI mothership
   readonly getUiMotherships: () => Array<Gui.GuiSystem>;
 
-  readonly lazyGetInOuterOrDie: <A>(label: string, f: (oc: AlloyComponent) => Optional<A>) => () => A;
+  readonly lazyGetInOuterOrDie: <A>(label: string, f: (oc: AlloyComponent) => (A) | null) => () => A;
 }
 
 export const LazyUiReferences = (): LazyUiReferences => {
@@ -39,7 +39,7 @@ export const LazyUiReferences = (): LazyUiReferences => {
   const popupUi = Singleton.value<SinkAndMothership>();
   const mainUi = Singleton.value<{ mothership: Gui.GuiSystem; outerContainer: AlloyComponent }>();
 
-  const lazyGetInOuterOrDie = <A>(label: string, f: (oc: AlloyComponent) => Optional<A>): () => A =>
+  const lazyGetInOuterOrDie = <A>(label: string, f: (oc: AlloyComponent) => (A) | null): () => A =>
     () => mainUi.get().bind(
       (oc) => f(oc.outerContainer)
     ).getOrDie(

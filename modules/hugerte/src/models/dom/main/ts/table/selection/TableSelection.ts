@@ -6,7 +6,6 @@
  */
 
 import { TableSelection } from '@ephox/darwin';
-import { Arr, Fun } from '@ephox/katamari';
 import { TableLookup } from '@ephox/snooker';
 import { SelectorFind, Selectors, SugarElement, SugarElements, SugarNode } from '@ephox/sugar';
 
@@ -17,7 +16,7 @@ import { ephemera } from './Ephemera';
 const getSelectionCellFallback = (element: SugarElement<Node>) =>
   TableLookup.table(element).bind((table) =>
     TableSelection.retrieve(table, ephemera.firstSelectedSelector)
-  ).fold(Fun.constant(element), (cells) => cells[0]);
+  ).fold(() => element, (cells) => cells[0]);
 
 const getSelectionFromSelector = <T extends Element>(selector: string) =>
   (initCell: SugarElement<Node>, isRoot?: (el: SugarElement<Node>) => boolean) => {
@@ -35,7 +34,7 @@ const getCellsFromSelection = (editor: Editor): SugarElement<HTMLTableCellElemen
   SugarElements.fromDom(editor.model.table.getSelectedCells());
 
 const getCellsFromFakeSelection = (editor: Editor): SugarElement<HTMLTableCellElement>[] =>
-  Arr.filter(getCellsFromSelection(editor), (cell) => Selectors.is(cell, ephemera.selectedSelector));
+  (getCellsFromSelection(editor)).filter((cell) => Selectors.is(cell, ephemera.selectedSelector));
 
 export {
   getSelectionCell,

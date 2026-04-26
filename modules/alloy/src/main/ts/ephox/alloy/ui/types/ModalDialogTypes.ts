@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { Bounds } from '../../alien/Boxes';
@@ -17,13 +16,13 @@ export interface ModalDialogDetail extends CompositeSketchDetail {
   modalBehaviours: SketchBehaviours;
   eventOrder: Record<string, string[]>;
 
-  onExecute: (comp: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => Optional<boolean>;
-  onEscape: (comp: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => Optional<boolean>;
+  onExecute: (comp: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => (boolean) | null;
+  onEscape: (comp: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => (boolean) | null;
   useTabstopAt: (elem: SugarElement<HTMLElement>) => boolean;
   firstTabstop?: number;
 
   lazySink: LazySink;
-  dragBlockClass: Optional<string>;
+  dragBlockClass: (string) | null;
   getDragBounds: () => Bounds;
 }
 
@@ -36,8 +35,8 @@ export interface ModalDialogSpec extends CompositeSketchSpec {
 
   lazySink?: LazySink;
   useTabstopAt?: (comp: SugarElement<HTMLElement>) => boolean;
-  onExecute?: (comp: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => Optional<boolean>;
-  onEscape?: (comp: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => Optional<boolean>;
+  onExecute?: (comp: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => (boolean) | null;
+  onEscape?: (comp: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => (boolean) | null;
   firstTabstop?: number;
   dragBlockClass?: string;
   getDragBounds?: () => Bounds;
@@ -59,7 +58,7 @@ export interface ModalDialogApis {
   show: (dialog: AlloyComponent) => void;
   hide: (dialog: AlloyComponent) => void;
   getBody: (dialog: AlloyComponent) => AlloyComponent;
-  getFooter: (dialog: AlloyComponent) => Optional<AlloyComponent>;
+  getFooter: (dialog: AlloyComponent) => (AlloyComponent) | null;
   setBusy: (dialog: AlloyComponent, getBusySpec: GetBusySpec) => void;
   setIdle: (dialog: AlloyComponent) => void;
 }

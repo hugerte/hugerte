@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { Replication, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { findTableRowHeaderType, RowHeaderType } from '../lookup/Type';
@@ -44,13 +43,13 @@ const cells = (): TableSection => ({
 // A fallback legacy type that won't adjust the row/section type
 // and instead will only modify cells
 const fallback = (): TableSection => ({
-  transformRow: Fun.identity,
+  transformRow: (x: any) => x,
   transformCell
 });
 
 const getTableSectionType = (table: SugarElement<HTMLTableElement>, fallback: RowHeaderType): TableSection => {
   const warehouse = Warehouse.fromTable(table);
-  const type = findTableRowHeaderType(warehouse).getOr(fallback);
+  const type = findTableRowHeaderType(warehouse) ?? (fallback);
   switch (type) {
     case 'section':
       return section();

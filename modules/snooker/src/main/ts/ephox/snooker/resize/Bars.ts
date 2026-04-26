@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Class, Css, Height, Insert, Remove, SelectorFilter, SugarElement, SugarLocation, SugarPosition, Width } from '@ephox/sugar';
 
 import { ResizeWire } from '../api/ResizeWire';
@@ -14,7 +14,7 @@ const resizeColBar = Styles.resolve('resizer-cols');
 const BAR_THICKNESS = 7;
 
 const resizableRows = (warehouse: Warehouse, isResizable: (elm: SugarElement<Element>) => boolean): number[] =>
-  Arr.bind(warehouse.all, (row, i) => isResizable(row.element) ? [ i ] : []);
+  (warehouse.all).flatMap((row, i) => isResizable(row.element) ? [ i ] : []);
 
 const resizableColumns = (warehouse: Warehouse, isResizable: (elm: SugarElement<Element>) => boolean): number[] => {
   const resizableCols: number[] = [];
@@ -27,20 +27,20 @@ const resizableColumns = (warehouse: Warehouse, isResizable: (elm: SugarElement<
     }
   });
   // Check cells of the resizable columns and make sure they are resizable
-  return Arr.filter(resizableCols, (colIndex) => {
+  return (resizableCols).filter((colIndex) => {
     const columnCells = Warehouse.filterItems(warehouse, (cell) => cell.column === colIndex);
-    return Arr.forall(columnCells, (cell) => isResizable(cell.element));
+    return (columnCells).every((cell) => isResizable(cell.element));
   });
 };
 
 const destroy = (wire: ResizeWire): void => {
   const previous = SelectorFilter.descendants(wire.parent(), '.' + resizeBar);
-  Arr.each(previous, Remove.remove);
+  (previous).forEach(Remove.remove);
 };
 
-const drawBar = <T> (wire: ResizeWire, positions: Optional<T>[], create: (origin: SugarPosition, info: T) => SugarElement<HTMLDivElement>): void => {
+const drawBar = <T> (wire: ResizeWire, positions: (T) | null[], create: (origin: SugarPosition, info: T) => SugarElement<HTMLDivElement>): void => {
   const origin = wire.origin();
-  Arr.each(positions, (cpOption) => {
+  (positions).forEach((cpOption) => {
     cpOption.each((cp) => {
       const bar = create(origin, cp);
       Class.add(bar, resizeBar);
@@ -49,7 +49,7 @@ const drawBar = <T> (wire: ResizeWire, positions: Optional<T>[], create: (origin
   });
 };
 
-const refreshCol = (wire: ResizeWire, colPositions: Optional<BarPositions.ColInfo>[], position: SugarPosition, tableHeight: number): void => {
+const refreshCol = (wire: ResizeWire, colPositions: (BarPositions.ColInfo) | null[], position: SugarPosition, tableHeight: number): void => {
   drawBar(wire, colPositions, (origin, cp) => {
     const colBar = Bar.col(cp.col, cp.x - origin.left, position.top - origin.top, BAR_THICKNESS, tableHeight);
     Class.add(colBar, resizeColBar);
@@ -57,7 +57,7 @@ const refreshCol = (wire: ResizeWire, colPositions: Optional<BarPositions.ColInf
   });
 };
 
-const refreshRow = (wire: ResizeWire, rowPositions: Optional<BarPositions.RowInfo>[], position: SugarPosition, tableWidth: number): void => {
+const refreshRow = (wire: ResizeWire, rowPositions: (BarPositions.RowInfo) | null[], position: SugarPosition, tableWidth: number): void => {
   drawBar(wire, rowPositions, (origin, cp) => {
     const rowBar = Bar.row(cp.row, position.left - origin.left, cp.y - origin.top, tableWidth, BAR_THICKNESS);
     Class.add(rowBar, resizeRowBar);
@@ -65,17 +65,17 @@ const refreshRow = (wire: ResizeWire, rowPositions: Optional<BarPositions.RowInf
   });
 };
 
-const refreshGrid = (warhouse: Warehouse, wire: ResizeWire, table: SugarElement<HTMLTableElement>, rows: Optional<SugarElement<HTMLTableCellElement>>[], cols: Optional<SugarElement<HTMLTableCellElement>>[]): void => {
+const refreshGrid = (warhouse: Warehouse, wire: ResizeWire, table: SugarElement<HTMLTableElement>, rows: (SugarElement<HTMLTableCellElement>) | null[], cols: (SugarElement<HTMLTableCellElement>) | null[]): void => {
   const position = SugarLocation.absolute(table);
   const isResizable = wire.isResizable;
   const rowPositions = rows.length > 0 ? BarPositions.height.positions(rows, table) : [];
   const resizableRowBars = rowPositions.length > 0 ? resizableRows(warhouse, isResizable) : [];
-  const resizableRowPositions = Arr.filter(rowPositions, (_pos, i) => Arr.exists(resizableRowBars, (barIndex) => i === barIndex ));
+  const resizableRowPositions = (rowPositions).filter((_pos, i) => (resizableRowBars).some((barIndex) => i === barIndex));
   refreshRow(wire, resizableRowPositions, position, Width.getOuter(table));
 
   const colPositions = cols.length > 0 ? BarPositions.width.positions(cols, table) : [];
   const resizableColBars = colPositions.length > 0 ? resizableColumns(warhouse, isResizable) : [];
-  const resizableColPositions = Arr.filter(colPositions, (_pos, i) => Arr.exists(resizableColBars, (barIndex) => i === barIndex ));
+  const resizableColPositions = (colPositions).filter((_pos, i) => (resizableColBars).some((barIndex) => i === barIndex));
   refreshCol(wire, resizableColPositions, position, Height.getOuter(table));
 };
 
@@ -91,7 +91,7 @@ const refresh = (wire: ResizeWire, table: SugarElement<HTMLTableElement>): void 
 
 const each = (wire: ResizeWire, f: (bar: SugarElement<HTMLDivElement>, idx: number) => void): void => {
   const bars = SelectorFilter.descendants<HTMLDivElement>(wire.parent(), '.' + resizeBar);
-  Arr.each(bars, f);
+  (bars).forEach(f);
 };
 
 const hide = (wire: ResizeWire): void => {

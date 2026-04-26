@@ -3,7 +3,6 @@ import {
   NativeEvents, SimpleSpec, Tabstopping, Unselecting
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Fun, Optional } from '@ephox/katamari';
 import { Checked, Class, Traverse } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -15,14 +14,14 @@ import { formChangeEvent } from './FormEvents';
 
 type CheckboxSpec = Omit<Dialog.Checkbox, 'type'>;
 
-export const renderCheckbox = (spec: CheckboxSpec, providerBackstage: UiFactoryBackstageProviders, initialData: Optional<boolean>): SimpleSpec => {
+export const renderCheckbox = (spec: CheckboxSpec, providerBackstage: UiFactoryBackstageProviders, initialData: (boolean) | null): SimpleSpec => {
   const toggleCheckboxHandler = (comp: AlloyComponent) => {
     comp.element.dom.click();
-    return Optional.some(true);
+    return true;
   };
 
   const pField = AlloyFormField.parts.field({
-    factory: { sketch: Fun.identity },
+    factory: { sketch: (x: any) => x },
     dom: {
       tag: 'input',
       classes: [ 'tox-checkbox__input' ],

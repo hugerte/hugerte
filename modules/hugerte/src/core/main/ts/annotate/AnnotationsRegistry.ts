@@ -1,4 +1,3 @@
-import { Obj, Optional } from '@ephox/katamari';
 
 import { Decorator } from './Wrapping';
 
@@ -9,7 +8,7 @@ export interface AnnotatorSettings {
 
 export interface AnnotationsRegistry {
   register: (name: string, settings: AnnotatorSettings) => void;
-  lookup: (name: string) => Optional<AnnotatorSettings>;
+  lookup: (name: string) => (AnnotatorSettings) | null;
   getNames: () => string[];
 }
 
@@ -28,10 +27,10 @@ const create = (): AnnotationsRegistry => {
     };
   };
 
-  const lookup = (name: string): Optional<AnnotatorSettings> =>
-    Obj.get(annotations, name).map((a) => a.settings);
+  const lookup = (name: string): (AnnotatorSettings) | null =>
+    ((annotations)[name] ?? null).map((a) => a.settings);
 
-  const getNames = (): string[] => Obj.keys(annotations);
+  const getNames = (): string[] => Object.keys(annotations);
 
   return {
     register,

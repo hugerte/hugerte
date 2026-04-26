@@ -1,5 +1,5 @@
 import { DataTransfer, DataTransferContent } from '@ephox/dragster';
-import { Arr, Optional, Singleton, Throttler, Type } from '@ephox/katamari';
+import { Singleton, Throttler } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import DOMUtils from './api/dom/DOMUtils';
@@ -55,7 +55,7 @@ const isDraggable = (dom: DOMUtils, rootElm: HTMLElement, elm: HTMLElement) =>
   isContentEditableFalse(elm) && elm !== rootElm && dom.isEditable(elm.parentElement);
 
 const isValidDropTarget = (editor: Editor, targetElement: Node | null, dragElement: Node) => {
-  if (Type.isNullable(targetElement)) {
+  if ((targetElement) == null) {
     return false;
   } else if (targetElement === dragElement || editor.dom.isChildOf(targetElement, dragElement)) {
     return false;
@@ -230,9 +230,9 @@ const applyRelPos = (state: State, position: MousePosition.PagePosition) => ({
 
 const start = (state: Singleton.Value<State>, editor: Editor) => (e: EditorEvent<MouseEvent>) => {
   if (isLeftMouseButtonPressed(e)) {
-    const ceElm = Arr.find(editor.dom.getParents(e.target as Node), isContentEditable).getOr(null);
+    const ceElm = ((editor.dom.getParents(e.target as Node)).find(isContentEditable) ?? null) ?? (null);
 
-    if (Type.isNonNullable(ceElm) && isDraggable(editor.dom, editor.getBody(), ceElm)) {
+    if ((ceElm) != null && isDraggable(editor.dom, editor.getBody(), ceElm)) {
       const elmPos = editor.dom.getPos(ceElm);
       const bodyElm = editor.getBody();
       const docElm = editor.getDoc().documentElement;
@@ -294,7 +294,7 @@ const move = (state: Singleton.Value<State>, editor: Editor) => {
     if (!state.dragging && movement > 10) {
       const args = dispatchDragEvent(editor, 'dragstart', state.element, state.dataTransfer, e);
       // TINY-9601: dataTransfer is writable in dragstart, so keep it up-to-date
-      if (Type.isNonNullable(args.dataTransfer)) {
+      if ((args.dataTransfer) != null) {
         state.dataTransfer = args.dataTransfer;
       }
 
@@ -319,7 +319,7 @@ const move = (state: Singleton.Value<State>, editor: Editor) => {
 // Returns the raw element instead of the fake cE=false element
 const getRawTarget = (selection: EditorSelection): Node | null => {
   const sel = selection.getSel();
-  if (Type.isNonNullable(sel)) {
+  if ((sel) != null) {
     const rng = sel.getRangeAt(0);
     const startContainer = rng.startContainer;
     return NodeType.isText(startContainer) ? startContainer.parentNode : startContainer;
@@ -355,7 +355,7 @@ const drop = (state: Singleton.Value<State>, editor: Editor) => (e: EditorEvent<
   removeDragState(state);
 };
 
-const stopDragging = (state: Singleton.Value<State>, editor: Editor, e: Optional<EditorEvent<MouseEvent>>) => {
+const stopDragging = (state: Singleton.Value<State>, editor: Editor, e: (EditorEvent<MouseEvent>) | null) => {
   state.on((state) => {
     state.intervalId.clear();
     if (state.dragging) {
@@ -369,7 +369,7 @@ const stopDragging = (state: Singleton.Value<State>, editor: Editor, e: Optional
 };
 
 const stop = (state: Singleton.Value<State>, editor: Editor) => (e: EditorEvent<MouseEvent>) =>
-  stopDragging(state, editor, Optional.some(e));
+  stopDragging(state, editor, e);
 
 const removeDragState = (state: Singleton.Value<State>) => {
   state.on((state) => {
@@ -404,7 +404,7 @@ const bindFakeDragEvents = (editor: Editor) => {
   editor.on('keydown', (e) => {
     // Fire 'dragend' when the escape key is pressed
     if (e.keyCode === VK.ESC) {
-      stopDragging(state, editor, Optional.none());
+      stopDragging(state, editor, null);
     }
   });
 };
@@ -418,7 +418,7 @@ const blockUnsupportedFileDrop = (editor: Editor) => {
     if (!e.isDefaultPrevented()) {
       // Prevent file drop events within the editor, as they'll cause the browser to navigate away
       const dataTransfer = e.dataTransfer;
-      if (dataTransfer && (Arr.contains(dataTransfer.types, 'Files') || dataTransfer.files.length > 0)) {
+      if (dataTransfer && ((dataTransfer.types).includes('Files') || dataTransfer.files.length > 0)) {
         e.preventDefault();
         if (e.type === 'drop') {
           ErrorReporter.displayError(editor, 'Dropped file type is not supported');
@@ -440,13 +440,13 @@ const blockUnsupportedFileDrop = (editor: Editor) => {
     const editorRoot = editor.inline ? editor.getBody() : editor.getDoc();
 
     const eventNames = [ 'drop', 'dragover' ];
-    Arr.each(eventNames, (name) => {
+    (eventNames).forEach((name) => {
       pageDom.bind(doc, name, preventFileDropIfUIElement);
       dom.bind(editorRoot, name, preventFileDrop);
     });
 
     editor.on('remove', () => {
-      Arr.each(eventNames, (name) => {
+      (eventNames).forEach((name) => {
         pageDom.unbind(doc, name, preventFileDropIfUIElement);
         dom.unbind(editorRoot, name, preventFileDrop);
       });

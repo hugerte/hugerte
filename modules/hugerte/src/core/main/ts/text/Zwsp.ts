@@ -14,7 +14,7 @@ import Editor from '../api/Editor';
  */
 
 // This is technically not a ZWSP but a ZWNBSP or a BYTE ORDER MARK it used to be a ZWSP
-const ZWSP = Unicode.zeroWidth;
+const ZWSP = '\uFEFF';
 const isZwsp = Unicode.isZwsp;
 const trim = Unicode.removeZwsp;
 const insert = (editor: Editor): void => editor.insertContent(ZWSP, { preserve_zwsp: true });

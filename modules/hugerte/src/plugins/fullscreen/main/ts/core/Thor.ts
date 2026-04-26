@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Attribute, Css, SelectorFilter, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -38,12 +37,12 @@ const clobberStyles = (dom: DOMUtils, container: SugarElement<Element>, editorBo
   };
 
   const ancestors = SelectorFilter.ancestors(container, '*');
-  const siblings = Arr.bind(ancestors, gatherSiblings);
+  const siblings = (ancestors).flatMap(gatherSiblings);
   const bgColor = matchColor(editorBody);
 
   /* NOTE: This assumes that container has no siblings itself */
-  Arr.each(siblings, clobber(siblingStyles));
-  Arr.each(ancestors, clobber(ancestorPosition + ancestorStyles + bgColor));
+  (siblings).forEach(clobber(siblingStyles));
+  (ancestors).forEach(clobber(ancestorPosition + ancestorStyles + bgColor));
   // position absolute on the outer-container breaks Android flex layout
   const containerStyles = isAndroid === true ? '' : ancestorPosition;
   clobber(containerStyles + ancestorStyles + bgColor)(container);
@@ -51,7 +50,7 @@ const clobberStyles = (dom: DOMUtils, container: SugarElement<Element>, editorBo
 
 const restoreStyles = (dom: DOMUtils): void => {
   const clobberedEls = SelectorFilter.all('[' + attr + ']');
-  Arr.each(clobberedEls, (element) => {
+  (clobberedEls).forEach((element) => {
     const restore = Attribute.get(element, attr);
     if (restore && restore !== 'no-styles') {
       Css.setAll(element, dom.parseStyle(restore));

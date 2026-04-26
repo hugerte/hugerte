@@ -1,6 +1,5 @@
 import { AlloySpec, Behaviour, GuiFactory, Keying, Replacing, SimpleSpec } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstageShared } from '../../backstage/Backstage';
 import { ComposingConfigs } from '../alien/ComposingConfigs';
@@ -23,7 +22,7 @@ export const renderLabel = (spec: LabelSpec, backstageShared: UiFactoryBackstage
     ]
   };
 
-  const comps = Arr.map(spec.items, backstageShared.interpreter);
+  const comps = (spec.items).map(backstageShared.interpreter);
   return {
     dom: {
       tag: 'div',
@@ -36,7 +35,7 @@ export const renderLabel = (spec: LabelSpec, backstageShared: UiFactoryBackstage
     behaviours: Behaviour.derive([
       ComposingConfigs.self(),
       Replacing.config({}),
-      RepresentingConfigs.domHtml(Optional.none()),
+      RepresentingConfigs.domHtml(null),
       Keying.config({
         mode: 'acyclic'
       })

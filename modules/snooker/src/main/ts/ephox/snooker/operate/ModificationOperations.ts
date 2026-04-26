@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as Structs from '../api/Structs';
 import * as GridRow from '../model/GridRow';
@@ -45,7 +44,7 @@ const getElementFor = (row: Structs.RowCells, column: number, section: string, w
 // example is the location of the cursor (the column index)
 // index is the insert position (at - or after - example) (the column index)
 const insertColumnAt = (grid: Structs.RowCells[], index: number, example: number, comparator: CompElm, substitution: Subst): Structs.RowCells[] =>
-  Arr.map(grid, (row) => {
+  (grid).map((row) => {
     const withinSpan = index > 0 && index < GridRow.cellLength(row) && comparator(GridRow.getCellElement(row, index - 1), GridRow.getCellElement(row, index));
     const sub = getElementFor(row, index, row.section, withinSpan, example, comparator, substitution);
 
@@ -59,7 +58,7 @@ const insertColumnAt = (grid: Structs.RowCells[], index: number, example: number
 // - the other cells in that column set to span the split cell.
 const splitCellIntoColumns = (grid: Structs.RowCells[], exampleRow: number, exampleCol: number, comparator: CompElm, substitution: Subst): Structs.RowCells[] => {
   const index = exampleCol + 1; // insert after
-  return Arr.map(grid, (row, i) => {
+  return (grid).map((row, i) => {
     const isTargetCell = (i === exampleRow);
     const cell = GridRow.getCell(row, exampleCol);
     const sub = isTargetCell ? Structs.elementnew(substitution(cell.element, comparator), true, cell.isLocked) : cell;
@@ -92,9 +91,9 @@ const splitCellIntoRows = (grid: Structs.RowCells[], exampleRow: number, example
 };
 
 const deleteColumnsAt = (grid: Structs.RowCells[], columns: number[]): Structs.RowCells[] =>
-  Arr.bind(grid, (row) => {
+  (grid).flatMap((row) => {
     const existingCells = row.cells;
-    const cells = Arr.foldr(columns, (acc, column) => column >= 0 && column < acc.length ? acc.slice(0, column).concat(acc.slice(column + 1)) : acc, existingCells);
+    const cells = (columns).reduceRight((acc, column) => column >= 0 && column < acc.length ? acc.slice(0, column).concat(acc.slice(column + 1)) : acc, existingCells);
     return cells.length > 0 ? [ Structs.rowcells(row.element, cells, row.section, row.isNew) ] : [];
   });
 

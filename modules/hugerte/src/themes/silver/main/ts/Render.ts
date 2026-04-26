@@ -1,7 +1,7 @@
 import {
   AlloyComponent, AlloyEvents, AlloyParts, AlloySpec, Behaviour, Boxes, Disabling, Gui, GuiFactory, Keying, Memento, Positioning, SimpleSpec, SystemEvents, VerticalDir
 } from '@ephox/alloy';
-import { Arr, Merger, Obj, Optional, Result, Singleton } from '@ephox/katamari';
+import { Arr, Merger, Result, Singleton } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Compare, Css, SugarBody, SugarElement } from '@ephox/sugar';
 
@@ -358,10 +358,8 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
       backstage: backstages.popup
     });
 
-    const statusbar: Optional<AlloySpec> =
-      Options.useStatusBar(editor) && !isInline ? Optional.some(
-        renderStatusbar(editor, backstages.popup.shared.providers)
-      ) : Optional.none<AlloySpec>();
+    const statusbar: (AlloySpec) | null =
+      Options.useStatusBar(editor) && !isInline ? renderStatusbar(editor, backstages.popup.shared.providers) : null;
 
     // We need the statusbar to be separate to everything else so resizing works properly
     const editorComponents = Arr.flatten<AlloySpec>([
@@ -473,13 +471,13 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
 
   const renderUIWithRefs = (uiRefs: ReadyUiReferences): ModeRenderInfo => {
     const { mainUi, popupUi, uiMotherships } = uiRefs;
-    Obj.map(Options.getToolbarGroups(editor), (toolbarGroupButtonConfig, name) => {
+    Object.fromEntries(Object.entries(Options.getToolbarGroups(editor)).map(([_k, _v]: [any, any]) => [_k, ((toolbarGroupButtonConfig, name) => {
       editor.ui.registry.addGroupToolbarButton(name, toolbarGroupButtonConfig);
-    });
+    })(_v, _k as any)]));
 
     // Apply Bridge types
     const { buttons, menuItems, contextToolbars, sidebars, views } = editor.ui.registry.getAll();
-    const toolbarOpt: Optional<ToolbarConfig> = Options.getMultipleToolbarsOption(editor);
+    const toolbarOpt: (ToolbarConfig) | null = Options.getMultipleToolbarsOption(editor);
     const rawUiConfig: RenderUiConfig = {
       menuItems,
       menus: Options.getMenus(editor),

@@ -1,4 +1,4 @@
-import { Cell, Fun, Obj, Optional, Type } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from './api/Editor';
 import Formatter from './api/Formatter';
@@ -118,7 +118,7 @@ interface RtcAdaptor {
     removeDecoration: () => void;
   };
   raw: {
-    getModel: () => Optional<any>;
+    getModel: () => (any) | null;
   };
 }
 
@@ -133,7 +133,7 @@ interface RtcEditor extends Editor {
 
 const makePlainAdaptor = (editor: Editor): RtcAdaptor => ({
   init: {
-    bindEvents: Fun.noop
+    bindEvents: () => {}
   },
   undoManager: {
     beforeChange: (locks, beforeBookmark) => Operations.beforeChange(editor, locks, beforeBookmark),
@@ -171,16 +171,16 @@ const makePlainAdaptor = (editor: Editor): RtcAdaptor => ({
     getContent: (format, args) => getSelectedContentInternal(editor, format, args)
   },
   autocompleter: {
-    addDecoration: Fun.noop, // This was never fully implemented in RTC
-    removeDecoration: Fun.noop, // This was never fully implemented in RTC
+    addDecoration: () => {}, // This was never fully implemented in RTC
+    removeDecoration: () => {}, // This was never fully implemented in RTC
   },
   raw: {
-    getModel: () => Optional.none()
+    getModel: () => null
   }
 });
 
 const makeRtcAdaptor = (rtcEditor: RtcRuntimeApi): RtcAdaptor => {
-  const defaultVars = (vars: FormatVars | undefined) => Type.isObject(vars) ? vars : {};
+  const defaultVars = (vars: FormatVars | undefined) => (typeof (vars) === 'object' && (vars) !== null) ? vars : {};
   const { init, undoManager, formatter, editor, selection, autocompleter, raw } = rtcEditor;
 
   return {
@@ -230,88 +230,86 @@ const makeRtcAdaptor = (rtcEditor: RtcRuntimeApi): RtcAdaptor => {
       removeDecoration: autocompleter.removeDecoration
     },
     raw: {
-      getModel: () => Optional.some(raw.getRawModel())
+      getModel: () => raw.getRawModel()
     }
   };
 };
 
 const makeNoopAdaptor = (): RtcAdaptor => {
   // Cast as any since this will never match the implementations
-  const nul = Fun.constant(null) as any;
-  const empty = Fun.constant('');
+  const nul = () => null as any;
+  const empty = () => '';
 
   return {
     init: {
-      bindEvents: Fun.noop
+      bindEvents: () => {}
     },
     undoManager: {
-      beforeChange: Fun.noop,
+      beforeChange: () => {},
       add: nul,
       undo: nul,
       redo: nul,
-      clear: Fun.noop,
-      reset: Fun.noop,
-      hasUndo: Fun.never,
-      hasRedo: Fun.never,
+      clear: () => {},
+      reset: () => {},
+      hasUndo: (() => false as const),
+      hasRedo: (() => false as const),
       transact: nul,
-      ignore: Fun.noop,
-      extra: Fun.noop
+      ignore: () => {},
+      extra: () => {}
     },
     formatter: {
-      match: Fun.never,
-      matchAll: Fun.constant([]),
-      matchNode: Fun.constant(undefined),
-      canApply: Fun.never,
+      match: (() => false as const),
+      matchAll: () => [],
+      matchNode: () => undefined,
+      canApply: (() => false as const),
       closest: empty,
-      apply: Fun.noop,
-      remove: Fun.noop,
-      toggle: Fun.noop,
-      formatChanged: Fun.constant({ unbind: Fun.noop })
+      apply: () => {},
+      remove: () => {},
+      toggle: () => {},
+      formatChanged: () => { unbind: () => {} }
     },
     editor: {
       getContent: empty,
-      setContent: Fun.constant({ content: '', html: '' }),
-      insertContent: Fun.constant(''),
-      addVisual: Fun.noop
+      setContent: () => { content: '', html: '' },
+      insertContent: () => '',
+      addVisual: () => {}
     },
     selection: {
       getContent: empty
     },
     autocompleter: {
-      addDecoration: Fun.noop,
-      removeDecoration: Fun.noop
+      addDecoration: () => {},
+      removeDecoration: () => {}
     },
     raw: {
-      getModel: Fun.constant(Optional.none())
+      getModel: () => null
     }
   };
 };
 
-export const isRtc = (editor: Editor): boolean => Obj.has(editor.plugins, 'rtc');
+export const isRtc = (editor: Editor): boolean => Object.prototype.hasOwnProperty.call(editor.plugins, 'rtc');
 
-const getRtcSetup = (editor: Editor): Optional<() => Promise<RtcRuntimeApi>> =>
-  (Obj.get(editor.plugins, 'rtc') as Optional<RtcPluginApi>).bind((rtcPlugin) =>
+const getRtcSetup = (editor: Editor): (() =) | null Promise<RtcRuntimeApi>> =>
+  (((editor.plugins)['rtc'] ?? null) as (RtcPluginApi) | null).bind((rtcPlugin) =>
     // This might not exist if the stub plugin is loaded on cloud
-    Optional.from(rtcPlugin.setup)
+    (rtcPlugin.setup ?? null)
   );
 
-export const setup = (editor: Editor): Optional<() => Promise<boolean>> => {
+export const setup = (editor: Editor): (() =) | null Promise<boolean>> => {
   const editorCast = editor as RtcEditor;
   return getRtcSetup(editor).fold(
     () => {
       editorCast.rtcInstance = makePlainAdaptor(editor);
-      return Optional.none();
+      return null;
     },
     (setup) => {
       // We need to provide a noop adaptor while initializing since any call by the theme or plugins to say undoManager.hasUndo would throw errors
       editorCast.rtcInstance = makeNoopAdaptor();
 
-      return Optional.some(
-        () => setup().then((rtcEditor) => {
+      return () => setup().then((rtcEditor) => {
           editorCast.rtcInstance = makeRtcAdaptor(rtcEditor);
           return rtcEditor.rtc.isRemote;
-        })
-      );
+        });
     }
   );
 };

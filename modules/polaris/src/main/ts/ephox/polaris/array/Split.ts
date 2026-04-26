@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { Splitting } from '../api/Splitting';
 
@@ -17,7 +16,7 @@ const splitby = <T>(xs: T[], pred: (x: T) => boolean): T[][] => {
 const splitbyAdv = <T>(xs: T[], pred: (x: T) => Splitting<T>): T[][] => {
   const r: T[][] = [];
   let part: T[] = [];
-  Arr.each(xs, (x) => {
+  (xs).forEach((x) => {
     const choice = pred(x);
     Splitting.cata(choice, () => {
       // Include in the current sublist.

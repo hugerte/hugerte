@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 import { EventArgs, Focus, SelectorFind, Selectors } from '@ephox/sugar';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -113,7 +112,7 @@ const events = (tooltipConfig: TooltippingConfig, state: TooltippingState): Allo
           AlloyEvents.run(SystemEvents.postBlur(), (comp) => {
             Focus.search(comp.element).fold(() => {
               AlloyTriggers.emit(comp, ImmediateHideTooltipEvent);
-            }, Fun.noop);
+            }, () => {});
           }),
           AlloyEvents.run<EventArgs>(NativeEvents.mouseover(), (comp) => {
             SelectorFind.descendant(comp.element, '[data-mce-tooltip]:hover').each((_) => {
@@ -130,7 +129,7 @@ const events = (tooltipConfig: TooltippingConfig, state: TooltippingState): Allo
           AlloyEvents.run(NativeEvents.mouseout(), (comp) => {
             SelectorFind.descendant(comp.element, '[data-mce-tooltip]:hover').fold(() => {
               AlloyTriggers.emit(comp, HideTooltipEvent);
-            }, Fun.noop);
+            }, () => {});
           }),
         ];
       default:
@@ -153,13 +152,13 @@ const events = (tooltipConfig: TooltippingConfig, state: TooltippingState): Allo
           AlloyEvents.run(SystemEvents.postBlur(), (comp) => {
             Focus.search(comp.element).fold(() => {
               AlloyTriggers.emit(comp, ImmediateHideTooltipEvent);
-            }, Fun.noop);
+            }, () => {});
           }),
         ];
     }
   };
 
-  return AlloyEvents.derive(Arr.flatten([
+  return AlloyEvents.derive(([
     [
       AlloyEvents.run(ShowTooltipEvent, (comp) => {
         state.resetTimer(() => {
@@ -186,7 +185,7 @@ const events = (tooltipConfig: TooltippingConfig, state: TooltippingState): Allo
         // to rely on receiving.
         const receivingData = message as unknown as ReceivingInternalEvent;
         if (!receivingData.universal) {
-          if (Arr.contains(receivingData.channels, ExclusivityChannel)) {
+          if ((receivingData.channels).includes(ExclusivityChannel)) {
             hide(comp);
           }
         }
@@ -198,7 +197,7 @@ const events = (tooltipConfig: TooltippingConfig, state: TooltippingState): Allo
     (
       getEvents()
     )
-  ]));
+  ]).flat());
 
 };
 

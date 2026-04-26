@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { DialogToggleMenuItem, dialogToggleMenuItemSchema, DialogToggleMenuItemSpec } from './ToggleMenuItem';
@@ -47,8 +47,8 @@ interface BaseDialogFooterButton {
   /** @deprecated use `buttonType: "primary"` instead */
   primary: boolean;
   enabled: boolean;
-  icon: Optional<string>;
-  buttonType: Optional<'primary' | 'secondary'>;
+  icon: (string) | null;
+  buttonType: ('primary' | 'secondary') | null;
 }
 
 export interface DialogFooterNormalButton extends BaseDialogFooterButton {
@@ -58,16 +58,16 @@ export interface DialogFooterNormalButton extends BaseDialogFooterButton {
 
 export interface DialogFooterMenuButton extends BaseDialogFooterButton {
   type: 'menu';
-  text: Optional<string>;
-  tooltip: Optional<string>;
-  icon: Optional<string>;
+  text: (string) | null;
+  tooltip: (string) | null;
+  icon: (string) | null;
   items: DialogFooterToggleMenuItem[];
 }
 
 export interface DialogFooterToggleButton extends BaseDialogFooterButton {
   type: 'togglebutton';
-  tooltip: Optional<string>;
-  text: Optional<string>;
+  tooltip: (string) | null;
+  text: (string) | null;
   active: boolean;
 }
 

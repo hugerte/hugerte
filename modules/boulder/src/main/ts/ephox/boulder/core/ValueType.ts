@@ -1,9 +1,9 @@
-import { Fun, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';
 import { value, anyValue as _anyValue } from './Utils';
 
-const anyValue = Fun.constant(_anyValue);
+const anyValue = () => _anyValue;
 
 const typedValue = (validator: (a: any) => boolean, expectedType: string) => value((a) => {
   const actualType = typeof a;

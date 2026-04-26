@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { TableLookup } from '@ephox/snooker';
 import { SelectorFilter, SugarElement } from '@ephox/sugar';
 
@@ -41,8 +41,8 @@ const updateAdvancedProps = (modifier: DomModifier, data: Required<RowData>, sho
 
 const applyStyleData = (editor: Editor, rows: HTMLTableRowElement[], data: RowData, wasChanged: (key: string) => boolean): void => {
   const isSingleRow = rows.length === 1;
-  const shouldOverrideCurrentValue = isSingleRow ? Fun.always : wasChanged;
-  Arr.each(rows, (rowElm) => {
+  const shouldOverrideCurrentValue = isSingleRow ? (() => true as const) : wasChanged;
+  (rows).forEach((rowElm) => {
     const rowCells = SelectorFilter.children<HTMLTableCellElement>(SugarElement.fromDom(rowElm), 'td,th');
     const modifier = DomModifier.normal(editor, rowElm);
 
@@ -54,7 +54,7 @@ const applyStyleData = (editor: Editor, rows: HTMLTableRowElement[], data: RowDa
 
     // TINY-10617: Simplify number of height styles when applying height on tr
     if (wasChanged('height')) {
-      Arr.each(rowCells, (cell) => {
+      (rowCells).forEach((cell) => {
         editor.dom.setStyle(cell.dom, 'height', null);
       });
     }
@@ -72,16 +72,16 @@ const applyStructureData = (editor: Editor, data: RowData): void => {
 };
 
 const applyRowData = (editor: Editor, rows: HTMLTableRowElement[], oldData: RowData, data: RowData): void => {
-  const modifiedData = Obj.filter(data, (value, key) => oldData[key as keyof RowData] !== value);
+  const modifiedData = Object.fromEntries(Object.entries(data).filter(([_k, _v]: [any, any]) => ((value, key) => oldData[key as keyof RowData] !== value)(_v, _k as any)));
 
-  if (Obj.size(modifiedData) > 0) {
-    const typeModified = Obj.has(modifiedData, 'type');
+  if (Object.keys(modifiedData).length > 0) {
+    const typeModified = Object.prototype.hasOwnProperty.call(modifiedData, 'type');
     // style modified if there's at least one other change apart from 'type'
-    const styleModified = typeModified ? Obj.size(modifiedData) > 1 : true;
+    const styleModified = typeModified ? Object.keys(modifiedData).length > 1 : true;
 
     // Update the rows styling using the dialog data
     if (styleModified) {
-      applyStyleData(editor, rows, data, Fun.curry(Obj.has, modifiedData));
+      applyStyleData(editor, rows, data, ((..._rest: any[]) => (Obj.has)(modifiedData, ..._rest)));
     }
 
     // Update the rows structure using the dialog data
@@ -117,7 +117,7 @@ const open = (editor: Editor): void => {
   }
 
   // Get current data and find shared values between rows
-  const rowsData = Arr.map(rows, (rowElm) => Helpers.extractDataFromRowElement(editor, rowElm.dom, Options.hasAdvancedRowTab(editor)));
+  const rowsData = (rows).map((rowElm) => Helpers.extractDataFromRowElement(editor, rowElm.dom, Options.hasAdvancedRowTab(editor)));
   const data = Helpers.getSharedValues<RowData>(rowsData);
 
   const dialogTabPanel: Dialog.TabPanelSpec = {
@@ -160,7 +160,7 @@ const open = (editor: Editor): void => {
       }
     ],
     initialData: data,
-    onSubmit: Fun.curry(onSubmitRowForm, editor, Arr.map(rows, (r) => r.dom), data)
+    onSubmit: ((..._rest: any[]) => (onSubmitRowForm)(editor, (rows).map((r) => r.dom), data, ..._rest))
   });
 };
 

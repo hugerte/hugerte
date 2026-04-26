@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Merger, Result, Results } from '@ephox/katamari';
+import { Merger, Result, Results } from '@ephox/katamari';
 
 import * as ObjChanger from '../core/ObjChanger';
 import * as ObjWriter from '../core/ObjWriter';
@@ -28,7 +28,7 @@ const mergeValues = <T>(values: T[], base: T) => {
 };
 
 const mergeErrors = (errors: string[][]): Result<never, string[]> =>
-  Result.error(Arr.flatten(errors));
+  Result.error((errors).flat());
 
 const consolidate = <T>(objs: Array<Result<T, string[]>>, base: T): Result<T, string[]> => {
   const partitions = Results.partition(objs);

@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -30,7 +30,7 @@ const splitFonts = (fontFamily: string): string[] => {
   return Arr.map(fonts, (font) => font.replace(/^['"]+|['"]+$/g, ''));
 };
 
-const matchesStack = (fonts: string[], stack: string[]): boolean => stack.length > 0 && Arr.forall(stack, (font) => fonts.indexOf(font.toLowerCase()) > -1);
+const matchesStack = (fonts: string[], stack: string[]): boolean => stack.length > 0 && (stack).every((font) => fonts.indexOf(font.toLowerCase()) > -1);
 
 const isSystemFontStack = (fontFamily: string, userStack: string[]): boolean => {
   if (fontFamily.indexOf('-apple-system') === 0 || userStack.length > 0) {
@@ -50,20 +50,20 @@ const getSpec = (editor: Editor): SelectSpec => {
     const font = fontFamily ? fontFamily.toLowerCase() : '';
     const userStack = Options.getDefaultFontStack(editor);
 
-    const matchOpt = Arr.find(items, (item) => {
+    const matchOpt = ((items).find((item) => {
       const format = item.format;
       return (format.toLowerCase() === font) || (getFirstFont(format).toLowerCase() === getFirstFont(font).toLowerCase());
-    }).orThunk(() => {
-      return Optionals.someIf(isSystemFontStack(font, userStack), {
+    }) ?? null).orThunk(() => {
+      return (isSystemFontStack(font, userStack) ? {
         title: systemFont,
         format: font
-      });
+      } : null);
     });
 
     return { matchOpt, font: fontFamily };
   };
 
-  const isSelectedFor = (item: string) => (valueOpt: Optional<SelectedFormat>) =>
+  const isSelectedFor = (item: string) => (valueOpt: (SelectedFormat) | null) =>
     valueOpt.exists((value) => value.format === item);
 
   const getCurrentValue = () => {
@@ -85,7 +85,7 @@ const getSpec = (editor: Editor): SelectSpec => {
 
   const updateSelectMenuText = (comp: AlloyComponent) => {
     const { matchOpt, font } = getMatchingValue();
-    const text = matchOpt.fold(Fun.constant(font), (item) => item.title);
+    const text = matchOpt.fold(() => font, (item) => item.title);
     AlloyTriggers.emitWith(comp, updateMenuText, {
       text
     });
@@ -96,8 +96,8 @@ const getSpec = (editor: Editor): SelectSpec => {
 
   return {
     tooltip: Tooltip.makeTooltipText(editor, btnTooltip, systemFont),
-    text: Optional.some(systemFont),
-    icon: Optional.none(),
+    text: systemFont,
+    icon: null,
     isSelectedFor,
     getCurrentValue,
     getPreviewFor,
@@ -105,7 +105,7 @@ const getSpec = (editor: Editor): SelectSpec => {
     updateText: updateSelectMenuText,
     dataset,
     shouldHide: false,
-    isInvalid: Fun.never
+    isInvalid: (() => false as const)
   };
 };
 

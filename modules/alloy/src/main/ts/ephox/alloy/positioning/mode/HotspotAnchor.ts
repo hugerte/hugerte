@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as Fields from '../../data/Fields';
@@ -9,7 +8,7 @@ import * as Origins from '../layout/Origins';
 import { Anchoring, HotspotAnchor, nu as NuAnchor } from './Anchoring';
 import * as AnchorLayouts from './AnchorLayouts';
 
-const placement = (component: AlloyComponent, anchorInfo: HotspotAnchor, origin: Origins.OriginAdt): Optional<Anchoring> => {
+const placement = (component: AlloyComponent, anchorInfo: HotspotAnchor, origin: Origins.OriginAdt): (Anchoring) | null => {
   const hotspot = anchorInfo.hotspot;
   const anchorBox = Origins.toBox(origin, hotspot.element);
 
@@ -20,17 +19,15 @@ const placement = (component: AlloyComponent, anchorInfo: HotspotAnchor, origin:
     Layout.belowOrAboveRtl(),
     Layout.aboveOrBelow(),
     Layout.aboveOrBelowRtl(),
-    Optional.some(anchorInfo.hotspot.element)
+    anchorInfo.hotspot.element
   );
 
-  return Optional.some(
-    NuAnchor({
+  return NuAnchor({
       anchorBox,
-      bubble: anchorInfo.bubble.getOr(Bubble.fallback()),
+      bubble: anchorInfo.bubble ?? (Bubble.fallback()),
       overrides: anchorInfo.overrides,
       layouts
-    })
-  );
+    });
 };
 
 export default [

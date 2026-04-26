@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
 
 import * as EventUtils from '../../events/EventUtils';
 import Tools from './Tools';
@@ -115,7 +114,7 @@ class EventDispatcher<T extends {}> {
   public constructor(settings?: EventDispatcherSettings) {
     this.settings = settings || {};
     this.scope = this.settings.scope || this;
-    this.toggleEvent = this.settings.toggleEvent || Fun.never;
+    this.toggleEvent = this.settings.toggleEvent || (() => false as const);
   }
 
   /**
@@ -203,7 +202,7 @@ class EventDispatcher<T extends {}> {
    */
   public on <K extends string>(name: K, callback: false | ((event: EditorEvent<MappedEvent<T, K>>) => void | boolean), prepend?: boolean, extra?: {}): this {
     if (callback === false) {
-      callback = Fun.never;
+      callback = (() => false as const);
     }
 
     if (callback) {
@@ -266,10 +265,10 @@ class EventDispatcher<T extends {}> {
 
         // Unbind all handlers
         if (!currentName) {
-          Obj.each(this.bindings, (_value, bindingName) => {
+          Object.entries(this.bindings).forEach(([_k, _v]: [any, any]) => ((_value, bindingName) => {
             this.toggleEvent(bindingName, false);
             delete this.bindings[bindingName];
-          });
+          })(_v, _k));
 
           return this;
         }
@@ -280,11 +279,11 @@ class EventDispatcher<T extends {}> {
             handlers.length = 0;
           } else {
             // Unbind specific handlers
-            const filteredHandlers = Arr.partition(handlers, (handler) => handler.func === callback);
+            const filteredHandlers = (handlers).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((handler) => handler.func === callback)(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
             handlers = filteredHandlers.fail;
             this.bindings[currentName] = handlers;
             // Mark the removed handlers in case this event is already being processed in `fire`
-            Arr.each(filteredHandlers.pass, (handler) => {
+            (filteredHandlers.pass).forEach((handler) => {
               handler.removed = true;
             });
           }
@@ -296,9 +295,9 @@ class EventDispatcher<T extends {}> {
         }
       }
     } else {
-      Obj.each(this.bindings, (_value, name) => {
+      Object.entries(this.bindings).forEach(([_k, _v]: [any, any]) => ((_value, name) => {
         this.toggleEvent(name, false);
-      });
+      })(_v, _k));
 
       this.bindings = {};
     }

@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import Tools from '../api/util/Tools';
 
@@ -19,8 +18,8 @@ export const create = <C extends Function>(): FilterRegistry<C> => {
   const filters: Record<string, Filter<C>> = {};
 
   const addFilter = (name: string, callback: C): void => {
-    Arr.each(explode(name), (name) => {
-      if (!Obj.has(filters, name)) {
+    (explode(name)).forEach((name) => {
+      if (!Object.prototype.hasOwnProperty.call(filters, name)) {
         filters[name] = { name, callbacks: [] };
       }
 
@@ -29,14 +28,14 @@ export const create = <C extends Function>(): FilterRegistry<C> => {
   };
 
   const getFilters = (): Filter<C>[] =>
-    Obj.values(filters);
+    Object.values(filters);
 
   const removeFilter = (name: string, callback?: C): void => {
-    Arr.each(explode(name), (name) => {
-      if (Obj.has(filters, name)) {
-        if (Type.isNonNullable(callback)) {
+    (explode(name)).forEach((name) => {
+      if (Object.prototype.hasOwnProperty.call(filters, name)) {
+        if ((callback) != null) {
           const filter = filters[name];
-          const newCallbacks = Arr.filter(filter.callbacks, (c) => c !== callback);
+          const newCallbacks = (filter.callbacks).filter((c) => c !== callback);
           // If all callbacks have been removed then remove the filter reference
           if (newCallbacks.length > 0) {
             filter.callbacks = newCallbacks;

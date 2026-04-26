@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 import * as PositionArray from '../alien/PositionArray';
 
@@ -26,17 +25,17 @@ type GetLengthFunc<T> = (comp: T) => number;
 const apportion = <T>(units: T[], total: number, len: GetLengthFunc<T>): Widths<Pos<T>> => {
   const parray: Pos<T>[] = PositionArray.generate(units, (unit, current) => {
     const width = len(unit);
-    return Optional.some({
+    return {
       element: unit,
       start: current,
       finish: current + width,
       width
-    });
+    };
   });
 
-  const within = Arr.filter(parray, (unit) => unit.finish <= total);
+  const within = (parray).filter((unit) => unit.finish <= total);
 
-  const withinWidth = Arr.foldr(within, (acc, el) => acc + el.width, 0);
+  const withinWidth = (within).reduceRight((acc, el) => acc + el.width, 0);
 
   const extra = parray.slice(within.length);
   return {
@@ -46,7 +45,7 @@ const apportion = <T>(units: T[], total: number, len: GetLengthFunc<T>): Widths<
   };
 };
 
-const toUnit = <T>(parray: Pos<T>[]) => Arr.map(parray, (unit) => unit.element);
+const toUnit = <T>(parray: Pos<T>[]) => (parray).map((unit) => unit.element);
 
 const fitLast = <T>(within: Pos<T>[], extra: Pos<T>[], withinWidth: number) => {
   const fits = toUnit(within.concat(extra));
@@ -60,9 +59,9 @@ const overflow = <T>(within: Pos<T>[], extra: Pos<T>[], overflower: T, withinWid
 
 const fitAll = <T>(within: Pos<T>[], extra: Pos<T>[], withinWidth: number) => output(toUnit(within), [], withinWidth);
 
-const tryFit = <T>(total: number, units: T[], len: GetLengthFunc<T>): Optional<Widths<Pos<T>>> => {
+const tryFit = <T>(total: number, units: T[], len: GetLengthFunc<T>): (Widths<Pos<T>>) | null => {
   const divide = apportion(units, total, len);
-  return divide.extra.length === 0 ? Optional.some(divide) : Optional.none();
+  return divide.extra.length === 0 ? divide : null;
 };
 
 const partition = <T>(total: number, units: T[], len: GetLengthFunc<T>, overflower: T): Widths<T> => {

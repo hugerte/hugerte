@@ -1,4 +1,4 @@
-import { Future, Optional } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { LazySink } from '../../api/component/CommonTypes';
@@ -15,14 +15,14 @@ export interface CommonDropdownDetail<F> extends CompositeSketchDetail, HasLayou
   dom: RawDomSchema;
   components: AlloySpec[ ];
 
-  role: Optional<string>;
+  role: (string) | null;
   eventOrder: Record<string, string[]>;
-  fetch: (comp: AlloyComponent) => Future<Optional<F>>;
+  fetch: (comp: AlloyComponent) => Future<(F) | null>;
   onOpen: (anchor: AnchorSpec, comp: AlloyComponent, menu: AlloyComponent) => void;
 
-  lazySink: Optional<LazySink>;
+  lazySink: (LazySink) | null;
   // TODO test getHotspot and overrides
-  getHotspot: (comp: AlloyComponent) => Optional<AlloyComponent>;
+  getHotspot: (comp: AlloyComponent) => (AlloyComponent) | null;
   getAnchorOverrides: () => AnchorOverrides;
   matchWidth: boolean;
   useMinWidth: boolean;
@@ -50,14 +50,14 @@ export interface DropdownSpec extends CompositeSketchSpec, HasLayoutAnchorSpec {
   uid?: string;
   dom: RawDomSchema;
   components?: AlloySpec[];
-  fetch: (comp: AlloyComponent) => Future<Optional<TieredData>>;
+  fetch: (comp: AlloyComponent) => Future<(TieredData) | null>;
   onOpen?: (anchor: AnchorSpec, comp: AlloyComponent, menu: AlloyComponent) => void;
   dropdownBehaviours?: AlloyBehaviourRecord;
   onExecute?: (sandbox: AlloyComponent, item: AlloyComponent, value: any) => void;
   eventOrder?: Record<string, string[]>;
   sandboxClasses?: string[];
   sandboxBehaviours?: AlloyBehaviourRecord;
-  getHotspot?: (comp: AlloyComponent) => Optional<AlloyComponent>;
+  getHotspot?: (comp: AlloyComponent) => (AlloyComponent) | null;
   getAnchorOverrides?: () => AnchorOverrides;
 
   toggleClass: string;

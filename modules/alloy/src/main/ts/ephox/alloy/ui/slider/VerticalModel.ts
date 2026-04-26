@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Css, Height } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -57,18 +57,18 @@ const setToMax = (spectrum: AlloyComponent, detail: VerticalSliderDetail): void 
 };
 
 // move in a direction by step size. Fire change at the end
-const moveBy = (direction: number, spectrum: AlloyComponent, detail: VerticalSliderDetail, useMultiplier?: boolean): Optional<number> => {
+const moveBy = (direction: number, spectrum: AlloyComponent, detail: VerticalSliderDetail, useMultiplier?: boolean): (number) | null => {
   const f = (direction > 0) ? SliderModel.increaseBy : SliderModel.reduceBy;
   const yValue = f(currentValue(detail), minY(detail), maxY(detail), step(detail, useMultiplier));
   fireSliderChange(spectrum, yValue);
-  return Optional.some(yValue);
+  return yValue;
 };
 
-const handleMovement = (direction: number) => (spectrum: AlloyComponent, detail: VerticalSliderDetail, useMultiplier?: boolean): Optional<boolean> =>
-  moveBy(direction, spectrum, detail, useMultiplier).map<boolean>(Fun.always);
+const handleMovement = (direction: number) => (spectrum: AlloyComponent, detail: VerticalSliderDetail, useMultiplier?: boolean): (boolean) | null =>
+  moveBy(direction, spectrum, detail, useMultiplier).map<boolean>((() => true as const));
 
 // get y offset from event
-const getValueFromEvent = (simulatedEvent: NativeSimulatedEvent<MouseEvent | TouchEvent>): Optional<number> => {
+const getValueFromEvent = (simulatedEvent: NativeSimulatedEvent<MouseEvent | TouchEvent>): (number) | null => {
   const pos = ModelCommon.getEventSource(simulatedEvent);
   return pos.map((p) => {
     return p.top;
@@ -76,13 +76,13 @@ const getValueFromEvent = (simulatedEvent: NativeSimulatedEvent<MouseEvent | Tou
 };
 
 // find the y offset of a given value from the model
-const findOffsetOfValue = (spectrum: AlloyComponent, detail: VerticalSliderDetail, value: number, minEdge: Optional<AlloyComponent>, maxEdge: Optional<AlloyComponent>): number => {
+const findOffsetOfValue = (spectrum: AlloyComponent, detail: VerticalSliderDetail, value: number, minEdge: (AlloyComponent) | null, maxEdge: (AlloyComponent) | null): number => {
   const minOffset = 0;
   const maxOffset = getYScreenRange(spectrum);
   const centerMinEdge = minEdge.bind((edge: AlloyComponent) =>
-    Optional.some(getYCenterOffSetOf(edge, spectrum))).getOr(minOffset);
+    getYCenterOffSetOf(edge, spectrum)) ?? (minOffset);
   const centerMaxEdge = maxEdge.bind((edge: AlloyComponent) =>
-    Optional.some(getYCenterOffSetOf(edge, spectrum))).getOr(maxOffset);
+    getYCenterOffSetOf(edge, spectrum)) ?? (maxOffset);
 
   const args = {
     min: minY(detail),
@@ -102,7 +102,7 @@ const findOffsetOfValue = (spectrum: AlloyComponent, detail: VerticalSliderDetai
 };
 
 // find left offset for absolute positioning from a given value
-const findPositionOfValue = (slider: AlloyComponent, spectrum: AlloyComponent, value: number, minEdge: Optional<AlloyComponent>, maxEdge: Optional<AlloyComponent>, detail: VerticalSliderDetail): number => {
+const findPositionOfValue = (slider: AlloyComponent, spectrum: AlloyComponent, value: number, minEdge: (AlloyComponent) | null, maxEdge: (AlloyComponent) | null, detail: VerticalSliderDetail): number => {
   const offset = findOffsetOfValue(spectrum, detail, value, minEdge, maxEdge);
   return (getMinYBounds(spectrum) - getMinYBounds(slider)) + offset;
 };
@@ -130,14 +130,14 @@ const onDown = handleMovement(1);
 
 // Edge Click Actions
 const edgeActions = {
-  'top-left': Optional.none(),
-  'top': Optional.some(EdgeActions.setToTEdge),
-  'top-right': Optional.none(),
-  'right': Optional.none(),
-  'bottom-right': Optional.none(),
-  'bottom': Optional.some(EdgeActions.setToBEdge),
-  'bottom-left': Optional.none(),
-  'left': Optional.none()
+  'top-left': null,
+  'top': EdgeActions.setToTEdge,
+  'top-right': null,
+  'right': null,
+  'bottom-right': null,
+  'bottom': EdgeActions.setToBEdge,
+  'bottom-left': null,
+  'left': null
 };
 
 export {

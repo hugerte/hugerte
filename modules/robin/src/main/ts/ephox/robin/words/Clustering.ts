@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Fun, Optional } from '@ephox/katamari';
 
 import { LanguageZones } from '../zone/LanguageZones';
 import * as ClusterSearch from './ClusterSearch';
@@ -14,7 +13,7 @@ interface Edges<E> {
 // This identifies the inline edges to the left and right, ignoring any language
 // boundaries
 const byBoundary = <E, D>(universe: Universe<E, D>, item: E): Edges<E> => {
-  const isCustomBoundary = Fun.never;
+  const isCustomBoundary = (() => false as const);
 
   const edges = getEdges(universe, item, item, isCustomBoundary);
 
@@ -54,7 +53,7 @@ interface Grouping<E> {
   readonly middle: WordDecisionItem<E>[];
   readonly left: WordDecisionItem<E>[];
   readonly right: WordDecisionItem<E>[];
-  readonly lang: Optional<string>;
+  readonly lang: (string) | null;
 }
 
 // Return a grouping of: left, middle, right, lang, and all. It will use
@@ -68,7 +67,7 @@ const byLanguage = <E, D>(universe: Universe<E, D>, item: E): Grouping<E> => {
   const toRight = ClusterSearch.creepRight(universe, item, isLanguageBoundary);
   const middle = universe.property().isText(item) ? [ WordDecision.detail(universe, item) ] : [ ];
 
-  const all = Arr.reverse(toLeft).concat(middle).concat(toRight);
+  const all = [...(toLeft)].reverse().concat(middle).concat(toRight);
 
   return {
     all,

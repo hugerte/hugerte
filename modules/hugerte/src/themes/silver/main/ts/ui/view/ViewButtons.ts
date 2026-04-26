@@ -1,5 +1,4 @@
 import { AlloyComponent, Behaviour, Button as AlloyButton, GuiFactory, Memento, Replacing, SimpleOrSketchSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 import { Attribute, Class } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -50,9 +49,9 @@ export const renderButton = (spec: ViewButtonWithoutGroup, providers: UiFactoryB
 
   const buttonSpec: IconButtonWrapper = {
     ...spec,
-    name: isToggleButton ? spec.text.getOr(spec.icon.getOr('')) : spec.text ?? spec.icon.getOr(''),
+    name: isToggleButton ? spec.text ?? (spec.icon ?? ('')) : spec.text ?? spec.icon ?? (''),
     primary: spec.buttonType === 'primary',
-    buttonType: Optional.from(spec.buttonType),
+    buttonType: (spec.buttonType ?? null),
     tooltip: spec.tooltip,
     icon: spec.icon,
     enabled: true,
@@ -60,22 +59,22 @@ export const renderButton = (spec: ViewButtonWithoutGroup, providers: UiFactoryB
   };
 
   const buttonTypeClasses = calculateClassesFromButtonType(spec.buttonType ?? 'secondary');
-  const optTranslatedText = isToggleButton ? spec.text.map(providers.translate) : Optional.some(providers.translate(spec.text));
+  const optTranslatedText = isToggleButton ? spec.text.map(providers.translate) : providers.translate(spec.text);
   const optTranslatedTextComponed = optTranslatedText.map(GuiFactory.text);
 
   const ariaLabelAttributes = buttonSpec.tooltip.or(optTranslatedText).map<{}>((al) => ({
     'aria-label': providers.translate(al),
-  })).getOr({});
+  })) ?? ({});
 
   const optIconSpec = optMemIcon.map((memIcon) => memIcon.asSpec());
   const components = componentRenderPipeline([ optIconSpec, optTranslatedTextComponed ]);
 
-  const hasIconAndText = spec.icon.isSome() && optTranslatedTextComponed.isSome();
+  const hasIconAndText = spec.icon !== null && optTranslatedTextComponed !== null;
 
   const dom = {
     tag: 'button',
     classes: buttonTypeClasses
-      .concat(...spec.icon.isSome() && !hasIconAndText ? [ 'tox-button--icon' ] : [])
+      .concat(...spec.icon !== null && !hasIconAndText ? [ 'tox-button--icon' ] : [])
       .concat(...hasIconAndText ? [ 'tox-button--icon-and-text' ] : [])
       .concat(...spec.borderless ? [ 'tox-button--naked' ] : [])
       .concat(...spec.type === 'togglebutton' && spec.active ? [ ViewButtonClasses.Ticked ] : []),
@@ -83,6 +82,6 @@ export const renderButton = (spec: ViewButtonWithoutGroup, providers: UiFactoryB
   };
   const extraBehaviours: Behaviours = [];
 
-  const iconButtonSpec = renderCommonSpec(buttonSpec, Optional.some(action), extraBehaviours, dom, components, spec.tooltip, providers);
+  const iconButtonSpec = renderCommonSpec(buttonSpec, action, extraBehaviours, dom, components, spec.tooltip, providers);
   return AlloyButton.sketch(iconButtonSpec);
 };

@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -14,9 +13,9 @@ const register = (editor: Editor): void => {
 
   registerOption('nonbreaking_force_tab', {
     processor: (value) => {
-      if (Type.isBoolean(value)) {
+      if (typeof (value) === 'boolean') {
         return { value: value ? 3 : 0, valid: true };
-      } else if (Type.isNumber(value)) {
+      } else if (typeof (value) === 'number') {
         return { value, valid: true };
       } else {
         return { valid: false, message: 'Must be a boolean or number.' };

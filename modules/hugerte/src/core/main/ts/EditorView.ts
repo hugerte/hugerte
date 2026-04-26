@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { Css, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 
 import Editor from './api/Editor';
@@ -11,10 +10,10 @@ const getProp = <K extends keyof Element>(propName: K, elm: SugarElement<Element
 const getComputedSizeProp = (propName: string, elm: SugarElement<Element>): number =>
   parseInt(Css.get(elm, propName), 10);
 
-const getClientWidth = Fun.curry(getProp, 'clientWidth' as 'clientWidth');
-const getClientHeight = Fun.curry(getProp, 'clientHeight' as 'clientHeight');
-const getMarginTop = Fun.curry(getComputedSizeProp, 'margin-top');
-const getMarginLeft = Fun.curry(getComputedSizeProp, 'margin-left');
+const getClientWidth = ((..._rest: any[]) => (getProp)('clientWidth' as 'clientWidth', ..._rest));
+const getClientHeight = ((..._rest: any[]) => (getProp)('clientHeight' as 'clientHeight', ..._rest));
+const getMarginTop = ((..._rest: any[]) => (getComputedSizeProp)('margin-top', ..._rest));
+const getMarginLeft = ((..._rest: any[]) => (getComputedSizeProp)('margin-left', ..._rest));
 
 const getBoundingClientRect = (elm: SugarElement<Element>): DOMRect =>
   elm.dom.getBoundingClientRect();
@@ -45,13 +44,13 @@ const isXYInContentArea = (editor: Editor, clientX: number, clientY: number): bo
   return isInsideElementContentArea(targetElm, transposedPoint.x, transposedPoint.y);
 };
 
-const fromDomSafe = <T extends Node>(node: T | null): Optional<SugarElement<T>> =>
-  Optional.from(node).map(SugarElement.fromDom);
+const fromDomSafe = <T extends Node>(node: T | null): (SugarElement<T>) | null =>
+  (node ?? null).map(SugarElement.fromDom);
 
 const isEditorAttachedToDom = (editor: Editor): boolean => {
   const rawContainer = editor.inline ? editor.getBody() : editor.getContentAreaContainer();
 
-  return fromDomSafe(rawContainer).map(SugarBody.inBody).getOr(false);
+  return fromDomSafe(rawContainer).map(SugarBody.inBody) ?? (false);
 };
 
 export {

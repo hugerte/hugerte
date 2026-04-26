@@ -1,4 +1,3 @@
-import { Arr, Optional, Optionals } from '@ephox/katamari';
 import { Attribute, Css, Insert, InsertAll, Replication, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { Entry, EntryFragment, EntryList, isEntryComment, isEntryFragment, isEntryList } from './Entry';
@@ -20,7 +19,7 @@ const joinSegments = (segments: Segment[]): void => {
 };
 
 const appendSegments = (head: Segment[], tail: Segment[]): void => {
-  Optionals.lift2(Arr.last(head), Arr.head(tail), joinSegment);
+  (((head).at(-1) ?? null) !== null && ((tail)[0] ?? null) !== null ? (joinSegment)(((head).at(-1) ?? null), ((tail)[0] ?? null)) : null);
 };
 
 const createSegment = (scope: Document, listType: ListType): Segment => {
@@ -44,7 +43,7 @@ const populateSegments = (segments: Segment[], entry: EntryList | EntryFragment)
   for (let i = 0; i < segments.length - 1; i++) {
     Css.set(segments[i].item, 'list-style-type', 'none');
   }
-  Arr.last(segments).each((segment) => {
+  ((segments).at(-1) ?? null).each((segment) => {
     if (isEntryList(entry)) {
       Attribute.setAll(segment.list, entry.listAttributes);
       Attribute.setAll(segment.item, entry.itemAttributes);
@@ -75,7 +74,7 @@ const appendItem = (segment: Segment, item: SugarElement): void => {
 const writeShallow = (scope: Document, cast: Segment[], entry: Entry): Segment[] => {
   const newCast = cast.slice(0, entry.depth);
 
-  Arr.last(newCast).each((segment) => {
+  ((newCast).at(-1) ?? null).each((segment) => {
     if (isEntryList(entry)) {
       const item = createItem(scope, entry.itemAttributes, entry.content);
       appendItem(segment, item);
@@ -100,16 +99,16 @@ const writeDeep = (scope: Document, cast: Segment[], entry: EntryList | EntryFra
   return cast.concat(segments);
 };
 
-const composeList = (scope: Document, entries: Entry[]): Optional<SugarElement<HTMLElement>> => {
-  let firstCommentEntryOpt: Optional<Entry> = Optional.none();
+const composeList = (scope: Document, entries: Entry[]): (SugarElement<HTMLElement>) | null => {
+  let firstCommentEntryOpt: (Entry) | null = null;
 
-  const cast = Arr.foldl(entries, (cast, entry, i) => {
+  const cast = (entries).reduce((cast, entry, i) => {
     if (!isEntryComment(entry)) {
       return entry.depth > cast.length ? writeDeep(scope, cast, entry) : writeShallow(scope, cast, entry);
     } else {
       // this is needed becuase if the first element of the list is a comment we would not have the data to create the new list
       if (i === 0) {
-        firstCommentEntryOpt = Optional.some(entry);
+        firstCommentEntryOpt = entry;
         return cast;
       }
 
@@ -119,12 +118,12 @@ const composeList = (scope: Document, entries: Entry[]): Optional<SugarElement<H
 
   firstCommentEntryOpt.each((firstCommentEntry) => {
     const item = SugarElement.fromHtml(`<!--${firstCommentEntry.content}-->`);
-    Arr.head(cast).each((fistCast) => {
+    ((cast)[0] ?? null).each((fistCast) => {
       Insert.prepend(fistCast.list, item);
     });
   });
 
-  return Arr.head(cast).map((segment) => segment.list);
+  return ((cast)[0] ?? null).map((segment) => segment.list);
 };
 
 export { composeList };

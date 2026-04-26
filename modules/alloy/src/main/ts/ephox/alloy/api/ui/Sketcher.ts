@@ -1,5 +1,4 @@
 import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
 
 import * as FunctionAnnotator from '../../debugging/FunctionAnnotator';
 import * as AlloyParts from '../../parts/AlloyParts';
@@ -102,8 +101,8 @@ const single = <
 
   const sketch = (spec: S) => UiSketcher.single(config.name, config.configFields, config.factory, spec);
 
-  const apis = Obj.map(config.apis, GuiTypes.makeApi) as any as SketcherApisFuncRecord<A>;
-  const extraApis = Obj.map(config.extraApis, (f, k) => FunctionAnnotator.markAsExtraApi(f, k)) as E;
+  const apis = Object.fromEntries(Object.entries(config.apis).map(([_k, _v]: [any, any]) => [_k, (GuiTypes.makeApi)(_v, _k as any)])) as any as SketcherApisFuncRecord<A>;
+  const extraApis = Object.fromEntries(Object.entries(config.extraApis).map(([_k, _v]: [any, any]) => [_k, ((f, k) => FunctionAnnotator.markAsExtraApi(f, k))(_v, _k as any)])) as E;
 
   return {
     name: config.name,
@@ -127,8 +126,8 @@ const composite = <
   // These are constructors that will store their configuration.
   const parts: AlloyParts.GeneratedParts = AlloyParts.generate(config.name, config.partFields);
 
-  const apis = Obj.map(config.apis, GuiTypes.makeApi) as any as SketcherApisFuncRecord<A>;
-  const extraApis = Obj.map(config.extraApis, (f, k) => FunctionAnnotator.markAsExtraApi(f, k)) as E;
+  const apis = Object.fromEntries(Object.entries(config.apis).map(([_k, _v]: [any, any]) => [_k, (GuiTypes.makeApi)(_v, _k as any)])) as any as SketcherApisFuncRecord<A>;
+  const extraApis = Object.fromEntries(Object.entries(config.extraApis).map(([_k, _v]: [any, any]) => [_k, ((f, k) => FunctionAnnotator.markAsExtraApi(f, k))(_v, _k as any)])) as E;
 
   return {
     name: config.name,

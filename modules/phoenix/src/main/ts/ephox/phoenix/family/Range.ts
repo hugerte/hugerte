@@ -1,12 +1,11 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
 
 import * as Extract from '../api/general/Extract';
 import { OrphanText } from '../wrap/OrphanText';
 import * as Parents from './Parents';
 
 const index = <E, D>(universe: Universe<E, D>, items: E[], item: E) => {
-  return Arr.findIndex(items, Fun.curry(universe.eq, item));
+  return (items).findIndex(((..._rest: any[]) => (universe.eq)(item, ..._rest)));
 };
 
 const order = <E>(items: E[], a: number, delta1: number, b: number, delta2: number) => {
@@ -26,16 +25,16 @@ const range = <E, D>(universe: Universe<E, D>, item1: E, delta1: number, item2: 
   return Parents.common(universe, item1, item2).fold<E[]>(() => {
     return []; // no common parent, therefore no intervening path. How does this clash with Path in robin?
   }, (parent) => {
-    const items = [ parent ].concat(Extract.all<E, D>(universe, parent, Fun.never));
+    const items = [ parent ].concat(Extract.all<E, D>(universe, parent, (() => false as const)));
     const start = index(universe, items, item1);
     const finish = index(universe, items, item2);
     const result = start.bind((startIndex) => {
       return finish.map((finishIndex) => {
         return order(items, startIndex, delta1, finishIndex, delta2);
       });
-    }).getOr([]);
+    }) ?? ([]);
     const orphanText = OrphanText(universe);
-    return Arr.filter(result, orphanText.validateText);
+    return (result).filter(orphanText.validateText);
   });
 };
 

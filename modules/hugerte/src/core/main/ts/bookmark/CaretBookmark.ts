@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import CaretPosition from '../caret/CaretPosition';
@@ -130,7 +129,7 @@ const create = (root: Node, caretPosition: CaretPosition): string => {
 
   path.push(createPathItem(container));
   let parents = parentsUntil(root, container);
-  parents = ArrUtils.filter(parents, Fun.not(NodeType.isBogus));
+  parents = ArrUtils.filter(parents, (x: any) => !(NodeType.isBogus)(x));
   path = path.concat(ArrUtils.map(parents, (node) => {
     return createPathItem(node);
   }));

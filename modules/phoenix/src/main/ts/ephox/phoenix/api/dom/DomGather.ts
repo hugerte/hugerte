@@ -1,5 +1,4 @@
 import { DomUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { Direction, Successor, Transition, Traverse } from '../data/Types';
@@ -7,25 +6,25 @@ import * as Gather from '../general/Gather';
 
 const universe = DomUniverse();
 
-const before = (element: SugarElement, isRoot: (e: SugarElement) => boolean): Optional<SugarElement> => {
+const before = (element: SugarElement, isRoot: (e: SugarElement) => boolean): (SugarElement) | null => {
   return Gather.before(universe, element, isRoot);
 };
 
-const after = (element: SugarElement, isRoot: (e: SugarElement) => boolean): Optional<SugarElement> => {
+const after = (element: SugarElement, isRoot: (e: SugarElement) => boolean): (SugarElement) | null => {
   return Gather.after(universe, element, isRoot);
 };
 
-const seekLeft = (element: SugarElement, predicate: (e: SugarElement) => boolean, isRoot: (e: SugarElement) => boolean): Optional<SugarElement> => {
+const seekLeft = (element: SugarElement, predicate: (e: SugarElement) => boolean, isRoot: (e: SugarElement) => boolean): (SugarElement) | null => {
   return Gather.seekLeft(universe, element, predicate, isRoot);
 };
 
-const seekRight = (element: SugarElement, predicate: (e: SugarElement) => boolean, isRoot: (e: SugarElement) => boolean): Optional<SugarElement> => {
+const seekRight = (element: SugarElement, predicate: (e: SugarElement) => boolean, isRoot: (e: SugarElement) => boolean): (SugarElement) | null => {
   return Gather.seekRight(universe, element, predicate, isRoot);
 };
 
 const walkers = Gather.walkers;
 
-const walk = (item: SugarElement, mode: Transition, direction: Direction, rules?: Successor[]): Optional<Traverse<SugarElement>> => {
+const walk = (item: SugarElement, mode: Transition, direction: Direction, rules?: Successor[]): (Traverse<SugarElement>) | null => {
   return Gather.walk(universe, item, mode, direction, rules);
 };
 

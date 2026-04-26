@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 
 import { Bounds, DetailExt } from '../api/Structs';
 import { Warehouse } from '../api/Warehouse';
@@ -25,9 +24,9 @@ const isWithin = (bounds: Bounds, detail: DetailExt): boolean => {
   );
 };
 
-const isRectangular = (warehouse: Warehouse, bounds: Bounds): Optional<Bounds> => {
+const isRectangular = (warehouse: Warehouse, bounds: Bounds): (Bounds) | null => {
   let isRect = true;
-  const detailIsWithin = Fun.curry(isWithin, bounds);
+  const detailIsWithin = ((..._rest: any[]) => (isWithin)(bounds, ..._rest));
 
   for (let i = bounds.startRow; i <= bounds.finishRow; i++) {
     for (let j = bounds.startCol; j <= bounds.finishCol; j++) {
@@ -35,7 +34,7 @@ const isRectangular = (warehouse: Warehouse, bounds: Bounds): Optional<Bounds> =
     }
   }
 
-  return isRect ? Optional.some(bounds) : Optional.none<Bounds>();
+  return isRect ? bounds : null;
 };
 
 export {

@@ -1,5 +1,5 @@
 import { FieldPresence, FieldProcessor, FieldSchema, StructureProcessor, StructureSchema, ValueType } from '@ephox/boulder';
-import { Adt, Fun, Id, Optional } from '@ephox/katamari';
+import { Adt, Optional } from '@ephox/katamari';
 
 import { SimpleOrSketchSpec } from '../api/component/SpecTypes';
 import { CompositeSketchDetail } from '../api/ui/Sketcher';
@@ -72,13 +72,13 @@ const adt: {
   { group: [ 'data' ] }
 ]);
 
-const fFactory = FieldSchema.defaulted('factory', { sketch: Fun.identity });
+const fFactory = FieldSchema.defaulted('factory', { sketch: (x: any) => x });
 const fSchema = FieldSchema.defaulted('schema', [ ]);
 const fName = FieldSchema.required('name');
 const fPname = FieldSchema.field(
   'pname',
   'pname',
-  FieldPresence.defaultedThunk((typeSpec: PartSpec<any, any>) => '<alloy.' + Id.generate(typeSpec.name) + '>'),
+  FieldPresence.defaultedThunk((typeSpec: PartSpec<any, any>) => '<alloy.' + ((typeSpec.name) + '_' + Math.floor(Math.random() * 1e9) + Date.now()) + '>'),
   ValueType.anyValue()
 );
 
@@ -87,8 +87,8 @@ const fGroupSchema = FieldSchema.customField('schema', () => [
   FieldSchema.option('preprocess')
 ]);
 
-const fDefaults = FieldSchema.defaulted('defaults', Fun.constant({ }));
-const fOverrides = FieldSchema.defaulted('overrides', Fun.constant({ }));
+const fDefaults = FieldSchema.defaulted('defaults', () => { });
+const fOverrides = FieldSchema.defaulted('overrides', () => { });
 
 const requiredSpec = StructureSchema.objOf([
   fFactory, fSchema, fName, fPname, fDefaults, fOverrides
@@ -108,8 +108,8 @@ const groupSpec = StructureSchema.objOf([
   fPname, fDefaults, fOverrides
 ]);
 
-const asNamedPart = <T>(part: PartTypeAdt<T>): Optional<T> => {
-  return part.fold(Optional.some, Optional.none as () => Optional<T>, Optional.some, Optional.some);
+const asNamedPart = <T>(part: PartTypeAdt<T>): (T) | null => {
+  return part.fold(Optional.some, Optional.none as () => (T) | null, Optional.some, Optional.some);
 };
 
 const name = <T extends { name: string }>(part: PartTypeAdt<T>): string => {
@@ -118,7 +118,7 @@ const name = <T extends { name: string }>(part: PartTypeAdt<T>): string => {
 };
 
 const asCommon = <T>(part: PartTypeAdt<T>): T => {
-  return part.fold(Fun.identity, Fun.identity, Fun.identity, Fun.identity);
+  return part.fold((x: any) => x, (x: any) => x, (x: any) => x, (x: any) => x);
 };
 
 const convert = <D extends CompositeSketchDetail, S, PS extends PartSpec<D, S>, PD extends PartDetail<D, S>>(adtConstructor: PartType<PD>, partSchema: StructureProcessor) => (spec: PS): PartTypeAdt<PD> => {
@@ -130,7 +130,7 @@ const required: (<D extends CompositeSketchDetail, PS = SimpleOrSketchSpec> (p: 
 const external: (<D extends CompositeSketchDetail, PS = SimpleOrSketchSpec> (p: ExternalPartSpec<D, PS>) => PartTypeAdt<ExternalPartDetail<D, PS>>) = convert(adt.external, externalSpec) as any;
 const optional: (<D extends CompositeSketchDetail, PS = SimpleOrSketchSpec> (p: PartSpec<D, PS>) => PartTypeAdt<PartDetail<D, PS>>) = convert(adt.optional, optionalSpec) as any;
 const group: (<D extends CompositeSketchDetail, PS = SimpleOrSketchSpec> (p: GroupPartSpec<D, PS>) => PartTypeAdt<GroupPartDetail<D, PS>>) = convert(adt.group, groupSpec) as any;
-const original = Fun.constant('entirety');
+const original = () => 'entirety';
 
 export {
   required,

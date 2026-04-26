@@ -1,4 +1,4 @@
-import { Fun, Future, Obj, Optional } from '@ephox/katamari';
+import { Future, Optional } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import * as DropdownUtils from '../../dropdown/DropdownUtils';
@@ -22,7 +22,7 @@ import * as TieredMenu from './TieredMenu';
 import { CompositeSketchFactory } from './UiSketcher';
 
 const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, components: AlloySpec[], _spec: DropdownSpec, externals): SketchSpec => {
-  const lookupAttr = (attr: string) => Obj.get(detail.dom, 'attributes').bind((attrs) => Obj.get(attrs, attr));
+  const lookupAttr = (attr: string) => ((detail.dom)['attributes'] ?? null).bind((attrs) => ((attrs)[attr] ?? null));
 
   const switchToMenu = (sandbox: AlloyComponent) => {
     Sandboxing.getState(sandbox).each((tmenu) => {
@@ -34,7 +34,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
   const togglePopup = (dropdownComp: AlloyComponent, onOpenSync: (c: AlloyComponent) => void, highlightOnOpen: HighlightOnOpen): Future<AlloyComponent> => {
     return DropdownUtils.togglePopup(
       detail,
-      Fun.identity,
+      (x: any) => x,
       dropdownComp,
       externals,
       onOpenSync,
@@ -44,18 +44,18 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
 
   const action = (component: AlloyComponent): void => {
     const onOpenSync = switchToMenu;
-    togglePopup(component, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+    togglePopup(component, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(() => {});
   };
 
   const apis: DropdownApis = {
     expand: (comp) => {
       if (!Toggling.isOn(comp)) {
-        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightNone).get(Fun.noop);
+        togglePopup(comp, () => {}, HighlightOnOpen.HighlightNone).get(() => {});
       }
     },
     open: (comp) => {
       if (!Toggling.isOn(comp)) {
-        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+        togglePopup(comp, () => {}, HighlightOnOpen.HighlightMenuAndItem).get(() => {});
       }
     },
     refetch: (comp) => {
@@ -67,8 +67,8 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
         () => {
           // If we don't have a sandbox, refetch is the same as open,
           // except we return when it is completed.
-          return togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightMenuAndItem)
-            .map(Fun.noop);
+          return togglePopup(comp, () => {}, HighlightOnOpen.HighlightMenuAndItem)
+            .map(() => {});
         },
         (sandboxComp) => {
           // We are intentionally not preserving the selected items when
@@ -85,15 +85,15 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
           // refetched data.
           return DropdownUtils.open(
             detail,
-            Fun.identity,
+            (x: any) => x,
             comp,
             // NOTE: The TieredMenu is inside the sandbox. They aren't the same component.
             sandboxComp,
             externals,
-            Fun.noop,
+            () => {},
             HighlightOnOpen.HighlightMenuAndItem
           ).map(
-            Fun.noop
+            () => {}
           );
         }
       );
@@ -101,7 +101,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
     isOpen: Toggling.isOn,
     close: (comp) => {
       if (Toggling.isOn(comp)) {
-        togglePopup(comp, Fun.noop, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+        togglePopup(comp, () => {}, HighlightOnOpen.HighlightMenuAndItem).get(() => {});
       }
     },
     // If we are open, refresh the menus in the tiered menu system
@@ -112,7 +112,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
     }
   };
 
-  const triggerExecute = (comp: AlloyComponent, _se: SimulatedEvent<EventArgs>): Optional<boolean> => {
+  const triggerExecute = (comp: AlloyComponent, _se: SimulatedEvent<EventArgs>): (boolean) | null => {
     AlloyTriggers.emitExecute(comp);
     return Optional.some<boolean>(true);
   };
@@ -144,7 +144,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
           mode: 'special',
           onSpace: triggerExecute,
           onEnter: triggerExecute,
-          onDown: (comp, _se): Optional<boolean> => {
+          onDown: (comp, _se): (boolean) | null => {
             if (Dropdown.isOpen(comp)) {
               const sandbox = Coupling.getCoupled(comp, 'sandbox');
               switchToMenu(sandbox);
@@ -154,12 +154,12 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
 
             return Optional.some<boolean>(true);
           },
-          onEscape: (comp, _se): Optional<boolean> => {
+          onEscape: (comp, _se): (boolean) | null => {
             if (Dropdown.isOpen(comp)) {
               Dropdown.close(comp);
               return Optional.some<boolean>(true);
             } else {
-              return Optional.none();
+              return null;
             }
           }
         }),
@@ -168,7 +168,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
     ),
 
     events: ButtonBase.events(
-      Optional.some(action)
+      action
     ),
 
     eventOrder: {
@@ -183,7 +183,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
       attributes: {
         'aria-haspopup': 'true',
         ...detail.role.fold(() => ({}), (role) => ({ role })),
-        ...detail.dom.tag === 'button' ? { type: lookupAttr('type').getOr('button') } : {}
+        ...detail.dom.tag === 'button' ? { type: lookupAttr('type') ?? ('button') } : {}
       }
     }
   };

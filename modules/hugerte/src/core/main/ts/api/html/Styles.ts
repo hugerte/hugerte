@@ -17,7 +17,6 @@
  */
 
 import { RgbaColour, Transformations } from '@ephox/acid';
-import { Obj, Type, Unicode } from '@ephox/katamari';
 
 import { ForceHexColor, URLConverter } from '../OptionTypes';
 import Schema, { SchemaMap } from './Schema';
@@ -46,7 +45,7 @@ const Styles = (settings: StylesSettings = {}, schema?: Schema): Styles => {
   const encodingLookup: Record<string, string> = {};
   let validStyles: Record<string, string[]> | undefined;
   let invalidStyles: Record<string, SchemaMap> | undefined;
-  const invisibleChar = Unicode.zeroWidth;
+  const invisibleChar = '\uFEFF';
 
   if (schema) {
     validStyles = schema.getValidStyles();
@@ -266,7 +265,7 @@ const Styles = (settings: StylesSettings = {}, schema?: Schema): Styles => {
             }
 
             // Convert RGB/RGBA colors to HEX
-            if (Type.isString(settings.force_hex_color) && settings.force_hex_color !== 'off') {
+            if (typeof (settings.force_hex_color) === 'string' && settings.force_hex_color !== 'off') {
               RgbaColour.fromString(value).each((rgba) => {
                 //  Always convert or only convert if there will be no loss of information from the alpha channel
                 if (settings.force_hex_color === 'always' || rgba.alpha === 1) {
@@ -350,11 +349,11 @@ const Styles = (settings: StylesSettings = {}, schema?: Schema): Styles => {
         serializeStyles(elementName, validStyles);
       } else {
         // Output the styles in the order they are inside the object
-        Obj.each(styles, (value, name) => {
+        Object.entries(styles).forEach(([_k, _v]: [any, any]) => ((value, name) => {
           if (value && isValid(name, elementName)) {
             css += (css.length > 0 ? ' ' : '') + name + ': ' + value + ';';
           }
-        });
+        })(_v, _k));
       }
 
       return css;

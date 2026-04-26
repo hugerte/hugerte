@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Focus, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -40,7 +40,7 @@ const focusIn = (component: AlloyComponent, matrixConfig: MatrixConfig, _state: 
 const execute: KeyRuleHandler<MatrixConfig, Stateless> = (component, simulatedEvent, matrixConfig) => Focus.search(component.element).bind((focused) => matrixConfig.execute(component, simulatedEvent, focused));
 
 const toMatrix = (rows: SugarElement<HTMLElement>[], matrixConfig: MatrixConfig): SugarElement<HTMLElement>[][] =>
-  Arr.map(rows, (row) => SelectorFilter.descendants(row, matrixConfig.selectors.cell));
+  (rows).map((row) => SelectorFilter.descendants(row, matrixConfig.selectors.cell));
 
 const doMove = (ifCycle: MatrixNavigation.MatrixNavigationFunc<SugarElement<HTMLElement>>, ifMove: MatrixNavigation.MatrixNavigationFunc<SugarElement<HTMLElement>>): DomMovement.ElementMover<MatrixConfig, Stateless> => (element, focused, matrixConfig) => {
   const move = matrixConfig.cycles ? ifCycle : ifMove;
@@ -64,16 +64,16 @@ const moveRight = doMove(MatrixNavigation.cycleRight, MatrixNavigation.moveRight
 const moveNorth = doMove(MatrixNavigation.cycleUp, MatrixNavigation.moveUp);
 const moveSouth = doMove(MatrixNavigation.cycleDown, MatrixNavigation.moveDown);
 
-const getKeydownRules: () => Array<KeyRules.KeyRule<MatrixConfig, Stateless>> = Fun.constant([
+const getKeydownRules: () => Array<KeyRules.KeyRule<MatrixConfig, Stateless>> = () => [
   KeyRules.rule(KeyMatch.inSet(Keys.LEFT), DomMovement.west(moveLeft, moveRight)),
   KeyRules.rule(KeyMatch.inSet(Keys.RIGHT), DomMovement.east(moveLeft, moveRight)),
   KeyRules.rule(KeyMatch.inSet(Keys.UP), DomMovement.north(moveNorth)),
   KeyRules.rule(KeyMatch.inSet(Keys.DOWN), DomMovement.south(moveSouth)),
   KeyRules.rule(KeyMatch.inSet(Keys.SPACE.concat(Keys.ENTER)), execute)
-]);
+];
 
-const getKeyupRules: () => Array<KeyRules.KeyRule<MatrixConfig, Stateless>> = Fun.constant([
+const getKeyupRules: () => Array<KeyRules.KeyRule<MatrixConfig, Stateless>> = () => [
   KeyRules.rule(KeyMatch.inSet(Keys.SPACE), KeyingTypes.stopEventForFirefox)
-]);
+];
 
-export default KeyingType.typical(schema, NoState.init, getKeydownRules, getKeyupRules, () => Optional.some(focusIn));
+export default KeyingType.typical(schema, NoState.init, getKeydownRules, getKeyupRules, () => focusIn);

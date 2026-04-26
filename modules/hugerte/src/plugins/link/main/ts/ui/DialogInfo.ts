@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';
@@ -12,17 +11,17 @@ import { LinkListOptions } from './sections/LinkListOptions';
 import { RelOptions } from './sections/RelOptions';
 import { TargetOptions } from './sections/TargetOptions';
 
-const nonEmptyAttr = (dom: DOMUtils, elem: string | Element, name: string): Optional<string> => {
+const nonEmptyAttr = (dom: DOMUtils, elem: string | Element, name: string): (string) | null => {
   const val: string | null = dom.getAttrib(elem, name);
-  return val !== null && val.length > 0 ? Optional.some(val) : Optional.none();
+  return val !== null && val.length > 0 ? val : null;
 };
 
-const extractFromAnchor = (editor: Editor, anchor: Optional<HTMLAnchorElement>): LinkDialogInfo['anchor'] => {
+const extractFromAnchor = (editor: Editor, anchor: (HTMLAnchorElement) | null): LinkDialogInfo['anchor'] => {
   const dom = editor.dom;
   const onlyText = Utils.isOnlyTextSelected(editor);
-  const text: Optional<string> = onlyText ? Optional.some(Utils.getAnchorText(editor.selection, anchor)) : Optional.none();
-  const url: Optional<string> = anchor.bind((anchorElm) => Optional.from(dom.getAttrib(anchorElm, 'href')));
-  const target: Optional<string> = anchor.bind((anchorElm) => Optional.from(dom.getAttrib(anchorElm, 'target')));
+  const text: (string) | null = onlyText ? Utils.getAnchorText(editor.selection, anchor) : null;
+  const url: (string) | null = anchor.bind((anchorElm) => (dom.getAttrib(anchorElm, 'href') ?? null));
+  const target: (string) | null = anchor.bind((anchorElm) => (dom.getAttrib(anchorElm, 'target') ?? null));
   const rel = anchor.bind((anchorElm) => nonEmptyAttr(dom, anchorElm, 'rel'));
   const linkClass = anchor.bind((anchorElm) => nonEmptyAttr(dom, anchorElm, 'class'));
   const title = anchor.bind((anchorElm) => nonEmptyAttr(dom, anchorElm, 'title'));
@@ -37,7 +36,7 @@ const extractFromAnchor = (editor: Editor, anchor: Optional<HTMLAnchorElement>):
   };
 };
 
-const collect = (editor: Editor, linkNode: Optional<HTMLAnchorElement>): Promise<LinkDialogInfo> =>
+const collect = (editor: Editor, linkNode: (HTMLAnchorElement) | null): Promise<LinkDialogInfo> =>
   LinkListOptions.getLinks(editor).then((links) => {
     const anchor = extractFromAnchor(editor, linkNode);
     return {

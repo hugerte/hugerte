@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -9,12 +8,12 @@ import { ListItem } from '../DialogTypes';
 // Looks like hugerte currently renders menus, but doesn't
 // let you choose from one.
 
-const getClasses = (editor: Editor): Optional<ListItem[]> => {
+const getClasses = (editor: Editor): (ListItem[]) | null => {
   const list = Options.getLinkClassList(editor);
   if (list.length > 0) {
     return ListOptions.sanitize(list);
   }
-  return Optional.none();
+  return null;
 };
 
 export const ClassListOptions = {

@@ -1,4 +1,4 @@
-import { Fun, Optional, Optionals } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { InlineContent } from 'hugerte/core/api/ui/Ui';
@@ -78,7 +78,7 @@ const setupContextToolbars = (editor: Editor): void => {
   const onSetupLink = (buttonApi: InlineContent.ContextFormButtonInstanceApi) => {
     const node = editor.selection.getNode();
     buttonApi.setEnabled(Utils.isInAnchor(editor, node));
-    return Fun.noop;
+    return () => {};
   };
 
   /**
@@ -90,11 +90,11 @@ const setupContextToolbars = (editor: Editor): void => {
   const getLinkText = (value: string) => {
     const anchor = Utils.getAnchorElement(editor);
     const onlyText = Utils.isOnlyTextSelected(editor);
-    if (anchor.isNone() && onlyText) {
+    if (anchor === null && onlyText) {
       const text = Utils.getAnchorText(editor.selection, anchor);
-      return Optionals.someIf(text.length === 0, value);
+      return (text.length === 0 ? value : null);
     } else {
-      return Optional.none();
+      return null;
     }
   };
 
@@ -109,7 +109,7 @@ const setupContextToolbars = (editor: Editor): void => {
     predicate: (node) => Options.hasContextToolbar(editor) && Utils.isInAnchor(editor, node),
     initValue: () => {
       const elm = Utils.getAnchorElement(editor);
-      return elm.fold(Fun.constant(''), Utils.getHref);
+      return elm.fold(() => '', Utils.getHref);
     },
     commands: [
       {
@@ -126,14 +126,14 @@ const setupContextToolbars = (editor: Editor): void => {
         onAction: (formApi) => {
           const value = formApi.getValue();
           const text = getLinkText(value);
-          const attachState = { href: value, attach: Fun.noop };
+          const attachState = { href: value, attach: () => {} };
           Utils.link(editor, attachState, {
             href: value,
             text,
-            title: Optional.none(),
-            rel: Optional.none(),
-            target: Optional.from(Options.getDefaultLinkTarget(editor)),
-            class: Optional.none()
+            title: null,
+            rel: null,
+            target: (Options.getDefaultLinkTarget(editor) ?? null),
+            class: null
           });
           collapseSelectionToEnd(editor);
           formApi.hide();

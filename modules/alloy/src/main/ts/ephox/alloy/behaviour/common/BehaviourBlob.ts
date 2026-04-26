@@ -1,5 +1,5 @@
 import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { BehaviourState, BehaviourStateInitialiser, NoState } from './BehaviourState';
 import { AlloyBehaviour, BehaviourConfigDetail, BehaviourConfigSpec, BehaviourRecord } from './BehaviourTypes';
@@ -16,7 +16,7 @@ export interface BehaviourSpec<C extends BehaviourConfigSpec, D extends Behaviou
 
 export interface BehaviourData<C extends BehaviourConfigSpec, D extends BehaviourConfigDetail, S extends BehaviourState> {
   list: Array<AlloyBehaviour<C, D, S>>;
-  data: Record<string, () => Optional<BehaviourConfigAndState<D, S>>>;
+  data: Record<string, () => (BehaviourConfigAndState<D, S>) | null>;
 }
 
 const generateFrom = (spec: { behaviours?: BehaviourRecord }, all: Array<AlloyBehaviour<BehaviourConfigSpec, BehaviourConfigDetail, BehaviourState>>): BehaviourData<BehaviourConfigSpec, BehaviourConfigDetail, BehaviourState> => {
@@ -25,16 +25,15 @@ const generateFrom = (spec: { behaviours?: BehaviourRecord }, all: Array<AlloyBe
    * and ensures that all the behaviours were valid. Will need to document
    * this entire process. Let's see where this is used.
    */
-  const schema: FieldProcessor[] = Arr.map(all, (a) =>
+  const schema: FieldProcessor[] = (all).map((a) =>
     // Optional here probably just due to ForeignGui listing everything it supports. Can most likely
     // change it to strict once I fix the other errors.
     FieldSchema.optionObjOf(a.name(), [
       FieldSchema.required('config'),
       FieldSchema.defaulted('state', NoState)
-    ])
-  );
+    ]));
 
-  type B = Record<string, Optional<BehaviourSpec<BehaviourConfigSpec, BehaviourConfigDetail, BehaviourState>>>;
+  type B = Record<string, (BehaviourSpec<BehaviourConfigSpec, BehaviourConfigDetail, BehaviourState>) | null>;
   const validated = StructureSchema.asRaw<B>(
     'component.behaviours',
     StructureSchema.objOf(schema),
@@ -44,23 +43,23 @@ const generateFrom = (spec: { behaviours?: BehaviourRecord }, all: Array<AlloyBe
       StructureSchema.formatError(errInfo) + '\nComplete spec:\n' +
         JSON.stringify(spec, null, 2)
     );
-  }, Fun.identity);
+  }, (x: any) => x);
 
   return {
     list: all,
-    data: Obj.map(validated, (optBlobThunk) => {
+    data: Object.fromEntries(Object.entries(validated).map(([_k, _v]: [any, any]) => [_k, ((optBlobThunk) => {
       const output = optBlobThunk.map((blob) => ({
         config: blob.config,
         state: blob.state.init(blob.config)
       }));
-      return Fun.constant(output);
-    })
+      return () => output;
+    })(_v, _k as any)]))
   };
 };
 
 const getBehaviours = <C extends BehaviourConfigSpec, D extends BehaviourConfigDetail, S extends BehaviourState>(bData: BehaviourData<C, D, S>): Array<AlloyBehaviour<C, D, S>> => bData.list;
 
-const getData = <C extends BehaviourConfigSpec, D extends BehaviourConfigDetail, S extends BehaviourState>(bData: BehaviourData<C, D, S>): Record<string, () => Optional<BehaviourConfigAndState<D, S>>> => bData.data;
+const getData = <C extends BehaviourConfigSpec, D extends BehaviourConfigDetail, S extends BehaviourState>(bData: BehaviourData<C, D, S>): Record<string, () => (BehaviourConfigAndState<D, S>) | null> => bData.data;
 
 export {
   generateFrom,

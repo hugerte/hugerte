@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -12,7 +11,7 @@ const register = (editor: Editor): void => {
     { name: 'alignjustify', text: 'Justify', cmd: 'JustifyFull', icon: 'align-justify' }
   ];
 
-  Arr.each(alignToolbarButtons, (item) => {
+  (alignToolbarButtons).forEach((item) => {
     editor.ui.registry.addToggleButton(item.name, {
       tooltip: item.text,
       icon: item.icon,

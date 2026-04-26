@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
 import { Focus, SugarElement } from '@ephox/sugar';
 
 import * as EditorView from '../EditorView';
@@ -58,8 +57,8 @@ const NotificationManager = (editor: Editor): NotificationManager => {
     return theme && theme.getNotificationManagerImpl ? theme.getNotificationManagerImpl() : NotificationManagerImpl();
   };
 
-  const getTopNotification = (): Optional<NotificationApi> => {
-    return Optional.from(notifications[0]);
+  const getTopNotification = (): (NotificationApi) | null => {
+    return (notifications[0] ?? null);
   };
 
   const isEqual = (a: NotificationSpec, b: NotificationSpec) => {
@@ -67,7 +66,7 @@ const NotificationManager = (editor: Editor): NotificationManager => {
   };
 
   const reposition = () => {
-    Arr.each(notifications, (notification) => {
+    (notifications).forEach((notification) => {
       notification.reposition();
     });
   };
@@ -77,7 +76,7 @@ const NotificationManager = (editor: Editor): NotificationManager => {
   };
 
   const closeNotification = (notification: NotificationApi) => {
-    Arr.findIndex(notifications, (otherNotification) => {
+    (notifications).findIndex((otherNotification) => {
       return otherNotification === notification;
     }).each((index) => {
       // Mutate here since third party might have stored away the window array
@@ -97,9 +96,9 @@ const NotificationManager = (editor: Editor): NotificationManager => {
       editor.dispatch('BeforeOpenNotification', { notification: spec });
     }
 
-    return Arr.find(notifications, (notification) => {
+    return ((notifications).find((notification) => {
       return isEqual(getImplementation().getArgs(notification), spec);
-    }).getOrThunk(() => {
+    }) ?? null).getOrThunk(() => {
       editor.editorManager.setActive(editor);
 
       const notification = getImplementation().open(spec, () => {
@@ -131,7 +130,7 @@ const NotificationManager = (editor: Editor): NotificationManager => {
     });
   };
 
-  const getNotifications = Fun.constant(notifications);
+  const getNotifications = () => notifications;
 
   const registerEvents = (editor: Editor) => {
     editor.on('SkinLoaded', () => {
@@ -158,7 +157,7 @@ const NotificationManager = (editor: Editor): NotificationManager => {
     });
 
     editor.on('remove', () => {
-      Arr.each(notifications.slice(), (notification) => {
+      (notifications.slice()).forEach((notification) => {
         getImplementation().close(notification);
       });
     });

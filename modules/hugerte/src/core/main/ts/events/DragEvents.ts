@@ -1,5 +1,4 @@
 import { DataTransfer, DataTransferEvent, DataTransferMode } from '@ephox/dragster';
-import { Fun, Type } from '@ephox/katamari';
 
 import { EditorEvent } from '../api/util/EventDispatcher';
 
@@ -15,7 +14,7 @@ const makeDndEventFromMouseEvent = (type: DragEventType, mouseEvent: EditorEvent
 });
 
 const makeDndEvent = (type: DragEventType, target: Element, dataTransfer: DataTransfer): DragEvent => {
-  const fail = Fun.die('Function not supported on simulated event.');
+  const fail = (() => { throw new Error('Function not supported on simulated event.'); });
 
   const event: DragEvent = {
     // Event
@@ -32,9 +31,9 @@ const makeDndEvent = (type: DragEventType, target: Element, dataTransfer: DataTr
     type,
     composedPath: fail,
     initEvent: fail,
-    preventDefault: Fun.noop,
-    stopImmediatePropagation: Fun.noop,
-    stopPropagation: Fun.noop,
+    preventDefault: () => {},
+    stopImmediatePropagation: () => {},
+    stopPropagation: () => {},
     AT_TARGET: window.Event.AT_TARGET,
     BUBBLING_PHASE: window.Event.BUBBLING_PHASE,
     CAPTURING_PHASE: window.Event.CAPTURING_PHASE,
@@ -95,5 +94,5 @@ const makeDataTransferCopyForDragEvent = (dataTransfer: DataTransfer, eventType:
 export const makeDragEvent = (type: DragEventType, target: Element, dataTransfer: DataTransfer, mouseEvent?: EditorEvent<MouseEvent>): DragEvent => {
   // TINY-9601: Get copy for each new event to prevent undesired mutations on dispatched DataTransfer objects
   const dataTransferForDispatch = makeDataTransferCopyForDragEvent(dataTransfer, type);
-  return Type.isUndefined(mouseEvent) ? makeDndEvent(type, target, dataTransferForDispatch) : makeDndEventFromMouseEvent(type, mouseEvent, target, dataTransferForDispatch);
+  return (mouseEvent) === undefined ? makeDndEvent(type, target, dataTransferForDispatch) : makeDndEventFromMouseEvent(type, mouseEvent, target, dataTransferForDispatch);
 };

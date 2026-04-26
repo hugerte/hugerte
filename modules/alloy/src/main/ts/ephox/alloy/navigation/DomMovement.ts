@@ -1,11 +1,10 @@
-import { Optional } from '@ephox/katamari';
 import { Direction, SugarElement } from '@ephox/sugar';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { NativeSimulatedEvent } from '../events/SimulatedEvent';
 import { GeneralKeyingConfig, KeyRuleHandler } from '../keying/KeyingModeTypes';
 
-export type ElementMover <C, S> = (elem: SugarElement<HTMLElement>, focused: SugarElement<HTMLElement>, config: C, state: S) => Optional<SugarElement<HTMLElement>>;
+export type ElementMover <C, S> = (elem: SugarElement<HTMLElement>, focused: SugarElement<HTMLElement>, config: C, state: S) => (SugarElement<HTMLElement>) | null;
 
 // Looks up direction (considering LTR and RTL), finds the focused element,
 // and tries to move. If it succeeds, triggers focus and kills the event.
@@ -28,7 +27,7 @@ const east = <C extends GeneralKeyingConfig, S>(moveLeft: ElementMover<C, S>, mo
 const useV = <C extends GeneralKeyingConfig, S>(move: ElementMover<C, S>): KeyRuleHandler<C, S> =>
   (component, simulatedEvent, config, state) => use(move, component, simulatedEvent, config, state);
 
-const use = <C extends GeneralKeyingConfig, S>(move: ElementMover<C, S>, component: AlloyComponent, simulatedEvent: NativeSimulatedEvent, config: C, state: S): Optional<boolean> => {
+const use = <C extends GeneralKeyingConfig, S>(move: ElementMover<C, S>, component: AlloyComponent, simulatedEvent: NativeSimulatedEvent, config: C, state: S): (boolean) | null => {
   const outcome = config.focusManager.get(component).bind((focused) => move(component.element, focused, config, state));
 
   return outcome.map((newFocus): boolean => {

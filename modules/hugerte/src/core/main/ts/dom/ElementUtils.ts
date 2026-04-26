@@ -1,4 +1,3 @@
-import { Arr, Obj, Strings, Type } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import Tools from '../api/util/Tools';
@@ -79,11 +78,11 @@ const ElementUtils = (editor: Editor): ElementUtils => {
     const compareObjects = (obj1: Record<string, string>, obj2: Record<string, string>) => {
       for (const name in obj1) {
         // Obj1 has item obj2 doesn't have
-        if (Obj.has(obj1, name)) {
+        if (Object.prototype.hasOwnProperty.call(obj1, name)) {
           const value = obj2[name];
 
           // Obj2 doesn't have obj1 item
-          if (Type.isUndefined(value)) {
+          if ((value) === undefined) {
             return false;
           }
 
@@ -100,7 +99,7 @@ const ElementUtils = (editor: Editor): ElementUtils => {
       // Check if obj 2 has something obj 1 doesn't have
       for (const name in obj2) {
         // Obj2 has item obj1 doesn't have
-        if (Obj.has(obj2, name)) {
+        if (Object.prototype.hasOwnProperty.call(obj2, name)) {
           return false;
         }
       }
@@ -124,7 +123,7 @@ const ElementUtils = (editor: Editor): ElementUtils => {
   };
 
   const isAttributeInternal = (attributeName: string): boolean =>
-    Arr.exists(internalAttributesPrefixes, (value) => Strings.startsWith(attributeName, value)) || internalAttributes.has(attributeName);
+    (internalAttributesPrefixes).some((value) => (attributeName).startsWith(value)) || internalAttributes.has(attributeName);
 
   return {
     compare,

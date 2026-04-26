@@ -1,4 +1,3 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
 import { Attribute, SugarNode } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -36,22 +35,22 @@ const roleAttributes: Record<string, string[]> = {
   menuitemradio: [ 'aria-checked' ]
 };
 
-const detectFromTag = (component: AlloyComponent): Optional<string[]> => {
+const detectFromTag = (component: AlloyComponent): (string[]) | null => {
   const elem = component.element;
   const rawTag = SugarNode.name(elem);
   const suffix = rawTag === 'input' && Attribute.has(elem, 'type') ? ':' + Attribute.get(elem, 'type') : '';
-  return Obj.get(tagAttributes, rawTag + suffix);
+  return ((tagAttributes)[rawTag + suffix] ?? null);
 };
 
-const detectFromRole = (component: AlloyComponent): Optional<string[]> => {
+const detectFromRole = (component: AlloyComponent): (string[]) | null => {
   const elem = component.element;
-  return Attribute.getOpt(elem, 'role').bind((role) => Obj.get(roleAttributes, role));
+  return Attribute.getOpt(elem, 'role').bind((role) => ((roleAttributes)[role] ?? null));
 };
 
 const updateAuto = (component: AlloyComponent, _ariaInfo: void, status: boolean): void => {
   // Role has priority
-  const attributes = detectFromRole(component).orThunk(() => detectFromTag(component)).getOr([ ]);
-  Arr.each(attributes, (attr) => {
+  const attributes = detectFromRole(component).orThunk(() => detectFromTag(component)) ?? ([ ]);
+  (attributes).forEach((attr) => {
     Attribute.set(component.element, attr, status);
   });
 };

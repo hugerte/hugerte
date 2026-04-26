@@ -1,6 +1,6 @@
 import { StructureSchema } from '@ephox/boulder';
 import { InlineContent } from '@ephox/bridge';
-import { Arr, Fun, Obj, Unique } from '@ephox/katamari';
+import { Unique } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 
@@ -12,20 +12,20 @@ export interface AutocompleterDatabase {
 
 const register = (editor: Editor): AutocompleterDatabase => {
   const popups = editor.ui.registry.getAll().popups;
-  const dataset = Obj.map(popups, (popup) => InlineContent.createAutocompleter(popup).fold(
+  const dataset = Object.fromEntries(Object.entries(popups).map(([_k, _v]: [any, any]) => [_k, ((popup) => InlineContent.createAutocompleter(popup).fold(
     (err) => {
       throw new Error(StructureSchema.formatError(err));
     },
-    Fun.identity
-  ));
+    (x: any) => x
+  ))(_v, _k as any)]));
 
   const triggers = Unique.stringArray(
-    Obj.mapToArray(dataset, (v) => v.trigger)
+    Object.entries(dataset).map(([_k, _v]: [any, any]) => ((v) => v.trigger)(_v, _k as any))
   );
 
-  const datasetValues = Obj.values(dataset);
+  const datasetValues = Object.values(dataset);
 
-  const lookupByTrigger = (trigger: string): InlineContent.Autocompleter[] => Arr.filter(datasetValues, (dv) => dv.trigger === trigger);
+  const lookupByTrigger = (trigger: string): InlineContent.Autocompleter[] => (datasetValues).filter((dv) => dv.trigger === trigger);
 
   return {
     dataset,

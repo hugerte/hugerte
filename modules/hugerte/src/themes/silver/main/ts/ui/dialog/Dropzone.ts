@@ -4,7 +4,6 @@ import {
   SystemEvents, Tabstopping, Toggling
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Optional, Strings } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import Tools from 'hugerte/core/api/util/Tools';
@@ -19,14 +18,14 @@ import { formChangeEvent } from '../general/FormEvents';
 
 const filterByExtension = (files: FileList, providersBackstage: UiFactoryBackstageProviders) => {
   const allowedImageFileTypes = Tools.explode(providersBackstage.getOption('images_file_types'));
-  const isFileInAllowedTypes = (file: File) => Arr.exists(allowedImageFileTypes, (type) => Strings.endsWith(file.name.toLowerCase(), `.${type.toLowerCase()}`));
+  const isFileInAllowedTypes = (file: File) => (allowedImageFileTypes).some((type) => (file.name.toLowerCase()).endsWith(`.${type.toLowerCase()}`));
 
-  return Arr.filter(Arr.from(files), isFileInAllowedTypes);
+  return (Array.from(files)).filter(isFileInAllowedTypes);
 };
 
 type DropZoneSpec = Omit<Dialog.DropZone, 'type'>;
 
-export const renderDropZone = (spec: DropZoneSpec, providersBackstage: UiFactoryBackstageProviders, initialData: Optional<string[]>): SimpleSpec => {
+export const renderDropZone = (spec: DropZoneSpec, providersBackstage: UiFactoryBackstageProviders, initialData: (string[]) | null): SimpleSpec => {
 
   // TODO: Consider moving to alloy
   const stopper: AlloyEvents.EventRunHandler<EventArgs> = (_: AlloyComponent, se: SimulatedEvent<EventArgs>): void => {
@@ -35,7 +34,7 @@ export const renderDropZone = (spec: DropZoneSpec, providersBackstage: UiFactory
 
   // TODO: Consider moving to alloy
   const sequence = (actions: Array<AlloyEvents.EventRunHandler<EventArgs>>): AlloyEvents.EventRunHandler<EventArgs> => (comp, se) => {
-    Arr.each(actions, (a) => {
+    (actions).forEach((a) => {
       a(comp, se);
     });
   };
@@ -87,7 +86,7 @@ export const renderDropZone = (spec: DropZoneSpec, providersBackstage: UiFactory
       classes: [ 'tox-dropzone-container' ]
     },
     behaviours: Behaviour.derive([
-      RepresentingConfigs.memory(initialData.getOr([])),
+      RepresentingConfigs.memory(initialData ?? ([])),
       ComposingConfigs.self(),
       Disabling.config({}),
       Toggling.config({

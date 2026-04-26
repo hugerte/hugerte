@@ -1,4 +1,3 @@
-import { Arr, Fun, Type } from '@ephox/katamari';
 import { TableRender, TableConversions } from '@ephox/snooker';
 import { Attribute, Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
@@ -14,21 +13,21 @@ const placeCaretInCell = (editor: Editor, cell: SugarElement<HTMLTableCellElemen
 };
 
 const selectFirstCellInTable = (editor: Editor, tableElm: SugarElement<HTMLTableElement>): void => {
-  SelectorFind.descendant<HTMLTableCellElement>(tableElm, 'td,th').each(Fun.curry(placeCaretInCell, editor));
+  SelectorFind.descendant<HTMLTableCellElement>(tableElm, 'td,th').each(((..._rest: any[]) => (placeCaretInCell)(editor, ..._rest)));
 };
 
 const fireEvents = (editor: Editor, table: SugarElement<HTMLTableElement>): void => {
-  Arr.each(SelectorFilter.descendants<HTMLTableRowElement>(table, 'tr'), (row) => {
+  (SelectorFilter.descendants<HTMLTableRowElement>(table, 'tr')).forEach((row) => {
     Events.fireNewRow(editor, row.dom);
 
-    Arr.each(SelectorFilter.descendants<HTMLTableCellElement>(row, 'th,td'), (cell) => {
+    (SelectorFilter.descendants<HTMLTableCellElement>(row, 'th,td')).forEach((cell) => {
       Events.fireNewCell(editor, cell.dom);
     });
   });
 };
 
 const isPercentage = (width: string): boolean =>
-  Type.isString(width) && width.indexOf('%') !== -1;
+  typeof (width) === 'string' && width.indexOf('%') !== -1;
 
 const insert = (editor: Editor, columns: number, rows: number, colHeaders: number, rowHeaders: number): HTMLTableElement | null => {
   const defaultStyles = Options.getTableDefaultStyles(editor);
@@ -62,11 +61,11 @@ const insert = (editor: Editor, columns: number, rows: number, colHeaders: numbe
     fireEvents(editor, table);
     selectFirstCellInTable(editor, table);
     return table.dom;
-  }).getOrNull();
+  }) ?? null;
 };
 
 const insertTable = (editor: Editor, rows: number, columns: number, options: Record<string, number> = {}): HTMLTableElement | null => {
-  const checkInput = (val: any) => Type.isNumber(val) && val > 0;
+  const checkInput = (val: any) => typeof (val) === 'number' && val > 0;
 
   if (checkInput(rows) && checkInput(columns)) {
     const headerRows = options.headerRows || 0;

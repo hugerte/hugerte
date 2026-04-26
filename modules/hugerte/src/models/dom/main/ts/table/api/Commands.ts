@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj, Optional, Type } from '@ephox/katamari';
 import { CopyCols, CopyRows, Sizes, TableFill, TableLookup, TableConversions } from '@ephox/snooker';
 import { Insert, Remove, Replication, SelectorFind, Selectors, SugarElement, SugarNode } from '@ephox/sugar';
 
@@ -21,16 +20,16 @@ interface InsertTableArgs {
   readonly options?: Record<string, number>;
 }
 
-const getSelectionStartCellOrCaption = (editor: Editor): Optional<SugarElement<HTMLTableCellElement | HTMLTableCaptionElement>> =>
+const getSelectionStartCellOrCaption = (editor: Editor): (SugarElement<HTMLTableCellElement | HTMLTableCaptionElement>) | null =>
   TableSelection.getSelectionCellOrCaption(Utils.getSelectionStart(editor), Utils.getIsRoot(editor)).filter(Utils.isInEditableContext);
 
-const getSelectionStartCell = (editor: Editor): Optional<SugarElement<HTMLTableCellElement>> =>
+const getSelectionStartCell = (editor: Editor): (SugarElement<HTMLTableCellElement>) | null =>
   TableSelection.getSelectionCell(Utils.getSelectionStart(editor), Utils.getIsRoot(editor)).filter(Utils.isInEditableContext);
 
 const registerCommands = (editor: Editor, actions: TableActions): void => {
   const isRoot = Utils.getIsRoot(editor);
   const eraseTable = () => getSelectionStartCellOrCaption(editor).each((cellOrCaption) => {
-    TableLookup.table(cellOrCaption, isRoot).filter(Fun.not(isRoot)).each((table) => {
+    TableLookup.table(cellOrCaption, isRoot).filter((x: any) => !(isRoot)(x)).each((table) => {
       const cursor = SugarElement.fromText('');
       Insert.after(table, cursor);
       Remove.remove(table);
@@ -68,7 +67,7 @@ const registerCommands = (editor: Editor, actions: TableActions): void => {
 
   const getTableFromCell = (cell: SugarElement<HTMLTableCellElement>) => TableLookup.table(cell, isRoot);
 
-  const performActionOnSelection = <T>(action: ExecuteAction<T>): Optional<T> =>
+  const performActionOnSelection = <T>(action: ExecuteAction<T>): (T) | null =>
     getSelectionStartCell(editor).bind((cell) =>
       getTableFromCell(cell).map((table) => action(table, cell))
     );
@@ -83,12 +82,11 @@ const registerCommands = (editor: Editor, actions: TableActions): void => {
   const toggleTableCellClass = (_ui: boolean, clazz: string) => {
     performActionOnSelection((table) => {
       const selectedCells = TableSelection.getCellsFromSelection(editor);
-      const allHaveClass = Arr.forall(selectedCells, (cell) => editor.formatter.match('tablecellclass', { value: clazz }, cell.dom));
+      const allHaveClass = (selectedCells).every((cell) => editor.formatter.match('tablecellclass', { value: clazz }, cell.dom));
       const formatterAction = allHaveClass ? editor.formatter.remove : editor.formatter.apply;
 
-      Arr.each(selectedCells, (cell) =>
-        formatterAction('tablecellclass', { value: clazz }, cell.dom)
-      );
+      (selectedCells).forEach((cell) =>
+        formatterAction('tablecellclass', { value: clazz }, cell.dom));
       Events.fireTableModified(editor, table.dom, Events.styleModified);
     });
   };
@@ -131,7 +129,7 @@ const registerCommands = (editor: Editor, actions: TableActions): void => {
   const copyRowSelection = () =>
     performActionOnSelection((table, startCell) => {
       const targets = TableTargets.forMenu(TableSelection.getCellsFromSelection(editor), table, startCell);
-      const generators = TableFill.cellOperations(Fun.noop, SugarElement.fromDom(editor.getDoc()), Optional.none());
+      const generators = TableFill.cellOperations(() => {}, SugarElement.fromDom(editor.getDoc()), null);
       return CopyRows.copyRows(table, targets, generators);
     });
 
@@ -141,10 +139,10 @@ const registerCommands = (editor: Editor, actions: TableActions): void => {
       return CopyCols.copyCols(table, targets);
     });
 
-  const pasteOnSelection = (execute: AdvancedPasteTableAction, getRows: () => Optional<SugarElement<HTMLTableRowElement | HTMLTableColElement>[]>) =>
+  const pasteOnSelection = (execute: AdvancedPasteTableAction, getRows: () => (SugarElement<HTMLTableRowElement | HTMLTableColElement>[]) | null) =>
     // If we have FakeClipboard rows to paste
     getRows().each((rows) => {
-      const clonedRows = Arr.map(rows, (row) => Replication.deep<HTMLTableColElement | HTMLTableRowElement>(row));
+      const clonedRows = (rows).map((row) => Replication.deep<HTMLTableColElement | HTMLTableRowElement>(row));
       performActionOnSelection((table, startCell) => {
         const generators = TableFill.paste(SugarElement.fromDom(editor.getDoc()));
         const targets = TableTargets.pasteRows(TableSelection.getCellsFromSelection(editor), startCell, clonedRows, generators);
@@ -153,12 +151,12 @@ const registerCommands = (editor: Editor, actions: TableActions): void => {
     });
 
   const actOnType = (getAction: (type: string) => CombinedTargetsTableAction) => (_ui: boolean, args: Record<string, any>) =>
-    Obj.get(args, 'type').each((type) => {
+    ((args)['type'] ?? null).each((type) => {
       actOnSelection(getAction(type), args.no_events);
     });
 
   // Register action commands
-  Obj.each({
+  Object.entries({
     mceTableSplitCells: () => actOnSelection(actions.unmergeCells),
     mceTableMergeCells: () => actOnSelection(actions.mergeCells),
     mceTableInsertRowBefore: () => actOnSelection(actions.insertRowsBefore),
@@ -198,7 +196,7 @@ const registerCommands = (editor: Editor, actions: TableActions): void => {
           return actions.makeRowsBody;
       }
     })
-  }, (func, name) => editor.addCommand(name, func));
+  }).forEach(([_k, _v]: [any, any]) => ((func, name) => editor.addCommand(name, func))(_v, _k));
 
   editor.addCommand('mceInsertTable', (_ui: boolean, args: InsertTableArgs) => {
     InsertTable.insertTable(editor, args.rows, args.columns, args.options);
@@ -211,32 +209,31 @@ const registerCommands = (editor: Editor, actions: TableActions): void => {
   editor.addCommand('mceTableApplyCellStyle', (_ui: boolean, args: Record<string, string>) => {
     const getFormatName = (style: string) => 'tablecell' + style.toLowerCase().replace('-', '');
 
-    if (!Type.isObject(args)) {
+    if (!(typeof (args) === 'object' && (args) !== null)) {
       return;
     }
-    const cells = Arr.filter(TableSelection.getCellsFromSelection(editor), Utils.isInEditableContext);
+    const cells = (TableSelection.getCellsFromSelection(editor)).filter(Utils.isInEditableContext);
     if (cells.length === 0) {
       return;
     }
 
-    const validArgs = Obj.filter(args, (value, style) =>
-      editor.formatter.has(getFormatName(style)) && Type.isString(value)
-    );
-    if (Obj.isEmpty(validArgs)) {
+    const validArgs = Object.fromEntries(Object.entries(args).filter(([_k, _v]: [any, any]) => ((value, style) =>
+      editor.formatter.has(getFormatName(style)) && typeof (value) === 'string')(_v, _k as any)));
+    if ((Object.keys(validArgs).length === 0)) {
       return;
     }
 
-    Obj.each(validArgs, (value, style) => {
+    Object.entries(validArgs).forEach(([_k, _v]: [any, any]) => ((value, style) => {
       const formatName = getFormatName(style);
 
-      Arr.each(cells, (cell) => {
+      (cells).forEach((cell) => {
         if (value === '') {
           editor.formatter.remove(formatName, { value: null }, cell.dom, true);
         } else {
           editor.formatter.apply(formatName, { value }, cell.dom);
         }
       });
-    });
+    })(_v, _k));
 
     /*
       Use the first cell in the selection to get the table and fire the TableModified event.

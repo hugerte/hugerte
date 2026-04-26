@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { Compare, Insert, SugarElement } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -43,7 +42,7 @@ const prepend = (component: AlloyComponent, replaceConfig: ReplacingConfig, repl
 // NOTE: Removee is going to be a component, not a spec.
 const remove = (component: AlloyComponent, replaceConfig: ReplacingConfig, replaceState: Stateless, removee: AlloyComponent): void => {
   const children = contents(component, replaceConfig);
-  const foundChild = Arr.find(children, (child) => Compare.eq(removee.element, child.element));
+  const foundChild = ((children).find((child) => Compare.eq(removee.element, child.element)) ?? null);
 
   foundChild.each(Attachment.detach);
 };
@@ -51,9 +50,9 @@ const remove = (component: AlloyComponent, replaceConfig: ReplacingConfig, repla
 // TODO: Rename
 const contents = (component: AlloyComponent, _replaceConfig: ReplacingConfig): AlloyComponent[] => component.components();
 
-const replaceAt = (component: AlloyComponent, replaceConfig: ReplacingConfig, replaceState: Stateless, replaceeIndex: number, replacer: Optional<AlloySpec>): Optional<AlloyComponent> => {
+const replaceAt = (component: AlloyComponent, replaceConfig: ReplacingConfig, replaceState: Stateless, replaceeIndex: number, replacer: (AlloySpec) | null): (AlloyComponent) | null => {
   const children = contents(component, replaceConfig);
-  return Optional.from(children[replaceeIndex]).map((replacee) => {
+  return (children[replaceeIndex] ?? null).map((replacee) => {
     replacer.fold(
       () => Attachment.detach(replacee),
       (r) => {
@@ -65,9 +64,9 @@ const replaceAt = (component: AlloyComponent, replaceConfig: ReplacingConfig, re
   });
 };
 
-const replaceBy = (component: AlloyComponent, replaceConfig: ReplacingConfig, replaceState: Stateless, replaceePred: (comp: AlloyComponent) => boolean, replacer: Optional<AlloySpec>): Optional<AlloyComponent> => {
+const replaceBy = (component: AlloyComponent, replaceConfig: ReplacingConfig, replaceState: Stateless, replaceePred: (comp: AlloyComponent) => boolean, replacer: (AlloySpec) | null): (AlloyComponent) | null => {
   const children = contents(component, replaceConfig);
-  return Arr.findIndex(children, replaceePred).bind((replaceeIndex) => replaceAt(component, replaceConfig, replaceState, replaceeIndex, replacer));
+  return (children).findIndex(replaceePred).bind((replaceeIndex) => replaceAt(component, replaceConfig, replaceState, replaceeIndex, replacer));
 };
 
 export {

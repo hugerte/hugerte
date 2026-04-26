@@ -1,7 +1,6 @@
 import { ItemTypes, MenuTypes } from '@ephox/alloy';
 import { StructureSchema } from '@ephox/boulder';
 import { InlineContent, Menu, Toolbar } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
 
 import { components as menuComponents, dom as menuDom } from './MenuParts';
 import { forCollection, forCollectionWithSearchField, forCollectionWithSearchResults, forHorizontalCollection, forSwatch, forToolbar, StructureSpec } from './MenuStructures';
@@ -29,14 +28,14 @@ export interface SearchableMenuLayout {
 }
 
 export const menuHasIcons = (xs: Array<SingleMenuItemSpec | Menu.CardMenuItemSpec | InlineContent.AutocompleterItemSpec>): boolean =>
-  Arr.exists(xs, (item) => 'icon' in item && item.icon !== undefined);
+  (xs).some((item) => 'icon' in item && item.icon !== undefined);
 
-export const handleError = (error: StructureSchema.SchemaError<any>): Optional<ItemTypes.ItemSpec> => {
+export const handleError = (error: StructureSchema.SchemaError<any>): (ItemTypes.ItemSpec) | null => {
   // eslint-disable-next-line no-console
   console.error(StructureSchema.formatError(error));
   // eslint-disable-next-line no-console
   console.log(error);
-  return Optional.none();
+  return null;
 };
 
 export const createHorizontalPartialMenuWithAlloyItems = (value: string, _hasIcons: boolean, items: ItemTypes.ItemSpec[], _columns: Toolbar.ColumnTypes, _menuLayout: MenuLayoutType): PartialMenuSpec => {

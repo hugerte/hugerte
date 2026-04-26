@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 import { isReadOnly, processReadonlyEvents } from '../mode/Readonly';
 import DOMUtils from './dom/DOMUtils';
@@ -90,9 +89,9 @@ const bindEventDelegate = (editor: Editor, eventName: string) => {
       editor.editorManager.on('removeEditor', () => {
         if (!editor.editorManager.activeEditor) {
           if (customEventRootDelegates) {
-            Obj.each(customEventRootDelegates, (_value, name) => {
+            Object.entries(customEventRootDelegates).forEach(([_k, _v]: [any, any]) => ((_value, name) => {
               editor.dom.unbind(getEventTarget(editor, name));
-            });
+            })(_v, _k));
 
             customEventRootDelegates = null;
           }
@@ -198,9 +197,9 @@ const EditorObservable: EditorObservable = {
     const dom: DOMUtils = self.dom;
 
     if (self.delegates) {
-      Obj.each(self.delegates, (value, name) => {
+      Object.entries(self.delegates).forEach(([_k, _v]: [any, any]) => ((value, name) => {
         self.dom.unbind(getEventTarget(self, name), name, value);
-      });
+      })(_v, _k));
 
       delete self.delegates;
     }

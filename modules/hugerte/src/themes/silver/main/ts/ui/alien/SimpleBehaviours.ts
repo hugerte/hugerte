@@ -1,5 +1,4 @@
 import { AddEventsBehaviour, AlloyEvents, Behaviour } from '@ephox/alloy';
-import { Id } from '@ephox/katamari';
 
 // Consider moving to alloy once it takes shape.
 
@@ -9,7 +8,7 @@ const namedEvents = (name: string, handlers: Array<AlloyEvents.AlloyEventKeyAndH
   ]);
 
 const unnamedEvents = (handlers: Array<AlloyEvents.AlloyEventKeyAndHandler<any>>): Behaviour.AlloyBehaviourRecord =>
-  namedEvents(Id.generate('unnamed-events'), handlers);
+  namedEvents((('unnamed-events') + '_' + Math.floor(Math.random() * 1e9) + Date.now()), handlers);
 
 export const SimpleBehaviours = {
   namedEvents,

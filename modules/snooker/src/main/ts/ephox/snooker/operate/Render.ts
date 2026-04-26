@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Attribute, Css, Insert, InsertAll, SugarElement } from '@ephox/sugar';
 
 export interface RenderOptions {
@@ -46,15 +45,14 @@ const createRow = (columns: number, rowHeaders: number, columnHeaders: number, r
 const createGroupRow = (columns: number) => {
   const columnGroup = SugarElement.fromTag('colgroup');
 
-  Arr.range(columns, () =>
-    Insert.append(columnGroup, tableColumn())
-  );
+  Array.from({length: columns}, (_, _i) => (() =>
+    Insert.append(columnGroup, tableColumn()))(_i));
 
   return columnGroup;
 };
 
 const createRows = (rows: number, columns: number, rowHeaders: number, columnHeaders: number) =>
-  Arr.range(rows, (r) => createRow(columns, rowHeaders, columnHeaders, r));
+  Array.from({length: rows}, (_, _i) => ((r) => createRow(columns, rowHeaders, columnHeaders, r))(_i));
 
 const render = (rows: number, columns: number, rowHeaders: number, columnHeaders: number, headerType: string, renderOpts: RenderOptions = DefaultRenderOptions): SugarElement<HTMLTableElement> => {
   const table = SugarElement.fromTag('table');

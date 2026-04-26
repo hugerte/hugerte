@@ -1,4 +1,3 @@
-import { Arr, Type } from '@ephox/katamari';
 
 import Entities from '../html/Entities';
 import Tools from './Tools';
@@ -42,11 +41,11 @@ interface SafeUriOptions {
 const safeSvgDataUrlElements = [ 'img', 'video' ];
 
 const blockSvgDataUris = (allowSvgDataUrls: boolean | undefined, tagName?: string) => {
-  if (Type.isNonNullable(allowSvgDataUrls)) {
+  if ((allowSvgDataUrls) != null) {
     return !allowSvgDataUrls;
   } else {
     // Only allow SVGs by default on images/videos since the browser won't execute scripts on those elements
-    return Type.isNonNullable(tagName) ? !Arr.contains(safeSvgDataUrlElements, tagName) : true;
+    return (tagName) != null ? !(safeSvgDataUrlElements).includes(tagName) : true;
   }
 };
 
@@ -449,9 +448,9 @@ class URI {
     // If /a/b/c or /
     let outPath: string;
     if (i <= 0) {
-      outPath = Arr.reverse(pathParts).join('/');
+      outPath = [...(pathParts)].reverse().join('/');
     } else {
-      outPath = baseParts.slice(0, i).join('/') + '/' + Arr.reverse(pathParts).join('/');
+      outPath = baseParts.slice(0, i).join('/') + '/' + [...(pathParts)].reverse().join('/');
     }
 
     // Add front / if it's needed

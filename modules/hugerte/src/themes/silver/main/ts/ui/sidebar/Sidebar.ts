@@ -6,7 +6,7 @@ import {
 } from '@ephox/alloy';
 import { StructureSchema } from '@ephox/boulder';
 import { Sidebar as BridgeSidebar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Id, Obj, Optional, Optionals, Type } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute, Css, SugarElement, Width } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -26,9 +26,9 @@ const setup = (editor: Editor): void => {
   const { sidebars } = editor.ui.registry.getAll();
 
   // Setup each registered sidebar
-  Arr.each(Obj.keys(sidebars), (name) => {
+  (Object.keys(sidebars)).forEach((name) => {
     const spec = sidebars[name];
-    const isActive = () => Optionals.is(Optional.from(editor.queryCommandValue('ToggleSidebar')), name);
+    const isActive = () => ((editor.queryCommandValue('ToggleSidebar') ?? null) !== null && ((editor.queryCommandValue('ToggleSidebar') ?? null)) === (name));
     editor.ui.registry.addToggleButton(name, {
       icon: spec.icon,
       tooltip: spec.tooltip,
@@ -53,7 +53,7 @@ const getApi = (comp: AlloyComponent): BridgeSidebar.SidebarInstanceApi => ({
 });
 
 const makePanels = (parts: SlotContainerTypes.SlotContainerParts, panelConfigs: SidebarConfig) => {
-  const specs = Arr.map(Obj.keys(panelConfigs), (name) => {
+  const specs = (Object.keys(panelConfigs)).map((name) => {
     const spec = panelConfigs[name];
     const bridged = StructureSchema.getOrDie(BridgeSidebar.createSidebar(spec));
     return {
@@ -65,8 +65,8 @@ const makePanels = (parts: SlotContainerTypes.SlotContainerParts, panelConfigs: 
     };
   });
 
-  return Arr.map(specs, (spec) => {
-    const editorOffCell = Cell(Fun.noop);
+  return (specs).map((spec) => {
+    const editorOffCell = Cell(() => {});
     return parts.slot(
       spec.name,
       {
@@ -79,7 +79,7 @@ const makePanels = (parts: SlotContainerTypes.SlotContainerParts, panelConfigs: 
           onControlDetached(spec, editorOffCell),
           AlloyEvents.run<SystemEvents.AlloySlotVisibilityEvent>(SystemEvents.slotVisibility(), (sidepanel, se) => {
             const data = se.event;
-            const optSidePanelSpec = Arr.find(specs, (config) => config.name === data.name);
+            const optSidePanelSpec = ((specs).find((config) => config.name === data.name) ?? null);
             optSidePanelSpec.each((sidePanelSpec) => {
               const handler = data.visible ? sidePanelSpec.onShow : sidePanelSpec.onHide;
               handler(sidePanelSpec.getApi(sidepanel));
@@ -110,7 +110,7 @@ const setSidebar = (sidebar: AlloyComponent, panelConfigs: SidebarConfig, showSi
 
     // Show the default sidebar
     const configKey = showSidebar?.toLowerCase();
-    if (Type.isString(configKey) && Obj.has(panelConfigs, configKey)) {
+    if (typeof (configKey) === 'string' && Object.prototype.hasOwnProperty.call(panelConfigs, configKey)) {
       Composing.getCurrent(slider).each((slotContainer) => {
         SlotContainer.showSlot(slotContainer, configKey);
         Sliding.immediateGrow(slider);
@@ -152,19 +152,18 @@ const toggleSidebar = (sidebar: AlloyComponent, name: string): void => {
   });
 };
 
-const whichSidebar = (sidebar: AlloyComponent): Optional<string> => {
+const whichSidebar = (sidebar: AlloyComponent): (string) | null => {
   const optSlider = Composing.getCurrent(sidebar);
   return optSlider.bind((slider) => {
     const sidebarOpen = Sliding.isGrowing(slider) || Sliding.hasGrown(slider);
     if (sidebarOpen) {
       const optSlotContainer = Composing.getCurrent(slider);
       return optSlotContainer.bind((slotContainer) =>
-        Arr.find(SlotContainer.getSlotNames(slotContainer), (name) =>
-          SlotContainer.isShowing(slotContainer, name)
-        )
+        ((SlotContainer.getSlotNames(slotContainer)).find((name) =>
+          SlotContainer.isShowing(slotContainer, name)) ?? null)
       );
     } else {
-      return Optional.none();
+      return null;
     }
   });
 };
@@ -172,8 +171,8 @@ const whichSidebar = (sidebar: AlloyComponent): Optional<string> => {
 interface FixSizeEvent extends CustomEvent {
   readonly width: string;
 }
-const fixSize = Id.generate('FixSizeEvent');
-const autoSize = Id.generate('AutoSizeEvent');
+const fixSize = (('FixSizeEvent') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const autoSize = (('AutoSizeEvent') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 const renderSidebar = (spec: SketchSpec): AlloySpec => ({
   uid: spec.uid,
@@ -213,7 +212,7 @@ const renderSidebar = (spec: SketchSpec): AlloySpec => ({
             AlloyTriggers.emit(slider, autoSize);
           },
           onStartGrow: (slider: AlloyComponent) => {
-            AlloyTriggers.emitWith(slider, fixSize, { width: Css.getRaw(slider.element, 'width').getOr('') });
+            AlloyTriggers.emitWith(slider, fixSize, { width: Css.getRaw(slider.element, 'width') ?? ('') });
           },
           onStartShrink: (slider: AlloyComponent) => {
             AlloyTriggers.emitWith(slider, fixSize, { width: Width.get(slider.element) + 'px' });
@@ -223,7 +222,7 @@ const renderSidebar = (spec: SketchSpec): AlloySpec => ({
         Composing.config({
           find: (comp: AlloyComponent) => {
             const children = Replacing.contents(comp);
-            return Arr.head(children);
+            return ((children)[0] ?? null);
           }
         })
       ])

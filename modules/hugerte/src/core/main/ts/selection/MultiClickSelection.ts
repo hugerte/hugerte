@@ -16,7 +16,7 @@ const isRoot = (rootNode: Node) => (elm: SugarElement<Node>): boolean => Compare
 
 const getClosestScope = (node: Node, rootNode: Node, schema: Schema): Node =>
   PredicateFind.closest(SugarElement.fromDom(node), (elm) => isContentEditableTrue(elm) || schema.isBlock(SugarNode.name(elm)), isRoot(rootNode))
-    .getOr(SugarElement.fromDom(rootNode)).dom;
+     ?? (SugarElement.fromDom(rootNode)).dom;
 
 const getClosestCef = (node: Node, rootNode: Node) =>
   PredicateFind.closest(SugarElement.fromDom(node), isContentEditableFalse, isRoot(rootNode));

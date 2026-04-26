@@ -1,5 +1,5 @@
 import { Menu } from '@ephox/bridge';
-import { Arr, Id, Merger, Obj, Type } from '@ephox/katamari';
+import { Arr, Merger, Obj } from '@ephox/katamari';
 
 import { SingleMenuItemSpec } from './SingleMenuTypes';
 
@@ -17,7 +17,7 @@ export interface ExpandedMenus {
 
 type MenuItemRegistry = Record<string, Menu.MenuItemSpec | Menu.NestedMenuItemSpec | Menu.ToggleMenuItemSpec>;
 
-const isMenuItemReference = (item: string | SingleMenuItemSpec): item is string => Type.isString(item);
+const isMenuItemReference = (item: string | SingleMenuItemSpec): item is string => typeof (item) === 'string';
 const isSeparator = (item: SingleMenuItemSpec): item is Menu.SeparatorMenuItemSpec => item.type === 'separator';
 const isExpandingMenuItem = (item: SingleMenuItemSpec): item is Menu.NestedMenuItemSpec => Obj.has(item as Record<string, any>, 'getSubmenuItems');
 
@@ -34,7 +34,7 @@ const unwrapReferences = (items: Array<string | SingleMenuItemSpec>, menuItems: 
       } else if (item === '|') {
         // Ignore the separator if it's at the start or a duplicate
         return acc.length > 0 && !isSeparator(acc[acc.length - 1]) ? acc.concat([ separator ]) : acc;
-      } else if (Obj.has(menuItems, item.toLowerCase())) {
+      } else if (Object.prototype.hasOwnProperty.call(menuItems, item.toLowerCase())) {
         return acc.concat([ menuItems[item.toLowerCase()] ]);
       } else {
         // TODO: Add back after TINY-3232 is implemented
@@ -76,7 +76,7 @@ const getFromExpandingItem = (item: Menu.NestedMenuItemSpec & { value: string },
 
 const generateValueIfRequired = (item: Menu.NestedMenuItemSpec): Menu.NestedMenuItemSpec & { value: string } => {
   // Use the value already in item if it has one.
-  const itemValue = Obj.get<any, string>(item, 'value').getOrThunk(() => Id.generate('generated-menu-item'));
+  const itemValue = Obj.get<any, string>(item, 'value').getOrThunk(() => (('generated-menu-item') + '_' + Math.floor(Math.random() * 1e9) + Date.now()));
   return Merger.deepMerge({ value: itemValue }, item);
 };
 
@@ -84,12 +84,12 @@ const generateValueIfRequired = (item: Menu.NestedMenuItemSpec): Menu.NestedMenu
 const expand = (items: string | Array<string | SingleMenuItemSpec>, menuItems: MenuItemRegistry): ExpandedMenus => {
   // Fistly, we do all substitution using the registry for any items referenced by their
   // string key.
-  const realItems = unwrapReferences(Type.isString(items) ? items.split(' ') : items, menuItems);
+  const realItems = unwrapReferences(typeof (items) === 'string' ? items.split(' ') : items, menuItems);
 
   // Now that we have complete bridge Item specs for all items, we need to collect the
   // submenus, items in the primary menu, and triggering menu items all into one
   // giant object to from the building blocks on our TieredData
-  return Arr.foldr(realItems, (acc, item) => {
+  return (realItems).reduceRight((acc, item) => {
     if (isExpandingMenuItem(item)) {
       // We generate a random value for item, but only if there isn't an existing value
       const itemWithValue = generateValueIfRequired(item);

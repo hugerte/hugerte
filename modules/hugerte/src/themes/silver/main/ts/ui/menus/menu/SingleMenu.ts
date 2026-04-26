@@ -1,6 +1,6 @@
 import { AlloyEvents, InlineViewTypes, ItemTypes, Keying, TieredMenu, TieredMenuTypes } from '@ephox/alloy';
 import { InlineContent, Menu as BridgeMenu, Toolbar } from '@ephox/bridge';
-import { Arr, Obj, Optional, Optionals } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 
 import { UiFactoryBackstage, UiFactoryBackstageShared } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -28,54 +28,54 @@ const createMenuItemFromBridge = (
   backstage: UiFactoryBackstage,
   menuHasIcons: boolean,
   isHorizontalMenu: boolean
-): Optional<ItemTypes.ItemSpec> => {
+): (ItemTypes.ItemSpec) | null => {
   const providersBackstage = backstage.shared.providers;
   // If we're making a horizontal menu (mobile context menu) we want text OR icons
   // to simplify the UI. We also don't want shortcut text.
-  const parseForHorizontalMenu = <T extends { text: Optional<string>; icon: Optional<string> }>(menuitem: T) => !isHorizontalMenu ? menuitem : ({
+  const parseForHorizontalMenu = <T extends { text: (string) | null; icon: (string) | null }>(menuitem: T) => !isHorizontalMenu ? menuitem : ({
     ...menuitem,
-    shortcut: Optional.none(),
-    icon: menuitem.text.isSome() ? Optional.none() : menuitem.icon
+    shortcut: null,
+    icon: menuitem.text !== null ? null : menuitem.icon
   });
 
   switch (item.type) {
     case 'menuitem':
       return BridgeMenu.createMenuItem(item).fold(
         MenuUtils.handleError,
-        (d) => Optional.some(MenuItems.normal(
+        (d) => MenuItems.normal(
           parseForHorizontalMenu(d),
           itemResponse,
           providersBackstage,
           menuHasIcons
-        ))
+        )
       );
 
     case 'nestedmenuitem':
       return BridgeMenu.createNestedMenuItem(item).fold(
         MenuUtils.handleError,
-        (d) => Optional.some(MenuItems.nested(
+        (d) => MenuItems.nested(
           parseForHorizontalMenu(d),
           itemResponse,
           providersBackstage,
           menuHasIcons,
           isHorizontalMenu
-        ))
+        )
       );
 
     case 'togglemenuitem':
       return BridgeMenu.createToggleMenuItem(item).fold(
         MenuUtils.handleError,
-        (d) => Optional.some(MenuItems.toggle(
+        (d) => MenuItems.toggle(
           parseForHorizontalMenu(d),
           itemResponse,
           providersBackstage,
           menuHasIcons
-        ))
+        )
       );
     case 'separator':
       return BridgeMenu.createSeparatorMenuItem(item).fold(
         MenuUtils.handleError,
-        (d) => Optional.some(MenuItems.separator(d))
+        (d) => MenuItems.separator(d)
       );
     case 'fancymenuitem':
       return BridgeMenu.createFancyMenuItem(item).fold(
@@ -86,7 +86,7 @@ const createMenuItemFromBridge = (
     default: {
       // eslint-disable-next-line no-console
       console.error('Unknown item in general menu', item);
-      return Optional.none();
+      return null;
     }
   }
 };
@@ -103,19 +103,18 @@ export const createAutocompleteItems = (
   // Render text and icons if we're using a single column, otherwise only render icons
   const renderText = columns === 1;
   const renderIcons = !renderText || MenuUtils.menuHasIcons(items);
-  return Optionals.cat(
-    Arr.map(items, (item) => {
+  return ((items).map((item) => {
       switch (item.type) {
         case 'separator':
           return InlineContent.createSeparatorItem(item).fold(
             MenuUtils.handleError,
-            (d) => Optional.some(MenuItems.separator(d))
+            (d) => MenuItems.separator(d)
           );
 
         case 'cardmenuitem':
           return BridgeMenu.createCardMenuItem(item).fold(
             MenuUtils.handleError,
-            (d) => Optional.some(MenuItems.card(
+            (d) => MenuItems.card(
               {
                 ...d,
                 // Intercept action
@@ -127,20 +126,20 @@ export const createAutocompleteItems = (
               itemResponse,
               sharedBackstage,
               {
-                itemBehaviours: tooltipBehaviour(d.meta, sharedBackstage, Optional.none()),
+                itemBehaviours: tooltipBehaviour(d.meta, sharedBackstage, null),
                 cardText: {
                   matchText,
                   highlightOn
                 }
               }
-            ))
+            )
           );
 
         case 'autocompleteitem':
         default:
           return InlineContent.createAutocompleterItem(item as InlineContent.AutocompleterItemSpec).fold(
             MenuUtils.handleError,
-            (d) => Optional.some(MenuItems.autocomplete(
+            (d) => MenuItems.autocomplete(
               d,
               matchText,
               renderText,
@@ -149,11 +148,10 @@ export const createAutocompleteItems = (
               itemResponse,
               sharedBackstage,
               renderIcons
-            ))
+            )
           );
       }
-    })
-  );
+    })).filter((_x: any) => _x !== null);
 };
 
 export const createPartialMenu = (
@@ -166,8 +164,7 @@ export const createPartialMenu = (
 ): PartialMenuSpec => {
   const hasIcons = MenuUtils.menuHasIcons(items);
 
-  const alloyItems = Optionals.cat(
-    Arr.map(items, (item: SingleMenuItemSpec) => {
+  const alloyItems = ((items).map((item: SingleMenuItemSpec) => {
       // Have to check each item for an icon, instead of as part of hasIcons above,
       // else in horizontal menus, items with an icon but without text will display
       // with neither
@@ -184,8 +181,7 @@ export const createPartialMenu = (
       } else {
         return createItem(item);
       }
-    })
-  );
+    })).filter((_x: any) => _x !== null);
 
   // The menu layout is dependent upon our search mode.
   const menuLayout = identifyMenuLayout(searchMode);

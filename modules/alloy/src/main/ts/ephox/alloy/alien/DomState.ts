@@ -1,7 +1,7 @@
-import { Id, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
-const attrName = Id.generate('dom-data');
+const attrName = (('dom-data') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 // This module stores information on the DOM node directly. This is so that it is automatically
 // garbage collected rather than stored in a separate list that needs to be in sync with the DOM.
 // We don't want people to use this very often (it's used for ForeignGui), and we especially don't

@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { Bounds } from '../../alien/Boxes';
@@ -18,8 +17,8 @@ export interface ReparteeOptions {
   readonly preference: LayoutTypes.AnchorLayout[];
   readonly maxHeightFunction: MaxHeightFunction;
   readonly maxWidthFunction: MaxWidthFunction;
-  readonly lastPlacement: Optional<PlacerResult>;
-  readonly transition: Optional<Transition>;
+  readonly lastPlacement: (PlacerResult) | null;
+  readonly transition: (Transition) | null;
 }
 
 const defaultOr = <K extends keyof AnchorOverrides>(options: AnchorOverrides, key: K, dephault: NonNullable<AnchorOverrides[K]>): NonNullable<AnchorOverrides[K]> => options[key] === undefined ? dephault : options[key] as NonNullable<AnchorOverrides[K]>;
@@ -30,14 +29,14 @@ const simple = (
   element: SugarElement<HTMLElement>,
   bubble: Bubble,
   layouts: LayoutTypes.AnchorLayout[],
-  lastPlacement: Optional<PlacerResult>,
-  optBounds: Optional<Bounds>,
+  lastPlacement: (PlacerResult) | null,
+  optBounds: (Bounds) | null,
   overrideOptions: AnchorOverrides,
-  transition: Optional<Transition>
+  transition: (Transition) | null
 ): PlacerResult => {
   // the only supported override at the moment. Once relative has been deleted, maybe this can be optional in the bag
   const maxHeightFunction: MaxHeightFunction = defaultOr(overrideOptions, 'maxHeightFunction', MaxHeight.anchored());
-  const maxWidthFunction: MaxWidthFunction = defaultOr(overrideOptions, 'maxWidthFunction', Fun.noop);
+  const maxWidthFunction: MaxWidthFunction = defaultOr(overrideOptions, 'maxWidthFunction', () => {});
 
   const anchorBox = anchor.anchorBox;
   const origin = anchor.origin;

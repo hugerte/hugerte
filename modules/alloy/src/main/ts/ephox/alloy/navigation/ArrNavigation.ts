@@ -1,27 +1,26 @@
-import { Arr, Optional } from '@ephox/katamari';
 
-export type ArrCycle<A> = (values: A[], index: number, predicate: (a: A) => boolean) => Optional<A>;
+export type ArrCycle<A> = (values: A[], index: number, predicate: (a: A) => boolean) => (A) | null;
 
-const cyclePrev = <A>(values: A[], index: number, predicate: (a: A) => boolean): Optional<A> => {
-  const before = Arr.reverse(values.slice(0, index));
-  const after = Arr.reverse(values.slice(index + 1));
-  return Arr.find(before.concat(after), predicate);
+const cyclePrev = <A>(values: A[], index: number, predicate: (a: A) => boolean): (A) | null => {
+  const before = [...(values.slice(0, index))].reverse();
+  const after = [...(values.slice(index + 1))].reverse();
+  return ((before.concat(after)).find(predicate) ?? null);
 };
 
-const tryPrev = <A>(values: A[], index: number, predicate: (a: A) => boolean): Optional<A> => {
-  const before = Arr.reverse(values.slice(0, index));
-  return Arr.find(before, predicate);
+const tryPrev = <A>(values: A[], index: number, predicate: (a: A) => boolean): (A) | null => {
+  const before = [...(values.slice(0, index))].reverse();
+  return ((before).find(predicate) ?? null);
 };
 
-const cycleNext = <A>(values: A[], index: number, predicate: (a: A) => boolean): Optional<A> => {
+const cycleNext = <A>(values: A[], index: number, predicate: (a: A) => boolean): (A) | null => {
   const before = values.slice(0, index);
   const after = values.slice(index + 1);
-  return Arr.find(after.concat(before), predicate);
+  return ((after.concat(before)).find(predicate) ?? null);
 };
 
-const tryNext = <A>(values: A[], index: number, predicate: (a: A) => boolean): Optional<A> => {
+const tryNext = <A>(values: A[], index: number, predicate: (a: A) => boolean): (A) | null => {
   const after = values.slice(index + 1);
-  return Arr.find(after, predicate);
+  return ((after).find(predicate) ?? null);
 };
 
 export {

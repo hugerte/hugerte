@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as DomState from '../alien/DomState';
@@ -26,8 +25,8 @@ export default (): ForeignCache => {
       // If we haven't already setup this particular element, then generate any state and config
       // required by its behaviours and put it in the cache.
       const info = {
-        events: Obj.hasNonNullableKey(spec, 'events') ? spec.events : { },
-        eventOrder: Obj.hasNonNullableKey(spec, 'eventOrder') ? spec.eventOrder : { }
+        events: (Object.prototype.hasOwnProperty.call(spec, 'events') && (spec)['events'] != null) ? spec.events : { },
+        eventOrder: (Object.prototype.hasOwnProperty.call(spec, 'eventOrder') && (spec)['eventOrder'] != null) ? spec.eventOrder : { }
       };
 
       // NOTE: Note all behaviours are supported at the moment

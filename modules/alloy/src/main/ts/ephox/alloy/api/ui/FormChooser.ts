@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Attribute, SelectorFilter } from '@ephox/sugar';
 
 import * as FormChooserSchema from '../../ui/schema/FormChooserSchema';
@@ -18,9 +18,9 @@ import { CompositeSketchFactory } from './UiSketcher';
 const factory: CompositeSketchFactory<FormChooserDetail, FormChooserSpec> = (detail, components: AlloySpec[], _spec, _externals): SketchSpec => {
   const findByValue = (chooser: AlloyComponent, value: any) => {
     const choices = SelectorFilter.descendants(chooser.element, '.' + detail.markers.choiceClass);
-    const choiceComps = Arr.map(choices, (c) => chooser.getSystem().getByDom(c).getOrDie());
+    const choiceComps = (choices).map((c) => chooser.getSystem().getByDom(c).getOrDie());
 
-    return Arr.find(choiceComps, (c) => Representing.getValue(c) === value);
+    return ((choiceComps).find((c) => Representing.getValue(c) === value) ?? null);
   };
 
   return {
@@ -43,7 +43,7 @@ const factory: CompositeSketchFactory<FormChooserDetail, FormChooserSpec> = (det
             return chooser.getSystem().getByDom(focused).map((choice) => {
               Highlighting.highlight(chooser, choice);
               return true;
-            }).toOptional().map<boolean>(Fun.always);
+            }).toOptional().map<boolean>((() => true as const));
           }
         }),
 

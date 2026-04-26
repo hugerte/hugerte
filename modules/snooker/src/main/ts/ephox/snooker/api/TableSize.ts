@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { Css, SugarBody, SugarElement, Width } from '@ephox/sugar';
 
 import * as ColumnSizes from '../resize/ColumnSizes';
@@ -24,13 +23,13 @@ const widthLookup = (table: SugarElement<HTMLTableElement>, getter: (table: Suga
   if (SugarBody.inBody(table)) {
     return getter(table);
   } else {
-    return parseFloat(Css.getRaw(table, 'width').getOr('0'));
+    return parseFloat(Css.getRaw(table, 'width') ?? ('0'));
   }
 };
 
 const noneSize = (table: SugarElement<HTMLTableElement>): TableSize => {
   const getWidth = widthLookup(table, Width.get);
-  const zero = Fun.constant(0);
+  const zero = () => 0;
 
   const getWidths = (warehouse: Warehouse, tableSize: TableSize) =>
     ColumnSizes.getPixelWidths(warehouse, table, tableSize);
@@ -42,10 +41,10 @@ const noneSize = (table: SugarElement<HTMLTableElement>): TableSize => {
     pixelWidth: getWidth,
     getWidths,
     getCellDelta: zero,
-    singleColumnWidth: Fun.constant([ 0 ]),
+    singleColumnWidth: () => [ 0 ],
     minCellWidth: zero,
-    setElementWidth: Fun.noop,
-    adjustTableWidth: Fun.noop,
+    setElementWidth: () => {},
+    adjustTableWidth: () => {},
     isRelative: true,
     label: 'none'
   };
@@ -86,7 +85,7 @@ const percentageSize = (table: SugarElement<HTMLTableElement>): TableSize => {
 
 const pixelSize = (table: SugarElement<HTMLTableElement>): TableSize => {
   const getWidth = widthLookup(table, Width.get);
-  const getCellDelta = Fun.identity;
+  const getCellDelta = (x: any) => x;
 
   const singleColumnWidth = (w: number, delta: number) => {
     const newNext = Math.max(CellUtils.minWidth(), w + delta);

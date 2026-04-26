@@ -1,4 +1,3 @@
-import { Strings } from '@ephox/katamari';
 import { PredicateFind, Remove, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Schema from '../api/html/Schema';
@@ -11,7 +10,7 @@ const normalize = (node: Text, offset: number, count: number, schema: Schema): v
     return;
   }
   const elm = SugarElement.fromDom(node);
-  const root = PredicateFind.ancestor(elm, (el) => schema.isBlock(SugarNode.name(el))).getOr(elm);
+  const root = PredicateFind.ancestor(elm, (el) => schema.isBlock(SugarNode.name(el))) ?? (elm);
 
   // Get the whitespace
   const whitespace = node.data.slice(offset, offset + count);
@@ -26,20 +25,20 @@ const normalize = (node: Text, offset: number, count: number, schema: Schema): v
 
 const normalizeWhitespaceAfter = (node: Text, offset: number, schema: Schema): void => {
   const content = node.data.slice(offset);
-  const whitespaceCount = content.length - Strings.lTrim(content).length;
+  const whitespaceCount = content.length - (content).trimStart().length;
 
   normalize(node, offset, whitespaceCount, schema);
 };
 
 const normalizeWhitespaceBefore = (node: Text, offset: number, schema: Schema): void => {
   const content = node.data.slice(0, offset);
-  const whitespaceCount = content.length - Strings.rTrim(content).length;
+  const whitespaceCount = content.length - (content).trimEnd().length;
 
   normalize(node, offset - whitespaceCount, whitespaceCount, schema);
 };
 
 const mergeTextNodes = (prevNode: Text, nextNode: Text, schema: Schema, normalizeWhitespace?: boolean, mergeToPrev: boolean = true): Text => {
-  const whitespaceOffset = Strings.rTrim(prevNode.data).length;
+  const whitespaceOffset = (prevNode.data).trimEnd().length;
   const newNode = mergeToPrev ? prevNode : nextNode;
   const removeNode = mergeToPrev ? nextNode : prevNode;
 

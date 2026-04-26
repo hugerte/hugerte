@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -10,7 +9,7 @@ import * as AnchorLayouts from './AnchorLayouts';
 import * as ContainerOffsets from './ContainerOffsets';
 import * as ContentAnchorCommon from './ContentAnchorCommon';
 
-const placement = (component: AlloyComponent, anchorInfo: NodeAnchor, origin: Origins.OriginAdt): Optional<Anchoring> => {
+const placement = (component: AlloyComponent, anchorInfo: NodeAnchor, origin: Origins.OriginAdt): (Anchoring) | null => {
   const rootPoint = ContainerOffsets.getRootPoint(component, origin, anchorInfo);
 
   return anchorInfo.node
@@ -19,7 +18,7 @@ const placement = (component: AlloyComponent, anchorInfo: NodeAnchor, origin: Or
     .bind((target) => {
       const rect = target.dom.getBoundingClientRect();
       const nodeBox = ContentAnchorCommon.getBox(rect.left, rect.top, rect.width, rect.height);
-      const elem = anchorInfo.node.getOr(component.element);
+      const elem = anchorInfo.node ?? (component.element);
       return ContentAnchorCommon.calcNewAnchor(nodeBox, rootPoint, anchorInfo, origin, elem);
     });
 };

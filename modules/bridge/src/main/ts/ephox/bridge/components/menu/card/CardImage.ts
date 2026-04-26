@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../../core/ComponentSchema';
 
@@ -13,7 +13,7 @@ export interface CardImageSpec {
 export interface CardImage {
   type: 'cardimage';
   src: string;
-  alt: Optional<string>;
+  alt: (string) | null;
   classes: string[];
 }
 

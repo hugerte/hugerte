@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';
@@ -645,7 +644,7 @@ const Quirks = (editor: Editor): Quirks => {
   };
 
   // No-op since Mozilla seems to have fixed the caret repaint issues
-  const refreshContentEditable = Fun.noop;
+  const refreshContentEditable = () => {};
 
   const isHidden = (): boolean => {
     if (!isGecko || editor.removed) {

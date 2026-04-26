@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Compare, SugarElement, Traverse } from '@ephox/sugar';
 
 import { getClientRects, NodeClientRect } from '../dom/Dimensions';
@@ -33,12 +33,12 @@ const isOverlapping = <T extends GeomClientRect>(r1: T, r2: T) => {
 };
 
 const splitRectsPerAxis = <T extends GeomClientRect>(rects: T[], y: number): [T[], T[]] => {
-  const intersectingRects = Arr.filter(rects, (rect) => isInsideY(y, rect));
+  const intersectingRects = (rects).filter((rect) => isInsideY(y, rect));
 
   return ClientRect.boundingClientRectFromRects(intersectingRects).fold(
     () => ([[], rects ]),
     (boundingRect) => {
-      const { pass: horizontal, fail: vertical } = Arr.partition(rects, (rect) => isOverlapping(rect, boundingRect));
+      const { pass: horizontal, fail: vertical } = (rects).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((rect) => isOverlapping(rect, boundingRect))(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
       return [ horizontal, vertical ];
     }
   );
@@ -59,11 +59,11 @@ const horizontalDistance: DistanceFn = (rect, x, _y) =>
 const closestChildCaretCandidateNodeRect = (children: ChildNode[], clientX: number, clientY: number, findCloserTextNode: boolean) => {
   const caretCandidateRect = (rect: NodeClientRect) => {
     if (CaretCandidate.isCaretCandidate(rect.node)) {
-      return Optional.some(rect);
+      return rect;
     } else if (NodeType.isElement(rect.node)) {
-      return closestChildCaretCandidateNodeRect(Arr.from(rect.node.childNodes), clientX, clientY, false);
+      return closestChildCaretCandidateNodeRect(Array.from(rect.node.childNodes), clientX, clientY, false);
     } else {
-      return Optional.none();
+      return null;
     }
   };
 
@@ -76,12 +76,12 @@ const closestChildCaretCandidateNodeRect = (children: ChildNode[], clientX: numb
     });
   };
 
-  const findClosestCaretCandidateNodeRect = (rects: NodeClientRect[], distance: DistanceFn): Optional<NodeClientRect> => {
-    const sortedRects = Arr.sort(rects, (r1, r2) => distance(r1, clientX, clientY) - distance(r2, clientX, clientY));
+  const findClosestCaretCandidateNodeRect = (rects: NodeClientRect[], distance: DistanceFn): (NodeClientRect) | null => {
+    const sortedRects = [...(rects)].sort((r1, r2) => distance(r1, clientX, clientY) - distance(r2, clientX, clientY));
     return Arr.findMap(sortedRects, caretCandidateRect).map((closest) => {
       // If the closest rect is not a text node then lets try to see if the second rect has a text node that is close enough
       if (findCloserTextNode && !NodeType.isText(closest.node) && sortedRects.length > 1) {
-        return tryFindSecondBestTextNode(closest, sortedRects[1], distance).getOr(closest);
+        return tryFindSecondBestTextNode(closest, sortedRects[1], distance) ?? (closest);
       } else {
         return closest;
       }
@@ -89,31 +89,31 @@ const closestChildCaretCandidateNodeRect = (children: ChildNode[], clientX: numb
   };
 
   const [ horizontalRects, verticalRects ] = splitRectsPerAxis(getClientRects(children), clientY);
-  const { pass: above, fail: below } = Arr.partition(verticalRects, (rect) => rect.top < clientY);
+  const { pass: above, fail: below } = (verticalRects).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((rect) => rect.top < clientY)(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
 
   return findClosestCaretCandidateNodeRect(horizontalRects, horizontalDistance)
     .orThunk(() => findClosestCaretCandidateNodeRect(below, ClientRect.distanceToRectEdgeFromXY))
     .orThunk(() => findClosestCaretCandidateNodeRect(above, ClientRect.distanceToRectEdgeFromXY));
 };
 
-const traverseUp = (rootElm: SugarElement<Node>, scope: SugarElement<Element>, clientX: number, clientY: number): Optional<NodeClientRect> => {
-  const helper = (scope: SugarElement<Element>, prevScope: Optional<SugarElement<Element>>): Optional<NodeClientRect> => {
+const traverseUp = (rootElm: SugarElement<Node>, scope: SugarElement<Element>, clientX: number, clientY: number): (NodeClientRect) | null => {
+  const helper = (scope: SugarElement<Element>, prevScope: (SugarElement<Element>) | null): (NodeClientRect) | null => {
     const isDragGhostContainer = (node: ChildNode) => NodeType.isElement(node) && node.classList.contains('mce-drag-container');
-    const childNodesWithoutGhost = Arr.filter(scope.dom.childNodes, Fun.not(isDragGhostContainer));
+    const childNodesWithoutGhost = (scope.dom.childNodes).filter((x: any) => !(isDragGhostContainer)(x));
 
     return prevScope.fold(
       () => closestChildCaretCandidateNodeRect(childNodesWithoutGhost, clientX, clientY, true),
       (prevScope) => {
-        const uncheckedChildren = Arr.filter(childNodesWithoutGhost, (node) => node !== prevScope.dom);
+        const uncheckedChildren = (childNodesWithoutGhost).filter((node) => node !== prevScope.dom);
         return closestChildCaretCandidateNodeRect(uncheckedChildren, clientX, clientY, true);
       }
     ).orThunk(() => {
-      const parent = Compare.eq(scope, rootElm) ? Optional.none() : Traverse.parentElement(scope);
-      return parent.bind((newScope) => helper(newScope, Optional.some(scope)));
+      const parent = Compare.eq(scope, rootElm) ? null : Traverse.parentElement(scope);
+      return parent.bind((newScope) => helper(newScope, scope));
     });
   };
 
-  return helper(scope, Optional.none());
+  return helper(scope, null);
 };
 
 // Rough description of how this algorithm works:
@@ -125,16 +125,16 @@ const traverseUp = (rootElm: SugarElement<Node>, scope: SugarElement<Element>, c
 //
 // This is less accurate but more performant, since for the common case you are likely to find a caret candidate close to where you are clicking.
 // The more accurate algorithm would be to read all caret candidates rects in the whole document in and in one big step to find the closest one, but that is just too slow for bigger documents.
-const closestCaretCandidateNodeRect = (root: HTMLElement, clientX: number, clientY: number): Optional<NodeClientRect> => {
+const closestCaretCandidateNodeRect = (root: HTMLElement, clientX: number, clientY: number): (NodeClientRect) | null => {
   const rootElm = SugarElement.fromDom(root);
   const ownerDoc = Traverse.documentOrOwner(rootElm);
   const elementAtPoint = SugarElement.fromPoint(ownerDoc, clientX, clientY).filter((elm) => Compare.contains(rootElm, elm));
-  const element = elementAtPoint.getOr(rootElm);
+  const element = elementAtPoint ?? (rootElm);
 
   return traverseUp(rootElm, element, clientX, clientY);
 };
 
-const closestFakeCaretCandidate = (root: HTMLElement, clientX: number, clientY: number): Optional<FakeCaretInfo> =>
+const closestFakeCaretCandidate = (root: HTMLElement, clientX: number, clientY: number): (FakeCaretInfo) | null =>
   closestCaretCandidateNodeRect(root, clientX, clientY)
     .filter((rect) => isFakeCaretTarget(rect.node))
     .map((rect) => clientInfo(rect, clientX));

@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { Attribute, Css, SugarElement } from '@ephox/sugar';
 
 import { Positioning } from '../../api/behaviour/Positioning';
@@ -33,7 +32,7 @@ const open = (sandbox: AlloyComponent, sConfig: SandboxingConfig, sState: Sandbo
   return newState;
 };
 
-const setContent = (sandbox: AlloyComponent, sConfig: SandboxingConfig, sState: SandboxingState, data: AlloySpec): Optional<AlloyComponent> =>
+const setContent = (sandbox: AlloyComponent, sConfig: SandboxingConfig, sState: SandboxingState, data: AlloySpec): (AlloyComponent) | null =>
   sState.get().map(() => rebuild(sandbox, sConfig, sState, data));
 
 // TODO AP-191 write a test for openWhileCloaked
@@ -61,7 +60,7 @@ const isPartOf = (sandbox: AlloyComponent, sConfig: SandboxingConfig, sState: Sa
     (data) => sConfig.isPartOf(sandbox, data, queryElem)
   );
 
-const getState = (_sandbox: AlloyComponent, _sConfig: SandboxingConfig, sState: SandboxingState): Optional<AlloyComponent> =>
+const getState = (_sandbox: AlloyComponent, _sConfig: SandboxingConfig, sState: SandboxingState): (AlloyComponent) | null =>
   sState.get();
 
 const store = (sandbox: AlloyComponent, cssKey: string, attr: string, newValue: string): void => {
@@ -88,10 +87,7 @@ const cloak = (sandbox: AlloyComponent, sConfig: SandboxingConfig, _sState: Sand
   store(sandbox, 'visibility', sConfig.cloakVisibilityAttr, 'hidden');
 };
 
-const hasPosition = (element: SugarElement<HTMLElement>): boolean => Arr.exists(
-  [ 'top', 'left', 'right', 'bottom' ],
-  (pos) => Css.getRaw(element, pos).isSome()
-);
+const hasPosition = (element: SugarElement<HTMLElement>): boolean => ([ 'top', 'left', 'right', 'bottom' ]).some((pos) => Css.getRaw(element, pos) !== null);
 
 const decloak = (sandbox: AlloyComponent, sConfig: SandboxingConfig, _sState: SandboxingState): void => {
   if (!hasPosition(sandbox.element)) {

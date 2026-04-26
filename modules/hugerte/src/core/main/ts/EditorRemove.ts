@@ -1,4 +1,3 @@
-import { Optional, Type } from '@ephox/katamari';
 
 import DOMUtils from './api/dom/DOMUtils';
 import EditorSelection from './api/dom/Selection';
@@ -15,7 +14,7 @@ const restoreOriginalStyles = (editor: Editor) => {
   DOM.setStyle(editor.id, 'display', editor.orgDisplay);
 };
 
-const safeDestroy = (x: any) => Optional.from(x).each((x) => x.destroy());
+const safeDestroy = (x: any) => (x ?? null).each((x) => x.destroy());
 
 const clearDomReferences = (editor: Editor) => {
   const ed = editor as Nullable<Editor>;
@@ -54,7 +53,7 @@ const remove = (editor: Editor): void => {
     editor.unbindAllNativeEvents();
 
     // Remove any hidden input
-    if (editor.hasHiddenInput && Type.isNonNullable(element?.nextSibling)) {
+    if (editor.hasHiddenInput && (element?.nextSibling) != null) {
       DOM.remove(element.nextSibling);
     }
 

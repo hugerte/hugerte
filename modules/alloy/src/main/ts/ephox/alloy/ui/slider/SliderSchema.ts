@@ -1,5 +1,5 @@
 import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { Keying } from '../../api/behaviour/Keying';
 import { Representing } from '../../api/behaviour/Representing';
@@ -19,11 +19,11 @@ interface SliderModelSpec {
 const SliderSchema: FieldProcessor[] = [
   FieldSchema.defaulted('stepSize', 1),
   FieldSchema.defaulted('speedMultiplier', 10),
-  FieldSchema.defaulted('onChange', Fun.noop),
-  FieldSchema.defaulted('onChoose', Fun.noop),
-  FieldSchema.defaulted('onInit', Fun.noop),
-  FieldSchema.defaulted('onDragStart', Fun.noop),
-  FieldSchema.defaulted('onDragEnd', Fun.noop),
+  FieldSchema.defaulted('onChange', () => {}),
+  FieldSchema.defaulted('onChoose', () => {}),
+  FieldSchema.defaulted('onInit', () => {}),
+  FieldSchema.defaulted('onDragStart', () => {}),
+  FieldSchema.defaulted('onDragEnd', () => {}),
   FieldSchema.defaulted('snapToGrid', false),
   FieldSchema.defaulted('rounded', true),
   FieldSchema.option('snapStart'),

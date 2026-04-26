@@ -1,4 +1,4 @@
-import { Cell, Fun, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { EventArgs, Focus, SugarShadowDom } from '@ephox/sugar';
 
 import * as ElementFromPoint from '../../alien/ElementFromPoint';
@@ -30,7 +30,7 @@ type TouchHoverState = (comp: AlloyComponent) => void;
 
 const factory: CompositeSketchFactory<TouchMenuDetail, TouchMenuSpec> = (detail, components, spec, externals) => {
 
-  const getMenu = (component: AlloyComponent): Optional<AlloyComponent> => {
+  const getMenu = (component: AlloyComponent): (AlloyComponent) | null => {
     const sandbox = Coupling.getCoupled(component, 'sandbox');
     return Sandboxing.getState(sandbox);
   };
@@ -62,7 +62,7 @@ const factory: CompositeSketchFactory<TouchMenuDetail, TouchMenuSpec> = (detail,
 
     domModification: {
       attributes: {
-        role: detail.role.getOr('button')
+        role: detail.role ?? ('button')
       }
     },
 
@@ -106,7 +106,7 @@ const factory: CompositeSketchFactory<TouchMenuDetail, TouchMenuSpec> = (detail,
                       'closed',
                       detail.menuTransition.map((t) => ({
                         transition: t
-                      } as TransitionPropertiesSpec)).getOr({ })
+                      } as TransitionPropertiesSpec)) ?? ({ })
                     ),
 
                     onFinish: (view, destination) => {
@@ -131,7 +131,7 @@ const factory: CompositeSketchFactory<TouchMenuDetail, TouchMenuSpec> = (detail,
 
     events: AlloyEvents.derive([
 
-      AlloyEvents.abort(NativeEvents.contextmenu(), Fun.always),
+      AlloyEvents.abort(NativeEvents.contextmenu(), (() => true as const)),
 
       AlloyEvents.run(NativeEvents.touchstart(), (comp, _se) => {
         Toggling.on(comp);
@@ -147,7 +147,7 @@ const factory: CompositeSketchFactory<TouchMenuDetail, TouchMenuSpec> = (detail,
           forceHoverOn(component);
           const iMenu = Menu.sketch({
             ...externals.menu(),
-            items: items.getOr([])
+            items: items ?? ([])
           });
           const sandbox = Coupling.getCoupled(component, 'sandbox');
           const anchor = detail.getAnchor(component);
@@ -173,8 +173,8 @@ const factory: CompositeSketchFactory<TouchMenuDetail, TouchMenuSpec> = (detail,
 
             // could not find an item, so check the button itself
             const hoverF = ElementFromPoint.insideComponent(component, e.clientX, e.clientY).fold<TouchHoverState>(
-              Fun.constant(hoverOff),
-              Fun.constant(hoverOn)
+              () => hoverOff,
+              () => hoverOn
             );
 
             hoverF(component);

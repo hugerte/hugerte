@@ -21,7 +21,7 @@ interface TypedItemAdt<E, D> {
 
 export interface TypedItem<E, D> extends TypedItemAdt<E, D> {
   isBoundary(): boolean;
-  toText(): Optional<E>;
+  toText(): (E) | null;
   is(other: E): boolean;
   len(): number;
 }
@@ -40,15 +40,15 @@ const adt: {
   { nonEditable: [ 'item', 'universe' ] }
 ]);
 
-const no = Fun.never;
-const yes = Fun.always;
-const zero = Fun.constant(0);
-const one = Fun.constant(1);
+const no = (() => false as const);
+const yes = (() => true as const);
+const zero = () => 0;
+const one = () => 1;
 
 const ext = <E, D>(ti: TypedItemAdt<E, D>): TypedItem<E, D> => ({
   ...ti,
   isBoundary: () => ti.fold(yes, no, no, no),
-  toText: () => ti.fold<Optional<E>>(Optional.none, Optional.none, (i) => Optional.some(i), Optional.none),
+  toText: () => ti.fold<(E) | null>(Optional.none, Optional.none, (i) => i, Optional.none),
   is: (other) => ti.fold(no, no, (i, u) => u.eq(i, other), no),
   len: () => ti.fold(zero, one, (i, u) => u.property().getText(i).length, one)
 });
@@ -56,10 +56,10 @@ const ext = <E, D>(ti: TypedItemAdt<E, D>): TypedItem<E, D> => ({
 type TypedItemConstructor = <E, D>(item: E, universe: Universe<E, D>) => TypedItem<E, D>;
 
 // currently Fun.compose does not create the correct output type for functions with generic types
-const text = Fun.compose(ext as any, adt.text as any) as TypedItemConstructor;
-const boundary = Fun.compose(ext as any, adt.boundary as any) as TypedItemConstructor;
-const empty = Fun.compose(ext as any, adt.empty as any) as TypedItemConstructor;
-const nonEditable = Fun.compose(ext as any, adt.empty as any) as TypedItemConstructor;
+const text = ((x: any) => (ext as any)((adt.text as any)(x))) as TypedItemConstructor;
+const boundary = ((x: any) => (ext as any)((adt.boundary as any)(x))) as TypedItemConstructor;
+const empty = ((x: any) => (ext as any)((adt.empty as any)(x))) as TypedItemConstructor;
+const nonEditable = ((x: any) => (ext as any)((adt.empty as any)(x))) as TypedItemConstructor;
 
 const cata = <E, D, U>(subject: TypedItem<E, D>, onBoundary: Handler<E, D, U>, onEmpty: Handler<E, D, U>, onText: Handler<E, D, U>, onNonEditable: Handler<E, D, U>): U => {
   return subject.fold(onBoundary, onEmpty, onText, onNonEditable);

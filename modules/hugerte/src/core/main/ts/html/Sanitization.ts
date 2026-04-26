@@ -1,5 +1,4 @@
-import { Arr, Fun, Obj, Strings, Type } from '@ephox/katamari';
-import { Attribute, NodeTypes, Remove, Replication, SugarElement } from '@ephox/sugar';
+import { Attribute, Remove, Replication, SugarElement } from '@ephox/sugar';
 import createDompurify, { Config, DOMPurify, UponSanitizeAttributeHookEvent, UponSanitizeElementHookEvent } from 'dompurify';
 
 import { DomParserSettings } from '../api/html/DomParser';
@@ -26,21 +25,21 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
   const specialElements = schema.getSpecialElements();
 
   // Pad conditional comments if they aren't allowed
-  if (node.nodeType === NodeTypes.COMMENT && !settings.allow_conditional_comments && /^\[if/i.test(node.nodeValue ?? '')) {
+  if (node.nodeType === Node.COMMENT_NODE && !settings.allow_conditional_comments && /^\[if/i.test(node.nodeValue ?? '')) {
     node.nodeValue = ' ' + node.nodeValue;
   }
 
   const lcTagName = evt?.tagName ?? node.nodeName.toLowerCase();
 
   if (scope !== 'html' && schema.isValid(scope)) {
-    if (Type.isNonNullable(evt)) {
+    if ((evt) != null) {
       evt.allowedTags[lcTagName] = true;
     }
     return;
   }
 
   // Just leave non-elements such as text and comments up to dompurify
-  if (node.nodeType !== NodeTypes.ELEMENT || lcTagName === 'body') {
+  if (node.nodeType !== Node.ELEMENT_NODE || lcTagName === 'body') {
     return;
   }
 
@@ -52,7 +51,7 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
 
   // Cleanup bogus elements
   const bogus = Attribute.get(element, 'data-mce-bogus');
-  if (!isInternalElement && Type.isString(bogus)) {
+  if (!isInternalElement && typeof (bogus) === 'string') {
     if (bogus === 'all') {
       Remove.remove(element);
     } else {
@@ -65,14 +64,14 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
   const rule = schema.getElementRule(lcTagName);
   if (validate && !rule) {
     // If a special element is invalid, then remove the entire element instead of unwrapping
-    if (Obj.has(specialElements, lcTagName)) {
+    if (Object.prototype.hasOwnProperty.call(specialElements, lcTagName)) {
       Remove.remove(element);
     } else {
       Remove.unwrap(element);
     }
     return;
   } else {
-    if (Type.isNonNullable(evt)) {
+    if ((evt) != null) {
       evt.allowedTags[lcTagName] = true;
     }
   }
@@ -80,17 +79,17 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
   // Validate the element using the attribute rules
   if (validate && rule && !isInternalElement) {
     // Fix the attributes for the element, unwrapping it if we have to
-    Arr.each(rule.attributesForced ?? [], (attr) => {
+    (rule.attributesForced ?? []).forEach((attr) => {
       Attribute.set(element, attr.name, attr.value === '{$uid}' ? `mce_${uid++}` : attr.value);
     });
-    Arr.each(rule.attributesDefault ?? [], (attr) => {
+    (rule.attributesDefault ?? []).forEach((attr) => {
       if (!Attribute.has(element, attr.name)) {
         Attribute.set(element, attr.name, attr.value === '{$uid}' ? `mce_${uid++}` : attr.value);
       }
     });
 
     // If none of the required attributes were found then remove
-    if (rule.attributesRequired && !Arr.exists(rule.attributesRequired, (attr) => Attribute.has(element, attr))) {
+    if (rule.attributesRequired && !(rule.attributesRequired).some((attr) => Attribute.has(element, attr))) {
       Remove.unwrap(element);
       return;
     }
@@ -122,7 +121,7 @@ const processAttr = (ele: Element, settings: DomParserSettings, schema: Schema, 
     }
 
     // We need to tell DOMPurify to forcibly keep the attribute if it's an SVG data URI and svg data URIs are allowed
-    if (settings.allow_svg_data_urls && Strings.startsWith(attrValue, 'data:image/svg+xml')) {
+    if (settings.allow_svg_data_urls && (attrValue).startsWith('data:image/svg+xml')) {
       evt.forceKeepAttr = true;
     }
     // For internal elements always keep the attribute if the attribute name is id, class or style
@@ -138,7 +137,7 @@ const shouldKeepAttribute = (settings: DomParserSettings, schema: Schema, scope:
   }
 
   return !(attrName in filteredUrlAttrs && URI.isInvalidUri(settings, attrValue, tagName)) &&
-    (!settings.validate || schema.isValid(tagName, attrName) || Strings.startsWith(attrName, 'data-') || Strings.startsWith(attrName, 'aria-'));
+    (!settings.validate || schema.isValid(tagName, attrName) || (attrName).startsWith('data-') || (attrName).startsWith('aria-'));
 };
 
 const isRequiredAttributeOfInternalElement = (ele: Element, attrName: string): boolean =>
@@ -255,7 +254,7 @@ const getSanitizer = (settings: DomParserSettings, schema: Schema): Sanitizer =>
       namespaceTracker.reset();
     };
 
-    const sanitizeNamespaceElement = Fun.noop;
+    const sanitizeNamespaceElement = () => {};
 
     return {
       sanitizeHtmlElement,

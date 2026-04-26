@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import Tools from 'hugerte/core/api/util/Tools';
 
@@ -6,12 +6,12 @@ import { ListGroup, ListItem, ListValue, UserListItem } from '../ui/DialogTypes'
 
 export type ListExtractor = (item: UserListItem) => string;
 
-const getValue: ListExtractor = (item) => Type.isString(item.value) ? item.value : '';
+const getValue: ListExtractor = (item) => typeof (item.value) === 'string' ? item.value : '';
 
 const getText = (item: UserListItem): string => {
-  if (Type.isString(item.text)) {
+  if (typeof (item.text) === 'string') {
     return item.text;
-  } else if (Type.isString(item.title)) {
+  } else if (typeof (item.title) === 'string') {
     return item.title;
   } else {
     return '';
@@ -33,32 +33,32 @@ const sanitizeList = (list: UserListItem[], extractValue: ListExtractor): ListIt
   return out;
 };
 
-const sanitizer = (extractor: ListExtractor = getValue) => (list: UserListItem[] | undefined | false): Optional<ListItem[]> => {
+const sanitizer = (extractor: ListExtractor = getValue) => (list: UserListItem[] | undefined | false): (ListItem[]) | null => {
   if (list) {
-    return Optional.from(list).map((list) => sanitizeList(list, extractor));
+    return (list ?? null).map((list) => sanitizeList(list, extractor));
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
-const sanitize = (list: UserListItem[] | undefined): Optional<ListItem[]> =>
+const sanitize = (list: UserListItem[] | undefined): (ListItem[]) | null =>
   sanitizer(getValue)(list);
 
 const isGroup = (item: ListItem): item is ListGroup =>
-  Obj.has(item as ListGroup, 'items');
+  Object.prototype.hasOwnProperty.call(item as ListGroup, 'items');
 
-const findEntryDelegate = (list: ListItem[], value: string): Optional<ListValue> =>
+const findEntryDelegate = (list: ListItem[], value: string): (ListValue) | null =>
   Arr.findMap(list, (item) => {
     if (isGroup(item)) {
       return findEntryDelegate(item.items, value);
     } else if (item.value === value) {
-      return Optional.some(item);
+      return item;
     } else {
-      return Optional.none();
+      return null;
     }
   });
 
-const findEntry = (optList: Optional<ListItem[]>, value: string): Optional<ListValue> =>
+const findEntry = (optList: (ListItem[]) | null, value: string): (ListValue) | null =>
   optList.bind((list) => findEntryDelegate(list, value));
 
 export const ListUtils = {

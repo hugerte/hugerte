@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { DomStructure } from '@ephox/robin';
 import { Compare, CursorPosition, InsertAll, PredicateFind, Remove, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
 
@@ -6,13 +5,13 @@ const merge = (cells: SugarElement<HTMLTableCellElement>[]): void => {
   const isBr = SugarNode.isTag('br');
 
   const advancedBr = (children: SugarElement<Node>[]) => {
-    return Arr.forall(children, (c) => {
+    return (children).every((c) => {
       return isBr(c) || (SugarNode.isText(c) && SugarText.get(c).trim().length === 0);
     });
   };
 
   const isListItem = (el: SugarElement<Node>) => {
-    return SugarNode.name(el) === 'li' || PredicateFind.ancestor(el, DomStructure.isList).isSome();
+    return SugarNode.name(el) === 'li' || PredicateFind.ancestor(el, DomStructure.isList) !== null;
   };
 
   const siblingIsBlock = (el: SugarElement<Node>) => {
@@ -24,7 +23,7 @@ const merge = (cells: SugarElement<HTMLTableCellElement>[]): void => {
         return SugarNode.name(rightSibling) === 'img' ? false : true;
       }
       return false;
-    }).getOr(false);
+    }) ?? (false);
   };
 
   const markCell = (cell: SugarElement<HTMLTableCellElement>) => {
@@ -33,11 +32,11 @@ const merge = (cells: SugarElement<HTMLTableCellElement>[]): void => {
       return Traverse.parent(rightEdge).map((parent) => {
         return rightSiblingIsBlock === true || isListItem(parent) || isBr(rightEdge) || (DomStructure.isBlock(parent) && !Compare.eq(cell, parent)) ? [] : [ SugarElement.fromTag('br') ];
       });
-    }).getOr([]);
+    }) ?? ([]);
   };
 
   const markContent = () => {
-    const content = Arr.bind(cells, (cell) => {
+    const content = (cells).flatMap((cell) => {
       const children = Traverse.children(cell);
       return advancedBr(children) ? [ ] : children.concat(markCell(cell));
     });

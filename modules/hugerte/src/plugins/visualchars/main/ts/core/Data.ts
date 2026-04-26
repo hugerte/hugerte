@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 type CharMap = Record<string, string>;
 
@@ -10,21 +9,21 @@ export const charMap: CharMap = {
 export const charMapToRegExp = (charMap: CharMap, global?: boolean): RegExp => {
   let regExp = '';
 
-  Obj.each(charMap, (_value, key) => {
+  Object.entries(charMap).forEach(([_k, _v]: [any, any]) => ((_value, key) => {
     regExp += key;
-  });
+  })(_v, _k));
 
   return new RegExp('[' + regExp + ']', global ? 'g' : '');
 };
 
 export const charMapToSelector = (charMap: CharMap): string => {
   let selector = '';
-  Obj.each(charMap, (value) => {
+  Object.entries(charMap).forEach(([_k, _v]: [any, any]) => ((value) => {
     if (selector) {
       selector += ',';
     }
     selector += 'span.mce-' + value;
-  });
+  })(_v, _k));
 
   return selector;
 };

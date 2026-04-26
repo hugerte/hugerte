@@ -1,5 +1,5 @@
 import { AlloyComponent, Behaviour, Boxes, Channels, Docking, DockingTypes, Focusing, Receiving } from '@ephox/alloy';
-import { Arr, Optional, Result, Singleton } from '@ephox/katamari';
+import { Result, Singleton } from '@ephox/katamari';
 import { Class, Classes, Compare, Css, Focus, Height, Scroll, SugarElement, SugarLocation, Traverse, Visibility, Width } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -52,7 +52,7 @@ const scrollFromBehindHeader = (e: ScrollIntoViewEvent, containerHeader: SugarEl
   }
 };
 
-const isDockedMode = (header: AlloyComponent, mode: 'top' | 'bottom') => Arr.contains(Docking.getModes(header), mode);
+const isDockedMode = (header: AlloyComponent, mode: 'top' | 'bottom') => (Docking.getModes(header)).includes(mode);
 
 const updateIframeContentFlow = (header: AlloyComponent): void => {
   const getOccupiedHeight = (elm: SugarElement<HTMLElement>) => Height.getOuter(elm) +
@@ -108,12 +108,12 @@ const restoreFocus = (headerElem: SugarElement, focusedElem: SugarElement) => {
   ).each(() => Focus.focus(focusedElem));
 };
 
-const findFocusedElem = (rootElm: SugarElement, lazySink: () => Result<AlloyComponent, Error>): Optional<SugarElement> =>
+const findFocusedElem = (rootElm: SugarElement, lazySink: () => Result<AlloyComponent, Error>): (SugarElement) | null =>
   // Check to see if an element is focused inside the header or inside the sink
   // and if so store the element so we can restore it later
   Focus.search(rootElm).orThunk(() => lazySink().toOptional().bind((sink) => Focus.search(sink.element)));
 
-const setup = (editor: Editor, sharedBackstage: UiFactoryBackstageShared, lazyHeader: () => Optional<AlloyComponent>): void => {
+const setup = (editor: Editor, sharedBackstage: UiFactoryBackstageShared, lazyHeader: () => (AlloyComponent) | null): void => {
   if (!editor.inline) {
     // If using bottom toolbar then when the editor resizes we need to reset docking
     // otherwise it won't know the original toolbar position has moved
@@ -166,7 +166,7 @@ const setup = (editor: Editor, sharedBackstage: UiFactoryBackstageShared, lazyHe
   });
 };
 
-const isDocked = (lazyHeader: () => Optional<AlloyComponent>): boolean => lazyHeader().map(Docking.isDocked).getOr(false);
+const isDocked = (lazyHeader: () => (AlloyComponent) | null): boolean => lazyHeader().map(Docking.isDocked) ?? (false);
 
 const getIframeBehaviours = () => [
   Receiving.config({
@@ -211,7 +211,7 @@ const getBehaviours = (editor: Editor, sharedBackstage: UiFactoryBackstageShared
           const headerHeight = Height.getOuter(comp.element);
           const container = editor.inline ? editor.getContentAreaContainer() : editor.getContainer();
 
-          return Optional.from(container).map((c) => {
+          return (container ?? null).map((c) => {
             const box = Boxes.box(SugarElement.fromDom(c));
             const optScrollingContext = ScrollingContext.detectWhenSplitUiMode(editor, comp.element);
             return optScrollingContext.fold(
@@ -279,7 +279,7 @@ const getBehaviours = (editor: Editor, sharedBackstage: UiFactoryBackstageShared
             // No scrolling context, so just window
             return {
               bounds: Boxes.bounds(boundsWithoutOffset.x, top, boundsWithoutOffset.width, height),
-              optScrollEnv: Optional.none()
+              optScrollEnv: null
             };
           },
           (sc) => {
@@ -287,10 +287,10 @@ const getBehaviours = (editor: Editor, sharedBackstage: UiFactoryBackstageShared
             const combinedBounds = ScrollingContext.getBoundsFrom(sc);
             return {
               bounds: combinedBounds,
-              optScrollEnv: Optional.some({
+              optScrollEnv: {
                 currentScrollTop: sc.element.dom.scrollTop,
                 scrollElmTop: SugarLocation.absolute(sc.element).top
-              })
+              }
             };
           }
         );

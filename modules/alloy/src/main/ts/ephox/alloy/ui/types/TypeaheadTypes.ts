@@ -1,4 +1,4 @@
-import { Cell, Future, Optional, Result } from '@ephox/katamari';
+import { Cell, Future, Result } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -52,7 +52,7 @@ export interface TypeaheadDetail extends CommonDropdownDetail<TieredData>, Input
   onItemExecute: (typeahead: AlloyComponent, sandbox: AlloyComponent, item: AlloyComponent, value: any) => void;
   dismissOnBlur: boolean;
 
-  initialData: Optional<TypeaheadData>;
+  initialData: (TypeaheadData) | null;
 
   markers: {
     openClass: string;
@@ -63,7 +63,7 @@ export interface TypeaheadDetail extends CommonDropdownDetail<TieredData>, Input
   // This is required so that we can find the Typeahead from the TieredMenu. We can't rely on just
   // looking up the Typeahead's uid from the system, because the TieredMenu and Input can be in
   // different alloy systems / motherships.
-  lazyTypeaheadComp: Cell<Optional<AlloyComponent>>;
+  lazyTypeaheadComp: Cell<(AlloyComponent) | null>;
 }
 
 export interface TypeaheadData extends ItemDataTuple {
@@ -74,12 +74,12 @@ export interface TypeaheadSpec extends CompositeSketchSpec, InputSpec {
   // TODO: Add everything else.
   uid?: string;
   lazySink?: (comp: AlloyComponent) => Result<AlloyComponent, Error>;
-  fetch: (comp: AlloyComponent) => Future<Optional<TieredData>>;
+  fetch: (comp: AlloyComponent) => Future<(TieredData) | null>;
   components?: AlloySpec[];
   typeaheadBehaviours?: AlloyBehaviourRecord;
   sandboxClasses?: string[];
   sandboxBehaviours?: AlloyBehaviourRecord;
-  getHotspot?: (comp: AlloyComponent) => Optional<AlloyComponent>;
+  getHotspot?: (comp: AlloyComponent) => (AlloyComponent) | null;
 
   minChars?: number;
   responseTime?: number;

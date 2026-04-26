@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Type, Unique } from '@ephox/katamari';
+import { Unique } from '@ephox/katamari';
 
 import Tools from '../util/Tools';
 import DOMUtils from './DOMUtils';
@@ -206,23 +206,23 @@ class ScriptLoader {
 
     const execCallbacks = (name: 'resolve' | 'reject', url: string) => {
       // Execute URL callback functions
-      Obj.get(self.scriptLoadedCallbacks, url).each((callbacks) => {
-        Arr.each(callbacks, (callback) => callback[name](url));
+      ((self.scriptLoadedCallbacks)[url] ?? null).each((callbacks) => {
+        (callbacks).forEach((callback) => callback[name](url));
       });
 
       delete self.scriptLoadedCallbacks[url];
     };
 
     const processResults = (results: Array<PromiseSettledResult<void>>): Promise<void> => {
-      const failures = Arr.filter(results, (result): result is PromiseRejectedResult => result.status === 'rejected');
+      const failures = (results).filter((result): result is PromiseRejectedResult => result.status === 'rejected');
       if (failures.length > 0) {
-        return Promise.reject(Arr.bind(failures, ({ reason }) => Type.isArray(reason) ? reason : [ reason ]));
+        return Promise.reject((failures).flatMap(({ reason }) => Array.isArray(reason) ? reason : [ reason ]));
       } else {
         return Promise.resolve();
       }
     };
 
-    const load = (urls: string[]) => Promise.allSettled(Arr.map(urls, (url): Promise<void> => {
+    const load = (urls: string[]) => Promise.allSettled((urls).map((url): Promise<void> => {
       // Script is already loaded then execute script callbacks directly
       if (self.states[url] === LOADED) {
         execCallbacks('resolve', url);
@@ -261,7 +261,7 @@ class ScriptLoader {
 
         // Start loading the next queued item
         const nextQueuedItem = self.queueLoadedCallbacks.shift();
-        Optional.from(nextQueuedItem).each(Fun.call);
+        (nextQueuedItem ?? null).each(((f: () => any) => f()));
 
         return processResults(results);
       });

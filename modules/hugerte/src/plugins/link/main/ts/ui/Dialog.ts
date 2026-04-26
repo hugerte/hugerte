@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -23,7 +23,7 @@ const handleSubmit = (editor: Editor, info: LinkDialogInfo) => (api: Dialog.Dial
 
   // Check if a key is defined, meaning it was a field in the dialog. If it is,
   // then check if it's changed and return none if nothing has changed.
-  const getChangedValue = (key: LinkDialogKey) => Optional.from(data[key]).filter((value) => !Optionals.is(info.anchor[key], value));
+  const getChangedValue = (key: LinkDialogKey) => (data[key] ?? null).filter((value) => !(info.anchor[key] !== null && (info.anchor[key]) === (value)));
 
   const changedData = {
     href: data.url.value,
@@ -36,7 +36,7 @@ const handleSubmit = (editor: Editor, info: LinkDialogInfo) => (api: Dialog.Dial
 
   const attachState = {
     href: data.url.value,
-    attach: data.url.meta !== undefined && data.url.meta.attach ? data.url.meta.attach : Fun.noop
+    attach: data.url.meta !== undefined && data.url.meta.attach ? data.url.meta.attach : () => {}
   };
 
   DialogConfirms.preprocess(editor, changedData).then((pData) => {
@@ -51,9 +51,9 @@ const collectData = (editor: Editor): Promise<LinkDialogInfo> => {
   return DialogInfo.collect(editor, anchorNode);
 };
 
-const getInitialData = (info: LinkDialogInfo, defaultTarget: Optional<string>): LinkDialogData => {
+const getInitialData = (info: LinkDialogInfo, defaultTarget: (string) | null): LinkDialogData => {
   const anchor = info.anchor;
-  const url = anchor.url.getOr('');
+  const url = anchor.url ?? ('');
 
   return {
     url: {
@@ -64,13 +64,13 @@ const getInitialData = (info: LinkDialogInfo, defaultTarget: Optional<string>): 
         }
       }
     },
-    text: anchor.text.getOr(''),
-    title: anchor.title.getOr(''),
+    text: anchor.text ?? (''),
+    title: anchor.title ?? (''),
     anchor: url,
     link: url,
-    rel: anchor.rel.getOr(''),
-    target: anchor.target.or(defaultTarget).getOr(''),
-    linkClass: anchor.linkClass.getOr('')
+    rel: anchor.rel ?? (''),
+    target: anchor.target.or(defaultTarget) ?? (''),
+    linkClass: anchor.linkClass ?? ('')
   };
 };
 
@@ -102,7 +102,7 @@ const makeDialog = (settings: LinkDialogInfo, onSubmit: (api: Dialog.DialogInsta
     }
   ] : [];
 
-  const defaultTarget: Optional<string> = Optional.from(Options.getDefaultLinkTarget(editor));
+  const defaultTarget: (string) | null = (Options.getDefaultLinkTarget(editor) ?? null);
 
   const initialData = getInitialData(settings, defaultTarget);
   const catalogs = settings.catalogs;
@@ -114,13 +114,13 @@ const makeDialog = (settings: LinkDialogInfo, onSubmit: (api: Dialog.DialogInsta
       urlInput,
       displayText,
       titleText,
-      Optionals.cat([
+      ([
         catalogs.anchor.map(ListOptions.createUi('anchor', 'Anchors')),
         catalogs.rels.map(ListOptions.createUi('rel', 'Rel')),
         catalogs.targets.map(ListOptions.createUi('target', 'Open link in...')),
         catalogs.link.map(ListOptions.createUi('link', 'Link list')),
         catalogs.classes.map(ListOptions.createUi('linkClass', 'Class'))
-      ])
+      ]).filter((_x: any) => _x !== null)
     ])
   };
   return {

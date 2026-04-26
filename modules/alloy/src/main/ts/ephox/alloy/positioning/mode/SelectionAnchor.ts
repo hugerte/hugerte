@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Obj, Optional, Unicode } from '@ephox/katamari';
 import { Insert, Remove, SimRange, SimSelection, SugarElement, SugarNode, Traverse, WindowSelection } from '@ephox/sugar';
 
 import * as Descend from '../../alien/Descend';
@@ -18,7 +17,7 @@ const descendOnce = (element: SugarElement<Node>, offset: number): Descend.Eleme
 const isSimRange = (detail: SimRange | SelectionTableCellRange): detail is SimRange =>
   (detail as SimRange).foffset !== undefined;
 
-const getAnchorSelection = (win: Window, anchorInfo: SelectionAnchor): Optional<SimRange | SelectionTableCellRange> => {
+const getAnchorSelection = (win: Window, anchorInfo: SelectionAnchor): (SimRange | SelectionTableCellRange) | null => {
   // FIX TEST Test both providing a getSelection and not providing a getSelection
   const getSelection = anchorInfo.getSelection.getOrThunk(() => () => WindowSelection.getExact(win));
 
@@ -33,7 +32,7 @@ const getAnchorSelection = (win: Window, anchorInfo: SelectionAnchor): Optional<
   });
 };
 
-const placement = (component: AlloyComponent, anchorInfo: SelectionAnchor, origin: Origins.OriginAdt): Optional<Anchoring> => {
+const placement = (component: AlloyComponent, anchorInfo: SelectionAnchor, origin: Origins.OriginAdt): (Anchoring) | null => {
   const win: Window = Traverse.defaultView(anchorInfo.root).dom;
   const rootPoint = ContainerOffsets.getRootPoint(component, origin, anchorInfo);
 
@@ -41,7 +40,7 @@ const placement = (component: AlloyComponent, anchorInfo: SelectionAnchor, origi
     // This represents the *visual* rectangle of the selection.
     if (isSimRange(sel)) {
       const optRect = WindowSelection.getBounds(win, SimSelection.exactFromRange(sel)).orThunk(() => {
-        const zeroWidth = SugarElement.fromText(Unicode.zeroWidth);
+        const zeroWidth = SugarElement.fromText('\uFEFF');
         Insert.before(sel.start, zeroWidth);
         // Certain things like <p><br/></p> with (p, 0) or <br>) as collapsed selection do not return a client rectangle
         const rect = WindowSelection.getFirstRect(win, SimSelection.exact(zeroWidth, 0, zeroWidth, 1));
@@ -53,7 +52,7 @@ const placement = (component: AlloyComponent, anchorInfo: SelectionAnchor, origi
         return ContentAnchorCommon.getBox(rawRect.left, rawRect.top, rawRect.width, rawRect.height);
       });
     } else {
-      const selectionRect = Obj.map(sel, (cell) => cell.dom.getBoundingClientRect());
+      const selectionRect = Object.fromEntries(Object.entries(sel).map(([_k, _v]: [any, any]) => [_k, ((cell) => cell.dom.getBoundingClientRect())(_v, _k as any)]));
 
       const bounds = {
         left: Math.min(selectionRect.firstCell.left, selectionRect.lastCell.left),
@@ -69,12 +68,12 @@ const placement = (component: AlloyComponent, anchorInfo: SelectionAnchor, origi
   const targetElement = getAnchorSelection(win, anchorInfo)
     .bind((sel) => {
       if (isSimRange(sel)) {
-        return SugarNode.isElement(sel.start) ? Optional.some(sel.start) : Traverse.parentElement(sel.start);
+        return SugarNode.isElement(sel.start) ? sel.start : Traverse.parentElement(sel.start);
       } else {
-        return Optional.some(sel.firstCell);
+        return sel.firstCell;
       }
     });
-  const elem = targetElement.getOr(component.element);
+  const elem = targetElement ?? (component.element);
 
   return ContentAnchorCommon.calcNewAnchor(selectionBox, rootPoint, anchorInfo, origin, elem);
 };

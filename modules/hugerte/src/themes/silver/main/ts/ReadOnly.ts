@@ -1,6 +1,5 @@
 import { Behaviour, Channels, Disabling, Receiving } from '@ephox/alloy';
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -23,12 +22,12 @@ const broadcastReadonly = (uiRefs: ReadyUiReferences, readonly: boolean): void =
 
   const motherships = [ uiRefs.mainUi.mothership, ...uiRefs.uiMotherships ];
   if (readonly) {
-    Arr.each(motherships, (m) => {
+    (motherships).forEach((m) => {
       m.broadcastOn([ Channels.dismissPopups() ], { target });
     });
   }
 
-  Arr.each(motherships, (m) => {
+  (motherships).forEach((m) => {
     m.broadcastOn([ ReadOnlyChannel ], { readonly });
   });
 };

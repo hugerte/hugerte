@@ -1,4 +1,4 @@
-import { Arr, Singleton, Strings, Type } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Adjustments, ResizeBehaviour, ResizeWire, Sizes, TableConversions, TableGridSize, TableLookup, TableResize, Warehouse } from '@ephox/snooker';
 import { Attribute, Css, SugarElement } from '@ephox/sugar';
 
@@ -16,7 +16,7 @@ export interface TableResizeHandler {
   readonly show: () => void;
 }
 
-const isTable = (node: Node) => Type.isNonNullable(node) && node.nodeName === 'TABLE';
+const isTable = (node: Node) => (node) != null && node.nodeName === 'TABLE';
 
 const barResizerPrefix = 'bar-';
 const isResizable = (elm: SugarElement<Element>) => Attribute.get(elm, 'data-mce-resize') !== 'false';
@@ -25,7 +25,7 @@ const syncTableCellPixels = (table: SugarElement<HTMLTableElement>): void => {
   const warehouse = Warehouse.fromTable(table);
   if (!Warehouse.hasColumns(warehouse)) {
     // Ensure the specified width matches the actual cell width
-    Arr.each(TableLookup.cells(table), (cell) => {
+    (TableLookup.cells(table)).forEach((cell) => {
       const computedWidth = Css.get(cell, 'width');
       Css.set(cell, 'width', computedWidth);
       Attribute.remove(cell, 'width');
@@ -57,7 +57,7 @@ export const TableResizeHandler = (editor: Editor): TableResizeHandler => {
   const afterCornerResize = (table: SugarElement<HTMLTableElement>, origin: string, width: number, height: number) => {
     // Origin will tell us which handle was clicked, eg corner-se or corner-nw
     // so check to see if it ends with `e` (eg east edge)
-    const isRightEdgeResize = Strings.endsWith(origin, 'e');
+    const isRightEdgeResize = (origin).endsWith('e');
 
     // Responsive tables don't have a width so we need to convert it to a relative/percent
     // table instead, as that's closer to responsive sizing than fixed sizing
@@ -155,7 +155,7 @@ export const TableResizeHandler = (editor: Editor): TableResizeHandler => {
       const table = SugarElement.fromDom(targetElm);
 
       // Add a class based on the resizing mode
-      Arr.each(editor.dom.select('.mce-clonedresizable'), (clone) => {
+      (editor.dom.select('.mce-clonedresizable')).forEach((clone) => {
         editor.dom.addClass(clone, 'mce-' + Options.getTableColumnResizingBehaviour(editor) + '-columns');
       });
 
@@ -167,14 +167,14 @@ export const TableResizeHandler = (editor: Editor): TableResizeHandler => {
 
       // TINY-6601: If resizing using a bar, then snooker will base the resizing on the initial size. So
       // when using a responsive table we need to ensure we convert to a relative table before resizing
-      if (Sizes.isNoneSizing(table) && Strings.startsWith(e.origin, barResizerPrefix)) {
+      if (Sizes.isNoneSizing(table) && (e.origin).startsWith(barResizerPrefix)) {
         TableConversions.convertToPercentSizeWidth(table);
       }
 
       startW = e.width;
-      startRawW = Options.isTableResponsiveForced(editor) ? '' : Utils.getRawWidth(editor, targetElm).getOr('');
+      startRawW = Options.isTableResponsiveForced(editor) ? '' : Utils.getRawWidth(editor, targetElm) ?? ('');
       startH = e.height;
-      startRawH = Utils.getRawHeight(editor, targetElm).getOr('');
+      startRawH = Utils.getRawHeight(editor, targetElm) ?? ('');
     }
   });
 
@@ -185,7 +185,7 @@ export const TableResizeHandler = (editor: Editor): TableResizeHandler => {
 
       // Resize based on the snooker logic to adjust the individual col/rows if resized from a corner
       const origin = e.origin;
-      if (Strings.startsWith(origin, 'corner-')) {
+      if ((origin).startsWith('corner-')) {
         afterCornerResize(table, origin, e.width, e.height);
       }
 

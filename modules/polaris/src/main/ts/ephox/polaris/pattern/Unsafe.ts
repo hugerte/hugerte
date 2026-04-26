@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 
 import * as Chars from './Chars';
 import { Custom } from './Custom';
@@ -8,7 +7,7 @@ import { PRegExp } from './Types';
  * Tokens have no prefix or suffix
  */
 const token = (input: string): PRegExp => {
-  return Custom(input, Fun.constant(0), Fun.constant(0), Optional.none());
+  return Custom(input, () => 0, () => 0, null);
 };
 
 /**
@@ -28,7 +27,7 @@ const word = (input: string): PRegExp => {
     return match.length > 2 ? match[2].length : 0;
   };
 
-  return Custom(regex, prefix, suffix, Optional.none());
+  return Custom(regex, prefix, suffix, null);
 };
 
 export {

@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as Fields from '../../data/Fields';
@@ -9,7 +8,7 @@ import * as Origins from '../layout/Origins';
 import { Anchoring, nu as NuAnchoring, SubmenuAnchor } from './Anchoring';
 import * as AnchorLayouts from './AnchorLayouts';
 
-const placement = (component: AlloyComponent, submenuInfo: SubmenuAnchor, origin: Origins.OriginAdt): Optional<Anchoring> => {
+const placement = (component: AlloyComponent, submenuInfo: SubmenuAnchor, origin: Origins.OriginAdt): (Anchoring) | null => {
   const anchorBox = Origins.toBox(origin, submenuInfo.item.element);
 
   const layouts = AnchorLayouts.get(
@@ -20,17 +19,15 @@ const placement = (component: AlloyComponent, submenuInfo: SubmenuAnchor, origin
     // No default bottomToTop layouts currently needed
     LinkedLayout.all(),
     LinkedLayout.allRtl(),
-    Optional.none()
+    null
   );
 
-  return Optional.some(
-    NuAnchoring({
+  return NuAnchoring({
       anchorBox,
       bubble: Bubble.fallback(),
       overrides: submenuInfo.overrides,
       layouts
-    })
-  );
+    });
 };
 
 export default [

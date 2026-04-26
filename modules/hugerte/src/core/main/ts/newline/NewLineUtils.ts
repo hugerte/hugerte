@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj, Optional, Optionals, Unicode } from '@ephox/katamari';
 import { Css, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -35,7 +34,7 @@ const moveToCaretPosition = (editor: Editor, root: Node): void => {
     const firstChild = firstNonWhiteSpaceNodeSibling(root.firstChild);
 
     if (firstChild && /^(UL|OL|DL)$/.test(firstChild.nodeName)) {
-      root.insertBefore(dom.doc.createTextNode(Unicode.nbsp), root.firstChild);
+      root.insertBefore(dom.doc.createTextNode('\u00A0'), root.firstChild);
     }
   }
 
@@ -105,13 +104,13 @@ const getEditableRoot = (dom: DOMUtils, node: Node): HTMLElement | undefined => 
   return parent !== root ? editableRoot : root;
 };
 
-const getParentBlock = (editor: Editor): Optional<Element> => {
-  return Optional.from(editor.dom.getParent(editor.selection.getStart(true), editor.dom.isBlock));
+const getParentBlock = (editor: Editor): (Element) | null => {
+  return (editor.dom.getParent(editor.selection.getStart(true), editor.dom.isBlock) ?? null);
 };
 
 const getParentBlockName = (editor: Editor): string => {
   return getParentBlock(editor).fold(
-    Fun.constant(''),
+    () => '',
     (parentBlock) => {
       return parentBlock.nodeName.toUpperCase();
     }
@@ -121,7 +120,7 @@ const getParentBlockName = (editor: Editor): string => {
 const isListItemParentBlock = (editor: Editor): boolean => {
   return getParentBlock(editor).filter((elm) => {
     return ElementType.isListItem(SugarElement.fromDom(elm));
-  }).isSome();
+  }) !== null;
 };
 
 const emptyBlock = (elm: Element): void => {
@@ -132,7 +131,7 @@ const applyAttributes = (editor: Editor, node: Element, forcedRootBlockAttrs: Re
   const dom = editor.dom;
 
   // Merge and apply style attribute
-  Optional.from(forcedRootBlockAttrs.style)
+  (forcedRootBlockAttrs.style ?? null)
     .map(dom.parseStyle)
     .each((attrStyles) => {
       const currentStyles = Css.getAllRaw(SugarElement.fromDom(node));
@@ -141,17 +140,17 @@ const applyAttributes = (editor: Editor, node: Element, forcedRootBlockAttrs: Re
     });
 
   // Merge and apply class attribute
-  const attrClassesOpt = Optional.from(forcedRootBlockAttrs.class).map((attrClasses) => attrClasses.split(/\s+/));
-  const currentClassesOpt = Optional.from(node.className).map((currentClasses) => Arr.filter(currentClasses.split(/\s+/), (clazz) => clazz !== ''));
-  Optionals.lift2(attrClassesOpt, currentClassesOpt, (attrClasses, currentClasses) => {
-    const filteredClasses = Arr.filter(currentClasses, (clazz) => !Arr.contains(attrClasses, clazz));
+  const attrClassesOpt = (forcedRootBlockAttrs.class ?? null).map((attrClasses) => attrClasses.split(/\s+/));
+  const currentClassesOpt = (node.className ?? null).map((currentClasses) => (currentClasses.split(/\s+/)).filter((clazz) => clazz !== ''));
+  (attrClassesOpt !== null && currentClassesOpt !== null ? ((attrClasses, currentClasses) => {
+    const filteredClasses = (currentClasses).filter((clazz) => !(attrClasses).includes(clazz));
     const newClasses = [ ...attrClasses, ...filteredClasses ];
     dom.setAttrib(node, 'class', newClasses.join(' '));
-  });
+  })(attrClassesOpt, currentClassesOpt) : null);
 
   // Apply any remaining forced root block attributes
   const appliedAttrs = [ 'style', 'class' ];
-  const remainingAttrs = Obj.filter(forcedRootBlockAttrs, (_, attrs) => !Arr.contains(appliedAttrs, attrs));
+  const remainingAttrs = Object.fromEntries(Object.entries(forcedRootBlockAttrs).filter(([_k, _v]: [any, any]) => ((_, attrs) => !(appliedAttrs).includes(attrs))(_v, _k as any)));
   dom.setAttribs(node, remainingAttrs);
 };
 

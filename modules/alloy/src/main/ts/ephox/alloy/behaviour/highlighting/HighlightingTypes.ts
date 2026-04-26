@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -13,11 +12,11 @@ export interface HighlightingBehaviour extends Behaviour.AlloyBehaviour<Highligh
   highlightAt: (component: AlloyComponent, index: number) => void;
   highlightBy: (component: AlloyComponent, predicate: (comp: AlloyComponent) => boolean) => void;
   isHighlighted: (component: AlloyComponent, queryTarget: any ) => boolean;
-  getHighlighted: (component: AlloyComponent) => Optional<AlloyComponent>;
-  getFirst: (component: AlloyComponent) => Optional<AlloyComponent>;
-  getLast: (component: AlloyComponent) => Optional<AlloyComponent>;
-  getPrevious: (component: AlloyComponent) => Optional<AlloyComponent>;
-  getNext: (component: AlloyComponent) => Optional<AlloyComponent>;
+  getHighlighted: (component: AlloyComponent) => (AlloyComponent) | null;
+  getFirst: (component: AlloyComponent) => (AlloyComponent) | null;
+  getLast: (component: AlloyComponent) => (AlloyComponent) | null;
+  getPrevious: (component: AlloyComponent) => (AlloyComponent) | null;
+  getNext: (component: AlloyComponent) => (AlloyComponent) | null;
   getCandidates: (component: AlloyComponent) => AlloyComponent[];
 }
 

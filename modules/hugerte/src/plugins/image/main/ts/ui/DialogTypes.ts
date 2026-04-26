@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 
@@ -18,8 +17,8 @@ export interface UserListItem {
 
 export interface ImageDialogInfo {
   readonly image: ImageData;
-  readonly imageList: Optional<ListItem[]>;
-  readonly classList: Optional<ListItem[]>;
+  readonly imageList: (ListItem[]) | null;
+  readonly classList: (ListItem[]) | null;
   readonly hasAdvTab: boolean;
   readonly hasUploadTab: boolean;
   readonly hasUploadUrl: boolean;
@@ -30,7 +29,7 @@ export interface ImageDialogInfo {
   readonly hasImageCaption: boolean;
   readonly hasAccessibilityOptions: boolean;
   readonly automaticUploads: boolean;
-  readonly prependURL: Optional<string>;
+  readonly prependURL: (string) | null;
 }
 
 export interface ImageMeta {

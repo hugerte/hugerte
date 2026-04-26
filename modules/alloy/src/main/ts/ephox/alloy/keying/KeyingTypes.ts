@@ -14,20 +14,20 @@ const doDefaultExecute = (
   component: AlloyComponent,
   _simulatedEvent: NativeSimulatedEvent<KeyboardEvent>,
   focused: SugarElement<HTMLElement>
-): Optional<boolean> => {
+): (boolean) | null => {
   // Note, we use to pass through simulatedEvent here and make target: component. This simplification
   // may be a problem
   AlloyTriggers.dispatch(component, focused, SystemEvents.execute());
-  return Optional.some(true);
+  return true;
 };
 
 const defaultExecute = (
   component: AlloyComponent,
   simulatedEvent: NativeSimulatedEvent<KeyboardEvent>,
   focused: SugarElement<HTMLElement>
-): Optional<boolean> => {
+): (boolean) | null => {
   const isComplex = EditableFields.inside(focused) && KeyMatch.inSet(Keys.SPACE)(simulatedEvent.event);
-  return isComplex ? Optional.none() : doDefaultExecute(component, simulatedEvent, focused);
+  return isComplex ? null : doDefaultExecute(component, simulatedEvent, focused);
 };
 
 // On Firefox, pressing space fires a click event if the element maintains focus and fires a keyup. This

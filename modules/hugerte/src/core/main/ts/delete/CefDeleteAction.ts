@@ -1,4 +1,4 @@
-import { Adt, Fun, Optional, Type } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import Schema from '../api/html/Schema';
@@ -27,7 +27,7 @@ export interface DeleteActionAdt {
 }
 
 const isCompoundElement = (node: Node | undefined): boolean =>
-  Type.isNonNullable(node) && (ElementType.isTableCell(SugarElement.fromDom(node)) || ElementType.isListItem(SugarElement.fromDom(node)));
+  (node) != null && (ElementType.isTableCell(SugarElement.fromDom(node)) || ElementType.isListItem(SugarElement.fromDom(node)));
 
 const DeleteAction: {
   remove: (element: Node) => DeleteActionAdt;
@@ -49,64 +49,64 @@ const isDeleteFromCefDifferentBlocks = (root: Node, forward: boolean, from: Care
   const inSameBlock = (elm: Element) => schema.isInline(elm.nodeName.toLowerCase()) && !CaretUtils.isInSameBlock(from, to, root);
 
   return CaretUtils.getRelativeCefElm(!forward, from).fold(
-    () => CaretUtils.getRelativeCefElm(forward, to).fold(Fun.never, inSameBlock),
+    () => CaretUtils.getRelativeCefElm(forward, to).fold((() => false as const), inSameBlock),
     inSameBlock
   );
 };
 
-const deleteEmptyBlockOrMoveToCef = (schema: Schema, root: Node, forward: boolean, from: CaretPosition, to: CaretPosition): Optional<DeleteActionAdt> => {
+const deleteEmptyBlockOrMoveToCef = (schema: Schema, root: Node, forward: boolean, from: CaretPosition, to: CaretPosition): (DeleteActionAdt) | null => {
   // TODO: TINY-8865 - This may not be safe to cast as Node below and alternative solutions need to be looked into
   const toCefElm = to.getNode(!forward) as Node;
   return DeleteUtils.getParentBlock(SugarElement.fromDom(root), SugarElement.fromDom(from.getNode() as Node)).map((blockElm) =>
     Empty.isEmpty(schema, blockElm) ? DeleteAction.remove(blockElm.dom) : DeleteAction.moveToElement(toCefElm)
-  ).orThunk(() => Optional.some(DeleteAction.moveToElement(toCefElm)));
+  ).orThunk(() => DeleteAction.moveToElement(toCefElm));
 };
 
-const findCefPosition = (root: Node, forward: boolean, from: CaretPosition, schema: Schema): Optional<DeleteActionAdt> =>
+const findCefPosition = (root: Node, forward: boolean, from: CaretPosition, schema: Schema): (DeleteActionAdt) | null =>
   CaretFinder.fromPosition(forward, root, from).bind((to) => {
     if (isCompoundElement(to.getNode())) {
-      return Optional.none();
+      return null;
     } else if (isDeleteFromCefDifferentBlocks(root, forward, from, to, schema)) {
-      return Optional.none();
+      return null;
     } else if (forward && NodeType.isContentEditableFalse(to.getNode())) {
       return deleteEmptyBlockOrMoveToCef(schema, root, forward, from, to);
     } else if (!forward && NodeType.isContentEditableFalse(to.getNode(true))) {
       return deleteEmptyBlockOrMoveToCef(schema, root, forward, from, to);
     } else if (forward && isAfterContentEditableFalse(from)) {
-      return Optional.some(DeleteAction.moveToPosition(to));
+      return DeleteAction.moveToPosition(to);
     } else if (!forward && isBeforeContentEditableFalse(from)) {
-      return Optional.some(DeleteAction.moveToPosition(to));
+      return DeleteAction.moveToPosition(to);
     } else {
-      return Optional.none();
+      return null;
     }
   });
 
-const getContentEditableBlockAction = (forward: boolean, elm: Node | undefined): Optional<DeleteActionAdt> => {
-  if (Type.isNullable(elm)) {
-    return Optional.none();
+const getContentEditableBlockAction = (forward: boolean, elm: Node | undefined): (DeleteActionAdt) | null => {
+  if ((elm) == null) {
+    return null;
   } else if (forward && NodeType.isContentEditableFalse(elm.nextSibling)) {
-    return Optional.some(DeleteAction.moveToElement(elm.nextSibling));
+    return DeleteAction.moveToElement(elm.nextSibling);
   } else if (!forward && NodeType.isContentEditableFalse(elm.previousSibling)) {
-    return Optional.some(DeleteAction.moveToElement(elm.previousSibling));
+    return DeleteAction.moveToElement(elm.previousSibling);
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
-const skipMoveToActionFromInlineCefToContent = (root: Node, from: CaretPosition, deleteAction: DeleteActionAdt): Optional<DeleteActionAdt> =>
+const skipMoveToActionFromInlineCefToContent = (root: Node, from: CaretPosition, deleteAction: DeleteActionAdt): (DeleteActionAdt) | null =>
   deleteAction.fold(
-    (elm) => Optional.some(DeleteAction.remove(elm)),
-    (elm) => Optional.some(DeleteAction.moveToElement(elm)),
+    (elm) => DeleteAction.remove(elm),
+    (elm) => DeleteAction.moveToElement(elm),
     (to) => {
       if (CaretUtils.isInSameBlock(from, to, root)) {
-        return Optional.none();
+        return null;
       } else {
-        return Optional.some(DeleteAction.moveToPosition(to));
+        return DeleteAction.moveToPosition(to);
       }
     }
   );
 
-const getContentEditableAction = (root: Node, forward: boolean, from: CaretPosition, schema: Schema): Optional<DeleteActionAdt> => {
+const getContentEditableAction = (root: Node, forward: boolean, from: CaretPosition, schema: Schema): (DeleteActionAdt) | null => {
   if (isAtContentEditableBlockCaret(forward, from)) {
     return getContentEditableBlockAction(forward, from.getNode(!forward))
       .orThunk(() => findCefPosition(root, forward, from, schema));
@@ -117,16 +117,16 @@ const getContentEditableAction = (root: Node, forward: boolean, from: CaretPosit
   }
 };
 
-const read = (root: Node, forward: boolean, rng: Range, schema: Schema): Optional<DeleteActionAdt> => {
+const read = (root: Node, forward: boolean, rng: Range, schema: Schema): (DeleteActionAdt) | null => {
   const normalizedRange = CaretUtils.normalizeRange(forward ? 1 : -1, root, rng);
   const from = CaretPosition.fromRangeStart(normalizedRange);
   const rootElement = SugarElement.fromDom(root);
 
   // TODO: TINY-8865 - This may not be safe to cast as Node below and alternative solutions need to be looked into
   if (!forward && isAfterContentEditableFalse(from)) {
-    return Optional.some(DeleteAction.remove(from.getNode(true) as Node));
+    return DeleteAction.remove(from.getNode(true) as Node);
   } else if (forward && isBeforeContentEditableFalse(from)) {
-    return Optional.some(DeleteAction.remove(from.getNode() as Node));
+    return DeleteAction.remove(from.getNode() as Node);
   } else if (!forward && isBeforeContentEditableFalse(from) && isAfterBr(rootElement, from, schema)) {
     return findPreviousBr(rootElement, from, schema).map((br) => DeleteAction.remove(br.getNode() as Node));
   } else if (forward && isAfterContentEditableFalse(from) && isBeforeBr(rootElement, from, schema)) {

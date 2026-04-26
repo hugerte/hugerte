@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as NodeType from '../dom/NodeType';
 import * as CaretContainer from './CaretContainer';
@@ -58,7 +57,7 @@ const isAtomicContentEditableFalse = (node: Node): boolean => {
     return false;
   }
 
-  return !Arr.foldl(Arr.from(node.getElementsByTagName('*')), (result, elm) => {
+  return !(Array.from(node.getElementsByTagName('*'))).reduce((result, elm) => {
     return result || isContentEditableTrue(elm);
   }, false);
 };

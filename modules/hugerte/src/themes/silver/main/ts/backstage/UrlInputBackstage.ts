@@ -1,4 +1,4 @@
-import { Fun, Future, Obj, Optional, Type } from '@ephox/katamari';
+import { Future, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { FilePickerCallback, FilePickerValidationCallback } from 'hugerte/core/api/OptionTypes';
@@ -28,44 +28,44 @@ export type UrlPicker = (entry: InternalUrlData) => Future<ApiUrlData>;
 export interface UiFactoryBackstageForUrlInput {
   readonly getHistory: (fileType: string) => string[];
   readonly addToHistory: (url: string, fileType: string) => void;
-  readonly getLinkInformation: () => Optional<LinkInformation>;
-  readonly getValidationHandler: () => Optional<FilePickerValidationCallback>;
-  readonly getUrlPicker: (filetype: string) => Optional<UrlPicker>;
+  readonly getLinkInformation: () => (LinkInformation) | null;
+  readonly getValidationHandler: () => (FilePickerValidationCallback) | null;
+  readonly getUrlPicker: (filetype: string) => (UrlPicker) | null;
 }
 
 const isTruthy = (value: any) => !!value;
 
 const makeMap = (value: string): Record<string, boolean> =>
-  Obj.map(Tools.makeMap(value, /[, ]/), isTruthy);
+  Object.fromEntries(Object.entries(Tools.makeMap(value, /[, ]/)).map(([_k, _v]: [any, any]) => [_k, (isTruthy)(_v, _k as any)]));
 
-const getPicker = (editor: Editor): Optional<FilePickerCallback> =>
-  Optional.from(Options.getFilePickerCallback(editor));
+const getPicker = (editor: Editor): (FilePickerCallback) | null =>
+  (Options.getFilePickerCallback(editor) ?? null);
 
 const getPickerTypes = (editor: Editor): boolean | Record<string, boolean> => {
-  const optFileTypes = Optional.from(Options.getFilePickerTypes(editor)).filter(isTruthy).map(makeMap);
+  const optFileTypes = (Options.getFilePickerTypes(editor) ?? null).filter(isTruthy).map(makeMap);
   return getPicker(editor).fold(
-    Fun.never,
+    (() => false as const),
     (_picker) => optFileTypes.fold<boolean | Record<string, boolean>>(
-      Fun.always,
-      (types) => Obj.keys(types).length > 0 ? types : false)
+      (() => true as const),
+      (types) => Object.keys(types).length > 0 ? types : false)
   );
 };
 
-const getPickerSetting = (editor: Editor, filetype: string): Optional<FilePickerCallback> => {
+const getPickerSetting = (editor: Editor, filetype: string): (FilePickerCallback) | null => {
   const pickerTypes = getPickerTypes(editor);
-  if (Type.isBoolean(pickerTypes)) {
-    return pickerTypes ? getPicker(editor) : Optional.none();
+  if (typeof (pickerTypes) === 'boolean') {
+    return pickerTypes ? getPicker(editor) : null;
   } else {
-    return pickerTypes[filetype] ? getPicker(editor) : Optional.none();
+    return pickerTypes[filetype] ? getPicker(editor) : null;
   }
 };
 
-const getUrlPicker = (editor: Editor, filetype: string): Optional<UrlPicker> => getPickerSetting(editor, filetype).map((picker) => (entry: InternalUrlData): Future<ApiUrlData> => Future.nu((completer) => {
+const getUrlPicker = (editor: Editor, filetype: string): (UrlPicker) | null => getPickerSetting(editor, filetype).map((picker) => (entry: InternalUrlData): Future<ApiUrlData> => Future.nu((completer) => {
   const handler = (value: string, meta?: Record<string, any>) => {
-    if (!Type.isString(value)) {
+    if (!typeof (value) === 'string') {
       throw new Error('Expected value to be string');
     }
-    if (meta !== undefined && !Type.isObject(meta)) {
+    if (meta !== undefined && !(typeof (meta) === 'object' && (meta) !== null)) {
       throw new Error('Expected meta to be a object');
     }
     const r: ApiUrlData = { value, meta };
@@ -74,28 +74,28 @@ const getUrlPicker = (editor: Editor, filetype: string): Optional<UrlPicker> => 
   const meta = {
     filetype,
     fieldname: entry.fieldname,
-    ...Optional.from(entry.meta).getOr({})
+    ...(entry.meta ?? null) ?? ({})
   };
   // file_picker_callback(callback, currentValue, metaData)
   picker.call(editor, handler, entry.value, meta);
 }));
 
 const getTextSetting = (value: string | boolean): string | undefined =>
-  Optional.from(value).filter(Type.isString).getOrUndefined();
+  (value ?? null).filter(Type.isString) ?? undefined;
 
-export const getLinkInformation = (editor: Editor): Optional<LinkInformation> => {
+export const getLinkInformation = (editor: Editor): (LinkInformation) | null => {
   if (!Options.useTypeaheadUrls(editor)) {
-    return Optional.none();
+    return null;
   }
 
-  return Optional.some({
+  return {
     targets: LinkTargets.find(editor.getBody()),
     anchorTop: getTextSetting(Options.getAnchorTop(editor)),
     anchorBottom: getTextSetting(Options.getAnchorBottom(editor))
-  });
+  };
 };
-export const getValidationHandler = (editor: Editor): Optional<FilePickerValidationCallback> =>
-  Optional.from(Options.getFilePickerValidatorHandler(editor));
+export const getValidationHandler = (editor: Editor): (FilePickerValidationCallback) | null =>
+  (Options.getFilePickerValidatorHandler(editor) ?? null);
 
 export const UrlInputBackstage = (editor: Editor): UiFactoryBackstageForUrlInput => ({
   getHistory,

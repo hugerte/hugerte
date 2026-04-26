@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
 import * as NativeEvents from '../../api/events/NativeEvents';
@@ -18,7 +17,7 @@ const exhibit = (): DomModification.DomModification =>
   });
 
 const events = (): AlloyEvents.AlloyEventRecord => AlloyEvents.derive([
-  AlloyEvents.abort(NativeEvents.selectstart(), Fun.always)
+  AlloyEvents.abort(NativeEvents.selectstart(), (() => true as const))
 ]);
 
 export {

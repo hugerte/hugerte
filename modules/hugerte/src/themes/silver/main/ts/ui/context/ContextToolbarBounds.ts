@@ -1,6 +1,5 @@
 import { Bounds, Boxes } from '@ephox/alloy';
 import { InlineContent } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
 import { Scroll, SelectorFind, SugarBody, SugarElement, SugarNode, Traverse, WindowVisualViewport } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -19,11 +18,11 @@ const getRangeRect = (rng: Range): DOMRect => {
   // Some ranges (eg <td><br></td>) will return a 0x0 rect, so we'll need to calculate it from the leaf instead
   if (rect.height <= 0 && rect.width <= 0) {
     const leaf = Traverse.leaf(SugarElement.fromDom(rng.startContainer), rng.startOffset).element;
-    const elm = SugarNode.isText(leaf) ? Traverse.parent(leaf) : Optional.some(leaf);
+    const elm = SugarNode.isText(leaf) ? Traverse.parent(leaf) : leaf;
     return elm.filter(SugarNode.isElement)
       .map((e) => e.dom.getBoundingClientRect())
       // We have nothing valid, so just fallback to the original rect
-      .getOr(rect);
+       ?? (rect);
   } else {
     return rect;
   }
@@ -42,7 +41,7 @@ const getSelectionBounds = (editor: Editor): Bounds => {
   }
 };
 
-const getAnchorElementBounds = (editor: Editor, lastElement: Optional<SugarElement<Element>>): Bounds =>
+const getAnchorElementBounds = (editor: Editor, lastElement: (SugarElement<Element>) | null): Bounds =>
   lastElement
     .filter((elem): elem is SugarElement<HTMLElement> => SugarBody.inBody(elem) && SugarNode.isHTMLElement(elem))
     .map(Boxes.absolute)
@@ -63,7 +62,7 @@ const getVerticalBounds = (
   margin: number
 ): { y: number; bottom: number } => {
   const container = SugarElement.fromDom(editor.getContainer());
-  const header = SelectorFind.descendant<HTMLElement>(container, '.tox-editor-header').getOr(container);
+  const header = SelectorFind.descendant<HTMLElement>(container, '.tox-editor-header') ?? (container);
   const headerBox = Boxes.box(header);
   const isToolbarBelowContentArea = headerBox.y >= contentAreaBox.bottom;
   const isToolbarAbove = isToolbarLocationTop && !isToolbarBelowContentArea;

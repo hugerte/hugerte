@@ -1,12 +1,11 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { Compare, Insert, Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { AlloySpec } from '../api/component/SpecTypes';
 
-type SpecBuilder = (spec: AlloySpec, optObs: Optional<SugarElement<Node>>) => AlloyComponent;
+type SpecBuilder = (spec: AlloySpec, optObs: (SugarElement<Node>) | null) => AlloyComponent;
 
-const determineObsoleted = (parent: SugarElement<Element>, index: number, oldObsoleted: Optional<SugarElement<Node>>): Optional<SugarElement<Node>> => {
+const determineObsoleted = (parent: SugarElement<Element>, index: number, oldObsoleted: (SugarElement<Node>) | null): (SugarElement<Node>) | null => {
   // When dealing with premades, the process of building something may have moved existing nodes around, so we see
   // if the child at the index position is still the same. If it isn't, we need to introduce some complex behaviour
   //
@@ -24,7 +23,7 @@ const determineObsoleted = (parent: SugarElement<Element>, index: number, oldObs
     // Adding a marker prevents the case where a premade is added to something shifting it from where
     // it was. That in turn un-synced all trailing children and made it so they couldn't be patched.
     if (elemChanged) {
-      const oldTag = oldObsoleted.map(SugarNode.name).getOr('span');
+      const oldTag = oldObsoleted.map(SugarNode.name) ?? ('span');
       const marker = SugarElement.fromTag(oldTag);
       Insert.before(newObs, marker);
       return marker;
@@ -34,7 +33,7 @@ const determineObsoleted = (parent: SugarElement<Element>, index: number, oldObs
   });
 };
 
-const ensureInDom = (parent: SugarElement<Element>, child: SugarElement<Node>, obsoleted: Optional<SugarElement<Node>>): void => {
+const ensureInDom = (parent: SugarElement<Element>, child: SugarElement<Node>, obsoleted: (SugarElement<Node>) | null): void => {
   obsoleted.fold(
     // There is nothing here, so just append to the parent
     () => Insert.append(parent, child),
@@ -52,12 +51,12 @@ const ensureInDom = (parent: SugarElement<Element>, child: SugarElement<Node>, o
 };
 
 const patchChildrenWith = <T, C>(parent: SugarElement<Element>, nu: T[], f: (n: T, i: number) => C) => {
-  const builtChildren = Arr.map(nu, f);
+  const builtChildren = (nu).map(f);
 
   // Need to regather the children in case some of the previous children have moved
   // to an earlier index. So this just prunes any leftover children in the dom.
   const currentChildren = Traverse.children(parent);
-  Arr.each(currentChildren.slice(builtChildren.length), Remove.remove);
+  (currentChildren.slice(builtChildren.length)).forEach(Remove.remove);
 
   return builtChildren;
 };

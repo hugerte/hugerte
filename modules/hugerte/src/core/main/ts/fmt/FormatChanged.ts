@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Cell } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import { FormatEvent } from '../api/EventTypes';
@@ -38,7 +38,7 @@ interface CallbackGroup {
 }
 
 const hasVars = (value: CallbackWithVars | CallbackWithoutVars): value is CallbackWithVars =>
-  Obj.has(value as CallbackWithVars, 'vars');
+  Object.prototype.hasOwnProperty.call(value as CallbackWithVars, 'vars');
 
 const setup = (registeredFormatListeners: Cell<RegisteredFormats>, editor: Editor): void => {
   registeredFormatListeners.set({});
@@ -48,9 +48,9 @@ const setup = (registeredFormatListeners: Cell<RegisteredFormats>, editor: Edito
   });
 
   editor.on('FormatApply FormatRemove', (e: EditorEvent<FormatEvent>) => {
-    const element = Optional.from(e.node)
+    const element = (e.node ?? null)
       .map((nodeOrRange) => FormatUtils.isNode(nodeOrRange) ? nodeOrRange : nodeOrRange.startContainer)
-      .bind((node) => NodeType.isElement(node) ? Optional.some(node) : Optional.from(node.parentElement))
+      .bind((node) => NodeType.isElement(node) ? node : (node.parentElement ?? null))
       .getOrThunk(() => fallbackElement(editor));
 
     updateAndFireChangeCallbacks(editor, element, registeredFormatListeners.get());
@@ -60,10 +60,10 @@ const setup = (registeredFormatListeners: Cell<RegisteredFormats>, editor: Edito
 const fallbackElement = (editor: Editor): Element =>
   editor.selection.getStart();
 
-const matchingNode = (editor: Editor, parents: Element[], format: string, similar?: boolean, vars?: FormatVars): Optional<Element> => {
+const matchingNode = (editor: Editor, parents: Element[], format: string, similar?: boolean, vars?: FormatVars): (Element) | null => {
   const isMatchingNode = (node: Element) => {
     const matchingFormat = editor.formatter.matchNode(node, format, vars ?? {}, similar);
-    return !Type.isUndefined(matchingFormat);
+    return !(matchingFormat) === undefined;
   };
   const isUnableToMatch = (node: Element) => {
     if (MatchFormat.matchesUnInheritedFormatSelector(editor, node, format)) {
@@ -71,7 +71,7 @@ const matchingNode = (editor: Editor, parents: Element[], format: string, simila
     } else {
       if (!similar) {
         // If we want to find an exact match, then finding a similar match halfway up the parents tree is bad
-        return Type.isNonNullable(editor.formatter.matchNode(node, format, vars, true));
+        return (editor.formatter.matchNode(node, format, vars, true)) != null;
       } else {
         return false;
       }
@@ -82,33 +82,32 @@ const matchingNode = (editor: Editor, parents: Element[], format: string, simila
 
 const getParents = (editor: Editor, elm?: Element): Element[] => {
   const element = elm ?? fallbackElement(editor);
-  return Arr.filter(FormatUtils.getParents(editor.dom, element), (node): node is Element =>
-    NodeType.isElement(node) && !NodeType.isBogus(node)
-  );
+  return (FormatUtils.getParents(editor.dom, element)).filter((node): node is Element =>
+    NodeType.isElement(node) && !NodeType.isBogus(node));
 };
 
 const updateAndFireChangeCallbacks = (editor: Editor, elm: Element, registeredCallbacks: RegisteredFormats) => {
   // Ignore bogus nodes like the <a> tag created by moveStart()
   const parents = getParents(editor, elm);
 
-  Obj.each(registeredCallbacks, (data, format) => {
+  Object.entries(registeredCallbacks).forEach(([_k, _v]: [any, any]) => ((data, format) => {
     const runIfChanged = (spec: CallbackWithoutVars | CallbackWithVars) => {
       const match = matchingNode(editor, parents, format, spec.similar, hasVars(spec) ? spec.vars : undefined);
-      const isSet = match.isSome();
+      const isSet = match !== null;
       if (spec.state.get() !== isSet) {
         spec.state.set(isSet);
-        const node = match.getOr(elm);
+        const node = match ?? (elm);
         if (hasVars(spec)) {
           spec.callback(isSet, { node, format, parents });
         } else {
-          Arr.each(spec.callbacks, (callback) => callback(isSet, { node, format, parents }));
+          (spec.callbacks).forEach((callback) => callback(isSet, { node, format, parents }));
         }
       }
     };
 
-    Arr.each([ data.withSimilar, data.withoutSimilar ], runIfChanged);
-    Arr.each(data.withVars, runIfChanged);
-  });
+    ([ data.withSimilar, data.withoutSimilar ]).forEach(runIfChanged);
+    (data.withVars).forEach(runIfChanged);
+  })(_v, _k));
 };
 
 const addListeners = (
@@ -121,8 +120,8 @@ const addListeners = (
 ) => {
   const formatChangeItems = registeredFormatListeners.get();
 
-  Arr.each(formats.split(','), (format) => {
-    const group = Obj.get(formatChangeItems, format).getOrThunk(() => {
+  (formats.split(',')).forEach((format) => {
+    const group = ((formatChangeItems)[format] ?? null).getOrThunk(() => {
       const base: CallbackGroup = {
         withSimilar: {
           state: Cell<boolean>(false),
@@ -143,9 +142,9 @@ const addListeners = (
 
     const getCurrent = () => {
       const parents = getParents(editor);
-      return matchingNode(editor, parents, format, similar, vars).isSome();
+      return matchingNode(editor, parents, format, similar, vars) !== null;
     };
-    if (Type.isUndefined(vars)) {
+    if ((vars) === undefined) {
       const toAppendTo = similar ? group.withSimilar : group.withoutSimilar;
       toAppendTo.callbacks.push(callback);
       if (toAppendTo.callbacks.length === 1) {
@@ -167,17 +166,17 @@ const addListeners = (
 const removeListeners = (registeredFormatListeners: Cell<RegisteredFormats>, formats: string, callback: FormatChangeCallback) => {
   const formatChangeItems = registeredFormatListeners.get();
 
-  Arr.each(formats.split(','), (format) => Obj.get(formatChangeItems, format).each((group) => {
+  (formats.split(',')).forEach((format) => ((formatChangeItems)[format] ?? null).each((group) => {
     formatChangeItems[format] = {
       withSimilar: {
         ...group.withSimilar,
-        callbacks: Arr.filter(group.withSimilar.callbacks, (cb) => cb !== callback),
+        callbacks: (group.withSimilar.callbacks).filter((cb) => cb !== callback),
       },
       withoutSimilar: {
         ...group.withoutSimilar,
-        callbacks: Arr.filter(group.withoutSimilar.callbacks, (cb) => cb !== callback),
+        callbacks: (group.withoutSimilar.callbacks).filter((cb) => cb !== callback),
       },
-      withVars: Arr.filter(group.withVars, (item) => item.callback !== callback),
+      withVars: (group.withVars).filter((item) => item.callback !== callback),
     };
   }));
 

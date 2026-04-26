@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { Attribute, Insert, Remove, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import Annotator from '../api/Annotator';
@@ -59,7 +59,7 @@ const appendStyle = (editor: Editor, text: string) => {
 const getRootName = (editor: Editor): string | undefined =>
   editor.inline ? editor.getElement().nodeName.toLowerCase() : undefined;
 
-const removeUndefined = <T>(obj: T): T => Obj.filter(obj as Record<string, unknown>, (v) => Type.isUndefined(v) === false) as T;
+const removeUndefined = <T>(obj: T): T => Obj.filter(obj as Record<string, unknown>, (v) => (v) === undefined === false) as T;
 
 const mkParserSettings = (editor: Editor): DomParserSettings => {
   const getOption = editor.options.get;
@@ -242,7 +242,7 @@ const moveSelectionToFirstCaretPosition = (editor: Editor) => {
     CaretFinder.firstPositionIn(root).each((pos: CaretPosition) => {
       const node = pos.getNode();
       // If a table is the first caret pos, then walk down one more level
-      const caretPos = NodeType.isTable(node) ? CaretFinder.firstPositionIn(node).getOr(pos) : pos;
+      const caretPos = NodeType.isTable(node) ? CaretFinder.firstPositionIn(node) ?? (pos) : pos;
       editor.selection.setRng(caretPos.toRange());
     });
   }
@@ -256,7 +256,7 @@ const initEditor = (editor: Editor) => {
   moveSelectionToFirstCaretPosition(editor);
   editor.nodeChanged({ initial: true });
   const initInstanceCallback = Options.getInitInstanceCallback(editor);
-  if (Type.isFunction(initInstanceCallback)) {
+  if (typeof (initInstanceCallback) === 'function') {
     initInstanceCallback.call(editor, editor);
   }
   autoFocus(editor);
@@ -266,10 +266,10 @@ const getStyleSheetLoader = (editor: Editor): StyleSheetLoader =>
   editor.inline ? editor.ui.styleSheetLoader : editor.dom.styleSheetLoader;
 
 const makeStylesheetLoadingPromises = (editor: Editor, css: string[], framedFonts: string[]): Promise<unknown>[] => {
-  const { pass: bundledCss, fail: normalCss } = Arr.partition(css, (name) => hugerte.Resource.has(name));
+  const { pass: bundledCss, fail: normalCss } = (css).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((name) => hugerte.Resource.has(name))(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
   const bundledPromises = bundledCss.map((url) => {
     const css = hugerte.Resource.get(url);
-    if (Type.isString(css)) {
+    if (typeof (css) === 'string') {
       return Promise.resolve(getStyleSheetLoader(editor).loadRawCss(url, css));
     }
     return Promise.resolve();

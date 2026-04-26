@@ -1,4 +1,3 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
 import { Attribute, Class, Compare, SelectorExists, SelectorFilter, SelectorFind, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -9,7 +8,7 @@ const isRoot = (root: SugarElement<Node>) => (node: SugarElement<Node>) =>
 
 // Given the current editor selection, identify the uid of any current
 // annotation
-const identify = (editor: Editor, annotationName: Optional<string>): Optional<{ uid: string; name: string; elements: SugarElement<Element>[] }> => {
+const identify = (editor: Editor, annotationName: (string) | null): ({ uid: string; name: string; elements: SugarElement<Element>[] }) | null => {
   const rng = editor.selection.getRng();
 
   const start = SugarElement.fromDom(rng.startContainer);
@@ -20,7 +19,7 @@ const identify = (editor: Editor, annotationName: Optional<string>): Optional<{ 
     (an) => `[${Markings.dataAnnotation()}="${an}"]`
   );
 
-  const newStart = Traverse.child(start, rng.startOffset).getOr(start);
+  const newStart = Traverse.child(start, rng.startOffset) ?? (start);
   const closest = SelectorFind.closest(newStart, selector, isRoot(root));
 
   return closest.bind((c) =>
@@ -44,17 +43,17 @@ const isBogusElement = (elem: SugarElement<Node>, root: SugarElement<Node>) =>
 const findMarkers = (editor: Editor, uid: string): Array<SugarElement<Element>> => {
   const body = SugarElement.fromDom(editor.getBody());
   const descendants = SelectorFilter.descendants(body, `[${Markings.dataAnnotationId()}="${uid}"]`);
-  return Arr.filter(descendants, (descendant) => !isBogusElement(descendant, body));
+  return (descendants).filter((descendant) => !isBogusElement(descendant, body));
 };
 
 const findAll = (editor: Editor, name: string): Record<string, SugarElement<Element>[]> => {
   const body = SugarElement.fromDom(editor.getBody());
   const markers = SelectorFilter.descendants(body, `[${Markings.dataAnnotation()}="${name}"]`);
   const directory: Record<string, SugarElement<Element>[]> = {};
-  Arr.each(markers, (m) => {
+  (markers).forEach((m) => {
     if (!isBogusElement(m, body)) {
       const uid = Attribute.get(m, Markings.dataAnnotationId()) as string;
-      const nodesAlready: SugarElement<Element>[] = Obj.get(directory, uid).getOr([]);
+      const nodesAlready: SugarElement<Element>[] = ((directory)[uid] ?? null) ?? ([]);
       directory[uid] = nodesAlready.concat([ m ]);
     }
   });

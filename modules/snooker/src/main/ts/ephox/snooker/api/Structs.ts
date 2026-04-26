@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { CellElement, RowElement, RowCell } from '../util/TableTypes';
@@ -92,7 +91,7 @@ export interface Bounds {
 }
 
 const isValidSection = (parentName: string): parentName is Section =>
-  Arr.contains(validSectionList, parentName);
+  (validSectionList).includes(parentName);
 
 const dimension = (width: number, height: number): Dimension => ({
   width,

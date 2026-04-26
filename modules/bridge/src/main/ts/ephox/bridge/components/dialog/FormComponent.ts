@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 
@@ -17,7 +16,7 @@ export interface FormComponentWithLabelSpec extends FormComponentSpec {
 }
 
 export interface FormComponentWithLabel extends FormComponent {
-  label: Optional<string>;
+  label: (string) | null;
 }
 
 export const formComponentFields = [

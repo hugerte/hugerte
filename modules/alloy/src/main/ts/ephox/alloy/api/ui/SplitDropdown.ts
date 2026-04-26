@@ -1,4 +1,3 @@
-import { Fun, Id, Optional } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import * as DropdownUtils from '../../dropdown/DropdownUtils';
@@ -32,18 +31,18 @@ const factory: CompositeSketchFactory<SplitDropdownDetail, SplitDropdownSpec> = 
 
   const action = (component: AlloyComponent) => {
     const onOpenSync = switchToMenu;
-    DropdownUtils.togglePopup(detail, Fun.identity, component, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+    DropdownUtils.togglePopup(detail, (x: any) => x, component, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(() => {});
   };
 
   const openMenu = (comp: AlloyComponent) => {
     action(comp);
-    return Optional.some(true);
+    return true;
   };
 
   const executeOnButton = (comp: AlloyComponent) => {
     const button = AlloyParts.getPartOrDie(comp, detail, 'button');
     AlloyTriggers.emitExecute(button);
-    return Optional.some(true);
+    return true;
   };
 
   const buttonEvents = {
@@ -51,13 +50,13 @@ const factory: CompositeSketchFactory<SplitDropdownDetail, SplitDropdownSpec> = 
       AlloyEvents.runOnAttached((component, _simulatedEvent) => {
         const ariaDescriptor = AlloyParts.getPart(component, detail, 'aria-descriptor');
         ariaDescriptor.each((descriptor) => {
-          const descriptorId = Id.generate('aria');
+          const descriptorId = (('aria') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
           Attribute.set(descriptor.element, 'id', descriptorId);
           Attribute.set(component.element, 'aria-describedby', descriptorId);
         });
       })
     ]),
-    ...ButtonBase.events(Optional.some(action))
+    ...ButtonBase.events(action)
   };
 
   const apis: SplitDropdownApis = {
@@ -121,7 +120,7 @@ const factory: CompositeSketchFactory<SplitDropdownDetail, SplitDropdownSpec> = 
 
     domModification: {
       attributes: {
-        'role': detail.role.getOr('button'),
+        'role': detail.role ?? ('button'),
         'aria-haspopup': true
       }
     }

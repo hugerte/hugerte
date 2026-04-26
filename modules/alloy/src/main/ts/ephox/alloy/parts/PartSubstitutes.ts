@@ -1,4 +1,4 @@
-import { Arr, Fun, Merger } from '@ephox/katamari';
+import { Merger } from '@ephox/katamari';
 
 import { AlloySpec } from '../api/component/SpecTypes';
 import { CompositeSketchDetail, CompositeSketchSpec } from '../api/ui/Sketcher';
@@ -19,7 +19,7 @@ const subs = <D extends CompositeSketchDetail>(owner: string, detail: D, parts: 
   const internals: Record<string, UiSubstitutes.UiSubstitutesAdt> = { };
   const externals: Record<string, () => AlloySpec> = { };
 
-  Arr.each(parts, (part) => {
+  (parts).forEach((part) => {
     part.fold(
       // Internal
       (data) => {
@@ -31,12 +31,10 @@ const subs = <D extends CompositeSketchDetail>(owner: string, detail: D, parts: 
       // External
       (data) => {
         const partSpec = detail.parts[data.name];
-        externals[data.name] = Fun.constant(
-          data.factory.sketch(
+        externals[data.name] = () => data.factory.sketch(
             combine(detail, data, partSpec[PartType.original()]),
             partSpec
-          ) // This is missing partValidated
-        );
+          ) // This is missing partValidated;
         // no placeholders
       },
 
@@ -51,7 +49,7 @@ const subs = <D extends CompositeSketchDetail>(owner: string, detail: D, parts: 
       (data) => {
         internals[data.pname] = UiSubstitutes.multiple(true, (detail, _partSpec, _partValidated) => {
           const units: Array<Record<string, any>> = (detail as any)[data.name];
-          return Arr.map(units, (u) =>
+          return (units).map((u) =>
             // Group multiples do not take the uid because there is more than one.
             data.factory.sketch(
               Merger.deepMerge(
@@ -59,16 +57,15 @@ const subs = <D extends CompositeSketchDetail>(owner: string, detail: D, parts: 
                 u,
                 data.overrides(detail, u)
               )
-            )
-          );
+            ));
         });
       }
     );
   });
 
   return {
-    internals: Fun.constant(internals),
-    externals: Fun.constant(externals)
+    internals: () => internals,
+    externals: () => externals
   };
 };
 

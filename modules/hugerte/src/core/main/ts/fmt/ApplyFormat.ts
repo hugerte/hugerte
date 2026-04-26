@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { PredicateExists, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -34,7 +34,7 @@ const canFormatBR = (editor: Editor, format: ApplyFormat, node: HTMLBRElement, p
     const validBRParentElements = getTextRootBlockElements(editor.schema);
     // If a caret node is present, the format should apply to that, not the br (applicable to collapsed selections)
     const hasCaretNodeSibling = PredicateExists.sibling(SugarElement.fromDom(node), (sibling) => isCaretNode(sibling.dom));
-    return Obj.hasNonNullableKey(validBRParentElements, parentName) && Empty.isEmptyNode(editor.schema, node.parentNode, { skipBogus: false, includeZwsp: true }) && !hasCaretNodeSibling;
+    return (Object.prototype.hasOwnProperty.call(validBRParentElements, parentName) && (validBRParentElements)[parentName] != null) && Empty.isEmptyNode(editor.schema, node.parentNode, { skipBogus: false, includeZwsp: true }) && !hasCaretNodeSibling;
   } else {
     return false;
   }
@@ -64,7 +64,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
   const selection = ed.selection;
 
   const setElementFormat = (elm: Element, fmt: ApplyFormat = format) => {
-    if (Type.isFunction(fmt.onformat)) {
+    if (typeof (fmt.onformat) === 'function') {
       fmt.onformat(elm, fmt as any, vars, node);
     }
 
@@ -98,7 +98,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
       }
 
       // Check collapsed state if it exists
-      if (Type.isNonNullable(format.collapsed) && format.collapsed !== isCollapsed) {
+      if ((format.collapsed) != null && format.collapsed !== isCollapsed) {
         return true;
       }
 
@@ -115,7 +115,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
   };
 
   const createWrapElement = (wrapName: string | undefined): HTMLElement | null => {
-    if (Type.isString(wrapName)) {
+    if (typeof (wrapName) === 'string') {
       const wrapElm = dom.create(wrapName);
       setElementFormat(wrapElm);
       return wrapElm;
@@ -169,7 +169,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
 
         // Node has a contentEditable value
         const contentEditableValue = dom.getContentEditable(node);
-        if (Type.isNonNullable(contentEditableValue)) {
+        if ((contentEditableValue) != null) {
           lastContentEditable = contentEditable;
           contentEditable = contentEditableValue === 'true';
           // Unless the noneditable element is wrappable, we don't want to wrap the container, only it's editable children
@@ -205,7 +205,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
           let found = applyNodeStyle(formatList, node);
 
           // TINY-6567/TINY-7393: Include the parent if using an expanded selector format and no match was found for the current node
-          if (!found && Type.isNonNullable(parentNode) && FormatUtils.shouldExpandToSelector(format)) {
+          if (!found && (parentNode) != null && FormatUtils.shouldExpandToSelector(format)) {
             found = applyNodeStyle(formatList, parentNode);
           }
 
@@ -216,7 +216,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
           }
         }
 
-        if (Type.isNonNullable(wrapElm) && canWrapNode(node, parentName, isEditableDescendant, isWrappableNoneditableElm)) {
+        if ((wrapElm) != null && canWrapNode(node, parentName, isEditableDescendant, isWrappableNoneditableElm)) {
           // Start wrapping
           if (!currentWrapElm) {
             // Wrap the node
@@ -235,7 +235,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
           // Start a new wrapper for possible children
           currentWrapElm = null;
 
-          Arr.each(Arr.from(node.childNodes), process);
+          (Array.from(node.childNodes)).forEach(process);
 
           if (hasContentEditableState) {
             contentEditable = lastContentEditable; // Restore last contentEditable state from stack
@@ -246,18 +246,18 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
         }
       };
 
-      Arr.each(nodes, process);
+      (nodes).forEach(process);
     });
 
     // Apply formats to links as well to get the color of the underline to change as well
     if (format.links === true) {
-      Arr.each(newWrappers, (node) => {
+      (newWrappers).forEach((node) => {
         const process = (node: Node) => {
           if (node.nodeName === 'A') {
             setElementFormat(node as HTMLAnchorElement, format);
           }
 
-          Arr.each(Arr.from(node.childNodes), process);
+          (Array.from(node.childNodes)).forEach(process);
         };
 
         process(node);
@@ -269,7 +269,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
       const getChildCount = (node: Node) => {
         let count = 0;
 
-        Arr.each(node.childNodes, (node) => {
+        (node.childNodes).forEach((node) => {
           if (!FormatUtils.isEmptyTextNode(node) && !Bookmarks.isBookmarkNode(node)) {
             count++;
           }
@@ -280,7 +280,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
 
       const mergeStyles = (node: Element): Element => {
         // Check if a child was found and of the same type as the current node
-        const childElement = Arr.find(node.childNodes, FormatUtils.isElementNode)
+        const childElement = ((node.childNodes).find(FormatUtils.isElementNode) ?? null)
           .filter((child) => dom.getContentEditable(child) !== 'false' && MatchFormat.matchName(dom, child, format));
         return childElement.map((child) => {
           const clone = dom.clone(child, false) as Element;
@@ -289,7 +289,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
           dom.replace(clone, node, true);
           dom.remove(child, true);
           return clone;
-        }).getOr(node);
+        }) ?? (node);
       };
 
       const childCount = getChildCount(node);
@@ -353,7 +353,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
               applyRngStyle(dom, expandedRng, false);
             });
           },
-          Fun.always
+          (() => true as const)
         );
 
         ed.nodeChanged();
@@ -362,7 +362,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
       }
 
       ListItemFormat.getExpandedListItemFormat(ed.formatter, name).each((liFmt) => {
-        Arr.each(ListItemFormat.getFullySelectedListItems(ed.selection), (li) => applyStyles(dom, li, liFmt as ApplyFormat, vars));
+        (ListItemFormat.getFullySelectedListItems(ed.selection)).forEach((li) => applyStyles(dom, li, liFmt as ApplyFormat, vars));
       });
     }
 

@@ -1,5 +1,5 @@
 import { FieldProcessor, FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr, Optional, Result } from '@ephox/katamari';
+import { Optional, Result } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import * as EventRoot from '../alien/EventRoot';
@@ -20,7 +20,7 @@ type GetRulesFunc<C extends GeneralKeyingConfig, S extends BehaviourState> = (co
 
 export interface KeyingType <C extends GeneralKeyingConfig, S extends BehaviourState> {
   readonly schema: () => FieldProcessor[];
-  readonly processKey: (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<KeyboardEvent>, getRules: GetRulesFunc<C, S>, keyingConfig: C, keyingState: S) => Optional<boolean>;
+  readonly processKey: (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<KeyboardEvent>, getRules: GetRulesFunc<C, S>, keyingConfig: C, keyingState: S) => (boolean) | null;
   readonly toEvents: (keyingConfig: C, keyingState: S) => AlloyEvents.AlloyEventRecord;
 }
 
@@ -29,16 +29,16 @@ const typical = <C extends GeneralKeyingConfig, S extends BehaviourState>(
   stateInit: (config: C) => BehaviourState,
   getKeydownRules: (comp: AlloyComponent, se: NativeSimulatedEvent, config: C, state: S) => Array<KeyRules.KeyRule<C, S>>,
   getKeyupRules: (comp: AlloyComponent, se: NativeSimulatedEvent, config: C, state: S) => Array<KeyRules.KeyRule<C, S>>,
-  optFocusIn: (config: C) => Optional<(comp: AlloyComponent, config: C, state: S) => void>): KeyingType<C, S> => {
+  optFocusIn: (config: C) => ((comp: AlloyComponent, config: C, state: S) =) | null void>): KeyingType<C, S> => {
   const schema = () => infoSchema.concat([
     FieldSchema.defaulted('focusManager', FocusManagers.dom()),
-    FieldSchema.defaultedOf('focusInside', 'onFocus', StructureSchema.valueOf((val) => Arr.contains([ 'onFocus', 'onEnterOrSpace', 'onApi' ], val) ? Result.value(val) : Result.error('Invalid value for focusInside'))),
+    FieldSchema.defaultedOf('focusInside', 'onFocus', StructureSchema.valueOf((val) => ([ 'onFocus', 'onEnterOrSpace', 'onApi' ]).includes(val) ? Result.value(val) : Result.error('Invalid value for focusInside'))),
     Fields.output('handler', me),
     Fields.output('state', stateInit),
     Fields.output('sendFocusIn', optFocusIn)
   ]);
 
-  const processKey = (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<KeyboardEvent>, getRules: GetRulesFunc<C, S>, keyingConfig: C, keyingState: S): Optional<boolean> => {
+  const processKey = (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<KeyboardEvent>, getRules: GetRulesFunc<C, S>, keyingConfig: C, keyingState: S): (boolean) | null => {
     const rules = getRules(component, simulatedEvent, keyingConfig, keyingState);
 
     return KeyRules.choose(rules, simulatedEvent.event).bind((rule) => rule(component, simulatedEvent, keyingConfig, keyingState));

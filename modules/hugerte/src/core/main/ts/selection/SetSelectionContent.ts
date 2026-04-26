@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import BookmarkManager from '../api/dom/BookmarkManager';
@@ -12,16 +11,16 @@ import * as MergeText from '../delete/MergeText';
 import * as ScrollIntoView from '../dom/ScrollIntoView';
 import { needsToBeNbspLeft, needsToBeNbspRight } from '../keyboard/Nbsps';
 
-const removeEmpty = (text: SugarElement<Text>): Optional<SugarElement<Text>> => {
+const removeEmpty = (text: SugarElement<Text>): (SugarElement<Text>) | null => {
   if (text.dom.length === 0) {
     Remove.remove(text);
-    return Optional.none();
+    return null;
   } else {
-    return Optional.some(text);
+    return text;
   }
 };
 
-const walkPastBookmark = (node: Optional<SugarElement<Node>>, start: boolean): Optional<SugarElement<Node>> =>
+const walkPastBookmark = (node: (SugarElement<Node>) | null, start: boolean): (SugarElement<Node>) | null =>
   node.filter((elm) => BookmarkManager.isBookmarkNode(elm.dom))
     .bind(start ? Traverse.nextSibling : Traverse.prevSibling);
 
@@ -49,7 +48,7 @@ const normalizeTextIfRequired = (inner: SugarElement<Text>, start: boolean, sche
   });
 };
 
-const mergeAndNormalizeText = (outerNode: Optional<SugarElement<Text>>, innerNode: Optional<SugarElement<Node>>, rng: Range, start: boolean, schema: Schema) => {
+const mergeAndNormalizeText = (outerNode: (SugarElement<Text>) | null, innerNode: (SugarElement<Node>) | null, rng: Range, start: boolean, schema: Schema) => {
   outerNode.bind((outer) => {
     // Normalize the text outside the inserted content
     const normalizer = start ? MergeText.normalizeWhitespaceBefore : MergeText.normalizeWhitespaceAfter;
@@ -65,8 +64,8 @@ const mergeAndNormalizeText = (outerNode: Optional<SugarElement<Text>>, innerNod
 };
 
 const rngSetContent = (rng: Range, fragment: DocumentFragment, schema: Schema): void => {
-  const firstChild = Optional.from(fragment.firstChild).map(SugarElement.fromDom);
-  const lastChild = Optional.from(fragment.lastChild).map(SugarElement.fromDom);
+  const firstChild = (fragment.firstChild ?? null).map(SugarElement.fromDom);
+  const lastChild = (fragment.lastChild ?? null).map(SugarElement.fromDom);
 
   rng.deleteContents();
   rng.insertNode(fragment);

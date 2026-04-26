@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomParser from '../api/html/DomParser';
@@ -72,7 +71,7 @@ const register = (htmlParser: DomParser, settings: DomSerializerSettings, dom: D
 
       if (node.attr('data-mce-type') === 'bookmark' && !args.cleanup) {
         // We maybe dealing with a "filled" bookmark. If so just remove the node, otherwise unwrap it
-        const hasChildren = Optional.from(node.firstChild).exists((firstChild) => !Zwsp.isZwsp(firstChild.value ?? ''));
+        const hasChildren = (node.firstChild ?? null).exists((firstChild) => !Zwsp.isZwsp(firstChild.value ?? ''));
         if (hasChildren) {
           node.unwrap();
         } else {
@@ -153,7 +152,7 @@ const register = (htmlParser: DomParser, settings: DomSerializerSettings, dom: D
   });
 
   htmlParser.addAttributeFilter('data-mce-type', (nodes) => {
-    Arr.each(nodes, (node) => {
+    (nodes).forEach((node) => {
       if (node.attr('data-mce-type') === 'format-caret') {
         if (node.isEmpty(htmlParser.schema.getNonEmptyElements())) {
           node.remove();

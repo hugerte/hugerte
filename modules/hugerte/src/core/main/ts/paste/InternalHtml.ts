@@ -1,7 +1,6 @@
-import { Fun } from '@ephox/katamari';
 
 const internalMimeType = 'x-hugerte/html';
-const internalHtmlMime = Fun.constant(internalMimeType);
+const internalHtmlMime = () => internalMimeType;
 const internalMark = '<!-- ' + internalMimeType + ' -->';
 
 const mark = (html: string): string =>

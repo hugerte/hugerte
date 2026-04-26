@@ -1,16 +1,15 @@
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
 
 import { AlloyEventHandler, EventRunHandler } from '../api/events/AlloyEvents';
 import { EventFormat, SimulatedEvent } from '../events/SimulatedEvent';
 
 const defaultEventHandler = {
-  can: Fun.always,
-  abort: Fun.never,
-  run: Fun.noop
+  can: (() => true as const),
+  abort: (() => false as const),
+  run: () => {}
 };
 
 const nu = <T extends EventFormat>(parts: Partial<AlloyEventHandler<T>>): AlloyEventHandler<T> => {
-  if (!Obj.hasNonNullableKey(parts, 'can') && !Obj.hasNonNullableKey(parts, 'abort') && !Obj.hasNonNullableKey(parts, 'run')) {
+  if (!(Object.prototype.hasOwnProperty.call(parts, 'can') && (parts)['can'] != null) && !(Object.prototype.hasOwnProperty.call(parts, 'abort') && (parts)['abort'] != null) && !(Object.prototype.hasOwnProperty.call(parts, 'run') && (parts)['run'] != null)) {
     throw new Error(
       'EventHandler defined by: ' + JSON.stringify(parts, null, 2) + ' does not have can, abort, or run!'
     );
@@ -22,15 +21,15 @@ const nu = <T extends EventFormat>(parts: Partial<AlloyEventHandler<T>>): AlloyE
 };
 
 const all = <T extends EventFormat>(handlers: Array<AlloyEventHandler<T>>, f: (handler: AlloyEventHandler<T>) => any) => (...args: any[]) =>
-  Arr.foldl(handlers, (acc, handler) => acc && f(handler).apply(undefined, args), true);
+  (handlers).reduce((acc, handler) => acc && f(handler).apply(undefined, args), true);
 
 const any = <T extends EventFormat>(handlers: Array<AlloyEventHandler<T>>, f: (handler: AlloyEventHandler<T>) => any) => (...args: any[]) =>
-  Arr.foldl(handlers, (acc, handler) => acc || f(handler).apply(undefined, args), false);
+  (handlers).reduce((acc, handler) => acc || f(handler).apply(undefined, args), false);
 
 const read = <T extends EventFormat>(handler: (() => SimulatedEvent<T>) | AlloyEventHandler<T>): AlloyEventHandler<T> =>
-  Type.isFunction(handler) ? {
-    can: Fun.always,
-    abort: Fun.never,
+  typeof (handler) === 'function' ? {
+    can: (() => true as const),
+    abort: (() => false as const),
     run: handler
   } : handler;
 
@@ -40,7 +39,7 @@ const fuse = <T extends EventFormat>(handlers: Array<AlloyEventHandler<T>>): All
   const abort = any(handlers, (handler) => handler.abort);
 
   const run = (...args: Parameters<EventRunHandler<T>>) => {
-    Arr.each(handlers, (handler) => {
+    (handlers).forEach((handler) => {
       // ASSUMPTION: Return value is unimportant.
       handler.run.apply(undefined, args);
     });

@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -30,7 +29,7 @@ const open = (editor: Editor): void => {
     initialData: {
       start: parseDetail({
         start: editor.dom.getAttrib(currentList, 'start', '1'),
-        listStyleType: Optional.from(editor.dom.getStyle(currentList, 'list-style-type'))
+        listStyleType: (editor.dom.getStyle(currentList, 'list-style-type') ?? null)
       })
     },
     buttons: [
@@ -54,7 +53,7 @@ const open = (editor: Editor): void => {
             start: detail.start === '1' ? '' : detail.start
           },
           styles: {
-            'list-style-type': detail.listStyleType.getOr('')
+            'list-style-type': detail.listStyleType ?? ('')
           }
         });
       });

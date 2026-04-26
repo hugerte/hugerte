@@ -28,7 +28,7 @@ const normalizeBlockSelectionRange = (rng: Range): Range => {
       } else {
         return rng;
       }
-    }).getOr(rng);
+    }) ?? (rng);
 };
 
 const normalize = (rng: Range): Range => rng.collapsed ? rng : normalizeBlockSelectionRange(rng);

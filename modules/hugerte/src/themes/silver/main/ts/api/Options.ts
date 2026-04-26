@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Optionals, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 import { SelectorFind, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -28,19 +28,19 @@ const option: {
 } = (name: string) => (editor: Editor) =>
   editor.options.get(name);
 
-const wrapOptional = <T>(fn: (editor: Editor) => T) => (editor: Editor): Optional<NonNullable<T>> =>
-  Optional.from(fn(editor));
+const wrapOptional = <T>(fn: (editor: Editor) => T) => (editor: Editor): (NonNullable<T>) | null =>
+  (fn(editor) ?? null);
 
 const register = (editor: Editor): void => {
   const isPhone = Env.deviceType.isPhone();
   const isMobile = Env.deviceType.isTablet() || isPhone;
   const registerOption = editor.options.register;
 
-  const stringOrFalseProcessor = (value: unknown) => Type.isString(value) || value === false;
-  const stringOrNumberProcessor = (value: unknown) => Type.isString(value) || Type.isNumber(value);
+  const stringOrFalseProcessor = (value: unknown) => typeof (value) === 'string' || value === false;
+  const stringOrNumberProcessor = (value: unknown) => typeof (value) === 'string' || typeof (value) === 'number';
 
   registerOption('skin', {
-    processor: (value) => Type.isString(value) || value === false,
+    processor: (value) => typeof (value) === 'string' || value === false,
     default: 'oxide'
   });
 
@@ -147,7 +147,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('menubar', {
-    processor: (value) => Type.isString(value) || Type.isBoolean(value),
+    processor: (value) => typeof (value) === 'string' || typeof (value) === 'boolean',
     // Phones don't have a lot of screen space so disable the menubar
     default: !isPhone
   });
@@ -159,7 +159,7 @@ const register = (editor: Editor): void => {
 
   registerOption('toolbar', {
     processor: (value) => {
-      if (Type.isBoolean(value) || Type.isString(value) || Type.isArray(value)) {
+      if (typeof (value) === 'boolean' || typeof (value) === 'string' || Array.isArray(value)) {
         return { value, valid: true };
       } else {
         return { valid: false, message: 'Must be a boolean, string or array.' };
@@ -169,11 +169,11 @@ const register = (editor: Editor): void => {
   });
 
   // Register the toolbarN variations: toolbar1 -> toolbar9
-  Arr.range(9, (num) => {
+  Array.from({length: 9}, (_, _i) => ((num) => {
     registerOption('toolbar' + (num + 1), {
       processor: 'string'
     });
-  });
+  })(_i));
 
   registerOption('toolbar_mode', {
     processor: 'string',
@@ -268,7 +268,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('resize', {
-    processor: (value) => value === 'both' || Type.isBoolean(value),
+    processor: (value) => value === 'both' || typeof (value) === 'boolean',
     // Editor resize doesn't work on touch devices at this stage
     default: !Env.deviceType.isTouch()
   });
@@ -348,24 +348,24 @@ const getSkinUrl = (editor: Editor): string | undefined => {
   }
 };
 
-const getSkinUrlOption = (editor: Editor): Optional<string> => Optional.from(editor.options.get('skin_url'));
+const getSkinUrlOption = (editor: Editor): (string) | null => (editor.options.get('skin_url') ?? null);
 
 const getLineHeightFormats = (editor: Editor): string[] =>
   editor.options.get('line_height_formats').split(' ');
 
 const isToolbarEnabled = (editor: Editor): boolean => {
   const toolbar = getToolbar(editor);
-  const isToolbarString = Type.isString(toolbar);
-  const isToolbarObjectArray = Type.isArray(toolbar) && toolbar.length > 0;
+  const isToolbarString = typeof (toolbar) === 'string';
+  const isToolbarObjectArray = Array.isArray(toolbar) && toolbar.length > 0;
   // Toolbar is enabled if its value is true, a string or non-empty object array, but not string array
   return !isMultipleToolbars(editor) && (isToolbarObjectArray || isToolbarString || toolbar === true);
 };
 
 // Convert toolbar<n> into toolbars array
-const getMultipleToolbarsOption = (editor: Editor): Optional<string[]> => {
-  const toolbars = Arr.range(9, (num) => editor.options.get('toolbar' + (num + 1)));
-  const toolbarArray = Arr.filter(toolbars, Type.isString);
-  return Optionals.someIf(toolbarArray.length > 0, toolbarArray);
+const getMultipleToolbarsOption = (editor: Editor): (string[]) | null => {
+  const toolbars = Array.from({length: 9}, (_, _i) => ((num) => editor.options.get('toolbar' + (num + 1)))(_i));
+  const toolbarArray = (toolbars).filter(Type.isString);
+  return (toolbarArray.length > 0 ? toolbarArray : null);
 };
 
 // Check if multiple toolbars is enabled
@@ -373,18 +373,18 @@ const getMultipleToolbarsOption = (editor: Editor): Optional<string[]> => {
 const isMultipleToolbars = (editor: Editor): boolean => getMultipleToolbarsOption(editor).fold(
   () => {
     const toolbar = getToolbar(editor);
-    return Type.isArrayOf(toolbar, Type.isString) && toolbar.length > 0;
+    return (Array.isArray(toolbar) && (toolbar).every(Type.isString)) && toolbar.length > 0;
   },
-  Fun.always
+  (() => true as const)
 );
 
 const isToolbarLocationBottom = (editor: Editor): boolean =>
   getToolbarLocation(editor) === ToolbarLocation.bottom;
 
-const fixedContainerTarget = (editor: Editor): Optional<SugarElement> => {
+const fixedContainerTarget = (editor: Editor): (SugarElement) | null => {
   if (!editor.inline) {
     // fixed_toolbar_container(_target) is only available in inline mode
-    return Optional.none();
+    return null;
   }
 
   const selector = fixedContainerSelector(editor) ?? '';
@@ -394,16 +394,16 @@ const fixedContainerTarget = (editor: Editor): Optional<SugarElement> => {
   }
 
   const element = fixedToolbarContainerTarget(editor);
-  if (Type.isNonNullable(element)) {
+  if ((element) != null) {
     // If we have a valid target
-    return Optional.some(SugarElement.fromDom(element));
+    return SugarElement.fromDom(element);
   }
 
-  return Optional.none();
+  return null;
 };
 
 const useFixedContainer = (editor: Editor): boolean =>
-  editor.inline && fixedContainerTarget(editor).isSome();
+  editor.inline && fixedContainerTarget(editor) !== null;
 
 const getUiContainer = (editor: Editor): SugarElement<HTMLElement | ShadowRoot> => {
   const fixedContainer = fixedContainerTarget(editor);
@@ -425,7 +425,7 @@ const isSplitUiMode = (editor: Editor): boolean =>
 
 const getMenus = (editor: Editor): Record<string, { title: string; items: string }> => {
   const menu = editor.options.get('menu');
-  return Obj.map(menu, (menu) => ({ ...menu, items: menu.items }));
+  return Object.fromEntries(Object.entries(menu).map(([_k, _v]: [any, any]) => [_k, ((menu) => ({ ...menu, items: menu.items }))(_v, _k as any)]));
 };
 
 export {

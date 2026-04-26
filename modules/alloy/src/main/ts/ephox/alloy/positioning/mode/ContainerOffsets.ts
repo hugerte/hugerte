@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Compare, Scroll, SugarElement, SugarLocation, SugarPosition, Traverse } from '@ephox/sugar';
 
 import * as CssPosition from '../../alien/CssPosition';
@@ -9,7 +8,7 @@ import { NodeAnchor, SelectionAnchor } from './Anchoring';
 // In one mode, the window is inside an iframe. If that iframe is in the
 // same document as the positioning element (component), then identify the offset
 // difference between the iframe and the component.
-const getOffset = <I extends SelectionAnchor | NodeAnchor>(component: AlloyComponent, origin: OriginAdt, anchorInfo: I): Optional<SugarPosition> => {
+const getOffset = <I extends SelectionAnchor | NodeAnchor>(component: AlloyComponent, origin: OriginAdt, anchorInfo: I): (SugarPosition) | null => {
   const win = Traverse.defaultView(anchorInfo.root).dom;
 
   const hasSameOwner = (frame: SugarElement<HTMLFrameElement>) => {
@@ -18,7 +17,7 @@ const getOffset = <I extends SelectionAnchor | NodeAnchor>(component: AlloyCompo
     return Compare.eq(frameOwner, compOwner);
   };
 
-  return Optional.from(win.frameElement as HTMLFrameElement).map(SugarElement.fromDom)
+  return (win.frameElement as HTMLFrameElement ?? null).map(SugarElement.fromDom)
     .filter(hasSameOwner).map(SugarLocation.absolute);
 };
 
@@ -26,7 +25,7 @@ const getRootPoint = <I extends SelectionAnchor | NodeAnchor>(component: AlloyCo
   const doc = Traverse.owner(component.element);
   const outerScroll = Scroll.get(doc);
 
-  const offset = getOffset(component, origin, anchorInfo).getOr(outerScroll);
+  const offset = getOffset(component, origin, anchorInfo) ?? (outerScroll);
   return CssPosition.absolute(offset, outerScroll.left, outerScroll.top);
 };
 

@@ -1,5 +1,5 @@
 import { Objects } from '@ephox/boulder';
-import { Cell, Obj, Optional, Singleton } from '@ephox/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 import { Compare, EventArgs, SugarElement } from '@ephox/sugar';
 
 import { DelayedFunction } from '../alien/DelayedFunction';
@@ -7,7 +7,7 @@ import * as NativeEvents from '../api/events/NativeEvents';
 import * as SystemEvents from '../api/events/SystemEvents';
 import { GuiEventSettings } from './GuiEvents';
 
-type EventHandler = (event: EventArgs<Event>) => Optional<boolean>;
+type EventHandler = (event: EventArgs<Event>) => (boolean) | null;
 
 export interface TouchHistoryData {
   readonly x: number;
@@ -16,19 +16,19 @@ export interface TouchHistoryData {
 }
 
 interface Monitor {
-  readonly fireIfReady: (event: EventArgs<Event>, type: string) => Optional<boolean>;
+  readonly fireIfReady: (event: EventArgs<Event>, type: string) => (boolean) | null;
 }
 
 const SIGNIFICANT_MOVE = 5;
 
 const LONGPRESS_DELAY = 400;
 
-const getTouch = (event: EventArgs<TouchEvent>): Optional<Touch> => {
+const getTouch = (event: EventArgs<TouchEvent>): (Touch) | null => {
   const raw = event.raw;
   if (raw.touches === undefined || raw.touches.length !== 1) {
-    return Optional.none();
+    return null;
   }
-  return Optional.some(raw.touches[0]);
+  return raw.touches[0];
 };
 
 // Check to see if the touch has changed a *significant* amount
@@ -51,7 +51,7 @@ const monitor = (settings: GuiEventSettings): Monitor => {
     longpressFired.set(true);
   }, LONGPRESS_DELAY);
 
-  const handleTouchstart = (event: EventArgs<TouchEvent>): Optional<boolean> => {
+  const handleTouchstart = (event: EventArgs<TouchEvent>): (boolean) | null => {
     getTouch(event).each((touch) => {
       longpress.cancel();
 
@@ -65,10 +65,10 @@ const monitor = (settings: GuiEventSettings): Monitor => {
       longpressFired.set(false);
       startData.set(data);
     });
-    return Optional.none();
+    return null;
   };
 
-  const handleTouchmove = (event: EventArgs<TouchEvent>): Optional<boolean> => {
+  const handleTouchmove = (event: EventArgs<TouchEvent>): (boolean) | null => {
     longpress.cancel();
     getTouch(event).each((touch) => {
       startData.on((data) => {
@@ -77,10 +77,10 @@ const monitor = (settings: GuiEventSettings): Monitor => {
         }
       });
     });
-    return Optional.none();
+    return null;
   };
 
-  const handleTouchend = (event: EventArgs): Optional<boolean> => {
+  const handleTouchend = (event: EventArgs): (boolean) | null => {
     longpress.cancel();
 
     const isSame = (data: TouchHistoryData) => Compare.eq(data.target, event.target);
@@ -101,8 +101,8 @@ const monitor = (settings: GuiEventSettings): Monitor => {
     { key: NativeEvents.touchend(), value: handleTouchend }
   ] as Array<{ key: string; value: EventHandler }>);
 
-  const fireIfReady = (event: EventArgs<Event>, type: string): Optional<boolean> =>
-    Obj.get(handlers, type).bind((handler) => handler(event));
+  const fireIfReady = (event: EventArgs<Event>, type: string): (boolean) | null =>
+    ((handlers)[type] ?? null).bind((handler) => handler(event));
 
   return {
     fireIfReady

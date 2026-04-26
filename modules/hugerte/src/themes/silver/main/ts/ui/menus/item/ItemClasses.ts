@@ -1,5 +1,4 @@
 import { Toolbar } from '@ephox/bridge';
-import { Obj } from '@ephox/katamari';
 
 const navClass = 'tox-menu-nav__js';
 const selectableClass = 'tox-collection__item';
@@ -29,7 +28,7 @@ const containerValignTopClass = 'tox-collection__item-container--valign-top';
 const containerValignMiddleClass = 'tox-collection__item-container--valign-middle';
 const containerValignBottomClass = 'tox-collection__item-container--valign-bottom';
 
-const classForPreset = (presets: Toolbar.PresetTypes): string => Obj.get(presetClasses, presets).getOr(navClass);
+const classForPreset = (presets: Toolbar.PresetTypes): string => ((presetClasses)[presets] ?? null) ?? (navClass);
 
 export {
   classForPreset,

@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { Attribute, PredicateExists, SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -19,7 +18,7 @@ const addToEditor = (editor: Editor): void => {
             (elem) => SugarNode.name(elem) in textBlockElementsMap && editor.dom.isEmpty(elem.dom),
             isRoot
           ),
-          Fun.never
+          (() => false as const)
         );
       },
       items: insertToolbarItems,

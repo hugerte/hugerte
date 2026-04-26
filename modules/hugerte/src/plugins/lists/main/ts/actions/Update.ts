@@ -1,4 +1,3 @@
-import { Obj, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -17,11 +16,11 @@ export const updateList = (editor: Editor, update: ListUpdate): void => {
   }
 
   editor.undoManager.transact(() => {
-    if (Type.isObject(update.styles)) {
+    if ((typeof (update.styles) === 'object' && (update.styles) !== null)) {
       editor.dom.setStyles(parentList, update.styles);
     }
-    if (Type.isObject(update.attrs)) {
-      Obj.each(update.attrs, (v, k) => editor.dom.setAttrib(parentList, k, v));
+    if ((typeof (update.attrs) === 'object' && (update.attrs) !== null)) {
+      Object.entries(update.attrs).forEach(([_k, _v]: [any, any]) => ((v, k) => editor.dom.setAttrib(parentList, k, v))(_v, _k));
     }
   });
 };

@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { Class, Focus, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -139,8 +138,8 @@ const unregisterDocumentEvents = (editorManager: EditorManager, e: { editor: Edi
 };
 
 const setup = (editorManager: EditorManager): void => {
-  editorManager.on('AddEditor', Fun.curry(registerEvents, editorManager));
-  editorManager.on('RemoveEditor', Fun.curry(unregisterDocumentEvents, editorManager));
+  editorManager.on('AddEditor', ((..._rest: any[]) => (registerEvents)(editorManager, ..._rest)));
+  editorManager.on('RemoveEditor', ((..._rest: any[]) => (unregisterDocumentEvents)(editorManager, ..._rest)));
 };
 
 export {

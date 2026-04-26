@@ -8,7 +8,7 @@ import {
   RawDomSchema, Replacing, SimpleOrSketchSpec, SketchSpec, Tabstopping, Tooltipping
 } from '@ephox/alloy';
 import { Dialog, Toolbar } from '@ephox/bridge';
-import { Fun, Merger, Optional, Type } from '@ephox/katamari';
+import { Merger } from '@ephox/katamari';
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import * as ReadOnly from '../../ReadOnly';
@@ -30,16 +30,16 @@ type FooterToggleButtonSpec = Omit<Dialog.DialogFooterToggleButton, 'type'>;
 type FooterButtonSpec = Omit<Dialog.DialogFooterNormalButton, 'type'> | Omit<Dialog.DialogFooterMenuButton, 'type'> | FooterToggleButtonSpec;
 
 export interface IconButtonWrapper extends Omit<ButtonSpec, 'text'> {
-  readonly tooltip: Optional<string>;
+  readonly tooltip: (string) | null;
 }
 
 export const renderCommonSpec = (
   spec: ButtonSpec | IconButtonWrapper,
-  actionOpt: Optional<(comp: AlloyComponent) => void>,
+  actionOpt: ((comp: AlloyComponent) =) | null void>,
   extraBehaviours: Behaviours = [],
   dom: RawDomSchema,
   components: AlloySpec[],
-  tooltip: Optional<string>,
+  tooltip: (string) | null,
   providersBackstage: UiFactoryBackstageProviders
 ): AlloyButtonSpec => {
   const action = actionOpt.fold(() => ({}), (action) => ({
@@ -77,14 +77,14 @@ export const renderCommonSpec = (
 // can have a tooltip. It's only used for the More Drawer button at the moment.
 export const renderIconButtonSpec = (
   spec: IconButtonWrapper,
-  action: Optional<(comp: AlloyComponent) => void>,
+  action: ((comp: AlloyComponent) =) | null void>,
   providersBackstage: UiFactoryBackstageProviders,
   extraBehaviours: Behaviours = [],
   btnName: string
 ): AlloyButtonSpec => {
   const tooltipAttributes = spec.tooltip.map<{}>((tooltip) => ({
     'aria-label': providersBackstage.translate(tooltip),
-  })).getOr({});
+  })) ?? ({});
   const dom = {
     tag: 'button',
     classes: [ ToolbarButtonClasses.Button ],
@@ -113,7 +113,7 @@ export const calculateClassesFromButtonType = (buttonType: 'primary' | 'secondar
 // we do elsewhere? Not sure.
 const renderButtonSpec = (
   spec: ButtonSpec,
-  action: Optional<(comp: AlloyComponent) => void>,
+  action: ((comp: AlloyComponent) =) | null void>,
   providersBackstage: UiFactoryBackstageProviders,
   extraBehaviours: Behaviours = [],
   extraClasses: string[] = []
@@ -126,13 +126,13 @@ const renderButtonSpec = (
   const components = [ icon.getOrThunk(() => GuiFactory.text(translatedText)) ];
 
   // The old default is based on the now-deprecated 'primary' property. `buttonType` takes precedence now.
-  const buttonType = spec.buttonType.getOr(!spec.primary && !spec.borderless ? 'secondary' : 'primary');
+  const buttonType = spec.buttonType ?? (!spec.primary && !spec.borderless ? 'secondary' : 'primary');
 
   const baseClasses = calculateClassesFromButtonType(buttonType);
 
   const classes = [
     ...baseClasses,
-    ...icon.isSome() ? [ 'tox-button--icon' ] : [],
+    ...icon !== null ? [ 'tox-button--icon' ] : [],
     ...spec.borderless ? [ 'tox-button--naked' ] : [],
     ...extraClasses
   ];
@@ -148,7 +148,7 @@ const renderButtonSpec = (
 
   // Only provide a tooltip if we are using an icon. This is because above, a button is only an icon
   // or text, and not both.
-  const optTooltip = spec.icon.map(Fun.constant(translatedText));
+  const optTooltip = spec.icon.map(() => translatedText);
 
   return renderCommonSpec(
     spec,
@@ -169,7 +169,7 @@ export const renderButton = (
   extraBehaviours: Behaviours = [],
   extraClasses: string[] = []
 ): SketchSpec => {
-  const buttonSpec = renderButtonSpec(spec, Optional.some(action), providersBackstage, extraBehaviours, extraClasses);
+  const buttonSpec = renderButtonSpec(spec, action, providersBackstage, extraBehaviours, extraClasses);
   return AlloyButton.sketch(buttonSpec);
 };
 
@@ -216,7 +216,7 @@ const renderToggleButton = (spec: FooterToggleButtonSpec, providers: UiFactoryBa
   };
 
   // The old default is based on the now-deprecated 'primary' property. `buttonType` takes precedence now.
-  const buttonType = spec.buttonType.getOr(!spec.primary ? 'secondary' : 'primary');
+  const buttonType = spec.buttonType ?? (!spec.primary ? 'secondary' : 'primary');
 
   const buttonSpec: IconButtonWrapper = {
     ...spec,
@@ -229,34 +229,34 @@ const renderToggleButton = (spec: FooterToggleButtonSpec, providers: UiFactoryBa
 
   const tooltipAttributes = buttonSpec.tooltip.map<{}>((tooltip) => ({
     'aria-label': providers.translate(tooltip),
-  })).getOr({});
+  })) ?? ({});
 
   const buttonTypeClasses = calculateClassesFromButtonType(buttonType ?? 'secondary');
-  const showIconAndText: boolean = spec.icon.isSome() && spec.text.isSome();
+  const showIconAndText: boolean = spec.icon !== null && spec.text !== null;
   const dom = {
     tag: 'button',
     classes: [
-      ...buttonTypeClasses.concat(spec.icon.isSome() ? [ 'tox-button--icon' ] : []),
+      ...buttonTypeClasses.concat(spec.icon !== null ? [ 'tox-button--icon' ] : []),
       ...(spec.active ? [ ViewButtonClasses.Ticked ] : []),
       ...(showIconAndText ? [ 'tox-button--icon-and-text' ] : [])
     ],
     attributes: {
       ...tooltipAttributes,
-      ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {} )
+      ...((btnName) != null ? { 'data-mce-name': btnName } : {} )
     }
   };
   const extraBehaviours: Behaviours = [];
 
-  const translatedText = providers.translate(spec.text.getOr(''));
+  const translatedText = providers.translate(spec.text ?? (''));
   const translatedTextComponed = GuiFactory.text(translatedText);
 
   const iconComp = componentRenderPipeline([ optMemIcon.map((memIcon) => memIcon.asSpec()) ]);
   const components = [
     ...iconComp,
-    ...(spec.text.isSome() ? [ translatedTextComponed ] : [])
+    ...(spec.text !== null ? [ translatedTextComponed ] : [])
   ];
 
-  const iconButtonSpec = renderCommonSpec(buttonSpec, Optional.some(action), extraBehaviours, dom, components, spec.tooltip, providers);
+  const iconButtonSpec = renderCommonSpec(buttonSpec, action, extraBehaviours, dom, components, spec.tooltip, providers);
   return AlloyButton.sketch(iconButtonSpec);
 };
 
@@ -270,15 +270,15 @@ export const renderFooterButton = (spec: FooterButtonSpec, buttonType: string, b
       ...spec,
       type: 'menubutton',
       // Currently, dialog-based menu buttons cannot be searchable.
-      search: Optional.none(),
+      search: null,
       onSetup: (api) => {
         api.setEnabled(spec.enabled);
-        return Fun.noop;
+        return () => {};
       },
       fetch: getFetch(menuButtonSpec.items, getButton, backstage)
     };
 
-    const memButton = Memento.record(renderMenuButton(fixedSpec, ToolbarButtonClasses.Button, backstage, Optional.none(), true, spec.text.or(spec.tooltip).getOrUndefined()));
+    const memButton = Memento.record(renderMenuButton(fixedSpec, ToolbarButtonClasses.Button, backstage, null, true, spec.text.or(spec.tooltip) ?? undefined));
 
     return memButton.asSpec();
   } else if (isNormalFooterButtonSpec(spec, buttonType)) {
@@ -289,7 +289,7 @@ export const renderFooterButton = (spec: FooterButtonSpec, buttonType: string, b
     };
     return renderButton(buttonSpec, action, backstage.shared.providers, [ ]);
   } else if (isToggleButtonSpec(spec, buttonType)) {
-    return renderToggleButton(spec, backstage.shared.providers, spec.text.or(spec.tooltip).getOrUndefined());
+    return renderToggleButton(spec, backstage.shared.providers, spec.text.or(spec.tooltip) ?? undefined);
   } else {
     // eslint-disable-next-line no-console
     console.error('Unknown footer button type: ', buttonType);
@@ -299,9 +299,9 @@ export const renderFooterButton = (spec: FooterButtonSpec, buttonType: string, b
 
 export const renderDialogButton = (spec: ButtonSpec, providersBackstage: UiFactoryBackstageProviders): SketchSpec => {
   const action = getAction(spec.name, 'custom');
-  return renderFormField(Optional.none(), AlloyFormField.parts.field({
+  return renderFormField(null, AlloyFormField.parts.field({
     factory: AlloyButton,
-    ...renderButtonSpec(spec, Optional.some(action), providersBackstage, [
+    ...renderButtonSpec(spec, action, providersBackstage, [
       RepresentingConfigs.memory(''),
       ComposingConfigs.self()
     ])

@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { Bounds } from '../../alien/Boxes';
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -25,13 +24,13 @@ export interface PlacementSpec {
 
 export interface PlacementDetail {
   readonly anchor: AnchorDetail<any>;
-  readonly transition: Optional<TransitionDetail>;
+  readonly transition: (TransitionDetail) | null;
 }
 
 export interface PositioningBehaviour extends Behaviour.AlloyBehaviour<PositioningConfigSpec, PositioningConfig> {
   readonly config: (config: PositioningConfigSpec) => Behaviour.NamedConfiguredBehaviour<PositioningConfigSpec, PositioningConfig>;
   readonly position: (component: AlloyComponent, placee: AlloyComponent, spec: PlacementSpec) => void;
-  readonly positionWithinBounds: (component: AlloyComponent, placee: AlloyComponent, spec: PlacementSpec, optWithinBounds: Optional<Bounds>) => void;
+  readonly positionWithinBounds: (component: AlloyComponent, placee: AlloyComponent, spec: PlacementSpec, optWithinBounds: (Bounds) | null) => void;
   readonly getMode: (component: AlloyComponent) => string;
   readonly reset: (component: AlloyComponent, placee: AlloyComponent) => void;
 }
@@ -43,12 +42,12 @@ export interface PositioningConfigSpec extends Behaviour.BehaviourConfigSpec {
 
 export interface PositioningConfig extends Behaviour.BehaviourConfigDetail {
   readonly useFixed: () => boolean;
-  readonly getBounds: Optional<() => Bounds>;
+  readonly getBounds: (() =) | null Bounds>;
 }
 
 export interface PositioningState extends BehaviourState {
   readonly clear: (id?: string) => void;
-  readonly get: (id: string) => Optional<PlacerResult>;
+  readonly get: (id: string) => (PlacerResult) | null;
   readonly set: (id: string, state: PlacerResult) => void;
 }
 

@@ -1,4 +1,4 @@
-import { Arr, Cell, Fun } from '@ephox/katamari';
+import { Arr, Cell } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as BlockBoundaryDelete from './BlockBoundaryDelete';
@@ -40,7 +40,7 @@ const deleteCommand = (editor: Editor, caret: Cell<Text | null>): void => {
         DeleteUtils.paddEmptyBody(editor);
       }
     },
-    Fun.call
+    ((f: () => any) => f())
   );
 };
 
@@ -53,7 +53,7 @@ const forwardDeleteCommand = (editor: Editor, caret: Cell<Text | null>): void =>
         DeleteUtils.execNativeForwardDeleteCommand(editor);
       }
     },
-    Fun.call
+    ((f: () => any) => f())
   );
 };
 

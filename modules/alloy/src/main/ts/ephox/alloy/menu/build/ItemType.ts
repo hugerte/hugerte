@@ -1,5 +1,4 @@
 import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Obj, Type } from '@ephox/katamari';
 
 import * as AddEventsBehaviour from '../../api/behaviour/AddEventsBehaviour';
 import { Focusing } from '../../api/behaviour/Focusing';
@@ -22,16 +21,16 @@ type ItemRole = 'menuitem' | 'menuitemcheckbox' | 'menuitemradio';
 const getItemRole = (detail: NormalItemDetail): ItemRole =>
   detail.toggling
     .map((toggling) => toggling.exclusive ? 'menuitemradio' : 'menuitemcheckbox')
-    .getOr('menuitem');
+     ?? ('menuitem');
 
 const getTogglingSpec = (tConfig: Partial<ItemTogglingConfigSpec>): TogglingConfigSpec => ({
   aria: {
     mode: 'checked'
   },
   // Filter out the additional properties that are not in Toggling Behaviour's configuration (e.g. exclusive)
-  ...Obj.filter(tConfig, (_value, name) => name !== 'exclusive'),
+  ...Object.fromEntries(Object.entries(tConfig).filter(([_k, _v]: [any, any]) => ((_value, name) => name !== 'exclusive')(_v, _k as any))),
   onToggled: (component, state) => {
-    if (Type.isFunction(tConfig.onToggled)) {
+    if (typeof (tConfig.onToggled) === 'function') {
       tConfig.onToggled(component, state);
     }
     ItemEvents.onToggled(component, state);

@@ -1,6 +1,5 @@
 import { Behaviour, Focusing, SimpleSpec, Tabstopping } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 
@@ -22,13 +21,13 @@ export const renderTable = (spec: TableSpec, providersBackstage: UiFactoryBackst
         dom: {
           tag: 'tr'
         },
-        components: Arr.map(header, renderTh)
+        components: (header).map(renderTh)
       }
     ]
   });
   const renderTd = (text: string) => ({ dom: { tag: 'td', innerHtml: providersBackstage.translate(text) }});
-  const renderTr = (row: string[]) => ({ dom: { tag: 'tr' }, components: Arr.map(row, renderTd) });
-  const renderRows = (rows: string[][]) => ({ dom: { tag: 'tbody' }, components: Arr.map(rows, renderTr) });
+  const renderTr = (row: string[]) => ({ dom: { tag: 'tr' }, components: (row).map(renderTd) });
+  const renderRows = (rows: string[][]) => ({ dom: { tag: 'tbody' }, components: (rows).map(renderTr) });
   return {
     dom: {
       tag: 'table',

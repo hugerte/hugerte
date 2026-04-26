@@ -1,5 +1,4 @@
 import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, Input, Keying, NativeEvents, NativeSimulatedEvent, Representing } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 import { Attribute, EventArgs, SelectorFind } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../../../backstage/Backstage';
@@ -7,7 +6,7 @@ import { selectableClass as usualItemClass } from '../../item/ItemClasses';
 import { redirectMenuItemInteractionEvent, RedirectMenuItemInteractionEventData, refetchTriggerEvent } from './SearchableMenuEvents';
 
 export interface MenuSearcherSpec {
-  readonly placeholder: Optional<string>;
+  readonly placeholder: (string) | null;
   readonly i18n: UiFactoryBackstageProviders['translate'];
 }
 
@@ -27,7 +26,7 @@ const menuSearcherClass = 'tox-menu__searcher';
 // that memento onto the dropdown, which isn't going to have it. Especially,
 // because the dropdown isn't responsible for putting this searcher component
 // into the menu, NestedMenus is.
-export const findWithinSandbox = (sandboxComp: AlloyComponent): Optional<AlloyComponent> => {
+export const findWithinSandbox = (sandboxComp: AlloyComponent): (AlloyComponent) | null => {
   return SelectorFind.descendant(sandboxComp.element, `.${menuSearcherClass}`).bind(
     (inputElem) => sandboxComp.getSystem().getByDom(inputElem).toOptional()
   );
@@ -62,7 +61,7 @@ export const setActiveDescendant = (inputComp: AlloyComponent, active: AlloyComp
 
 export const renderMenuSearcher = (spec: MenuSearcherSpec): AlloySpec => {
 
-  const handleByBrowser = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>): Optional<boolean> => {
+  const handleByBrowser = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>): (boolean) | null => {
     // We "cut" this event, so that the browser still handles it, but it is not processed
     // by any of the above alloy components. We could also do this by stopping propagation,
     // but not preventing default, but it's probably good to allow some overarching thing
@@ -73,10 +72,10 @@ export const renderMenuSearcher = (spec: MenuSearcherSpec): AlloySpec => {
     // simulated event, which is going to call: preventDefault and stopPropagation. We want
     // neither of these things to happen, so we return None here to say that it hasn't been
     // handled. But because we've cut it, it will not propagate to any other alloy components
-    return Optional.none();
+    return null;
   };
 
-  const handleByHighlightedItem = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>): Optional<boolean> => {
+  const handleByHighlightedItem = (comp: AlloyComponent, se: NativeSimulatedEvent<KeyboardEvent>): (boolean) | null => {
     // Because we need to redispatch based on highlighted items that we don't know about here,
     // we are going to emit an event, that the sandbox listens to, and the sandbox will
     // redispatch the event.
@@ -86,7 +85,7 @@ export const renderMenuSearcher = (spec: MenuSearcherSpec): AlloySpec => {
     };
 
     AlloyTriggers.emitWith(comp, redirectMenuItemInteractionEvent, eventData);
-    return Optional.some(true);
+    return true;
   };
 
   const customSearcherEventsName = 'searcher-events';
@@ -105,7 +104,7 @@ export const renderMenuSearcher = (spec: MenuSearcherSpec): AlloySpec => {
         inputAttributes: {
           ...(spec.placeholder.map((placeholder) => (
             { placeholder: spec.i18n(placeholder) }
-          )).getOr({ })),
+          )) ?? ({ })),
           // This ARIA is based on the algolia example documented in TINY-8952
           'type': 'search',
           'aria-autocomplete': 'list'

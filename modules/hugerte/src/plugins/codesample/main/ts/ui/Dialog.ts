@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -9,7 +8,7 @@ type LanguageSpec = Languages.LanguageSpec;
 
 const open = (editor: Editor): void => {
   const languages: LanguageSpec[] = Languages.getLanguages(editor);
-  const defaultLanguage: string = Arr.head(languages).fold(Fun.constant(''), (l) => l.value);
+  const defaultLanguage: string = ((languages)[0] ?? null).fold(() => '', (l) => l.value);
   const currentLanguage: string = Languages.getCurrentLanguage(editor, defaultLanguage);
   const currentCode: string = CodeSample.getCurrentCode(editor);
 

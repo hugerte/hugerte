@@ -1,4 +1,3 @@
-import { Arr, Obj, Strings } from '@ephox/katamari';
 
 import DOMUtils from '../dom/DOMUtils';
 
@@ -17,7 +16,7 @@ const nonInheritableStyles: Set<string> = new Set();
     'overflow', 'overflow-x', 'overflow-y', 'text-overflow', 'vertical-align',
     'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function'
   ];
-  Arr.each(nonInheritableStylesArr, (style) => {
+  (nonInheritableStylesArr).forEach((style) => {
     nonInheritableStyles.add(style);
   });
 })();
@@ -27,15 +26,15 @@ const nonInheritableStyles: Set<string> = new Set();
 const shorthandStyleProps = [ 'font', 'text-decoration', 'text-emphasis' ];
 
 const getStyleProps = (dom: DOMUtils, node: Element) =>
-  Obj.keys(dom.parseStyle(dom.getAttrib(node, 'style')));
+  Object.keys(dom.parseStyle(dom.getAttrib(node, 'style')));
 
 const isNonInheritableStyle = (style: string) => nonInheritableStyles.has(style);
 
 const hasInheritableStyles = (dom: DOMUtils, node: Element): boolean =>
-  Arr.forall(getStyleProps(dom, node), (style) => !isNonInheritableStyle(style));
+  (getStyleProps(dom, node)).every((style) => !isNonInheritableStyle(style));
 
 const getLonghandStyleProps = (styles: string[]): string[] =>
-  Arr.filter(styles, (style) => Arr.exists(shorthandStyleProps, (prop) => Strings.startsWith(style, prop)));
+  (styles).filter((style) => (shorthandStyleProps).some((prop) => (style).startsWith(prop)));
 
 const hasStyleConflict = (dom: DOMUtils, node: Element, parentNode: Element): boolean => {
   const nodeStyleProps = getStyleProps(dom, node);
@@ -44,16 +43,16 @@ const hasStyleConflict = (dom: DOMUtils, node: Element, parentNode: Element): bo
   const valueMismatch = (prop: string) => {
     const nodeValue = dom.getStyle(node, prop) ?? '';
     const parentValue = dom.getStyle(parentNode, prop) ?? '';
-    return Strings.isNotEmpty(nodeValue) && Strings.isNotEmpty(parentValue) && nodeValue !== parentValue;
+    return ((nodeValue).length > 0) && ((parentValue).length > 0) && nodeValue !== parentValue;
   };
 
-  return Arr.exists(nodeStyleProps, (nodeStyleProp) => {
-    const propExists = (props: string[]) => Arr.exists(props, (prop) => prop === nodeStyleProp);
+  return (nodeStyleProps).some((nodeStyleProp) => {
+    const propExists = (props: string[]) => (props).some((prop) => prop === nodeStyleProp);
     // If parent has a longhand property e.g. margin-left but the child (node) style is margin, need to get the margin-left value of node to be able to do a proper comparison
     // This is because getting the style using the key of 'margin' on a 'margin-left' parent would give a string of space separated values or empty string depending on the browser
     if (!propExists(parentNodeStyleProps) && propExists(shorthandStyleProps)) {
       const longhandProps = getLonghandStyleProps(parentNodeStyleProps);
-      return Arr.exists(longhandProps, valueMismatch);
+      return (longhandProps).some(valueMismatch);
     } else {
       return valueMismatch(nodeStyleProp);
     }

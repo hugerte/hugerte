@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { StyleMap } from 'hugerte/core/api/html/Styles';
@@ -105,14 +104,14 @@ const mergeMargins = (css: StyleMap): StyleMap => {
 const createImageList = (editor: Editor, callback: (imageList: false | UserListItem[]) => void): void => {
   const imageList = Options.getImageList(editor);
 
-  if (Type.isString(imageList)) {
+  if (typeof (imageList) === 'string') {
     fetch(imageList)
       .then((res) => {
         if (res.ok) {
           res.json().then(callback);
         }
       });
-  } else if (Type.isFunction(imageList)) {
+  } else if (typeof (imageList) === 'function') {
     imageList(callback);
   } else {
     callback(imageList);

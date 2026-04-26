@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as CefUtils from '../dom/CefUtils';
@@ -6,9 +5,9 @@ import CaretPosition from './CaretPosition';
 import * as CaretUtils from './CaretUtils';
 import { isInlineFakeCaretTarget } from './FakeCaret';
 
-const showCaret = (direction: number, editor: Editor, node: HTMLElement, before: boolean, scrollIntoView: boolean): Optional<Range> =>
+const showCaret = (direction: number, editor: Editor, node: HTMLElement, before: boolean, scrollIntoView: boolean): (Range) | null =>
   // TODO: Figure out a better way to handle this dependency
-  Optional.from(editor._selectionOverrides.showCaret(direction, node, before, scrollIntoView));
+  (editor._selectionOverrides.showCaret(direction, node, before, scrollIntoView) ?? null);
 
 const getNodeRange = (node: Element): Range => {
   const rng = node.ownerDocument.createRange();
@@ -16,16 +15,16 @@ const getNodeRange = (node: Element): Range => {
   return rng;
 };
 
-const selectNode = (editor: Editor, node: Element): Optional<Range> => {
+const selectNode = (editor: Editor, node: Element): (Range) | null => {
   const e = editor.dispatch('BeforeObjectSelected', { target: node });
   if (e.isDefaultPrevented()) {
-    return Optional.none();
+    return null;
   }
 
-  return Optional.some(getNodeRange(node));
+  return getNodeRange(node);
 };
 
-const renderCaretAtRange = (editor: Editor, range: Range, scrollIntoView: boolean): Optional<Range> => {
+const renderCaretAtRange = (editor: Editor, range: Range, scrollIntoView: boolean): (Range) | null => {
   const normalizedRange = CaretUtils.normalizeRange(1, editor.getBody(), range);
   const caretPosition = CaretPosition.fromRangeStart(normalizedRange);
 
@@ -46,11 +45,11 @@ const renderCaretAtRange = (editor: Editor, range: Range, scrollIntoView: boolea
     return showCaret(1, editor, ceRoot, false, scrollIntoView);
   }
 
-  return Optional.none();
+  return null;
 };
 
 const renderRangeCaret = (editor: Editor, range: Range, scrollIntoView: boolean): Range =>
-  range.collapsed ? renderCaretAtRange(editor, range, scrollIntoView).getOr(range) : range;
+  range.collapsed ? renderCaretAtRange(editor, range, scrollIntoView) ?? (range) : range;
 
 export {
   showCaret,

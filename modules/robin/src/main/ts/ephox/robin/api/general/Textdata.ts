@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Spot, SpotRange } from '@ephox/phoenix';
 import { PositionArray } from '@ephox/polaris';
 
@@ -9,7 +9,7 @@ interface TextdataGet<E> {
 }
 
 export interface Textdata<E> extends TextdataGet<E> {
-  readonly cursor: Optional<number>;
+  readonly cursor: (number) | null;
 }
 
 /**
@@ -18,11 +18,11 @@ export interface Textdata<E> extends TextdataGet<E> {
 const get = <E, D>(universe: Universe<E, D>, elements: E[]): TextdataGet<E> => {
   const list = PositionArray.generate(elements, (x, start) => {
     return universe.property().isText(x) ?
-      Optional.some(Spot.range(x, start, start + universe.property().getText(x).length)) :
+      Spot.range(x, start, start + universe.property().getText(x).length) :
       Optional.none<SpotRange<E>>();
   });
 
-  const allText = Arr.foldr(list, (b, a) => {
+  const allText = (list).reduceRight((b, a) => {
     return universe.property().getText(a.element) + b;
   }, '');
 

@@ -1,20 +1,19 @@
-import { Optional } from '@ephox/katamari';
 import { Css, SugarElement } from '@ephox/sugar';
 
 export interface PositionCss {
   readonly position: string;
-  readonly left: Optional<string>;
-  readonly top: Optional<string>;
-  readonly right: Optional<string>;
-  readonly bottom: Optional<string>;
+  readonly left: (string) | null;
+  readonly top: (string) | null;
+  readonly right: (string) | null;
+  readonly bottom: (string) | null;
 }
 
 const NuPositionCss = (
   position: string,
-  left: Optional<number>,
-  top: Optional<number>,
-  right: Optional<number>,
-  bottom: Optional<number>
+  left: (number) | null,
+  top: (number) | null,
+  right: (number) | null,
+  bottom: (number) | null
 ): PositionCss => {
   const toPx = (num: number) => num + 'px';
   return {
@@ -26,9 +25,9 @@ const NuPositionCss = (
   };
 };
 
-const toOptions = (position: PositionCss): Record<string, Optional<string>> => ({
+const toOptions = (position: PositionCss): Record<string, (string) | null> => ({
   ...position,
-  position: Optional.some(position.position)
+  position: position.position
 });
 
 const applyPositionCss = (element: SugarElement<HTMLElement>, position: PositionCss): void => {

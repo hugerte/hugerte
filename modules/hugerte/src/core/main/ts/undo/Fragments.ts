@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 import Entities from '../api/html/Entities';
 import * as NodeType from '../dom/NodeType';
@@ -60,7 +59,7 @@ const removeAt = (elm: Element, index: number) => {
 
 const applyDiff = (diff: Diff.Diff<string>[], elm: Element) => {
   let index = 0;
-  Arr.each(diff, (action) => {
+  (diff).forEach((action) => {
     if (action[0] === Diff.KEEP) {
       index++;
     } else if (action[0] === Diff.INSERT) {
@@ -73,12 +72,12 @@ const applyDiff = (diff: Diff.Diff<string>[], elm: Element) => {
 };
 
 const read = (elm: Element, trimZwsp?: boolean): string[] =>
-  Arr.filter(Arr.map(Arr.from(elm.childNodes), trimZwsp ? Fun.compose(Zwsp.trim, getOuterHtml) : getOuterHtml), (item) => {
+  ((Array.from(elm.childNodes)).map(trimZwsp ? ((x: any) => (Zwsp.trim)((getOuterHtml)(x))) : getOuterHtml)).filter((item) => {
     return item.length > 0;
   });
 
 const write = (fragments: string[], elm: Element): Element => {
-  const currentFragments = Arr.map(Arr.from(elm.childNodes), getOuterHtml);
+  const currentFragments = (Array.from(elm.childNodes)).map(getOuterHtml);
   applyDiff(Diff.diff(currentFragments, fragments), elm);
   return elm;
 };

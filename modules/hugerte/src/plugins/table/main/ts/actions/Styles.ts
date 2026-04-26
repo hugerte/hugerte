@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';
@@ -10,7 +9,7 @@ const getTDTHOverallStyle = (dom: DOMUtils, elm: Element, name: string): string 
 
   for (let i = 0; i < cells.length; i++) {
     const currentStyle = dom.getStyle(cells[i], name);
-    if (Type.isUndefined(firstChildStyle)) {
+    if ((firstChildStyle) === undefined) {
       firstChildStyle = currentStyle;
     }
     if (firstChildStyle !== currentStyle) {

@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';
@@ -51,7 +50,7 @@ const mergeSubSup = (dom: DOMUtils, format: ApplyFormat, vars: FormatVars | unde
       applyStyle(dom, 'fontSize', '')
     );
 
-    const inverseTagDescendants = Arr.filter(dom.select(format.inline === 'sup' ? 'sub' : 'sup', node), dom.isEditable);
+    const inverseTagDescendants = (dom.select(format.inline === 'sup' ? 'sub' : 'sup', node)).filter(dom.isEditable);
     dom.remove(inverseTagDescendants, true);
   }
 };

@@ -22,7 +22,7 @@ export const block: BlockFn = (
 ) => {
   Attribute.set(component.element, 'aria-busy', true);
 
-  const root = config.getRoot(component).getOr(component);
+  const root = config.getRoot(component) ?? (component);
   const blockerBehaviours = Behaviour.derive([
     // Trap the "Tab" key and don't let it escape.
     Keying.config({

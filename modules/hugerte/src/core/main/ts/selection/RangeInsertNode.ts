@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import * as NodeType from '../dom/NodeType';
@@ -16,8 +15,8 @@ const insertNode = (dom: DOMUtils, rng: Range, node: Node) => {
 };
 
 const insertFragment = (dom: DOMUtils, rng: Range, frag: DocumentFragment) => {
-  const firstChild = Optional.from(frag.firstChild);
-  const lastChild = Optional.from(frag.lastChild);
+  const firstChild = (frag.firstChild ?? null);
+  const lastChild = (frag.lastChild ?? null);
 
   rng.insertNode(frag);
 

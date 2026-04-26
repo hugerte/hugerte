@@ -1,5 +1,4 @@
 import { Dragging, Focusing, Keying, SimpleSpec, Tabstopping, Tooltipping } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 import { SugarPosition } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -20,24 +19,24 @@ const getResizeType = (editor: Editor): ResizeTypes => {
   }
 };
 
-const keyboardHandler = (editor: Editor, resizeType: ResizeTypes, x: number, y: number): Optional<boolean> => {
+const keyboardHandler = (editor: Editor, resizeType: ResizeTypes, x: number, y: number): (boolean) | null => {
   const scale = 20;
   const delta = SugarPosition(x * scale, y * scale);
   resize(editor, delta, resizeType);
-  return Optional.some(true);
+  return true;
 };
 
-export const renderResizeHandler = (editor: Editor, providersBackstage: UiFactoryBackstageProviders): Optional<SimpleSpec> => {
+export const renderResizeHandler = (editor: Editor, providersBackstage: UiFactoryBackstageProviders): (SimpleSpec) | null => {
   const resizeType = getResizeType(editor);
   if (resizeType === ResizeTypes.None) {
-    return Optional.none();
+    return null;
   }
 
   const resizeLabel = resizeType === ResizeTypes.Both
     ? 'Press the arrow keys to resize the editor.'
     : 'Press the Up and Down arrow keys to resize the editor.';
 
-  return Optional.some(Icons.render('resize-handle', {
+  return Icons.render('resize-handle', {
     tag: 'div',
     classes: [ 'tox-statusbar__resize-handle' ],
     attributes: {
@@ -66,5 +65,5 @@ export const renderResizeHandler = (editor: Editor, providersBackstage: UiFactor
         })
       )
     ]
-  }, providersBackstage.icons));
+  }, providersBackstage.icons);
 };

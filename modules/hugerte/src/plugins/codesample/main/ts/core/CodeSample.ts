@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';
@@ -6,9 +5,9 @@ import Editor from 'hugerte/core/api/Editor';
 import * as Prism from '../prism/Prism';
 import * as Utils from '../util/Utils';
 
-const getSelectedCodeSample = (editor: Editor): Optional<HTMLPreElement> => {
+const getSelectedCodeSample = (editor: Editor): (HTMLPreElement) | null => {
   const node = editor.selection ? editor.selection.getNode() : null;
-  return Utils.isCodeSample(node) ? Optional.some(node) : Optional.none();
+  return Utils.isCodeSample(node) ? node : null;
 };
 
 const insertCodeSample = (editor: Editor, language: string, code: string): void => {
@@ -34,7 +33,7 @@ const insertCodeSample = (editor: Editor, language: string, code: string): void 
 
 const getCurrentCode = (editor: Editor): string => {
   const node = getSelectedCodeSample(editor);
-  return node.bind((n) => Optional.from(n.textContent)).getOr('');
+  return node.bind((n) => (n.textContent ?? null)) ?? ('');
 };
 
 export {

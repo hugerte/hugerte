@@ -1,4 +1,3 @@
-import { Arr, Optional, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -11,14 +10,14 @@ import { ImageDialogInfo, ListItem } from './DialogTypes';
 const collect = (editor: Editor): Promise<ImageDialogInfo> => {
   const urlListSanitizer = ListUtils.sanitizer((item) => editor.convertURL(item.value || item.url || '', 'src'));
 
-  const futureImageList = new Promise<Optional<ListItem[]>>((completer) => {
+  const futureImageList = new Promise<(ListItem[]) | null>((completer) => {
     Utils.createImageList(editor, (imageList) => {
       completer(
         urlListSanitizer(imageList).map(
-          (items) => Arr.flatten([
+          (items) => ([
             [{ text: 'None', value: '' }],
             items
-          ])
+          ]).flat()
         )
       );
     });
@@ -36,8 +35,8 @@ const collect = (editor: Editor): Promise<ImageDialogInfo> => {
   const hasImageCaption = Options.hasImageCaption(editor);
   const hasAccessibilityOptions = Options.showAccessibilityOptions(editor);
   const automaticUploads = Options.isAutomaticUploadsEnabled(editor);
-  const prependURL: Optional<string> = Optional.some(Options.getPrependUrl(editor)).filter(
-    (preUrl) => Type.isString(preUrl) && preUrl.length > 0);
+  const prependURL: (string) | null = Options.getPrependUrl(editor).filter(
+    (preUrl) => typeof (preUrl) === 'string' && preUrl.length > 0);
 
   return futureImageList.then((imageList): ImageDialogInfo => ({
     image,

@@ -1,4 +1,3 @@
-import { Arr, Obj } from '@ephox/katamari';
 
 import Entities from '../api/html/Entities';
 
@@ -16,7 +15,7 @@ const isPlainText = (text: string): boolean => {
 const openContainer = (rootTag: string, rootAttrs: Record<string, string>): string => {
   let tag = '<' + rootTag;
 
-  const attrs = Obj.mapToArray(rootAttrs, (value, key) => key + '="' + Entities.encodeAllRaw(value) + '"');
+  const attrs = Object.entries(rootAttrs).map(([_k, _v]: [any, any]) => ((value, key) => key + '="' + Entities.encodeAllRaw(value) + '"')(_v, _k as any));
   if (attrs.length) {
     tag += ' ' + attrs.join(' ');
   }
@@ -29,7 +28,7 @@ const toBlockElements = (text: string, rootTag: string, rootAttrs: Record<string
   const tagOpen = openContainer(rootTag, rootAttrs);
   const tagClose = '</' + rootTag + '>';
 
-  const paragraphs = Arr.map(blocks, (p) => {
+  const paragraphs = (blocks).map((p) => {
     return p.split(/\n/).join('<br />');
   });
 
@@ -37,7 +36,7 @@ const toBlockElements = (text: string, rootTag: string, rootAttrs: Record<string
     return tagOpen + p + tagClose;
   };
 
-  return paragraphs.length === 1 ? paragraphs[0] : Arr.map(paragraphs, stitch).join('');
+  return paragraphs.length === 1 ? paragraphs[0] : (paragraphs).map(stitch).join('');
 };
 
 export {

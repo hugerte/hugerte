@@ -1,5 +1,5 @@
 import { AlloySpec, ItemTypes, Menu as AlloyMenu, RawDomSchema, SimpleSpec } from '@ephox/alloy';
-import { Arr, Fun, Id, Obj } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import I18n from 'hugerte/core/api/util/I18n';
 
@@ -14,7 +14,7 @@ export interface StructureSpec extends SimpleSpec {
 
 const chunk = <I>(rowDom: RawDomSchema, numColumns: number) => (items: I[]): Array<{ dom: RawDomSchema; components: I[] }> => {
   const chunks = Arr.chunk(items, numColumns);
-  return Arr.map(chunks, (c) => ({
+  return (chunks).map((c) => ({
     dom: rowDom,
     components: c
   }));
@@ -39,7 +39,7 @@ const forSwatch = (columns: number | 'auto'): StructureSpec => ({
               classes: [ 'tox-swatches__row' ]
             },
             columns
-          ) : Fun.identity
+          ) : (x: any) => x
         })
       ]
     }
@@ -69,13 +69,13 @@ const forToolbar = (columns: number): StructureSpec => ({
 const preprocessCollection = (items: ItemTypes.ItemSpec[], isSeparator: (a: ItemTypes.ItemSpec, index: number) => boolean): AlloySpec[] => {
   const allSplits: ItemTypes.ItemSpec[][] = [ ];
   let currentSplit: ItemTypes.ItemSpec[] = [ ];
-  Arr.each(items, (item, i) => {
+  (items).forEach((item, i) => {
     if (isSeparator(item, i)) {
       if (currentSplit.length > 0) {
         allSplits.push(currentSplit);
       }
       currentSplit = [ ];
-      if (Obj.has(item.dom, 'innerHtml') || item.components && item.components.length > 0) {
+      if (Object.prototype.hasOwnProperty.call(item.dom, 'innerHtml') || item.components && item.components.length > 0) {
         currentSplit.push(item);
       }
     } else {
@@ -87,7 +87,7 @@ const preprocessCollection = (items: ItemTypes.ItemSpec[], isSeparator: (a: Item
     allSplits.push(currentSplit);
   }
 
-  return Arr.map(allSplits, (s) => ({
+  return (allSplits).map((s) => ({
     dom: {
       tag: 'div',
       classes: [ 'tox-collection__group' ]
@@ -106,7 +106,7 @@ const insertItemsPlaceholder = (
       // Add any information to the items that is required. For example
       // when the items are results in a searchable menu, we need them to have
       // an ID that can be referenced by aria-activedescendant
-      const enrichedItems = Arr.map(rawItems, onItem);
+      const enrichedItems = (rawItems).map(onItem);
       if (columns !== 'auto' && columns > 1) {
         return chunk<AlloySpec>({
           tag: 'div',
@@ -129,7 +129,7 @@ const forCollection = (columns: number | 'auto', initItems: ItemTypes.ItemSpec[]
   components: [
     // We don't need to add IDs for each item because there are no
     // aria relationships we need to maintain
-    insertItemsPlaceholder(columns, initItems, Fun.identity)
+    insertItemsPlaceholder(columns, initItems, (x: any) => x)
   ]
 });
 
@@ -139,7 +139,7 @@ const forCollectionWithSearchResults = (columns: number | 'auto', initItems: Ite
   // on its items.
 
   // This connects the search bar with the list box.
-  const ariaControlsSearchResults = Id.generate('aria-controls-search-results');
+  const ariaControlsSearchResults = (('aria-controls-search-results') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
   return {
     dom: {
@@ -163,7 +163,7 @@ const forCollectionWithSearchResults = (columns: number | 'auto', initItems: Ite
 const forCollectionWithSearchField = (columns: number | 'auto', initItems: ItemTypes.ItemSpec[], searchField: SearchMenuWithFieldMode): StructureSpec => {
 
   // This connects the search bar with the list box.
-  const ariaControlsSearchResults = Id.generate('aria-controls-search-results');
+  const ariaControlsSearchResults = (('aria-controls-search-results') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
   return {
     dom: {

@@ -1,5 +1,5 @@
 import { AlloyComponent, GuiFactory, SimpleSpec, TooltippingTypes } from '@ephox/alloy';
-import { Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 export interface TooltipsProvider {
   readonly getConfig: (spec: { tooltipText: string; onShow?: (comp: AlloyComponent, tooltip: AlloyComponent) => void }) => TooltippingTypes.TooltippingConfigSpec;
@@ -34,7 +34,7 @@ export const TooltipsBackstage = (
   const getConfig = (spec: { tooltipText: string; onShow?: (comp: AlloyComponent, tooltip: AlloyComponent) => void }) => {
     return {
       delayForShow: () => alreadyShowingTooltips() ? intervalDelay : tooltipDelay,
-      delayForHide: Fun.constant(tooltipDelay),
+      delayForHide: () => tooltipDelay,
       exclusive: true,
       lazySink: getSink,
       tooltipDom: {

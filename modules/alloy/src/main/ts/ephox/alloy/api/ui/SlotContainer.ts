@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { Attribute, Css } from '@ephox/sugar';
 
 import * as AlloyParts from '../../parts/AlloyParts';
@@ -33,7 +33,7 @@ const sketch = (sSpec: SlotContainerSpecBuilder): SketchSpec => {
 
     return {
       slot,
-      record: Fun.constant(record)
+      record: () => record
     };
   })();
 
@@ -44,7 +44,7 @@ const sketch = (sSpec: SlotContainerSpecBuilder): SketchSpec => {
   // Like a Form, a SlotContainer does not know its parts in advance. So the
   // record lists the names of the parts to put in the schema.
   // TODO: Find a nice way to remove dupe with Form
-  const fieldParts = Arr.map(partNames, (n) => PartType.required({ name: n, pname: getPartName(n) }));
+  const fieldParts = (partNames).map((n) => PartType.required({ name: n, pname: getPartName(n) }));
 
   return UiSketcher.composite(owner, schema, fieldParts, make, spec);
 };
@@ -59,10 +59,10 @@ const make = (detail: SlotContainerDetail, components: AlloySpec[]) => {
   const onSlot: {
     <T>(f: (comp: AlloyComponent, key: string) => T, def: T): (container: AlloyComponent, key: string) => T;
     (f: (comp: AlloyComponent, key: string) => void): (container: AlloyComponent, key: string) => void;
-  } = <T>(f: (comp: AlloyComponent, key: string) => T, def?: T) => (container: AlloyComponent, key: string) => AlloyParts.getPart(container, detail, key).map((slot) => f(slot, key)).getOr(def as T);
+  } = <T>(f: (comp: AlloyComponent, key: string) => T, def?: T) => (container: AlloyComponent, key: string) => AlloyParts.getPart(container, detail, key).map((slot) => f(slot, key)) ?? (def as T);
 
   const onSlots = (f: (container: AlloyComponent, key: string) => void) => (container: AlloyComponent, keys: string[]) => {
-    Arr.each(keys, (key) => f(container, key));
+    (keys).forEach((key) => f(container, key));
   };
 
   const doShowing = (comp: AlloyComponent, _key: string): boolean => Attribute.get(comp.element, 'aria-hidden') !== 'true';

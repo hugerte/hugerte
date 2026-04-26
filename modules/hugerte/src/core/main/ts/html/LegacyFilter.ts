@@ -1,4 +1,4 @@
-import { Arr, Strings } from '@ephox/katamari';
+import { Strings } from '@ephox/katamari';
 
 import DomParser, { DomParserSettings } from '../api/html/DomParser';
 import AstNode from '../api/html/Node';
@@ -7,14 +7,14 @@ import Styles from '../api/html/Styles';
 import Tools from '../api/util/Tools';
 
 const removeAttrs = (node: AstNode, names: string[]): void => {
-  Arr.each(names, (name) => {
+  (names).forEach((name) => {
     node.attr(name, null);
   });
 };
 
 const addFontToSpansFilter = (domParser: DomParser, styles: Styles, fontSizes: string[]): void => {
   domParser.addNodeFilter('font', (nodes) => {
-    Arr.each(nodes, (node) => {
+    (nodes).forEach((node) => {
       const props = styles.parse(node.attr('style'));
       const color = node.attr('color');
       const face = node.attr('face');
@@ -44,7 +44,7 @@ const addFontToSpansFilter = (domParser: DomParser, styles: Styles, fontSizes: s
 const addStrikeFilter = (domParser: DomParser, schema: Schema, styles: Styles): void => {
   domParser.addNodeFilter('strike', (nodes) => {
     const convertToSTag = schema.type !== 'html4';
-    Arr.each(nodes, (node) => {
+    (nodes).forEach((node) => {
       if (convertToSTag) {
         node.name = 's';
       } else {

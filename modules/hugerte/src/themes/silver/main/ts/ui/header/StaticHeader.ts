@@ -1,8 +1,7 @@
-import { Fun } from '@ephox/katamari';
 
-const setup = Fun.noop;
-const isDocked = Fun.never;
-const getBehaviours = Fun.constant([]);
+const setup = () => {};
+const isDocked = (() => false as const);
+const getBehaviours = () => [];
 
 export {
   setup,

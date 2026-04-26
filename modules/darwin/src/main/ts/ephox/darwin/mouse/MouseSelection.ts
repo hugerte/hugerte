@@ -1,4 +1,4 @@
-import { Optional, Optionals, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Compare, ContentEditable, EventArgs, SelectorFind, SugarElement, Traverse } from '@ephox/sugar';
 
 import { SelectionAnnotation } from '../api/SelectionAnnotation';
@@ -12,7 +12,7 @@ export interface MouseSelection {
   readonly mouseup: (event: EventArgs<MouseEvent>) => void;
 }
 
-const findCell = (target: SugarElement<Node>, isRoot: (e: SugarElement<Node>) => boolean): Optional<SugarElement<HTMLTableCellElement>> =>
+const findCell = (target: SugarElement<Node>, isRoot: (e: SugarElement<Node>) => boolean): (SugarElement<HTMLTableCellElement>) | null =>
   SelectorFind.closest<HTMLTableCellElement>(target, 'td,th', isRoot);
 
 const isInEditableContext = (cell: SugarElement<HTMLTableCellElement>) =>
@@ -27,13 +27,13 @@ export const MouseSelection = (bridge: WindowBridge, container: SugarElement<Nod
       annotations.clearBeforeUpdate(container);
       findCell(event.target, isRoot).each((finish) => {
         CellSelection.identify(start, finish, isRoot).each((cellSel) => {
-          const boxes = cellSel.boxes.getOr([]);
+          const boxes = cellSel.boxes ?? ([]);
           if (boxes.length === 1) {
             // If a single noneditable cell is selected and the actual selection target within the cell
             // is also noneditable, make sure it is annotated
             const singleCell = boxes[0];
             const isNonEditableCell = ContentEditable.getRaw(singleCell) === 'false';
-            const isCellClosestContentEditable = Optionals.is(ContentEditable.closest(event.target), singleCell, Compare.eq);
+            const isCellClosestContentEditable = (ContentEditable.closest(event.target) !== null && (Compare.eq)(ContentEditable.closest(event.target), singleCell));
             if (isNonEditableCell && isCellClosestContentEditable) {
               annotations.selectRange(container, boxes, singleCell, singleCell);
               // TODO: TINY-7874 This is purely a workaround until the offscreen selection issues are solved

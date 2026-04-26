@@ -1,4 +1,3 @@
-import { Obj, Type } from '@ephox/katamari';
 
 import { isWhitespaceText } from '../../text/Whitespace';
 import { SchemaMap } from './Schema';
@@ -101,9 +100,9 @@ class AstNode {
 
     // Add attributes if needed
     if (attrs) {
-      Obj.each(attrs, (value, attrName) => {
+      Object.entries(attrs).forEach(([_k, _v]: [any, any]) => ((value, attrName) => {
         node.attr(attrName, value);
-      });
+      })(_v, _k));
     }
 
     return node;
@@ -178,11 +177,11 @@ class AstNode {
   public attr(name?: string | Record<string, string | null | undefined>, value?: string | null | undefined): string | AstNode | undefined {
     const self = this;
 
-    if (!Type.isString(name)) {
-      if (Type.isNonNullable(name)) {
-        Obj.each(name, (value, key) => {
+    if (!typeof (name) === 'string') {
+      if ((name) != null) {
+        Object.entries(name).forEach(([_k, _v]: [any, any]) => ((value, key) => {
           self.attr(key, value);
-        });
+        })(_v, _k));
       }
 
       return self;

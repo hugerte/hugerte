@@ -1,4 +1,4 @@
-import { Cell, Fun, Optional, Optionals } from '@ephox/katamari';
+import { Cell, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -24,24 +24,21 @@ const rangeFromPositions = (from: CaretPosition, to: CaretPosition): Range => {
 
 // Checks for delete at <code>|a</code> when there is only one item left except the zwsp caret container nodes
 const hasOnlyTwoOrLessPositionsLeft = (elm: Node): boolean =>
-  Optionals.lift2(
-    CaretFinder.firstPositionIn(elm),
-    CaretFinder.lastPositionIn(elm),
-    (firstPos, lastPos) => {
+  (CaretFinder.firstPositionIn(elm) !== null && CaretFinder.lastPositionIn(elm) !== null ? ((firstPos, lastPos) => {
       const normalizedFirstPos = InlineUtils.normalizePosition(true, firstPos);
       const normalizedLastPos = InlineUtils.normalizePosition(false, lastPos);
 
       return CaretFinder.nextPosition(elm, normalizedFirstPos).forall((pos) => pos.isEqual(normalizedLastPos));
-    }).getOr(true);
+    })(CaretFinder.firstPositionIn(elm), CaretFinder.lastPositionIn(elm)) : null) ?? (true);
 
-const setCaretLocation = (editor: Editor, caret: Cell<Text | null>) => (location: BoundaryLocation.LocationAdt): Optional<() => void> =>
+const setCaretLocation = (editor: Editor, caret: Cell<Text | null>) => (location: BoundaryLocation.LocationAdt): (() =) | null void> =>
   BoundaryCaret.renderCaret(caret, location).map((pos) =>
     () => BoundarySelection.setCaretPosition(editor, pos)
   );
 
 const deleteFromTo = (editor: Editor, caret: Cell<Text | null>, from: CaretPosition, to: CaretPosition): void => {
   const rootNode = editor.getBody();
-  const isInlineTarget = Fun.curry(InlineUtils.isInlineTarget, editor);
+  const isInlineTarget = ((..._rest: any[]) => (InlineUtils.isInlineTarget)(editor, ..._rest));
 
   editor.undoManager.ignore(() => {
     editor.selection.setRng(rangeFromPositions(from, to));
@@ -51,7 +48,7 @@ const deleteFromTo = (editor: Editor, caret: Cell<Text | null>, from: CaretPosit
     BoundaryLocation.readLocation(isInlineTarget, rootNode, CaretPosition.fromRangeStart(editor.selection.getRng()))
       .map(BoundaryLocation.inside)
       .bind(setCaretLocation(editor, caret))
-      .each(Fun.call);
+      .each(((f: () => any) => f()));
   });
 
   editor.nodeChanged();
@@ -62,44 +59,43 @@ const rescope = (rootNode: Node, node: Node): Node => {
   return parentBlock ? parentBlock : rootNode;
 };
 
-const backspaceDeleteCollapsed = (editor: Editor, caret: Cell<Text | null>, forward: boolean, from: CaretPosition): Optional<() => void> => {
+const backspaceDeleteCollapsed = (editor: Editor, caret: Cell<Text | null>, forward: boolean, from: CaretPosition): (() =) | null void> => {
   const rootNode = rescope(editor.getBody(), from.container());
-  const isInlineTarget = Fun.curry(InlineUtils.isInlineTarget, editor);
+  const isInlineTarget = ((..._rest: any[]) => (InlineUtils.isInlineTarget)(editor, ..._rest));
   const fromLocation = BoundaryLocation.readLocation(isInlineTarget, rootNode, from);
   const location = fromLocation.bind((location) => {
     if (forward) {
       return location.fold(
-        Fun.constant(Optional.some(BoundaryLocation.inside(location))), // Before
+        () => BoundaryLocation.inside(location), // Before
         Optional.none, // Start
-        Fun.constant(Optional.some(BoundaryLocation.outside(location))), // End
+        () => BoundaryLocation.outside(location), // End
         Optional.none  // After
       );
     } else {
       return location.fold(
         Optional.none, // Before
-        Fun.constant(Optional.some(BoundaryLocation.outside(location))), // Start
+        () => BoundaryLocation.outside(location), // Start
         Optional.none, // End
-        Fun.constant(Optional.some(BoundaryLocation.inside(location)))  // After
+        () => BoundaryLocation.inside(location)  // After
       );
     }
   });
 
   return location.map(setCaretLocation(editor, caret))
-    .getOrThunk((): Optional<() => void> => {
+    .getOrThunk((): (() =) | null void> => {
       const toPosition = CaretFinder.navigate(forward, rootNode, from);
       const toLocation = toPosition.bind((pos) => BoundaryLocation.readLocation(isInlineTarget, rootNode, pos));
 
-      return Optionals.lift2(fromLocation, toLocation, () =>
+      return (fromLocation !== null && toLocation !== null ? (() =>
         InlineUtils.findRootInline(isInlineTarget, rootNode, from).bind((elm) => {
           if (hasOnlyTwoOrLessPositionsLeft(elm)) {
-            return Optional.some(() => {
+            return () => {
               DeleteElement.deleteElement(editor, forward, SugarElement.fromDom(elm));
-            });
+            };
           } else {
-            return Optional.none();
+            return null;
           }
-        })
-      ).getOrThunk(() => toLocation.bind(() =>
+        }))(fromLocation, toLocation) : null).getOrThunk(() => toLocation.bind(() =>
         toPosition.map((to) => {
           return () => {
             if (forward) {
@@ -113,13 +109,13 @@ const backspaceDeleteCollapsed = (editor: Editor, caret: Cell<Text | null>, forw
     });
 };
 
-const backspaceDelete = (editor: Editor, caret: Cell<Text | null>, forward: boolean): Optional<() => void> => {
+const backspaceDelete = (editor: Editor, caret: Cell<Text | null>, forward: boolean): (() =) | null void> => {
   if (editor.selection.isCollapsed() && Options.isInlineBoundariesEnabled(editor)) {
     const from = CaretPosition.fromRangeStart(editor.selection.getRng());
     return backspaceDeleteCollapsed(editor, caret, forward, from);
   }
 
-  return Optional.none();
+  return null;
 };
 
 export {

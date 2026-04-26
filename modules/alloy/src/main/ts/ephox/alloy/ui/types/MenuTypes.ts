@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
@@ -22,7 +21,7 @@ export interface MenuGridMovementSpec {
 export interface MenuMatrixMovementSpec {
   mode: 'matrix';
   rowSelector: string;
-  previousSelector?: (comp: AlloyComponent) => Optional<SugarElement<HTMLElement>>;
+  previousSelector?: (comp: AlloyComponent) => (SugarElement<HTMLElement>) | null;
 }
 
 export interface MenuNormalMovementSpec {
@@ -46,7 +45,7 @@ export interface MenuMatrixMovement {
   mode: 'matrix';
   config: (detail: MenuDetail, movementInfo: MenuMovement) => MatrixConfigSpec;
   rowSelector: string;
-  previousSelector: (comp: AlloyComponent) => Optional<SugarElement<HTMLElement>>;
+  previousSelector: (comp: AlloyComponent) => (SugarElement<HTMLElement>) | null;
 }
 
 export interface MenuNormalMovement {

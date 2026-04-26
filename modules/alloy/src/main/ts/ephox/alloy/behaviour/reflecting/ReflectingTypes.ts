@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -12,22 +11,22 @@ export interface ReflectingBehaviour<I, S> extends Behaviour.AlloyBehaviour<Refl
 
 export interface ReflectingConfigSpec<I, S> extends Behaviour.BehaviourConfigSpec {
   channel: string;
-  renderComponents?: (data: I, state: Optional<S>) => AlloySpec[ ];
-  updateState?: (comp: AlloyComponent, data: I) => Optional<S>;
+  renderComponents?: (data: I, state: (S) | null) => AlloySpec[ ];
+  updateState?: (comp: AlloyComponent, data: I) => (S) | null;
   initialData?: I;
   reuseDom?: boolean;
 }
 
 export interface ReflectingState<S> extends BehaviourState {
-  get: () => Optional<S>;
-  set: (optS: Optional<S>) => void;
+  get: () => (S) | null;
+  set: (optS: (S) | null) => void;
   clear: () => void;
 }
 
 export interface ReflectingConfig<I, S> extends Behaviour.BehaviourConfigDetail {
   channel: string;
-  renderComponents: Optional<(data: I, state: Optional<S>) => AlloySpec[ ]>;
-  updateState: Optional<(comp: AlloyComponent, data: I) => Optional<S>>;
-  initialData: Optional<any>;
+  renderComponents: ((data: I, state: (S) | null) =) | null AlloySpec[ ]>;
+  updateState: ((comp: AlloyComponent, data: I) =) | null (S) | null>;
+  initialData: (any) | null;
   reuseDom: boolean;
 }

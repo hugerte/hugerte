@@ -1,4 +1,4 @@
-import { Arr, Optional, Strings } from '@ephox/katamari';
+import { Strings } from '@ephox/katamari';
 import { Attribute, Compare, Insert, InsertAll, Replication, SelectorFilter, SugarElement } from '@ephox/sugar';
 
 export interface TableModel {
@@ -34,7 +34,7 @@ const cellPosition = (x: number, y: number): CellPosition => ({
 });
 
 const getSpan = (td: SugarElement<HTMLTableCellElement>, key: string) => {
-  return Attribute.getOpt(td, key).bind(Strings.toInt).getOr(1);
+  return Attribute.getOpt(td, key).bind(Strings.toInt) ?? (1);
 };
 
 const fillout = (table: TableModel, x: number, y: number, tr: SugarElement<HTMLTableRowElement>, td: SugarElement<HTMLTableCellElement>) => {
@@ -72,23 +72,23 @@ const skipCellsX = (table: TableModel, x: number, y: number) => {
 };
 
 const getWidth = (rows: TableRowModel[]) => {
-  return Arr.foldl(rows, (acc, row) => {
+  return (rows).reduce((acc, row) => {
     return row.cells.length > acc ? row.cells.length : acc;
   }, 0);
 };
 
-const findElementPos = (table: TableModel, element: SugarElement<unknown>): Optional<CellPosition> => {
+const findElementPos = (table: TableModel, element: SugarElement<unknown>): (CellPosition) | null => {
   const rows = table.rows;
   for (let y = 0; y < rows.length; y++) {
     const cells = rows[y].cells;
     for (let x = 0; x < cells.length; x++) {
       if (Compare.eq(cells[x], element)) {
-        return Optional.some(cellPosition(x, y));
+        return cellPosition(x, y);
       }
     }
   }
 
-  return Optional.none();
+  return null;
 };
 
 const extractRows = (table: TableModel, sx: number, sy: number, ex: number, ey: number) => {
@@ -123,8 +123,8 @@ const createDomTable = (table: TableModel, rows: SugarElement<HTMLTableRowElemen
 };
 
 const modelRowsToDomRows = (table: TableModel) => {
-  return Arr.map(table.rows, (row) => {
-    const cells = Arr.map(row.cells, (cell) => {
+  return (table.rows).map((row) => {
+    const cells = (row.cells).map((cell) => {
       const td = Replication.deep(cell);
       Attribute.remove(td, 'colspan');
       Attribute.remove(td, 'rowspan');
@@ -140,8 +140,8 @@ const modelRowsToDomRows = (table: TableModel) => {
 const fromDom = (tableElm: SugarElement<HTMLTableElement>): TableModel => {
   const table = tableModel(Replication.shallow(tableElm), 0, []);
 
-  Arr.each(SelectorFilter.descendants<HTMLTableRowElement>(tableElm, 'tr'), (tr, y) => {
-    Arr.each(SelectorFilter.descendants<HTMLTableCellElement>(tr, 'td,th'), (td, x) => {
+  (SelectorFilter.descendants<HTMLTableRowElement>(tableElm, 'tr')).forEach((tr, y) => {
+    (SelectorFilter.descendants<HTMLTableCellElement>(tr, 'td,th')).forEach((td, x) => {
       fillout(table, skipCellsX(table, x, y), y, tr, td);
     });
   });
@@ -153,7 +153,7 @@ const toDom = (table: TableModel): SugarElement<HTMLTableElement> => {
   return createDomTable(table, modelRowsToDomRows(table));
 };
 
-const subsection = (table: TableModel, startElement: SugarElement<Node>, endElement: SugarElement<Node>): Optional<TableModel> => {
+const subsection = (table: TableModel, startElement: SugarElement<Node>, endElement: SugarElement<Node>): (TableModel) | null => {
   return findElementPos(table, startElement).bind((startPos) => {
     return findElementPos(table, endElement).map((endPos) => {
       return subTable(table, startPos, endPos);

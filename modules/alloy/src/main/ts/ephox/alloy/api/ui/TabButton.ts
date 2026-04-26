@@ -1,5 +1,4 @@
 import { FieldPresence, FieldSchema, ValueType } from '@ephox/boulder';
-import { Id } from '@ephox/katamari';
 
 import { events } from '../../ui/common/ButtonBase';
 import { TabButtonDetail, TabButtonSketcher, TabButtonSpec } from '../../ui/types/TabButtonTypes';
@@ -45,7 +44,7 @@ const TabButton: TabButtonSketcher = Sketcher.single({
       attributes: {
         'role': 'tab',
         // NOTE: This is used in TabSection to connect "labelledby"
-        'id': Id.generate('aria'),
+        'id': (('aria') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
         'aria-selected': 'false'
       }
     })), ValueType.anyValue()),

@@ -1,5 +1,4 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import { FormComponent, formComponentFields, FormComponentSpec } from './FormComponent';
 
@@ -10,7 +9,7 @@ export interface ImagePreviewSpec extends FormComponentSpec {
 
 export interface ImagePreview extends FormComponent {
   type: 'imagepreview';
-  height: Optional<string>;
+  height: (string) | null;
 }
 
 export interface ImagePreviewData {

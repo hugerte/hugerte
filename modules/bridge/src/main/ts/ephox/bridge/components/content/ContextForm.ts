@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { BaseToolbarButton, baseToolbarButtonFields, BaseToolbarButtonInstanceApi, BaseToolbarButtonSpec } from '../toolbar/ToolbarButton';
@@ -76,8 +76,8 @@ export interface ContextFormSpec extends ContextBarSpec {
 export interface ContextForm extends ContextBar {
   type: 'contextform';
   initValue: () => string;
-  label: Optional<string>;
-  launch: Optional<ContextFormLaunchButton | ContextFormLaunchToggleButton>;
+  label: (string) | null;
+  launch: (ContextFormLaunchButton | ContextFormLaunchToggleButton) | null;
   commands: Array<ContextFormToggleButton | ContextFormButton>;
 }
 
@@ -85,14 +85,14 @@ const contextButtonFields = baseToolbarButtonFields.concat([
   ComponentSchema.defaultedType('contextformbutton'),
   ComponentSchema.primary,
   ComponentSchema.onAction,
-  FieldSchema.customField('original', Fun.identity)
+  FieldSchema.customField('original', (x: any) => x)
 ]);
 
 const contextToggleButtonFields = baseToolbarToggleButtonFields.concat([
   ComponentSchema.defaultedType('contextformbutton'),
   ComponentSchema.primary,
   ComponentSchema.onAction,
-  FieldSchema.customField('original', Fun.identity)
+  FieldSchema.customField('original', (x: any) => x)
 ]);
 
 const launchButtonFields = baseToolbarButtonFields.concat([
@@ -110,7 +110,7 @@ const toggleOrNormal = StructureSchema.choose('type', {
 
 const contextFormSchema = StructureSchema.objOf([
   ComponentSchema.defaultedType('contextform'),
-  FieldSchema.defaultedFunction('initValue', Fun.constant('')),
+  FieldSchema.defaultedFunction('initValue', () => ''),
   ComponentSchema.optionalLabel,
   FieldSchema.requiredArrayOf('commands', toggleOrNormal),
   FieldSchema.optionOf('launch', StructureSchema.choose('type', {

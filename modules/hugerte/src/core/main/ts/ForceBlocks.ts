@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
 import { Insert, SugarElement } from '@ephox/sugar';
 
 import Editor from './api/Editor';
@@ -20,7 +19,7 @@ import * as Namespace from './html/Namespace';
  */
 
 const isBlockElement = (blockElements: SchemaMap, node: Node) =>
-  Obj.has(blockElements, node.nodeName);
+  Object.prototype.hasOwnProperty.call(blockElements, node.nodeName);
 
 const isValidTarget = (schema: Schema, node: Node) => {
   if (NodeType.isText(node)) {
@@ -34,7 +33,7 @@ const isValidTarget = (schema: Schema, node: Node) => {
 };
 
 const hasBlockParent = (blockElements: SchemaMap, root: Node, node: Node) => {
-  return Arr.exists(Parents.parents(SugarElement.fromDom(node), SugarElement.fromDom(root)), (elm) => {
+  return (Parents.parents(SugarElement.fromDom(node), SugarElement.fromDom(root))).some((elm) => {
     return isBlockElement(blockElements, elm.dom);
   });
 };
@@ -132,7 +131,7 @@ const insertEmptyLine = (editor: Editor, root: SugarElement<HTMLElement>, insert
 };
 
 const setup = (editor: Editor): void => {
-  editor.on('NodeChange', Fun.curry(addRootBlocks, editor));
+  editor.on('NodeChange', ((..._rest: any[]) => (addRootBlocks)(editor, ..._rest)));
 };
 
 export {

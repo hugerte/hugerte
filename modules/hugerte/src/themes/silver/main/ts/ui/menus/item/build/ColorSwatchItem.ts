@@ -1,6 +1,5 @@
 import { ItemTypes, ItemWidget, Menu as AlloyMenu, MenuTypes } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Fun, Id } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
 import * as ColorSwatch from 'hugerte/themes/silver/ui/core/color/ColorSwatch';
@@ -16,7 +15,7 @@ export const renderColorSwatchItem = (spec: Menu.ColorSwatchMenuItem, backstage:
   const presets = 'color';
 
   const menuSpec = createPartialChoiceMenu(
-    Id.generate('menu-value'),
+    (('menu-value') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
     items,
     (value) => {
       spec.onAction({ value });
@@ -24,7 +23,7 @@ export const renderColorSwatchItem = (spec: Menu.ColorSwatchMenuItem, backstage:
     columns,
     presets,
     ItemResponse.CLOSE_ON_EXECUTE,
-    spec.select.getOr(Fun.never),
+    spec.select ?? ((() => false as const)),
     backstage.shared.providers
   );
 
@@ -36,7 +35,7 @@ export const renderColorSwatchItem = (spec: Menu.ColorSwatchMenuItem, backstage:
 
   return {
     type: 'widget',
-    data: { value: Id.generate('widget-id') },
+    data: { value: (('widget-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now()) },
     dom: {
       tag: 'div',
       classes: [ 'tox-fancymenuitem' ]

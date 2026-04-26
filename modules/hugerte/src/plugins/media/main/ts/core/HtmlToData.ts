@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import DomParser from 'hugerte/core/api/html/DomParser';
@@ -21,8 +20,8 @@ const getEphoxEmbedData = (node: AstNode): MediaData => {
     source: node.attr('data-ephox-embed-iri') as string,
     altsource: '',
     poster: '',
-    width: Obj.get(styles, 'max-width').map(trimPx).getOr(''),
-    height: Obj.get(styles, 'max-height').map(trimPx).getOr('')
+    width: ((styles)['max-width'] ?? null).map(trimPx) ?? (''),
+    height: ((styles)['max-height'] ?? null).map(trimPx) ?? ('')
   };
 };
 

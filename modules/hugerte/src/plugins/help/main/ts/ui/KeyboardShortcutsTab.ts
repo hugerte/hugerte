@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 
@@ -11,8 +10,8 @@ export interface ShortcutActionPairType {
 }
 
 const tab = (): Dialog.TabSpec & { name: string } => {
-  const shortcutList = Arr.map(KeyboardShortcuts.shortcuts, (shortcut: ShortcutActionPairType) => {
-    const shortcutText = Arr.map(shortcut.shortcuts, ConvertShortcut.convertText).join(' or ');
+  const shortcutList = (KeyboardShortcuts.shortcuts).map((shortcut: ShortcutActionPairType) => {
+    const shortcutText = (shortcut.shortcuts).map(ConvertShortcut.convertText).join(' or ');
     return [ shortcut.action, shortcutText ];
   });
 

@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -49,8 +49,8 @@ const unmerge = (grid: Structs.RowCells[], target: SugarElement<HTMLElement>, co
 };
 
 const uniqueCells = <T extends CellElement>(row: Structs.ElementNew<T>[], comparator: CompElm): Structs.ElementNew<T>[] => {
-  return Arr.foldl(row, (rest, cell) => {
-    return Arr.exists(rest, (currentCell) => {
+  return (row).reduce((rest, cell) => {
+    return (rest).some((currentCell) => {
       return comparator(currentCell.element, cell.element);
     }) ? rest : rest.concat([ cell ]);
   }, [] as Structs.ElementNew<T>[]);
@@ -59,7 +59,7 @@ const uniqueCells = <T extends CellElement>(row: Structs.ElementNew<T>[], compar
 const splitCols = (grid: Structs.RowCells[], index: number, comparator: CompElm, substitution: Subst): Structs.RowCells[] => {
   // We don't need to split rows if we're inserting at the first or last row of the old table
   if (index > 0 && index < grid[0].cells.length) {
-    Arr.each(grid, (row) => {
+    (grid).forEach((row) => {
       const prevCell = row.cells[index - 1];
       let offset = 0;
       const substitute = substitution();
@@ -80,7 +80,7 @@ const splitRows = (grid: Structs.RowCells[], index: number, comparator: CompElm,
   if (index > 0 && index < rows.length) {
     const rowPrevCells = rows[index - 1].cells;
     const cells = uniqueCells(rowPrevCells, comparator);
-    Arr.each(cells, (cell) => {
+    (cells).forEach((cell) => {
       // only make a sub when we have to
       let replacement = Optional.none<SugarElement<HTMLTableCellElement>>();
       for (let i = index; i < rows.length; i++) {
@@ -90,8 +90,8 @@ const splitRows = (grid: Structs.RowCells[], index: number, comparator: CompElm,
           const isToReplace = comparator(current.element, cell.element);
 
           if (isToReplace) {
-            if (replacement.isNone()) {
-              replacement = Optional.some(substitution());
+            if (replacement === null) {
+              replacement = substitution();
             }
             replacement.each((sub) => {
               GridRow.mutateCell(row, j, Structs.elementnew(sub, true, current.isLocked));

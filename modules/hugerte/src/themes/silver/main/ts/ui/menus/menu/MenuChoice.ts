@@ -1,6 +1,5 @@
 import { ItemTypes } from '@ephox/alloy';
 import { Menu as BridgeMenu, Toolbar } from '@ephox/bridge';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -38,12 +37,11 @@ export const createChoiceItems = (
   itemResponse: ItemResponse,
   select: (value: string) => boolean,
   providersBackstage: UiFactoryBackstageProviders
-): ItemTypes.ItemSpec[] => Optionals.cat(
-  Arr.map(items, (item) => {
+): ItemTypes.ItemSpec[] => ((items).map((item) => {
     if (item.type === 'choiceitem') {
       return BridgeMenu.createChoiceMenuItem(item).fold(
         MenuUtils.handleError,
-        (d) => Optional.some(renderChoiceItem(
+        (d) => renderChoiceItem(
           d,
           columns === 1,
           itemPresets,
@@ -52,10 +50,9 @@ export const createChoiceItems = (
           itemResponse,
           providersBackstage,
           MenuUtils.menuHasIcons(items)
-        ))
+        )
       );
     } else {
-      return Optional.none();
+      return null;
     }
-  })
-);
+  })).filter((_x: any) => _x !== null);

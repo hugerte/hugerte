@@ -1,4 +1,3 @@
-import { Fun, Type } from '@ephox/katamari';
 import { SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -24,10 +23,10 @@ const loadRawCss = (editor: Editor, key: string, css: string, styleSheetLoader: 
 };
 
 const loadUiSkins = async (editor: Editor, skinUrl: string): Promise<void> => {
-  const skinResourceIdentifier = Options.getSkinUrlOption(editor).getOr('default');
+  const skinResourceIdentifier = Options.getSkinUrlOption(editor) ?? ('default');
   const skinUiCss = 'ui/' + skinResourceIdentifier + '/skin.css';
   const css = hugerte.Resource.get(skinUiCss);
-  if (Type.isString(css)) {
+  if (typeof (css) === 'string') {
     return Promise.resolve(loadRawCss(editor, skinUiCss, css, editor.ui.styleSheetLoader));
   } else {
     const skinUiCss = skinUrl + '/skin.min.css';
@@ -39,12 +38,12 @@ const loadShadowDomUiSkins = async (editor: Editor, skinUrl: string): Promise<vo
   const isInShadowRoot = SugarShadowDom.isInShadowRoot(SugarElement.fromDom(editor.getElement()));
   if (isInShadowRoot) {
 
-    const skinResourceIdentifier = Options.getSkinUrlOption(editor).getOr('default');
+    const skinResourceIdentifier = Options.getSkinUrlOption(editor) ?? ('default');
 
     const shadowDomSkinCss = 'ui/' + skinResourceIdentifier + '/skin.shadowdom.css';
     const css = hugerte.Resource.get(shadowDomSkinCss);
 
-    if (Type.isString(css)) {
+    if (typeof (css) === 'string') {
       loadRawCss(editor, shadowDomSkinCss, css, DOMUtils.DOM.styleSheetLoader);
       return Promise.resolve();
     } else {
@@ -76,7 +75,7 @@ const loadUrlSkin = async (isInline: boolean, editor: Editor): Promise<void> => 
 
   // In Modern Inline, this is explicitly called in editor.on('focus', ...) as well as in render().
   // Seems to work without, but adding a note in case things break later
-  if (!Options.isSkinDisabled(editor) && Type.isString(skinUrl)) {
+  if (!Options.isSkinDisabled(editor) && typeof (skinUrl) === 'string') {
     return Promise.all([
       loadUiSkins(editor, skinUrl),
       loadShadowDomUiSkins(editor, skinUrl)
@@ -88,8 +87,8 @@ const loadSkin = (isInline: boolean, editor: Editor): Promise<void> => {
   return loadUrlSkin(isInline, editor).then(SkinLoaded.fireSkinLoaded(editor), SkinLoaded.fireSkinLoadError(editor, 'Skin could not be loaded'));
 };
 
-const iframe = Fun.curry(loadSkin, false);
-const inline = Fun.curry(loadSkin, true);
+const iframe = ((..._rest: any[]) => (loadSkin)(false, ..._rest));
+const inline = ((..._rest: any[]) => (loadSkin)(true, ..._rest));
 
 export {
   iframe,

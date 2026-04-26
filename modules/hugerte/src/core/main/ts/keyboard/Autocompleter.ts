@@ -1,4 +1,4 @@
-import { Cell, Optional, Singleton, Throttler, Thunk, Type } from '@ephox/katamari';
+import { Cell, Singleton, Throttler } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Events from '../api/Events';
@@ -72,9 +72,9 @@ export const setup = (editor: Editor): void => {
   // before `init` or other keydown / keypress listeners will fire first. Therefore,
   // this is a thunk so that its value is calculated just once when it is used for the
   // first time, and after that it's value is stored.
-  const getAutocompleters: () => Autocompleters.AutocompleterDatabase = Thunk.cached(() => Autocompleters.register(editor));
+  const getAutocompleters: () => Autocompleters.AutocompleterDatabase = ((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (() => Autocompleters.register(editor))(..._a); } return _r; }; })());
 
-  const doLookup = (fetchOptions: Record<string, any> | undefined): Optional<AutocompleteLookupInfo> =>
+  const doLookup = (fetchOptions: Record<string, any> | undefined): (AutocompleteLookupInfo) | null =>
     activeAutocompleter.get().map(
       (ac) => getContext(editor.dom, editor.selection.getRng(), ac.trigger, true)
         .bind((newContext) => lookupWithContext(editor, getAutocompleters, newContext, fetchOptions))
@@ -137,7 +137,7 @@ export const setup = (editor: Editor): void => {
   };
 
   editor.addCommand('mceAutocompleterReload', (_ui, value: AutocompleterReloadArgs) => {
-    const fetchOptions = Type.isObject(value) ? value.fetchOptions : {};
+    const fetchOptions = (typeof (value) === 'object' && (value) !== null) ? value.fetchOptions : {};
     load(fetchOptions);
   });
 
@@ -149,7 +149,7 @@ export const setup = (editor: Editor): void => {
     });
   });
 
-  editor.editorCommands.addQueryStateHandler('mceAutoCompleterInRange', () => readActiveRange().isSome());
+  editor.editorCommands.addQueryStateHandler('mceAutoCompleterInRange', () => readActiveRange() !== null);
 
   setupEditorInput(editor, {
     cancelIfNecessary,

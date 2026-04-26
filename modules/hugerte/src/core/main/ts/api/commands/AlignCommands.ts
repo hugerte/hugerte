@@ -1,4 +1,3 @@
-import { Arr, Type } from '@ephox/katamari';
 
 import { FormatVars } from '../../fmt/FormatTypes';
 import Editor from '../Editor';
@@ -11,7 +10,7 @@ const registerExecCommands = (editor: Editor): void => {
 
   const toggleAlign = (align: string) => () => {
     // Remove all other alignments first
-    Arr.each('left,center,right,justify'.split(','), (name) => {
+    ('left,center,right,justify'.split(',')).forEach((name) => {
       if (align !== name) {
         editor.formatter.remove('align' + name);
       }
@@ -35,7 +34,7 @@ const registerQueryStateCommands = (editor: Editor): void => {
   const alignStates = (name: string) => () => {
     const selection = editor.selection;
     const nodes: Array<Element | null> = selection.isCollapsed() ? [ editor.dom.getParent(selection.getNode(), editor.dom.isBlock) ] : selection.getSelectedBlocks();
-    return Arr.exists(nodes, (node) => Type.isNonNullable(editor.formatter.matchNode(node, name)));
+    return (nodes).some((node) => (editor.formatter.matchNode(node, name)) != null);
   };
 
   editor.editorCommands.addCommands({

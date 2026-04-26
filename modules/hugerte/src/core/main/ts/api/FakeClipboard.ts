@@ -2,7 +2,7 @@
 // The FakeClipboard has been designed to match the native Clipboard API as closely as possible
 // https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
 
-import { Obj, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 
 export interface FakeClipboardItem {
   readonly items: Record<string, any>;
@@ -56,8 +56,8 @@ const setup = (): FakeClipboard => {
 
   const FakeClipboardItem = (items: Record<string, any>): FakeClipboardItem => ({
     items,
-    types: Obj.keys(items),
-    getType: (type: string) => Obj.get(items, type).getOrUndefined()
+    types: Object.keys(items),
+    getType: (type: string) => ((items)[type] ?? null) ?? undefined
   });
 
   const write = (data: FakeClipboardItem[]): void => {
@@ -65,7 +65,7 @@ const setup = (): FakeClipboard => {
   };
 
   const read = (): FakeClipboardItem[] | undefined =>
-    dataValue.get().getOrUndefined();
+    dataValue.get() ?? undefined;
 
   const clear = dataValue.clear;
 

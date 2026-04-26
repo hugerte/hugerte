@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyEvents, EventFormat } from '@ephox/alloy';
-import { Cell, Type } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 export interface GetApiType<T> {
   readonly getApi: (comp: AlloyComponent) => T;
@@ -28,7 +28,7 @@ const onControlAttached = <T>(info: OnControlAttachedType<T>, editorOffCell: Cel
     const run = runWithApi(info, comp);
     run((api) => {
       const onDestroy = info.onSetup(api);
-      if (Type.isFunction(onDestroy)) {
+      if (typeof (onDestroy) === 'function') {
         editorOffCell.set(onDestroy);
       }
     });

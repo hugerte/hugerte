@@ -1,5 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { CommonMenuItem, CommonMenuItemSpec, commonMenuItemFields, CommonMenuItemInstanceApi } from './CommonMenuItem';
@@ -17,7 +17,7 @@ export interface ChoiceMenuItemInstanceApi extends CommonMenuItemInstanceApi {
 export interface ChoiceMenuItem extends CommonMenuItem {
   type: 'choiceitem';
   active: boolean;
-  icon: Optional<string>;
+  icon: (string) | null;
 }
 
 export const choiceMenuItemSchema = StructureSchema.objOf([

@@ -1,4 +1,4 @@
-import { Adt, Optional } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { DomParent } from '@ephox/robin';
 import { Awareness, Compare, SelectorFind, SugarElement } from '@ephox/sugar';
 
@@ -46,7 +46,7 @@ const isOverlapping = (bridge: WindowBridge, before: SugarElement<Element>, afte
   return afterBounds.right > beforeBounds.left && afterBounds.left < beforeBounds.right;
 };
 
-const isRow = (elem: SugarElement<Node>): Optional<SugarElement<HTMLTableRowElement>> => {
+const isRow = (elem: SugarElement<Node>): (SugarElement<HTMLTableRowElement>) | null => {
   return SelectorFind.closest(elem, 'tr');
 };
 
@@ -75,7 +75,7 @@ const verify = (
         return Compare.eq(after, afterCell) && Awareness.getEnd(afterCell) === afterOffset ? failure(beforeCell) : adt.none('in same cell');
       }
     });
-  }).getOr(adt.none('default'));
+  }) ?? (adt.none('default'));
 };
 
 const cata = <T>(subject: BeforeAfter, onNone: NoneHandler<T>, onSuccess: SuccessHandler<T>, onFailedUp: FailedUpHandler<T>, onFailedDown: FailedDownHandler<T>): T => {

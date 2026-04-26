@@ -1,6 +1,5 @@
 import { AnchorSpec, Bounds, Boxes, Bubble, Layout, LayoutInset, MaxHeight, MaxWidth } from '@ephox/alloy';
 import { InlineContent } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
 import { Compare, Css, Height, Scroll, SugarElement, Traverse } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -11,7 +10,7 @@ type Layout = typeof LayoutInset.north;
 type AnchorLayouts = AnchorSpec['layouts'];
 
 export interface PositionData {
-  readonly lastElement: () => Optional<SugarElement<Element>>;
+  readonly lastElement: () => (SugarElement<Element>) | null;
   readonly isReposition: () => boolean;
   readonly getMode: () => string;
 }

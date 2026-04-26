@@ -1,11 +1,10 @@
 import { AlloyComponent, AlloySpec, AlloyTriggers, Behaviour, Focusing, NativeEvents, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Fun, Id, Optional } from '@ephox/katamari';
 import { Class, SelectorExists, SugarElement } from '@ephox/sugar';
 
 import { ComposingConfigs } from '../alien/ComposingConfigs';
 
-const beforeObject = Id.generate('alloy-fake-before-tabstop');
-const afterObject = Id.generate('alloy-fake-after-tabstop');
+const beforeObject = (('alloy-fake-before-tabstop') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const afterObject = (('alloy-fake-after-tabstop') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 const craftWithClasses = (classes: string[]): SimpleSpec => {
   return {
@@ -28,11 +27,11 @@ const craftWithClasses = (classes: string[]): SimpleSpec => {
   };
 };
 
-const craft = (containerClasses: Optional<string[]>, spec: AlloySpec): SimpleSpec => {
+const craft = (containerClasses: (string[]) | null, spec: AlloySpec): SimpleSpec => {
   return {
     dom: {
       tag: 'div',
-      classes: [ 'tox-navobj', ...containerClasses.getOr([]) ]
+      classes: [ 'tox-navobj', ...containerClasses ?? ([]) ]
     },
     components: [
       craftWithClasses([ beforeObject ]),
@@ -66,7 +65,7 @@ const onFocus = (container: AlloyComponent, targetComp: AlloyComponent): void =>
 };
 
 const isPseudoStop = (element: SugarElement<Element>): boolean => {
-  return SelectorExists.closest(element, [ '.' + beforeObject, '.' + afterObject ].join(','), Fun.never);
+  return SelectorExists.closest(element, [ '.' + beforeObject, '.' + afterObject ].join(','), (() => false as const));
 };
 
 export {

@@ -1,4 +1,4 @@
-import { Arr, Merger, Optional, Strings, Type } from '@ephox/katamari';
+import { Merger } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { BlobInfo } from 'hugerte/core/api/file/BlobCache';
@@ -37,7 +37,7 @@ interface Helpers {
 }
 
 interface ImageDialogState {
-  prevImage: Optional<ListValue>;
+  prevImage: (ListValue) | null;
   prevAlt: string | null;
   open: boolean;
 }
@@ -87,17 +87,17 @@ const toImageData = (data: ImageDialogData, removeEmptyAlt: boolean): ImageData 
   isDecorative: data.isDecorative
 });
 
-const addPrependUrl2 = (info: ImageDialogInfo, srcURL: string): Optional<string> => {
+const addPrependUrl2 = (info: ImageDialogInfo, srcURL: string): (string) | null => {
   // Add the prependURL
   if (!/^(?:[a-zA-Z]+:)?\/\//.test(srcURL)) {
     return info.prependURL.bind((prependUrl) => {
       if (srcURL.substring(0, prependUrl.length) !== prependUrl) {
-        return Optional.some(prependUrl + srcURL);
+        return prependUrl + srcURL;
       }
-      return Optional.none();
+      return null;
     });
   }
-  return Optional.none();
+  return null;
 };
 
 const addPrependUrl = (info: ImageDialogInfo, api: API) => {
@@ -108,47 +108,47 @@ const addPrependUrl = (info: ImageDialogInfo, api: API) => {
 };
 
 const formFillFromMeta2 = (info: ImageDialogInfo, data: ImageDialogData, meta: ImageMeta): void => {
-  if (info.hasDescription && Type.isString(meta.alt)) {
+  if (info.hasDescription && typeof (meta.alt) === 'string') {
     data.alt = meta.alt;
   }
   if (info.hasAccessibilityOptions) {
     data.isDecorative = meta.isDecorative || data.isDecorative || false;
   }
-  if (info.hasImageTitle && Type.isString(meta.title)) {
+  if (info.hasImageTitle && typeof (meta.title) === 'string') {
     data.title = meta.title;
   }
   if (info.hasDimensions) {
-    if (Type.isString(meta.width)) {
+    if (typeof (meta.width) === 'string') {
       data.dimensions.width = meta.width;
     }
-    if (Type.isString(meta.height)) {
+    if (typeof (meta.height) === 'string') {
       data.dimensions.height = meta.height;
     }
   }
-  if (Type.isString(meta.class)) {
+  if (typeof (meta.class) === 'string') {
     ListUtils.findEntry(info.classList, meta.class).each((entry) => {
       data.classes = entry.value;
     });
   }
   if (info.hasImageCaption) {
-    if (Type.isBoolean(meta.caption)) {
+    if (typeof (meta.caption) === 'boolean') {
       data.caption = meta.caption;
     }
   }
   if (info.hasAdvTab) {
-    if (Type.isString(meta.style)) {
+    if (typeof (meta.style) === 'string') {
       data.style = meta.style;
     }
-    if (Type.isString(meta.vspace)) {
+    if (typeof (meta.vspace) === 'string') {
       data.vspace = meta.vspace;
     }
-    if (Type.isString(meta.border)) {
+    if (typeof (meta.border) === 'string') {
       data.border = meta.border;
     }
-    if (Type.isString(meta.hspace)) {
+    if (typeof (meta.hspace) === 'string') {
       data.hspace = meta.hspace;
     }
-    if (Type.isString(meta.borderstyle)) {
+    if (typeof (meta.borderstyle) === 'string') {
       data.borderstyle = meta.borderstyle;
     }
   }
@@ -170,7 +170,7 @@ const calculateImageSize = (helpers: Helpers, info: ImageDialogInfo, state: Imag
   const meta = data.src.meta || {};
 
   if (!meta.width && !meta.height && info.hasDimensions) {
-    if (Strings.isNotEmpty(url)) {
+    if (((url).length > 0)) {
       helpers.imageSize(url)
         .then((size) => {
           if (state.open) {
@@ -189,7 +189,7 @@ const updateImagesDropdown = (info: ImageDialogInfo, state: ImageDialogState, ap
   const data = api.getData();
   const image = ListUtils.findEntry(info.imageList, data.src.value);
   state.prevImage = image;
-  api.setData({ images: image.map((entry) => entry.value).getOr('') });
+  api.setData({ images: image.map((entry) => entry.value) ?? ('') });
 };
 
 const changeSrc = (helpers: Helpers, info: ImageDialogInfo, state: ImageDialogState, api: API): void => {
@@ -203,7 +203,7 @@ const changeImages = (helpers: Helpers, info: ImageDialogInfo, state: ImageDialo
   const data = api.getData();
   const image = ListUtils.findEntry(info.imageList, data.images);
   image.each((img) => {
-    const updateAlt = data.alt === '' || state.prevImage.map((image) => image.text === data.alt).getOr(false);
+    const updateAlt = data.alt === '' || state.prevImage.map((image) => image.text === data.alt) ?? (false);
     if (updateAlt) {
       if (img.value === '') {
         api.setData({ src: img, alt: state.prevAlt });
@@ -221,7 +221,7 @@ const changeImages = (helpers: Helpers, info: ImageDialogInfo, state: ImageDialo
 const changeFileInput = (helpers: Helpers, info: ImageDialogInfo, state: ImageDialogState, api: API): void => {
   const data = api.getData();
   api.block('Uploading image'); // What msg do we pass to the lock?
-  Arr.head(data.fileinput)
+  ((data.fileinput)[0] ?? null)
     .fold(() => {
       api.unblock();
     }, (file) => {
@@ -278,11 +278,11 @@ const makeDialogBody = (info: ImageDialogInfo): DialogType.TabPanelSpec | Dialog
   if (info.hasAdvTab || info.hasUploadUrl || info.hasUploadHandler) {
     const tabPanel: DialogType.TabPanelSpec = {
       type: 'tabpanel',
-      tabs: Arr.flatten([
+      tabs: ([
         [ MainTab.makeTab(info) ],
         info.hasAdvTab ? [ AdvTab.makeTab(info) ] : [],
         info.hasUploadTab && (info.hasUploadUrl || info.hasUploadHandler) ? [ UploadTab.makeTab(info) ] : []
-      ])
+      ]).flat()
     };
     return tabPanel;
   } else {

@@ -1,4 +1,3 @@
-import { Id, Optional } from '@ephox/katamari';
 import { Attribute, PredicateFind, SelectorFind, SugarElement, SugarNode, SugarShadowDom } from '@ephox/sugar';
 
 export interface AriaManager {
@@ -9,7 +8,7 @@ export interface AriaManager {
 
 const attribute = 'aria-controls';
 
-const find = (queryElem: SugarElement<Node>): Optional<SugarElement<Element>> => {
+const find = (queryElem: SugarElement<Node>): (SugarElement<Element>) | null => {
   const dependent = PredicateFind.closest(queryElem, (elem): elem is SugarElement<Element> => {
     if (!SugarNode.isElement(elem)) {
       return false;
@@ -27,7 +26,7 @@ const find = (queryElem: SugarElement<Node>): Optional<SugarElement<Element>> =>
 };
 
 const manager = (): AriaManager => {
-  const ariaId = Id.generate(attribute);
+  const ariaId = ((attribute) + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
   const link = (elem: SugarElement<Element>) => {
     Attribute.set(elem, attribute, ariaId);

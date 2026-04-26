@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import { SetContentEvent } from '../api/EventTypes';
@@ -55,7 +54,7 @@ const convertRegExpsToNonEditable = (editor: Editor, nonEditableRegExps: RegExp[
 };
 
 const isValidContent = (nonEditableRegExps: RegExp[], content: string) => {
-  return Arr.forall(nonEditableRegExps, (re) => {
+  return (nonEditableRegExps).every((re) => {
     const matches = content.match(re);
     return matches !== null && matches[0].length === content.length;
   });

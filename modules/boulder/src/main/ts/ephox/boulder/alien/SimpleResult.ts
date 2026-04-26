@@ -1,4 +1,4 @@
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 // An experiment to make a more efficient boulder.
 export type SimpleResult<E, A> = SimpleError<E> | SimpleValue<A>;
@@ -24,7 +24,7 @@ const fold = <B, E, A>(res: SimpleResult<E, A>, onError: (err: E) => B, onValue:
 const partition = <E, A>(results: Array<SimpleResult<E[], A>>): { values: A[]; errors: E[][] } => {
   const values: A[] = [ ];
   const errors: E[][] = [ ];
-  Arr.each(results, (obj) => {
+  (results).forEach((obj) => {
     fold(
       obj,
       (err) => errors.push(err),

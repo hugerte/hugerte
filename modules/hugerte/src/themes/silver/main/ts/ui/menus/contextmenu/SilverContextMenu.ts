@@ -1,6 +1,6 @@
 import { AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, GuiFactory, InlineView, Sandboxing, SystemEvents } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Arr, Fun, Obj, Result, Strings, Type } from '@ephox/katamari';
+import { Arr, Result } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { SelectorExists, SugarElement } from '@ephox/sugar';
 
@@ -15,7 +15,7 @@ import * as MobileContextMenu from './platform/MobileContextMenu';
 
 type MenuItem = string | Menu.MenuItemSpec | Menu.NestedMenuItemSpec | Menu.SeparatorMenuItemSpec;
 
-const isSeparator = (item: MenuItem): boolean => Type.isString(item) ? item === '|' : item.type === 'separator';
+const isSeparator = (item: MenuItem): boolean => typeof (item) === 'string' ? item === '|' : item.type === 'separator';
 
 const separator: Menu.SeparatorMenuItemSpec = {
   type: 'separator'
@@ -29,7 +29,7 @@ const makeContextItem = (item: string | Menu.ContextMenuItem | Menu.SeparatorMen
     shortcut: item.shortcut,
   });
 
-  if (Type.isString(item)) {
+  if (typeof (item) === 'string') {
     return item;
   } else {
     switch (item.type) {
@@ -41,10 +41,10 @@ const makeContextItem = (item: string | Menu.ContextMenuItem | Menu.SeparatorMen
           ...commonMenuItem(item),
           getSubmenuItems: () => {
             const items = item.getSubmenuItems();
-            if (Type.isString(items)) {
+            if (typeof (items) === 'string') {
               return items;
             } else {
-              return Arr.map(items, makeContextItem);
+              return (items).map(makeContextItem);
             }
           }
         };
@@ -55,7 +55,7 @@ const makeContextItem = (item: string | Menu.ContextMenuItem | Menu.SeparatorMen
           type: 'menuitem',
           ...commonMenuItem(commonItem),
           // disconnect the function from the menu item API bridge defines
-          onAction: Fun.noarg(commonItem.onAction)
+          onAction: (() => (commonItem.onAction)())
         };
     }
   }
@@ -68,7 +68,7 @@ const addContextMenuGroup = (xs: Array<MenuItem>, groupItems: Array<MenuItem>) =
   }
 
   // Only add a separator at the beginning if the last item isn't a separator
-  const lastMenuItem = Arr.last(xs).filter((item) => !isSeparator(item));
+  const lastMenuItem = ((xs).at(-1) ?? null).filter((item) => !isSeparator(item));
   const before = lastMenuItem.fold(
     () => [],
     (_) => [ separator ]
@@ -79,13 +79,13 @@ const addContextMenuGroup = (xs: Array<MenuItem>, groupItems: Array<MenuItem>) =
 const generateContextMenu = (contextMenus: Record<string, Menu.ContextMenuApi>, menuConfig: string[], selectedElement: Element) => {
   const sections = Arr.foldl(menuConfig, (acc, name) => {
     // Either read and convert the list of items out of the plugin, or assume it's a standard menu item reference
-    return Obj.get(contextMenus, name.toLowerCase()).map((menu) => {
+    return ((contextMenus)[name.toLowerCase()] ?? null).map((menu) => {
       const items = menu.update(selectedElement);
-      if (Type.isString(items) && Strings.isNotEmpty(Strings.trim(items))) {
+      if (typeof (items) === 'string' && (((items).trim()).length > 0)) {
         return addContextMenuGroup(acc, items.split(' '));
-      } else if (Type.isArray(items) && items.length > 0) {
+      } else if (Array.isArray(items) && items.length > 0) {
         // TODO: Should we add a StructureSchema check here?
-        const allItems = Arr.map(items, makeContextItem);
+        const allItems = (items).map(makeContextItem);
         return addContextMenuGroup(acc, allItems);
       } else {
         return acc;
@@ -105,7 +105,7 @@ const isNativeOverrideKeyEvent = (editor: Editor, e: PointerEvent | TouchEvent):
   e.ctrlKey && !Options.shouldNeverUseNative(editor);
 
 const isTouchEvent = (e: PointerEvent | TouchEvent): e is TouchEvent =>
-  e.type === 'longpress' || Obj.has(e as TouchEvent, 'touches');
+  e.type === 'longpress' || Object.prototype.hasOwnProperty.call(e as TouchEvent, 'touches');
 
 export const isTriggeredByKeyboard = (editor: Editor, e: PointerEvent | TouchEvent): boolean =>
   // Different browsers trigger the context menu from keyboards differently, so need to check various different things here.
@@ -121,7 +121,7 @@ const getSelectedElement = (editor: Editor, e: PointerEvent | TouchEvent): Eleme
 const getAnchorType = (editor: Editor, e: PointerEvent | TouchEvent): AnchorType => {
   const selector = Options.getAvoidOverlapSelector(editor);
   const anchorType = isTriggeredByKeyboard(editor, e) ? 'selection' : 'point';
-  if (Strings.isNotEmpty(selector)) {
+  if (((selector).length > 0)) {
     const target = getSelectedElement(editor, e);
     const selectorExists = SelectorExists.closest(SugarElement.fromDom(target), selector);
     return selectorExists ? 'node' : anchorType;

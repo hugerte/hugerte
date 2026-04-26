@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Events from '../api/Events';
@@ -30,7 +30,7 @@ const switchToMode = (editor: Editor, activeMode: Cell<string>, availableModes: 
 const setMode = (editor: Editor, availableModes: Record<string, EditorModeApi>, activeMode: Cell<string>, mode: string): void => {
   if (mode === activeMode.get()) {
     return;
-  } else if (!Obj.has(availableModes, mode)) {
+  } else if (!Object.prototype.hasOwnProperty.call(availableModes, mode)) {
     throw new Error(`Editor mode '${mode}' is invalid`);
   }
 
@@ -42,7 +42,7 @@ const setMode = (editor: Editor, availableModes: Record<string, EditorModeApi>, 
 };
 
 const registerMode = (availableModes: Record<string, EditorModeApi>, mode: string, api: EditorModeApi): Record<string, EditorModeApi> => {
-  if (Arr.contains(defaultModes, mode)) {
+  if ((defaultModes).includes(mode)) {
     throw new Error(`Cannot override default mode ${mode}`);
   }
 

@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import * as Font from '../../commands/Font';
 import * as LineHeight from '../../commands/LineHeight';
@@ -50,7 +49,7 @@ const registerExecCommands = (editor: Editor): void => {
     },
 
     'FormatBlock': (_command, _ui, value) => {
-      toggleFormat(Type.isString(value) ? value : 'p');
+      toggleFormat(typeof (value) === 'string' ? value : 'p');
     },
 
     'mceToggleFormat': (_command, _ui, value) => {

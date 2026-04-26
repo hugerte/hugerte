@@ -9,7 +9,7 @@ import { Zone } from '../../zone/Zones';
  * TextZone returns an Optional zone if that zone is the right language (onlyLang)
  */
 // Cluster out from a single point, enforcing one language
-const single = <E, D>(universe: Universe<E, D>, element: E, envLang: string, onlyLang: string): Optional<Zone<E>> => {
+const single = <E, D>(universe: Universe<E, D>, element: E, envLang: string, onlyLang: string): (Zone<E>) | null => {
   if (universe.property().isBoundary(element)) {
     return TextZone.fromBounded(universe, element, element, envLang, onlyLang);
   } else if (universe.property().isEmptyTag(element)) {
@@ -19,7 +19,7 @@ const single = <E, D>(universe: Universe<E, D>, element: E, envLang: string, onl
   }
 };
 
-const range = <E, D>(universe: Universe<E, D>, start: E, soffset: number, finish: E, foffset: number, envLang: string, onlyLang: string): Optional<Zone<E>> => {
+const range = <E, D>(universe: Universe<E, D>, start: E, soffset: number, finish: E, foffset: number, envLang: string, onlyLang: string): (Zone<E>) | null => {
   const startPt = Descent.toLeaf(universe, start, soffset);
   const finishPt = Descent.toLeaf(universe, finish, foffset);
   if (universe.eq(startPt.element, finishPt.element)) {

@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
 import { Css, Insert, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -15,15 +14,15 @@ const isFirstChild = (elm: Node) => {
 
 const hasParent = (elm: Node | null, parentName: string): boolean => {
   const parentNode = elm?.parentNode;
-  return Type.isNonNullable(parentNode) && parentNode.nodeName === parentName;
+  return (parentNode) != null && parentNode.nodeName === parentName;
 };
 
 const isListBlock = (elm: Node | null): elm is HTMLElement => {
-  return Type.isNonNullable(elm) && /^(OL|UL|LI)$/.test(elm.nodeName);
+  return (elm) != null && /^(OL|UL|LI)$/.test(elm.nodeName);
 };
 
 const isListItem = (elm: Node | null): elm is HTMLElement => {
-  return Type.isNonNullable(elm) && /^(LI|DT|DD)$/.test(elm.nodeName);
+  return (elm) != null && /^(LI|DT|DD)$/.test(elm.nodeName);
 };
 
 const isNestedList = (elm: Element) => {
@@ -50,10 +49,7 @@ const isFirstOrLastLi = (containerBlock: Element, parentBlock: Element, first: b
   return node === parentBlock;
 };
 
-const getStyles = (elm: HTMLElement): string => Arr.foldl(
-  Obj.mapToArray(Css.getAllRaw(SugarElement.fromDom(elm)), (style, styleName) => `${styleName}: ${style};`),
-  (acc, s) => acc + s,
-  '');
+const getStyles = (elm: HTMLElement): string => (Object.entries(Css.getAllRaw(SugarElement.fromDom(elm))).map(([_k, _v]: [any, any]) => ((style, styleName) => `${styleName}: ${style};`)(_v, _k as any))).reduce((acc, s) => acc + s, '');
 
 // Inserts a block or br before/after or in the middle of a split list of the LI is empty
 const insert = (editor: Editor, createNewBlock: (name: string, styles?: Record<string, string>) => Element, containerBlock: Element, parentBlock: Element, newBlockName: string): void => {
@@ -114,15 +110,12 @@ const insert = (editor: Editor, createNewBlock: (name: string, styles?: Record<s
     const fragment = tmpRng.extractContents();
 
     if (newBlockName === 'LI' && hasFirstChild(fragment, 'LI')) {
-      const previousChildren = Arr.filter(
-        Arr.map(newBlock.children, SugarElement.fromDom),
-        Fun.not(SugarNode.isTag('br'))
-      );
+      const previousChildren = ((newBlock.children).map(SugarElement.fromDom)).filter((x: any) => !(SugarNode.isTag('br'))(x));
 
       newBlock = fragment.firstChild as HTMLLIElement;
       dom.insertAfter(fragment, containerBlock);
 
-      Arr.each(previousChildren, (child) => Insert.prepend(SugarElement.fromDom(newBlock), child));
+      (previousChildren).forEach((child) => Insert.prepend(SugarElement.fromDom(newBlock), child));
       if (parentBlockStyles) {
         newBlock.setAttribute('style', parentBlockStyles);
       }

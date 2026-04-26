@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';
@@ -102,7 +101,7 @@ const cut = (editor: Editor) => (evt: EditorEvent<ClipboardEvent>): void => {
 
 const copy = (editor: Editor) => (evt: EditorEvent<ClipboardEvent>): void => {
   if (!evt.isDefaultPrevented() && hasSelectedContent(editor)) {
-    setClipboardData(evt, getData(editor), fallback(editor), Fun.noop);
+    setClipboardData(evt, getData(editor), fallback(editor), () => {});
   }
 };
 

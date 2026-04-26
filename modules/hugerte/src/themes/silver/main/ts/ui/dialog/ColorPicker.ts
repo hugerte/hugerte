@@ -1,7 +1,7 @@
 import { ColourPicker } from '@ephox/acid';
 import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Form, Memento, NativeEvents, Representing, SimpleSpec } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Optional, Strings, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import { Untranslated } from 'hugerte/core/api/util/I18n';
 
@@ -25,7 +25,7 @@ const english: Record<string, string> = {
 };
 
 const translate = (providerBackstage: UiFactoryBackstageProviders) => (key: Untranslated) => {
-  if (Type.isString(key)) {
+  if (typeof (key) === 'string') {
     return providerBackstage.translate(english[key]);
   } else {
     return providerBackstage.translate(key);
@@ -34,7 +34,7 @@ const translate = (providerBackstage: UiFactoryBackstageProviders) => (key: Untr
 
 type ColorPickerSpec = Omit<Dialog.ColorPicker, 'type'>;
 
-export const renderColorPicker = (_spec: ColorPickerSpec, providerBackstage: UiFactoryBackstageProviders, initialData: Optional<string>): SimpleSpec => {
+export const renderColorPicker = (_spec: ColorPickerSpec, providerBackstage: UiFactoryBackstageProviders, initialData: (string) | null): SimpleSpec => {
   const getClass = (key: string) => 'tox-' + key;
 
   const colourPickerFactory = ColourPicker.makeFactory(translate(providerBackstage), getClass);
@@ -77,13 +77,13 @@ export const renderColorPicker = (_spec: ColorPickerSpec, providerBackstage: UiF
           const optRgbForm = Composing.getCurrent(picker);
           const optHex = optRgbForm.bind((rgbForm) => {
             const formValues = Representing.getValue(rgbForm);
-            return formValues.hex as Optional<string>;
+            return formValues.hex as (string) | null;
           });
-          return optHex.map((hex) => '#' + Strings.removeLeading(hex, '#')).getOr('');
+          return optHex.map((hex) => '#' + ((hex).startsWith('#') ? (hex).slice(('#').length) : (hex))) ?? ('');
         },
         (comp, newValue) => {
           const pattern = /^#([a-fA-F0-9]{3}(?:[a-fA-F0-9]{3})?)/;
-          const valOpt = Optional.from(pattern.exec(newValue)).bind((matches) => Arr.get(matches, 1));
+          const valOpt = (pattern.exec(newValue) ?? null).bind((matches) => Arr.get(matches, 1));
           const picker = memPicker.get(comp);
           const optRgbForm = Composing.getCurrent(picker);
           optRgbForm.fold(() => {
@@ -91,7 +91,7 @@ export const renderColorPicker = (_spec: ColorPickerSpec, providerBackstage: UiF
             console.log('Can not find form');
           }, (rgbForm) => {
             Representing.setValue(rgbForm, {
-              hex: valOpt.getOr('')
+              hex: valOpt ?? ('')
             });
 
             // So not the way to do this.

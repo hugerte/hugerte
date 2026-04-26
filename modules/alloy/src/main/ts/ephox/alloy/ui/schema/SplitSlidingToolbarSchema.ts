@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Focusing } from '../../api/behaviour/Focusing';
@@ -15,15 +15,15 @@ import { SplitSlidingToolbarDetail } from '../types/SplitSlidingToolbarTypes';
 import { ToolbarSpec } from '../types/ToolbarTypes';
 import * as ToolbarSchema from './ToolbarSchema';
 
-const schema = Fun.constant([
+const schema = () => [
   Fields.markers([ 'closedClass', 'openClass', 'shrinkingClass', 'growingClass', 'overflowToggledClass' ]),
   Fields.onHandler('onOpened'),
   Fields.onHandler('onClosed')
 ].concat(
   SplitToolbarBase.schema()
-));
+);
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.required<SplitSlidingToolbarDetail, ToolbarSpec>({
     factory: Toolbar,
     schema: ToolbarSchema.schema(),
@@ -90,9 +90,9 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
   PartType.external<SplitSlidingToolbarDetail>({
     name: 'overflow-group'
   })
-]);
+];
 
-const name = Fun.constant('SplitSlidingToolbar');
+const name = () => 'SplitSlidingToolbar';
 
 export {
   name,

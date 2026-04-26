@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { Bounds } from '../../alien/Boxes';
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -29,7 +28,7 @@ export interface DockingContext {
   fadeInClass: string;
   fadeOutClass: string;
   transitionClass: string;
-  lazyContext: (component: AlloyComponent) => Optional<Bounds>;
+  lazyContext: (component: AlloyComponent) => (Bounds) | null;
   onShow: (component: AlloyComponent) => void;
   onShown: (component: AlloyComponent) => void;
   onHide: (component: AlloyComponent) => void;
@@ -38,10 +37,10 @@ export interface DockingContext {
 
 export interface DockingViewport {
   readonly bounds: Bounds;
-  readonly optScrollEnv: Optional<{
+  readonly optScrollEnv: ({
     readonly currentScrollTop: number;
     readonly scrollElmTop: number;
-  }>;
+  }) | null;
 }
 
 export interface DockToTopDecision {
@@ -63,7 +62,7 @@ export interface NoDockDecision {
 export type DockingDecision = DockToTopDecision | DockToBottomDecision | NoDockDecision;
 
 export interface DockingConfig extends Behaviour.BehaviourConfigDetail {
-  contextual: Optional<DockingContext>;
+  contextual: (DockingContext) | null;
   lazyViewport: (component: AlloyComponent) => DockingViewport;
   modes: DockingMode[];
   onDocked: (component: AlloyComponent) => void;
@@ -73,7 +72,7 @@ export interface DockingConfig extends Behaviour.BehaviourConfigDetail {
 export interface DockingState extends BehaviourState {
   isDocked: () => boolean;
   setDocked: (docked: boolean) => void;
-  getInitialPos: () => Optional<InitialDockingPosition>;
+  getInitialPos: () => (InitialDockingPosition) | null;
   setInitialPos: (bounds: InitialDockingPosition) => void;
   clearInitialPos: () => void;
   isVisible: () => boolean;
@@ -87,7 +86,7 @@ export interface DockingConfigSpec extends Behaviour.BehaviourConfigSpec {
     fadeInClass: string;
     fadeOutClass: string;
     transitionClass: string;
-    lazyContext: (component: AlloyComponent) => Optional<Bounds>;
+    lazyContext: (component: AlloyComponent) => (Bounds) | null;
     onShow?: (component: AlloyComponent) => void;
     onShown?: (component: AlloyComponent) => void;
     onHide?: (component: AlloyComponent) => void;

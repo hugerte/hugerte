@@ -1,4 +1,3 @@
-import { Id } from '@ephox/katamari';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 
@@ -10,7 +9,7 @@ export interface Api {
 
 const get = (customTabs: CustomTabSpecs): Api => {
   const addTab = (spec: Dialog.TabSpec): void => {
-    const name = spec.name ?? Id.generate('tab-name');
+    const name = spec.name ?? (('tab-name') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
     const currentCustomTabs = customTabs.get();
     currentCustomTabs[name] = spec;
     customTabs.set(currentCustomTabs);

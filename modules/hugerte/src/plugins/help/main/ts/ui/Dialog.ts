@@ -1,4 +1,4 @@
-import { Arr, Id, Obj, Optional, Optionals, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -18,16 +18,16 @@ interface TabData {
 const parseHelpTabsSetting = (tabsFromSettings: Options.HelpTabsSetting, tabs: TabSpecs): TabData => {
   const newTabs: Record<string, any> = {};
   const names = Arr.map(tabsFromSettings, (t) => {
-    if (Type.isString(t)) {
+    if (typeof (t) === 'string') {
       // Code below shouldn't care if a tab name doesn't have a spec.
       // If we find it does, we'll need to make this smarter.
       // CustomTabsTest has a case for this.
-      if (Obj.has(tabs, t)) {
+      if (Object.prototype.hasOwnProperty.call(tabs, t)) {
         newTabs[t] = tabs[t];
       }
       return t;
     } else {
-      const name = t.name ?? Id.generate('tab-name');
+      const name = t.name ?? (('tab-name') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
       newTabs[name] = t;
       return name;
     }
@@ -36,7 +36,7 @@ const parseHelpTabsSetting = (tabsFromSettings: Options.HelpTabsSetting, tabs: T
 };
 
 const getNamesFromTabs = (tabs: TabSpecs): TabData => {
-  const names = Obj.keys(tabs);
+  const names = Object.keys(tabs);
 
   // Move the versions tab to the end if it exists
   const idx = names.indexOf('versions');
@@ -61,7 +61,7 @@ const pParseCustomTabs = async (editor: Editor, customTabs: CustomTabSpecs, plug
     ...customTabs.get()
   };
 
-  return Optional.from(Options.getHelpTabs(editor)).fold(
+  return (Options.getHelpTabs(editor) ?? null).fold(
     () => getNamesFromTabs(tabs),
     (tabsFromSettings: Options.HelpTabsSetting) => parseHelpTabsSetting(tabsFromSettings, tabs)
   );
@@ -69,8 +69,8 @@ const pParseCustomTabs = async (editor: Editor, customTabs: CustomTabSpecs, plug
 
 const init = (editor: Editor, customTabs: CustomTabSpecs, pluginUrl: string) => (): void => {
   pParseCustomTabs(editor, customTabs, pluginUrl).then(({ tabs, names }) => {
-    const foundTabs: Optional<Dialog.TabSpec>[] = Arr.map(names, (name) => Obj.get(tabs, name));
-    const dialogTabs: Dialog.TabSpec[] = Optionals.cat(foundTabs);
+    const foundTabs: (Dialog.TabSpec) | null[] = (names).map((name) => ((tabs)[name] ?? null));
+    const dialogTabs: Dialog.TabSpec[] = (foundTabs).filter((_x: any) => _x !== null);
 
     const body: Dialog.TabPanelSpec = {
       type: 'tabpanel',

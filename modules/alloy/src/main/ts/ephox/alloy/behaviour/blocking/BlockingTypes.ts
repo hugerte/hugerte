@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -16,14 +15,14 @@ export type BlockFn = (
 export type UnblockFn = (component: AlloyComponent, config: BlockingConfig, state: BlockingState) => void;
 
 export interface BlockingConfigSpec extends Behaviour.BehaviourConfigSpec {
-  readonly getRoot?: (component: AlloyComponent) => Optional<AlloyComponent>;
+  readonly getRoot?: (component: AlloyComponent) => (AlloyComponent) | null;
   readonly focus?: boolean;
   readonly onBlock?: (component: AlloyComponent) => void;
   readonly onUnblock?: (component: AlloyComponent) => void;
 }
 
 export interface BlockingConfig extends Behaviour.BehaviourConfigDetail {
-  readonly getRoot: (component: AlloyComponent) => Optional<AlloyComponent>;
+  readonly getRoot: (component: AlloyComponent) => (AlloyComponent) | null;
   readonly focus: boolean;
   readonly onBlock: (component: AlloyComponent) => void;
   readonly onUnblock: (component: AlloyComponent) => void;

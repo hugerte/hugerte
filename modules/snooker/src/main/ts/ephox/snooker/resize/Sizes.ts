@@ -1,4 +1,3 @@
-import { Fun, Optional, Strings } from '@ephox/katamari';
 import { Attribute, Css, Dimension, Height, SugarBody, SugarElement, SugarNode, Traverse, Width } from '@ephox/sugar';
 
 import * as TableLookup from '../api/TableLookup';
@@ -40,14 +39,14 @@ const convert = (cell: SugarElement<HTMLTableCellElement>, number: number, gette
   const newSize = TableLookup.table(cell).map((table) => {
     const total = getter(table);
     return Math.floor((number / 100.0) * total);
-  }).getOr(number);
+  }) ?? (number);
   setter(cell, newSize);
   return newSize;
 };
 
 const normalizePixelSize = (value: string, cell: SugarElement<HTMLTableCellElement>, getter: SizeGetter, setter: SizeSetter): number => {
   const number = parseFloat(value);
-  return Strings.endsWith(value, '%') && SugarNode.name(cell) !== 'table' ? convert(cell, number, getter, setter) : number;
+  return (value).endsWith('%') && SugarNode.name(cell) !== 'table' ? convert(cell, number, getter, setter) : number;
 };
 
 const getTotalHeight = (cell: SugarElement<HTMLTableCellElement>): number => {
@@ -64,17 +63,17 @@ const get = (cell: SugarElement<HTMLTableCellElement>, type: 'rowspan' | 'colspa
   return v / span;
 };
 
-const getRaw = (element: SugarElement<HTMLElement>, prop: 'height' | 'width'): Optional<string> => {
+const getRaw = (element: SugarElement<HTMLElement>, prop: 'height' | 'width'): (string) | null => {
   // Try to use the style first, otherwise attempt to get the value from an attribute
   return Css.getRaw(element, prop).orThunk(() => {
     return Attribute.getOpt(element, prop).map((val) => val + 'px');
   });
 };
 
-export const getRawWidth = (element: SugarElement<HTMLElement>): Optional<string> =>
+export const getRawWidth = (element: SugarElement<HTMLElement>): (string) | null =>
   getRaw(element, 'width');
 
-export const getRawHeight = (element: SugarElement<HTMLElement>): Optional<string> =>
+export const getRawHeight = (element: SugarElement<HTMLElement>): (string) | null =>
   getRaw(element, 'height');
 
 // Get a percentage size for a percentage parent table
@@ -89,7 +88,7 @@ export const getHeight = (cell: SugarElement<HTMLTableCellElement | HTMLTableRow
   return isRow(cell) ? Height.get(cell) : get(cell as SugarElement<HTMLTableCellElement>, 'rowspan', getTotalHeight);
 };
 
-export const getGenericWidth = (cell: SugarElement<HTMLElement>): Optional<Dimension.Dimension<'fixed' | 'relative' | 'empty'>> => {
+export const getGenericWidth = (cell: SugarElement<HTMLElement>): (Dimension.Dimension<'fixed' | 'relative' | 'empty'>) | null => {
   const width = getRawWidth(cell);
   return width.bind((w) => Dimension.parse(w, [ 'fixed', 'relative', 'empty' ]));
 };
@@ -106,7 +105,7 @@ export const getPercentTableHeight = (table: SugarElement<HTMLTableElement>): st
 
 export const isPercentSizing = (table: SugarElement<HTMLTableElement>): boolean => getRawWidth(table).exists((size) => rPercentageBasedSizeRegex.test(size));
 export const isPixelSizing = (table: SugarElement<HTMLTableElement>): boolean => getRawWidth(table).exists((size) => rPixelBasedSizeRegex.test(size));
-export const isNoneSizing = (table: SugarElement<HTMLTableElement>): boolean => getRawWidth(table).isNone();
+export const isNoneSizing = (table: SugarElement<HTMLTableElement>): boolean => getRawWidth(table) === null;
 
-export const percentageBasedSizeRegex = Fun.constant(rPercentageBasedSizeRegex);
-export const pixelBasedSizeRegex = Fun.constant(rPixelBasedSizeRegex);
+export const percentageBasedSizeRegex = () => rPercentageBasedSizeRegex;
+export const pixelBasedSizeRegex = () => rPixelBasedSizeRegex;

@@ -1,5 +1,4 @@
 import { FieldProcessor } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import { PartTypeAdt } from '../../parts/PartType';
@@ -37,7 +36,7 @@ const composite = <D extends CompositeSketchDetail, S extends CompositeSketchSpe
   return factory(detail, components, specWithUid, subs.externals());
 };
 
-const hasUid = <S>(spec: S): spec is S & { uid: string } => Obj.has(spec as any, 'uid');
+const hasUid = <S>(spec: S): spec is S & { uid: string } => Object.prototype.hasOwnProperty.call(spec as any, 'uid');
 
 const supplyUid = <S>(spec: S): S & { uid: string } => {
   return hasUid(spec) ? spec : {

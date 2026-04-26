@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Adt, Fun } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { Gather, Split } from '@ephox/phoenix';
 
 interface EntryPoint<E> {
@@ -64,11 +64,11 @@ const analyse = <E, D>(universe: Universe<E, D>, element: E, offset: number, fal
 const toLeft = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, element: E, offset: number): E => {
   return analyse(universe, element, offset, adt.leftEdge).fold(
     // We are at the left edge of the element, so take the whole element
-    Fun.identity,
+    (x: any) => x,
     // We are splitting an element, so take the right side
     (b, a) => a,
     // We are at the right edge of the starting element, so gather the next element to the right
-    (e) => Gather.after(universe, e, isRoot).getOr(e)
+    (e) => Gather.after(universe, e, isRoot) ?? (e)
   );
 };
 
@@ -76,11 +76,11 @@ const toLeft = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, eleme
 const toRight = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, element: E, offset: number): E => {
   return analyse(universe, element, offset, adt.rightEdge).fold(
     // We are at the left edge of the finishing element, so gather the previous element.
-    (e) => Gather.before(universe, e, isRoot).getOr(e),
+    (e) => Gather.before(universe, e, isRoot) ?? (e),
     // We are splitting an element, so take the left side.
     (b, _a) => b,
     // We are the right edge of the element, so take the whole element
-    Fun.identity
+    (x: any) => x
   );
 };
 

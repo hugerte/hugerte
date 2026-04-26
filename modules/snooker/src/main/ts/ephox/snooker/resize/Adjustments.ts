@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { ResizeBehaviour } from '../api/ResizeBehaviour';
@@ -12,7 +11,7 @@ import * as ColumnSizes from './ColumnSizes';
 import * as Recalculations from './Recalculations';
 import * as Sizes from './Sizes';
 
-const sumUp = (newSize: number[]) => Arr.foldr(newSize, (b, a) => b + a, 0);
+const sumUp = (newSize: number[]) => (newSize).reduceRight((b, a) => b + a, 0);
 
 const recalculate = (warehouse: Warehouse, widths: number[]): Recalculations.CellWidthSpan<CellElement>[] => {
   if (Warehouse.hasColumns(warehouse)) {
@@ -26,7 +25,7 @@ const recalculateAndApply = (warehouse: Warehouse, widths: number[], tableSize: 
   // Set the width of each cell based on the column widths
   const newSizes = recalculate(warehouse, widths);
 
-  Arr.each(newSizes, (cell) => {
+  (newSizes).forEach((cell) => {
     tableSize.setElementWidth(cell.element, cell.width);
   });
 };
@@ -40,7 +39,7 @@ const adjustWidth = (table: SugarElement<HTMLTableElement>, delta: number, index
 
   // Calculate all of the new widths for columns
   const deltas = Deltas.determine(widths, index, clampedStep, tableSize, resizing);
-  const newWidths = Arr.map(deltas, (dx, i) => dx + widths[i]);
+  const newWidths = (deltas).map((dx, i) => dx + widths[i]);
 
   recalculateAndApply(warehouse, newWidths, tableSize);
   resizing.resizeTable(tableSize.adjustTableWidth, clampedStep, isLastColumn);
@@ -50,15 +49,15 @@ const adjustHeight = (table: SugarElement<HTMLTableElement>, delta: number, inde
   const warehouse = Warehouse.fromTable(table);
   const heights = ColumnSizes.getPixelHeights(warehouse, table);
 
-  const newHeights = Arr.map(heights, (dy, i) => index === i ? Math.max(delta + dy, CellUtils.minHeight()) : dy);
+  const newHeights = (heights).map((dy, i) => index === i ? Math.max(delta + dy, CellUtils.minHeight()) : dy);
 
   const newRowSizes = Recalculations.matchRowHeight(warehouse, newHeights);
 
-  Arr.each(newRowSizes, (row) => {
+  (newRowSizes).forEach((row) => {
     Sizes.setHeight(row.element, row.height);
   });
 
-  Arr.each(Warehouse.justCells(warehouse), (cell) => {
+  (Warehouse.justCells(warehouse)).forEach((cell) => {
     Sizes.removeHeight(cell.element);
   });
 

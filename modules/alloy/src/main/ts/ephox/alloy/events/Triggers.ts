@@ -1,4 +1,4 @@
-import { Adt, Arr, Cell, Fun, Optional } from '@ephox/katamari';
+import { Adt, Cell } from '@ephox/katamari';
 import { SugarElement, Traverse } from '@ephox/sugar';
 
 import { DebuggerLogger } from '../debugging/Debugging';
@@ -7,7 +7,7 @@ import { ElementAndHandler, UidAndHandler } from './EventRegistry';
 import * as EventSource from './EventSource';
 import { EventFormat, fromExternal, fromSource } from './SimulatedEvent';
 
-type LookupEvent = (eventName: string, target: SugarElement<Node>) => Optional<ElementAndHandler>;
+type LookupEvent = (eventName: string, target: SugarElement<Node>) => (ElementAndHandler) | null;
 
 export interface TriggerAdt {
   fold: <T>(
@@ -71,11 +71,11 @@ const doTriggerHandler = (lookup: LookupEvent, eventType: string, rawEvent: Even
 const doTriggerOnUntilStopped = (lookup: LookupEvent, eventType: string, rawEvent: EventFormat, rawTarget: SugarElement<Node>, source: Cell<SugarElement<Node>>, logger: DebuggerLogger): boolean =>
   doTriggerHandler(lookup, eventType, rawEvent, rawTarget, source, logger).fold(
     // stopped.
-    Fun.always,
+    (() => true as const),
     // Go again.
     (parent) => doTriggerOnUntilStopped(lookup, eventType, rawEvent, parent, source, logger),
     // completed
-    Fun.never
+    (() => false as const)
   );
 
 const triggerHandler = <T extends EventFormat>(lookup: LookupEvent, eventType: string, rawEvent: T, target: SugarElement<Node>, logger: DebuggerLogger): TriggerAdt => {
@@ -86,7 +86,7 @@ const triggerHandler = <T extends EventFormat>(lookup: LookupEvent, eventType: s
 const broadcast = (listeners: UidAndHandler[], rawEvent: EventFormat, _logger?: DebuggerLogger): boolean => {
   const simulatedEvent = fromExternal(rawEvent);
 
-  Arr.each(listeners, (listener) => {
+  (listeners).forEach((listener) => {
     const descHandler = listener.descHandler;
     const handler = DescribedHandler.getCurried(descHandler);
     handler(simulatedEvent);

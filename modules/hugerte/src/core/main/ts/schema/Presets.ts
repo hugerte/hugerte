@@ -1,4 +1,3 @@
-import { Optional, Thunk } from '@ephox/katamari';
 
 import * as SchemaElementSets from './SchemaElementSets';
 import * as SchemaTypes from './SchemaTypes';
@@ -6,22 +5,22 @@ import * as SchemaTypes from './SchemaTypes';
 export type PresetName = 'blocks' | 'phrasing' | 'flow';
 
 const cachedSets = {
-  'html4': Thunk.cached(() => SchemaElementSets.getElementSets('html4')),
-  'html5': Thunk.cached(() => SchemaElementSets.getElementSets('html5')),
-  'html5-strict': Thunk.cached(() => SchemaElementSets.getElementSets('html5-strict'))
+  'html4': ((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (() => SchemaElementSets.getElementSets('html4'))(..._a); } return _r; }; })()),
+  'html5': ((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (() => SchemaElementSets.getElementSets('html5'))(..._a); } return _r; }; })()),
+  'html5-strict': ((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (() => SchemaElementSets.getElementSets('html5-strict'))(..._a); } return _r; }; })())
 };
 
-export const getElementsPreset = (type: SchemaTypes.SchemaType, name: PresetName | string): Optional<readonly string[]> => {
+export const getElementsPreset = (type: SchemaTypes.SchemaType, name: PresetName | string): (readonly string[]) | null => {
   const { blockContent, phrasingContent, flowContent } = cachedSets[type]();
 
   if (name === 'blocks') {
-    return Optional.some(blockContent);
+    return blockContent;
   } else if (name === 'phrasing') {
-    return Optional.some(phrasingContent);
+    return phrasingContent;
   } else if (name === 'flow') {
-    return Optional.some(flowContent);
+    return flowContent;
   } else {
-    return Optional.none();
+    return null;
   }
 };
 

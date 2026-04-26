@@ -1,8 +1,7 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 export interface Identified {
-  readonly boxes: Optional<SugarElement<HTMLTableCellElement>[]>;
+  readonly boxes: (SugarElement<HTMLTableCellElement>[]) | null;
   readonly start: SugarElement<HTMLTableCellElement>;
   readonly finish: SugarElement<HTMLTableCellElement>;
 }

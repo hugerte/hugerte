@@ -1,4 +1,4 @@
-import { Type, Unicode } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 
 import DomParser from '../api/html/DomParser';
 import AstNode from '../api/html/Node';
@@ -103,7 +103,7 @@ const trimHtml = (html: string): string => {
       return ' ';
     }
 
-    return Unicode.nbsp;
+    return '\u00A0';
   };
 
   html = filter(html, [

@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import * as AlloyLogger from '../../log/AlloyLogger';
 import { AlloyComponent } from '../component/ComponentApi';
@@ -18,7 +17,7 @@ const NoContextApi = (getComp?: () => AlloyComponent): AlloySystemApi => {
   };
 
   return {
-    debugInfo: Fun.constant('fake'),
+    debugInfo: () => 'fake',
     triggerEvent: warn('triggerEvent'),
     triggerFocus: warn('triggerFocus'),
     triggerEscape: warn('triggerEscape'),
@@ -33,7 +32,7 @@ const NoContextApi = (getComp?: () => AlloyComponent): AlloySystemApi => {
     removeFromGui: fail('removeFromGui'),
     getByUid: fail('getByUid'),
     getByDom: fail('getByDom'),
-    isConnected: Fun.never
+    isConnected: (() => false as const)
   };
 };
 

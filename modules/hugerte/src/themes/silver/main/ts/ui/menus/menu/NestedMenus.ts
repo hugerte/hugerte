@@ -1,6 +1,6 @@
 import { TieredData, TieredMenu } from '@ephox/alloy';
 import { Objects } from '@ephox/boulder';
-import { Id, Merger, Obj, Optional } from '@ephox/katamari';
+import { Merger } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -12,9 +12,9 @@ import { SingleMenuItemSpec } from './SingleMenuTypes';
 
 export interface NestedMenusSettings {
   readonly isHorizontalMenu: boolean;
-  readonly search: Optional<{
-    readonly placeholder: Optional<string>;
-  }>;
+  readonly search: ({
+    readonly placeholder: (string) | null;
+  }) | null;
 }
 
 const getSearchModeForField = (settings: NestedMenusSettings): MenuSearchMode => {
@@ -34,8 +34,8 @@ const getSearchModeForResults = (settings: NestedMenusSettings): MenuSearchMode 
   );
 };
 
-const build = (items: string | Array<string | SingleMenuItemSpec>, itemResponse: ItemResponse, backstage: UiFactoryBackstage, settings: NestedMenusSettings): Optional<TieredData> => {
-  const primary = Id.generate('primary-menu');
+const build = (items: string | Array<string | SingleMenuItemSpec>, itemResponse: ItemResponse, backstage: UiFactoryBackstage, settings: NestedMenusSettings): (TieredData) | null => {
+  const primary = (('primary-menu') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
   // The expand process identifies all the items, submenus, and triggering items
   // defined by the list of items. It substitutes the strings using the values registered
@@ -44,7 +44,7 @@ const build = (items: string | Array<string | SingleMenuItemSpec>, itemResponse:
   // into AlloySpecs.
   const data = expand(items, backstage.shared.providers.menuItems());
   if (data.items.length === 0) {
-    return Optional.none();
+    return null;
   }
 
   // Only the main menu has a searchable widget (if it is enabled)
@@ -62,8 +62,7 @@ const build = (items: string | Array<string | SingleMenuItemSpec>, itemResponse:
   // connecting to the search field via aria-controls
   const submenuSearchMode: MenuSearchMode = getSearchModeForResults(settings);
 
-  const submenus = Obj.map(
-    data.menus, (menuItems, menuName) => createPartialMenu(
+  const submenus = Object.fromEntries(Object.entries(data.menus).map(([_k, _v]: [any, any]) => [_k, ((menuItems, menuName) => createPartialMenu(
       menuName,
       menuItems,
       itemResponse,
@@ -71,10 +70,9 @@ const build = (items: string | Array<string | SingleMenuItemSpec>, itemResponse:
       // Currently, submenus cannot be horizontal menus (so always false)
       false,
       submenuSearchMode
-    )
-  );
+    ))(_v, _k as any)]));
   const menus = Merger.deepMerge(submenus, Objects.wrap(primary, mainMenu));
-  return Optional.from(TieredMenu.tieredData(primary, menus, data.expansions));
+  return (TieredMenu.tieredData(primary, menus, data.expansions) ?? null);
 };
 
 export {

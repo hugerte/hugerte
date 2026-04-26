@@ -1,4 +1,4 @@
-import { Arr, Obj, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
 
 import { getAttrs, getClasses } from './DomFactory';
@@ -21,12 +21,12 @@ const readChildren = (elem: SugarElement<Node>): SimpleOrSketchSpec[] => {
     const classes = getClasses(elem);
     const children = Traverse.children(elem);
 
-    const components = Arr.bind(children, (child) => SugarNode.isText(child) ? readText(child) : readChildren(child));
+    const components = (children).flatMap((child) => SugarNode.isText(child) ? readText(child) : readChildren(child));
 
     return [{
       dom: {
         tag: SugarNode.name(elem),
-        ...(!Obj.isEmpty(attributes) ? { attributes } : {}),
+        ...(!(Object.keys(attributes).length === 0) ? { attributes } : {}),
         ...(classes.length > 0 ? { classes } : {})
       },
       components
@@ -42,12 +42,12 @@ const read = (elem: SugarElement<Element>): SimpleOrSketchSpec => {
 
   const children = Traverse.children(elem);
 
-  const components = Arr.bind(children, (child) => readChildren(child));
+  const components = (children).flatMap((child) => readChildren(child));
 
   return {
     dom: {
       tag: SugarNode.name(elem),
-      ...(!Obj.isEmpty(attributes) ? { attributes } : {}),
+      ...(!(Object.keys(attributes).length === 0) ? { attributes } : {}),
       ...(classes.length > 0 ? { classes } : {})
     },
     components

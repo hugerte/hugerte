@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { StyleFormat } from 'hugerte/core/api/fmt/StyleFormat';
@@ -20,7 +19,7 @@ const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
   const filterProcessor = (value: unknown) =>
-    Type.isString(value) || Type.isFunction(value) || Type.isObject(value);
+    typeof (value) === 'string' || typeof (value) === 'function' || (typeof (value) === 'object' && (value) !== null);
 
   registerOption('importcss_merge_classes', {
     processor: 'boolean',

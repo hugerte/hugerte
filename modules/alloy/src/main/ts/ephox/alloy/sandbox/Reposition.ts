@@ -1,5 +1,4 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import { NamedConfiguredBehaviour } from '../api/behaviour/Behaviour';
 import { Receiving } from '../api/behaviour/Receiving';
@@ -12,9 +11,9 @@ import { ReceivingChannelSpec, ReceivingConfig, ReceivingConfigSpec } from '../b
 
 export interface RepositionReceivingDetail {
   doReposition: (sandbox: AlloyComponent) => void;
-  fireEventInstead: Optional<{
+  fireEventInstead: ({
     event: string;
-  }>;
+  }) | null;
 }
 
 export interface RepositionReceivingSpec {

@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Strings, Type } from '@ephox/katamari';
+import { Obj, Optional } from '@ephox/katamari';
 
 import * as CustomElementsRuleParser from '../../schema/CustomElementsRuleParser';
 import * as GlobalAttributesSet from '../../schema/GlobalAttributesSet';
@@ -81,7 +81,7 @@ const compileElementMap: {
   if (value) {
     const styles: Record<string, any> = {};
 
-    if (Type.isString(value)) {
+    if (typeof (value) === 'string') {
       value = {
         '*': value
       };
@@ -172,10 +172,10 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
 
   // Parses the specified valid_elements string and adds to the current rules
   const addValidElements = (validElements: string | undefined) => {
-    const globalElement = Optional.from(elements['@']);
+    const globalElement = (elements['@'] ?? null);
     const hasPatternsRegExp = /[*?+]/;
 
-    Arr.each(ValidElementsRuleParser.parseValidElementsRules(globalElement, validElements ?? ''), ({ name, element, aliasName }) => {
+    (ValidElementsRuleParser.parseValidElementsRules(globalElement, validElements ?? '')).forEach(({ name, element, aliasName }) => {
       if (aliasName) {
         elements[aliasName] = element;
       }
@@ -195,7 +195,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
     // Clear any existing rules. Note that since `elements` is exposed we can't
     // overwrite it, so instead we delete all the properties
     patternElements = [];
-    Arr.each(Obj.keys(elements), (name) => {
+    (Object.keys(elements)).forEach((name) => {
       delete elements[name];
     });
 
@@ -236,7 +236,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
     }
 
     // Add custom attributes
-    if (Type.isArray(spec.attributes)) {
+    if (Array.isArray(spec.attributes)) {
       const processAttrName = (name: string) => {
         customRule.attributesOrder.push(name);
         customRule.attributes[name] = {};
@@ -252,12 +252,12 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
       customRule.attributesOrder = [];
       customRule.attributes = {};
 
-      Arr.each(spec.attributes, (attrName) => {
+      (spec.attributes).forEach((attrName) => {
         const globalAttrs = GlobalAttributesSet.getGlobalAttributeSet(schemaType);
         ValidChildrenRuleParser.parseValidChild(attrName).each(({ preset, name }) => {
           if (preset) {
             if (name === 'global') {
-              Arr.each(globalAttrs, processAttrName);
+              (globalAttrs).forEach(processAttrName);
             }
           } else {
             processAttrName(name);
@@ -269,14 +269,14 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
     }
 
     // Add custom pad empty rule
-    if (Type.isBoolean(spec.padEmpty)) {
+    if (typeof (spec.padEmpty) === 'boolean') {
       const customRule = elements[name] ?? {};
       customRule.paddEmpty = spec.padEmpty;
       elements[name] = customRule;
     }
 
     // Add custom children
-    if (Type.isArray(spec.children)) {
+    if (Array.isArray(spec.children)) {
       const customElementChildren: Record<string, {}> = {};
 
       const processNodeName = (name: string) => {
@@ -285,11 +285,11 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
 
       const processPreset = (name: string) => {
         Presets.getElementsPreset(schemaType, name).each((names) => {
-          Arr.each(names, processNodeName);
+          (names).forEach(processNodeName);
         });
       };
 
-      Arr.each(spec.children, (child) => {
+      (spec.children).forEach((child) => {
         ValidChildrenRuleParser.parseValidChild(child).each(({ preset, name }) => {
           if (preset) {
             processPreset(name);
@@ -304,32 +304,32 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
 
     // Add custom elements at extends positions
     if (cloneName) {
-      Obj.each(children, (element, elmName) => {
+      Object.entries(children).forEach(([_k, _v]: [any, any]) => ((element, elmName) => {
         if (element[cloneName]) {
           children[elmName] = element = extend({}, children[elmName]);
           element[name] = element[cloneName];
         }
-      });
+      })(_v, _k));
     }
   };
 
   const addCustomElementsFromString = (customElements: string) => {
-    Arr.each(CustomElementsRuleParser.parseCustomElementsRules(customElements ?? ''), ({ name, cloneName }) => {
+    (CustomElementsRuleParser.parseCustomElementsRules(customElements ?? '')).forEach(({ name, cloneName }) => {
       addCustomElement(name, { extends: cloneName });
     });
   };
 
   const addCustomElements = (customElements: string | Record<string, CustomElementSpec> | undefined) => {
-    if (Type.isObject(customElements)) {
+    if ((typeof (customElements) === 'object' && (customElements) !== null)) {
       Obj.each(customElements as Record<string, CustomElementSpec>, (spec, name) => addCustomElement(name, spec));
-    } else if (Type.isString(customElements)) {
+    } else if (typeof (customElements) === 'string') {
       addCustomElementsFromString(customElements);
     }
   };
 
   // Adds valid children to the schema object
   const addValidChildren = (validChildren: string | undefined) => {
-    Arr.each(ValidChildrenRuleParser.parseValidChildrenRules(validChildren ?? ''), ({ operation, name, validChildren }) => {
+    (ValidChildrenRuleParser.parseValidChildrenRules(validChildren ?? '')).forEach(({ operation, name, validChildren }) => {
       const parent = operation === 'replace' ? { '#comment': {}} : children[name];
       const processNodeName = (name: string) => {
         if (operation === 'remove') {
@@ -341,11 +341,11 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
 
       const processPreset = (name: string) => {
         Presets.getElementsPreset(schemaType, name).each((names) => {
-          Arr.each(names, processNodeName);
+          (names).forEach(processNodeName);
         });
       };
 
-      Arr.each(validChildren, ({ preset, name }) => {
+      (validChildren).forEach(({ preset, name }) => {
         if (preset) {
           processPreset(name);
         } else {
@@ -505,7 +505,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getValidStyles
    * @type Object
    */
-  const getValidStyles = Fun.constant(validStyles);
+  const getValidStyles = () => validStyles;
 
   /**
    * Name/value map object with valid styles for each element.
@@ -513,7 +513,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getInvalidStyles
    * @type Object
    */
-  const getInvalidStyles = Fun.constant(invalidStyles);
+  const getInvalidStyles = () => invalidStyles;
 
   /**
    * Name/value map object with valid classes for each element.
@@ -521,7 +521,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getValidClasses
    * @type Object
    */
-  const getValidClasses = Fun.constant(validClasses);
+  const getValidClasses = () => validClasses;
 
   /**
    * Returns a map with boolean attributes.
@@ -529,7 +529,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getBoolAttrs
    * @return {Object} Name/value lookup map for boolean attributes.
    */
-  const getBoolAttrs = Fun.constant(boolAttrMap);
+  const getBoolAttrs = () => boolAttrMap;
 
   /**
    * Returns a map with block elements.
@@ -537,7 +537,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getBlockElements
    * @return {Object} Name/value lookup map for block elements.
    */
-  const getBlockElements = Fun.constant(blockElementsMap);
+  const getBlockElements = () => blockElementsMap;
 
   /**
    * Returns a map with text block elements. For example: <code>&#60;p&#62;</code>, <code>&#60;h1&#62;</code> to <code>&#60;h6&#62;</code>, <code>&#60;div&#62;</code> or <code>&#60;address&#62;</code>.
@@ -545,7 +545,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getTextBlockElements
    * @return {Object} Name/value lookup map for block elements.
    */
-  const getTextBlockElements = Fun.constant(textBlockElementsMap);
+  const getTextBlockElements = () => textBlockElementsMap;
 
   /**
    * Returns a map of inline text format nodes. For example: <code>&#60;strong&#62;</code>, <code>&#60;span&#62;</code> or <code>&#60;ins&#62;</code>.
@@ -553,7 +553,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getTextInlineElements
    * @return {Object} Name/value lookup map for text format elements.
    */
-  const getTextInlineElements = Fun.constant(textInlineElementsMap);
+  const getTextInlineElements = () => textInlineElementsMap;
 
   /**
    * Returns a map with void elements. For example: <code>&#60;br&#62;</code> or <code>&#60;img&#62;</code>.
@@ -561,7 +561,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getVoidElements
    * @return {Object} Name/value lookup map for void elements.
    */
-  const getVoidElements = Fun.constant(Object.seal(voidElementsMap));
+  const getVoidElements = () => Object.seal(voidElementsMap);
 
   /**
    * Returns a map with self closing tags. For example: <code>&#60;li&#62;</code>.
@@ -569,7 +569,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getSelfClosingElements
    * @return {Object} Name/value lookup map for self closing tags elements.
    */
-  const getSelfClosingElements = Fun.constant(selfClosingElementsMap);
+  const getSelfClosingElements = () => selfClosingElementsMap;
 
   /**
    * Returns a map with elements that should be treated as contents regardless if it has text
@@ -578,7 +578,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getNonEmptyElements
    * @return {Object} Name/value lookup map for non empty elements.
    */
-  const getNonEmptyElements = Fun.constant(nonEmptyElementsMap);
+  const getNonEmptyElements = () => nonEmptyElementsMap;
 
   /**
    * Returns a map with elements that the caret should be moved in front of after enter is
@@ -587,7 +587,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getMoveCaretBeforeOnEnterElements
    * @return {Object} Name/value lookup map for elements to place the caret in front of.
    */
-  const getMoveCaretBeforeOnEnterElements = Fun.constant(moveCaretBeforeOnEnterElementsMap);
+  const getMoveCaretBeforeOnEnterElements = () => moveCaretBeforeOnEnterElementsMap;
 
   /**
    * Returns a map with elements where white space is to be preserved. For example: <code>&#60;pre&#62;</code> or <code>&#60;script&#62;</code>.
@@ -595,7 +595,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getWhitespaceElements
    * @return {Object} Name/value lookup map for white space elements.
    */
-  const getWhitespaceElements = Fun.constant(whitespaceElementsMap);
+  const getWhitespaceElements = () => whitespaceElementsMap;
 
   /**
    * Returns a map with elements that should be treated as transparent.
@@ -603,9 +603,9 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getTransparentElements
    * @return {Object} Name/value lookup map for special elements.
    */
-  const getTransparentElements = Fun.constant(transparentElementsMap);
+  const getTransparentElements = () => transparentElementsMap;
 
-  const getWrapBlockElements = Fun.constant(wrapBlockElementsMap);
+  const getWrapBlockElements = () => wrapBlockElementsMap;
 
   /**
    * Returns a map with special elements. These are elements that needs to be parsed
@@ -615,7 +615,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getSpecialElements
    * @return {Object} Name/value lookup map for special elements.
    */
-  const getSpecialElements = Fun.constant(Object.seal(specialElements));
+  const getSpecialElements = () => Object.seal(specialElements);
 
   /**
    * Returns true/false if the specified element and it's child is valid or not
@@ -670,12 +670,12 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
     return false;
   };
 
-  const isBlock = (name: string): boolean => Obj.has(getBlockElements(), name);
+  const isBlock = (name: string): boolean => Object.prototype.hasOwnProperty.call(getBlockElements(), name);
 
   // Check if name starts with # to detect non-element node names like #text and #comment
-  const isInline = (name: string): boolean => !Strings.startsWith(name, '#') && isValid(name) && !isBlock(name);
+  const isInline = (name: string): boolean => !(name).startsWith('#') && isValid(name) && !isBlock(name);
 
-  const isWrapper = (name: string): boolean => Obj.has(getWrapBlockElements(), name) || isInline(name);
+  const isWrapper = (name: string): boolean => Object.prototype.hasOwnProperty.call(getWrapBlockElements(), name) || isInline(name);
 
   /**
    * Returns true/false if the specified element is valid or not
@@ -692,7 +692,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
    * @method getCustomElements
    * @return {Object} Name/value map object of all custom elements.
    */
-  const getCustomElements = Fun.constant(customElementsMap);
+  const getCustomElements = () => customElementsMap;
 
   /**
    * Parses a valid elements string and adds it to the schema. The valid elements

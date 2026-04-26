@@ -1,4 +1,3 @@
-import { Arr, Optional, Strings } from '@ephox/katamari';
 
 interface Annotation {
   readonly name: string;
@@ -20,7 +19,7 @@ const markAsBehaviourApi = <T extends Function>(f: T, apiName: string, apiFuncti
 };
 
 // Remove any comment (/*) at end of parameter names
-const cleanParameters = (parameters: string[]) => Arr.map(parameters, (p) => Strings.endsWith(p, '/*') ? p.substring(0, p.length - '/*'.length) : p);
+const cleanParameters = (parameters: string[]) => (parameters).map((p) => (p).endsWith('/*') ? p.substring(0, p.length - '/*'.length) : p);
 
 const markAsExtraApi = <T extends Function>(f: T, extraName: string): FunctionWithAnnotation<T> => {
   const delegate = f.toString();
@@ -48,8 +47,8 @@ const markAsSketchApi = <T extends Function>(f: T, apiFunction: Function): Funct
   return f;
 };
 
-const getAnnotation = <T extends Function>(f: FunctionWithAnnotation<T>): Optional<Annotation> =>
-  Optional.from(f.toFunctionAnnotation?.());
+const getAnnotation = <T extends Function>(f: FunctionWithAnnotation<T>): (Annotation) | null =>
+  (f.toFunctionAnnotation?.() ?? null);
 
 export {
   markAsBehaviourApi,

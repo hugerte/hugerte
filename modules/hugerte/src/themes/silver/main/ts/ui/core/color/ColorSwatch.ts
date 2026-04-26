@@ -1,5 +1,5 @@
 import { HexColour, RgbaColour } from '@ephox/acid';
-import { Arr, Cell, Fun, Optional, Optionals, Strings } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Css, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -11,7 +11,7 @@ import { composeUnbinders, onSetupEditableToggle } from '../ControlUtils';
 import * as ColorCache from './ColorCache';
 import * as Options from './Options';
 
-export type ColorInputCallback = (valueOpt: Optional<string>) => void;
+export type ColorInputCallback = (valueOpt: (string) | null) => void;
 
 export interface ColorSwatchDialogData {
   readonly colorpicker: string;
@@ -29,14 +29,14 @@ const getClosestCssBackgroundColorValue = (scope: SugarElement<Element>): string
   return TransformFind.closest(scope, (node) => {
     if (SugarNode.isElement(node)) {
       const color = Css.get(node, 'background-color');
-      return Optionals.someIf(isValidBackgroundColor(color), color);
+      return (isValidBackgroundColor(color) ? color : null);
     } else {
-      return Optional.none();
+      return null;
     }
-  }).getOr(defaultBackgroundColor);
+  }) ?? (defaultBackgroundColor);
 };
 
-const getCurrentColor = (editor: Editor, format: ColorFormat): Optional<string> => {
+const getCurrentColor = (editor: Editor, format: ColorFormat): (string) | null => {
   const node = SugarElement.fromDom(editor.selection.getStart());
   const cssRgbValue = format === 'hilitecolor'
     ? getClosestCssBackgroundColorValue(node)
@@ -100,7 +100,7 @@ const applyColor = (editor: Editor, format: ColorFormat, value: string, onChoice
         editor.execCommand('mceApplyTextcolor', format as any, color);
         onChoice(color);
       });
-    }, getCurrentColor(editor, format).getOr(Options.fallbackColor));
+    }, getCurrentColor(editor, format) ?? (Options.fallbackColor));
   } else if (value === 'remove') {
     onChoice('');
     editor.execCommand('mceRemoveTextcolor', format as any);
@@ -129,18 +129,18 @@ const setTooltip = (buttonApi: Toolbar.ToolbarSplitButtonInstanceApi | Menu.Nest
 const select = (editor: Editor, format: ColorFormat) =>
   (value: string) => {
     const optCurrentHex = getCurrentColor(editor, format);
-    return Optionals.is(optCurrentHex, value.toUpperCase());
+    return (optCurrentHex !== null && (optCurrentHex) === (value.toUpperCase()));
   };
 
 // Selecting `Remove Color` would set the lastColor to ''
 const getToolTipText = (editor: Editor, format: ColorFormat, lastColor: string) => {
-  if (Strings.isEmpty(lastColor)) {
+  if (((lastColor).length === 0)) {
     return format === 'forecolor' ? 'Text color' : 'Background color';
   }
 
   const tooltipPrefix = format === 'forecolor' ? 'Text color {0}' : 'Background color {0}';
   const colors = getColors(Options.getColors(editor, format), format, false);
-  const colorText = Arr.find(colors, (c) => c.value === lastColor).getOr({ text: '' }).text;
+  const colorText = ((colors).find((c) => c.value === lastColor) ?? null) ?? ({ text: '' }).text;
 
   return editor.translate([ tooltipPrefix, editor.translate(colorText) ]);
 };
@@ -154,7 +154,7 @@ const registerTextColorButton = (editor: Editor, name: string, format: ColorForm
     columns: Options.getColorCols(editor, format),
     fetch: getFetch(Options.getColors(editor, format), format, Options.hasCustomColors(editor)),
     onAction: (_splitButtonApi) => {
-      applyColor(editor, format, lastColor.get(), Fun.noop);
+      applyColor(editor, format, lastColor.get(), () => {});
     },
     onItemAction: (_splitButtonApi, value) => {
       applyColor(editor, format, value, (newColor) => {
@@ -227,7 +227,7 @@ const colorPickerDialog = (editor: Editor) => (callback: ColorInputCallback, val
     const data = api.getData();
     const hex = data.colorpicker;
     if (isValid) {
-      callback(Optional.from(hex));
+      callback((hex ?? null));
       api.close();
     } else {
       editor.windowManager.alert(editor.translate([ 'Invalid hex color code: {0}', hex ]));
@@ -273,9 +273,9 @@ const colorPickerDialog = (editor: Editor) => (callback: ColorInputCallback, val
     initialData,
     onAction,
     onSubmit,
-    onClose: Fun.noop,
+    onClose: () => {},
     onCancel: () => {
-      callback(Optional.none());
+      callback(null);
     }
   });
 };

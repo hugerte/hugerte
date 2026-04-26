@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as Fields from '../../data/Fields';
@@ -25,13 +24,13 @@ const onLoad = (component: AlloyComponent, repConfig: ManualRepresentingConfig, 
 
 export default [
   FieldSchema.required('getValue'),
-  FieldSchema.defaulted('setValue', Fun.noop),
+  FieldSchema.defaulted('setValue', () => {}),
   FieldSchema.option('initialValue'),
   Fields.output('manager', {
     setValue,
     getValue,
     onLoad,
-    onUnload: Fun.noop,
+    onUnload: () => {},
     state: NoState.init
   })
 ];

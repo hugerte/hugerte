@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';
@@ -21,36 +20,36 @@ export const FormatRegistry = (editor: Editor): FormatRegistry => {
   const formats: Record<string, Format[]> = {};
 
   const get = (name?: string): Format[] | Record<string, Format[]> | undefined =>
-    Type.isNonNullable(name) ? formats[name] : formats;
+    (name) != null ? formats[name] : formats;
 
-  const has = (name: string): boolean => Obj.has(formats, name);
+  const has = (name: string): boolean => Object.prototype.hasOwnProperty.call(formats, name);
 
   const register = (name: string | Formats | undefined, format?: Format | Format[]) => {
     if (name) {
-      if (!Type.isString(name)) {
-        Obj.each(name, (format, name) => {
+      if (!typeof (name) === 'string') {
+        Object.entries(name).forEach(([_k, _v]: [any, any]) => ((format, name) => {
           register(name, format);
-        });
+        })(_v, _k));
       } else {
         // Force format into array and add it to internal collection
-        if (!Type.isArray(format)) {
+        if (!Array.isArray(format)) {
           format = [ format as Format ];
         }
 
-        Arr.each(format, (format) => {
+        (format).forEach((format) => {
           // Set deep to false by default on selector formats this to avoid removing
           // alignment on images inside paragraphs when alignment is changed on paragraphs
-          if (Type.isUndefined(format.deep)) {
+          if ((format.deep) === undefined) {
             format.deep = !isSelectorFormat(format);
           }
 
           // Default to true
-          if (Type.isUndefined(format.split)) {
+          if ((format.split) === undefined) {
             format.split = !isSelectorFormat(format) || isInlineFormat(format);
           }
 
           // Default to true
-          if (Type.isUndefined(format.remove) && isSelectorFormat(format) && !isInlineFormat(format)) {
+          if ((format.remove) === undefined && isSelectorFormat(format) && !isInlineFormat(format)) {
             format.remove = 'none';
           }
 
@@ -61,7 +60,7 @@ export const FormatRegistry = (editor: Editor): FormatRegistry => {
           }
 
           // Split classes if needed
-          if (Type.isString(format.classes)) {
+          if (typeof (format.classes) === 'string') {
             format.classes = format.classes.split(/\s+/);
           }
         });

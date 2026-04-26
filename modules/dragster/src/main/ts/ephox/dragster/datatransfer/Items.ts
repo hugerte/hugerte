@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import * as Mode from './Mode';
 
@@ -12,8 +11,8 @@ export const normalizeItems = (dataTransfer: DataTransfer, itemsImpl: DataTransf
 
     add: (data: string | File, type?: string): DataTransferItem | null => {
       if (Mode.isInReadWriteMode(dataTransfer)) {
-        if (Type.isString(data)) {
-          if (!Type.isUndefined(type)) {
+        if (typeof (data) === 'string') {
+          if (!(type) === undefined) {
             return itemsImpl.add(data, type);
           }
         } else {

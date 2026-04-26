@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Spot, SpotPoint } from '@ephox/phoenix';
 import { Awareness, ElementAddress, Situ, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
 
@@ -8,9 +7,9 @@ import { KeyDirection } from './KeyDirection';
 
 const isBr = SugarNode.isTag('br');
 
-const gatherer = (cand: SugarElement<Node>, gather: KeyDirection['gather'], isRoot: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node>> => {
+const gatherer = (cand: SugarElement<Node>, gather: KeyDirection['gather'], isRoot: (e: SugarElement<Node>) => boolean): (SugarElement<Node>) | null => {
   return gather(cand, isRoot).bind((target) => {
-    return SugarNode.isText(target) && SugarText.get(target).trim().length === 0 ? gatherer(target, gather, isRoot) : Optional.some(target);
+    return SugarNode.isText(target) && SugarText.get(target).trim().length === 0 ? gatherer(target, gather, isRoot) : target;
   });
 };
 
@@ -43,7 +42,7 @@ const handleParent = (isRoot: (e: SugarElement<Node>) => boolean, element: Sugar
   });
 };
 
-const tryBr = (isRoot: (e: SugarElement<Node>) => boolean, element: SugarElement<Node>, offset: number, direction: KeyDirection): Optional<Situs> => {
+const tryBr = (isRoot: (e: SugarElement<Node>) => boolean, element: SugarElement<Node>, offset: number, direction: KeyDirection): (Situs) | null => {
   // Three different situations
   // 1. the br is the child, and it has a previous sibling. Use parent, index-1)
   // 2. the br is the child and it has no previous sibling, set to before the previous gather result
@@ -59,19 +58,19 @@ const tryBr = (isRoot: (e: SugarElement<Node>) => boolean, element: SugarElement
   });
 };
 
-const process = (analysis: BeforeAfter): Optional<SpotPoint<SugarElement<HTMLTableCellElement>>> => {
+const process = (analysis: BeforeAfter): (SpotPoint<SugarElement<HTMLTableCellElement>>) | null => {
   return BeforeAfter.cata(analysis,
     (_message) => {
-      return Optional.none();
+      return null;
     },
     () => {
-      return Optional.none();
+      return null;
     },
     (cell) => {
-      return Optional.some(Spot.point(cell, 0));
+      return Spot.point(cell, 0);
     },
     (cell) => {
-      return Optional.some(Spot.point(cell, Awareness.getEnd(cell)));
+      return Spot.point(cell, Awareness.getEnd(cell));
     }
   );
 };

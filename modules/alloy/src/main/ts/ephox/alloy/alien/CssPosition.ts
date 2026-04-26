@@ -1,4 +1,4 @@
-import { Adt, Arr, Fun } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { SugarPosition } from '@ephox/sugar';
 
 export interface CssPositionAdt {
@@ -24,21 +24,21 @@ const adt: {
 const toFixed = (pos: CssPositionAdt): SugarPosition =>
   // TODO: Use new ADT methods
   pos.fold(
-    Fun.identity,
+    (x: any) => x,
     (point, scrollLeft, scrollTop) => point.translate(-scrollLeft, -scrollTop)
   );
 
-const toAbsolute = (pos: CssPositionAdt): SugarPosition => pos.fold(Fun.identity, Fun.identity);
+const toAbsolute = (pos: CssPositionAdt): SugarPosition => pos.fold((x: any) => x, (x: any) => x);
 
-const sum = (points: SugarPosition[]): SugarPosition => Arr.foldl(points, (b, a) => b.translate(a.left, a.top), SugarPosition(0, 0));
+const sum = (points: SugarPosition[]): SugarPosition => (points).reduce((b, a) => b.translate(a.left, a.top), SugarPosition(0, 0));
 
 const sumAsFixed = (positions: CssPositionAdt[]): SugarPosition => {
-  const points = Arr.map(positions, toFixed);
+  const points = (positions).map(toFixed);
   return sum(points);
 };
 
 const sumAsAbsolute = (positions: CssPositionAdt[]): SugarPosition => {
-  const points = Arr.map(positions, toAbsolute);
+  const points = (positions).map(toAbsolute);
   return sum(points);
 };
 

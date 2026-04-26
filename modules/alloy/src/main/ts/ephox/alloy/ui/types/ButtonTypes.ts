@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -11,8 +10,8 @@ export interface ButtonDetail extends SingleSketchDetail {
   dom: RawDomSchema;
   components: AlloySpec[ ];
   buttonBehaviours: SketchBehaviours;
-  action: Optional<ButtonAction>;
-  role: Optional<string>;
+  action: (ButtonAction) | null;
+  role: (string) | null;
   eventOrder: Record<string, string[]>;
 }
 

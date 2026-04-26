@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import * as NodeType from '../dom/NodeType';
 import * as Zwsp from '../text/Zwsp';
@@ -66,8 +65,8 @@ const insertAfter = (node: Node): Text => {
 const insertInline = (before: boolean, node: Node): Text =>
   before ? insertBefore(node) : insertAfter(node);
 
-const insertInlineBefore: (node: Node) => Text = Fun.curry(insertInline, true);
-const insertInlineAfter: (node: Node) => Text = Fun.curry(insertInline, false);
+const insertInlineBefore: (node: Node) => Text = ((..._rest: any[]) => (insertInline)(true, ..._rest));
+const insertInlineAfter: (node: Node) => Text = ((..._rest: any[]) => (insertInline)(false, ..._rest));
 
 export {
   insertInline,

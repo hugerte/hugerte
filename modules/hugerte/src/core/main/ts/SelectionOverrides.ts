@@ -1,4 +1,3 @@
-import { Arr, Obj, Type, Unicode } from '@ephox/katamari';
 import { Attribute, Compare, Css, Focus, Insert, InsertAll, Remove, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import Editor from './api/Editor';
@@ -38,7 +37,7 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
   let selectedElement: Element | null;
 
   const isFakeSelectionElement = (node: Element | null) =>
-    Type.isNonNullable(node) && dom.hasClass(node, 'mce-offscreen-selection');
+    (node) != null && dom.hasClass(node, 'mce-offscreen-selection');
 
   // Note: isChildOf will return true if node === rootNode, so we need an additional check for that
   const isFakeSelectionTargetElement = (node: Node): node is HTMLElement =>
@@ -209,7 +208,7 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
     const endContainer = rng.endContainer;
     const endOffset = rng.endOffset;
 
-    if (Obj.has(voidElements, startContainer.nodeName.toLowerCase())) {
+    if (Object.prototype.hasOwnProperty.call(voidElements, startContainer.nodeName.toLowerCase())) {
       if (startOffset === 0) {
         newRng.setStartBefore(startContainer);
       } else {
@@ -219,7 +218,7 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
       newRng.setStart(startContainer, startOffset);
     }
 
-    if (Obj.has(voidElements, endContainer.nodeName.toLowerCase())) {
+    if (Object.prototype.hasOwnProperty.call(voidElements, endContainer.nodeName.toLowerCase())) {
       if (endOffset === 0) {
         newRng.setEndBefore(endContainer);
       } else {
@@ -245,9 +244,9 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
     const newRange = dom.createRng();
     Remove.empty(realSelectionContainer);
     InsertAll.append(realSelectionContainer, [
-      SugarElement.fromText(Unicode.nbsp, doc),
+      SugarElement.fromText('\u00A0', doc),
       SugarElement.fromDom(targetClone),
-      SugarElement.fromText(Unicode.nbsp, doc)
+      SugarElement.fromText('\u00A0', doc)
     ]);
     newRange.setStart(realSelectionContainer.dom.firstChild as Text, 1);
     newRange.setEnd(realSelectionContainer.dom.lastChild as Text, 0);
@@ -280,7 +279,7 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
     // But data-mce-selected can be values other than 1 so keep existing value if
     // node has one, and remove data-mce-selected from everything else
     const nodeElm = SugarElement.fromDom(elm);
-    Arr.each(SelectorFilter.descendants(SugarElement.fromDom(editor.getBody()), `*[${elementSelectionAttr}]`), (elm) => {
+    (SelectorFilter.descendants(SugarElement.fromDom(editor.getBody()), `*[${elementSelectionAttr}]`)).forEach((elm) => {
       if (!Compare.eq(nodeElm, elm)) {
         Attribute.remove(elm, elementSelectionAttr);
       }
@@ -306,7 +305,7 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
         const caretPosition = CaretUtils.getNormalizedRangeEndPoint(dir, rootNode, range);
 
         const beforeNode = caretPosition.getNode(!forward);
-        if (Type.isNonNullable(beforeNode)) {
+        if ((beforeNode) != null) {
           if (isFakeCaretTarget(beforeNode)) {
             return showCaret(dir, beforeNode, forward ? !caretPosition.isAtEnd() : false, false);
           }
@@ -319,7 +318,7 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
         }
 
         const afterNode = caretPosition.getNode(forward);
-        if (Type.isNonNullable(afterNode)) {
+        if ((afterNode) != null) {
           if (isFakeCaretTarget(afterNode)) {
             return showCaret(dir, afterNode, forward ? false : !caretPosition.isAtEnd(), false);
           }

@@ -1,6 +1,6 @@
 import { AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyParts, Receiving, Reflecting } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Id, Obj, Optional, Singleton, Type } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { DomEvent, EventUnbinder, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -22,9 +22,9 @@ interface RenderedUrlDialog {
 // A list of supported message actions
 const SUPPORTED_MESSAGE_ACTIONS = [ 'insertContent', 'setContent', 'execCommand', 'close', 'block', 'unblock' ];
 
-const isSupportedMessage = (data: any): boolean => Type.isObject(data) && SUPPORTED_MESSAGE_ACTIONS.indexOf(data.mceAction) !== -1;
+const isSupportedMessage = (data: any): boolean => (typeof (data) === 'object' && (data) !== null) && SUPPORTED_MESSAGE_ACTIONS.indexOf(data.mceAction) !== -1;
 
-const isCustomMessage = (data: any): boolean => !isSupportedMessage(data) && Type.isObject(data) && Obj.has(data, 'mceAction');
+const isCustomMessage = (data: any): boolean => !isSupportedMessage(data) && (typeof (data) === 'object' && (data) !== null) && Object.prototype.hasOwnProperty.call(data, 'mceAction');
 
 const handleMessage = (editor: Editor, api: Dialog.UrlDialogInstanceApi, data: any) => {
   switch (data.mceAction) {
@@ -35,7 +35,7 @@ const handleMessage = (editor: Editor, api: Dialog.UrlDialogInstanceApi, data: a
       editor.setContent(data.content);
       break;
     case 'execCommand':
-      const ui = Type.isBoolean(data.ui) ? data.ui : false;
+      const ui = typeof (data.ui) === 'boolean' ? data.ui : false;
       editor.execCommand(data.cmd, ui, data.value);
       break;
     case 'close':
@@ -51,15 +51,15 @@ const handleMessage = (editor: Editor, api: Dialog.UrlDialogInstanceApi, data: a
 };
 
 const renderUrlDialog = (internalDialog: Dialog.UrlDialog, extra: SilverDialogCommon.SharedWindowExtra, editor: Editor, backstage: UiFactoryBackstage): RenderedUrlDialog => {
-  const dialogId = Id.generate('dialog');
+  const dialogId = (('dialog') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
   const header = SilverDialogCommon.getHeader(internalDialog.title, dialogId, backstage);
   const body = renderIframeBody(internalDialog);
   const footer = internalDialog.buttons.bind((buttons) => {
     // Don't render a footer if no buttons are specified
     if (buttons.length === 0) {
-      return Optional.none<AlloyParts.ConfiguredPart>();
+      return null;
     } else {
-      return Optional.some(renderModalFooter({ buttons }, dialogId, backstage));
+      return renderModalFooter({ buttons }, dialogId, backstage);
     }
   });
 
@@ -75,14 +75,14 @@ const renderUrlDialog = (internalDialog: Dialog.UrlDialog, extra: SilverDialogCo
   };
 
   // Default back to using a large sized dialog, if no dimensions are specified
-  const classes = internalDialog.width.isNone() && internalDialog.height.isNone() ? [ 'tox-dialog--width-lg' ] : [];
+  const classes = internalDialog.width === null && internalDialog.height === null ? [ 'tox-dialog--width-lg' ] : [];
 
   // Determine the iframe urls domain, so we can target that specifically when sending messages
   const iframeUri = new URI(internalDialog.url, { base_uri: new URI(window.location.href) });
   const iframeDomain = `${iframeUri.protocol}://${iframeUri.host}${iframeUri.port ? ':' + iframeUri.port : ''}`;
   const messageHandlerUnbinder = Singleton.unbindable<EventUnbinder>();
 
-  const updateState = (_comp: AlloyComponent, incoming: Dialog.UrlDialog) => Optional.some(incoming);
+  const updateState = (_comp: AlloyComponent, incoming: Dialog.UrlDialog) => incoming;
 
   // Setup the behaviours for dealing with messages between the iframe and current window
   const extraBehaviours = [
@@ -123,7 +123,7 @@ const renderUrlDialog = (internalDialog: Dialog.UrlDialog, extra: SilverDialogCo
             // Send the message to the iframe via postMessage
             SelectorFind.descendant<HTMLIFrameElement>(comp.element, 'iframe').each((iframeEle) => {
               const iframeWin = iframeEle.dom.contentWindow;
-              if (Type.isNonNullable(iframeWin)) {
+              if ((iframeWin) != null) {
                 iframeWin.postMessage(data, iframeDomain);
               }
             });

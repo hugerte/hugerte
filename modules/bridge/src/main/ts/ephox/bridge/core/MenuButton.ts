@@ -1,5 +1,4 @@
 import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Fun, Optional, Type } from '@ephox/katamari';
 
 import { NestedMenuItemContents } from '../components/menu/NestedMenuItem';
 
@@ -23,10 +22,10 @@ export interface BaseMenuButtonSpec {
 }
 
 export interface BaseMenuButton {
-  text: Optional<string>;
-  tooltip: Optional<string>;
-  icon: Optional<string>;
-  search: Optional<{ placeholder: Optional<string> }>;
+  text: (string) | null;
+  tooltip: (string) | null;
+  icon: (string) | null;
+  search: ({ placeholder: (string) | null }) | null;
   fetch: (success: SuccessCallback, fetchContext: MenuButtonFetchContext, api: BaseMenuButtonInstanceApi) => void;
   onSetup: (api: BaseMenuButtonInstanceApi) => (api: BaseMenuButtonInstanceApi) => void;
 }
@@ -63,16 +62,16 @@ export const baseMenuButtonFields = [
       ],
 
       // This function allows you to standardise the output.
-      (x: boolean | { placeholder: Optional<string> }): BaseMenuButton['search'] => {
-        if (Type.isBoolean(x)) {
-          return x ? Optional.some({ placeholder: Optional.none() }) : Optional.none();
+      (x: boolean | { placeholder: (string) | null }): BaseMenuButton['search'] => {
+        if (typeof (x) === 'boolean') {
+          return x ? { placeholder: null } : null;
         } else {
-          return Optional.some(x);
+          return x;
         }
       }
     )
   ),
 
   FieldSchema.requiredFunction('fetch'),
-  FieldSchema.defaultedFunction('onSetup', () => Fun.noop)
+  FieldSchema.defaultedFunction('onSetup', () => () => {})
 ];

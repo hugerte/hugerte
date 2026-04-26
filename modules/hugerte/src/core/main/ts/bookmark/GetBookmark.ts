@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import EditorSelection from '../api/dom/Selection';
@@ -222,7 +221,7 @@ const getBookmark = (selection: EditorSelection, type?: number, normalized: bool
   }
 };
 
-const getUndoBookmark = Fun.curry(getOffsetBookmark, Fun.identity, true) as (selection: EditorSelection) => IndexBookmark | PathBookmark;
+const getUndoBookmark = ((..._rest: any[]) => (getOffsetBookmark)((x: any) => x, true, ..._rest)) as (selection: EditorSelection) => IndexBookmark | PathBookmark;
 
 export {
   getBookmark,

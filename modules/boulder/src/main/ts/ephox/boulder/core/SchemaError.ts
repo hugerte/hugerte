@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';
 import { formatObj } from '../format/PrettyPrinter';
@@ -29,7 +28,7 @@ const unsupportedFields = <T>(path: string[], unsupported: string[]): SimpleResu
   nu(path, () => 'There are unsupported fields: [' + unsupported.join(', ') + '] specified');
 
 const custom = <T>(path: string[], err: string): SimpleResult<SchemaError[], T> =>
-  nu(path, Fun.constant(err));
+  nu(path, () => err);
 
 const toString = (error: SchemaError): string =>
   'Failed path: (' + error.path.join(' > ') + ')\n' + error.getErrorInfo();

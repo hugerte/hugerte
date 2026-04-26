@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
 import { Compare, SugarElement } from '@ephox/sugar';
 
 import { CellLocation } from './CellLocation';
@@ -25,7 +24,7 @@ const walk = (
   current: SugarElement<HTMLTableCellElement>,
   index: number,
   direction: Direction,
-  isEligible: IsEligibleFn = Fun.always
+  isEligible: IsEligibleFn = (() => true as const)
 ): CellLocation => {
   const forwards = direction === Direction.Forwards;
   if (!forwards && index <= 0) {
@@ -43,10 +42,10 @@ const walk = (
  * Identify the index of the current cell within all the cells, and
  * a list of the cells within its table.
  */
-const detect = (current: SugarElement<HTMLTableCellElement>, isRoot?: IsRootFn): Optional<NavigationInfo> => {
+const detect = (current: SugarElement<HTMLTableCellElement>, isRoot?: IsRootFn): (NavigationInfo) | null => {
   return TableLookup.table(current, isRoot).bind((table) => {
     const all = TableLookup.cells(table);
-    const index = Arr.findIndex(all, (x) => Compare.eq(current, x));
+    const index = (all).findIndex((x) => Compare.eq(current, x));
 
     return index.map((index) => ({ index, all }));
   });

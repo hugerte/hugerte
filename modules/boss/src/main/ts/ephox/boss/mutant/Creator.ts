@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { Gene } from '../api/Gene';
 import { TextGene } from '../api/TextGene';
@@ -8,7 +7,7 @@ interface Seed {
 }
 
 const isNu = (item: Gene): boolean => {
-  return item.id === 'nu_' + item.name || Optional.from(item.text).exists((text) => item.id === '?_' + text);
+  return item.id === 'nu_' + item.name || (item.text ?? null).exists((text) => item.id === '?_' + text);
 };
 
 const seed = (): Seed => {

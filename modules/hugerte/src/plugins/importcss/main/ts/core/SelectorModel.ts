@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 export interface SelectorFormatItem {
   readonly title: string;
@@ -36,7 +35,7 @@ const generate = (): SelectorModel => {
   };
 
   const toFormats = (): Array<SelectorMenuItem | SelectorFormatItem> => {
-    const groupItems = Arr.bind(groupOrder, (g): Array<SelectorMenuItem | SelectorFormatItem> => {
+    const groupItems = (groupOrder).flatMap((g): Array<SelectorMenuItem | SelectorFormatItem> => {
       const items = groups[g];
       return items.length === 0 ? [ ] : [{
         title: g,

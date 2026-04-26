@@ -1,4 +1,3 @@
-import { Arr, Fun, Type } from '@ephox/katamari';
 
 import * as EditorContent from '../content/EditorContent';
 import * as Deprecations from '../Deprecations';
@@ -301,7 +300,7 @@ class Editor implements EditorObservable {
     }
 
     const contentCssCors = Options.hasContentCssCors(self);
-    if (Type.isNonNullable(contentCssCors)) {
+    if ((contentCssCors) != null) {
       DOMUtils.DOM.styleSheetLoader._setContentCssCors(contentCssCors);
     }
 
@@ -329,10 +328,10 @@ class Editor implements EditorObservable {
     this.ui = {
       registry: registry(),
       styleSheetLoader: undefined as any,
-      show: Fun.noop,
-      hide: Fun.noop,
-      setEnabled: Fun.noop,
-      isEnabled: Fun.always
+      show: () => {},
+      hide: () => {},
+      setEnabled: () => {},
+      isEnabled: (() => true as const)
     };
 
     this.mode = createMode(self);
@@ -340,7 +339,7 @@ class Editor implements EditorObservable {
     // Call setup
     editorManager.dispatch('SetupEditor', { editor: this });
     const setupCallback = Options.getSetupCallback(self);
-    if (Type.isFunction(setupCallback)) {
+    if (typeof (setupCallback) === 'function') {
       setupCallback.call(self, self);
     }
   }
@@ -413,15 +412,15 @@ class Editor implements EditorObservable {
 
     // To keep the legacy API we need to register the option if it's not already been registered
     if (!options.isRegistered(name)) {
-      if (Type.isNonNullable(type)) {
+      if ((type) != null) {
         options.register(name, { processor: type, default: defaultVal });
       } else {
-        options.register(name, { processor: Fun.always, default: defaultVal });
+        options.register(name, { processor: (() => true as const), default: defaultVal });
       }
     }
 
     // Attempt to use the passed default value if nothing has been set already
-    return !options.isSet(name) && !Type.isUndefined(defaultVal) ? defaultVal : options.get(name);
+    return !options.isSet(name) && !(defaultVal) === undefined ? defaultVal : options.get(name);
   }
 
   /**
@@ -438,7 +437,7 @@ class Editor implements EditorObservable {
    * hugerte.activeEditor.hasPlugin('table');
    */
   public hasPlugin(name: string, loaded?: boolean): boolean {
-    const hasPlugin = Arr.contains(Options.getPlugins(this), name);
+    const hasPlugin = (Options.getPlugins(this)).includes(name);
     if (hasPlugin) {
       return loaded ? PluginManager.get(name) !== undefined : true;
     } else {
@@ -1044,7 +1043,7 @@ class Editor implements EditorObservable {
 
     // Use callback instead
     const urlConverterCallback = Options.getUrlConverterCallback(self);
-    if (Type.isFunction(urlConverterCallback)) {
+    if (typeof (urlConverterCallback) === 'function') {
       return urlConverterCallback.call(self, url, elm, true, name);
     }
 
@@ -1052,7 +1051,7 @@ class Editor implements EditorObservable {
     if (
       !getOption('convert_urls') ||
       elm === 'link' ||
-      (Type.isObject(elm) && (elm as HTMLElement).nodeName === 'LINK') ||
+      ((typeof (elm) === 'object' && (elm) !== null) && (elm as HTMLElement).nodeName === 'LINK') ||
       url.indexOf('file:') === 0 ||
       url.length === 0 ) {
       return url;

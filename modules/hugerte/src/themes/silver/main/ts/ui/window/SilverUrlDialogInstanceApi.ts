@@ -1,6 +1,5 @@
 import { AlloyComponent, AlloyTriggers } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Type } from '@ephox/katamari';
 
 import { formBlockEvent, formCloseEvent, formUnblockEvent } from '../general/FormEvents';
 import { bodySendMessageChannel } from './DialogChannels';
@@ -13,7 +12,7 @@ const getUrlDialogApi = (root: AlloyComponent): Dialog.UrlDialogInstanceApi => {
   };
 
   const block = (message: string) => {
-    if (!Type.isString(message)) {
+    if (!typeof (message) === 'string') {
       throw new Error('The urlDialogInstanceAPI.block function should be passed a blocking message of type string as an argument');
     }
     withRoot((root) => {

@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -16,12 +15,12 @@ const getEndpointElement = (
   const container = start ? rng.startContainer : rng.endContainer;
   const offset = start ? rng.startOffset : rng.endOffset;
 
-  return Optional.from(container)
+  return (container ?? null)
     .map(SugarElement.fromDom)
-    .map((elm) => !real || !rng.collapsed ? Traverse.child(elm, resolve(elm, offset)).getOr(elm) : elm)
-    .bind((elm) => SugarNode.isElement(elm) ? Optional.some(elm) : Traverse.parent(elm).filter(SugarNode.isElement))
+    .map((elm) => !real || !rng.collapsed ? Traverse.child(elm, resolve(elm, offset)) ?? (elm) : elm)
+    .bind((elm) => SugarNode.isElement(elm) ? elm : Traverse.parent(elm).filter(SugarNode.isElement))
     .map((elm) => elm.dom)
-    .getOr(root);
+     ?? (root);
 };
 
 const getStart = (root: Element, rng: Range, real: boolean = false): Element =>
@@ -120,9 +119,9 @@ const getSelectedBlocks = (dom: DOMUtils, rng: Range, startElm?: Element, endElm
   return selectedBlocks;
 };
 
-const select = (dom: DOMUtils, node: Node | null, content?: boolean): Optional<Range> =>
-  Optional.from(node).bind((node) =>
-    Optional.from(node.parentNode).map((parent) => {
+const select = (dom: DOMUtils, node: Node | null, content?: boolean): (Range) | null =>
+  (node ?? null).bind((node) =>
+    (node.parentNode ?? null).map((parent) => {
       const idx = dom.nodeIndex(node);
       const rng = dom.createRng();
 

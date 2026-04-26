@@ -1,4 +1,4 @@
-import { Arr, Obj, Throttler, Type } from '@ephox/katamari';
+import { Throttler } from '@ephox/katamari';
 import { SelectorFind, Selectors, SugarElement } from '@ephox/sugar';
 
 import * as NodeType from '../../dom/NodeType';
@@ -79,7 +79,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
   let startScrollHeight: number;
 
   const isImage = (elm: Element | undefined) =>
-    Type.isNonNullable(elm) && (NodeType.isImg(elm) || dom.is(elm, 'figure.image'));
+    (elm) != null && (NodeType.isImg(elm) || dom.is(elm, 'figure.image'));
 
   const isMedia = (elm: Element) =>
     NodeType.isMedia(elm) || dom.hasClass(elm, 'mce-preview-object');
@@ -102,7 +102,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
   };
 
   const getResizeTargets = (elm: HTMLElement): HTMLElement[] => {
-    if (dom.hasClass(elm, 'mce-preview-object') && Type.isNonNullable(elm.firstElementChild)) {
+    if (dom.hasClass(elm, 'mce-preview-object') && (elm.firstElementChild) != null) {
       // When resizing a preview object we need to resize both the original element and the wrapper span
       return [ elm, elm.firstElementChild as HTMLElement ];
     } else if (dom.is(elm, 'figure.image')) {
@@ -127,7 +127,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
       return false;
     }
 
-    if (dom.hasClass(elm, 'mce-preview-object') && Type.isNonNullable(elm.firstElementChild)) {
+    if (dom.hasClass(elm, 'mce-preview-object') && (elm.firstElementChild) != null) {
       return Selectors.is(SugarElement.fromDom(elm.firstElementChild), selector);
     } else {
       return Selectors.is(SugarElement.fromDom(elm), selector);
@@ -141,10 +141,10 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     } else if (NodeType.isTable(elm)) {
       const tableElm = elm.cloneNode(true) as HTMLTableElement;
       // Get last row, remove all height styles
-      Arr.last(dom.select('tr', tableElm)).each((tr) => {
+      ((dom.select('tr', tableElm)).at(-1) ?? null).each((tr) => {
         const cells = dom.select('td,th', tr);
         dom.setStyle(tr, 'height', null);
-        Arr.each(cells, (cell) => dom.setStyle(cell, 'height', null));
+        (cells).forEach((cell) => dom.setStyle(cell, 'height', null));
       });
       return tableElm;
     } else {
@@ -153,10 +153,10 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
   };
 
   const setSizeProp = (element: HTMLElement, name: 'width' | 'height', value: number | undefined) => {
-    if (Type.isNonNullable(value)) {
+    if ((value) != null) {
       // Resize by using style or attribute
       const targets = getResizeTargets(element);
-      Arr.each(targets, (target) => {
+      (targets).forEach((target) => {
         if (target.style[name] || !editor.schema.isValid(target.nodeName.toLowerCase(), name)) {
           dom.setStyle(target, name, value);
         } else {
@@ -303,7 +303,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     const e = editor.dispatch('ObjectSelected', { target: targetElm });
 
     if (isResizable(targetElm) && !e.isDefaultPrevented()) {
-      Obj.each(resizeHandles, (handle, name) => {
+      Object.entries(resizeHandles).forEach(([_k, _v]: [any, any]) => ((handle, name) => {
         const startDrag = (e: MouseEvent) => {
           // Note: We're guaranteed to have at least one target here
           const target = getResizeTargets(selectedElm)[0];
@@ -408,13 +408,13 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
       selectedElm.removeAttribute(elementSelectionAttr);
     }
 
-    Obj.each(resizeHandles, (value, name) => {
+    Object.entries(resizeHandles).forEach(([_k, _v]: [any, any]) => ((value, name) => {
       const handleElm = dom.get('mceResizeHandle' + name);
       if (handleElm) {
         dom.unbind(handleElm);
         dom.remove(handleElm);
       }
-    });
+    })(_v, _k));
   };
 
   const isChildOrEqual = (node: Node, parent: Node): boolean =>
@@ -430,17 +430,17 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     const controlElm = SelectorFind.closest<HTMLElement>(SugarElement.fromDom(targetElm), controlElmSelector)
       .map((e) => e.dom)
       .filter((e) => dom.isEditable(e.parentElement) || (e.nodeName === 'IMG' && dom.isEditable(e)))
-      .getOrUndefined();
+       ?? undefined;
 
     // Store the original data-mce-selected value or fallback to '1' if not set
-    const selectedValue = Type.isNonNullable(controlElm) ? dom.getAttrib(controlElm, elementSelectionAttr, '1') : '1';
+    const selectedValue = (controlElm) != null ? dom.getAttrib(controlElm, elementSelectionAttr, '1') : '1';
 
     // Remove data-mce-selected from all elements since they might have been copied using Ctrl+c/v
-    Arr.each(dom.select(`img[${elementSelectionAttr}],hr[${elementSelectionAttr}]`), (img) => {
+    (dom.select(`img[${elementSelectionAttr}],hr[${elementSelectionAttr}]`)).forEach((img) => {
       img.removeAttribute(elementSelectionAttr);
     });
 
-    if (Type.isNonNullable(controlElm) && isChildOrEqual(controlElm, rootElement) && editor.hasFocus()) {
+    if ((controlElm) != null && isChildOrEqual(controlElm, rootElement) && editor.hasFocus()) {
       disableGeckoResize();
       const startElm = selection.getStart(true);
 
@@ -455,13 +455,13 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     hideResizeRect();
   };
 
-  const unbindResizeHandleEvents = () => {
-    Obj.each(resizeHandles, (handle) => {
+  const unbindResizeHandleEvents = ()(_v, _k)) => {
+    Object.entries(resizeHandles).forEach(([_k, _v]: [any, any]) => ((handle) => {
       if (handle.elm) {
         dom.unbind(handle.elm);
         delete handle.elm;
       }
-    });
+    })(_v, _k));
   };
 
   const disableGeckoResize = () => {

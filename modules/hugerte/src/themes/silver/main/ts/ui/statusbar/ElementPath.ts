@@ -1,5 +1,4 @@
 import { AddEventsBehaviour, AlloyEvents, AlloySpec, Behaviour, Button, Disabling, GuiFactory, Keying, Replacing, SimpleSpec, Tabstopping } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -60,7 +59,7 @@ const renderElementPath = (editor: Editor, settings: ElementPathSettings, provid
   });
 
   const renderPathData = (data: PathData[]): AlloySpec[] =>
-    Arr.foldl(data, (acc, path, index) => {
+    (data).reduce((acc, path, index) => {
       const element = renderElement(path.name, path.element, index);
       if (index === 0) {
         return acc.concat([ element ]);

@@ -1,5 +1,5 @@
 import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Compare, Height, SelectorFilter, SelectorFind, SugarElement, Traverse } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -18,7 +18,7 @@ const create = (cyclicField: FieldProcessor): KeyingType.KeyingType<TabbingConfi
     FieldSchema.option('onEnter'),
     FieldSchema.defaulted('selector', '[data-alloy-tabstop="true"]:not(:disabled)'),
     FieldSchema.defaulted('firstTabstop', 0),
-    FieldSchema.defaulted('useTabstopAt', Fun.always),
+    FieldSchema.defaulted('useTabstopAt', (() => true as const)),
     // Maybe later we should just expose isVisible
     FieldSchema.option('visibilitySelector')
   ].concat([
@@ -29,20 +29,20 @@ const create = (cyclicField: FieldProcessor): KeyingType.KeyingType<TabbingConfi
   const isVisible = (tabbingConfig: TabbingConfig, element: SugarElement<HTMLElement>): boolean => {
     const target = tabbingConfig.visibilitySelector
       .bind((sel) => SelectorFind.closest<HTMLElement>(element, sel))
-      .getOr(element);
+       ?? (element);
 
     // NOTE: We can't use Visibility.isVisible, because the toolbar has width when it has closed, just not height.
     return Height.get(target) > 0;
   };
 
-  const findInitial = (component: AlloyComponent, tabbingConfig: TabbingConfig): Optional<SugarElement<HTMLElement>> => {
+  const findInitial = (component: AlloyComponent, tabbingConfig: TabbingConfig): (SugarElement<HTMLElement>) | null => {
     const tabstops: SugarElement<HTMLElement>[] = SelectorFilter.descendants<HTMLElement>(component.element, tabbingConfig.selector);
-    const visibles: SugarElement<HTMLElement>[] = Arr.filter(tabstops, (elem) => isVisible(tabbingConfig, elem));
+    const visibles: SugarElement<HTMLElement>[] = (tabstops).filter((elem) => isVisible(tabbingConfig, elem));
 
-    return Optional.from(visibles[tabbingConfig.firstTabstop]);
+    return (visibles[tabbingConfig.firstTabstop] ?? null);
   };
 
-  const findCurrent = (component: AlloyComponent, tabbingConfig: TabbingConfig): Optional<SugarElement<HTMLElement>> =>
+  const findCurrent = (component: AlloyComponent, tabbingConfig: TabbingConfig): (SugarElement<HTMLElement>) | null =>
     tabbingConfig.focusManager.get(component)
       .bind((elem) => SelectorFind.closest<HTMLElement>(elem, tabbingConfig.selector));
 
@@ -62,11 +62,11 @@ const create = (cyclicField: FieldProcessor): KeyingType.KeyingType<TabbingConfi
     stopIndex: number,
     tabbingConfig: TabbingConfig,
     cycle: ArrNavigation.ArrCycle<SugarElement<HTMLElement>>
-  ): Optional<boolean> =>
+  ): (boolean) | null =>
     cycle(tabstops, stopIndex, (elem) => isTabstop(tabbingConfig, elem))
       .fold(
         // Even if there is only one, still capture the event if cycling
-        () => tabbingConfig.cyclic ? Optional.some<boolean>(true) : Optional.none(),
+        () => tabbingConfig.cyclic ? Optional.some<boolean>(true) : null,
         (target) => {
           tabbingConfig.focusManager.set(component, target);
           // Kill the event
@@ -79,7 +79,7 @@ const create = (cyclicField: FieldProcessor): KeyingType.KeyingType<TabbingConfi
     _simulatedEvent: NativeSimulatedEvent,
     tabbingConfig: TabbingConfig,
     cycle: ArrNavigation.ArrCycle<SugarElement<HTMLElement>>
-  ): Optional<boolean> => {
+  ): (boolean) | null => {
     // 1. Find our current tabstop
     // 2. Find the index of that tabstop
     // 3. Cycle the tabstop
@@ -87,7 +87,7 @@ const create = (cyclicField: FieldProcessor): KeyingType.KeyingType<TabbingConfi
     const tabstops = SelectorFilter.descendants<HTMLElement>(component.element, tabbingConfig.selector);
     return findCurrent(component, tabbingConfig).bind((tabstop) => {
       // focused component
-      const optStopIndex = Arr.findIndex(tabstops, Fun.curry(Compare.eq, tabstop));
+      const optStopIndex = (tabstops).findIndex(((..._rest: any[]) => (Compare.eq)(tabstop, ..._rest)));
 
       return optStopIndex.bind((stopIndex) => goFromTabstop(component, tabstops, stopIndex, tabbingConfig, cycle));
     });
@@ -116,18 +116,18 @@ const create = (cyclicField: FieldProcessor): KeyingType.KeyingType<TabbingConfi
   const exit: KeyRuleStatelessHandler<TabbingConfig> = (component, simulatedEvent, tabbingConfig) =>
     tabbingConfig.onEscape.bind((f) => f(component, simulatedEvent));
 
-  const getKeydownRules = Fun.constant([
+  const getKeydownRules = () => [
     KeyRules.rule(KeyMatch.and([ KeyMatch.isShift, KeyMatch.inSet(Keys.TAB) ]), goBackwards),
     KeyRules.rule(KeyMatch.inSet(Keys.TAB), goForwards),
     KeyRules.rule(KeyMatch.and([ KeyMatch.isNotShift, KeyMatch.inSet(Keys.ENTER) ]), execute)
-  ]);
+  ];
 
-  const getKeyupRules = Fun.constant([
+  const getKeyupRules = () => [
     KeyRules.rule(KeyMatch.inSet(Keys.ESCAPE), exit),
     KeyRules.rule(KeyMatch.inSet(Keys.TAB), goFromPseudoTabstop),
-  ]);
+  ];
 
-  return KeyingType.typical(schema, NoState.init, getKeydownRules, getKeyupRules, () => Optional.some(focusIn));
+  return KeyingType.typical(schema, NoState.init, getKeydownRules, getKeyupRules, () => focusIn);
 };
 
 export {

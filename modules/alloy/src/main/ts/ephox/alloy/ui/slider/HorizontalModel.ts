@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Css, Width } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -57,30 +57,30 @@ const setToMax = (spectrum: AlloyComponent, detail: HorizontalSliderDetail): voi
 };
 
 // move in a direction by step size. Fire change at the end
-const moveBy = (direction: number, spectrum: AlloyComponent, detail: HorizontalSliderDetail, useMultiplier?: boolean): Optional<number> => {
+const moveBy = (direction: number, spectrum: AlloyComponent, detail: HorizontalSliderDetail, useMultiplier?: boolean): (number) | null => {
   const f = (direction > 0) ? SliderModel.increaseBy : SliderModel.reduceBy;
   const xValue = f(currentValue(detail), minX(detail), maxX(detail), step(detail, useMultiplier));
   fireSliderChange(spectrum, xValue);
-  return Optional.some(xValue);
+  return xValue;
 };
 
-const handleMovement = (direction: number) => (spectrum: AlloyComponent, detail: HorizontalSliderDetail, useMultiplier?: boolean): Optional<boolean> =>
-  moveBy(direction, spectrum, detail, useMultiplier).map<boolean>(Fun.always);
+const handleMovement = (direction: number) => (spectrum: AlloyComponent, detail: HorizontalSliderDetail, useMultiplier?: boolean): (boolean) | null =>
+  moveBy(direction, spectrum, detail, useMultiplier).map<boolean>((() => true as const));
 
 // get x offset from event
-const getValueFromEvent = (simulatedEvent: NativeSimulatedEvent<MouseEvent | TouchEvent>): Optional<number> => {
+const getValueFromEvent = (simulatedEvent: NativeSimulatedEvent<MouseEvent | TouchEvent>): (number) | null => {
   const pos = ModelCommon.getEventSource(simulatedEvent);
   return pos.map((p) => p.left);
 };
 
 // find the x offset of a given value from the model
-const findOffsetOfValue = (spectrum: AlloyComponent, detail: HorizontalSliderDetail, value: number, minEdge: Optional<AlloyComponent>, maxEdge: Optional<AlloyComponent>): number => {
+const findOffsetOfValue = (spectrum: AlloyComponent, detail: HorizontalSliderDetail, value: number, minEdge: (AlloyComponent) | null, maxEdge: (AlloyComponent) | null): number => {
   const minOffset = 0;
   const maxOffset = getXScreenRange(spectrum);
   const centerMinEdge = minEdge.bind((edge: AlloyComponent) =>
-    Optional.some(getXCenterOffSetOf(edge, spectrum))).getOr(minOffset);
+    getXCenterOffSetOf(edge, spectrum)) ?? (minOffset);
   const centerMaxEdge = maxEdge.bind((edge: AlloyComponent) =>
-    Optional.some(getXCenterOffSetOf(edge, spectrum))).getOr(maxOffset);
+    getXCenterOffSetOf(edge, spectrum)) ?? (maxOffset);
 
   const args = {
     min: minX(detail),
@@ -100,7 +100,7 @@ const findOffsetOfValue = (spectrum: AlloyComponent, detail: HorizontalSliderDet
 };
 
 // find left offset for absolute positioning from a given value
-const findPositionOfValue = (slider: AlloyComponent, spectrum: AlloyComponent, value: number, minEdge: Optional<AlloyComponent>, maxEdge: Optional<AlloyComponent>, detail: HorizontalSliderDetail): number => {
+const findPositionOfValue = (slider: AlloyComponent, spectrum: AlloyComponent, value: number, minEdge: (AlloyComponent) | null, maxEdge: (AlloyComponent) | null, detail: HorizontalSliderDetail): number => {
   const offset = findOffsetOfValue(spectrum, detail, value, minEdge, maxEdge);
   return (getMinXBounds(spectrum) - getMinXBounds(slider)) + offset;
 };
@@ -128,14 +128,14 @@ const onDown = Optional.none;
 
 // Edge Click Actions
 const edgeActions = {
-  'top-left': Optional.none(),
-  'top': Optional.none(),
-  'top-right': Optional.none(),
-  'right': Optional.some(EdgeActions.setToREdge),
-  'bottom-right': Optional.none(),
-  'bottom': Optional.none(),
-  'bottom-left': Optional.none(),
-  'left': Optional.some(EdgeActions.setToLEdge)
+  'top-left': null,
+  'top': null,
+  'top-right': null,
+  'right': EdgeActions.setToREdge,
+  'bottom-right': null,
+  'bottom': null,
+  'bottom-left': null,
+  'left': EdgeActions.setToLEdge
 };
 
 export {

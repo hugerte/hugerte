@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import { NoState } from '../../behaviour/common/BehaviourState';
 import { AlloyEventKeyAndHandler, AlloyEventRecord, derive } from '../events/AlloyEvents';
@@ -17,7 +16,7 @@ const events = (name: string, eventHandlers: Array<AlloyEventKeyAndHandler<any>>
     ],
     name,
     active: {
-      events: Fun.constant(events)
+      events: () => events
     }
   });
 };
@@ -29,7 +28,7 @@ const config = (name: string, eventHandlers: Array<AlloyEventKeyAndHandler<any>>
     value: {
       config: { },
       me,
-      configAsRaw: Fun.constant({ }),
+      configAsRaw: () => { },
       initialConfig: { },
       state: NoState
     }

@@ -1,5 +1,4 @@
 
-import { Arr, Optional, Strings, Type } from '@ephox/katamari';
 import { Url } from '@ephox/polaris';
 
 import AstNode from '../api/html/Node';
@@ -12,15 +11,15 @@ interface EmbedAttrs {
 }
 
 const sandboxIframe = (iframeNode: AstNode, exclusions: string[]): void => {
-  if (Optional.from(iframeNode.attr('src')).bind(Url.extractHost).forall((host) => !Arr.contains(exclusions, host))) {
+  if ((iframeNode.attr('src') ?? null).bind(Url.extractHost).forall((host) => !(exclusions).includes(host))) {
     iframeNode.attr('sandbox', '');
   }
 };
 
-const isMimeType = (mime: string, type: 'image' | 'video' | 'audio'): boolean => Strings.startsWith(mime, `${type}/`);
+const isMimeType = (mime: string, type: 'image' | 'video' | 'audio'): boolean => (mime).startsWith(`${type}/`);
 
 const getEmbedType = (type: string | undefined): 'iframe' | 'img' | 'video' | 'audio' => {
-  if (Type.isUndefined(type)) {
+  if ((type) === undefined) {
     return 'iframe';
   } else if (isMimeType(type, 'image')) {
     return 'img';

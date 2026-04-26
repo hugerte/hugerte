@@ -1,4 +1,3 @@
-import { Unicode } from '@ephox/katamari';
 
 import DomTreeWalker from 'hugerte/core/api/dom/TreeWalker';
 import Schema, { SchemaMap } from 'hugerte/core/api/html/Schema';
@@ -16,7 +15,7 @@ const getText = (node: Node, schema: Schema): string[] => {
   let tempNode: Node | null | undefined;
   while ((tempNode = treeWalker.next())) {
     if (tempNode.nodeType === 3) {
-      txt += Unicode.removeZwsp((tempNode as Text).data);
+      txt += ((tempNode as Text).data).replace(/\uFEFF/g, '');
     } else if (isNewline(tempNode) && txt.length) {
       textBlocks.push(txt);
       txt = '';

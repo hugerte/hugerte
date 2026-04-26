@@ -1,4 +1,4 @@
-import { Arr, Strings } from '@ephox/katamari';
+import { Strings } from '@ephox/katamari';
 import { Css, PredicateFind, SugarElement, SugarElements, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -14,7 +14,7 @@ const isEditable = (target: SugarElement<Node>): boolean =>
     .exists((elm) => NodeType.isContentEditableTrue(elm.dom));
 
 const parseIndentValue = (value: string | undefined): number =>
-  Strings.toInt(value ?? '').getOr(0);
+  Strings.toInt(value ?? '') ?? (0);
 
 const getIndentStyleName = (useMargin: boolean, element: SugarElement<HTMLElement>): IndentStyle => {
   const indentStyleName = useMargin || isTable(element) ? 'margin' : 'padding';
@@ -36,9 +36,9 @@ const indentElement = (dom: DOMUtils, command: string, useMargin: boolean, value
 };
 
 const validateBlocks = (editor: Editor, blocks: SugarElement<HTMLElement>[]): boolean =>
-  Arr.forall(blocks, (block) => {
+  (blocks).every((block) => {
     const indentStyleName = getIndentStyleName(Options.shouldIndentUseMargin(editor), block);
-    const intentValue = Css.getRaw(block, indentStyleName).map(parseIndentValue).getOr(0);
+    const intentValue = Css.getRaw(block, indentStyleName).map(parseIndentValue) ?? (0);
     const contentEditable = editor.dom.getContentEditable(block.dom);
     return contentEditable !== 'false' && intentValue > 0;
   });
@@ -55,9 +55,8 @@ const parentIsListComponent = (el: SugarElement<Node>): boolean =>
   Traverse.parent(el).exists(isListComponent);
 
 const getBlocksToIndent = (editor: Editor): SugarElement<HTMLElement>[] =>
-  Arr.filter(SugarElements.fromDom(editor.selection.getSelectedBlocks()), (el): el is SugarElement<HTMLElement> =>
-    !isListComponent(el) && !parentIsListComponent(el) && isEditable(el)
-  );
+  (SugarElements.fromDom(editor.selection.getSelectedBlocks())).filter((el): el is SugarElement<HTMLElement> =>
+    !isListComponent(el) && !parentIsListComponent(el) && isEditable(el));
 
 const handle = (editor: Editor, command: string): void => {
   const { dom } = editor;
@@ -66,7 +65,7 @@ const handle = (editor: Editor, command: string): void => {
   const indentValue = parseIndentValue(indentation);
   const useMargin = Options.shouldIndentUseMargin(editor);
 
-  Arr.each(getBlocksToIndent(editor), (block) => {
+  (getBlocksToIndent(editor)).forEach((block) => {
     indentElement(dom, command, useMargin, indentValue, indentUnit, block.dom);
   });
 };

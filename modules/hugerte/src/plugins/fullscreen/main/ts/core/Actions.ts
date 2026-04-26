@@ -1,4 +1,4 @@
-import { Cell, Fun, Optional, Optionals, Singleton, Throttler } from '@ephox/katamari';
+import { Cell, Singleton, Throttler } from '@ephox/katamari';
 import { Class, Css, DomEvent, EventUnbinder, SugarElement, SugarShadowDom, Traverse, WindowVisualViewport, SugarNode } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -24,7 +24,7 @@ export interface FullScreenInfo {
   readonly iframeWidth: string;
   readonly iframeHeight: string;
   readonly fullscreenChangeHandler: EventUnbinder;
-  readonly sinkCssPosition: Optional<string>;
+  readonly sinkCssPosition: (string) | null;
 }
 
 const DOM = DOMUtils.DOM;
@@ -36,7 +36,7 @@ const setScrollPos = (pos: ScrollPos): void =>
   window.scrollTo(pos.x, pos.y);
 
 const viewportUpdate = WindowVisualViewport.get().fold(
-  () => ({ bind: Fun.noop, unbind: Fun.noop }),
+  () => ({ bind: () => {}, unbind: () => {} }),
   (visualViewport) => {
     const editorContainer = Singleton.value<SugarElement<HTMLElement>>();
     const resizeBinder = Singleton.unbindable();
@@ -125,7 +125,7 @@ const toggleFullscreen = (editor: Editor, fullscreenState: Cell<FullScreenInfo |
     handleClasses(DOM.removeClass);
 
     viewportUpdate.unbind();
-    Optional.from(fullscreenState.get()).each((info) => info.fullscreenChangeHandler.unbind());
+    (fullscreenState.get() ?? null).each((info) => info.fullscreenChangeHandler.unbind());
   };
 
   if (!fullscreenInfo) {
@@ -184,9 +184,9 @@ const toggleFullscreen = (editor: Editor, fullscreenState: Cell<FullScreenInfo |
     editorContainerStyle.top = fullscreenInfo.containerTop;
     editorContainerStyle.left = fullscreenInfo.containerLeft;
 
-    Optionals.lift2(sinkContainerS, fullscreenInfo.sinkCssPosition, (elm, val) => {
+    (sinkContainerS !== null && fullscreenInfo.sinkCssPosition !== null ? ((elm, val) => {
       Css.set(elm, 'position', val);
-    });
+    })(sinkContainerS, fullscreenInfo.sinkCssPosition) : null);
 
     cleanup();
     setScrollPos(fullscreenInfo.scrollPos);

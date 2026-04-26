@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr, Obj } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import {
@@ -20,10 +20,10 @@ interface CustomFormatMapping {
 }
 
 export const isNestedFormat = (format: StyleFormatType): format is NestedStyleFormat =>
-  Obj.hasNonNullableKey(format as NestedStyleFormat, 'items');
+  (Object.prototype.hasOwnProperty.call(format as NestedStyleFormat, 'items') && (format as NestedStyleFormat)['items'] != null);
 
 export const isFormatReference = (format: StyleFormatType): format is FormatReference =>
-  Obj.hasNonNullableKey(format as FormatReference, 'format');
+  (Object.prototype.hasOwnProperty.call(format as FormatReference, 'format') && (format as FormatReference)['format'] != null);
 
 export const defaultStyleFormats: AllowedFormat[] = [
   {
@@ -69,16 +69,16 @@ export const defaultStyleFormats: AllowedFormat[] = [
 ];
 
 // Note: Need to cast format below to expected type, as Obj.has uses "K keyof T", which doesn't work with aliases
-const isNestedFormats = (format: AllowedFormat): format is NestedFormatting => Obj.has(format as NestedFormatting, 'items');
+const isNestedFormats = (format: AllowedFormat): format is NestedFormatting => Object.prototype.hasOwnProperty.call(format as NestedFormatting, 'items');
 
-const isBlockFormat = (format: AllowedFormat): format is BlockStyleFormat => Obj.has(format as BlockStyleFormat, 'block');
+const isBlockFormat = (format: AllowedFormat): format is BlockStyleFormat => Object.prototype.hasOwnProperty.call(format as BlockStyleFormat, 'block');
 
-const isInlineFormat = (format: AllowedFormat): format is InlineStyleFormat => Obj.has(format as InlineStyleFormat, 'inline');
+const isInlineFormat = (format: AllowedFormat): format is InlineStyleFormat => Object.prototype.hasOwnProperty.call(format as InlineStyleFormat, 'inline');
 
-const isSelectorFormat = (format: AllowedFormat): format is SelectorStyleFormat => Obj.has(format as SelectorStyleFormat, 'selector');
+const isSelectorFormat = (format: AllowedFormat): format is SelectorStyleFormat => Object.prototype.hasOwnProperty.call(format as SelectorStyleFormat, 'selector');
 
 const mapFormats = (userFormats: AllowedFormat[]): CustomFormatMapping =>
-  Arr.foldl(userFormats, (acc, fmt) => {
+  (userFormats).reduce((acc, fmt) => {
     if (isNestedFormats(fmt)) {
       // Map the child formats
       const result = mapFormats(fmt.items);
@@ -88,7 +88,7 @@ const mapFormats = (userFormats: AllowedFormat[]): CustomFormatMapping =>
       };
     } else if (isInlineFormat(fmt) || isBlockFormat(fmt) || isSelectorFormat(fmt)) {
       // Convert the format to a reference and add the original to the custom formats to be registered
-      const formatName = Type.isString(fmt.name) ? fmt.name : fmt.title.toLowerCase();
+      const formatName = typeof (fmt.name) === 'string' ? fmt.name : fmt.title.toLowerCase();
       const formatNameWithPrefix = `custom-${formatName}`;
       return {
         customFormats: acc.customFormats.concat([{ name: formatNameWithPrefix, format: fmt }]),
@@ -128,4 +128,4 @@ export const getStyleFormats = (editor: Editor): StyleFormatType[] => getUserSty
   const registeredUserFormats = registerCustomFormats(editor, userFormats);
   // Merge the default formats with the custom formats if required
   return shouldMergeStyleFormats(editor) ? defaultStyleFormats.concat(registeredUserFormats) : registeredUserFormats;
-}).getOr(defaultStyleFormats);
+}) ?? (defaultStyleFormats);

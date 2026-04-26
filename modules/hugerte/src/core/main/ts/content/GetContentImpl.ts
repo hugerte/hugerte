@@ -1,4 +1,3 @@
-import { Fun, Optional, Type } from '@ephox/katamari';
 import { Attribute, Css, Html, Insert, Remove, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -57,11 +56,11 @@ const getContentFromBody = (editor: Editor, args: GetContentArgs, body: HTMLElem
 
   // Trim if not using a whitespace preserve format/element
   const shouldTrim = args.format !== 'text' && !ElementType.isWsPreserveElement(SugarElement.fromDom(body));
-  return shouldTrim && Type.isString(content) ? Tools.trim(content) : content;
+  return shouldTrim && typeof (content) === 'string' ? Tools.trim(content) : content;
 };
 
-export const getContentInternal = (editor: Editor, args: GetContentArgs): Content => Optional.from(editor.getBody())
+export const getContentInternal = (editor: Editor, args: GetContentArgs): Content => (editor.getBody() ?? null)
   .fold(
-    Fun.constant(args.format === 'tree' ? new AstNode('body', 11) : ''),
+    () => args.format === 'tree' ? new AstNode('body', 11) : '',
     (body) => getContentFromBody(editor, args, body)
   );

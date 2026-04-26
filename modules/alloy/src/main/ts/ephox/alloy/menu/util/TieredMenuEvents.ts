@@ -1,4 +1,3 @@
-import { Id } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { CustomEvent } from '../../events/SimulatedEvent';
@@ -21,8 +20,8 @@ export interface OnMenuItemDehighlightedEventData {
 
 export interface OnMenuItemDehighlightedEvent extends CustomEvent, OnMenuItemDehighlightedEventData { }
 
-const onMenuItemHighlightedEvent = Id.generate('tiered-menu-item-highlight');
-const onMenuItemDehighlightedEvent = Id.generate('tiered-menu-item-dehighlight');
+const onMenuItemHighlightedEvent = (('tiered-menu-item-highlight') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const onMenuItemDehighlightedEvent = (('tiered-menu-item-dehighlight') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 export {
   onMenuItemHighlightedEvent,

@@ -1,8 +1,7 @@
-import { Optional } from '@ephox/katamari';
 
-const getHtmlData = (dataTransfer: DataTransfer): Optional<string> => {
+const getHtmlData = (dataTransfer: DataTransfer): (string) | null => {
   const html = dataTransfer.getData('text/html');
-  return html === '' ? Optional.none() : Optional.some(html);
+  return html === '' ? null : html;
 };
 
 const setHtmlData = (dataTransfer: DataTransfer, html: string): void =>

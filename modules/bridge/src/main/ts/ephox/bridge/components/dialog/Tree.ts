@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { ToolbarMenuButtonSpec, ToolbarMenuButton } from '../../api/Toolbar';
 import * as ComponentSchema from '../../core/ComponentSchema';
@@ -23,13 +23,13 @@ export interface Tree {
   type: 'tree';
   items: TreeItem[];
   defaultExpandedIds: Id[];
-  onLeafAction: Optional<(id: Id) => void>;
-  onToggleExpand: Optional<(
+  onLeafAction: ((id: Id) =) | null void>;
+  onToggleExpand: ((
     expandedIds: Id[],
     { expanded, node }: { expanded: boolean; node: Id }
-  ) => void
+  ) =) | null void
   >;
-  defaultSelectedId: Optional<Id>;
+  defaultSelectedId: (Id) | null;
 }
 
 interface BaseTreeItemSpec {
@@ -41,7 +41,7 @@ interface BaseTreeItemSpec {
 interface BaseTreeItem {
   title: string;
   id: string;
-  menu: Optional<ToolbarMenuButton>;
+  menu: (ToolbarMenuButton) | null;
 }
 
 export interface DirectorySpec extends BaseTreeItemSpec {

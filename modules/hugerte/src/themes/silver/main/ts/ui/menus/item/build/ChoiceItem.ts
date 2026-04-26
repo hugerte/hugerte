@@ -1,6 +1,6 @@
 import { AlloyComponent, Disabling, ItemTypes, Toggling, Tooltipping } from '@ephox/alloy';
 import { Menu, Toolbar } from '@ephox/bridge';
-import { Fun, Merger, Optional } from '@ephox/katamari';
+import { Merger } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -31,22 +31,22 @@ const renderChoiceItem = (
 
   const structure = renderItemStructure({
     presets,
-    textContent: useText ? spec.text : Optional.none(),
-    htmlContent: Optional.none(),
+    textContent: useText ? spec.text : null,
+    htmlContent: null,
     ariaLabel: spec.text,
     iconContent: spec.icon,
-    shortcutContent: useText ? spec.shortcut : Optional.none(),
+    shortcutContent: useText ? spec.shortcut : null,
 
     // useText essentially says that we have one column. In one column lists, we should show a tick
     // The tick is controlled by the tickedClass (via css). It is always present
     // but is hidden unless the tickedClass is present.
-    checkMark: useText ? Optional.some(renderCheckmark(providersBackstage.icons)) : Optional.none(),
-    caret: Optional.none(),
+    checkMark: useText ? renderCheckmark(providersBackstage.icons) : null,
+    caret: null,
     value: spec.value
   }, providersBackstage, renderIcons);
 
   const optTooltipping = spec.text
-    .filter(Fun.constant(!useText))
+    .filter(() => !useText)
     .map((t) => Tooltipping.config(
       providersBackstage.tooltips.getConfig({
         tooltipText: providersBackstage.translate(t)
@@ -61,7 +61,7 @@ const renderChoiceItem = (
       onAction: (_api) => onItemValueHandler(spec.value),
       onSetup: (api) => {
         api.setActive(isSelected);
-        return Fun.noop;
+        return () => {};
       },
       triggersSubmenu: false,
       itemBehaviours: [

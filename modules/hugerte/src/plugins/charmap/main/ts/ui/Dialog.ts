@@ -1,4 +1,4 @@
-import { Arr, Cell, Throttler } from '@ephox/katamari';
+import { Cell, Throttler } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -24,7 +24,7 @@ const open = (editor: Editor, charMap: CharMap[]): void => {
     }
   ];
 
-  const makeTabs = () => Arr.map(charMap, (charGroup) => ({
+  const makeTabs = () => (charMap).map((charGroup) => ({
     title: charGroup.name,
     name: charGroup.name,
     items: makeGroupItems()
@@ -37,7 +37,7 @@ const open = (editor: Editor, charMap: CharMap[]): void => {
   const currentTab = charMap.length === 1 ? Cell(UserDefined) : Cell('All');
 
   const scanAndSet = (dialogApi: Dialog.DialogInstanceApi<typeof initialData>, pattern: string) => {
-    Arr.find(charMap, (group) => group.name === currentTab.get()).each((f) => {
+    ((charMap).find((group) => group.name === currentTab.get()) ?? null).each((f) => {
       const items = Scan.scan(f, pattern);
       dialogApi.setData({
         results: items

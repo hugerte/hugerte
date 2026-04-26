@@ -1,4 +1,3 @@
-import { Fun, Obj, Type } from '@ephox/katamari';
 import { Compare, ContentEditable, SugarNode, SugarElement, Traverse, PredicateExists } from '@ephox/sugar';
 
 import DomTreeWalker from '../api/dom/TreeWalker';
@@ -25,8 +24,8 @@ const hasWhitespacePreserveParent = (node: Node, rootNode: Node, schema: Schema)
   const rootElement = SugarElement.fromDom(rootNode);
   const startNode = SugarElement.fromDom(node);
   const whitespaceElements = schema.getWhitespaceElements();
-  const predicate = (node: SugarElement<Node>) => Obj.has(whitespaceElements, SugarNode.name(node));
-  return PredicateExists.ancestor(startNode, predicate, Fun.curry(Compare.eq, rootElement));
+  const predicate = (node: SugarElement<Node>) => Object.prototype.hasOwnProperty.call(whitespaceElements, SugarNode.name(node));
+  return PredicateExists.ancestor(startNode, predicate, ((..._rest: any[]) => (Compare.eq)(rootElement, ..._rest)));
 };
 
 const isNamedAnchor = (node: Node): boolean => {
@@ -34,7 +33,7 @@ const isNamedAnchor = (node: Node): boolean => {
 };
 
 const isNonEmptyElement = (node: Node, schema: Schema): boolean => {
-  return NodeType.isElement(node) && Obj.has(schema.getNonEmptyElements(), node.nodeName);
+  return NodeType.isElement(node) && Object.prototype.hasOwnProperty.call(schema.getNonEmptyElements(), node.nodeName);
 };
 
 const isBookmark = NodeType.hasAttribute('data-mce-bookmark');
@@ -52,7 +51,7 @@ const isText = (node: Node, rootNode: Node, schema: Schema, options: IsEmptyOpti
   && (!options.includeZwsp || !isZwsp(node.data));
 
 const isContentNode = (schema: Schema, node: Node, rootNode: Node, options: IsContentOptions): boolean => {
-  return Type.isFunction(options.isContent) && options.isContent(node)
+  return typeof (options.isContent) === 'function' && options.isContent(node)
   || isNonEmptyElement(node, schema)
   || isBookmark(node)
   || isNamedAnchor(node)

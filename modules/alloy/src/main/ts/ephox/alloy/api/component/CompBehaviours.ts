@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import * as BehaviourBlob from '../../behaviour/common/BehaviourBlob';
 import { AlloyBehaviour, AlloyBehaviourRecord } from '../behaviour/Behaviour';
@@ -6,10 +5,10 @@ import { AlloyBehaviour, AlloyBehaviourRecord } from '../behaviour/Behaviour';
 // This goes through the list of behaviours defined for a particular spec (removing anything
 // that has been revoked), and returns the BehaviourType (e.g. Sliding)
 const getBehaviours = (spec: { behaviours?: AlloyBehaviourRecord }): Array<AlloyBehaviour<any, any, any>> => {
-  const behaviours: AlloyBehaviourRecord = Obj.get(spec, 'behaviours').getOr({ });
-  return Arr.bind(Obj.keys(behaviours), (name) => {
+  const behaviours: AlloyBehaviourRecord = ((spec)['behaviours'] ?? null) ?? ({ });
+  return (Object.keys(behaviours)).flatMap((name) => {
     const behaviour = behaviours[name];
-    return Type.isNonNullable(behaviour) ? [ behaviour.me ] : [];
+    return (behaviour) != null ? [ behaviour.me ] : [];
   });
 };
 

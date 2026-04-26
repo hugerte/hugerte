@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Contracts, Fun, Optional } from '@ephox/katamari';
+import { Contracts } from '@ephox/katamari';
 import { Gather, Spot, SpotPoint } from '@ephox/phoenix';
 
 import * as TextSearchBase from '../../textdata/TextSearch';
@@ -14,10 +14,10 @@ export interface TextSearchSeeker {
 
 const seekerSig = Contracts.exactly([ 'regex', 'attempt' ]);
 
-type PreviousCharFn = (text: string, offset: Optional<number>) => Optional<CharPos>;
+type PreviousCharFn = (text: string, offset: (number) | null) => (CharPos) | null;
 const previousChar: PreviousCharFn = TextSearchBase.previous;
 
-type NextCharFn = (text: string, offset: Optional<number>) => Optional<CharPos>;
+type NextCharFn = (text: string, offset: (number) | null) => (CharPos) | null;
 const nextChar: NextCharFn = TextSearchBase.next;
 
 // Returns: a TextSeeker outcome ADT of 'aborted', 'success', or 'edge'.
@@ -45,7 +45,7 @@ const expandLeft = <E, D>(universe: Universe<E, D>, item: E, offset: number, raw
   const seeker = seekerSig(rawSeeker);
 
   const process: TextSeekerPhaseProcessor<E, D> = (uni, phase, pItem, pText, pOffset) => {
-    const lastOffset = pOffset.getOr(pText.length);
+    const lastOffset = pOffset ?? (pText.length);
     return TextSearchBase.rfind(pText.substring(0, lastOffset), seeker.regex()).fold(() => {
       // Did not find a word break, so continue;
       return phase.kontinue<E>();
@@ -65,7 +65,7 @@ const expandRight = <E, D>(universe: Universe<E, D>, item: E, offset: number, ra
   const seeker = seekerSig(rawSeeker);
 
   const process: TextSeekerPhaseProcessor<E, D> = (uni, phase, pItem, pText, pOffset) => {
-    const firstOffset = pOffset.getOr(0);
+    const firstOffset = pOffset ?? (0);
     const optPos = TextSearchBase.lfind(pText.substring(firstOffset), seeker.regex());
     return optPos.fold(() => {
       // Did not find a word break, so continue;
@@ -81,14 +81,14 @@ const expandRight = <E, D>(universe: Universe<E, D>, item: E, offset: number, ra
 // Identify the (element, offset) pair ignoring potential fragmentation. Follow the offset
 // through until the offset left is 0. This is designed to find text node positions that
 // have been fragmented.
-const scanRight = <E, D>(universe: Universe<E, D>, item: E, originalOffset: number): Optional<SpotPoint<E>> => {
-  const isRoot = Fun.never;
+const scanRight = <E, D>(universe: Universe<E, D>, item: E, originalOffset: number): (SpotPoint<E>) | null => {
+  const isRoot = (() => false as const);
   if (!universe.property().isText(item)) {
-    return Optional.none();
+    return null;
   }
   const text = universe.property().getText(item);
   if (originalOffset <= text.length) {
-    return Optional.some(Spot.point(item, originalOffset));
+    return Spot.point(item, originalOffset);
   } else {
     return Gather.seekRight(universe, item, universe.property().isText, isRoot).bind((next) => {
       return scanRight(universe, next, originalOffset - text.length);

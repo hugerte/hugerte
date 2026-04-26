@@ -1,4 +1,4 @@
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import * as CaretFormat from '../fmt/CaretFormat';
 import * as FormatChanged from '../fmt/FormatChanged';
@@ -198,7 +198,7 @@ const Formatter = (editor: Editor): Formatter => {
      * const cssText1 = editor.formatter.getCssText('bold');
      * const cssText2 = editor.formatter.getCssText({ inline: 'b' });
      */
-    getCssText: Fun.curry(Preview.getCssText, editor)
+    getCssText: ((..._rest: any[]) => (Preview.getCssText)(editor, ..._rest))
   };
 };
 

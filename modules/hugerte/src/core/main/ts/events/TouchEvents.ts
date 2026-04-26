@@ -1,4 +1,4 @@
-import { Cell, Optional, Singleton, Throttler } from '@ephox/katamari';
+import { Cell, Singleton, Throttler } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 
@@ -13,11 +13,11 @@ export interface TouchHistoryData {
   readonly target: Node;
 }
 
-const getTouch = (event: TouchEvent): Optional<Touch> => {
+const getTouch = (event: TouchEvent): (Touch) | null => {
   if (event.touches === undefined || event.touches.length !== 1) {
-    return Optional.none();
+    return null;
   }
-  return Optional.some(event.touches[0]);
+  return event.touches[0];
 };
 
 const isFarEnough = (touch: Touch, data: TouchHistoryData): boolean => {

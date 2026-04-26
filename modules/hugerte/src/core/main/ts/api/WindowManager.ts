@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as SelectionBookmark from '../selection/SelectionBookmark';
 import WindowManagerImpl from '../ui/WindowManagerImpl';
@@ -85,7 +85,7 @@ const WindowManager = (editor: Editor): WindowManager => {
 
   const closeDialog = <T extends Dialog.DialogData>(dialog: InstanceApi<T>) => {
     fireCloseEvent(dialog);
-    dialogs = Arr.filter(dialogs, (otherDialog) => {
+    dialogs = (dialogs).filter((otherDialog) => {
       return otherDialog !== dialog;
     });
     // Move focus back to editor when the last window is closed
@@ -95,7 +95,7 @@ const WindowManager = (editor: Editor): WindowManager => {
   };
 
   const getTopDialog = () => {
-    return Optional.from(dialogs[dialogs.length - 1]);
+    return (dialogs[dialogs.length - 1] ?? null);
   };
 
   const storeSelectionAndOpenDialog = <T extends InstanceApi<any>>(openDialog: () => T) => {
@@ -134,7 +134,7 @@ const WindowManager = (editor: Editor): WindowManager => {
   };
 
   editor.on('remove', () => {
-    Arr.each(dialogs, (dialog) => {
+    (dialogs).forEach((dialog) => {
       getImplementation().close(dialog);
     });
   });

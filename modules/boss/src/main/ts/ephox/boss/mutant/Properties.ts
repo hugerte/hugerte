@@ -1,4 +1,3 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
 
 import { Gene } from '../api/Gene';
 import TagBoundaries from '../common/TagBoundaries';
@@ -18,7 +17,7 @@ const name = (item: Gene): string => {
   return item.name;
 };
 
-const parent = (item: Gene): Optional<Gene> => {
+const parent = (item: Gene): (Gene) | null => {
   return item.parent;
 };
 
@@ -42,11 +41,11 @@ const isSpecial = (item: Gene): boolean => {
   return item.name === GeneTypes.Special;
 };
 
-const getLanguage = (item: Gene): Optional<string> =>
-  Obj.get(item.attrs, 'lang');
+const getLanguage = (item: Gene): (string) | null =>
+  ((item.attrs)['lang'] ?? null);
 
 const getText = (item: Gene): string => {
-  return Optional.from(item.text).getOrDie('Text not available on this node');
+  return (item.text ?? null).getOrDie('Text not available on this node');
 };
 
 const setText = (item: Gene, value: string | undefined): void => {
@@ -54,11 +53,11 @@ const setText = (item: Gene, value: string | undefined): void => {
 };
 
 const isEmptyTag = (item: Gene): boolean => {
-  return Arr.contains([ 'br', 'img', 'hr' ], item.name);
+  return ([ 'br', 'img', 'hr' ]).includes(item.name);
 };
 
 const isBoundary = (item: Gene): boolean => {
-  return Arr.contains(TagBoundaries, item.name);
+  return (TagBoundaries).includes(item.name);
 };
 
 const isNonEditable = (item: Gene): boolean => {

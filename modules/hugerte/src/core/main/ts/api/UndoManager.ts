@@ -63,7 +63,7 @@ const UndoManager = (editor: Editor): UndoManager => {
       level.bookmark = GetBookmark.getUndoBookmark(editor.selection);
       editor.dispatch('change', {
         level,
-        lastLevel: Arr.get(undoManager.data, index.get()).getOrUndefined()
+        lastLevel: Arr.get(undoManager.data, index.get()) ?? undefined
       });
     },
 

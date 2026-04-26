@@ -1,5 +1,4 @@
 import { AlloyComponent, InlineView } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorEvent } from 'hugerte/core/api/util/EventDispatcher';
@@ -28,7 +27,7 @@ export const initAndShow = (
     backstage,
     {
       isHorizontalMenu: false,
-      search: Optional.none()
+      search: null
     }
   ).map((menuData) => {
     e.preventDefault();

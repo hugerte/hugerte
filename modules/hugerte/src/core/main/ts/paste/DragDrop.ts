@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Type } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import RangeUtils from '../api/dom/RangeUtils';
@@ -30,17 +30,17 @@ const setFocusedRange = (editor: Editor, rng: Range | undefined): void => {
 };
 
 const hasImage = (dataTransfer: DataTransfer): boolean =>
-  Arr.exists(dataTransfer.files, (file) => /^image\//.test(file.type));
+  (dataTransfer.files).some((file) => /^image\//.test(file.type));
 
 const needsCustomInternalDrop = (dom: DOMUtils, schema: Schema, target: Node, dropContent: Clipboard.ClipboardContents) => {
   const parentTransparent = dom.getParent(target, (node) => TransparentElements.isTransparentBlock(schema, node));
-  const inSummary = !Type.isNull(dom.getParent(target, 'summary'));
+  const inSummary = !(dom.getParent(target, 'summary')) === null;
 
   if (inSummary) {
     return true;
-  } else if (parentTransparent && Obj.has(dropContent, 'text/html')) {
+  } else if (parentTransparent && Object.prototype.hasOwnProperty.call(dropContent, 'text/html')) {
     const fragment = new DOMParser().parseFromString(dropContent['text/html'], 'text/html').body;
-    return !Type.isNull(fragment.querySelector(parentTransparent.nodeName.toLowerCase()));
+    return !(fragment.querySelector(parentTransparent.nodeName.toLowerCase())) === null;
   } else {
     return false;
   }
@@ -48,11 +48,11 @@ const needsCustomInternalDrop = (dom: DOMUtils, schema: Schema, target: Node, dr
 
 const setupSummaryDeleteByDragFix = (editor: Editor) => {
   editor.on('input', (e) => {
-    const hasNoSummary = (el: Element) => Type.isNull(el.querySelector('summary'));
+    const hasNoSummary = (el: Element) => (el.querySelector('summary')) === null;
 
     if (e.inputType === 'deleteByDrag') {
-      const brokenDetailElements = Arr.filter(editor.dom.select('details'), hasNoSummary);
-      Arr.each(brokenDetailElements, (details) => {
+      const brokenDetailElements = (editor.dom.select('details')).filter(hasNoSummary);
+      (brokenDetailElements).forEach((details) => {
         // Firefox leaves a BR
         if (NodeType.isBr(details.firstChild)) {
           details.firstChild.remove();
@@ -92,7 +92,7 @@ const setup = (editor: Editor, draggingInternallyState: Cell<boolean>): void => 
     }
 
     const rng = getCaretRangeFromEvent(editor, e);
-    if (Type.isNullable(rng)) {
+    if ((rng) == null) {
       return;
     }
 

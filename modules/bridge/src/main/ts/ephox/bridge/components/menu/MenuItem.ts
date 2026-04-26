@@ -1,5 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { CommonMenuItem, CommonMenuItemSpec, commonMenuItemFields, CommonMenuItemInstanceApi } from './CommonMenuItem';
@@ -16,7 +16,7 @@ export interface MenuItemInstanceApi extends CommonMenuItemInstanceApi { }
 
 export interface MenuItem extends CommonMenuItem {
   type: 'menuitem';
-  icon: Optional<string>;
+  icon: (string) | null;
   onSetup: (api: MenuItemInstanceApi) => (api: MenuItemInstanceApi) => void;
   onAction: (api: MenuItemInstanceApi) => void;
 }

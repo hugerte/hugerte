@@ -1,11 +1,10 @@
-import { Fun } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Menu, Toolbar } from 'hugerte/core/api/ui/Ui';
 
 type ControlApi = Toolbar.ToolbarButtonInstanceApi | Menu.MenuItemInstanceApi;
 
-const onSetupEditable = <T extends ControlApi>(editor: Editor, onChanged: (api: T) => void = Fun.noop) => (api: T): VoidFunction => {
+const onSetupEditable = <T extends ControlApi>(editor: Editor, onChanged: (api: T) => void = () => {}) => (api: T): VoidFunction => {
   const nodeChanged = () => {
     api.setEnabled(editor.selection.isEditable());
     onChanged(api);

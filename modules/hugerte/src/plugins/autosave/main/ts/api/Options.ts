@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -15,7 +14,7 @@ const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
   const timeProcessor = (value: unknown) => {
-    const valid = Type.isString(value);
+    const valid = typeof (value) === 'string';
     if (valid) {
       return { value: Time.parse(value), valid };
     } else {

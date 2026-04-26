@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
 import { Pattern, PositionArray, Search } from '@ephox/polaris';
 
 import { NamedPattern } from '../api/data/NamedPattern';
@@ -13,7 +12,7 @@ import * as MatchSplitter from './MatchSplitter';
 const gen = <E, D>(universe: Universe<E, D>, input: E[]): SpotRange<E>[] => {
   return PositionArray.generate(input, (unit, offset) => {
     const finish = offset + universe.property().getText(unit).length;
-    return Optional.from(Spot.range(unit, offset, finish));
+    return (Spot.range(unit, offset, finish) ?? null);
   });
 };
 
@@ -26,9 +25,9 @@ const gen = <E, D>(universe: Universe<E, D>, input: E[]): SpotRange<E>[] => {
  */
 const run = <E, D>(universe: Universe<E, D>, elements: E[], patterns: NamedPattern[], optimise?: (e: E) => boolean): SearchResult<E>[] => {
   const sections = Family.group(universe, elements, optimise);
-  const result = Arr.bind(sections, (x: TypedItem<E, D>[]) => {
+  const result = (sections).flatMap((x: TypedItem<E, D>[]) => {
     const input = TypedList.justText(x);
-    const text = Arr.map(input, universe.property().getText).join('');
+    const text = (input).map(universe.property().getText).join('');
 
     const matches = Search.findmany(text, patterns);
     const plist = gen(universe, input);
@@ -43,7 +42,7 @@ const run = <E, D>(universe: Universe<E, D>, elements: E[], patterns: NamedPatte
  * Runs a search for one or more words
  */
 const safeWords = <E, D>(universe: Universe<E, D>, elements: E[], words: string[], optimise?: (e: E) => boolean): SearchResult<E>[] => {
-  const patterns = Arr.map(words, (word) => {
+  const patterns = (words).map((word) => {
     const pattern = Pattern.safeword(word);
     return NamedPattern(word, pattern);
   });

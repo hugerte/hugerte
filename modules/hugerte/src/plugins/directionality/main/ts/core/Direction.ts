@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { Traverse, Attribute, SugarElement, SugarNode, SelectorFind, Direction, SelectorFilter } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -6,19 +5,19 @@ import Editor from 'hugerte/core/api/Editor';
 
 type Dir = 'rtl' | 'ltr';
 
-const getParentElement = (element: SugarElement<Element>): Optional<SugarElement<Element>> =>
+const getParentElement = (element: SugarElement<Element>): (SugarElement<Element>) | null =>
   Traverse.parent(element).filter(SugarNode.isElement);
 
 // if the block is a list item, we need to get the parent of the list itself
 const getNormalizedBlock = (element: SugarElement<Element>, isListItem: boolean): SugarElement<Element> => {
-  const normalizedElement = isListItem ? SelectorFind.ancestor(element, 'ol,ul') : Optional.some(element);
-  return normalizedElement.getOr(element);
+  const normalizedElement = isListItem ? SelectorFind.ancestor(element, 'ol,ul') : element;
+  return normalizedElement ?? (element);
 };
 
 const isListItem = SugarNode.isTag('li');
 
 const setDirOnElements = (dom: DOMUtils, blocks: Element[], dir: Dir): void => {
-  Arr.each(blocks, (block) => {
+  (blocks).forEach((block) => {
     const blockElement = SugarElement.fromDom(block);
     const isBlockElementListItem = isListItem(blockElement);
     const normalizedBlock = getNormalizedBlock(blockElement, isBlockElementListItem);
@@ -44,7 +43,7 @@ const setDirOnElements = (dom: DOMUtils, blocks: Element[], dir: Dir): void => {
       // Remove dir attr and direction style from list children
       if (isBlockElementListItem) {
         const listItems = SelectorFilter.children(normalizedBlock, 'li[dir],li[style]');
-        Arr.each(listItems, (listItem) => {
+        (listItems).forEach((listItem) => {
           Attribute.remove(listItem, 'dir');
           dom.setStyle(listItem.dom, 'direction', null);
         });

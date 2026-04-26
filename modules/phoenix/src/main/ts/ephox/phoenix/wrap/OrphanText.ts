@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
 
 export interface OrphanText<E> {
   readonly validateText: (textNode: E) => boolean;
@@ -12,8 +11,8 @@ export const OrphanText = <E, D>(universe: Universe<E, D>): OrphanText<E> => {
   const domUtils = universe.property();
   const validateParent = (node: E, blacklist: string[]) => {
     return domUtils.parent(node).map(domUtils.name).map((name) => {
-      return !Arr.contains(blacklist, name);
-    }).getOr(false);
+      return !(blacklist).includes(name);
+    }) ?? (false);
   };
 
   const validateText = (textNode: E) => {

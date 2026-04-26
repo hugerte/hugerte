@@ -6,7 +6,6 @@
  */
 
 import { CellOpSelection } from '@ephox/darwin';
-import { Optional } from '@ephox/katamari';
 import { RunOperation } from '@ephox/snooker';
 import { SugarElement } from '@ephox/sugar';
 
@@ -14,8 +13,8 @@ import { ephemera } from '../selection/Ephemera';
 
 const noMenu = (cell: SugarElement<HTMLTableCellElement | HTMLTableCaptionElement>): RunOperation.CombinedTargets => ({
   element: cell,
-  mergable: Optional.none(),
-  unmergable: Optional.none(),
+  mergable: null,
+  unmergable: null,
   selection: [ cell ]
 });
 

@@ -1,4 +1,3 @@
-import { Arr, Optional, Optionals } from '@ephox/katamari';
 import { Compare, ContentEditable, PredicateFind, Remove, SugarElement, SugarNode } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -62,10 +61,10 @@ const hasOnlyOneBlockChild = (dom: DOMUtils, elm: Element): boolean => {
 };
 
 const isUnwrappable = (node: Node | null): node is HTMLElement =>
-  Optional.from(node)
+  (node ?? null)
     .map(SugarElement.fromDom)
     .filter(SugarNode.isHTMLElement)
-    .exists((el) => ContentEditable.isEditable(el) && !Arr.contains([ 'details' ], SugarNode.name(el)));
+    .exists((el) => ContentEditable.isEditable(el) && !([ 'details' ]).includes(SugarNode.name(el)));
 
 const unwrapSingleBlockChild = (dom: DOMUtils, elm: Element): void => {
   if (hasOnlyOneBlockChild(dom, elm) && isUnwrappable(elm.firstChild)) {
@@ -125,7 +124,7 @@ const mergeLiElements = (dom: DOMUtils, fromElm: Element, toElm: Element): void 
 
   dom.remove(fromElm);
 
-  Arr.each(nestedLists, (list) => {
+  (nestedLists).forEach((list) => {
     if (NodeType.isEmpty(dom, list) && list !== dom.getRoot()) {
       dom.remove(list);
     }
@@ -234,12 +233,12 @@ const backspaceDeleteIntoListCaret = (editor: Editor, isForward: boolean): boole
     const otherLi = dom.getParent(findNextCaretContainer(editor, rng, isForward, root), 'LI', root);
 
     if (otherLi) {
-      const findValidElement = (element: SugarElement<Node>) => Arr.contains([ 'td', 'th', 'caption' ], SugarNode.name(element));
+      const findValidElement = (element: SugarElement<Node>) => ([ 'td', 'th', 'caption' ]).includes(SugarNode.name(element));
       const findRoot = (node: SugarElement<Node>) => node.dom === root;
       const otherLiCell = PredicateFind.closest(SugarElement.fromDom(otherLi), findValidElement, findRoot);
       const caretCell = PredicateFind.closest(SugarElement.fromDom(rng.startContainer), findValidElement, findRoot);
 
-      if (!Optionals.equals(otherLiCell, caretCell, Compare.eq)) {
+      if (!(otherLiCell === null && caretCell === null || (otherLiCell !== null && caretCell !== null && (Compare.eq)(otherLiCell, caretCell)))) {
         return false;
       }
 

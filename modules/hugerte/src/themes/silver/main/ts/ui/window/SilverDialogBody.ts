@@ -1,6 +1,5 @@
 import { AlloyComponent, AlloyParts, Behaviour, Focusing, Keying, ModalDialog, Reflecting, SimpleSpec, Tabstopping } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Fun, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { ComposingConfigs } from '../alien/ComposingConfigs';
@@ -17,7 +16,7 @@ interface WindowBodySpec {
 
 // ariaAttrs is being passed through to silver inline dialog
 // from the WindowManager as a property of 'params'
-const renderBody = (spec: WindowBodySpec, dialogId: string, contentId: Optional<string>, backstage: UiFactoryBackstage, ariaAttrs: boolean): SimpleSpec => {
+const renderBody = (spec: WindowBodySpec, dialogId: string, contentId: (string) | null, backstage: UiFactoryBackstage, ariaAttrs: boolean): SimpleSpec => {
   const renderComponents = (incoming: WindowBodySpec) => {
     const body = incoming.body;
     switch (body.type) {
@@ -35,9 +34,9 @@ const renderBody = (spec: WindowBodySpec, dialogId: string, contentId: Optional<
     }
   };
 
-  const updateState = (_comp: AlloyComponent, incoming: WindowBodySpec) => Optional.some({
+  const updateState = (_comp: AlloyComponent, incoming: WindowBodySpec) => {
     isTabPanel: () => incoming.body.type === 'tabpanel'
-  });
+  };
 
   const ariaAttributes = {
     'aria-live': 'polite'
@@ -48,7 +47,7 @@ const renderBody = (spec: WindowBodySpec, dialogId: string, contentId: Optional<
       tag: 'div',
       classes: [ 'tox-dialog__content-js' ],
       attributes: {
-        ...contentId.map((x): { id?: string } => ({ id: x })).getOr({}),
+        ...contentId.map((x): { id?: string } => ({ id: x })) ?? ({}),
         ...ariaAttrs ? ariaAttributes : {}
       }
     },
@@ -66,10 +65,10 @@ const renderBody = (spec: WindowBodySpec, dialogId: string, contentId: Optional<
 };
 
 const renderInlineBody = (spec: WindowBodySpec, dialogId: string, contentId: string, backstage: UiFactoryBackstage, ariaAttrs: boolean): SimpleSpec =>
-  renderBody(spec, dialogId, Optional.some(contentId), backstage, ariaAttrs);
+  renderBody(spec, dialogId, contentId, backstage, ariaAttrs);
 
 const renderModalBody = (spec: WindowBodySpec, dialogId: string, backstage: UiFactoryBackstage): AlloyParts.ConfiguredPart => {
-  const bodySpec = renderBody(spec, dialogId, Optional.none(), backstage, false);
+  const bodySpec = renderBody(spec, dialogId, null, backstage, false);
   return ModalDialog.parts.body(bodySpec);
 };
 
@@ -87,7 +86,7 @@ const renderIframeBody = (spec: Dialog.UrlDialog): AlloyParts.ConfiguredPart => 
         },
         components: [
           NavigableObject.craft(
-            Optional.none(),
+            null,
             {
               dom: {
                 tag: 'iframe',
@@ -106,7 +105,7 @@ const renderIframeBody = (spec: Dialog.UrlDialog): AlloyParts.ConfiguredPart => 
     behaviours: Behaviour.derive([
       Keying.config({
         mode: 'acyclic',
-        useTabstopAt: Fun.not(NavigableObject.isPseudoStop)
+        useTabstopAt: (x: any) => !(NavigableObject.isPseudoStop)(x)
       })
     ])
   };

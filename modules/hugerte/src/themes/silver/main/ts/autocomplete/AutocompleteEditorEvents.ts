@@ -1,11 +1,10 @@
 import { AlloyComponent, AlloyTriggers, Highlighting, NativeEvents } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorEvent } from 'hugerte/core/api/util/EventDispatcher';
 
 export interface AutocompleterUiApi {
-  readonly getMenu: () => Optional<AlloyComponent>;
+  readonly getMenu: () => (AlloyComponent) | null;
   readonly isMenuOpen: () => boolean;
   readonly isActive: () => boolean;
   readonly isProcessingAction: () => boolean;
@@ -17,7 +16,7 @@ const setup = (api: AutocompleterUiApi, editor: Editor): void => {
     AlloyTriggers.emitWith(item, NativeEvents.keydown(), { raw: e });
   };
 
-  const getItem = (): Optional<AlloyComponent> => api.getMenu().bind(Highlighting.getHighlighted);
+  const getItem = (): (AlloyComponent) | null => api.getMenu().bind(Highlighting.getHighlighted);
 
   editor.on('keydown', (e) => {
     const keyCode = e.which;

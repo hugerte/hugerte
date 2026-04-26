@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Tools from 'hugerte/core/api/util/Tools';
@@ -27,11 +26,11 @@ export const isAtDetailsStart = (editor: Editor): boolean => {
 export const isInsertAllowed = (editor: Editor): boolean =>
   !isInSummary(editor) && editor.dom.isEditable(editor.selection.getNode());
 
-export const getSelectedDetails = (editor: Editor): Optional<HTMLDetailsElement> =>
-  Optional.from(editor.dom.getParent(editor.selection.getNode(), isDetails));
+export const getSelectedDetails = (editor: Editor): (HTMLDetailsElement) | null =>
+  (editor.dom.getParent(editor.selection.getNode(), isDetails) ?? null);
 
 export const isDetailsSelected = (editor: Editor): boolean =>
-  getSelectedDetails(editor).isSome();
+  getSelectedDetails(editor) !== null;
 
 export const insertBogus = <T extends HTMLElement>(element: T): T => {
   element.innerHTML = '<br data-mce-bogus="1" />';

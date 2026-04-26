@@ -1,4 +1,4 @@
-import { Arr, Fun, Merger, Obj, Strings, Type } from '@ephox/katamari';
+import { Merger, Obj, Strings } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import { NormalizedEditorOptions, RawEditorOptions } from '../api/OptionTypes';
@@ -10,8 +10,8 @@ interface SectionResult {
 }
 
 const sectionResult = (sections: Record<string, Partial<RawEditorOptions>>, settings: RawEditorOptions): SectionResult => ({
-  sections: Fun.constant(sections),
-  options: Fun.constant(settings)
+  sections: () => sections,
+  options: () => settings
 });
 
 const deviceDetection = PlatformDetection.detect().deviceType;
@@ -19,18 +19,18 @@ const isPhone = deviceDetection.isPhone();
 const isTablet = deviceDetection.isTablet();
 
 const normalizePlugins = (plugins: string | string[] | undefined) => {
-  if (Type.isNullable(plugins)) {
+  if ((plugins) == null) {
     return [];
   } else {
-    const pluginNames = Type.isArray(plugins) ? plugins : plugins.split(/[ ,]/);
-    const trimmedPlugins = Arr.map(pluginNames, Strings.trim);
-    return Arr.filter(trimmedPlugins, Strings.isNotEmpty);
+    const pluginNames = Array.isArray(plugins) ? plugins : plugins.split(/[ ,]/);
+    const trimmedPlugins = (pluginNames).map(Strings.trim);
+    return (trimmedPlugins).filter(Strings.isNotEmpty);
   }
 };
 
 const extractSections = (keys: string[], options: RawEditorOptions) => {
   const result = Obj.bifilter(options, (value, key) => {
-    return Arr.contains(keys, key);
+    return (keys).includes(key);
   });
 
   return sectionResult(result.t, result.f);
@@ -38,12 +38,12 @@ const extractSections = (keys: string[], options: RawEditorOptions) => {
 
 const getSection = (sectionResult: SectionResult, name: string, defaults: Partial<RawEditorOptions> = { }) => {
   const sections = sectionResult.sections();
-  const sectionOptions = Obj.get(sections, name).getOr({});
+  const sectionOptions = ((sections)[name] ?? null) ?? ({});
   return Tools.extend({}, defaults, sectionOptions);
 };
 
 const hasSection = (sectionResult: SectionResult, name: string) => {
-  return Obj.has(sectionResult.sections(), name);
+  return Object.prototype.hasOwnProperty.call(sectionResult.sections(), name);
 };
 
 const getSectionConfig = (sectionResult: SectionResult, name: string) => {
@@ -56,7 +56,7 @@ const getMobileOverrideOptions = (mobileOptions: RawEditorOptions, isPhone: bool
     table_grid: false,           // Table grid relies on hover, which isn't available for touch devices so use the dialog instead
     object_resizing: false,      // No nice way to do object resizing at this stage
     resize: false,               // Editor resize doesn't make sense on mobile
-    toolbar_mode: Obj.get(mobileOptions, 'toolbar_mode').getOr('scrolling'),   // Use the default side-scrolling toolbar for tablets/phones
+    toolbar_mode: ((mobileOptions)['toolbar_mode'] ?? null) ?? ('scrolling'),   // Use the default side-scrolling toolbar for tablets/phones
     toolbar_sticky: false        // Only enable sticky toolbar on desktop by default
   };
 

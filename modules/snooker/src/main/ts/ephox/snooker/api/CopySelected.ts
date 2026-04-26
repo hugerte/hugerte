@@ -1,4 +1,4 @@
-import { Arr, Obj } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Attribute, Insert, Remove, Replication, Selectors, SugarElement } from '@ephox/sugar';
 
 import * as DetailsList from '../model/DetailsList';
@@ -40,7 +40,7 @@ const findSelectedStats = (house: Warehouse, isSelected: (detail: DetailExt) => 
   let maxCol = 0;
   const allCells: DetailExt[] = [];
   const selectedCells: DetailExt[] = [];
-  Obj.each(house.access, (detail) => {
+  Object.entries(house.access).forEach(([_k, _v]: [any, any]) => ((detail) => {
     allCells.push(detail);
     if (isSelected(detail)) {
       selectedCells.push(detail);
@@ -60,7 +60,7 @@ const findSelectedStats = (house: Warehouse, isSelected: (detail: DetailExt) => 
         maxCol = endCol;
       }
     }
-  });
+  })(_v, _k));
   return statsStruct(minRow, minCol, maxRow, maxCol, allCells, selectedCells);
 };
 
@@ -74,7 +74,7 @@ const makeCell = (list: CellRowDetail[], seenSelected: boolean, rowIndex: number
 };
 
 const fillInGaps = (list: RowDetail<Detail>[], house: Warehouse, stats: StatsStruct, isSelected: (detail: DetailExt) => boolean) => {
-  const rows = Arr.filter(list, (row): row is CellRowDetail => row.section !== 'colgroup');
+  const rows = (list).filter((row): row is CellRowDetail => row.section !== 'colgroup');
   const totalColumns = house.grid.columns;
   const totalRows = house.grid.rows;
   // unselected cells have been deleted, now fill in the gaps in the model
@@ -83,7 +83,7 @@ const fillInGaps = (list: RowDetail<Detail>[], house: Warehouse, stats: StatsStr
     for (let j = 0; j < totalColumns; j++) {
       if (!(i < stats.minRow || i > stats.maxRow || j < stats.minCol || j > stats.maxCol)) {
         // if there is a hole in the table itself, or it's an unselected position, we need a cell
-        const needCell = Warehouse.getAt(house, i, j).filter(isSelected).isNone();
+        const needCell = Warehouse.getAt(house, i, j).filter(isSelected) === null;
         if (needCell) {
           makeCell(rows, seenSelected, i);
         } else {
@@ -96,22 +96,22 @@ const fillInGaps = (list: RowDetail<Detail>[], house: Warehouse, stats: StatsStr
 
 const clean = (replica: SugarElement<HTMLTableElement>, stats: StatsStruct, house: Warehouse, widthDelta: number): void => {
   // remove columns that are not in the new table
-  Obj.each(house.columns, (col) => {
+  Object.entries(house.columns).forEach(([_k, _v]: [any, any]) => ((col) => {
     if (col.column < stats.minCol || col.column > stats.maxCol) {
       Remove.remove(col.element);
     }
-  });
+  })(_v, _k));
 
   // can't use :empty selector as that will not include TRs made up of whitespace
   const emptyRows = Arr.filter(LayerSelector.firstLayer(replica, 'tr'), (row) =>
     // there is no sugar method for this, and Traverse.children() does too much processing
     (row.dom as HTMLElement).childElementCount === 0
   );
-  Arr.each(emptyRows, Remove.remove);
+  (emptyRows).forEach(Remove.remove);
 
   // If there is only one column, or only one row, delete all the colspan/rowspan
   if (stats.minCol === stats.maxCol || stats.minRow === stats.maxRow) {
-    Arr.each(LayerSelector.firstLayer(replica, 'th,td'), (cell) => {
+    (LayerSelector.firstLayer(replica, 'th,td')).forEach((cell) => {
       Attribute.remove(cell, 'rowspan');
       Attribute.remove(cell, 'colspan');
     });
@@ -134,8 +134,8 @@ const getTableWidthDelta = (table: SugarElement<HTMLTableElement>, warehouse: Wa
   }
 
   const colWidths = ColumnSizes.getPixelWidths(warehouse, table, tableSize);
-  const allColsWidth = Arr.foldl(colWidths, (acc, width) => acc + width, 0);
-  const selectedColsWidth = Arr.foldl(colWidths.slice(stats.minCol, stats.maxCol + 1), (acc, width) => acc + width, 0);
+  const allColsWidth = (colWidths).reduce((acc, width) => acc + width, 0);
+  const selectedColsWidth = (colWidths.slice(stats.minCol, stats.maxCol + 1)).reduce((acc, width) => acc + width, 0);
   const newWidth = (selectedColsWidth / allColsWidth) * tableSize.pixelWidth();
   const delta = newWidth - tableSize.pixelWidth();
 
@@ -154,7 +154,7 @@ const extract = (table: SugarElement<HTMLTableElement>, selectedSelector: string
   // remove unselected cells
   const selector = 'th:not(' + selectedSelector + ')' + ',td:not(' + selectedSelector + ')';
   const unselectedCells = LayerSelector.filterFirstLayer(replica, 'th,td', (cell) => Selectors.is(cell, selector));
-  Arr.each(unselectedCells, Remove.remove);
+  (unselectedCells).forEach(Remove.remove);
 
   fillInGaps(list, replicaHouse, replicaStats, isSelected);
 

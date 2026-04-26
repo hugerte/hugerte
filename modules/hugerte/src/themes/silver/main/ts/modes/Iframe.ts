@@ -1,5 +1,5 @@
 import { Attachment, Channels, Disabling } from '@ephox/alloy';
-import { Arr, Cell, Throttler, Type } from '@ephox/katamari';
+import { Cell, Throttler } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Css, DomEvent, SugarElement, SugarPosition, SugarShadowDom } from '@ephox/sugar';
 
@@ -63,12 +63,12 @@ const setupEvents = (editor: Editor, uiRefs: ReadyUiReferences) => {
 
   // We want to hide ALL UI motherships here.
   editor.on('hide', () => {
-    Arr.each(uiMotherships, (m) => {
+    (uiMotherships).forEach((m) => {
       Css.set(m.element, 'display', 'none');
     });
   });
   editor.on('show', () => {
-    Arr.each(uiMotherships, (m) => {
+    (uiMotherships).forEach((m) => {
       Css.remove(m.element, 'display');
     });
   });
@@ -160,12 +160,12 @@ const render = (editor: Editor, uiRefs: ReadyUiReferences, rawUiConfig: RenderUi
     if (OuterContainer.toggleView(outerContainer, value)) {
       const target = outerContainer.element;
       mainUi.mothership.broadcastOn([ Channels.dismissPopups() ], { target });
-      Arr.each(uiMotherships, (m) => {
+      (uiMotherships).forEach((m) => {
         m.broadcastOn([ Channels.dismissPopups() ], { target });
       });
 
       // Switching back to main view should focus the editor and update any UIs
-      if (Type.isNull(OuterContainer.whichView(outerContainer))) {
+      if ((OuterContainer.whichView(outerContainer)) === null) {
         editor.focus();
         editor.nodeChanged();
         OuterContainer.refreshToolbar(outerContainer);

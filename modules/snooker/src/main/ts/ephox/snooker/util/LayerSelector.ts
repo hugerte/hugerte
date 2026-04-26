@@ -1,12 +1,11 @@
-import { Arr, Fun } from '@ephox/katamari';
 import { Selectors, SugarElement, Traverse } from '@ephox/sugar';
 
 const firstLayer = <T extends Element>(scope: SugarElement<Node>, selector: string): SugarElement<T>[] => {
-  return filterFirstLayer(scope, selector, Fun.always);
+  return filterFirstLayer(scope, selector, (() => true as const));
 };
 
 const filterFirstLayer = <T extends Element>(scope: SugarElement<Node>, selector: string, predicate: (e: SugarElement<Node & ChildNode>) => boolean): SugarElement<T>[] => {
-  return Arr.bind(Traverse.children(scope), (x) => {
+  return (Traverse.children(scope)).flatMap((x) => {
     if (Selectors.is<T>(x, selector)) {
       return predicate(x) ? [ x ] : [];
     } else {

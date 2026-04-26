@@ -1,4 +1,4 @@
-import { Merger, Obj, Optional, Singleton, Strings } from '@ephox/katamari';
+import { Merger, Singleton } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Resource from 'hugerte/core/api/Resource';
@@ -38,14 +38,13 @@ const categoryNameMap = {
 };
 
 const translateCategory = (categories: Record<string, string>, name: string): string =>
-  Obj.has(categories, name) ? categories[name] : name;
+  Object.prototype.hasOwnProperty.call(categories, name) ? categories[name] : name;
 
 const getUserDefinedEmoji = (editor: Editor): Record<string, RawEmojiEntry> => {
   const userDefinedEmoticons = Options.getAppendedEmoji(editor);
-  return Obj.map(userDefinedEmoticons, (value) =>
+  return Object.fromEntries(Object.entries(userDefinedEmoticons).map(([_k, _v]: [any, any]) => [_k, ((value) =>
     // Set some sane defaults for the custom emoji entry
-    ({ keywords: [], category: 'user', ...value })
-  );
+    ({ keywords: [], category: 'user', ...value }))(_v, _k as any)]));
 };
 
 // TODO: Consider how to share this loading across different editors
@@ -57,7 +56,7 @@ const initDatabase = (editor: Editor, databaseUrl: string, databaseId: string): 
 
   const getEmoji = (lib: RawEmojiEntry) => {
     // Note: This is a little hacky, but the database doesn't provide a way for us to tell what sort of database is being used
-    if (Strings.startsWith(lib.char, '<img')) {
+    if ((lib.char).startsWith('<img')) {
       return lib.char.replace(/src="([^"]+)"/, (match, url) => `src="${emojiImagesUrl}${url}"`);
     } else {
       return lib.char;
@@ -68,7 +67,7 @@ const initDatabase = (editor: Editor, databaseUrl: string, databaseId: string): 
     const cats: Record<string, EmojiEntry[]> = {};
     const everything: EmojiEntry[] = [];
 
-    Obj.each(emojis, (lib: RawEmojiEntry, title: string) => {
+    Object.entries(emojis).forEach(([_k, _v]: [any, any]) => ((lib: RawEmojiEntry, title: string) => {
       const entry: EmojiEntry = {
         // Omitting fitzpatrick_scale
         title,
@@ -79,7 +78,7 @@ const initDatabase = (editor: Editor, databaseUrl: string, databaseId: string): 
       const current = cats[entry.category] !== undefined ? cats[entry.category] : [];
       cats[entry.category] = current.concat([ entry ]);
       everything.push(entry);
-    });
+    })(_v, _k));
 
     categories.set(cats);
     all.set(everything);
@@ -101,14 +100,14 @@ const initDatabase = (editor: Editor, databaseUrl: string, databaseId: string): 
     if (category === ALL_CATEGORY) {
       return listAll();
     }
-    return categories.get().bind((cats) => Optional.from(cats[category])).getOr([]);
+    return categories.get().bind((cats) => (cats[category] ?? null)) ?? ([]);
   };
 
-  const listAll = (): EmojiEntry[] => all.get().getOr([]);
+  const listAll = (): EmojiEntry[] => all.get() ?? ([]);
 
   const listCategories = (): string[] =>
     // TODO: Category key order should be adjusted to match the standard
-    [ ALL_CATEGORY ].concat(Obj.keys(categories.get().getOr({})));
+    [ ALL_CATEGORY ].concat(Object.keys(categories.get() ?? ({})));
 
   const waitForLoad = (): Promise<boolean> => {
     if (hasLoaded()) {

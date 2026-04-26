@@ -1,5 +1,4 @@
 import { DomUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { TypedItem } from '../data/TypedItem';
@@ -24,7 +23,7 @@ const extractTo = (child: SugarElement, offset: number, pred: (e: SugarElement) 
   return Extract.extractTo(universe, child, offset, pred, optimise);
 };
 
-const find = (parent: SugarElement, offset: number, optimise?: (e: SugarElement) => boolean): Optional<SpotPoint<SugarElement>> => {
+const find = (parent: SugarElement, offset: number, optimise?: (e: SugarElement) => boolean): (SpotPoint<SugarElement>) | null => {
   return Extract.find(universe, parent, offset, optimise);
 };
 

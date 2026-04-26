@@ -1,16 +1,15 @@
-import { Optional } from '@ephox/katamari';
 import { RawRect, Scroll, SimRange, SimSelection, Situ, SugarElement, WindowSelection } from '@ephox/sugar';
 
 import { Situs } from '../selection/Situs';
 import * as Util from '../selection/Util';
 
 export interface WindowBridge {
-  elementFromPoint: (x: number, y: number) => Optional<SugarElement<Element>>;
+  elementFromPoint: (x: number, y: number) => (SugarElement<Element>) | null;
   getRect: (element: SugarElement<Element>) => ClientRect | DOMRect;
-  getRangedRect: (start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number) => Optional<RawRect>;
-  getSelection: () => Optional<SimRange>;
+  getRangedRect: (start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number) => (RawRect) | null;
+  getSelection: () => (SimRange) | null;
   fromSitus: (situs: Situs) => SimRange;
-  situsFromPoint: (x: number, y: number) => Optional<Situs>;
+  situsFromPoint: (x: number, y: number) => (Situs) | null;
   clearSelection: () => void;
   collapseSelection: (toStart?: boolean) => void;
   setSelection: (sel: SimRange) => void;
@@ -31,7 +30,7 @@ export const WindowBridge = (win: Window): WindowBridge => {
     return element.dom.getBoundingClientRect();
   };
 
-  const getRangedRect = (start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number): Optional<RawRect> => {
+  const getRangedRect = (start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number): (RawRect) | null => {
     const sel = SimSelection.exact(start, soffset, finish, foffset);
     return WindowSelection.getFirstRect(win, sel);
   };

@@ -1,4 +1,3 @@
-import { Optional, Strings, Type } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import TextSeeker from '../api/dom/TextSeeker';
@@ -74,31 +73,31 @@ const findWordEndPoint = (
   const walk = (container: Node, offset: number, pred: (start: boolean, node: Text, offset: number) => number) => {
     const textSeeker = TextSeeker(dom);
     const walker = start ? textSeeker.backwards : textSeeker.forwards;
-    return Optional.from(walker(container, offset, (text, textOffset) => {
+    return (walker(container, offset, (text, textOffset) => {
       if (isBookmarkNode(text.parentNode)) {
         return -1;
       } else {
         lastTextNode = text;
         return pred(start, text, textOffset);
       }
-    }, rootNode));
+    }, rootNode) ?? null);
   };
 
   const spaceResult = walk(container, offset, findSpace);
   return spaceResult.bind(
     (result) => includeTrailingSpaces ?
       walk(result.container, result.offset + (start ? -1 : 0), findContent) :
-      Optional.some(result)
+      result
   ).orThunk(
     () => lastTextNode ?
-      Optional.some({ container: lastTextNode, offset: start ? 0 : lastTextNode.length }) :
-      Optional.none()
+      { container: lastTextNode, offset: start ? 0 : lastTextNode.length } :
+      null
   );
 };
 
 const findSelectorEndPoint = (dom: DOMUtils, formatList: Format[], rng: Range, container: Node, siblingName: Sibling) => {
   const sibling = container[siblingName];
-  if (NodeType.isText(container) && Strings.isEmpty(container.data) && sibling) {
+  if (NodeType.isText(container) && ((container.data).length === 0) && sibling) {
     container = sibling;
   }
 
@@ -108,7 +107,7 @@ const findSelectorEndPoint = (dom: DOMUtils, formatList: Format[], rng: Range, c
       const curFormat = formatList[y];
 
       // If collapsed state is set then skip formats that doesn't match that
-      if (Type.isNonNullable(curFormat.collapsed) && curFormat.collapsed !== rng.collapsed) {
+      if ((curFormat.collapsed) != null && curFormat.collapsed !== rng.collapsed) {
         continue;
       }
 
@@ -169,9 +168,9 @@ const findBlockEndPoint = (dom: DOMUtils, formatList: Format[], container: Node,
 // if we reach the root or can't walk further we also consider it to be a boundary.
 const isAtBlockBoundary = (dom: DOMUtils, root: Node, container: Node, siblingName: Sibling): boolean => {
   const parent = container.parentNode;
-  if (Type.isNonNullable(container[siblingName])) {
+  if ((container[siblingName]) != null) {
     return false;
-  } else if (parent === root || Type.isNullable(parent) || dom.isBlock(parent)) {
+  } else if (parent === root || (parent) == null || dom.isBlock(parent)) {
     return true;
   } else {
     return isAtBlockBoundary(dom, root, parent, siblingName);

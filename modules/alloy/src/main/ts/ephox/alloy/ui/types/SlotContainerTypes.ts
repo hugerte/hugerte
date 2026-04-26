@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -30,7 +29,7 @@ export interface SlotContainerParts {
 
 export interface SlotContainerApis {
   getSlotNames: (container: AlloyComponent) => string[];
-  getSlot: (container: AlloyComponent, key: string) => Optional<AlloyComponent>;
+  getSlot: (container: AlloyComponent, key: string) => (AlloyComponent) | null;
   isShowing: (comp: AlloyComponent, key: string) => boolean;
   showSlot: (container: AlloyComponent, key: string) => void;
   hideSlot: (container: AlloyComponent, key: string) => void;

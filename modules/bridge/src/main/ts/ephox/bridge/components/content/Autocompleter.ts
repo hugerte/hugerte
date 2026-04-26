@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { CardMenuItemSpec } from '../menu/CardMenuItem';
@@ -21,8 +21,8 @@ export type SeparatorItem = SeparatorMenuItem;
 export interface AutocompleterItem {
   type: 'autocompleteitem';
   value: string;
-  text: Optional<string>;
-  icon: Optional<string>;
+  text: (string) | null;
+  icon: (string) | null;
   active: boolean;
   enabled: boolean;
   meta: Record<string, any>;
@@ -50,7 +50,7 @@ export interface Autocompleter {
   trigger: string;
   minChars: number;
   columns: ColumnTypes;
-  matches: Optional<(rng: Range, text: string, pattern: string) => boolean>;
+  matches: ((rng: Range, text: string, pattern: string) =) | null boolean>;
   fetch: (pattern: string, maxResults: number, fetchOptions: Record<string, any>) => Promise<AutocompleterContents[]>;
   onAction: (autocompleterApi: AutocompleterInstanceApi, rng: Range, value: string, meta: Record<string, any>) => void;
   maxResults: number;

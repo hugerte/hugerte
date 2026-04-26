@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { Css, Height, SugarPosition, Width } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -33,7 +32,7 @@ const setValueFrom = (spectrum: AlloyComponent, detail: TwoDSliderDetail, value:
 };
 
 // move in a direction by step size. Fire change at the end
-const moveBy = (direction: number, isVerticalMovement: boolean, spectrum: AlloyComponent, detail: TwoDSliderDetail, useMultiplier?: boolean): Optional<number> => {
+const moveBy = (direction: number, isVerticalMovement: boolean, spectrum: AlloyComponent, detail: TwoDSliderDetail, useMultiplier?: boolean): (number) | null => {
   const f = (direction > 0) ? SliderModel.increaseBy : SliderModel.reduceBy;
   const xValue = isVerticalMovement ? currentValue(detail).x :
     f(currentValue(detail).x, minX(detail), maxX(detail), step(detail, useMultiplier));
@@ -41,11 +40,11 @@ const moveBy = (direction: number, isVerticalMovement: boolean, spectrum: AlloyC
     f(currentValue(detail).y, minY(detail), maxY(detail), step(detail, useMultiplier));
 
   fireSliderChange(spectrum, sliderValue(xValue, yValue));
-  return Optional.some(xValue);
+  return xValue;
 };
 
-const handleMovement = (direction: number, isVerticalMovement: boolean) => (spectrum: AlloyComponent, detail: TwoDSliderDetail, useMultiplier?: boolean): Optional<boolean> =>
-  moveBy(direction, isVerticalMovement, spectrum, detail, useMultiplier).map<boolean>(Fun.always);
+const handleMovement = (direction: number, isVerticalMovement: boolean) => (spectrum: AlloyComponent, detail: TwoDSliderDetail, useMultiplier?: boolean): (boolean) | null =>
+  moveBy(direction, isVerticalMovement, spectrum, detail, useMultiplier).map<boolean>((() => true as const));
 
 // fire a slider change event with the minimum value
 const setToMin = (spectrum: AlloyComponent, detail: TwoDSliderDetail): void => {
@@ -62,7 +61,7 @@ const setToMax = (spectrum: AlloyComponent, detail: TwoDSliderDetail): void => {
 };
 
 // get event data as a SugarPosition
-const getValueFromEvent = (simulatedEvent: NativeSimulatedEvent<MouseEvent | TouchEvent>): Optional<SugarPosition> =>
+const getValueFromEvent = (simulatedEvent: NativeSimulatedEvent<MouseEvent | TouchEvent>): (SugarPosition) | null =>
   ModelCommon.getEventSource(simulatedEvent);
 
 // update the position of the thumb from the slider's current value
@@ -98,14 +97,14 @@ const onDown = handleMovement(1, true);
 
 // Edge Click Actions
 const edgeActions = {
-  'top-left': Optional.some(EdgeActions.setToTLEdgeXY),
-  'top': Optional.some(EdgeActions.setToTEdgeXY),
-  'top-right': Optional.some(EdgeActions.setToTREdgeXY),
-  'right': Optional.some(EdgeActions.setToREdgeXY),
-  'bottom-right': Optional.some(EdgeActions.setToBREdgeXY),
-  'bottom': Optional.some(EdgeActions.setToBEdgeXY),
-  'bottom-left': Optional.some(EdgeActions.setToBLEdgeXY),
-  'left': Optional.some(EdgeActions.setToLEdgeXY)
+  'top-left': EdgeActions.setToTLEdgeXY,
+  'top': EdgeActions.setToTEdgeXY,
+  'top-right': EdgeActions.setToTREdgeXY,
+  'right': EdgeActions.setToREdgeXY,
+  'bottom-right': EdgeActions.setToBREdgeXY,
+  'bottom': EdgeActions.setToBEdgeXY,
+  'bottom-left': EdgeActions.setToBLEdgeXY,
+  'left': EdgeActions.setToLEdgeXY
 };
 
 export {

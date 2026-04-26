@@ -1,4 +1,3 @@
-import { Arr, Type } from '@ephox/katamari';
 
 import Env from '../api/Env';
 import DomParser, { DomParserSettings } from '../api/html/DomParser';
@@ -8,10 +7,10 @@ import * as BlobCacheUtils from '../file/BlobCacheUtils';
 import * as Embed from './Embed';
 
 const isBogusImage = (img: AstNode): boolean =>
-  Type.isNonNullable(img.attr('data-mce-bogus'));
+  (img.attr('data-mce-bogus')) != null;
 
 const isInternalImageSource = (img: AstNode): boolean =>
-  img.attr('src') === Env.transparentSrc || Type.isNonNullable(img.attr('data-mce-placeholder'));
+  img.attr('src') === Env.transparentSrc || (img.attr('data-mce-placeholder')) != null;
 
 const registerBase64ImageFilter = (parser: DomParser, settings: DomParserSettings): void => {
   const { blob_cache: blobCache } = settings;
@@ -19,7 +18,7 @@ const registerBase64ImageFilter = (parser: DomParser, settings: DomParserSetting
     const processImage = (img: AstNode): void => {
       const inputSrc = img.attr('src');
 
-      if (isInternalImageSource(img) || isBogusImage(img) || Type.isNullable(inputSrc)) {
+      if (isInternalImageSource(img) || isBogusImage(img) || (inputSrc) == null) {
         return;
       }
 
@@ -28,7 +27,7 @@ const registerBase64ImageFilter = (parser: DomParser, settings: DomParserSetting
       });
     };
 
-    parser.addAttributeFilter('src', (nodes) => Arr.each(nodes, processImage));
+    parser.addAttributeFilter('src', (nodes) => (nodes).forEach(processImage));
   }
 };
 
@@ -151,9 +150,9 @@ const register = (parser: DomParser, settings: DomParserSettings): void => {
   registerBase64ImageFilter(parser, settings);
 
   const shouldSandboxIframes = settings.sandbox_iframes ?? false;
-  const sandboxIframesExclusions = Arr.unique(settings.sandbox_iframes_exclusions ?? []);
+  const sandboxIframesExclusions = [...new Set(settings.sandbox_iframes_exclusions ?? [])];
   if (settings.convert_unsafe_embeds) {
-    parser.addNodeFilter('object,embed', (nodes) => Arr.each(nodes, (node) => {
+    parser.addNodeFilter('object,embed', (nodes) => (nodes).forEach((node) => {
       node.replace(
         Embed.createSafeEmbed({
           type: node.attr('type'),
@@ -167,7 +166,7 @@ const register = (parser: DomParser, settings: DomParserSettings): void => {
   }
 
   if (shouldSandboxIframes) {
-    parser.addNodeFilter('iframe', (nodes) => Arr.each(nodes, (node) => Embed.sandboxIframe(node, sandboxIframesExclusions)));
+    parser.addNodeFilter('iframe', (nodes) => (nodes).forEach((node) => Embed.sandboxIframe(node, sandboxIframesExclusions)));
   }
 };
 

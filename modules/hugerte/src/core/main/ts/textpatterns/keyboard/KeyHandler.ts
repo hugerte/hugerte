@@ -1,4 +1,3 @@
-import { Fun, Unicode } from '@ephox/katamari';
 
 import * as TextSearch from '../../alien/TextSearch';
 import Editor from '../../api/Editor';
@@ -12,7 +11,7 @@ import * as Utils from '../utils/Utils';
 
 const handleEnter = (editor: Editor, patternSet: PatternSet): boolean =>
   BlockPattern.getMatches(editor, patternSet).fold(
-    Fun.never,
+    (() => false as const),
     ({ inlineMatches, blockMatches }) => {
       editor.undoManager.add();
       editor.undoManager.extra(
@@ -31,7 +30,7 @@ const handleEnter = (editor: Editor, patternSet: PatternSet): boolean =>
           // clean up the cursor position we used to preserve the format
           spot.each((s) => {
             const node = s.container;
-            if (node.data.charAt(s.offset - 1) === Unicode.zeroWidth) {
+            if (node.data.charAt(s.offset - 1) === '\uFEFF') {
               node.deleteData(s.offset - 1, 1);
               Utils.cleanEmptyNodes(editor.dom, node.parentNode, (e: Node) => e === editor.dom.getRoot());
             }
@@ -61,7 +60,7 @@ const handleInlineKey = (
 
 const handleBlockPatternOnSpace = (editor: Editor, patternSet: PatternSet): boolean =>
   BlockPatternOnSpace.getMatches(editor, patternSet).fold(
-    Fun.never,
+    (() => false as const),
     (matches) => {
       editor.undoManager.transact(() => {
         BlockPatternOnSpace.applyMatches(editor, matches);

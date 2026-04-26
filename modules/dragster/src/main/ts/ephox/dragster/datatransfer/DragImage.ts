@@ -1,4 +1,3 @@
-import { Id, Optional } from '@ephox/katamari';
 
 export interface DragImageData {
   readonly image: Element;
@@ -6,11 +5,11 @@ export interface DragImageData {
   readonly y: number;
 }
 
-const imageId = Id.generate('image');
+const imageId = (('image') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
-const getDragImage = (transfer: DataTransfer): Optional<DragImageData> => {
+const getDragImage = (transfer: DataTransfer): (DragImageData) | null => {
   const dt: Record<string, any> = transfer;
-  return Optional.from(dt[imageId]);
+  return (dt[imageId] ?? null);
 };
 
 const setDragImage = (transfer: DataTransfer, imageData: DragImageData): void => {

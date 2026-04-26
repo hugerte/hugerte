@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import { Menu } from 'hugerte/core/api/ui/Ui';
 import LocalStorage from 'hugerte/core/api/util/LocalStorage';
@@ -15,7 +15,7 @@ const cacheStorage: CacheStorage = {};
 
 const ColorCache = (storageId: string, max: number = 10): ColorCache => {
   const storageString = LocalStorage.getItem(storageId);
-  const localstorage = Type.isString(storageString) ? JSON.parse(storageString) : [];
+  const localstorage = typeof (storageString) === 'string' ? JSON.parse(storageString) : [];
 
   const prune = (list: string[]): string[] => {
     // When the localStorage cache is too big,
@@ -53,13 +53,13 @@ const ColorCache = (storageId: string, max: number = 10): ColorCache => {
 };
 
 const getCacheForId = (id: string): ColorCache =>
-  Obj.get(cacheStorage, id).getOrThunk(() => {
+  ((cacheStorage)[id] ?? null).getOrThunk(() => {
     const storageId = `hugerte-custom-colors-${id}`;
     const currentData = LocalStorage.getItem(storageId);
 
-    if (Type.isNullable(currentData)) {
+    if ((currentData) == null) {
       const legacyDefault = LocalStorage.getItem('hugerte-custom-colors');
-      LocalStorage.setItem(storageId, Type.isNonNullable(legacyDefault) ? legacyDefault : '[]');
+      LocalStorage.setItem(storageId, (legacyDefault) != null ? legacyDefault : '[]');
     }
 
     const storage = ColorCache(storageId, 10);
@@ -68,7 +68,7 @@ const getCacheForId = (id: string): ColorCache =>
   });
 
 const getCurrentColors = (id: string): Menu.ChoiceMenuItemSpec[] =>
-  Arr.map(getCacheForId(id).state(), (color) => ({
+  (getCacheForId(id).state()).map((color) => ({
     type: 'choiceitem',
     text: color,
     icon: 'checkmark',
@@ -80,7 +80,7 @@ const addColor = (id: string, color: string): void => {
 };
 
 const clearStoredCaches = (): void => {
-  Arr.each(Obj.keys(cacheStorage), (key) => delete cacheStorage[key]);
+  (Object.keys(cacheStorage)).forEach((key) => delete cacheStorage[key]);
 };
 
 export {

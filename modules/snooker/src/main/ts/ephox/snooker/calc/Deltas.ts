@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 import { ResizeBehaviour } from '../api/ResizeBehaviour';
 import { TableSize } from '../api/TableSize';
@@ -34,7 +33,7 @@ const determine = (input: number[], column: number, step: number, tableSize: Tab
   const result = input.slice(0);
   const context = neighbours(input, column);
 
-  const onNone = Fun.constant(Arr.map(result, Fun.constant(0)));
+  const onNone = () => (result).map(() => 0);
   const onOnly = (index: number) => tableSize.singleColumnWidth(result[index], step);
 
   const onLeft = (index: number, next: number) =>

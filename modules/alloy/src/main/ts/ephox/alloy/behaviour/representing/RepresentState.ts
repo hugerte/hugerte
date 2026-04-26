@@ -1,4 +1,4 @@
-import { Arr, Cell, Fun, Obj, Optional } from '@ephox/katamari';
+import { Cell, Obj } from '@ephox/katamari';
 
 import { ItemDataTuple } from '../../ui/types/ItemTypes';
 import { nuState } from '../common/BehaviourState';
@@ -30,7 +30,7 @@ const memory = (): MemoryRepresentingState => {
 };
 
 const manual = (): ManualRepresentingState => {
-  const readState = Fun.noop;
+  const readState = () => {};
 
   return nuState({
     readState
@@ -54,14 +54,14 @@ const dataset = (): DatasetRepresentingState => {
 
   // itemString can be matching value or text.
   // TODO: type problem - impossible to correctly return value when type parameter only exists in return type
-  const lookup = <T extends ItemDataTuple>(itemString: string): Optional<T> => Obj.get<any, string>(dataByValue.get(), itemString).orThunk(() => Obj.get<any, string>(dataByText.get(), itemString));
+  const lookup = <T extends ItemDataTuple>(itemString: string): (T) | null => Obj.get<any, string>(dataByValue.get(), itemString).orThunk(() => Obj.get<any, string>(dataByText.get(), itemString));
 
   const update = <T extends ItemDataTuple>(items: T[]): void => {
     const currentDataByValue = dataByValue.get();
     const currentDataByText = dataByText.get();
     const newDataByValue: Record<string, T> = { };
     const newDataByText: Record<string, T> = { };
-    Arr.each(items, (item) => {
+    (items).forEach((item) => {
       newDataByValue[item.value] = item;
       Obj.get<any, string>(item, 'meta').each((meta) => {
         Obj.get<any, string>(meta, 'text').each((text) => {

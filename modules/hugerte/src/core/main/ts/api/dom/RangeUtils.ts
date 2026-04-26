@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import * as ExpandRange from '../../fmt/ExpandRange';
 import * as CaretRangeFromPoint from '../../selection/CaretRangeFromPoint';
@@ -53,7 +52,7 @@ const RangeUtils = (dom: DOMUtils): RangeUtils => {
    */
   const normalize = (rng: Range): boolean => {
     return NormalizeRange.normalize(dom, rng).fold(
-      Fun.never,
+      (() => false as const),
       (normalizedRng) => {
         rng.setStart(normalizedRng.startContainer, normalizedRng.startOffset);
         rng.setEnd(normalizedRng.endContainer, normalizedRng.endOffset);

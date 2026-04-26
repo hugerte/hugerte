@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';
@@ -10,12 +9,12 @@ const setup = (editor: Editor): void => {
   };
 
   const preProcess = Options.getPastePreProcess(editor);
-  if (Type.isFunction(preProcess)) {
+  if (typeof (preProcess) === 'function') {
     editor.on('PastePreProcess', processEvent(preProcess));
   }
 
   const postProcess = Options.getPastePostProcess(editor);
-  if (Type.isFunction(postProcess)) {
+  if (typeof (postProcess) === 'function') {
     editor.on('PastePostProcess', processEvent(postProcess));
   }
 };

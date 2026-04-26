@@ -1,17 +1,16 @@
-import { Type } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';
 
 const matchNodeName = <T extends Node = Node>(name: string) =>
-  (node: Node | null): node is T => Type.isNonNullable(node) && node.nodeName.toLowerCase() === name;
+  (node: Node | null): node is T => (node) != null && node.nodeName.toLowerCase() === name;
 
 const matchNodeNames = <T extends Node = Node>(regex: RegExp) =>
-  (node: Node | null): node is T => Type.isNonNullable(node) && regex.test(node.nodeName);
+  (node: Node | null): node is T => (node) != null && regex.test(node.nodeName);
 
-const isTextNode = (node: Node | null): node is Text => Type.isNonNullable(node) && node.nodeType === 3;
+const isTextNode = (node: Node | null): node is Text => (node) != null && node.nodeType === 3;
 
-const isElement = (node: Node | null): node is Element => Type.isNonNullable(node) && node.nodeType === 1;
+const isElement = (node: Node | null): node is Element => (node) != null && node.nodeType === 1;
 
 const isListNode = matchNodeNames<HTMLOListElement | HTMLUListElement | HTMLDListElement>(/^(OL|UL|DL)$/);
 
@@ -34,13 +33,13 @@ const isLastChild = (node: Node): boolean =>
   node.parentNode?.lastChild === node;
 
 const isTextBlock = (editor: Editor, node: Node | null): node is HTMLElement =>
-  Type.isNonNullable(node) && node.nodeName in editor.schema.getTextBlockElements();
+  (node) != null && node.nodeName in editor.schema.getTextBlockElements();
 
 const isBlock = (node: Node | null, blockElements: Record<string, any>): boolean =>
-  Type.isNonNullable(node) && node.nodeName in blockElements;
+  (node) != null && node.nodeName in blockElements;
 
 const isVoid = (editor: Editor, node: Node | null): boolean =>
-  Type.isNonNullable(node) && node.nodeName in editor.schema.getVoidElements();
+  (node) != null && node.nodeName in editor.schema.getVoidElements();
 
 const isBogusBr = (dom: DOMUtils, node: Node): node is HTMLBRElement => {
   if (!isBr(node)) {

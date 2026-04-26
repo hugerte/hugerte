@@ -1,5 +1,4 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { NamedConfiguredBehaviour } from '../api/behaviour/Behaviour';
@@ -13,9 +12,9 @@ import { ReceivingChannelSpec, ReceivingConfig, ReceivingConfigSpec } from '../b
 
 interface DismissalReceivingDetail {
   isExtraPart: (sandbox: AlloyComponent, target: SugarElement<Node>) => boolean;
-  fireEventInstead: Optional<{
+  fireEventInstead: ({
     event: string;
-  }>;
+  }) | null;
 }
 
 export interface DismissalReceivingSpec {
@@ -26,7 +25,7 @@ export interface DismissalReceivingSpec {
 }
 
 const schema = StructureSchema.objOfOnly([
-  FieldSchema.defaulted('isExtraPart', Fun.never),
+  FieldSchema.defaulted('isExtraPart', (() => false as const)),
   FieldSchema.optionObjOf('fireEventInstead', [
     FieldSchema.defaulted('event', SystemEvents.dismissRequested())
   ])

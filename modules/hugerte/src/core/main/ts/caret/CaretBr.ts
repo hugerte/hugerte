@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
 import { SugarElement, SugarNode } from '@ephox/sugar';
 
 import Schema from '../api/html/Schema';
@@ -11,20 +10,20 @@ import { getElementFromPosition, getElementFromPrevPosition } from './CaretUtils
 const isBr = (pos: CaretPosition): boolean =>
   getElementFromPosition(pos).exists(ElementType.isBr);
 
-const findBr = (forward: boolean, root: SugarElement<Node>, pos: CaretPosition, schema: Schema): Optional<CaretPosition> => {
-  const parentBlocks = Arr.filter(Parents.parentsAndSelf(SugarElement.fromDom(pos.container()), root), (el) => schema.isBlock(SugarNode.name(el)));
-  const scope = Arr.head(parentBlocks).getOr(root);
+const findBr = (forward: boolean, root: SugarElement<Node>, pos: CaretPosition, schema: Schema): (CaretPosition) | null => {
+  const parentBlocks = (Parents.parentsAndSelf(SugarElement.fromDom(pos.container()), root)).filter((el) => schema.isBlock(SugarNode.name(el)));
+  const scope = ((parentBlocks)[0] ?? null) ?? (root);
   return CaretFinder.fromPosition(forward, scope.dom, pos).filter(isBr);
 };
 
 const isBeforeBr = (root: SugarElement<Node>, pos: CaretPosition, schema: Schema): boolean =>
-  getElementFromPosition(pos).exists(ElementType.isBr) || findBr(true, root, pos, schema).isSome();
+  getElementFromPosition(pos).exists(ElementType.isBr) || findBr(true, root, pos, schema) !== null;
 
 const isAfterBr = (root: SugarElement<Node>, pos: CaretPosition, schema: Schema): boolean =>
-  getElementFromPrevPosition(pos).exists(ElementType.isBr) || findBr(false, root, pos, schema).isSome();
+  getElementFromPrevPosition(pos).exists(ElementType.isBr) || findBr(false, root, pos, schema) !== null;
 
-const findPreviousBr = Fun.curry(findBr, false);
-const findNextBr = Fun.curry(findBr, true);
+const findPreviousBr = ((..._rest: any[]) => (findBr)(false, ..._rest));
+const findNextBr = ((..._rest: any[]) => (findBr)(true, ..._rest));
 
 export {
   findPreviousBr,

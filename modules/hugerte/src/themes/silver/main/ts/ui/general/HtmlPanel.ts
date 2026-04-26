@@ -1,6 +1,5 @@
 import { AlloyComponent, Behaviour, Bubble, Container as AlloyContainer, Focusing, Layout, SketchSpec, Tabstopping, Tooltipping } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Fun } from '@ephox/katamari';
 import { Attribute, Focus, SelectorFind } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -32,11 +31,11 @@ export const renderHtmlPanel = (spec: HtmlPanelSpec, providersBackstage: UiFacto
           anchor: (comp: AlloyComponent) => ({
             type: 'node',
             node: SelectorFind.descendant(comp.element, '[data-mce-tooltip]:hover')
-              .orThunk(() => Focus.search(comp.element).filter((current) => Attribute.getOpt(current, 'data-mce-tooltip').isSome())),
+              .orThunk(() => Focus.search(comp.element).filter((current) => Attribute.getOpt(current, 'data-mce-tooltip') !== null)),
             root: comp.element,
             layouts: {
-              onLtr: Fun.constant([ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ]),
-              onRtl: Fun.constant([ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ])
+              onLtr: () => [ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ],
+              onRtl: () => [ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ]
             },
             bubble: Bubble.nu(0, -2, {}),
           })

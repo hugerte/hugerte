@@ -1,5 +1,4 @@
 import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Arr, Fun } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord, derive, NamedConfiguredBehaviour } from '../behaviour/Behaviour';
 
@@ -8,11 +7,8 @@ export interface SketchBehaviours {
 }
 
 const field = (name: string, forbidden: Array<{ name: () => string }>): FieldProcessor =>
-  FieldSchema.defaultedObjOf(name, { }, Arr.map(
-    forbidden,
-    (f) => FieldSchema.forbid(f.name(), 'Cannot configure ' + f.name() + ' for ' + name)
-  ).concat([
-    FieldSchema.customField('dump', Fun.identity)
+  FieldSchema.defaultedObjOf(name, { }, (forbidden).map((f) => FieldSchema.forbid(f.name(), 'Cannot configure ' + f.name() + ' for ' + name)).concat([
+    FieldSchema.customField('dump', (x: any) => x)
   ]));
 
 const get = (data: SketchBehaviours): AlloyBehaviourRecord => data.dump;

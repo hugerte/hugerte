@@ -1,4 +1,3 @@
-import { Obj, Type } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';
@@ -11,7 +10,7 @@ export const getDetailsRoot = (editor: Editor, element: Element): HTMLDetailsEle
 const isAtDetailsEdge = (root: HTMLElement, element: Element, isTextBlock: (el: HTMLElement) => boolean) => {
   let node = element;
 
-  while (node && node !== root && Type.isNull(node.nextSibling)) {
+  while (node && node !== root && (node.nextSibling) === null) {
     const parent = node.parentElement;
 
     if (!parent || !isTextBlock(parent)) {
@@ -28,7 +27,7 @@ export const isLastEmptyBlockInDetails = (editor: Editor, shiftKey: boolean, ele
   !shiftKey &&
   element.nodeName.toLowerCase() === Options.getForcedRootBlock(editor) &&
   editor.dom.isEmpty(element) &&
-  isAtDetailsEdge(editor.getBody(), element, (el) => Obj.has(editor.schema.getTextBlockElements(), el.nodeName.toLowerCase()));
+  isAtDetailsEdge(editor.getBody(), element, (el) => Object.prototype.hasOwnProperty.call(editor.schema.getTextBlockElements(), el.nodeName.toLowerCase()));
 
 export const insertNewLine = (editor: Editor, createNewBlock: (name: string) => Element, parentBlock: Element): void => {
   const newBlock = createNewBlock(Options.getForcedRootBlock(editor));

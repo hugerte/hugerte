@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 export interface GeneralDefinitionSpec<EC> {
@@ -23,8 +22,8 @@ export interface GeneralDefinitionDetail<EC> {
   attributes: Record<string, any>;
   classes: string[];
   styles: Record<string, string>;
-  value: Optional<any>;
-  innerHtml: Optional<string>;
+  value: (any) | null;
+  innerHtml: (string) | null;
   domChildren: EC[];
 }
 
@@ -43,8 +42,8 @@ const defToRaw = <EC>(defn: GeneralDefinitionDetail<EC>): GeneralDefinitionSpec<
   classes: defn.classes,
   attributes: defn.attributes,
   styles: defn.styles,
-  value: defn.value.getOr('<none>'),
-  innerHtml: defn.innerHtml.getOr('<none>'),
+  value: defn.value ?? ('<none>'),
+  innerHtml: defn.innerHtml ?? ('<none>'),
   domChildren: defn.domChildren.length === 0 ? '0 children, but still specified' : String(defn.domChildren.length)
 });
 

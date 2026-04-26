@@ -1,4 +1,4 @@
-import { Regex, Type } from '@ephox/katamari';
+import { Regex } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Tools from 'hugerte/core/api/util/Tools';
@@ -12,9 +12,9 @@ const createTemplateList = (editor: Editor, callback: (templates: ExternalTempla
   return (): void => {
     const templateList = Options.getTemplates(editor);
 
-    if (Type.isFunction(templateList)) {
+    if (typeof (templateList) === 'function') {
       templateList(callback);
-    } else if (Type.isString(templateList)) {
+    } else if (typeof (templateList) === 'string') {
       fetch(templateList)
         .then((res) => {
           if (res.ok) {
@@ -29,7 +29,7 @@ const createTemplateList = (editor: Editor, callback: (templates: ExternalTempla
 
 const replaceTemplateValues = (html: string, templateValues: TemplateValues | undefined): string => {
   Tools.each(templateValues, (v, k) => {
-    if (Type.isFunction(v)) {
+    if (typeof (v) === 'function') {
       v = v(k);
     }
 
@@ -45,7 +45,7 @@ const replaceVals = (editor: Editor, scope: HTMLElement): void => {
   Tools.each(dom.select('*', scope), (e) => {
     Tools.each(vl, (v, k) => {
       if (dom.hasClass(e, k)) {
-        if (Type.isFunction(v)) {
+        if (typeof (v) === 'function') {
           // TODO: TINY-7792: Investigate as this appears to be a bug as "replaceTemplateValues" above uses
           // the same values here and it expects a string and return value so this is not compatible.
           v(e as any);

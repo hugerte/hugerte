@@ -1,6 +1,6 @@
 import { AddEventsBehaviour, AlloyEvents, Behaviour, Focusing, Memento, SimpleSpec, Tabstopping } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Obj, Optional, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 
 import Resource from 'hugerte/core/api/Resource';
 
@@ -11,7 +11,7 @@ type CustomEditorSpec = Dialog.CustomEditor;
 type CustomEditorInitFn = Dialog.CustomEditorInitFn;
 
 const isOldCustomEditor = (spec: CustomEditorSpec): spec is Dialog.CustomEditorOld =>
-  Obj.has(spec as Dialog.CustomEditorOld, 'init');
+  Object.prototype.hasOwnProperty.call(spec as Dialog.CustomEditorOld, 'init');
 
 export const renderCustomEditor = (spec: CustomEditorSpec): SimpleSpec => {
   const editorApi = Singleton.value<Dialog.CustomEditorInit>();
@@ -23,7 +23,7 @@ export const renderCustomEditor = (spec: CustomEditorSpec): SimpleSpec => {
   });
 
   const initialValue = Singleton.value<string>();
-  const focusBehaviour = !isOldCustomEditor(spec) && spec.onFocus.isSome() ? [
+  const focusBehaviour = !isOldCustomEditor(spec) && spec.onFocus !== null ? [
     Focusing.config({
       onFocus: (comp) => {
         spec.onFocus.each((onFocusFn) => {
@@ -60,9 +60,9 @@ export const renderCustomEditor = (spec: CustomEditorSpec): SimpleSpec => {
         })
       ]),
       RepresentingConfigs.withComp(
-        Optional.none(),
+        null,
         () => editorApi.get().fold(
-          () => initialValue.get().getOr(''),
+          () => initialValue.get() ?? (''),
           (ed) => ed.getValue()
         ),
         (_component, value) => {

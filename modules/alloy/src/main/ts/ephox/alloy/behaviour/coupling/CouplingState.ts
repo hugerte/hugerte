@@ -1,4 +1,4 @@
-import { Fun, Obj, Optional } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { nuState } from '../common/BehaviourState';
@@ -11,8 +11,8 @@ import { CouplingConfig, CouplingState } from './CouplingTypes';
 const init = (): CouplingState => {
   const coupled: Record<string, AlloyComponent> = { };
 
-  const lookupCoupled = (coupleConfig: CouplingConfig, coupledName: string): Optional<AlloyComponent> => {
-    const available = Obj.keys(coupleConfig.others);
+  const lookupCoupled = (coupleConfig: CouplingConfig, coupledName: string): (AlloyComponent) | null => {
+    const available = Object.keys(coupleConfig.others);
     if (available.length === 0) {
       throw new Error('Cannot find any known coupled components');
     } else {
@@ -35,7 +35,7 @@ const init = (): CouplingState => {
     });
   };
 
-  const getExisting = (component: AlloyComponent, coupleConfig: CouplingConfig, name: string): Optional<AlloyComponent> => {
+  const getExisting = (component: AlloyComponent, coupleConfig: CouplingConfig, name: string): (AlloyComponent) | null => {
     return lookupCoupled(coupleConfig, name).orThunk(() => {
       // Validate we recognise this coupled component's name.
       Obj.get<any, string>(coupleConfig.others, name).getOrDie(
@@ -43,11 +43,11 @@ const init = (): CouplingState => {
       );
 
       // It's a valid name, so return None, because it hasn't been built yet.
-      return Optional.none();
+      return null;
     });
   };
 
-  const readState = Fun.constant({ });
+  const readState = () => { };
 
   return nuState({
     readState,

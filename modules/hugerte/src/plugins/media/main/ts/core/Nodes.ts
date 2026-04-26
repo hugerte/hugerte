@@ -1,4 +1,3 @@
-import { Arr, Obj, Strings, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Env from 'hugerte/core/api/Env';
@@ -17,9 +16,9 @@ const isLiveEmbedNode = (node: AstNode): boolean => {
 
 const getDimension = (node: AstNode, styles: Record<string, string>, dimension: 'width' | 'height', defaultValue: string | null = null): string | null => {
   const value = node.attr(dimension);
-  if (Type.isNonNullable(value)) {
+  if ((value) != null) {
     return value;
-  } else if (!Obj.has(styles, dimension)) {
+  } else if (!Object.prototype.hasOwnProperty.call(styles, dimension)) {
     return defaultValue;
   } else {
     return null;
@@ -97,13 +96,13 @@ const createPreviewNode = (editor: Editor, node: AstNode): AstNode => {
   } else {
     // Exclude autoplay as we don't want video/audio to play by default
     const attrs = [ 'controls', 'crossorigin', 'currentTime', 'loop', 'muted', 'poster', 'preload' ];
-    Arr.each(attrs, (attrName) => {
+    (attrs).forEach((attrName) => {
       previewNode.attr(attrName, node.attr(attrName));
     });
 
     // Recreate the child nodes using the sanitized inner HTML
     const sanitizedHtml = previewWrapper.attr('data-mce-html');
-    if (Type.isNonNullable(sanitizedHtml)) {
+    if ((sanitizedHtml) != null) {
       appendNodeContent(editor, name, previewNode, unescape(sanitizedHtml));
     }
   }
@@ -126,7 +125,7 @@ const retainAttributesAndInnerHtml = (editor: Editor, sourceNode: AstNode, targe
     const attrName = attribs[ai].name;
     let attrValue = attribs[ai].value;
 
-    if (attrName !== 'width' && attrName !== 'height' && attrName !== 'style' && !Strings.startsWith(attrName, 'data-mce-')) {
+    if (attrName !== 'width' && attrName !== 'height' && attrName !== 'style' && !(attrName).startsWith('data-mce-')) {
       if (attrName === 'data' || attrName === 'src') {
         attrValue = editor.convertURL(attrValue, attrName);
       }
@@ -139,7 +138,7 @@ const retainAttributesAndInnerHtml = (editor: Editor, sourceNode: AstNode, targe
   // This enables us to copy/paste the fake object
   const serializer = HtmlSerializer({ inner: true }, editor.schema);
   const tempNode = new AstNode('div', 1);
-  Arr.each(sourceNode.children(), (child) => tempNode.append(child));
+  (sourceNode.children()).forEach((child) => tempNode.append(child));
   const innerHtml = serializer.serialize(tempNode);
   if (innerHtml) {
     targetNode.attr('data-mce-html', escape(innerHtml));
@@ -149,7 +148,7 @@ const retainAttributesAndInnerHtml = (editor: Editor, sourceNode: AstNode, targe
 
 const isPageEmbedWrapper = (node: AstNode): boolean => {
   const nodeClass = node.attr('class');
-  return Type.isString(nodeClass) && /\btiny-pageembed\b/.test(nodeClass);
+  return typeof (nodeClass) === 'string' && /\btiny-pageembed\b/.test(nodeClass);
 };
 
 const isWithinEmbedWrapper = (node: AstNode): boolean => {

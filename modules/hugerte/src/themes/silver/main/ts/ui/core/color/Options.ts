@@ -37,7 +37,7 @@ const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
   const colorProcessor = (value: unknown): any => {
-    if (Type.isArrayOf(value, Type.isString)) {
+    if ((Array.isArray(value) && (value).every(Type.isString))) {
       return { value: mapColors(value), valid: true };
     } else {
       return { valid: false, message: 'Must be an array of strings.' };
@@ -45,7 +45,7 @@ const register = (editor: Editor): void => {
   };
 
   const colorColsProcessor = (value: unknown): any => {
-    if (Type.isNumber(value) && value > 0) {
+    if (typeof (value) === 'number' && value > 0) {
       return { value, valid: true };
     } else {
       return { valid: false, message: 'Must be a positive number.' };

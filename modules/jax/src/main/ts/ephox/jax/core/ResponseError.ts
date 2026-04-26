@@ -1,4 +1,4 @@
-import { Future, Optional } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 
 import { readBlobAsText } from './BlobReader';
 import { DataType } from './DataType';
@@ -8,7 +8,7 @@ import * as JsonResponse from './JsonResponse';
 
 // can't get responseText of a blob, throws a DomException. Need to use FileReader.
 // request.response can be null if the server provided no content in the error response.
-const getBlobError = (request: XMLHttpRequest) => Optional.from(request.response).map(readBlobAsText).getOr(Future.pure('no response content'));
+const getBlobError = (request: XMLHttpRequest) => (request.response ?? null).map(readBlobAsText) ?? (Future.pure('no response content'));
 
 const fallback = (request: XMLHttpRequest) => Future.pure(request.response);
 

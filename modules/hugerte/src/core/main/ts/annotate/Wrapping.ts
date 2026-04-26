@@ -1,4 +1,4 @@
-import { Arr, Id, Obj, Singleton, Unicode } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Attribute, Class, Classes, Html, Insert, Replication, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -48,7 +48,7 @@ const applyAnnotation = (
     if (classes.length > 0) {
       Attribute.set(elem, `${Markings.dataAnnotationClasses()}`, classes.join(','));
     }
-    const attributeNames = Obj.keys(attributes);
+    const attributeNames = Object.keys(attributes);
     if (attributeNames.length > 0) {
       Attribute.set(elem, `${Markings.dataAnnotationAttributes()}`, attributeNames.join(','));
     }
@@ -61,9 +61,9 @@ const removeDirectAnnotation = (elem: SugarElement<Element>): void => {
   Attribute.remove(elem, `${Markings.dataAnnotation()}`);
   Attribute.remove(elem, `${Markings.dataAnnotationActive()}`);
 
-  const customAttrNames = Attribute.getOpt(elem, `${Markings.dataAnnotationAttributes()}`).map((names) => names.split(',')).getOr([]);
-  const customClasses = Attribute.getOpt(elem, `${Markings.dataAnnotationClasses()}`).map((names) => names.split(',')).getOr([]);
-  Arr.each(customAttrNames, (name) => Attribute.remove(elem, name));
+  const customAttrNames = Attribute.getOpt(elem, `${Markings.dataAnnotationAttributes()}`).map((names) => names.split(',')) ?? ([]);
+  const customClasses = Attribute.getOpt(elem, `${Markings.dataAnnotationClasses()}`).map((names) => names.split(',')) ?? ([]);
+  (customAttrNames).forEach((name) => Attribute.remove(elem, name));
   Classes.remove(elem, customClasses);
   Attribute.remove(elem, `${Markings.dataAnnotationClasses()}`);
   Attribute.remove(elem, `${Markings.dataAnnotationAttributes()}`);
@@ -101,7 +101,7 @@ const annotate = (editor: Editor, rng: Range, uid: string, annotationName: strin
     });
 
   const processElements = (elems: SugarElement<Node>[]) => {
-    Arr.each(elems, processElement);
+    (elems).forEach(processElement);
   };
 
   const processElement = (elem: SugarElement<Node>) => {
@@ -138,7 +138,7 @@ const annotate = (editor: Editor, rng: Range, uid: string, annotationName: strin
   };
 
   const processNodes = (nodes: Node[]) => {
-    const elems = Arr.map(nodes, SugarElement.fromDom);
+    const elems = (nodes).map(SugarElement.fromDom);
     processElements(elems);
   };
 
@@ -155,7 +155,7 @@ const annotateWithBookmark = (editor: Editor, name: string, settings: AnnotatorS
     const selection = editor.selection;
     const initialRng = selection.getRng();
     const hasFakeSelection = TableCellSelection.getCellsFromEditor(editor).length > 0;
-    const masterUid = Id.generate('mce-annotation');
+    const masterUid = (('mce-annotation') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
     if (initialRng.collapsed && !hasFakeSelection) {
       applyWordGrab(editor, initialRng);
@@ -166,7 +166,7 @@ const annotateWithBookmark = (editor: Editor, name: string, settings: AnnotatorS
     if (selection.getRng().collapsed && !hasFakeSelection) {
       const wrapper = makeAnnotation(editor.getDoc(), masterUid, data, name, settings.decorate);
       // Put something visible in the marker
-      Html.set(wrapper, Unicode.nbsp);
+      Html.set(wrapper, '\u00A0');
       selection.getRng().insertNode(wrapper.dom);
       selection.select(wrapper.dom);
     } else {

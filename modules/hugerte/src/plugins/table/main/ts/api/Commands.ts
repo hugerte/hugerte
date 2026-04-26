@@ -1,4 +1,3 @@
-import { Fun, Obj } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -15,13 +14,13 @@ const registerCommands = (editor: Editor): void => {
   };
 
   // Register dialog commands
-  Obj.each({
+  Object.entries({
     // AP-101 TableDialog.open renders a slightly different dialog if isNew is true
-    mceTableProps: Fun.curry(TableDialog.open, editor, false),
-    mceTableRowProps: Fun.curry(RowDialog.open, editor),
-    mceTableCellProps: Fun.curry(CellDialog.open, editor),
-    mceInsertTableDialog: Fun.curry(TableDialog.open, editor, true),
-  }, (func, name) => editor.addCommand(name, () => runAction(func)));
+    mceTableProps: ((..._rest: any[]) => (TableDialog.open)(editor, false, ..._rest)),
+    mceTableRowProps: ((..._rest: any[]) => (RowDialog.open)(editor, ..._rest)),
+    mceTableCellProps: ((..._rest: any[]) => (CellDialog.open)(editor, ..._rest)),
+    mceInsertTableDialog: ((..._rest: any[]) => (TableDialog.open)(editor, true, ..._rest)),
+  }).forEach(([_k, _v]: [any, any]) => ((func, name) => editor.addCommand(name, () => runAction(func)))(_v, _k));
 };
 
 export { registerCommands };

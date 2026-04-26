@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { DomEvent, EventArgs, Insert, SugarElement } from '@ephox/sugar';
 
 import { UncurriedHandler } from '../../events/EventRegistry';
@@ -25,7 +25,7 @@ export interface DispatchedAlloyConfig {
 }
 
 export interface Dispatcher {
-  readonly getTarget: (elem: SugarElement<Node>) => Optional<SugarElement<Node>>;
+  readonly getTarget: (elem: SugarElement<Node>) => (SugarElement<Node>) | null;
   readonly alloyConfig: DispatchedAlloyConfig;
 }
 
@@ -99,7 +99,7 @@ const supportedEvents = [
 
 // Find the dispatcher information for the target if available. Note, the
 // dispatcher may also change the target.
-const findDispatcher = (dispatchers: Dispatcher[], target: SugarElement<Node>): Optional<DispatcherMission> =>
+const findDispatcher = (dispatchers: Dispatcher[], target: SugarElement<Node>): (DispatcherMission) | null =>
   Arr.findMap(dispatchers, (dispatcher: Dispatcher) => dispatcher.getTarget(target).map((newTarget) => ({
     target: newTarget,
     dispatcher
@@ -129,7 +129,7 @@ const engage = (spec: ForeignGuiSpec): ForeignGuiConnection => {
 
   const cache = ForeignCache();
 
-  const domEvents = Arr.map(supportedEvents, (type) => DomEvent.bind(detail.root, type, (event) => {
+  const domEvents = (supportedEvents).map((type) => DomEvent.bind(detail.root, type, (event) => {
     dispatchTo(type, event);
   }));
 
@@ -172,7 +172,7 @@ const engage = (spec: ForeignGuiSpec): ForeignGuiConnection => {
       const events = data.evts;
 
       // if this dispatcher defines this event, proxy it and fire the handler
-      if (Obj.hasNonNullableKey(events, type)) {
+      if ((Object.prototype.hasOwnProperty.call(events, type) && (events)[type] != null)) {
         proxyFor(event, mission.target, events[type]);
       }
     });
@@ -186,7 +186,7 @@ const engage = (spec: ForeignGuiSpec): ForeignGuiConnection => {
 
   // Disconnect the foreign GUI
   const disengage = (): void => {
-    Arr.each(domEvents, (e) => {
+    (domEvents).forEach((e) => {
       e.unbind();
     });
   };

@@ -1,4 +1,3 @@
-import { Id, Arr } from '@ephox/katamari';
 import { DomDescent } from '@ephox/phoenix';
 import { Attribute, SelectorFind, SugarElement } from '@ephox/sugar';
 
@@ -14,7 +13,7 @@ const insertAccordion = (editor: Editor): void => {
   }
 
   const editorBody = SugarElement.fromDom(editor.getBody());
-  const uid = Id.generate('acc');
+  const uid = (('acc') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
   const summaryText = editor.dom.encode(editor.selection.getRng().toString() || editor.translate('Accordion summary...'));
   const bodyText = editor.dom.encode(editor.translate('Accordion body...'));
 
@@ -78,7 +77,7 @@ const toggleAllAccordions = (editor: Editor, state?: boolean): void => {
   if (accordions.length === 0) {
     return;
   }
-  Arr.each(accordions, (accordion) => toggleDetailsElement(accordion, state ?? !Utils.isOpen(accordion)));
+  (accordions).forEach((accordion) => toggleDetailsElement(accordion, state ?? !Utils.isOpen(accordion)));
   Events.fireToggleAllAccordionsEvent(editor, accordions, state);
 };
 

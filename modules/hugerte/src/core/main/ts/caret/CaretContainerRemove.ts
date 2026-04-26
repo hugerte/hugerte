@@ -56,9 +56,9 @@ const removeTextAndReposition = (caretContainer: Text, pos: CaretPosition): Care
 
 const removeElementAndReposition = (caretContainer: Node, pos: CaretPosition): CaretPosition => {
   const parentNode = pos.container();
-  const newPosition = Arr.indexOf(Arr.from(parentNode.childNodes), caretContainer).map((index) => {
+  const newPosition = Arr.indexOf(Array.from(parentNode.childNodes), caretContainer).map((index) => {
     return index < pos.offset() ? CaretPosition(parentNode, pos.offset() - 1) : pos;
-  }).getOr(pos);
+  }) ?? (pos);
   remove(caretContainer);
   return newPosition;
 };

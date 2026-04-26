@@ -1,5 +1,5 @@
 import { Objects } from '@ephox/boulder';
-import { Arr, Fun, Merger, Obj, Optional } from '@ephox/katamari';
+import { Merger, Optional } from '@ephox/katamari';
 import { Attribute, EventArgs, Focus, Value } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from '../../api/behaviour/AddEventsBehaviour';
@@ -65,7 +65,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
       const onOpenSync = (sandbox: AlloyComponent) => {
         Composing.getCurrent(sandbox).each(highlighter);
       };
-      DropdownUtils.open(detail, mapFetch(comp), comp, sandbox, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+      DropdownUtils.open(detail, mapFetch(comp), comp, sandbox, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(() => {});
     }
   };
 
@@ -73,20 +73,20 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
   // (easily) the same representing logic as input fields.
   const focusBehaviours = InputBase.focusBehaviours(detail);
 
-  const mapFetch = (comp: AlloyComponent) => (tdata: Optional<TieredData>): Optional<TieredData> => tdata.map((data) => {
-    const menus = Obj.values(data.menus);
-    const items = Arr.bind(menus, (menu) => Arr.filter(menu.items, (item): item is NormalItemSpec => item.type === 'item'));
+  const mapFetch = (comp: AlloyComponent) => (tdata: (TieredData) | null): (TieredData) | null => tdata.map((data) => {
+    const menus = Object.values(data.menus);
+    const items = (menus).flatMap((menu) => (menu.items).filter((item): item is NormalItemSpec => item.type === 'item'));
 
     const repState = Representing.getState(comp) as DatasetRepresentingState;
     repState.update(
-      Arr.map(items, (item) => item.data)
+      (items).map((item) => item.data)
     );
     return data;
   });
 
   // This function (getActiveMenu) is intended to make it easier to read what is happening
   // without having to decipher the Highlighting and Composing calls.
-  const getActiveMenu = (sandboxComp: AlloyComponent): Optional<AlloyComponent> =>
+  const getActiveMenu = (sandboxComp: AlloyComponent): (AlloyComponent) | null =>
     Composing.getCurrent(sandboxComp);
 
   const typeaheadCustomEvents = 'typeaheadevents';
@@ -106,7 +106,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
         setValue: (comp, data) => {
           Value.set(comp.element, detail.model.getDisplayText(data));
         },
-        ...detail.initialData.map((d) => Objects.wrap('initialValue', d)).getOr({ })
+        ...detail.initialData.map((d) => Objects.wrap('initialValue', d)) ?? ({ })
       }
     }),
     Streaming.config({
@@ -126,7 +126,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
             // Get the value of the previously active (selected/highlighted) item. We
             // are going to try to preserve this.
             const previousValue = getActiveMenu(sandbox).bind((activeMenu) =>
-              Highlighting.getHighlighted(activeMenu).map(Representing.getValue) as Optional<TypeaheadData>
+              Highlighting.getHighlighted(activeMenu).map(Representing.getValue) as (TypeaheadData) | null
             );
 
             // Turning previewing ON here every keystroke is unnecessary, but relies
@@ -176,7 +176,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
                   // Highlight first if could not find it?
                   Highlighting.getHighlighted(activeMenu).orThunk(() => {
                     Highlighting.highlightFirst(activeMenu);
-                    return Optional.none();
+                    return null;
                   });
                 });
               });
@@ -193,7 +193,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
               // we want to highlight just the menu so that the onOpenSync can find the
               // activeMenu.
               HighlightOnOpen.HighlightJustMenu
-            ).get(Fun.noop);
+            ).get(() => {});
           }
         }
       },
@@ -208,7 +208,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
         navigateList(comp, simulatedEvent, Highlighting.highlightFirst);
         return Optional.some<boolean>(true);
       },
-      onEscape: (comp): Optional<boolean> => {
+      onEscape: (comp): (boolean) | null => {
         // Escape only has handling if the sandbox is visible. It has no meaning
         // to the input itself.
         const sandbox = Coupling.getCoupled(comp, 'sandbox');
@@ -216,7 +216,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
           Sandboxing.close(sandbox);
           return Optional.some<boolean>(true);
         }
-        return Optional.none();
+        return null;
       },
       onUp: (comp, simulatedEvent) => {
         // The navigation here will stop the "previewing" mode, because
@@ -291,14 +291,14 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
         // Set up the reference to the typeahead, so that it can retrieved from
         // the tiered menu part, even if the tieredmenu is in a different
         // system / alloy root / mothership.
-        detail.lazyTypeaheadComp.set(Optional.some(typeaheadComp));
+        detail.lazyTypeaheadComp.set(typeaheadComp);
       }),
       AlloyEvents.runOnDetached((_typeaheadComp) => {
-        detail.lazyTypeaheadComp.set(Optional.none());
+        detail.lazyTypeaheadComp.set(null);
       }),
       AlloyEvents.runOnExecute((comp) => {
-        const onOpenSync = Fun.noop;
-        DropdownUtils.togglePopup(detail, mapFetch(comp), comp, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(Fun.noop);
+        const onOpenSync = () => {};
+        DropdownUtils.togglePopup(detail, mapFetch(comp), comp, externals, onOpenSync, HighlightOnOpen.HighlightMenuAndItem).get(() => {});
       }),
       AlloyEvents.run<ItemExecuteEvent>(TypeaheadEvents.itemExecute(), (comp, se) => {
         const sandbox = Coupling.getCoupled(comp, 'sandbox');
@@ -315,7 +315,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
       AlloyEvents.run(SystemEvents.postBlur(), (typeahead) => {
         const sandbox = Coupling.getCoupled(typeahead, 'sandbox');
         // Only close the sandbox if the focus isn't inside it!
-        if (Focus.search(sandbox.element).isNone()) {
+        if (Focus.search(sandbox.element) === null) {
           Sandboxing.close(sandbox);
         }
       })

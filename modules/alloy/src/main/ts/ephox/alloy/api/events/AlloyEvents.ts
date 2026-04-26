@@ -1,5 +1,4 @@
 import { Objects } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 import { TransformFind } from '@ephox/sugar';
 
 import * as EventRoot from '../../alien/EventRoot';
@@ -125,10 +124,10 @@ const runWithTarget = <T extends EventFormat>(name: string, f: (component: Alloy
       // until we find an alloy component? Performance concern?
       // TODO: Write tests for this.
       () => {
-        const closest = TransformFind.closest(ev.target, (el) => component.getSystem().getByDom(el).toOptional(), Fun.never);
+        const closest = TransformFind.closest(ev.target, (el) => component.getSystem().getByDom(el).toOptional(), (() => false as const));
 
         // If we still found nothing ... fire on component itself;
-        return closest.getOr(component);
+        return closest ?? (component);
       }
     );
 

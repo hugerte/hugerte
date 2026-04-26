@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Fun } from '@ephox/katamari';
 
 import { InjectPosition } from '../api/data/InjectPosition';
 import * as Split from '../api/general/Split';
@@ -57,7 +56,7 @@ const atStartOf = <E, D>(universe: Universe<E, D>, element: E, offset: number, i
   };
 
   const onRest = onBefore;
-  const onInvalid = Fun.noop;
+  const onInvalid = () => {};
 
   position.fold(onBefore, onAfter, onRest, onLast, onInvalid);
 };

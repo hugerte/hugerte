@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';
@@ -14,7 +13,7 @@ const preventSummaryToggle = (editor: Editor): void => {
 const filterDetails = (editor: Editor): void => {
   editor.parser.addNodeFilter('details', (elms) => {
     const initialStateOption = Options.getDetailsInitialState(editor);
-    Arr.each(elms, (details) => {
+    (elms).forEach((details) => {
       if (initialStateOption === 'expanded') {
         details.attr('open', 'open');
       } else if (initialStateOption === 'collapsed') {
@@ -25,7 +24,7 @@ const filterDetails = (editor: Editor): void => {
 
   editor.serializer.addNodeFilter('details', (elms) => {
     const serializedStateOption = Options.getDetailsSerializedState(editor);
-    Arr.each(elms, (details) => {
+    (elms).forEach((details) => {
       if (serializedStateOption === 'expanded') {
         details.attr('open', 'open');
       } else if (serializedStateOption === 'collapsed') {

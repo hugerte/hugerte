@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Delay from 'hugerte/core/api/util/Delay';
@@ -9,7 +8,7 @@ import * as Events from '../api/Events';
 import * as Options from '../api/Options';
 
 const isEmpty = (editor: Editor, html?: string): boolean => {
-  if (Type.isUndefined(html)) {
+  if ((html) === undefined) {
     return editor.dom.isEmpty(editor.getBody());
   } else {
     const trimmedHtml = Tools.trim(html);

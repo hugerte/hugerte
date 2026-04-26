@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Cell } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -14,8 +14,8 @@ import * as UrlPatterns from '../core/UrlPatterns';
 
 type SourceInput = 'source' | 'altsource' | 'poster' | 'dimensions';
 
-const extractMeta = (sourceInput: Exclude<SourceInput, 'dimensions'>, data: MediaDialogData): Optional<Record<string, string>> =>
-  Obj.get(data, sourceInput).bind((mainData) => Obj.get(mainData, 'meta'));
+const extractMeta = (sourceInput: Exclude<SourceInput, 'dimensions'>, data: MediaDialogData): (Record<string, string>) | null =>
+  ((data)[sourceInput] ?? null).bind((mainData) => ((mainData)['meta'] ?? null));
 
 const getValue = (data: MediaDialogData, metaData: Record<string, string>, sourceInput?: SourceInput) => (prop: keyof MediaDialogData): Record<string, string> => {
   // Cases:
@@ -24,33 +24,33 @@ const getValue = (data: MediaDialogData, metaData: Record<string, string>, sourc
   // 3. Not a urlinput so just get string
   // If prop === sourceInput do 1, 2 then 3, else do 2 then 1 or 3
   // ASSUMPTION: we only want to get values for props that already exist in data
-  const getFromData = (): Optional<string | Record<string, string> | DialogSubData> => Obj.get(data, prop);
-  const getFromMetaData = (): Optional<string> => Obj.get(metaData, prop);
-  const getNonEmptyValue = (c: Record<string, string>): Optional<string> => Obj.get(c, 'value').bind((v: string) => v.length > 0 ? Optional.some(v) : Optional.none());
+  const getFromData = (): (string | Record<string, string> | DialogSubData) | null => ((data)[prop] ?? null);
+  const getFromMetaData = (): (string) | null => ((metaData)[prop] ?? null);
+  const getNonEmptyValue = (c: Record<string, string>): (string) | null => ((c)['value'] ?? null).bind((v: string) => v.length > 0 ? v : null);
 
-  const getFromValueFirst = () => getFromData().bind((child) => Type.isObject(child)
+  const getFromValueFirst = () => getFromData().bind((child) => (typeof (child) === 'object' && (child) !== null)
     ? getNonEmptyValue(child as Record<string, string>).orThunk(getFromMetaData)
-    : getFromMetaData().orThunk(() => Optional.from(child as string)));
+    : getFromMetaData().orThunk(() => (child as string ?? null)));
 
-  const getFromMetaFirst = () => getFromMetaData().orThunk(() => getFromData().bind((child) => Type.isObject(child)
+  const getFromMetaFirst = () => getFromMetaData().orThunk(() => getFromData().bind((child) => (typeof (child) === 'object' && (child) !== null)
     ? getNonEmptyValue(child as Record<string, string>)
-    : Optional.from(child as string)));
+    : (child as string ?? null)));
 
-  return { [prop]: (prop === sourceInput ? getFromValueFirst() : getFromMetaFirst()).getOr('') };
+  return { [prop]: (prop === sourceInput ? getFromValueFirst() : getFromMetaFirst()) ?? ('') };
 };
 
 const getDimensions = (data: MediaDialogData, metaData: Record<string, string>): MediaDialogData['dimensions'] => {
   const dimensions: MediaDialogData['dimensions'] = {};
-  Obj.get(data, 'dimensions').each((dims) => {
-    Arr.each([ 'width', 'height' ] as ('width' | 'height')[], (prop) => {
-      Obj.get(metaData, prop).orThunk(() => Obj.get(dims, prop)).each((value) => dimensions[prop] = value);
+  ((data)['dimensions'] ?? null).each((dims) => {
+    ([ 'width', 'height' ] as ('width' | 'height')[]).forEach((prop) => {
+      ((metaData)[prop] ?? null).orThunk(() => ((dims)[prop] ?? null)).each((value) => dimensions[prop] = value);
     });
   });
   return dimensions;
 };
 
 const unwrap = (data: MediaDialogData, sourceInput?: SourceInput): MediaData => {
-  const metaData = sourceInput && sourceInput !== 'dimensions' ? extractMeta(sourceInput, data).getOr({}) : {};
+  const metaData = sourceInput && sourceInput !== 'dimensions' ? extractMeta(sourceInput, data) ?? ({}) : {};
   const get = getValue(data, metaData, sourceInput);
   return {
     ...get('source'),
@@ -64,14 +64,14 @@ const unwrap = (data: MediaDialogData, sourceInput?: SourceInput): MediaData => 
 const wrap = (data: MediaData): MediaDialogData => {
   const wrapped: MediaDialogData = {
     ...data,
-    source: { value: Obj.get(data, 'source').getOr('') },
-    altsource: { value: Obj.get(data, 'altsource').getOr('') },
-    poster: { value: Obj.get(data, 'poster').getOr('') }
+    source: { value: ((data)['source'] ?? null) ?? ('') },
+    altsource: { value: ((data)['altsource'] ?? null) ?? ('') },
+    poster: { value: ((data)['poster'] ?? null) ?? ('') }
   };
 
   // Add additional size values that may or may not have been in the html
-  Arr.each([ 'width', 'height' ] as const, (prop) => {
-    Obj.get(data, prop).each((value) => {
+  ([ 'width', 'height' ] as const).forEach((prop) => {
+    ((data)[prop] ?? null).each((value) => {
       const dimensions: MediaDialogData['dimensions'] = wrapped.dimensions || {};
       dimensions[prop] = value;
       wrapped.dimensions = dimensions;
@@ -116,7 +116,7 @@ const getEditorData = (editor: Editor): MediaData => {
 
 const addEmbedHtml = (api: Dialog.DialogInstanceApi<MediaDialogData>, editor: Editor) => (response: Service.EmbedResult): void => {
   // Only set values if a URL has been defined
-  if (Type.isString(response.url) && response.url.trim().length > 0) {
+  if (typeof (response.url) === 'string' && response.url.trim().length > 0) {
     const html = response.html;
     const snippetData = HtmlToData.htmlToData(html, editor.schema);
     const nuData: MediaData = {
@@ -153,7 +153,7 @@ const handleInsert = (editor: Editor, html: string): void => {
 };
 
 const isEmbedIframe = (url: string, mediaDataType?: MediaDataType) =>
-  Type.isNonNullable(mediaDataType) && mediaDataType === 'ephox-embed-iri' && Type.isNonNullable(UrlPatterns.matchPattern(url));
+  (mediaDataType) != null && mediaDataType === 'ephox-embed-iri' && (UrlPatterns.matchPattern(url)) != null;
 
 const shouldInsertAsNewIframe = (prevData: MediaData, newData: MediaData) => {
   const hasDimensionsChanged = (prevData: MediaData, newData: MediaData) =>

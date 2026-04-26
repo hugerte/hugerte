@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { dialogButtonFields } from './Dialog';
 import { DialogFooterNormalButton, DialogFooterNormalButtonSpec } from './DialogFooterButton';
@@ -60,9 +60,9 @@ export interface UrlDialogSpec {
 export interface UrlDialog {
   title: string;
   url: string;
-  height: Optional<number>;
-  width: Optional<number>;
-  buttons: Optional<UrlDialogFooterButton[]>;
+  height: (number) | null;
+  width: (number) | null;
+  buttons: (UrlDialogFooterButton[]) | null;
 
   onAction: UrlDialogActionHandler;
   onClose: UrlDialogCloseHandler;
@@ -81,10 +81,10 @@ export const urlDialogSchema = StructureSchema.objOf([
   FieldSchema.optionNumber('height'),
   FieldSchema.optionNumber('width'),
   FieldSchema.optionArrayOf('buttons', urlDialogButtonSchema),
-  FieldSchema.defaultedFunction('onAction', Fun.noop),
-  FieldSchema.defaultedFunction('onCancel', Fun.noop),
-  FieldSchema.defaultedFunction('onClose', Fun.noop),
-  FieldSchema.defaultedFunction('onMessage', Fun.noop)
+  FieldSchema.defaultedFunction('onAction', () => {}),
+  FieldSchema.defaultedFunction('onCancel', () => {}),
+  FieldSchema.defaultedFunction('onClose', () => {}),
+  FieldSchema.defaultedFunction('onMessage', () => {})
 ]);
 
 export const createUrlDialog = (spec: UrlDialogSpec): Result<UrlDialog, StructureSchema.SchemaError<any>> =>

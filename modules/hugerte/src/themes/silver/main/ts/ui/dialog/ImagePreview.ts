@@ -1,6 +1,6 @@
 import { AlloyComponent, Behaviour, Memento, SimpleSpec } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Cell, Optional, Type } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute, Class, Css, Height, Ready, SugarElement, Width } from '@ephox/sugar';
 
 import { ComposingConfigs } from '../alien/ComposingConfigs';
@@ -10,10 +10,10 @@ type ImagePreviewSpec = Omit<Dialog.ImagePreview, 'type'>;
 
 export interface ImagePreviewDataSpec {
   readonly url: string;
-  readonly zoom: Optional<number>;
+  readonly zoom: (number) | null;
   // not documented, but can be helpful when dynamically changing the URL
-  readonly cachedWidth: Optional<number>;
-  readonly cachedHeight: Optional<number>;
+  readonly cachedWidth: (number) | null;
+  readonly cachedHeight: (number) | null;
 }
 
 const calculateImagePosition = (panelWidth: number, panelHeight: number, imageWidth: number, imageHeight: number, zoom: number) => {
@@ -36,14 +36,14 @@ const zoomToFit = (panel: SugarElement<HTMLElement>, width: number, height: numb
   return Math.min(panelW / width, panelH / height, 1);
 };
 
-export const renderImagePreview = (spec: ImagePreviewSpec, initialData: Optional<Dialog.ImagePreviewData>): SimpleSpec => {
-  const cachedData = Cell<Dialog.ImagePreviewData>(initialData.getOr({ url: '' }));
+export const renderImagePreview = (spec: ImagePreviewSpec, initialData: (Dialog.ImagePreviewData) | null): SimpleSpec => {
+  const cachedData = Cell<Dialog.ImagePreviewData>(initialData ?? ({ url: '' }));
 
   const memImage = Memento.record({
     dom: {
       tag: 'img',
       classes: [ 'tox-imagepreview__image' ],
-      attributes: initialData.map((data) => ({ src: data.url })).getOr({})
+      attributes: initialData.map((data) => ({ src: data.url })) ?? ({})
     },
   });
 
@@ -72,8 +72,8 @@ export const renderImagePreview = (spec: ImagePreviewSpec, initialData: Optional
 
     const applyFramePositioning = () => {
       const { cachedWidth, cachedHeight, zoom } = translatedData;
-      if (!Type.isUndefined(cachedWidth) && !Type.isUndefined(cachedHeight)) {
-        if (Type.isUndefined(zoom)) {
+      if (!(cachedWidth) === undefined && !(cachedHeight) === undefined) {
+        if ((zoom) === undefined) {
           const z = zoomToFit(frameComponent.element, cachedWidth, cachedHeight);
           // sneaky mutation since we own the object
           translatedData.zoom = z;
@@ -118,11 +118,11 @@ export const renderImagePreview = (spec: ImagePreviewSpec, initialData: Optional
   spec.height.each((h) => styles.height = h);
 
   // TODO: TINY-8393 Use the initial data properly once it's validated
-  const fakeValidatedData: Optional<ImagePreviewDataSpec> = initialData.map((d) => ({
+  const fakeValidatedData: (ImagePreviewDataSpec) | null = initialData.map((d) => ({
     url: d.url,
-    zoom: Optional.from(d.zoom),
-    cachedWidth: Optional.from(d.cachedWidth),
-    cachedHeight: Optional.from(d.cachedHeight),
+    zoom: (d.zoom ?? null),
+    cachedWidth: (d.cachedWidth ?? null),
+    cachedHeight: (d.cachedHeight ?? null),
   }));
 
   return {

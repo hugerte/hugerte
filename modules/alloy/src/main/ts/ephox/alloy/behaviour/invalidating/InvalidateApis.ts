@@ -1,4 +1,4 @@
-import { Arr, Future, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Attribute, Class, Html, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -12,11 +12,11 @@ const ariaElements = [
 
 const isAriaElement = (elem: SugarElement<Node>): elem is SugarElement<HTMLInputElement | HTMLTextAreaElement> => {
   const name = SugarNode.name(elem);
-  return Arr.contains(ariaElements, name);
+  return (ariaElements).includes(name);
 };
 
 const markValid = (component: AlloyComponent, invalidConfig: InvalidatingConfig): void => {
-  const elem = invalidConfig.getRoot(component).getOr(component.element);
+  const elem = invalidConfig.getRoot(component) ?? (component.element);
   Class.remove(elem, invalidConfig.invalidClass);
   invalidConfig.notify.each((notifyInfo) => {
     if (isAriaElement(component.element)) {
@@ -31,7 +31,7 @@ const markValid = (component: AlloyComponent, invalidConfig: InvalidatingConfig)
 };
 
 const markInvalid = (component: AlloyComponent, invalidConfig: InvalidatingConfig, invalidState: Stateless, text: string): void => {
-  const elem = invalidConfig.getRoot(component).getOr(component.element);
+  const elem = invalidConfig.getRoot(component) ?? (component.element);
   Class.add(elem, invalidConfig.invalidClass);
   invalidConfig.notify.each((notifyInfo) => {
     if (isAriaElement(component.element)) {
@@ -73,7 +73,7 @@ const run = (component: AlloyComponent, invalidConfig: InvalidatingConfig, inval
 };
 
 const isInvalid = (component: AlloyComponent, invalidConfig: InvalidatingConfig): boolean => {
-  const elem = invalidConfig.getRoot(component).getOr(component.element);
+  const elem = invalidConfig.getRoot(component) ?? (component.element);
   return Class.has(elem, invalidConfig.invalidClass);
 };
 

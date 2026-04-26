@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import {
   HorizontalSliderDetail, SliderDetail, SliderValueX, SliderValueXY, SliderValueY, TwoDSliderDetail, VerticalSliderDetail
@@ -32,7 +31,7 @@ const halfY = (detail: VerticalSliderDetail): number => yRange(detail) / 2;
 
 const step = (detail: SliderDetail, useMultiplier?: boolean): number => useMultiplier ? detail.stepSize * detail.speedMultiplier : detail.stepSize;
 const snap = (detail: SliderDetail): boolean => detail.snapToGrid;
-const snapStart = (detail: SliderDetail): Optional<number> => detail.snapStart;
+const snapStart = (detail: SliderDetail): (number) | null => detail.snapStart;
 const rounded = (detail: SliderDetail): boolean => detail.rounded;
 
 // Not great but... /shrug

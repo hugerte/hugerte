@@ -1,4 +1,3 @@
-import { Arr, Obj } from '@ephox/katamari';
 
 import { NormalizedEditorOptions, RawEditorOptions } from './api/OptionTypes';
 import Tools from './api/util/Tools';
@@ -26,8 +25,8 @@ const deprecatedPlugins = [
 ];
 
 const getMatchingOptions = (options: RawEditorOptions, searchingFor: string[]): string[] => {
-  const settingNames = Arr.filter(searchingFor, (setting) => Obj.has(options, setting));
-  return Arr.sort(settingNames);
+  const settingNames = (searchingFor).filter((setting) => Object.prototype.hasOwnProperty.call(options, setting));
+  return [...(settingNames)].sort();
 };
 
 const getRemovedOptions = (options: RawEditorOptions): string[] => {
@@ -38,7 +37,7 @@ const getRemovedOptions = (options: RawEditorOptions): string[] => {
   if ((forcedRootBlock as any) === false || forcedRootBlock === '') {
     settingNames.push('forced_root_block (false only)');
   }
-  return Arr.sort(settingNames);
+  return [...(settingNames)].sort();
 };
 
 const getDeprecatedOptions = (options: RawEditorOptions): string[] =>
@@ -46,9 +45,9 @@ const getDeprecatedOptions = (options: RawEditorOptions): string[] =>
 
 const getMatchingPlugins = (options: NormalizedEditorOptions, searchingFor: string[]): string[] => {
   const plugins = Tools.makeMap(options.plugins, ' ');
-  const hasPlugin = (plugin: string) => Obj.has(plugins, plugin);
-  const pluginNames = Arr.filter(searchingFor, hasPlugin);
-  return Arr.sort(pluginNames);
+  const hasPlugin = (plugin: string) => Object.prototype.hasOwnProperty.call(plugins, plugin);
+  const pluginNames = (searchingFor).filter(hasPlugin);
+  return [...(pluginNames)].sort();
 };
 
 const getRemovedPlugins = (options: NormalizedEditorOptions): string[] =>
@@ -82,7 +81,7 @@ const logRemovedWarnings = (rawOptions: RawEditorOptions, normalizedOptions: Nor
 };
 
 const getPluginDescription = (name: string) =>
-  Arr.find(deprecatedPlugins, (entry) => entry.name === name).fold(
+  ((deprecatedPlugins).find((entry) => entry.name === name) ?? null).fold(
     () => name,
     (entry) => {
       if (entry.replacedWith) {

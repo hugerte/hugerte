@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj, Optional, Strings, Type, Unicode } from '@ephox/katamari';
 import { Attribute, Insert, Remove, SugarElement, SugarNode } from '@ephox/sugar';
 
 import DomTreeWalker from '../api/dom/TreeWalker';
@@ -113,7 +112,7 @@ const removeCaretContainer = (editor: Editor, node: Node | null, moveCaret: bool
 
 const insertCaretContainerNode = (editor: Editor, caretContainer: Node, formatNode: Node) => {
   const dom = editor.dom;
-  const block = dom.getParent(formatNode, Fun.curry(FormatUtils.isTextBlock, editor.schema));
+  const block = dom.getParent(formatNode, ((..._rest: any[]) => (FormatUtils.isTextBlock)(editor.schema, ..._rest)));
 
   if (block && dom.isEmpty(block)) {
     // Replace formatNode with caretContainer when removing format from empty block like <p><b>|</b></p>
@@ -134,7 +133,7 @@ const appendNode = (parentNode: Node, node: Node) => {
 };
 
 const insertFormatNodesIntoCaretContainer = (formatNodes: Node[], caretContainer: Node) => {
-  const innerMostFormatNode = Arr.foldr(formatNodes, (parentNode, formatNode) => {
+  const innerMostFormatNode = (formatNodes).reduceRight((parentNode, formatNode) => {
     return appendNode(parentNode, formatNode.cloneNode(false));
   }, caretContainer);
 
@@ -142,15 +141,15 @@ const insertFormatNodesIntoCaretContainer = (formatNodes: Node[], caretContainer
   return appendNode(innerMostFormatNode, doc.createTextNode(ZWSP));
 };
 
-const cleanFormatNode = (editor: Editor, caretContainer: Node, formatNode: Element, name: string, vars?: FormatVars, similar?: boolean): Optional<Node> => {
+const cleanFormatNode = (editor: Editor, caretContainer: Node, formatNode: Element, name: string, vars?: FormatVars, similar?: boolean): (Node) | null => {
   const formatter = editor.formatter;
   const dom = editor.dom;
 
   // Find all formats present on the format node
-  const validFormats = Arr.filter(Obj.keys(formatter.get()), (formatName) => formatName !== name && !Strings.contains(formatName, 'removeformat'));
+  const validFormats = (Object.keys(formatter.get())).filter((formatName) => formatName !== name && !(formatName).includes('removeformat'));
   const matchedFormats = MatchFormat.matchAllOnNode(editor, formatNode, validFormats);
   // Filter out any matched formats that are 'visually' equivalent to the 'name' format since they are not unique formats on the node
-  const uniqueFormats = Arr.filter(matchedFormats, (fmtName) => !FormatUtils.areSimilarFormats(editor, fmtName, name));
+  const uniqueFormats = (matchedFormats).filter((fmtName) => !FormatUtils.areSimilarFormats(editor, fmtName, name));
 
   // If more than one format is present, then there's additional formats that should be retained. So clone the node,
   // remove the format and then return cleaned format node
@@ -159,9 +158,9 @@ const cleanFormatNode = (editor: Editor, caretContainer: Node, formatNode: Eleme
     dom.add(caretContainer, clonedFormatNode);
     formatter.remove(name, vars, clonedFormatNode, similar);
     dom.remove(clonedFormatNode);
-    return Optional.some(clonedFormatNode);
+    return clonedFormatNode;
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
@@ -282,7 +281,7 @@ const removeCaretFormat = (editor: Editor, name: string, vars?: FormatVars, simi
     selection.moveToBookmark(bookmark);
   } else {
     const caretContainer = getParentCaretContainer(editor.getBody(), formatNode);
-    const parentsAfter = Type.isNonNullable(caretContainer) ? dom.getParents(formatNode.parentNode, Fun.always, caretContainer) : [];
+    const parentsAfter = (caretContainer) != null ? dom.getParents(formatNode.parentNode, (() => true as const), caretContainer) : [];
     const newCaretContainer = createCaretContainer(false).dom;
 
     insertCaretContainerNode(editor, newCaretContainer, caretContainer ?? formatNode);
@@ -293,7 +292,7 @@ const removeCaretFormat = (editor: Editor, name: string, vars?: FormatVars, simi
       ...cleanedFormatNode.toArray(),
       ...parentsAfter ], newCaretContainer);
     if (caretContainer) {
-      removeCaretContainerNode(editor, caretContainer, Type.isNonNullable(caretContainer));
+      removeCaretContainerNode(editor, caretContainer, (caretContainer) != null);
     }
     selection.setCursorLocation(caretTextNode, 1);
 
@@ -319,7 +318,7 @@ const disableCaretContainer = (editor: Editor, keyCode: number, moveCaret: boole
   }
 };
 
-const endsWithNbsp = (element: Node) => NodeType.isText(element) && Strings.endsWith(element.data, Unicode.nbsp);
+const endsWithNbsp = (element: Node) => NodeType.isText(element) && (element.data).endsWith('\u00A0');
 
 const setup = (editor: Editor): void => {
   editor.on('mouseup keydown', (e) => {
@@ -356,12 +355,12 @@ const isFormatElement = (editor: Editor, element: SugarElement<Node>): boolean =
     return false;
   }
   const inlineElements = editor.schema.getTextInlineElements();
-  return Obj.has(inlineElements, SugarNode.name(element)) && !isCaretNode(element.dom) && !NodeType.isBogus(element.dom);
+  return Object.prototype.hasOwnProperty.call(inlineElements, SugarNode.name(element)) && !isCaretNode(element.dom) && !NodeType.isBogus(element.dom);
 };
 
 const isFormatCaret = (editor: Editor, element: SugarElement<Node>): boolean => {
   const inlineElements = editor.schema.getTextInlineElements();
-  return Obj.has(inlineElements, SugarNode.name(element)) && isCaretNode(element.dom);
+  return Object.prototype.hasOwnProperty.call(inlineElements, SugarNode.name(element)) && isCaretNode(element.dom);
 };
 
 export {

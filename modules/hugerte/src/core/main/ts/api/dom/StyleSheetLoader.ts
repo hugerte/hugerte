@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
 import { Attribute, Insert, Remove, SelectorFind, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
 
 import Tools from '../util/Tools';
@@ -59,7 +58,7 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
   };
 
   const getOrCreateState = (url: string) =>
-    Obj.get(loadedStates, url).getOrThunk((): StyleState => ({
+    ((loadedStates)[url] ?? null).getOrThunk((): StyleState => ({
       id: 'mce-u' + (idCount++),
       passed: [],
       failed: [],
@@ -84,7 +83,7 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
       state.count++;
 
       const resolve = (callbacks: Array<() => void>, status: number) => {
-        Arr.each(callbacks, Fun.call);
+        (callbacks).forEach(((f: () => any) => f()));
 
         state.status = status;
         state.passed = [];
@@ -184,14 +183,14 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
    * @return {Promise} A Promise that will resolve or reject when all stylesheets are loaded.
    */
   const loadAll = (urls: string[]) => {
-    const loadedUrls = Promise.allSettled(Arr.map(urls, (url) => load(url).then(Fun.constant(url))));
+    const loadedUrls = Promise.allSettled((urls).map((url) => load(url).then(() => url)));
     return loadedUrls.then((results) => {
-      const parts = Arr.partition(results, (r) => r.status === 'fulfilled');
+      const parts = (results).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((r) => r.status === 'fulfilled')(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
 
       if (parts.fail.length > 0) {
-        return Promise.reject(Arr.map(parts.fail as PromiseRejectedResult[], (result) => result.reason));
+        return Promise.reject((parts.fail as PromiseRejectedResult[]).map((result) => result.reason));
       } else {
-        return Arr.map(parts.pass as PromiseFulfilledResult<string>[], (result) => result.value);
+        return (parts.pass as PromiseFulfilledResult<string>[]).map((result) => result.value);
       }
     });
   };
@@ -204,7 +203,7 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
    */
   const unload = (url: string) => {
     const urlWithSuffix = Tools._addCacheSuffix(url);
-    Obj.get(loadedStates, urlWithSuffix).each((state) => {
+    ((loadedStates)[urlWithSuffix] ?? null).each((state) => {
       const count = --state.count;
       if (count === 0) {
         delete loadedStates[urlWithSuffix];
@@ -220,7 +219,7 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
    * @param {String} key Key of CSS style resource to unload.
    */
   const unloadRawCss = (key: string) => {
-    Obj.get(loadedStates, key).each((state) => {
+    ((loadedStates)[key] ?? null).each((state) => {
       const count = --state.count;
       if (count === 0) {
         delete loadedStates[key];
@@ -236,7 +235,7 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
    * @param {Array} urls URLs to unload or remove.
    */
   const unloadAll = (urls: string[]) => {
-    Arr.each(urls, (url) => {
+    (urls).forEach((url) => {
       unload(url);
     });
   };

@@ -1,4 +1,3 @@
-import { Unicode } from '@ephox/katamari';
 
 const isTextNode = (node: Node): node is Text =>
   node.nodeType === 3;
@@ -20,7 +19,7 @@ const isPunctuation = (char: string): boolean =>
 const findChar = (text: string, index: number, predicate: (char: string) => boolean): number => {
   for (let i = index - 1; i >= 0; i--) {
     const char = text.charAt(i);
-    if (!Unicode.isZwsp(char) && predicate(char)) {
+    if (!(char) === '\uFEFF' && predicate(char)) {
       return i;
     }
   }

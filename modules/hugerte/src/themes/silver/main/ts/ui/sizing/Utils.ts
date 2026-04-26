@@ -1,20 +1,19 @@
-import { Optional, Type } from '@ephox/katamari';
 
-const parseToInt = (val: string | number): Optional<number> => {
+const parseToInt = (val: string | number): (number) | null => {
   // if size is a number or '_px', will return the number
   const re = /^[0-9\.]+(|px)$/i;
   if (re.test('' + val)) {
-    return Optional.some(parseInt('' + val, 10));
+    return parseInt('' + val, 10);
   }
-  return Optional.none();
+  return null;
 };
 
-const numToPx = (val: string | number): string => Type.isNumber(val) ? val + 'px' : val;
+const numToPx = (val: string | number): string => typeof (val) === 'number' ? val + 'px' : val;
 
-const calcCappedSize = (size: number, minSize: Optional<number>, maxSize: Optional<number>): number => {
+const calcCappedSize = (size: number, minSize: (number) | null, maxSize: (number) | null): number => {
   const minOverride = minSize.filter((min) => size < min);
   const maxOverride = maxSize.filter((max) => size > max);
-  return minOverride.or(maxOverride).getOr(size);
+  return minOverride.or(maxOverride) ?? (size);
 };
 
 export {

@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import * as Spot from '../alien/Spot';
 import * as TextDescent from '../alien/TextDescent';
@@ -21,7 +21,7 @@ const isPreviousCharContent = (dom: DOMUtils, leaf: Spot.SpotPoint<Node>) => {
   return TextSearch.repeatLeft(dom, leaf.container, leaf.offset, (_element, offset) => offset === 0 ? -1 : offset, root).filter((spot) => {
     const char = spot.container.data.charAt(spot.offset - 1);
     return !isWhitespace(char);
-  }).isSome();
+  }) !== null;
 };
 
 const isStartOfWord = (dom: DOMUtils) => (rng: Range) => {
@@ -29,27 +29,27 @@ const isStartOfWord = (dom: DOMUtils) => (rng: Range) => {
   return !isPreviousCharContent(dom, leaf);
 };
 
-const getTriggerContext = (dom: DOMUtils, initRange: Range, database: AutocompleterDatabase): Optional<AutocompleteContext> => Arr.findMap(database.triggers, (trigger) => getContext(dom, initRange, trigger));
+const getTriggerContext = (dom: DOMUtils, initRange: Range, database: AutocompleterDatabase): (AutocompleteContext) | null => Arr.findMap(database.triggers, (trigger) => getContext(dom, initRange, trigger));
 
-const lookup = (editor: Editor, getDatabase: () => AutocompleterDatabase): Optional<AutocompleteLookupInfo> => {
+const lookup = (editor: Editor, getDatabase: () => AutocompleterDatabase): (AutocompleteLookupInfo) | null => {
   const database = getDatabase();
   const rng = editor.selection.getRng();
 
   return getTriggerContext(editor.dom, rng, database).bind((context) => lookupWithContext(editor, getDatabase, context));
 };
 
-const lookupWithContext = (editor: Editor, getDatabase: () => AutocompleterDatabase, context: AutocompleteContext, fetchOptions: Record<string, any> = {}): Optional<AutocompleteLookupInfo> => {
+const lookupWithContext = (editor: Editor, getDatabase: () => AutocompleterDatabase, context: AutocompleteContext, fetchOptions: Record<string, any> = {}): (AutocompleteLookupInfo) | null => {
   const database = getDatabase();
   const rng = editor.selection.getRng();
   const startText = rng.startContainer.nodeValue ?? '';
 
-  const autocompleters = Arr.filter(database.lookupByTrigger(context.trigger), (autocompleter) => context.text.length >= autocompleter.minChars && autocompleter.matches.getOrThunk(() => isStartOfWord(editor.dom))(context.range, startText, context.text));
+  const autocompleters = (database.lookupByTrigger(context.trigger)).filter((autocompleter) => context.text.length >= autocompleter.minChars && autocompleter.matches.getOrThunk(() => isStartOfWord(editor.dom))(context.range, startText, context.text));
 
   if (autocompleters.length === 0) {
-    return Optional.none();
+    return null;
   }
 
-  const lookupData = Promise.all(Arr.map(autocompleters, (ac) => {
+  const lookupData = Promise.all((autocompleters).map((ac) => {
     // TODO: Find a sensible way to do maxResults
     const fetchResult = ac.fetch(context.text, ac.maxResults, fetchOptions);
     return fetchResult.then((results) => ({
@@ -61,10 +61,10 @@ const lookupWithContext = (editor: Editor, getDatabase: () => AutocompleterDatab
     }));
   }));
 
-  return Optional.some({
+  return {
     lookupData,
     context
-  });
+  };
 };
 
 export {

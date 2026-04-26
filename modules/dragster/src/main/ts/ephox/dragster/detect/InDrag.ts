@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Event, Events } from '@ephox/porkbun';
 import { EventArgs, SugarPosition } from '@ephox/sugar';
 
@@ -7,10 +6,10 @@ import { DragEvents, DragState } from './DragTypes';
 
 export const InDrag = (): DragState => {
 
-  let previous = Optional.none<SugarPosition>();
+  let previous = null;
 
   const reset = () => {
-    previous = Optional.none();
+    previous = null;
   };
 
   // Return position delta between previous position and nu position,
@@ -20,7 +19,7 @@ export const InDrag = (): DragState => {
       return mode.compare(old, nu);
     });
 
-    previous = Optional.some(nu);
+    previous = nu;
     return result;
   };
 

@@ -1,5 +1,5 @@
 import { Transformations } from '@ephox/acid';
-import { Arr, Obj, Optionals, Strings, Type } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { Selectors, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -18,7 +18,7 @@ import { isCaretNode } from './FormatContainer';
 import { BlockFormat, Format, FormatAttrOrStyleValue, FormatVars, InlineFormat, MixedFormat, SelectorFormat } from './FormatTypes';
 
 const isNode = (node: any): node is Node =>
-  Type.isNumber(node?.nodeType);
+  typeof (node?.nodeType) === 'number';
 
 const isElementNode = (node: Node): node is Element =>
   NodeType.isElement(node) && !Bookmarks.isBookmarkNode(node) && !isCaretNode(node) && !NodeType.isBogus(node);
@@ -128,7 +128,7 @@ const isValid = (ed: Editor, parent: string, child: string): boolean => {
 };
 
 const isWhiteSpaceNode = (node: Node | null, allowSpaces: boolean = false): boolean => {
-  if (Type.isNonNullable(node) && NodeType.isText(node)) {
+  if ((node) != null && NodeType.isText(node)) {
     // If spaces are allowed, treat them as a non-breaking space
     const data = allowSpaces ? node.data.replace(/ /g, '\u00a0') : node.data;
     return Whitespace.isWhitespaceText(data);
@@ -138,13 +138,13 @@ const isWhiteSpaceNode = (node: Node | null, allowSpaces: boolean = false): bool
 };
 
 const isEmptyTextNode = (node: Node | null): boolean => {
-  return Type.isNonNullable(node) && NodeType.isText(node) && node.length === 0;
+  return (node) != null && NodeType.isText(node) && node.length === 0;
 };
 
 const isWrapNoneditableTarget = (editor: Editor, node: Node): boolean => {
   const baseDataSelector = '[data-mce-cef-wrappable]';
   const formatNoneditableSelector = Options.getFormatNoneditableSelector(editor);
-  const selector = Strings.isEmpty(formatNoneditableSelector) ? baseDataSelector : `${baseDataSelector},${formatNoneditableSelector}`;
+  const selector = ((formatNoneditableSelector).length === 0) ? baseDataSelector : `${baseDataSelector},${formatNoneditableSelector}`;
   return Selectors.is(SugarElement.fromDom(node), selector);
 };
 
@@ -174,9 +174,9 @@ const replaceVars: {
   (value: string, vars?: FormatVars): string;
   (value: FormatAttrOrStyleValue, vars?: FormatVars): string | null;
 } = (value: FormatAttrOrStyleValue, vars?: FormatVars): any => {
-  if (Type.isFunction(value)) {
+  if (typeof (value) === 'function') {
     return value(vars);
-  } else if (Type.isNonNullable(vars)) {
+  } else if ((vars) != null) {
     value = value.replace(/%(\w+)/g, (str, name) => {
       return vars[name] || str;
     });
@@ -204,7 +204,7 @@ const isEq = (str1: Node | string | null | undefined, str2: Node | string | null
 };
 
 const normalizeStyleValue = (value: string | number | null | undefined, name: string): string | null => {
-  if (Type.isNullable(value)) {
+  if ((value) == null) {
     return null;
   } else {
     let strValue = String(value);
@@ -254,16 +254,16 @@ const getParents = (dom: DOMUtils, node: Node, selector?: string): Node[] => {
 
 const isFormatPredicate = (editor: Editor, formatName: string, predicate: (format: Format) => boolean): boolean => {
   const formats = editor.formatter.get(formatName);
-  return Type.isNonNullable(formats) && Arr.exists(formats, predicate);
+  return (formats) != null && (formats).some(predicate);
 };
 
 const isVariableFormatName = (editor: Editor, formatName: string): boolean => {
   const hasVariableValues = (format: Format) => {
-    const isVariableValue = (val: FormatAttrOrStyleValue): boolean => Type.isFunction(val) || val.length > 1 && val.charAt(0) === '%';
-    return Arr.exists([ 'styles', 'attributes' ], (key: 'styles' | 'attributes') =>
-      Obj.get(format, key).exists((field) => {
-        const fieldValues = Type.isArray(field) ? field : Obj.values(field);
-        return Arr.exists(fieldValues, isVariableValue);
+    const isVariableValue = (val: FormatAttrOrStyleValue): boolean => typeof (val) === 'function' || val.length > 1 && val.charAt(0) === '%';
+    return ([ 'styles', 'attributes' ]).some((key: 'styles' | 'attributes') =>
+      ((format)[key] ?? null).exists((field) => {
+        const fieldValues = Array.isArray(field) ? field : Object.values(field);
+        return (fieldValues).some(isVariableValue);
       }));
   };
 
@@ -277,7 +277,7 @@ const areSimilarFormats = (editor: Editor, formatName: string, otherFormatName: 
   // Note: MatchFormat.matchNode() uses these parameters to check if a format matches a node
   // Therefore, these are ideal to check if two formats are similar
   const validKeys = [ 'inline', 'block', 'selector', 'attributes', 'styles', 'classes' ];
-  const filterObj = (format: Record<string, any>) => Obj.filter(format, (_, key) => Arr.exists(validKeys, (validKey) => validKey === key));
+  const filterObj = (format: Record<string, any>) => Object.fromEntries(Object.entries(format).filter(([_k, _v]: [any, any]) => ((_, key) => (validKeys).some((validKey) => validKey === key))(_v, _k as any)));
   return isFormatPredicate(editor, formatName, (fmt1) => {
     const filteredFmt1 = filterObj(fmt1);
     return isFormatPredicate(editor, otherFormatName, (fmt2) => {
@@ -288,7 +288,7 @@ const areSimilarFormats = (editor: Editor, formatName: string, otherFormatName: 
 };
 
 const isBlockFormat = (format: Format): format is BlockFormat =>
-  Obj.hasNonNullableKey(format as any, 'block');
+  (Object.prototype.hasOwnProperty.call(format as any, 'block') && (format as any)['block'] != null);
 
 const isWrappingBlockFormat = (format: Format): format is BlockFormat =>
   isBlockFormat(format) && format.wrapper === true;
@@ -297,13 +297,13 @@ const isNonWrappingBlockFormat = (format: Format): format is BlockFormat =>
   isBlockFormat(format) && format.wrapper !== true;
 
 const isSelectorFormat = (format: Format): format is SelectorFormat =>
-  Obj.hasNonNullableKey(format as any, 'selector');
+  (Object.prototype.hasOwnProperty.call(format as any, 'selector') && (format as any)['selector'] != null);
 
 const isInlineFormat = (format: Format): format is InlineFormat =>
-  Obj.hasNonNullableKey(format as any, 'inline');
+  (Object.prototype.hasOwnProperty.call(format as any, 'inline') && (format as any)['inline'] != null);
 
 const isMixedFormat = (format: any): format is MixedFormat =>
-  isSelectorFormat(format) && isInlineFormat(format) && Optionals.is(Obj.get(format, 'mixed'), true);
+  isSelectorFormat(format) && isInlineFormat(format) && (((format)['mixed'] ?? null) !== null && (((format)['mixed'] ?? null)) === (true));
 
 const shouldExpandToSelector = (format: Format): boolean =>
   isSelectorFormat(format) && format.expand !== false && !isInlineFormat(format);

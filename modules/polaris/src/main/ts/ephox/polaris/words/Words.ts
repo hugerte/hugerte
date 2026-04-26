@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { CharacterMap, classify } from './StringMapper';
 import * as UnicodeData from './UnicodeData';
@@ -98,7 +97,7 @@ const getWordsWithIndices = <T>(chars: Word<T>, extract: (char: T) => string, op
     ...getDefaultOptions(),
     ...options
   };
-  const extractedChars: string[] = Arr.map(chars, extract);
+  const extractedChars: string[] = (chars).map(extract);
   const characterMap: CharacterMap = classify(extractedChars);
   return findWordsWithIndices(chars, extractedChars, characterMap, options);
 };

@@ -1,5 +1,5 @@
 import { Transformations } from '@ephox/acid';
-import { Arr, Obj, Optional, Singleton, Strings } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -24,7 +24,7 @@ export type UserListItem = UserListValue | UserListGroup;
 const onSetupToggle = (editor: Editor, formatName: string, formatValue: string) => {
   return (api: Menu.ToggleMenuItemInstanceApi): () => void => {
     const boundCallback = Singleton.unbindable();
-    const isNone = Strings.isEmpty(formatValue);
+    const isNone = ((formatValue).length === 0);
 
     const init = () => {
       const selectedCells = TableSelection.getCellsFromSelection(editor);
@@ -34,10 +34,10 @@ const onSetupToggle = (editor: Editor, formatName: string, formatValue: string) 
 
       // If value is empty (A None-entry in the list), check if the format is not set at all. Otherwise, check if the format is set to the correct value.
       if (isNone) {
-        api.setActive(!Arr.exists(selectedCells, checkNode));
+        api.setActive(!(selectedCells).some(checkNode));
         boundCallback.set(editor.formatter.formatChanged(formatName, (match) => api.setActive(!match), true));
       } else {
-        api.setActive(Arr.forall(selectedCells, checkNode));
+        api.setActive((selectedCells).every(checkNode));
         boundCallback.set(editor.formatter.formatChanged(formatName, api.setActive, false, { value: formatValue }));
       }
     };
@@ -50,10 +50,10 @@ const onSetupToggle = (editor: Editor, formatName: string, formatValue: string) 
 };
 
 export const isListGroup = (item: UserListItem): item is UserListGroup =>
-  Obj.hasNonNullableKey(item as UserListGroup, 'menu');
+  (Object.prototype.hasOwnProperty.call(item as UserListGroup, 'menu') && (item as UserListGroup)['menu'] != null);
 
 const buildListItems = (items: UserListItem[]): Dialog.ListBoxItemSpec[] =>
-  Arr.map(items, (item) => {
+  (items).map((item) => {
     // item.text is not documented - maybe deprecated option we can delete??
     const text = item.text || item.title || '';
     if (isListGroup(item)) {
@@ -69,12 +69,12 @@ const buildListItems = (items: UserListItem[]): Dialog.ListBoxItemSpec[] =>
     }
   });
 
-export const buildClassList = (classList: UserListItem[]): Optional<Dialog.ListBoxItemSpec[]> => {
+export const buildClassList = (classList: UserListItem[]): (Dialog.ListBoxItemSpec[]) | null => {
   if (!classList.length) {
-    return Optional.none();
+    return null;
   }
 
-  return Optional.some(buildListItems([{ text: 'Select...', value: 'mce-no-match' }, ...classList ]));
+  return buildListItems([{ text: 'Select...', value: 'mce-no-match' }, ...classList ]);
 };
 
 const buildMenuItems = (
@@ -83,7 +83,7 @@ const buildMenuItems = (
   format: string,
   onAction: (value: string) => void
 ): Menu.NestedMenuItemContents[] =>
-  Arr.map(items, (item): Menu.NestedMenuItemContents => {
+  (items).map((item): Menu.NestedMenuItemContents => {
     // item.text is not documented - maybe deprecated option we can delete??
     const text = item.text || item.title;
     if (isListGroup(item)) {
@@ -107,11 +107,11 @@ const applyTableCellStyle = (editor: Editor, style: string) => (value: string): 
 };
 
 const filterNoneItem = (list: UserListItem[]): UserListItem[] =>
-  Arr.bind(list, (item): UserListItem[] => {
+  (list).flatMap((item): UserListItem[] => {
     if (isListGroup(item)) {
       return [{ ...item, menu: filterNoneItem(item.menu) }];
     } else {
-      return Strings.isNotEmpty(item.value) ? [ item ] : [];
+      return ((item.value).length > 0) ? [ item ] : [];
     }
   });
 
@@ -120,7 +120,7 @@ const generateMenuItemsCallback = (editor: Editor, items: UserListItem[], format
     callback(buildMenuItems(editor, items, format, onAction));
 
 const buildColorMenu = (editor: Editor, colorList: UserListValue[], style: string): Menu.FancyMenuItemSpec[] => {
-  const colorMap = Arr.map(colorList, (entry): Menu.ChoiceMenuItemSpec => ({
+  const colorMap = (colorList).map((entry): Menu.ChoiceMenuItemSpec => ({
     text: entry.title,
     value: '#' + Transformations.anyToHex(entry.value).value,
     type: 'choiceitem'

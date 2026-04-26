@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -35,9 +34,9 @@ export interface FormCoupledInputsSpec extends CompositeSketchSpec {
 }
 
 export interface FormCoupledInputsApis {
-  getField1: (comp: AlloyComponent) => Optional<AlloyComponent>;
-  getField2: (comp: AlloyComponent) => Optional<AlloyComponent>;
-  getLock: (comp: AlloyComponent) => Optional<AlloyComponent>;
+  getField1: (comp: AlloyComponent) => (AlloyComponent) | null;
+  getField2: (comp: AlloyComponent) => (AlloyComponent) | null;
+  getLock: (comp: AlloyComponent) => (AlloyComponent) | null;
 }
 
 export interface FormCoupledInputsSketcher extends CompositeSketch<FormCoupledInputsSpec>, FormCoupledInputsApis { }

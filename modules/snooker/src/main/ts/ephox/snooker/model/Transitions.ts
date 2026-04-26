@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 import { Generators } from '../api/Generators';
 import * as Structs from '../api/Structs';
@@ -7,9 +6,8 @@ import { CompElm, RowCell, RowElement } from '../util/TableTypes';
 import * as TableGrid from './TableGrid';
 
 const toDetails = <R extends RowElement>(grid: Structs.RowCells<R>[], comparator: CompElm): Structs.RowDetailNew<Structs.DetailNew<RowCell<R>>, R>[] => {
-  const seen: boolean[][] = Arr.map(grid, (row) =>
-    Arr.map(row.cells, Fun.never)
-  );
+  const seen: boolean[][] = (grid).map((row) =>
+    (row.cells).map((() => false as const)));
 
   const updateSeen = (rowIndex: number, columnIndex: number, rowspan: number, colspan: number) => {
     for (let row = rowIndex; row < rowIndex + rowspan; row++) {
@@ -19,8 +17,8 @@ const toDetails = <R extends RowElement>(grid: Structs.RowCells<R>[], comparator
     }
   };
 
-  return Arr.map(grid, (row, rowIndex) => {
-    const details = Arr.bind(row.cells, (cell, columnIndex) => {
+  return (grid).map((row, rowIndex) => {
+    const details = (row.cells).flatMap((cell, columnIndex) => {
       // if we have seen this one, then skip it.
       if (seen[rowIndex][columnIndex] === false) {
         const result = TableGrid.subgrid(grid, rowIndex, columnIndex, comparator);
@@ -37,7 +35,7 @@ const toDetails = <R extends RowElement>(grid: Structs.RowCells<R>[], comparator
 const toGrid = (warehouse: Warehouse, generators: Generators, isNew: boolean): Structs.RowCells[] => {
   const grid: Structs.RowCells[] = [];
 
-  Arr.each(warehouse.colgroups, (colgroup) => {
+  (warehouse.colgroups).forEach((colgroup) => {
     const colgroupCols: Structs.ElementNew<HTMLTableColElement>[] = [];
     // This will add missing cols as well as clamp the number of cols to the max number of actual columns
     // Note: Spans on cols are unsupported so clamping cols may result in a span on a col element being incorrect

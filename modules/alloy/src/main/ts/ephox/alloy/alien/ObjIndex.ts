@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 /*
  * This is used to take something like:
@@ -26,14 +25,14 @@ const byInnerKey = <T, O>(data: Record<OuterKey, Record<InnerKey, T>>, tuple: (s
 Record<InnerKey, O[]> => {
 
   const r: Record<InnerKey, O[]> = {};
-  Obj.each(data, (detail: Record<InnerKey, T>, key: OuterKey) => {
-    Obj.each(detail, (value: T, indexKey: InnerKey) => {
-      const chain: O[] = Obj.get(r, indexKey).getOr([]);
+  Object.entries(data).forEach(([_k, _v]: [any, any]) => ((detail: Record<InnerKey, T>, key: OuterKey) => {
+    Object.entries(detail).forEach(([_k, _v]: [any, any]) => ((value: T, indexKey: InnerKey) => {
+      const chain: O[] = ((r)[indexKey] ?? null) ?? ([]);
       r[indexKey] = chain.concat([
         tuple(key, value)
       ]);
-    });
-  });
+    })(_v, _k));
+  })(_v, _k));
   return r;
 };
 

@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Strings, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Compare, SugarElement, TransformFind } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -69,7 +69,7 @@ const matchItems = (dom: DOMUtils, node: Element, format: Format, itemName: 'att
   const matchAttributes = itemName === 'attributes';
 
   // Custom match
-  if (Type.isFunction(format.onmatch)) {
+  if (typeof (format.onmatch) === 'function') {
     // onmatch is generic in a way that we can't really express without casting
     return format.onmatch(node, format as any, itemName);
   }
@@ -79,12 +79,12 @@ const matchItems = (dom: DOMUtils, node: Element, format: Format, itemName: 'att
     // Non indexed object
     if (!ArrUtils.isArrayLike(items)) {
       for (const key in items) {
-        if (Obj.has(items, key)) {
+        if (Object.prototype.hasOwnProperty.call(items, key)) {
           const value = matchAttributes ? dom.getAttrib(node, key) : FormatUtils.getStyle(dom, node, key);
           const expectedValue = FormatUtils.replaceVars(items[key], vars);
-          const isEmptyValue = Type.isNullable(value) || Strings.isEmpty(value);
+          const isEmptyValue = (value) == null || ((value).length === 0);
 
-          if (isEmptyValue && Type.isNullable(expectedValue)) {
+          if (isEmptyValue && (expectedValue) == null) {
             continue;
           }
 
@@ -184,10 +184,10 @@ const matchAll = (editor: Editor, names: string[], vars?: FormatVars): string[] 
 
 const closest = (editor: Editor, names: string[]): string | null => {
   const isRoot = (elm: SugarElement<Node>) => Compare.eq(elm, SugarElement.fromDom(editor.getBody()));
-  const match = (elm: SugarElement<Node>, name: string): Optional<string> => matchNode(editor, elm.dom, name) ? Optional.some(name) : Optional.none();
-  return Optional.from(editor.selection.getStart(true)).bind((rawElm) =>
+  const match = (elm: SugarElement<Node>, name: string): (string) | null => matchNode(editor, elm.dom, name) ? name : null;
+  return (editor.selection.getStart(true) ?? null).bind((rawElm) =>
     TransformFind.closest(SugarElement.fromDom(rawElm), (elm) => Arr.findMap(names, (name) => match(elm, name)), isRoot)
-  ).getOrNull();
+  ) ?? null;
 };
 
 const canApply = (editor: Editor, name: string): boolean => {
@@ -221,7 +221,7 @@ const canApply = (editor: Editor, name: string): boolean => {
  *  Get all of the format names present on the specified node
  */
 const matchAllOnNode = (editor: Editor, node: Node, formatNames: string[]): string[] =>
-  Arr.foldl(formatNames, (acc, name) => {
+  (formatNames).reduce((acc, name) => {
     const matchSimilar = FormatUtils.isVariableFormatName(editor, name);
     if (editor.formatter.matchNode(node, name, {}, matchSimilar)) {
       return acc.concat([ name ]);

@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import StyleSheetLoader, { StyleSheetLoaderSettings } from '../api/dom/StyleSheetLoader';
@@ -18,7 +17,7 @@ export const create = (): StyleSheetLoaderRegistry => {
     const root = SugarShadowDom.getRootNode(referenceElement);
 
     const rootDom = root.dom;
-    return Optional.from(map.get(rootDom)).getOrThunk(() => {
+    return (map.get(rootDom) ?? null).getOrThunk(() => {
       const sl = StyleSheetLoader(rootDom, settings);
       map.set(rootDom, sl);
       return sl;

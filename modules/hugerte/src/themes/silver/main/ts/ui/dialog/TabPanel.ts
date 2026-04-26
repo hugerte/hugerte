@@ -4,7 +4,7 @@ import {
 } from '@ephox/alloy';
 import { Objects } from '@ephox/boulder';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Cell, Fun, Merger, Optional } from '@ephox/katamari';
+import { Cell, Merger } from '@ephox/katamari';
 
 import { toValidValues } from 'hugerte/themes/silver/ui/general/FormValues';
 import { interpretInForm } from 'hugerte/themes/silver/ui/general/UiFactory';
@@ -27,7 +27,7 @@ export const renderTabPanel = (spec: TabPanelSpec, dialogData: Dialog.DialogData
 
   const updateDataWithForm = (form: AlloyComponent): void => {
     const formData = Representing.getValue(form);
-    const validData = toValidValues(formData).getOr({ });
+    const validData = toValidValues(formData) ?? ({ });
     const currentData = storedValue.get();
     const newData = Merger.deepMerge(currentData, validData);
     storedValue.set(newData);
@@ -40,7 +40,7 @@ export const renderTabPanel = (spec: TabPanelSpec, dialogData: Dialog.DialogData
 
   const oldTab = Cell(null);
 
-  const allTabs: TabbarTypes.TabButtonWithViewSpec[] = Arr.map(spec.tabs, (tab) => {
+  const allTabs: TabbarTypes.TabButtonWithViewSpec[] = (spec.tabs).map((tab) => {
     return {
       value: tab.name,
       dom: {
@@ -58,11 +58,11 @@ export const renderTabPanel = (spec: TabPanelSpec, dialogData: Dialog.DialogData
               tag: 'div',
               classes: [ 'tox-form' ]
             },
-            components: Arr.map(tab.items, (item) => interpretInForm(parts, item, dialogData, backstage)),
+            components: (tab.items).map((item) => interpretInForm(parts, item, dialogData, backstage)),
             formBehaviours: Behaviour.derive([
               Keying.config({
                 mode: 'acyclic',
-                useTabstopAt: Fun.not(NavigableObject.isPseudoStop)
+                useTabstopAt: (x: any) => !(NavigableObject.isPseudoStop)(x)
               }),
 
               AddEventsBehaviour.config('TabView.form.events', [
@@ -149,10 +149,10 @@ export const renderTabPanel = (spec: TabPanelSpec, dialogData: Dialog.DialogData
       // INVESTIGATE: Is this necessary? Probably used by getCompByName.
       Composing.config({
         // TODO: Think about this
-        find: (comp) => Arr.head(AlloyTabSection.getViewItems(comp))
+        find: (comp) => ((AlloyTabSection.getViewItems(comp))[0] ?? null)
       }),
       RepresentingConfigs.withComp(
-        Optional.none(),
+        null,
         (tsection: AlloyComponent) => {
           // NOTE: Assumes synchronous updating of store.
           tsection.getSystem().broadcastOn([ SendDataToSectionChannel ], { });

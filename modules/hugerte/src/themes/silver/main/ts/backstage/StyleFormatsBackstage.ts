@@ -1,4 +1,4 @@
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { BlockFormat, InlineFormat } from 'hugerte/core/api/fmt/Format';
@@ -16,10 +16,10 @@ export const init = (editor: Editor): UiFactoryBackstageForStyleFormats => {
 
   const getPreviewFor: FormatRegister.GetPreviewForType = (format) => () => {
     const fmt = editor.formatter.get(format);
-    return fmt !== undefined ? Optional.some({
+    return fmt !== undefined ? {
       tag: fmt.length > 0 ? (fmt[0] as InlineFormat).inline || (fmt[0] as BlockFormat).block || 'div' : 'div',
       styles: editor.dom.parseStyle(editor.formatter.getCssText(format))
-    }) : Optional.none();
+    } : null;
   };
 
   const settingsFormats = Cell<FormatItem[]>([ ]);

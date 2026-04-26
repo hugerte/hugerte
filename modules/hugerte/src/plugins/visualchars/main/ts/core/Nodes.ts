@@ -1,4 +1,3 @@
-import { Arr, Type } from '@ephox/katamari';
 import { ContentEditable, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as Data from './Data';
@@ -10,7 +9,7 @@ const isWrappedNbsp = (node: Node): node is HTMLSpanElement =>
 const isMatch = (n: SugarElement<Node>): n is SugarElement<Text> => {
   const value = SugarNode.value(n);
   return SugarNode.isText(n) &&
-    Type.isString(value) &&
+    typeof (value) === 'string' &&
     Data.regExp.test(value);
 };
 
@@ -33,10 +32,10 @@ const isChildEditable = (node: SugarElement<Node>, currentState: boolean) => {
 const filterEditableDescendants = <T extends Node>(scope: SugarElement<Node>, predicate: (x: SugarElement<Node>) => x is SugarElement<T>, editable: boolean): SugarElement<T>[] => {
   let result: SugarElement<T>[] = [];
   const dom = scope.dom;
-  const children = Arr.map(dom.childNodes, SugarElement.fromDom);
+  const children = (dom.childNodes).map(SugarElement.fromDom);
   const isEditable = (node: SugarElement<Node>) => isWrappedNbsp(node.dom) || !isContentEditableFalse(node);
 
-  Arr.each(children, (x) => {
+  (children).forEach((x) => {
     if (editable && isEditable(x) && predicate(x)) {
       result = result.concat([ x ]);
     }

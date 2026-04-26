@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Attribute, Insert, SugarElement, SugarText } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -9,9 +8,9 @@ import * as TextPosition from './TextPosition';
 import { Pattern, TextMatch, TextSection } from './Types';
 
 const find = (pattern: Pattern, sections: TextSection[]): TextMatch[][] =>
-  Arr.bind(sections, (section) => {
+  (sections).flatMap((section) => {
     const elements = section.elements;
-    const content = Arr.map(elements, SugarText.get).join('');
+    const content = (elements).map(SugarText.get).join('');
     const positions = TextPosition.find(content, pattern, section.sOffset, content.length - section.fOffset);
     return TextPosition.extract(elements, positions);
   });
@@ -19,8 +18,8 @@ const find = (pattern: Pattern, sections: TextSection[]): TextMatch[][] =>
 const mark = (matches: TextMatch[][], replacementNode: HTMLElement): void => {
   // Walk backwards and mark the positions
   // Note: We need to walk backwards so the position indexes don't change
-  Arr.eachr(matches, (match, idx) => {
-    Arr.eachr(match, (pos) => {
+  [...(matches)].reverse().forEach((match, idx) => {
+    [...(match)].reverse().forEach((pos) => {
       const wrapper = SugarElement.fromDom(replacementNode.cloneNode(false) as HTMLElement);
       Attribute.set(wrapper, 'data-mce-index', idx);
       const textNode = pos.element.dom;

@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import EditorSelection from '../api/dom/Selection';
 import Editor from '../api/Editor';
@@ -6,7 +5,7 @@ import * as CaretContainer from '../caret/CaretContainer';
 import CaretPosition from '../caret/CaretPosition';
 
 const hasSelectionModifyApi = (editor: Editor): boolean => {
-  return Type.isFunction((editor.selection.getSel() as any).modify);
+  return typeof ((editor.selection.getSel() as any).modify) === 'function';
 };
 
 const moveRel = (forward: boolean, selection: EditorSelection, pos: CaretPosition): boolean => {

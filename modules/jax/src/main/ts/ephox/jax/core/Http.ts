@@ -1,4 +1,4 @@
-import { FutureResult, Global, Obj, Optional, Result, Strings, Type } from '@ephox/katamari';
+import { FutureResult, Global, Optional, Result, Type } from '@ephox/katamari';
 
 import { DataType } from './DataType';
 import { RequestBody, ResponseBodyDataTypes, ResponseType, ResponseTypeMap, textData } from './HttpData';
@@ -8,13 +8,13 @@ import * as ResponseError from './ResponseError';
 import * as ResponseSuccess from './ResponseSuccess';
 import { buildUrl } from './UrlBuilder';
 
-const getContentType = (requestBody: RequestBody): Optional<string> => Optional.from(requestBody).bind((b) => {
+const getContentType = (requestBody: RequestBody): (string) | null => (requestBody ?? null).bind((b) => {
   switch (b.type) {
-    case DataType.JSON: return Optional.some('application/json');
-    case DataType.FormData: return Optional.some('application/x-www-form-urlencoded; charset=UTF-8');
-    case DataType.MultipartFormData: return Optional.none();
-    case DataType.Text: return Optional.some('text/plain');
-    default: return Optional.some('text/plain');
+    case DataType.JSON: return 'application/json';
+    case DataType.FormData: return 'application/x-www-form-urlencoded; charset=UTF-8';
+    case DataType.MultipartFormData: return null;
+    case DataType.Text: return 'text/plain';
+    default: return 'text/plain';
   }
 });
 
@@ -27,22 +27,22 @@ const getAccept = (responseType: ResponseBodyDataTypes) => {
   }
 };
 
-const getResponseType = (responseType: ResponseBodyDataTypes): Optional<'blob' | 'text'> => {
+const getResponseType = (responseType: ResponseBodyDataTypes): ('blob' | 'text') | null => {
   switch (responseType) {
-    case DataType.JSON: return Optional.none();
+    case DataType.JSON: return null;
     case DataType.Blob: return Optional.some<'blob' | 'text'>('blob');
     case DataType.Text: return Optional.some<'blob' | 'text'>('text');
-    default: return Optional.none();
+    default: return null;
   }
 };
 
 const createOptions = <T extends ResponseType>(init: HttpTypes.HttpRequest<T>) => {
   const contentType = getContentType(init.body);
-  const credentials: Optional<boolean> = init.credentials === true ? Optional.some<boolean>(true) : Optional.none<boolean>();
+  const credentials: (boolean) | null = init.credentials === true ? Optional.some<boolean>(true) : null;
   const accept = getAccept(init.responseType) + ', */*; q=0.01';
   const headers = init.headers !== undefined ? init.headers : {};
   const responseType = getResponseType(init.responseType);
-  const progress: Optional<HttpTypes.ProgressFunction> = Type.isFunction(init.progress) ? Optional.some(init.progress) : Optional.none();
+  const progress: (HttpTypes.ProgressFunction) | null = typeof (init.progress) === 'function' ? init.progress : null;
 
   return {
     contentType,
@@ -60,19 +60,19 @@ const applyOptions = (request: XMLHttpRequest, options: ReturnType<typeof create
   options.credentials.each((creds) => request.withCredentials = creds);
   options.responseType.each((responseType) => request.responseType = responseType);
   options.progress.each((progressFunction) => request.upload.addEventListener('progress', (event) => progressFunction(event.loaded, event.total)));
-  Obj.each(options.headers, (v, k) => request.setRequestHeader(k, v));
+  Object.entries(options.headers).forEach(([_k, _v]: [any, any]) => ((v, k) => request.setRequestHeader(k, v))(_v, _k));
 };
 
 const toNativeFormData = (formDataInput: Record<string, string | Blob | File>): FormData => {
   const nativeFormData = new FormData();
-  Obj.each(formDataInput, (value, key) => {
+  Object.entries(formDataInput).forEach(([_k, _v]: [any, any]) => ((value, key) => {
     nativeFormData.append(key, value);
-  });
+  })(_v, _k));
   return nativeFormData;
 };
 
-const getData = (body: RequestBody): Optional<string | FormData | Blob> =>
-  Optional.from(body).map((b) => {
+const getData = (body: RequestBody): (string | FormData | Blob) | null =>
+  (body ?? null).map((b) => {
     if (b.type === DataType.JSON) {
       return JSON.stringify(b.data);
     } else if (b.type === DataType.FormData) {
@@ -86,7 +86,7 @@ const getData = (body: RequestBody): Optional<string | FormData | Blob> =>
 
 const send = <T extends ResponseType>(init: HttpTypes.HttpRequest<T>): FutureResult<ResponseTypeMap[T], HttpError<T>> => FutureResult.nu((callback) => {
   const request = new XMLHttpRequest();
-  request.open(init.method, buildUrl(init.url, Optional.from(init.query)), true); // enforced async! enforced type as String!
+  request.open(init.method, buildUrl(init.url, (init.query ?? null)), true); // enforced async! enforced type as String!
 
   const options = createOptions(init);
   applyOptions(request, options);
@@ -98,7 +98,7 @@ const send = <T extends ResponseType>(init: HttpTypes.HttpRequest<T>): FutureRes
   const onLoad = () => {
     // Local files and Cors errors return status 0.
     // The only way we can decifer a local request is request url starts with 'file:' and allow local files to succeed.
-    if (request.status === 0 && !Strings.startsWith(init.url, 'file:')) {
+    if (request.status === 0 && !(init.url).startsWith('file:')) {
       onError();
     } else if (request.status < 100 || request.status >= 400) {
       onError();
@@ -133,12 +133,12 @@ const del = <T extends ResponseType>(init: HttpTypes.GetDelInit<T>): FutureResul
   send({ ...init, method: HttpTypes.HttpMethod.Delete, body: empty() });
 
 const sendProgress = (init: HttpTypes.DownloadHttpRequest, loaded: number) => {
-  if (Type.isFunction(init.progress)) {
+  if (typeof (init.progress) === 'function') {
     init.progress(loaded);
   }
 };
 
-const getMimeType = (headers: Headers) => Optional.from(headers.get('content-type')).map((value) => value.split(';')[0]);
+const getMimeType = (headers: Headers) => (headers.get('content-type') ?? null).map((value) => value.split(';')[0]);
 
 const fetchDownload = (init: HttpTypes.DownloadHttpRequest): FutureResult<Blob, HttpError<DataType.Blob>> => FutureResult.nu((resolve) => {
   const fail = (message: string, status: number) => {
@@ -165,7 +165,7 @@ const fetchDownload = (init: HttpTypes.DownloadHttpRequest): FutureResult<Blob, 
       const reader = body.getReader();
       const process = (result: ReadableStreamReadResult<Uint8Array>) => {
         if (result.done) {
-          resolve(Result.value(new Blob(chunks, { type: mime.getOr('') })));
+          resolve(Result.value(new Blob(chunks, { type: mime ?? ('') })));
         } else {
           chunks.push(result.value);
           loaded += result.value.length;
@@ -207,7 +207,7 @@ const fallbackDownload = (init: HttpTypes.DownloadHttpRequest): FutureResult<Blo
 };
 
 const download = (init: HttpTypes.DownloadHttpRequest): FutureResult<Blob, HttpError<DataType.Blob>> =>
-  Obj.get(Global, 'fetch').exists(Type.isFunction) ?
+  ((Global)['fetch'] ?? null).exists(Type.isFunction) ?
     fetchDownload(init) :
     fallbackDownload(init);
 

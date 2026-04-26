@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 /**
  * Generate a PositionArray
@@ -7,16 +7,16 @@ import { Arr, Fun, Optional } from '@ephox/katamari';
  * f:      thing -> Optional unit
  * start: sets the start position to search at
  */
-const make = <T, R extends { finish: number }>(xs: T[], f: (x: T, offset: number) => Optional<R>, start: number = 0): R[] => {
+const make = <T, R extends { finish: number }>(xs: T[], f: (x: T, offset: number) => (R) | null, start: number = 0): R[] => {
 
   const init = {
     len: start,
     list: [] as R[]
   };
 
-  const r = Arr.foldl(xs, (acc, item) => {
+  const r = (xs).reduce((acc, item) => {
     const value = f(item, acc.len);
-    return value.fold(Fun.constant(acc), (v) => {
+    return value.fold(() => acc, (v) => {
       return {
         len: v.finish,
         list: acc.list.concat([ v ])

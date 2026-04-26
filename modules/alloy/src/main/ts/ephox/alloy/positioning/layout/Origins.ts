@@ -1,4 +1,4 @@
-import { Adt, Fun, Optional } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { Height, Scroll, SugarElement, SugarPosition, Width } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -44,11 +44,11 @@ const positionWithDirection = (posName: string, decision: RepositionDecision, x:
   const decisionRight = width - (decisionX + decisionWidth);
   const decisionBottom = height - (decisionY + decisionHeight);
 
-  const left = Optional.some(decisionX);
-  const top = Optional.some(decisionY);
-  const right = Optional.some(decisionRight);
-  const bottom = Optional.some(decisionBottom);
-  const none = Optional.none<number>();
+  const left = decisionX;
+  const top = decisionY;
+  const right = decisionRight;
+  const bottom = decisionBottom;
+  const none = null;
 
   return Direction.cata(decision.direction,
     () => NuPositionCss(posName, left, top, none, none), // southeast
@@ -64,7 +64,7 @@ const positionWithDirection = (posName: string, decision: RepositionDecision, x:
 
 const reposition = (origin: OriginAdt, decision: RepositionDecision): PositionCss => origin.fold(() => {
   const decisionRect = decision.rect;
-  return NuPositionCss('absolute', Optional.some(decisionRect.x), Optional.some(decisionRect.y), Optional.none(), Optional.none());
+  return NuPositionCss('absolute', decisionRect.x, decisionRect.y, null, null);
 }, (x, y, width, height) => {
   return positionWithDirection('absolute', decision, x, y, width, height);
 }, (x, y, width, height) => {
@@ -72,7 +72,7 @@ const reposition = (origin: OriginAdt, decision: RepositionDecision): PositionCs
 });
 
 const toBox = (origin: OriginAdt, element: SugarElement<HTMLElement>): Boxes.Bounds => {
-  const rel = Fun.curry(OuterPosition.find, element);
+  const rel = ((..._rest: any[]) => (OuterPosition.find)(element, ..._rest));
   const position = origin.fold(rel, rel, () => {
     const scroll = Scroll.get();
     // TODO: Make adding the scroll in OuterPosition.find optional.
@@ -84,14 +84,14 @@ const toBox = (origin: OriginAdt, element: SugarElement<HTMLElement>): Boxes.Bou
   return Boxes.bounds(position.left, position.top, width, height);
 };
 
-const viewport = (origin: OriginAdt, optBounds: Optional<Boxes.Bounds>): Boxes.Bounds => optBounds.fold(
+const viewport = (origin: OriginAdt, optBounds: (Boxes.Bounds) | null): Boxes.Bounds => optBounds.fold(
   /* There are no bounds supplied */
   () => origin.fold(Boxes.win, Boxes.win, Boxes.bounds),
   (bounds) =>
     /* Use any bounds supplied or remove the scroll position of the bounds for fixed. */
     origin.fold(
-      Fun.constant(bounds),
-      Fun.constant(bounds),
+      () => bounds,
+      () => bounds,
       () => {
         const pos = translate(origin, bounds.x, bounds.y);
         return Boxes.bounds(pos.left, pos.top, bounds.width, bounds.height);
@@ -106,7 +106,7 @@ const translate = (origin: OriginAdt, x: number, y: number): SugarPosition => {
     return pos.translate(-outerScroll.left, -outerScroll.top);
   };
   // This could use cata if it wasn't a circular reference
-  return origin.fold(Fun.constant(pos), Fun.constant(pos), removeScroll);
+  return origin.fold(() => pos, () => pos, removeScroll);
 };
 
 const cata = <B>(

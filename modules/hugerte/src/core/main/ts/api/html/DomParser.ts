@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
 
 import * as TransparentElements from '../../content/TransparentElements';
 import * as NodeType from '../../dom/NodeType';
@@ -130,9 +129,9 @@ const walkTree = (root: AstNode, preprocessors: WalkerCallback[], postprocessors
 
   for (let node: AstNode | null | undefined = root, lastNode = node; node; lastNode = node, node = node.walk()) {
     const tempNode = node;
-    Arr.each(preprocessors, (preprocess) => preprocess(tempNode));
+    (preprocessors).forEach((preprocess) => preprocess(tempNode));
 
-    if (Type.isNullable(tempNode.parent) && tempNode !== root) {
+    if ((tempNode.parent) == null && tempNode !== root) {
       // The node has been detached, so rewind a little and don't add it to our traversal
       node = lastNode;
     } else {
@@ -142,7 +141,7 @@ const walkTree = (root: AstNode, preprocessors: WalkerCallback[], postprocessors
 
   for (let i = traverseOrder.length - 1; i >= 0; i--) {
     const node = traverseOrder[i];
-    Arr.each(postprocessors, (postprocess) => postprocess(node));
+    (postprocessors).forEach((postprocess) => postprocess(node));
   }
 };
 
@@ -163,7 +162,7 @@ const whitespaceCleaner = (root: AstNode, schema: Schema, settings: DomParserSet
 
   const hasWhitespaceParent = (node: AstNode) => {
     let tempNode = node.parent;
-    while (Type.isNonNullable(tempNode)) {
+    while ((tempNode) != null) {
       if (tempNode.name in whitespaceElements) {
         return true;
       } else {
@@ -175,7 +174,7 @@ const whitespaceCleaner = (root: AstNode, schema: Schema, settings: DomParserSet
 
   const isTextRootBlockEmpty = (node: AstNode) => {
     let tempNode: AstNode | null | undefined = node;
-    while (Type.isNonNullable(tempNode)) {
+    while ((tempNode) != null) {
       if (tempNode.name in textRootBlockElements) {
         return isEmpty(schema, nonEmptyElements, whitespaceElements, tempNode);
       } else {
@@ -190,7 +189,7 @@ const whitespaceCleaner = (root: AstNode, schema: Schema, settings: DomParserSet
 
   const isAtEdgeOfBlock = (node: AstNode, start: boolean): boolean => {
     const neighbour = start ? node.prev : node.next;
-    if (Type.isNonNullable(neighbour) || Type.isNullable(node.parent)) {
+    if ((neighbour) != null || (node.parent) == null) {
       return false;
     }
 
@@ -288,7 +287,7 @@ const DomParser = (settings: DomParserSettings = {}, schema = Schema()): DomPars
     const mimeType = format === 'xhtml' ? 'application/xhtml+xml' : 'text/html';
     // Determine the root element to wrap the HTML in when parsing. If we're dealing with a
     // special element then we need to wrap it so the internal content is handled appropriately.
-    const isSpecialRoot = Obj.has(schema.getSpecialElements(), rootName.toLowerCase());
+    const isSpecialRoot = Object.prototype.hasOwnProperty.call(schema.getSpecialElements(), rootName.toLowerCase());
     const content = isSpecialRoot ? `<${rootName}>${html}</${rootName}>` : html;
     // If parsing XHTML then the content must contain the xmlns declaration, see https://www.w3.org/TR/xhtml1/normative.html#strict
     const wrappedHtml = format === 'xhtml' ? `<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>${content}</body></html>` : `<body>${content}</body>`;
@@ -370,8 +369,8 @@ const DomParser = (settings: DomParserSettings = {}, schema = Schema()): DomPars
   };
 
   const isWrappableNode = (blockElements: SchemaMap, node: AstNode) => {
-    const isInternalElement = Type.isString(node.attr(internalElementAttr));
-    const isInlineElement = node.type === 1 && (!Obj.has(blockElements, node.name) && !TransparentElements.isTransparentAstBlock(schema, node)) && !Namespace.isNonHtmlElementRootName(node.name);
+    const isInternalElement = typeof (node.attr(internalElementAttr)) === 'string';
+    const isInlineElement = node.type === 1 && (!Object.prototype.hasOwnProperty.call(blockElements, node.name) && !TransparentElements.isTransparentAstBlock(schema, node)) && !Namespace.isNonHtmlElementRootName(node.name);
 
     return node.type === 3 || (isInlineElement && !isInternalElement);
   };
@@ -460,7 +459,7 @@ const DomParser = (settings: DomParserSettings = {}, schema = Schema()): DomPars
 
     // Find the invalid children in the tree
     const invalidChildren: AstNode[] = [];
-    const invalidFinder = validate ? (node: AstNode) => findInvalidChildren(node, invalidChildren) : Fun.noop;
+    const invalidFinder = validate ? (node: AstNode) => findInvalidChildren(node, invalidChildren) : () => {};
 
     // Set up attribute and node matching
     const matches: FilterNode.FilterMatches = { nodes: {}, attributes: {}};
@@ -475,7 +474,7 @@ const DomParser = (settings: DomParserSettings = {}, schema = Schema()): DomPars
     // Fix invalid children or report invalid children in a contextual parsing
     if (validate && invalidChildren.length > 0) {
       if (args.context) {
-        const { pass: topLevelChildren, fail: otherChildren } = Arr.partition(invalidChildren, (child) => child.parent === rootNode);
+        const { pass: topLevelChildren, fail: otherChildren } = (invalidChildren).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((child) => child.parent === rootNode)(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
         InvalidNodes.cleanInvalidNodes(otherChildren, schema, rootNode, matchFinder);
         args.invalid = topLevelChildren.length > 0;
       } else {

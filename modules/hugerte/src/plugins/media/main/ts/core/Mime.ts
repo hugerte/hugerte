@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 const guess = (url: string): string => {
   const mimes: Record<string, string> = {
@@ -11,7 +10,7 @@ const guess = (url: string): string => {
     swf: 'application/x-shockwave-flash'
   };
   const fileEnd = url.toLowerCase().split('.').pop() ?? '';
-  return Obj.get(mimes, fileEnd).getOr('');
+  return ((mimes)[fileEnd] ?? null) ?? ('');
 };
 
 export {

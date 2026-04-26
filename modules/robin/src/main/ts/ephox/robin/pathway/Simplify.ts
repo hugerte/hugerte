@@ -1,17 +1,16 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
 
 const eq = <E, D>(universe: Universe<E, D>, e1: E): (e2: E) => boolean => {
-  return Fun.curry(universe.eq, e1);
+  return ((..._rest: any[]) => (universe.eq)(e1, ..._rest));
 };
 
 const isDuplicate = <E, D>(universe: Universe<E, D>, rest: E[], item: E): boolean => {
-  return Arr.exists(rest, eq(universe, item));
+  return (rest).some(eq(universe, item));
 };
 
 const isChild = <E, D>(universe: Universe<E, D>, rest: E[], item: E): boolean => {
   const parents = universe.up().all(item);
-  return Arr.exists(parents, (p) => {
+  return (parents).some((p) => {
     return isDuplicate(universe, rest, p);
   });
 };
@@ -23,7 +22,7 @@ const isChild = <E, D>(universe: Universe<E, D>, rest: E[], item: E): boolean =>
  */
 const simplify = <E, D>(universe: Universe<E, D>, items: E[]): E[] => {
 // FIX: Horribly inefficient.
-  return Arr.filter(items, (x, i) => {
+  return (items).filter((x, i) => {
     const left = items.slice(0, i);
     const right = items.slice(i + 1);
     const rest = left.concat(right);

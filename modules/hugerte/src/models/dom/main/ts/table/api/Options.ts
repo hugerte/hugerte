@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { SugarElement, Width } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -60,7 +59,7 @@ const register = (editor: Editor): void => {
 
   registerOption('table_header_type', {
     processor: (value) => {
-      const valid = Arr.contains([ 'section', 'cells', 'sectionCells', 'auto' ], value);
+      const valid = ([ 'section', 'cells', 'sectionCells', 'auto' ]).includes(value);
       return valid ? { value, valid } : { valid: false, message: 'Must be one of: section, cells, sectionCells or auto.' };
     },
     default: 'section'
@@ -87,7 +86,7 @@ const register = (editor: Editor): void => {
 
   registerOption('table_column_resizing', {
     processor: (value) => {
-      const valid = Arr.contains([ 'preservetable', 'resizetable' ], value);
+      const valid = ([ 'preservetable', 'resizetable' ]).includes(value);
       return valid ? { value, valid } : { valid: false, message: 'Must be preservetable, or resizetable.' };
     },
     default: 'preservetable'
@@ -109,13 +108,13 @@ const register = (editor: Editor): void => {
   });
 };
 
-const getTableCloneElements = (editor: Editor): Optional<string[]> => {
-  return Optional.from(editor.options.get('table_clone_elements'));
+const getTableCloneElements = (editor: Editor): (string[]) | null => {
+  return (editor.options.get('table_clone_elements') ?? null);
 };
 
 const hasTableObjectResizing = (editor: Editor): boolean => {
   const objectResizing = editor.options.get('object_resizing');
-  return Arr.contains(objectResizing.split(','), 'table');
+  return (objectResizing.split(',')).includes('table');
 };
 
 const getTableHeaderType = option<TableHeaderType>('table_header_type');

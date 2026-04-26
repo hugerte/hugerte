@@ -27,13 +27,13 @@ const builder = (detail: WidgetItemDetail) => {
     return widget;
   });
 
-  const onHorizontalArrow = (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<KeyboardEvent>): Optional<boolean> =>
-    EditableFields.inside(simulatedEvent.event.target) ? Optional.none<boolean>() : (() => {
+  const onHorizontalArrow = (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<KeyboardEvent>): (boolean) | null =>
+    EditableFields.inside(simulatedEvent.event.target) ? null : (() => {
       if (detail.autofocus) {
         simulatedEvent.setSource(component.element);
-        return Optional.none<boolean>();
+        return null;
       } else {
-        return Optional.none<boolean>();
+        return null;
       }
     })();
 
@@ -92,9 +92,9 @@ const builder = (detail: WidgetItemDetail) => {
               return Optional.some<boolean>(true);
             } else if (detail.autofocus) {
               simulatedEvent.setSource(component.element);
-              return Optional.none<boolean>();
+              return null;
             } else {
-              return Optional.none<boolean>();
+              return null;
             }
           }
         })

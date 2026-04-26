@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { SchemaMap } from 'hugerte/core/api/html/Schema';
@@ -30,14 +29,11 @@ const getSelectedImage = (editor: Editor): HTMLElement | null => {
 
 const splitTextBlock = (editor: Editor, figure: HTMLElement): HTMLElement => {
   const dom = editor.dom;
-  const textBlockElements: SchemaMap = Obj.filter(
-    editor.schema.getTextBlockElements(),
-    (_, parentElm) => !editor.schema.isValidChild(parentElm, 'figure')
-  );
+  const textBlockElements: SchemaMap = Object.fromEntries(Object.entries(editor.schema.getTextBlockElements()).filter(([_k, _v]: [any, any]) => ((_, parentElm) => !editor.schema.isValidChild(parentElm, 'figure'))(_v, _k as any)));
 
   const textBlock = dom.getParent(
     figure.parentNode,
-    (node: Node) => Obj.hasNonNullableKey(textBlockElements, node.nodeName),
+    (node: Node) => (Object.prototype.hasOwnProperty.call(textBlockElements, node.nodeName) && (textBlockElements)[node.nodeName] != null),
     editor.getBody()
   );
 

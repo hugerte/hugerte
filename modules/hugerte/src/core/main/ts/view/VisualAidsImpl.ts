@@ -1,13 +1,12 @@
-import { Arr, Type } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';
 
 export const addVisualInternal = (editor: Editor, elm?: HTMLElement): void => {
   const dom = editor.dom;
-  const scope = Type.isNonNullable(elm) ? elm : editor.getBody();
+  const scope = (elm) != null ? elm : editor.getBody();
 
-  Arr.each(dom.select('table,a', scope), (matchedElm) => {
+  (dom.select('table,a', scope)).forEach((matchedElm) => {
     switch (matchedElm.nodeName) {
       case 'TABLE':
         const cls = Options.getVisualAidsTableClass(editor);

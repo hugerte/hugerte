@@ -1,6 +1,6 @@
 import { AlloyComponent, Behaviour, Focusing, FormField, Receiving, SketchSpec, Tabstopping } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Cell, Fun, Optional, Optionals, Throttler, Type } from '@ephox/katamari';
+import { Cell, Throttler } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Attribute, Class, Compare, SugarElement, Traverse } from '@ephox/sugar';
 
@@ -16,7 +16,7 @@ interface IFrameSourcing {
 }
 
 export interface DialogFocusShiftedEvent extends CustomEvent {
-  readonly newFocus: Optional<SugarElement<HTMLElement>>;
+  readonly newFocus: (SugarElement<HTMLElement>) | null;
 }
 
 type IframeSpec = Omit<Dialog.Iframe, 'type'>;
@@ -39,20 +39,20 @@ const scrollToY = (win: Window, y: number | 'bottom') =>
   // Firefox: 2147483583
   win.scrollTo(0, y === 'bottom' ? 99999999 : y);
 
-const getScrollingElement = (doc: Document, html: string): Optional<HTMLElement> => {
+const getScrollingElement = (doc: Document, html: string): (HTMLElement) | null => {
   // TINY-10110: The scrolling element can change between body and documentElement depending on whether there
   // is a doctype declaration. However, this behavior is inconsistent on Chrome and Safari so checking for
   // the scroll properties is the most reliable way to determine which element is the scrolling element, at
   // least for the purposes of determining whether scroll is at bottom.
   const body = doc.body;
-  return Optional.from(!/^<!DOCTYPE (html|HTML)/.test(html) &&
-      (!isChromium && !isSafari || Type.isNonNullable(body) && (body.scrollTop !== 0 || Math.abs(body.scrollHeight - body.clientHeight) > 1))
-    ? body : doc.documentElement);
+  return (!/^<!DOCTYPE (html|HTML)/.test(html) &&
+      (!isChromium && !isSafari || (body) != null && (body.scrollTop !== 0 || Math.abs(body.scrollHeight - body.clientHeight) > 1))
+    ? body : doc.documentElement ?? null);
 };
 
 const writeValue = (iframeElement: SugarElement<HTMLIFrameElement>, html: string, fallbackFn: () => void): void => {
   const iframe = iframeElement.dom;
-  Optional.from(iframe.contentDocument).fold(
+  (iframe.contentDocument ?? null).fold(
     fallbackFn,
     (doc) => {
       let lastScrollTop = 0;
@@ -64,7 +64,7 @@ const writeValue = (iframeElement: SugarElement<HTMLIFrameElement>, html: string
 
       const scrollAfterWrite = (): void => {
         const win = iframe.contentWindow;
-        if (Type.isNonNullable(win)) {
+        if ((win) != null) {
           if (isScrollAtBottom) {
             scrollToY(win, 'bottom');
           } else if (!isScrollAtBottom && isSafariOrFirefox && lastScrollTop !== 0) {
@@ -96,13 +96,13 @@ const writeValue = (iframeElement: SugarElement<HTMLIFrameElement>, html: string
 // on each update, when updating rapidly without a throttle, attempting to scroll around the iframe can feel stuck.
 // TINY-10097: On Safari, throttle to 500ms to reduce flickering as the document.write() method still observes significant flickering.
 // Also improves scrolling, as scroll positions are maintained manually similar to Firefox.
-const throttleInterval = Optionals.someIf(isSafariOrFirefox, isSafari ? 500 : 200);
+const throttleInterval = (isSafariOrFirefox ? isSafari ? 500 : 200 : null);
 
 // TINY-10078: Use Throttler.adaptable to ensure that any content added during the waiting period is not lost.
 const writeValueThrottler = throttleInterval.map((interval) => Throttler.adaptable(writeValue, interval));
 
-const getDynamicSource = (initialData: Optional<string>, stream: boolean): IFrameSourcing => {
-  const cachedValue = Cell(initialData.getOr(''));
+const getDynamicSource = (initialData: (string) | null, stream: boolean): IFrameSourcing => {
+  const cachedValue = Cell(initialData ?? (''));
   return {
     getValue: (_frameComponent: AlloyComponent): string =>
       // Ideally we should fetch data from the iframe...innerHtml, this triggers Cors errors
@@ -113,7 +113,7 @@ const getDynamicSource = (initialData: Optional<string>, stream: boolean): IFram
         const setSrcdocValue = () => Attribute.set(iframeElement, 'srcdoc', html);
 
         if (stream) {
-          writeValueThrottler.fold(Fun.constant(writeValue), (throttler) => throttler.throttle)(iframeElement, html, setSrcdocValue);
+          writeValueThrottler.fold(() => writeValue, (throttler) => throttler.throttle)(iframeElement, html, setSrcdocValue);
         } else {
           // TINY-3769: We need to use srcdoc here, instead of src with a data URI, otherwise browsers won't retain the Origin.
           // See https://bugs.chromium.org/p/chromium/issues/detail?id=58999#c11
@@ -125,14 +125,14 @@ const getDynamicSource = (initialData: Optional<string>, stream: boolean): IFram
   };
 };
 
-const renderIFrame = (spec: IframeSpec, providersBackstage: Backstage.UiFactoryBackstageProviders, initialData: Optional<string>): SketchSpec => {
+const renderIFrame = (spec: IframeSpec, providersBackstage: Backstage.UiFactoryBackstageProviders, initialData: (string) | null): SketchSpec => {
   const baseClass = 'tox-dialog__iframe';
   const opaqueClass = spec.transparent ? [] : [ `${baseClass}--opaque` ];
   const containerBorderedClass = spec.border ? [ `tox-navobj-bordered` ] : [];
 
   const attributes = {
-    ...spec.label.map<{ title?: string }>((title) => ({ title })).getOr({}),
-    ...initialData.map((html) => ({ srcdoc: html })).getOr({}),
+    ...spec.label.map<{ title?: string }>((title) => ({ title })) ?? ({}),
+    ...initialData.map((html) => ({ srcdoc: html })) ?? ({}),
     ...spec.sandboxed ? { sandbox: 'allow-scripts allow-same-origin' } : { }
   };
 
@@ -141,7 +141,7 @@ const renderIFrame = (spec: IframeSpec, providersBackstage: Backstage.UiFactoryB
   const pLabel = spec.label.map((label) => FieldLabeller.renderLabel(label, providersBackstage));
 
   const factory = (newSpec: { uid: string }) => NavigableObject.craft(
-    Optional.from(containerBorderedClass),
+    (containerBorderedClass ?? null),
     {
       // We need to use the part uid or the label and field won't be linked with ARIA
       uid: newSpec.uid,

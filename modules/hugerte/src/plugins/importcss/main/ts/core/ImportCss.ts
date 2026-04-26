@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';
@@ -31,7 +30,7 @@ const internalEditorStyle = /^\.(?:ephox|tiny-pageembed|mce)(?:[.-]+\w+)+$/;
 const removeCacheSuffix = (url: string | null): string | null => {
   const cacheSuffix = Env.cacheSuffix;
 
-  if (Type.isString(url)) {
+  if (typeof (url) === 'string') {
     url = url.replace('?' + cacheSuffix, '').replace('&' + cacheSuffix, '');
   }
 
@@ -52,7 +51,7 @@ const isSkinContentCss = (editor: Editor, href: string): boolean => {
 };
 
 const compileFilter = (filter: string | RegExp | Filter | undefined): Filter | undefined => {
-  if (Type.isString(filter)) {
+  if (typeof (filter) === 'string') {
     return (value: string) => {
       return value.indexOf(filter) !== -1;
     };

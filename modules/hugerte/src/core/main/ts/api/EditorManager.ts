@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import * as ErrorReporter from '../ErrorReporter';
 import * as FocusController from '../focus/FocusController';
@@ -60,7 +59,7 @@ const toggleGlobalEvents = (state: boolean) => {
 const removeEditorFromList = (targetEditor: Editor) => {
   const oldEditors = editors;
 
-  editors = Arr.filter(editors, (editor) => {
+  editors = (editors).filter((editor) => {
     return targetEditor !== editor;
   });
 
@@ -311,9 +310,9 @@ const EditorManager: EditorManager = {
 
     const pluginBaseUrls = defaultOptions.plugin_base_urls;
     if (pluginBaseUrls !== undefined) {
-      Obj.each(pluginBaseUrls, (pluginBaseUrl, pluginName) => {
+      Object.entries(pluginBaseUrls).forEach(([_k, _v]: [any, any]) => ((pluginBaseUrl, pluginName) => {
         AddOnManager.PluginManager.urls[pluginName] = pluginBaseUrl;
-      });
+      })(_v, _k));
     }
   },
 
@@ -355,7 +354,7 @@ const EditorManager: EditorManager = {
       let id = elm.id;
 
       if (!id) {
-        id = Obj.get(elm, 'name').filter((name) => !DOM.get(name)).getOrThunk(DOM.uniqueId);
+        id = ((elm)['name'] ?? null).filter((name) => !DOM.get(name)).getOrThunk(DOM.uniqueId);
         elm.setAttribute('id', id);
       }
       return id;
@@ -372,21 +371,15 @@ const EditorManager: EditorManager = {
     };
 
     const findTargets = (options: RawEditorOptions): HTMLElement[] => {
-      if (Env.browser.isIE() || Env.browser.isEdge()) {
-        ErrorReporter.initError(
-          'HugeRTE does not support the browser you are using. For a list of supported' +
-          ' browsers please see: https://www.hugerte.org/docs/hugerte/1/support/#supportedwebbrowsers'
-        );
-        return [];
-      } else if (isQuirksMode) {
+      if (isQuirksMode) {
         ErrorReporter.initError(
           'Failed to initialize the editor as the document is not in standards mode. ' +
           'HugeRTE requires standards mode.'
         );
         return [];
-      } else if (Type.isString(options.selector)) {
+      } else if (typeof (options.selector) === 'string') {
         return DOM.select(options.selector);
-      } else if (Type.isNonNullable(options.target)) {
+      } else if ((options.target) != null) {
         return [ options.target ];
       } else {
         return [];
@@ -419,7 +412,7 @@ const EditorManager: EditorManager = {
       DOM.unbind(window, 'ready', initEditors);
       execCallback('onpageload');
 
-      targets = Arr.unique(findTargets(options));
+      targets = [...new Set(findTargets(options))];
 
       Tools.each(targets, (elm) => {
         purgeDestroyedEditor(self.get(elm.id));
@@ -481,11 +474,11 @@ const EditorManager: EditorManager = {
   get(id?: number | string): any {
     if (arguments.length === 0) {
       return editors.slice(0);
-    } else if (Type.isString(id)) {
-      return Arr.find(editors, (editor) => {
+    } else if (typeof (id) === 'string') {
+      return ((editors).find((editor) => {
         return editor.id === id;
-      }).getOr(null);
-    } else if (Type.isNumber(id)) {
+      }) ?? null) ?? (null);
+    } else if (typeof (id) === 'number') {
       return editors[id] ? editors[id] : null;
     } else {
       return null;
@@ -584,7 +577,7 @@ const EditorManager: EditorManager = {
     }
 
     // Remove editors by selector
-    if (Type.isString(selector)) {
+    if (typeof (selector) === 'string') {
       each(DOM.select(selector), (elm) => {
         editor = self.get(elm.id);
 
@@ -600,7 +593,7 @@ const EditorManager: EditorManager = {
     editor = selector;
 
     // Not in the collection
-    if (Type.isNull(self.get(editor.id))) {
+    if ((self.get(editor.id)) === null) {
       return null;
     }
 
@@ -630,7 +623,7 @@ const EditorManager: EditorManager = {
    */
   execCommand(cmd, ui, value) {
     const self = this;
-    const editorId = Type.isObject(value) ? value.id ?? value.index : value;
+    const editorId = (typeof (value) === 'object' && (value) !== null) ? value.id ?? value.index : value;
 
     // Manager commands
     switch (cmd) {

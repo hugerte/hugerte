@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import CaretPosition from '../caret/CaretPosition';
@@ -32,14 +31,14 @@ const moveDown = (editor: Editor, details: HTMLDetailsElement): boolean => {
 
 const move = (editor: Editor, forward: boolean) => {
   if (forward) {
-    return Optional.from(editor.dom.getParent<HTMLDetailsElement>(editor.selection.getNode(), 'details'))
+    return (editor.dom.getParent<HTMLDetailsElement>(editor.selection.getNode(), 'details') ?? null)
       .map((details) => moveDown(editor, details))
-      .getOr(false);
+       ?? (false);
   } else {
-    return Optional.from(editor.dom.getParent<HTMLElement>(editor.selection.getNode(), 'summary'))
-      .bind((summary) => Optional.from(editor.dom.getParent(summary, 'details'))
+    return (editor.dom.getParent<HTMLElement>(editor.selection.getNode(), 'summary') ?? null)
+      .bind((summary) => (editor.dom.getParent(summary, 'details') ?? null)
         .map((details) => moveUp(editor, details, summary))
-      ).getOr(false);
+      ) ?? (false);
   }
 };
 

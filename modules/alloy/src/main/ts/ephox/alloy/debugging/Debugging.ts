@@ -1,5 +1,5 @@
 import { Objects } from '@ephox/boulder';
-import { Arr, Cell, Fun, Global, Obj, Optional } from '@ephox/katamari';
+import { Arr, Cell, Global, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
@@ -30,7 +30,7 @@ type LookupInfo = { [key: string]: InspectorInfo } | { error: string };
 
 export interface Inspector {
   systems: Record<string, GuiSystem>;
-  lookup: (uid: string) => Optional<LookupInfo>;
+  lookup: (uid: string) => (LookupInfo) | null;
   events: {
     setToNormal: (eventName: string) => void;
     setToLogging: (eventName: string) => void;
@@ -87,7 +87,7 @@ const makeEventLogger = (eventName: string, initialTarget: SugarElement<Node>): 
     },
     write: () => {
       const finishTime = new Date().getTime();
-      if (Arr.contains([ 'mousemove', 'mouseover', 'mouseout', SystemEvents.systemInit() ], eventName)) {
+      if (([ 'mousemove', 'mouseover', 'mouseout', SystemEvents.systemInit() ]).includes(eventName)) {
         return;
       }
       // eslint-disable-next-line no-console
@@ -95,8 +95,8 @@ const makeEventLogger = (eventName: string, initialTarget: SugarElement<Node>): 
         event: eventName,
         time: finishTime - startTime,
         target: initialTarget.dom,
-        sequence: Arr.map(sequence, (s) => {
-          if (!Arr.contains([ 'cut', 'stopped', 'response' ], s.outcome)) {
+        sequence: (sequence).map((s) => {
+          if (!([ 'cut', 'stopped', 'response' ]).includes(s.outcome)) {
             return s.outcome;
           } else {
             return '{' + s.purpose + '} ' + s.outcome + ' at (' + AlloyLogger.element(s.target) + ')';
@@ -108,12 +108,10 @@ const makeEventLogger = (eventName: string, initialTarget: SugarElement<Node>): 
 };
 
 const processEvent = (eventName: string, initialTarget: SugarElement<Node>, f: EventProcessor) => {
-  const status = Obj.get(eventConfig.get(), eventName).orThunk(() => {
-    const patterns = Obj.keys(eventConfig.get());
-    return Arr.findMap(patterns, (p) => eventName.indexOf(p) > -1 ? Optional.some(eventConfig.get()[p]) : Optional.none());
-  }).getOr(
-    EventConfiguration.NORMAL
-  );
+  const status = ((eventConfig.get())[eventName] ?? null).orThunk(() => {
+    const patterns = Object.keys(eventConfig.get());
+    return Arr.findMap(patterns, (p) => eventName.indexOf(p) > -1 ? eventConfig.get()[p] : null);
+  }) ?? (EventConfiguration.NORMAL);
 
   switch (status) {
     case EventConfiguration.NORMAL:
@@ -143,7 +141,7 @@ const getTrace = (): string => {
   const err = new Error();
   if (err.stack !== undefined) {
     const lines = err.stack.split('\n');
-    return Arr.find(lines, (line) => line.indexOf('alloy') > 0 && !Arr.exists(path, (p) => line.indexOf(p) > -1)).getOr(unknown);
+    return ((lines).find((line) => line.indexOf('alloy') > 0 && !(path).some((p) => line.indexOf(p) > -1)) ?? null) ?? (unknown);
   } else {
     return unknown;
   }
@@ -154,12 +152,12 @@ const logHandler = (_label: string, _handlerName: string, _trace: any): void => 
 };
 
 const ignoreEvent = {
-  logEventCut: Fun.noop,
-  logEventStopped: Fun.noop,
-  logNoParent: Fun.noop,
-  logEventNoHandlers: Fun.noop,
-  logEventResponse: Fun.noop,
-  write: Fun.noop
+  logEventCut: () => {},
+  logEventStopped: () => {},
+  logNoParent: () => {},
+  logEventNoHandlers: () => {},
+  logEventResponse: () => {},
+  write: () => {}
 };
 
 const monitorEvent = (eventName: string, initialTarget: SugarElement<Node>, f: EventProcessor): boolean =>
@@ -173,14 +171,14 @@ const inspectorInfo = (comp: AlloyComponent) => {
       '(original.spec)': cSpec,
       '(dom.ref)': c.element.dom,
       '(element)': AlloyLogger.element(c.element),
-      '(initComponents)': Arr.map(cSpec.components !== undefined ? cSpec.components : [ ], go),
-      '(components)': Arr.map(c.components(), go),
-      '(bound.events)': Obj.mapToArray(c.events, (_v, k) => [ k ]).join(', '),
-      '(behaviours)': cSpec.behaviours !== undefined ? Obj.map(cSpec.behaviours, (v, k) => v === undefined ? '--revoked--' : {
+      '(initComponents)': (cSpec.components !== undefined ? cSpec.components : [ ]).map(go),
+      '(components)': (c.components()).map(go),
+      '(bound.events)': Object.entries(c.events).map(([_k, _v]: [any, any]) => ((_v, k) => [ k ])(_v, _k as any)).join(', '),
+      '(behaviours)': cSpec.behaviours !== undefined ? Object.fromEntries(Object.entries(cSpec.behaviours).map(([_k, _v]: [any, any]) => [_k, ((v, k) => v === undefined ? '--revoked--' : {
         'config': v.configAsRaw(),
         'original-config': v.initialConfig,
         'state': c.readState(k)
-      }) : 'none'
+      })(_v, _k as any)])) : 'none'
     };
   };
 
@@ -205,7 +203,7 @@ const getOrInitConnection = (): Inspector => {
       systems: { },
       lookup: (uid: string) => {
         const systems = win[CHROME_INSPECTOR_GLOBAL].systems;
-        const connections: string[] = Obj.keys(systems);
+        const connections: string[] = Object.keys(systems);
         return Arr.findMap(connections, (conn) => {
           const connGui = systems[conn];
           return connGui.getByUid(uid).toOptional().map((comp): LookupInfo => Objects.wrap(AlloyLogger.element(comp.element), inspectorInfo(comp)));
@@ -235,8 +233,8 @@ const registerInspector = (name: string, gui: GuiSystem): void => {
   connection.systems[name] = gui;
 };
 
-const noLogger = Fun.constant(ignoreEvent);
-const isDebugging = Fun.constant(debugging);
+const noLogger = () => ignoreEvent;
+const isDebugging = () => debugging;
 
 export {
   logHandler,

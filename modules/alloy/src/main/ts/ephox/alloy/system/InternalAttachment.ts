@@ -13,12 +13,12 @@ const isConnected = (comp: AlloyComponent) =>
 const fireDetaching = (component: AlloyComponent): void => {
   AlloyTriggers.emit(component, SystemEvents.detachedFromDom());
   const children = component.components();
-  Arr.each(children, fireDetaching);
+  (children).forEach(fireDetaching);
 };
 
 const fireAttaching = (component: AlloyComponent): void => {
   const children = component.components();
-  Arr.each(children, fireAttaching);
+  (children).forEach(fireAttaching);
   AlloyTriggers.emit(component, SystemEvents.attachedToDom());
 };
 
@@ -47,7 +47,7 @@ const attach = (parent: AlloyComponent, child: AlloyComponent): void => {
 
 const detachChildren = (component: AlloyComponent): void => {
   // This will not detach the component, but will detach its children and sync at the end.
-  Arr.each(component.components(), (childComp) => Remove.remove(childComp.element));
+  (component.components()).forEach((childComp) => Remove.remove(childComp.element));
   // Clear the component also.
   Remove.empty(component.element);
   component.syncComponents();
@@ -61,14 +61,14 @@ const replaceChildren = (component: AlloyComponent, newSpecs: AlloySpec[], build
   const newChildren = buildNewChildren(newSpecs);
 
   // Determine which components have been deleted and remove them from the world
-  const deleted = Arr.difference(subs, newChildren);
-  Arr.each(deleted, (comp) => {
+  const deleted = (subs).filter((_x: any) => !(newChildren).includes(_x));
+  (deleted).forEach((comp) => {
     fireDetaching(comp);
     component.getSystem().removeFromWorld(comp);
   });
 
   // Add all new components
-  Arr.each(newChildren, (childComp) => {
+  (newChildren).forEach((childComp) => {
     // If the component isn't connected, ie is new, then we also need to add it to the world
     if (!isConnected(childComp)) {
       component.getSystem().addToWorld(childComp);
@@ -87,9 +87,9 @@ const virtualReplaceChildren = (component: AlloyComponent, newSpecs: AlloySpec[]
   // When replacing we don't want to fire detachedFromDom and attachedToDom again for a premade that has just had its position in the children moved around,
   // so we only detach initially if we aren't a premade. Premades will be detached later, but only if they are no longer in the child list.
   const subs = component.components();
-  const existingComps = Arr.bind(newSpecs, (spec) => GuiTypes.getPremade(spec).toArray());
-  Arr.each(subs, (childComp) => {
-    if (!Arr.contains(existingComps, childComp)) {
+  const existingComps = (newSpecs).flatMap((spec) => GuiTypes.getPremade(spec).toArray());
+  (subs).forEach((childComp) => {
+    if (!(existingComps).includes(childComp)) {
       virtualDetach(childComp);
     }
   });
@@ -99,8 +99,8 @@ const virtualReplaceChildren = (component: AlloyComponent, newSpecs: AlloySpec[]
   // Determine which components have been deleted and remove them from the world
   // It's probable the component has already been detached beforehand so only
   // detach what's still attached to the world (i.e removed premades)
-  const deleted = Arr.difference(subs, newChildren);
-  Arr.each(deleted, (deletedComp) => {
+  const deleted = (subs).filter((_x: any) => !(newChildren).includes(_x));
+  (deleted).forEach((deletedComp) => {
     if (isConnected(deletedComp)) {
       virtualDetach(deletedComp);
     }

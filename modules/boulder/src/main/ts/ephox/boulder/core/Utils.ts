@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { Fun } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';
 import * as SchemaError from './SchemaError';
@@ -13,7 +12,7 @@ const value = (validator: ValueValidator): StructureProcessor => {
     );
   };
 
-  const toString = Fun.constant('val');
+  const toString = () => 'val';
 
   return {
     extract,

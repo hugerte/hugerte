@@ -1,4 +1,3 @@
-import { Arr, Thunk, Type } from '@ephox/katamari';
 import { Html, Remove, SelectorFilter, SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -10,7 +9,7 @@ import { CompleteUndoLevel, FragmentedUndoLevel, NewUndoLevel, UndoLevel } from 
 
 // We need to create a temporary document instead of using the global document since
 // innerHTML on a detached element will still make http requests to the images
-const lazyTempDocument = Thunk.cached(() => document.implementation.createHTMLDocument('undo'));
+const lazyTempDocument = ((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (() => document.implementation.createHTMLDocument('undo'))(..._a); } return _r; }; })());
 
 const hasIframes = (body: HTMLElement) => body.querySelector('iframe') !== null;
 
@@ -52,7 +51,7 @@ const applyToEditor = (editor: Editor, level: UndoLevel, before: boolean): void 
       // If the bookmark was not a fake caret, then we need to ensure that setContent does not move the selection
       // as this can create a new fake caret - particularly if the first element in the body is contenteditable=false.
       // The creation of this new fake caret will cause our path offset to be off by one when restoring the original selection.
-      no_selection: Type.isNonNullable(bookmark) && isPathBookmark(bookmark) ? !bookmark.isFakeCaret : true
+      no_selection: (bookmark) != null && isPathBookmark(bookmark) ? !bookmark.isFakeCaret : true
     });
   }
 
@@ -69,7 +68,7 @@ const getLevelContent = (level: NewUndoLevel): string => {
 const getCleanLevelContent = (level: NewUndoLevel): string => {
   const elm = SugarElement.fromTag('body', lazyTempDocument());
   Html.set(elm, getLevelContent(level));
-  Arr.each(SelectorFilter.descendants(elm, '*[data-mce-bogus]'), Remove.unwrap);
+  (SelectorFilter.descendants(elm, '*[data-mce-bogus]')).forEach(Remove.unwrap);
   return Html.get(elm);
 };
 

@@ -1,5 +1,5 @@
 import { DataTransfer, DataTransferContent, DataTransferMode } from '@ephox/dragster';
-import { Arr, Cell, Strings, Type } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';
@@ -104,12 +104,12 @@ const hasHtmlOrText = (content: ClipboardContents): boolean =>
 
 const extractFilename = (editor: Editor, str: string): string | undefined => {
   const m = str.match(/([\s\S]+?)(?:\.[a-z0-9.]+)$/i);
-  return Type.isNonNullable(m) ? editor.dom.encode(m[1]) : undefined;
+  return (m) != null ? editor.dom.encode(m[1]) : undefined;
 };
 
 const createBlobInfo = (editor: Editor, blobCache: BlobCache, file: File, base64: string): BlobInfo => {
   const id = uniqueId();
-  const useFileName = Options.shouldReuseFileName(editor) && Type.isNonNullable(file.name);
+  const useFileName = Options.shouldReuseFileName(editor) && (file.name) != null;
   const name = useFileName ? extractFilename(editor, file.name) : id;
   const filename = useFileName ? file.name : undefined;
 
@@ -136,23 +136,23 @@ const isClipboardEvent = (event: Event): event is ClipboardEvent =>
   event.type === 'paste';
 
 const readFilesAsDataUris = (items: File[]): Promise<FileResult[]> =>
-  Promise.all(Arr.map(items, (file) => {
+  Promise.all((items).map((file) => {
     return Conversions.blobToDataUri(file).then((uri) => ({ file, uri }));
   }));
 
 const isImage = (editor: Editor) => {
   const allowedExtensions = Options.getAllowedImageFileTypes(editor);
-  return (file: File): boolean => Strings.startsWith(file.type, 'image/') && Arr.exists(allowedExtensions, (extension) => {
+  return (file: File): boolean => (file.type).startsWith('image/') && (allowedExtensions).some((extension) => {
     return PasteUtils.getImageMimeType(extension) === file.type;
   });
 };
 
 const getImagesFromDataTransfer = (editor: Editor, dataTransfer: DataTransfer): File[] => {
-  const items = dataTransfer.items ? Arr.bind(Arr.from(dataTransfer.items), (item) => {
+  const items = dataTransfer.items ? (Array.from(dataTransfer.items)).flatMap((item) => {
     return item.kind === 'file' ? [ item.getAsFile() as File ] : [];
   }) : [];
-  const files = dataTransfer.files ? Arr.from(dataTransfer.files) : [];
-  return Arr.filter(items.length > 0 ? items : files, isImage(editor));
+  const files = dataTransfer.files ? Array.from(dataTransfer.files) : [];
+  return (items.length > 0 ? items : files).filter(isImage(editor));
 };
 
 /*
@@ -173,7 +173,7 @@ const pasteImageData = (editor: Editor, e: ClipboardEvent | DragEvent, rng: Rang
           editor.selection.setRng(rng);
         }
 
-        Arr.each(fileResults, (result) => {
+        (fileResults).forEach((result) => {
           pasteImage(editor, result);
         });
       });
@@ -282,8 +282,8 @@ const registerEventHandlers = (editor: Editor, pasteBin: PasteBin, pasteFormat: 
 };
 
 const registerDataImageFilter = (editor: Editor) => {
-  const isWebKitFakeUrl = (src: string): boolean => Strings.startsWith(src, 'webkit-fake-url');
-  const isDataUri = (src: string): boolean => Strings.startsWith(src, 'data:');
+  const isWebKitFakeUrl = (src: string): boolean => (src).startsWith('webkit-fake-url');
+  const isDataUri = (src: string): boolean => (src).startsWith('data:');
   const isPasteInsert = (args: ParserArgs): boolean => args.data?.paste === true;
 
   // Remove all data images from paste for example from Gecko
@@ -292,7 +292,7 @@ const registerDataImageFilter = (editor: Editor) => {
     if (!Options.shouldPasteDataImages(editor) && isPasteInsert(args)) {
       for (const node of nodes) {
         const src = node.attr('src');
-        if (Type.isString(src) && !node.attr('data-mce-object') && src !== Env.transparentSrc) {
+        if (typeof (src) === 'string' && !node.attr('data-mce-object') && src !== Env.transparentSrc) {
           // Safari on Mac produces webkit-fake-url see: https://bugs.webkit.org/show_bug.cgi?id=49141
           if (isWebKitFakeUrl(src)) {
             node.remove();

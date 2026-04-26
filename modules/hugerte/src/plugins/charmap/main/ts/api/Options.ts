@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -15,7 +14,7 @@ const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
   const charMapProcessor = (value: unknown) =>
-    Type.isFunction(value) || Type.isArray(value);
+    typeof (value) === 'function' || Array.isArray(value);
 
   registerOption('charmap', {
     processor: charMapProcessor,

@@ -1,4 +1,4 @@
-import { Arr, Cell, Singleton } from '@ephox/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Env from 'hugerte/core/api/Env';
@@ -41,7 +41,7 @@ const open = (editor: Editor, currentSearchState: Cell<Actions.SearchState>): vo
   const disableAll = (api: Dialog.DialogInstanceApi<DialogData>, disable: boolean): void => {
     const buttons = [ 'replace', 'replaceall', 'prev', 'next' ];
     const toggle = (name: string) => api.setEnabled(name, !disable);
-    Arr.each(buttons, toggle);
+    (buttons).forEach(toggle);
   };
 
   const toggleNotFoundAlert = (isVisible: boolean, api: Dialog.DialogInstanceApi<DialogData>): void => {

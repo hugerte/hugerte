@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { SimRange, SugarElement } from '@ephox/sugar';
 
 import { Bounds } from '../../alien/Boxes';
@@ -13,10 +12,10 @@ export type AnchorPlacement = (
   comp: AlloyComponent,
   origin: OriginAdt,
   anchoring: Anchoring,
-  getBounds: Optional<() => Bounds>,
+  getBounds: (() =) | null Bounds>,
   placee: AlloyComponent,
-  lastPlacement: Optional<PlacerResult>,
-  transition: Optional<Transition>
+  lastPlacement: (PlacerResult) | null,
+  transition: (Transition) | null
 ) => PlacerResult;
 
 export interface CommonAnchorSpec {
@@ -26,7 +25,7 @@ export interface CommonAnchorSpec {
 export type AnchorSpec = SelectionAnchorSpec | HotspotAnchorSpec | SubmenuAnchorSpec | MakeshiftAnchorSpec | NodeAnchorSpec;
 
 export interface AnchorDetail<D> {
-  placement: (comp: AlloyComponent, anchor: D, origin: OriginAdt) => Optional<Anchoring>;
+  placement: (comp: AlloyComponent, anchor: D, origin: OriginAdt) => (Anchoring) | null;
 }
 
 export type MaxHeightFunction = (elem: SugarElement<HTMLElement>, available: number) => void;
@@ -39,12 +38,12 @@ export interface AnchorOverrides {
 export interface LayoutsDetail {
   onLtr: (elem: SugarElement<Element>) => AnchorLayout[];
   onRtl: (elem: SugarElement<Element>) => AnchorLayout[];
-  onBottomLtr: Optional<(elem: SugarElement<Element>) => AnchorLayout[]>;
-  onBottomRtl: Optional<(elem: SugarElement<Element>) => AnchorLayout[]>;
+  onBottomLtr: ((elem: SugarElement<Element>) =) | null AnchorLayout[]>;
+  onBottomRtl: ((elem: SugarElement<Element>) =) | null AnchorLayout[]>;
 }
 
 export interface HasLayoutAnchor {
-  layouts: Optional<LayoutsDetail>;
+  layouts: (LayoutsDetail) | null;
 }
 
 export interface Layouts {
@@ -65,7 +64,7 @@ export interface SelectionTableCellRange {
 
 export interface SelectionAnchorSpec extends CommonAnchorSpec, HasLayoutAnchorSpec {
   type: 'selection';
-  getSelection?: () => Optional<SimRange | SelectionTableCellRange>;
+  getSelection?: () => (SimRange | SelectionTableCellRange) | null;
   root: SugarElement<Node>;
   bubble?: Bubble;
   overrides?: AnchorOverrides;
@@ -73,16 +72,16 @@ export interface SelectionAnchorSpec extends CommonAnchorSpec, HasLayoutAnchorSp
 }
 
 export interface SelectionAnchor extends AnchorDetail<SelectionAnchor>, HasLayoutAnchor {
-  getSelection: Optional<() => Optional<SimRange | SelectionTableCellRange>>;
+  getSelection: (() =) | null (SimRange | SelectionTableCellRange) | null>;
   root: SugarElement<Node>;
-  bubble: Optional<Bubble>;
+  bubble: (Bubble) | null;
   overrides: AnchorOverrides;
   showAbove: boolean;
 }
 
 export interface NodeAnchorSpec extends CommonAnchorSpec, HasLayoutAnchorSpec {
   type: 'node';
-  node: Optional<SugarElement<Element>>;
+  node: (SugarElement<Element>) | null;
   root: SugarElement<Node>;
   bubble?: Bubble;
   overrides?: AnchorOverrides;
@@ -90,9 +89,9 @@ export interface NodeAnchorSpec extends CommonAnchorSpec, HasLayoutAnchorSpec {
 }
 
 export interface NodeAnchor extends AnchorDetail<NodeAnchor>, HasLayoutAnchor {
-  node: Optional<SugarElement<Element>>;
+  node: (SugarElement<Element>) | null;
   root: SugarElement<Node>;
-  bubble: Optional<Bubble>;
+  bubble: (Bubble) | null;
   overrides: AnchorOverrides;
   showAbove: boolean;
 }
@@ -106,7 +105,7 @@ export interface HotspotAnchorSpec extends CommonAnchorSpec, HasLayoutAnchorSpec
 
 export interface HotspotAnchor extends AnchorDetail<HotspotAnchor>, HasLayoutAnchor {
   hotspot: AlloyComponent;
-  bubble: Optional<Bubble>;
+  bubble: (Bubble) | null;
   overrides: AnchorOverrides;
 }
 
@@ -147,7 +146,7 @@ export interface Anchoring {
   layouts: AnchorLayout[];
 }
 
-const nu: (spec: Anchoring) => Anchoring = Fun.identity;
+const nu: (spec: Anchoring) => Anchoring = (x: any) => x;
 
 export {
   nu

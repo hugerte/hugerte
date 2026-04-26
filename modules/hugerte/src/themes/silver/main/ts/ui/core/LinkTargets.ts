@@ -1,4 +1,3 @@
-import { Arr, Fun, Id, Type } from '@ephox/katamari';
 import { SelectorFilter, SugarElement } from '@ephox/sugar';
 
 import Tools from 'hugerte/core/api/util/Tools';
@@ -20,7 +19,7 @@ export interface LinkTarget {
   readonly attach: any; // To allow popups we have to replace the function with a placeholder
 }
 
-const isElement = (node: Node): node is HTMLElement => Type.isNonNullable(node) && node.nodeType === 1;
+const isElement = (node: Node): node is HTMLElement => (node) != null && node.nodeType === 1;
 
 const trim = Tools.trim;
 const hasContentEditableState = (value: string) => {
@@ -63,7 +62,7 @@ const isChildOfContentEditableTrue = (node: Node): boolean => {
 };
 
 const select = (selector: string, root: HTMLElement) => {
-  return Arr.map(SelectorFilter.descendants<HTMLElement>(SugarElement.fromDom(root), selector), (element) => {
+  return (SelectorFilter.descendants<HTMLElement>(SugarElement.fromDom(root), selector)).map((element) => {
     return element.dom;
   });
 };
@@ -73,7 +72,7 @@ const getElementText = (elm: HTMLElement): string | null => {
 };
 
 const getOrGenerateId = (elm: HTMLElement): string => {
-  return elm.id ? elm.id : Id.generate('h');
+  return elm.id ? elm.id : (('h') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 };
 
 const isAnchor = (elm: HTMLElement): elm is HTMLAnchorElement => {
@@ -114,15 +113,15 @@ const anchorTarget = (elm: HTMLAnchorElement): LinkTarget => {
   const anchorId = elm.id || elm.name;
   const anchorText = getElementText(elm);
 
-  return create('anchor', anchorText ? anchorText : '#' + anchorId, '#' + anchorId, 0, Fun.noop);
+  return create('anchor', anchorText ? anchorText : '#' + anchorId, '#' + anchorId, 0, () => {});
 };
 
 const getHeaderTargets = (elms: HTMLElement[]) => {
-  return Arr.map(Arr.filter(elms, isValidHeader), headerTarget);
+  return ((elms).filter(isValidHeader)).map(headerTarget);
 };
 
 const getAnchorTargets = (elms: HTMLElement[]) => {
-  return Arr.map(Arr.filter(elms, isValidAnchor), anchorTarget);
+  return ((elms).filter(isValidAnchor)).map(anchorTarget);
 };
 
 const getTargetElements = (elm: HTMLElement): HTMLElement[] => {
@@ -136,7 +135,7 @@ const hasTitle = (target: LinkTarget): boolean => {
 
 const find = (elm: HTMLElement): LinkTarget[] => {
   const elms = getTargetElements(elm);
-  return Arr.filter(getHeaderTargets(elms).concat(getAnchorTargets(elms)), hasTitle);
+  return (getHeaderTargets(elms).concat(getAnchorTargets(elms))).filter(hasTitle);
 };
 
 export const LinkTargets = {

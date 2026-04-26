@@ -1,4 +1,3 @@
-import { Arr, Fun, Optionals, Type, Unicode } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import * as NodeType from '../dom/NodeType';
@@ -26,14 +25,14 @@ const isElement = NodeType.isElement;
 const isCaretCandidate = CaretCandidate.isCaretCandidate;
 const isBlock = NodeType.matchStyleValues('display', 'block table');
 const isFloated = NodeType.matchStyleValues('float', 'left right');
-const isValidElementCaretCandidate = Predicate.and(isElement, isCaretCandidate, Fun.not(isFloated)) as (node: Node | undefined) => node is Element;
-const isNotPre = Fun.not(NodeType.matchStyleValues('white-space', 'pre pre-line pre-wrap'));
+const isValidElementCaretCandidate = Predicate.and(isElement, isCaretCandidate, (x: any) => !(isFloated)(x)) as (node: Node | undefined) => node is Element;
+const isNotPre = (x: any) => !(NodeType.matchStyleValues('white-space', 'pre pre-line pre-wrap'))(x);
 const isText = NodeType.isText;
 const isBr = NodeType.isBr;
 const nodeIndex = DOMUtils.nodeIndex;
 const resolveIndex = RangeNodes.getNodeUnsafe;
 const createRange = (doc: Document | null): Range => doc ? doc.createRange() : DOMUtils.DOM.createRng();
-const isWhiteSpace = (chr: string | undefined): boolean => Type.isString(chr) && /[\r\n\t ]/.test(chr);
+const isWhiteSpace = (chr: string | undefined): boolean => typeof (chr) === 'string' && /[\r\n\t ]/.test(chr);
 const isRange = (rng: any): rng is Range => !!rng.setStart && !!rng.setEnd;
 
 const isHiddenWhiteSpaceRange = (range: Range): boolean => {
@@ -56,7 +55,7 @@ const isHiddenWhiteSpaceRange = (range: Range): boolean => {
 const getBrClientRect = (brNode: Element): GeomClientRect => {
   const doc = brNode.ownerDocument;
   const rng = createRange(doc);
-  const nbsp = doc.createTextNode(Unicode.nbsp);
+  const nbsp = doc.createTextNode('\u00A0');
   const parentNode = brNode.parentNode as Node;
 
   parentNode.insertBefore(nbsp, brNode);
@@ -283,7 +282,7 @@ export const CaretPosition = (container: Node, offset: number, clientRects?: Geo
      * @method container
      * @return {Node} Container node.
      */
-    container: Fun.constant(container),
+    container: () => container,
 
     /**
      * Returns the offset within the container node.
@@ -291,7 +290,7 @@ export const CaretPosition = (container: Node, offset: number, clientRects?: Geo
      * @method offset
      * @return {Number} Offset within the container node.
      */
-    offset: Fun.constant(offset),
+    offset: () => offset,
 
     /**
      * Returns a range out of a the caret position.
@@ -394,10 +393,10 @@ CaretPosition.after = (node: Node) => CaretPosition(node.parentNode as Node, nod
 CaretPosition.before = (node: Node) => CaretPosition(node.parentNode as Node, nodeIndex(node));
 
 CaretPosition.isAbove = (pos1: CaretPosition, pos2: CaretPosition): boolean =>
-  Optionals.lift2(Arr.head(pos2.getClientRects()), Arr.last(pos1.getClientRects()), ClientRect.isAbove).getOr(false);
+  (((pos2.getClientRects())[0] ?? null) !== null && ((pos1.getClientRects()).at(-1) ?? null) !== null ? (ClientRect.isAbove)(((pos2.getClientRects())[0] ?? null), ((pos1.getClientRects()).at(-1) ?? null)) : null) ?? (false);
 
 CaretPosition.isBelow = (pos1: CaretPosition, pos2: CaretPosition): boolean =>
-  Optionals.lift2(Arr.last(pos2.getClientRects()), Arr.head(pos1.getClientRects()), ClientRect.isBelow).getOr(false);
+  (((pos2.getClientRects()).at(-1) ?? null) !== null && ((pos1.getClientRects())[0] ?? null) !== null ? (ClientRect.isBelow)(((pos2.getClientRects()).at(-1) ?? null), ((pos1.getClientRects())[0] ?? null)) : null) ?? (false);
 
 CaretPosition.isAtStart = (pos: CaretPosition) => pos ? pos.isAtStart() : false;
 CaretPosition.isAtEnd = (pos: CaretPosition) => pos ? pos.isAtEnd() : false;

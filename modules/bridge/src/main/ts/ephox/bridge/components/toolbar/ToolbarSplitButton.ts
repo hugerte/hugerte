@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { ChoiceMenuItemSpec, SeparatorMenuItemSpec } from '../../api/Menu';
 import * as ComponentSchema from '../../core/ComponentSchema';
@@ -29,10 +29,10 @@ export interface ToolbarSplitButtonSpec {
 
 export interface ToolbarSplitButton {
   type: 'splitbutton';
-  tooltip: Optional<string>;
-  icon: Optional<string>;
-  text: Optional<string>;
-  select: Optional<SelectPredicate>;
+  tooltip: (string) | null;
+  icon: (string) | null;
+  text: (string) | null;
+  select: (SelectPredicate) | null;
   presets: PresetTypes;
   columns: ColumnTypes;
   fetch: (success: SuccessCallback) => void;

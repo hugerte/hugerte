@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
 import { SelectorFind } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -32,21 +31,21 @@ const moveUp: DomMovement.ElementMover<MenuConfig, Stateless> = (element, focuse
 
 const moveDown: DomMovement.ElementMover<MenuConfig, Stateless> = (element, focused, info) => DomNavigation.horizontal(element, info.selector, focused, +1);
 
-const fireShiftTab: KeyRuleHandler<MenuConfig, Stateless> = (component, simulatedEvent, menuConfig, menuState) => menuConfig.moveOnTab ? DomMovement.move(moveUp)(component, simulatedEvent, menuConfig, menuState) : Optional.none();
+const fireShiftTab: KeyRuleHandler<MenuConfig, Stateless> = (component, simulatedEvent, menuConfig, menuState) => menuConfig.moveOnTab ? DomMovement.move(moveUp)(component, simulatedEvent, menuConfig, menuState) : null;
 
-const fireTab: KeyRuleHandler<MenuConfig, Stateless> = (component, simulatedEvent, menuConfig, menuState) => menuConfig.moveOnTab ? DomMovement.move(moveDown)(component, simulatedEvent, menuConfig, menuState) : Optional.none();
+const fireTab: KeyRuleHandler<MenuConfig, Stateless> = (component, simulatedEvent, menuConfig, menuState) => menuConfig.moveOnTab ? DomMovement.move(moveDown)(component, simulatedEvent, menuConfig, menuState) : null;
 
-const getKeydownRules = Fun.constant([
+const getKeydownRules = () => [
   KeyRules.rule(KeyMatch.inSet(Keys.UP), DomMovement.move(moveUp)),
   KeyRules.rule(KeyMatch.inSet(Keys.DOWN), DomMovement.move(moveDown)),
   KeyRules.rule(KeyMatch.and([ KeyMatch.isShift, KeyMatch.inSet(Keys.TAB) ]), fireShiftTab),
   KeyRules.rule(KeyMatch.and([ KeyMatch.isNotShift, KeyMatch.inSet(Keys.TAB) ]), fireTab),
   KeyRules.rule(KeyMatch.inSet(Keys.ENTER), execute),
   KeyRules.rule(KeyMatch.inSet(Keys.SPACE), execute)
-]);
+];
 
-const getKeyupRules = Fun.constant([
+const getKeyupRules = () => [
   KeyRules.rule(KeyMatch.inSet(Keys.SPACE), KeyingTypes.stopEventForFirefox)
-]);
+];
 
-export default KeyingType.typical(schema, NoState.init, getKeydownRules, getKeyupRules, () => Optional.some(focusIn));
+export default KeyingType.typical(schema, NoState.init, getKeydownRules, getKeyupRules, () => focusIn);

@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -28,10 +28,10 @@ const schema = [
 
 // TODO: Remove dupe.
 // TODO: Probably use this for not just execution.
-const findCurrent = (component: AlloyComponent, flowConfig: FlowConfig): Optional<SugarElement<HTMLElement>> =>
+const findCurrent = (component: AlloyComponent, flowConfig: FlowConfig): (SugarElement<HTMLElement>) | null =>
   flowConfig.focusManager.get(component).bind((elem) => SelectorFind.closest(elem, flowConfig.selector));
 
-const execute = (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent, flowConfig: FlowConfig): Optional<boolean> =>
+const execute = (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent, flowConfig: FlowConfig): (boolean) | null =>
   findCurrent(component, flowConfig).bind((focused) => flowConfig.execute(component, simulatedEvent, focused));
 
 const focusIn = (component: AlloyComponent, flowConfig: FlowConfig, _state: Stateless): void => {
@@ -42,10 +42,10 @@ const focusIn = (component: AlloyComponent, flowConfig: FlowConfig, _state: Stat
   });
 };
 
-const moveLeft = (element: SugarElement<HTMLElement>, focused: SugarElement<HTMLElement>, info: FlowConfig): Optional<SugarElement<HTMLElement>> =>
+const moveLeft = (element: SugarElement<HTMLElement>, focused: SugarElement<HTMLElement>, info: FlowConfig): (SugarElement<HTMLElement>) | null =>
   (info.cycles ? DomNavigation.horizontal : DomNavigation.horizontalWithoutCycles)(element, info.selector, focused, -1);
 
-const moveRight = (element: SugarElement<HTMLElement>, focused: SugarElement<HTMLElement>, info: FlowConfig): Optional<SugarElement<HTMLElement>> =>
+const moveRight = (element: SugarElement<HTMLElement>, focused: SugarElement<HTMLElement>, info: FlowConfig): (SugarElement<HTMLElement>) | null =>
   (info.cycles ? DomNavigation.horizontal : DomNavigation.horizontalWithoutCycles)(element, info.selector, focused, +1);
 
 const doMove = (movement: KeyRuleHandler<FlowConfig, Stateless>): KeyRuleHandler<FlowConfig, Stateless> =>
@@ -76,9 +76,9 @@ const getKeydownRules = (
   ];
 };
 
-const getKeyupRules: () => Array<KeyRules.KeyRule<FlowConfig, Stateless>> = Fun.constant([
+const getKeyupRules: () => Array<KeyRules.KeyRule<FlowConfig, Stateless>> = () => [
   KeyRules.rule(KeyMatch.inSet(Keys.SPACE), KeyingTypes.stopEventForFirefox),
   KeyRules.rule(KeyMatch.inSet(Keys.ESCAPE), doEscape)
-]);
+];
 
-export default KeyingType.typical(schema, NoState.init, getKeydownRules, getKeyupRules, () => Optional.some(focusIn));
+export default KeyingType.typical(schema, NoState.init, getKeydownRules, getKeyupRules, () => focusIn);

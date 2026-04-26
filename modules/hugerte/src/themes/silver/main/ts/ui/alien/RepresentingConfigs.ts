@@ -1,6 +1,5 @@
 import { AlloyComponent, MementoRecord, Representing } from '@ephox/alloy';
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
 import { Html, SugarElement, Value } from '@ephox/sugar';
 
 type RepresentingBehaviour = ReturnType<typeof Representing['config']>;
@@ -12,8 +11,8 @@ interface Processors {
 }
 
 const processors = StructureSchema.objOf([
-  FieldSchema.defaulted('preprocess', Fun.identity),
-  FieldSchema.defaulted('postprocess', Fun.identity)
+  FieldSchema.defaulted('preprocess', (x: any) => x),
+  FieldSchema.defaulted('postprocess', (x: any) => x)
 ]);
 
 const memento = (mem: MementoRecord, rawProcessors: Processors): RepresentingBehaviour => {
@@ -35,27 +34,27 @@ const memento = (mem: MementoRecord, rawProcessors: Processors): RepresentingBeh
   });
 };
 
-const withComp = <D, I = D>(optInitialValue: Optional<I>, getter: (c: AlloyComponent) => D, setter: (c: AlloyComponent, v: I) => void): RepresentingBehaviour =>
+const withComp = <D, I = D>(optInitialValue: (I) | null, getter: (c: AlloyComponent) => D, setter: (c: AlloyComponent, v: I) => void): RepresentingBehaviour =>
   Representing.config({
     store: {
       mode: 'manual' as 'manual',
-      ...optInitialValue.map((initialValue) => ({ initialValue })).getOr({}),
+      ...optInitialValue.map((initialValue) => ({ initialValue })) ?? ({}),
       getValue: getter,
       setValue: setter
     }
   });
 
-const withElement = <D, I = D>(initialValue: Optional<I>, getter: (elem: SugarElement) => D, setter: (elem: SugarElement, v: I) => void): RepresentingBehaviour =>
+const withElement = <D, I = D>(initialValue: (I) | null, getter: (elem: SugarElement) => D, setter: (elem: SugarElement, v: I) => void): RepresentingBehaviour =>
   withComp<D, I>(
     initialValue,
     (c) => getter(c.element),
     (c, v) => setter(c.element, v)
   );
 
-const domValue = (optInitialValue: Optional<string>): RepresentingBehaviour =>
+const domValue = (optInitialValue: (string) | null): RepresentingBehaviour =>
   withElement(optInitialValue, Value.get, Value.set);
 
-const domHtml = (optInitialValue: Optional<string>): RepresentingBehaviour =>
+const domHtml = (optInitialValue: (string) | null): RepresentingBehaviour =>
   withElement(optInitialValue, Html.get, Html.set);
 
 const memory = (initialValue: any): RepresentingBehaviour => Representing.config({

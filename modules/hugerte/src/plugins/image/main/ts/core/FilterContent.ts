@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import AstNode from 'hugerte/core/api/html/Node';
@@ -6,7 +5,7 @@ import Tools from 'hugerte/core/api/util/Tools';
 
 const hasImageClass = (node: AstNode): boolean => {
   const className = node.attr('class');
-  return Type.isNonNullable(className) && /\bimage\b/.test(className);
+  return (className) != null && /\bimage\b/.test(className);
 };
 
 const toggleContentEditableState = (state: boolean) => (nodes: AstNode[]): void => {

@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -28,7 +27,7 @@ const setCells = <R extends RowElement>(gridRow: Structs.RowCells<R>, cells: Str
 
 const mapCells = <R extends RowElement>(gridRow: Structs.RowCells<R>, f: CellMorphism<RowCell<R>>): Structs.RowCells => {
   const cells = gridRow.cells;
-  const r = Arr.map(cells, f);
+  const r = (cells).map(f);
   return Structs.rowcells(gridRow.element, r, gridRow.section, gridRow.isNew);
 };
 
@@ -42,7 +41,7 @@ const cellLength = (gridRow: Structs.RowCells): number =>
   gridRow.cells.length;
 
 const extractGridDetails = (grid: Structs.RowCells[]): { rows: Structs.RowCells<HTMLTableRowElement>[]; cols: Structs.RowCells<HTMLTableColElement>[] } => {
-  const result = Arr.partition(grid, (row) => row.section === 'colgroup');
+  const result = (grid).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((row) => row.section === 'colgroup')(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
   return {
     rows: result.fail as Structs.RowCells<HTMLTableRowElement>[],
     cols: result.pass as Structs.RowCells<HTMLTableColElement>[]
@@ -50,7 +49,7 @@ const extractGridDetails = (grid: Structs.RowCells[]): { rows: Structs.RowCells<
 };
 
 const clone = <R extends RowElement>(gridRow: Structs.RowCells<R>, cloneRow: RowMorphism<R>, cloneCell: CellMorphism<RowCell<R>>): Structs.RowCells<R> => {
-  const newCells = Arr.map(gridRow.cells, cloneCell);
+  const newCells = (gridRow.cells).map(cloneCell);
   return Structs.rowcells(cloneRow(gridRow.element), newCells, gridRow.section, true);
 };
 

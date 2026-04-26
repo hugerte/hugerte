@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Attribute, SugarElement } from '@ephox/sugar';
 
 export const enum Placement {
@@ -18,8 +17,8 @@ const setPlacement = (element: SugarElement<HTMLElement>, placement: Placement):
   Attribute.set(element, placementAttribute, placement);
 };
 
-const getPlacement = (element: SugarElement<HTMLElement>): Optional<Placement> =>
-  Attribute.getOpt(element, placementAttribute) as Optional<Placement>;
+const getPlacement = (element: SugarElement<HTMLElement>): (Placement) | null =>
+  Attribute.getOpt(element, placementAttribute) as (Placement) | null;
 
 const reset = (element: SugarElement<HTMLElement>): void =>
   Attribute.remove(element, placementAttribute);

@@ -1,5 +1,4 @@
 import { AlloyComponent, Bubble, HotspotAnchorSpec, Layout, LayoutInset, MaxHeight, NodeAnchorSpec, SelectionAnchorSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 import { Height, SimSelection, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -11,7 +10,7 @@ export interface UiFactoryBackstageAnchors {
   readonly inlineBottomDialog: () => HotspotAnchorSpec | NodeAnchorSpec;
   readonly banner: () => HotspotAnchorSpec | NodeAnchorSpec;
   readonly cursor: () => SelectionAnchorSpec;
-  readonly node: (elem: Optional<SugarElement>) => NodeAnchorSpec;
+  readonly node: (elem: (SugarElement) | null) => NodeAnchorSpec;
 }
 
 const bubbleAlignments = {
@@ -34,7 +33,7 @@ const getInlineDialogAnchor = (contentAreaElement: () => SugarElement<HTMLElemen
   const editableAreaAnchor = (): NodeAnchorSpec => ({
     type: 'node',
     root: SugarShadowDom.getContentContainer(SugarShadowDom.getRootNode(contentAreaElement())),
-    node: Optional.from(contentAreaElement()),
+    node: (contentAreaElement() ?? null),
     bubble: Bubble.nu(bubbleSize, bubbleSize, bubbleAlignments),
     layouts: {
       onRtl: () => [ LayoutInset.northeast ],
@@ -71,7 +70,7 @@ const getInlineBottomDialogAnchor = (
   const editableAreaAnchor = (): NodeAnchorSpec => ({
     type: 'node',
     root: SugarShadowDom.getContentContainer(SugarShadowDom.getRootNode(contentAreaElement())),
-    node: Optional.from(contentAreaElement()),
+    node: (contentAreaElement() ?? null),
     bubble: Bubble.nu(bubbleSize, bubbleSize, bubbleAlignments),
     layouts: {
       onRtl: () => [ LayoutInset.north ],
@@ -85,7 +84,7 @@ const getInlineBottomDialogAnchor = (
       ({
         type: 'node',
         root: SugarShadowDom.getContentContainer(SugarShadowDom.getRootNode(contentAreaElement())),
-        node: Optional.from(contentAreaElement()),
+        node: (contentAreaElement() ?? null),
         bubble: Bubble.nu(0, -Height.getOuter(contentAreaElement()), bubbleAlignments),
         layouts: {
           onRtl: () => [ Layout.north ],
@@ -111,7 +110,7 @@ const getBannerAnchor = (contentAreaElement: () => SugarElement<HTMLElement>, la
   const editableAreaAnchor = (): NodeAnchorSpec => ({
     type: 'node',
     root: SugarShadowDom.getContentContainer(SugarShadowDom.getRootNode(contentAreaElement())),
-    node: Optional.from(contentAreaElement()),
+    node: (contentAreaElement() ?? null),
     layouts: {
       onRtl: () => [ LayoutInset.north ],
       onLtr: () => [ LayoutInset.north ]
@@ -146,16 +145,14 @@ const getCursorAnchor = (editor: Editor, bodyElement: () => SugarElement<HTMLEle
         lastCell: SugarElement.fromDom(lastCell)
       };
 
-      return Optional.some(selectionTableCellRange);
+      return selectionTableCellRange;
     }
 
-    return Optional.some(
-      SimSelection.range(SugarElement.fromDom(rng.startContainer), rng.startOffset, SugarElement.fromDom(rng.endContainer), rng.endOffset)
-    );
+    return SimSelection.range(SugarElement.fromDom(rng.startContainer), rng.startOffset, SugarElement.fromDom(rng.endContainer), rng.endOffset);
   }
 });
 
-const getNodeAnchor = (bodyElement: () => SugarElement<HTMLElement>) => (element: Optional<SugarElement<HTMLElement>>): NodeAnchorSpec => ({
+const getNodeAnchor = (bodyElement: () => SugarElement<HTMLElement>) => (element: (SugarElement<HTMLElement>) | null): NodeAnchorSpec => ({
   type: 'node',
   root: bodyElement(),
   node: element

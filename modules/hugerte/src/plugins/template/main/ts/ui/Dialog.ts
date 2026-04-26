@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Env from 'hugerte/core/api/Env';
@@ -70,33 +69,33 @@ const getPreviewContent = (editor: Editor, html: string): string => {
 };
 
 const open = (editor: Editor, templateList: ExternalTemplate[]): void => {
-  const createTemplates = (): Optional<Array<InternalTemplate>> => {
+  const createTemplates = (): (Array<InternalTemplate>) | null => {
     if (!templateList || templateList.length === 0) {
       const message = editor.translate('No templates defined.');
       editor.notificationManager.open({ text: message, type: 'info' });
-      return Optional.none();
+      return null;
     }
 
-    return Optional.from(Tools.map(templateList, (template: ExternalTemplate, index) => {
+    return (Tools.map(templateList, (template: ExternalTemplate, index) => {
       const isUrlTemplate = (t: ExternalTemplate): t is UrlTemplate => (t as UrlTemplate).url !== undefined;
       return {
         selected: index === 0,
         text: template.title,
         value: {
-          url: isUrlTemplate(template) ? Optional.from(template.url) : Optional.none(),
-          content: !isUrlTemplate(template) ? Optional.from(template.content) : Optional.none(),
+          url: isUrlTemplate(template) ? (template.url ?? null) : null,
+          content: !isUrlTemplate(template) ? (template.content ?? null) : null,
           description: template.description
         }
       };
-    }));
+    }) ?? null);
   };
 
-  const createSelectBoxItems = (templates: InternalTemplate[]) => Arr.map(templates, (t) => ({
+  const createSelectBoxItems = (templates: InternalTemplate[]) => (templates).map((t) => ({
     text: t.text,
     value: t.text
   }));
 
-  const findTemplate = (templates: InternalTemplate[], templateTitle: string) => Arr.find(templates, (t) => t.text === templateTitle);
+  const findTemplate = (templates: InternalTemplate[], templateTitle: string) => ((templates).find((t) => t.text === templateTitle) ?? null);
 
   const loadFailedAlert = (api: Dialog.DialogInstanceApi<DialogData>) => {
     editor.windowManager.alert('Could not load the specified template.', () => api.focus('template'));
@@ -104,7 +103,7 @@ const open = (editor: Editor, templateList: ExternalTemplate[]): void => {
 
   const getTemplateContent = (t: InternalTemplate): Promise<string> =>
     t.value.url.fold(
-      () => Promise.resolve(t.value.content.getOr('')),
+      () => Promise.resolve(t.value.content ?? ('')),
       (url) => fetch(url).then((res) => res.ok ? res.text() : Promise.reject())
     );
 
@@ -210,7 +209,7 @@ const open = (editor: Editor, templateList: ExternalTemplate[]): void => {
     });
   };
 
-  const optTemplates: Optional<InternalTemplate[]> = createTemplates();
+  const optTemplates: (InternalTemplate[]) | null = createTemplates();
   optTemplates.each(openDialog);
 };
 

@@ -2,27 +2,27 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, CustomEvent, GuiFactory, InlineView, Keying, NativeEvents,
   SketchSpec
 } from '@ephox/alloy';
-import { Arr, Cell, Id, Optional, Result } from '@ephox/katamari';
+import { Cell, Result } from '@ephox/katamari';
 import { Class, Css, EventArgs, Focus, SugarElement, SugarShadowDom, Width } from '@ephox/sugar';
 
-const forwardSlideEvent = Id.generate('forward-slide');
+const forwardSlideEvent = (('forward-slide') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 export interface ForwardSlideEvent extends CustomEvent {
   readonly forwardContents: AlloySpec;
 }
 
-const backSlideEvent = Id.generate('backward-slide');
+const backSlideEvent = (('backward-slide') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 export interface BackwardSlideEvent extends CustomEvent { }
 
-const changeSlideEvent = Id.generate('change-slide-event');
+const changeSlideEvent = (('change-slide-event') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 export interface ChangeSlideEvent extends CustomEvent {
   readonly contents: AlloySpec;
-  readonly focus: Optional<SugarElement>;
+  readonly focus: (SugarElement) | null;
 }
 
 const resizingClass = 'tox-pop--resizing';
 
-const renderContextToolbar = (spec: { onEscape: () => Optional<boolean>; sink: AlloyComponent }): SketchSpec => {
-  const stack = Cell<Array<{ bar: AlloyComponent; focus: Optional<SugarElement<HTMLElement>> }>>([ ]);
+const renderContextToolbar = (spec: { onEscape: () => (boolean) | null; sink: AlloyComponent }): SketchSpec => {
+  const stack = Cell<Array<{ bar: AlloyComponent; focus: (SugarElement<HTMLElement>) | null }>>([ ]);
 
   return InlineView.sketch({
     dom: {
@@ -86,12 +86,12 @@ const renderContextToolbar = (spec: { onEscape: () => Optional<boolean>; sink: A
           });
           AlloyTriggers.emitWith(comp, changeSlideEvent, {
             contents: se.event.forwardContents,
-            focus: Optional.none()
+            focus: null
           });
         }),
 
         AlloyEvents.run<BackwardSlideEvent>(backSlideEvent, (comp, _se) => {
-          Arr.last(stack.get()).each((last) => {
+          ((stack.get()).at(-1) ?? null).each((last) => {
             stack.set(stack.get().slice(0, stack.get().length - 1));
             AlloyTriggers.emitWith(comp, changeSlideEvent, {
               // Because we are using premade, we should have access to the same element
@@ -105,13 +105,13 @@ const renderContextToolbar = (spec: { onEscape: () => Optional<boolean>; sink: A
       ]),
       Keying.config({
         mode: 'special',
-        onEscape: (comp) => Arr.last(stack.get()).fold(
+        onEscape: (comp) => ((stack.get()).at(-1) ?? null).fold(
           () =>
           // Escape just focuses the content. It no longer closes the toolbar.
             spec.onEscape(),
           (_) => {
             AlloyTriggers.emit(comp, backSlideEvent);
-            return Optional.some(true);
+            return true;
           }
         )
       })

@@ -1,13 +1,12 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from '../Editor';
 
 export const registerCommands = (editor: Editor): void => {
   const applyLinkToSelection = (_command: string, _ui: boolean, value: string | { href: string }): void => {
-    const linkDetails = Type.isString(value) ? { href: value } : value;
+    const linkDetails = typeof (value) === 'string' ? { href: value } : value;
     const anchor = editor.dom.getParent(editor.selection.getNode(), 'a');
 
-    if (Type.isObject(linkDetails) && Type.isString(linkDetails.href)) {
+    if ((typeof (linkDetails) === 'object' && (linkDetails) !== null) && typeof (linkDetails.href) === 'string') {
       // Spaces are never valid in URLs and it's a very common mistake for people to make so we fix it here.
       linkDetails.href = linkDetails.href.replace(/ /g, '%20');
 

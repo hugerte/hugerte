@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { SugarElement } from '@ephox/sugar';
 
@@ -6,7 +5,7 @@ import { CustomEvent } from '../../events/SimulatedEvent';
 import { AlloyComponent } from '../component/ComponentApi';
 import * as NativeEvents from './NativeEvents';
 
-const prefixName = (name: string) => Fun.constant('alloy.' + name);
+const prefixName = (name: string) => () => 'alloy.' + name;
 
 const alloy = { tap: prefixName('tap') };
 
@@ -74,8 +73,8 @@ const dismissRequested = prefixName('system.dismissRequested');
 const repositionRequested = prefixName('system.repositionRequested');
 
 export interface AlloyFocusShiftedEvent extends CustomEvent {
-  readonly prevFocus: Optional<SugarElement<HTMLElement>>;
-  readonly newFocus: Optional<SugarElement<HTMLElement>>;
+  readonly prevFocus: (SugarElement<HTMLElement>) | null;
+  readonly newFocus: (SugarElement<HTMLElement>) | null;
 }
 
 const focusShifted = prefixName('focusmanager.shifted');

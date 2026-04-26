@@ -1,4 +1,3 @@
-import { Obj, Optional } from '@ephox/katamari';
 import { SugarElement, TransformFind } from '@ephox/sugar';
 
 import * as Tagger from '../registry/Tagger';
@@ -28,7 +27,7 @@ export interface EventRegistry {
   readonly registerId: (extraArgs: any[], id: string, events: Record<EventName, UncurriedHandler>) => void;
   readonly unregisterId: (id: string) => void;
   readonly filterByType: (type: string) => UidAndHandler[];
-  readonly find: (isAboveRoot: (elem: SugarElement<Node>) => boolean, type: string, target: SugarElement<Node>) => Optional<ElementAndHandler>;
+  readonly find: (isAboveRoot: (elem: SugarElement<Node>) => boolean, type: string, target: SugarElement<Node>) => (ElementAndHandler) | null;
 }
 
 const eventHandler = (element: SugarElement<Node>, descHandler: CurriedHandler): ElementAndHandler => ({
@@ -48,36 +47,36 @@ export const EventRegistry = (): EventRegistry => {
   const registry: Record<EventName, Record<Uid, CurriedHandler>> = { };
 
   const registerId = (extraArgs: any[], id: string, events: Record<EventName, UncurriedHandler>) => {
-    Obj.each(events, (v: UncurriedHandler, k: EventName) => {
+    Object.entries(events).forEach(([_k, _v]: [any, any]) => ((v: UncurriedHandler, k: EventName) => {
       const handlers = registry[k] !== undefined ? registry[k] : { };
       handlers[id] = DescribedHandler.curryArgs(v, extraArgs);
       registry[k] = handlers;
-    });
+    })(_v, _k));
   };
 
-  const findHandler = (handlers: Record<Uid, CurriedHandler>, elem: SugarElement<Node>): Optional<ElementAndHandler> =>
+  const findHandler = (handlers: Record<Uid, CurriedHandler>, elem: SugarElement<Node>): (ElementAndHandler) | null =>
     Tagger.read(elem)
-      .bind((id) => Obj.get(handlers, id))
+      .bind((id) => ((handlers)[id] ?? null))
       .map((descHandler) => eventHandler(elem, descHandler));
 
   // Given just the event type, find all handlers regardless of element
   const filterByType = (type: string): UidAndHandler[] =>
-    Obj.get(registry, type)
-      .map((handlers) => Obj.mapToArray(handlers, (f, id) => broadcastHandler(id, f)))
-      .getOr([ ]);
+    ((registry)[type] ?? null)
+      .map((handlers) => Object.entries(handlers).map(([_k, _v]: [any, any]) => ((f, id) => broadcastHandler(id, f))(_v, _k as any)))
+       ?? ([ ]);
 
   // Given event type, and element, find the handler.
-  const find = (isAboveRoot: (elem: SugarElement<Node>) => boolean, type: string, target: SugarElement<Node>): Optional<ElementAndHandler> =>
-    Obj.get(registry, type)
+  const find = (isAboveRoot: (elem: SugarElement<Node>) => boolean, type: string, target: SugarElement<Node>): (ElementAndHandler) | null =>
+    ((registry)[type] ?? null)
       .bind((handlers) => TransformFind.closest(target, (elem) => findHandler(handlers, elem), isAboveRoot));
 
   const unregisterId = (id: string): void => {
     // INVESTIGATE: Find a better way than mutation if we can.
-    Obj.each(registry, (handlersById, _eventName) => {
-      if (Obj.has(handlersById, id)) {
+    Object.entries(registry).forEach(([_k, _v]: [any, any]) => ((handlersById, _eventName) => {
+      if (Object.prototype.hasOwnProperty.call(handlersById, id)) {
         delete handlersById[id];
       }
-    });
+    })(_v, _k));
   };
 
   return {

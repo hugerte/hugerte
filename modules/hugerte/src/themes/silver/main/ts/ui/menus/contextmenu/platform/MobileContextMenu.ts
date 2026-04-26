@@ -1,5 +1,4 @@
 import { AlloyComponent, Bubble, InlineView, Layout, LayoutInset, MaxHeight, MaxWidth, TieredMenuTypes } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { SimSelection, WindowSelection } from '@ephox/sugar';
 
@@ -108,7 +107,7 @@ const show = (editor: Editor, e: EditorEvent<TouchEvent>, items: MenuItems, back
     {
       // MobileContextMenus are the *only* horizontal menus currently (2022-08-16)
       isHorizontalMenu: true,
-      search: Optional.none()
+      search: null
     }
   ).map((menuData) => {
     e.preventDefault();
@@ -127,7 +126,7 @@ const show = (editor: Editor, e: EditorEvent<TouchEvent>, items: MenuItems, back
       },
       data: menuData,
       type: 'horizontal'
-    }, () => Optional.some(getContextToolbarBounds(editor, backstage.shared, anchorType === 'node' ? 'node' : 'selection')));
+    }, () => getContextToolbarBounds(editor, backstage.shared, anchorType === 'node' ? 'node' : 'selection'));
 
     // Ensure the context toolbar is hidden
     editor.dispatch(hideContextToolbarEvent);

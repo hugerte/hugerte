@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import { EditorEvent } from '../api/util/EventDispatcher';
@@ -27,7 +26,7 @@ const createAndFireInputEvent = (eventType: string) =>
       isTrusted: false,
       srcElement: target,
       cancelable: false,
-      preventDefault: Fun.noop,
+      preventDefault: () => {},
       inputType
     };
 

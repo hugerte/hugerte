@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Fun, Merger, Obj, Optional, Thunk, Type } from '@ephox/katamari';
+import { Arr, Merger, Obj, Optional, Type } from '@ephox/katamari';
 
 import { SimpleResult, SimpleResultType } from '../alien/SimpleResult';
 import { FieldPresence, FieldPresenceTag, required } from '../api/FieldPresence';
@@ -19,17 +19,17 @@ export interface StructureProcessor {
 }
 
 type SimpleBundle<T> = SimpleResult<SchemaError[], T>;
-type OptionBundle<T> = SimpleResult<SchemaError[], Optional<T>>;
+type OptionBundle<T> = SimpleResult<SchemaError[], (T) | null>;
 type SimpleBundler<T, U> = (val: T) => SimpleBundle<U>;
-type OptionBundler<T, U> = (val: Optional<T>) => OptionBundle<U>;
+type OptionBundler<T, U> = (val: (T) | null) => OptionBundle<U>;
 
-const output = (newKey: string, value: any): FieldProcessor => FieldProcessor.customField(newKey, Fun.constant(value));
+const output = (newKey: string, value: any): FieldProcessor => FieldProcessor.customField(newKey, () => value);
 
-const snapshot = (newKey: string): FieldProcessor => FieldProcessor.customField(newKey, Fun.identity);
+const snapshot = (newKey: string): FieldProcessor => FieldProcessor.customField(newKey, (x: any) => x);
 
 const requiredAccess = <T, U>(path: string[], obj: Record<string, T>, key: string, bundle: SimpleBundler<T, U>): SimpleBundle<U> =>
   // In required mode, if it is undefined, it is an error.
-  Obj.get(obj, key).fold(() => SchemaError.missingRequired(path, key, obj), bundle);
+  ((obj)[key] ?? null).fold(() => SchemaError.missingRequired(path, key, obj), bundle);
 
 const fallbackAccess = <T, U>(
   obj: Record<string, T>,
@@ -37,12 +37,12 @@ const fallbackAccess = <T, U>(
   fallback: (obj: Record<string, T>) => T,
   bundle: SimpleBundler<T, U>
 ): SimpleBundle<U> => {
-  const v = Obj.get(obj, key).getOrThunk(() => fallback(obj));
+  const v = ((obj)[key] ?? null).getOrThunk(() => fallback(obj));
   return bundle(v);
 };
 
 const optionAccess = <T, U>(obj: Record<string, T>, key: string, bundle: OptionBundler<T, U>): OptionBundle<U> =>
-  bundle(Obj.get(obj, key));
+  bundle(((obj)[key] ?? null));
 
 const optionDefaultedAccess = <T, U>(
   obj: Record<string, T | true>,
@@ -50,7 +50,7 @@ const optionDefaultedAccess = <T, U>(
   fallback: (obj: Record<string, T | true>) => T,
   bundle: OptionBundler<T, U>
 ): OptionBundle<U> => {
-  const opt = Obj.get(obj, key).map((val) => val === true ? fallback(obj) : val);
+  const opt = ((obj)[key] ?? null).map((val) => val === true ? fallback(obj) : val);
   return bundle(opt);
 };
 
@@ -60,11 +60,11 @@ const extractField = <T, U>(
   obj: Record<string, T>,
   key: string,
   prop: StructureProcessor
-): SimpleResult<SchemaError[], U | Optional<U>> => {
+): SimpleResult<SchemaError[], U | (U) | null> => {
   const bundle = (av: T): SimpleBundle<U> => prop.extract(path.concat([ key ]), av);
 
-  const bundleAsOption = (optValue: Optional<T>): OptionBundle<U> => optValue.fold(
-    () => SimpleResult.svalue(Optional.none()),
+  const bundleAsOption = (optValue: (T) | null): OptionBundle<U> => optValue.fold(
+    () => SimpleResult.svalue(null),
     (ov) => {
       const result = prop.extract(path.concat([ key ]), ov);
       return SimpleResult.map(result, Optional.some);
@@ -81,7 +81,7 @@ const extractField = <T, U>(
     case FieldPresenceTag.DefaultedOptionThunk:
       return optionDefaultedAccess(obj, key, field.process, bundleAsOption);
     case FieldPresenceTag.MergeWithThunk: {
-      return fallbackAccess(obj, key, Fun.constant({}), (v) => {
+      return fallbackAccess(obj, key, () => {}, (v) => {
         const result = Merger.deepMerge(field.process(obj), v);
         return bundle(result);
       });
@@ -93,8 +93,8 @@ const extractFields = <T, U>(
   path: string[],
   obj: Record<string, T>,
   fields: FieldProcessor[]
-): SimpleResult<SchemaError[], Record<string, U | Optional<U>>> => {
-  const success: Record<string, U | Optional<U>> = {};
+): SimpleResult<SchemaError[], Record<string, U | (U) | null>> => {
+  const success: Record<string, U | (U) | null> = {};
   const errors: SchemaError[] = [];
 
   // PERFORMANCE: We use a for loop here instead of Arr.each as this is a hot code path
@@ -130,7 +130,7 @@ const valueThunk = (getDelegate: () => StructureProcessor): StructureProcessor =
 };
 
 // This is because Obj.keys can return things where the key is set to undefined.
-const getSetKeys = (obj: Record<string, unknown>) => Obj.keys(Obj.filter(obj, Type.isNonNullable));
+const getSetKeys = (obj: Record<string, unknown>) => Object.keys(Object.fromEntries(Object.entries(obj).filter(([_k, _v]: [any, any]) => (Type.isNonNullable)(_v, _k as any))));
 
 const objOfOnly = (fields: FieldProcessor[]): StructureProcessor => {
   const delegate = objOf(fields);
@@ -139,13 +139,13 @@ const objOfOnly = (fields: FieldProcessor[]): StructureProcessor => {
     return FieldProcessor.fold(
       value,
       (key) => Merger.deepMerge(acc, { [key]: true }),
-      Fun.constant(acc)
+      () => acc
     );
   }, {} as Record<string, boolean>);
 
   const extract = (path: string[], o: Record<string, any> | boolean) => {
-    const keys = Type.isBoolean(o) ? [] : getSetKeys(o);
-    const extra = Arr.filter(keys, (k) => !Obj.hasNonNullableKey(fieldNames, k));
+    const keys = typeof (o) === 'boolean' ? [] : getSetKeys(o);
+    const extra = (keys).filter((k) => !(Object.prototype.hasOwnProperty.call(fieldNames, k) && (fieldNames)[k] != null));
 
     return extra.length === 0 ? delegate.extract(path, o) : SchemaError.unsupportedFields(path, extra);
   };
@@ -160,7 +160,7 @@ const objOf = (values: FieldProcessor[]): StructureProcessor => {
   const extract = (path: string[], o: Record<string, any>) => extractFields(path, o, values);
 
   const toString = () => {
-    const fieldStrings = Arr.map(values, (value) => FieldProcessor.fold(
+    const fieldStrings = (values).map((value) => FieldProcessor.fold(
       value,
       (key, _okey, _presence, prop) => key + ' -> ' + prop.toString(),
       (newKey, _instantiator) => 'state(' + newKey + ')'
@@ -176,7 +176,7 @@ const objOf = (values: FieldProcessor[]): StructureProcessor => {
 
 const arrOf = (prop: StructureProcessor): StructureProcessor => {
   const extract = (path, array) => {
-    const results = Arr.map(array, (a, i) => prop.extract(path.concat([ '[' + i + ']' ]), a));
+    const results = (array).map((a, i) => prop.extract(path.concat([ '[' + i + ']' ]), a));
     return ResultCombine.consolidateArr(results);
   };
 
@@ -190,7 +190,7 @@ const arrOf = (prop: StructureProcessor): StructureProcessor => {
 
 const oneOf = (props: StructureProcessor[], rawF?: (x: any) => any): StructureProcessor => {
   // If f is not supplied, then use identity.
-  const f = rawF !== undefined ? rawF : Fun.identity;
+  const f = rawF !== undefined ? rawF : (x: any) => x;
   const extract = (path: string[], val: any): SimpleResult<SchemaError[], any> => {
     const errors: Array<SimpleResult<SchemaError[], any>> = [];
 
@@ -210,7 +210,7 @@ const oneOf = (props: StructureProcessor[], rawF?: (x: any) => any): StructurePr
     return ResultCombine.consolidateArr(errors);
   };
 
-  const toString = () => 'oneOf(' + Arr.map(props, (prop) => prop.toString()).join(', ') + ')';
+  const toString = () => 'oneOf(' + (props).map((prop) => prop.toString()).join(', ') + ')';
 
   return {
     extract,
@@ -222,10 +222,10 @@ const setOf = (validator: ValueValidator, prop: StructureProcessor): StructurePr
   const validateKeys = (path, keys) => arrOf(value(validator)).extract(path, keys);
   const extract = (path, o) => {
     //
-    const keys = Obj.keys(o);
+    const keys = Object.keys(o);
     const validatedKeys = validateKeys(path, keys);
     return SimpleResult.bind(validatedKeys, (validKeys) => {
-      const schema = Arr.map(validKeys, (vk) => {
+      const schema = (validKeys).map((vk) => {
         return FieldProcessor.field(vk, vk, required(), prop);
       });
 
@@ -244,7 +244,7 @@ const setOf = (validator: ValueValidator, prop: StructureProcessor): StructurePr
 // retriever is passed in. See funcOrDie in StructureSchema
 const func = (args: string[], _schema: StructureProcessor, retriever: (obj: any) => any): StructureProcessor => {
   const delegate = value((f) => {
-    return Type.isFunction(f) ? SimpleResult.svalue<any, () => any>((...gArgs: any[]) => {
+    return typeof (f) === 'function' ? SimpleResult.svalue<any, () => any>((...gArgs: any[]) => {
       const allowedArgs = gArgs.slice(0, args.length);
       const o = f.apply(null, allowedArgs);
       return retriever(o);
@@ -253,12 +253,12 @@ const func = (args: string[], _schema: StructureProcessor, retriever: (obj: any)
 
   return {
     extract: delegate.extract,
-    toString: Fun.constant('function')
+    toString: () => 'function'
   };
 };
 
 const thunk = (_desc: string, processor: () => StructureProcessor): StructureProcessor => {
-  const getP = Thunk.cached(processor);
+  const getP = ((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (processor)(..._a); } return _r; }; })());
 
   const extract = (path: string[], val: any) => getP().extract(path, val);
 
@@ -270,7 +270,7 @@ const thunk = (_desc: string, processor: () => StructureProcessor): StructurePro
   };
 };
 
-const arrOfObj = Fun.compose(arrOf, objOf);
+const arrOfObj = ((x: any) => (arrOf)((objOf)(x)));
 
 export {
   valueThunk,

@@ -1,4 +1,4 @@
-import { Obj, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as FormCoupledInputsSchema from '../../ui/schema/FormCoupledInputsSchema';
@@ -36,10 +36,10 @@ const factory: CompositeSketchFactory<FormCoupledInputsDetail, FormCoupledInputs
           },
           setValue: (comp, value) => {
             const parts = AlloyParts.getPartsOrDie(comp, detail, [ 'field1', 'field2' ]);
-            if (Obj.hasNonNullableKey(value, detail.field1Name)) {
+            if ((Object.prototype.hasOwnProperty.call(value, detail.field1Name) && (value)[detail.field1Name] != null)) {
               Representing.setValue(parts.field1(), value[detail.field1Name]);
             }
-            if (Obj.hasNonNullableKey(value, detail.field2Name)) {
+            if ((Object.prototype.hasOwnProperty.call(value, detail.field2Name) && (value)[detail.field2Name] != null)) {
               Representing.setValue(parts.field2(), value[detail.field2Name]);
             }
           }

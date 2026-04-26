@@ -1,4 +1,3 @@
-import { Fun, Optional, Optionals } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -12,7 +11,7 @@ import * as BoundaryLocation from './BoundaryLocation';
 import * as InlineUtils from './InlineUtils';
 import { needsToHaveNbsp } from './Nbsps';
 
-const insertSpaceOrNbspAtPosition = (root: SugarElement<Node>, pos: CaretPosition, schema: Schema): Optional<CaretPosition> =>
+const insertSpaceOrNbspAtPosition = (root: SugarElement<Node>, pos: CaretPosition, schema: Schema): (CaretPosition) | null =>
   needsToHaveNbsp(root, pos, schema) ? insertNbspAtPosition(pos) : insertSpaceAtPosition(pos);
 
 const locationToCaretPosition = (root: SugarElement<Node>) => (location: BoundaryLocation.LocationAdt) => location.fold(
@@ -32,12 +31,12 @@ const setSelection = (editor: Editor) => (pos: CaretPosition) => {
 
 const isInsideSummary = (domUtils: DOMUtils, node: Node) => domUtils.isEditable(domUtils.getParent(node, 'summary'));
 
-const insertSpaceOrNbspAtSelection = (editor: Editor): Optional<() => void> => {
+const insertSpaceOrNbspAtSelection = (editor: Editor): (() =) | null void> => {
   const pos = CaretPosition.fromRangeStart(editor.selection.getRng());
   const root = SugarElement.fromDom(editor.getBody());
 
   if (editor.selection.isCollapsed()) {
-    const isInlineTarget = Fun.curry(InlineUtils.isInlineTarget, editor);
+    const isInlineTarget = ((..._rest: any[]) => (InlineUtils.isInlineTarget)(editor, ..._rest));
     const caretPosition = CaretPosition.fromRangeStart(editor.selection.getRng());
 
     return BoundaryLocation.readLocation(isInlineTarget, editor.getBody(), caretPosition)
@@ -45,12 +44,12 @@ const insertSpaceOrNbspAtSelection = (editor: Editor): Optional<() => void> => {
       .map((checkPos) => () =>
         insertInlineBoundarySpaceOrNbsp(root, pos, editor.schema)(checkPos).each(setSelection(editor)));
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
 // TINY-9964: Firefox has a bug where the space key is toggling the open state instead of inserting a space in a summary element
-const insertSpaceInSummaryAtSelectionOnFirefox = (editor: Editor): Optional<() => void> => {
+const insertSpaceInSummaryAtSelectionOnFirefox = (editor: Editor): (() =) | null void> => {
   const insertSpaceThunk = () => {
     const root = SugarElement.fromDom(editor.getBody());
 
@@ -62,7 +61,7 @@ const insertSpaceInSummaryAtSelectionOnFirefox = (editor: Editor): Optional<() =
     insertSpaceOrNbspAtPosition(root, pos, editor.schema).each(setSelection(editor));
   };
 
-  return Optionals.someIf(Env.browser.isFirefox() && editor.selection.isEditable() && isInsideSummary(editor.dom, editor.selection.getRng().startContainer), insertSpaceThunk);
+  return (Env.browser.isFirefox() && editor.selection.isEditable() && isInsideSummary(editor.dom, editor.selection.getRng().startContainer) ? insertSpaceThunk : null);
 };
 
 export {

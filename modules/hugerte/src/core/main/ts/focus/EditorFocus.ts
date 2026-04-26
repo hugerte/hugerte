@@ -1,4 +1,3 @@
-import { Optional, Type } from '@ephox/katamari';
 import { Compare, Focus, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import EditorSelection from '../api/dom/Selection';
@@ -14,16 +13,16 @@ import * as FocusController from './FocusController';
 const getContentEditableHost = (editor: Editor, node: Node): HTMLElement | null =>
   editor.dom.getParent(node, (node): node is HTMLElement => editor.dom.getContentEditable(node) === 'true');
 
-const getCollapsedNode = (rng: Range): Optional<SugarElement<Node>> =>
-  rng.collapsed ? Optional.from(RangeNodes.getNode(rng.startContainer, rng.startOffset)).map(SugarElement.fromDom) : Optional.none();
+const getCollapsedNode = (rng: Range): (SugarElement<Node>) | null =>
+  rng.collapsed ? (RangeNodes.getNode(rng.startContainer, rng.startOffset) ?? null).map(SugarElement.fromDom) : null;
 
-const getFocusInElement = (root: SugarElement<Node>, rng: Range): Optional<SugarElement<Node>> => getCollapsedNode(rng).bind((node) => {
+const getFocusInElement = (root: SugarElement<Node>, rng: Range): (SugarElement<Node>) | null => getCollapsedNode(rng).bind((node) => {
   if (ElementType.isTableSection(node)) {
-    return Optional.some(node);
+    return node;
   } else if (!Compare.contains(root, node)) {
-    return Optional.some(root);
+    return root;
   } else {
-    return Optional.none();
+    return null;
   }
 });
 
@@ -52,10 +51,10 @@ const focusBody = (body: HTMLElement & { setActive?: VoidFunction }) => {
   }
 };
 
-const hasElementFocus = (elm: SugarElement<Element>): boolean => Focus.hasFocus(elm) || Focus.search(elm).isSome();
+const hasElementFocus = (elm: SugarElement<Element>): boolean => Focus.hasFocus(elm) || Focus.search(elm) !== null;
 
 const hasIframeFocus = (editor: Editor): boolean =>
-  Type.isNonNullable(editor.iframeElement) && Focus.hasFocus(SugarElement.fromDom(editor.iframeElement));
+  (editor.iframeElement) != null && Focus.hasFocus(SugarElement.fromDom(editor.iframeElement));
 
 const hasInlineFocus = (editor: Editor): boolean => {
   const rawBody = editor.getBody();
@@ -68,7 +67,7 @@ const hasUiFocus = (editor: Editor): boolean => {
   // This can't use Focus.search() because only the theme has this element reference
   return Focus.active(dos)
     .filter((elem) => !FocusController.isEditorContentAreaElement(elem.dom) && FocusController.isUIElement(editor, elem.dom))
-    .isSome();
+     !== null;
 };
 
 const hasFocus = (editor: Editor): boolean => editor.inline ? hasInlineFocus(editor) : hasIframeFocus(editor);
@@ -82,7 +81,7 @@ const focusEditor = (editor: Editor) => {
 
   editor.quirks.refreshContentEditable();
 
-  if (Type.isNonNullable(editor.bookmark) && !hasFocus(editor)) {
+  if ((editor.bookmark) != null && !hasFocus(editor)) {
     SelectionBookmark.getRng(editor).each((bookmarkRng) => {
       editor.selection.setRng(bookmarkRng);
       rng = bookmarkRng;

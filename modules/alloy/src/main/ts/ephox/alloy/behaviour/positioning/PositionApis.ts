@@ -1,5 +1,4 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
 import { Css, SugarLocation } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -31,17 +30,17 @@ const getRelativeOrigin = (component: AlloyComponent): Origins.OriginAdt => {
   return Origins.relative(position.left, position.top, bounds.width, bounds.height);
 };
 
-const place = (origin: Origins.OriginAdt, anchoring: Anchoring, optBounds: Optional<Boxes.Bounds>, placee: AlloyComponent, lastPlace: Optional<PlacerResult>, transition: Optional<Transition>): PlacerResult => {
+const place = (origin: Origins.OriginAdt, anchoring: Anchoring, optBounds: (Boxes.Bounds) | null, placee: AlloyComponent, lastPlace: (PlacerResult) | null, transition: (Transition) | null): PlacerResult => {
   const anchor = Anchor.box(anchoring.anchorBox, origin);
   return SimpleLayout.simple(anchor, placee.element, anchoring.bubble, anchoring.layouts, lastPlace, optBounds, anchoring.overrides, transition);
 };
 
 const position = (component: AlloyComponent, posConfig: PositioningConfig, posState: PositioningState, placee: AlloyComponent, placementSpec: PlacementSpec): void => {
-  const optWithinBounds = Optional.none();
+  const optWithinBounds = null;
   positionWithinBounds(component, posConfig, posState, placee, placementSpec, optWithinBounds);
 };
 
-const positionWithinBounds = (component: AlloyComponent, posConfig: PositioningConfig, posState: PositioningState, placee: AlloyComponent, placementSpec: PlacementSpec, optWithinBounds: Optional<Boxes.Bounds>): void => {
+const positionWithinBounds = (component: AlloyComponent, posConfig: PositioningConfig, posState: PositioningState, placee: AlloyComponent, placementSpec: PlacementSpec, optWithinBounds: (Boxes.Bounds) | null): void => {
   const placeeDetail: PlacementDetail = StructureSchema.asRawOrDie('placement.info', StructureSchema.objOf(PlacementSchema), placementSpec);
   const anchorage = placeeDetail.anchor;
   const element = placee.element;
@@ -68,8 +67,8 @@ const positionWithinBounds = (component: AlloyComponent, posConfig: PositioningC
       // combined with the optWithinBounds bounds, then it is the responsibility of the calling
       // code to combine them, and pass in the combined value as optWithinBounds. The optWithinBounds
       // will *always* override the Positioning config.
-      const optBounds: Optional<Boxes.Bounds> = optWithinBounds.orThunk(
-        () => posConfig.getBounds.map(Fun.apply)
+      const optBounds: (Boxes.Bounds) | null = optWithinBounds.orThunk(
+        () => posConfig.getBounds.map(((f: () => any) => f()))
       );
 
       // Place the element and then update the state for the placee
@@ -85,11 +84,11 @@ const positionWithinBounds = (component: AlloyComponent, posConfig: PositioningC
 
     // We need to remove position: fixed put on by above code if it is not needed.
     if (
-      Css.getRaw(element, 'left').isNone() &&
-      Css.getRaw(element, 'top').isNone() &&
-      Css.getRaw(element, 'right').isNone() &&
-      Css.getRaw(element, 'bottom').isNone() &&
-      Optionals.is(Css.getRaw(element, 'position'), 'fixed')
+      Css.getRaw(element, 'left') === null &&
+      Css.getRaw(element, 'top') === null &&
+      Css.getRaw(element, 'right') === null &&
+      Css.getRaw(element, 'bottom') === null &&
+      (Css.getRaw(element, 'position') !== null && (Css.getRaw(element, 'position')) === ('fixed'))
     ) {
       Css.remove(element, 'position');
     }
@@ -101,7 +100,7 @@ const getMode = (component: AlloyComponent, pConfig: PositioningConfig, _pState:
 
 const reset = (component: AlloyComponent, pConfig: PositioningConfig, posState: PositioningState, placee: AlloyComponent): void => {
   const element = placee.element;
-  Arr.each([ 'position', 'left', 'right', 'top', 'bottom' ], (prop) => Css.remove(element, prop));
+  ([ 'position', 'left', 'right', 'top', 'bottom' ]).forEach((prop) => Css.remove(element, prop));
   Placement.reset(element);
   posState.clear(placee.uid);
 };

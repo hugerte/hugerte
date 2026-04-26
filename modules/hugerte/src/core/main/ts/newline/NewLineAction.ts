@@ -1,4 +1,4 @@
-import { Adt, Arr, Optional, Type } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { SugarElement, Traverse, SugarNode, ContentEditable } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -49,7 +49,7 @@ const inBlock = (blockName: string, requiredState: boolean) => (editor: Editor, 
 
 const inCefBlock = (editor: Editor) => {
   const editableRoot = NewLineUtils.getEditableRoot(editor.dom, editor.selection.getStart());
-  return Type.isNullable(editableRoot);
+  return (editableRoot) == null;
 };
 
 const inPreBlock = (requiredState: boolean) => inBlock('pre', requiredState);
@@ -73,7 +73,7 @@ const canInsertIntoEditableRoot = (editor: Editor) => {
   const forcedRootBlock = Options.getForcedRootBlock(editor);
   const rootEditable = NewLineUtils.getEditableRoot(editor.dom, editor.selection.getStart());
 
-  return Type.isNonNullable(rootEditable) && editor.schema.isValidChild(rootEditable.nodeName, forcedRootBlock);
+  return (rootEditable) != null && editor.schema.isValidChild(rootEditable.nodeName, forcedRootBlock);
 };
 
 const isInRootWithEmptyOrCEF = (editor: Editor) => {
@@ -83,16 +83,16 @@ const isInRootWithEmptyOrCEF = (editor: Editor) => {
   const child = Traverse.child(start, rng.startOffset);
   const isCefOpt = child.map((element) => SugarNode.isHTMLElement(element) && !ContentEditable.isEditable(element));
 
-  return rng.collapsed && isCefOpt.getOr(true);
+  return rng.collapsed && isCefOpt ?? (true);
 };
 
 const match = (predicates: Array<(editor: Editor, shiftKey: boolean) => boolean>, action: NewLineActionAdt) => {
   return (editor: Editor, shiftKey: boolean) => {
-    const isMatch = Arr.foldl(predicates, (res, p) => {
+    const isMatch = (predicates).reduce((res, p) => {
       return res && p(editor, shiftKey);
     }, true);
 
-    return isMatch ? Optional.some(action) : Optional.none();
+    return isMatch ? action : null;
   };
 };
 
@@ -113,7 +113,7 @@ const getAction = (editor: Editor, evt?: EditorEvent<KeyboardEvent>): NewLineAct
     match([ hasShiftKey ], newLineAction.br()),
     match([ canInsertIntoEditableRoot ], newLineAction.block()),
     match([ isInRootWithEmptyOrCEF ], newLineAction.block())
-  ], [ editor, !!(evt && evt.shiftKey) ]).getOr(newLineAction.none());
+  ], [ editor, !!(evt && evt.shiftKey) ]) ?? (newLineAction.none());
 };
 
 export {

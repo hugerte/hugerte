@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 
 import LocalStorage from 'hugerte/core/api/util/LocalStorage';
 
@@ -6,11 +6,11 @@ const STORAGE_KEY = 'hugerte-url-history';
 const HISTORY_LENGTH = 5;
 
 // validation functions
-const isHttpUrl = (url: any): boolean => Type.isString(url) && /^https?/.test(url);
+const isHttpUrl = (url: any): boolean => typeof (url) === 'string' && /^https?/.test(url);
 
-const isArrayOfUrl = (a: any): boolean => Type.isArray(a) && a.length <= HISTORY_LENGTH && Arr.forall(a, isHttpUrl);
+const isArrayOfUrl = (a: any): boolean => Array.isArray(a) && a.length <= HISTORY_LENGTH && (a).every(isHttpUrl);
 
-const isRecordOfUrlArray = (r: any): boolean => Type.isObject(r) && Obj.find(r, (value) => !isArrayOfUrl(value)).isNone();
+const isRecordOfUrlArray = (r: any): boolean => (typeof (r) === 'object' && (r) !== null) && Obj.find(r, (value) => !isArrayOfUrl(value)) === null;
 
 const getAllHistory = (): Record<string, string[]> => {
   const unparsedHistory = LocalStorage.getItem(STORAGE_KEY);
@@ -47,7 +47,7 @@ const setAllHistory = (history: Record<string, string[]>) => {
 
 const getHistory = (fileType: string): string[] => {
   const history = getAllHistory();
-  return Obj.get(history, fileType).getOr([]);
+  return ((history)[fileType] ?? null) ?? ([]);
 };
 
 const addToHistory = (url: string, fileType: string): void => {
@@ -55,8 +55,8 @@ const addToHistory = (url: string, fileType: string): void => {
     return;
   }
   const history = getAllHistory();
-  const items = Obj.get(history, fileType).getOr([]);
-  const itemsWithoutUrl = Arr.filter(items, (item) => item !== url);
+  const items = ((history)[fileType] ?? null) ?? ([]);
+  const itemsWithoutUrl = (items).filter((item) => item !== url);
   history[fileType] = [ url ].concat(itemsWithoutUrl).slice(0, HISTORY_LENGTH);
   setAllHistory(history);
 };

@@ -1,6 +1,5 @@
-import { Fun } from '@ephox/katamari';
 
-const itemExecute = Fun.constant('alloy.typeahead.itemexecute');
+const itemExecute = () => 'alloy.typeahead.itemexecute';
 
 export {
   itemExecute

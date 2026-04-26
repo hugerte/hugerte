@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { Attribute, Replication, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import { hasLastChildList, ListType } from './Util';
@@ -60,10 +59,10 @@ const isSelected = (entry: Entry): boolean => entry.isSelected;
 const cloneItemContent = (li: SugarElement<HTMLElement>): SugarElement<Node>[] => {
   const children = Traverse.children(li);
   const content = hasLastChildList(li) ? children.slice(0, -1) : children;
-  return Arr.map(content, Replication.deep);
+  return (content).map(Replication.deep);
 };
 
-const createEntry = (li: SugarElement, depth: number, isSelected: boolean): Optional<Entry> => Traverse.parent(li).filter(SugarNode.isElement).map((list) => ({
+const createEntry = (li: SugarElement, depth: number, isSelected: boolean): (Entry) | null => Traverse.parent(li).filter(SugarNode.isElement).map((list) => ({
   depth,
   dirty: false,
   isSelected,

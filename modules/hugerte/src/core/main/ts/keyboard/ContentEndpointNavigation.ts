@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 import { Compare, Insert, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -7,10 +6,10 @@ import CaretPosition from '../caret/CaretPosition';
 import { isAtFirstLine, isAtLastLine } from '../caret/LineReader';
 import * as ForceBlocks from '../ForceBlocks';
 
-const isTarget = (node: SugarElement<Node>) => Arr.contains([ 'figcaption' ], SugarNode.name(node));
+const isTarget = (node: SugarElement<Node>) => ([ 'figcaption' ]).includes(SugarNode.name(node));
 
 const getClosestTargetBlock = (pos: CaretPosition, root: SugarElement<HTMLElement>, schema: Schema) => {
-  const isRoot = Fun.curry(Compare.eq, root);
+  const isRoot = ((..._rest: any[]) => (Compare.eq)(root, ..._rest));
   return PredicateFind.closest(SugarElement.fromDom(pos.container()), (el) => schema.isBlock(SugarNode.name(el)), isRoot).filter(isTarget);
 };
 

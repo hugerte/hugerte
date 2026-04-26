@@ -1,4 +1,3 @@
-import { Arr, Strings } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';
@@ -25,9 +24,8 @@ const isAbsoluteUrl = (url: string): boolean =>
   /^https?:\/\/[\w\-\/+=.,!;:&%@^~(){}?#]+$/i.test(url);
 
 const isImageUrl = (editor: Editor, url: string): boolean => {
-  return isAbsoluteUrl(url) && Arr.exists(Options.getAllowedImageFileTypes(editor), (type) =>
-    Strings.endsWith(url.toLowerCase(), `.${type.toLowerCase()}`)
-  );
+  return isAbsoluteUrl(url) && (Options.getAllowedImageFileTypes(editor)).some((type) =>
+    (url.toLowerCase()).endsWith(`.${type.toLowerCase()}`));
 };
 
 const createImage = (editor: Editor, url: string, pasteHtmlFn: PasteFn): boolean => {

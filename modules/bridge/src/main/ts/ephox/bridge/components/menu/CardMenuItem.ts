@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { itemSchema } from './card/CardContainer';
@@ -18,7 +18,7 @@ export interface CardMenuItemSpec extends Omit<CommonMenuItemSpec, 'text' | 'sho
 
 export interface CardMenuItem extends Omit<CommonMenuItem, 'text' | 'shortcut'> {
   type: 'cardmenuitem';
-  label: Optional<string>;
+  label: (string) | null;
   items: CardItem[];
   onSetup: (api: CardMenuItemInstanceApi) => (api: CardMenuItemInstanceApi) => void;
   onAction: (api: CardMenuItemInstanceApi) => void;

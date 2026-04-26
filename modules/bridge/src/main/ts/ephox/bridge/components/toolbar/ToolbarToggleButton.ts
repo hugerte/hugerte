@@ -1,5 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { BaseToolbarButton, BaseToolbarButtonSpec, baseToolbarButtonFields, BaseToolbarButtonInstanceApi } from './ToolbarButton';
@@ -26,7 +26,7 @@ export interface ToolbarToggleButtonSpec extends BaseToolbarToggleButtonSpec<Too
 export interface ToolbarToggleButton extends BaseToolbarToggleButton<ToolbarToggleButtonInstanceApi> {
   type: 'togglebutton';
   onAction: (api: ToolbarToggleButtonInstanceApi) => void;
-  shortcut: Optional<string>;
+  shortcut: (string) | null;
 }
 
 // tslint:disable-next-line:no-empty-interface

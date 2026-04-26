@@ -1,25 +1,24 @@
 import { AlloySpec, Behaviour, FormField as AlloyFormField, GuiFactory, RawDomSchema, SketchSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 
 type FormFieldSpec = Parameters<typeof AlloyFormField['sketch']>[0];
 
-const renderFormFieldWith = (pLabel: Optional<AlloySpec>, pField: AlloySpec, extraClasses: string[], extraBehaviours: Behaviour.NamedConfiguredBehaviour<any, any>[]): SketchSpec => {
+const renderFormFieldWith = (pLabel: (AlloySpec) | null, pField: AlloySpec, extraClasses: string[], extraBehaviours: Behaviour.NamedConfiguredBehaviour<any, any>[]): SketchSpec => {
   const spec = renderFormFieldSpecWith(pLabel, pField, extraClasses, extraBehaviours);
   return AlloyFormField.sketch(spec);
 };
 
-const renderFormField = (pLabel: Optional<AlloySpec>, pField: AlloySpec): SketchSpec =>
+const renderFormField = (pLabel: (AlloySpec) | null, pField: AlloySpec): SketchSpec =>
   renderFormFieldWith(pLabel, pField, [ ], [ ]);
 
-const renderFormFieldSpec = (pLabel: Optional<AlloySpec>, pField: AlloySpec): FormFieldSpec => ({
+const renderFormFieldSpec = (pLabel: (AlloySpec) | null, pField: AlloySpec): FormFieldSpec => ({
   dom: renderFormFieldDom(),
   components: pLabel.toArray().concat([ pField ])
 });
 
 const renderFormFieldSpecWith = (
-  pLabel: Optional<AlloySpec>,
+  pLabel: (AlloySpec) | null,
   pField: AlloySpec,
   extraClasses: string[],
   extraBehaviours: Behaviour.NamedConfiguredBehaviour<any, any>[]

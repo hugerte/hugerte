@@ -1,12 +1,11 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { Compare, Focus, PredicateFind, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 const preserve = <T extends Node, R>(f: (e: SugarElement<T>) => R, container: SugarElement<T>): R => {
   const dos = SugarShadowDom.getRootNode(container);
 
-  const refocus = Focus.active(dos).bind((focused): Optional<SugarElement<HTMLElement>> => {
+  const refocus = Focus.active(dos).bind((focused): (SugarElement<HTMLElement>) | null => {
     const hasFocus = (elem: SugarElement<Node>): elem is SugarElement<HTMLElement> => Compare.eq(focused, elem);
-    return hasFocus(container) ? Optional.some(container) : PredicateFind.descendant(container, hasFocus);
+    return hasFocus(container) ? container : PredicateFind.descendant(container, hasFocus);
   });
 
   const result = f(container);
@@ -16,7 +15,7 @@ const preserve = <T extends Node, R>(f: (e: SugarElement<T>) => R, container: Su
     Focus.active(dos).filter((newFocus) => Compare.eq(newFocus, oldFocus)).fold(() => {
       // Only refocus if the focus has changed, otherwise we break IE
       Focus.focus(oldFocus);
-    }, Fun.noop);
+    }, () => {});
   });
   return result;
 };

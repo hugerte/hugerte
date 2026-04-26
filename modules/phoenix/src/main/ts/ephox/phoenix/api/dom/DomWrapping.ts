@@ -1,5 +1,4 @@
 import { DomUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { SpanWrapRange, SpotPoints, Wrapter } from '../data/Types';
@@ -19,7 +18,7 @@ const wrapper = (wrapped: SugarElement[], c: () => Wrapter<SugarElement>): Sugar
   return Wrapping.wrapper(universe, wrapped, c);
 };
 
-const leaves = (base: SugarElement, baseOffset: number, end: SugarElement, endOffset: number, c: () => Wrapter<SugarElement>): Optional<SpotPoints<SugarElement>> => {
+const leaves = (base: SugarElement, baseOffset: number, end: SugarElement, endOffset: number, c: () => Wrapter<SugarElement>): (SpotPoints<SugarElement>) | null => {
   return Wrapping.leaves(universe, base, baseOffset, end, endOffset, c);
 };
 
@@ -27,7 +26,7 @@ const reuse = (base: SugarElement, baseOffset: number, end: SugarElement, endOff
   return Wrapping.reuse(universe, base, baseOffset, end, endOffset, predicate, nu);
 };
 
-const spans = (base: SugarElement, baseOffset: number, end: SugarElement, endOffset: number, exclusions?: (e: SugarElement) => boolean): Optional<SpanWrapRange<SugarElement>> => {
+const spans = (base: SugarElement, baseOffset: number, end: SugarElement, endOffset: number, exclusions?: (e: SugarElement) => boolean): (SpanWrapRange<SugarElement>) | null => {
   return Wrapping.spans(universe, base, baseOffset, end, endOffset, exclusions);
 };
 

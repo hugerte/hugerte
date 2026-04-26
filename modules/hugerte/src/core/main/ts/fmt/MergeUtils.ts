@@ -1,4 +1,3 @@
-import { Strings } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';
@@ -17,7 +16,7 @@ const isElementNode = (node: Node): node is HTMLElement =>
 
 const findElementSibling = (node: Node, siblingName: 'nextSibling' | 'previousSibling') => {
   for (let sibling: Node | null = node; sibling; sibling = sibling[siblingName]) {
-    if (NodeType.isText(sibling) && Strings.isNotEmpty(sibling.data)) {
+    if (NodeType.isText(sibling) && ((sibling.data).length > 0)) {
       return node;
     }
 

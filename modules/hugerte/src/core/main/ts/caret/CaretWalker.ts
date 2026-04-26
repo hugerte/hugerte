@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 import * as NodeType from '../dom/NodeType';
 import * as ArrUtils from '../util/ArrUtils';
@@ -190,7 +189,7 @@ const findCaretPosition = (direction: HDirection, startPos: CaretPosition | null
   }
 
   if (node && ((isForwards(direction) && caretPosition.isAtEnd()) || (isBackwards(direction) && caretPosition.isAtStart()))) {
-    node = findNode(node, direction, Fun.always, root, true);
+    node = findNode(node, direction, (() => true as const), root, true);
     if (isEditableCaretCandidate(node, root)) {
       return getCaretCandidatePosition(direction, node);
     }
@@ -198,7 +197,7 @@ const findCaretPosition = (direction: HDirection, startPos: CaretPosition | null
 
   nextNode = node ? findNode(node, direction, isEditableCaretCandidate, root) : node;
 
-  const rootContentEditableFalseElm = ArrUtils.last(Arr.filter(getParents(container, root), isContentEditableFalse));
+  const rootContentEditableFalseElm = ArrUtils.last((getParents(container, root)).filter(isContentEditableFalse));
   if (rootContentEditableFalseElm && (!nextNode || !rootContentEditableFalseElm.contains(nextNode))) {
     if (isForwards(direction)) {
       caretPosition = CaretPosition.after(rootContentEditableFalseElm);

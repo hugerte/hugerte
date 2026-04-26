@@ -3,7 +3,7 @@ import {
   NativeEvents, SimpleSpec, SketchSpec, Tabstopping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 import { renderLabel } from 'hugerte/themes/silver/ui/alien/FieldLabeller';
@@ -14,8 +14,8 @@ import { formChangeEvent } from '../general/FormEvents';
 
 type SelectBoxSpec = Omit<Dialog.SelectBox, 'type'>;
 
-export const renderSelectBox = (spec: SelectBoxSpec, providersBackstage: UiFactoryBackstageProviders, initialData: Optional<string>): SketchSpec => {
-  const translatedOptions = Arr.map(spec.items, (item) => ({
+export const renderSelectBox = (spec: SelectBoxSpec, providersBackstage: UiFactoryBackstageProviders, initialData: (string) | null): SketchSpec => {
+  const translatedOptions = (spec.items).map((item) => ({
     text: providersBackstage.translate(item.text),
     value: item.value
   }));
@@ -26,7 +26,7 @@ export const renderSelectBox = (spec: SelectBoxSpec, providersBackstage: UiFacto
   const pField = AlloyFormField.parts.field({
     // TODO: Alloy should not allow dom changing of an HTML select!
     dom: { },
-    ...initialData.map((data) => ({ data })).getOr({}),
+    ...initialData.map((data) => ({ data })) ?? ({}),
     selectAttributes: {
       size: spec.size
     },
@@ -45,15 +45,15 @@ export const renderSelectBox = (spec: SelectBoxSpec, providersBackstage: UiFacto
     ])
   });
 
-  const chevron: Optional<AlloySpec> = spec.size > 1 ? Optional.none() :
-    Optional.some(Icons.render('chevron-down', { tag: 'div', classes: [ 'tox-selectfield__icon-js' ] }, providersBackstage.icons));
+  const chevron: (AlloySpec) | null = spec.size > 1 ? null :
+    Icons.render('chevron-down', { tag: 'div', classes: [ 'tox-selectfield__icon-js' ] }, providersBackstage.icons);
 
   const selectWrap: SimpleSpec = {
     dom: {
       tag: 'div',
       classes: [ 'tox-selectfield' ]
     },
-    components: Arr.flatten([[ pField ], chevron.toArray() ])
+    components: ([[ pField ], chevron.toArray() ]).flat()
   };
 
   return AlloyFormField.sketch({

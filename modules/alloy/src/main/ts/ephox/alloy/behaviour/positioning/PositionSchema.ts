@@ -1,5 +1,4 @@
 import { FieldSchema, ValueType } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import AnchorSchema from '../../positioning/mode/AnchorSchema';
 
@@ -9,7 +8,7 @@ const TransitionSchema = [
 ];
 
 export const PositionSchema = [
-  FieldSchema.defaulted('useFixed', Fun.never),
+  FieldSchema.defaulted('useFixed', (() => false as const)),
   FieldSchema.option('getBounds')
 ];
 

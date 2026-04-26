@@ -1,21 +1,20 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
-const menuFields = Fun.constant([
+const menuFields = () => [
   FieldSchema.required('menu'),
   FieldSchema.required('selectedMenu')
-]);
+];
 
-const itemFields = Fun.constant([
+const itemFields = () => [
   FieldSchema.required('item'),
   FieldSchema.required('selectedItem')
-]);
+];
 
-const schema = Fun.constant(StructureSchema.objOf(
+const schema = () => StructureSchema.objOf(
   itemFields().concat(menuFields())
-));
+);
 
-const itemSchema = Fun.constant(StructureSchema.objOf(itemFields()));
+const itemSchema = () => StructureSchema.objOf(itemFields());
 
 export {
   menuFields,

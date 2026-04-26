@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import { Entry, EntryList, isEntryList } from './Entry';
 
@@ -11,11 +11,11 @@ const cloneListProperties = (target: Entry, source: Entry): void => {
 
 const cleanListProperties = (entry: EntryList): void => {
   // Remove the start attribute if generating a new list
-  entry.listAttributes = Obj.filter(entry.listAttributes, (_value, key) => key !== 'start');
+  entry.listAttributes = Object.fromEntries(Object.entries(entry.listAttributes).filter(([_k, _v]: [any, any]) => ((_value, key) => key !== 'start')(_v, _k as any)));
 };
 
 // Closest entry above/below in the same list
-const closestSiblingEntry = (entries: Entry[], start: number): Optional<Entry> => {
+const closestSiblingEntry = (entries: Entry[], start: number): (Entry) | null => {
   const depth = entries[start].depth;
   // Ignore dirty items as they've been moved and won't have the right list data yet
   const matches = (entry: Entry) => entry.depth === depth && !entry.dirty;
@@ -23,12 +23,12 @@ const closestSiblingEntry = (entries: Entry[], start: number): Optional<Entry> =
 
   // Check in reverse to see if there's an entry as the same depth before the current entry
   // but if not, then try to walk forwards as well
-  return Arr.findUntil(Arr.reverse(entries.slice(0, start)), matches, until)
+  return Arr.findUntil([...(entries.slice(0, start))].reverse(), matches, until)
     .orThunk(() => Arr.findUntil(entries.slice(start + 1), matches, until));
 };
 
 const normalizeEntries = (entries: Entry[]): Entry[] => {
-  Arr.each(entries, (entry, i) => {
+  (entries).forEach((entry, i) => {
     closestSiblingEntry(entries, i).fold(
       () => {
         if (entry.dirty && isEntryList(entry)) {

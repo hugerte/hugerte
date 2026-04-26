@@ -1,4 +1,4 @@
-import { Fun, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { nuState } from '../common/BehaviourState';
@@ -17,7 +17,7 @@ const init = (): TooltippingState => {
     timer.set(setTimeout(f, delay));
   };
 
-  const readState = Fun.constant('not-implemented');
+  const readState = () => 'not-implemented';
 
   return nuState({
     getTooltip: popup.get,

@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { Compare, SugarElement, Traverse } from '@ephox/sugar';
 
 const dropLast = <T>(xs: T[]): T[] => xs.slice(0, -1);
@@ -13,7 +12,7 @@ const parentsUntil = (start: SugarElement<Node>, root: SugarElement<Node>, predi
   }
 };
 
-const parents = (start: SugarElement<Node>, root: SugarElement<Node>): SugarElement<Node>[] => parentsUntil(start, root, Fun.never);
+const parents = (start: SugarElement<Node>, root: SugarElement<Node>): SugarElement<Node>[] => parentsUntil(start, root, (() => false as const));
 
 const parentsAndSelf = (start: SugarElement<Node>, root: SugarElement<Node>): SugarElement<Node>[] => [ start ].concat(parents(start, root));
 

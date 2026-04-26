@@ -1,6 +1,6 @@
 import { Behaviour, GuiFactory, ItemTypes, MaxHeight, Tooltipping } from '@ephox/alloy';
 import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Fun, Obj, Optional, Regex } from '@ephox/katamari';
+import { Regex } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -18,9 +18,9 @@ type TooltipWorker = (success: (elem: HTMLElement) => void) => void;
 const tooltipBehaviour = (
   meta: Record<string, any>,
   sharedBackstage: UiFactoryBackstageShared,
-  tooltipText: Optional<string>
+  tooltipText: (string) | null
 ): Behaviour.NamedConfiguredBehaviour<any, any, any>[] =>
-  Obj.get(meta, 'tooltipWorker')
+  ((meta)['tooltipWorker'] ?? null)
     .map((tooltipWorker: TooltipWorker) => [
       Tooltipping.config({
         lazySink: sharedBackstage.getSink,
@@ -59,7 +59,7 @@ const tooltipBehaviour = (
               mode: 'follow-highlight'
             }
           )
-        ]).getOr([]);
+        ]) ?? ([]);
     });
 
 const encodeText = (text: string) => DOMUtils.DOM.encode(text);
@@ -86,13 +86,13 @@ const renderAutocompleteItem = (
 ): ItemTypes.ItemSpec => {
   const structure = renderItemStructure({
     presets,
-    textContent: Optional.none(),
-    htmlContent: useText ? spec.text.map((text) => replaceText(text, matchText)) : Optional.none(),
+    textContent: null,
+    htmlContent: useText ? spec.text.map((text) => replaceText(text, matchText)) : null,
     ariaLabel: spec.text,
     iconContent: spec.icon,
-    shortcutContent: Optional.none(),
-    checkMark: Optional.none(),
-    caret: Optional.none(),
+    shortcutContent: null,
+    checkMark: null,
+    caret: null,
     value: spec.value
   }, sharedBackstage.providers, renderIcons, spec.icon);
 
@@ -100,9 +100,9 @@ const renderAutocompleteItem = (
   return renderCommonItem({
     data: buildData(spec),
     enabled: spec.enabled,
-    getApi: Fun.constant({}),
+    getApi: () => {},
     onAction: (_api) => onItemValueHandler(spec.value, spec.meta),
-    onSetup: Fun.constant(Fun.noop),
+    onSetup: () => () => {},
     triggersSubmenu: false,
     itemBehaviours: tooltipBehaviour(spec, sharedBackstage, tooltipString)
   }, structure, itemResponse, sharedBackstage.providers);

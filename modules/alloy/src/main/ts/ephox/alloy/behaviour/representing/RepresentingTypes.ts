@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -25,7 +24,7 @@ export interface MemoryRepresentingState extends RepresentingState {
 export interface ManualRepresentingState extends RepresentingState { }
 
 export interface DatasetRepresentingState extends RepresentingState {
-  lookup: <T extends ItemDataTuple>(itemString: string) => Optional<T>;
+  lookup: <T extends ItemDataTuple>(itemString: string) => (T) | null;
   update: <T extends ItemDataTuple>(items: T[]) => void;
   clear: () => void;
 }
@@ -34,7 +33,7 @@ export interface DatasetRepresentingState extends RepresentingState {
 export type RepresentingData = any;
 
 interface BaseStoreConfig<T, S extends RepresentingState> {
-  initialValue: Optional<T>;
+  initialValue: (T) | null;
   manager: {
     setValue: (comp: AlloyComponent, config: RepresentingConfig, state: RepresentingState, data: RepresentingData) => void;
     getValue: (comp: AlloyComponent, config: RepresentingConfig, state: RepresentingState) => RepresentingData;

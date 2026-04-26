@@ -1,4 +1,3 @@
-import { Obj, Optional } from '@ephox/katamari';
 import { SugarBody, SugarElement } from '@ephox/sugar';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
@@ -7,11 +6,11 @@ import * as AlloyLogger from '../log/AlloyLogger';
 import * as Tagger from './Tagger';
 
 export interface Registry {
-  readonly find: (isAboveRoot: (elem: SugarElement<Node>) => boolean, type: string, target: SugarElement<Node>) => Optional<ElementAndHandler>;
+  readonly find: (isAboveRoot: (elem: SugarElement<Node>) => boolean, type: string, target: SugarElement<Node>) => (ElementAndHandler) | null;
   readonly filter: (type: string) => UidAndHandler[];
   readonly register: (component: AlloyComponent) => void;
   readonly unregister: (component: AlloyComponent) => void;
-  readonly getById: (id: string) => Optional<AlloyComponent>;
+  readonly getById: (id: string) => (AlloyComponent) | null;
 }
 
 export const Registry = (): Registry => {
@@ -42,7 +41,7 @@ export const Registry = (): Registry => {
 
   const register = (component: AlloyComponent): void => {
     const tagId = readOrTag(component);
-    if (Obj.hasNonNullableKey(components, tagId)) {
+    if ((Object.prototype.hasOwnProperty.call(components, tagId) && (components)[tagId] != null)) {
       failOnDuplicate(component, tagId);
     }
     // Component is passed through an an extra argument to all events
@@ -60,10 +59,10 @@ export const Registry = (): Registry => {
 
   const filter = (type: string): UidAndHandler[] => events.filterByType(type);
 
-  const find = (isAboveRoot: (elem: SugarElement<Node>) => boolean, type: string, target: SugarElement<Node>): Optional<ElementAndHandler> =>
+  const find = (isAboveRoot: (elem: SugarElement<Node>) => boolean, type: string, target: SugarElement<Node>): (ElementAndHandler) | null =>
     events.find(isAboveRoot, type, target);
 
-  const getById = (id: string): Optional<AlloyComponent> => Obj.get(components, id);
+  const getById = (id: string): (AlloyComponent) | null => ((components)[id] ?? null);
 
   return {
     find,

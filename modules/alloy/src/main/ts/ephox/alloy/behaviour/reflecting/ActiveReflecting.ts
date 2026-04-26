@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import * as AlloyEvents from '../../api/events/AlloyEvents';
@@ -30,7 +29,7 @@ const events = <I, S>(reflectingConfig: ReflectingConfig<I, S>, reflectingState:
       const receivingData = message as unknown as ReceivingInternalEvent;
       if (!receivingData.universal) {
         const channel = reflectingConfig.channel;
-        if (Arr.contains(receivingData.channels, channel)) {
+        if ((receivingData.channels).includes(channel)) {
           update(component, receivingData.data);
         }
       }

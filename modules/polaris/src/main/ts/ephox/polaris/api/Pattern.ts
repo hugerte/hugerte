@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import * as Chars from '../pattern/Chars';
 import { Custom } from '../pattern/Custom';
@@ -12,7 +11,7 @@ const safeword: SafewordApi = Safe.word;
 type SafeTokenApi = (input: string) => PRegExp;
 const safetoken: SafeTokenApi = Safe.token;
 
-type CustomApi = (regex: string, prefix: (match: RegExpExecArray) => number, suffix: (match: RegExpExecArray) => number, flags: Optional<string>) => PRegExp;
+type CustomApi = (regex: string, prefix: (match: RegExpExecArray) => number, suffix: (match: RegExpExecArray) => number, flags: (string) | null) => PRegExp;
 const custom: CustomApi = Custom;
 
 type UnsafewordApi = (input: string) => PRegExp;

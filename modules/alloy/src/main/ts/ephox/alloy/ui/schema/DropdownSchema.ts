@@ -13,13 +13,13 @@ import * as PartType from '../../parts/PartType';
 import * as AnchorLayouts from '../../positioning/mode/AnchorLayouts';
 import { DropdownDetail, DropdownSpec } from '../types/DropdownTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.required('dom'),
   FieldSchema.required('fetch'),
   Fields.onHandler('onOpen'),
   Fields.onKeyboardHandler('onExecute'),
   FieldSchema.defaulted('getHotspot', Optional.some),
-  FieldSchema.defaulted('getAnchorOverrides', Fun.constant({ })),
+  FieldSchema.defaulted('getAnchorOverrides', () => { }),
   AnchorLayouts.schema(),
   SketchBehaviours.field('dropdownBehaviours', [ Toggling, Coupling, Keying, Focusing ]),
   FieldSchema.required('toggleClass'),
@@ -30,7 +30,7 @@ const schema = Fun.constant([
   FieldSchema.option('role')
 ].concat(
   SketcherFields.sandboxFields()
-));
+);
 
 const parts: () => PartType.PartTypeAdt[] = Fun.constant([
   PartType.external<DropdownDetail, DropdownSpec>({
@@ -54,7 +54,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
   InternalSink.partType()
 ]);
 
-const name = Fun.constant('Dropdown');
+const name = () => 'Dropdown';
 
 export {
   name,

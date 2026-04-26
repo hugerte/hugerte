@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Attribute, Class, OnNode, SelectorFilter, SugarElement } from '@ephox/sugar';
 
 import { Ephemera } from './Ephemera';
@@ -18,12 +17,12 @@ const byClass = (ephemera: Ephemera): SelectionAnnotation => {
 
   const clear = (container: SugarElement<Node>) => {
     const sels = SelectorFilter.descendants(container, ephemera.selectedSelector);
-    Arr.each(sels, removeSelectionClasses);
+    (sels).forEach(removeSelectionClasses);
   };
 
   const selectRange = (container: SugarElement<Node>, cells: SugarElement<HTMLTableCellElement>[], start: SugarElement<HTMLTableCellElement>, finish: SugarElement<HTMLTableCellElement>) => {
     clear(container);
-    Arr.each(cells, addSelectionClass);
+    (cells).forEach(addSelectionClass);
     Class.add(start, ephemera.firstSelected);
     Class.add(finish, ephemera.lastSelected);
   };
@@ -56,12 +55,12 @@ const byAttr = (ephemera: Ephemera, onSelection: (cells: SugarElement<HTMLTableC
 
   const clearBeforeUpdate = (container: SugarElement<Node>) => {
     const sels = SelectorFilter.descendants<HTMLTableCellElement>(container, `${ephemera.selectedSelector},${ephemera.firstSelectedSelector},${ephemera.lastSelectedSelector}`);
-    Arr.each(sels, removeSelectionAttributes);
+    (sels).forEach(removeSelectionAttributes);
   };
 
   const selectRange = (container: SugarElement<Node>, cells: SugarElement<HTMLTableCellElement>[], start: SugarElement<HTMLTableCellElement>, finish: SugarElement<HTMLTableCellElement>) => {
     clear(container);
-    Arr.each(cells, addSelectionAttribute);
+    (cells).forEach(addSelectionAttribute);
     Attribute.set(start, ephemera.firstSelected, '1');
     Attribute.set(finish, ephemera.lastSelected, '1');
     onSelection(cells, start, finish);

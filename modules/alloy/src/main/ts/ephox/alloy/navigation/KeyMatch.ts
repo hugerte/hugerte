@@ -1,14 +1,13 @@
-import { Arr, Fun } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 export type KeyMatcher = (evt: EventArgs<KeyboardEvent>) => boolean;
 
 const inSet = (keys: ReadonlyArray<number>): KeyMatcher => (event: EventArgs<KeyboardEvent>) => {
   const raw = event.raw;
-  return Arr.contains(keys, raw.which);
+  return (keys).includes(raw.which);
 };
 
-const and = (preds: KeyMatcher[]): KeyMatcher => (event: EventArgs<KeyboardEvent>) => Arr.forall(preds, (pred) => pred(event));
+const and = (preds: KeyMatcher[]): KeyMatcher => (event: EventArgs<KeyboardEvent>) => (preds).every((pred) => pred(event));
 
 const is = (key: number): KeyMatcher => (event: EventArgs<KeyboardEvent>) => {
   const raw = event.raw;
@@ -25,8 +24,8 @@ const isControl = (event: EventArgs<KeyboardEvent>): boolean => {
   return raw.ctrlKey === true;
 };
 
-const isNotControl: (event: EventArgs<KeyboardEvent>) => boolean = Fun.not(isControl);
-const isNotShift: (event: EventArgs<KeyboardEvent>) => boolean = Fun.not(isShift);
+const isNotControl: (event: EventArgs<KeyboardEvent>) => boolean = (x: any) => !(isControl)(x);
+const isNotShift: (event: EventArgs<KeyboardEvent>) => boolean = (x: any) => !(isShift)(x);
 
 export {
   inSet,

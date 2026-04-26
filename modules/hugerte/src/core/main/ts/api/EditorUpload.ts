@@ -1,4 +1,3 @@
-import { Arr, Strings, Type } from '@ephox/katamari';
 import { Attribute, Insert, Remove, SugarElement, SugarElements, SugarNode, Traverse } from '@ephox/sugar';
 
 import * as ErrorReporter from '../ErrorReporter';
@@ -99,7 +98,7 @@ interface EditorUpload {
 }
 
 const isEmptyForPadding = (editor: Editor, element: SugarElement<any>) =>
-  editor.dom.isEmpty(element.dom) && Type.isNonNullable(editor.schema.getTextBlockElements()[SugarNode.name(element)]);
+  editor.dom.isEmpty(element.dom) && (editor.schema.getTextBlockElements()[SugarNode.name(element)]) != null;
 
 const addPaddingToEmpty = (editor: Editor) =>
   (element: SugarElement<any>) => {
@@ -153,11 +152,10 @@ const EditorUpload = (editor: Editor): EditorUpload => {
   };
 
   const replaceUrlInUndoStack = (targetUrl: string, replacementUrl: string) => {
-    Arr.each(editor.undoManager.data, (level) => {
+    (editor.undoManager.data).forEach((level) => {
       if (level.type === 'fragmented') {
-        level.fragments = Arr.map(level.fragments, (fragment) =>
-          replaceImageUrl(fragment, targetUrl, replacementUrl)
-        );
+        level.fragments = (level.fragments).map((fragment) =>
+          replaceImageUrl(fragment, targetUrl, replacementUrl));
       } else {
         level.content = replaceImageUrl(level.content, targetUrl, replacementUrl);
       }
@@ -181,18 +179,18 @@ const EditorUpload = (editor: Editor): EditorUpload => {
     }
 
     return scanForImages().then(aliveGuard((imageInfos) => {
-      const blobInfos = Arr.map(imageInfos, (imageInfo) => imageInfo.blobInfo);
+      const blobInfos = (imageInfos).map((imageInfo) => imageInfo.blobInfo);
 
       return uploader.upload(blobInfos, openNotification(editor)).then(aliveGuard((result) => {
         const imagesToRemove: HTMLImageElement[] = [];
         let shouldDispatchChange = false;
 
-        const filteredResult: UploadResult[] = Arr.map(result, (uploadInfo, index) => {
+        const filteredResult: UploadResult[] = (result).map((uploadInfo, index) => {
           const { blobInfo, image } = imageInfos[index];
           let removed = false;
 
           if (uploadInfo.status && Options.shouldReplaceBlobUris(editor)) {
-            if (uploadInfo.url && !Strings.contains(image.src, uploadInfo.url)) {
+            if (uploadInfo.url && !(image.src).includes(uploadInfo.url)) {
               shouldDispatchChange = true;
             }
             blobCache.removeByUri(image.src);
@@ -222,7 +220,7 @@ const EditorUpload = (editor: Editor): EditorUpload => {
 
         if (imagesToRemove.length > 0 && !Rtc.isRtc(editor)) {
           editor.undoManager.transact(() => {
-            Arr.each(SugarElements.fromDom(imagesToRemove), (sugarElement) => {
+            (SugarElements.fromDom(imagesToRemove)).forEach((sugarElement) => {
               const parentOpt = Traverse.parent(sugarElement);
               Remove.remove(sugarElement);
               // This needs a more editor-wide fix, see issue TINY-9802. Short version: Removing the image resulted in empty <p> elements, which confused the editor.
@@ -243,7 +241,7 @@ const EditorUpload = (editor: Editor): EditorUpload => {
     Options.isAutomaticUploadsEnabled(editor) ? uploadImages() : Promise.resolve([]);
 
   const isValidDataUriImage = (imgElm: HTMLImageElement) =>
-    Arr.forall(urlFilters, (filter) => filter(imgElm));
+    (urlFilters).every((filter) => filter(imgElm));
 
   const addFilter = (filter: (img: HTMLImageElement) => boolean) => {
     urlFilters.push(filter);
@@ -255,10 +253,10 @@ const EditorUpload = (editor: Editor): EditorUpload => {
     }
 
     return imageScanner.findAll(editor.getBody(), isValidDataUriImage).then(aliveGuard((result) => {
-      const filteredResult = Arr.filter(result, (resultItem): resultItem is BlobInfoImagePair => {
+      const filteredResult = (result).filter((resultItem): resultItem is BlobInfoImagePair => {
         // ImageScanner internally converts images that it finds, but it may fail to do so if image source is inaccessible.
         // In such case resultItem will contain appropriate text error message, instead of image data.
-        if (Type.isString(resultItem)) {
+        if (typeof (resultItem) === 'string') {
           ErrorReporter.displayError(editor, resultItem);
           return false;
         } else if ((resultItem as BlobUriError).uriType === 'blob') {
@@ -271,7 +269,7 @@ const EditorUpload = (editor: Editor): EditorUpload => {
       if (Rtc.isRtc(editor)) {
         // RTC is set up so that image sources are only ever blob
       } else {
-        Arr.each(filteredResult, (resultItem) => {
+        (filteredResult).forEach((resultItem) => {
           replaceUrlInUndoStack(resultItem.image.src, resultItem.blobInfo.blobUri());
           resultItem.image.src = resultItem.blobInfo.blobUri();
           resultItem.image.removeAttribute('data-mce-src');
@@ -299,7 +297,7 @@ const EditorUpload = (editor: Editor): EditorUpload => {
       let blobInfo = blobCache.getByUri(blobUri);
 
       if (!blobInfo) {
-        blobInfo = Arr.foldl(editor.editorManager.get(), (result: BlobInfo | undefined, editor: Editor) => {
+        blobInfo = (editor.editorManager.get()).reduce((result: BlobInfo | undefined, editor: Editor) => {
           return result || editor.editorUpload && editor.editorUpload.blobCache.getByUri(blobUri);
         }, undefined);
       }
@@ -335,7 +333,7 @@ const EditorUpload = (editor: Editor): EditorUpload => {
 
   editor.on('PostRender', () => {
     editor.parser.addNodeFilter('img', (images) => {
-      Arr.each(images, (img) => {
+      (images).forEach((img) => {
         const src = img.attr('src');
 
         if (!src || blobCache.getByUri(src)) {

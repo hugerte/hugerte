@@ -1,4 +1,3 @@
-import { Arr, Optional, Optionals } from '@ephox/katamari';
 import { Compare, PredicateFind, Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -31,16 +30,16 @@ const execNativeForwardDeleteCommand = (editor: Editor): void =>
   execCommandIgnoreInputEvents(editor, 'ForwardDelete');
 
 const isBeforeRoot = (rootNode: SugarElement<Node>) => (elm: SugarElement<Node>): boolean =>
-  Optionals.is(Traverse.parent(elm), rootNode, Compare.eq);
+  (Traverse.parent(elm) !== null && (Compare.eq)(Traverse.parent(elm), rootNode));
 
 const isTextBlockOrListItem = (element: SugarElement<Node>): element is SugarElement<Element> =>
   isTextBlock(element) || isListItem(element);
 
-const getParentBlock = (rootNode: SugarElement<Node>, elm: SugarElement<Node>): Optional<SugarElement<Element>> => {
+const getParentBlock = (rootNode: SugarElement<Node>, elm: SugarElement<Node>): (SugarElement<Element>) | null => {
   if (Compare.contains(rootNode, elm)) {
     return PredicateFind.closest(elm, isTextBlockOrListItem, isBeforeRoot(rootNode));
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
@@ -51,10 +50,7 @@ const paddEmptyBody = (editor: Editor, moveSelection: boolean = true): void => {
 };
 
 const willDeleteLastPositionInElement = (forward: boolean, fromPos: CaretPosition, elm: Node): boolean =>
-  Optionals.lift2(
-    CaretFinder.firstPositionIn(elm),
-    CaretFinder.lastPositionIn(elm),
-    (firstPos, lastPos): boolean => {
+  (CaretFinder.firstPositionIn(elm) !== null && CaretFinder.lastPositionIn(elm) !== null ? ((firstPos, lastPos): boolean => {
       const normalizedFirstPos = InlineUtils.normalizePosition(true, firstPos);
       const normalizedLastPos = InlineUtils.normalizePosition(false, lastPos);
       const normalizedFromPos = InlineUtils.normalizePosition(false, fromPos);
@@ -68,17 +64,17 @@ const willDeleteLastPositionInElement = (forward: boolean, fromPos: CaretPositio
           prevPos.isEqual(normalizedFirstPos) && fromPos.isEqual(normalizedLastPos)
         );
       }
-    }).getOr(true);
+    })(CaretFinder.firstPositionIn(elm), CaretFinder.lastPositionIn(elm)) : null) ?? (true);
 
-const freefallRtl = (root: SugarElement<Node>): Optional<SugarElement<Node>> => {
+const freefallRtl = (root: SugarElement<Node>): (SugarElement<Node>) | null => {
   const child = SugarNode.isComment(root) ? Traverse.prevSibling(root) : Traverse.lastChild(root);
-  return child.bind(freefallRtl).orThunk(() => Optional.some(root));
+  return child.bind(freefallRtl).orThunk(() => root);
 };
 
 const deleteRangeContents = (editor: Editor, rng: Range, root: SugarElement<HTMLElement>, moveSelection: boolean = true): void => {
   rng.deleteContents();
   // Pad the last block node
-  const lastNode = freefallRtl(root).getOr(root);
+  const lastNode = freefallRtl(root) ?? (root);
   const lastBlock = SugarElement.fromDom(editor.dom.getParent(lastNode.dom, editor.dom.isBlock) ?? root.dom);
   // If the block is the editor body then we need to insert the root block as well
   if (lastBlock.dom === editor.getBody()) {
@@ -91,8 +87,8 @@ const deleteRangeContents = (editor: Editor, rng: Range, root: SugarElement<HTML
   }
   // Clean up any additional leftover nodes. If the last block wasn't a direct child, then we also need to clean up siblings
   if (!Compare.eq(root, lastBlock)) {
-    const additionalCleanupNodes = Optionals.is(Traverse.parent(lastBlock), root) ? [] : Traverse.siblings(lastBlock);
-    Arr.each(additionalCleanupNodes.concat(Traverse.children(root)), (node) => {
+    const additionalCleanupNodes = (Traverse.parent(lastBlock) !== null && (Traverse.parent(lastBlock)) === (root)) ? [] : Traverse.siblings(lastBlock);
+    (additionalCleanupNodes.concat(Traverse.children(root))).forEach((node) => {
       if (!Compare.eq(node, lastBlock) && !Compare.contains(node, lastBlock) && Empty.isEmpty(editor.schema, node)) {
         Remove.remove(node);
       }

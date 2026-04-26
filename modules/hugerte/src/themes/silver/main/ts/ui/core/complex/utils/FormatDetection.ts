@@ -1,14 +1,13 @@
-import { Arr, Optional, Optionals } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
 import { BasicSelectItem } from '../SelectDatasets';
 
-export const findNearest = (editor: Editor, getStyles: () => BasicSelectItem[]): Optional<BasicSelectItem> => {
+export const findNearest = (editor: Editor, getStyles: () => BasicSelectItem[]): (BasicSelectItem) | null => {
   const styles = getStyles();
-  const formats = Arr.map(styles, (style) => style.format);
+  const formats = (styles).map((style) => style.format);
 
-  return Optional.from(editor.formatter.closest(formats)).bind((fmt) =>
-    Arr.find(styles, (data) => data.format === fmt)
-  ).orThunk(() => Optionals.someIf(editor.formatter.match('p'), { title: 'Paragraph', format: 'p' }));
+  return (editor.formatter.closest(formats) ?? null).bind((fmt) =>
+    ((styles).find((data) => data.format === fmt) ?? null)
+  ).orThunk(() => (editor.formatter.match('p') ? { title: 'Paragraph', format: 'p' } : null));
 };

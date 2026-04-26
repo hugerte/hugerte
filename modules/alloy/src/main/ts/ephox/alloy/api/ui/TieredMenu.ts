@@ -1,5 +1,4 @@
 import { FieldSchema, Objects } from '@ephox/boulder';
-import { Id } from '@ephox/katamari';
 
 import * as Fields from '../../data/Fields';
 import * as TieredMenuSpec from '../../ui/single/TieredMenuSpec';
@@ -25,7 +24,7 @@ const singleData = (name: string, menu: PartialMenuSpec): TieredData => ({
 });
 
 const collapseItem = (text: string): ItemDataTuple => ({
-  value: Id.generate(TieredMenuSpec.collapseItem()),
+  value: ((TieredMenuSpec.collapseItem()) + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
   meta: {
     text
   }

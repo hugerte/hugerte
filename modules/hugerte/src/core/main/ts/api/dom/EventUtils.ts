@@ -1,4 +1,3 @@
-import { Obj, Type } from '@ephox/katamari';
 
 import * as NodeType from '../../dom/NodeType';
 import * as Utils from '../../events/EventUtils';
@@ -51,7 +50,7 @@ const removeEvent = (target: EventTarget, name: string, callback: EventListenerO
 };
 
 const isMouseEvent = (event: PartialEvent | null): event is MouseEvent =>
-  Type.isNonNullable(event) && mouseEventRe.test(event.type);
+  (event) != null && mouseEventRe.test(event.type);
 
 /**
  * Normalizes a native event object or just adds the event specific methods on a custom event.
@@ -60,7 +59,7 @@ const fix = <T extends PartialEvent> (originalEvent: T, data?: Partial<T>): Even
   const event = Utils.normalize<Partial<T>>(originalEvent.type, originalEvent, document, data) as EventUtilsEvent<T>;
 
   // Calculate pageX/Y if missing and clientX/Y available
-  if (isMouseEvent(originalEvent) && Type.isUndefined(originalEvent.pageX) && !Type.isUndefined(originalEvent.clientX)) {
+  if (isMouseEvent(originalEvent) && (originalEvent.pageX) === undefined && !(originalEvent.clientX) === undefined) {
     const eventDoc = event.target.ownerDocument || document;
     const doc = eventDoc.documentElement;
     const body = eventDoc.body;
@@ -313,16 +312,16 @@ class EventUtils {
         }
       } else {
         // All events for a specific element
-        Obj.each(eventMap, (callbackList, name) => {
+        Object.entries(eventMap).forEach(([_k, _v]: [any, any]) => ((callbackList, name) => {
           removeEvent(target, callbackList.fakeName || name, callbackList.nativeHandler, callbackList.capture);
-        });
+        })(_v, _k));
 
         eventMap = {};
       }
 
       // Check if object is empty, if it isn't then we won't remove the expando map
       for (const name in eventMap) {
-        if (Obj.has(eventMap, name)) {
+        if (Object.prototype.hasOwnProperty.call(eventMap, name)) {
           return this;
         }
       }

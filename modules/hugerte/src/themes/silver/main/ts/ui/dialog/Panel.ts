@@ -1,6 +1,5 @@
 import { SimpleSpec } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 
@@ -13,7 +12,7 @@ const renderPanel = (spec: PanelSpec, backstage: UiFactoryBackstage): SimpleSpec
   },
   // All of the items passed through the form need to be put through the interpreter
   // with their form part preserved.
-  components: Arr.map(spec.items, backstage.shared.interpreter)
+  components: (spec.items).map(backstage.shared.interpreter)
 });
 
 export {

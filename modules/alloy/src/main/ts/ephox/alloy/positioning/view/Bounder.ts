@@ -1,4 +1,4 @@
-import { Adt, Arr, Fun, Num } from '@ephox/katamari';
+import { Adt, Arr, Num } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -107,13 +107,13 @@ const calcReposition = (box: Boxes.Bounds, bounds: Boxes.Bounds): Boxes.Bounds =
  */
 const calcMaxSizes = (direction: Direction.DirectionAdt, box: Boxes.Bounds, bounds: Boxes.Bounds): MaxSizes => {
   // Futz with the "height" of the popup to ensure if it doesn't fit it's capped at the available height.
-  const upAvailable = Fun.constant(box.bottom - bounds.y);
-  const downAvailable = Fun.constant(bounds.bottom - box.y);
+  const upAvailable = () => box.bottom - bounds.y;
+  const downAvailable = () => bounds.bottom - box.y;
   const maxHeight = Direction.cataVertical(direction, downAvailable, /* middle */ downAvailable, upAvailable);
 
   // Futz with the "width" of the popup to ensure if it doesn't fit it's capped at the available width.
-  const westAvailable = Fun.constant(box.right - bounds.x);
-  const eastAvailable = Fun.constant(bounds.right - box.x);
+  const westAvailable = () => box.right - bounds.x;
+  const eastAvailable = () => bounds.right - box.x;
   const maxWidth = Direction.cataHorizontal(direction, eastAvailable, /* middle */ eastAvailable, westAvailable);
 
   return {
@@ -205,7 +205,7 @@ const attempts = (element: SugarElement<HTMLElement>, candidates: AnchorLayout[]
     const next: SpotInfo = layout(anchorBox, elementBox, bubbles, element, bounds);
     const attemptLayout = attempt(next, panelWidth, panelHeight, bounds);
 
-    return attemptLayout.fold(Fun.constant(attemptLayout), (newReposition, newVisibleW, newVisibleH, newIsVisible) => {
+    return attemptLayout.fold(() => attemptLayout, (newReposition, newVisibleW, newVisibleH, newIsVisible) => {
       // console.log(`label: ${next.label}, newVisibleW: ${newVisibleW}, visibleW: ${visibleW}, newVisibleH: ${newVisibleH}, visibleH: ${visibleH}, newIsVisible: ${newIsVisible}, isVisible: ${isVisible}`);
       const improved = isVisible === newIsVisible ? (newVisibleH > visibleH || newVisibleW > visibleW) : (!isVisible && newIsVisible);
       // console.log('improved? ', improved);
@@ -216,8 +216,8 @@ const attempts = (element: SugarElement<HTMLElement>, candidates: AnchorLayout[]
   const abc = Arr.foldl(
     candidates,
     (b, a) => {
-      const bestNext = Fun.curry(attemptBestFit, a);
-      return b.fold(Fun.constant(b), bestNext);
+      const bestNext = ((..._rest: any[]) => (attemptBestFit)(a, ..._rest));
+      return b.fold(() => b, bestNext);
     },
     // fold base case: No candidates, it's never going to be correct, so do whatever
     adt.nofit({
@@ -236,8 +236,8 @@ const attempts = (element: SugarElement<HTMLElement>, candidates: AnchorLayout[]
   );
 
   // unwrapping 'reposition' from the adt, for both fit & nofit the first arg is the one we need,
-  // so we can cheat and use Fun.identity
-  return abc.fold(Fun.identity, Fun.identity);
+  // so we can cheat and use (x: any) => x
+  return abc.fold((x: any) => x, (x: any) => x);
 };
 
 export { attempts, determinePosition, calcReposition };

@@ -1,6 +1,5 @@
-import { Fun } from '@ephox/katamari';
 
-const make = Fun.identity;
+const make = (x: any) => x;
 
 export {
   make

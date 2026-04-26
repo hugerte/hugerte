@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import AstNode from 'hugerte/core/api/html/Node';
@@ -9,7 +8,7 @@ const isEmpty = (nodeBuffer: AstNode[]) => nodeBuffer.length === 0;
 const wrapInvalidChildren = (list: AstNode) => {
   const insertListItem = (buffer: AstNode[], refNode?: AstNode) => {
     const li = AstNode.create('li');
-    Arr.each(buffer, (node) => li.append(node));
+    (buffer).forEach((node) => li.append(node));
     if (refNode) {
       list.insert(li, refNode, true);
     } else {
@@ -28,7 +27,7 @@ const wrapInvalidChildren = (list: AstNode) => {
     }
   };
 
-  const restBuffer = Arr.foldl(list.children(), reducer, []);
+  const restBuffer = (list.children()).reduce(reducer, []);
   if (!isEmpty(restBuffer)) {
     insertListItem(restBuffer);
   }
@@ -37,7 +36,7 @@ const wrapInvalidChildren = (list: AstNode) => {
 const setup = (editor: Editor): void => {
   editor.on('PreInit', () => {
     const { parser } = editor;
-    parser.addNodeFilter('ul,ol', (nodes) => Arr.each(nodes, wrapInvalidChildren));
+    parser.addNodeFilter('ul,ol', (nodes) => (nodes).forEach(wrapInvalidChildren));
   });
 };
 

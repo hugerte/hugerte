@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Gather, Traverse } from '@ephox/phoenix';
 
 import { ZonePosition } from '../api/general/ZonePosition';
@@ -12,11 +12,11 @@ const getNextStep = <E, D>(
   universe: Universe<E, D>,
   viewport: ZoneViewports<E>,
   traverse: Traverse<E>
-): Optional<Traverse<E>> => {
+): (Traverse<E>) | null => {
   if (universe.property().isSpecial(traverse.item) || universe.property().isNonEditable(traverse.item)) {
-    return Optional.some({ item: traverse.item, mode: Gather.sidestep });
+    return { item: traverse.item, mode: Gather.sidestep };
   } else if (!universe.property().isBoundary(traverse.item)) {
-    return Optional.some(traverse);
+    return traverse;
   } else {
     // We are in a boundary, take the time to check where we are relative to the viewport
     return ZonePosition.cata(viewport.assess(traverse.item),
@@ -24,13 +24,13 @@ const getNextStep = <E, D>(
         // We are above the viewport, so skip
         // Only sidestep if we haven't already tried it. Otherwise, we'll loop forever.
         if (traverse.mode !== Gather.backtrack) {
-          return Optional.some({ item: traverse.item, mode: Gather.sidestep });
+          return { item: traverse.item, mode: Gather.sidestep };
         } else {
-          return Optional.none();
+          return null;
         }
       },
-      () => Optional.some(traverse), // We are inside the viewport, continue walking normally
-      () => Optional.none() // We've gone past the end of the viewport, so stop completely
+      () => traverse, // We are inside the viewport, continue walking normally
+      () => null // We've gone past the end of the viewport, so stop completely
     );
   }
 };
@@ -51,7 +51,7 @@ const visit = <E, D>(
   } else if (universe.property().isBoundary(traverse.item)) {
     // Only visit this item if we are inside the viewport
     ZonePosition.cata(viewport.assess(traverse.item),
-      Fun.noop, // Do nothing when above the viewport
+      () => {}, // Do nothing when above the viewport
       () => {
         // We are in the viewport, so process normally
         if (traverse.mode === Gather.advance) {
@@ -59,9 +59,9 @@ const visit = <E, D>(
         } else {
           stack.closeBoundary(currentLang, traverse.item);
         }
-        return Optional.some(traverse);
+        return traverse;
       },
-      Fun.noop // Do nothing when below the viewport
+      () => {} // Do nothing when below the viewport
     );
   } else if (universe.property().isEmptyTag(traverse.item)) {
     stack.addEmpty(traverse.item);
@@ -99,7 +99,7 @@ const walk = <E, D>(
   let state = Optional.some<Traverse<E>>({ item: start, mode: Gather.advance })
     .filter(shouldContinue);
 
-  while (state.isSome()) {
+  while (state !== null) {
     state.each((state) => visit(universe, stack, transform, viewport, state));
 
     state = state

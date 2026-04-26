@@ -1,4 +1,3 @@
-import { Id, Optional } from '@ephox/katamari';
 
 export const enum Event {
   Dragstart,
@@ -6,11 +5,11 @@ export const enum Event {
   Drop
 }
 
-const eventId = Id.generate('event');
+const eventId = (('event') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
-const getEvent = (transfer: DataTransfer): Optional<Event> => {
+const getEvent = (transfer: DataTransfer): (Event) | null => {
   const dt: Record<string, any> = transfer;
-  return Optional.from(dt[eventId]);
+  return (dt[eventId] ?? null);
 };
 
 const mkSetEventFn = (type: Event) => (transfer: DataTransfer): void => {
@@ -26,7 +25,7 @@ const setDragendEvent = mkSetEventFn(Event.Dragend);
 
 const checkEvent = (expectedType: Event) => (transfer: DataTransfer): boolean => {
   const dt: Record<string, any> = transfer;
-  return Optional.from(dt[eventId]).exists((type) => type === expectedType);
+  return (dt[eventId] ?? null).exists((type) => type === expectedType);
 };
 
 const isInDragStartEvent = checkEvent(Event.Dragstart);

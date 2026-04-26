@@ -1,4 +1,4 @@
-import { Arr, Cell, Fun, Optional, Optionals, Thunk } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { RunOperation, Structs, TableLookup, Warehouse } from '@ephox/snooker';
 import { Compare, SelectorExists, SugarElement, SugarNode } from '@ephox/sugar';
 
@@ -28,15 +28,15 @@ export interface SelectionTargets {
   readonly onSetupTable: (api: UiApi) => () => void;
   readonly onSetupCellOrRow: (api: UiApi) => () => void;
   readonly onSetupColumn: (lockedDisable: LockedDisable) => (api: UiApi) => () => void;
-  readonly onSetupPasteable: (getClipboardData: () => Optional<SugarElement[]>) => (api: UiApi) => () => void;
-  readonly onSetupPasteableColumn: (getClipboardData: () => Optional<SugarElement[]>, lockedDisable: LockedDisable) => (api: UiApi) => () => void;
+  readonly onSetupPasteable: (getClipboardData: () => (SugarElement[]) | null) => (api: UiApi) => () => void;
+  readonly onSetupPasteableColumn: (getClipboardData: () => (SugarElement[]) | null, lockedDisable: LockedDisable) => (api: UiApi) => () => void;
   readonly onSetupMergeable: (api: UiApi) => () => void;
   readonly onSetupUnmergeable: (api: UiApi) => () => void;
   readonly onSetupTableWithCaption: (api: UiToggleApi) => () => void;
   readonly onSetupTableRowHeaders: (api: UiToggleApi) => () => void;
   readonly onSetupTableColumnHeaders: (api: UiToggleApi) => () => void;
   readonly resetTargets: () => void;
-  readonly targets: () => Optional<RunOperation.CombinedTargets>;
+  readonly targets: () => (RunOperation.CombinedTargets) | null;
 }
 
 interface ExtractedSelectionDetails {
@@ -48,39 +48,37 @@ interface ExtractedSelectionDetails {
 type TargetSetupCallback = (targets: RunOperation.CombinedTargets) => boolean;
 
 export const getSelectionTargets = (editor: Editor): SelectionTargets => {
-  const targets = Cell<Optional<RunOperation.CombinedTargets>>(Optional.none());
+  const targets = Cell<(RunOperation.CombinedTargets) | null>(null);
   const changeHandlers = Cell<Array<() => void>>([]);
-  let selectionDetails = Optional.none<ExtractedSelectionDetails>();
+  let selectionDetails = null;
 
   const isCaption = SugarNode.isTag('caption');
   const isDisabledForSelection = (key: keyof ExtractedSelectionDetails) => selectionDetails.forall((details) => !details[key]);
   const getStart = () => TableSelection.getSelectionCellOrCaption(Utils.getSelectionStart(editor), Utils.getIsRoot(editor));
   const getEnd = () => TableSelection.getSelectionCellOrCaption(Utils.getSelectionEnd(editor), Utils.getIsRoot(editor));
 
-  const findTargets = (): Optional<RunOperation.CombinedTargets> =>
+  const findTargets = (): (RunOperation.CombinedTargets) | null =>
     getStart().bind((startCellOrCaption) =>
-      Optionals.flatten(
-        Optionals.lift2(TableLookup.table(startCellOrCaption), getEnd().bind(TableLookup.table), (startTable, endTable) => {
+      ((TableLookup.table(startCellOrCaption) !== null && getEnd().bind(TableLookup.table) !== null ? ((startTable, endTable) => {
           if (Compare.eq(startTable, endTable)) {
             if (isCaption(startCellOrCaption)) {
-              return Optional.some(TableTargets.noMenu(startCellOrCaption));
+              return TableTargets.noMenu(startCellOrCaption);
             } else {
-              return Optional.some(TableTargets.forMenu(TableSelection.getCellsFromSelection(editor), startTable, startCellOrCaption));
+              return TableTargets.forMenu(TableSelection.getCellsFromSelection(editor), startTable, startCellOrCaption);
             }
           }
 
-          return Optional.none();
-        })
-      )
+          return null;
+        })(TableLookup.table(startCellOrCaption), getEnd().bind(TableLookup.table)) : null) ?? null)
     );
 
-  const getExtractedDetails = (targets: RunOperation.CombinedTargets): Optional<ExtractedSelectionDetails> => {
+  const getExtractedDetails = (targets: RunOperation.CombinedTargets): (ExtractedSelectionDetails) | null => {
     const tableOpt = TableLookup.table(targets.element);
     return tableOpt.map((table) => {
       const warehouse = Warehouse.fromTable(table);
-      const selectedCells = RunOperation.onCells(warehouse, targets).getOr([] as Structs.DetailExt[]);
+      const selectedCells = RunOperation.onCells(warehouse, targets) ?? ([] as Structs.DetailExt[]);
 
-      const locked = Arr.foldl(selectedCells, (acc, cell) => {
+      const locked = (selectedCells).reduce((acc, cell) => {
         if (cell.isLocked) {
           acc.onAny = true;
           if (cell.column === 0) {
@@ -93,8 +91,8 @@ export const getSelectionTargets = (editor: Editor): SelectionTargets => {
       }, { onAny: false, onFirst: false, onLast: false });
 
       return {
-        mergeable: RunOperation.onUnlockedMergable(warehouse, targets).isSome(),
-        unmergeable: RunOperation.onUnlockedUnmergable(warehouse, targets).isSome(),
+        mergeable: RunOperation.onUnlockedMergable(warehouse, targets) !== null,
+        unmergeable: RunOperation.onUnlockedUnmergable(warehouse, targets) !== null,
         locked
       };
     });
@@ -102,13 +100,13 @@ export const getSelectionTargets = (editor: Editor): SelectionTargets => {
 
   const resetTargets = () => {
     // Reset the targets
-    targets.set(Thunk.cached(findTargets)());
+    targets.set(((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (findTargets)(..._a); } return _r; }; })())());
 
     // Reset the selection details
     selectionDetails = targets.get().bind(getExtractedDetails);
 
     // Trigger change handlers
-    Arr.each(changeHandlers.get(), Fun.call);
+    (changeHandlers.get()).forEach(((f: () => any) => f()));
   };
 
   const setupHandler = (handler: () => void) => {
@@ -119,7 +117,7 @@ export const getSelectionTargets = (editor: Editor): SelectionTargets => {
     changeHandlers.set(changeHandlers.get().concat([ handler ]));
 
     return () => {
-      changeHandlers.set(Arr.filter(changeHandlers.get(), (h) => h !== handler));
+      changeHandlers.set((changeHandlers.get()).filter((h) => h !== handler));
     };
   };
 
@@ -149,15 +147,15 @@ export const getSelectionTargets = (editor: Editor): SelectionTargets => {
   const onSetupTable = (api: UiApi) => onSetup(api, (_) => false);
   const onSetupCellOrRow = (api: UiApi) => onSetup(api, (targets) => isCaption(targets.element));
   const onSetupColumn = (lockedDisable: LockedDisable) => (api: UiApi) => onSetup(api, (targets) => isCaption(targets.element) || isDisabledFromLocked(lockedDisable));
-  const onSetupPasteable = (getClipboardData: () => Optional<SugarElement[]>) => (api: UiApi) =>
-    onSetup(api, (targets) => isCaption(targets.element) || getClipboardData().isNone());
-  const onSetupPasteableColumn = (getClipboardData: () => Optional<SugarElement[]>, lockedDisable: LockedDisable) => (api: UiApi) =>
-    onSetup(api, (targets) => isCaption(targets.element) || getClipboardData().isNone() || isDisabledFromLocked(lockedDisable));
+  const onSetupPasteable = (getClipboardData: () => (SugarElement[]) | null) => (api: UiApi) =>
+    onSetup(api, (targets) => isCaption(targets.element) || getClipboardData() === null);
+  const onSetupPasteableColumn = (getClipboardData: () => (SugarElement[]) | null, lockedDisable: LockedDisable) => (api: UiApi) =>
+    onSetup(api, (targets) => isCaption(targets.element) || getClipboardData() === null || isDisabledFromLocked(lockedDisable));
   const onSetupMergeable = (api: UiApi) => onSetup(api, (_targets) => isDisabledForSelection('mergeable'));
   const onSetupUnmergeable = (api: UiApi) => onSetup(api, (_targets) => isDisabledForSelection('unmergeable'));
 
   const onSetupTableWithCaption = (api: UiToggleApi) => {
-    return onSetupWithToggle(api, Fun.never, (targets) => {
+    return onSetupWithToggle(api, (() => false as const), (targets) => {
       const tableOpt = TableLookup.table(targets.element, Utils.getIsRoot(editor));
       return tableOpt.exists((table) => SelectorExists.child(table, 'caption'));
     });

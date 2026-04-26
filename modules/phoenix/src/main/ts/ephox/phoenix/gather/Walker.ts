@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
 
 import { Direction, Successor, Transition, Traverse } from '../api/data/Types';
 
@@ -36,16 +35,16 @@ const advance: Transition = (universe, item, direction, transition = advance) =>
  * fallback: the traversal to fallback to when the current traversal does not find a node
  */
 const successors: Successor[] = [
-  { current: backtrack, next: sidestep, fallback: Optional.none() },
-  { current: sidestep, next: advance, fallback: Optional.some(backtrack) },
-  { current: advance, next: advance, fallback: Optional.some(sidestep) }
+  { current: backtrack, next: sidestep, fallback: null },
+  { current: sidestep, next: advance, fallback: backtrack },
+  { current: advance, next: advance, fallback: sidestep }
 ];
 
-const go = <E, D>(universe: Universe<E, D>, item: E, mode: Transition, direction: Direction, rules: Successor[] = successors): Optional<Traverse<E>> => {
+const go = <E, D>(universe: Universe<E, D>, item: E, mode: Transition, direction: Direction, rules: Successor[] = successors): (Traverse<E>) | null => {
   // INVESTIGATE: Find a way which doesn't require an array search first to identify the current mode.
-  const ruleOpt = Arr.find(rules, (succ) => {
+  const ruleOpt = ((rules).find((succ) => {
     return succ.current === mode;
-  });
+  }) ?? null);
 
   return ruleOpt.bind((rule) => {
     // Attempt the current mode. If not, use the fallback and try again.

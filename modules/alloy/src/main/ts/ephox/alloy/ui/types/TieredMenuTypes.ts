@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { AlloyBehaviourRecord } from '../../api/behaviour/Behaviour';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -28,8 +27,8 @@ export interface TieredMenuDetail extends SingleSketchDetail {
     selectedItem: string;
   };
 
-  onEscape: (comp: AlloyComponent, item: AlloyComponent) => Optional<boolean>;
-  onExecute: (comp: AlloyComponent, item: AlloyComponent) => Optional<boolean>;
+  onEscape: (comp: AlloyComponent, item: AlloyComponent) => (boolean) | null;
+  onExecute: (comp: AlloyComponent, item: AlloyComponent) => (boolean) | null;
   onOpenMenu: (comp: AlloyComponent, menu: AlloyComponent) => void;
   onOpenSubmenu: (comp: AlloyComponent, item: AlloyComponent, activeMenu: AlloyComponent, triggeringPath: string[]) => void;
   onCollapseMenu: (comp: AlloyComponent, item: AlloyComponent, activeMenu: AlloyComponent) => void;
@@ -52,8 +51,8 @@ export interface TieredMenuSpec extends SingleSketchSpec {
   components?: AlloySpec[];
   tmenuBehaviours?: AlloyBehaviourRecord;
 
-  onEscape: (comp: AlloyComponent, item: AlloyComponent) => Optional<boolean>;
-  onExecute: (comp: AlloyComponent, item: AlloyComponent) => Optional<boolean>;
+  onEscape: (comp: AlloyComponent, item: AlloyComponent) => (boolean) | null;
+  onExecute: (comp: AlloyComponent, item: AlloyComponent) => (boolean) | null;
   onOpenMenu: (comp: AlloyComponent, menu: AlloyComponent) => void;
   onOpenSubmenu: (comp: AlloyComponent, item: AlloyComponent, activeMenu: AlloyComponent, triggeringPath: string[]) => void;
   onCollapseMenu?: (comp: AlloyComponent, item: AlloyComponent, activeMenu: AlloyComponent) => void;

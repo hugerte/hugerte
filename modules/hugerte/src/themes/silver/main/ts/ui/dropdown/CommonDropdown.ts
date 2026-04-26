@@ -3,7 +3,7 @@ import {
   Keying, MaxHeight, Memento, NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, TieredData, Tooltipping, Unselecting
 } from '@ephox/alloy';
 import { Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@ephox/katamari';
+import { Cell, Future, Id, Merger } from '@ephox/katamari';
 import { EventArgs, SugarElement } from '@ephox/sugar';
 
 import { toolbarButtonEventOrder } from 'hugerte/themes/silver/ui/toolbar/button/ButtonEvents';
@@ -20,8 +20,8 @@ import * as MenuParts from '../menus/menu/MenuParts';
 import { focusSearchField, handleRedirectToMenuItem, handleRefetchTrigger, updateAriaOnDehighlight, updateAriaOnHighlight } from '../menus/menu/searchable/SearchableMenu';
 import { RedirectMenuItemInteractionEvent, redirectMenuItemInteractionEvent, RefetchTriggerEvent, refetchTriggerEvent } from '../menus/menu/searchable/SearchableMenuEvents';
 
-export const updateMenuText = Id.generate('update-menu-text');
-export const updateMenuIcon = Id.generate('update-menu-icon');
+export const updateMenuText = (('update-menu-text') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+export const updateMenuIcon = (('update-menu-icon') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 export interface UpdateMenuTextEvent extends CustomEvent {
   readonly text: string;
@@ -33,12 +33,12 @@ export interface UpdateMenuIconEvent extends CustomEvent {
 
 export interface CommonDropdownSpec<T> {
   readonly uid?: string;
-  readonly text: Optional<string>;
-  readonly icon: Optional<string>;
+  readonly text: (string) | null;
+  readonly icon: (string) | null;
   readonly disabled?: boolean;
-  readonly tooltip: Optional<string>;
-  readonly role: Optional<string>;
-  readonly fetch: (comp: AlloyComponent, callback: (tdata: Optional<TieredData>) => void) => void;
+  readonly tooltip: (string) | null;
+  readonly role: (string) | null;
+  readonly fetch: (comp: AlloyComponent, callback: (tdata: (TieredData) | null) => void) => void;
   readonly onSetup: (itemApi: T) => OnDestroy<T>;
   readonly getApi: (comp: AlloyComponent) => T;
   readonly columns: Toolbar.ColumnTypes;
@@ -46,7 +46,7 @@ export interface CommonDropdownSpec<T> {
   readonly classes: string[];
   readonly dropdownBehaviours: Behaviour.NamedConfiguredBehaviour<any, any, any>[];
   readonly searchable?: boolean;
-  readonly ariaLabel: Optional<string>;
+  readonly ariaLabel: (string) | null;
 }
 
 // TODO: Use renderCommonStructure here.
@@ -56,7 +56,7 @@ const renderCommonDropdown = <T>(
   sharedBackstage: UiFactoryBackstageShared,
   btnName?: string
 ): SketchSpec => {
-  const editorOffCell = Cell(Fun.noop);
+  const editorOffCell = Cell(() => {});
 
   // We need mementos for display text and display icon because on the events
   // updateMenuText and updateMenuIcon respectively, their contents are changed
@@ -99,9 +99,9 @@ const renderCommonDropdown = <T>(
     // to move to? Does it matter if we still close it when there are no other menus?
     AlloyDropdown.close(dropdown);
 
-    // The Optional.some(true) tells the keyboard handler that this event was handled,
+    // The true tells the keyboard handler that this event was handled,
     // which will do things like stopPropagation and preventDefault.
-    return Optional.some(true);
+    return true;
   };
 
   const role = spec.role.fold(() => ({}), (role) => ({ role }));
@@ -121,7 +121,7 @@ const renderCommonDropdown = <T>(
     classes: [ `${prefix}__select-chevron` ]
   }, sharedBackstage.providers.icons);
 
-  const fixWidthBehaviourName = Id.generate('common-button-display-events');
+  const fixWidthBehaviourName = (('common-button-display-events') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
   // Should we use Id.generate here?
   const customEventsName = 'dropdown-events';
 
@@ -131,16 +131,16 @@ const renderCommonDropdown = <T>(
       ...role,
       dom: {
         tag: 'button',
-        classes: [ prefix, `${prefix}--select` ].concat(Arr.map(spec.classes, (c) => `${prefix}--${c}`)),
+        classes: [ prefix, `${prefix}--select` ].concat((spec.classes).map((c) => `${prefix}--${c}`)),
         attributes: {
           ...ariaLabelAttribute,
-          ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {})
+          ...((btnName) != null ? { 'data-mce-name': btnName } : {})
         }
       },
       components: componentRenderPipeline([
         optMemDisplayIcon.map((mem) => mem.asSpec()),
         optMemDisplayText.map((mem) => mem.asSpec()),
-        Optional.some(iconSpec)
+        iconSpec
       ]),
       matchWidth: true,
       useMinWidth: true,
@@ -263,7 +263,7 @@ const renderCommonDropdown = <T>(
         };
       },
 
-      fetch: (comp) => Future.nu(Fun.curry(spec.fetch, comp))
+      fetch: (comp) => Future.nu(((..._rest: any[]) => (spec.fetch)(comp, ..._rest)))
     })
   );
 

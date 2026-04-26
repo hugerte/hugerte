@@ -6,7 +6,7 @@ import {
   Unselecting
 } from '@ephox/alloy';
 import { Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@ephox/katamari';
+import { Cell, Future, Merger } from '@ephox/katamari';
 import { Attribute, EventArgs, SelectorFind } from '@ephox/sugar';
 
 import { ToolbarGroupOption } from '../../../api/Options';
@@ -43,10 +43,10 @@ interface Specialisation<T> {
 }
 
 interface GeneralToolbarButton<T> {
-  readonly icon: Optional<string>;
-  readonly text: Optional<string>;
-  readonly tooltip: Optional<string>;
-  readonly shortcut: Optional<string>;
+  readonly icon: (string) | null;
+  readonly text: (string) | null;
+  readonly tooltip: (string) | null;
+  readonly shortcut: (string) | null;
   readonly onAction: (api: T) => void;
   readonly enabled: boolean;
 }
@@ -56,7 +56,7 @@ interface ChoiceFetcher {
   readonly columns: 'auto' | number;
   readonly presets: Toolbar.PresetTypes;
   readonly onItemAction: (api: Toolbar.ToolbarSplitButtonInstanceApi, value: string) => void;
-  readonly select: Optional<(value: string) => boolean>;
+  readonly select: ((value: string) =) | null boolean>;
 }
 
 const getButtonApi = (component: AlloyComponent): Toolbar.ToolbarButtonInstanceApi => ({
@@ -85,17 +85,17 @@ const getToggleApi = (component: AlloyComponent): Toolbar.ToolbarToggleButtonIns
   })
 });
 
-const getTooltipAttributes = (tooltip: Optional<string>, providersBackstage: UiFactoryBackstageProviders) => tooltip.map<{}>((tooltip) => ({
+const getTooltipAttributes = (tooltip: (string) | null, providersBackstage: UiFactoryBackstageProviders) => tooltip.map<{}>((tooltip) => ({
   'aria-label': providersBackstage.translate(tooltip),
-})).getOr({});
+})) ?? ({});
 
-const focusButtonEvent = Id.generate('focus-button');
+const focusButtonEvent = (('focus-button') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 const renderCommonStructure = (
-  optIcon: Optional<string>,
-  optText: Optional<string>,
-  tooltip: Optional<string>,
-  behaviours: Optional<Behaviours>,
+  optIcon: (string) | null,
+  optText: (string) | null,
+  tooltip: (string) | null,
+  behaviours: (Behaviours) | null,
   providersBackstage: UiFactoryBackstageProviders,
   btnName?: string
 ): AlloyButtonSpec => {
@@ -108,10 +108,10 @@ const renderCommonStructure = (
   return {
     dom: {
       tag: 'button',
-      classes: [ ToolbarButtonClasses.Button ].concat(optText.isSome() ? [ ToolbarButtonClasses.MatchWidth ] : []),
+      classes: [ ToolbarButtonClasses.Button ].concat(optText !== null ? [ ToolbarButtonClasses.MatchWidth ] : []),
       attributes: {
         ...getTooltipAttributes(tooltip, providersBackstage),
-        ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {})
+        ...((btnName) != null ? { 'data-mce-name': btnName } : {})
       }
     },
     components: componentRenderPipeline([
@@ -149,14 +149,14 @@ const renderCommonStructure = (
             AlloyTriggers.emit(button, focusButtonEvent);
           })
         ])
-      ].concat(behaviours.getOr([ ]))
+      ].concat(behaviours ?? ([ ]))
     )
   };
 };
 
 const renderFloatingToolbarButton = (spec: Toolbar.GroupToolbarButton, backstage: UiFactoryBackstage, identifyButtons: (toolbar: string | ToolbarGroupOption[]) => ToolbarGroup[], attributes: Record<string, string>, btnName?: string): SketchSpec => {
   const sharedBackstage = backstage.shared;
-  const editorOffCell = Cell(Fun.noop);
+  const editorOffCell = Cell(() => {});
   const specialisation = {
     toolbarButtonBehaviours: [],
     getApi: getButtonApi,
@@ -172,13 +172,13 @@ const renderFloatingToolbarButton = (spec: Toolbar.GroupToolbarButton, backstage
   return FloatingToolbarButton.sketch({
     lazySink: sharedBackstage.getSink,
     fetch: () => Future.nu((resolve) => {
-      resolve(Arr.map(identifyButtons(spec.items), renderToolbarGroup));
+      resolve((identifyButtons(spec.items)).map(renderToolbarGroup));
     }),
     markers: {
       toggledClass: ToolbarButtonClasses.Ticked
     },
     parts: {
-      button: renderCommonStructure(spec.icon, spec.text, spec.tooltip, Optional.some(behaviours), sharedBackstage.providers, btnName),
+      button: renderCommonStructure(spec.icon, spec.text, spec.tooltip, behaviours, sharedBackstage.providers, btnName),
       toolbar: {
         dom: {
           tag: 'div',
@@ -191,8 +191,8 @@ const renderFloatingToolbarButton = (spec: Toolbar.GroupToolbarButton, backstage
 };
 
 const renderCommonToolbarButton = <T>(spec: GeneralToolbarButton<T>, specialisation: Specialisation<T>, providersBackstage: UiFactoryBackstageProviders, btnName?: string): SketchSpec => {
-  const editorOffCell = Cell(Fun.noop);
-  const structure = renderCommonStructure(spec.icon, spec.text, spec.tooltip, Optional.none(), providersBackstage, btnName);
+  const editorOffCell = Cell(() => {});
+  const structure = renderCommonStructure(spec.icon, spec.text, spec.tooltip, null, providersBackstage, btnName);
   return AlloyButton.sketch({
     dom: structure.dom,
     components: structure.components,
@@ -212,7 +212,7 @@ const renderCommonToolbarButton = <T>(spec: GeneralToolbarButton<T>, specialisat
           ...(spec.tooltip.map(
             (t) => Tooltipping.config(
               providersBackstage.tooltips.getConfig({
-                tooltipText: providersBackstage.translate(t) + spec.shortcut.map((shortcut) => ` (${ConvertShortcut.convertText(shortcut)})`).getOr(''),
+                tooltipText: providersBackstage.translate(t) + spec.shortcut.map((shortcut) => ` (${ConvertShortcut.convertText(shortcut)})`) ?? (''),
               })
             )
           )).toArray(),
@@ -263,12 +263,12 @@ const renderToolbarToggleButtonWith = (spec: Toolbar.ToolbarToggleButton, provid
   );
 
 const fetchChoices = (getApi: (comp: AlloyComponent) => Toolbar.ToolbarSplitButtonInstanceApi, spec: ChoiceFetcher, providersBackstage: UiFactoryBackstageProviders) =>
-  (comp: AlloyComponent): Future<Optional<TieredData>> =>
+  (comp: AlloyComponent): Future<(TieredData) | null> =>
     Future.nu<SingleMenuItemSpec[]>((callback) => spec.fetch(callback))
-      .map((items) => Optional.from(createTieredDataFrom(
+      .map((items) => (createTieredDataFrom(
         Merger.deepMerge(
           createPartialChoiceMenu(
-            Id.generate('menu-value'),
+            (('menu-value') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
             items,
             (value) => {
               spec.onItemAction(getApi(comp), value);
@@ -276,7 +276,7 @@ const fetchChoices = (getApi: (comp: AlloyComponent) => Toolbar.ToolbarSplitButt
             spec.columns,
             spec.presets,
             ItemResponse.CLOSE_ON_EXECUTE,
-            spec.select.getOr(Fun.never),
+            spec.select ?? ((() => false as const)),
             providersBackstage
           ),
           {
@@ -290,11 +290,11 @@ const fetchChoices = (getApi: (comp: AlloyComponent) => Toolbar.ToolbarSplitButt
             ])
           } as TieredMenuTypes.PartialMenuSpec
         )
-      )));
+      ) ?? null));
 
 // TODO: hookup onSetup and onDestroy
 const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: UiFactoryBackstageShared, btnName?: string): SketchSpec => {
-  const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+  const tooltipString = Cell<string>(spec.tooltip ?? (''));
 
   const getApi = (comp: AlloyComponent): Toolbar.ToolbarSplitButtonInstanceApi => ({
     isEnabled: () => !Disabling.isDisabled(comp),
@@ -334,7 +334,7 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
     }
   });
 
-  const editorOffCell = Cell(Fun.noop);
+  const editorOffCell = Cell(() => {});
   const specialisation = {
     getApi,
     onSetup: spec.onSetup
@@ -346,7 +346,7 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
       attributes: {
         'aria-pressed': false,
         ...getTooltipAttributes(spec.tooltip, sharedBackstage.providers),
-        ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {})
+        ...((btnName) != null ? { 'data-mce-name': btnName } : {})
       }
     },
 
@@ -404,9 +404,9 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
 
     components: [
       AlloySplitDropdown.parts.button(
-        renderCommonStructure(spec.icon, spec.text, Optional.none(), Optional.some([
+        renderCommonStructure(spec.icon, spec.text, null, [
           Toggling.config({ toggleClass: ToolbarButtonClasses.Ticked, toggleOnExecute: false })
-        ]), sharedBackstage.providers)
+        ], sharedBackstage.providers)
       ),
       AlloySplitDropdown.parts.arrow({
         dom: {

@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Compare, SugarElement } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -14,7 +13,7 @@ const getBounds = (detailA: Structs.DetailExt, detailB: Structs.DetailExt): Stru
   );
 };
 
-const getAnyBox = (warehouse: Warehouse, startCell: SugarElement<HTMLTableCellElement>, finishCell: SugarElement<HTMLTableCellElement>): Optional<Structs.Bounds> => {
+const getAnyBox = (warehouse: Warehouse, startCell: SugarElement<HTMLTableCellElement>, finishCell: SugarElement<HTMLTableCellElement>): (Structs.Bounds) | null => {
   const startCoords = Warehouse.findItem(warehouse, startCell, Compare.eq);
   const finishCoords = Warehouse.findItem(warehouse, finishCell, Compare.eq);
   return startCoords.bind((sc) => {
@@ -24,7 +23,7 @@ const getAnyBox = (warehouse: Warehouse, startCell: SugarElement<HTMLTableCellEl
   });
 };
 
-const getBox = (warehouse: Warehouse, startCell: SugarElement<HTMLTableCellElement>, finishCell: SugarElement<HTMLTableCellElement>): Optional<Structs.Bounds> => {
+const getBox = (warehouse: Warehouse, startCell: SugarElement<HTMLTableCellElement>, finishCell: SugarElement<HTMLTableCellElement>): (Structs.Bounds) | null => {
   return getAnyBox(warehouse, startCell, finishCell).bind((bounds) => {
     return CellBounds.isRectangular(warehouse, bounds);
   });

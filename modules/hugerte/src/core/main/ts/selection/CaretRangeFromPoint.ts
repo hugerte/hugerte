@@ -7,7 +7,7 @@ const fromPoint = (clientX: number, clientY: number, doc: Document): Range | und
     rng.setStart(simRange.start.dom, simRange.soffset);
     rng.setEnd(simRange.finish.dom, simRange.foffset);
     return rng;
-  }).getOrUndefined();
+  }) ?? undefined;
 };
 
 export {

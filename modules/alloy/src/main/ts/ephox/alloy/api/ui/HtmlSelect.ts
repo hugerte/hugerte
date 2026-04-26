@@ -1,5 +1,4 @@
 import { FieldSchema, Objects } from '@ephox/boulder';
-import { Arr } from '@ephox/katamari';
 import { Value } from '@ephox/sugar';
 
 import { HtmlSelectDetail, HtmlSelectSketcher, HtmlSelectSpec } from '../../ui/types/HtmlSelectTypes';
@@ -11,7 +10,7 @@ import * as Sketcher from './Sketcher';
 import { SingleSketchFactory } from './UiSketcher';
 
 const factory: SingleSketchFactory<HtmlSelectDetail, HtmlSelectSpec> = (detail, _spec): SketchSpec => {
-  const options = Arr.map(detail.options, (option) => ({
+  const options = (detail.options).map((option) => ({
     dom: {
       tag: 'option',
       value: option.value,
@@ -19,7 +18,7 @@ const factory: SingleSketchFactory<HtmlSelectDetail, HtmlSelectSpec> = (detail, 
     }
   }));
 
-  const initialValues = detail.data.map((v) => Objects.wrap('initialValue', v)).getOr({ });
+  const initialValues = detail.data.map((v) => Objects.wrap('initialValue', v)) ?? ({ });
 
   return {
     uid: detail.uid,
@@ -40,10 +39,10 @@ const factory: SingleSketchFactory<HtmlSelectDetail, HtmlSelectSpec> = (detail, 
               return Value.get(select.element);
             },
             setValue: (select, newValue) => {
-              const firstOption = Arr.head(detail.options);
+              const firstOption = ((detail.options)[0] ?? null);
               // This is probably generically useful ... may become a part of Representing.
-              const found = Arr.find(detail.options, (opt) => opt.value === newValue);
-              if (found.isSome()) {
+              const found = ((detail.options).find((opt) => opt.value === newValue) ?? null);
+              if (found !== null) {
                 Value.set(select.element, newValue);
               } else if (select.element.dom.selectedIndex === -1 && newValue === '') {
                 /*

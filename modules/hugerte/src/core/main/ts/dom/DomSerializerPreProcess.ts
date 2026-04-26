@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Events from '../api/Events';
@@ -46,7 +45,7 @@ const preProcess = (editor: Editor, node: Element, args: ParserArgs): Node => {
 };
 
 const shouldFireEvent = (editor: Editor | undefined, args: ParserArgs): editor is Editor => {
-  return Type.isNonNullable(editor) && editor.hasEventListeners('PreProcess') && !args.no_events;
+  return (editor) != null && editor.hasEventListeners('PreProcess') && !args.no_events;
 };
 
 const process = (editor: Editor | undefined, node: Element, args: ParserArgs): Node => {

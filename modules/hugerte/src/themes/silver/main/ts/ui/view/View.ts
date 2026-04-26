@@ -4,7 +4,6 @@ import {
 } from '@ephox/alloy';
 import { FieldSchema } from '@ephox/boulder';
 import { View as BridgeView } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -29,7 +28,7 @@ export interface ViewDetail extends Sketcher.CompositeSketchDetail {
 }
 
 interface ViewApis {
-  readonly getPane: (comp: AlloyComponent) => Optional<AlloyComponent>;
+  readonly getPane: (comp: AlloyComponent) => (AlloyComponent) | null;
   readonly getOnShow: (comp: AlloyComponent) => (api: BridgeView.ViewInstanceApi) => void;
   readonly getOnHide: (comp: AlloyComponent) => (api: BridgeView.ViewInstanceApi) => void;
 }
@@ -45,7 +44,7 @@ const renderButtonsGroup = (spec: BridgeView.ViewButtonsGroup, providers: UiFact
       tag: 'div',
       classes: [ 'tox-view__toolbar__group' ],
     },
-    components: Arr.map(spec.buttons, (button) => renderViewButton(button, providers))
+    components: (spec.buttons).map((button) => renderViewButton(button, providers))
   };
 };
 
@@ -55,7 +54,7 @@ const isTablet = deviceDetection.isTablet();
 
 const renderViewHeader = (spec: ViewHeaderSpec) => {
   let hasGroups = false;
-  const endButtons = Arr.map(spec.buttons, (btnspec) => {
+  const endButtons = (spec.buttons).map((btnspec) => {
     if (btnspec.type === 'group') {
       hasGroups = true;
       return renderButtonsGroup(btnspec, spec.providers);

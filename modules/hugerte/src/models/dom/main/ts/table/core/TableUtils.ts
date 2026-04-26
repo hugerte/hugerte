@@ -5,7 +5,7 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { Arr, Optional, Strings } from '@ephox/katamari';
+import { Strings } from '@ephox/katamari';
 import { TableLookup } from '@ephox/snooker';
 import { Attribute, Compare, ContentEditable, PredicateFind, SugarElement, SugarNode } from '@ephox/sugar';
 
@@ -22,9 +22,9 @@ const removeDataStyle = (table: SugarElement<HTMLTableElement>): void => {
 
   const removeStyleAttribute = (element: SugarElement<HTMLElement>) => Attribute.remove(element, 'data-mce-style');
 
-  Arr.each(TableLookup.cells(table), removeStyleAttribute);
-  Arr.each(TableLookup.columns(table), removeStyleAttribute);
-  Arr.each(TableLookup.rows(table), removeStyleAttribute);
+  (TableLookup.cells(table)).forEach(removeStyleAttribute);
+  (TableLookup.columns(table)).forEach(removeStyleAttribute);
+  (TableLookup.rows(table)).forEach(removeStyleAttribute);
 };
 
 const getSelectionStart = (editor: Editor): SugarElement<Element> =>
@@ -39,9 +39,9 @@ const getPixelWidth = (elm: HTMLElement): number =>
 const getPixelHeight = (elm: HTMLElement): number =>
   elm.getBoundingClientRect().height;
 
-const getRawValue = (prop: string) => (editor: Editor, elm: HTMLElement): Optional<string> => {
+const getRawValue = (prop: string) => (editor: Editor, elm: HTMLElement): (string) | null => {
   const raw = editor.dom.getStyle(elm, prop) || editor.dom.getAttrib(elm, prop);
-  return Optional.from(raw).filter(Strings.isNotEmpty);
+  return (raw ?? null).filter(Strings.isNotEmpty);
 };
 
 const getRawWidth = getRawValue('width');

@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomTreeWalker from '../api/dom/TreeWalker';
@@ -10,14 +9,14 @@ const isSpan = (node: Node): node is HTMLSpanElement =>
   node.nodeName.toLowerCase() === 'span';
 
 const isInlineContent = (node: Node | null, schema: Schema): boolean =>
-  Type.isNonNullable(node) && (Empty.isContent(schema, node) || schema.isInline(node.nodeName.toLowerCase()));
+  (node) != null && (Empty.isContent(schema, node) || schema.isInline(node.nodeName.toLowerCase()));
 
 const surroundedByInlineContent = (node: Node, root: Node, schema: Schema): boolean => {
   const prev = new DomTreeWalker(node, root).prev(false);
   const next = new DomTreeWalker(node, root).next(false);
   // Check if the next/previous is either inline content or the start/end (eg is undefined)
-  const prevIsInline = Type.isUndefined(prev) || isInlineContent(prev, schema);
-  const nextIsInline = Type.isUndefined(next) || isInlineContent(next, schema);
+  const prevIsInline = (prev) === undefined || isInlineContent(prev, schema);
+  const nextIsInline = (next) === undefined || isInlineContent(next, schema);
   return prevIsInline && nextIsInline;
 };
 

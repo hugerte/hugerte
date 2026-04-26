@@ -1,11 +1,10 @@
-import { Arr } from '@ephox/katamari';
 import { Html, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import { AlloySpec, RawDomSchema, SimpleSpec, SketchSpec } from './SpecTypes';
 
 const getAttrs = (elem: SugarElement<Element>): Record<string, string> => {
   const attributes = elem.dom.attributes !== undefined ? elem.dom.attributes : [ ];
-  return Arr.foldl(attributes, (b, attr) => {
+  return (attributes).reduce((b, attr) => {
     // Make class go through the class path. Do not list it as an attribute.
     if (attr.name === 'class') {
       return b;

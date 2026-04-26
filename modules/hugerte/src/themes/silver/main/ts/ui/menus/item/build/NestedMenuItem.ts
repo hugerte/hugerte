@@ -1,6 +1,5 @@
 import { AlloyComponent, Disabling, ItemTypes } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Fun, Optional } from '@ephox/katamari';
 import { Attribute, SelectorFind } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
@@ -31,17 +30,17 @@ const renderNestedItem = (spec: Menu.NestedMenuItem, itemResponse: ItemResponse,
     presets: 'normal',
     iconContent: spec.icon,
     textContent: spec.text,
-    htmlContent: Optional.none(),
+    htmlContent: null,
     ariaLabel: spec.text,
-    caret: Optional.some(caret),
-    checkMark: Optional.none(),
+    caret: caret,
+    checkMark: null,
     shortcutContent: spec.shortcut
   }, providersBackstage, renderIcons);
   return renderCommonItem({
     data: buildData(spec),
     getApi,
     enabled: spec.enabled,
-    onAction: Fun.noop,
+    onAction: () => {},
     onSetup: spec.onSetup,
     triggersSubmenu: true,
     itemBehaviours: []

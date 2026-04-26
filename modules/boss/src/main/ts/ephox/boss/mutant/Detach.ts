@@ -1,13 +1,12 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 import { Gene } from '../api/Gene';
 import * as Comparator from './Comparator';
 import * as Locator from './Locator';
 
-const detach = (root: Gene, target: Gene): Optional<Gene> => {
+const detach = (root: Gene, target: Gene): (Gene) | null => {
   return Locator.byItem(root, target).bind((item) => {
     return item.parent.bind((parent) => {
-      const index = Arr.findIndex(parent.children || [], (child) => {
+      const index = (parent.children || []).findIndex((child) => {
         return Comparator.eq(child, item);
       });
 

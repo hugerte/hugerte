@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Scroll, SugarDocument, SugarElement, SugarLocation, SugarPosition } from '@ephox/sugar';
 
 import * as Frames from './Frames';
@@ -10,7 +9,7 @@ const find = (element: SugarElement<Element>): SugarPosition => {
   const frames = Frames.pathTo(element, Navigation);
   const offset = SugarLocation.viewport(element);
 
-  const r = Arr.foldr(frames, (b, a) => {
+  const r = (frames).reduceRight((b, a) => {
     const loc = SugarLocation.viewport(a);
     return {
       left: b.left + loc.left,

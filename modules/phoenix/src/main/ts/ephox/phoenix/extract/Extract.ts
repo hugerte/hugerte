@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
 
 import * as Spot from '../api/data/Spot';
 import { TypedItem } from '../api/data/TypedItem';
@@ -28,7 +27,7 @@ const typed = <E, D>(universe: Universe<E, D>, item: E, optimise?: (e: E) => boo
   } else if (universe.property().isElement(item)) {
     const children = universe.property().children(item);
     const boundary = universe.property().isBoundary(item) ? [ TypedItem.boundary(item, universe) ] : [];
-    const rest = optimise !== undefined && optimise(item) ? [] : Arr.bind(children, (child) => {
+    const rest = optimise !== undefined && optimise(item) ? [] : (children).flatMap((child) => {
       return typed(universe, child, optimise);
     });
     return boundary.concat(rest).concat(boundary);
@@ -47,7 +46,7 @@ const items = <E, D>(universe: Universe<E, D>, item: E, optimise?: (e: E) => boo
     return item;
   };
 
-  return Arr.map(typedItemList, (typedItem: TypedItem<E, D>) => {
+  return (typedItemList).map((typedItem: TypedItem<E, D>) => {
     return typedItem.fold(raw, raw, raw, raw);
   });
 };

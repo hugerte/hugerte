@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 
 export interface WordDecisionItem<E> {
   readonly item: E;
@@ -30,18 +29,18 @@ const fromItem = <E, D>(universe: Universe<E, D>, item: E): WordDecisionItem<E> 
   return universe.property().isText(item) ? detail(universe, item) : make(item, 0, 0, '');
 };
 
-const onEdge = <E, D>(_universe: Universe<E, D>, _item: E, _slicer: (text: string) => Optional<[number, number]>): WordDecision<E> => {
+const onEdge = <E, D>(_universe: Universe<E, D>, _item: E, _slicer: (text: string) => ([number, number]) | null): WordDecision<E> => {
   return decision<E>([], true);
 };
 
-const onOther = <E, D>(_universe: Universe<E, D>, _item: E, _slicer: (text: string) => Optional<[number, number]>): WordDecision<E> => {
+const onOther = <E, D>(_universe: Universe<E, D>, _item: E, _slicer: (text: string) => ([number, number]) | null): WordDecision<E> => {
   return decision<E>([], false);
 };
 
 // Returns: a 'decision' Struct with the items slot containing an empty array if None
 //   or  a zero-width [start, end] range was returned by slicer, or 1-element array of the
 //   [start, end] substring otherwise.
-const onText = <E, D>(universe: Universe<E, D>, item: E, slicer: (text: string) => Optional<[number, number]>): WordDecision<E> => {
+const onText = <E, D>(universe: Universe<E, D>, item: E, slicer: (text: string) => ([number, number]) | null): WordDecision<E> => {
   const text = universe.property().getText(item);
   return slicer(text).fold(() => {
     return decision([ make(item, 0, text.length, text) ], false);
@@ -53,7 +52,7 @@ const onText = <E, D>(universe: Universe<E, D>, item: E, slicer: (text: string) 
 
 // Return decision struct with one or zero 'make' Struct items. If present the make struct item is the entire item node text,
 // or a substring of it with the [left, right] bounds as determined by the result of slicer(item).
-const decide = <E, D>(universe: Universe<E, D>, item: E, slicer: (text: string) => Optional<[number, number]>, isCustomBoundary: (universe: Universe<E, D>, item: E) => boolean): WordDecision<E> => {
+const decide = <E, D>(universe: Universe<E, D>, item: E, slicer: (text: string) => ([number, number]) | null, isCustomBoundary: (universe: Universe<E, D>, item: E) => boolean): WordDecision<E> => {
   const f = (() => {
     if (universe.property().isBoundary(item)) {
       return onEdge;

@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { AlloyBehaviour, BehaviourConfigDetail, BehaviourConfigSpec } from '../../api/behaviour/Behaviour';
 import { LazySink } from '../../api/component/CommonTypes';
@@ -39,7 +38,7 @@ export interface TooltippingConfigSpec extends BehaviourConfigSpec {
 }
 
 export interface TooltippingState extends BehaviourState {
-  getTooltip: () => Optional<AlloyComponent>;
+  getTooltip: () => (AlloyComponent) | null;
   setTooltip: (popup: AlloyComponent) => void;
   clearTooltip: () => void;
   clearTimer: () => void;

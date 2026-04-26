@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { FormComponent, formComponentFields, FormComponentSpec } from './FormComponent';
 
@@ -39,7 +39,7 @@ export interface CustomEditorNew extends FormComponent {
   tag: string;
   scriptId: string;
   scriptUrl: string;
-  onFocus: Optional<(e: HTMLElement) => void>;
+  onFocus: ((e: HTMLElement) =) | null void>;
   settings: any;
 }
 

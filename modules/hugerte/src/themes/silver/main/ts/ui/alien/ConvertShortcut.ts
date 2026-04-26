@@ -1,4 +1,3 @@
-import { Arr, Obj } from '@ephox/katamari';
 
 import Env from 'hugerte/core/api/Env';
 
@@ -22,10 +21,10 @@ const convertText = (source: string): string => {
 
   const shortcut = source.split('+');
 
-  const updated = Arr.map(shortcut, (segment: string) => {
+  const updated = (shortcut).map((segment: string) => {
     // search lowercase, but if not found use the original
     const search = segment.toLowerCase().trim();
-    return Obj.has(replace, search) ? replace[search] : segment;
+    return Object.prototype.hasOwnProperty.call(replace, search) ? replace[search] : segment;
   });
 
   return isMac ? updated.join('') : updated.join('+');

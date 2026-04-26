@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as GridRow from '../model/GridRow';
@@ -18,9 +17,9 @@ const getUpOrLeftCells = (grid: RowCells<HTMLTableRowElement>[], selectedCells: 
   const upGrid = grid.slice(0, selectedCells[selectedCells.length - 1].row + 1);
   const upDetails = toDetailList(upGrid);
   // Get an array of the cells up or to the left of the bottom right cell
-  return Arr.bind(upDetails, (detail) => {
+  return (upDetails).flatMap((detail) => {
     const slicedCells = detail.cells.slice(0, selectedCells[selectedCells.length - 1].column + 1);
-    return Arr.map(slicedCells, (cell) => cell.element);
+    return (slicedCells).map((cell) => cell.element);
   });
 };
 
@@ -29,13 +28,13 @@ const getDownOrRightCells = (grid: RowCells<HTMLTableRowElement>[], selectedCell
   const downGrid = grid.slice(selectedCells[0].row + selectedCells[0].rowspan - 1, grid.length);
   const downDetails = toDetailList(downGrid);
   // Get an array of the cells down or to the right of the bottom right cell
-  return Arr.bind(downDetails, (detail) => {
+  return (downDetails).flatMap((detail) => {
     const slicedCells = detail.cells.slice(selectedCells[0].column + selectedCells[0].colspan - 1, detail.cells.length);
-    return Arr.map(slicedCells, (cell) => cell.element);
+    return (slicedCells).map((cell) => cell.element);
   });
 };
 
-const getOtherCells = (table: SugarElement<HTMLTableElement>, target: TargetSelection, generators: Generators): Optional<OtherCells> => {
+const getOtherCells = (table: SugarElement<HTMLTableElement>, target: TargetSelection, generators: Generators): (OtherCells) | null => {
   const warehouse = Warehouse.fromTable(table);
   const details = onCells(warehouse, target);
 

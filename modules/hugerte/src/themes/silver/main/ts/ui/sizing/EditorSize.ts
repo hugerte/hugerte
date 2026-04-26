@@ -1,11 +1,10 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
 import * as Options from '../../api/Options';
 import * as Utils from './Utils';
 
-export const getHeight = (editor: Editor): Optional<number> => {
+export const getHeight = (editor: Editor): (number) | null => {
   const baseHeight = Options.getHeightOption(editor);
   const minHeight = Options.getMinHeightOption(editor);
   const maxHeight = Options.getMaxHeightOption(editor);
@@ -15,10 +14,10 @@ export const getHeight = (editor: Editor): Optional<number> => {
 
 export const getHeightWithFallback = (editor: Editor): string | number => {
   const height = getHeight(editor);
-  return height.getOr(Options.getHeightOption(editor));
+  return height ?? (Options.getHeightOption(editor));
 };
 
-export const getWidth = (editor: Editor): Optional<number> => {
+export const getWidth = (editor: Editor): (number) | null => {
   const baseWidth = Options.getWidthOption(editor);
   const minWidth = Options.getMinWidthOption(editor);
   const maxWidth = Options.getMaxWidthOption(editor);
@@ -28,5 +27,5 @@ export const getWidth = (editor: Editor): Optional<number> => {
 
 export const getWidthWithFallback = (editor: Editor): string | number => {
   const width = getWidth(editor);
-  return width.getOr(Options.getWidthOption(editor));
+  return width ?? (Options.getWidthOption(editor));
 };

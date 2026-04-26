@@ -19,5 +19,5 @@ export const setContent = (editor: Editor, content: Content, args: Partial<SetCo
     const result = Rtc.setContent(editor, updatedArgs.content, updatedArgs);
     postProcessSetContent(editor, result.html, updatedArgs);
     return result.content;
-  }).getOr(content);
+  }) ?? (content);
 };

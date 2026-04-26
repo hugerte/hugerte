@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Awareness, Compare, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import { SelectionAnnotation } from '../api/SelectionAnnotation';
@@ -16,7 +15,7 @@ const sync = (
   finish: SugarElement<Node>,
   foffset: number,
   selectRange: (container: SugarElement<Node>, boxes: SugarElement<HTMLTableCellElement>[], start: SugarElement<HTMLTableCellElement>, finish: SugarElement<HTMLTableCellElement>) => void
-): Optional<Response> => {
+): (Response) | null => {
   if (!(Compare.eq(start, finish) && soffset === foffset)) {
     return SelectorFind.closest<HTMLTableCellElement>(start, 'td,th', isRoot).bind((s) => {
       return SelectorFind.closest<HTMLTableCellElement>(finish, 'td,th', isRoot).bind((f) => {
@@ -24,7 +23,7 @@ const sync = (
       });
     });
   } else {
-    return Optional.none<Response>();
+    return null;
   }
 };
 
@@ -35,22 +34,22 @@ const detect = (
   start: SugarElement<HTMLTableCellElement>,
   finish: SugarElement<HTMLTableCellElement>,
   selectRange: (container: SugarElement<Node>, boxes: SugarElement<HTMLTableCellElement>[], start: SugarElement<HTMLTableCellElement>, finish: SugarElement<HTMLTableCellElement>) => void
-): Optional<Response> => {
+): (Response) | null => {
   if (!Compare.eq(start, finish)) {
     return CellSelection.identify(start, finish, isRoot).bind((cellSel) => {
-      const boxes = cellSel.boxes.getOr([]);
+      const boxes = cellSel.boxes ?? ([]);
       if (boxes.length > 1) {
         selectRange(container, boxes, cellSel.start, cellSel.finish);
-        return Optional.some(Response.create(
-          Optional.some(Util.makeSitus(start, 0, start, Awareness.getEnd(start))),
+        return Response.create(
+          Util.makeSitus(start, 0, start, Awareness.getEnd(start)),
           true
-        ));
+        );
       } else {
-        return Optional.none<Response>();
+        return null;
       }
     });
   } else {
-    return Optional.none<Response>();
+    return null;
   }
 };
 
@@ -60,7 +59,7 @@ const update = (
   container: SugarElement<Node>,
   selected: SugarElement<HTMLTableCellElement>[],
   annotations: SelectionAnnotation
-): Optional<SugarElement<HTMLTableCellElement>[]> => {
+): (SugarElement<HTMLTableCellElement>[]) | null => {
   const updateSelection = (newSels: IdentifiedExt) => {
     annotations.clearBeforeUpdate(container);
     annotations.selectRange(container, newSels.boxes, newSels.start, newSels.finish);

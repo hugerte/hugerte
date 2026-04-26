@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
 import { Strings } from '@ephox/polaris';
 
 import { TextSplit } from '../api/data/TextSplit';
@@ -19,20 +18,20 @@ const tokens = <E, D>(universe: Universe<E, D>, item: E, ps: number[]) => {
  */
 const split = <E, D>(universe: Universe<E, D>, item: E, position: number): TextSplit<E> => {
   if (!universe.property().isText(item)) {
-    return TextSplit(Optional.none(), Optional.some(item));
+    return TextSplit(null, item);
   }
   if (position <= 0) {
-    return TextSplit(Optional.none(), Optional.some(item));
+    return TextSplit(null, item);
   }
   if (position >= universe.property().getText(item).length) {
-    return TextSplit(Optional.some(item), Optional.none());
+    return TextSplit(item, null);
   }
 
   const parts = tokens(universe, item, [ position ]);
   universe.property().setText(item, parts[0]);
   const after = universe.create().text(parts[1]);
   universe.insert().after(item, after);
-  return TextSplit(Optional.some(item), Optional.some(after));
+  return TextSplit(item, after);
 };
 
 /**
@@ -59,7 +58,7 @@ const splitByPair = <E, D>(universe: Universe<E, D>, item: E, start: number, end
   universe.property().setText(item, parts[0]);
 
   // Create new text nodes for the split text sections
-  const newText = Arr.map(parts.slice(1), (text) => {
+  const newText = (parts.slice(1)).map((text) => {
     return universe.create().text(text);
   });
   const middle = newText[0];

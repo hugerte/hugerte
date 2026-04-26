@@ -1,13 +1,12 @@
-import { Fun } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Representing } from '../../api/behaviour/Representing';
 import * as PartType from '../../parts/PartType';
 import { WidgetItemDetail } from '../../ui/types/ItemTypes';
 
-const owner = Fun.constant('item-widget');
+const owner = () => 'item-widget';
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.required({
     name: 'widget',
     overrides: (detail: WidgetItemDetail) => {
@@ -19,14 +18,14 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
               getValue: (_component) => {
                 return detail.data;
               },
-              setValue: Fun.noop
+              setValue: () => {}
             }
           })
         ])
       };
     }
   })
-]);
+];
 
 export {
   owner,

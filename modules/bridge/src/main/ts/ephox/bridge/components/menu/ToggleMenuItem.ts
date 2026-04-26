@@ -1,5 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { CommonMenuItem, CommonMenuItemSpec, commonMenuItemFields, CommonMenuItemInstanceApi } from './CommonMenuItem';
@@ -19,7 +19,7 @@ export interface ToggleMenuItemInstanceApi extends CommonMenuItemInstanceApi {
 
 export interface ToggleMenuItem extends CommonMenuItem {
   type: 'togglemenuitem';
-  icon: Optional<string>;
+  icon: (string) | null;
   active: boolean;
   onSetup: (api: ToggleMenuItemInstanceApi) => (api: ToggleMenuItemInstanceApi) => void;
   onAction: (api: ToggleMenuItemInstanceApi) => void;

@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Class, SugarElement, SugarNode } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -10,7 +9,7 @@ const show = (editor: Editor, rootElm: Element): void => {
   const dom = editor.dom;
   const nodeList = Nodes.filterEditableDescendants(SugarElement.fromDom(rootElm), Nodes.isMatch, editor.dom.isEditable(rootElm));
 
-  Arr.each(nodeList, (n) => {
+  (nodeList).forEach((n) => {
     const parent = n.dom.parentNode as Node;
     if (Nodes.isWrappedNbsp(parent)) {
       Class.add(SugarElement.fromDom(parent), Data.nbspClass);
@@ -31,7 +30,7 @@ const show = (editor: Editor, rootElm: Element): void => {
 const hide = (editor: Editor, rootElm: Element): void => {
   const nodeList = editor.dom.select(Data.selector, rootElm);
 
-  Arr.each(nodeList, (node) => {
+  (nodeList).forEach((node) => {
     if (Nodes.isWrappedNbsp(node)) {
       Class.remove(SugarElement.fromDom(node), Data.nbspClass);
     } else {

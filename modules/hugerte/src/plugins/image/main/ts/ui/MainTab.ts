@@ -78,11 +78,11 @@ const makeItems = (info: ImageDialogInfo): Dialog.BodyComponentSpec[] => {
     info.hasImageTitle ? [ imageTitle ] : [],
     info.hasDimensions ? [ imageDimensions ] : [],
     [{
-      ...getDialogContainerType(info.classList.isSome() && info.hasImageCaption),
-      items: Arr.flatten([
+      ...getDialogContainerType(info.classList !== null && info.hasImageCaption),
+      items: ([
         classList.toArray(),
         info.hasImageCaption ? [ caption ] : []
-      ])
+      ]).flat()
     }]
   ]);
 };

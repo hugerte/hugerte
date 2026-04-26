@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as DragImage from './DragImage';
 import * as Event from './Event';
@@ -23,7 +22,7 @@ const createDataTransfer = (): DataTransfer => {
     },
 
     set dropEffect(effect: DataTransfer['dropEffect']) {
-      if (Arr.contains(validDropEffects, effect)) {
+      if ((validDropEffects).includes(effect)) {
         dropEffect = effect;
       }
     },
@@ -35,7 +34,7 @@ const createDataTransfer = (): DataTransfer => {
     set effectAllowed(allowed: DataTransfer['effectAllowed']) {
       // TINY-9601: Only allow setting effectAllowed to a valid value in a dragstart event
       // https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/effectAllowed
-      if (Event.isInDragStartEvent(dataTransfer) && Arr.contains(validEffectAlloweds, allowed)) {
+      if (Event.isInDragStartEvent(dataTransfer) && (validEffectAlloweds).includes(allowed)) {
         effectAllowed = allowed;
       }
     },
@@ -104,13 +103,13 @@ const cloneDataTransfer = (original: DataTransfer): DataTransfer => {
   clone.effectAllowed = original.effectAllowed;
   DragImage.getDragImage(original).each((imageData) => clone.setDragImage(imageData.image, imageData.x, imageData.y));
 
-  Arr.each(original.types, (type) => {
+  (original.types).forEach((type) => {
     if (type !== 'Files') {
       clone.setData(type, original.getData(type));
     }
   });
 
-  Arr.each(original.files, (file) => clone.items.add(file));
+  (original.files).forEach((file) => clone.items.add(file));
 
   Event.getEvent(original).each((type) => {
     Event.setEvent(clone, type);

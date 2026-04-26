@@ -1,4 +1,3 @@
-import { Arr, Obj, Optional, Type } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import EditorSelection from 'hugerte/core/api/dom/Selection';
@@ -21,7 +20,7 @@ type LinkAttrs = {
 };
 
 const isAnchor = (elm: Node | null | undefined): elm is HTMLAnchorElement =>
-  Type.isNonNullable(elm) && elm.nodeName.toLowerCase() === 'a';
+  (elm) != null && elm.nodeName.toLowerCase() === 'a';
 
 const isLink = (elm: Node | null | undefined): elm is HTMLAnchorElement =>
   isAnchor(elm) && !!getHref(elm);
@@ -72,21 +71,21 @@ const applyRelTargetRules = (rel: string | null | undefined, isUnsafe: boolean):
 const trimCaretContainers = (text: string): string =>
   text.replace(/\uFEFF/g, '');
 
-const getAnchorElement = (editor: Editor, selectedElm?: Element): Optional<HTMLAnchorElement> => {
+const getAnchorElement = (editor: Editor, selectedElm?: Element): (HTMLAnchorElement) | null => {
   selectedElm = selectedElm || getLinksInSelection(editor.selection.getRng())[0] || editor.selection.getNode();
 
   if (isImageFigure(selectedElm)) {
     // for an image contained in a figure we look for a link inside the selected element
-    return Optional.from(editor.dom.select<HTMLAnchorElement>('a[href]', selectedElm)[0]);
+    return (editor.dom.select<HTMLAnchorElement>('a[href]', selectedElm)[0] ?? null);
   } else {
-    return Optional.from(editor.dom.getParent<HTMLAnchorElement>(selectedElm, 'a[href]'));
+    return (editor.dom.getParent<HTMLAnchorElement>(selectedElm, 'a[href]') ?? null);
   }
 };
 
 const isInAnchor = (editor: Editor, selectedElm?: Element): boolean =>
-  getAnchorElement(editor, selectedElm).isSome();
+  getAnchorElement(editor, selectedElm) !== null;
 
-const getAnchorText = (selection: EditorSelection, anchorElm: Optional<HTMLAnchorElement>): string => {
+const getAnchorText = (selection: EditorSelection, anchorElm: (HTMLAnchorElement) | null): string => {
   const text = anchorElm.fold(
     () => selection.getContent({ format: 'text' }),
     (anchorElm) => anchorElm.innerText || anchorElm.textContent || ''
@@ -110,7 +109,7 @@ const isOnlyTextSelected = (editor: Editor): boolean => {
   // Allow anchor and inline text elements to be in the selection but nothing else
   const inlineTextElements = editor.schema.getTextInlineElements();
   const isElement = (elm: Node): elm is Element =>
-    elm.nodeType === 1 && !isAnchor(elm) && !Obj.has(inlineTextElements, elm.nodeName.toLowerCase());
+    elm.nodeType === 1 && !isAnchor(elm) && !Object.prototype.hasOwnProperty.call(inlineTextElements, elm.nodeName.toLowerCase());
 
   // If selection is inside a block anchor then always treat it as non text only
   const isInBlockAnchor = getAnchorElement(editor).exists((anchor) => anchor.hasAttribute('data-mce-block'));
@@ -129,11 +128,11 @@ const isOnlyTextSelected = (editor: Editor): boolean => {
 };
 
 const isImageFigure = (elm: Element | null): elm is HTMLElement =>
-  Type.isNonNullable(elm) && elm.nodeName === 'FIGURE' && /\bimage\b/i.test(elm.className);
+  (elm) != null && elm.nodeName === 'FIGURE' && /\bimage\b/i.test(elm.className);
 
 const getLinkAttrs = (data: LinkDialogOutput): LinkAttrs => {
   const attrs: Array<keyof Omit<LinkAttrs, 'href'>> = [ 'title', 'rel', 'class', 'target' ];
-  return Arr.foldl(attrs, (acc, key) => {
+  return (attrs).reduce((acc, key) => {
     data[key].each((value) => {
       // If dealing with an empty string, then treat that as being null so the attribute is removed
       acc[key] = value.length > 0 ? value : null;
@@ -160,7 +159,7 @@ const applyLinkOverrides = (editor: Editor, linkAttrs: LinkAttrs): LinkAttrs => 
     newLinkAttrs.rel = newRel ? newRel : null;
   }
 
-  if (Optional.from(newLinkAttrs.target).isNone() && Options.getTargetList(editor) === false) {
+  if ((newLinkAttrs.target ?? null) === null && Options.getTargetList(editor) === false) {
     newLinkAttrs.target = Options.getDefaultLinkTarget(editor);
   }
 
@@ -169,10 +168,10 @@ const applyLinkOverrides = (editor: Editor, linkAttrs: LinkAttrs): LinkAttrs => 
   return newLinkAttrs;
 };
 
-const updateLink = (editor: Editor, anchorElm: HTMLAnchorElement, text: Optional<string>, linkAttrs: LinkAttrs): void => {
+const updateLink = (editor: Editor, anchorElm: HTMLAnchorElement, text: (string) | null, linkAttrs: LinkAttrs): void => {
   // If we have text, then update the anchor elements text content
   text.each((text) => {
-    if (Obj.has(anchorElm, 'innerText')) {
+    if (Object.prototype.hasOwnProperty.call(anchorElm, 'innerText')) {
       anchorElm.innerText = text;
     } else {
       anchorElm.textContent = text;
@@ -183,7 +182,7 @@ const updateLink = (editor: Editor, anchorElm: HTMLAnchorElement, text: Optional
   editor.selection.select(anchorElm);
 };
 
-const createLink = (editor: Editor, selectedElm: Element, text: Optional<string>, linkAttrs: LinkAttrs): void => {
+const createLink = (editor: Editor, selectedElm: Element, text: (string) | null, linkAttrs: LinkAttrs): void => {
   const dom = editor.dom;
   if (isImageFigure(selectedElm)) {
     linkImageFigure(dom, selectedElm, linkAttrs);
@@ -261,14 +260,14 @@ const unlinkDomMutation = (editor: Editor): void => {
 const unwrapOptions = (data: LinkDialogOutput) => {
   const { class: cls, href, rel, target, text, title } = data;
 
-  return Obj.filter({
-    class: cls.getOrNull(),
+  return Object.fromEntries(Object.entries({
+    class: cls ?? null,
     href,
-    rel: rel.getOrNull(),
-    target: target.getOrNull(),
-    text: text.getOrNull(),
-    title: title.getOrNull()
-  }, (v, _k) => Type.isNull(v) === false);
+    rel: rel ?? null,
+    target: target ?? null,
+    text: text ?? null,
+    title: title ?? null
+  }).filter(([_k, _v]: [any, any]) => ((v, _k) => (v) === null === false)(_v, _k as any)));
 };
 
 const sanitizeData = (editor: Editor, data: LinkDialogOutput): LinkDialogOutput => {

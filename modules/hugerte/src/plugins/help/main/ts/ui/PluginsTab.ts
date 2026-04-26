@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -19,7 +18,7 @@ const tab = (editor: Editor): Dialog.TabSpec & { name: string } => {
 
   const identifyUnknownPlugin = (editor: Editor, key: string): PluginData => {
     const getMetadata = editor.plugins[key].getMetadata;
-    if (Type.isFunction(getMetadata)) {
+    if (typeof (getMetadata) === 'function') {
       const metadata = getMetadata();
       return { name: metadata.name, html: makeLink(metadata) };
     } else {
@@ -27,9 +26,9 @@ const tab = (editor: Editor): Dialog.TabSpec & { name: string } => {
     }
   };
 
-  const getPluginData = (editor: Editor, key: string): PluginData => Arr.find(PluginUrls.urls, (x) => {
+  const getPluginData = (editor: Editor, key: string): PluginData => ((PluginUrls.urls).find((x) => {
     return x.key === key;
-  }).fold(() => {
+  }) ?? null).fold(() => {
     return identifyUnknownPlugin(editor, key);
   }, (x) => {
     // We know this plugin, so use our stored details.
@@ -38,22 +37,19 @@ const tab = (editor: Editor): Dialog.TabSpec & { name: string } => {
   });
 
   const getPluginKeys = (editor: Editor) => {
-    const keys = Obj.keys(editor.plugins);
+    const keys = Object.keys(editor.plugins);
     const forcedPlugins = Options.getForcedPlugins(editor);
 
-    return Type.isUndefined(forcedPlugins) ?
+    return (forcedPlugins) === undefined ?
       keys :
-      Arr.filter(keys, (k) => !Arr.contains(forcedPlugins, k));
+      (keys).filter((k) => !(forcedPlugins).includes(k));
   };
 
   const pluginLister = (editor: Editor) => {
     const pluginKeys = getPluginKeys(editor);
-    const sortedPluginData = Arr.sort(
-      Arr.map(pluginKeys, (k) => getPluginData(editor, k)),
-      (pd1, pd2) => pd1.name.localeCompare(pd2.name)
-    );
+    const sortedPluginData = [...((pluginKeys).map((k) => getPluginData(editor, k)))].sort((pd1, pd2) => pd1.name.localeCompare(pd2.name));
 
-    const pluginLis = Arr.map(sortedPluginData, (key) => {
+    const pluginLis = (sortedPluginData).map((key) => {
       return '<li>' + key.html + '</li>';
     });
     const count = pluginLis.length;

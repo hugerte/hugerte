@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyParts, AlloySpec, Behaviour, Blocking, Button, Container, DomFactory, Focusing, Keying, ModalDialog,
   NativeEvents, SketchSpec, SystemEvents, Tabstopping
 } from '@ephox/alloy';
-import { Fun, Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Class, SugarBody } from '@ephox/sugar';
 
 import Env from 'hugerte/core/api/Env';
@@ -115,7 +115,7 @@ export interface DialogSpec {
   lazySink: () => Result<AlloyComponent, any>;
   header: AlloySpec;
   body: AlloyParts.ConfiguredPart;
-  footer: Optional<AlloyParts.ConfiguredPart>;
+  footer: (AlloyParts.ConfiguredPart) | null;
   onEscape: (comp: AlloyComponent) => void;
   extraClasses: string[];
   extraBehaviours: Behaviour.NamedConfiguredBehaviour<any, any>[];
@@ -137,7 +137,7 @@ const renderDialog = (spec: DialogSpec): SketchSpec => {
       onEscape: (comp) => {
         spec.onEscape(comp);
         // TODO: Make a strong type for Handled KeyEvent
-        return Optional.some(true);
+        return true;
       },
       useTabstopAt: (elem) => !NavigableObject.isPseudoStop(elem),
       firstTabstop: spec.firstTabstop,
@@ -175,7 +175,7 @@ const renderDialog = (spec: DialogSpec): SketchSpec => {
           // Note: `runOnSource` here will only listen to the event at the outer component level.
           // Using just `run` instead will cause an infinite loop as `focusIn` would fire a `focusin` which would then get responded to and so forth.
           AlloyEvents.runOnSource(NativeEvents.focusin(), (comp, _se) => {
-            Blocking.isBlocked(comp) ? Fun.noop() : Keying.focusIn(comp);
+            Blocking.isBlocked(comp) ?  : Keying.focusIn(comp);
           }),
           AlloyEvents.run<SystemEvents.AlloyFocusShiftedEvent>(SystemEvents.focusShifted(), (comp, se) => {
             comp.getSystem().broadcastOn([ DialogChannels.dialogFocusShiftedChannel ], {

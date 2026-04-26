@@ -1,5 +1,4 @@
 import { AlloyComponent, AlloyTriggers, Coupling, Dropdown, Focusing, Highlighting, Representing, Sandboxing, SimulatedEvent } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 import { Attribute, Class, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import { MenuLayoutType } from '../MenuUtils';
@@ -13,7 +12,7 @@ export interface NoSearchMode {
 }
 export interface SearchMenuWithFieldMode {
   readonly searchMode: 'search-with-field';
-  readonly placeholder: Optional<string>;
+  readonly placeholder: (string) | null;
 }
 export interface SearchMenuWithResultsMode {
   readonly searchMode: 'search-with-results';
@@ -88,7 +87,7 @@ const handleRedirectToMenuItem = (sandboxComp: AlloyComponent, se: SimulatedEven
 // Highlighting.getHighlighted(tmenu) is the current active menu
 // The Menu uses highlighting to manage the active item, so use
 // Highlighting.getHighlighted(menu) to get the current item.
-const getActiveMenuItemFrom = (sandboxComp: AlloyComponent): Optional<AlloyComponent> => {
+const getActiveMenuItemFrom = (sandboxComp: AlloyComponent): (AlloyComponent) | null => {
   // Consider moving some of these things into shared APIs. For example, make an extra API
   // for TieredMenu to get the highlighted item.
   return Sandboxing.getState(sandboxComp)
@@ -96,11 +95,11 @@ const getActiveMenuItemFrom = (sandboxComp: AlloyComponent): Optional<AlloyCompo
     .bind(Highlighting.getHighlighted);
 };
 
-const getSearchResults = (activeMenuComp: AlloyComponent): Optional<SugarElement<Element>> => {
+const getSearchResults = (activeMenuComp: AlloyComponent): (SugarElement<Element>) | null => {
   // Depending on the menu layout, the search results will either be the entire
   // menu, or something within the menu.
   return Class.has(activeMenuComp.element, searchResultsClass)
-    ? Optional.some(activeMenuComp.element)
+    ? activeMenuComp.element
     : SelectorFind.descendant(activeMenuComp.element, '.' + searchResultsClass);
 };
 
@@ -150,7 +149,7 @@ const getSearchPattern = (dropdownComp: AlloyComponent): string => {
     .bind(findWithinSandbox)
     .map(saveState)
     .map((state) => state.fetchPattern)
-    .getOr('');
+     ?? ('');
 };
 
 export {

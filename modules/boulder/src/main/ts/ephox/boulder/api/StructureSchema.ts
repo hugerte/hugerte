@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Fun, Obj, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';
 import { choose as chooseProcessor } from '../core/ChoiceProcessor';
@@ -36,7 +36,7 @@ const getOrDie = (extraction: Result<any, any>): any => {
       // A readable version of the error.
       throw new Error(formatError(errInfo));
     },
-    Fun.identity
+    (x: any) => x
   );
 };
 
@@ -49,7 +49,7 @@ const formatError = (errInfo: SchemaError<any>): string => {
 };
 
 const choose = (key: string, branches: Record<string, FieldProcessor[]>): StructureProcessor =>
-  chooseProcessor(key, Obj.map(branches, objOf));
+  chooseProcessor(key, Object.fromEntries(Object.entries(branches).map(([_k, _v]: [any, any]) => [_k, (objOf)(_v, _k as any)])));
 
 const thunkOf = (desc: string, schema: () => StructureProcessor): StructureProcessor =>
   thunk(desc, schema);

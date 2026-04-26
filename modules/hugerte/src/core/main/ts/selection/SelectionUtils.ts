@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj, Optional, Optionals, Type } from '@ephox/katamari';
 import { Compare, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -14,24 +13,24 @@ import * as TableCellSelection from './TableCellSelection';
 const getStartNode = (rng: Range) => {
   const sc = rng.startContainer, so = rng.startOffset;
   if (NodeType.isText(sc)) {
-    return so === 0 ? Optional.some(SugarElement.fromDom(sc)) : Optional.none();
+    return so === 0 ? SugarElement.fromDom(sc) : null;
   } else {
-    return Optional.from(sc.childNodes[so]).map(SugarElement.fromDom);
+    return (sc.childNodes[so] ?? null).map(SugarElement.fromDom);
   }
 };
 
 const getEndNode = (rng: Range) => {
   const ec = rng.endContainer, eo = rng.endOffset;
   if (NodeType.isText(ec)) {
-    return eo === ec.data.length ? Optional.some(SugarElement.fromDom(ec)) : Optional.none();
+    return eo === ec.data.length ? SugarElement.fromDom(ec) : null;
   } else {
-    return Optional.from(ec.childNodes[eo - 1]).map(SugarElement.fromDom);
+    return (ec.childNodes[eo - 1] ?? null).map(SugarElement.fromDom);
   }
 };
 
 const getFirstChildren = (node: SugarElement<Node>): SugarElement<Node>[] => {
   return Traverse.firstChild(node).fold(
-    Fun.constant([ node ]),
+    () => [ node ],
     (child) => {
       return [ node ].concat(getFirstChildren(child));
     }
@@ -40,12 +39,12 @@ const getFirstChildren = (node: SugarElement<Node>): SugarElement<Node>[] => {
 
 const getLastChildren = (node: SugarElement<Node>): SugarElement<Node>[] => {
   return Traverse.lastChild(node).fold(
-    Fun.constant([ node ]),
+    () => [ node ],
     (child) => {
       if (SugarNode.name(child) === 'br') {
         return Traverse.prevSibling(child).map((sibling) => {
           return [ node ].concat(getLastChildren(sibling));
-        }).getOr([]);
+        }) ?? ([]);
       } else {
         return [ node ].concat(getLastChildren(child));
       }
@@ -54,19 +53,18 @@ const getLastChildren = (node: SugarElement<Node>): SugarElement<Node>[] => {
 };
 
 const hasAllContentsSelected = (elm: SugarElement<Node>, rng: Range): boolean => {
-  return Optionals.lift2(getStartNode(rng), getEndNode(rng), (startNode, endNode) => {
-    const start = Arr.find(getFirstChildren(elm), Fun.curry(Compare.eq, startNode));
-    const end = Arr.find(getLastChildren(elm), Fun.curry(Compare.eq, endNode));
-    return start.isSome() && end.isSome();
-  }).getOr(false);
+  return (getStartNode(rng) !== null && getEndNode(rng) !== null ? ((startNode, endNode) => {
+    const start = ((getFirstChildren(elm)).find(((..._rest: any[]) => (Compare.eq)(startNode, ..._rest))) ?? null);
+    const end = ((getLastChildren(elm)).find(((..._rest: any[]) => (Compare.eq)(endNode, ..._rest))) ?? null);
+    return start !== null && end !== null;
+  })(getStartNode(rng), getEndNode(rng)) : null) ?? (false);
 };
 
 const moveEndPoint = (dom: DOMUtils, rng: Range, node: Node, start: boolean): void => {
   const root = node;
   const walker = new DomTreeWalker(node, root);
-  const moveCaretBeforeOnEnterElementsMap = Obj.filter(dom.schema.getMoveCaretBeforeOnEnterElements(), (_, name) =>
-    !Arr.contains([ 'td', 'th', 'table' ], name.toLowerCase())
-  );
+  const moveCaretBeforeOnEnterElementsMap = Object.fromEntries(Object.entries(dom.schema.getMoveCaretBeforeOnEnterElements()).filter(([_k, _v]: [any, any]) => ((_, name) =>
+    !([ 'td', 'th', 'table' ]).includes(name.toLowerCase()))(_v, _k as any)));
 
   let currentNode: Node | null | undefined = node;
   do {
@@ -108,7 +106,7 @@ const moveEndPoint = (dom: DOMUtils, rng: Range, node: Node, start: boolean): vo
 
 const hasAnyRanges = (editor: Editor): boolean => {
   const sel = editor.selection.getSel();
-  return Type.isNonNullable(sel) && sel.rangeCount > 0;
+  return (sel) != null && sel.rangeCount > 0;
 };
 
 const runOnRanges = (editor: Editor, executor: (rng: Range, fake: boolean) => void): void => {
@@ -117,7 +115,7 @@ const runOnRanges = (editor: Editor, executor: (rng: Range, fake: boolean) => vo
   // Note: Currently tables are the only thing supported for fake selections.
   const fakeSelectionNodes = TableCellSelection.getCellsFromEditor(editor);
   if (fakeSelectionNodes.length > 0) {
-    Arr.each(fakeSelectionNodes, (elem) => {
+    (fakeSelectionNodes).forEach((elem) => {
       const node = elem.dom;
       const fakeNodeRng = editor.dom.createRng();
       fakeNodeRng.setStartBefore(node);

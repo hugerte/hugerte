@@ -1,4 +1,3 @@
-import { Arr, Obj, Optional, Type } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import EditorSelection from '../api/dom/Selection';
@@ -11,22 +10,22 @@ import * as FormatUtils from './FormatUtils';
 
 export const listItemStyles = [ 'fontWeight', 'fontStyle', 'color', 'fontSize', 'fontFamily' ];
 
-const hasListStyles = (fmt: InlineFormat) => Type.isObject(fmt.styles) && Arr.exists(Obj.keys(fmt.styles), (name) => Arr.contains(listItemStyles, name));
+const hasListStyles = (fmt: InlineFormat) => (typeof (fmt.styles) === 'object' && (fmt.styles) !== null) && (Object.keys(fmt.styles)).some((name) => (listItemStyles).includes(name));
 
 const findExpandedListItemFormat = (formats: Format[]) =>
-  Arr.find(formats, (fmt) => FormatUtils.isInlineFormat(fmt) && fmt.inline === 'span' && hasListStyles(fmt));
+  ((formats).find((fmt) => FormatUtils.isInlineFormat(fmt) && fmt.inline === 'span' && hasListStyles(fmt)) ?? null);
 
-export const getExpandedListItemFormat = (formatter: Formatter, format: string): Optional<Format> => {
+export const getExpandedListItemFormat = (formatter: Formatter, format: string): (Format) | null => {
   const formatList = formatter.get(format);
 
-  return Type.isArray(formatList) ? findExpandedListItemFormat(formatList) : Optional.none();
+  return Array.isArray(formatList) ? findExpandedListItemFormat(formatList) : null;
 };
 
-const isRngStartAtStartOfElement = (rng: Range, elm: Element) => CaretFinder.prevPosition(elm, CaretPosition.fromRangeStart(rng)).isNone();
+const isRngStartAtStartOfElement = (rng: Range, elm: Element) => CaretFinder.prevPosition(elm, CaretPosition.fromRangeStart(rng)) === null;
 
 const isRngEndAtEndOfElement = (rng: Range, elm: Element) => {
   return CaretFinder.nextPosition(elm, CaretPosition.fromRangeEnd(rng))
-    .exists((pos) => !NodeType.isBr(pos.getNode()) || CaretFinder.nextPosition(elm, pos).isSome()) === false;
+    .exists((pos) => !NodeType.isBr(pos.getNode()) || CaretFinder.nextPosition(elm, pos) !== null) === false;
 };
 
 const isEditableListItem = (dom: DOMUtils) => (elm: Element) => NodeType.isListItem(elm) && dom.isEditable(elm);
@@ -40,8 +39,8 @@ const getFullySelectedBlocks = (selection: EditorSelection) => {
   } if (blocks.length === 1) {
     return isRngStartAtStartOfElement(rng, blocks[0]) && isRngEndAtEndOfElement(rng, blocks[0]) ? blocks : [];
   } else {
-    const first = Arr.head(blocks).filter((elm) => isRngStartAtStartOfElement(rng, elm)).toArray();
-    const last = Arr.last(blocks).filter((elm) => isRngEndAtEndOfElement(rng, elm)).toArray();
+    const first = ((blocks)[0] ?? null).filter((elm) => isRngStartAtStartOfElement(rng, elm)).toArray();
+    const last = ((blocks).at(-1) ?? null).filter((elm) => isRngEndAtEndOfElement(rng, elm)).toArray();
     const middle = blocks.slice(1, -1);
 
     return first.concat(middle).concat(last);
@@ -49,7 +48,7 @@ const getFullySelectedBlocks = (selection: EditorSelection) => {
 };
 
 export const getFullySelectedListItems = (selection: EditorSelection): Element[] =>
-  Arr.filter(getFullySelectedBlocks(selection), isEditableListItem(selection.dom));
+  (getFullySelectedBlocks(selection)).filter(isEditableListItem(selection.dom));
 
 export const getPartiallySelectedListItems = (selection: EditorSelection): Element[] =>
-  Arr.filter(selection.getSelectedBlocks(), isEditableListItem(selection.dom));
+  (selection.getSelectedBlocks()).filter(isEditableListItem(selection.dom));

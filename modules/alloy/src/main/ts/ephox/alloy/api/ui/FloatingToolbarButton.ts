@@ -1,4 +1,4 @@
-import { Fun, Optional, Singleton } from '@ephox/katamari';
+import { Optional, Singleton } from '@ephox/katamari';
 
 import * as ComponentStructure from '../../alien/ComponentStructure';
 import * as AriaControls from '../../aria/AriaControls';
@@ -69,7 +69,7 @@ const makeSandbox = (button: AlloyComponent, spec: FloatingToolbarButtonSpec, de
   const ariaControls = AriaControls.manager();
 
   const onOpen = (sandbox: AlloyComponent, toolbar: AlloyComponent) => {
-    const skipFocus = shouldSkipFocus.get().getOr(false);
+    const skipFocus = shouldSkipFocus.get() ?? (false);
     detail.fetch().get((groups) => {
       setGroups(button, toolbar, detail, spec.layouts, groups);
       ariaControls.link(button.element);
@@ -82,7 +82,7 @@ const makeSandbox = (button: AlloyComponent, spec: FloatingToolbarButtonSpec, de
   const onClose = () => {
     // Toggle and focus the button
     Toggling.off(button);
-    if (!shouldSkipFocus.get().getOr(false)) {
+    if (!shouldSkipFocus.get() ?? (false)) {
       Focusing.focus(button);
     }
     ariaControls.unlink(button.element);
@@ -117,8 +117,8 @@ const makeSandbox = (button: AlloyComponent, spec: FloatingToolbarButtonSpec, de
         Receiving.config({
           channels: {
             ...Dismissal.receivingChannel({
-              isExtraPart: Fun.never,
-              ...detail.fireDismissalEventInstead.map((fe) => ({ fireEventInstead: { event: fe.event }} as any)).getOr({ })
+              isExtraPart: (() => false as const),
+              ...detail.fireDismissalEventInstead.map((fe) => ({ fireEventInstead: { event: fe.event }} as any)) ?? ({ })
             }),
             ...Reposition.receivingChannel({
               doReposition: () => {

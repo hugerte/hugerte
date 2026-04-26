@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import { nuState } from '../../behaviour/common/BehaviourState';
@@ -10,36 +9,36 @@ const init = <T>(): BaseDraggingState<T> => {
   // Dragging operates on the difference between the previous user
   // interaction and the next user interaction. Therefore, we store
   // the previous interaction so that we can compare it.
-  let previous = Optional.none<T>();
+  let previous = null;
   // Dragging requires calculating the bounds, so we store that data initially
   // to reduce the amount of computation each mouse movement
-  let startData = Optional.none<DragStartData>();
+  let startData = null;
 
   const reset = (): void => {
-    previous = Optional.none();
-    startData = Optional.none();
+    previous = null;
+    startData = null;
   };
 
   // Return position delta between previous position and nu position,
   // or None if this is the first. Set the previous position to nu.
-  const calculateDelta = <E extends Event>(mode: DragModeDeltas<E, T>, nu: T): Optional<T> => {
+  const calculateDelta = <E extends Event>(mode: DragModeDeltas<E, T>, nu: T): (T) | null => {
     const result = previous.map((old) => mode.getDelta(old, nu));
 
-    previous = Optional.some(nu);
+    previous = nu;
     return result;
   };
 
   // NOTE: This dragEvent is the DOM touch event or mouse event
-  const update = <E extends Event>(mode: DragModeDeltas<E, T>, dragEvent: EventArgs<E>): Optional<T> =>
+  const update = <E extends Event>(mode: DragModeDeltas<E, T>, dragEvent: EventArgs<E>): (T) | null =>
     mode.getData(dragEvent).bind((nuData) => calculateDelta(mode, nuData));
 
   const setStartData = (data: DragStartData) => {
-    startData = Optional.some(data);
+    startData = data;
   };
 
-  const getStartData = (): Optional<DragStartData> => startData;
+  const getStartData = (): (DragStartData) | null => startData;
 
-  const readState = Fun.constant({ });
+  const readState = () => { };
 
   return nuState({
     readState,

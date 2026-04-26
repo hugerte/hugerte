@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import AstNode from '../api/html/Node';
 import Schema from '../api/html/Schema';
@@ -22,7 +21,7 @@ const removeOrUnwrapInvalidNode = (node: AstNode, schema: Schema, originalNodePa
   }
 };
 
-const cleanInvalidNodes = (nodes: AstNode[], schema: Schema, rootNode: AstNode, onCreate: (newNode: AstNode) => void = Fun.noop): void => {
+const cleanInvalidNodes = (nodes: AstNode[], schema: Schema, rootNode: AstNode, onCreate: (newNode: AstNode) => void = () => {}): void => {
   const textBlockElements = schema.getTextBlockElements();
   const nonEmptyElements = schema.getNonEmptyElements();
   const whitespaceElements = schema.getWhitespaceElements();

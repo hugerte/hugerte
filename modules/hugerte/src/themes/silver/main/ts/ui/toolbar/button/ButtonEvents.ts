@@ -1,5 +1,4 @@
 import { AlloyEvents, AlloyTriggers, CustomEvent, EventFormat, NativeEvents, SystemEvents } from '@ephox/alloy';
-import { Id } from '@ephox/katamari';
 
 import { GetApiType, runWithApi } from '../../controls/Controls';
 
@@ -7,7 +6,7 @@ export interface OnMenuItemExecuteType<T> extends GetApiType<T> {
   readonly onAction: (itemApi: T) => void;
 }
 
-export const internalToolbarButtonExecute = Id.generate('toolbar.button.execute');
+export const internalToolbarButtonExecute = (('toolbar.button.execute') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 export interface InternalToolbarButtonExecuteEvent<T> extends CustomEvent {
   readonly buttonApi: T;
@@ -25,7 +24,7 @@ const onToolbarButtonExecute = <T>(info: OnMenuItemExecuteType<T>): AlloyEvents.
     });
   });
 
-const commonButtonDisplayEvent = Id.generate('common-button-display-events');
+const commonButtonDisplayEvent = (('common-button-display-events') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 const toolbarButtonEventOrder: Record<string, string[]> = {
   // TODO: use the constants provided by behaviours.

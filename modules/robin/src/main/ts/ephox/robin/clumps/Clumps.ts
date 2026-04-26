@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Adt, Arr, Optional } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { Descent, Gather, Spot, SpotPoint, Transition } from '@ephox/phoenix';
 
 import * as Structure from '../api/general/Structure';
@@ -58,15 +58,15 @@ const descendBlock = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean,
   } else {
     return skipToRight(universe, isRoot, leaf.element).map((next) => {
       return Spot.point(next, 0);
-    }).getOr(leaf);
+    }) ?? (leaf);
   }
 };
 
 const isBlock = <E, D>(universe: Universe<E, D>, item: E): boolean => {
-  return Structure.isFrame(universe, item) || Structure.isBlock(universe, item) || Arr.contains([ 'li' ], universe.property().name(item));
+  return Structure.isFrame(universe, item) || Structure.isBlock(universe, item) || ([ 'li' ]).includes(universe.property().name(item));
 };
 
-const skipToRight = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, item: E): Optional<E> => {
+const skipToRight = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, item: E): (E) | null => {
   return Gather.seekRight(universe, item, (i) => {
     return !skip(universe, i) && !isBlock(universe, i);
   }, isRoot);
@@ -79,7 +79,7 @@ const skip = <E, D>(universe: Universe<E, D>, item: E): boolean => {
   return universe.property().parent(item).exists((p) => {
     // Text nodes of these children should be ignored when adding tags.
     // Dupe from phoenix OrphanText. We'll need a better solution for this.
-    return Arr.contains([ 'table', 'tbody', 'thead', 'tfoot', 'tr', 'ul', 'ol' ], universe.property().name(p));
+    return ([ 'table', 'tbody', 'thead', 'tfoot', 'tr', 'ul', 'ol' ]).includes(universe.property().name(p));
   });
 };
 
@@ -103,21 +103,21 @@ const walk = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, mode: T
  * to hit the target or a leaf. Note, resuming should not start again from the same
  * boundary that the previous clump finished within.
  */
-const resume = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, boundary: E, target: E): Optional<E> => {
+const resume = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, boundary: E, target: E): (E) | null => {
   // I have to sidestep here so I don't descend down the same boundary.
   const next = skipToRight(universe, isRoot, boundary);
   return next.fold(() => {
-    return Optional.none<E>();
+    return null;
   }, (n) => {
     if (universe.eq(n, target)) {
-      return Optional.some(target);
+      return target;
     } else if (isParent(universe, boundary, n)) {
       return resume(universe, isRoot, n, target);
     } else if (isBlock(universe, n)) {
       const leaf = descendBlock(universe, isRoot, n);
-      return Optional.some(leaf.element);
+      return leaf.element;
     }
-    return Optional.some(n);
+    return n;
   });
 };
 
@@ -142,7 +142,7 @@ const scan = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, mode: T
     const resumption = isParent(universe, element, boundary) ? resume(universe, isRoot, boundary, target) : (() => {
       const leaf = descendBlock(universe, isRoot, boundary);
       return !universe.eq(leaf.element, boundary) ?
-        Optional.some(leaf.element) :
+        leaf.element :
         Gather.walk(universe, boundary, Gather.advance, Gather.walkers().right()).map((g) => g.item);
     })();
 
@@ -188,7 +188,7 @@ const skipInBlock = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, 
   if (!skip(universe, dropped)) {
     return dropped;
   }
-  return skipToRight(universe, isRoot, dropped).getOr(dropped);
+  return skipToRight(universe, isRoot, dropped) ?? (dropped);
 };
 
 const doCollect = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, start: E, soffset: number, finish: E, foffset: number): Clump<E>[] => {
@@ -198,7 +198,7 @@ const doCollect = <E, D>(universe: Universe<E, D>, isRoot: (e: E) => boolean, st
 
   // If the dropped start should be skipped, find the thing to the right of it.
   const raw = scan(universe, isRoot, Gather.sidestep, droppedStart, droppedStart, droppedFinish);
-  return Arr.map(raw, (r) => {
+  return (raw).map((r) => {
     // Incorporate any offsets that were required.
     const soff = universe.eq(r.start, start) ? soffset : 0;
     const foff = universe.eq(r.finish, finish) ? foffset : getEnd(universe, r.finish);

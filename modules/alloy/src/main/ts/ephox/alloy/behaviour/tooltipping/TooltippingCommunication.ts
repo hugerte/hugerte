@@ -1,11 +1,10 @@
-import { Id } from '@ephox/katamari';
 
-const ExclusivityChannel = Id.generate('tooltip.exclusive');
+const ExclusivityChannel = (('tooltip.exclusive') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
-const ShowTooltipEvent = Id.generate('tooltip.show');
-const HideTooltipEvent = Id.generate('tooltip.hide');
-const ImmediateHideTooltipEvent = Id.generate('tooltip.immediateHide');
-const ImmediateShowTooltipEvent = Id.generate('tooltip.immediateShow');
+const ShowTooltipEvent = (('tooltip.show') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const HideTooltipEvent = (('tooltip.hide') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const ImmediateHideTooltipEvent = (('tooltip.immediateHide') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const ImmediateShowTooltipEvent = (('tooltip.immediateShow') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 export {
   ExclusivityChannel,

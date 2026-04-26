@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 import { NodeClientRect } from '../dom/Dimensions';
 import * as NodeType from '../dom/NodeType';
@@ -10,7 +9,7 @@ type GeomClientRect = ClientRect.ClientRect;
 const isContentEditableFalse = NodeType.isContentEditableFalse;
 const distanceToRectLeft = (clientRect: GeomClientRect, clientX: number) => Math.abs(clientRect.left - clientX);
 const distanceToRectRight = (clientRect: GeomClientRect, clientX: number) => Math.abs(clientRect.right - clientX);
-const isNodeClientRect = (rect: GeomClientRect): rect is NodeClientRect => Obj.hasNonNullableKey((rect as any), 'node');
+const isNodeClientRect = (rect: GeomClientRect): rect is NodeClientRect => (Object.prototype.hasOwnProperty.call((rect as any), 'node') && ((rect as any))['node'] != null);
 
 const findClosestClientRect = <T extends GeomClientRect>(clientRects: T[], clientX: number): T =>
   ArrUtils.reduce(clientRects, (oldClientRect, clientRect) => {

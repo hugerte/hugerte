@@ -1,4 +1,4 @@
-import { Num, Optional } from '@ephox/katamari';
+import { Num } from '@ephox/katamari';
 
 export interface MatrixNavigationOutcome<A> {
   readonly rowIndex: number;
@@ -6,9 +6,9 @@ export interface MatrixNavigationOutcome<A> {
   readonly cell: A;
 }
 
-export type MatrixNavigationFunc<A> = (matrix: A[][], startRow: number, startCol: number) => Optional<MatrixNavigationOutcome<A>>;
+export type MatrixNavigationFunc<A> = (matrix: A[][], startRow: number, startCol: number) => (MatrixNavigationOutcome<A>) | null;
 
-const toCell = <A>(matrix: A[][], rowIndex: number, columnIndex: number): Optional<MatrixNavigationOutcome<A>> => Optional.from(matrix[rowIndex]).bind((row) => Optional.from(row[columnIndex]).map((cell) => ({
+const toCell = <A>(matrix: A[][], rowIndex: number, columnIndex: number): (MatrixNavigationOutcome<A>) | null => (matrix[rowIndex] ?? null).bind((row) => (row[columnIndex] ?? null).map((cell) => ({
   rowIndex,
   columnIndex,
   cell
@@ -43,28 +43,28 @@ const moveVertical = <A>(matrix: A[][], colIndex: number, startRow: number, delt
 };
 
 // return address(Math.floor(index / columns), index % columns);
-const cycleRight = <A>(matrix: A[][], startRow: number, startCol: number): Optional<MatrixNavigationOutcome<A>> =>
+const cycleRight = <A>(matrix: A[][], startRow: number, startCol: number): (MatrixNavigationOutcome<A>) | null =>
   cycleHorizontal(matrix, startRow, startCol, +1);
 
-const cycleLeft = <A>(matrix: A[][], startRow: number, startCol: number): Optional<MatrixNavigationOutcome<A>> =>
+const cycleLeft = <A>(matrix: A[][], startRow: number, startCol: number): (MatrixNavigationOutcome<A>) | null =>
   cycleHorizontal(matrix, startRow, startCol, -1);
 
-const cycleUp = <A>(matrix: A[][], startRow: number, startCol: number): Optional<MatrixNavigationOutcome<A>> =>
+const cycleUp = <A>(matrix: A[][], startRow: number, startCol: number): (MatrixNavigationOutcome<A>) | null =>
   cycleVertical(matrix, startCol, startRow, -1);
 
-const cycleDown = <A>(matrix: A[][], startRow: number, startCol: number): Optional<MatrixNavigationOutcome<A>> =>
+const cycleDown = <A>(matrix: A[][], startRow: number, startCol: number): (MatrixNavigationOutcome<A>) | null =>
   cycleVertical(matrix, startCol, startRow, +1);
 
-const moveLeft = <A>(matrix: A[][], startRow: number, startCol: number): Optional<MatrixNavigationOutcome<A>> =>
+const moveLeft = <A>(matrix: A[][], startRow: number, startCol: number): (MatrixNavigationOutcome<A>) | null =>
   moveHorizontal(matrix, startRow, startCol, -1);
 
-const moveRight = <A>(matrix: A[][], startRow: number, startCol: number): Optional<MatrixNavigationOutcome<A>> =>
+const moveRight = <A>(matrix: A[][], startRow: number, startCol: number): (MatrixNavigationOutcome<A>) | null =>
   moveHorizontal(matrix, startRow, startCol, +1);
 
-const moveUp = <A>(matrix: A[][], startRow: number, startCol: number): Optional<MatrixNavigationOutcome<A>> =>
+const moveUp = <A>(matrix: A[][], startRow: number, startCol: number): (MatrixNavigationOutcome<A>) | null =>
   moveVertical(matrix, startCol, startRow, -1);
 
-const moveDown = <A>(matrix: A[][], startRow: number, startCol: number): Optional<MatrixNavigationOutcome<A>> =>
+const moveDown = <A>(matrix: A[][], startRow: number, startCol: number): (MatrixNavigationOutcome<A>) | null =>
   moveVertical(matrix, startCol, startRow, +1);
 
 export {

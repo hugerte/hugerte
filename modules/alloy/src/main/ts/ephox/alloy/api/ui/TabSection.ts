@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import * as AlloyParts from '../../parts/AlloyParts';
@@ -19,7 +18,7 @@ const factory: CompositeSketchFactory<TabSectionDetail, TabSectionSpec> = (detai
   const changeTab = (button: AlloyComponent) => {
     const tabValue = Representing.getValue(button);
     AlloyParts.getPart(button, detail, 'tabview').each((tabview) => {
-      const tabWithValue = Arr.find(detail.tabs, (t) => t.value === tabValue);
+      const tabWithValue = ((detail.tabs).find((t) => t.value === tabValue) ?? null);
 
       tabWithValue.each((tabData) => {
         const panel = tabData.view();
@@ -34,7 +33,7 @@ const factory: CompositeSketchFactory<TabSectionDetail, TabSectionSpec> = (detai
     });
   };
 
-  const changeTabBy = (section: AlloyComponent, byPred: (tbar: AlloyComponent) => Optional<AlloyComponent>) => {
+  const changeTabBy = (section: AlloyComponent, byPred: (tbar: AlloyComponent) => (AlloyComponent) | null) => {
     AlloyParts.getPart(section, detail, 'tabbar').each((tabbar) => {
       byPred(tabbar).each(AlloyTriggers.emitExecute);
     });
@@ -47,7 +46,7 @@ const factory: CompositeSketchFactory<TabSectionDetail, TabSectionSpec> = (detai
     behaviours: SketchBehaviours.get(detail.tabSectionBehaviours),
 
     events: AlloyEvents.derive(
-      Arr.flatten([
+      ([
 
         detail.selectFirst ? [
           AlloyEvents.runOnAttached((section, _simulatedEvent) => {
@@ -65,12 +64,12 @@ const factory: CompositeSketchFactory<TabSectionDetail, TabSectionSpec> = (detai
             detail.onDismissTab(section, button);
           })
         ]
-      ])
+      ]).flat()
     ),
 
     apis: {
       getViewItems: (section: AlloyComponent) => {
-        return AlloyParts.getPart(section, detail, 'tabview').map((tabview) => Replacing.contents(tabview)).getOr([ ]);
+        return AlloyParts.getPart(section, detail, 'tabview').map((tabview) => Replacing.contents(tabview)) ?? ([ ]);
       },
 
       // How should "clickToDismiss" interact with this? At the moment, it will never dismiss
@@ -79,7 +78,7 @@ const factory: CompositeSketchFactory<TabSectionDetail, TabSectionSpec> = (detai
         // the whole "dismiss" issue out of the equation.
         const getTabIfNotActive = (tabbar: AlloyComponent) => {
           const candidates = Highlighting.getCandidates(tabbar);
-          const optTab = Arr.find(candidates, (c) => Representing.getValue(c) === tabKey);
+          const optTab = ((candidates).find((c) => Representing.getValue(c) === tabKey) ?? null);
 
           return optTab.filter((tab) => !Highlighting.isHighlighted(tabbar, tab));
         };

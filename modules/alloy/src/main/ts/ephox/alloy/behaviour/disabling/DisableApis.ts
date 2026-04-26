@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Attribute, Class, SugarNode } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -19,7 +18,7 @@ const onLoad = (component: AlloyComponent, disableConfig: DisableConfig, disable
 };
 
 const hasNative = (component: AlloyComponent, config: DisableConfig): boolean =>
-  config.useNative === true && Arr.contains(nativeDisabled, SugarNode.name(component.element));
+  config.useNative === true && (nativeDisabled).includes(SugarNode.name(component.element));
 
 const nativeIsDisabled = (component: AlloyComponent): boolean => Attribute.has(component.element, 'disabled');
 

@@ -1,10 +1,9 @@
-import { Arr, Strings, Type } from '@ephox/katamari';
 
 import { NativeSimulatedEvent } from '../../events/SimulatedEvent';
 
 const setData = (transfer: DataTransfer, types: string[], data: string): void => {
   transfer.items.clear();
-  Arr.each(types, (type) => {
+  (types).forEach((type) => {
     transfer.items.add(data, type);
   });
 };
@@ -13,7 +12,7 @@ const getData = (transfer: DataTransfer, type: string): string => {
   const data = transfer.getData(type);
 
   // IE 11 will return null on drag/drop of files
-  return Type.isNull(data) ? '' : data;
+  return (data) === null ? '' : data;
 };
 
 const setDragImage = (transfer: DataTransfer, image: Element, x: number, y: number): void => {
@@ -28,14 +27,14 @@ const setEffectAllowed = (transfer: DataTransfer, effect: DataTransfer['effectAl
   transfer.effectAllowed = effect;
 };
 
-const getFiles = (transfer: DataTransfer): File[] => Arr.from(transfer.files);
+const getFiles = (transfer: DataTransfer): File[] => Array.from(transfer.files);
 
 // IE 11 and Edge doesn't seem to support effectAllow properly the drop event fires even if it shouldn't, so we need to manually check as well
 const isValidDrop = (transfer: DataTransfer): boolean => {
   const effectAllowed = transfer.effectAllowed.toLowerCase();
   const dropEffect = transfer.dropEffect.toLowerCase();
 
-  return effectAllowed === 'all' || effectAllowed === 'uninitialized' || Strings.contains(effectAllowed, dropEffect);
+  return effectAllowed === 'all' || effectAllowed === 'uninitialized' || (effectAllowed).includes(dropEffect);
 };
 
 const getDataTransferFromEvent = (simulatedEvent: NativeSimulatedEvent<DragEvent>): DataTransfer => {

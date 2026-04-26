@@ -1,5 +1,5 @@
 import { FieldPresence, FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Arr, Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
 import { ComponentDetail, SimpleOrSketchSpec, StructDomSchema } from '../api/component/SpecTypes';
@@ -18,7 +18,7 @@ export interface CustomDetail<A> {
   events: AlloyEventRecord;
   apis: A;
   eventOrder: Record<string, string[]>;
-  domModification: Optional<DomModification>;
+  domModification: (DomModification) | null;
   originalSpec: SimpleOrSketchSpec;
   'debug.sketcher': string;
 }
@@ -70,7 +70,7 @@ const toDefinition = (detail: CustomDetail<any>): DomDefinitionDetail =>
   ({
     ...detail.dom,
     uid: detail.uid,
-    domChildren: Arr.map(detail.components, (comp) => comp.element)
+    domChildren: (detail.components).map((comp) => comp.element)
   });
 
 const toModification = (detail: CustomDetail<any>): DomModification => detail.domModification.fold(() => NuModification({ }), NuModification);

@@ -3,7 +3,7 @@ import {
   Invalidating, Memento, NativeEvents, Representing, SketchSpec, SimpleSpec, SystemEvents, Tabstopping, Typeahead as AlloyTypeahead
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Fun, Future, FutureResult, Id, Optional, Result } from '@ephox/katamari';
+import { Future, FutureResult, Result } from '@ephox/katamari';
 import { Attribute, Traverse, Value } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
@@ -33,24 +33,24 @@ const getItems = (fileType: 'image' | 'media' | 'file', input: AlloyComponent, u
       return fileType === 'file' ? joinMenuLists([
         history,
         filterByQuery(term, headerTargets(linkInfo)),
-        filterByQuery(term, Arr.flatten([
+        filterByQuery(term, ([
           anchorTargetTop(linkInfo),
           anchorTargets(linkInfo),
           anchorTargetBottom(linkInfo)
-        ]))
+        ]).flat())
       ])
         : history;
     }
   );
 };
 
-const errorId = Id.generate('aria-invalid');
+const errorId = (('aria-invalid') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 export const renderUrlInput = (
   spec: UrlInputSpec,
   backstage: UiFactoryBackstage,
   urlBackstage: UiFactoryBackstageForUrlInput,
-  initialData: Optional<Dialog.UrlInputData>
+  initialData: (Dialog.UrlInputData) | null
 ): SketchSpec => {
   const providersBackstage = backstage.shared.providers;
 
@@ -61,7 +61,7 @@ export const renderUrlInput = (
 
   // TODO: Make alloy's typeahead only swallow enter and escape if menu is open
   const typeaheadSpec: Parameters<typeof AlloyTypeahead['sketch']>[0] = {
-    ...initialData.map((initialData) => ({ initialData })).getOr({}),
+    ...initialData.map((initialData) => ({ initialData })) ?? ({}),
     dismissOnBlur: true,
     inputClasses: [ 'tox-textfield' ],
     sandboxClasses: [ 'tox-dialog__popups' ],
@@ -79,7 +79,7 @@ export const renderUrlInput = (
         backstage,
         {
           isHorizontalMenu: false,
-          search: Optional.none()
+          search: null
         }
       );
       return Future.pure(tdata);
@@ -88,7 +88,7 @@ export const renderUrlInput = (
     getHotspot: (comp) => memUrlBox.getOpt(comp),
     onSetValue: (comp, _newValue) => {
       if (comp.hasConfigured(Invalidating)) {
-        Invalidating.run(comp).get(Fun.noop);
+        Invalidating.run(comp).get(() => {});
       }
     },
 
@@ -188,7 +188,7 @@ export const renderUrlInput = (
   const pLabel = spec.label.map((label) => renderLabel(label, providersBackstage));
 
   // TODO: Consider a way of merging with Checkbox.
-  const makeIcon = (name: string, errId: Optional<string>, icon: string = name, label: string = name): SimpleSpec =>
+  const makeIcon = (name: string, errId: (string) | null, icon: string = name, label: string = name): SimpleSpec =>
     Icons.render(icon, {
       tag: 'div',
       classes: [ 'tox-icon', 'tox-control-wrap__status-icon-' + name ],
@@ -200,7 +200,7 @@ export const renderUrlInput = (
     }, providersBackstage.icons);
 
   const memInvalidIcon = Memento.record(
-    makeIcon('invalid', Optional.some(errorId), 'warning')
+    makeIcon('invalid', errorId, 'warning')
   );
 
   const memStatus = Memento.record({
@@ -216,7 +216,7 @@ export const renderUrlInput = (
 
   const optUrlPicker = urlBackstage.getUrlPicker(spec.filetype);
 
-  const browseUrlEvent = Id.generate('browser.url.event');
+  const browseUrlEvent = (('browser.url.event') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
   const memUrlBox = Memento.record(
     {
@@ -235,11 +235,11 @@ export const renderUrlInput = (
 
   const memUrlPickerButton = Memento.record(renderButton({
     name: spec.name,
-    icon: Optional.some('browse'),
-    text: spec.picker_text.or(spec.label).getOr(''),
+    icon: 'browse',
+    text: spec.picker_text.or(spec.label) ?? (''),
     enabled: spec.enabled,
     primary: false,
-    buttonType: Optional.none(),
+    buttonType: null,
     borderless: true
   }, (component) => AlloyTriggers.emit(component, browseUrlEvent), providersBackstage, [], [ 'tox-browse-url' ]));
 
@@ -248,10 +248,10 @@ export const renderUrlInput = (
       tag: 'div',
       classes: [ 'tox-form__controls-h-stack' ]
     },
-    components: Arr.flatten([
+    components: ([
       [ memUrlBox.asSpec() ],
       optUrlPicker.map(() => memUrlPickerButton.asSpec()).toArray()
-    ])
+    ]).flat()
   });
 
   const openUrlPicker = (comp: AlloyComponent) => {

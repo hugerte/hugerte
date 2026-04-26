@@ -3,7 +3,6 @@ import {
   UiSketcher
 } from '@ephox/alloy';
 import { FieldSchema } from '@ephox/boulder';
-import { Arr, Optional } from '@ephox/katamari';
 
 import { TranslatedString, Untranslated } from 'hugerte/core/api/util/I18n';
 
@@ -29,8 +28,8 @@ export interface NotificationSketchSpec extends Sketcher.SingleSketchSpec {
 // tslint:disable-next-line:no-empty-interface
 export interface NotificationSketchDetail extends Sketcher.SingleSketchDetail {
   readonly text: string;
-  readonly level: Optional<'info' | 'warn' | 'warning' | 'error' | 'success'>;
-  readonly icon: Optional<string>;
+  readonly level: ('info' | 'warn' | 'warning' | 'error' | 'success') | null;
+  readonly icon: (string) | null;
   readonly onAction: Function;
   readonly progress: boolean;
   readonly iconProvider: Icons.IconProvider;
@@ -132,11 +131,11 @@ const factory: UiSketcher.SingleSketchFactory<NotificationSketchDetail, Notifica
     updateText
   };
 
-  const iconChoices = Arr.flatten([
+  const iconChoices = ([
     detail.icon.toArray(),
     detail.level.toArray(),
-    detail.level.bind((level) => Optional.from(notificationIconMap[level])).toArray()
-  ]);
+    detail.level.bind((level) => (notificationIconMap[level] ?? null)).toArray()
+  ]).flat();
 
   const memButton = Memento.record(Button.sketch({
     dom: {
@@ -180,9 +179,7 @@ const factory: UiSketcher.SingleSketchFactory<NotificationSketchDetail, Notifica
       attributes: {
         role: 'alert'
       },
-      classes: detail.level.map((level) => [ 'tox-notification', 'tox-notification--in', `tox-notification--${level}` ]).getOr(
-        [ 'tox-notification', 'tox-notification--in' ]
-      )
+      classes: detail.level.map((level) => [ 'tox-notification', 'tox-notification--in', `tox-notification--${level}` ]) ?? ([ 'tox-notification', 'tox-notification--in' ])
     },
     behaviours: Behaviour.derive([
       Focusing.config({ }),

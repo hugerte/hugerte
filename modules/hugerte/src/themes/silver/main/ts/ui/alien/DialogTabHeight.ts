@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyEvents, EventFormat, Replacing, SystemEvents, TabbarTypes, TabSection } from '@ephox/alloy';
-import { Arr, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Css, Focus, Height, SelectorFind, SugarElement, SugarShadowDom, Traverse, Width } from '@ephox/sugar';
 
 import { formResizeEvent } from '../general/FormEvents';
@@ -9,14 +9,14 @@ export interface TabHeightMode {
   readonly selectFirst: boolean;
 }
 
-const measureHeights = (allTabs: TabbarTypes.TabButtonWithViewSpec[], tabview: SugarElement<HTMLElement>, tabviewComp: AlloyComponent): number[] => Arr.map(allTabs, (_tab, i) => {
+const measureHeights = (allTabs: TabbarTypes.TabButtonWithViewSpec[], tabview: SugarElement<HTMLElement>, tabviewComp: AlloyComponent): number[] => (allTabs).map((_tab, i) => {
   Replacing.set(tabviewComp, allTabs[i].view());
   const rect = tabview.dom.getBoundingClientRect();
   Replacing.set(tabviewComp, [ ]);
   return rect.height;
 });
 
-const getMaxHeight = (heights: number[]) => Arr.head(Arr.sort(heights, (a, b) => {
+const getMaxHeight = (heights: number[]) => (([...(heights)].sort((a, b) => {
   if (a > b) {
     return -1;
   } else if (a < b) {
@@ -24,11 +24,11 @@ const getMaxHeight = (heights: number[]) => Arr.head(Arr.sort(heights, (a, b) =>
   } else {
     return 0;
   }
-}));
+}))[0] ?? null);
 
 const getMaxTabviewHeight = (dialog: SugarElement<HTMLElement>, tabview: SugarElement<HTMLElement>, tablist: SugarElement<HTMLElement>) => {
   const documentElement = Traverse.documentElement(dialog).dom;
-  const rootElm = SelectorFind.ancestor(dialog, '.tox-dialog-wrap').getOr(dialog);
+  const rootElm = SelectorFind.ancestor(dialog, '.tox-dialog-wrap') ?? (dialog);
   const isFixed = Css.get(rootElm, 'position') === 'fixed';
 
   // Get the document or window/viewport height
@@ -54,7 +54,7 @@ const getMaxTabviewHeight = (dialog: SugarElement<HTMLElement>, tabview: SugarEl
 };
 
 const showTab = (allTabs: TabbarTypes.TabButtonWithViewSpec[], comp: AlloyComponent) => {
-  Arr.head(allTabs).each((tab) => TabSection.showTab(comp, tab.value));
+  ((allTabs)[0] ?? null).each((tab) => TabSection.showTab(comp, tab.value));
 };
 
 const setTabviewHeight = (tabview: SugarElement<Element>, height: number) => {

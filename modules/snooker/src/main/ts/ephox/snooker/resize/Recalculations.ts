@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { Warehouse } from '../api/Warehouse';
@@ -35,7 +34,7 @@ interface CellHeightSpan extends CellHeight<HTMLTableCellElement> {
 const recalculateWidthForCells = (warehouse: Warehouse, widths: number[]): CellWidthSpan<HTMLTableCellElement>[] => {
   const all = Warehouse.justCells(warehouse);
 
-  return Arr.map(all, (cell) => {
+  return (all).map((cell) => {
     // width of a spanning cell is sum of widths of representative columns it spans
     const width = total(cell.column, cell.column + cell.colspan, widths);
     return {
@@ -49,7 +48,7 @@ const recalculateWidthForCells = (warehouse: Warehouse, widths: number[]): CellW
 const recalculateWidthForColumns = (warehouse: Warehouse, widths: number[]): CellWidthSpan<HTMLTableColElement>[] => {
   const groups = Warehouse.justColumns(warehouse);
 
-  return Arr.map(groups, (column, index) => ({
+  return (groups).map((column, index) => ({
     element: column.element,
     width: widths[index],
     colspan: column.colspan
@@ -58,7 +57,7 @@ const recalculateWidthForColumns = (warehouse: Warehouse, widths: number[]): Cel
 
 const recalculateHeightForCells = (warehouse: Warehouse, heights: number[]): CellHeightSpan[] => {
   const all = Warehouse.justCells(warehouse);
-  return Arr.map(all, (cell) => {
+  return (all).map((cell) => {
     const height = total(cell.row, cell.row + cell.rowspan, heights);
     return {
       element: cell.element,
@@ -69,7 +68,7 @@ const recalculateHeightForCells = (warehouse: Warehouse, heights: number[]): Cel
 };
 
 const matchRowHeight = (warehouse: Warehouse, heights: number[]): CellHeight<HTMLTableRowElement>[] => {
-  return Arr.map(warehouse.all, (row, i) => {
+  return (warehouse.all).map((row, i) => {
     return {
       element: row.element,
       height: heights[i]

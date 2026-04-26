@@ -1,5 +1,4 @@
 import { FieldSchema, Objects, StructureSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import * as CommonBehaviour from '../../behaviour/common/Behaviour';
 import { BehaviourState, NoState } from '../../behaviour/common/BehaviourState';
@@ -65,10 +64,10 @@ const createModes = <
   );
 };
 
-const revoke = Fun.constant(undefined);
-const noActive = Fun.constant({ });
-const noApis = Fun.constant({ });
-const noExtra = Fun.constant({ });
+const revoke = () => undefined;
+const noActive = () => { };
+const noApis = () => { };
+const noExtra = () => { };
 
 export {
   derive,

@@ -1,4 +1,4 @@
-import { Arr, Obj, Strings, Type } from '@ephox/katamari';
+import { Arr, Strings, Type } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Pattern from '../textpatterns/core/Pattern';
@@ -19,7 +19,7 @@ const getHash = (value: string): Record<string, string> => {
     const arr = item.split('=');
     const key = arr[0];
     const val = arr.length > 1 ? arr[1] : key;
-    output[Strings.trim(key)] = Strings.trim(val);
+    output[(key).trim()] = (val).trim();
     return output;
   }, {} as Record<string, string>);
 };
@@ -30,14 +30,14 @@ const option = <K extends keyof EditorOptions>(name: K) => (editor: Editor) =>
   editor.options.get(name);
 
 const stringOrObjectProcessor = (value: unknown) =>
-  Type.isString(value) || Type.isObject(value);
+  typeof (value) === 'string' || (typeof (value) === 'object' && (value) !== null);
 
 const bodyOptionProcessor = (editor: Editor, defaultValue: string = '') => (value: unknown) => {
-  const valid = Type.isString(value);
+  const valid = typeof (value) === 'string';
   if (valid) {
     if (value.indexOf('=') !== -1) {
       const bodyObj = getHash(value);
-      return { value: Obj.get(bodyObj, editor.id).getOr(defaultValue), valid };
+      return { value: ((bodyObj)[editor.id] ?? null) ?? (defaultValue), valid };
     } else {
       return { value, valid };
     }
@@ -126,7 +126,7 @@ const register = (editor: Editor): void => {
 
   registerOption('forced_root_block', {
     processor: (value) => {
-      const valid = Type.isString(value) && Strings.isNotEmpty(value);
+      const valid = typeof (value) === 'string' && ((value).length > 0);
       if (valid) {
         return { value, valid };
       } else {
@@ -143,7 +143,7 @@ const register = (editor: Editor): void => {
 
   registerOption('newline_behavior', {
     processor: (value) => {
-      const valid = Arr.contains([ 'block', 'linebreak', 'invert', 'default' ], value);
+      const valid = ([ 'block', 'linebreak', 'invert', 'default' ]).includes(value);
       return valid ? { value, valid } : { valid: false, message: 'Must be one of: block, linebreak, invert or default.' };
     },
     default: 'default'
@@ -166,9 +166,9 @@ const register = (editor: Editor): void => {
 
   registerOption('end_container_on_empty_block', {
     processor: (value) => {
-      if (Type.isBoolean(value)) {
+      if (typeof (value) === 'boolean') {
         return { valid: true, value };
-      } else if (Type.isString(value)) {
+      } else if (typeof (value) === 'string') {
         return { valid: true, value };
       } else {
         return { valid: false, message: 'Must be boolean or a string' };
@@ -281,12 +281,12 @@ const register = (editor: Editor): void => {
 
   registerOption('content_css', {
     processor: (value) => {
-      const valid = value === false || Type.isString(value) || Type.isArrayOf(value, Type.isString);
+      const valid = value === false || typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isString));
 
       if (valid) {
-        if (Type.isString(value)) {
-          return { value: Arr.map(value.split(','), Strings.trim), valid };
-        } else if (Type.isArray(value)) {
+        if (typeof (value) === 'string') {
+          return { value: (value.split(',')).map(Strings.trim), valid };
+        } else if (Array.isArray(value)) {
           return { value, valid };
         } else if (value === false) {
           return { value: [], valid };
@@ -311,10 +311,10 @@ const register = (editor: Editor): void => {
 
   registerOption('font_css', {
     processor: (value) => {
-      const valid = Type.isString(value) || Type.isArrayOf(value, Type.isString);
+      const valid = typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isString));
 
       if (valid) {
-        const newValue = Type.isArray(value) ? value : Arr.map(value.split(','), Strings.trim);
+        const newValue = Array.isArray(value) ? value : (value.split(',')).map(Strings.trim);
         return { value: newValue, valid };
       } else {
         return { valid: false, message: 'Must be a string or an array of strings.' };
@@ -335,7 +335,7 @@ const register = (editor: Editor): void => {
 
   registerOption('object_resizing', {
     processor: (value) => {
-      const valid = Type.isBoolean(value) || Type.isString(value);
+      const valid = typeof (value) === 'boolean' || typeof (value) === 'string';
       if (valid) {
         if (value === false || deviceDetection.isiPhone() || deviceDetection.isiPad()) {
           return { value: '', valid };
@@ -364,7 +364,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('theme', {
-    processor: (value) => value === false || Type.isString(value) || Type.isFunction(value),
+    processor: (value) => value === false || typeof (value) === 'string' || typeof (value) === 'function',
     default: 'silver'
   });
 
@@ -388,7 +388,7 @@ const register = (editor: Editor): void => {
 
   registerOption('preview_styles', {
     processor: (value) => {
-      const valid = value === false || Type.isString(value);
+      const valid = value === false || typeof (value) === 'string';
       if (valid) {
         return { value: value === false ? '' : value, valid };
       } else {
@@ -646,7 +646,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('auto_focus', {
-    processor: (value) => Type.isString(value) || value === true
+    processor: (value) => typeof (value) === 'string' || value === true
   });
 
   registerOption('browser_spellcheck', {
@@ -727,7 +727,7 @@ const register = (editor: Editor): void => {
 
   registerOption('text_patterns', {
     processor: (value) => {
-      if (Type.isArrayOf(value, Type.isObject) || value === false) {
+      if ((Array.isArray(value) && (value).every(Type.isObject)) || value === false) {
         const patterns = value === false ? [] : value;
         return { value: Pattern.fromRawPatterns(patterns), valid: true };
       } else {
@@ -753,7 +753,7 @@ const register = (editor: Editor): void => {
 
   registerOption('text_patterns_lookup', {
     processor: (value) => {
-      if (Type.isFunction(value)) {
+      if (typeof (value) === 'function') {
         return {
           value: Pattern.fromRawPatternsLookup(value as PatternTypes.RawDynamicPatternsLookup),
           valid: true,
@@ -777,7 +777,7 @@ const register = (editor: Editor): void => {
 
   registerOption('noneditable_regexp', {
     processor: (value) => {
-      if (Type.isArrayOf(value, isRegExp)) {
+      if ((Array.isArray(value) && (value).every(isRegExp))) {
         return { value, valid: true };
       } else if (isRegExp(value)) {
         return { value: [ value ], valid: true };
@@ -805,7 +805,7 @@ const register = (editor: Editor): void => {
 
   registerOption('details_initial_state', {
     processor: (value) => {
-      const valid = Arr.contains([ 'inherited', 'collapsed', 'expanded' ], value);
+      const valid = ([ 'inherited', 'collapsed', 'expanded' ]).includes(value);
       return valid ? { value, valid } : { valid: false, message: 'Must be one of: inherited, collapsed, or expanded.' };
     },
     default: 'inherited'
@@ -813,7 +813,7 @@ const register = (editor: Editor): void => {
 
   registerOption('details_serialized_state', {
     processor: (value) => {
-      const valid = Arr.contains([ 'inherited', 'collapsed', 'expanded' ], value);
+      const valid = ([ 'inherited', 'collapsed', 'expanded' ]).includes(value);
       return valid ? { value, valid } : { valid: false, message: 'Must be one of: inherited, collapsed, or expanded.' };
     },
     default: 'inherited'
@@ -832,7 +832,7 @@ const register = (editor: Editor): void => {
   registerOption('force_hex_color', {
     processor: (value) => {
       const options: ForceHexColor[] = [ 'always', 'rgb_only', 'off' ];
-      const valid = Arr.contains(options, value);
+      const valid = (options).includes(value);
       return valid ? { value, valid } : { valid: false, message: `Must be one of: ${options.join(', ')}.` };
     },
     default: 'off',

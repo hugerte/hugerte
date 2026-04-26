@@ -1,4 +1,3 @@
-import { Arr, Fun, Type } from '@ephox/katamari';
 
 import * as Uuid from '../../util/Uuid';
 
@@ -57,7 +56,7 @@ export const BlobCache = (): BlobCache => {
   };
 
   const create = (o: BlobInfoData | string, blob?: Blob, base64?: string, name?: string, filename?: string): BlobInfo => {
-    if (Type.isString(o)) {
+    if (typeof (o) === 'string') {
       const id = o;
 
       return toBlobInfo({
@@ -67,7 +66,7 @@ export const BlobCache = (): BlobCache => {
         blob: blob as Blob,
         base64: base64 as string
       });
-    } else if (Type.isObject(o)) {
+    } else if ((typeof (o) === 'object' && (o) !== null)) {
       return toBlobInfo(o);
     } else {
       throw new Error('Unknown input type');
@@ -84,13 +83,13 @@ export const BlobCache = (): BlobCache => {
     const blob = o.blob;
 
     return {
-      id: Fun.constant(id),
-      name: Fun.constant(name),
-      filename: Fun.constant(o.filename || name + '.' + mimeToExt(blob.type)),
-      blob: Fun.constant(blob),
-      base64: Fun.constant(o.base64),
-      blobUri: Fun.constant(o.blobUri || URL.createObjectURL(blob)),
-      uri: Fun.constant(o.uri)
+      id: () => id,
+      name: () => name,
+      filename: () => o.filename || name + '.' + mimeToExt(blob.type),
+      blob: () => blob,
+      base64: () => o.base64,
+      blobUri: () => o.blobUri || URL.createObjectURL(blob),
+      uri: () => o.uri
     };
   };
 
@@ -100,7 +99,7 @@ export const BlobCache = (): BlobCache => {
     }
   };
 
-  const findFirst = (predicate: (blobInfo: BlobInfo) => boolean) => Arr.find(cache, predicate).getOrUndefined();
+  const findFirst = (predicate: (blobInfo: BlobInfo) => boolean) => ((cache).find(predicate) ?? null) ?? undefined;
 
   const get = (id: string) =>
     findFirst((cachedBlobInfo) => cachedBlobInfo.id() === id);
@@ -112,7 +111,7 @@ export const BlobCache = (): BlobCache => {
     findFirst((blobInfo) => blobInfo.base64() === base64 && blobInfo.blob().type === type);
 
   const removeByUri = (blobUri: string) => {
-    cache = Arr.filter(cache, (blobInfo) => {
+    cache = (cache).filter((blobInfo) => {
       if (blobInfo.blobUri() === blobUri) {
         URL.revokeObjectURL(blobInfo.blobUri());
         return false;
@@ -123,7 +122,7 @@ export const BlobCache = (): BlobCache => {
   };
 
   const destroy = () => {
-    Arr.each(cache, (cachedBlobInfo) => {
+    (cache).forEach((cachedBlobInfo) => {
       URL.revokeObjectURL(cachedBlobInfo.blobUri());
     });
 

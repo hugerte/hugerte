@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { PredicateFind, SugarElement } from '@ephox/sugar';
 
 import DomTreeWalker from '../api/dom/TreeWalker';
@@ -76,7 +75,7 @@ const getEditingHost = (node: Node, rootNode: HTMLElement): HTMLElement => {
   const isRoot = (node: SugarElement<Node>) => node.dom === rootNode;
   return PredicateFind.ancestor(SugarElement.fromDom(node), isCETrue, isRoot)
     .map((elm) => elm.dom)
-    .getOr(rootNode);
+     ?? (rootNode);
 };
 
 const getParentBlock = (node: Node | null, rootNode?: Node): Node | null => {
@@ -97,19 +96,19 @@ const isInSameBlock = (caretPosition1: CaretPosition, caretPosition2: CaretPosit
 const isInSameEditingHost = (caretPosition1: CaretPosition, caretPosition2: CaretPosition, rootNode: HTMLElement): boolean =>
   getEditingHost(caretPosition1.container(), rootNode) === getEditingHost(caretPosition2.container(), rootNode);
 
-const getChildNodeAtRelativeOffset = (relativeOffset: number, caretPosition: CaretPosition): Optional<Node> => {
+const getChildNodeAtRelativeOffset = (relativeOffset: number, caretPosition: CaretPosition): (Node) | null => {
   if (!caretPosition) {
-    return Optional.none();
+    return null;
   }
 
   const container = caretPosition.container();
   const offset = caretPosition.offset();
 
   if (!isElement(container)) {
-    return Optional.none();
+    return null;
   }
 
-  return Optional.from(container.childNodes[offset + relativeOffset]);
+  return (container.childNodes[offset + relativeOffset] ?? null);
 };
 
 const beforeAfter = (before: boolean, node: Node): Range => {
@@ -159,13 +158,13 @@ const lean = (left: boolean, root: Node, node: Node): Node | null => {
   return null;
 };
 
-const before: (node: Node) => Range = Fun.curry(beforeAfter, true);
-const after: (node: Node) => Range = Fun.curry(beforeAfter, false);
+const before: (node: Node) => Range = ((..._rest: any[]) => (beforeAfter)(true, ..._rest));
+const after: (node: Node) => Range = ((..._rest: any[]) => (beforeAfter)(false, ..._rest));
 
 const normalizeRange = (direction: number, root: Node, range: Range): Range => {
   let node: Node | null;
-  const leanLeft = Fun.curry(lean, true, root);
-  const leanRight = Fun.curry(lean, false, root);
+  const leanLeft = ((..._rest: any[]) => (lean)(true, root, ..._rest));
+  const leanRight = ((..._rest: any[]) => (lean)(false, root, ..._rest));
 
   const container = range.startContainer;
   const offset = range.startOffset;
@@ -267,7 +266,7 @@ const normalizeRange = (direction: number, root: Node, range: Range): Range => {
   return range;
 };
 
-const getRelativeCefElm = (forward: boolean, caretPosition: CaretPosition): Optional<HTMLElement> =>
+const getRelativeCefElm = (forward: boolean, caretPosition: CaretPosition): (HTMLElement) | null =>
   getChildNodeAtRelativeOffset(forward ? 0 : -1, caretPosition).filter(isContentEditableFalse);
 
 const getNormalizedRangeEndPoint = (direction: number, root: Node, range: Range): CaretPosition => {
@@ -275,11 +274,11 @@ const getNormalizedRangeEndPoint = (direction: number, root: Node, range: Range)
   return direction === -1 ? CaretPosition.fromRangeStart(normalizedRange) : CaretPosition.fromRangeEnd(normalizedRange);
 };
 
-const getElementFromPosition = (pos: CaretPosition): Optional<SugarElement> =>
-  Optional.from(pos.getNode()).map(SugarElement.fromDom);
+const getElementFromPosition = (pos: CaretPosition): (SugarElement) | null =>
+  (pos.getNode() ?? null).map(SugarElement.fromDom);
 
-const getElementFromPrevPosition = (pos: CaretPosition): Optional<SugarElement> =>
-  Optional.from(pos.getNode(true)).map(SugarElement.fromDom);
+const getElementFromPrevPosition = (pos: CaretPosition): (SugarElement) | null =>
+  (pos.getNode(true) ?? null).map(SugarElement.fromDom);
 
 const getVisualCaretPosition = (walkFn: (pos: CaretPosition) => CaretPosition | null, caretPosition: CaretPosition): CaretPosition | null => {
   let pos: CaretPosition | null = caretPosition;

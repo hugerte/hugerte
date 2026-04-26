@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 
 import * as Attribution from '../mutant/Attribution';
 import * as Comparator from '../mutant/Comparator';
@@ -22,18 +21,18 @@ export interface TestUniverseUp extends ReturnType<Universe<Gene, undefined>['up
 
 export interface TestUniverse extends Universe<Gene, undefined> {
   up: () => TestUniverseUp;
-  find: (root: Gene, id: string) => Optional<Gene>;
+  find: (root: Gene, id: string) => (Gene) | null;
   get: () => Gene;
   shortlog: (f?: (e: Gene) => string) => string;
 }
 
 export const TestUniverse = (raw: Gene): TestUniverse => {
-  let content = Tracks.track(raw, Optional.none());
+  let content = Tracks.track(raw, null);
 
   // NOTE: The top point might change when we are wrapping.
   const wrap = (anchor: Gene, wrapper: Gene) => {
     Insertion.wrap(anchor, wrapper);
-    content.parent.fold(Fun.noop, (p) => {
+    content.parent.fold(() => {}, (p) => {
       content = p;
     });
   };
@@ -51,30 +50,30 @@ export const TestUniverse = (raw: Gene): TestUniverse => {
   };
 
   return {
-    up: Fun.constant({
+    up: () => {
       selector: Up.selector,
       closest: Up.closest,
       predicate: Up.predicate,
       all: Up.all,
       top: Up.top
-    }),
-    down: Fun.constant({
+    },
+    down: () => {
       selector: Down.selector,
       predicate: Down.predicate
-    }),
-    styles: Fun.constant({
+    },
+    styles: () => {
       get: Styling.get,
       set: Styling.set,
       getRaw: Styling.getRaw,
       remove: Styling.remove
-    }),
-    attrs: Fun.constant({
+    },
+    attrs: () => {
       get: Attribution.get,
       set: Attribution.set,
       remove: Attribution.remove,
       copyTo: Attribution.copyTo
-    }),
-    insert: Fun.constant({
+    },
+    insert: () => {
       before: Insertion.before,
       after: Insertion.after,
       append: Insertion.append,
@@ -82,23 +81,23 @@ export const TestUniverse = (raw: Gene): TestUniverse => {
       afterAll: Insertion.afterAll,
       prepend: Insertion.prepend,
       wrap
-    }),
-    remove: Fun.constant({
+    },
+    remove: () => {
       unwrap: Removal.unwrap,
       detach: Removal.detach,
       remove: Removal.remove
-    }),
-    create: Fun.constant({
+    },
+    create: () => {
       nu: Creator.nu,
       text: Creator.text,
       clone: Creator.clone
-    }),
-    query: Fun.constant({
+    },
+    query: () => {
       comparePosition: Query.comparePosition,
       nextSibling: Query.nextSibling,
       prevSibling: Query.prevSibling
-    }),
-    property: Fun.constant({
+    },
+    property: () => {
       children: Properties.children,
       name: Properties.name,
       parent: Properties.parent,
@@ -113,7 +112,7 @@ export const TestUniverse = (raw: Gene): TestUniverse => {
       isEmptyTag: Properties.isEmptyTag,
       isBoundary: Properties.isBoundary,
       isNonEditable: Properties.isNonEditable
-    }),
+    },
     eq: Comparator.eq,
     is: Comparator.is,
     find,

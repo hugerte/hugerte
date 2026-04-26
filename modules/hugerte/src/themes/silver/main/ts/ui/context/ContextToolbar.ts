@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, AnchorSpec, Behaviour, GuiFactory, InlineView, Keying, Positioning
 } from '@ephox/alloy';
 import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Arr, Fun, Id, Merger, Obj, Optional, Optionals, Singleton, Throttler, Thunk } from '@ephox/katamari';
+import { Merger, Optional, Singleton, Throttler, Thunk } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Class, Compare, Css, Focus, SugarElement } from '@ephox/sugar';
 
@@ -53,13 +53,13 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
       sink,
       onEscape: () => {
         editor.focus();
-        return Optional.some(true);
+        return true;
       }
     })
   );
 
   const getBounds = () => {
-    const position = lastContextPosition.get().getOr('node');
+    const position = lastContextPosition.get() ?? ('node');
     // Use a 1px margin for the bounds to keep the context toolbar from butting directly against
     // the header, etc... when switching to inset layouts
     const margin = ContextToolbarAnchor.shouldUseInsetLayouts(position) ? 1 : 0;
@@ -71,8 +71,8 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
     return !editor.removed && !(isTouch() && backstage.isContextMenuOpen());
   };
 
-  const isSameLaunchElement = (elem: Optional<SugarElement<Element>>) =>
-    Optionals.is(Optionals.lift2(elem, lastElement.get(), Compare.eq), true);
+  const isSameLaunchElement = (elem: (SugarElement<Element>) | null) =>
+    ((elem !== null && lastElement.get() !== null ? (Compare.eq)(elem, lastElement.get()) : null) !== null && ((elem !== null && lastElement.get() !== null ? (Compare.eq)(elem, lastElement.get()) : null)) === (true));
 
   const shouldContextToolbarHide = (): boolean => {
     if (!canLaunchToolbar()) {
@@ -80,7 +80,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
     } else {
       const contextToolbarBounds = getBounds();
       // Get the anchor bounds. For node anchors we should always try to use the last element bounds
-      const anchorBounds = Optionals.is(lastContextPosition.get(), 'node') ?
+      const anchorBounds = (lastContextPosition.get() !== null && (lastContextPosition.get()) === ('node')) ?
         ContextToolbarBounds.getAnchorElementBounds(editor, lastElement.get()) :
         ContextToolbarBounds.getSelectionBounds(editor);
 
@@ -142,7 +142,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
   }));
 
   const buildContextToolbarGroups = (allButtons: Record<string, ContextToolbarButtonType>, ctx: InlineContent.ContextToolbarSpec) =>
-    identifyButtons(editor, { buttons: allButtons, toolbar: ctx.items, allowToolbarGroups: false }, extras.backstage, Optional.some([ 'form:' ]));
+    identifyButtons(editor, { buttons: allButtons, toolbar: ctx.items, allowToolbarGroups: false }, extras.backstage, [ 'form:' ]);
 
   const buildContextFormGroups = (ctx: InlineContent.ContextForm, providers: UiFactoryBackstageProviders) => ContextForm.buildInitGroups(ctx, providers);
 
@@ -155,13 +155,12 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
     // to scrolling or wrapping (default)
     const toolbarType = getToolbarMode(editor) === ToolbarMode.scrolling ? ToolbarMode.scrolling : ToolbarMode.default;
 
-    const initGroups = Arr.flatten(Arr.map(toolbars, (ctx) =>
-      ctx.type === 'contexttoolbar' ? buildContextToolbarGroups(allButtons, ctx) : buildContextFormGroups(ctx, sharedBackstage.providers)
-    ));
+    const initGroups = ((toolbars).map((ctx) =>
+      ctx.type === 'contexttoolbar' ? buildContextToolbarGroups(allButtons, ctx) : buildContextFormGroups(ctx, sharedBackstage.providers))).flat();
 
     return renderToolbar({
       type: toolbarType,
-      uid: Id.generate('context-toolbar'),
+      uid: (('context-toolbar') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
       initGroups,
       onEscape: Optional.none,
       cyclicKeying: true,
@@ -169,17 +168,17 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
     });
   };
 
-  const getAnchor = (position: InlineContent.ContextPosition, element: Optional<SugarElement<Element>>): AnchorSpec => {
+  const getAnchor = (position: InlineContent.ContextPosition, element: (SugarElement<Element>) | null): AnchorSpec => {
     const anchorage = position === 'node' ? sharedBackstage.anchors.node(element) : sharedBackstage.anchors.cursor();
     const anchorLayout = ContextToolbarAnchor.getAnchorLayout(editor, position, isTouch(), {
       lastElement: lastElement.get,
-      isReposition: () => Optionals.is(lastTrigger.get(), TriggerCause.Reposition),
+      isReposition: () => (lastTrigger.get() !== null && (lastTrigger.get()) === (TriggerCause.Reposition)),
       getMode: () => Positioning.getMode(sink)
     });
     return Merger.deepMerge(anchorage, anchorLayout);
   };
 
-  const launchContext = (toolbarApi: Array<ContextType>, elem: Optional<SugarElement<Element>>) => {
+  const launchContext = (toolbarApi: Array<ContextType>, elem: (SugarElement<Element>) | null) => {
     launchContextToolbar.cancel();
 
     // Don't launch if the editor has something else open that would conflict
@@ -213,7 +212,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
         classes: [ transitionClass ],
         mode: 'placement'
       }
-    }, () => Optional.some(getBounds()));
+    }, () => getBounds());
 
     // IMPORTANT: This must be stored after the initial render, otherwise the lookup of the last element in the
     // anchor placement will be incorrect as it'll reuse the new element as the anchor point.
@@ -241,7 +240,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
       ToolbarLookup.lookup(scopes, editor).fold(
         close,
         (info) => {
-          launchContext(info.toolbars, Optional.some(info.elem));
+          launchContext(info.toolbars, info.elem);
         }
       );
     }
@@ -258,9 +257,9 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
     editor.on(showContextToolbarEvent, (e) => {
       const scopes = getScopes();
       // TODO: Have this stored in a better structure
-      Obj.get(scopes.lookupTable, e.toolbarKey).each((ctx) => {
+      ((scopes.lookupTable)[e.toolbarKey] ?? null).each((ctx) => {
         // ASSUMPTION: this is only used to open one specific toolbar at a time, hence [ctx]
-        launchContext([ ctx ], Optionals.someIf(e.target !== editor, e.target));
+        launchContext([ ctx ], (e.target !== editor ? e.target : null));
         // Forms launched via this way get immediate focus
         InlineView.getContent(contextbar).each(Keying.focusIn);
       });
@@ -268,7 +267,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
 
     editor.on('focusout', (_e) => {
       Delay.setEditorTimeout(editor, () => {
-        if (Focus.search(sink.element).isNone() && Focus.search(contextbar.element).isNone()) {
+        if (Focus.search(sink.element) === null && Focus.search(contextbar.element) === null) {
           close();
         }
       }, 0);
@@ -305,7 +304,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
     editor.on('NodeChange', (_e) => {
       Focus.search(contextbar.element).fold(
         launchContextToolbar.throttle,
-        Fun.noop
+        () => {}
       );
     });
   });

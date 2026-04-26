@@ -1,10 +1,9 @@
-import { Optional } from '@ephox/katamari';
 
 export interface Universe<E, D> {
   up: () => {
-    selector: (scope: E, selector: string, isRoot?: (e: E) => boolean) => Optional<E>;
-    closest: (scope: E, selector: string, isRoot?: (e: E) => boolean) => Optional<E>;
-    predicate: (scope: E, predicate: (e: E) => boolean, isRoot?: (e: E) => boolean) => Optional<E>;
+    selector: (scope: E, selector: string, isRoot?: (e: E) => boolean) => (E) | null;
+    closest: (scope: E, selector: string, isRoot?: (e: E) => boolean) => (E) | null;
+    predicate: (scope: E, predicate: (e: E) => boolean, isRoot?: (e: E) => boolean) => (E) | null;
     all: (element: E, isRoot?: (e: E) => boolean) => E[];
   };
   down: () => {
@@ -13,7 +12,7 @@ export interface Universe<E, D> {
   };
   styles: () => {
     get: (element: E, property: string) => string | undefined;
-    getRaw: (element: E, property: string) => Optional<string>;
+    getRaw: (element: E, property: string) => (string) | null;
     set: (element: E, property: string, value: string) => void;
     remove: (element: E, property: string) => void;
   };
@@ -43,19 +42,19 @@ export interface Universe<E, D> {
   };
   query: () => {
     comparePosition: (element: E, other: E) => number;
-    prevSibling: (element: E) => Optional<E>;
-    nextSibling: (element: E) => Optional<E>;
+    prevSibling: (element: E) => (E) | null;
+    nextSibling: (element: E) => (E) | null;
   };
   property: () => {
     children: (element: E) => E[];
     name: (element: E) => string;
-    parent: (element: E) => Optional<E>;
+    parent: (element: E) => (E) | null;
     document: (element: E) => D;
     isText: (element: E) => boolean;
     isComment: (element: E) => boolean;
     isElement: (element: E) => boolean;
     isSpecial: (element: E) => boolean;
-    getLanguage: (element: E) => Optional<string>;
+    getLanguage: (element: E) => (string) | null;
     getText: (element: E) => string;
     setText: (element: E, value: string) => void;
     isBoundary: (element: E) => boolean;

@@ -19,7 +19,7 @@ interface DragDistanceEvents {
 
 export interface BarMutation {
   assign: (t: SugarElement<Element>) => void;
-  get: () => Optional<SugarElement<Element>>;
+  get: () => (SugarElement<Element>) | null;
   mutate: (x: number, y: number) => void;
   events: {
     drag: Bindable<DragEvent>;
@@ -43,7 +43,7 @@ export const BarMutation = (): BarMutation => {
   });
 
   const assign = (t: SugarElement<Element>) => {
-    target = Optional.some(t);
+    target = t;
   };
 
   const get = () => {

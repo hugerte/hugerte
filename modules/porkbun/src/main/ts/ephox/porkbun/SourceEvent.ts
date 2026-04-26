@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 import { Bindable, Event, EventHandler } from './Event';
 
@@ -8,7 +7,7 @@ export default (fields: string[], source: Bindable<any>): Event => {
 
   const triggerer = (evt: Record<string, any>) => {
     // yay! Let's unbox this event, convert it to a constargs, so it can be re-boxed!
-    const args = Arr.map(fields, (field) => {
+    const args = (fields).map((field) => {
       return evt[field];
     });
     mine.trigger.apply(null, args);
@@ -33,6 +32,6 @@ export default (fields: string[], source: Bindable<any>): Event => {
   return {
     bind,
     unbind,
-    trigger: Fun.die('Cannot trigger a source event.')
+    trigger: (() => { throw new Error('Cannot trigger a source event.'); })
   };
 };

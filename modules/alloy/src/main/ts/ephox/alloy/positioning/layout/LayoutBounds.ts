@@ -1,14 +1,14 @@
-import { Arr, Num, Obj, Optional } from '@ephox/katamari';
+import { Arr, Num } from '@ephox/katamari';
 import { SugarPosition } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
 import { AnchorBox } from './LayoutTypes';
 
 export interface BoundsRestriction {
-  readonly left: Optional<number>;
-  readonly right: Optional<number>;
-  readonly top: Optional<number>;
-  readonly bottom: Optional<number>;
+  readonly left: (number) | null;
+  readonly right: (number) | null;
+  readonly top: (number) | null;
+  readonly bottom: (number) | null;
 }
 
 export const enum AnchorBoxBounds {
@@ -39,7 +39,7 @@ export const boundsRestriction = (
   restrictions: Partial<Record<BoundsRestrictionKeys, Restriction>>
 ): BoundsRestriction => Arr.mapToObject(
   [ 'left', 'right', 'top', 'bottom' ],
-  (dir) => Obj.get(restrictions, dir).map(
+  (dir) => ((restrictions)[dir] ?? null).map(
     (restriction) => getRestriction(anchor, restriction)
   )
 );
@@ -53,7 +53,7 @@ export const adjustBounds = (bounds: Boxes.Bounds, restriction: BoundsRestrictio
       const newPos = comparator(pos, current) + offset;
       // Ensure the new restricted position is within the current bounds
       return isVerticalAxis ? Num.clamp(newPos, bounds.y, bounds.bottom) : Num.clamp(newPos, bounds.x, bounds.right);
-    }).getOr(current);
+    }) ?? (current);
 
   const adjustedLeft = applyRestriction('left', bounds.x);
   const adjustedTop = applyRestriction('top', bounds.y);

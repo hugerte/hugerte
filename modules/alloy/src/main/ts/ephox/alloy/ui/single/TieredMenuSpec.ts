@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Optionals, Singleton } from '@ephox/katamari';
+import { Arr, Obj, Singleton } from '@ephox/katamari';
 import { Attribute, Class, Classes, SelectorFilter, SelectorFind, SugarBody } from '@ephox/sugar';
 
 import * as EditableFields from '../../alien/EditableFields';
@@ -102,7 +102,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
 
   const layeredState: LayeredState = LayeredState.init();
 
-  const setup = (container: AlloyComponent): Optional<AlloyComponent> => {
+  const setup = (container: AlloyComponent): (AlloyComponent) | null => {
     const componentMap = buildMenus(container, detail.data.primary, detail.data.menus);
     const directory = toDirectory(container);
     layeredState.setContents(detail.data.primary, componentMap, detail.data.expansions, directory);
@@ -112,17 +112,17 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
   const getItemValue = (item: AlloyComponent): string => Representing.getValue(item).value;
 
   // Find the first item with value `itemValue` in any of the menus inside this tiered menu structure
-  const getItemByValue = (_container: AlloyComponent, menus: AlloyComponent[], itemValue: string): Optional<AlloyComponent> =>
+  const getItemByValue = (_container: AlloyComponent, menus: AlloyComponent[], itemValue: string): (AlloyComponent) | null =>
     // Can *greatly* improve the performance of this by calculating things up front.
     Arr.findMap(menus, (menu) => {
       if (!menu.getSystem().isConnected()) {
-        return Optional.none();
+        return null;
       }
       const candidates = Highlighting.getCandidates(menu);
-      return Arr.find(candidates, (c) => getItemValue(c) === itemValue);
+      return ((candidates).find((c) => getItemValue(c) === itemValue) ?? null);
     });
 
-  const toDirectory = (_container: AlloyComponent): Record<string, string[]> => Obj.map(detail.data.menus, (data, _menuName) => Arr.bind(data.items, (item) => item.type === 'separator' ? [ ] : [ item.data.value ]));
+  const toDirectory = (_container: AlloyComponent): Record<string, string[]> => Object.fromEntries(Object.entries(detail.data.menus).map(([_k, _v]: [any, any]) => [_k, ((data, _menuName) => (data.items).flatMap((item) => item.type === 'separator' ? [ ] : [ item.data.value ]))(_v, _k as any)]));
 
   // This just sets the active menu. It will not set any active items.
   const setActiveMenu = Highlighting.highlight;
@@ -150,13 +150,11 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
     });
   };
 
-  const getMenus = (state: LayeredState, menuValues: string[]): AlloyComponent[] => Optionals.cat(
-    Arr.map(menuValues, (mv) => state.lookupMenu(mv).bind((prep) => prep.type === 'prepared' ? Optional.some(prep.menu) : Optional.none()))
-  );
+  const getMenus = (state: LayeredState, menuValues: string[]): AlloyComponent[] => ((menuValues).map((mv) => state.lookupMenu(mv).bind((prep) => prep.type === 'prepared' ? prep.menu : null))).filter((_x: any) => _x !== null);
 
   const closeOthers = (container: AlloyComponent, state: LayeredState, path: string[]): void => {
     const others = getMenus(state, state.otherMenus(path));
-    Arr.each(others, (o) => {
+    (others).forEach((o) => {
 
       // May not need to do the active menu thing.
       Classes.remove(o.element, [ detail.markers.backgroundMenu ]);
@@ -169,8 +167,8 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
   const getSubmenuParents = (container: AlloyComponent): Record<string, AlloyComponent> => submenuParentItems.get().getOrThunk(() => {
     const r: Record<string, AlloyComponent> = { };
     const items = SelectorFilter.descendants(container.element, `.${detail.markers.item}`);
-    const parentItems = Arr.filter(items, (i) => Attribute.get(i, 'aria-haspopup') === 'true');
-    Arr.each(parentItems, (i) => {
+    const parentItems = (items).filter((i) => Attribute.get(i, 'aria-haspopup') === 'true');
+    (parentItems).forEach((i) => {
       container.getSystem().getByDom(i).each((itemComp) => {
         const key = getItemValue(itemComp);
         r[key] = itemComp;
@@ -183,21 +181,21 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
   // Not ideal. Ideally, we would like a map of item keys to components.
   const updateAriaExpansions = (container: AlloyComponent, path: string[]) => {
     const parentItems = getSubmenuParents(container);
-    Obj.each(parentItems, (v, k) => {
+    Object.entries(parentItems).forEach(([_k, _v]: [any, any]) => ((v, k) => {
       // Really should turn path into a Set
-      const expanded = Arr.contains(path, k);
+      const expanded = (path).includes(k);
       Attribute.set(v.element, 'aria-expanded', expanded);
-    });
+    })(_v, _k));
   };
 
-  const updateMenuPath = (container: AlloyComponent, state: LayeredState, path: string[]): Optional<AlloyComponent> =>
-    Optional.from(path[0]).bind((latestMenuName) => state.lookupMenu(latestMenuName).bind((menuPrep: MenuPreparation) => {
+  const updateMenuPath = (container: AlloyComponent, state: LayeredState, path: string[]): (AlloyComponent) | null =>
+    (path[0] ?? null).bind((latestMenuName) => state.lookupMenu(latestMenuName).bind((menuPrep: MenuPreparation) => {
       if (menuPrep.type === 'notbuilt') {
-        return Optional.none();
+        return null;
       } else {
         const activeMenu = menuPrep.menu;
         const rest = getMenus(state, path.slice(1));
-        Arr.each(rest, (r) => {
+        (rest).forEach((r) => {
           Class.add(r.element, detail.markers.backgroundMenu);
         });
 
@@ -209,7 +207,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
         Classes.remove(activeMenu.element, [ detail.markers.backgroundMenu ]);
         setActiveMenuAndItem(container, activeMenu);
         closeOthers(container, state, path);
-        return Optional.some(activeMenu);
+        return activeMenu;
       }
     }));
 
@@ -228,16 +226,16 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
     }
   };
 
-  const expandRight = (container: AlloyComponent, item: AlloyComponent, decision: ExpandHighlightDecision = ExpandHighlightDecision.HighlightSubmenu): Optional<AlloyComponent> => {
+  const expandRight = (container: AlloyComponent, item: AlloyComponent, decision: ExpandHighlightDecision = ExpandHighlightDecision.HighlightSubmenu): (AlloyComponent) | null => {
     if (item.hasConfigured(Disabling) && Disabling.isDisabled(item)) {
-      return Optional.some(item);
+      return item;
     } else {
       const value = getItemValue(item);
       return layeredState.expand(value).bind((path) => {
         // Called when submenus are opened by keyboard AND hovering navigation
         updateAriaExpansions(container, path);
         // When expanding, always select the first.
-        return Optional.from(path[0]).bind((menuName) => layeredState.lookupMenu(menuName).bind((activeMenuPrep) => {
+        return (path[0] ?? null).bind((menuName) => layeredState.lookupMenu(menuName).bind((activeMenuPrep) => {
           const activeMenu = buildIfRequired(container, menuName, activeMenuPrep);
 
           // DUPE with above. Fix later.
@@ -247,20 +245,20 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
 
           // updateMenuPath is the code which changes the active menu. We don't always
           // want to change the active menu. Sometimes, we just want to show it (e.g. hover)
-          detail.onOpenSubmenu(container, item, activeMenu, Arr.reverse(path));
+          detail.onOpenSubmenu(container, item, activeMenu, [...(path)].reverse());
           if (decision === ExpandHighlightDecision.HighlightSubmenu) {
             Highlighting.highlightFirst(activeMenu);
             return updateMenuPath(container, layeredState, path);
           } else {
             Highlighting.dehighlightAll(activeMenu);
-            return Optional.some(item);
+            return item;
           }
         }));
       });
     }
   };
 
-  const collapseLeft = (container: AlloyComponent, item: AlloyComponent): Optional<AlloyComponent> => {
+  const collapseLeft = (container: AlloyComponent, item: AlloyComponent): (AlloyComponent) | null => {
     const value = getItemValue(item);
     return layeredState.collapse(value).bind((path) => {
       // Called when submenus are closed because of KEYBOARD navigation
@@ -272,7 +270,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
     });
   };
 
-  const updateView = (container: AlloyComponent, item: AlloyComponent): Optional<AlloyComponent> => {
+  const updateView = (container: AlloyComponent, item: AlloyComponent): (AlloyComponent) | null => {
     const value = getItemValue(item);
     return layeredState.refresh(value).bind((path) => {
       // Only this function collapses irrelevant submenus when navigating by HOVERING.
@@ -283,21 +281,21 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
     });
   };
 
-  const onRight = (container: AlloyComponent, item: AlloyComponent): Optional<AlloyComponent> =>
-    EditableFields.inside(item.element) ? Optional.none() : expandRight(container, item, ExpandHighlightDecision.HighlightSubmenu);
+  const onRight = (container: AlloyComponent, item: AlloyComponent): (AlloyComponent) | null =>
+    EditableFields.inside(item.element) ? null : expandRight(container, item, ExpandHighlightDecision.HighlightSubmenu);
 
-  const onLeft = (container: AlloyComponent, item: AlloyComponent): Optional<AlloyComponent> =>
+  const onLeft = (container: AlloyComponent, item: AlloyComponent): (AlloyComponent) | null =>
     // Exclude inputs, textareas etc.
-    EditableFields.inside(item.element) ? Optional.none() : collapseLeft(container, item);
+    EditableFields.inside(item.element) ? null : collapseLeft(container, item);
 
-  const onEscape = (container: AlloyComponent, item: AlloyComponent): Optional<AlloyComponent> =>
+  const onEscape = (container: AlloyComponent, item: AlloyComponent): (AlloyComponent) | null =>
     collapseLeft(container, item).orThunk(() =>
       detail.onEscape(container, item).map(() => container) // This should only fire when the user presses ESC ... not any other close.
     );
 
-  type KeyHandler = (container: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => Optional<boolean>;
-  const keyOnItem = (f: (container: AlloyComponent, item: AlloyComponent) => Optional<AlloyComponent>): KeyHandler =>
-    (container: AlloyComponent, simulatedEvent: NativeSimulatedEvent): Optional<boolean> => {
+  type KeyHandler = (container: AlloyComponent, simulatedEvent: NativeSimulatedEvent) => (boolean) | null;
+  const keyOnItem = (f: (container: AlloyComponent, item: AlloyComponent) => (AlloyComponent) | null): KeyHandler =>
+    (container: AlloyComponent, simulatedEvent: NativeSimulatedEvent): (boolean) | null => {
       // 2022-08-16 This seems to be the only code in alloy that actually uses
       // the getSource aspect of an event. Remember, that this code is firing
       // when an event bubbles up the tiered menu, e.g. left arrow key.
@@ -308,7 +306,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
       // the top-level item. Consider removing EventSource from alloy altogether.
       return SelectorFind.closest(simulatedEvent.getSource(), `.${detail.markers.item}`)
         .bind((target) => container.getSystem().getByDom(target).toOptional().bind(
-          (item: AlloyComponent) => f(container, item).map<boolean>(Fun.always)
+          (item: AlloyComponent) => f(container, item).map<boolean>((() => true as const))
         ));
     };
 
@@ -354,7 +352,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
           () => {
             detail.onExecute(component, item);
           },
-          Fun.noop
+          () => {}
         );
       });
     }),
@@ -395,7 +393,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
     )
   ]);
 
-  const getActiveItem = (container: AlloyComponent): Optional<AlloyComponent> => Highlighting.getHighlighted(container).bind(Highlighting.getHighlighted);
+  const getActiveItem = (container: AlloyComponent): (AlloyComponent) | null => Highlighting.getHighlighted(container).bind(Highlighting.getHighlighted);
 
   const collapseMenuApi = (container: AlloyComponent) => {
     getActiveItem(container).each((currentItem) => {
@@ -410,7 +408,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
   };
 
   const extractMenuFromContainer = (container: AlloyComponent) =>
-    Optional.from(container.components()[0]).filter((comp) => Attribute.get(comp.element, 'role') === 'menu');
+    (container.components()[0] ?? null).filter((comp) => Attribute.get(comp.element, 'role') === 'menu');
 
   const repositionMenus = (container: AlloyComponent): void => {
     // Get the primary menu
@@ -418,10 +416,8 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
       // Get the triggering path (item, menu) up to the active item
       getActiveItem(container).bind((currentItem) => {
         const itemValue = getItemValue(currentItem);
-        const allMenus: MenuPreparation[] = Obj.values(layeredState.getMenus());
-        const preparedMenus: AlloyComponent[] = Optionals.cat(
-          Arr.map(allMenus, LayeredState.extractPreparedMenu)
-        );
+        const allMenus: MenuPreparation[] = Object.values(layeredState.getMenus());
+        const preparedMenus: AlloyComponent[] = ((allMenus).map(LayeredState.extractPreparedMenu)).filter((_x: any) => _x !== null);
         return layeredState.getTriggeringPath(itemValue, (v) => getItemByValue(container, preparedMenus, v));
       }).map((triggeringPath) => ({ primary, triggeringPath }))
     );
@@ -481,7 +477,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
   };
 };
 
-const collapseItem = Fun.constant('collapse-item');
+const collapseItem = () => 'collapse-item';
 export {
   make,
   collapseItem

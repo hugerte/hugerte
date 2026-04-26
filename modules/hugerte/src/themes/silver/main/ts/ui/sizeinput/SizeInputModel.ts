@@ -1,4 +1,4 @@
-import { Obj, Optional, Optionals, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 export type SizeUnit = '' | 'cm' | 'mm' | 'in' | 'px' | 'pt' | 'pc' | 'em' | 'ex' | 'ch' | 'rem' | 'vw' | 'vh' | 'vmin' | 'vmax' | '%';
 
@@ -46,7 +46,7 @@ export const parseSize = (sizeText: string): Result<Size, string> => {
   }
 };
 
-export const convertUnit = (size: Size, unit: SizeUnit): Optional<number> => {
+export const convertUnit = (size: Size, unit: SizeUnit): (number) | null => {
   const inInch: Record<string, number> = {
     '': 96,
     'px': 96,
@@ -56,24 +56,24 @@ export const convertUnit = (size: Size, unit: SizeUnit): Optional<number> => {
     'mm': 25.4,
     'in': 1
   };
-  const supported = (u: SizeUnit) => Obj.has(inInch, u);
+  const supported = (u: SizeUnit) => Object.prototype.hasOwnProperty.call(inInch, u);
 
   if (size.unit === unit) {
-    return Optional.some(size.value);
+    return size.value;
   } else if (supported(size.unit) && supported(unit)) {
     if (inInch[size.unit] === inInch[unit]) {
-      return Optional.some(size.value);
+      return size.value;
     } else {
-      return Optional.some(size.value / inInch[size.unit] * inInch[unit]);
+      return size.value / inInch[size.unit] * inInch[unit];
     }
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
-export type SizeConversion = (input: Size) => Optional<Size>;
+export type SizeConversion = (input: Size) => (Size) | null;
 
-export const noSizeConversion: SizeConversion = (_input: Size) => Optional.none();
+export const noSizeConversion: SizeConversion = (_input: Size) => null;
 
 export const ratioSizeConversion = (scale: number, unit: SizeUnit): SizeConversion =>
   (size: Size) => convertUnit(size, unit).map((value) => ({ value: value * scale, unit }));
@@ -81,7 +81,7 @@ export const ratioSizeConversion = (scale: number, unit: SizeUnit): SizeConversi
 export const makeRatioConverter = (currentFieldText: string, otherFieldText: string): SizeConversion => {
   const cValue = parseSize(currentFieldText).toOptional();
   const oValue = parseSize(otherFieldText).toOptional();
-  return Optionals.lift2(cValue, oValue, (cSize: Size, oSize: Size) => convertUnit(cSize, oSize.unit).map((val) => oSize.value / val).map(
+  return (cValue !== null && oValue !== null ? ((cSize: Size, oSize: Size) => convertUnit(cSize, oSize.unit).map((val) => oSize.value / val).map(
     (r) => ratioSizeConversion(r, oSize.unit)
-  ).getOr(noSizeConversion)).getOr(noSizeConversion);
+  ) ?? (noSizeConversion))(cValue, oValue) : null) ?? (noSizeConversion);
 };

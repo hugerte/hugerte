@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -10,7 +9,7 @@ import * as Dialog from '../ui/Dialog';
 
 const queryListCommandState = (editor: Editor, listName: string) => (): boolean => {
   const parentList = getParentList(editor);
-  return Type.isNonNullable(parentList) && parentList.nodeName === listName;
+  return (parentList) != null && parentList.nodeName === listName;
 };
 
 const registerDialog = (editor: Editor): void => {
@@ -49,7 +48,7 @@ const register = (editor: Editor): void => {
   registerDialog(editor);
 
   editor.addCommand('mceListUpdate', (ui, detail) => {
-    if (Type.isObject(detail)) {
+    if ((typeof (detail) === 'object' && (detail) !== null)) {
       updateList(editor, detail);
     }
   });

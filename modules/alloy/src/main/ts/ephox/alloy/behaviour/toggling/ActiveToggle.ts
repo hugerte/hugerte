@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as AlloyEvents from '../../api/events/AlloyEvents';
 import * as DomModification from '../../dom/DomModification';
@@ -14,10 +13,10 @@ const events = (toggleConfig: TogglingConfig, toggleState: TogglingState): Alloy
   const load = Behaviour.loadEvent(toggleConfig, toggleState, ToggleApis.onLoad);
 
   return AlloyEvents.derive(
-    Arr.flatten([
+    ([
       toggleConfig.toggleOnExecute ? [ execute ] : [ ],
       [ load ]
-    ])
+    ]).flat()
   );
 };
 

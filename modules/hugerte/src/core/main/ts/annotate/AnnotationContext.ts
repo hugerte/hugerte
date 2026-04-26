@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Selectors, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -48,7 +47,7 @@ const context = (editor: Editor, elem: SugarElement<Node>, wrapName: string, nod
       return ChildContext.Existing;
     } else if (isCaretNode(elem.dom)) {
       return ChildContext.Caret;
-    } else if (Arr.exists(validBlocks, (selector) => Selectors.is(elem, selector))) {
+    } else if ((validBlocks).some((selector) => Selectors.is(elem, selector))) {
       return ChildContext.ValidBlock;
     } else if (!FormatUtils.isValid(editor, wrapName, nodeName) || !FormatUtils.isValid(editor, SugarNode.name(parent), wrapName)) {
       return ChildContext.InvalidChild;

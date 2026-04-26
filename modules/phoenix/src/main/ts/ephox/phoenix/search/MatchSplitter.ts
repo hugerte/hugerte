@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
 import { PositionArray, PRange } from '@ephox/polaris';
 
 import { SearchResult, SpotRange } from '../api/data/Types';
@@ -11,7 +10,7 @@ import * as Splitter from './Splitter';
  * Each match is then mapped to the word it matched and the elements that make up the word.
  */
 const separate = <E, D, M extends PRange & { word: string }>(universe: Universe<E, D>, list: SpotRange<E>[], matches: M[]): SearchResult<E>[] => {
-  const allPositions = Arr.bind(matches, (match) => {
+  const allPositions = (matches).flatMap((match) => {
     return [ match.start, match.finish ];
   });
 
@@ -24,11 +23,11 @@ const separate = <E, D, M extends PRange & { word: string }>(universe: Universe<
   const collate = (match: M): SearchResult<E> => {
     const sub = PositionArray.sublist(structure, match.start, match.finish);
 
-    const elements = Arr.map(sub, (unit) => {
+    const elements = (sub).map((unit) => {
       return unit.element;
     });
 
-    const exact = Arr.map(elements, universe.property().getText).join('');
+    const exact = (elements).map(universe.property().getText).join('');
     return {
       elements,
       word: match.word,
@@ -36,7 +35,7 @@ const separate = <E, D, M extends PRange & { word: string }>(universe: Universe<
     };
   };
 
-  return Arr.map(matches, collate);
+  return (matches).map(collate);
 };
 
 export {

@@ -1,4 +1,3 @@
-import { Arr, Optional, Type, Unicode } from '@ephox/katamari';
 import { Has, SugarElement } from '@ephox/sugar';
 
 import BookmarkManager from 'hugerte/core/api/dom/BookmarkManager';
@@ -48,7 +47,7 @@ const removeStyles = (dom: DOMUtils, element: HTMLElement, styles: string[]): vo
   Tools.each(styles, (style) => dom.setStyle(element, style, ''));
 };
 
-const isInline = (editor: Editor, node: Node): boolean => Type.isNonNullable(node) && !NodeType.isBlock(node, editor.schema.getBlockElements());
+const isInline = (editor: Editor, node: Node): boolean => (node) != null && !NodeType.isBlock(node, editor.schema.getBlockElements());
 
 const getEndPointNode = (editor: Editor, rng: Range, start: Boolean, root: Node): Node => {
   let container = rng[start ? 'startContainer' : 'endContainer'];
@@ -81,23 +80,23 @@ const getEndPointNode = (editor: Editor, rng: Range, start: Boolean, root: Node)
   // This way we end up including all the inline elements in the created list.
   // For more info look at #TINY-6853
 
-  const findBetterContainer = (container: Node, forward: boolean): Optional<Node> => {
+  const findBetterContainer = (container: Node, forward: boolean): (Node) | null => {
     const walker = new DomTreeWalker(container, findBlockAncestor(container));
     const dir = forward ? 'next' : 'prev';
     let node;
     while ((node = walker[dir]())) {
-      if (!(NodeType.isVoid(editor, node) || Unicode.isZwsp(node.textContent as string) || node.textContent?.length === 0)) {
-        return Optional.some(node);
+      if (!(NodeType.isVoid(editor, node) || (node.textContent as string) === '\uFEFF' || node.textContent?.length === 0)) {
+        return node;
       }
     }
 
-    return Optional.none();
+    return null;
   };
 
   // Traverse left to include inline/text nodes
   if (start && NodeType.isTextNode(container)) {
-    if (Unicode.isZwsp(container.textContent as string)) {
-      container = findBetterContainer(container, false).getOr(container);
+    if ((container.textContent as string) === '\uFEFF') {
+      container = findBetterContainer(container, false) ?? (container);
     } else {
       if (container.parentNode !== null && isInline(editor, container.parentNode)) {
         container = container.parentNode;
@@ -110,8 +109,8 @@ const getEndPointNode = (editor: Editor, rng: Range, start: Boolean, root: Node)
 
   // Traverse right to include inline/text nodes
   if (!start && NodeType.isTextNode(container)) {
-    if (Unicode.isZwsp(container.textContent as string)) {
-      container = findBetterContainer(container, true).getOr(container);
+    if ((container.textContent as string) === '\uFEFF') {
+      container = findBetterContainer(container, true) ?? (container);
     } else {
       if (container.parentNode !== null && isInline(editor, container.parentNode)) {
         container = container.parentNode;
@@ -234,7 +233,7 @@ const applyList = (editor: Editor, listName: string, detail: ListDetail): void =
 
   const bookmark = Bookmark.createBookmark(rng);
 
-  const selectedTextBlocks = Arr.filter(getSelectedTextBlocks(editor, rng, root), editor.dom.isEditable);
+  const selectedTextBlocks = (getSelectedTextBlocks(editor, rng, root)).filter(editor.dom.isEditable);
 
   Tools.each(selectedTextBlocks, (block) => {
     let listBlock: HTMLElement;
@@ -406,7 +405,7 @@ const toggleList = (editor: Editor, listName: 'UL' | 'OL' | 'DL', _detail: ListD
   }
 
   const selectedSubLists = Selection.getSelectedSubLists(editor);
-  const detail = Type.isObject(_detail) ? _detail : {};
+  const detail = (typeof (_detail) === 'object' && (_detail) !== null) ? _detail : {};
   if (selectedSubLists.length > 0) {
     toggleMultipleLists(editor, parentList, selectedSubLists, listName, detail);
   } else {

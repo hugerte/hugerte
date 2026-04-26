@@ -7,7 +7,7 @@ import * as NewLineUtils from './NewLineUtils';
 const matchesSelector = (editor: Editor, selector: string) => {
   return NewLineUtils.getParentBlock(editor).filter((parentBlock) => {
     return selector.length > 0 && Selectors.is(SugarElement.fromDom(parentBlock), selector);
-  }).isSome();
+  }) !== null;
 };
 
 const shouldInsertBr = (editor: Editor): boolean => {

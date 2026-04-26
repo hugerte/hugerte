@@ -1,4 +1,4 @@
-import { Num, Optional } from '@ephox/katamari';
+import { Num } from '@ephox/katamari';
 import { Attribute, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as DomPinpoint from './DomPinpoint';
@@ -10,18 +10,18 @@ type GetNewIndex = <T>(
   min: number,
   max: number,
   oldCandidate: T,
-  onNewIndex: (newIndex: number) => Optional<T>
-) => Optional<T>;
+  onNewIndex: (newIndex: number) => (T) | null
+) => (T) | null;
 
-const f = (container: SugarElement<HTMLElement>, selector: string, current: SugarElement<HTMLElement>, delta: number, getNewIndex: GetNewIndex): Optional<SugarElement<HTMLElement>> => {
+const f = (container: SugarElement<HTMLElement>, selector: string, current: SugarElement<HTMLElement>, delta: number, getNewIndex: GetNewIndex): (SugarElement<HTMLElement>) | null => {
   const isDisabledButton = (candidate: SugarElement<HTMLElement>) =>
     SugarNode.name(candidate) === 'button' && Attribute.get(candidate, 'disabled') === 'disabled';
 
-  const tryNewIndex = (initial: number, index: number, candidates: Array<SugarElement<HTMLElement>>): Optional<SugarElement<HTMLElement>> =>
+  const tryNewIndex = (initial: number, index: number, candidates: Array<SugarElement<HTMLElement>>): (SugarElement<HTMLElement>) | null =>
     getNewIndex(initial, index, delta, 0, candidates.length - 1, candidates[index],
       (newIndex) => isDisabledButton(candidates[newIndex]) ?
         tryNewIndex(initial, newIndex, candidates) :
-        Optional.from(candidates[newIndex])
+        (candidates[newIndex] ?? null)
     );
 
   // I wonder if this will be a problem when the focused element is invisible (shouldn't happen)
@@ -32,17 +32,17 @@ const f = (container: SugarElement<HTMLElement>, selector: string, current: Suga
   });
 };
 
-const horizontalWithoutCycles = (container: SugarElement<HTMLElement>, selector: string, current: SugarElement<HTMLElement>, delta: number): Optional<SugarElement<HTMLElement>> =>
+const horizontalWithoutCycles = (container: SugarElement<HTMLElement>, selector: string, current: SugarElement<HTMLElement>, delta: number): (SugarElement<HTMLElement>) | null =>
   f(container, selector, current, delta, (prevIndex, v, d, min, max, oldCandidate, onNewIndex) => {
     const newIndex = Num.clamp(v + d, min, max);
-    return newIndex === prevIndex ? Optional.from(oldCandidate) : onNewIndex(newIndex);
+    return newIndex === prevIndex ? (oldCandidate ?? null) : onNewIndex(newIndex);
   });
 
-const horizontal = (container: SugarElement<HTMLElement>, selector: string, current: SugarElement<HTMLElement>, delta: number): Optional<SugarElement<HTMLElement>> =>
+const horizontal = (container: SugarElement<HTMLElement>, selector: string, current: SugarElement<HTMLElement>, delta: number): (SugarElement<HTMLElement>) | null =>
   f(container, selector, current, delta, (prevIndex, v, d, min, max, _oldCandidate, onNewIndex) => {
     const newIndex = Num.cycleBy(v, d, min, max);
     // If we've cycled back to the original index, we've failed to find a new valid candidate
-    return newIndex === prevIndex ? Optional.none() : onNewIndex(newIndex);
+    return newIndex === prevIndex ? null : onNewIndex(newIndex);
   });
 
 export {

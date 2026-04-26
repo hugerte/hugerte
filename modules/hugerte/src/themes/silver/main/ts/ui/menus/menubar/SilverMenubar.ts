@@ -4,7 +4,6 @@ import {
 } from '@ephox/alloy';
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
 import { Toolbar } from '@ephox/bridge';
-import { Arr, Fun, Optional } from '@ephox/katamari';
 import { Compare, EventArgs, SelectorFind } from '@ephox/sugar';
 
 import { Menu } from 'hugerte/core/api/ui/Ui';
@@ -43,7 +42,7 @@ export interface MenubarItemSpec {
 
 const factory: UiSketcher.SingleSketchFactory<SilverMenubarDetail, SilverMenubarSpec> = (detail, spec) => {
   const setMenus = (comp: AlloyComponent, menus: MenubarItemSpec[]) => {
-    const newMenus = Arr.map(menus, (m) => {
+    const newMenus = (menus).map((m) => {
       const buttonSpec: Toolbar.ToolbarMenuButtonSpec = {
         type: 'menubutton',
         text: m.text,
@@ -59,7 +58,7 @@ const factory: UiSketcher.SingleSketchFactory<SilverMenubarDetail, SilverMenubar
         MenuButtonClasses.Button,
         spec.backstage,
         // https://www.w3.org/TR/wai-aria-practices/examples/menubar/menubar-2/menubar-2.html
-        Optional.some('menuitem')
+        'menuitem'
       );
     });
 
@@ -117,7 +116,7 @@ const factory: UiSketcher.SingleSketchFactory<SilverMenubarDetail, SilverMenubar
         selector: '.' + MenuButtonClasses.Button,
         onEscape: (comp) => {
           detail.onEscape(comp);
-          return Optional.some(true);
+          return true;
         }
       }),
       Tabstopping.config({ })
@@ -139,7 +138,7 @@ export default Sketcher.single<SilverMenubarSpec, SilverMenubarDetail, SilverMen
     FieldSchema.required('uid'),
     FieldSchema.required('onEscape'),
     FieldSchema.required('backstage'),
-    FieldSchema.defaulted('onSetup', Fun.noop)
+    FieldSchema.defaulted('onSetup', () => {})
   ],
   apis: {
     focus: (apis, comp) => {

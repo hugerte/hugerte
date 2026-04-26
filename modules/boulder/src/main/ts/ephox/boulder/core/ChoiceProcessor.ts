@@ -1,10 +1,9 @@
-import { Obj } from '@ephox/katamari';
 
 import { missingBranch, missingKey } from './SchemaError';
 import { StructureProcessor } from './StructureProcessor';
 
 const chooseFrom = (path: string[], input: Record<string, any>, branches: Record<string, StructureProcessor>, ch: string) => {
-  const fields = Obj.get(branches, ch);
+  const fields = ((branches)[ch] ?? null);
   return fields.fold(
     () => missingBranch(path, branches, ch),
     (vp) => vp.extract(path.concat([ 'branch: ' + ch ]), input)
@@ -15,14 +14,14 @@ const chooseFrom = (path: string[], input: Record<string, any>, branches: Record
 // The key will index into the object of schemas: branches
 const choose = (key: string, branches: Record<string, StructureProcessor>): StructureProcessor => {
   const extract = (path: string[], input: Record<string, any>) => {
-    const choice = Obj.get(input, key);
+    const choice = ((input)[key] ?? null);
     return choice.fold(
       () => missingKey(path, key),
       (chosen) => chooseFrom(path, input, branches, chosen)
     );
   };
 
-  const toString = () => 'chooseOn(' + key + '). Possible values: ' + Obj.keys(branches);
+  const toString = () => 'chooseOn(' + key + '). Possible values: ' + Object.keys(branches);
 
   return {
     extract,

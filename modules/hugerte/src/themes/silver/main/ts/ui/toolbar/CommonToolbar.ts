@@ -4,7 +4,7 @@ import {
   SplitFloatingToolbar as AlloySplitFloatingToolbar,
   SplitSlidingToolbar as AlloySplitSlidingToolbar, Tabstopping, Toolbar as AlloyToolbar, ToolbarGroup as AlloyToolbarGroup
 } from '@ephox/alloy';
-import { Arr, Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Traverse } from '@ephox/sugar';
 
 import { ToolbarMode } from '../../api/Options';
@@ -25,7 +25,7 @@ export interface ToolbarSpec {
   readonly type: ToolbarMode;
   readonly uid: string;
   readonly cyclicKeying: boolean;
-  readonly onEscape: (comp: AlloyComponent) => Optional<boolean>;
+  readonly onEscape: (comp: AlloyComponent) => (boolean) | null;
   readonly initGroups: ToolbarGroup[];
   readonly attributes?: Record<string, string>;
   readonly providers: UiFactoryBackstageProviders;
@@ -38,7 +38,7 @@ export interface MoreDrawerToolbarSpec extends ToolbarSpec {
 }
 
 export interface ToolbarGroup {
-  readonly title: Optional<string>;
+  readonly title: (string) | null;
   readonly items: AlloySpec[];
 }
 
@@ -76,7 +76,7 @@ const renderToolbarGroup = (toolbarGroup: ToolbarGroup): SketchSpec =>
 
 const getToolbarBehaviours = (toolbarSpec: ToolbarSpec, modeName: 'cyclic' | 'acyclic') => {
   const onAttached = AlloyEvents.runOnAttached((component) => {
-    const groups = Arr.map(toolbarSpec.initGroups, renderToolbarGroup);
+    const groups = (toolbarSpec.initGroups).map(renderToolbarGroup);
     AlloyToolbar.setGroups(component, groups);
   });
 
@@ -105,18 +105,18 @@ const renderMoreToolbarCommon = (toolbarSpec: MoreDrawerToolbarSpec) => {
     parts: {
       // This already knows it is a toolbar group
       'overflow-group': renderToolbarGroupCommon({
-        title: Optional.none(),
+        title: null,
         items: []
       }),
       'overflow-button': renderIconButtonSpec({
         name: 'more',
-        icon: Optional.some('more-drawer'),
+        icon: 'more-drawer',
         enabled: true,
-        tooltip: Optional.some('Reveal or hide additional toolbar items'),
+        tooltip: 'Reveal or hide additional toolbar items',
         primary: false,
-        buttonType: Optional.none(),
+        buttonType: null,
         borderless: false
-      }, Optional.none(), toolbarSpec.providers, [], 'overflow-button')
+      }, null, toolbarSpec.providers, [], 'overflow-button')
     },
     splitToolbarBehaviours: getToolbarBehaviours(toolbarSpec, modeName)
   };

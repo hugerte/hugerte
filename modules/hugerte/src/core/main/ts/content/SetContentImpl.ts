@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -18,7 +17,7 @@ const moveSelection = (editor: Editor): void => {
   if (EditorFocus.hasFocus(editor)) {
     CaretFinder.firstPositionIn(editor.getBody()).each((pos) => {
       const node = pos.getNode();
-      const caretPos = NodeType.isTable(node) ? CaretFinder.firstPositionIn(node).getOr(pos) : pos;
+      const caretPos = NodeType.isTable(node) ? CaretFinder.firstPositionIn(node) ?? (pos) : pos;
       editor.selection.setRng(caretPos.toRange());
     });
   }
@@ -88,11 +87,11 @@ const setContentTree = (editor: Editor, body: HTMLElement, content: AstNode, arg
 };
 
 export const setContentInternal = (editor: Editor, content: Content, args: SetContentArgs): SetContentResult => {
-  return Optional.from(editor.getBody()).map((body) => {
+  return (editor.getBody() ?? null).map((body) => {
     if (isTreeNode(content)) {
       return setContentTree(editor, body, content, args);
     } else {
       return setContentString(editor, body, content, args);
     }
-  }).getOr({ content, html: isTreeNode(args.content) ? '' : args.content });
+  }) ?? ({ content, html: isTreeNode(args.content) ? '' : args.content });
 };

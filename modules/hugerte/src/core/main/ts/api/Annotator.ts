@@ -1,4 +1,3 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
 import { Remove, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as AnnotationChanges from '../annotate/AnnotationChanges';
@@ -37,7 +36,7 @@ const Annotator = (editor: Editor): Annotator => {
 
   const isSpan = SugarNode.isTag('span');
   const removeAnnotations = (elements: SugarElement<Element>[]) => {
-    Arr.each(elements, (element) => {
+    (elements).forEach((element) => {
       if (isSpan(element)) {
         Remove.unwrap(element);
       } else {
@@ -92,7 +91,7 @@ const Annotator = (editor: Editor): Annotator => {
      * @param {String} name the name of the annotation to remove
      */
     remove: (name: string): void => {
-      identify(editor, Optional.some(name)).each(({ elements }) => {
+      identify(editor, name).each(({ elements }) => {
         /**
          * TINY-9399: It is important to keep the bookmarking in the callback
          * because it adjusts selection in a way that `identify` function
@@ -112,9 +111,9 @@ const Annotator = (editor: Editor): Annotator => {
      */
     removeAll: (name: string): void => {
       const bookmark = editor.selection.getBookmark();
-      Obj.each(findAll(editor, name), (elements, _) => {
+      Object.entries(findAll(editor, name)).forEach(([_k, _v]: [any, any]) => ((elements, _) => {
         removeAnnotations(elements);
-      });
+      })(_v, _k));
       editor.selection.moveToBookmark(bookmark);
     },
 
@@ -127,7 +126,7 @@ const Annotator = (editor: Editor): Annotator => {
      */
     getAll: (name: string): Record<string, Element[]> => {
       const directory = findAll(editor, name);
-      return Obj.map(directory, (elems) => Arr.map(elems, (elem) => elem.dom));
+      return Object.fromEntries(Object.entries(directory).map(([_k, _v]: [any, any]) => [_k, ((elems) => (elems).map((elem) => elem.dom))(_v, _k as any)]));
     }
   };
 };

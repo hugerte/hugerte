@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { CopySelected, TableFill, TableLookup } from '@ephox/snooker';
 import { SugarElement, SugarElements, SugarNode } from '@ephox/sugar';
 
@@ -11,7 +10,7 @@ import * as Ephemera from '../selection/Ephemera';
 import * as TableSelection from '../selection/TableSelection';
 import { TableActions } from './TableActions';
 
-const extractSelected = (cells: SugarElement<HTMLTableCellElement>[]): Optional<SugarElement<HTMLTableElement>[]> => {
+const extractSelected = (cells: SugarElement<HTMLTableCellElement>[]): (SugarElement<HTMLTableElement>[]) | null => {
   // Assume for now that we only have one table (also handles the case where we multi select outside a table)
   return TableLookup.table(cells[0]).map(
     (table) => {
@@ -23,10 +22,10 @@ const extractSelected = (cells: SugarElement<HTMLTableCellElement>[]): Optional<
 };
 
 const serializeElements = (editor: Editor, elements: SugarElement<HTMLElement>[]): string =>
-  Arr.map(elements, (elm) => editor.selection.serializer.serialize(elm.dom, {})).join('');
+  (elements).map((elm) => editor.selection.serializer.serialize(elm.dom, {})).join('');
 
 const getTextContent = (elements: SugarElement<HTMLElement>[]): string =>
-  Arr.map(elements, (element) => element.dom.innerText).join('');
+  (elements).map((element) => element.dom.innerText).join('');
 
 const registerEvents = (editor: Editor, actions: TableActions): void => {
   editor.on('BeforeGetContent', (e) => {
@@ -48,10 +47,10 @@ const registerEvents = (editor: Editor, actions: TableActions): void => {
   editor.on('BeforeSetContent', (e) => {
     if (e.selection === true && e.paste === true) {
       const selectedCells = TableSelection.getCellsFromSelection(editor);
-      Arr.head(selectedCells).each((cell) => {
+      ((selectedCells)[0] ?? null).each((cell) => {
         TableLookup.table(cell).each((table) => {
 
-          const elements = Arr.filter(SugarElements.fromHtml(e.content), (content) => {
+          const elements = (SugarElements.fromHtml(e.content)).filter((content) => {
             return SugarNode.name(content) !== 'meta';
           });
 

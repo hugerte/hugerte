@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Classes, Css } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -9,7 +8,7 @@ import { DockingConfig, DockingDecision, DockingMode, DockingState, DockingViewp
 
 const morphToStatic = (component: AlloyComponent, config: DockingConfig, state: DockingState): void => {
   state.setDocked(false);
-  Arr.each([ 'left', 'right', 'top', 'bottom', 'position' ], (prop) => Css.remove(component.element, prop));
+  ([ 'left', 'right', 'top', 'bottom', 'position' ]).forEach((prop) => Css.remove(component.element, prop));
   config.onUndocked(component);
 };
 

@@ -1,27 +1,27 @@
 import { AlloyComponent, AlloyTriggers, Composing, Disabling, Focusing, Form, Reflecting, Representing, TabSection } from '@ephox/alloy';
 import { StructureSchema } from '@ephox/boulder';
 import { Dialog, DialogManager } from '@ephox/bridge';
-import { Cell, Merger, Obj, Optional, Type } from '@ephox/katamari';
+import { Cell, Merger } from '@ephox/katamari';
 
 import { formBlockEvent, formCloseEvent, formUnblockEvent } from '../general/FormEvents';
 import { bodyChannel, dialogChannel, footerChannel, titleChannel } from './DialogChannels';
 import * as SilverDialogCommon from './SilverDialogCommon';
 import { FooterState } from './SilverDialogFooter';
 
-const getCompByName = (access: DialogAccess, name: string): Optional<AlloyComponent> => {
+const getCompByName = (access: DialogAccess, name: string): (AlloyComponent) | null => {
   // TODO: Add API to alloy to find the inner most component of a Composing chain.
   const root = access.getRoot();
   // This is just to avoid throwing errors if the dialog closes before this. We should take it out
   // while developing (probably), and put it back in for the real thing.
   if (root.getSystem().isConnected()) {
-    const form = Composing.getCurrent(access.getFormWrapper()).getOr(access.getFormWrapper());
+    const form = Composing.getCurrent(access.getFormWrapper()) ?? (access.getFormWrapper());
     return Form.getField(form, name).orThunk(() => {
       const footer = access.getFooter();
-      const footerState: Optional<FooterState> = footer.bind((f) => Reflecting.getState(f).get());
+      const footerState: (FooterState) | null = footer.bind((f) => Reflecting.getState(f).get());
       return footerState.bind((f) => f.lookupByName(name));
     });
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
@@ -29,14 +29,14 @@ const validateData = <T extends Dialog.DialogData>(access: DialogAccess, data: T
   const root = access.getRoot();
   return Reflecting.getState(root).get().map((dialogState: DialogManager.DialogInit<T>) => StructureSchema.getOrDie(
     StructureSchema.asRaw('data', dialogState.dataValidator, data)
-  )).getOr(data);
+  )) ?? (data);
 };
 
 export interface DialogAccess {
   getId: () => string;
   getRoot: () => AlloyComponent;
   getBody: () => AlloyComponent;
-  getFooter: () => Optional<AlloyComponent>;
+  getFooter: () => (AlloyComponent) | null;
   getFormWrapper: () => AlloyComponent;
   toggleFullscreen: () => void;
 }
@@ -57,7 +57,7 @@ const getDialogApi = <T extends Dialog.DialogData>(
     const root = access.getRoot();
     const valueComp = root.getSystem().isConnected() ? access.getFormWrapper() : root;
     const representedValues = Representing.getValue(valueComp);
-    const menuItemCurrentState = Obj.map(menuItemStates, (cell) => cell.get());
+    const menuItemCurrentState = Object.fromEntries(Object.entries(menuItemStates).map(([_k, _v]: [any, any]) => [_k, ((cell) => cell.get())(_v, _k as any)]));
     return {
       ...representedValues,
       ...menuItemCurrentState
@@ -72,11 +72,11 @@ const getDialogApi = <T extends Dialog.DialogData>(
       const newInternalData = validateData(access, mergedData);
       const form = access.getFormWrapper();
       Representing.setValue(form, newInternalData);
-      Obj.each(menuItemStates, (v, k) => {
-        if (Obj.has(mergedData, k)) {
+      Object.entries(menuItemStates).forEach(([_k, _v]: [any, any]) => ((v, k) => {
+        if (Object.prototype.hasOwnProperty.call(mergedData, k)) {
           v.set(mergedData[k]);
         }
-      });
+      })(_v, _k));
     });
   };
 
@@ -89,7 +89,7 @@ const getDialogApi = <T extends Dialog.DialogData>(
   };
 
   const block = (message: string) => {
-    if (!Type.isString(message)) {
+    if (!typeof (message) === 'string') {
       throw new Error('The dialogInstanceAPI.block function should be passed a blocking message of type string as an argument');
     }
     withRoot((root) => {

@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
 
 import * as ButtonBase from '../../ui/common/ButtonBase';
 import { ButtonDetail, ButtonSketcher, ButtonSpec } from '../../ui/types/ButtonTypes';
@@ -15,18 +14,18 @@ const factory: SingleSketchFactory<ButtonDetail, ButtonSpec> = (detail): SketchS
 
   const tag = detail.dom.tag;
 
-  const lookupAttr = (attr: string) => Obj.get(detail.dom, 'attributes').bind((attrs) => Obj.get(attrs, attr));
+  const lookupAttr = (attr: string) => ((detail.dom)['attributes'] ?? null).bind((attrs) => ((attrs)[attr] ?? null));
 
   // Button tags should not have a default role of button, and only buttons should
   // get a type of button.
   const getModAttributes = (): Record<string, string | number | boolean> => {
     if (tag === 'button') {
       // Default to type button, unless specified otherwise
-      const type = lookupAttr('type').getOr('button');
+      const type = lookupAttr('type') ?? ('button');
       // Only use a role if it is specified
       const roleAttrs = lookupAttr('role').map(
         (role): Record<string, string | number | boolean> => ({ role })
-      ).getOr({ });
+      ) ?? ({ });
 
       return {
         type,
@@ -35,7 +34,7 @@ const factory: SingleSketchFactory<ButtonDetail, ButtonSpec> = (detail): SketchS
     } else {
       // We are not a button, so type is irrelevant (unless specified)
       // Default role to button
-      const role = detail.role.getOr(lookupAttr('role').getOr('button'));
+      const role = detail.role ?? (lookupAttr('role') ?? ('button'));
       return { role };
     }
   };

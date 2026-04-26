@@ -1,5 +1,5 @@
 import { Assertions, Pipeline, Step, TestLogs, TestStore } from '@ephox/agar';
-import { Fun, Global, Merger, Obj, Optional, Type } from '@ephox/katamari';
+import { Global, Merger, Optional } from '@ephox/katamari';
 import { DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarDocument, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
 
 import { AlloyComponent } from '../component/ComponentApi';
@@ -65,10 +65,10 @@ const bddSetupIn = <T extends RootNode, U = string>(
   setupRoot: () => SetupRootElement<T>,
   createComponent: (store: TestStore<U>, doc: T, body: SugarElement<Node>) => AlloyComponent,
   createGui?: () => Gui.GuiSystem,
-  skip: () => boolean = Fun.never
+  skip: () => boolean = (() => false as const)
 ): Hook<T, U> => {
   let state: Record<string, any> = {};
-  let teardown: () => void = Fun.noop;
+  let teardown: () => void = () => {};
   let hasFailure = false;
 
   // Note: Don't use bedrock imports here so as to avoid requiring bedrock as a
@@ -83,10 +83,10 @@ const bddSetupIn = <T extends RootNode, U = string>(
     teardown = setup.teardown;
     const root = setup.root;
     const contentContainer = SugarShadowDom.getContentContainer(root);
-    const gui = Type.isNullable(createGui) ? Gui.create() : createGui();
+    const gui = (createGui) == null ? Gui.create() : createGui();
 
     // Attach the gui if needed
-    if (Traverse.parent(gui.element).isNone()) {
+    if (Traverse.parent(gui.element) === null) {
       Attachment.attachSystem(contentContainer, gui);
     }
 
@@ -110,13 +110,13 @@ const bddSetupIn = <T extends RootNode, U = string>(
 
   Global.after(() => {
     if (!hasFailure) {
-      Obj.get(state, 'gui').each(Attachment.detachSystem);
+      ((state)['gui'] ?? null).each(Attachment.detachSystem);
       teardown();
     }
     state = {};
   });
 
-  const lazyGet = (name: string) => () => Obj.get(state, name).getOrDie('The setup hooks have not run yet');
+  const lazyGet = (name: string) => () => ((state)[name] ?? null).getOrDie('The setup hooks have not run yet');
   return {
     root: lazyGet('root'),
     body: lazyGet('body'),
@@ -150,7 +150,7 @@ const bddSetup = <T = string>(
 ): Hook<SugarElement<Document>, T> =>
   bddSetupIn(() => ({
     root: SugarDocument.getDocument(),
-    teardown: Fun.noop
+    teardown: () => {}
   }), createComponent, createGui);
 
 /**
@@ -258,12 +258,12 @@ const bddAddStyles = (dos: RootNode, styles: string[]): void => {
   // Note: Don't use bedrock imports here so as to avoid requiring bedrock as a
   // dependency. It'll still work the same, but we'll be missing the types.
   Global.before(() => {
-    style = Optional.some(addStyles(dos, styles));
+    style = addStyles(dos, styles);
   });
 
   Global.after(() => {
     style.each(Remove.remove);
-    style = Optional.none();
+    style = null;
   });
 };
 

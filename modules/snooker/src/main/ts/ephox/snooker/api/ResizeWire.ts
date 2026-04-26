@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { SugarElement, SugarLocation, SugarNode, SugarPosition, Traverse } from '@ephox/sugar';
 
 // parent: the container where the resize bars are appended
@@ -22,9 +21,9 @@ const only = (element: SugarElement<Document | Element>, isResizable: ResizeCall
   // If element is a 'document', use the document element ('HTML' tag) for appending.
   const parent = SugarNode.isDocument(element) ? Traverse.documentElement(element) : element;
   return {
-    parent: Fun.constant(parent),
-    view: Fun.constant(element),
-    origin: Fun.constant(SugarPosition(0, 0)),
+    parent: () => parent,
+    view: () => element,
+    origin: () => SugarPosition(0, 0),
     isResizable
   };
 };
@@ -32,8 +31,8 @@ const only = (element: SugarElement<Document | Element>, isResizable: ResizeCall
 const detached = (editable: SugarElement<Element>, chrome: SugarElement<Element>, isResizable: ResizeCallback): ResizeWire => {
   const origin = () => SugarLocation.absolute(chrome);
   return {
-    parent: Fun.constant(chrome),
-    view: Fun.constant(editable),
+    parent: () => chrome,
+    view: () => editable,
     origin,
     isResizable
   };
@@ -41,9 +40,9 @@ const detached = (editable: SugarElement<Element>, chrome: SugarElement<Element>
 
 const body = (editable: SugarElement<Element>, chrome: SugarElement<Element>, isResizable: ResizeCallback): ResizeWire => {
   return {
-    parent: Fun.constant(chrome),
-    view: Fun.constant(editable),
-    origin: Fun.constant(SugarPosition(0, 0)),
+    parent: () => chrome,
+    view: () => editable,
+    origin: () => SugarPosition(0, 0),
     isResizable
   };
 };

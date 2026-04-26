@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Coupling } from '../../api/behaviour/Coupling';
@@ -19,12 +19,12 @@ import { ButtonSpec } from '../types/ButtonTypes';
 import { SplitDropdownDetail } from '../types/SplitDropdownTypes';
 import { TieredMenuSpec } from '../types/TieredMenuTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.required('toggleClass'),
   FieldSchema.required('fetch'),
   Fields.onStrictHandler('onExecute'),
   FieldSchema.defaulted('getHotspot', Optional.some),
-  FieldSchema.defaulted('getAnchorOverrides', Fun.constant({ })),
+  FieldSchema.defaulted('getAnchorOverrides', () => { }),
   AnchorLayouts.schema(),
   Fields.onStrictHandler('onItemExecute'),
   FieldSchema.option('lazySink'),
@@ -37,7 +37,7 @@ const schema = Fun.constant([
   FieldSchema.option('role')
 ].concat(
   SketcherFields.sandboxFields()
-));
+);
 
 const arrowPart = PartType.required<SplitDropdownDetail, ButtonSpec>({
   factory: Button,
@@ -101,7 +101,7 @@ const buttonPart = PartType.required<SplitDropdownDetail, ButtonSpec>({
   }
 });
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   arrowPart,
   buttonPart,
 
@@ -146,9 +146,9 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
   }),
 
   InternalSink.partType()
-]);
+];
 
-const name = Fun.constant('SplitDropdown');
+const name = () => 'SplitDropdown';
 export {
   name,
   schema,

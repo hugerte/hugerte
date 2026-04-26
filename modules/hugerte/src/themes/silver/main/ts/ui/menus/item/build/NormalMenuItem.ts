@@ -1,6 +1,5 @@
 import { AlloyComponent, Disabling, ItemTypes } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -19,10 +18,10 @@ const renderNormalItem = (spec: Menu.MenuItem, itemResponse: ItemResponse, provi
     presets: 'normal',
     iconContent: spec.icon,
     textContent: spec.text,
-    htmlContent: Optional.none(),
+    htmlContent: null,
     ariaLabel: spec.text,
-    caret: Optional.none(),
-    checkMark: Optional.none(),
+    caret: null,
+    checkMark: null,
     shortcutContent: spec.shortcut
   }, providersBackstage, renderIcons);
 

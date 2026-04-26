@@ -1,4 +1,4 @@
-import { Fun, Id, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Traverse } from '@ephox/sugar';
 
 import * as AriaLabel from '../../aria/AriaLabel';
@@ -42,7 +42,7 @@ const factory: CompositeSketchFactory<ModalDialogDetail, ModalDialogSpec> = (det
         AddEventsBehaviour.config('dialog-blocker-events', [
           // Ensure we use runOnSource otherwise this would cause an infinite loop, as `focusIn` would fire a `focusin` which would then get responded to and so forth
           AlloyEvents.runOnSource(NativeEvents.focusin(), () => {
-            Blocking.isBlocked(dialog) ? Fun.noop() : Keying.focusIn(dialog);
+            Blocking.isBlocked(dialog) ?  : Keying.focusIn(dialog);
           })
         ])
       ])
@@ -73,7 +73,7 @@ const factory: CompositeSketchFactory<ModalDialogDetail, ModalDialogSpec> = (det
     Blocking.unblock(dialog);
   };
 
-  const modalEventsId = Id.generate('modal-events');
+  const modalEventsId = (('modal-events') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
   const eventOrder = {
     ...detail.eventOrder,
     [SystemEvents.attachedToDom()]: [ modalEventsId ].concat(detail.eventOrder['alloy.system.attached'] || [])

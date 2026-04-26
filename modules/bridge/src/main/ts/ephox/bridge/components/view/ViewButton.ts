@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 
@@ -40,9 +40,9 @@ export interface ViewButtonsGroupSpec {
 export type ViewButtonSpec = ViewNormalButtonSpec | ViewToggleButtonSpec | ViewButtonsGroupSpec;
 
 interface BaseButton<Api extends ViewButtonApi> {
-  text: Optional<string>;
-  icon: Optional<string>;
-  tooltip: Optional<string>;
+  text: (string) | null;
+  icon: (string) | null;
+  tooltip: (string) | null;
   buttonType: 'primary' | 'secondary';
   borderless: boolean;
   onAction: (api: Api) => void;

@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { CellLocation, CellNavigation, TableLookup } from '@ephox/snooker';
 import { Compare, ContentEditable, CursorPosition, Insert, SimSelection, SugarElement, SugarNode, WindowSelection } from '@ephox/sugar';
 
@@ -19,7 +19,7 @@ import * as NavigationUtils from './NavigationUtils';
 type PositionsUntilFn = (scope: HTMLElement, start: CaretPosition) => LineInfo;
 
 const hasNextBreak = (getPositionsUntil: PositionsUntilFn, scope: HTMLElement, lineInfo: LineInfo): boolean =>
-  lineInfo.breakAt.exists((breakPos) => getPositionsUntil(scope, breakPos).breakAt.isSome());
+  lineInfo.breakAt.exists((breakPos) => getPositionsUntil(scope, breakPos).breakAt !== null);
 
 const startsWithWrapBreak = (lineInfo: LineInfo) => lineInfo.breakType === BreakType.Wrap && lineInfo.positions.length === 0;
 
@@ -34,12 +34,12 @@ const isAtTableCellLine = (getPositionsUntil: PositionsUntilFn, scope: HTMLEleme
   if (startsWithWrapBreak(lineInfo) || (!NodeType.isBr(pos.getNode()) && startsWithBrBreak(lineInfo))) {
     return !hasNextBreak(getPositionsUntil, scope, lineInfo);
   } else {
-    return lineInfo.breakAt.isNone();
+    return lineInfo.breakAt === null;
   }
 };
 
-const isAtFirstTableCellLine = Fun.curry(isAtTableCellLine, getPositionsUntilPreviousLine);
-const isAtLastTableCellLine = Fun.curry(isAtTableCellLine, getPositionsUntilNextLine);
+const isAtFirstTableCellLine = ((..._rest: any[]) => (isAtTableCellLine)(getPositionsUntilPreviousLine, ..._rest));
+const isAtLastTableCellLine = ((..._rest: any[]) => (isAtTableCellLine)(getPositionsUntilNextLine, ..._rest));
 
 const isCaretAtStartOrEndOfTable = (forward: boolean, rng: Range, table: Element): boolean => {
   const caretPos = CaretPosition.fromRangeStart(rng);
@@ -61,16 +61,16 @@ const navigateHorizontally = (editor: Editor, forward: boolean, table: HTMLEleme
 };
 
 const getClosestAbovePosition = (root: HTMLElement, table: HTMLElement, start: CaretPosition): CaretPosition => findClosestPositionInAboveCell(table, start).orThunk(
-  () => Arr.head(start.getClientRects()).bind((rect) => findClosestHorizontalPositionFromPoint(getPositionsAbove(root, CaretPosition.before(table)), rect.left))
-).getOr(CaretPosition.before(table));
+  () => ((start.getClientRects())[0] ?? null).bind((rect) => findClosestHorizontalPositionFromPoint(getPositionsAbove(root, CaretPosition.before(table)), rect.left))
+) ?? (CaretPosition.before(table));
 
 const getClosestBelowPosition = (root: HTMLElement, table: HTMLElement, start: CaretPosition): CaretPosition => findClosestPositionInBelowCell(table, start).orThunk(
-  () => Arr.head(start.getClientRects()).bind((rect) => findClosestHorizontalPositionFromPoint(getPositionsBelow(root, CaretPosition.after(table)), rect.left))
-).getOr(CaretPosition.after(table));
+  () => ((start.getClientRects())[0] ?? null).bind((rect) => findClosestHorizontalPositionFromPoint(getPositionsBelow(root, CaretPosition.after(table)), rect.left))
+) ?? (CaretPosition.after(table));
 
-const getTable = (previous: boolean, pos: CaretPosition): Optional<HTMLElement> => {
+const getTable = (previous: boolean, pos: CaretPosition): (HTMLElement) | null => {
   const node = pos.getNode(previous);
-  return NodeType.isTable(node) ? Optional.some(node) : Optional.none();
+  return NodeType.isTable(node) ? node : null;
 };
 
 const renderBlock = (down: boolean, editor: Editor, table: HTMLElement) => {
@@ -113,10 +113,10 @@ const navigateVertically = (editor: Editor, down: boolean, table: HTMLElement, t
 };
 
 const move = (editor: Editor, forward: boolean, mover: (editor: Editor, forward: boolean, table: HTMLTableElement, td: HTMLTableCellElement) => boolean) =>
-  Optional.from(editor.dom.getParent<HTMLTableCellElement>(editor.selection.getNode(), 'td,th'))
-    .bind((td) => Optional.from(editor.dom.getParent(td, 'table'))
+  (editor.dom.getParent<HTMLTableCellElement>(editor.selection.getNode(), 'td,th') ?? null)
+    .bind((td) => (editor.dom.getParent(td, 'table') ?? null)
       .map((table) => mover(editor, forward, table, td))
-    ).getOr(false);
+    ) ?? (false);
 
 const moveH = (editor: Editor, forward: boolean): boolean => move(editor, forward, navigateHorizontally);
 
@@ -127,8 +127,8 @@ const getCellFirstCursorPosition = (cell: SugarElement<Node>): Range => {
   return WindowSelection.toNative(selection);
 };
 
-const tabGo = (editor: Editor, isRoot: (e: SugarElement<Node>) => boolean, cell: CellLocation): Optional<Range> => {
-  return cell.fold<Optional<Range>>(Optional.none, Optional.none, (_current, next) => {
+const tabGo = (editor: Editor, isRoot: (e: SugarElement<Node>) => boolean, cell: CellLocation): (Range) | null => {
+  return cell.fold<(Range) | null>(Optional.none, Optional.none, (_current, next) => {
     return CursorPosition.first(next).map((cell) => {
       return getCellFirstCursorPosition(cell);
     });
@@ -151,7 +151,7 @@ const handleTab = (editor: Editor, forward: boolean): boolean => {
   const body = SugarElement.fromDom(editor.getBody());
   const isRoot = (element: SugarElement<Node>) => {
     const name = SugarNode.name(element);
-    return Compare.eq(element, body) || Arr.contains(rootElements, name);
+    return Compare.eq(element, body) || (rootElements).includes(name);
   };
 
   const rng = editor.selection.getRng();
@@ -171,7 +171,7 @@ const handleTab = (editor: Editor, forward: boolean): boolean => {
     });
 
     return true;
-  }).getOr(false);
+  }) ?? (false);
 };
 
 export {

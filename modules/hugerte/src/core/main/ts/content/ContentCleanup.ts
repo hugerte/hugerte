@@ -1,4 +1,4 @@
-import { Arr, Unicode } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Attribute, Insert, Remove, SelectorFilter, SugarElement } from '@ephox/sugar';
 
 import * as ElementType from '../dom/ElementType';
@@ -11,7 +11,7 @@ export const cleanupBogusElements = (parent: SugarElement<Node>): void => {
       Remove.remove(elem);
     } else if (ElementType.isBr(elem)) {
       // Need to keep bogus padding brs represented as a zero-width space so that they aren't collapsed by the browser
-      Insert.before(elem, SugarElement.fromText(Unicode.zeroWidth));
+      Insert.before(elem, SugarElement.fromText('\uFEFF'));
       Remove.remove(elem);
     } else {
       Remove.unwrap(elem);
@@ -22,7 +22,7 @@ export const cleanupBogusElements = (parent: SugarElement<Node>): void => {
 export const cleanupInputNames = (parent: SugarElement<Node>): void => {
   const inputs = SelectorFilter.descendants(parent, 'input');
 
-  Arr.each(inputs, (input) => {
+  (inputs).forEach((input) => {
     Attribute.remove(input, 'name');
   });
 };

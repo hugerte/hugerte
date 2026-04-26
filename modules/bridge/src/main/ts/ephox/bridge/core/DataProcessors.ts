@@ -1,5 +1,4 @@
 import { StructureProcessor } from '@ephox/boulder';
-import { Arr, Optional, Type } from '@ephox/katamari';
 
 import { checkboxDataProcessor } from '../components/dialog/Checkbox';
 import { collectionDataProcessor } from '../components/dialog/Collection';
@@ -24,7 +23,7 @@ interface NamedItem {
   readonly type: string;
 }
 
-const isNamedItem = (obj: any): obj is NamedItem => Type.isString(obj.type) && Type.isString(obj.name);
+const isNamedItem = (obj: any): obj is NamedItem => typeof (obj.type) === 'string' && typeof (obj.name) === 'string';
 
 const dataProcessors: Record<string, StructureProcessor> = {
   checkbox: checkboxDataProcessor,
@@ -46,11 +45,11 @@ const dataProcessors: Record<string, StructureProcessor> = {
   togglemenuitem: dialogToggleMenuItemDataProcessor
 };
 
-const getDataProcessor = (item: { type: string }): Optional<StructureProcessor> =>
-  Optional.from(dataProcessors[item.type]);
+const getDataProcessor = (item: { type: string }): (StructureProcessor) | null =>
+  (dataProcessors[item.type] ?? null);
 
 const getNamedItems = (structure: any): NamedItem[] =>
-  Arr.filter(getAllObjects(structure), isNamedItem);
+  (getAllObjects(structure)).filter(isNamedItem);
 
 export {
   getDataProcessor,

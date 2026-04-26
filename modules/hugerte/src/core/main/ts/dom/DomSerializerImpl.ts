@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -117,8 +116,8 @@ const DomSerializerImpl = (settings: DomSerializerSettings, editor?: Editor): Do
     serialize: serialize as DomSerializerImpl['serialize'],
     addRules: schema.addValidElements,
     setRules: schema.setValidElements,
-    addTempAttr: Fun.curry(addTempAttr, htmlParser, tempAttrs),
-    getTempAttrs: Fun.constant(tempAttrs),
+    addTempAttr: ((..._rest: any[]) => (addTempAttr)(htmlParser, tempAttrs, ..._rest)),
+    getTempAttrs: () => tempAttrs,
     getNodeFilters: htmlParser.getNodeFilters,
     getAttributeFilters: htmlParser.getAttributeFilters,
     removeNodeFilter: htmlParser.removeNodeFilter,

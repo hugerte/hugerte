@@ -1,4 +1,3 @@
-import { Obj, Type } from '@ephox/katamari';
 import { Css, Height, SugarElement, SugarPosition, Width } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -32,10 +31,10 @@ export const resize = (editor: Editor, deltas: SugarPosition, resizeType: Resize
   const container = SugarElement.fromDom(editor.getContainer());
 
   const dimensions = getDimensions(editor, deltas, resizeType, Height.get(container), Width.get(container));
-  Obj.each(dimensions, (val, dim) => {
-    if (Type.isNumber(val)) {
+  Object.entries(dimensions).forEach(([_k, _v]: [any, any]) => ((val, dim) => {
+    if (typeof (val) === 'number') {
       Css.set(container, dim, Utils.numToPx(val));
     }
-  });
+  })(_v, _k));
   Events.fireResizeEditor(editor);
 };

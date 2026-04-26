@@ -1,5 +1,4 @@
 import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 import { Direction, SugarElement } from '@ephox/sugar';
 
 import { AnchorLayout } from '../layout/LayoutTypes';
@@ -20,9 +19,9 @@ const get = (
   defaultRtl: AnchorLayout[],
   defaultBottomLtr: AnchorLayout[],
   defaultBottomRtl: AnchorLayout[],
-  dirElement: Optional<SugarElement<Element>>
+  dirElement: (SugarElement<Element>) | null
 ): AnchorLayout[] => {
-  const isBottomToTop = dirElement.map(isBottomToTopDir).getOr(false);
+  const isBottomToTop = dirElement.map(isBottomToTopDir) ?? (false);
 
   const customLtr = info.layouts.map((ls) => ls.onLtr(elem));
   const customRtl = info.layouts.map((ls) => ls.onRtl(elem));
@@ -30,14 +29,14 @@ const get = (
   const ltr = isBottomToTop ?
     info.layouts.bind((ls) => ls.onBottomLtr.map((f) => f(elem)))
       .or(customLtr)
-      .getOr(defaultBottomLtr) :
-    customLtr.getOr(defaultLtr);
+       ?? (defaultBottomLtr) :
+    customLtr ?? (defaultLtr);
 
   const rtl = isBottomToTop ?
     info.layouts.bind((ls) => ls.onBottomRtl.map((f) => f(elem)))
       .or(customRtl)
-      .getOr(defaultBottomRtl) :
-    customRtl.getOr(defaultRtl);
+       ?? (defaultBottomRtl) :
+    customRtl ?? (defaultRtl);
 
   const f = Direction.onDirection(ltr, rtl);
   return f(elem);

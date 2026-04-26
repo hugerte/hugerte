@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { FormComponentWithLabel, formComponentWithLabelFields, FormComponentWithLabelSpec } from './FormComponent';
@@ -14,8 +14,8 @@ export interface InputSpec extends FormComponentWithLabelSpec {
 
 export interface Input extends FormComponentWithLabel {
   type: 'input';
-  inputMode: Optional<string>;
-  placeholder: Optional<string>;
+  inputMode: (string) | null;
+  placeholder: (string) | null;
   maximized: boolean;
   enabled: boolean;
 }

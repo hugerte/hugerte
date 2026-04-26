@@ -1,5 +1,4 @@
 import { Transformations } from '@ephox/acid';
-import { Arr, Type } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';
@@ -30,7 +29,7 @@ const each = Tools.each;
 const dom = DOMUtils.DOM;
 
 const isPreviewItem = (item: string | PreviewItem | undefined): item is PreviewItem =>
-  Type.isNonNullable(item) && Type.isObject(item);
+  (item) != null && (typeof (item) === 'object' && (item) !== null);
 
 const parsedSelectorToHtml = (ancestry: Array<string | PreviewItem>, editor?: Editor): HTMLElement => {
   const schema = editor && editor.schema || Schema({});
@@ -43,7 +42,7 @@ const parsedSelectorToHtml = (ancestry: Array<string | PreviewItem>, editor?: Ed
   };
 
   const createElement = (sItem: string | PreviewItem): HTMLElement => {
-    const item = Type.isString(sItem) ? {
+    const item = typeof (sItem) === 'string' ? {
       name: sItem,
       classes: [],
       attrs: {}
@@ -59,7 +58,7 @@ const parsedSelectorToHtml = (ancestry: Array<string | PreviewItem>, editor?: Ed
     const parentsRequired = elmRule?.parentsRequired;
 
     if (parentsRequired && parentsRequired.length) {
-      return candidate && Arr.contains(parentsRequired, candidate) ? candidate : parentsRequired[0];
+      return candidate && (parentsRequired).includes(candidate) ? candidate : parentsRequired[0];
     } else {
       return false;
     }
@@ -163,7 +162,7 @@ const parseSelectorItem = (item: string): PreviewItem => {
 };
 
 const parseSelector = (selector: string | undefined): PreviewItem[] => {
-  if (!Type.isString(selector)) {
+  if (!typeof (selector) === 'string') {
     return [];
   }
 
@@ -197,7 +196,7 @@ const getCssText = (editor: Editor, format: string | ApplyFormat): string => {
 
   // Removes any variables since these can't be previewed
   const removeVars = (val: FormatAttrOrStyleValue): string => {
-    return Type.isString(val) ? val.replace(/%(\w+)/g, '') : '';
+    return typeof (val) === 'string' ? val.replace(/%(\w+)/g, '') : '';
   };
 
   const getComputedStyle = (name: string, elm?: Element): string => {
@@ -205,7 +204,7 @@ const getCssText = (editor: Editor, format: string | ApplyFormat): string => {
   };
 
   // Create block/inline element to use for preview
-  if (Type.isString(format)) {
+  if (typeof (format) === 'string') {
     const formats = editor.formatter.get(format);
     if (!formats) {
       return '';

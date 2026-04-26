@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloySpec, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Dimension } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -61,38 +61,38 @@ const toPt = (fontSize: string, precision?: number): string => {
     // Round to the nearest 0.5
     return round(parseInt(fontSize, 10) * 72 / 96, precision || 0) + 'pt';
   } else {
-    return Obj.get(keywordFontSizes, fontSize).getOr(fontSize);
+    return ((keywordFontSizes)[fontSize] ?? null) ?? (fontSize);
   }
 };
 
-const toLegacy = (fontSize: string): string => Obj.get(legacyFontSizes, fontSize).getOr('');
+const toLegacy = (fontSize: string): string => ((legacyFontSizes)[fontSize] ?? null) ?? ('');
 
 const getSpec = (editor: Editor): SelectSpec => {
   const getMatchingValue = () => {
-    let matchOpt = Optional.none<{ title: string; format: string }>();
+    let matchOpt = null;
     const items = dataset.data;
 
     const fontSize = editor.queryCommandValue('FontSize');
     if (fontSize) {
       // checking for three digits after decimal point, should be precise enough
-      for (let precision = 3; matchOpt.isNone() && precision >= 0; precision--) {
+      for (let precision = 3; matchOpt === null && precision >= 0; precision--) {
         const pt = toPt(fontSize, precision);
         const legacy = toLegacy(pt);
-        matchOpt = Arr.find(items, (item) => item.format === fontSize || item.format === pt || item.format === legacy);
+        matchOpt = ((items).find((item) => item.format === fontSize || item.format === pt || item.format === legacy) ?? null);
       }
     }
 
     return { matchOpt, size: fontSize };
   };
 
-  const isSelectedFor = (item: string) => (valueOpt: Optional<SelectedFormat>) => valueOpt.exists((value) => value.format === item);
+  const isSelectedFor = (item: string) => (valueOpt: (SelectedFormat) | null) => valueOpt.exists((value) => value.format === item);
 
   const getCurrentValue = () => {
     const { matchOpt } = getMatchingValue();
     return matchOpt;
   };
 
-  const getPreviewFor: FormatRegister.GetPreviewForType = Fun.constant(Optional.none);
+  const getPreviewFor: FormatRegister.GetPreviewForType = () => Optional.none;
 
   const onAction = (rawItem: FormatterFormatItem) => () => {
     editor.undoManager.transact(() => {
@@ -104,7 +104,7 @@ const getSpec = (editor: Editor): SelectSpec => {
   const updateSelectMenuText = (comp: AlloyComponent) => {
     const { matchOpt, size } = getMatchingValue();
 
-    const text = matchOpt.fold(Fun.constant(size), (match) => match.title);
+    const text = matchOpt.fold(() => size, (match) => match.title);
     AlloyTriggers.emitWith(comp, updateMenuText, {
       text
     });
@@ -115,8 +115,8 @@ const getSpec = (editor: Editor): SelectSpec => {
 
   return {
     tooltip: Tooltip.makeTooltipText(editor, btnTooltip, fallbackFontSize),
-    text: Optional.some(fallbackFontSize),
-    icon: Optional.none(),
+    text: fallbackFontSize,
+    icon: null,
     isSelectedFor,
     getPreviewFor,
     getCurrentValue,
@@ -124,7 +124,7 @@ const getSpec = (editor: Editor): SelectSpec => {
     updateText: updateSelectMenuText,
     dataset,
     shouldHide: false,
-    isInvalid: Fun.never
+    isInvalid: (() => false as const)
   };
 };
 
@@ -165,9 +165,9 @@ const getNumberInputSpec = (editor: Editor): NumberInputSpec => {
       const parsedText = Dimension.parse(text, [ 'unsupportedLength', 'empty' ]).or(
         Dimension.parse(currentValue, [ 'unsupportedLength', 'empty' ])
       );
-      const value = parsedText.map((res) => res.value).getOr(defaultValue);
+      const value = parsedText.map((res) => res.value) ?? (defaultValue);
       const defaultUnit = Options.getFontSizeInputDefaultUnit(editor);
-      const unit = parsedText.map((res) => res.unit).filter((u) => u !== '').getOr(defaultUnit);
+      const unit = parsedText.map((res) => res.unit).filter((u) => u !== '') ?? (defaultUnit);
 
       const newValue = updateFunction(value, getConfigFromUnit(unit).step);
       const res = `${isValidValue(newValue) ? newValue : value}${unit}`;

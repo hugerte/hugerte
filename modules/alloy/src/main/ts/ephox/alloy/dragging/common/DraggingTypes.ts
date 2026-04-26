@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { EventArgs, SugarElement, SugarPosition } from '@ephox/sugar';
 
 import { Bounds } from '../../alien/Boxes';
@@ -25,30 +24,30 @@ export interface DraggingBehaviour<E> extends Behaviour.AlloyBehaviour<DraggingC
  */
 export type DraggingMode = 'touch' | 'mouse' | 'mouseOrTouch';
 export type SensorCoords = (x: number, y: number) => CoordAdt;
-export type OutputCoords = (x: Optional<number>, y: Optional<number>) => CoordAdt;
+export type OutputCoords = (x: (number) | null, y: (number) | null) => CoordAdt;
 
 export interface SnapConfig<E> {
   readonly sensor: CoordAdt;
   readonly range: SugarPosition;
-  readonly output: CoordAdt<Optional<number>>;
-  readonly extra: Optional<E>;
+  readonly output: CoordAdt<(number) | null>;
+  readonly extra: (E) | null;
 }
 
 export interface SnapConfigSpec<E> {
   readonly sensor: CoordAdt;
   readonly range: SugarPosition;
-  readonly output: CoordAdt<Optional<number>>;
+  readonly output: CoordAdt<(number) | null>;
   readonly extra?: E;
 }
 
 export interface SnapOutput<E> {
   readonly output: CoordAdt;
-  readonly extra: Optional<E>;
+  readonly extra: (E) | null;
 }
 
 export interface SnapPin<E> {
   readonly coord: CoordAdt;
-  readonly extra: Optional<E>;
+  readonly extra: (E) | null;
 }
 
 export interface SnapsConfig<E> {
@@ -71,7 +70,7 @@ export interface SnapsConfigSpec<E> {
 
 export interface DraggingConfig<E> {
   readonly getTarget: (comp: SugarElement<HTMLElement>) => SugarElement<HTMLElement>;
-  readonly snaps: Optional<SnapsConfig<E>>;
+  readonly snaps: (SnapsConfig<E>) | null;
   readonly onDrop: (comp: AlloyComponent, target: SugarElement<HTMLElement>) => void;
   readonly repositionTarget: boolean;
   readonly onDrag: (comp: AlloyComponent, target: SugarElement<HTMLElement>, delta: SugarPosition) => void;
@@ -96,7 +95,7 @@ export interface CommonDraggingConfigSpec<E> {
 export type DraggingConfigSpec<E> = MouseDraggingConfigSpec<E> | TouchDraggingConfigSpec<E> | MouseOrTouchDraggingConfigSpec<E>;
 
 export interface DragModeDeltas<E extends Event, T> {
-  readonly getData: (event: EventArgs<E>) => Optional<T>;
+  readonly getData: (event: EventArgs<E>) => (T) | null;
   readonly getDelta: (old: T, nu: T) => T;
 }
 
@@ -107,9 +106,9 @@ export interface DragStartData {
 }
 
 export interface BaseDraggingState<T> extends BehaviourState {
-  readonly update: <E extends Event>(mode: DragModeDeltas<E, T>, dragEvent: EventArgs<E>) => Optional<T>;
+  readonly update: <E extends Event>(mode: DragModeDeltas<E, T>, dragEvent: EventArgs<E>) => (T) | null;
   readonly setStartData: (data: DragStartData) => void;
-  readonly getStartData: () => Optional<DragStartData>;
+  readonly getStartData: () => (DragStartData) | null;
   readonly reset: () => void;
 }
 

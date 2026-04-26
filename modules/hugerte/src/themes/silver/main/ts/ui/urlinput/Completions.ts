@@ -1,5 +1,4 @@
 import { Menu as BridgeMenu } from '@ephox/bridge';
-import { Arr, Fun, Optional, Strings } from '@ephox/katamari';
 
 import { LinkInformation } from '../../backstage/UrlInputBackstage';
 import { LinkTarget, LinkTargetType } from '../core/LinkTargets';
@@ -16,7 +15,7 @@ const toMenuItem = (target: LinkTarget): BridgeMenu.MenuItemSpec => ({
   meta: {
     attach: target.attach
   },
-  onAction: Fun.noop
+  onAction: () => {}
 });
 
 const staticMenuItem = (title: string, url: string): BridgeMenu.MenuItemSpec => ({
@@ -26,14 +25,14 @@ const staticMenuItem = (title: string, url: string): BridgeMenu.MenuItemSpec => 
   meta: {
     attach: undefined
   },
-  onAction: Fun.noop
+  onAction: () => {}
 });
 
 const toMenuItems = (targets: LinkTarget[]): BridgeMenu.MenuItemSpec[] =>
-  Arr.map(targets, toMenuItem);
+  (targets).map(toMenuItem);
 
 const filterLinkTargets = (type: LinkTargetType, targets: LinkTarget[]): LinkTarget[] =>
-  Arr.filter(targets, (target) => target.type === type);
+  (targets).filter((target) => target.type === type);
 
 const filteredTargets = (type: LinkTargetType, targets: LinkTarget[]): BridgeMenu.MenuItemSpec[] =>
   toMenuItems(filterLinkTargets(type, targets));
@@ -45,16 +44,16 @@ const anchorTargets = (linkInfo: LinkInformation): BridgeMenu.MenuItemSpec[] =>
   filteredTargets('anchor', linkInfo.targets);
 
 const anchorTargetTop = (linkInfo: LinkInformation): BridgeMenu.MenuItemSpec[] =>
-  Optional.from(linkInfo.anchorTop).map((url) => staticMenuItem('<top>', url)).toArray();
+  (linkInfo.anchorTop ?? null).map((url) => staticMenuItem('<top>', url)).toArray();
 
 const anchorTargetBottom = (linkInfo: LinkInformation): BridgeMenu.MenuItemSpec[] =>
-  Optional.from(linkInfo.anchorBottom).map((url) => staticMenuItem('<bottom>', url)).toArray();
+  (linkInfo.anchorBottom ?? null).map((url) => staticMenuItem('<bottom>', url)).toArray();
 
 const historyTargets = (history: string[]): BridgeMenu.MenuItemSpec[] =>
-  Arr.map(history, (url) => staticMenuItem(url, url));
+  (history).map((url) => staticMenuItem(url, url));
 
 const joinMenuLists = (items: BridgeMenu.MenuItemSpec[][]): SingleMenuItemSpec[] => {
-  return Arr.foldl(items, (a, b) => {
+  return (items).reduce((a, b) => {
     const bothEmpty = a.length === 0 || b.length === 0;
     return bothEmpty ? a.concat(b) : a.concat(separator, b);
   }, [] as SingleMenuItemSpec[]);
@@ -62,10 +61,10 @@ const joinMenuLists = (items: BridgeMenu.MenuItemSpec[][]): SingleMenuItemSpec[]
 
 const filterByQuery = (term: string, menuItems: BridgeMenu.MenuItemSpec[]): BridgeMenu.MenuItemSpec[] => {
   const lowerCaseTerm = term.toLowerCase();
-  return Arr.filter(menuItems, (item) => {
+  return (menuItems).filter((item) => {
     const text = item.meta !== undefined && item.meta.text !== undefined ? item.meta.text : item.text;
     const value = item.value ?? '';
-    return Strings.contains(text.toLowerCase(), lowerCaseTerm) || Strings.contains(value.toLowerCase(), lowerCaseTerm);
+    return (text.toLowerCase()).includes(lowerCaseTerm) || (value.toLowerCase()).includes(lowerCaseTerm);
   });
 };
 

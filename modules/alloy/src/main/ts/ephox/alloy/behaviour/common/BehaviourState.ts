@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 export interface BehaviourState {
   /** This is for debug purposes only, and only used by the Alloy Inspector Chrome Plugin */
@@ -11,7 +10,7 @@ export interface BehaviourStateInitialiser<C, S extends BehaviourState> {
 
 const NoState: BehaviourStateInitialiser<any, BehaviourState> = {
   init: () => nu({
-    readState: Fun.constant('No State required')
+    readState: () => 'No State required'
   })
 };
 

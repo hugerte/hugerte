@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
 import { Selectors, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -20,17 +19,17 @@ const isRtl = (element: Element): boolean =>
   DOMUtils.DOM.getStyle(element, 'direction', true) === 'rtl' || Bidi.hasStrongRtl(element.textContent ?? '');
 
 const findInlineParents = (isInlineTarget: (elem: Element) => boolean, rootNode: Node, pos: CaretPosition): Node[] =>
-  Arr.filter(DOMUtils.DOM.getParents(pos.container(), '*', rootNode), isInlineTarget);
+  (DOMUtils.DOM.getParents(pos.container(), '*', rootNode)).filter(isInlineTarget);
 
-const findRootInline = (isInlineTarget: (elem: Element) => boolean, rootNode: Node, pos: CaretPosition): Optional<Node> => {
+const findRootInline = (isInlineTarget: (elem: Element) => boolean, rootNode: Node, pos: CaretPosition): (Node) | null => {
   const parents = findInlineParents(isInlineTarget, rootNode, pos);
-  return Optional.from(parents[parents.length - 1]);
+  return (parents[parents.length - 1] ?? null);
 };
 
 const hasSameParentBlock = (rootNode: Node, node1: Node, node2: Node): boolean => {
   const block1 = CaretUtils.getParentBlock(node1, rootNode);
   const block2 = CaretUtils.getParentBlock(node2, rootNode);
-  return Type.isNonNullable(block1) && block1 === block2;
+  return (block1) != null && block1 === block2;
 };
 
 const isAtZwsp = (pos: CaretPosition): boolean =>
@@ -62,8 +61,8 @@ const normalizePosition = (forward: boolean, pos: CaretPosition): CaretPosition 
   }
 };
 
-const normalizeForwards = Fun.curry(normalizePosition, true);
-const normalizeBackwards = Fun.curry(normalizePosition, false);
+const normalizeForwards = ((..._rest: any[]) => (normalizePosition)(true, ..._rest));
+const normalizeBackwards = ((..._rest: any[]) => (normalizePosition)(false, ..._rest));
 
 export {
   isInlineTarget,

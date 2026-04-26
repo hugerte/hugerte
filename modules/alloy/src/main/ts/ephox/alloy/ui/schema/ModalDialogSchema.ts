@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 import { SelectorFind } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -11,22 +10,22 @@ import * as Fields from '../../data/Fields';
 import * as PartType from '../../parts/PartType';
 import { ModalDialogDetail } from '../types/ModalDialogTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.required('lazySink'),
   FieldSchema.option('dragBlockClass'),
   FieldSchema.defaultedFunction('getBounds', Boxes.win),
-  FieldSchema.defaulted('useTabstopAt', Fun.always),
+  FieldSchema.defaulted('useTabstopAt', (() => true as const)),
   FieldSchema.defaulted('firstTabstop', 0),
   FieldSchema.defaulted('eventOrder', {}),
   SketchBehaviours.field('modalBehaviours', [ Keying ]),
 
   Fields.onKeyboardHandler('onExecute'),
   Fields.onStrictKeyboardHandler('onEscape')
-]);
+];
 
-const basic = { sketch: Fun.identity };
+const basic = { sketch: (x: any) => x };
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.optional<ModalDialogDetail>({
     name: 'draghandle',
     overrides: (detail: ModalDialogDetail, spec) => {
@@ -35,7 +34,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
           Dragging.config({
             mode: 'mouse',
             getTarget: (handle) => {
-              return SelectorFind.ancestor<HTMLElement>(handle, '[role="dialog"]').getOr(handle);
+              return SelectorFind.ancestor<HTMLElement>(handle, '[role="dialog"]') ?? (handle);
             },
             blockerClass: detail.dragBlockClass.getOrDie(
               // TODO: Support errors in Optional getOrDie.
@@ -100,9 +99,9 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
     ],
     name: 'blocker'
   })
-]);
+];
 
-const name = Fun.constant('ModalDialog');
+const name = () => 'ModalDialog';
 
 export {
   name,

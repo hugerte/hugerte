@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -6,7 +5,7 @@ import { Dialog } from 'hugerte/core/api/ui/Ui';
 import * as Options from '../api/Options';
 import * as UiUtils from './UiUtils';
 
-const getClassList = (editor: Editor): Optional<Dialog.ListBoxSpec> =>
+const getClassList = (editor: Editor): (Dialog.ListBoxSpec) | null =>
   UiUtils.buildClassList(Options.getRowClassList(editor))
     .map((items) => ({
       name: 'class',

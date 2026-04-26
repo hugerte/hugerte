@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import AstNode from 'hugerte/core/api/html/Node';
@@ -16,10 +15,10 @@ const addPx = (value: string): string =>
 const updateEphoxEmbed = (data: Partial<MediaData>, node: AstNode) => {
   const style = node.attr('style');
   const styleMap = style ? DOM.parseStyle(style) : { };
-  if (Type.isNonNullable(data.width)) {
+  if ((data.width) != null) {
     styleMap['max-width'] = addPx(data.width);
   }
-  if (Type.isNonNullable(data.height)) {
+  if ((data.height) != null) {
     styleMap['max-height'] = addPx(data.height);
   }
   node.attr('style', DOM.serializeStyle(styleMap));

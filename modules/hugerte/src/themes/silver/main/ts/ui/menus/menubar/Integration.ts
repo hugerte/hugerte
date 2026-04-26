@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Menu } from 'hugerte/core/api/ui/Ui';
@@ -34,11 +33,11 @@ const make = (menu: { title: string; items: string[] }, registry: MenuRegistry, 
   const removedMenuItems = Options.getRemovedMenuItems(editor).split(/[ ,]/);
   return {
     text: menu.title,
-    getItems: () => Arr.bind(menu.items, (i): Menu.NestedMenuItemContents[] => {
+    getItems: () => (menu.items).flatMap((i): Menu.NestedMenuItemContents[] => {
       const itemName = i.toLowerCase();
       if (itemName.trim().length === 0) {
         return [];
-      } else if (Arr.exists(removedMenuItems, (removedMenuItem) => removedMenuItem === itemName)) {
+      } else if ((removedMenuItems).some((removedMenuItem) => removedMenuItem === itemName)) {
         return [];
       } else if (itemName === 'separator' || itemName === '|') {
         return [{
@@ -59,27 +58,27 @@ const parseItemsString = (items: string): string[] => {
 
 const identifyMenus = (editor: Editor, registry: MenuRegistry): MenubarItemSpec[] => {
   const rawMenuData = { ...defaultMenus, ...registry.menus };
-  const userDefinedMenus = Obj.keys(registry.menus).length > 0;
+  const userDefinedMenus = Object.keys(registry.menus).length > 0;
 
   const menubar: string[] = registry.menubar === undefined || registry.menubar === true ? parseItemsString(defaultMenubar) : parseItemsString(registry.menubar === false ? '' : registry.menubar);
-  const validMenus = Arr.filter(menubar, (menuName) => {
-    const isDefaultMenu = Obj.has(defaultMenus, menuName);
+  const validMenus = (menubar).filter((menuName) => {
+    const isDefaultMenu = Object.prototype.hasOwnProperty.call(defaultMenus, menuName);
     if (userDefinedMenus) {
-      return isDefaultMenu || Obj.get(registry.menus, menuName).exists((menu) => Obj.has(menu, 'items'));
+      return isDefaultMenu || ((registry.menus)[menuName] ?? null).exists((menu) => Object.prototype.hasOwnProperty.call(menu, 'items'));
     } else {
       return isDefaultMenu;
     }
   });
 
-  const menus: MenubarItemSpec[] = Arr.map(validMenus, (menuName) => {
+  const menus: MenubarItemSpec[] = (validMenus).map((menuName) => {
     const menuData = rawMenuData[menuName];
     return make({ title: menuData.title, items: parseItemsString(menuData.items) }, registry, editor);
   });
 
-  return Arr.filter(menus, (menu) => {
+  return (menus).filter((menu) => {
     // Filter out menus that have no items, or only separators
-    const isNotSeparator = (item: Menu.NestedMenuItemContents) => Type.isString(item) || item.type !== 'separator';
-    return menu.getItems().length > 0 && Arr.exists(menu.getItems(), isNotSeparator);
+    const isNotSeparator = (item: Menu.NestedMenuItemContents) => typeof (item) === 'string' || item.type !== 'separator';
+    return menu.getItems().length > 0 && (menu.getItems()).some(isNotSeparator);
   });
 };
 

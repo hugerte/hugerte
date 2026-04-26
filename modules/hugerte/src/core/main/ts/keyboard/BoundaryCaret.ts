@@ -1,4 +1,4 @@
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import * as CaretContainer from '../caret/CaretContainer';
 import * as CaretContainerInline from '../caret/CaretContainerInline';
@@ -22,13 +22,13 @@ const isPosCaretContainer = (pos: CaretPosition, caret: Cell<Text | null>) => {
   return caretNode && pos.container() === caretNode && CaretContainer.isCaretContainerInline(caretNode);
 };
 
-const renderCaret = (caret: Cell<Text | null>, location: LocationAdt): Optional<CaretPosition> =>
+const renderCaret = (caret: Cell<Text | null>, location: LocationAdt): (CaretPosition) | null =>
   location.fold(
     (element) => { // Before
       CaretContainerRemove.remove(caret.get());
       const text = CaretContainerInline.insertInlineBefore(element);
       caret.set(text);
-      return Optional.some(CaretPosition(text, text.length - 1));
+      return CaretPosition(text, text.length - 1);
     },
     (element) => // Start
       CaretFinder.firstPositionIn(element).map((pos) => {
@@ -58,7 +58,7 @@ const renderCaret = (caret: Cell<Text | null>, location: LocationAdt): Optional<
       CaretContainerRemove.remove(caret.get());
       const text = CaretContainerInline.insertInlineAfter(element);
       caret.set(text);
-      return Optional.some(CaretPosition(text, 1));
+      return CaretPosition(text, 1);
     }
   );
 

@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Awareness, RawRect, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { WindowBridge } from '../api/WindowBridge';
@@ -12,7 +11,7 @@ const getPartialBox = (bridge: WindowBridge, element: SugarElement<Node>, offset
   } else if (offset > 0) {
     return bridge.getRangedRect(element, offset - 1, element, offset);
   }
-  return Optional.none<RawRect>();
+  return null;
 };
 
 const toCaret = (rect: RawRect): Carets => ({
@@ -23,27 +22,27 @@ const toCaret = (rect: RawRect): Carets => ({
 });
 
 const getElemBox = (bridge: WindowBridge, element: SugarElement<Element>) => {
-  return Optional.some(bridge.getRect(element));
+  return bridge.getRect(element);
 };
 
-const getBoxAt = (bridge: WindowBridge, element: SugarElement<Node>, offset: number): Optional<Carets> => {
+const getBoxAt = (bridge: WindowBridge, element: SugarElement<Node>, offset: number): (Carets) | null => {
   // Note, we might need to consider this offset and descend.
   if (SugarNode.isElement(element)) {
     return getElemBox(bridge, element).map(toCaret);
   } else if (SugarNode.isText(element)) {
     return getPartialBox(bridge, element, offset).map(toCaret);
   } else {
-    return Optional.none<Carets>();
+    return null;
   }
 };
 
-const getEntireBox = (bridge: WindowBridge, element: SugarElement<Node>): Optional<Carets> => {
+const getEntireBox = (bridge: WindowBridge, element: SugarElement<Node>): (Carets) | null => {
   if (SugarNode.isElement(element)) {
     return getElemBox(bridge, element).map(toCaret);
   } else if (SugarNode.isText(element)) {
     return bridge.getRangedRect(element, 0, element, Awareness.getEnd(element)).map(toCaret);
   } else {
-    return Optional.none<Carets>();
+    return null;
   }
 };
 

@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 type TableResizer = (delta: number) => void;
 
@@ -11,7 +10,7 @@ export interface ResizeBehaviour {
   readonly calcRedestributedWidths: (sizes: number[], total: number, pixelDelta: number, isRelative: boolean) => { delta: number; newSizes: number[] };
 }
 
-const zero = (array: number[]) => Arr.map(array, Fun.constant(0));
+const zero = (array: number[]) => (array).map(() => 0);
 
 const surround = (sizes: number[], startIndex: number, endIndex: number, results: number[], f: (array: number[]) => number[]) =>
   f(sizes.slice(0, startIndex)).concat(results).concat(f(sizes.slice(endIndex)));
@@ -28,7 +27,7 @@ const clampDeltaHelper = (predicate: (delta: number) => boolean) => (sizes: numb
 };
 
 const clampNegativeDelta = clampDeltaHelper((delta) => delta < 0);
-const clampDelta = clampDeltaHelper(Fun.always);
+const clampDelta = clampDeltaHelper((() => true as const));
 
 // Preserve the size of the columns/rows and adjust the table size
 const resizeTable = (): ResizeBehaviour => {
@@ -45,7 +44,7 @@ const resizeTable = (): ResizeBehaviour => {
     // need a better way to calc the ratio.
     const ratio = (100 + delta) / 100;
     const newThis = Math.max(minCellSize, (sizes[index] + delta) / ratio);
-    return Arr.map(sizes, (size, idx) => {
+    return (sizes).map((size, idx) => {
       const newSize = idx === index ? newThis : size / ratio;
       return newSize - size;
     });
@@ -80,7 +79,7 @@ const resizeTable = (): ResizeBehaviour => {
     if (isRelative) {
       const tableWidth = totalWidth + pixelDelta;
       const ratio = tableWidth / totalWidth;
-      const newSizes = Arr.map(sizes, (size) => size / ratio);
+      const newSizes = (sizes).map((size) => size / ratio);
       return {
         delta: (ratio * 100) - 100,
         newSizes,
@@ -129,7 +128,7 @@ const preserveTable = (): ResizeBehaviour => {
     } else {
       // Distribute the delta amongst all of the columns/rows
       const diff = delta / sizes.length;
-      return Arr.map(sizes, Fun.constant(diff));
+      return (sizes).map(() => diff);
     }
   };
 
@@ -141,7 +140,7 @@ const preserveTable = (): ResizeBehaviour => {
         return delta;
       } else {
         // Clamp delta so that none of the columns/rows can reduce below their min size
-        const maxDelta = Arr.foldl(sizes, (a, b) => a + b - minCellSize, 0);
+        const maxDelta = (sizes).reduce((a, b) => a + b - minCellSize, 0);
         return Math.max(-maxDelta, delta);
       }
     } else {

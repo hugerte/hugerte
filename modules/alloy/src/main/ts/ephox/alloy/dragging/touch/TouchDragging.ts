@@ -1,5 +1,5 @@
 import { FieldProcessor } from '@ephox/boulder';
-import { Fun, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -35,7 +35,7 @@ const events = <E>(dragConfig: TouchDraggingConfig<E>, dragState: DraggingState,
       const dragApi: BlockerDragApi<TouchEvent> = {
         drop: stop,
         // delayDrop is not used by touch
-        delayDrop: Fun.noop,
+        delayDrop: () => {},
         forceDrop: stop,
         move: (event) => {
           DragUtils.move(component, dragConfig, dragState, TouchData, event);

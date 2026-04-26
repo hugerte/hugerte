@@ -1,12 +1,12 @@
 import { Objects } from '@ephox/boulder';
-import { Id, Obj, Optional } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as FunctionAnnotator from '../../debugging/FunctionAnnotator';
 import { AlloyComponent } from '../component/ComponentApi';
 import { AlloySpec, PremadeSpec } from '../component/SpecTypes';
 
-const premadeTag = Id.generate('alloy-premade');
+const premadeTag = (('alloy-premade') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 const premade = (comp: AlloyComponent): PremadeSpec => {
   Object.defineProperty(comp.element.dom, premadeTag, {
@@ -17,9 +17,9 @@ const premade = (comp: AlloyComponent): PremadeSpec => {
 };
 
 const isPremade = (element: SugarElement<Node>): boolean =>
-  Obj.has(element.dom as any, premadeTag);
+  Object.prototype.hasOwnProperty.call(element.dom as any, premadeTag);
 
-const getPremade = (spec: AlloySpec): Optional<AlloyComponent> =>
+const getPremade = (spec: AlloySpec): (AlloyComponent) | null =>
   Obj.get<any, string>(spec, premadeTag);
 
 const makeApi = <A, R>(f: (api: A, comp: AlloyComponent, ...rest: any[]) => R): FunctionAnnotator.FunctionWithAnnotation<(comp: AlloyComponent, ...rest: any[]) => R> =>

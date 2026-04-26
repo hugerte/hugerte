@@ -1,4 +1,3 @@
-import { Arr, Type } from '@ephox/katamari';
 import { Compare, SugarElement } from '@ephox/sugar';
 
 import { Bookmark } from '../../bookmark/BookmarkTypes';
@@ -126,7 +125,7 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
   const setCursorLocation = (node?: Node, offset?: number) => {
     const rng = dom.createRng();
 
-    if (Type.isNonNullable(node) && Type.isNonNullable(offset)) {
+    if ((node) != null && (offset) != null) {
       rng.setStart(node, offset);
       rng.setEnd(node, offset);
       setRng(rng);
@@ -269,7 +268,7 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
     const fakeSelectedElements = editor.getBody().querySelectorAll('[data-mce-selected="1"]');
 
     if (fakeSelectedElements.length > 0) {
-      return Arr.forall(fakeSelectedElements, (el) => dom.isEditable(el.parentElement));
+      return (fakeSelectedElements).every((el) => dom.isEditable(el.parentElement));
     } else {
       return EditableRange.isEditableRange(dom, rng);
     }
@@ -322,11 +321,11 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
 
     const doc = win.document;
 
-    if (Type.isNonNullable(editor.bookmark) && !EditorFocus.hasFocus(editor)) {
+    if ((editor.bookmark) != null && !EditorFocus.hasFocus(editor)) {
       const bookmark = SelectionBookmark.getRng(editor);
 
-      if (bookmark.isSome()) {
-        return bookmark.map((r) => EventProcessRanges.processRanges(editor, [ r ])[0]).getOr(doc.createRange());
+      if (bookmark !== null) {
+        return bookmark.map((r) => EventProcessRanges.processRanges(editor, [ r ])[0]) ?? (doc.createRange());
       }
     }
 
@@ -507,7 +506,7 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
         setRng(normRng, isForward());
       });
 
-      return normRng.getOr(rng);
+      return normRng ?? (rng);
     }
 
     return rng;
@@ -543,7 +542,7 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
   };
 
   const scrollIntoView = (elm?: HTMLElement, alignToTop?: boolean) => {
-    if (Type.isNonNullable(elm)) {
+    if ((elm) != null) {
       ScrollIntoView.scrollElementIntoView(editor, elm, alignToTop);
     } else {
       ScrollIntoView.scrollRangeIntoView(editor, getRng(), alignToTop);

@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Type } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 /**
  * I18n class that handles translation of HugeRTE UI.
@@ -24,16 +24,16 @@ const isDuplicated = (items: string[], item: string) => {
   return firstIndex !== -1 && items.indexOf(item, firstIndex + 1) > firstIndex;
 };
 
-const isRaw = (str: any): str is RawString => Type.isObject(str) && Obj.has(str, 'raw');
+const isRaw = (str: any): str is RawString => (typeof (str) === 'object' && (str) !== null) && Object.prototype.hasOwnProperty.call(str, 'raw');
 
-const isTokenised = (str: any): str is TokenisedString => Type.isArray(str) && str.length > 1;
+const isTokenised = (str: any): str is TokenisedString => Array.isArray(str) && str.length > 1;
 
 const data: Record<string, Record<string, string>> = {};
 const currentCode = Cell('en');
 
-const getLanguageData = () => Obj.get(data, currentCode.get());
+const getLanguageData = () => ((data)[currentCode.get()] ?? null);
 
-const getData = (): Record<string, Record<string, string>> => Obj.map(data, (value) => ({ ...value }));
+const getData = (): Record<string, Record<string, string>> => Object.fromEntries(Object.entries(data).map(([_k, _v]: [any, any]) => [_k, ((value) => ({ ...value }))(_v, _k as any)]));
 
 /**
  * Sets the current language code.
@@ -70,18 +70,18 @@ const add = (code: string, items: Record<string, string>): void => {
     data[code] = langData = {};
   }
 
-  const lcNames = Arr.map(Obj.keys(items), (name) => name.toLowerCase());
-  Obj.each(items, (translation, name) => {
+  const lcNames = (Object.keys(items)).map((name) => name.toLowerCase());
+  Object.entries(items).forEach(([_k, _v]: [any, any]) => ((translation, name) => {
     const lcName = name.toLowerCase();
     if (lcName !== name && isDuplicated(lcNames, lcName)) {
-      if (!Obj.has(items, lcName)) {
+      if (!Object.prototype.hasOwnProperty.call(items, lcName)) {
         langData[lcName] = translation;
       }
       langData[name] = translation;
     } else {
       langData[lcName] = translation;
     }
-  });
+  })(_v, _k));
 };
 
 /**
@@ -97,7 +97,7 @@ const add = (code: string, items: Record<string, string>): void => {
  * @return {String} String that got translated.
  */
 const translate = (text: Untranslated): TranslatedString => {
-  const langData: Record<string, string> = getLanguageData().getOr({});
+  const langData: Record<string, string> = getLanguageData() ?? ({});
   /*
    * number - string
    * null, undefined and empty string - empty string
@@ -106,7 +106,7 @@ const translate = (text: Untranslated): TranslatedString => {
    * function - in [object Function]
    */
   const toString = (obj: Untranslated) => {
-    if (Type.isFunction(obj)) {
+    if (typeof (obj) === 'function') {
       return Object.prototype.toString.call(obj);
     }
     return !isEmpty(obj) ? '' + obj : '';
@@ -117,9 +117,9 @@ const translate = (text: Untranslated): TranslatedString => {
   const getLangData = (text: Untranslated) => {
     // make sure we work on a string and return a string
     const textStr = toString(text);
-    return Obj.has(langData, textStr)
+    return Object.prototype.hasOwnProperty.call(langData, textStr)
       ? toString(langData[textStr])
-      : Obj.get(langData, textStr.toLowerCase()).map(toString).getOr(textStr);
+      : ((langData)[textStr.toLowerCase()] ?? null).map(toString) ?? (textStr);
   };
 
   const removeContext = (str: string) => str.replace(/{context:\w+}$/, '');
@@ -137,7 +137,7 @@ const translate = (text: Untranslated): TranslatedString => {
   // Tokenised {translations}
   if (isTokenised(text)) {
     const values = text.slice(1);
-    const substitued = getLangData(text[0]).replace(/\{([0-9]+)\}/g, ($1, $2) => Obj.has(values, $2) ? toString(values[$2]) : $1);
+    const substitued = getLangData(text[0]).replace(/\{([0-9]+)\}/g, ($1, $2) => Object.prototype.hasOwnProperty.call(values, $2) ? toString(values[$2]) : $1);
     return removeContext(substitued);
   }
 
@@ -152,7 +152,7 @@ const translate = (text: Untranslated): TranslatedString => {
  * @return {Boolean} True if the current language pack is rtl.
  */
 const isRtl = (): boolean => getLanguageData()
-  .bind((items) => Obj.get(items, '_dir'))
+  .bind((items) => ((items)['_dir'] ?? null))
   .exists((dir) => dir === 'rtl');
 
 /**
@@ -162,7 +162,7 @@ const isRtl = (): boolean => getLanguageData()
  * @param {String} code Code to check for.
  * @return {Boolean} True if the current language pack for the specified code exists.
  */
-const hasCode = (code: string): boolean => Obj.has(data, code);
+const hasCode = (code: string): boolean => Object.prototype.hasOwnProperty.call(data, code);
 
 interface I18n {
   getData: () => Record<string, Record<string, string>>;

@@ -1,7 +1,7 @@
 import { AlloySpec, VerticalDir } from '@ephox/alloy';
 import { StructureSchema } from '@ephox/boulder';
 import { Toolbar } from '@ephox/bridge';
-import { Arr, Obj, Optional, Result, Type } from '@ephox/katamari';
+import { Arr, Result } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -74,7 +74,7 @@ const types: Record<string, BridgeRenderFn<any>> = {
 
   menubutton: renderFromBridge(
     Toolbar.createMenuButton,
-    (s, backstage, _, btnName) => renderMenuButton(s, ToolbarButtonClasses.Button, backstage, Optional.none(), false, btnName)
+    (s, backstage, _, btnName) => renderMenuButton(s, ToolbarButtonClasses.Button, backstage, null, false, btnName)
   ),
 
   splitbutton: renderFromBridge(
@@ -87,7 +87,7 @@ const types: Record<string, BridgeRenderFn<any>> = {
     (s, backstage, editor, btnName) => {
       const buttons = editor.ui.registry.getAll().buttons;
       const identify = (toolbar: string | ToolbarGroupOption[]) =>
-        identifyButtons(editor, { buttons, toolbar, allowToolbarGroups: false }, backstage, Optional.none());
+        identifyButtons(editor, { buttons, toolbar, allowToolbarGroups: false }, backstage, null);
       const attributes = {
         [VerticalDir.Attribute]: backstage.shared.header.isPositionedAtTop() ? VerticalDir.AttributeValue.TopToBottom : VerticalDir.AttributeValue.BottomToTop
       };
@@ -103,16 +103,14 @@ const types: Record<string, BridgeRenderFn<any>> = {
   )
 };
 
-const extractFrom = (spec: ToolbarButton & { type: string }, backstage: UiFactoryBackstage, editor: Editor, btnName: string): Optional<AlloySpec> =>
-  Obj.get(types, spec.type).fold(
+const extractFrom = (spec: ToolbarButton & { type: string }, backstage: UiFactoryBackstage, editor: Editor, btnName: string): (AlloySpec) | null =>
+  ((types)[spec.type] ?? null).fold(
     () => {
       // eslint-disable-next-line no-console
       console.error('skipping button defined by', spec);
-      return Optional.none();
+      return null;
     },
-    (render) => Optional.some(
-      render(spec, backstage, editor, btnName)
-    )
+    (render) => render(spec, backstage, editor, btnName)
   );
 
 const bespokeButtons: Record<string, (editor: Editor, backstage: UiFactoryBackstage) => AlloySpec> = {
@@ -125,25 +123,25 @@ const bespokeButtons: Record<string, (editor: Editor, backstage: UiFactoryBackst
 };
 
 const removeUnusedDefaults = (buttons: RenderToolbarConfig['buttons']) => {
-  const filteredItemGroups = Arr.map(defaultToolbar, (group) => {
-    const items = Arr.filter(group.items, (subItem) => Obj.has(buttons, subItem) || Obj.has(bespokeButtons as any, subItem));
+  const filteredItemGroups = (defaultToolbar).map((group) => {
+    const items = (group.items).filter((subItem) => Object.prototype.hasOwnProperty.call(buttons, subItem) || Object.prototype.hasOwnProperty.call(bespokeButtons as any, subItem));
     return {
       name: group.name,
       items
     };
   });
-  return Arr.filter(filteredItemGroups, (group) => group.items.length > 0);
+  return (filteredItemGroups).filter((group) => group.items.length > 0);
 };
 
 const convertStringToolbar = (strToolbar: string) => {
   const groupsStrings = strToolbar.split('|');
-  return Arr.map(groupsStrings, (g) => ({
+  return (groupsStrings).map((g) => ({
     items: g.trim().split(' ')
   }));
 };
 
 const isToolbarGroupSettingArray = (toolbar: ToolbarConfig): toolbar is ToolbarGroupOption[] =>
-  Type.isArrayOf(toolbar, (t): t is ToolbarGroupOption => Obj.has(t, 'name') && Obj.has(t, 'items'));
+  (Array.isArray(toolbar) && (toolbar).every((t): t is ToolbarGroupOption => Object.prototype.hasOwnProperty.call(t, 'name') && Object.prototype.hasOwnProperty.call(t, 'items')));
 
 // Toolbar settings
 // false = disabled
@@ -158,7 +156,7 @@ const createToolbar = (toolbarConfig: RenderToolbarConfig): ToolbarGroupOption[]
     return [];
   } else if (toolbar === undefined || toolbar === true) {
     return removeUnusedDefaults(buttons);
-  } else if (Type.isString(toolbar)) {
+  } else if (typeof (toolbar) === 'string') {
     return convertStringToolbar(toolbar);
   } else if (isToolbarGroupSettingArray(toolbar)) {
     return toolbar;
@@ -169,42 +167,42 @@ const createToolbar = (toolbarConfig: RenderToolbarConfig): ToolbarGroupOption[]
   }
 };
 
-const lookupButton = (editor: Editor, buttons: Record<string, any>, toolbarItem: string, allowToolbarGroups: boolean, backstage: UiFactoryBackstage, prefixes: Optional<string[]>): Optional<AlloySpec> =>
-  Obj.get(buttons, toolbarItem.toLowerCase())
-    .orThunk(() => prefixes.bind((ps) => Arr.findMap(ps, (prefix) => Obj.get(buttons, prefix + toolbarItem.toLowerCase()))))
+const lookupButton = (editor: Editor, buttons: Record<string, any>, toolbarItem: string, allowToolbarGroups: boolean, backstage: UiFactoryBackstage, prefixes: (string[]) | null): (AlloySpec) | null =>
+  ((buttons)[toolbarItem.toLowerCase()] ?? null)
+    .orThunk(() => prefixes.bind((ps) => Arr.findMap(ps, (prefix) => ((buttons)[prefix + toolbarItem.toLowerCase()] ?? null))))
     .fold(
-      () => Obj.get(bespokeButtons, toolbarItem.toLowerCase()).map((r) => r(editor, backstage)),
+      () => ((bespokeButtons)[toolbarItem.toLowerCase()] ?? null).map((r) => r(editor, backstage)),
       // TODO: Add back after TINY-3232 is implemented
       // .orThunk(() => {
       //   console.error('No representation for toolbarItem: ' + toolbarItem);
-      //   return Optional.none();
+      //   return null;
       // ),
       (spec) => {
         if (spec.type === 'grouptoolbarbutton' && !allowToolbarGroups) {
           // TODO change this message when sliding is available
           // eslint-disable-next-line no-console
           console.warn(`Ignoring the '${toolbarItem}' toolbar button. Group toolbar buttons are only supported when using floating toolbar mode and cannot be nested.`);
-          return Optional.none();
+          return null;
         } else {
           return extractFrom(spec, backstage, editor, toolbarItem.toLowerCase());
         }
       }
     );
 
-const identifyButtons = (editor: Editor, toolbarConfig: RenderToolbarConfig, backstage: UiFactoryBackstage, prefixes: Optional<string[]>): ToolbarGroup[] => {
+const identifyButtons = (editor: Editor, toolbarConfig: RenderToolbarConfig, backstage: UiFactoryBackstage, prefixes: (string[]) | null): ToolbarGroup[] => {
   const toolbarGroups = createToolbar(toolbarConfig);
-  const groups = Arr.map(toolbarGroups, (group) => {
-    const items = Arr.bind(group.items, (toolbarItem) => {
+  const groups = (toolbarGroups).map((group) => {
+    const items = (group.items).flatMap((toolbarItem) => {
       return toolbarItem.trim().length === 0 ? [] :
         lookupButton(editor, toolbarConfig.buttons, toolbarItem, toolbarConfig.allowToolbarGroups, backstage, prefixes).toArray();
     });
     return {
-      title: Optional.from(editor.translate(group.name)),
+      title: (editor.translate(group.name) ?? null),
       items
     };
   });
 
-  return Arr.filter(groups, (group) => group.items.length > 0);
+  return (groups).filter((group) => group.items.length > 0);
 };
 
 export { identifyButtons };

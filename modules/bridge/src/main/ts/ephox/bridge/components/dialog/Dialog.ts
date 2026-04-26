@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as FooterButton from './DialogFooterButton';
 import * as Panel from './Panel';
@@ -95,12 +95,12 @@ export const dialogSchema = StructureSchema.objOf([
   FieldSchema.defaultedString('size', 'normal'),
   FieldSchema.defaultedArrayOf('buttons', [], dialogButtonSchema),
   FieldSchema.defaulted('initialData', {}),
-  FieldSchema.defaultedFunction('onAction', Fun.noop),
-  FieldSchema.defaultedFunction('onChange', Fun.noop),
-  FieldSchema.defaultedFunction('onSubmit', Fun.noop),
-  FieldSchema.defaultedFunction('onClose', Fun.noop),
-  FieldSchema.defaultedFunction('onCancel', Fun.noop),
-  FieldSchema.defaultedFunction('onTabChange', Fun.noop)
+  FieldSchema.defaultedFunction('onAction', () => {}),
+  FieldSchema.defaultedFunction('onChange', () => {}),
+  FieldSchema.defaultedFunction('onSubmit', () => {}),
+  FieldSchema.defaultedFunction('onClose', () => {}),
+  FieldSchema.defaultedFunction('onCancel', () => {}),
+  FieldSchema.defaultedFunction('onTabChange', () => {})
 ]);
 
 export const createDialog = <T extends DialogData>(spec: DialogSpec<T>): Result<Dialog<T>, StructureSchema.SchemaError<any>> =>

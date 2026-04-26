@@ -1,4 +1,3 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
 
 import Editor from '../Editor';
 import DOMUtils from './DOMUtils';
@@ -10,8 +9,8 @@ interface SelectorChanged {
 }
 
 const deleteFromCallbackMap = (callbackMap: Record<string, SelectorChangedCallback[]>, selector: string, callback: SelectorChangedCallback) => {
-  if (Obj.has(callbackMap, selector)) {
-    const newCallbacks = Arr.filter(callbackMap[selector], (cb) => cb !== callback);
+  if (Object.prototype.hasOwnProperty.call(callbackMap, selector)) {
+    const newCallbacks = (callbackMap[selector]).filter((cb) => cb !== callback);
 
     if (newCallbacks.length === 0) {
       delete callbackMap[selector];
@@ -25,8 +24,8 @@ export default (dom: DOMUtils, editor: Editor): SelectorChanged => {
   let selectorChangedData: Record<string, SelectorChangedCallback[]>;
   let currentSelectors: Record<string, SelectorChangedCallback[]>;
 
-  const findMatchingNode = (selector: string, nodes: Node[]): Optional<Node> =>
-    Arr.find(nodes, (node) => dom.is(node, selector));
+  const findMatchingNode = (selector: string, nodes: Node[]): (Node) | null =>
+    ((nodes).find((node) => dom.is(node, selector)) ?? null);
 
   const getParents = (elem: Element): Node[] =>
     dom.getParents(elem, undefined, dom.getRoot());
@@ -41,11 +40,11 @@ export default (dom: DOMUtils, editor: Editor): SelectorChanged => {
       const matchedSelectors: Record<string, SelectorChangedCallback[]> = {};
 
       // Check for new matching selectors
-      Obj.each(selectorChangedData, (callbacks, selector) => {
+      Object.entries(selectorChangedData).forEach(([_k, _v]: [any, any]) => ((callbacks, selector) => {
         findMatchingNode(selector, parents).each((node) => {
           if (!currentSelectors[selector]) {
             // Execute callbacks
-            Arr.each(callbacks, (callback) => {
+            (callbacks).forEach((callback) => {
               callback(true, { node, selector, parents });
             });
 
@@ -54,18 +53,18 @@ export default (dom: DOMUtils, editor: Editor): SelectorChanged => {
 
           matchedSelectors[selector] = callbacks;
         });
-      });
+      })(_v, _k));
 
       // Check if current selectors still match
-      Obj.each(currentSelectors, (callbacks, selector) => {
+      Object.entries(currentSelectors).forEach(([_k, _v]: [any, any]) => ((callbacks, selector) => {
         if (!matchedSelectors[selector]) {
           delete currentSelectors[selector];
 
-          Arr.each(callbacks, (callback) => {
+          (callbacks).forEach((callback) => {
             callback(false, { node, selector, parents });
           });
         }
-      });
+      })(_v, _k));
     });
   };
 

@@ -1,4 +1,4 @@
-import { Obj, Type } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 
 import * as ArrUtils from '../../util/ArrUtils';
 import Env from '../Env';
@@ -50,7 +50,7 @@ interface Tools {
  */
 
 const trim = (str: string | null | undefined): string => {
-  return Type.isNullable(str) ? '' : ('' + str).trim();
+  return (str) == null ? '' : ('' + str).trim();
 };
 
 /**
@@ -83,7 +83,7 @@ const is = (obj: any, type?: string): boolean => {
  * @return {Object} Name/value map of items.
  */
 const makeMap = (items: ArrayLike<string> | string | undefined, delim?: string | RegExp, map: Record<string, {}> = {}): Record<string, {}> => {
-  const resolvedItems = Type.isString(items) ? items.split(delim || ',') : (items || []);
+  const resolvedItems = typeof (items) === 'string' ? items.split(delim || ',') : (items || []);
 
   let i = resolvedItems.length;
   while (i--) {
@@ -109,7 +109,7 @@ const extend = (obj: any, ...exts: any[]): any => {
   for (let i = 0; i < exts.length; i++) {
     const ext = exts[i];
     for (const name in ext) {
-      if (Obj.has(ext, name)) {
+      if (Object.prototype.hasOwnProperty.call(ext, name)) {
         const value = ext[name];
         if (value !== undefined) {
           obj[name] = value;
@@ -183,7 +183,7 @@ const resolve = (n: string, o: any = window): any => {
  * const arr = hugerte.explode('a, b,   c');
  */
 const explode = (s: string | string[], d?: string | RegExp): string[] => {
-  if (Type.isArray(s)) {
+  if (Array.isArray(s)) {
     return s;
   } else if (s === '') {
     return [];

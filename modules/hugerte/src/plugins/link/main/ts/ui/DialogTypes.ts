@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 
@@ -15,27 +14,27 @@ export interface UserListItem {
 }
 
 export interface LinkDialogCatalog {
-  link: Optional<ListItem[]>;
-  targets: Optional<ListItem[]>;
-  rels: Optional<ListItem[]>;
-  classes: Optional<ListItem[]>;
-  anchor: Optional<ListItem[]>;
+  link: (ListItem[]) | null;
+  targets: (ListItem[]) | null;
+  rels: (ListItem[]) | null;
+  classes: (ListItem[]) | null;
+  anchor: (ListItem[]) | null;
 }
 
 export interface LinkDialogInfo {
   readonly anchor: {
-    readonly url: Optional<string>;
-    readonly text: Optional<string>;
-    readonly target: Optional<string>;
-    readonly rel: Optional<string>;
-    readonly linkClass: Optional<string>;
-    readonly title: Optional<string>;
+    readonly url: (string) | null;
+    readonly text: (string) | null;
+    readonly target: (string) | null;
+    readonly rel: (string) | null;
+    readonly linkClass: (string) | null;
+    readonly title: (string) | null;
   };
   readonly catalogs: LinkDialogCatalog;
   readonly flags: {
     readonly titleEnabled: boolean;
   };
-  readonly optNode: Optional<HTMLAnchorElement>;
+  readonly optNode: (HTMLAnchorElement) | null;
   readonly onSubmit?: (api: Dialog.DialogInstanceApi<LinkDialogData>) => void;
 }
 
@@ -59,11 +58,11 @@ export interface LinkDialogData {
 
 export interface LinkDialogOutput {
   readonly href: string;
-  readonly text: Optional<string>;
-  readonly target: Optional<string>;
-  readonly rel: Optional<string>;
-  readonly class: Optional<string>;
-  readonly title: Optional<string>;
+  readonly text: (string) | null;
+  readonly target: (string) | null;
+  readonly rel: (string) | null;
+  readonly class: (string) | null;
+  readonly title: (string) | null;
 }
 
 interface LinkUrlMeta {

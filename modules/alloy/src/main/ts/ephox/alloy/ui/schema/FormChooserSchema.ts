@@ -1,5 +1,4 @@
 import { FieldSchema, Objects } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Composing } from '../../api/behaviour/Composing';
@@ -14,13 +13,13 @@ import * as PartType from '../../parts/PartType';
 import * as ButtonBase from '../common/ButtonBase';
 import { FormChooserDetail } from '../types/FormChooserTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.required('choices'),
   SketchBehaviours.field('chooserBehaviours', [ Keying, Highlighting, Composing, Representing ]),
   Fields.markers([ 'choiceClass', 'selectedClass' ])
-]);
+];
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.required<FormChooserDetail>({
     name: 'legend',
     defaults: () => {
@@ -61,13 +60,13 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
         domModification: {
           classes: [ detail.markers.choiceClass ]
         },
-        events: ButtonBase.events(Optional.none())
+        events: ButtonBase.events(null)
       };
     }
   })
-]);
+];
 
-const name = Fun.constant('FormChooser');
+const name = () => 'FormChooser';
 
 export {
   name,

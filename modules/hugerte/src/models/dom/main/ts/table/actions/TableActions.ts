@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { DomDescent } from '@ephox/phoenix';
 import {
   CellMutations, ResizeBehaviour, RunOperation, TableFill, TableGridSize, TableSection, TableOperations, TableLookup
@@ -15,7 +15,7 @@ import { TableResizeHandler } from '../api/TableResizeHandler';
 import * as Utils from '../core/TableUtils';
 import * as TableSize from '../queries/TableSize';
 
-type TableAction<T> = (table: SugarElement<HTMLTableElement>, target: T, noEvents?: boolean) => Optional<TableActionResult>;
+type TableAction<T> = (table: SugarElement<HTMLTableElement>, target: T, noEvents?: boolean) => (TableActionResult) | null;
 export interface TableActionResult {
   readonly rng: Range;
   readonly effect: TableEventData;
@@ -67,7 +67,7 @@ export const TableActions = (editor: Editor, resizeHandler: TableResizeHandler, 
   // Optional.none gives the default cloneFormats.
   const cloneFormats = Options.getTableCloneElements(editor);
 
-  const colMutationOp = Options.isResizeTableColumnResizing(editor) ? Fun.noop : CellMutations.halve;
+  const colMutationOp = Options.isResizeTableColumnResizing(editor) ? () => {} : CellMutations.halve;
 
   const getTableSectionType = (table: SugarElement<HTMLTableElement>) => {
     switch (Options.getTableHeaderType(editor)) {
@@ -89,7 +89,7 @@ export const TableActions = (editor: Editor, resizeHandler: TableResizeHandler, 
       // Snooker has reported we don't have a good cursor position. However, we may have a locked column
       // with noneditable cells, so lets check if we have a noneditable cell and if so place the selection
       const cells = TableLookup.cells(table);
-      return Arr.head(cells).filter(SugarBody.inBody).map((firstCell) => {
+      return ((cells)[0] ?? null).filter(SugarBody.inBody).map((firstCell) => {
         cellSelectionHandler.clearSelectedCells(table.dom);
         const rng = editor.dom.createRng();
         rng.selectNode(firstCell.dom);
@@ -104,11 +104,11 @@ export const TableActions = (editor: Editor, resizeHandler: TableResizeHandler, 
       rng.setEnd(des.element.dom, des.offset);
       editor.selection.setRng(rng);
       cellSelectionHandler.clearSelectedCells(table.dom);
-      return Optional.some(rng);
+      return rng;
     });
 
   const execute = <T> (operation: RunOperation.OperationCallback<T>, guard: GuardFn, mutate: MutateFn, effect: TableEventData) =>
-    (table: SugarElement<HTMLTableElement>, target: T, noEvents: boolean = false): Optional<TableActionResult> => {
+    (table: SugarElement<HTMLTableElement>, target: T, noEvents: boolean = false): (TableActionResult) | null => {
       Utils.removeDataStyle(table);
       const doc = SugarElement.fromDom(editor.getDoc());
       const generators = TableFill.cellOperations(mutate, doc, cloneFormats);
@@ -122,10 +122,10 @@ export const TableActions = (editor: Editor, resizeHandler: TableResizeHandler, 
         resizeHandler.refresh(table.dom);
 
         // INVESTIGATE: Should "noEvents" prevent these from firing as well?
-        Arr.each(result.newRows, (row) => {
+        (result.newRows).forEach((row) => {
           Events.fireNewRow(editor, row.dom);
         });
-        Arr.each(result.newCells, (cell) => {
+        (result.newCells).forEach((cell) => {
           Events.fireNewCell(editor, cell.dom);
         });
 
@@ -142,44 +142,44 @@ export const TableActions = (editor: Editor, resizeHandler: TableResizeHandler, 
           rng,
           effect
         }));
-      }) : Optional.none<TableActionResult>();
+      }) : null;
     };
 
-  const deleteRow = execute(TableOperations.eraseRows, lastRowGuard, Fun.noop, Events.structureModified);
+  const deleteRow = execute(TableOperations.eraseRows, lastRowGuard, () => {}, Events.structureModified);
 
-  const deleteColumn = execute(TableOperations.eraseColumns, lastColumnGuard, Fun.noop, Events.structureModified);
+  const deleteColumn = execute(TableOperations.eraseColumns, lastColumnGuard, () => {}, Events.structureModified);
 
-  const insertRowsBefore = execute(TableOperations.insertRowsBefore, Fun.always, Fun.noop, Events.structureModified);
+  const insertRowsBefore = execute(TableOperations.insertRowsBefore, (() => true as const), () => {}, Events.structureModified);
 
-  const insertRowsAfter = execute(TableOperations.insertRowsAfter, Fun.always, Fun.noop, Events.structureModified);
+  const insertRowsAfter = execute(TableOperations.insertRowsAfter, (() => true as const), () => {}, Events.structureModified);
 
-  const insertColumnsBefore = execute(TableOperations.insertColumnsBefore, Fun.always, colMutationOp, Events.structureModified);
+  const insertColumnsBefore = execute(TableOperations.insertColumnsBefore, (() => true as const), colMutationOp, Events.structureModified);
 
-  const insertColumnsAfter = execute(TableOperations.insertColumnsAfter, Fun.always, colMutationOp, Events.structureModified);
+  const insertColumnsAfter = execute(TableOperations.insertColumnsAfter, (() => true as const), colMutationOp, Events.structureModified);
 
-  const mergeCells = execute(TableOperations.mergeCells, Fun.always, Fun.noop, Events.structureModified);
+  const mergeCells = execute(TableOperations.mergeCells, (() => true as const), () => {}, Events.structureModified);
 
-  const unmergeCells = execute(TableOperations.unmergeCells, Fun.always, Fun.noop, Events.structureModified);
+  const unmergeCells = execute(TableOperations.unmergeCells, (() => true as const), () => {}, Events.structureModified);
 
-  const pasteColsBefore = execute(TableOperations.pasteColsBefore, Fun.always, Fun.noop, Events.structureModified);
+  const pasteColsBefore = execute(TableOperations.pasteColsBefore, (() => true as const), () => {}, Events.structureModified);
 
-  const pasteColsAfter = execute(TableOperations.pasteColsAfter, Fun.always, Fun.noop, Events.structureModified);
+  const pasteColsAfter = execute(TableOperations.pasteColsAfter, (() => true as const), () => {}, Events.structureModified);
 
-  const pasteRowsBefore = execute(TableOperations.pasteRowsBefore, Fun.always, Fun.noop, Events.structureModified);
+  const pasteRowsBefore = execute(TableOperations.pasteRowsBefore, (() => true as const), () => {}, Events.structureModified);
 
-  const pasteRowsAfter = execute(TableOperations.pasteRowsAfter, Fun.always, Fun.noop, Events.structureModified);
+  const pasteRowsAfter = execute(TableOperations.pasteRowsAfter, (() => true as const), () => {}, Events.structureModified);
 
-  const pasteCells = execute(TableOperations.pasteCells, Fun.always, Fun.noop, Events.styleAndStructureModified);
+  const pasteCells = execute(TableOperations.pasteCells, (() => true as const), () => {}, Events.styleAndStructureModified);
 
-  const makeCellsHeader = execute(TableOperations.makeCellsHeader, Fun.always, Fun.noop, Events.structureModified);
-  const unmakeCellsHeader = execute(TableOperations.unmakeCellsHeader, Fun.always, Fun.noop, Events.structureModified);
+  const makeCellsHeader = execute(TableOperations.makeCellsHeader, (() => true as const), () => {}, Events.structureModified);
+  const unmakeCellsHeader = execute(TableOperations.unmakeCellsHeader, (() => true as const), () => {}, Events.structureModified);
 
-  const makeColumnsHeader = execute(TableOperations.makeColumnsHeader, Fun.always, Fun.noop, Events.structureModified);
-  const unmakeColumnsHeader = execute(TableOperations.unmakeColumnsHeader, Fun.always, Fun.noop, Events.structureModified);
+  const makeColumnsHeader = execute(TableOperations.makeColumnsHeader, (() => true as const), () => {}, Events.structureModified);
+  const unmakeColumnsHeader = execute(TableOperations.unmakeColumnsHeader, (() => true as const), () => {}, Events.structureModified);
 
-  const makeRowsHeader = execute(TableOperations.makeRowsHeader, Fun.always, Fun.noop, Events.structureModified);
-  const makeRowsBody = execute(TableOperations.makeRowsBody, Fun.always, Fun.noop, Events.structureModified);
-  const makeRowsFooter = execute(TableOperations.makeRowsFooter, Fun.always, Fun.noop, Events.structureModified);
+  const makeRowsHeader = execute(TableOperations.makeRowsHeader, (() => true as const), () => {}, Events.structureModified);
+  const makeRowsBody = execute(TableOperations.makeRowsBody, (() => true as const), () => {}, Events.structureModified);
+  const makeRowsFooter = execute(TableOperations.makeRowsFooter, (() => true as const), () => {}, Events.structureModified);
 
   const getTableCellType = TableOperations.getCellsType;
   const getTableColType = TableOperations.getColumnsType;

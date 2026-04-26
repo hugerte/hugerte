@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional, Optionals, Type } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { SugarElement } from '@ephox/sugar';
 
@@ -12,9 +11,9 @@ import * as PaddingBr from '../dom/PaddingBr';
 import * as FormatUtils from '../fmt/FormatUtils';
 
 interface DetailsElements {
-  readonly startSummary: Optional<HTMLElement>;
-  readonly startDetails: Optional<HTMLDetailsElement>;
-  readonly endDetails: Optional<HTMLDetailsElement>;
+  readonly startSummary: (HTMLElement) | null;
+  readonly startDetails: (HTMLDetailsElement) | null;
+  readonly endDetails: (HTMLDetailsElement) | null;
 }
 
 type Granularity = 'character' | 'word' | 'line' | 'selection';
@@ -27,19 +26,19 @@ const emptyNodeContents = (node: Node) => PaddingBr.fillWithPaddingBr(SugarEleme
 const isEntireNodeSelected = (rng: Range, node: Node): boolean =>
   rng.startOffset === 0 && rng.endOffset === node.textContent?.length;
 
-const getParentDetailsElementAtPos = (dom: DOMUtils, pos: CaretPosition) => Optional.from(dom.getParent(pos.container(), 'details'));
+const getParentDetailsElementAtPos = (dom: DOMUtils, pos: CaretPosition) => (dom.getParent(pos.container(), 'details') ?? null);
 
-const isInDetailsElement = (dom: DOMUtils, pos: CaretPosition) => getParentDetailsElementAtPos(dom, pos).isSome();
+const isInDetailsElement = (dom: DOMUtils, pos: CaretPosition) => getParentDetailsElementAtPos(dom, pos) !== null;
 
-const getDetailsElements = (dom: DOMUtils, rng: Range): Optional<DetailsElements> => {
-  const startDetails = Optional.from(dom.getParent(rng.startContainer, 'details'));
-  const endDetails = Optional.from(dom.getParent(rng.endContainer, 'details'));
+const getDetailsElements = (dom: DOMUtils, rng: Range): (DetailsElements) | null => {
+  const startDetails = (dom.getParent(rng.startContainer, 'details') ?? null);
+  const endDetails = (dom.getParent(rng.endContainer, 'details') ?? null);
 
-  if (startDetails.isSome() || endDetails.isSome()) {
-    const startSummary = startDetails.bind((details) => Optional.from(dom.select('summary', details)[0]));
-    return Optional.some({ startSummary, startDetails, endDetails });
+  if (startDetails !== null || endDetails !== null) {
+    const startSummary = startDetails.bind((details) => (dom.select('summary', details)[0] ?? null));
+    return { startSummary, startDetails, endDetails };
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
@@ -79,7 +78,7 @@ const isCaretInLastPositionInBody = (root: HTMLElement, caretPos: CaretPosition,
 
 const setCaretToPosition = (editor: Editor, position: CaretPosition): void => {
   const node = position.getNode();
-  if (!Type.isUndefined(node)) {
+  if (!(node) === undefined) {
     editor.selection.setCursorLocation(node, position.offset());
   }
 };
@@ -118,15 +117,15 @@ const shouldPreventDeleteIntoDetails = (editor: Editor, forward: boolean, granul
     const parentBlock = dom.getParent(caretPos.container(), dom.isBlock);
     const parentDetailsAtCaret = getParentDetailsElementAtPos(dom, caretPos);
     const inEmptyParentBlock = parentBlock && dom.isEmpty(parentBlock);
-    const isFirstBlock = Type.isNull(parentBlock?.previousSibling);
-    const isLastBlock = Type.isNull(parentBlock?.nextSibling);
+    const isFirstBlock = (parentBlock?.previousSibling) === null;
+    const isLastBlock = (parentBlock?.nextSibling) === null;
 
     // Pressing backspace or delete in an first or last empty block before or after details
     if (inEmptyParentBlock) {
       const firstOrLast = forward ? isLastBlock : isFirstBlock;
       if (firstOrLast) {
         const isBeforeAfterDetails = CaretFinder.navigate(!forward, root, caretPos).exists((pos) => {
-          return isInDetailsElement(dom, pos) && !Optionals.equals(parentDetailsAtCaret, getParentDetailsElementAtPos(dom, pos));
+          return isInDetailsElement(dom, pos) && !(parentDetailsAtCaret === null && getParentDetailsElementAtPos(dom, pos) === null || (parentDetailsAtCaret !== null && getParentDetailsElementAtPos(dom, pos) !== null && (parentDetailsAtCaret) === (getParentDetailsElementAtPos(dom, pos))));
         });
 
         if (isBeforeAfterDetails) {
@@ -136,11 +135,11 @@ const shouldPreventDeleteIntoDetails = (editor: Editor, forward: boolean, granul
     }
 
     return CaretFinder.navigate(forward, root, caretPos).fold(
-      Fun.never,
+      (() => false as const),
       (pos) => {
         const parentDetailsAtNewPos = getParentDetailsElementAtPos(dom, pos);
 
-        if (isInDetailsElement(dom, pos) && !Optionals.equals(parentDetailsAtCaret, parentDetailsAtNewPos)) {
+        if (isInDetailsElement(dom, pos) && !(parentDetailsAtCaret === null && parentDetailsAtNewPos === null || (parentDetailsAtCaret !== null && parentDetailsAtNewPos !== null && (parentDetailsAtCaret) === (parentDetailsAtNewPos)))) {
           if (!forward) {
             moveCaretToDetailsPos(editor, pos, false);
           }
@@ -205,7 +204,7 @@ const handleDeleteActionSafari = (editor: Editor, forward: boolean, granularity:
         const sel = selection.getSel();
         let { anchorNode, anchorOffset, focusNode, focusOffset } = sel ?? {};
         const applySelection = () => {
-          if (Type.isNonNullable(anchorNode) && Type.isNonNullable(anchorOffset) && Type.isNonNullable(focusNode) && Type.isNonNullable(focusOffset)) {
+          if ((anchorNode) != null && (anchorOffset) != null && (focusNode) != null && (focusOffset) != null) {
             sel?.setBaseAndExtent(anchorNode, anchorOffset, focusNode, focusOffset);
           }
         };
@@ -216,7 +215,7 @@ const handleDeleteActionSafari = (editor: Editor, forward: boolean, granularity:
           focusOffset = sel?.focusOffset;
         };
         const appendAllChildNodes = (from: Node, to: Node) => {
-          Arr.each(from.childNodes, (child) => {
+          (from.childNodes).forEach((child) => {
             if (FormatUtils.isNode(child)) {
               to.appendChild(child);
             }
@@ -249,9 +248,9 @@ const handleDeleteActionSafari = (editor: Editor, forward: boolean, granularity:
   }
 };
 
-const backspaceDelete = (editor: Editor, forward: boolean, granularity: 'character' | 'word' | 'line' | 'selection'): Optional<() => void> =>
+const backspaceDelete = (editor: Editor, forward: boolean, granularity: 'character' | 'word' | 'line' | 'selection'): (() =) | null void> =>
   shouldPreventDeleteAction(editor, forward, granularity) || isSafari && handleDeleteActionSafari(editor, forward, granularity)
-    ? Optional.some(Fun.noop) : Optional.none();
+    ? () => {} : null;
 
 export {
   backspaceDelete

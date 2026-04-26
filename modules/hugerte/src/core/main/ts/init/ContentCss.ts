@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';
@@ -25,7 +24,7 @@ const transformToUrls = (editor: Editor, cssLinks: string[]): string[] => {
   const suffix = editor.editorManager.suffix;
   const contentCssFile = `content${suffix}.css`;
 
-  return Arr.map(cssLinks, (url) => {
+  return (cssLinks).map((url) => {
     if (isBundledCssSkinName(url)) {
       return toContentSkinResourceName(url);
     } else if (isContentCssSkinName(url) && !editor.inline) {

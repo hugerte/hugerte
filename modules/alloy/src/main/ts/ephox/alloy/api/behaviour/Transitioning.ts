@@ -1,5 +1,4 @@
 import { Objects } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
 
 import * as ActiveTransitioning from '../../behaviour/transitioning/ActiveTransitioning';
 import * as TransitionApis from '../../behaviour/transitioning/TransitionApis';
@@ -9,11 +8,11 @@ import * as Behaviour from './Behaviour';
 
 const createRoutes = (routes: Record<string, TransitionPropertiesSpec>): TransitioningConfigSpec['routes'] => {
   const r: TransitioningConfigSpec['routes'] = { };
-  Obj.each(routes, (v: TransitionPropertiesSpec, k: string) => {
+  Object.entries(routes).forEach(([_k, _v]: [any, any]) => ((v: TransitionPropertiesSpec, k: string) => {
     const waypoints = k.split('<->');
     r[waypoints[0]] = Objects.wrap(waypoints[1], v);
     r[waypoints[1]] = Objects.wrap(waypoints[0], v);
-  });
+  })(_v, _k));
   return r;
 };
 

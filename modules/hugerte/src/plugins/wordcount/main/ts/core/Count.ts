@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { Words } from '@ephox/polaris';
 
 import Schema from 'hugerte/core/api/html/Schema';
@@ -18,7 +17,7 @@ const countWords: Counter = (node: Node, schema: Schema): number => {
   // TINY-7484: The grapheme word boundary logic used by Polaris states a ZWSP (\u200B) should be treated as
   // a word boundary, however word counting normally does not consider it as anything so we strip it out.
   const text = removeZwsp(getText(node, schema).join('\n'));
-  return Words.getWords(text.split(''), Fun.identity).length;
+  return Words.getWords(text.split(''), (x: any) => x).length;
 };
 
 const countCharacters: Counter = (node: Node, schema: Schema): number => {

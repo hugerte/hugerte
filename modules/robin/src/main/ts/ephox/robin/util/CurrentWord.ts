@@ -1,4 +1,3 @@
-import { Optional, Optionals } from '@ephox/katamari';
 
 import { BeforeAfter } from '../data/BeforeAfter';
 import * as WordUtil from './WordUtil';
@@ -22,12 +21,12 @@ const around = (text: string, position: number): BeforeAfter => {
 
   const fallback = BeforeAfter(before, after);
 
-  const current = BeforeAfter(Optional.some(position), Optional.some(position));
+  const current = BeforeAfter(position, position);
 
-  const endOfWord = after.bind((a) => Optionals.someIf(position === a, current));
+  const endOfWord = after.bind((a) => (position === a ? current : null));
 
   return endOfWord.getOrThunk(() =>
-    before.bind((b) => Optionals.someIf(position === b, current)).getOr(fallback));
+    before.bind((b) => (position === b ? current : null)) ?? (fallback));
 };
 
 export {

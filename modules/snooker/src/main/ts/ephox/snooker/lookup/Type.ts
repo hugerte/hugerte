@@ -1,4 +1,4 @@
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -25,7 +25,7 @@ interface CommonRowDetails {
 const isHeaderCell = SugarNode.isTag('th');
 
 const isHeaderCells = (cells: CommonCellDetails[]): boolean =>
-  Arr.forall(cells, (cell) => isHeaderCell(cell.element));
+  (cells).every((cell) => isHeaderCell(cell.element));
 
 const getRowHeaderType = (isHeaderRow: boolean, isHeaderCells: boolean): RowHeaderType => {
   if (isHeaderRow && isHeaderCells) {
@@ -40,7 +40,7 @@ const getRowHeaderType = (isHeaderRow: boolean, isHeaderCells: boolean): RowHead
 const getRowType = (row: CommonRowDetails): RowDetails => {
   // Header rows can use a combination of theads and ths - want to detect the different combinations
   const isHeaderRow = row.section === 'thead';
-  const isHeaderCells = Optionals.is(findCommonCellType(row.cells), 'th');
+  const isHeaderCells = (findCommonCellType(row.cells) !== null && (findCommonCellType(row.cells)) === ('th'));
   if (row.section === 'tfoot') {
     return { type: 'footer' };
   } else if (isHeaderRow || isHeaderCells) {
@@ -50,39 +50,39 @@ const getRowType = (row: CommonRowDetails): RowDetails => {
   }
 };
 
-const findCommonCellType = (cells: CommonCellDetails[]): Optional<'td' | 'th'> => {
-  const headerCells = Arr.filter(cells, (cell) => isHeaderCell(cell.element));
+const findCommonCellType = (cells: CommonCellDetails[]): ('td' | 'th') | null => {
+  const headerCells = (cells).filter((cell) => isHeaderCell(cell.element));
   if (headerCells.length === 0) {
-    return Optional.some('td');
+    return 'td';
   } else if (headerCells.length === cells.length) {
-    return Optional.some('th');
+    return 'th';
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
-const findCommonRowType = (rows: CommonRowDetails[]): Optional<RowType> => {
-  const rowTypes = Arr.map(rows, (row) => getRowType(row).type);
-  const hasHeader = Arr.contains(rowTypes, 'header');
-  const hasFooter = Arr.contains(rowTypes, 'footer');
+const findCommonRowType = (rows: CommonRowDetails[]): (RowType) | null => {
+  const rowTypes = (rows).map((row) => getRowType(row).type);
+  const hasHeader = (rowTypes).includes('header');
+  const hasFooter = (rowTypes).includes('footer');
   if (!hasHeader && !hasFooter) {
-    return Optional.some('body');
+    return 'body';
   } else {
-    const hasBody = Arr.contains(rowTypes, 'body');
+    const hasBody = (rowTypes).includes('body');
     if (hasHeader && !hasBody && !hasFooter) {
-      return Optional.some('header');
+      return 'header';
     } else if (!hasHeader && !hasBody && hasFooter) {
-      return Optional.some('footer');
+      return 'footer';
     } else {
-      return Optional.none();
+      return null;
     }
   }
 };
 
-const findTableRowHeaderType = (warehouse: Warehouse): Optional<RowHeaderType> =>
+const findTableRowHeaderType = (warehouse: Warehouse): (RowHeaderType) | null =>
   Arr.findMap(warehouse.all, (row) => {
     const rowType = getRowType(row);
-    return rowType.type === 'header' ? Optional.from(rowType.subType as RowHeaderType) : Optional.none();
+    return rowType.type === 'header' ? (rowType.subType as RowHeaderType ?? null) : null;
   });
 
 export {

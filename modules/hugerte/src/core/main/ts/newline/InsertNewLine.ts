@@ -1,4 +1,3 @@
-import { Fun, Type } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Options from '../api/Options';
@@ -20,7 +19,7 @@ const insertBreak = (breakType: BreakType, editor: Editor, evt?: EditorEvent<Key
     // overrides will be considered.
     DeleteUtils.execEditorDeleteCommand(editor);
   }
-  if (Type.isNonNullable(evt)) {
+  if ((evt) != null) {
     const event = InputEvents.fireBeforeInputEvent(editor, breakType.fakeEventName);
     if (event.isDefaultPrevented()) {
       return;
@@ -29,7 +28,7 @@ const insertBreak = (breakType: BreakType, editor: Editor, evt?: EditorEvent<Key
 
   breakType.insert(editor, evt);
 
-  if (Type.isNonNullable(evt)) {
+  if ((evt) != null) {
     InputEvents.fireInputEvent(editor, breakType.fakeEventName);
   }
 };
@@ -42,18 +41,18 @@ const insert = (editor: Editor, evt?: EditorEvent<KeyboardEvent>): void => {
 
   switch (Options.getNewlineBehavior(editor)) {
     case 'linebreak':
-      logicalAction.fold(br, br, Fun.noop);
+      logicalAction.fold(br, br, () => {});
       break;
     case 'block':
-      logicalAction.fold(block, block, Fun.noop);
+      logicalAction.fold(block, block, () => {});
       break;
     case 'invert':
-      logicalAction.fold(block, br, Fun.noop);
+      logicalAction.fold(block, br, () => {});
       break;
     // implied by the options processor, unnecessary
     // case 'default':
     default:
-      logicalAction.fold(br, block, Fun.noop);
+      logicalAction.fold(br, block, () => {});
       break;
   }
 };

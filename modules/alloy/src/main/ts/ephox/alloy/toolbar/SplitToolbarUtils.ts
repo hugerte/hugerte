@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Css, Focus, Width } from '@ephox/sugar';
 
 import { Coupling } from '../api/behaviour/Coupling';
@@ -12,11 +12,11 @@ import { SplitToolbarBaseDetail } from '../ui/types/SplitToolbarBaseTypes';
 import * as Overflows from './Overflows';
 
 const setGroups = (toolbar: AlloyComponent, storedGroups: AlloyComponent[]): void => {
-  const bGroups = Arr.map(storedGroups, (g) => GuiFactory.premade(g));
+  const bGroups = (storedGroups).map((g) => GuiFactory.premade(g));
   Toolbar.setGroups(toolbar, bGroups);
 };
 
-const findFocusedComp = (comps: AlloyComponent[]): Optional<AlloyComponent> =>
+const findFocusedComp = (comps: AlloyComponent[]): (AlloyComponent) | null =>
   Arr.findMap(comps, (comp) => Focus.search(comp.element).bind((focusedElm) => comp.getSystem().getByDom(focusedElm).toOptional()));
 
 const refresh = (toolbar: AlloyComponent, detail: SplitToolbarBaseDetail, setOverflow: (groups: AlloyComponent[]) => void): void => {

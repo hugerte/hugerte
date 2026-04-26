@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Tools from 'hugerte/core/api/util/Tools';
 
@@ -88,7 +87,7 @@ const getUrl = (pattern: UrlPattern, url: string): string => {
 
   const match = pattern.regex.exec(url);
   let newUrl = protocol + pattern.url;
-  if (Type.isNonNullable(match)) {
+  if ((match) != null) {
     for (let i = 0; i < match.length; i++) {
       newUrl = newUrl.replace('$' + i, () => match[i] ? match[i] : '');
     }

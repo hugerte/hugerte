@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -12,7 +11,7 @@ const init = (editor: Editor, database: EmojiDatabase): void => {
     minChars: 2,
     fetch: (pattern, maxResults) => database.waitForLoad().then(() => {
       const candidates = database.listAll();
-      return emojisFrom(candidates, pattern, Optional.some(maxResults));
+      return emojisFrom(candidates, pattern, maxResults);
     }),
     onAction: (autocompleteApi, rng, value) => {
       editor.selection.setRng(rng);

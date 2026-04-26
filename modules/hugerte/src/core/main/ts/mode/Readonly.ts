@@ -1,4 +1,3 @@
-import { Arr, Optional, Strings } from '@ephox/katamari';
 import { Attribute, Class, Compare, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -31,21 +30,21 @@ const setContentEditable = (elm: SugarElement<HTMLElement>, state: boolean) => {
 };
 
 const switchOffContentEditableTrue = (elm: SugarElement<Node>) => {
-  Arr.each(SelectorFilter.descendants<HTMLElement>(elm, '*[contenteditable="true"]'), (elm) => {
+  (SelectorFilter.descendants<HTMLElement>(elm, '*[contenteditable="true"]')).forEach((elm) => {
     Attribute.set(elm, internalContentEditableAttr, 'true');
     setContentEditable(elm, false);
   });
 };
 
 const switchOnContentEditableTrue = (elm: SugarElement<Node>) => {
-  Arr.each(SelectorFilter.descendants<HTMLElement>(elm, `*[${internalContentEditableAttr}="true"]`), (elm) => {
+  (SelectorFilter.descendants<HTMLElement>(elm, `*[${internalContentEditableAttr}="true"]`)).forEach((elm) => {
     Attribute.remove(elm, internalContentEditableAttr);
     setContentEditable(elm, true);
   });
 };
 
 const removeFakeSelection = (editor: Editor) => {
-  Optional.from(editor.selection.getNode()).each((elm) => {
+  (editor.selection.getNode() ?? null).each((elm) => {
     elm.removeAttribute('data-mce-selected');
   });
 };
@@ -88,7 +87,7 @@ const isReadOnly = (editor: Editor): boolean => editor.readonly;
 const registerFilters = (editor: Editor) => {
   editor.parser.addAttributeFilter('contenteditable', (nodes) => {
     if (isReadOnly(editor)) {
-      Arr.each(nodes, (node) => {
+      (nodes).forEach((node) => {
         node.attr(internalContentEditableAttr, node.attr('contenteditable'));
         node.attr('contenteditable', 'false');
       });
@@ -97,7 +96,7 @@ const registerFilters = (editor: Editor) => {
 
   editor.serializer.addAttributeFilter(internalContentEditableAttr, (nodes) => {
     if (isReadOnly(editor)) {
-      Arr.each(nodes, (node) => {
+      (nodes).forEach((node) => {
         node.attr('contenteditable', node.attr(internalContentEditableAttr));
       });
     }
@@ -120,12 +119,12 @@ const isClickEvent = (e: Event): e is MouseEvent => e.type === 'click';
 
 const allowedEvents: ReadonlyArray<string> = [ 'copy' ];
 
-const isReadOnlyAllowedEvent = (e: Event) => Arr.contains(allowedEvents, e.type);
+const isReadOnlyAllowedEvent = (e: Event) => (allowedEvents).includes(e.type);
 
 /*
 * This function is exported for unit testing purposes only
 */
-const getAnchorHrefOpt = (editor: Editor, elm: SugarElement<Node>): Optional<string> => {
+const getAnchorHrefOpt = (editor: Editor, elm: SugarElement<Node>): (string) | null => {
   const isRoot = (elm: SugarElement<Node>) => Compare.eq(elm, SugarElement.fromDom(editor.getBody()));
   return SelectorFind.closest<HTMLAnchorElement>(elm, 'a', isRoot).bind((a) => Attribute.getOpt(a, 'href'));
 };
@@ -142,7 +141,7 @@ const processReadonlyEvents = (editor: Editor, e: Event): void => {
     getAnchorHrefOpt(editor, elm).each((href) => {
       e.preventDefault();
       if (/^#/.test(href)) {
-        const targetEl = editor.dom.select(`${href},[name="${Strings.removeLeading(href, '#')}"]`);
+        const targetEl = editor.dom.select(`${href},[name="${((href).startsWith('#') ? (href).slice(('#').length) : (href))}"]`);
         if (targetEl.length) {
           editor.selection.scrollIntoView(targetEl[0], true);
         }

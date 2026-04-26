@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Result, Optional } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { ChoiceMenuItemSpec } from './ChoiceMenuItem';
@@ -47,10 +47,10 @@ export interface InsertTableMenuItem extends BaseFancyMenuItem<'inserttable'> {
 
 export interface ColorSwatchMenuItem extends BaseFancyMenuItem<'colorswatch'> {
   fancytype: 'colorswatch';
-  select: Optional<(value: string) => boolean>;
+  select: ((value: string) =) | null boolean>;
   initData: {
     allowCustomColors: boolean;
-    colors: Optional<ChoiceMenuItemSpec[]>;
+    colors: (ChoiceMenuItemSpec[]) | null;
     storageKey: string;
   };
 }

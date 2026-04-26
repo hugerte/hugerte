@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 
 import * as Spot from '../api/data/Spot';
 import { SpotPoint } from '../api/data/Types';
@@ -38,22 +37,22 @@ const toLeaf = <E, D>(universe: Universe<E, D>, element: E, offset: number): Spo
   }
 };
 
-const scan = <E, D>(universe: Universe<E, D>, element: E, direction: (e: E) => Optional<E>): Optional<E> => {
+const scan = <E, D>(universe: Universe<E, D>, element: E, direction: (e: E) => (E) | null): (E) | null => {
   // if a comment or zero-length text, scan the siblings
   if ((universe.property().isText(element) && universe.property().getText(element).trim().length === 0)
     || universe.property().isComment(element)) {
     return direction(element).bind((elem) => {
       return scan(universe, elem, direction).orThunk(() => {
-        return Optional.some(elem);
+        return elem;
       });
     });
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
 const freefallLtr = <E, D>(universe: Universe<E, D>, element: E): SpotPoint<E> => {
-  const candidate = scan(universe, element, universe.query().nextSibling).getOr(element);
+  const candidate = scan(universe, element, universe.query().nextSibling) ?? (element);
   if (universe.property().isText(candidate)) {
     return Spot.point(candidate, 0);
   }
@@ -70,7 +69,7 @@ const toEnd = <E, D>(universe: Universe<E, D>, element: E): number => {
 };
 
 const freefallRtl = <E, D>(universe: Universe<E, D>, element: E): SpotPoint<E> => {
-  const candidate = scan(universe, element, universe.query().prevSibling).getOr(element);
+  const candidate = scan(universe, element, universe.query().prevSibling) ?? (element);
   if (universe.property().isText(candidate)) {
     return Spot.point(candidate, toEnd(universe, candidate));
   }

@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { BlockFormat, InlineFormat } from 'hugerte/core/api/fmt/Format';
@@ -24,18 +24,18 @@ const getSpec = (editor: Editor): SelectSpec => {
   const getPreviewFor = (format: string) => () => {
     const fmt = editor.formatter.get(format);
     if (fmt) {
-      return Optional.some({
+      return {
         tag: fmt.length > 0 ? (fmt[0] as InlineFormat).inline || (fmt[0] as BlockFormat).block || 'div' : 'div',
         styles: editor.dom.parseStyle(editor.formatter.getCssText(format))
-      });
+      };
     } else {
-      return Optional.none();
+      return null;
     }
   };
 
   const updateSelectMenuText = (comp: AlloyComponent) => {
     const detectedFormat = findNearest(editor, () => dataset.data);
-    const text = detectedFormat.fold(Fun.constant(fallbackFormat), (fmt) => fmt.title);
+    const text = detectedFormat.fold(() => fallbackFormat, (fmt) => fmt.title);
     AlloyTriggers.emitWith(comp, updateMenuText, {
       text
     });
@@ -46,8 +46,8 @@ const getSpec = (editor: Editor): SelectSpec => {
 
   return {
     tooltip: Tooltip.makeTooltipText(editor, btnTooltip, fallbackFormat),
-    text: Optional.some(fallbackFormat),
-    icon: Optional.none(),
+    text: fallbackFormat,
+    icon: null,
     isSelectedFor,
     getCurrentValue: Optional.none,
     getPreviewFor,

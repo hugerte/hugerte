@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 export type ContextPosition = 'node' | 'selection' | 'line';
 export type ContextScope = 'node' | 'editor';
@@ -17,7 +16,7 @@ export interface ContextBar {
 }
 
 export const contextBarFields = [
-  FieldSchema.defaultedFunction('predicate', Fun.never),
+  FieldSchema.defaultedFunction('predicate', (() => false as const)),
   FieldSchema.defaultedStringEnum('scope', 'node', [ 'node', 'editor' ]),
   FieldSchema.defaultedStringEnum('position', 'selection', [ 'node', 'selection', 'line' ])
 ];

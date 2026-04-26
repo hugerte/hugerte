@@ -1,4 +1,4 @@
-import { Fun, Obj, Strings, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 
 import Editor from './Editor';
 import { EditorOptions, NormalizedEditorOptions } from './OptionTypes';
@@ -151,9 +151,9 @@ export interface Options {
 
 // A string array allows comma/space separated values as well for ease of use
 const stringListProcessor: Processor<string[]> = (value: unknown) => {
-  if (Type.isString(value)) {
+  if (typeof (value) === 'string') {
     return { value: value.split(/[ ,]/), valid: true };
-  } else if (Type.isArrayOf(value, Type.isString)) {
+  } else if ((Array.isArray(value) && (value).every(Type.isString))) {
     return { value, valid: true };
   } else {
     return { valid: false, message: `The value must be a string[] or a comma/space separated string.` };
@@ -178,11 +178,11 @@ const getBuiltInProcessor = <K extends BuiltInOptionType>(type: K): Processor<Bu
       case 'string[]':
         return stringListProcessor;
       case 'object[]':
-        return (val) => Type.isArrayOf(val, Type.isObject);
+        return (val) => (Array.isArray(val) && (val).every(Type.isObject));
       case 'regexp':
         return (val) => Type.is(val, RegExp);
       default:
-        return Fun.always;
+        return (() => true as const);
     }
   })() as SimpleProcessor | Processor<BuiltInOptionTypeMap[K]>;
 
@@ -190,10 +190,10 @@ const getBuiltInProcessor = <K extends BuiltInOptionType>(type: K): Processor<Bu
 };
 
 const isBuiltInSpec = <K extends BuiltInOptionType>(spec: unknown): spec is BuiltInOptionSpec<K> =>
-  Type.isString((spec as BuiltInOptionSpec<K>).processor);
+  typeof ((spec as BuiltInOptionSpec<K>).processor) === 'string';
 
 const getErrorMessage = (message: string, result: ProcessorError): string => {
-  const additionalText = Strings.isEmpty(result.message) ? '' : `. ${result.message}`;
+  const additionalText = ((result.message).length === 0) ? '' : `. ${result.message}`;
   return message + additionalText;
 };
 
@@ -202,7 +202,7 @@ const isValidResult = <T>(result: ProcessorSuccess<T> | ProcessorError): result 
 
 const processValue = <T, U>(value: T, processor: SimpleProcessor | Processor<U>, message: string = ''): ProcessorSuccess<U> | ProcessorError => {
   const result = processor(value);
-  if (Type.isBoolean(result)) {
+  if (typeof (result) === 'boolean') {
     // Note: Need to cast here as if a boolean is returned then we're guaranteed to be returning the same value
     return result ? { value: value as unknown as U, valid: true } : { valid: false, message };
   } else {
@@ -211,7 +211,7 @@ const processValue = <T, U>(value: T, processor: SimpleProcessor | Processor<U>,
 };
 
 const processDefaultValue = <T, U>(name: string, defaultValue: T, processor: Processor<U>): U | undefined => {
-  if (!Type.isUndefined(defaultValue)) {
+  if (!(defaultValue) === undefined) {
     const result = processValue(defaultValue, processor);
     if (isValidResult(result)) {
       return result.value;
@@ -254,17 +254,17 @@ const create = (editor: Editor, initialOptions: Record<string, unknown>): Option
     };
 
     // Setup the initial values
-    const initValue = Obj.get(values, name).orThunk(() => Obj.get(initialOptions, name));
+    const initValue = ((values)[name] ?? null).orThunk(() => ((initialOptions)[name] ?? null));
     initValue.each((value) => setValue(name, value, processor));
   };
 
   const isRegistered = (name: string) =>
-    Obj.has(registry, name);
+    Object.prototype.hasOwnProperty.call(registry, name);
 
   const get = (name: string) =>
-    Obj.get(values, name)
-      .orThunk(() => Obj.get(registry, name).map((spec) => spec.default))
-      .getOrUndefined();
+    ((values)[name] ?? null)
+      .orThunk(() => ((registry)[name] ?? null).map((spec) => spec.default))
+       ?? undefined;
 
   const set = <T>(name: string, value: T) => {
     if (!isRegistered(name)) {
@@ -292,7 +292,7 @@ const create = (editor: Editor, initialOptions: Record<string, unknown>): Option
   };
 
   const isSet = (name: string) =>
-    Obj.has(values, name);
+    Object.prototype.hasOwnProperty.call(values, name);
 
   return {
     register,

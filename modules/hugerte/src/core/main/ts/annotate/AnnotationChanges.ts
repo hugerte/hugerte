@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Optional, Optionals, Singleton, Throttler } from '@ephox/katamari';
+import { Cell, Singleton, Throttler } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -36,7 +36,7 @@ const setup = (editor: Editor, registry: AnnotationsRegistry): AnnotationChanges
 
   const updateCallbacks = (name: string, f: (inputData: AnnotationListenerData) => AnnotationListenerData) => {
     const callbackMap = changeCallbacks.get();
-    const data = Obj.get(callbackMap, name).getOrThunk(initData);
+    const data = ((callbackMap)[name] ?? null).getOrThunk(initData);
     const outputData = f(data);
     callbackMap[name] = outputData;
     changeCallbacks.set(callbackMap);
@@ -44,21 +44,21 @@ const setup = (editor: Editor, registry: AnnotationsRegistry): AnnotationChanges
 
   const fireCallbacks = (name: string, uid: string, elements: any[]): void => {
     withCallbacks(name, (data) => {
-      Arr.each(data.listeners, (f) => f(true, name, {
+      (data.listeners).forEach((f) => f(true, name, {
         uid,
-        nodes: Arr.map(elements, (elem) => elem.dom)
+        nodes: (elements).map((elem) => elem.dom)
       }));
     });
   };
 
   const fireNoAnnotation = (name: string): void => {
     withCallbacks(name, (data) => {
-      Arr.each(data.listeners, (f) => f(false, name));
+      (data.listeners).forEach((f) => f(false, name));
     });
   };
 
   const toggleActiveAttr = (uid: string, state: boolean) => {
-    Arr.each(Identification.findMarkers(editor, uid), (elem) => {
+    (Identification.findMarkers(editor, uid)).forEach((elem) => {
       if (state) {
         Attribute.set(elem, Markings.dataAnnotationActive(), 'true');
       } else {
@@ -69,11 +69,11 @@ const setup = (editor: Editor, registry: AnnotationsRegistry): AnnotationChanges
 
   // NOTE: Runs in alphabetical order.
   const onNodeChange = Throttler.last(() => {
-    const annotations = Arr.sort(registry.getNames());
-    Arr.each(annotations, (name) => {
+    const annotations = [...(registry.getNames())].sort();
+    (annotations).forEach((name) => {
       updateCallbacks(name, (data) => {
         const prev = data.previous.get();
-        Identification.identify(editor, Optional.some(name)).fold(
+        Identification.identify(editor, name).fold(
           () => {
             prev.each((uid) => {
               // Changed from something to nothing.
@@ -84,7 +84,7 @@ const setup = (editor: Editor, registry: AnnotationsRegistry): AnnotationChanges
           },
           ({ uid, name, elements }) => {
             // Changed from a different annotation (or nothing)
-            if (!Optionals.is(prev, uid)) {
+            if (!(prev !== null && (prev) === (uid))) {
               prev.each((uid) => toggleActiveAttr(uid, false));
               fireCallbacks(name, uid, elements);
               data.previous.set(uid);

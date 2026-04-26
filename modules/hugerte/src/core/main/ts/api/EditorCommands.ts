@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import * as SelectionBookmark from '../selection/SelectionBookmark';
 import Editor from './Editor';
@@ -27,7 +26,7 @@ export interface ExecCommandArgs {
 // List of commands that are considered safe even if the editor has no selection when the iframe is hidden in Firefox. See TINY-9210 for details.
 const selectionSafeCommands = [ 'toggleview' ];
 
-const isSelectionSafeCommand = (command: string) => Arr.contains(selectionSafeCommands, command.toLowerCase());
+const isSelectionSafeCommand = (command: string) => (selectionSafeCommands).includes(command.toLowerCase());
 
 export interface EditorCommandsConstructor {
   readonly prototype: EditorCommands;
@@ -77,7 +76,7 @@ class EditorCommands {
     }
 
     const func = this.commands.exec[lowerCaseCommand];
-    if (Type.isFunction(func)) {
+    if (typeof (func) === 'function') {
       func(lowerCaseCommand, ui, value);
       editor.dispatch('ExecCommand', { command, ui, value });
       return true;
@@ -100,7 +99,7 @@ class EditorCommands {
 
     const lowerCaseCommand = command.toLowerCase();
     const func = this.commands.state[lowerCaseCommand];
-    if (Type.isFunction(func)) {
+    if (typeof (func) === 'function') {
       return func(lowerCaseCommand);
     }
 
@@ -121,7 +120,7 @@ class EditorCommands {
 
     const lowerCaseCommand = command.toLowerCase();
     const func = this.commands.value[lowerCaseCommand];
-    if (Type.isFunction(func)) {
+    if (typeof (func) === 'function') {
       return func(lowerCaseCommand);
     }
 
@@ -140,11 +139,11 @@ class EditorCommands {
   public addCommands(commandList: Commands[keyof Commands], type: 'exec' | 'state' | 'value' = 'exec'): void {
     const commands = this.commands;
 
-    Obj.each(commandList, (callback, command) => {
-      Arr.each(command.toLowerCase().split(','), (command) => {
+    Object.entries(commandList).forEach(([_k, _v]: [any, any]) => ((callback, command) => {
+      (command.toLowerCase().split(',')).forEach((command) => {
         commands[type][command] = callback;
       });
-    });
+    })(_v, _k));
   }
 
   public addCommand<S>(command: string, callback: EditorCommandCallback<S>, scope: S): void;

@@ -1,6 +1,5 @@
 import { AlloySpec, GuiFactory, SimpleSpec } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
 
 import I18n from 'hugerte/core/api/util/I18n';
 
@@ -96,13 +95,13 @@ const renderContainer = (container: Menu.CardContainer, components: AlloySpec[])
   };
 };
 
-const renderImage = (src: string, classes: string[], alt: Optional<string>): SimpleSpec => ({
+const renderImage = (src: string, classes: string[], alt: (string) | null): SimpleSpec => ({
   dom: {
     tag: 'img',
     classes,
     attributes: {
       src,
-      alt: alt.getOr('')
+      alt: alt ?? ('')
     }
   }
 });

@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { BlockFormat, InlineFormat } from 'hugerte/core/api/fmt/Format';
@@ -25,25 +25,25 @@ const getSpec = (editor: Editor, dataset: SelectDataset): SelectSpec => {
 
   const getPreviewFor = (format: string) => () => {
     const fmt = editor.formatter.get(format);
-    return fmt !== undefined ? Optional.some({
+    return fmt !== undefined ? {
       tag: fmt.length > 0 ? (fmt[0] as InlineFormat).inline || (fmt[0] as BlockFormat).block || 'div' : 'div',
       styles: editor.dom.parseStyle(editor.formatter.getCssText(format))
-    }) : Optional.none();
+    } : null;
   };
 
   const updateSelectMenuText = (comp: AlloyComponent) => {
     const getFormatItems = (fmt: StyleFormatType): BasicSelectItem[] => {
       if (isNestedFormat(fmt)) {
-        return Arr.bind(fmt.items, getFormatItems);
+        return (fmt.items).flatMap(getFormatItems);
       } else if (isFormatReference(fmt)) {
         return [{ title: fmt.title, format: fmt.format }];
       } else {
         return [];
       }
     };
-    const flattenedItems = Arr.bind(getStyleFormats(editor), getFormatItems);
-    const detectedFormat = findNearest(editor, Fun.constant(flattenedItems));
-    const text = detectedFormat.fold(Fun.constant(fallbackFormat), (fmt) => fmt.title);
+    const flattenedItems = (getStyleFormats(editor)).flatMap(getFormatItems);
+    const detectedFormat = findNearest(editor, () => flattenedItems);
+    const text = detectedFormat.fold(() => fallbackFormat, (fmt) => fmt.title);
     AlloyTriggers.emitWith(comp, updateMenuText, {
       text
     });
@@ -52,8 +52,8 @@ const getSpec = (editor: Editor, dataset: SelectDataset): SelectSpec => {
 
   return {
     tooltip: Tooltip.makeTooltipText(editor, btnTooltip, fallbackFormat),
-    text: Optional.some(fallbackFormat),
-    icon: Optional.none(),
+    text: fallbackFormat,
+    icon: null,
     isSelectedFor,
     getCurrentValue: Optional.none,
     getPreviewFor,

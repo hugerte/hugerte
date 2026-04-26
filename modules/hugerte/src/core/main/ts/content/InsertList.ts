@@ -1,4 +1,3 @@
-import { Arr, Type, Unicode } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import AstNode from '../api/html/Node';
@@ -17,11 +16,11 @@ import * as NodeType from '../dom/NodeType';
  */
 
 const hasOnlyOneChild = (node: AstNode): boolean => {
-  return Type.isNonNullable(node.firstChild) && node.firstChild === node.lastChild;
+  return (node.firstChild) != null && node.firstChild === node.lastChild;
 };
 
 const isPaddingNode = (node: AstNode): boolean => {
-  return node.name === 'br' || node.value === Unicode.nbsp;
+  return node.name === 'br' || node.value === '\u00A0';
 };
 
 const isPaddedEmptyBlock = (schema: Schema, node: AstNode): boolean => {
@@ -31,7 +30,7 @@ const isPaddedEmptyBlock = (schema: Schema, node: AstNode): boolean => {
 
 const isEmptyFragmentElement = (schema: Schema, node: AstNode | null | undefined): boolean => {
   const nonEmptyElements = schema.getNonEmptyElements();
-  return Type.isNonNullable(node) && (node.isEmpty(nonEmptyElements) || isPaddedEmptyBlock(schema, node));
+  return (node) != null && (node.isEmpty(nonEmptyElements) || isPaddedEmptyBlock(schema, node));
 };
 
 const isListFragment = (schema: Schema, fragment: AstNode): boolean => {
@@ -84,17 +83,17 @@ const toDomFragment = (dom: DOMUtils, serializer: HtmlSerializer, fragment: AstN
 };
 
 const listItems = (elm: Node | null): HTMLLIElement[] => {
-  return Arr.filter(elm?.childNodes ?? [], (child): child is HTMLLIElement => {
+  return (elm?.childNodes ?? []).filter((child): child is HTMLLIElement => {
     return child.nodeName === 'LI';
   });
 };
 
 const isPadding = (node: Node): boolean => {
-  return (node as Text).data === Unicode.nbsp || NodeType.isBr(node);
+  return (node as Text).data === '\u00A0' || NodeType.isBr(node);
 };
 
 const isListItemPadded = (node: Node): boolean => {
-  return Type.isNonNullable(node?.firstChild) && node.firstChild === node.lastChild && isPadding(node.firstChild);
+  return (node?.firstChild) != null && node.firstChild === node.lastChild && isPadding(node.firstChild);
 };
 
 const isEmptyOrPadded = (elm: Node): boolean => {

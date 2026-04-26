@@ -40,7 +40,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('templates', {
-    processor: (value) => Type.isString(value) || Type.isArrayOf(value, Type.isObject) || Type.isFunction(value),
+    processor: (value) => typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isObject)) || typeof (value) === 'function',
     default: []
   });
 

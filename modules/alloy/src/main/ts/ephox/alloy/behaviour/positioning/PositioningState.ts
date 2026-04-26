@@ -1,4 +1,3 @@
-import { Obj, Optional, Type } from '@ephox/katamari';
 
 import { PlacerResult } from '../../positioning/layout/LayoutTypes';
 import { nuState } from '../common/BehaviourState';
@@ -11,11 +10,11 @@ export const init = (): PositioningState => {
     state[id] = data;
   };
 
-  const get = (id: string): Optional<PlacerResult> =>
-    Obj.get(state, id);
+  const get = (id: string): (PlacerResult) | null =>
+    ((state)[id] ?? null);
 
   const clear = (id?: string) => {
-    if (Type.isNonNullable(id)) {
+    if ((id) != null) {
       delete state[id];
     } else {
       state = {};

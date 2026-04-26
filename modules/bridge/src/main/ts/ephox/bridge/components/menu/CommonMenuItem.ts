@@ -1,5 +1,4 @@
 import { FieldProcessor } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 
@@ -18,10 +17,10 @@ export interface CommonMenuItemInstanceApi {
 
 export interface CommonMenuItem {
   enabled: boolean;
-  text: Optional<string>;
+  text: (string) | null;
   value: string;
   meta: Record<string, any>;
-  shortcut: Optional<string>;
+  shortcut: (string) | null;
 }
 
 export const commonMenuItemFields: FieldProcessor[] = [

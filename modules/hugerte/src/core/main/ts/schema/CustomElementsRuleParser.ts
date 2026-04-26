@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as SchemaUtils from './SchemaUtils';
 
@@ -9,7 +8,7 @@ export interface CustomElementRule {
 
 export const parseCustomElementsRules = (value: string): CustomElementRule[] => {
   const customElementRegExp = /^(~)?(.+)$/;
-  return Arr.bind(SchemaUtils.split(value, ','), (rule) => {
+  return (SchemaUtils.split(value, ',')).flatMap((rule) => {
     const matches = customElementRegExp.exec(rule);
     if (matches) {
       const inline = matches[1] === '~';

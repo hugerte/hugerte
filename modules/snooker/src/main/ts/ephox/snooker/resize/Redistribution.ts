@@ -1,10 +1,9 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 import { Size } from './Size';
 
 // Convert all column widths to percent.
 const redistributeToPercent = (widths: string[], totalWidth: number): string[] => {
-  return Arr.map(widths, (w) => {
+  return (widths).map((w) => {
     const colType = Size.from(w);
     return colType.fold(() => {
       return w;
@@ -19,7 +18,7 @@ const redistributeToPercent = (widths: string[], totalWidth: number): string[] =
 
 const redistributeToPx = (widths: string[], totalWidth: number, newTotalWidth: number): string[] => {
   const scale = newTotalWidth / totalWidth;
-  return Arr.map(widths, (w) => {
+  return (widths).map((w) => {
     const colType = Size.from(w);
     return colType.fold(() => {
       return w;
@@ -34,17 +33,17 @@ const redistributeToPx = (widths: string[], totalWidth: number, newTotalWidth: n
 const redistributeEmpty = (newWidthType: Size, columns: number): string[] => {
   const f = newWidthType.fold(
     () =>
-      Fun.constant(''),
+      () => '',
     (pixels) => { // Pixels
       const num = pixels / columns;
-      return Fun.constant(num + 'px');
+      return () => num + 'px';
     },
     () => { // Percentages.
       const num = 100 / columns;
-      return Fun.constant(num + '%');
+      return () => num + '%';
     }
   );
-  return Arr.range(columns, f);
+  return Array.from({length: columns}, (_, _i) => (f)(_i));
 };
 
 const redistributeValues = (newWidthType: Size, widths: string[], totalWidth: number): string[] => {
@@ -59,7 +58,7 @@ const redistributeValues = (newWidthType: Size, widths: string[], totalWidth: nu
 
 const redistribute = (widths: string[], totalWidth: number, newWidth: string): string[] => {
   const newType = Size.from(newWidth);
-  const floats = Arr.forall(widths, (s) => {
+  const floats = (widths).every((s) => {
     return s === '0px';
   }) ? redistributeEmpty(newType, widths.length) : redistributeValues(newType, widths, totalWidth);
   return normalize(floats);
@@ -69,8 +68,8 @@ const sum = (values: string[], fallback: number): number => {
   if (values.length === 0) {
     return fallback;
   }
-  return Arr.foldr(values, (rest, v) => {
-    return Size.from(v).fold(Fun.constant(0), Fun.identity, Fun.identity) + rest;
+  return (values).reduceRight((rest, v) => {
+    return Size.from(v).fold(() => 0, (x: any) => x, (x: any) => x) + rest;
   }, 0);
 };
 
@@ -80,7 +79,7 @@ const roundDown = (num: number, unit: string): { value: string; remainder: numbe
 };
 
 const add = (value: string, amount: number): string => {
-  return Size.from(value).fold(Fun.constant(value), (px) => {
+  return Size.from(value).fold(() => value, (px) => {
     return (px + amount) + 'px';
   }, (pc) => {
     return (pc + amount) + '%';
@@ -91,7 +90,7 @@ const normalize = (values: string[]): string[] => {
   if (values.length === 0) {
     return values;
   }
-  const scan = Arr.foldr(values, (rest, value) => {
+  const scan = (values).reduceRight((rest, value) => {
     const info = Size.from(value).fold(
       () => ({ value, remainder: 0 }),
       (num) => roundDown(num, 'px'),

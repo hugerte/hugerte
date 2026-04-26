@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 
 // Not enforced :( Just for readability.
 type TriggerItemToMenu = Record<string, string>;
@@ -15,26 +15,26 @@ const trace = (items: Record<string, string>, byItem: TriggerItemToMenu, byMenu:
   // Given a finishing submenu (which will be the value of expansions),
   // find the triggering item, find its menu, and repeat the process. If there
   // is no triggering item, we are done.
-  Obj.get(byMenu, finish).bind((triggerItem: string) => Obj.get(items, triggerItem).bind((triggerMenu: string) => {
+  ((byMenu)[finish] ?? null).bind((triggerItem: string) => ((items)[triggerItem] ?? null).bind((triggerMenu: string) => {
     const rest = trace(items, byItem, byMenu, triggerMenu);
-    return Optional.some([ triggerMenu ].concat(rest));
-  })).getOr([ ]);
+    return [ triggerMenu ].concat(rest);
+  })) ?? ([ ]);
 
 const generate = (menus: MenuToItems, expansions: TriggerItemToMenu): ItemToMenuPath => {
   const items: ItemToMenu = { };
-  Obj.each(menus, (menuItems, menu) => {
-    Arr.each(menuItems, (item) => {
+  Object.entries(menus).forEach(([_k, _v]: [any, any]) => ((menuItems, menu) => {
+    (menuItems).forEach((item) => {
       items[item] = menu;
     });
-  });
+  })(_v, _k));
 
   const byItem: TriggerItemToMenu = expansions;
   const byMenu: MenuToTriggerItem = transpose(expansions);
 
   // For each menu, calculate the backlog of submenus to get to it.
-  const menuPaths = Obj.map(byMenu, (_triggerItem: string, submenu: string) => [ submenu ].concat(trace(items, byItem, byMenu, submenu)));
+  const menuPaths = Object.fromEntries(Object.entries(byMenu).map(([_k, _v]: [any, any]) => [_k, ((_triggerItem: string, submenu: string) => [ submenu ].concat(trace(items, byItem, byMenu, submenu)))(_v, _k as any)]));
 
-  return Obj.map(items, (menu: string) => Obj.get(menuPaths, menu).getOr([ menu ]));
+  return Object.fromEntries(Object.entries(items).map(([_k, _v]: [any, any]) => [_k, ((menu: string) => ((menuPaths)[menu] ?? null) ?? ([ menu ]))(_v, _k as any)]));
 };
 
 export {

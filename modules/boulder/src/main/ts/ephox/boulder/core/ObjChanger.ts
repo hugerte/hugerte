@@ -1,11 +1,10 @@
 // @ts-nocheck
-import { Arr, Obj } from '@ephox/katamari';
 
 const narrow = <T extends Record<string, any>, F extends Array<keyof T>>(obj: T, fields: F): Pick<T, F[number]> => {
   const r = { } as Pick<T, F[number]>;
-  Arr.each(fields, (field) => {
+  (fields).forEach((field) => {
     // TODO: Investigate if the undefined check is relied upon by something
-    if (obj[field] !== undefined && Obj.has(obj, field)) {
+    if (obj[field] !== undefined && Object.prototype.hasOwnProperty.call(obj, field)) {
       r[field] = obj[field];
     }
   });
@@ -15,7 +14,7 @@ const narrow = <T extends Record<string, any>, F extends Array<keyof T>>(obj: T,
 
 const indexOnKey = <T extends Record<string, any>, K extends keyof T>(array: ArrayLike<T>, key: K): { [A in T[K]]: T } => {
   const obj = { } as { [A in T[K]]: T };
-  Arr.each(array, (a) => {
+  (array).forEach((a) => {
     // FIX: Work out what to do here.
     const keyValue: string | number = a[key];
     obj[keyValue] = a;
@@ -25,11 +24,11 @@ const indexOnKey = <T extends Record<string, any>, K extends keyof T>(array: Arr
 
 const exclude = <T extends Record<string, any>, F extends Array<keyof T>>(obj: T, fields: F): Omit<T, F[number]> => {
   const r = { } as Omit<T, F[number]>;
-  Obj.each(obj, (v, k) => {
-    if (!Arr.contains(fields, k)) {
+  Object.entries(obj).forEach(([_k, _v]: [any, any]) => ((v, k) => {
+    if (!(fields).includes(k)) {
       r[k as string] = v;
     }
-  });
+  })(_v, _k));
   return r;
 };
 

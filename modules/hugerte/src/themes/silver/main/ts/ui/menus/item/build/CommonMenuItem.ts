@@ -1,7 +1,7 @@
 import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, Behaviour, Button, Focusing, ItemTypes, NativeEvents, Replacing
 } from '@ephox/alloy';
-import { Cell, Fun, Optional, Optionals } from '@ephox/katamari';
+import { Cell, Optionals } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 import * as ReadOnly from 'hugerte/themes/silver/ReadOnly';
@@ -14,7 +14,7 @@ import { ItemStructure } from '../structure/ItemStructure';
 
 export interface ItemDataInput {
   readonly value: string;
-  readonly text: Optional<string>;
+  readonly text: (string) | null;
   readonly meta: Record<string, any>;
 }
 
@@ -35,10 +35,10 @@ export interface CommonCollectionItemSpec {
   readonly disabled: boolean;
 }
 
-export const componentRenderPipeline: (xs: Array<Optional<AlloySpec>>) => AlloySpec[] = Optionals.cat;
+export const componentRenderPipeline: (xs: Array<(AlloySpec) | null>) => AlloySpec[] = Optionals.cat;
 
 const renderCommonItem = <T>(spec: CommonMenuItemSpec<T>, structure: ItemStructure, itemResponse: ItemResponse, providersBackstage: UiFactoryBackstageProviders): ItemTypes.ItemSpec => {
-  const editorOffCell = Cell(Fun.noop);
+  const editorOffCell = Cell(() => {});
 
   return {
     type: 'item',
@@ -87,7 +87,7 @@ const renderCommonChoice = (spec: CommonCollectionItemSpec, structure: ItemStruc
 const buildData = (source: ItemDataInput): ItemDataOutput => ({
   value: source.value,
   meta: {
-    text: source.text.getOr(''),
+    text: source.text ?? (''),
     ...source.meta
   }
 });

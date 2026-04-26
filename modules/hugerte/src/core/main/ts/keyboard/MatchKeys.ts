@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 interface KeyPatternBase {
   shiftKey?: boolean;
@@ -12,7 +12,7 @@ export interface KeyPattern extends KeyPatternBase {
   action: () => boolean;
 }
 export interface KeyPatternDelayed extends KeyPatternBase {
-  action: () => Optional<() => void>;
+  action: () => (() =) | null void>;
 }
 
 const baseKeyPattern = {
@@ -24,13 +24,13 @@ const baseKeyPattern = {
 };
 
 const defaultPatterns = (patterns: KeyPattern[]): Required<KeyPattern>[] =>
-  Arr.map(patterns, (pattern) => ({
+  (patterns).map((pattern) => ({
     ...baseKeyPattern,
     ...pattern
   }));
 
 const defaultDelayedPatterns = (patterns: KeyPatternDelayed[]): Required<KeyPatternDelayed>[] =>
-  Arr.map(patterns, (pattern) => ({
+  (patterns).map((pattern) => ({
     ...baseKeyPattern,
     ...pattern
   }));
@@ -44,17 +44,17 @@ const matchesEvent = <T extends KeyPatternBase>(pattern: T, evt: KeyboardEvent) 
 );
 
 const match = (patterns: KeyPattern[], evt: KeyboardEvent): Required<KeyPattern>[] =>
-  Arr.bind(defaultPatterns(patterns), (pattern) => matchesEvent(pattern, evt) ? [ pattern ] : [ ]);
+  (defaultPatterns(patterns)).flatMap((pattern) => matchesEvent(pattern, evt) ? [ pattern ] : [ ]);
 
 const matchDelayed = (patterns: KeyPatternDelayed[], evt: KeyboardEvent): Required<KeyPatternDelayed>[] =>
-  Arr.bind(defaultDelayedPatterns(patterns), (pattern) => matchesEvent(pattern, evt) ? [ pattern ] : [ ]);
+  (defaultDelayedPatterns(patterns)).flatMap((pattern) => matchesEvent(pattern, evt) ? [ pattern ] : [ ]);
 
 const action = <T extends (...args: any[]) => any>(f: T, ...x: Parameters<T>) => (): ReturnType<T> => f.apply(null, x);
 
-const execute = (patterns: KeyPattern[], evt: KeyboardEvent): Optional<Required<KeyPattern>> =>
-  Arr.find(match(patterns, evt), (pattern) => pattern.action());
+const execute = (patterns: KeyPattern[], evt: KeyboardEvent): (Required<KeyPattern>) | null =>
+  ((match(patterns, evt)).find((pattern) => pattern.action()) ?? null);
 
-const executeWithDelayedAction = (patterns: KeyPatternDelayed[], evt: KeyboardEvent): Optional<() => void> =>
+const executeWithDelayedAction = (patterns: KeyPatternDelayed[], evt: KeyboardEvent): (() =) | null void> =>
   Arr.findMap(matchDelayed(patterns, evt), (pattern) => pattern.action());
 
 export {

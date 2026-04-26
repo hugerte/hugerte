@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj } from '@ephox/katamari';
 import { SandNode } from '@ephox/sand';
 import { SelectorFilter, SugarElement, Traverse } from '@ephox/sugar';
 
@@ -19,7 +18,7 @@ interface CollectCallbacks {
 }
 
 const isSimpleBoundary = (dom: DOMUtils, node: Node) =>
-  dom.isBlock(node) || Obj.has(dom.schema.getVoidElements(), node.nodeName);
+  dom.isBlock(node) || Object.prototype.hasOwnProperty.call(dom.schema.getVoidElements(), node.nodeName);
 
 const isContentEditableFalse = (dom: DOMUtils, node: Node) => !dom.isEditable(node);
 
@@ -27,7 +26,7 @@ const isContentEditableTrueInCef = (dom: DOMUtils, node: Node) =>
   dom.getContentEditable(node) === 'true' && node.parentNode && !dom.isEditable(node.parentNode);
 
 const isHidden = (dom: DOMUtils, node: Node) =>
-  !dom.isBlock(node) && Obj.has(dom.schema.getWhitespaceElements(), node.nodeName);
+  !dom.isBlock(node) && Object.prototype.hasOwnProperty.call(dom.schema.getWhitespaceElements(), node.nodeName);
 
 const isBoundary = (dom: DOMUtils, node: Node) =>
   isSimpleBoundary(dom, node) || isContentEditableFalse(dom, node) || isHidden(dom, node) || isContentEditableTrueInCef(dom, node);
@@ -86,8 +85,8 @@ const collectTextToBoundary = (dom: DOMUtils, section: TextSection, node: Node, 
   // Walk over and add text nodes to the section and increase the offsets
   // so we know to ignore the additional text when matching
   walk(dom, walkerFn, node, {
-    boundary: Fun.always,
-    cef: Fun.always,
+    boundary: (() => true as const),
+    cef: (() => true as const),
     text: (next) => {
       if (forwards) {
         section.fOffset += next.length;
@@ -162,11 +161,11 @@ const collectRangeSections = (dom: DOMUtils, rng: Range): TextSection[] => {
     cef: (node) => {
       // Collect the sections and then order them appropriately, as nested sections maybe out of order
       // TODO: See if we can improve this to avoid the sort overhead
-      const sections = Arr.bind(SelectorFilter.descendants(SugarElement.fromDom(node), '*[contenteditable=true]'), (e) => {
+      const sections = (SelectorFilter.descendants(SugarElement.fromDom(node), '*[contenteditable=true]')).flatMap((e) => {
         const ceTrueNode = e.dom;
         return collect(dom, ceTrueNode, ceTrueNode);
       });
-      return Arr.sort(sections, (a, b) => (SandNode.documentPositionPreceding(a.elements[0].dom, b.elements[0].dom)) ? 1 : -1);
+      return [...(sections)].sort((a, b) => (SandNode.documentPositionPreceding(a.elements[0].dom, b.elements[0].dom)) ? 1 : -1);
     }
   }, false);
 };
@@ -181,7 +180,7 @@ const fromNode = (dom: DOMUtils, node: Node): TextSection[] => {
 };
 
 const fromNodes = (dom: DOMUtils, nodes: Node[]): TextSection[] =>
-  Arr.bind(nodes, (node) => fromNode(dom, node));
+  (nodes).flatMap((node) => fromNode(dom, node));
 
 export {
   fromNode,

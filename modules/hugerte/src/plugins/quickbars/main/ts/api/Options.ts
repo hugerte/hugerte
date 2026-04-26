@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -13,9 +12,9 @@ const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
   const toolbarProcessor = (defaultValue: string) => (value: unknown) => {
-    const valid = Type.isBoolean(value) || Type.isString(value);
+    const valid = typeof (value) === 'boolean' || typeof (value) === 'string';
     if (valid) {
-      if (Type.isBoolean(value)) {
+      if (typeof (value) === 'boolean') {
         return { value: value ? defaultValue : '', valid };
       } else {
         return { value: value.trim(), valid };

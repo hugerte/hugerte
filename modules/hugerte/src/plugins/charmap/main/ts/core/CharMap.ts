@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Tools from 'hugerte/core/api/util/Tools';
@@ -404,7 +403,7 @@ const getCharMap = (editor: Editor): CharMap[] => {
   return groups.length > 1 ? [
     {
       name: 'All',
-      characters: Arr.bind(groups, (g) => g.characters)
+      characters: (groups).flatMap((g) => g.characters)
     }
   ].concat(groups) : groups;
 };

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';
 import * as FieldProcessor from '../core/FieldProcessor';
@@ -13,7 +13,7 @@ type FieldProcessor = FieldProcessor.FieldProcessor;
 const field = FieldProcessor.field;
 const customField = FieldProcessor.customField;
 
-const validateEnum = (values) => StructureSchema.valueOf((value) => Arr.contains(values, value) ?
+const validateEnum = (values) => StructureSchema.valueOf((value) => (values).includes(value) ?
   Result.value(value) :
   Result.error(`Unsupported value: "${value}", choose one of "${values.join(', ')}".`));
 

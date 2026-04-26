@@ -1,5 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 
@@ -31,16 +31,16 @@ export interface ToolbarButtonInstanceApi extends BaseToolbarButtonInstanceApi {
 
 export interface BaseToolbarButton<I extends BaseToolbarButtonInstanceApi> {
   enabled: boolean;
-  tooltip: Optional<string>;
-  icon: Optional<string>;
-  text: Optional<string>;
+  tooltip: (string) | null;
+  icon: (string) | null;
+  text: (string) | null;
   onSetup: (api: I) => (api: I) => void;
 }
 
 export interface ToolbarButton extends BaseToolbarButton<ToolbarButtonInstanceApi> {
   type: 'button';
   onAction: (api: ToolbarButtonInstanceApi) => void;
-  shortcut: Optional<string>;
+  shortcut: (string) | null;
 }
 
 export const baseToolbarButtonFields = [

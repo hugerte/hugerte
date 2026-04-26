@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj, Optional, Strings } from '@ephox/katamari';
 import { Compare, Css, Insert, Replication, SelectorFind, SugarElement, SugarFragment, SugarNode, Traverse } from '@ephox/sugar';
 
 import Schema from '../api/html/Schema';
@@ -8,27 +7,27 @@ import * as SelectionUtils from './SelectionUtils';
 import * as SimpleTableModel from './SimpleTableModel';
 import * as TableCellSelection from './TableCellSelection';
 
-const findParentListContainer = (parents: SugarElement[]): Optional<SugarElement<HTMLLIElement | HTMLOListElement>> =>
-  Arr.find(parents, (elm) => SugarNode.name(elm) === 'ul' || SugarNode.name(elm) === 'ol');
+const findParentListContainer = (parents: SugarElement[]): (SugarElement<HTMLLIElement | HTMLOListElement>) | null =>
+  ((parents).find((elm) => SugarNode.name(elm) === 'ul' || SugarNode.name(elm) === 'ol') ?? null);
 
 const getFullySelectedListWrappers = (parents: SugarElement<Node>[], rng: Range) =>
-  Arr.find(parents, (elm) => SugarNode.name(elm) === 'li' && SelectionUtils.hasAllContentsSelected(elm, rng)).fold(
-    Fun.constant([]),
+  ((parents).find((elm) => SugarNode.name(elm) === 'li' && SelectionUtils.hasAllContentsSelected(elm, rng)) ?? null).fold(
+    () => [],
     (_li) =>
       findParentListContainer(parents).map((listCont) => {
         const listElm = SugarElement.fromTag(SugarNode.name(listCont));
         // Retain any list-style* styles when generating the new fragment
-        const listStyles = Obj.filter(Css.getAllRaw(listCont), (_style, name) => Strings.startsWith(name, 'list-style'));
+        const listStyles = Object.fromEntries(Object.entries(Css.getAllRaw(listCont)).filter(([_k, _v]: [any, any]) => ((_style, name) => (name).startsWith('list-style'))(_v, _k as any)));
         Css.setAll(listElm, listStyles);
         return [
           SugarElement.fromTag('li'),
           listElm
         ];
-      }).getOr([])
+      }) ?? ([])
   );
 
 const wrap = (innerElm: SugarElement<Node>, elms: SugarElement<Node>[]) => {
-  const wrapped = Arr.foldl(elms, (acc, elm) => {
+  const wrapped = (elms).reduce((acc, elm) => {
     Insert.append(elm, acc);
     return elm;
   }, innerElm);
@@ -38,7 +37,7 @@ const wrap = (innerElm: SugarElement<Node>, elms: SugarElement<Node>[]) => {
 const directListWrappers = (commonAnchorContainer: SugarElement<Node>) => {
   if (ElementType.isListItem(commonAnchorContainer)) {
     return Traverse.parent(commonAnchorContainer).filter(ElementType.isList).fold(
-      Fun.constant([]),
+      () => [],
       (listElm) => [ commonAnchorContainer, listElm ]
     );
   } else {
@@ -49,10 +48,10 @@ const directListWrappers = (commonAnchorContainer: SugarElement<Node>) => {
 const getWrapElements = (rootNode: SugarElement<Node>, rng: Range, schema: Schema) => {
   const commonAnchorContainer = SugarElement.fromDom(rng.commonAncestorContainer);
   const parents = Parents.parentsAndSelf(commonAnchorContainer, rootNode);
-  const wrapElements = Arr.filter(parents, (el) => schema.isWrapper(SugarNode.name(el)));
+  const wrapElements = (parents).filter((el) => schema.isWrapper(SugarNode.name(el)));
   const listWrappers = getFullySelectedListWrappers(parents, rng);
   const allWrappers = wrapElements.concat(listWrappers.length ? listWrappers : directListWrappers(commonAnchorContainer));
-  return Arr.map(allWrappers, Replication.shallow);
+  return (allWrappers).map(Replication.shallow);
 };
 
 const emptyFragment = () => SugarFragment.fromElements([]);
@@ -60,8 +59,8 @@ const emptyFragment = () => SugarFragment.fromElements([]);
 const getFragmentFromRange = (rootNode: SugarElement<Node>, rng: Range, schema: Schema) =>
   wrap(SugarElement.fromDom(rng.cloneContents()), getWrapElements(rootNode, rng, schema));
 
-const getParentTable = (rootElm: SugarElement<Node>, cell: SugarElement<HTMLTableCellElement>): Optional<SugarElement<HTMLTableElement>> =>
-  SelectorFind.ancestor(cell, 'table', Fun.curry(Compare.eq, rootElm));
+const getParentTable = (rootElm: SugarElement<Node>, cell: SugarElement<HTMLTableCellElement>): (SugarElement<HTMLTableElement>) | null =>
+  SelectorFind.ancestor(cell, 'table', ((..._rest: any[]) => (Compare.eq)(rootElm, ..._rest)));
 
 const getTableFragment = (rootNode: SugarElement<Node>, selectedTableCells: SugarElement<HTMLTableCellElement>[]) =>
   getParentTable(rootNode, selectedTableCells[0]).bind((tableElm) => {

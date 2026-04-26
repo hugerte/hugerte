@@ -1,5 +1,4 @@
 import { Boxes } from '@ephox/alloy';
-import { Fun } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import ThemeManager, { RenderResult, Theme } from 'hugerte/core/api/ThemeManager';
@@ -81,7 +80,7 @@ export default (): void => {
 
     return {
       renderUI,
-      getWindowManagerImpl: Fun.constant(windowMgr),
+      getWindowManagerImpl: () => windowMgr,
       getNotificationManagerImpl
     };
   });

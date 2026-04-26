@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import { bounds } from '../../alien/Boxes';
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -22,17 +21,15 @@ const placement = (component: AlloyComponent, anchorInfo: MakeshiftAnchor, origi
     // No default bottomToTop layouts currently needed
     Layout.all(),
     Layout.allRtl(),
-    Optional.none()
+    null
   );
 
-  return Optional.some(
-    NuAnchoring({
+  return NuAnchoring({
       anchorBox,
       bubble: anchorInfo.bubble,
       overrides: anchorInfo.overrides,
       layouts
-    })
-  );
+    });
 };
 
 export default [

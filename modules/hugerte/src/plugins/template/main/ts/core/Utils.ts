@@ -1,4 +1,3 @@
-import { Arr, Obj } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';
@@ -13,10 +12,10 @@ const entitiesAttr: Record<string, string> = {
 };
 
 const htmlEscape = (html: string): string =>
-  html.replace(/["'<>&]/g, (match) => Obj.get(entitiesAttr, match).getOr(match));
+  html.replace(/["'<>&]/g, (match) => ((entitiesAttr)[match] ?? null) ?? (match));
 
 const hasAnyClasses = (dom: DOMUtils, n: Element, classes: string): boolean =>
-  Arr.exists(classes.split(/\s+/), (c) => dom.hasClass(n, c));
+  (classes.split(/\s+/)).some((c) => dom.hasClass(n, c));
 
 const parseAndSerialize = (editor: Editor, html: string): string =>
   HtmlSerializer({ validate: true }, editor.schema).serialize(

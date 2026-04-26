@@ -1,5 +1,4 @@
 import { FieldProcessor } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { AlloyEventRecord } from '../../api/events/AlloyEvents';
@@ -16,7 +15,7 @@ export interface BehaviourApisRecord<D extends BehaviourConfigDetail, S extends 
 }
 export type BehaviourExtraRecord<E> = { [K in keyof E]: Function };
 
-export type BehaviourInfo<D extends BehaviourConfigDetail, S extends BehaviourState> = Record<string, () => Optional<BehaviourConfigAndState<D, S>>>;
+export type BehaviourInfo<D extends BehaviourConfigDetail, S extends BehaviourState> = Record<string, () => (BehaviourConfigAndState<D, S>) | null>;
 
 export interface BehaviourConfigSpec { }
 export interface BehaviourConfigDetail { }

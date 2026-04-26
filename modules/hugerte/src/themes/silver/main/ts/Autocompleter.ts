@@ -1,6 +1,6 @@
 import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, Highlighting, InlineView, ItemTypes, SystemEvents } from '@ephox/alloy';
 import { InlineContent } from '@ephox/bridge';
-import { Arr, Cell, Id, Optional, Singleton } from '@ephox/katamari';
+import { Arr, Cell, Singleton } from '@ephox/katamari';
 import { Attribute, Css, Replication, SelectorFind, SimRange, SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -15,7 +15,7 @@ import { createAutocompleteItems, createInlineMenuFrom, FocusMode } from './ui/m
 const rangeToSimRange = (r: Range) => SimRange.create(SugarElement.fromDom(r.startContainer), r.startOffset, SugarElement.fromDom(r.endContainer), r.endOffset);
 
 const register = (editor: Editor, sharedBackstage: UiFactoryBackstageShared): void => {
-  const autocompleterId = Id.generate('autocompleter');
+  const autocompleterId = (('autocompleter') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
   const processingAction = Cell<boolean>(false);
   const activeState = Cell<boolean>(false);
   const activeRange = Singleton.value<Range>();
@@ -71,9 +71,9 @@ const register = (editor: Editor, sharedBackstage: UiFactoryBackstageShared): vo
   const cancelIfNecessary = () => editor.execCommand('mceAutocompleterClose');
 
   const getCombinedItems = (matches: AutocompleteLookupData[]): ItemTypes.ItemSpec[] => {
-    const columns = Arr.findMap(matches, (m) => Optional.from(m.columns)).getOr(1);
+    const columns = Arr.findMap(matches, (m) => (m.columns ?? null)) ?? (1);
 
-    return Arr.bind(matches, (match) => {
+    return (matches).flatMap((match) => {
       const choices = match.items;
 
       return createAutocompleteItems(
@@ -109,7 +109,7 @@ const register = (editor: Editor, sharedBackstage: UiFactoryBackstageShared): vo
 
   const display = (lookupData: AutocompleteLookupData[], items: ItemTypes.ItemSpec[]) => {
     // Display the autocompleter menu
-    const columns: InlineContent.ColumnTypes = Arr.findMap(lookupData, (ld) => Optional.from(ld.columns)).getOr(1);
+    const columns: InlineContent.ColumnTypes = Arr.findMap(lookupData, (ld) => (ld.columns ?? null)) ?? (1);
     InlineView.showMenuAt(
       autocompleter,
       {

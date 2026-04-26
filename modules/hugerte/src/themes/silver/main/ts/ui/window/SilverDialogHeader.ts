@@ -1,7 +1,6 @@
 import {
   AlloySpec, AlloyTriggers, Behaviour, Button, Container, DomFactory, Dragging, GuiFactory, ModalDialog, Reflecting, SketchSpec, Tabstopping, Tooltipping
 } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 import { SelectorFind } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -45,7 +44,7 @@ const renderClose = (providersBackstage: UiFactoryBackstageProviders) => Button.
 const renderTitle = (
   spec: WindowHeaderSpec,
   dialogId: string,
-  titleId: Optional<string>,
+  titleId: (string) | null,
   providersBackstage: UiFactoryBackstageProviders
 ): AlloySpec => {
   const renderComponents = (data: WindowHeaderSpec) => [ GuiFactory.text(providersBackstage.translate(data.title)) ];
@@ -55,7 +54,7 @@ const renderTitle = (
       tag: 'div',
       classes: [ 'tox-dialog__title' ],
       attributes: {
-        ...titleId.map((x) => ({ id: x })).getOr({})
+        ...titleId.map((x) => ({ id: x })) ?? ({})
       }
     },
     components: [],
@@ -81,7 +80,7 @@ const renderInlineHeader = (
 ): SketchSpec => Container.sketch({
   dom: DomFactory.fromHtml('<div class="tox-dialog__header"></div>'),
   components: [
-    renderTitle(spec, dialogId, Optional.some(titleId), providersBackstage),
+    renderTitle(spec, dialogId, titleId, providersBackstage),
     renderDragHandle(),
     renderClose(providersBackstage)
   ],
@@ -103,7 +102,7 @@ const renderInlineHeader = (
 
 const renderModalHeader = (spec: WindowHeaderSpec, dialogId: string, providersBackstage: UiFactoryBackstageProviders): AlloySpec => {
   const pTitle = ModalDialog.parts.title(
-    renderTitle(spec, dialogId, Optional.none(), providersBackstage)
+    renderTitle(spec, dialogId, null, providersBackstage)
   );
 
   const pHandle = ModalDialog.parts.draghandle(

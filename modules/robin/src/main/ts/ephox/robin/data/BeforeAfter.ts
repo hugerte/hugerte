@@ -1,11 +1,10 @@
-import { Optional } from '@ephox/katamari';
 
 export interface BeforeAfter {
-  readonly before: Optional<number>;
-  readonly after: Optional<number>;
+  readonly before: (number) | null;
+  readonly after: (number) | null;
 }
 
-export const BeforeAfter = (before: Optional<number>, after: Optional<number>): BeforeAfter => ({
+export const BeforeAfter = (before: (number) | null, after: (number) | null): BeforeAfter => ({
   before,
   after
 });

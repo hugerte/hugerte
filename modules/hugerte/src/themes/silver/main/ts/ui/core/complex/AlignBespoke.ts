@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
@@ -23,7 +23,7 @@ const alignMenuItems = [
 ];
 
 const getSpec = (editor: Editor): SelectSpec => {
-  const getMatchingValue = (): Optional<SelectedFormat> => Arr.find(alignMenuItems, (item) => editor.formatter.match(item.format));
+  const getMatchingValue = (): (SelectedFormat) | null => ((alignMenuItems).find((item) => editor.formatter.match(item.format)) ?? null);
 
   const isSelectedFor = (format: string) => () => editor.formatter.match(format);
 
@@ -31,7 +31,7 @@ const getSpec = (editor: Editor): SelectSpec => {
 
   const updateSelectMenuIcon = (comp: AlloyComponent) => {
     const match = getMatchingValue();
-    const alignment = match.fold(Fun.constant(fallbackAlignment), (item) => item.title.toLowerCase());
+    const alignment = match.fold(() => fallbackAlignment, (item) => item.title.toLowerCase());
     AlloyTriggers.emitWith(comp, updateMenuIcon, {
       icon: `align-${alignment}`
     });
@@ -41,13 +41,13 @@ const getSpec = (editor: Editor): SelectSpec => {
   const dataset = buildBasicStaticDataset(alignMenuItems);
 
   const onAction = (rawItem: FormatterFormatItem) => () =>
-    Arr.find(alignMenuItems, (item) => item.format === rawItem.format)
+    ((alignMenuItems).find((item) => item.format === rawItem.format) ?? null)
       .each((item) => editor.execCommand(item.command));
 
   return {
     tooltip: Tooltip.makeTooltipText(editor, btnTooltip, fallbackAlignment),
-    text: Optional.none(),
-    icon: Optional.some('align-left'),
+    text: null,
+    icon: 'align-left',
     isSelectedFor,
     getCurrentValue: Optional.none,
     getPreviewFor,

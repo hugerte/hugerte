@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { Insert, SugarElement } from '@ephox/sugar';
 
 import EditorSelection from '../api/dom/Selection';
@@ -16,10 +15,10 @@ import * as NavigationUtils from './NavigationUtils';
 
 const isContentEditableFalse = NodeType.isContentEditableFalse;
 
-const moveToCeFalseHorizontally = (direction: HDirection, editor: Editor, range: Range): Optional<Range> =>
+const moveToCeFalseHorizontally = (direction: HDirection, editor: Editor, range: Range): (Range) | null =>
   NavigationUtils.moveHorizontally(editor, direction, range, isBeforeContentEditableFalse, isAfterContentEditableFalse, isContentEditableFalse);
 
-const moveToCeFalseVertically = (direction: LineWalker.VDirection, editor: Editor, range: Range): Optional<Range> => {
+const moveToCeFalseVertically = (direction: LineWalker.VDirection, editor: Editor, range: Range): (Range) | null => {
   const isBefore = (caretPosition: CaretPosition) => isBeforeContentEditableFalse(caretPosition) || isBeforeTable(caretPosition);
   const isAfter = (caretPosition: CaretPosition) => isAfterContentEditableFalse(caretPosition) || isAfterTable(caretPosition);
   return NavigationUtils.moveVertically(editor, direction, range, isBefore, isAfter, isContentEditableFalse);
@@ -33,7 +32,7 @@ const createTextBlock = (editor: Editor): Element => {
 
 const exitPreBlock = (editor: Editor, direction: HDirection, range: Range): void => {
   const caretWalker = CaretWalker(editor.getBody());
-  const getVisualCaretPosition = Fun.curry(CaretUtils.getVisualCaretPosition, direction === 1 ? caretWalker.next : caretWalker.prev);
+  const getVisualCaretPosition = ((..._rest: any[]) => (CaretUtils.getVisualCaretPosition)(direction === 1 ? caretWalker.next : caretWalker.prev, ..._rest));
 
   if (range.collapsed) {
     const pre = editor.dom.getParent(range.startContainer, 'PRE');
@@ -57,23 +56,23 @@ const exitPreBlock = (editor: Editor, direction: HDirection, range: Range): void
   }
 };
 
-const getHorizontalRange = (editor: Editor, forward: boolean): Optional<Range> => {
+const getHorizontalRange = (editor: Editor, forward: boolean): (Range) | null => {
   const direction = forward ? HDirection.Forwards : HDirection.Backwards;
   const range = editor.selection.getRng();
 
   return moveToCeFalseHorizontally(direction, editor, range).orThunk(() => {
     exitPreBlock(editor, direction, range);
-    return Optional.none();
+    return null;
   });
 };
 
-const getVerticalRange = (editor: Editor, down: boolean): Optional<Range> => {
+const getVerticalRange = (editor: Editor, down: boolean): (Range) | null => {
   const direction = down ? 1 : -1;
   const range = editor.selection.getRng();
 
   return moveToCeFalseVertically(direction, editor, range).orThunk(() => {
     exitPreBlock(editor, direction, range);
-    return Optional.none();
+    return null;
   });
 };
 

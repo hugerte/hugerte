@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import * as Namespace from '../../html/Namespace';
 import AstNode, { Attributes } from './Node';
@@ -121,7 +120,7 @@ const HtmlSerializer = (settings: HtmlSerializerSettings = {}, schema: Schema = 
         writer.start(name, attrs, isEmpty);
 
         if (Namespace.isNonHtmlElementRootName(name)) {
-          if (Type.isString(node.value)) {
+          if (typeof (node.value) === 'string') {
             writer.text(node.value, true);
           }
 

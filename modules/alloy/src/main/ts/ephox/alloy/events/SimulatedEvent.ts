@@ -1,4 +1,4 @@
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { EventArgs, SugarElement } from '@ephox/sugar';
 
 export interface EventFormat {
@@ -83,13 +83,13 @@ const fromExternal = <T extends EventFormat>(event: T): SimulatedEvent<T> => {
 
   return {
     stop,
-    cut: Fun.noop, // cutting has no meaning for a broadcasted event
+    cut: () => {}, // cutting has no meaning for a broadcasted event
     isStopped: stopper.get,
-    isCut: Fun.never,
+    isCut: (() => false as const),
     event,
     // Nor do targets really
-    setSource: Fun.die('Cannot set source of a broadcasted event'),
-    getSource: Fun.die('Cannot get source of a broadcasted event')
+    setSource: (() => { throw new Error('Cannot set source of a broadcasted event'); }),
+    getSource: (() => { throw new Error('Cannot get source of a broadcasted event'); })
   };
 };
 

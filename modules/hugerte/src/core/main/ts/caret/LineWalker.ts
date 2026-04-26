@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import * as Dimensions from '../dom/Dimensions';
 import * as ClientRect from '../geom/ClientRect';
@@ -91,10 +90,10 @@ const isLineNumber = <T extends LineClientRect>(lineNumber: number, clientRect: 
   clientRect.line === lineNumber;
 
 const upUntil: (root: Node, predicateFn: RectPredicate<LineNodeClientRect>, caretPosition: CaretPosition) => LineNodeClientRect[] =
-  Fun.curry(walkUntil, VDirection.Up, ClientRect.isAbove, ClientRect.isBelow);
+  ((..._rest: any[]) => (walkUntil)(VDirection.Up, ClientRect.isAbove, ClientRect.isBelow, ..._rest));
 
 const downUntil: (root: Node, predicateFn: RectPredicate<LineNodeClientRect>, caretPosition: CaretPosition) => LineNodeClientRect[] =
-  Fun.curry(walkUntil, VDirection.Down, ClientRect.isBelow, ClientRect.isAbove);
+  ((..._rest: any[]) => (walkUntil)(VDirection.Down, ClientRect.isBelow, ClientRect.isAbove, ..._rest));
 
 const getLastClientRect = (caretPosition: CaretPosition): ClientRect => {
   // ASSUMPTION: There should always be at least one client rect here

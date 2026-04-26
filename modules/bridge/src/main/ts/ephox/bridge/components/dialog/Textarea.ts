@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema, ValueType } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 import { FormComponentWithLabel, formComponentWithLabelFields, FormComponentWithLabelSpec } from './FormComponent';
@@ -14,7 +14,7 @@ export interface TextAreaSpec extends FormComponentWithLabelSpec {
 export interface TextArea extends FormComponentWithLabel {
   type: 'textarea';
   maximized: boolean;
-  placeholder: Optional<string>;
+  placeholder: (string) | null;
   enabled: boolean;
 }
 

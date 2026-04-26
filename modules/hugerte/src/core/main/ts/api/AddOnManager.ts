@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import ScriptLoader from './dom/ScriptLoader';
 import Editor from './Editor';
@@ -120,12 +119,12 @@ const AddOnManager = <T>(): AddOnManager<T> => {
   const _listeners: { name: string; state: WaitState; resolve: () => void }[] = [];
 
   const runListeners = (name: string, state: WaitState) => {
-    const matchedListeners = Arr.filter(_listeners, (listener) => listener.name === name && listener.state === state);
-    Arr.each(matchedListeners, (listener) => listener.resolve());
+    const matchedListeners = (_listeners).filter((listener) => listener.name === name && listener.state === state);
+    (matchedListeners).forEach((listener) => listener.resolve());
   };
 
-  const isLoaded = (name: string) => Obj.has(urls, name);
-  const isAdded = (name: string) => Obj.has(lookup, name);
+  const isLoaded = (name: string) => Object.prototype.hasOwnProperty.call(urls, name);
+  const isAdded = (name: string) => Object.prototype.hasOwnProperty.call(lookup, name);
 
   const get = (name: string) => {
     if (lookup[name]) {
@@ -171,8 +170,8 @@ const AddOnManager = <T>(): AddOnManager<T> => {
   };
 
   const createUrl = (baseUrl: string | UrlObject, dep: string | UrlObject): UrlObject => {
-    if (Type.isString(dep)) {
-      return Type.isString(baseUrl) ?
+    if (typeof (dep) === 'string') {
+      return typeof (baseUrl) === 'string' ?
         { prefix: '', resource: dep, suffix: '' } :
         { prefix: baseUrl.prefix, resource: dep, suffix: baseUrl.suffix };
     } else {
@@ -185,7 +184,7 @@ const AddOnManager = <T>(): AddOnManager<T> => {
       return Promise.resolve();
     }
 
-    let urlString = Type.isString(addOnUrl) ? addOnUrl : addOnUrl.prefix + addOnUrl.resource + addOnUrl.suffix;
+    let urlString = typeof (addOnUrl) === 'string' ? addOnUrl : addOnUrl.prefix + addOnUrl.resource + addOnUrl.suffix;
 
     if (urlString.indexOf('/') !== 0 && urlString.indexOf('://') === -1) {
       urlString = AddOnManager.baseURL + '/' + urlString;

@@ -1,4 +1,4 @@
-import { Strings, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -57,7 +57,7 @@ const register = (editor: Editor): void => {
 
   registerOption('image_list', {
     processor: (value) => {
-      const valid = value === false || Type.isString(value) || Type.isArrayOf(value, Type.isObject) || Type.isFunction(value);
+      const valid = value === false || typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isObject)) || typeof (value) === 'function';
       return valid ? { value, valid } : { valid: false, message: 'Must be false, a string, an array or a function.' };
     },
     default: false
@@ -77,10 +77,10 @@ const showAccessibilityOptions = option('a11y_advanced_options');
 const isAutomaticUploadsEnabled = option('automatic_uploads');
 
 const hasUploadUrl = (editor: Editor): boolean =>
-  Strings.isNotEmpty(editor.options.get('images_upload_url'));
+  ((editor.options.get('images_upload_url')).length > 0);
 
 const hasUploadHandler = (editor: Editor): boolean =>
-  Type.isNonNullable(editor.options.get('images_upload_handler'));
+  (editor.options.get('images_upload_handler')) != null;
 
 export {
   register,

@@ -18,10 +18,10 @@ import * as ModelCommon from './ModelCommon';
 const sketch: CompositeSketchFactory<SliderDetail, SliderSpec> = (detail: SliderDetail, components: AlloySpec[], _spec: SliderSpec, _externals) => {
   const getThumb = (component: AlloyComponent): AlloyComponent => AlloyParts.getPartOrDie(component, detail, 'thumb');
   const getSpectrum = (component: AlloyComponent): AlloyComponent => AlloyParts.getPartOrDie(component, detail, 'spectrum');
-  const getLeftEdge = (component: AlloyComponent): Optional<AlloyComponent> => AlloyParts.getPart(component, detail, 'left-edge');
-  const getRightEdge = (component: AlloyComponent): Optional<AlloyComponent> => AlloyParts.getPart(component, detail, 'right-edge');
-  const getTopEdge = (component: AlloyComponent): Optional<AlloyComponent> => AlloyParts.getPart(component, detail, 'top-edge');
-  const getBottomEdge = (component: AlloyComponent): Optional<AlloyComponent> => AlloyParts.getPart(component, detail, 'bottom-edge');
+  const getLeftEdge = (component: AlloyComponent): (AlloyComponent) | null => AlloyParts.getPart(component, detail, 'left-edge');
+  const getRightEdge = (component: AlloyComponent): (AlloyComponent) | null => AlloyParts.getPart(component, detail, 'right-edge');
+  const getTopEdge = (component: AlloyComponent): (AlloyComponent) | null => AlloyParts.getPart(component, detail, 'top-edge');
+  const getBottomEdge = (component: AlloyComponent): (AlloyComponent) | null => AlloyParts.getPart(component, detail, 'bottom-edge');
 
   const modelDetail = detail.model;
   const model = modelDetail.manager;
@@ -42,7 +42,7 @@ const sketch: CompositeSketchFactory<SliderDetail, SliderSpec> = (detail: Slider
     refresh(slider, thumb);
   };
 
-  const changeValue = (slider: AlloyComponent, newValue: SliderValue): Optional<boolean> => {
+  const changeValue = (slider: AlloyComponent, newValue: SliderValue): (boolean) | null => {
     setValue(slider, newValue);
     const thumb = getThumb(slider);
     detail.onChange(slider, thumb, newValue);

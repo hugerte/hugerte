@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomTreeWalker from '../api/dom/TreeWalker';
@@ -63,7 +62,7 @@ const hasContentEditableFalseParent = (root: HTMLElement, node: Node): boolean =
 
 // Walks the dom left/right to find a suitable text node to move the endpoint into
 // It will only walk within the current parent block or body and will stop if it hits a block or a BR/IMG
-const findTextNodeRelative = (dom: DOMUtils, isAfterNode: boolean, collapsed: boolean, left: boolean, startNode: Node): Optional<CaretPosition> => {
+const findTextNodeRelative = (dom: DOMUtils, isAfterNode: boolean, collapsed: boolean, left: boolean, startNode: Node): (CaretPosition) | null => {
   const body = dom.getRoot();
   const nonEmptyElementsMap = dom.schema.getNonEmptyElements();
   const parentNode = startNode.parentNode;
@@ -71,7 +70,7 @@ const findTextNodeRelative = (dom: DOMUtils, isAfterNode: boolean, collapsed: bo
   let node: Node | null | undefined;
 
   if (!parentNode) {
-    return Optional.none();
+    return null;
   }
 
   const parentBlockContainer = dom.getParent(parentNode, dom.isBlock) || body;
@@ -79,7 +78,7 @@ const findTextNodeRelative = (dom: DOMUtils, isAfterNode: boolean, collapsed: bo
   // Lean left before the BR element if it's the only BR within a block element. Gecko bug: #6680
   // This: <p><br>|</p> becomes <p>|<br></p>
   if (left && NodeType.isBr(startNode) && isAfterNode && dom.isEmpty(parentBlockContainer)) {
-    return Optional.some(CaretPosition(parentNode, dom.nodeIndex(startNode)));
+    return CaretPosition(parentNode, dom.nodeIndex(startNode));
   }
 
   // Walk left until we hit a text node we can move to or a block/br/img
@@ -87,39 +86,39 @@ const findTextNodeRelative = (dom: DOMUtils, isAfterNode: boolean, collapsed: bo
   while ((node = walker[left ? 'prev' : 'next']())) {
     // Break if we hit a non content editable node
     if (dom.getContentEditableParent(node) === 'false' || isCeFalseCaretContainer(node, body)) {
-      return Optional.none();
+      return null;
     }
 
     // Found text node that has a length
     if (NodeType.isText(node) && node.data.length > 0) {
       if (!hasParentWithName(node, body, 'A')) {
-        return Optional.some(CaretPosition(node, left ? node.data.length : 0));
+        return CaretPosition(node, left ? node.data.length : 0);
       }
 
-      return Optional.none();
+      return null;
     }
 
     // Break if we find a block or a BR/IMG/INPUT etc
     if (dom.isBlock(node) || nonEmptyElementsMap[node.nodeName.toLowerCase()]) {
-      return Optional.none();
+      return null;
     }
 
     lastInlineElement = node;
   }
 
   if (NodeType.isComment(lastInlineElement)) {
-    return Optional.none();
+    return null;
   }
 
   // Only fetch the last inline element when in caret mode for now
   if (collapsed && lastInlineElement) {
-    return Optional.some(CaretPosition(lastInlineElement, 0));
+    return CaretPosition(lastInlineElement, 0);
   }
 
-  return Optional.none();
+  return null;
 };
 
-const normalizeEndPoint = (dom: DOMUtils, collapsed: boolean, start: boolean, rng: Range): Optional<CaretPosition> => {
+const normalizeEndPoint = (dom: DOMUtils, collapsed: boolean, start: boolean, rng: Range): (CaretPosition) | null => {
   const body = dom.getRoot();
   let node: Node | null | undefined;
   let normalized = false;
@@ -131,7 +130,7 @@ const normalizeEndPoint = (dom: DOMUtils, collapsed: boolean, start: boolean, rn
   let directionLeft = start;
 
   if (CaretContainer.isCaretContainer(container)) {
-    return Optional.none();
+    return null;
   }
 
   if (NodeType.isElement(container) && offset > container.childNodes.length - 1) {
@@ -151,11 +150,11 @@ const normalizeEndPoint = (dom: DOMUtils, collapsed: boolean, start: boolean, rn
       node = container.childNodes[offset > 0 ? offset - 1 : 0];
       if (node) {
         if (CaretContainer.isCaretContainer(node)) {
-          return Optional.none();
+          return null;
         }
 
         if (nonEmptyElementsMap[node.nodeName] || NodeType.isTable(node)) {
-          return Optional.none();
+          return null;
         }
       }
     }
@@ -168,15 +167,15 @@ const normalizeEndPoint = (dom: DOMUtils, collapsed: boolean, start: boolean, rn
 
       // Don't normalize non collapsed selections like <p>[a</p><table></table>]
       if (!collapsed && container === body.lastChild && NodeType.isTable(container)) {
-        return Optional.none();
+        return null;
       }
 
       if (hasContentEditableFalseParent(body, container) || CaretContainer.isCaretContainer(container)) {
-        return Optional.none();
+        return null;
       }
 
       if (NodeType.isDetails(container)) {
-        return Optional.none();
+        return null;
       }
 
       // Don't walk into elements that doesn't have any child nodes like a IMG
@@ -266,10 +265,10 @@ const normalizeEndPoint = (dom: DOMUtils, collapsed: boolean, start: boolean, rn
     });
   }
 
-  return normalized && container ? Optional.some(CaretPosition(container, offset)) : Optional.none();
+  return normalized && container ? CaretPosition(container, offset) : null;
 };
 
-const normalize = (dom: DOMUtils, rng: Range): Optional<Range> => {
+const normalize = (dom: DOMUtils, rng: Range): (Range) | null => {
   const collapsed = rng.collapsed, normRng = rng.cloneRange();
   const startPos = CaretPosition.fromRangeStart(rng);
 
@@ -291,7 +290,7 @@ const normalize = (dom: DOMUtils, rng: Range): Optional<Range> => {
     normRng.collapse(true);
   }
 
-  return RangeCompare.isEq(rng, normRng) ? Optional.none() : Optional.some(normRng);
+  return RangeCompare.isEq(rng, normRng) ? null : normRng;
 };
 
 export {

@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
 import { Direction, Height, SugarElement, SugarLocation, Width } from '@ephox/sugar';
 
 export interface RowInfo {
@@ -14,7 +13,7 @@ export interface ColInfo {
 export interface BarPositions<T> {
   readonly delta: (delta: number, table: SugarElement<HTMLTableElement>) => number;
   readonly edge: (e: SugarElement<HTMLElement>) => number;
-  readonly positions: (array: Optional<SugarElement<HTMLTableCellElement>>[], table: SugarElement<HTMLTableElement>) => Optional<T>[];
+  readonly positions: (array: (SugarElement<HTMLTableCellElement>) | null[], table: SugarElement<HTMLTableElement>) => (T) | null[];
 }
 
 const rowInfo = (row: number, y: number): RowInfo => ({
@@ -59,12 +58,12 @@ const getBottomEdge = (index: number, cell: SugarElement<HTMLTableCellElement>):
 const findPositions = <T> (
   getInnerEdge: (idx: number, ele: SugarElement<HTMLTableCellElement>) => T,
   getOuterEdge: (idx: number, ele: SugarElement<HTMLTableCellElement>) => T,
-  array: Optional<SugarElement<HTMLTableCellElement>>[]
-): Optional<T>[] => {
+  array: (SugarElement<HTMLTableCellElement>) | null[]
+): (T) | null[] => {
   if (array.length === 0 ) {
     return [];
   }
-  const lines = Arr.map(array.slice(1), (cellOption, index) => {
+  const lines = (array.slice(1)).map((cellOption, index) => {
     return cellOption.map((cell) => {
       return getInnerEdge(index, cell);
     });
@@ -82,13 +81,13 @@ const negate = (step: number): number => {
 };
 
 const height: BarPositions<RowInfo> = {
-  delta: Fun.identity,
+  delta: (x: any) => x,
   positions: (optElements) => findPositions(getTopEdge, getBottomEdge, optElements),
   edge: getTop
 };
 
 const ltr: BarPositions<ColInfo> = {
-  delta: Fun.identity,
+  delta: (x: any) => x,
   edge: ltrEdge,
   positions: (optElements) => findPositions(getLeftEdge, getRightEdge, optElements)
 };
@@ -103,7 +102,7 @@ const detect = Direction.onDirection(ltr, rtl);
 
 const width: BarPositions<ColInfo> = {
   delta: (amount: number, table: SugarElement<HTMLTableElement>) => detect(table).delta(amount, table),
-  positions: (cols: Optional<SugarElement<HTMLTableCellElement>>[], table: SugarElement<HTMLTableElement>) => detect(table).positions(cols, table),
+  positions: (cols: (SugarElement<HTMLTableCellElement>) | null[], table: SugarElement<HTMLTableElement>) => detect(table).positions(cols, table),
   edge: (cell: SugarElement<HTMLElement>) => detect(cell).edge(cell)
 };
 

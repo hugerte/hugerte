@@ -1,5 +1,5 @@
 import { Boxes, Gui, GuiFactory, InlineView, Layout, MaxHeight, NodeAnchorSpec } from '@ephox/alloy';
-import { Arr, Num, Optional, Type } from '@ephox/katamari';
+import { Arr, Num } from '@ephox/katamari';
 import { SugarBody, SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -32,7 +32,7 @@ export default (editor: Editor, extras: Extras, uiMothership: Gui.GuiSystem): No
     const y = Num.clamp(win.y, contentArea.y, contentArea.bottom);
     const right = Math.max(contentArea.right, win.right);
     const bottom = Math.max(contentArea.bottom, win.bottom);
-    return Optional.some(Boxes.bounds(x, y, right - x, bottom - y));
+    return Boxes.bounds(x, y, right - x, bottom - y);
   };
 
   const open = (settings: NotificationSpec, closeCallback: () => void): NotificationApi => {
@@ -44,7 +44,7 @@ export default (editor: Editor, extras: Extras, uiMothership: Gui.GuiSystem): No
     const notification = GuiFactory.build(
       Notification.sketch({
         text: settings.text,
-        level: Arr.contains([ 'success', 'error', 'warning', 'warn', 'info' ], settings.type) ? settings.type : undefined,
+        level: ([ 'success', 'error', 'warning', 'warn', 'info' ]).includes(settings.type) ? settings.type : undefined,
         progress: settings.progressBar === true,
         icon: settings.icon,
         onAction: close,
@@ -67,7 +67,7 @@ export default (editor: Editor, extras: Extras, uiMothership: Gui.GuiSystem): No
 
     uiMothership.add(notificationWrapper);
 
-    if (Type.isNumber(settings.timeout) && settings.timeout > 0) {
+    if (typeof (settings.timeout) === 'number' && settings.timeout > 0) {
       Delay.setEditorTimeout(editor, () => {
         close();
       }, settings.timeout);
@@ -97,7 +97,7 @@ export default (editor: Editor, extras: Extras, uiMothership: Gui.GuiSystem): No
           const nodeAnchor: NodeAnchorSpec = {
             type: 'node',
             root: SugarBody.body(),
-            node: Optional.some(SugarElement.fromDom(previousNotification)),
+            node: SugarElement.fromDom(previousNotification),
             overrides: anchorOverrides,
             layouts: {
               onRtl: () => [ Layout.south ],

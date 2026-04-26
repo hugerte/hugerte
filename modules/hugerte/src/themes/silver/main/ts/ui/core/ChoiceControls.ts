@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Optionals, Singleton, Type } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Attribute, Dimension, SugarElement, SugarNode, TransformFind } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -19,7 +19,7 @@ interface ControlSpec<T> {
   readonly display: (item: T) => string;
 
   readonly watcher: (editor: Editor, item: T, callback: (isActive: boolean) => void) => () => void;
-  readonly getCurrent: (editor: Editor) => Optional<T>;
+  readonly getCurrent: (editor: Editor) => (T) | null;
   readonly setCurrent: (editor: Editor, value: T) => void;
 
   readonly onToolbarSetup?: (api: Toolbar.ToolbarMenuButtonInstanceApi) => () => void;
@@ -33,7 +33,7 @@ const registerController = <T>(editor: Editor, spec: ControlSpec<T>) => {
 
     const current = Singleton.value<Menu.ToggleMenuItemInstanceApi>();
 
-    return Arr.map(options, (value) => ({
+    return (options).map((value) => ({
       type: 'togglemenuitem',
       text: spec.display(value),
       onSetup: (api) => {
@@ -45,7 +45,7 @@ const registerController = <T>(editor: Editor, spec: ControlSpec<T>) => {
           api.setActive(active);
         };
 
-        setActive(Optionals.is(initial, spec.hash(value)));
+        setActive((initial !== null && (initial) === (spec.hash(value))));
         const unbindWatcher = spec.watcher(editor, value, setActive);
         return () => {
           current.clear();
@@ -77,26 +77,26 @@ const lineHeightSpec = (editor: Editor): ControlSpec<string> => ({
   icon: 'line-height',
 
   getOptions: Options.getLineHeightFormats,
-  hash: (input) => Dimension.normalise(input, [ 'fixed', 'relative', 'empty' ]).getOr(input),
-  display: Fun.identity,
+  hash: (input) => Dimension.normalise(input, [ 'fixed', 'relative', 'empty' ]) ?? (input),
+  display: (x: any) => x,
 
   watcher: (editor, value, callback) =>
     editor.formatter.formatChanged('lineheight', callback, false, { value }).unbind,
-  getCurrent: (editor) => Optional.from(editor.queryCommandValue('LineHeight')),
+  getCurrent: (editor) => (editor.queryCommandValue('LineHeight') ?? null),
   setCurrent: (editor, value) => editor.execCommand('LineHeight', false, value),
   onToolbarSetup: onSetupEditableToggle(editor),
   onMenuSetup: onSetupEditableToggle(editor)
 });
 
-const languageSpec = (editor: Editor): Optional<ControlSpec<ContentLanguage>> => {
-  const settingsOpt = Optional.from(Options.getContentLanguages(editor));
+const languageSpec = (editor: Editor): (ControlSpec<ContentLanguage>) | null => {
+  const settingsOpt = (Options.getContentLanguages(editor) ?? null);
   return settingsOpt.map((settings) => ({
     name: 'language',
     text: 'Language',
     icon: 'language',
 
-    getOptions: Fun.constant(settings),
-    hash: (input) => Type.isUndefined(input.customCode) ? input.code : `${input.code}/${input.customCode}`,
+    getOptions: () => settings,
+    hash: (input) => (input.customCode) === undefined ? input.code : `${input.code}/${input.customCode}`,
     display: (input) => input.title,
 
     watcher: (editor, value, callback) =>
@@ -104,12 +104,12 @@ const languageSpec = (editor: Editor): Optional<ControlSpec<ContentLanguage>> =>
     getCurrent: (editor) => {
       const node = SugarElement.fromDom(editor.selection.getNode());
       return TransformFind.closest(node, (n) =>
-        Optional.some(n)
+        n
           .filter(SugarNode.isElement)
           .bind((ele) => {
             const codeOpt = Attribute.getOpt(ele, 'lang');
             return codeOpt.map((code): ContentLanguage => {
-              const customCode = Attribute.getOpt(ele, 'data-mce-lang').getOrUndefined();
+              const customCode = Attribute.getOpt(ele, 'data-mce-lang') ?? undefined;
               return { code, customCode, title: '' };
             });
           })

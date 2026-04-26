@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
 
 import * as Spot from '../api/data/Spot';
 import { SpotPoints, Wrapter } from '../api/data/Types';
@@ -25,11 +24,11 @@ const wrapper = <E, D>(universe: Universe<E, D>, wrapped: E[], nu: () => Wrapter
     return wrapped;
   }
 
-  const filtered = Arr.filter(wrapped, (x) => {
+  const filtered = (wrapped).filter((x) => {
     return universe.property().isText(x) && universe.property().getText(x).length > 0;
   });
 
-  return Arr.map(filtered, (w) => {
+  return (filtered).map((w) => {
     const container = nu();
     universe.insert().before(w, container.element);
     container.wrap(w);
@@ -40,8 +39,8 @@ const wrapper = <E, D>(universe: Universe<E, D>, wrapped: E[], nu: () => Wrapter
 /**
  * Return the cursor positions at the start and end of a collection of wrapper elements
  */
-const endPoints = <E, D>(universe: Universe<E, D>, wrapped: E[]): Optional<SpotPoints<E>> => {
-  return Optional.from(wrapped[0]).map((first) => {
+const endPoints = <E, D>(universe: Universe<E, D>, wrapped: E[]): (SpotPoints<E>) | null => {
+  return (wrapped[0] ?? null).map((first) => {
     // INVESTIGATE: Should this one navigate to the next child when first isn't navigating down a level?
     const last = Navigation.toLower(universe, wrapped[wrapped.length - 1]);
     return Spot.points(
@@ -54,7 +53,7 @@ const endPoints = <E, D>(universe: Universe<E, D>, wrapped: E[]): Optional<SpotP
 /**
  * Calls wrapWith() on text nodes in the range, and returns the end points
  */
-const leaves = <E, D>(universe: Universe<E, D>, base: E, baseOffset: number, end: E, endOffset: number, nu: () => Wrapter<E>): Optional<SpotPoints<E>> => {
+const leaves = <E, D>(universe: Universe<E, D>, base: E, baseOffset: number, end: E, endOffset: number, nu: () => Wrapter<E>): (SpotPoints<E>) | null => {
   const start = Navigation.toLeaf(universe, base, baseOffset);
   const finish = Navigation.toLeaf(universe, end, endOffset);
   const wrapped = wrapWith(universe, start.element, start.offset, finish.element, finish.offset, nu);
@@ -84,11 +83,11 @@ const reuse = <E, D>(universe: Universe<E, D>, base: E, baseOffset: number, end:
   const create = (group: Group<E>): E => {
     const container = nu();
     universe.insert().before(group.children[0], container.element);
-    Arr.each(group.children, container.wrap);
+    (group.children).forEach(container.wrap);
     return container.element;
   };
 
-  return Arr.map(groups, (group) => {
+  return (groups).map((group) => {
     // return parent if it can be reused (e.g. span with no other children), otherwise make a new one.
     const builder = canReuse(group) ? recycle : create;
     return builder(group);

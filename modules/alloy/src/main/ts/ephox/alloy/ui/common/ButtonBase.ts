@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -26,18 +25,18 @@ const pointerEvents = (): Array<AlloyEvents.AlloyEventKeyAndHandler<EventArgs>> 
   ];
 };
 
-const events = (optAction: Optional<(comp: AlloyComponent) => void>): AlloyEvents.AlloyEventRecord => {
+const events = (optAction: ((comp: AlloyComponent) =) | null void>): AlloyEvents.AlloyEventRecord => {
   const executeHandler = (action: ButtonAction) => AlloyEvents.runOnExecute((component, simulatedEvent) => {
     action(component);
     simulatedEvent.stop();
   });
 
   return AlloyEvents.derive(
-    Arr.flatten([
+    ([
       // Only listen to execute if it is supplied
       optAction.map(executeHandler).toArray(),
       pointerEvents()
-    ])
+    ]).flat()
   );
 };
 

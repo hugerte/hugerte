@@ -1,4 +1,4 @@
-import { Arr, Optional, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { NodeChangeEvent } from 'hugerte/core/api/EventTypes';
@@ -11,7 +11,7 @@ const isChildOfBody = (editor: Editor, elm: Node): boolean => {
 };
 
 const matchNodeNames = <T extends Node = Node>(regex: RegExp) =>
-  (node: Node | null): node is T => Type.isNonNullable(node) && regex.test(node.nodeName);
+  (node: Node | null): node is T => (node) != null && regex.test(node.nodeName);
 
 const isListNode = matchNodeNames<HTMLOListElement | HTMLUListElement | HTMLDListElement>(/^(OL|UL|DL)$/);
 
@@ -21,10 +21,10 @@ const inList = (editor: Editor, parents: Node[], nodeName: string): boolean =>
   Arr.findUntil(parents, (parent) => isListNode(parent) && !isCustomList(parent), isTableCellNode)
     .exists((list) => list.nodeName === nodeName && isChildOfBody(editor, list));
 
-const getSelectedStyleType = (editor: Editor): Optional<string> => {
+const getSelectedStyleType = (editor: Editor): (string) | null => {
   const listElm = editor.dom.getParent(editor.selection.getNode(), 'ol,ul');
   const style = editor.dom.getStyle(listElm, 'listStyleType');
-  return Optional.from(style);
+  return (style ?? null);
 };
 
 // Lists/core/Util.ts - Duplicated in Lists plugin

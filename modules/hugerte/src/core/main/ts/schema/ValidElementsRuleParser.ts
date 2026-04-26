@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import Tools from '../api/util/Tools';
 import { Attribute, AttributePattern, ElementRule, SchemaElement } from './SchemaTypes';
@@ -73,17 +73,17 @@ const parseValidElementsAttrDataIntoElement = (attrData: string, targetElement: 
 };
 
 const cloneAttributesInto = (from: SchemaElement, to: SchemaElement) => {
-  Obj.each(from.attributes, (value, key) => {
+  Object.entries(from.attributes).forEach(([_k, _v]: [any, any]) => ((value, key) => {
     to.attributes[key] = value;
-  });
+  })(_v, _k));
 
   to.attributesOrder.push(...from.attributesOrder);
 };
 
-export const parseValidElementsRules = (globalElement: Optional<SchemaElement>, validElements: string): SchemaElementPair[] => {
+export const parseValidElementsRules = (globalElement: (SchemaElement) | null, validElements: string): SchemaElementPair[] => {
   const elementRuleRegExp = /^([#+\-])?([^\[!\/]+)(?:\/([^\[!]+))?(?:(!?)\[([^\]]+)])?$/;
 
-  return Arr.bind(SchemaUtils.split(validElements, ','), (rule) => {
+  return (SchemaUtils.split(validElements, ',')).flatMap((rule) => {
     const matches = elementRuleRegExp.exec(rule);
 
     if (matches) {
@@ -122,8 +122,8 @@ export const parseValidElementsRules = (globalElement: Optional<SchemaElement>, 
       // Mutate the local globalElement option state if we find a global @ rule
       if (elementName === '@') {
         // We only care about the first one
-        if (globalElement.isNone()) {
-          globalElement = Optional.some(element);
+        if (globalElement === null) {
+          globalElement = element;
         } else {
           return [];
         }

@@ -1,5 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Arr, Cell, Optional, Type } from '@ephox/katamari';
+import { Arr, Cell } from '@ephox/katamari';
 import { SugarElement, Traverse } from '@ephox/sugar';
 
 import * as BehaviourBlob from '../../behaviour/common/BehaviourBlob';
@@ -23,7 +23,7 @@ import { ComponentDetail } from './SpecTypes';
 const getDomDefinition = (
   info: CustomDefinition.CustomDetail<any>,
   bList: Array<AlloyBehaviour<any, any>>,
-  bData: Record<string, () => Optional<BehaviourBlob.BehaviourConfigAndState<any, BehaviourState>>>
+  bData: Record<string, () => (BehaviourBlob.BehaviourConfigAndState<any, BehaviourState>) | null>
 ): DomDefinitionDetail => {
   // Get the current DOM definition from the spec
   const definition = CustomDefinition.toDefinition(info);
@@ -46,7 +46,7 @@ const getDomDefinition = (
 const getEvents = (
   info: CustomDefinition.CustomDetail<any>,
   bList: Array<AlloyBehaviour<any, any>>,
-  bData: Record<string, () => Optional<BehaviourBlob.BehaviourConfigAndState<any, BehaviourState>>>
+  bData: Record<string, () => (BehaviourBlob.BehaviourConfigAndState<any, BehaviourState>) | null>
 ): Record<string, UncurriedHandler> => {
   const baseEvents = {
     'alloy.base.behaviour': CustomDefinition.toEvents(info)
@@ -54,7 +54,7 @@ const getEvents = (
   return ComponentEvents.combine(bData, info.eventOrder, bList, baseEvents).getOrDie();
 };
 
-const build = (spec: ComponentDetail, obsoleted: Optional<SugarElement<Node>>): AlloyComponent => {
+const build = (spec: ComponentDetail, obsoleted: (SugarElement<Node>) | null): AlloyComponent => {
   const getMe = () => me;
 
   const systemApi = Cell(singleton);
@@ -84,7 +84,7 @@ const build = (spec: ComponentDetail, obsoleted: Optional<SugarElement<Node>>): 
     // Update the component list with the current children
     const children = Traverse.children(item);
     // INVESTIGATE: Not sure about how to handle text nodes here.
-    const subs = Arr.bind(children, (child) => systemApi.get().getByDom(child).fold(
+    const subs = (children).flatMap((child) => systemApi.get().getByDom(child).fold(
       () => [ ],
       Arr.pure
     ));
@@ -92,19 +92,19 @@ const build = (spec: ComponentDetail, obsoleted: Optional<SugarElement<Node>>): 
   };
 
   // TYPIFY (any here is for the info.apis() pathway)
-  const config = (behaviour: AlloyBehaviour<any, any>): Optional<BehaviourBlob.BehaviourConfigAndState<any, any>> => {
+  const config = (behaviour: AlloyBehaviour<any, any>): (BehaviourBlob.BehaviourConfigAndState<any, any>) | null => {
     const b = bData;
-    const f = Type.isFunction(b[behaviour.name()]) ? b[behaviour.name()] : () => {
+    const f = typeof (b[behaviour.name()]) === 'function' ? b[behaviour.name()] : () => {
       throw new Error('Could not find ' + behaviour.name() + ' in ' + JSON.stringify(spec, null, 2));
     };
     return f();
   };
 
-  const hasConfigured = (behaviour: AlloyBehaviour<any, any>): boolean => Type.isFunction(bData[behaviour.name()]);
+  const hasConfigured = (behaviour: AlloyBehaviour<any, any>): boolean => typeof (bData[behaviour.name()]) === 'function';
 
   const getApis = <A>(): A => info.apis;
 
-  const readState = (behaviourName: string): any => bData[behaviourName]().map((b) => b.state.readState()).getOr('not enabled');
+  const readState = (behaviourName: string): any => bData[behaviourName]().map((b) => b.state.readState()) ?? ('not enabled');
 
   const me: AlloyComponent = {
     uid: spec.uid,

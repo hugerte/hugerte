@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
 import { Gather, Transition } from '@ephox/phoenix';
 
 import { WordDecision, WordDecisionItem } from './WordDecision';
@@ -25,9 +24,9 @@ const doWords = <E, D>(universe: Universe<E, D>, item: E, mode: Transition, dire
     const decision = WordDecision.decide(universe, dest.item, direction.slicer, isCustomBoundary);
     const recursive: WordDecisionItem<E>[] = decision.abort ? [] : doWords(universe, dest.item, dest.mode, direction, isCustomBoundary);
     return decision.items.concat(recursive);
-  }).getOr([]);
+  }) ?? ([]);
 
-  return Arr.filter(result, (res) => {
+  return (result).filter((res) => {
     return res.text.trim().length > 0;
   });
 };
@@ -46,12 +45,9 @@ const isEmpty = <E, D>(universe: Universe<E, D>, item: E): boolean => {
 };
 
 const flatten = <E, D>(universe: Universe<E, D>, item: E): WordDecisionItem<E>[] => {
-  return universe.property().isText(item) ? [ WordDecision.detail(universe, item) ] : Arr.map(
-    universe.down().predicate(item, universe.property().isText),
-    (e) => {
+  return universe.property().isText(item) ? [ WordDecision.detail(universe, item) ] : (universe.down().predicate(item, universe.property().isText)).map((e) => {
       return WordDecision.detail(universe, e);
-    }
-  );
+    });
 };
 
 export {

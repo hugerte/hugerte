@@ -1,5 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { FancyMenuItemSpec, MenuItemSpec, SeparatorMenuItemSpec, ToggleMenuItemSpec } from '../../api/Menu';
 import * as ComponentSchema from '../../core/ComponentSchema';
@@ -21,7 +21,7 @@ export interface NestedMenuItemInstanceApi extends CommonMenuItemInstanceApi {
 
 export interface NestedMenuItem extends CommonMenuItem {
   type: 'nestedmenuitem';
-  icon: Optional<string>;
+  icon: (string) | null;
   getSubmenuItems: () => string | Array<NestedMenuItemContents>;
   onSetup: (api: NestedMenuItemInstanceApi) => (api: NestedMenuItemInstanceApi) => void;
 }

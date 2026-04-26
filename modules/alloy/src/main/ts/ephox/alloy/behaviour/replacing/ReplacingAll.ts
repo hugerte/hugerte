@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { AlloySpec } from '../../api/component/SpecTypes';
@@ -8,7 +7,7 @@ import * as InternalAttachment from '../../system/InternalAttachment';
 
 const withoutReuse = (parent: AlloyComponent, data: AlloySpec[]): void => {
   AriaFocus.preserve(() => {
-    InternalAttachment.replaceChildren(parent, data, () => Arr.map(data, parent.getSystem().build));
+    InternalAttachment.replaceChildren(parent, data, () => (data).map(parent.getSystem().build));
   }, parent.element);
 };
 

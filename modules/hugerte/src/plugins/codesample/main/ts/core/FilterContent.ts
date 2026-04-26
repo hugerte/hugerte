@@ -1,4 +1,3 @@
-import { Strings } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Tools from 'hugerte/core/api/util/Tools';
@@ -13,7 +12,7 @@ const setup = (editor: Editor): void => {
     Tools.each(Tools.grep<HTMLElement>(pres, Utils.isCodeSample), (elm) => {
       const code = elm.textContent;
 
-      dom.setAttrib(elm, 'class', Strings.trim(dom.getAttrib(elm, 'class')));
+      dom.setAttrib(elm, 'class', (dom.getAttrib(elm, 'class')).trim());
       dom.setAttrib(elm, 'contentEditable', null);
       dom.setAttrib(elm, 'data-mce-highlighted', null);
 
@@ -45,7 +44,7 @@ const setup = (editor: Editor): void => {
           elm.innerHTML = dom.encode(elm.textContent ?? '');
           Prism.get(editor).highlightElement(elm);
           dom.setAttrib(elm, 'data-mce-highlighted', true);
-          elm.className = Strings.trim(elm.className);
+          elm.className = (elm.className).trim();
         });
       });
     }

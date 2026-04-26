@@ -1,5 +1,4 @@
 import { ItemTypes } from '@ephox/alloy';
-import { Id } from '@ephox/katamari';
 
 export const searchResultsClass = 'tox-collection--results__js';
 
@@ -12,7 +11,7 @@ export const augmentWithAria = (item: ItemTypes.ItemSpec): ItemTypes.ItemSpec =>
         ...item.dom,
         attributes: {
           ...item.dom.attributes ?? { },
-          'id': Id.generate('aria-item-search-result-id'),
+          'id': (('aria-item-search-result-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
           'aria-selected': 'false'
         }
       }

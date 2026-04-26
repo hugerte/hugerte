@@ -3,7 +3,7 @@ import {
   Invalidating, Layout, Memento, Representing, SimpleSpec, Tabstopping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Fun, Future, Id, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Css, SugarElement, Traverse } from '@ephox/sugar';
 
 import { UiFactoryBackstageShared } from '../../backstage/Backstage';
@@ -15,9 +15,9 @@ import * as ColorSwatch from '../core/color/ColorSwatch';
 import { formChangeEvent } from '../general/FormEvents';
 import { renderPanelButton } from '../general/PanelButton';
 
-const colorInputChangeEvent = Id.generate('color-input-change');
-const colorSwatchChangeEvent = Id.generate('color-swatch-change');
-const colorPickerCancelEvent = Id.generate('color-picker-cancel');
+const colorInputChangeEvent = (('color-input-change') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const colorSwatchChangeEvent = (('color-swatch-change') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const colorPickerCancelEvent = (('color-picker-cancel') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 interface ColorInputChangeEvent extends CustomEvent {
   readonly color: string;
@@ -37,14 +37,14 @@ export const renderColorInput = (
   spec: ColorInputSpec,
   sharedBackstage: UiFactoryBackstageShared,
   colorInputBackstage: UiFactoryBackstageForColorInput,
-  initialData: Optional<string>
+  initialData: (string) | null
 ): SimpleSpec => {
   const pField = FormField.parts.field({
     factory: Input,
     inputClasses: [ 'tox-textfield' ],
     data: initialData,
 
-    onSetValue: (c: AlloyComponent) => Invalidating.run(c).get(Fun.noop),
+    onSetValue: (c: AlloyComponent) => Invalidating.run(c).get(() => {}),
 
     inputBehaviours: Behaviour.derive([
       Disabling.config({
@@ -91,7 +91,7 @@ export const renderColorInput = (
     selectOnFocus: false
   });
 
-  const pLabel: Optional<AlloySpec> = spec.label.map((label) => renderLabel(label, sharedBackstage.providers));
+  const pLabel: (AlloySpec) | null = spec.label.map((label) => renderLabel(label, sharedBackstage.providers));
 
   const emitSwatchChange = (colorBit: AlloyComponent, value: string) => {
     AlloyTriggers.emitWith(colorBit, colorSwatchChangeEvent, {

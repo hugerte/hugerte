@@ -1,4 +1,3 @@
-import { Fun, Obj, Strings, Type, Unicode } from '@ephox/katamari';
 
 import TextSeeker from 'hugerte/core/api/dom/TextSeeker';
 import Editor from 'hugerte/core/api/Editor';
@@ -23,7 +22,7 @@ const parseCurrentLine = (editor: Editor, offset: number): ParseResult | null =>
 
   const rng = selection.getRng();
   const textSeeker = TextSeeker(dom, (node) => {
-    return dom.isBlock(node) || Obj.has(voidElements, node.nodeName.toLowerCase()) || dom.getContentEditable(node) === 'false';
+    return dom.isBlock(node) || Object.prototype.hasOwnProperty.call(voidElements, node.nodeName.toLowerCase()) || dom.getContentEditable(node) === 'false';
   });
 
   // Descend down the end container to find the text node
@@ -36,7 +35,7 @@ const parseCurrentLine = (editor: Editor, offset: number): ParseResult | null =>
   // while also excluding the last full stop from a word like "www.site.com."
   const endSpot = textSeeker.backwards(endContainer, endOffset + offset, (node, offset) => {
     const text = node.data;
-    const idx = findChar(text, offset, Fun.not(isBracketOrSpace));
+    const idx = findChar(text, offset, (x: any) => !(isBracketOrSpace)(x));
     // Move forward one so the offset is after the found character unless the found char is a punctuation char
     return idx === -1 || isPunctuation(text[idx]) ? idx : idx + 1;
   }, root);
@@ -62,14 +61,14 @@ const parseCurrentLine = (editor: Editor, offset: number): ParseResult | null =>
   }
   newRng.setEnd(endSpot.container, endSpot.offset);
 
-  const rngText = Unicode.removeZwsp(newRng.toString());
+  const rngText = (newRng.toString()).replace(/\uFEFF/g, '');
   const matches = rngText.match(autoLinkPattern);
   if (matches) {
     let url = matches[0];
-    if (Strings.startsWith(url, 'www.')) {
+    if ((url).startsWith('www.')) {
       const protocol = Options.getDefaultLinkProtocol(editor);
       url = protocol + '://' + url;
-    } else if (Strings.contains(url, '@') && !hasProtocol(url)) {
+    } else if ((url).includes('@') && !hasProtocol(url)) {
       url = 'mailto:' + url;
     }
 
@@ -98,7 +97,7 @@ const convertToLink = (editor: Editor, result: ParseResult): void => {
     editor.dispatch('ExecCommand', args);
 
     const defaultLinkTarget = Options.getDefaultLinkTarget(editor);
-    if (Type.isString(defaultLinkTarget)) {
+    if (typeof (defaultLinkTarget) === 'string') {
       const anchor = selection.getNode();
       dom.setAttrib(anchor, 'target', defaultLinkTarget);
 
@@ -115,7 +114,7 @@ const convertToLink = (editor: Editor, result: ParseResult): void => {
 
 const handleSpacebar = (editor: Editor): void => {
   const result = parseCurrentLine(editor, -1);
-  if (Type.isNonNullable(result)) {
+  if ((result) != null) {
     convertToLink(editor, result);
   }
 };
@@ -124,7 +123,7 @@ const handleBracket = handleSpacebar;
 
 const handleEnter = (editor: Editor): void => {
   const result = parseCurrentLine(editor, 0);
-  if (Type.isNonNullable(result)) {
+  if ((result) != null) {
     convertToLink(editor, result);
   }
 };

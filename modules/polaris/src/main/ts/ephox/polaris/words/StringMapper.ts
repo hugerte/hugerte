@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as UnicodeData from './UnicodeData';
 
@@ -37,7 +36,7 @@ export type CharacterMap = number[];
 
 const classify = (characters: string[]): CharacterMap => {
   const memoized = memoize(getType);
-  return Arr.map(characters, memoized);
+  return (characters).map(memoized);
 };
 
 export {

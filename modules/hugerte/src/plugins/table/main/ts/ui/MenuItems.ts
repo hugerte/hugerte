@@ -1,4 +1,3 @@
-import { Arr, Fun, Type } from '@ephox/katamari';
 import { SugarNode } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -39,7 +38,7 @@ const addMenuItems = (editor: Editor, selectionTargets: SelectionTargets): void 
     if (editor.queryCommandSupported(spec.command)) {
       editor.ui.registry.addMenuItem(name, {
         ...spec,
-        onAction: Type.isFunction(spec.onAction) ? spec.onAction : cmd(spec.command)
+        onAction: typeof (spec.onAction) === 'function' ? spec.onAction : cmd(spec.command)
       });
       return true;
     } else {
@@ -52,7 +51,7 @@ const addMenuItems = (editor: Editor, selectionTargets: SelectionTargets): void 
     if (editor.queryCommandSupported(spec.command)) {
       editor.ui.registry.addToggleMenuItem(name, {
         ...spec,
-        onAction: Type.isFunction(spec.onAction) ? spec.onAction : cmd(spec.command)
+        onAction: typeof (spec.onAction) === 'function' ? spec.onAction : cmd(spec.command)
       });
     }
   };
@@ -222,27 +221,27 @@ const addMenuItems = (editor: Editor, selectionTargets: SelectionTargets): void 
   });
 
   // if any of the row menu items returned true
-  if (Arr.contains(hasRowMenuItems, true)) {
+  if ((hasRowMenuItems).includes(true)) {
     editor.ui.registry.addNestedMenuItem('row', {
       type: 'nestedmenuitem',
       text: 'Row',
-      getSubmenuItems: Fun.constant('tableinsertrowbefore tableinsertrowafter tabledeleterow tablerowprops | tablecutrow tablecopyrow tablepasterowbefore tablepasterowafter')
+      getSubmenuItems: () => 'tableinsertrowbefore tableinsertrowafter tabledeleterow tablerowprops | tablecutrow tablecopyrow tablepasterowbefore tablepasterowafter'
     });
   }
 
-  if (Arr.contains(hasColumnMenuItems, true)) {
+  if ((hasColumnMenuItems).includes(true)) {
     editor.ui.registry.addNestedMenuItem('column', {
       type: 'nestedmenuitem',
       text: 'Column',
-      getSubmenuItems: Fun.constant('tableinsertcolumnbefore tableinsertcolumnafter tabledeletecolumn | tablecutcolumn tablecopycolumn tablepastecolumnbefore tablepastecolumnafter')
+      getSubmenuItems: () => 'tableinsertcolumnbefore tableinsertcolumnafter tabledeletecolumn | tablecutcolumn tablecopycolumn tablepastecolumnbefore tablepastecolumnafter'
     });
   }
 
-  if (Arr.contains(hasCellMenuItems, true)) {
+  if ((hasCellMenuItems).includes(true)) {
     editor.ui.registry.addNestedMenuItem('cell', {
       type: 'nestedmenuitem',
       text: 'Cell',
-      getSubmenuItems: Fun.constant('tablecellprops tablemergecells tablesplitcells')
+      getSubmenuItems: () => 'tablecellprops tablemergecells tablesplitcells'
     });
   }
 
@@ -251,7 +250,7 @@ const addMenuItems = (editor: Editor, selectionTargets: SelectionTargets): void 
       // context menu fires before node change, so check the selection here first
       selectionTargets.resetTargets();
       // ignoring element since it's monitored elsewhere
-      return selectionTargets.targets().fold(Fun.constant(''), (targets) => {
+      return selectionTargets.targets().fold(() => '', (targets) => {
         // If clicking in a caption, then we shouldn't show the cell/row/column options
         if (SugarNode.name(targets.element) === 'caption') {
           return 'tableprops deletetable';

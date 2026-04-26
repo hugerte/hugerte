@@ -1,4 +1,4 @@
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { registerMode, setMode } from '../mode/Mode';
 import { isReadOnly, registerReadOnlyContentFilters, registerReadOnlySelectionBlockers } from '../mode/Readonly';
@@ -72,13 +72,13 @@ export const create = (editor: Editor): EditorMode => {
   const activeMode = Cell('design');
   const availableModes = Cell<Record<string, EditorModeApi>>({
     design: {
-      activate: Fun.noop,
-      deactivate: Fun.noop,
+      activate: () => {},
+      deactivate: () => {},
       editorReadOnly: false
     },
     readonly: {
-      activate: Fun.noop,
-      deactivate: Fun.noop,
+      activate: () => {},
+      deactivate: () => {},
       editorReadOnly: true
     }
   });

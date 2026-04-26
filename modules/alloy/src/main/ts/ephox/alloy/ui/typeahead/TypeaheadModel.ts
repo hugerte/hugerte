@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Attribute, Value } from '@ephox/sugar';
 
 import { Representing } from '../../api/behaviour/Representing';
@@ -30,9 +29,9 @@ const setSelectionToEnd = (input: AlloyComponent, startOffset: number): void => 
   setSelectionOn(input, (node, value) => node.setSelectionRange(startOffset, value.length));
 };
 
-const attemptSelectOver = (model: TypeaheadModelDetail, input: AlloyComponent, item: AlloyComponent): Optional<() => void> => {
+const attemptSelectOver = (model: TypeaheadModelDetail, input: AlloyComponent, item: AlloyComponent): (() =) | null void> => {
   if (!model.selectsOver) {
-    return Optional.none();
+    return null;
   } else {
     const currentValue = Representing.getValue(input);
     const inputDisplay = model.getDisplayText(currentValue);
@@ -41,11 +40,11 @@ const attemptSelectOver = (model: TypeaheadModelDetail, input: AlloyComponent, i
     const itemDisplay = model.getDisplayText(itemValue);
 
     return itemDisplay.indexOf(inputDisplay) === 0 ?
-      Optional.some(() => {
+      () => {
         setValueFromItem(model, input, item);
         setSelectionToEnd(input, inputDisplay.length);
-      })
-      : Optional.none();
+      }
+      : null;
   }
 };
 

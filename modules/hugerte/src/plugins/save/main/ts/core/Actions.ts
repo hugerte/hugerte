@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';
@@ -24,7 +23,7 @@ const save = (editor: Editor): void => {
 
   // Use callback instead
   const onSaveCallback = Options.getOnSaveCallback(editor);
-  if (Type.isFunction(onSaveCallback)) {
+  if (typeof (onSaveCallback) === 'function') {
     onSaveCallback.call(editor, editor);
     editor.nodeChanged();
     return;
@@ -54,7 +53,7 @@ const cancel = (editor: Editor): void => {
 
   // Use callback instead
   const onCancelCallback = Options.getOnCancelCallback(editor);
-  if (Type.isFunction(onCancelCallback)) {
+  if (typeof (onCancelCallback) === 'function') {
     onCancelCallback.call(editor, editor);
     return;
   }

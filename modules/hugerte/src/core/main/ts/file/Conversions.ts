@@ -1,4 +1,3 @@
-import { Optional, Strings } from '@ephox/katamari';
 
 /**
  * Converts blob/uris back and forth.
@@ -26,7 +25,7 @@ const extractBase64Data = (data: string): string => {
   return matches ? matches[1] : '';
 };
 
-const parseDataUri = (uri: string): Optional<DataUriResult> => {
+const parseDataUri = (uri: string): (DataUriResult) | null => {
   const [ type, ...rest ] = uri.split(',');
   const data = rest.join(',');
 
@@ -34,17 +33,17 @@ const parseDataUri = (uri: string): Optional<DataUriResult> => {
   if (matches) {
     const base64Encoded = matches[2] === ';base64';
     const extractedData = base64Encoded ? extractBase64Data(data) : decodeURIComponent(data);
-    return Optional.some({
+    return {
       type: matches[1],
       data: extractedData,
       base64Encoded
-    });
+    };
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
-const buildBlob = (type: string, data: string, base64Encoded: boolean = true): Optional<Blob> => {
+const buildBlob = (type: string, data: string, base64Encoded: boolean = true): (Blob) | null => {
   let str = data;
 
   if (base64Encoded) {
@@ -52,7 +51,7 @@ const buildBlob = (type: string, data: string, base64Encoded: boolean = true): O
     try {
       str = atob(data);
     } catch (e) {
-      return Optional.none();
+      return null;
     }
   }
 
@@ -62,7 +61,7 @@ const buildBlob = (type: string, data: string, base64Encoded: boolean = true): O
     arr[i] = str.charCodeAt(i);
   }
 
-  return Optional.some(new Blob([ arr ], { type }));
+  return new Blob([ arr ], { type });
 };
 
 const dataUriToBlob = (uri: string): Promise<Blob> => {
@@ -77,9 +76,9 @@ const dataUriToBlob = (uri: string): Promise<Blob> => {
 };
 
 const uriToBlob = (url: string): Promise<Blob> => {
-  if (Strings.startsWith(url, 'blob:')) {
+  if ((url).startsWith('blob:')) {
     return blobUriToBlob(url);
-  } else if (Strings.startsWith(url, 'data:')) {
+  } else if ((url).startsWith('data:')) {
     return dataUriToBlob(url);
   } else {
     return Promise.reject('Unknown URI format');

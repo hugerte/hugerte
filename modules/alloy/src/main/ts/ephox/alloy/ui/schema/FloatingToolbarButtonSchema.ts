@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Focusing } from '../../api/behaviour/Focusing';
@@ -16,7 +16,7 @@ import { FloatingToolbarButtonDetail } from '../types/FloatingToolbarButtonTypes
 import { ToolbarSpec } from '../types/ToolbarTypes';
 import * as ToolbarSchema from './ToolbarSchema';
 
-const schema = Fun.constant([
+const schema = () => [
   Fields.markers([ 'toggledClass' ]),
   FieldSchema.required('lazySink'),
   FieldSchema.requiredFunction('fetch'),
@@ -26,7 +26,7 @@ const schema = Fun.constant([
   ]),
   AnchorLayouts.schema(),
   Fields.onHandler('onToggled'),
-]);
+];
 
 const parts: () => PartType.PartTypeAdt[] = Fun.constant([
   PartType.external<FloatingToolbarButtonDetail, ButtonSpec>({
@@ -69,7 +69,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
             onEscape: (comp) => {
               AlloyParts.getPart(comp, detail, 'button').each(Focusing.focus);
               // Don't return true here, as we need to allow the sandbox to handle the escape to close the overflow
-              return Optional.none();
+              return null;
             }
           })
         ])

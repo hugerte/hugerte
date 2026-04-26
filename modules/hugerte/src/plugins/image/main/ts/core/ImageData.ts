@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 import { Attribute, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -80,7 +79,7 @@ const wrapInFigure = (image: HTMLElement): void => {
 
 const removeFigure = (image: HTMLElement): void => {
   const figureElm = image.parentNode;
-  if (Type.isNonNullable(figureElm)) {
+  if ((figureElm) != null) {
     DOM.insertAfter(image, figureElm);
     DOM.remove(figureElm);
   }
@@ -149,7 +148,7 @@ const getBorderStyle = (image: HTMLElement): string =>
   image.style.borderStyle ?? '';
 
 const isFigure = (elm: Node | null): elm is HTMLElement =>
-  Type.isNonNullable(elm) && elm.nodeName === 'FIGURE';
+  (elm) != null && elm.nodeName === 'FIGURE';
 
 const isImage = (elm: Node): elm is HTMLImageElement =>
   elm.nodeName === 'IMG';
@@ -253,7 +252,7 @@ const setAlt = (image: HTMLElement, alt: string | null, isDecorative: boolean): 
     const sugarImage = SugarElement.fromDom(image);
     Attribute.set(sugarImage, 'alt', '');
   } else {
-    if (Type.isNull(alt)) {
+    if ((alt) === null) {
       const sugarImage = SugarElement.fromDom(image);
       Attribute.remove(sugarImage, 'alt');
     } else {

@@ -1,5 +1,4 @@
 import { AlloyEvents, Focusing, GuiFactory, Memento, ModalDialog } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderFooterButton } from '../general/Button';
@@ -25,10 +24,10 @@ export const setup = (backstage: UiFactoryBackstage): AlertDialogApi => {
         name: 'close-alert',
         text: 'OK',
         primary: true,
-        buttonType: Optional.some('primary'),
+        buttonType: 'primary',
         align: 'end',
         enabled: true,
-        icon: Optional.none()
+        icon: null
       }, 'cancel', backstage)
     );
 
@@ -40,9 +39,9 @@ export const setup = (backstage: UiFactoryBackstage): AlertDialogApi => {
         lazySink: () => sharedBackstage.getSink(),
         header: Dialogs.hiddenHeader(titleSpec, closeSpec),
         body: Dialogs.pBodyMessage(message, sharedBackstage.providers),
-        footer: Optional.some(Dialogs.pFooter(Dialogs.pFooterGroup([], [
+        footer: Dialogs.pFooter(Dialogs.pFooterGroup([], [
           memFooterClose.asSpec()
-        ]))),
+        ])),
         onEscape: closeDialog,
         extraClasses: [ 'tox-alert-dialog' ],
         extraBehaviours: [ ],

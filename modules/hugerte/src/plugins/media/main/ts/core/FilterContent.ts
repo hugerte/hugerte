@@ -1,4 +1,3 @@
-import { Arr, Obj } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import AstNode from 'hugerte/core/api/html/Node';
@@ -13,22 +12,22 @@ const setup = (editor: Editor): void => {
     const { schema, serializer, parser } = editor;
     // Set browser specific allowFullscreen attribs as boolean
     const boolAttrs = schema.getBoolAttrs();
-    Arr.each('webkitallowfullscreen mozallowfullscreen'.split(' '), (name) => {
+    ('webkitallowfullscreen mozallowfullscreen'.split(' ')).forEach((name) => {
       boolAttrs[name] = {};
     });
 
     // Add some non-standard attributes to the schema
-    Obj.each({
+    Object.entries({
       embed: [ 'wmode' ]
-    }, (attrs, name) => {
+    }).forEach(([_k, _v]: [any, any]) => ((attrs, name) => {
       const rule = schema.getElementRule(name);
       if (rule) {
-        Arr.each(attrs, (attr) => {
+        (attrs).forEach((attr) => {
           rule.attributes[attr] = {};
           rule.attributesOrder.push(attr);
         });
       }
-    });
+    })(_v, _k));
 
     // Converts iframe, video etc into placeholder images
     parser.addNodeFilter('iframe,video,audio,object,embed', Nodes.placeHolderConverter(editor));
@@ -80,7 +79,7 @@ const setup = (editor: Editor): void => {
         const innerHtml = node.attr('data-mce-html');
         if (innerHtml) {
           const fragment = Sanitize.parseAndSanitize(editor, realElmName, unescape(innerHtml));
-          Arr.each(fragment.children(), (child) => realElm.append(child));
+          (fragment.children()).forEach((child) => realElm.append(child));
         }
 
         node.replace(realElm);
@@ -92,7 +91,7 @@ const setup = (editor: Editor): void => {
     // TODO: This shouldn't be needed there should be a way to mark bogus
     // elements so they are never removed except external save
     const dom = editor.dom;
-    Arr.each(dom.select('span.mce-preview-object'), (elm) => {
+    (dom.select('span.mce-preview-object')).forEach((elm) => {
       if (dom.select('span.mce-shim', elm).length === 0) {
         dom.add(elm, 'span', { class: 'mce-shim' });
       }

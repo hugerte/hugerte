@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Attribute, Compare, SelectorFilter } from '@ephox/sugar';
 
 import { Composing } from '../../api/behaviour/Composing';
@@ -18,7 +18,7 @@ import { MenuDetail, MenuItemHoverEvent, MenuItemToggledEvent, MenuSpec } from '
 const deselectOtherRadioItems = (menu: AlloyComponent, item: AlloyComponent): void => {
   // TODO: TINY-8812 - This ideally should be done in a way such that a menu can have multiple radio groups.
   const checkedRadioItems = SelectorFilter.descendants(menu.element, '[role="menuitemradio"][aria-checked="true"]');
-  Arr.each(checkedRadioItems, (ele) => {
+  (checkedRadioItems).forEach((ele) => {
     if (!Compare.eq(ele, item.element)) {
       menu.getSystem().getByDom(ele).each((c) => {
         Toggling.off(c);

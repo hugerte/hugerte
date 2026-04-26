@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -11,7 +10,7 @@ const showDialog = (editor: Editor) => (templates: ExternalTemplate[]): void => 
 };
 
 const register = (editor: Editor): void => {
-  editor.addCommand('mceInsertTemplate', Fun.curry(Templates.insertTemplate, editor));
+  editor.addCommand('mceInsertTemplate', ((..._rest: any[]) => (Templates.insertTemplate)(editor, ..._rest)));
   editor.addCommand('mceTemplate', Templates.createTemplateList(editor, showDialog(editor)));
 };
 

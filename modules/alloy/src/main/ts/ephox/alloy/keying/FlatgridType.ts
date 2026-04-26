@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -30,7 +30,7 @@ const focusIn = (component: AlloyComponent, gridConfig: FlatgridConfig, _gridSta
   });
 };
 
-const findCurrent = (component: AlloyComponent, gridConfig: FlatgridConfig): Optional<SugarElement<HTMLElement>> =>
+const findCurrent = (component: AlloyComponent, gridConfig: FlatgridConfig): (SugarElement<HTMLElement>) | null =>
   gridConfig.focusManager.get(component).bind((elem) => SelectorFind.closest(elem, gridConfig.selector));
 
 const execute = (
@@ -38,7 +38,7 @@ const execute = (
   simulatedEvent: NativeSimulatedEvent,
   gridConfig: FlatgridConfig,
   _gridState: FlatgridState
-): Optional<boolean> =>
+): (boolean) | null =>
   findCurrent(component, gridConfig)
     .bind((focused) => gridConfig.execute(component, simulatedEvent, focused));
 
@@ -50,12 +50,12 @@ const doMove = (
       .bind((identified) => cycle(
         identified.candidates,
         identified.index,
-        gridState.getNumRows().getOr(gridConfig.initSize.numRows),
-        gridState.getNumColumns().getOr(gridConfig.initSize.numColumns)
+        gridState.getNumRows() ?? (gridConfig.initSize.numRows),
+        gridState.getNumColumns() ?? (gridConfig.initSize.numColumns)
       ));
 
 const handleTab: KeyRuleHandler<FlatgridConfig, FlatgridState> = (_component, _simulatedEvent, gridConfig) =>
-  gridConfig.captureTab ? Optional.some<boolean>(true) : Optional.none();
+  gridConfig.captureTab ? Optional.some<boolean>(true) : null;
 
 const doEscape: KeyRuleHandler<FlatgridConfig, FlatgridState> = (component, simulatedEvent, gridConfig) =>
   gridConfig.onEscape(component, simulatedEvent);
@@ -66,7 +66,7 @@ const moveRight = doMove(WrapArrNavigation.cycleRight);
 const moveNorth = doMove(WrapArrNavigation.cycleUp);
 const moveSouth = doMove(WrapArrNavigation.cycleDown);
 
-const getKeydownRules: () => Array<KeyRules.KeyRule<FlatgridConfig, FlatgridState>> = Fun.constant([
+const getKeydownRules: () => Array<KeyRules.KeyRule<FlatgridConfig, FlatgridState>> = () => [
   KeyRules.rule(KeyMatch.inSet(Keys.LEFT), DomMovement.west<FlatgridConfig, FlatgridState>(moveLeft, moveRight)),
   KeyRules.rule(KeyMatch.inSet(Keys.RIGHT), DomMovement.east(moveLeft, moveRight)),
   KeyRules.rule(KeyMatch.inSet(Keys.UP), DomMovement.north(moveNorth)),
@@ -76,17 +76,17 @@ const getKeydownRules: () => Array<KeyRules.KeyRule<FlatgridConfig, FlatgridStat
 
   // Probably should make whether space is used configurable
   KeyRules.rule(KeyMatch.inSet(Keys.SPACE.concat(Keys.ENTER)), execute)
-]);
+];
 
-const getKeyupRules: () => Array<KeyRules.KeyRule<FlatgridConfig, FlatgridState>> = Fun.constant([
+const getKeyupRules: () => Array<KeyRules.KeyRule<FlatgridConfig, FlatgridState>> = () => [
   KeyRules.rule(KeyMatch.inSet(Keys.ESCAPE), doEscape),
   KeyRules.rule(KeyMatch.inSet(Keys.SPACE), KeyingTypes.stopEventForFirefox)
-]);
+];
 
 export default KeyingType.typical(
   schema,
   KeyingState.flatgrid,
   getKeydownRules,
   getKeyupRules,
-  () => Optional.some(focusIn)
+  () => focusIn
 );

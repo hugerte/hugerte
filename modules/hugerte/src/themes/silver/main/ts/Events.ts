@@ -1,5 +1,4 @@
 import { Attachment, Channels, Gui, SystemEvents } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
 import { Compare, DomEvent, EventArgs, SugarDocument, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -10,13 +9,13 @@ import * as ScrollingContext from './modes/ScrollingContext';
 
 const setup = (editor: Editor, mothership: Gui.GuiSystem, uiMotherships: Gui.GuiSystem[]): void => {
   const broadcastEvent = (name: string, evt: EventArgs) => {
-    Arr.each([ mothership, ...uiMotherships ], (m) => {
+    ([ mothership, ...uiMotherships ]).forEach((m) => {
       m.broadcastEvent(name, evt);
     });
   };
 
   const broadcastOn = (channel: string, message: Record<string, any>) => {
-    Arr.each([ mothership, ...uiMotherships ], (m) => {
+    ([ mothership, ...uiMotherships ]).forEach((m) => {
       m.broadcastOn([ channel ], message);
     });
   };
@@ -48,7 +47,7 @@ const setup = (editor: Editor, mothership: Gui.GuiSystem, uiMotherships: Gui.Gui
     }
   };
   const onContentMousedown = () => {
-    Arr.each(editor.editorManager.get(), (loopEditor) => {
+    (editor.editorManager.get()).forEach((loopEditor) => {
       if (editor !== loopEditor) {
         loopEditor.dispatch('DismissPopups', { relatedTarget: editor });
       }
@@ -76,8 +75,8 @@ const setup = (editor: Editor, mothership: Gui.GuiSystem, uiMotherships: Gui.Gui
       if (c !== undefined && c !== null) {
         const optScrollingContext = ScrollingContext.detectWhenSplitUiMode(editor, mothership.element);
 
-        const scrollers = optScrollingContext.map((sc) => [ sc.element, ...sc.others ]).getOr([ ]);
-        if (Arr.exists(scrollers, (s) => Compare.eq(s, evt.target))) {
+        const scrollers = optScrollingContext.map((sc) => [ sc.element, ...sc.others ]) ?? ([ ]);
+        if ((scrollers).some((s) => Compare.eq(s, evt.target))) {
 
           editor.dispatch('ElementScroll', { target: evt.target.dom });
           broadcastEvent(SystemEvents.externalElementScroll(), evt);
@@ -113,7 +112,7 @@ const setup = (editor: Editor, mothership: Gui.GuiSystem, uiMotherships: Gui.Gui
     editor.on('AfterProgressState', onEditorProgress);
     editor.on('DismissPopups', onDismissPopups);
 
-    Arr.each([ mothership, ...uiMotherships ], (gui) => {
+    ([ mothership, ...uiMotherships ]).forEach((gui) => {
       gui.element.dom.addEventListener('focusin', onFocusIn);
       gui.element.dom.addEventListener('focusout', onFocusOut);
     });
@@ -131,7 +130,7 @@ const setup = (editor: Editor, mothership: Gui.GuiSystem, uiMotherships: Gui.Gui
     editor.off('AfterProgressState', onEditorProgress);
     editor.off('DismissPopups', onDismissPopups);
 
-    Arr.each([ mothership, ...uiMotherships ], (gui) => {
+    ([ mothership, ...uiMotherships ]).forEach((gui) => {
       gui.element.dom.removeEventListener('focusin', onFocusIn);
       gui.element.dom.removeEventListener('focusout', onFocusOut);
     });
@@ -145,8 +144,8 @@ const setup = (editor: Editor, mothership: Gui.GuiSystem, uiMotherships: Gui.Gui
   });
 
   editor.on('detach', () => {
-    Arr.each([ mothership, ...uiMotherships ], Attachment.detachSystem);
-    Arr.each([ mothership, ...uiMotherships ], (m) => m.destroy());
+    ([ mothership, ...uiMotherships ]).forEach(Attachment.detachSystem);
+    ([ mothership, ...uiMotherships ]).forEach((m) => m.destroy());
   });
 };
 

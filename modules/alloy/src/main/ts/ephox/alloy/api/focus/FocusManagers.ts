@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { Compare, Focus, SugarElement } from '@ephox/sugar';
 
 import { Highlighting } from '../behaviour/Highlighting';
@@ -6,7 +5,7 @@ import { AlloyComponent } from '../component/ComponentApi';
 import * as AlloyTriggers from '../events/AlloyTriggers';
 import * as SystemEvents from '../events/SystemEvents';
 
-const reportFocusShifting = (component: AlloyComponent, prevFocus: Optional<SugarElement<HTMLElement>>, newFocus: Optional<SugarElement<HTMLElement>>) => {
+const reportFocusShifting = (component: AlloyComponent, prevFocus: (SugarElement<HTMLElement>) | null, newFocus: (SugarElement<HTMLElement>) | null) => {
   const noChange = prevFocus.exists((p) => newFocus.exists((n) => Compare.eq(n, p)));
   if (!noChange) {
     AlloyTriggers.emitWith(component, SystemEvents.focusShifted(), {
@@ -17,7 +16,7 @@ const reportFocusShifting = (component: AlloyComponent, prevFocus: Optional<Suga
 };
 
 export interface FocusManager {
-  get: (component: AlloyComponent) => Optional<SugarElement<HTMLElement>>;
+  get: (component: AlloyComponent) => (SugarElement<HTMLElement>) | null;
   set: (component: AlloyComponent, focusee: SugarElement<HTMLElement>) => void;
 }
 
@@ -42,7 +41,7 @@ const highlights = (): FocusManager => {
 
   const set = (component: AlloyComponent, element: SugarElement<HTMLElement>) => {
     const prevFocus = get(component);
-    component.getSystem().getByDom(element).fold(Fun.noop, (item) => {
+    component.getSystem().getByDom(element).fold(() => {}, (item) => {
       Highlighting.highlight(component, item);
     });
     const newFocus = get(component);

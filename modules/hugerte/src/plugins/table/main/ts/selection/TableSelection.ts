@@ -6,7 +6,6 @@
  */
 
 import { TableSelection } from '@ephox/darwin';
-import { Arr, Fun, Optionals } from '@ephox/katamari';
 import { TableLookup } from '@ephox/snooker';
 import { Attribute, Compare, SelectorFind, SugarElement, SugarElements, SugarNode } from '@ephox/sugar';
 
@@ -17,7 +16,7 @@ import { ephemera } from './Ephemera';
 const getSelectionCellFallback = (element: SugarElement<Node>) =>
   TableLookup.table(element).bind((table) =>
     TableSelection.retrieve(table, ephemera.firstSelectedSelector)
-  ).fold(Fun.constant(element), (cells) => cells[0]);
+  ).fold(() => element, (cells) => cells[0]);
 
 const getSelectionFromSelector = <T extends Element>(selector: string) =>
   (initCell: SugarElement<Node>, isRoot?: (el: SugarElement<Node>) => boolean) => {
@@ -37,13 +36,10 @@ const getRowsFromSelection = (selected: SugarElement<Node>, selector: string): S
   const cellOpt = getSelectionCell(selected);
   const rowsOpt = cellOpt.bind((cell) => TableLookup.table(cell))
     .map((table) => TableLookup.rows(table));
-  return Optionals.lift2(cellOpt, rowsOpt, (cell, rows) =>
-    Arr.filter(rows, (row) =>
-      Arr.exists(SugarElements.fromDom(row.dom.cells), (rowCell) =>
-        Attribute.get(rowCell, selector) === '1' || Compare.eq(rowCell, cell)
-      )
-    )
-  ).getOr([]);
+  return (cellOpt !== null && rowsOpt !== null ? ((cell, rows) =>
+    (rows).filter((row) =>
+      (SugarElements.fromDom(row.dom.cells)).some((rowCell) =>
+        Attribute.get(rowCell, selector) === '1' || Compare.eq(rowCell, cell))))(cellOpt, rowsOpt) : null) ?? ([]);
 };
 
 export {

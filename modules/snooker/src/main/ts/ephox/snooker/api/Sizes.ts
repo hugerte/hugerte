@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
 import { Css, Height, SugarElement, Width } from '@ephox/sugar';
 
 import * as ColumnSizes from '../resize/ColumnSizes';
@@ -9,7 +8,7 @@ import { DetailExt, RowDetail, Column, Detail } from './Structs';
 import { Warehouse } from './Warehouse';
 
 const redistributeToW = (newWidths: string[], cells: DetailExt[], unit: string): void => {
-  Arr.each(cells, (cell) => {
+  (cells).forEach((cell) => {
     const widths = newWidths.slice(cell.column, cell.colspan + cell.column);
     const w = Redistribution.sum(widths, CellUtils.minWidth());
     Css.set(cell.element, 'width', w + unit);
@@ -17,29 +16,29 @@ const redistributeToW = (newWidths: string[], cells: DetailExt[], unit: string):
 };
 
 const redistributeToColumns = (newWidths: string[], columns: Column[], unit: string): void => {
-  Arr.each(columns, (column, index: number) => {
+  (columns).forEach((column, index: number) => {
     const width = Redistribution.sum([ newWidths[index] ], CellUtils.minWidth());
     Css.set(column.element, 'width', width + unit);
   });
 };
 
 const redistributeToH = <T extends Detail> (newHeights: string[], rows: RowDetail<T>[], cells: DetailExt[]): void => {
-  Arr.each(cells, (cell) => {
+  (cells).forEach((cell) => {
     Css.remove(cell.element, 'height');
   });
 
-  Arr.each(rows, (row, i) => {
+  (rows).forEach((row, i) => {
     Css.set(row.element, 'height', newHeights[i]);
   });
 };
 
 const getUnit = (newSize: string): 'px' | '%' => {
-  return Redistribution.validate(newSize).fold(Fun.constant('px'), Fun.constant('px'), Fun.constant('%'));
+  return Redistribution.validate(newSize).fold(() => 'px', () => 'px', () => '%');
 };
 
 // Procedure to resize table dimensions to optWidth x optHeight and redistribute cell and row dimensions.
 // Updates CSS of the table, rows, and cells.
-const redistribute = (table: SugarElement<HTMLTableElement>, optWidth: Optional<string>, optHeight: Optional<string>): void => {
+const redistribute = (table: SugarElement<HTMLTableElement>, optWidth: (string) | null, optHeight: (string) | null): void => {
   const warehouse = Warehouse.fromTable(table);
   const rows = warehouse.all;
   const cells = Warehouse.justCells(warehouse);

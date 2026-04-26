@@ -1,4 +1,3 @@
-import { Arr, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import AstNode from 'hugerte/core/api/html/Node';
@@ -24,15 +23,15 @@ const addClasses = (node: AstNode, classes: string[]): void => {
 };
 
 const removeClasses = (node: AstNode, classes: Set<string>): void => {
-  const newClassList = Arr.filter(getClassList(node), (clazz) => !classes.has(clazz));
+  const newClassList = (getClassList(node)).filter((clazz) => !classes.has(clazz));
   node.attr('class', newClassList.length > 0 ? newClassList.join(' ') : null);
 };
 
 const isAccordionDetailsNode = (node: AstNode): boolean =>
-  node.name === Identifiers.accordionTag && Arr.contains(getClassList(node), Identifiers.accordionDetailsClass);
+  node.name === Identifiers.accordionTag && (getClassList(node)).includes(Identifiers.accordionDetailsClass);
 
 const isAccordionBodyWrapperNode = (node: AstNode): boolean =>
-  node.name === Identifiers.accordionBodyWrapperTag && Arr.contains(getClassList(node), Identifiers.accordionBodyWrapperClass);
+  node.name === Identifiers.accordionBodyWrapperTag && (getClassList(node)).includes(Identifiers.accordionBodyWrapperClass);
 
 const getAccordionChildren = (accordionNode: AstNode): AccordionChildren => {
   const children = accordionNode.children();
@@ -43,9 +42,9 @@ const getAccordionChildren = (accordionNode: AstNode): AccordionChildren => {
   for (let i = 0; i < children.length; i++) {
     const child = children[i];
     // Only want to get the first summary element
-    if (child.name === 'summary' && Type.isNullable(summaryNode)) {
+    if (child.name === 'summary' && (summaryNode) == null) {
       summaryNode = child;
-    } else if (isAccordionBodyWrapperNode(child) && Type.isNullable(wrapperNode)) {
+    } else if (isAccordionBodyWrapperNode(child) && (wrapperNode) == null) {
       wrapperNode = child;
     } else {
       otherNodes.push(child);
@@ -83,23 +82,23 @@ const setup = (editor: Editor): void => {
           const accordionNode = node;
           const { summaryNode, wrapperNode, otherNodes } = getAccordionChildren(accordionNode);
 
-          const hasSummaryNode = Type.isNonNullable(summaryNode);
+          const hasSummaryNode = (summaryNode) != null;
           const newSummaryNode = hasSummaryNode ? summaryNode : new AstNode('summary', 1);
           // If there is nothing in the summary, pad it with a br
           // so the cursor can be put inside the accordion summary
-          if (Type.isNullable(newSummaryNode.firstChild)) {
+          if ((newSummaryNode.firstChild) == null) {
             padInputNode(newSummaryNode);
           }
           addClasses(newSummaryNode, [ Identifiers.accordionSummaryClass ]);
           if (!hasSummaryNode) {
-            if (Type.isNonNullable(accordionNode.firstChild)) {
+            if ((accordionNode.firstChild) != null) {
               accordionNode.insert(newSummaryNode, accordionNode.firstChild, true);
             } else {
               accordionNode.append(newSummaryNode);
             }
           }
 
-          const hasWrapperNode = Type.isNonNullable(wrapperNode);
+          const hasWrapperNode = (wrapperNode) != null;
           const newWrapperNode = hasWrapperNode ? wrapperNode : new AstNode(Identifiers.accordionBodyWrapperTag, 1);
           newWrapperNode.attr('data-mce-bogus', '1');
           addClasses(newWrapperNode, [ Identifiers.accordionBodyWrapperClass ]);
@@ -111,7 +110,7 @@ const setup = (editor: Editor): void => {
           }
           // If there is nothing in the wrapper, append a placeholder p tag
           // so the cursor can be put inside the accordion body
-          if (Type.isNullable(newWrapperNode.firstChild)) {
+          if ((newWrapperNode.firstChild) == null) {
             const pNode = new AstNode('p', 1);
             padInputNode(pNode);
             newWrapperNode.append(pNode);
@@ -135,11 +134,11 @@ const setup = (editor: Editor): void => {
           const accordionNode = node;
           const { summaryNode, wrapperNode } = getAccordionChildren(accordionNode);
 
-          if (Type.isNonNullable(summaryNode)) {
+          if ((summaryNode) != null) {
             removeClasses(summaryNode, summaryClassRemoveSet);
           }
 
-          if (Type.isNonNullable(wrapperNode)) {
+          if ((wrapperNode) != null) {
             wrapperNode.unwrap();
           }
         }

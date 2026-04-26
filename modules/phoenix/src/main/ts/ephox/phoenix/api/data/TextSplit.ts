@@ -1,11 +1,10 @@
-import { Optional } from '@ephox/katamari';
 
 export interface TextSplit<E> {
-  readonly before: Optional<E>;
-  readonly after: Optional<E>;
+  readonly before: (E) | null;
+  readonly after: (E) | null;
 }
 
-export const TextSplit = <E>(before: Optional<E>, after: Optional<E>): TextSplit<E> => ({
+export const TextSplit = <E>(before: (E) | null, after: (E) | null): TextSplit<E> => ({
   before,
   after
 });

@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import Editor from '../api/Editor';
@@ -45,18 +44,18 @@ const isCaretAfterKoreanCharacter = (rng: Range): boolean => {
 };
 
 const setup = (editor: Editor): void => {
-  let iOSSafariKeydownBookmark: Optional<Bookmark> = Optional.none();
+  let iOSSafariKeydownBookmark: (Bookmark) | null = null;
 
   const iOSSafariKeydownOverride = (editor: Editor): void => {
-    iOSSafariKeydownBookmark = Optional.some(editor.selection.getBookmark());
+    iOSSafariKeydownBookmark = editor.selection.getBookmark();
     editor.undoManager.add();
   };
 
   const iOSSafariKeyupOverride = (editor: Editor, event: EditorEvent<KeyboardEvent>): void => {
     editor.undoManager.undo();
-    iOSSafariKeydownBookmark.fold(Fun.noop, (b) => editor.selection.moveToBookmark(b));
+    iOSSafariKeydownBookmark.fold(() => {}, (b) => editor.selection.moveToBookmark(b));
     handleEnterKeyEvent(editor, event);
-    iOSSafariKeydownBookmark = Optional.none();
+    iOSSafariKeydownBookmark = null;
   };
 
   editor.on('keydown', (event: EditorEvent<KeyboardEvent>) => {

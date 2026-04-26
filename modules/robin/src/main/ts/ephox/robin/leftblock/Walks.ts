@@ -1,12 +1,11 @@
 import { Universe } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 import { Gather, Transition, Traverse } from '@ephox/phoenix';
 
 export interface Walks {
   rules?: {
     current: Transition;
     next: Transition;
-    fallback: Optional<Transition>;
+    fallback: (Transition) | null;
   }[];
   inclusion: <E, D>(universe: Universe<E, D>, next: Traverse<E>, item: E) => boolean;
 }
@@ -14,9 +13,9 @@ export interface Walks {
 const top: Walks = {
   // The top strategy ignores children.
   rules: [
-    { current: Gather.backtrack, next: Gather.sidestep, fallback: Optional.none<Transition>() },
-    { current: Gather.sidestep, next: Gather.sidestep, fallback: Optional.some(Gather.backtrack) },
-    { current: Gather.advance, next: Gather.sidestep, fallback: Optional.some(Gather.sidestep) }
+    { current: Gather.backtrack, next: Gather.sidestep, fallback: null },
+    { current: Gather.sidestep, next: Gather.sidestep, fallback: Gather.backtrack },
+    { current: Gather.advance, next: Gather.sidestep, fallback: Gather.sidestep }
   ],
   inclusion: <E, D>(universe: Universe<E, D>, next: Traverse<E>, item: E) => {
     // You can't just check the mode, because it may have fallen back to backtracking,

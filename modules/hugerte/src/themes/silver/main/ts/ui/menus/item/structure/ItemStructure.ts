@@ -1,6 +1,5 @@
 import { AlloySpec, RawDomSchema } from '@ephox/alloy';
 import { Toolbar } from '@ephox/bridge';
-import { Fun, Id, Obj, Optional, Type } from '@ephox/katamari';
 
 import I18n from 'hugerte/core/api/util/I18n';
 
@@ -11,23 +10,23 @@ import { renderHtml, renderShortcut, renderStyledText, renderText } from './Item
 
 export interface ItemStructure {
   readonly dom: RawDomSchema;
-  readonly optComponents: Array<Optional<AlloySpec>>;
+  readonly optComponents: Array<(AlloySpec) | null>;
 }
 
 export interface ItemStructureSpec {
   readonly presets: Toolbar.PresetItemTypes;
-  readonly iconContent: Optional<string>;
-  readonly textContent: Optional<string>;
-  readonly htmlContent: Optional<string>;
-  readonly ariaLabel: Optional<string>;
-  readonly shortcutContent: Optional<string>;
-  readonly checkMark: Optional<AlloySpec>;
-  readonly caret: Optional<AlloySpec>;
+  readonly iconContent: (string) | null;
+  readonly textContent: (string) | null;
+  readonly htmlContent: (string) | null;
+  readonly ariaLabel: (string) | null;
+  readonly shortcutContent: (string) | null;
+  readonly checkMark: (AlloySpec) | null;
+  readonly caret: (AlloySpec) | null;
   readonly value?: string;
   readonly meta?: Record<string, any>;
 }
 
-const renderColorStructure = (item: ItemStructureSpec, providerBackstage: UiFactoryBackstageProviders, fallbackIcon: Optional<string>): ItemStructure => {
+const renderColorStructure = (item: ItemStructureSpec, providerBackstage: UiFactoryBackstageProviders, fallbackIcon: (string) | null): ItemStructure => {
   const colorPickerCommand = 'custom';
   const removeColorCommand = 'remove';
 
@@ -39,11 +38,11 @@ const renderColorStructure = (item: ItemStructureSpec, providerBackstage: UiFact
       'aria-label': providerBackstage.translate(al),
       'data-mce-name': al
     })
-  ).getOr({ });
+  ) ?? ({ });
 
   const getDom = (): RawDomSchema => {
     const common = ItemClasses.colorClass;
-    const icon = iconSvg.getOr('');
+    const icon = iconSvg ?? ('');
 
     const baseDom = {
       tag: 'div',
@@ -64,7 +63,7 @@ const renderColorStructure = (item: ItemStructureSpec, providerBackstage: UiFact
         classes: [ ...baseDom.classes, 'tox-swatch--remove' ],
         innerHtml: icon
       };
-    } else if (Type.isNonNullable(itemValue)) {
+    } else if ((itemValue) != null) {
       return {
         ...baseDom,
         attributes: {
@@ -87,13 +86,13 @@ const renderColorStructure = (item: ItemStructureSpec, providerBackstage: UiFact
   };
 };
 
-const renderItemDomStructure = (ariaLabel: Optional<string>): RawDomSchema => {
+const renderItemDomStructure = (ariaLabel: (string) | null): RawDomSchema => {
   const domTitle = ariaLabel.map((label): { attributes?: { id?: string; 'aria-label': string }} => ({
     attributes: {
-      'id': Id.generate('menu-item'),
+      'id': (('menu-item') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
       'aria-label': I18n.translate(label)
     }
-  })).getOr({});
+  })) ?? ({});
 
   return {
     tag: 'div',
@@ -102,26 +101,26 @@ const renderItemDomStructure = (ariaLabel: Optional<string>): RawDomSchema => {
   };
 };
 
-const renderNormalItemStructure = (info: ItemStructureSpec, providersBackstage: UiFactoryBackstageProviders, renderIcons: boolean, fallbackIcon: Optional<string>): ItemStructure => {
+const renderNormalItemStructure = (info: ItemStructureSpec, providersBackstage: UiFactoryBackstageProviders, renderIcons: boolean, fallbackIcon: (string) | null): ItemStructure => {
   // TODO: TINY-3036 Work out a better way of dealing with custom icons
   const iconSpec = { tag: 'div', classes: [ ItemClasses.iconClass ] };
   const renderIcon = (iconName: string) => Icons.render(iconName, iconSpec, providersBackstage.icons, fallbackIcon);
-  const renderEmptyIcon = () => Optional.some({ dom: iconSpec });
+  const renderEmptyIcon = () => { dom: iconSpec };
   // Note: renderIcons indicates if any icons are present in the menu - if false then the icon column will not be present for the whole menu
-  const leftIcon = renderIcons ? info.iconContent.map(renderIcon).orThunk(renderEmptyIcon) : Optional.none();
+  const leftIcon = renderIcons ? info.iconContent.map(renderIcon).orThunk(renderEmptyIcon) : null;
   // TINY-3345: Dedicated columns for icon and checkmark if applicable
   const checkmark = info.checkMark;
 
   // Style items and autocompleter both have meta. Need to branch on style
   // This could probably be more stable...
-  const textRender = Optional.from(info.meta).fold(
+  const textRender = (info.meta ?? null).fold(
     () => renderText,
-    (meta) => Obj.has(meta, 'style') ? Fun.curry(renderStyledText, meta.style) : renderText
+    (meta) => Object.prototype.hasOwnProperty.call(meta, 'style') ? ((..._rest: any[]) => (renderStyledText)(meta.style, ..._rest)) : renderText
   );
 
   const content = info.htmlContent.fold(
     () => info.textContent.map(textRender),
-    (html) => Optional.some(renderHtml(html, [ ItemClasses.textClass ]))
+    (html) => renderHtml(html, [ ItemClasses.textClass ])
   );
 
   const menuItem = {
@@ -138,7 +137,7 @@ const renderNormalItemStructure = (info: ItemStructureSpec, providersBackstage: 
 };
 
 // TODO: Maybe need aria-label
-const renderItemStructure = (info: ItemStructureSpec, providersBackstage: UiFactoryBackstageProviders, renderIcons: boolean, fallbackIcon: Optional<string> = Optional.none()): ItemStructure => {
+const renderItemStructure = (info: ItemStructureSpec, providersBackstage: UiFactoryBackstageProviders, renderIcons: boolean, fallbackIcon: (string) | null = null): ItemStructure => {
   if (info.presets === 'color') {
     return renderColorStructure(info, providersBackstage, fallbackIcon);
   } else {

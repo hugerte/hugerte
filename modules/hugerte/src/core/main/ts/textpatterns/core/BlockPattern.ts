@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { SugarText, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../../api/dom/DOMUtils';
@@ -35,7 +34,7 @@ const findPattern = BlockPatternUtils.findPattern((pattern, text, nuText) => tex
 
 const findPatterns = BlockPatternUtils.createFindPatterns(findPattern, true);
 
-const getMatches = (editor: Editor, patternSet: PatternSet): Optional<{ inlineMatches: InlinePatternMatch[]; blockMatches: BlockPatternMatch[] }> => {
+const getMatches = (editor: Editor, patternSet: PatternSet): ({ inlineMatches: InlinePatternMatch[]; blockMatches: BlockPatternMatch[] }) | null => {
   const rng = editor.selection.getRng();
   return Utils.getParentBlock(editor, rng).map((block) => {
     const offset = Math.max(0, rng.startOffset);
@@ -55,7 +54,7 @@ const applyMatches = (editor: Editor, matches: BlockPatternMatch[]): void => {
 
   // Store the current selection and then apply the matched patterns
   const bookmark = editor.selection.getBookmark();
-  Arr.each(matches, (match) => applyPattern(editor, match));
+  (matches).forEach((match) => applyPattern(editor, match));
   editor.selection.moveToBookmark(bookmark);
 };
 

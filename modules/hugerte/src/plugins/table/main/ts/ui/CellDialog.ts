@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { TableLookup, Warehouse } from '@ephox/snooker';
 import { Compare, SugarElement } from '@ephox/sugar';
 
@@ -19,20 +19,18 @@ type CellData = Helpers.CellData;
 
 interface SelectedCell {
   readonly element: HTMLTableCellElement;
-  readonly column: Optional<HTMLTableColElement>;
+  readonly column: (HTMLTableColElement) | null;
 }
 
 const getSelectedCells = (table: SugarElement<HTMLTableElement>, cells: SugarElement<HTMLTableCellElement>[]): SelectedCell[] => {
   const warehouse = Warehouse.fromTable(table);
   const allCells = Warehouse.justCells(warehouse);
 
-  const filtered = Arr.filter(allCells, (cellA) =>
-    Arr.exists(cells, (cellB) =>
-      Compare.eq(cellA.element, cellB)
-    )
-  );
+  const filtered = (allCells).filter((cellA) =>
+    (cells).some((cellB) =>
+      Compare.eq(cellA.element, cellB)));
 
-  return Arr.map(filtered, (cell) => ({
+  return (filtered).map((cell) => ({
     element: cell.element.dom,
     column: Warehouse.getColumnAt(warehouse, cell.column).map((col) => col.element.dom)
   }));
@@ -67,11 +65,11 @@ const updateAdvancedProps = (modifier: DomModifier, data: Required<CellData>, sh
 
 const applyStyleData = (editor: Editor, cells: SelectedCell[], data: CellData, wasChanged: (key: string) => boolean): void => {
   const isSingleCell = cells.length === 1;
-  Arr.each(cells, (item) => {
+  (cells).forEach((item) => {
     const cellElm = item.element;
-    const shouldOverrideCurrentValue = isSingleCell ? Fun.always : wasChanged;
+    const shouldOverrideCurrentValue = isSingleCell ? (() => true as const) : wasChanged;
     const modifier = DomModifier.normal(editor, cellElm);
-    const colModifier = item.column.map((col) => DomModifier.normal(editor, col)).getOr(modifier);
+    const colModifier = item.column.map((col) => DomModifier.normal(editor, col)) ?? (modifier);
 
     updateSimpleProps(modifier, colModifier, data, shouldOverrideCurrentValue);
 
@@ -98,21 +96,21 @@ const applyStructureData = (editor: Editor, data: CellData): void => {
 };
 
 const applyCellData = (editor: Editor, cells: SugarElement<HTMLTableCellElement>[], oldData: CellData, data: CellData): void => {
-  const modifiedData = Obj.filter(data, (value, key) => oldData[key as keyof CellData] !== value);
+  const modifiedData = Object.fromEntries(Object.entries(data).filter(([_k, _v]: [any, any]) => ((value, key) => oldData[key as keyof CellData] !== value)(_v, _k as any)));
 
-  if (Obj.size(modifiedData) > 0 && cells.length >= 1) {
+  if (Object.keys(modifiedData).length > 0 && cells.length >= 1) {
     // Retrieve the table before the cells are modified as there is a case where cells
     // are replaced and the reference will be lost when trying to fire events.
     TableLookup.table(cells[0]).each((table) => {
       const selectedCells = getSelectedCells(table, cells);
 
       // style modified if there's at least one other change apart from 'celltype' and 'scope'
-      const styleModified = Obj.size(Obj.filter(modifiedData, (_value, key) => key !== 'scope' && key !== 'celltype')) > 0;
-      const structureModified = Obj.has(modifiedData, 'celltype');
+      const styleModified = Object.keys(Object.fromEntries(Object.entries(modifiedData).filter(([_k, _v]: [any, any]) => ((_value, key) => key !== 'scope' && key !== 'celltype')(_v, _k as any)))).length > 0;
+      const structureModified = Object.prototype.hasOwnProperty.call(modifiedData, 'celltype');
 
       // Update the cells styling using the dialog data
-      if (styleModified || Obj.has(modifiedData, 'scope')) {
-        applyStyleData(editor, selectedCells, data, Fun.curry(Obj.has, modifiedData));
+      if (styleModified || Object.prototype.hasOwnProperty.call(modifiedData, 'scope')) {
+        applyStyleData(editor, selectedCells, data, ((..._rest: any[]) => (Obj.has)(modifiedData, ..._rest)));
       }
 
       // Update the cells structure using the dialog data
@@ -140,9 +138,8 @@ const onSubmitCellForm = (editor: Editor, cells: SugarElement<HTMLTableCellEleme
 
 const getData = (editor: Editor, cells: SugarElement<HTMLTableCellElement>[]): CellData => {
   const cellsData = TableLookup.table(cells[0]).map((table) =>
-    Arr.map(getSelectedCells(table, cells), (item) =>
-      Helpers.extractDataFromCellElement(editor, item.element, Options.hasAdvancedCellTab(editor), item.column)
-    )
+    (getSelectedCells(table, cells)).map((item) =>
+      Helpers.extractDataFromCellElement(editor, item.element, Options.hasAdvancedCellTab(editor), item.column))
   );
 
   return Helpers.getSharedValues<CellData>(cellsData.getOrDie());
@@ -197,7 +194,7 @@ const open = (editor: Editor): void => {
       }
     ],
     initialData: data,
-    onSubmit: Fun.curry(onSubmitCellForm, editor, cells, data)
+    onSubmit: ((..._rest: any[]) => (onSubmitCellForm)(editor, cells, data, ..._rest))
   });
 };
 

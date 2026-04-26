@@ -3,7 +3,7 @@ import {
   SystemEvents
 } from '@ephox/alloy';
 import { Dialog, DialogManager } from '@ephox/bridge';
-import { Arr, Cell, Obj, Optional } from '@ephox/katamari';
+import { Arr, Cell } from '@ephox/katamari';
 import { Class, Classes, Height, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -26,7 +26,7 @@ export interface DialogSpec {
   readonly id: string;
   readonly header: AlloySpec;
   readonly body: AlloyParts.ConfiguredPart;
-  readonly footer: Optional<AlloyParts.ConfiguredPart>;
+  readonly footer: (AlloyParts.ConfiguredPart) | null;
   readonly extraClasses: string[];
   readonly extraStyles: Record<string, string>;
   readonly extraBehaviours: Behaviour.NamedConfiguredBehaviour<any, any>[];
@@ -37,7 +37,7 @@ const getHeader = (title: string, dialogId: string, backstage: UiFactoryBackstag
   draggable: backstage.dialog.isDraggableModal()
 }, dialogId, backstage.shared.providers);
 
-const getBusySpec = (message: string, bs: Behaviour.AlloyBehaviourRecord, providers: UiFactoryBackstageProviders, headerHeight: Optional<number>): AlloySpec => ({
+const getBusySpec = (message: string, bs: Behaviour.AlloyBehaviourRecord, providers: UiFactoryBackstageProviders, headerHeight: (number) | null): AlloySpec => ({
   dom: {
     tag: 'div',
     classes: [ 'tox-dialog__busy-spinner' ],
@@ -48,7 +48,7 @@ const getBusySpec = (message: string, bs: Behaviour.AlloyBehaviourRecord, provid
       left: '0px',
       right: '0px',
       bottom: '0px',
-      top: `${headerHeight.getOr(0)}px`,
+      top: `${headerHeight ?? (0)}px`,
       position: 'absolute'
     }
   },
@@ -73,14 +73,14 @@ const fullscreenClass = 'tox-dialog--fullscreen';
 const largeDialogClass = 'tox-dialog--width-lg';
 const mediumDialogClass = 'tox-dialog--width-md';
 
-const getDialogSizeClass = (size: Dialog.DialogSize): Optional<string> => {
+const getDialogSizeClass = (size: Dialog.DialogSize): (string) | null => {
   switch (size) {
     case 'large':
-      return Optional.some(largeDialogClass);
+      return largeDialogClass;
     case 'medium':
-      return Optional.some(mediumDialogClass);
+      return mediumDialogClass;
     default:
-      return Optional.none();
+      return null;
   }
 };
 
@@ -95,7 +95,7 @@ const updateDialogSizeClass = (size: Dialog.DialogSize, component: AlloyComponen
 const toggleFullscreen = (comp: AlloyComponent, currentSize: Dialog.DialogSize): void => {
   const dialogBody = SugarElement.fromDom(comp.element.dom);
   const classes = Classes.get(dialogBody);
-  const currentSizeClass = Arr.find(classes, (c) => c === largeDialogClass || c === mediumDialogClass).or(getDialogSizeClass(currentSize));
+  const currentSizeClass = ((classes).find((c) => c === largeDialogClass || c === mediumDialogClass) ?? null).or(getDialogSizeClass(currentSize));
   Classes.toggle(dialogBody, [ fullscreenClass, ...currentSizeClass.toArray() ]);
 };
 
@@ -120,8 +120,8 @@ const renderModalDialog = (spec: DialogSpec, dialogEvents: AlloyEvents.AlloyEven
 
 const mapMenuButtons = (buttons: Dialog.DialogFooterButton[], menuItemStates: Record<string, Cell<boolean>> = {}): (Dialog.DialogFooterButton | StoredMenuButton)[] => {
   const mapItems = (button: Dialog.DialogFooterMenuButton): StoredMenuButton => {
-    const items = Arr.map(button.items, (item: Dialog.DialogFooterToggleMenuItem): StoredMenuItem => {
-      const cell = Obj.get(menuItemStates, item.name).getOr(Cell<boolean>(false));
+    const items = (button.items).map((item: Dialog.DialogFooterToggleMenuItem): StoredMenuItem => {
+      const cell = ((menuItemStates)[item.name] ?? null) ?? (Cell<boolean>(false));
       return {
         ...item,
         storage: cell
@@ -133,7 +133,7 @@ const mapMenuButtons = (buttons: Dialog.DialogFooterButton[], menuItemStates: Re
     };
   };
 
-  return Arr.map(buttons, (button) => {
+  return (buttons).map((button) => {
     return button.type === 'menu' ? mapItems(button) : button;
   });
 };
@@ -142,7 +142,7 @@ const extractCellsToObject = (buttons: (StoredMenuButton | Dialog.DialogFooterMe
   Arr.foldl(buttons, (acc, button) => {
     if (button.type === 'menu') {
       const menuButton = button as StoredMenuButton;
-      return Arr.foldl(menuButton.items, (innerAcc, item) => {
+      return (menuButton.items).reduce((innerAcc, item) => {
         innerAcc[item.name] = item.storage;
         return innerAcc;
       }, acc);

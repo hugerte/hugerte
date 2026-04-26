@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { PRange } from '../pattern/Types';
 import * as Query from './Query';
@@ -20,8 +19,8 @@ const splits = <T extends PRange>(parray: T[], positions: number[], subdivide: (
     return parray;
   }
 
-  return Arr.bind(parray, (unit) => {
-    const relevant = Arr.bind(positions, (pos) => {
+  return (parray).flatMap((unit) => {
+    const relevant = (positions).flatMap((pos) => {
       return Query.inUnit(unit, pos) ? [ pos - unit.start ] : [];
     });
 

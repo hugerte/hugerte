@@ -1,4 +1,4 @@
-import { Adt, Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Adt, Optional } from '@ephox/katamari';
 import { Insert, InsertAll, SugarElement, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -154,7 +154,7 @@ const removeNode = (ed: Editor, node: Node, format: Format): void => {
     // Wrap the block in a forcedRootBlock if we are at the root of document
     if (parentNode === dom.getRoot()) {
       if (!format.list_block || !isEq(node, format.list_block)) {
-        Arr.each(Arr.from(node.childNodes), (node) => {
+        (Array.from(node.childNodes)).forEach((node) => {
           if (FormatUtils.isValid(ed, forcedRootBlock, node.nodeName.toLowerCase())) {
             if (!rootBlockElm) {
               rootBlockElm = wrap(dom, node, forcedRootBlock);
@@ -181,7 +181,7 @@ const removeNode = (ed: Editor, node: Node, format: Format): void => {
 // Attributes or styles can be either an array of names or an object containing name/value pairs
 const processFormatAttrOrStyle = (name: string | number, value: FormatAttrOrStyleValue | string, vars: FormatVars | undefined) => {
   // Indexed array
-  if (Type.isNumber(name)) {
+  if (typeof (name) === 'number') {
     return {
       name: value as string,
       value: null
@@ -208,7 +208,7 @@ const removeStyles = (dom: DOMUtils, elm: Element, format: Format, vars: FormatV
     const { name: styleName, value: styleValue } = processFormatAttrOrStyle(name, value, vars);
     const normalizedStyleValue = normalizeStyleValue(styleValue, styleName);
 
-    if (format.remove_similar || Type.isNull(styleValue) || !NodeType.isElement(compareNode) || isEq(FormatUtils.getStyle(dom, compareNode, styleName), normalizedStyleValue)) {
+    if (format.remove_similar || (styleValue) === null || !NodeType.isElement(compareNode) || isEq(FormatUtils.getStyle(dom, compareNode, styleName), normalizedStyleValue)) {
       dom.setStyle(elm, styleName, '');
     }
 
@@ -222,13 +222,13 @@ const removeStyles = (dom: DOMUtils, elm: Element, format: Format, vars: FormatV
 
 const removeListStyleFormats = (editor: Editor, name: string, vars: FormatVars | undefined) => {
   if (name === 'removeformat') {
-    Arr.each(ListItemFormat.getPartiallySelectedListItems(editor.selection), (li) => {
-      Arr.each(ListItemFormat.listItemStyles, (name) => editor.dom.setStyle(li, name, ''));
+    (ListItemFormat.getPartiallySelectedListItems(editor.selection)).forEach((li) => {
+      (ListItemFormat.listItemStyles).forEach((name) => editor.dom.setStyle(li, name, ''));
       removeEmptyStyleAttributeIfNeeded(editor.dom, li);
     });
   } else {
     ListItemFormat.getExpandedListItemFormat(editor.formatter, name).each((liFmt) => {
-      Arr.each(ListItemFormat.getPartiallySelectedListItems(editor.selection), (li) => removeStyles(editor.dom, li, liFmt, vars, null));
+      (ListItemFormat.getPartiallySelectedListItems(editor.selection)).forEach((li) => removeStyles(editor.dom, li, liFmt, vars, null));
     });
   }
 };
@@ -259,11 +259,11 @@ const removeNodeFormatInternal = (ed: Editor, format: Format, vars?: FormatVars,
 
   // Applies to styling elements like strong, em, i, u, etc. so that if they have styling attributes, the attributes can be kept but the styling element is removed
   const preserveAttributes = format.preserve_attributes;
-  if (FormatUtils.isInlineFormat(format) && format.remove === 'all' && Type.isArray(preserveAttributes)) {
+  if (FormatUtils.isInlineFormat(format) && format.remove === 'all' && Array.isArray(preserveAttributes)) {
     // Remove all attributes except for the attributes specified in preserve_attributes
-    const attrsToPreserve = Arr.filter(dom.getAttribs(elm), (attr) => Arr.contains(preserveAttributes, attr.name.toLowerCase()));
+    const attrsToPreserve = (dom.getAttribs(elm)).filter((attr) => (preserveAttributes).includes(attr.name.toLowerCase()));
     dom.removeAllAttribs(elm);
-    Arr.each(attrsToPreserve, (attr) => dom.setAttrib(elm, attr.name, attr.value));
+    (attrsToPreserve).forEach((attr) => dom.setAttrib(elm, attr.name, attr.value));
     // Note: If there are no attributes left, the element will be removed as normal at the end of the function
     if (attrsToPreserve.length > 0) {
       // Convert inline element to span if necessary
@@ -279,14 +279,14 @@ const removeNodeFormatInternal = (ed: Editor, format: Format, vars?: FormatVars,
     each(format.attributes as any, (value: FormatAttrOrStyleValue | string, name: string | number) => {
       const { name: attrName, value: attrValue } = processFormatAttrOrStyle(name, value, vars);
 
-      if (format.remove_similar || Type.isNull(attrValue) || !NodeType.isElement(compareNode) || isEq(dom.getAttrib(compareNode, attrName), attrValue)) {
+      if (format.remove_similar || (attrValue) === null || !NodeType.isElement(compareNode) || isEq(dom.getAttrib(compareNode, attrName), attrValue)) {
         // Keep internal classes
         if (attrName === 'class') {
           const currentValue = dom.getAttrib(elm, attrName);
           if (currentValue) {
             // Build new class value where everything is removed except the internal prefixed classes
             let valueOut = '';
-            Arr.each(currentValue.split(/\s+/), (cls) => {
+            (currentValue.split(/\s+/)).forEach((cls) => {
               if (/mce\-\w+/.test(cls)) {
                 valueOut += (valueOut ? ' ' : '') + cls;
               }
@@ -354,7 +354,7 @@ const findFormatRoot = (editor: Editor, container: Node, name: string, vars?: Fo
 
   if (container.parentNode) {
     // Find format root
-    Arr.each(FormatUtils.getParents(editor.dom, container.parentNode).reverse(), (parent) => {
+    (FormatUtils.getParents(editor.dom, container.parentNode).reverse()).forEach((parent) => {
       // Find format root element
       if (!formatRoot && NodeType.isElement(parent) && parent.id !== '_start' && parent.id !== '_end') {
         // Is the node matching the format we are looking for
@@ -371,7 +371,7 @@ const findFormatRoot = (editor: Editor, container: Node, name: string, vars?: Fo
 
 const removeNodeFormatFromClone = (editor: Editor, format: Format, vars: FormatVars | undefined, clone: Node) =>
   removeNodeFormatInternal(editor, format, vars, clone, clone).fold(
-    Fun.constant(clone),
+    () => clone,
     (newName) => {
       // To rename a node, it needs to be a child of another node
       const fragment = editor.dom.createFragment();
@@ -379,7 +379,7 @@ const removeNodeFormatFromClone = (editor: Editor, format: Format, vars: FormatV
       // If renaming we are guaranteed this is a Element, so cast
       return editor.dom.rename(clone as Element, newName);
     },
-    Fun.constant(null)
+    () => null
   );
 
 const wrapAndSplit = (
@@ -462,21 +462,21 @@ const removeFormatInternal = (ed: Editor, name: string, vars?: FormatVars, node?
     Bookmarks.isBookmarkNode(node) && NodeType.isElement(node) && (node.id === '_start' || node.id === '_end');
 
   const removeFormatOnNode = (node: Node) =>
-    Arr.exists(formatList, (fmt) => removeNodeFormat(ed, fmt, vars, node, node));
+    (formatList).some((fmt) => removeNodeFormat(ed, fmt, vars, node, node));
 
   // Merges the styles for each node
   const process = (node: Node) => {
 
     // Grab the children first since the nodelist might be changed
-    const children = Arr.from(node.childNodes);
+    const children = Array.from(node.childNodes);
 
     // Process current node
     const removed = removeFormatOnNode(node);
 
     // TINY-6567/TINY-7393: Include the parent if using an expanded selector format and no match was found for the current node
-    const currentNodeMatches = removed || Arr.exists(formatList, (f) => MatchFormat.matchName(dom, node, f));
+    const currentNodeMatches = removed || (formatList).some((f) => MatchFormat.matchName(dom, node, f));
     const parentNode = node.parentNode;
-    if (!currentNodeMatches && Type.isNonNullable(parentNode) && FormatUtils.shouldExpandToSelector(format)) {
+    if (!currentNodeMatches && (parentNode) != null && FormatUtils.shouldExpandToSelector(format)) {
       removeFormatOnNode(parentNode);
     }
 
@@ -493,7 +493,7 @@ const removeFormatInternal = (ed: Editor, name: string, vars?: FormatVars, node?
     // and text colors were merged together from an applied format
     // Remove child span if it only contains text-decoration and a parent node also has the same text decoration.
     const textDecorations = [ 'underline', 'line-through', 'overline' ];
-    Arr.each(textDecorations, (decoration) => {
+    (textDecorations).forEach((decoration) => {
       if (NodeType.isElement(node) && ed.dom.getStyle(node, 'text-decoration') === decoration &&
         node.parentNode && FormatUtils.getTextDecoration(dom, node.parentNode) === decoration) {
         removeNodeFormat(ed, {
@@ -555,7 +555,7 @@ const removeFormatInternal = (ed: Editor, name: string, vars?: FormatVars, node?
 
         // Wrap and split if nested
         if (isChildOfInlineParent(dom, startContainer, endContainer)) {
-          const marker = Optional.from(startContainer.firstChild).getOr(startContainer);
+          const marker = (startContainer.firstChild ?? null) ?? (startContainer);
           splitToFormatRoot(wrapWithSiblings(dom, marker, true, 'span', { 'id': '_start', 'data-mce-type': 'bookmark' }));
           unwrap(true);
           return;
@@ -563,7 +563,7 @@ const removeFormatInternal = (ed: Editor, name: string, vars?: FormatVars, node?
 
         // Wrap and split if nested
         if (isChildOfInlineParent(dom, endContainer, startContainer)) {
-          const marker = Optional.from(endContainer.lastChild).getOr(endContainer);
+          const marker = (endContainer.lastChild ?? null) ?? (endContainer);
           splitToFormatRoot(wrapWithSiblings(dom, marker, false, 'span', { 'id': '_end', 'data-mce-type': 'bookmark' }));
           unwrap(false);
           return;
@@ -578,7 +578,7 @@ const removeFormatInternal = (ed: Editor, name: string, vars?: FormatVars, node?
         newRng.setStartAfter(startContainer);
         newRng.setEndBefore(endContainer);
         RangeWalk.walk(dom, newRng, (nodes) => {
-          Arr.each(nodes, (n) => {
+          (nodes).forEach((n) => {
             if (!Bookmarks.isBookmarkNode(n) && !Bookmarks.isBookmarkNode(n.parentNode)) {
               splitToFormatRoot(n);
             }
@@ -604,7 +604,7 @@ const removeFormatInternal = (ed: Editor, name: string, vars?: FormatVars, node?
 
     // Remove items between start/end
     RangeWalk.walk(dom, expandedRng, (nodes) => {
-      Arr.each(nodes, process);
+      (nodes).forEach(process);
     });
   };
 
@@ -663,13 +663,13 @@ const removeFormat = (ed: Editor, name: string, vars?: FormatVars, node?: Node |
  */
 const removeNodeFormat = (editor: Editor, format: Format, vars: FormatVars | undefined, node: Node, compareNode?: Node | null): boolean => {
   return removeNodeFormatInternal(editor, format, vars, node, compareNode).fold(
-    Fun.never,
+    (() => false as const),
     (newName) => {
       // If renaming we are guaranteed this is a Element, so cast
       editor.dom.rename(node as Element, newName);
       return true;
     },
-    Fun.always
+    (() => true as const)
   );
 };
 

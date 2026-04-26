@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { SugarElement, Width } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -9,12 +8,12 @@ import { UserListItem, UserListValue } from '../ui/UiUtils';
 
 const defaultTableToolbar = 'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol';
 
-const defaultCellBorderWidths = Arr.range(5, (i) => {
+const defaultCellBorderWidths = Array.from({length: 5}, (_, _i) => ((i) => {
   const size = `${i + 1}px`;
   return { title: size, value: size };
-});
+})(_i));
 
-const defaultCellBorderStyles = Arr.map([ 'Solid', 'Dotted', 'Dashed', 'Double', 'Groove', 'Ridge', 'Inset', 'Outset', 'None', 'Hidden' ], (type) => {
+const defaultCellBorderStyles = ([ 'Solid', 'Dotted', 'Dashed', 'Double', 'Groove', 'Ridge', 'Inset', 'Outset', 'None', 'Hidden' ]).map((type) => {
   return { title: type, value: type.toLowerCase() };
 });
 

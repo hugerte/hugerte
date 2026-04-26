@@ -1,11 +1,10 @@
-import { Arr } from '@ephox/katamari';
 
 import { ElementNew, RowCells } from '../api/Structs';
 import { CompElm } from '../util/TableTypes';
 import * as GridRow from './GridRow';
 
 const getColumn = (grid: RowCells[], index: number): ElementNew[] => {
-  return Arr.map(grid, (row) => {
+  return (grid).map((row) => {
     return GridRow.getCell(row, index);
   });
 };
@@ -19,10 +18,10 @@ const findDiff = (xs: ElementNew[], comp: CompElm) => {
     return 0;
   }
   const first = xs[0];
-  const index = Arr.findIndex(xs, (x) => {
+  const index = (xs).findIndex((x) => {
     return !comp(first.element, x.element);
   });
-  return index.getOr(xs.length);
+  return index ?? (xs.length);
 };
 
 /*

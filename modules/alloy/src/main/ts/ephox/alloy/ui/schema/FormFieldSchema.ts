@@ -1,5 +1,4 @@
 import { FieldSchema, Objects } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import { Composing } from '../../api/behaviour/Composing';
 import { Representing } from '../../api/behaviour/Representing';
@@ -7,12 +6,12 @@ import * as SketchBehaviours from '../../api/component/SketchBehaviours';
 import * as PartType from '../../parts/PartType';
 import { FormFieldDetail } from '../types/FormFieldTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.defaulted('prefix', 'form-field'),
   SketchBehaviours.field('fieldBehaviours', [ Composing, Representing ])
-]);
+];
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.optional<FormFieldDetail>({
     schema: [ FieldSchema.required('dom') ],
     name: 'label'
@@ -50,7 +49,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
     schema: [ FieldSchema.required('factory') ],
     name: 'field'
   })
-]);
+];
 
 export {
   schema,

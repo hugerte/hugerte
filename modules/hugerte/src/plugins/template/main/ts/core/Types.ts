@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 export interface UrlTemplate {
   readonly title: string;
@@ -18,8 +17,8 @@ export interface InternalTemplate {
   readonly selected: boolean;
   readonly text: string;
   readonly value: {
-    readonly url: Optional<string>;
-    readonly content: Optional<string>;
+    readonly url: (string) | null;
+    readonly content: (string) | null;
     readonly description: string;
   };
 }

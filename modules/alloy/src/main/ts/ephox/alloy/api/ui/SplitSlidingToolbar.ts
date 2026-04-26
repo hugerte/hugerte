@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as SplitToolbarUtils from '../../toolbar/SplitToolbarUtils';
@@ -23,7 +22,7 @@ import { ToolbarGroup } from './ToolbarGroup';
 import { CompositeSketchFactory } from './UiSketcher';
 
 const isOpen = (toolbar: AlloyComponent, detail: SplitSlidingToolbarDetail) =>
-  AlloyParts.getPart(toolbar, detail, 'overflow').map(Sliding.hasGrown).getOr(false);
+  AlloyParts.getPart(toolbar, detail, 'overflow').map(Sliding.hasGrown) ?? (false);
 
 const toggleToolbar = (toolbar: AlloyComponent, detail: SplitSlidingToolbarDetail) => {
   // Make sure that the toolbar needs to toggled by checking for overflow button presence
@@ -38,7 +37,7 @@ const toggleToolbar = (toolbar: AlloyComponent, detail: SplitSlidingToolbarDetai
 const refresh = (toolbar: AlloyComponent, detail: SplitSlidingToolbarDetail) => {
   AlloyParts.getPart(toolbar, detail, 'overflow').each((overflow) => {
     SplitToolbarUtils.refresh(toolbar, detail, (groups) => {
-      const builtGroups = Arr.map(groups, (g) => GuiFactory.premade(g));
+      const builtGroups = (groups).map((g) => GuiFactory.premade(g));
       Toolbar.setGroups(overflow, builtGroups);
     });
 
@@ -56,7 +55,7 @@ const factory: CompositeSketchFactory<SplitSlidingToolbarDetail, SplitSlidingToo
   const toolbarToggleEvent = 'alloy.toolbar.toggle';
 
   const doSetGroups = (toolbar: AlloyComponent, groups: AlloySpec[]) => {
-    const built = Arr.map(groups, toolbar.getSystem().build);
+    const built = (groups).map(toolbar.getSystem().build);
     detail.builtGroups.set(built);
   };
 

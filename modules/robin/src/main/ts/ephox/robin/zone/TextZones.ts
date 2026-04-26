@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as Parent from '../api/general/Parent';
 import { ZoneViewports } from '../api/general/ZoneViewports';
@@ -11,10 +11,10 @@ import * as ZoneWalker from './ZoneWalker';
 
 type Zones<E> = Zones.Zones<E>;
 
-const rangeOn = <E, D>(universe: Universe<E, D>, first: E, last: E, envLang: string, transform: (universe: Universe<E, D>, item: E) => WordDecisionItem<E>, viewport: ZoneViewports<E>): Optional<ZoneDetails<E>[]> => {
-  const ancestor = universe.eq(first, last) ? Optional.some(first) : universe.property().parent(first);
+const rangeOn = <E, D>(universe: Universe<E, D>, first: E, last: E, envLang: string, transform: (universe: Universe<E, D>, item: E) => WordDecisionItem<E>, viewport: ZoneViewports<E>): (ZoneDetails<E>[]) | null => {
+  const ancestor = universe.eq(first, last) ? first : universe.property().parent(first);
   return ancestor.map((parent) => {
-    const defaultLang = LanguageZones.calculate(universe, parent).getOr(envLang);
+    const defaultLang = LanguageZones.calculate(universe, parent) ?? (envLang);
     return ZoneWalker.walk(universe, first, last, defaultLang, transform, viewport);
   });
 };
@@ -27,7 +27,7 @@ const fromBoundedWith = <E, D>(universe: Universe<E, D>, left: E, right: E, envL
     const first = children[0];
     const last = children[children.length - 1];
     return rangeOn(universe, first, last, envLang, transform, viewport);
-  }).getOr([]);
+  }) ?? ([]);
 
   return Zones.fromWalking(universe, groups);
 };
@@ -37,7 +37,7 @@ const fromBounded = <E, D>(universe: Universe<E, D>, left: E, right: E, envLang:
 };
 
 const fromRange = <E, D>(universe: Universe<E, D>, start: E, finish: E, envLang: string, viewport: ZoneViewports<E>): Zones<E> => {
-  const edges = Clustering.getEdges(universe, start, finish, Fun.never);
+  const edges = Clustering.getEdges(universe, start, finish, (() => false as const));
   const transform = transformEdges(edges.left, edges.right);
   return fromBoundedWith(universe, edges.left.item, edges.right.item, envLang, transform, viewport);
 };

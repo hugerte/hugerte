@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Height, SugarElement, SugarLocation, Width, WindowVisualViewport } from '@ephox/sugar';
 
 import * as OuterPosition from '../frame/OuterPosition';
@@ -80,11 +79,7 @@ const constrain = (original: Bounds, constraint: Bounds): Bounds => {
 };
 
 const constrainByMany = (original: Bounds, constraints: Bounds[]): Bounds => {
-  return Arr.foldl(
-    constraints,
-    (acc, c) => constrain(acc, c),
-    original
-  );
+  return (constraints).reduce((acc, c) => constrain(acc, c), original);
 };
 
 const win = (): Bounds => WindowVisualViewport.getBounds(window);

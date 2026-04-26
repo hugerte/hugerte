@@ -1,6 +1,6 @@
 import { AlloyComponent, AlloyTriggers, Disabling, MementoRecord, SketchSpec, Tabstopping } from '@ephox/alloy';
 import { Dialog, Menu, Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute, Class, Focus } from '@ephox/sugar';
 
 import { formActionEvent } from 'hugerte/themes/silver/ui/general/FormEvents';
@@ -50,18 +50,18 @@ const getMenuButtonApi = (component: AlloyComponent): Toolbar.ToolbarMenuButtonI
   })
 });
 
-const renderMenuButton = (spec: MenuButtonSpec, prefix: string, backstage: UiFactoryBackstage, role: Optional<string>, tabstopping = true, btnName?: string): SketchSpec => {
+const renderMenuButton = (spec: MenuButtonSpec, prefix: string, backstage: UiFactoryBackstage, role: (string) | null, tabstopping = true, btnName?: string): SketchSpec => {
   return renderCommonDropdown({
     text: spec.text,
     icon: spec.icon,
     tooltip: spec.tooltip,
     ariaLabel: spec.tooltip,
-    searchable: spec.search.isSome(),
+    searchable: spec.search !== null,
     // https://www.w3.org/TR/wai-aria-practices/examples/menubar/menubar-2/menubar-2.html
     role,
     fetch: (dropdownComp, callback) => {
       const fetchContext: Toolbar.MenuButtonFetchContext = {
-        pattern: spec.search.isSome() ? getSearchPattern(dropdownComp) : ''
+        pattern: spec.search !== null ? getSearchPattern(dropdownComp) : ''
       };
 
       spec.fetch(
@@ -121,7 +121,7 @@ const getFetch = (items: StoredMenuItem[], getButton: () => MementoRecord, backs
   };
 
   return (success: (items: Menu.NestedMenuItemContents[]) => void) => {
-    success(Arr.map(items, (item) => {
+    success((items).map((item) => {
       const text = item.text.fold(() => ({}), (text) => ({
         text
       }));

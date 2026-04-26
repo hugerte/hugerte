@@ -1,4 +1,4 @@
-import { Adt, Arr, Optional, Optionals } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { Compare, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as SelectionUtils from '../selection/SelectionUtils';
@@ -14,7 +14,7 @@ export interface OutsideTableDetails extends SelectionDetails {
 
 type SingleCellTableFn<T> = (rng: Range, cell: SugarElement<HTMLTableCellElement>) => T;
 type FullTableFn<T> = (table: SugarElement<HTMLTableElement>) => T;
-type PartialTableFn<T> = (cells: SugarElement<HTMLTableCellElement>[], outsideDetails: Optional<OutsideTableDetails>) => T;
+type PartialTableFn<T> = (cells: SugarElement<HTMLTableCellElement>[], outsideDetails: (OutsideTableDetails) | null) => T;
 type MultiTableFn<T> = (startTableCells: SugarElement<HTMLTableCellElement>[], endTableCells: SugarElement<HTMLTableCellElement>[], betweenRng: Range) => T;
 
 export interface DeleteActionAdt {
@@ -45,8 +45,8 @@ interface TableSelection {
 }
 
 interface TableSelections {
-  readonly start: Optional<TableSelection>;
-  readonly end: Optional<TableSelection>;
+  readonly start: (TableSelection) | null;
+  readonly end: (TableSelection) | null;
 }
 
 const tableCellRng = (start: SugarElement<HTMLTableCellElement>, end: SugarElement<HTMLTableCellElement>): TableCellRng => ({
@@ -72,17 +72,17 @@ const deleteAction: {
   { multiTable: [ 'startTableCells', 'endTableCells', 'betweenRng' ] },
 ]);
 
-const getClosestCell = (container: Node, isRoot: (e: SugarElement<Node>) => boolean): Optional<SugarElement<HTMLTableCellElement>> =>
+const getClosestCell = (container: Node, isRoot: (e: SugarElement<Node>) => boolean): (SugarElement<HTMLTableCellElement>) | null =>
   SelectorFind.closest<HTMLTableCellElement>(SugarElement.fromDom(container), 'td,th', isRoot);
 
 const isExpandedCellRng = (cellRng: TableCellRng): boolean =>
   !Compare.eq(cellRng.start, cellRng.end);
 
-const getTableFromCellRng = (cellRng: TableCellRng, isRoot: IsRootFn): Optional<SugarElement<HTMLTableElement>> =>
+const getTableFromCellRng = (cellRng: TableCellRng, isRoot: IsRootFn): (SugarElement<HTMLTableElement>) | null =>
   TableCellSelection.getClosestTable(cellRng.start, isRoot)
     .bind((startParentTable) =>
       TableCellSelection.getClosestTable(cellRng.end, isRoot)
-        .bind((endParentTable) => Optionals.someIf(Compare.eq(startParentTable, endParentTable), startParentTable)));
+        .bind((endParentTable) => (Compare.eq(startParentTable, endParentTable) ? startParentTable : null)));
 
 const isSingleCellTable = (cellRng: TableCellRng, isRoot: IsRootFn): boolean => !isExpandedCellRng(cellRng) &&
    getTableFromCellRng(cellRng, isRoot).exists((table) => {
@@ -90,34 +90,34 @@ const isSingleCellTable = (cellRng: TableCellRng, isRoot: IsRootFn): boolean => 
      return rows.length === 1 && rows[0].cells.length === 1;
    });
 
-const getCellRng = (rng: Range, isRoot: IsRootFn): Optional<TableCellRng> => {
+const getCellRng = (rng: Range, isRoot: IsRootFn): (TableCellRng) | null => {
   const startCell = getClosestCell(rng.startContainer, isRoot);
   const endCell = getClosestCell(rng.endContainer, isRoot);
-  return Optionals.lift2(startCell, endCell, tableCellRng);
+  return (startCell !== null && endCell !== null ? (tableCellRng)(startCell, endCell) : null);
 };
 
-const getCellRangeFromStartTable = (isRoot: IsRootFn) => (startCell: SugarElement<HTMLTableCellElement>): Optional<TableCellRng> =>
+const getCellRangeFromStartTable = (isRoot: IsRootFn) => (startCell: SugarElement<HTMLTableCellElement>): (TableCellRng) | null =>
   TableCellSelection.getClosestTable(startCell, isRoot).bind((table) =>
-    Arr.last(TableDeleteUtils.getTableCells(table)).map((endCell) => tableCellRng(startCell, endCell))
+    ((TableDeleteUtils.getTableCells(table)).at(-1) ?? null).map((endCell) => tableCellRng(startCell, endCell))
   );
 
-const getCellRangeFromEndTable = (isRoot: IsRootFn) => (endCell: SugarElement<HTMLTableCellElement>): Optional<TableCellRng> =>
+const getCellRangeFromEndTable = (isRoot: IsRootFn) => (endCell: SugarElement<HTMLTableCellElement>): (TableCellRng) | null =>
   TableCellSelection.getClosestTable(endCell, isRoot).bind((table) =>
-    Arr.head(TableDeleteUtils.getTableCells(table)).map((startCell) => tableCellRng(startCell, endCell))
+    ((TableDeleteUtils.getTableCells(table))[0] ?? null).map((startCell) => tableCellRng(startCell, endCell))
   );
 
-const getTableSelectionFromCellRng = (isRoot: IsRootFn) => (cellRng: TableCellRng): Optional<TableSelection> =>
+const getTableSelectionFromCellRng = (isRoot: IsRootFn) => (cellRng: TableCellRng): (TableSelection) | null =>
   getTableFromCellRng(cellRng, isRoot).map((table) => tableSelection(cellRng, table, TableDeleteUtils.getTableCells(table)));
 
-const getTableSelections = (cellRng: Optional<TableCellRng>, selectionDetails: SelectionDetails, rng: Range, isRoot: IsRootFn): Optional<TableSelections> => {
+const getTableSelections = (cellRng: (TableCellRng) | null, selectionDetails: SelectionDetails, rng: Range, isRoot: IsRootFn): (TableSelections) | null => {
   if (rng.collapsed || !cellRng.forall(isExpandedCellRng)) {
-    return Optional.none();
+    return null;
   } else if (selectionDetails.isSameTable) {
     const sameTableSelection = cellRng.bind(getTableSelectionFromCellRng(isRoot));
-    return Optional.some({
+    return {
       start: sameTableSelection,
       end: sameTableSelection
-    });
+    };
   } else {
     // Covers partial table selection (either start or end will have a tableSelection) and multitable selection (both start and end will have a tableSelection)
     const startCell = getClosestCell(rng.startContainer, isRoot);
@@ -128,23 +128,19 @@ const getTableSelections = (cellRng: Optional<TableCellRng>, selectionDetails: S
     const endTableSelection = endCell
       .bind(getCellRangeFromEndTable(isRoot))
       .bind(getTableSelectionFromCellRng(isRoot));
-    return Optional.some({
+    return {
       start: startTableSelection,
       end: endTableSelection
-    });
+    };
   }
 };
 
-const getCellIndex = <T> (cells: SugarElement<T>[], cell: SugarElement<T>): Optional<number> =>
-  Arr.findIndex(cells, (x) => Compare.eq(x, cell));
+const getCellIndex = <T> (cells: SugarElement<T>[], cell: SugarElement<T>): (number) | null =>
+  (cells).findIndex((x) => Compare.eq(x, cell));
 
-const getSelectedCells = (tableSelection: TableSelection) => Optionals.lift2(
-  getCellIndex(tableSelection.cells, tableSelection.rng.start),
-  getCellIndex(tableSelection.cells, tableSelection.rng.end),
-  (startIndex, endIndex) => tableSelection.cells.slice(startIndex, endIndex + 1)
-);
+const getSelectedCells = (tableSelection: TableSelection) => (getCellIndex(tableSelection.cells, tableSelection.rng.start) !== null && getCellIndex(tableSelection.cells, tableSelection.rng.end) !== null ? ((startIndex, endIndex) => tableSelection.cells.slice(startIndex, endIndex + 1))(getCellIndex(tableSelection.cells, tableSelection.rng.start), getCellIndex(tableSelection.cells, tableSelection.rng.end)) : null);
 
-const isSingleCellTableContentSelected = (optCellRng: Optional<TableCellRng>, rng: Range, isRoot: IsRootFn): boolean =>
+const isSingleCellTableContentSelected = (optCellRng: (TableCellRng) | null, rng: Range, isRoot: IsRootFn): boolean =>
   optCellRng.exists((cellRng) => isSingleCellTable(cellRng, isRoot) && SelectionUtils.hasAllContentsSelected(cellRng.start, rng));
 
 const unselectCells = (rng: Range, selectionDetails: SelectionDetails): Range => {
@@ -156,43 +152,43 @@ const unselectCells = (rng: Range, selectionDetails: SelectionDetails): Range =>
   return otherContentRng;
 };
 
-const handleSingleTable = (cellRng: Optional<TableCellRng>, selectionDetails: SelectionDetails, rng: Range, isRoot: IsRootFn): Optional<DeleteActionAdt> =>
+const handleSingleTable = (cellRng: (TableCellRng) | null, selectionDetails: SelectionDetails, rng: Range, isRoot: IsRootFn): (DeleteActionAdt) | null =>
   getTableSelections(cellRng, selectionDetails, rng, isRoot)
     .bind(({ start, end }) => start.or(end))
     .bind((tableSelection) => {
       const { isSameTable } = selectionDetails;
-      const selectedCells = getSelectedCells(tableSelection).getOr([]);
+      const selectedCells = getSelectedCells(tableSelection) ?? ([]);
       if (isSameTable && tableSelection.cells.length === selectedCells.length) {
-        return Optional.some(deleteAction.fullTable(tableSelection.table));
+        return deleteAction.fullTable(tableSelection.table);
       } else if (selectedCells.length > 0) {
         if (isSameTable) {
-          return Optional.some(deleteAction.partialTable(selectedCells, Optional.none()));
+          return deleteAction.partialTable(selectedCells, null);
         } else {
           const otherContentRng = unselectCells(rng, selectionDetails);
-          return Optional.some(deleteAction.partialTable(selectedCells, Optional.some({
+          return deleteAction.partialTable(selectedCells, {
             ...selectionDetails,
             rng: otherContentRng
-          })));
+          });
         }
       } else {
-        return Optional.none();
+        return null;
       }
     });
 
-const handleMultiTable = (cellRng: Optional<TableCellRng>, selectionDetails: SelectionDetails, rng: Range, isRoot: IsRootFn): Optional<DeleteActionAdt> =>
+const handleMultiTable = (cellRng: (TableCellRng) | null, selectionDetails: SelectionDetails, rng: Range, isRoot: IsRootFn): (DeleteActionAdt) | null =>
   getTableSelections(cellRng, selectionDetails, rng, isRoot)
     .bind(({ start, end }) => {
-      const startTableSelectedCells = start.bind(getSelectedCells).getOr([]);
-      const endTableSelectedCells = end.bind(getSelectedCells).getOr([]);
+      const startTableSelectedCells = start.bind(getSelectedCells) ?? ([]);
+      const endTableSelectedCells = end.bind(getSelectedCells) ?? ([]);
       if (startTableSelectedCells.length > 0 && endTableSelectedCells.length > 0) {
         const otherContentRng = unselectCells(rng, selectionDetails);
-        return Optional.some(deleteAction.multiTable(startTableSelectedCells, endTableSelectedCells, otherContentRng));
+        return deleteAction.multiTable(startTableSelectedCells, endTableSelectedCells, otherContentRng);
       } else {
-        return Optional.none();
+        return null;
       }
     });
 
-const getActionFromRange = (root: SugarElement<Node>, rng: Range): Optional<DeleteActionAdt> => {
+const getActionFromRange = (root: SugarElement<Node>, rng: Range): (DeleteActionAdt) | null => {
   const isRoot = TableDeleteUtils.isRootFromElement(root);
   const optCellRng = getCellRng(rng, isRoot);
   const selectionDetails = TableDeleteUtils.getTableDetailsFromRange(rng, isRoot);

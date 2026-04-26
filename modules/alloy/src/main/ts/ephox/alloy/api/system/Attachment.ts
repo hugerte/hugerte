@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Insert, Remove, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 
 import * as InternalAttachment from '../../system/InternalAttachment';
@@ -36,7 +35,7 @@ const detach = (component: AlloyComponent): void => {
 const detachChildren = (component: AlloyComponent): void => {
   // This will not detach the component, but will detach its children and sync at the end.
   const subs = component.components();
-  Arr.each(subs, doDetach);
+  (subs).forEach(doDetach);
   // Clear the component also.
   Remove.empty(component.element);
   component.syncComponents();
@@ -53,14 +52,14 @@ const attachSystemAfter = (element: SugarElement<Node>, guiSystem: GuiSystem): v
 const attachSystemWith = (element: SugarElement<Node>, guiSystem: GuiSystem, inserter: (marker: SugarElement<Node>, element: SugarElement<Node>) => void): void => {
   inserter(element, guiSystem.element);
   const children = Traverse.children(guiSystem.element);
-  Arr.each(children, (child) => {
+  (children).forEach((child) => {
     guiSystem.getByDom(child).each(InternalAttachment.fireAttaching);
   });
 };
 
 const detachSystem = (guiSystem: GuiSystem): void => {
   const children = Traverse.children(guiSystem.element);
-  Arr.each(children, (child) => {
+  (children).forEach((child) => {
     guiSystem.getByDom(child).each(InternalAttachment.fireDetaching);
   });
   Remove.remove(guiSystem.element);

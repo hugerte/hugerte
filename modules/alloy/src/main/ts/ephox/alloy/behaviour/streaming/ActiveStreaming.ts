@@ -10,7 +10,7 @@ const events = (streamConfig: StreamingConfig, streamState: StreamingState): All
   ].concat(
     streamConfig.cancelEvent.map((e) => [
       AlloyEvents.run(e, () => streamState.cancel())
-    ]).getOr([ ])
+    ]) ?? ([ ])
   ));
 };
 

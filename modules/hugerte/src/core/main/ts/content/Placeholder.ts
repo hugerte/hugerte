@@ -1,4 +1,3 @@
-import { Arr, Strings } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';
@@ -41,7 +40,7 @@ const isNonTypingKeyboardEvent = (e: EditorEvent<unknown>): boolean => {
   if (isKeyboardEvent(e)) {
     const keyCode = e.keyCode;
     // Ctrl/Meta/Alt key pressed, F1-12 or non typing keycode
-    return !isDeleteEvent(e) && (VK.metaKeyPressed(e) || e.altKey || keyCode >= 112 && keyCode <= 123 || Arr.contains(nonTypingKeycodes, keyCode));
+    return !isDeleteEvent(e) && (VK.metaKeyPressed(e) || e.altKey || keyCode >= 112 && keyCode <= 123 || (nonTypingKeycodes).includes(keyCode));
   } else {
     return false;
   }
@@ -96,7 +95,7 @@ const setup = (editor: Editor): void => {
     }
   };
 
-  if (Strings.isNotEmpty(placeholder)) {
+  if (((placeholder).length > 0)) {
     editor.on('init', (e) => {
       // Setup the initial state
       updatePlaceholder(e, true);

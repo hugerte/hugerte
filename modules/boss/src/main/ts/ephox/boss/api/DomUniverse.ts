@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
 import {
   Attribute, Compare, Css, Insert, InsertAll, PredicateFilter, PredicateFind, Remove, SelectorFilter, SelectorFind, SugarElement, SugarNode,
   SugarText, Traverse
@@ -21,14 +20,14 @@ export default (): Universe<SugarElement, Document> => {
     if (SugarNode.name(element) === 'body') {
       return true;
     }
-    return Arr.contains(TagBoundaries, SugarNode.name(element));
+    return (TagBoundaries).includes(SugarNode.name(element));
   };
 
   const isEmptyTag = (element: SugarElement) => {
     if (!SugarNode.isElement(element)) {
       return false;
     }
-    return Arr.contains([ 'br', 'img', 'hr', 'input' ], SugarNode.name(element));
+    return ([ 'br', 'img', 'hr', 'input' ]).includes(SugarNode.name(element));
   };
 
   const isNonEditable = (element: SugarElement) => SugarNode.isElement(element) && Attribute.get(element, 'contenteditable') === 'false';
@@ -44,38 +43,38 @@ export default (): Universe<SugarElement, Document> => {
 
   const isSpecial = (element: SugarElement<Node>) => {
     const tag = SugarNode.name(element);
-    return Arr.contains([
+    return ([
       'script', 'noscript', 'iframe', 'noframes', 'noembed', 'title', 'style', 'textarea', 'xmp'
-    ], tag);
+    ]).includes(tag);
   };
 
-  const getLanguage = (element: SugarElement<Node>): Optional<string> =>
-    SugarNode.isElement(element) ? Attribute.getOpt(element, 'lang') : Optional.none();
+  const getLanguage = (element: SugarElement<Node>): (string) | null =>
+    SugarNode.isElement(element) ? Attribute.getOpt(element, 'lang') : null;
 
   return {
-    up: Fun.constant({
+    up: () => {
       selector: SelectorFind.ancestor,
       closest: SelectorFind.closest,
       predicate: PredicateFind.ancestor,
       all: Traverse.parents
-    }),
-    down: Fun.constant({
+    },
+    down: () => {
       selector: SelectorFilter.descendants,
       predicate: PredicateFilter.descendants
-    }),
-    styles: Fun.constant({
+    },
+    styles: () => {
       get: Css.get,
       getRaw: Css.getRaw,
       set: Css.set,
       remove: Css.remove
-    }),
-    attrs: Fun.constant({
+    },
+    attrs: () => {
       get: Attribute.get,
       set: Attribute.set,
       remove: Attribute.remove,
       copyTo: copyAttributesTo
-    }),
-    insert: Fun.constant({
+    },
+    insert: () => {
       before: Insert.before,
       after: Insert.after,
       afterAll: InsertAll.after,
@@ -83,22 +82,22 @@ export default (): Universe<SugarElement, Document> => {
       appendAll: InsertAll.append,
       prepend: Insert.prepend,
       wrap: Insert.wrap
-    }),
-    remove: Fun.constant({
+    },
+    remove: () => {
       unwrap: Remove.unwrap,
       remove: Remove.remove
-    }),
-    create: Fun.constant({
+    },
+    create: () => {
       nu: SugarElement.fromTag,
       clone,
       text: SugarElement.fromText
-    }),
-    query: Fun.constant({
+    },
+    query: () => {
       comparePosition,
       prevSibling: Traverse.prevSibling,
       nextSibling: Traverse.nextSibling
-    }),
-    property: Fun.constant({
+    },
+    property: () => {
       children: Traverse.children,
       name: SugarNode.name,
       parent: Traverse.parent,
@@ -113,7 +112,7 @@ export default (): Universe<SugarElement, Document> => {
       isBoundary,
       isEmptyTag,
       isNonEditable
-    }),
+    },
     eq: Compare.eq,
     is: Compare.is
   };

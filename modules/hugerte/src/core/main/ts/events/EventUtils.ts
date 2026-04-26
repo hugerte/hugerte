@@ -1,4 +1,3 @@
-import { Fun, Obj, Type } from '@ephox/katamari';
 
 export interface PartialEvent {
   readonly type?: string;
@@ -44,15 +43,15 @@ const deprecated: Record<string, boolean> = {
 // Note: We can't rely on `instanceof` here as it won't work if the event was fired from another window.
 // Additionally, the constructor name might be `MouseEvent` or similar so we can't rely on the constructor name.
 const isNativeEvent = (event: PartialEvent) =>
-  event instanceof Event || Type.isFunction((event as any).initEvent);
+  event instanceof Event || typeof ((event as any).initEvent) === 'function';
 
 // Checks if it is our own isDefaultPrevented function
 const hasIsDefaultPrevented = (event: PartialEvent) =>
-  event.isDefaultPrevented === Fun.always || event.isDefaultPrevented === Fun.never;
+  event.isDefaultPrevented === (() => true as const) || event.isDefaultPrevented === (() => false as const);
 
 // An event needs normalizing if it doesn't have the prevent default function or if it's a native event
 const needsNormalizing = (event: PartialEvent) =>
-  Type.isNullable(event.preventDefault) || isNativeEvent(event);
+  (event.preventDefault) == null || isNativeEvent(event);
 
 const clone = <T extends PartialEvent>(originalEvent: T, data?: T): T => {
   const event: any = data ?? {};
@@ -60,25 +59,25 @@ const clone = <T extends PartialEvent>(originalEvent: T, data?: T): T => {
   // Copy all properties from the original event
   for (const name in originalEvent) {
     // Some properties are deprecated and produces a warning so don't include them
-    if (!Obj.has(deprecated, name)) {
+    if (!Object.prototype.hasOwnProperty.call(deprecated, name)) {
       event[name] = originalEvent[name];
     }
   }
 
   // The composed path can't be cloned, so delegate instead
-  if (Type.isNonNullable(originalEvent.composedPath)) {
+  if ((originalEvent.composedPath) != null) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     event.composedPath = () => originalEvent.composedPath!();
   }
 
   // The getModifierState won't work when cloned, so delegate instead
-  if (Type.isNonNullable(originalEvent.getModifierState)) {
+  if ((originalEvent.getModifierState) != null) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     event.getModifierState = (keyArg: string) => originalEvent.getModifierState!(keyArg);
   }
 
   // The getTargetRanges won't work when cloned, so delegate instead
-  if (Type.isNonNullable(originalEvent.getTargetRanges)) {
+  if ((originalEvent.getTargetRanges) != null) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     event.getTargetRanges = () => originalEvent.getTargetRanges!();
   }
@@ -91,7 +90,7 @@ const normalize = <T extends PartialEvent>(type: string, originalEvent: T, fallb
   event.type = type;
 
   // Normalize target IE uses srcElement
-  if (Type.isNullable(event.target)) {
+  if ((event.target) == null) {
     event.target = event.srcElement ?? fallbackTarget;
   }
 
@@ -99,10 +98,10 @@ const normalize = <T extends PartialEvent>(type: string, originalEvent: T, fallb
     // Add preventDefault method
     event.preventDefault = () => {
       event.defaultPrevented = true;
-      event.isDefaultPrevented = Fun.always;
+      event.isDefaultPrevented = (() => true as const);
 
       // Execute preventDefault on the original event object
-      if (Type.isFunction(originalEvent.preventDefault)) {
+      if (typeof (originalEvent.preventDefault) === 'function') {
         originalEvent.preventDefault();
       }
     };
@@ -110,25 +109,25 @@ const normalize = <T extends PartialEvent>(type: string, originalEvent: T, fallb
     // Add stopPropagation
     event.stopPropagation = () => {
       event.cancelBubble = true;
-      event.isPropagationStopped = Fun.always;
+      event.isPropagationStopped = (() => true as const);
 
       // Execute stopPropagation on the original event object
-      if (Type.isFunction(originalEvent.stopPropagation)) {
+      if (typeof (originalEvent.stopPropagation) === 'function') {
         originalEvent.stopPropagation();
       }
     };
 
     // Add stopImmediatePropagation
     event.stopImmediatePropagation = () => {
-      event.isImmediatePropagationStopped = Fun.always;
+      event.isImmediatePropagationStopped = (() => true as const);
       event.stopPropagation();
     };
 
     // Add event delegation states
     if (!hasIsDefaultPrevented(event)) {
-      event.isDefaultPrevented = event.defaultPrevented === true ? Fun.always : Fun.never;
-      event.isPropagationStopped = event.cancelBubble === true ? Fun.always : Fun.never;
-      event.isImmediatePropagationStopped = Fun.never;
+      event.isDefaultPrevented = event.defaultPrevented === true ? (() => true as const) : (() => false as const);
+      event.isPropagationStopped = event.cancelBubble === true ? (() => true as const) : (() => false as const);
+      event.isImmediatePropagationStopped = (() => false as const);
     }
   }
 

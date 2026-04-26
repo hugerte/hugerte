@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 import { Gene } from '../api/Gene';
 
@@ -13,8 +12,8 @@ const get = (item: Gene, property: string): string => {
   return item.css !== undefined && item.css[property] !== undefined ? item.css[property] : '0';
 };
 
-const getRaw = (item: Gene, property: string): Optional<string> => {
-  return item.css !== undefined && item.css[property] !== undefined ? Optional.some(item.css[property]) : Optional.none();
+const getRaw = (item: Gene, property: string): (string) | null => {
+  return item.css !== undefined && item.css[property] !== undefined ? item.css[property] : null;
 };
 
 const remove = (item: Gene, property: string): void => {

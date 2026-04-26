@@ -1,4 +1,4 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Compare, PredicateFilter, PredicateFind, Remove, SelectorFilter, SugarElement, SugarElements, SugarNode, Traverse } from '@ephox/sugar';
 
 import AstNode from '../api/html/Node';
@@ -11,16 +11,16 @@ export const transparentBlockAttr = 'data-mce-block';
 
 // Returns the lowercase element names form a SchemaMap by excluding anyone that has uppercase letters.
 // This method is to avoid having to specify all possible valid characters other than lowercase a-z such as '-' or ':' etc.
-export const elementNames = (map: SchemaMap): string[] => Arr.filter(Obj.keys(map), (key) => !/[A-Z]/.test(key));
+export const elementNames = (map: SchemaMap): string[] => (Object.keys(map)).filter((key) => !/[A-Z]/.test(key));
 
 const makeSelectorFromSchemaMap = (map: SchemaMap) =>
-  Arr.map(elementNames(map), (name) => {
+  (elementNames(map)).map((name) => {
     // Exclude namespace elements from processing
-    return `${name}:` + Arr.map(Namespace.namespaceElements, (ns) => `not(${ns} ${name})`).join(':');
+    return `${name}:` + (Namespace.namespaceElements).map((ns) => `not(${ns} ${name})`).join(':');
   }).join(',');
 
 const updateTransparent = (blocksSelector: string, transparent: Element) => {
-  if (Type.isNonNullable(transparent.querySelector(blocksSelector))) {
+  if ((transparent.querySelector(blocksSelector)) != null) {
     transparent.setAttribute(transparentBlockAttr, 'true');
 
     if (transparent.getAttribute('data-mce-selected') === 'inline-boundary') {
@@ -38,7 +38,7 @@ const updateBlockStateOnChildren = (schema: Schema, scope: Element): Element[] =
   const transparentSelector = makeSelectorFromSchemaMap(schema.getTransparentElements());
   const blocksSelector = makeSelectorFromSchemaMap(schema.getBlockElements());
 
-  return Arr.filter(scope.querySelectorAll(transparentSelector), (transparent) => updateTransparent(blocksSelector, transparent));
+  return (scope.querySelectorAll(transparentSelector)).filter((transparent) => updateTransparent(blocksSelector, transparent));
 };
 
 const trimEdge = (schema: Schema, el: DocumentFragment, leftSide: boolean) => {
@@ -92,7 +92,7 @@ const splitInvalidChildren = (schema: Schema, scope: Element, transparentBlocks:
   const isBlock = (el: SugarElement): el is SugarElement<Element> => SugarNode.name(el) in blocksElements;
   const isRoot = (el: SugarElement) => Compare.eq(el, rootNode);
 
-  Arr.each(SugarElements.fromDom(transparentBlocks), (transparentBlock) => {
+  (SugarElements.fromDom(transparentBlocks)).forEach((transparentBlock) => {
     PredicateFind.ancestor(transparentBlock, isBlock, isRoot).each((parentBlock) => {
       const invalidChildren = PredicateFilter.children(
         transparentBlock,
@@ -102,7 +102,7 @@ const splitInvalidChildren = (schema: Schema, scope: Element, transparentBlocks:
       if (invalidChildren.length > 0) {
         const stateScope = Traverse.parentElement(parentBlock);
 
-        Arr.each(invalidChildren, (child) => {
+        (invalidChildren).forEach((child) => {
           PredicateFind.ancestor(child, isBlock, isRoot).each((parentBlock) => {
             split(schema, parentBlock.dom as Element, child.dom);
           });
@@ -115,13 +115,12 @@ const splitInvalidChildren = (schema: Schema, scope: Element, transparentBlocks:
 };
 
 const unwrapInvalidChildren = (schema: Schema, scope: Element, transparentBlocks: Element[]) => {
-  Arr.each([ ...transparentBlocks, ...(isTransparentBlock(schema, scope) ? [ scope ] : []) ], (block) =>
-    Arr.each(SelectorFilter.descendants(SugarElement.fromDom(block), block.nodeName.toLowerCase()), (elm) => {
+  ([ ...transparentBlocks, ...(isTransparentBlock(schema, scope) ? [ scope ] : []) ]).forEach((block) =>
+    (SelectorFilter.descendants(SugarElement.fromDom(block), block.nodeName.toLowerCase())).forEach((elm) => {
       if (isTransparentInline(schema, elm.dom)) {
         Remove.unwrap(elm);
       }
-    })
-  );
+    }));
 };
 
 export const updateChildren = (schema: Schema, scope: Element): void => {
@@ -150,7 +149,7 @@ export const updateCaret = (schema: Schema, root: Element, caretParent: Element)
 
 export const hasBlockAttr = (el: Element): boolean => el.hasAttribute(transparentBlockAttr);
 
-export const isTransparentElementName = (schema: Schema, name: string): boolean => Obj.has(schema.getTransparentElements(), name);
+export const isTransparentElementName = (schema: Schema, name: string): boolean => Object.prototype.hasOwnProperty.call(schema.getTransparentElements(), name);
 
 const isTransparentElement = (schema: Schema, node: Node | null | undefined): node is Element =>
   NodeType.isElement(node) && isTransparentElementName(schema, node.nodeName);
@@ -162,7 +161,7 @@ export const isTransparentInline = (schema: Schema, node: Node | null | undefine
   isTransparentElement(schema, node) && !hasBlockAttr(node);
 
 export const isTransparentAstBlock = (schema: Schema, node: AstNode): boolean =>
-  node.type === 1 && isTransparentElementName(schema, node.name) && Type.isString(node.attr(transparentBlockAttr));
+  node.type === 1 && isTransparentElementName(schema, node.name) && typeof (node.attr(transparentBlockAttr)) === 'string';
 
 export const isTransparentAstInline = (schema: Schema, node: AstNode): boolean =>
-  node.type === 1 && isTransparentElementName(schema, node.name) && Type.isUndefined(node.attr(transparentBlockAttr));
+  node.type === 1 && isTransparentElementName(schema, node.name) && (node.attr(transparentBlockAttr)) === undefined;

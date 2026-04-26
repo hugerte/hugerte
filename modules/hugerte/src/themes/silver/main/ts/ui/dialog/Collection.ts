@@ -4,7 +4,7 @@ import {
   NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, Tabstopping, Tooltipping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Attribute, Class, EventArgs, Focus, Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import Entities from 'hugerte/core/api/html/Entities';
@@ -25,7 +25,7 @@ type ItemCallback<T extends EventFormat> = (c: AlloyComponent, se: SimulatedEven
 export const renderCollection = (
   spec: CollectionSpec,
   providersBackstage: UiFactoryBackstageProviders,
-  initialData: Optional<Dialog.CollectionItem[]>
+  initialData: (Dialog.CollectionItem[]) | null
 ): SketchSpec => {
   // DUPE with TextField.
   const pLabel = spec.label.map((label) => renderLabel(label, providersBackstage));
@@ -42,7 +42,7 @@ export const renderCollection = (
   };
 
   const setContents = (comp: AlloyComponent, items: Dialog.CollectionItem[]) => {
-    const htmlLines = Arr.map(items, (item) => {
+    const htmlLines = (items).map((item) => {
       const itemText = I18n.translate(item.text);
       const textContent = spec.columns === 1 ? `<div class="tox-collection__item-label">${itemText}</div>` : '';
 
@@ -66,7 +66,7 @@ export const renderCollection = (
     });
 
     const chunks = spec.columns !== 'auto' && spec.columns > 1 ? Arr.chunk(htmlLines, spec.columns) : [ htmlLines ];
-    const html = Arr.map(chunks, (ch) => `<div class="tox-collection__group">${ch.join('')}</div>`);
+    const html = (chunks).map((ch) => `<div class="tox-collection__group">${ch.join('')}</div>`);
 
     Html.set(comp.element, html.join(''));
   };
@@ -108,7 +108,7 @@ export const renderCollection = (
   ];
 
   const iterCollectionItems = (comp: AlloyComponent, applyAttributes: (element: SugarElement<Element>) => void) =>
-    Arr.map(SelectorFilter.descendants(comp.element, '.tox-collection__item'), applyAttributes);
+    (SelectorFilter.descendants(comp.element, '.tox-collection__item')).map(applyAttributes);
 
   const pField = AlloyFormField.parts.field({
     dom: {
@@ -117,7 +117,7 @@ export const renderCollection = (
       classes: [ 'tox-collection' ].concat(spec.columns !== 1 ? [ 'tox-collection--grid' ] : [ 'tox-collection--list' ])
     },
     components: [ ],
-    factory: { sketch: Fun.identity },
+    factory: { sketch: (x: any) => x },
     behaviours: Behaviour.derive([
       Disabling.config({
         disabled: providersBackstage.isDisabled,
@@ -154,8 +154,8 @@ export const renderCollection = (
             node: SelectorFind.descendant(comp.element, '.' + ItemClasses.activeClass).orThunk(() => SelectorFind.first('.tox-collection__item')),
             root: comp.element,
             layouts: {
-              onLtr: Fun.constant([ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ]),
-              onRtl: Fun.constant([ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ])
+              onLtr: () => [ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ],
+              onRtl: () => [ Layout.south, Layout.north, Layout.southeast, Layout.northeast, Layout.southwest, Layout.northwest ]
             },
             bubble: Bubble.nu(0, -2, {}),
           })
@@ -164,7 +164,7 @@ export const renderCollection = (
       Representing.config({
         store: {
           mode: 'memory',
-          initialValue: initialData.getOr([])
+          initialValue: initialData ?? ([])
         },
         onSetValue: (comp, items) => {
           setContents(comp, items);

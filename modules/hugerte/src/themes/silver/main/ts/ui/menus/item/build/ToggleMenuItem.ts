@@ -1,6 +1,6 @@
 import { AlloyComponent, Disabling, ItemTypes, Toggling } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Merger, Optional } from '@ephox/katamari';
+import { Merger } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -30,10 +30,10 @@ const renderToggleMenuItem = (
   const structure = renderItemStructure({
     iconContent: spec.icon,
     textContent: spec.text,
-    htmlContent: Optional.none(),
+    htmlContent: null,
     ariaLabel: spec.text,
-    checkMark: Optional.some(renderCheckmark(providersBackstage.icons)),
-    caret: Optional.none(),
+    checkMark: renderCheckmark(providersBackstage.icons),
+    caret: null,
     shortcutContent: spec.shortcut,
     presets: 'normal',
     meta: spec.meta

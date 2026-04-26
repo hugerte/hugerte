@@ -1,4 +1,3 @@
-import { Obj, Type } from '@ephox/katamari';
 
 /**
  * Array utility class.
@@ -47,7 +46,7 @@ const each: {
   } else {
     // Hashtables
     for (const n in o) {
-      if (Obj.has(o, n)) {
+      if (Object.prototype.hasOwnProperty.call(o, n)) {
         if ((cb as ObjCallback<T, void | boolean>).call(s, o[n], n, o) === false) {
           return false;
         }
@@ -102,7 +101,7 @@ const reduce: {
   <T, R>(collection: ArrayLike<T>, iteratee: (acc: R, item: T, index: number) => R, accumulator: R, thisArg?: any): R;
   <T>(collection: ArrayLike<T>, iteratee: (acc: T, item: T, index: number) => T, accumulator?: undefined, thisArg?: any): T;
 } = <R>(collection: ArrayLike<R>, iteratee: (acc: R, item: R, index: number) => R, accumulator?: R | undefined, thisArg?: any): R => {
-  let acc: R = Type.isUndefined(accumulator) ? collection[0] : accumulator;
+  let acc: R = (accumulator) === undefined ? collection[0] : accumulator;
 
   for (let i = 0; i < collection.length; i++) {
     acc = iteratee.call(thisArg, acc, collection[i], i);

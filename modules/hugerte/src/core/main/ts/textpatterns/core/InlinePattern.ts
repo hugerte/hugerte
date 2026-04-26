@@ -1,4 +1,3 @@
-import { Arr, Id, Optional, Strings } from '@ephox/katamari';
 
 import * as Spot from '../../alien/Spot';
 import * as TextSearch from '../../alien/TextSearch';
@@ -45,7 +44,7 @@ const matchesPattern = (patternContent: string) => (element: Text, offset: numbe
   }
 };
 
-const findPatternStartFromSpot = (dom: DOMUtils, pattern: InlinePattern, block: Node, spot: Spot.SpotPoint<Text>): Optional<Range> => {
+const findPatternStartFromSpot = (dom: DOMUtils, pattern: InlinePattern, block: Node, spot: Spot.SpotPoint<Text>): (Range) | null => {
   const startPattern = pattern.start;
   const startSpot = TextSearch.repeatLeft(dom, spot.container, spot.offset, matchesPattern(startPattern), block);
   return startSpot.bind((spot) => {
@@ -57,7 +56,7 @@ const findPatternStartFromSpot = (dom: DOMUtils, pattern: InlinePattern, block: 
       const rng = dom.createRng();
       rng.setStart(spot.container, spot.offset - startPattern.length);
       rng.setEnd(spot.container, spot.offset);
-      return Optional.some(rng);
+      return rng;
     } else {
       // Partial match so lean left to see if the string exists over fragmented text nodes
       const offset = spot.offset - startPattern.length;
@@ -78,12 +77,12 @@ const findPatternStartFromSpot = (dom: DOMUtils, pattern: InlinePattern, block: 
   });
 };
 
-const findPatternStart = (dom: DOMUtils, pattern: InlinePattern, node: Node, offset: number, block: Node, requireGap = false): Optional<Range> => {
+const findPatternStart = (dom: DOMUtils, pattern: InlinePattern, node: Node, offset: number, block: Node, requireGap = false): (Range) | null => {
   if (pattern.start.length === 0 && !requireGap) {
     const rng = dom.createRng();
     rng.setStart(node, offset);
     rng.setEnd(node, offset);
-    return Optional.some(rng);
+    return rng;
   }
 
   return TextSearch.textBefore(node, offset, block).bind((spot) => {
@@ -91,18 +90,18 @@ const findPatternStart = (dom: DOMUtils, pattern: InlinePattern, node: Node, off
     return start.bind((startRange: Range) => {
       if (requireGap) {
         if (startRange.endContainer === spot.container && startRange.endOffset === spot.offset) {
-          return Optional.none();
+          return null;
         } else if (spot.offset === 0 && startRange.endContainer.textContent?.length === startRange.endOffset) {
-          return Optional.none();
+          return null;
         }
       }
 
-      return Optional.some(startRange);
+      return startRange;
     });
   });
 };
 
-const findPattern = (editor: Editor, block: Element, details: PatternDetails, normalizedMatches: boolean): Optional<SearchResults> => {
+const findPattern = (editor: Editor, block: Element, details: PatternDetails, normalizedMatches: boolean): (SearchResults) | null => {
   const dom = editor.dom;
   const root = dom.getRoot();
   const pattern = details.pattern;
@@ -115,22 +114,22 @@ const findPattern = (editor: Editor, block: Element, details: PatternDetails, no
 
     // If we have a replacement pattern, then it can't have nested patterns so just return immediately
     if (isReplacementPattern(pattern)) {
-      return Optional.some({
+      return {
         matches: [{
           pattern,
           startRng: endPathRng,
           endRng: endPathRng
         }],
         position: spot
-      });
+      };
     } else {
       // Find any nested patterns, making sure not to process the current pattern again
       const resultsOpt = findPatternsRec(editor, details.remainingPatterns, spot.container, spot.offset, block, normalizedMatches);
-      const results: SearchResults = resultsOpt.getOr({ matches: [], position: spot });
+      const results: SearchResults = resultsOpt ?? ({ matches: [], position: spot });
       const pos = results.position;
 
       // Find the start of the matched pattern
-      const start = findPatternStart(dom, pattern, pos.container, pos.offset, block, resultsOpt.isNone());
+      const start = findPatternStart(dom, pattern, pos.container, pos.offset, block, resultsOpt === null);
       return start.map((startRng) => {
         const startPathRng = generatePathRangeFromRange(dom, root, startRng, normalizedMatches);
         return {
@@ -160,7 +159,7 @@ const findPatternsRec = (
   offset: number,
   block: Element,
   normalizedMatches: boolean
-): Optional<SearchResults> => {
+): (SearchResults) | null => {
   const dom = editor.dom;
 
   return TextSearch.textBefore(node, offset, dom.getRoot()).bind((endSpot) => {
@@ -170,7 +169,7 @@ const findPatternsRec = (
       // If the text does not end with the same string as the pattern, then we can exit
       // early, because this pattern isn't going to match this text. This saves us doing more
       // expensive matching calls.
-      if (!Strings.endsWith(text, pattern.end)) {
+      if (!(text).endsWith(pattern.end)) {
         continue;
       }
 
@@ -185,7 +184,7 @@ const findPatternsRec = (
         position: endSpot
       }, normalizedMatches);
 
-      if (result.isNone() && offset > 0) {
+      if (result === null && offset > 0) {
         return findPatternsRec(
           editor,
           patterns,
@@ -197,19 +196,19 @@ const findPatternsRec = (
       }
 
       // If a match was found then return that
-      if (result.isSome()) {
+      if (result !== null) {
         return result;
       }
     }
 
-    return Optional.none();
+    return null;
   });
 };
 
 const applyPattern = (editor: Editor, pattern: InlinePattern, patternRange: Range): void => {
   editor.selection.setRng(patternRange);
   if (pattern.type === 'inline-format') {
-    Arr.each(pattern.format, (format) => {
+    (pattern.format).forEach((format) => {
       editor.formatter.apply(format);
     });
   } else {
@@ -244,10 +243,10 @@ const applyPatternWithContent = (editor: Editor, pattern: InlinePattern, startMa
 };
 
 const addMarkers = (dom: DOMUtils, matches: InlinePatternMatch[]): InlinePatternMatchWithMarkers[] => {
-  const markerPrefix = Id.generate('mce_textpattern');
+  const markerPrefix = (('mce_textpattern') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
   // Add end markers
-  const matchesWithEnds = Arr.foldr(matches, (acc, match) => {
+  const matchesWithEnds = (matches).reduceRight((acc, match) => {
     const endMarker = createMarker(dom, markerPrefix + `_end${acc.length}`, match.endRng);
     return acc.concat([{
       ...match,
@@ -256,7 +255,7 @@ const addMarkers = (dom: DOMUtils, matches: InlinePatternMatch[]): InlinePattern
   }, [] as Array<InlinePatternMatch & { endMarker: Marker }>);
 
   // Add start markers
-  return Arr.foldr(matchesWithEnds, (acc, match) => {
+  return (matchesWithEnds).reduceRight((acc, match) => {
     const idx = matchesWithEnds.length - acc.length - 1;
     const startMarker = isReplacementPattern(match.pattern) ? match.endMarker : createMarker(dom, markerPrefix + `_start${idx}`, match.startRng);
     return acc.concat([{
@@ -266,14 +265,12 @@ const addMarkers = (dom: DOMUtils, matches: InlinePatternMatch[]): InlinePattern
   }, [] as InlinePatternMatchWithMarkers[]);
 };
 
-const sortPatterns = (patterns: InlinePattern[]) => Arr.sort(patterns, (a, b) => b.end.length - a.end.length);
+const sortPatterns = (patterns: InlinePattern[]) => [...(patterns)].sort((a, b) => b.end.length - a.end.length);
 
 const getBestMatches = (matches: InlinePatternMatch[], matchesWithSortedPatterns: InlinePatternMatch[]) => {
-  const hasSameMatches = Arr.forall(matches, (match) =>
-    Arr.exists(matchesWithSortedPatterns, (sortedMatch) =>
-      match.pattern.start === sortedMatch.pattern.start && match.pattern.end === sortedMatch.pattern.end
-    )
-  );
+  const hasSameMatches = (matches).every((match) =>
+    (matchesWithSortedPatterns).some((sortedMatch) =>
+      match.pattern.start === sortedMatch.pattern.start && match.pattern.end === sortedMatch.pattern.end));
 
   if (matches.length === matchesWithSortedPatterns.length) {
     if (hasSameMatches) {
@@ -305,7 +302,7 @@ const applyMatches = (editor: Editor, matches: InlinePatternMatch[]): void => {
   const matchesWithMarkers = addMarkers(dom, matches);
 
   // Do the replacements
-  Arr.each(matchesWithMarkers, (match) => {
+  (matchesWithMarkers).forEach((match) => {
     const block = dom.getParent(match.startMarker.start, dom.isBlock);
     const isRoot = (node: Node) => node === block;
     if (isReplacementPattern(match.pattern)) {

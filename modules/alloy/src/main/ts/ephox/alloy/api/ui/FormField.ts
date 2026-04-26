@@ -1,4 +1,3 @@
-import { Id } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import * as AlloyParts from '../../parts/AlloyParts';
@@ -44,7 +43,7 @@ const factory: CompositeSketchFactory<FormFieldDetail, FormFieldSpec> = (detail,
     AlloyEvents.runOnAttached((component, _simulatedEvent) => {
       const ps = AlloyParts.getParts(component, detail, [ 'label', 'field', 'aria-descriptor' ]);
       ps.field().each((field) => {
-        const id = Id.generate(detail.prefix);
+        const id = ((detail.prefix) + '_' + Math.floor(Math.random() * 1e9) + Date.now());
         ps.label().each((label) => {
           // TODO: Find a nicer way of doing this.
           Attribute.set(label.element, 'for', id);
@@ -52,7 +51,7 @@ const factory: CompositeSketchFactory<FormFieldDetail, FormFieldSpec> = (detail,
         });
 
         ps['aria-descriptor']().each((descriptor) => {
-          const descriptorId = Id.generate(detail.prefix);
+          const descriptorId = ((detail.prefix) + '_' + Math.floor(Math.random() * 1e9) + Date.now());
           Attribute.set(descriptor.element, 'id', descriptorId);
           Attribute.set(field.element, 'aria-describedby', descriptorId);
         });

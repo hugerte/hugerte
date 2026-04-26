@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -19,35 +19,35 @@ const key = (row: number, column: number): string => {
   return row + ',' + column;
 };
 
-const getAt = (warehouse: Warehouse, row: number, column: number): Optional<Structs.DetailExt> =>
-  Optional.from(warehouse.access[key(row, column)]);
+const getAt = (warehouse: Warehouse, row: number, column: number): (Structs.DetailExt) | null =>
+  (warehouse.access[key(row, column)] ?? null);
 
-const findItem = (warehouse: Warehouse, item: SugarElement<HTMLTableCellElement>, comparator: CompElm): Optional<Structs.DetailExt> => {
+const findItem = (warehouse: Warehouse, item: SugarElement<HTMLTableCellElement>, comparator: CompElm): (Structs.DetailExt) | null => {
   const filtered = filterItems(warehouse, (detail) => {
     return comparator(item, detail.element);
   });
 
-  return filtered.length > 0 ? Optional.some(filtered[0]) : Optional.none();
+  return filtered.length > 0 ? filtered[0] : null;
 };
 
 const filterItems = (warehouse: Warehouse, predicate: (x: Structs.DetailExt, i: number) => boolean): Structs.DetailExt[] => {
-  const all = Arr.bind(warehouse.all, (r) => {
+  const all = (warehouse.all).flatMap((r) => {
     return r.cells;
   });
-  return Arr.filter(all, predicate);
+  return (all).filter(predicate);
 };
 
 const generateColumns = (rowData: Structs.RowDetail<Structs.Detail<HTMLTableColElement>, HTMLTableColElement>): Record<number, Structs.ColumnExt> => {
   const columnsGroup: Record<number, Structs.ColumnExt> = {};
   let index = 0;
 
-  Arr.each(rowData.cells, (column) => {
+  (rowData.cells).forEach((column) => {
     const colspan = column.colspan;
 
-    Arr.range(colspan, (columnIndex) => {
+    Array.from({length: colspan}, (_, _i) => ((columnIndex) => {
       const colIndex = index + columnIndex;
       columnsGroup[colIndex] = Structs.columnext(column.element, colspan, colIndex);
-    });
+    })(_i));
 
     index += colspan;
   });
@@ -72,19 +72,19 @@ const generate = (list: Structs.RowDetail<Structs.Detail>[]): Warehouse => {
   const access: Record<string, Structs.DetailExt> = {};
   const cells: Structs.RowDetail<Structs.DetailExt, HTMLTableRowElement>[] = [];
 
-  const tableOpt = Arr.head(list).map((rowData) => rowData.element).bind(TableLookup.table);
-  const lockedColumns: Record<string, true> = tableOpt.bind(LockedColumnUtils.getLockedColumnsFromTable).getOr({});
+  const tableOpt = ((list)[0] ?? null).map((rowData) => rowData.element).bind(TableLookup.table);
+  const lockedColumns: Record<string, true> = tableOpt.bind(LockedColumnUtils.getLockedColumnsFromTable) ?? ({});
 
   let maxRows = 0;
   let maxColumns = 0;
   let rowCount = 0;
 
-  const { pass: colgroupRows, fail: rows } = Arr.partition(list, (rowData) => rowData.section === 'colgroup');
+  const { pass: colgroupRows, fail: rows } = (list).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((rowData) => rowData.section === 'colgroup')(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
 
   // Handle rows first
   Arr.each(rows as Array<Structs.RowDetail<Structs.Detail<HTMLTableCellElement>, HTMLTableRowElement>>, (rowData) => {
     const currentRow: Structs.DetailExt[] = [];
-    Arr.each(rowData.cells, (rowCell) => {
+    (rowData.cells).forEach((rowCell) => {
       let start = 0;
 
       // If this spot has been taken by a previous rowspan, skip it.
@@ -92,7 +92,7 @@ const generate = (list: Structs.RowDetail<Structs.Detail>[]): Warehouse => {
         start++;
       }
 
-      const isLocked = Obj.hasNonNullableKey(lockedColumns, start.toString());
+      const isLocked = (Object.prototype.hasOwnProperty.call(lockedColumns, start.toString()) && (lockedColumns)[start.toString()] != null);
       const current = Structs.extended(rowCell.element, rowCell.rowspan, rowCell.colspan, rowCount, start, isLocked);
 
       // Occupy all the (row, column) positions that this cell spans for.
@@ -118,7 +118,7 @@ const generate = (list: Structs.RowDetail<Structs.Detail>[]): Warehouse => {
   // Note: Currently only a single colgroup is supported so just use the last one
   const { columns, colgroups } = Arr.last(colgroupRows as Array<Structs.RowDetail<Structs.Detail<HTMLTableColElement>, HTMLTableColElement>>).map((rowData) => {
     const columns = generateColumns(rowData);
-    const colgroup = Structs.colgroup(rowData.element, Obj.values(columns));
+    const colgroup = Structs.colgroup(rowData.element, Object.values(columns));
     return {
       colgroups: [ colgroup ],
       columns
@@ -145,16 +145,16 @@ const fromTable = (table: SugarElement<HTMLTableElement>): Warehouse => {
 };
 
 const justCells = (warehouse: Warehouse): Structs.DetailExt[] =>
-  Arr.bind(warehouse.all, (w) => w.cells);
+  (warehouse.all).flatMap((w) => w.cells);
 
 const justColumns = (warehouse: Warehouse): Structs.ColumnExt[] =>
-  Obj.values(warehouse.columns);
+  Object.values(warehouse.columns);
 
 const hasColumns = (warehouse: Warehouse): boolean =>
-  Obj.keys(warehouse.columns).length > 0;
+  Object.keys(warehouse.columns).length > 0;
 
-const getColumnAt = (warehouse: Warehouse, columnIndex: number): Optional<Structs.ColumnExt> =>
-  Optional.from(warehouse.columns[columnIndex]);
+const getColumnAt = (warehouse: Warehouse, columnIndex: number): (Structs.ColumnExt) | null =>
+  (warehouse.columns[columnIndex] ?? null);
 
 export const Warehouse = {
   fromTable,

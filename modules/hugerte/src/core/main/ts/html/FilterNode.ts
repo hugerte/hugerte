@@ -1,4 +1,3 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
 
 import { ParserArgs, ParserFilter } from '../api/html/DomParser';
 import AstNode from '../api/html/Node';
@@ -71,18 +70,18 @@ const findMatchingNodes = (nodeFilters: ParserFilter[], attributeFilters: Parser
 // Run all necessary node filters and attribute filters, based on a match set
 const runFilters = (matches: FilterMatches, args: ParserArgs): void => {
   const run = (matchRecord: Record<string, FilterMatch>, filteringAttributes: boolean) => {
-    Obj.each(matchRecord, (match) => {
+    Object.entries(matchRecord).forEach(([_k, _v]: [any, any]) => ((match) => {
       // in theory we don't need to copy the array, it was created purely for this filtering, but the method is exported so we can't guarantee that
-      const nodes = Arr.from(match.nodes);
+      const nodes = Array.from(match.nodes);
 
-      Arr.each(match.filter.callbacks, (callback) => {
+      (match.filter.callbacks).forEach((callback) => {
         // very very carefully mutate the nodes array based on whether the filter still matches them
         for (let i = nodes.length - 1; i >= 0; i--) {
           const node = nodes[i];
 
           // Remove already removed children, and nodes that no longer match the filter
           const valueMatches = filteringAttributes ? node.attr(match.filter.name) !== undefined : node.name === match.filter.name;
-          if (!valueMatches || Type.isNullable(node.parent)) {
+          if (!valueMatches || (node.parent) == null) {
             nodes.splice(i, 1);
           }
         }
@@ -91,7 +90,7 @@ const runFilters = (matches: FilterMatches, args: ParserArgs): void => {
           callback(nodes, match.filter.name, args);
         }
       });
-    });
+    })(_v, _k));
   };
 
   run(matches.nodes, false);

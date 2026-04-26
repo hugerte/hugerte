@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 import { Class, Focus } from '@ephox/sugar';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -15,7 +14,7 @@ import * as PartType from '../../parts/PartType';
 import { ButtonSpec } from '../types/ButtonTypes';
 import { ExpandableFormDetail } from '../types/ExpandableFormTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   Fields.markers([
     'closedClass',
     'openClass',
@@ -30,13 +29,13 @@ const schema = Fun.constant([
   Fields.onHandler('onShrunk'),
   Fields.onHandler('onGrown'),
   SketchBehaviours.field('expandableBehaviours', [ Representing ])
-]);
+];
 
 const runOnExtra = (detail: ExpandableFormDetail, operation: (comp: AlloyComponent) => void): (comp: AlloyComponent) => void => (anyComp) => {
   AlloyParts.getPart(anyComp, detail, 'extra').each(operation);
 };
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.required<ExpandableFormDetail>({
     // factory: Form,
     schema: [ FieldSchema.required('dom') ],
@@ -107,9 +106,9 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
     schema: [ FieldSchema.required('dom') ],
     name: 'controls'
   })
-]);
+];
 
-const name = Fun.constant('ExpandableForm');
+const name = () => 'ExpandableForm';
 
 export {
   name,

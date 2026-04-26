@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { Toolbar } from '../../api/ui/Toolbar';
 import * as Fields from '../../data/Fields';
@@ -9,7 +9,7 @@ import { SplitFloatingToolbarDetail } from '../types/SplitFloatingToolbarTypes';
 import { ToolbarSpec } from '../types/ToolbarTypes';
 import * as ToolbarSchema from './ToolbarSchema';
 
-const schema = Fun.constant([
+const schema = () => [
   Fields.markers([ 'overflowToggledClass' ]),
   FieldSchema.optionFunction('getOverflowBounds'),
   FieldSchema.required('lazySink'),
@@ -18,9 +18,9 @@ const schema = Fun.constant([
   Fields.onHandler('onClosed')
 ].concat(
   SplitToolbarBase.schema()
-));
+);
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.required<SplitFloatingToolbarDetail, ToolbarSpec>({
     factory: Toolbar,
     schema: ToolbarSchema.schema(),
@@ -39,8 +39,8 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
   PartType.external<SplitFloatingToolbarDetail>({
     name: 'overflow-group'
   })
-]);
+];
 
-const name = Fun.constant('SplitFloatingToolbar');
+const name = () => 'SplitFloatingToolbar';
 
 export { name, schema, parts };

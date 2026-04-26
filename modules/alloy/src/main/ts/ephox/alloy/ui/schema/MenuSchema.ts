@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Obj, Optional } from '@ephox/katamari';
+import { Fun, Optional } from '@ephox/katamari';
 
 import { Composing } from '../../api/behaviour/Composing';
 import { Highlighting } from '../../api/behaviour/Highlighting';
@@ -68,7 +68,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
       // The WidgetItemSpec is just because it has uid, and the others don't
       // for some reason. So there is nothing guaranteeing that `u` is a WidgetItemSpec,
       // so we should probably rework this code.
-      return Obj.has(u as WidgetItemSpec, 'uid') ? u : {
+      return Object.prototype.hasOwnProperty.call(u as WidgetItemSpec, 'uid') ? u : {
         ...u,
         uid: Tagger.generate('item')
       };
@@ -127,7 +127,7 @@ const schema = Fun.constant([
   Fields.onHandler('onDehighlight')
 ]);
 
-const name = Fun.constant('menu');
+const name = () => 'menu';
 
 export {
   name,

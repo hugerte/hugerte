@@ -1,4 +1,4 @@
-import { Arr, Cell, Type } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';
@@ -76,7 +76,7 @@ const getEl = (editor: Editor): HTMLElement | null =>
   editor.dom.get('mcepastebin');
 
 const isPasteBin = (elm: Node | null): elm is HTMLElement =>
-  Type.isNonNullable(elm) && (elm as HTMLElement).id === 'mcepastebin';
+  (elm) != null && (elm as HTMLElement).id === 'mcepastebin';
 
 /*
  * Returns the contents of the paste bin as a HTML string.
@@ -93,10 +93,10 @@ const getHtml = (editor: Editor): string => {
   };
 
   // find only top level elements (there might be more nested inside them as well, see TINY-1162)
-  const [ pasteBinElm, ...pasteBinClones ] = Arr.filter(editor.getBody().childNodes, isPasteBin);
+  const [ pasteBinElm, ...pasteBinClones ] = (editor.getBody().childNodes).filter(isPasteBin);
 
   // if clones were found, move their content into the first bin
-  Arr.each(pasteBinClones, (pasteBinClone) => {
+  (pasteBinClones).forEach((pasteBinClone) => {
     copyAndRemove(pasteBinElm, pasteBinClone);
   });
 

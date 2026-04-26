@@ -1,5 +1,4 @@
 import { DomUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { BrokenPath, LeftRight } from '../../parent/Breaker';
@@ -7,13 +6,13 @@ import * as Parent from '../general/Parent';
 
 const universe = DomUniverse();
 
-const sharedOne = (look: (e: SugarElement) => Optional<SugarElement>, elements: SugarElement[]): Optional<SugarElement> => {
+const sharedOne = (look: (e: SugarElement) => (SugarElement) | null, elements: SugarElement[]): (SugarElement) | null => {
   return Parent.sharedOne(universe, (_universe, element) => {
     return look(element);
   }, elements);
 };
 
-const subset = (start: SugarElement, finish: SugarElement): Optional<SugarElement[]> => {
+const subset = (start: SugarElement, finish: SugarElement): (SugarElement[]) | null => {
   return Parent.subset(universe, start, finish);
 };
 
@@ -21,15 +20,15 @@ const ancestors = (start: SugarElement, finish: SugarElement, isRoot?: (x: Sugar
   return Parent.ancestors(universe, start, finish, isRoot);
 };
 
-const breakToLeft = (parent: SugarElement, child: SugarElement): Optional<LeftRight<SugarElement>> => {
+const breakToLeft = (parent: SugarElement, child: SugarElement): (LeftRight<SugarElement>) | null => {
   return Parent.breakToLeft(universe, parent, child);
 };
 
-const breakToRight = (parent: SugarElement, child: SugarElement): Optional<LeftRight<SugarElement>> => {
+const breakToRight = (parent: SugarElement, child: SugarElement): (LeftRight<SugarElement>) | null => {
   return Parent.breakToRight(universe, parent, child);
 };
 
-const breakPath = (child: SugarElement, isTop: (e: SugarElement) => boolean, breaker: (parent: SugarElement, child: SugarElement) => Optional<LeftRight<SugarElement>>): BrokenPath<SugarElement> => {
+const breakPath = (child: SugarElement, isTop: (e: SugarElement) => boolean, breaker: (parent: SugarElement, child: SugarElement) => (LeftRight<SugarElement>) | null): BrokenPath<SugarElement> => {
   return Parent.breakPath(universe, child, isTop, (u, p, c) => {
     return breaker(p, c);
   });

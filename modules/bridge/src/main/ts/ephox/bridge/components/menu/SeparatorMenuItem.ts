@@ -1,5 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as ComponentSchema from '../../core/ComponentSchema';
 
@@ -13,7 +13,7 @@ export interface SeparatorMenuItemInstanceApi { }
 
 export interface SeparatorMenuItem {
   type: 'separator';
-  text: Optional<string>;
+  text: (string) | null;
 }
 
 export const separatorMenuItemSchema = StructureSchema.objOf([

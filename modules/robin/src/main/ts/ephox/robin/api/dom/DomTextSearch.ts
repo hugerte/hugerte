@@ -1,5 +1,4 @@
 import { DomUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 import { SpotPoint } from '@ephox/phoenix';
 import { SugarElement } from '@ephox/sugar';
 
@@ -9,11 +8,11 @@ import { TextSearch, TextSearchSeeker } from '../general/TextSearch';
 
 const universe = DomUniverse();
 
-const previousChar = (text: string, offset: Optional<number>): Optional<CharPos> => {
+const previousChar = (text: string, offset: (number) | null): (CharPos) | null => {
   return TextSearch.previousChar(text, offset);
 };
 
-const nextChar = (text: string, offset: Optional<number>): Optional<CharPos> => {
+const nextChar = (text: string, offset: (number) | null): (CharPos) | null => {
   return TextSearch.nextChar(text, offset);
 };
 
@@ -33,7 +32,7 @@ const expandRight = (item: SugarElement, offset: number, rawSeeker: TextSearchSe
   return TextSearch.expandRight(universe, item, offset, rawSeeker);
 };
 
-const scanRight = (item: SugarElement, offset: number): Optional<SpotPoint<SugarElement>> => {
+const scanRight = (item: SugarElement, offset: number): (SpotPoint<SugarElement>) | null => {
   return TextSearch.scanRight(universe, item, offset);
 };
 

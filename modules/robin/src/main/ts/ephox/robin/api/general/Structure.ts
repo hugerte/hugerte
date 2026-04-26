@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
 
 const blockList = [
   'body',
@@ -37,30 +36,30 @@ const blockList = [
 
 const isList = <E, D>(universe: Universe<E, D>, item: E): boolean => {
   const tagName = universe.property().name(item);
-  return Arr.contains([ 'ol', 'ul' ], tagName);
+  return ([ 'ol', 'ul' ]).includes(tagName);
 };
 
 const isBlock = <E, D>(universe: Universe<E, D>, item: E): boolean => {
   const tagName = universe.property().name(item);
-  return Arr.contains(blockList, tagName);
+  return (blockList).includes(tagName);
 };
 
 const isFormatting = <E, D>(universe: Universe<E, D>, item: E): boolean => {
   const tagName = universe.property().name(item);
-  return Arr.contains([ 'address', 'pre', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ], tagName);
+  return ([ 'address', 'pre', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]).includes(tagName);
 };
 
 const isHeading = <E, D>(universe: Universe<E, D>, item: E): boolean => {
   const tagName = universe.property().name(item);
-  return Arr.contains([ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ], tagName);
+  return ([ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]).includes(tagName);
 };
 
 const isContainer = <E, D>(universe: Universe<E, D>, item: E): boolean => {
-  return Arr.contains([ 'div', 'li', 'td', 'th', 'blockquote', 'body', 'caption' ], universe.property().name(item));
+  return ([ 'div', 'li', 'td', 'th', 'blockquote', 'body', 'caption' ]).includes(universe.property().name(item));
 };
 
 const isEmptyTag = <E, D>(universe: Universe<E, D>, item: E): boolean => {
-  return Arr.contains([ 'br', 'img', 'hr', 'input' ], universe.property().name(item));
+  return ([ 'br', 'img', 'hr', 'input' ]).includes(universe.property().name(item));
 };
 
 const isFrame = <E, D>(universe: Universe<E, D>, item: E): boolean => {

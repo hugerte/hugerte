@@ -1,4 +1,3 @@
-import { Obj, Type } from '@ephox/katamari';
 
 import Tools from '../api/util/Tools';
 
@@ -33,13 +32,13 @@ export interface PathBookmark {
 
 export type Bookmark = StringPathBookmark | RangeBookmark | IdBookmark | IndexBookmark | PathBookmark;
 
-const isStringPathBookmark = (bookmark: Bookmark): bookmark is StringPathBookmark => Type.isString((bookmark as StringPathBookmark).start);
+const isStringPathBookmark = (bookmark: Bookmark): bookmark is StringPathBookmark => typeof ((bookmark as StringPathBookmark).start) === 'string';
 
-const isRangeBookmark = (bookmark: Bookmark): bookmark is RangeBookmark => Obj.has(bookmark as RangeBookmark, 'rng');
+const isRangeBookmark = (bookmark: Bookmark): bookmark is RangeBookmark => Object.prototype.hasOwnProperty.call(bookmark as RangeBookmark, 'rng');
 
-const isIdBookmark = (bookmark: Bookmark): bookmark is IdBookmark => Obj.has(bookmark as IdBookmark, 'id');
+const isIdBookmark = (bookmark: Bookmark): bookmark is IdBookmark => Object.prototype.hasOwnProperty.call(bookmark as IdBookmark, 'id');
 
-const isIndexBookmark = (bookmark: Bookmark): bookmark is IndexBookmark => Obj.has(bookmark as IndexBookmark, 'name');
+const isIndexBookmark = (bookmark: Bookmark): bookmark is IndexBookmark => Object.prototype.hasOwnProperty.call(bookmark as IndexBookmark, 'name');
 
 const isPathBookmark = (bookmark: Bookmark): bookmark is PathBookmark => Tools.isArray((bookmark as PathBookmark).start);
 

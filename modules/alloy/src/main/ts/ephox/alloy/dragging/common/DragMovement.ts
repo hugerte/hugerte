@@ -1,4 +1,4 @@
-import { Fun, Num, Optional, Optionals } from '@ephox/katamari';
+import { Num } from '@ephox/katamari';
 import { Css, Scroll, SugarElement, SugarLocation, SugarPosition, Traverse } from '@ephox/sugar';
 
 import * as OffsetOrigin from '../../alien/OffsetOrigin';
@@ -8,13 +8,13 @@ import * as Snappables from '../snap/Snappables';
 import { DraggingConfig, DragStartData, SnapsConfig } from './DraggingTypes';
 
 const getCurrentCoord = (target: SugarElement<HTMLElement>): DragCoord.CoordAdt =>
-  Optionals.lift3(Css.getRaw(target, 'left'), Css.getRaw(target, 'top'), Css.getRaw(target, 'position'), (left, top, position) => {
+  (Css.getRaw(target, 'left') !== null && Css.getRaw(target, 'top') !== null && Css.getRaw(target, 'position') !== null ? ((left, top, position) => {
     const nu = position === 'fixed' ? DragCoord.fixed : DragCoord.offset;
     return nu(
       parseInt(left, 10),
       parseInt(top, 10)
     );
-  }).getOrThunk(() => {
+  })(Css.getRaw(target, 'left'), Css.getRaw(target, 'top'), Css.getRaw(target, 'position')) : null).getOrThunk(() => {
     const location = SugarLocation.absolute(target);
     return DragCoord.absolute(location.left, location.top);
   });
@@ -35,7 +35,7 @@ const clampCoords = (component: AlloyComponent, coords: DragCoord.CoordAdt, scro
       return DragCoord.offset(offset.left, offset.top);
     },
     // absolute
-    Fun.constant(newCoords),
+    () => newCoords,
     // fixed
     () => {
       const fixed = DragCoord.asFixed(newCoords, scroll, origin);
@@ -44,7 +44,7 @@ const clampCoords = (component: AlloyComponent, coords: DragCoord.CoordAdt, scro
   );
 };
 
-const calcNewCoord = <E>(component: AlloyComponent, optSnaps: Optional<SnapsConfig<E>>, currentCoord: DragCoord.CoordAdt, scroll: SugarPosition, origin: SugarPosition, delta: SugarPosition, startData: DragStartData): DragCoord.CoordAdt => {
+const calcNewCoord = <E>(component: AlloyComponent, optSnaps: (SnapsConfig<E>) | null, currentCoord: DragCoord.CoordAdt, scroll: SugarPosition, origin: SugarPosition, delta: SugarPosition, startData: DragStartData): DragCoord.CoordAdt => {
   const newCoord = optSnaps.fold(() => {
     // When not docking, use fixed coordinates.
     const translated = DragCoord.translate(currentCoord, delta.left, delta.top);

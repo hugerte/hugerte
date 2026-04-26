@@ -1,4 +1,3 @@
-import { Arr, Fun, Obj, Optional, Type } from '@ephox/katamari';
 
 import { AddOnConstructor } from '../api/AddOnManager';
 import DOMUtils from '../api/dom/DOMUtils';
@@ -33,7 +32,7 @@ const initPlugin = (editor: Editor, initializedPlugins: string[], plugin: string
 
       editor.plugins[plugin] = pluginInstance;
 
-      if (Type.isFunction(pluginInstance.init)) {
+      if (typeof (pluginInstance.init) === 'function') {
         pluginInstance.init(editor, pluginUrl);
         initializedPlugins.push(plugin);
       }
@@ -51,7 +50,7 @@ const trimLegacyPrefix = (name: string) => {
 const initPlugins = (editor: Editor) => {
   const initializedPlugins: string[] = [];
 
-  Arr.each(Options.getPlugins(editor), (name) => {
+  (Options.getPlugins(editor)).forEach((name) => {
     initPlugin(editor, initializedPlugins, trimLegacyPrefix(name));
   });
 };
@@ -65,9 +64,9 @@ const initIcons = (editor: Editor) => {
     ...IconManager.get(iconPackName).icons
   };
 
-  Obj.each(loadIcons, (svgData, icon) => {
+  Object.entries(loadIcons).forEach(([_k, _v]: [any, any]) => ((svgData, icon) => {
     // Don't override an icon registered manually
-    if (!Obj.has(currentIcons, icon)) {
+    if (!Object.prototype.hasOwnProperty.call(currentIcons, icon)) {
       editor.ui.registry.addIcon(icon, svgData);
     }
   });
@@ -76,11 +75,11 @@ const initIcons = (editor: Editor) => {
 const initTheme = (editor: Editor) => {
   const theme = Options.getTheme(editor);
 
-  if (Type.isString(theme)) {
+  if (typeof (theme) === 'string') {
     const Theme = ThemeManager.get(theme) as AddOnConstructor<Theme>;
     editor.theme = Theme(editor, ThemeManager.urls[theme]) || {};
 
-    if (Type.isFunction(editor.theme.init)) {
+    if (typeof (editor.theme.init) === 'function') {
       editor.theme.init(editor, ThemeManager.urls[theme] || editor.documentBaseUrl.replace(/\/$/, ''));
     }
   } else {
@@ -89,7 +88,7 @@ const initTheme = (editor: Editor) => {
   }
 };
 
-const initModel = (editor: Editor) => {
+const initModel = (editor: Editor)(_v, _k)) => {
   const model = Options.getModel(editor);
   const Model = ModelManager.get(model) as AddOnConstructor<Model>;
   editor.model = Model(editor, ModelManager.urls[model]);
@@ -145,9 +144,9 @@ const renderThemeUi = (editor: Editor) => {
 
   editor.orgDisplay = elm.style.display;
 
-  if (Type.isString(Options.getTheme(editor))) {
+  if (typeof (Options.getTheme(editor)) === 'string') {
     return renderFromLoadedTheme(editor);
-  } else if (Type.isFunction(Options.getTheme(editor))) {
+  } else if (typeof (Options.getTheme(editor)) === 'function') {
     return renderFromThemeFunc(editor);
   } else {
     return renderThemeFalse(editor);
@@ -156,12 +155,12 @@ const renderThemeUi = (editor: Editor) => {
 
 const augmentEditorUiApi = (editor: Editor, api: Partial<EditorUiApi>) => {
   const uiApiFacade: EditorUiApi = {
-    show: Optional.from(api.show).getOr(Fun.noop),
-    hide: Optional.from(api.hide).getOr(Fun.noop),
-    isEnabled: Optional.from(api.isEnabled).getOr(Fun.always),
+    show: (api.show ?? null) ?? (() => {}),
+    hide: (api.hide ?? null) ?? (() => {}),
+    isEnabled: (api.isEnabled ?? null) ?? ((() => true as const)),
     setEnabled: (state) => {
       if (!editor.mode.isReadOnly()) {
-        Optional.from(api.setEnabled).each((f) => f(state));
+        (api.setEnabled ?? null).each((f) => f(state));
       }
     }
   };
@@ -176,7 +175,7 @@ const init = async (editor: Editor): Promise<void> => {
   initModel(editor);
   initPlugins(editor);
   const renderInfo = await renderThemeUi(editor);
-  augmentEditorUiApi(editor, Optional.from(renderInfo.api).getOr({}));
+  augmentEditorUiApi(editor, (renderInfo.api ?? null) ?? ({}));
   editor.editorContainer = renderInfo.editorContainer as HTMLElement;
   appendContentCssFromSettings(editor);
 

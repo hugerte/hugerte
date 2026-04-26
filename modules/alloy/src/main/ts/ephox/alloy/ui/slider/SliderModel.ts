@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 export interface ValueOfArgs {
   readonly min: number;
@@ -7,7 +6,7 @@ export interface ValueOfArgs {
   readonly value: number;
   readonly step: number;
   readonly snap: boolean;
-  readonly snapStart: Optional<number>;
+  readonly snapStart: (number) | null;
   readonly rounded: boolean;
   readonly hasMinEdge: boolean;
   readonly hasMaxEdge: boolean;
@@ -60,7 +59,7 @@ const capValue = (value: number, min: number, max: number): number => Math.max(
   Math.min(max, value)
 );
 
-const snapValueOf = (value: number, min: number, max: number, step: number, snapStart: Optional<number>): number =>
+const snapValueOf = (value: number, min: number, max: number, step: number, snapStart: (number) | null): number =>
   // We are snapping by the step size. Therefore, find the nearest multiple of
   // the step
   snapStart.fold(() => {

@@ -1,5 +1,5 @@
 import { AlloyComponent, Boxes, Channels, Docking, OffsetOrigin, VerticalDir } from '@ephox/alloy';
-import { Arr, Cell, Fun, Optional, Optionals, Singleton } from '@ephox/katamari';
+import { Cell, Optional, Optionals, Singleton } from '@ephox/katamari';
 import { Attribute, Compare, Css, Height, Scroll, SugarBody, SugarElement, SugarLocation, Traverse, Width } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -50,8 +50,8 @@ export const InlineHeader = (
   const isVisible = () => visible.get() && !editor.removed;
 
   // Calculate the toolbar offset when using a split toolbar drawer
-  const calcToolbarOffset = (toolbar: Optional<AlloyComponent>) => isSplitToolbar ?
-    toolbar.fold(Fun.constant(0), (tbar) =>
+  const calcToolbarOffset = (toolbar: (AlloyComponent) | null) => isSplitToolbar ?
+    toolbar.fold(() => 0, (tbar) =>
       // If we have an overflow toolbar, we need to offset the positioning by the height of the overflow toolbar
       tbar.components().length > 1 ? Height.get(tbar.components()[1].element) : 0
     ) : 0;
@@ -110,7 +110,7 @@ export const InlineHeader = (
       // Update the max width of the inline toolbar
       const maxWidth = editorMaxWidthOpt.getOrThunk(() => {
         // No max width, so use the body width, minus the left pos as the maximum
-        const bodyMargin = Utils.parseToInt(Css.get(SugarBody.body(), 'margin-left')).getOr(0);
+        const bodyMargin = Utils.parseToInt(Css.get(SugarBody.body(), 'margin-left')) ?? (0);
         return Width.get(SugarBody.body()) - SugarLocation.absolute(targetElm).left + bodyMargin;
       });
       Css.set(container.element, 'max-width', maxWidth + 'px');
@@ -210,7 +210,7 @@ export const InlineHeader = (
               width: width + 'px'
             };
           }
-        ).getOr({ });
+        ) ?? ({ });
 
       const baseProperties = {
         position: 'absolute',
@@ -227,10 +227,10 @@ export const InlineHeader = (
 
   // This would return Optional.none, for ui_mode: combined, which will fallback to the default code block
   // For ui_mode: split, the offsetParent would be the body if there were no relative div set as parent
-  const getOffsetParent = (editor: Editor, element: SugarElement<HTMLElement>) => Options.isSplitUiMode(editor) ? OffsetOrigin.getOffsetParent(element) : Optional.none();
+  const getOffsetParent = (editor: Editor, element: SugarElement<HTMLElement>) => Options.isSplitUiMode(editor) ? OffsetOrigin.getOffsetParent(element) : null;
 
   const repositionPopups = () => {
-    Arr.each(uiMotherships, (m) => {
+    (uiMotherships).forEach((m) => {
       m.broadcastOn([ Channels.repositionPopups() ], { });
     });
   };
@@ -247,7 +247,7 @@ export const InlineHeader = (
       Check the width if we are within X number of pixels to the edge ( or above ). Also check if we have the width-value set.
       This helps handling the issue where it goes from having a width set ( because it's too wide ) to going so far from the edge it no longer triggers the problem. Common when the width is changed by test.
       */
-      if (toolbarCurrentRightsidePosition >= window.innerWidth - maximumDistanceToEdge || Css.getRaw(mainUi.outerContainer.element, 'width').isSome()) {
+      if (toolbarCurrentRightsidePosition >= window.innerWidth - maximumDistanceToEdge || Css.getRaw(mainUi.outerContainer.element, 'width') !== null) {
         Css.set(mainUi.outerContainer.element, 'position', 'absolute');
         Css.set(mainUi.outerContainer.element, 'left', '0px');
         Css.remove(mainUi.outerContainer.element, 'width');
@@ -326,7 +326,7 @@ export const InlineHeader = (
     visible.set(true);
     Css.set(mainUi.outerContainer.element, 'display', 'flex');
     DOM.addClass(editor.getBody(), 'mce-edit-focus');
-    Arr.each(uiMotherships, (m) => {
+    (uiMotherships).forEach((m) => {
       // We remove the display style when showing, because when hiding, we set it to "none"
       Css.remove(m.element, 'display');
     });
@@ -353,7 +353,7 @@ export const InlineHeader = (
     visible.set(false);
     Css.set(mainUi.outerContainer.element, 'display', 'none');
     DOM.removeClass(editor.getBody(), 'mce-edit-focus');
-    Arr.each(uiMotherships, (m) => {
+    (uiMotherships).forEach((m) => {
       Css.set(m.element, 'display', 'none');
     });
   };

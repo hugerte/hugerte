@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import { KeyRuleHandler } from '../keying/KeyingModeTypes';
@@ -19,8 +18,8 @@ const rule = <C, S>(matches: KeyMatch.KeyMatcher, action: KeyRuleHandler<C, S>):
   classification: action
 });
 
-const choose = <C, S>(transitions: Array<KeyRule<C, S>>, event: EventArgs<KeyboardEvent>): Optional<KeyRuleHandler<C, S>> => {
-  const transition = Arr.find(transitions, (t) => t.matches(event));
+const choose = <C, S>(transitions: Array<KeyRule<C, S>>, event: EventArgs<KeyboardEvent>): (KeyRuleHandler<C, S>) | null => {
+  const transition = ((transitions).find((t) => t.matches(event)) ?? null);
 
   return transition.map((t) => t.classification);
 };

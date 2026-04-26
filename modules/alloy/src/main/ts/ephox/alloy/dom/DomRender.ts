@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Attribute, Classes, Css, Html, InsertAll, SugarElement, SugarNode, Value } from '@ephox/sugar';
 
 import { isPremade } from '../api/ui/GuiTypes';
@@ -25,20 +24,20 @@ const introduceToDom = (definition: DomDefinition.GeneralDefinitionDetail<SugarE
   return subject;
 };
 
-const attemptPatch = (definition: DomDefinition.GeneralDefinitionDetail<SugarElement<Node>>, obsoleted: SugarElement<Element>): Optional<SugarElement<Element>> => {
+const attemptPatch = (definition: DomDefinition.GeneralDefinitionDetail<SugarElement<Node>>, obsoleted: SugarElement<Element>): (SugarElement<Element>) | null => {
   try {
     const e = reconcileToDom(definition, obsoleted);
-    return Optional.some(e);
+    return e;
   } catch (err) {
-    return Optional.none();
+    return null;
   }
 };
 
 // If a component has both innerHtml and children then we can't patch it
 const hasMixedChildren = (definition: DomDefinition.GeneralDefinitionDetail<SugarElement<Node>>) =>
-  definition.innerHtml.isSome() && definition.domChildren.length > 0;
+  definition.innerHtml !== null && definition.domChildren.length > 0;
 
-const renderToDom = (definition: DomDefinition.GeneralDefinitionDetail<SugarElement<Node>>, optObsoleted: Optional<SugarElement<Node>>): SugarElement<Element> => {
+const renderToDom = (definition: DomDefinition.GeneralDefinitionDetail<SugarElement<Node>>, optObsoleted: (SugarElement<Node>) | null): SugarElement<Element> => {
   // If the current tag doesn't match, let's not try to add anything further down the tree.
   // If it does match though and we don't have mixed children then attempt to patch attributes etc...
   const canBePatched = (candidate: SugarElement<Node>): candidate is SugarElement<Element> =>

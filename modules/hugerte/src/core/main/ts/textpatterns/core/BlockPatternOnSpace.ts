@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 import Editor from '../../api/Editor';
 import { PatternSet } from '../core/PatternTypes';
@@ -12,7 +11,7 @@ const findPattern = BlockPatternUtils.findPattern((pattern, text, nuText) => tex
 
 const findPatterns = BlockPatternUtils.createFindPatterns(findPattern, false);
 
-const getMatches = (editor: Editor, patternSet: PatternSet): Optional<BlockPatternMatch[]> => {
+const getMatches = (editor: Editor, patternSet: PatternSet): (BlockPatternMatch[]) | null => {
   const rng = editor.selection.getRng();
   return Utils.getParentBlock(editor, rng).map((block) => {
     const offset = Math.max(0, rng.startOffset);
@@ -23,7 +22,7 @@ const getMatches = (editor: Editor, patternSet: PatternSet): Optional<BlockPatte
 };
 
 const applyMatches = (editor: Editor, matches: BlockPatternMatch[]): void => {
-  Arr.each(matches, (match) => applyPattern(editor, match));
+  (matches).forEach((match) => applyPattern(editor, match));
 };
 
 export { applyMatches, findPattern, findPatterns, getMatches };

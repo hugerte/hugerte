@@ -1,5 +1,5 @@
 import { InputHandlers, Response, SelectionAnnotation, SelectionKeys, Selections, SelectionTypes } from '@ephox/darwin';
-import { Arr, Cell, Fun, Obj } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { DomParent } from '@ephox/robin';
 import { OtherCells, TableFill, TableLookup } from '@ephox/snooker';
 import { Class, Compare, DomEvent, EventArgs, SelectionDirection, SimSelection, SugarElement, SugarNode, Direction } from '@ephox/sugar';
@@ -33,13 +33,13 @@ export const TableCellSelectionHandler = (editor: Editor, resizeHandler: TableRe
   const onSelection = (cells: SugarElement<HTMLTableCellElement>[], start: SugarElement<HTMLTableCellElement>, finish: SugarElement<HTMLTableCellElement>) => {
     const tableOpt = TableLookup.table(start);
     tableOpt.each((table) => {
-      const cellsDom = Arr.map(cells, (cell) => cell.dom);
+      const cellsDom = (cells).map((cell) => cell.dom);
       const cloneFormats = Options.getTableCloneElements(editor);
-      const generators = TableFill.cellOperations(Fun.noop, SugarElement.fromDom(editor.getDoc()), cloneFormats);
+      const generators = TableFill.cellOperations(() => {}, SugarElement.fromDom(editor.getDoc()), cloneFormats);
       const selectedCells = getCellsFromSelection(editor);
       const otherCellsDom = OtherCells.getOtherCells(table, { selection: selectedCells }, generators)
-        .map((otherCells) => Obj.map(otherCells, (cellArr) => Arr.map(cellArr, (cell) => cell.dom)))
-        .getOrUndefined();
+        .map((otherCells) => Object.fromEntries(Object.entries(otherCells).map(([_k, _v]: [any, any]) => [_k, ((cellArr) => (cellArr).map((cell) => cell.dom))(_v, _k as any)])))
+         ?? undefined;
       Events.fireTableSelectionChange(editor, cellsDom, start.dom, finish.dom, otherCellsDom);
     });
   };
@@ -60,7 +60,7 @@ export const TableCellSelectionHandler = (editor: Editor, resizeHandler: TableRe
       const start = SugarElement.fromDom(sel.getStart());
       const end = SugarElement.fromDom(sel.getEnd());
       const shared = DomParent.sharedOne(TableLookup.table, [ start, end ]);
-      shared.fold(() => annotations.clear(body), Fun.noop);
+      shared.fold(() => annotations.clear(body), () => {});
     };
 
     const mouseHandlers = InputHandlers.mouse(win, body, isRoot, annotations);
@@ -194,10 +194,10 @@ export const TableCellSelectionHandler = (editor: Editor, resizeHandler: TableRe
   const getSelectedCells = (): HTMLTableCellElement[] =>
     SelectionTypes.fold<HTMLTableCellElement[]>(cellSelection.get(),
       // No fake selected cells
-      Fun.constant([]),
+      () => [],
       // This path is taken whenever there is fake cell selection even for just a single selected cell
       (cells) => {
-        return Arr.map(cells, (cell) => cell.dom);
+        return (cells).map((cell) => cell.dom);
       },
       // For this path, the start of the selection whether collapsed or ranged is within a table cell
       (cell) => [ cell.dom ]

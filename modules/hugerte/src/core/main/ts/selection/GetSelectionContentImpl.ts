@@ -1,4 +1,3 @@
-import { Fun, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -17,12 +16,12 @@ const getInnerText = (bin: HTMLElement) => {
   return Zwsp.trim(bin.innerText);
 };
 
-const getContextNodeName = (parentBlockOpt: Optional<HTMLElement>): string =>
-  parentBlockOpt.map((block) => block.nodeName).getOr('div').toLowerCase();
+const getContextNodeName = (parentBlockOpt: (HTMLElement) | null): string =>
+  parentBlockOpt.map((block) => block.nodeName) ?? ('div').toLowerCase();
 
 const getTextContent = (editor: Editor): string =>
-  Optional.from(editor.selection.getRng()).map((rng) => {
-    const parentBlockOpt = Optional.from(editor.dom.getParent<HTMLElement>(rng.commonAncestorContainer, editor.dom.isBlock));
+  (editor.selection.getRng() ?? null).map((rng) => {
+    const parentBlockOpt = (editor.dom.getParent<HTMLElement>(rng.commonAncestorContainer, editor.dom.isBlock) ?? null);
     const body = editor.getBody();
 
     const contextNodeName = getContextNodeName(parentBlockOpt);
@@ -44,7 +43,7 @@ const getTextContent = (editor: Editor): string =>
 
     if (isCollapsibleWhitespace(nonRenderedText, 0) || isCollapsibleWhitespace(nonRenderedText, nonRenderedText.length - 1)) {
       // If the bin contains a trailing/leading space, then we need to inspect the parent block to see if we should include the spaces
-      const parentBlock = parentBlockOpt.getOr(body);
+      const parentBlock = parentBlockOpt ?? (body);
       const parentBlockText = getInnerText(parentBlock);
       const textIndex = parentBlockText.indexOf(text);
 
@@ -58,7 +57,7 @@ const getTextContent = (editor: Editor): string =>
     } else {
       return text;
     }
-  }).getOr('');
+  }) ?? ('');
 
 const getSerializedContent = (editor: Editor, args: GetSelectionContentArgs): Content => {
   const rng = editor.selection.getRng(), tmpElm = editor.dom.create('body');
@@ -97,7 +96,7 @@ const setupArgs = (args: Partial<GetSelectionContentArgs>, format: ContentFormat
 
 export const getSelectedContentInternal = (editor: Editor, format: ContentFormat, args: Partial<GetSelectionContentArgs> = {}): Content => {
   const defaultedArgs = setupArgs(args, format);
-  return preProcessGetContent(editor, defaultedArgs).fold(Fun.identity, (updatedArgs) => {
+  return preProcessGetContent(editor, defaultedArgs).fold((x: any) => x, (updatedArgs) => {
     const content = extractSelectedContent(editor, updatedArgs);
     return postProcessGetContent(editor, content, updatedArgs);
   });

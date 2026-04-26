@@ -1,4 +1,4 @@
-import { Optional, Strings } from '@ephox/katamari';
+import { Strings } from '@ephox/katamari';
 import { Attribute, Class, DomEvent, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -15,7 +15,7 @@ interface BoxInfo {
 
 const DOM = DOMUtils.DOM;
 
-const createIframeElement = (id: string, title: TranslatedString, customAttrs: {}, tabindex: Optional<number>) => {
+const createIframeElement = (id: string, title: TranslatedString, customAttrs: {}, tabindex: (number) | null) => {
   const iframe = SugarElement.fromTag('iframe');
 
   // This can also be explicitly set by customAttrs, so do this first

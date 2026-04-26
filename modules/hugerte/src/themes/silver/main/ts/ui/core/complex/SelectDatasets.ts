@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -21,7 +20,7 @@ export interface AdvancedSelectDataset extends UiFactoryBackstageForStyleFormats
 
 export type SelectDataset = BasicSelectDataset | AdvancedSelectDataset;
 
-const process = (rawFormats: string[]): BasicSelectItem[] => Arr.map(rawFormats, (item) => {
+const process = (rawFormats: string[]): BasicSelectItem[] => (rawFormats).map((item) => {
   let title = item, format = item;
   // Allow text=value block formats
   const values = item.split('=');

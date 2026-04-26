@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
 import { Attribute, Css, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { getAttrValue } from '../util/CellUtils';
@@ -89,12 +88,12 @@ const modification = (generators: Generators, toData = elementToData): Generator
     } else {
       const cell = element as SugarElement<CellElement>;
       const replacement = nuCell(toData(cell));
-      recent = Optional.some({ item: cell, replacement });
+      recent = { item: cell, replacement };
       return replacement;
     }
   };
 
-  let recent = Optional.none<Recent>();
+  let recent = null;
   const getOrInit = <T extends RowElement | CellElement>(element: SugarElement<T>, comparator: CompElm): SugarElement<T> => {
     return recent.fold(() => {
       return add(element);
@@ -113,9 +112,9 @@ const transform = (tag: 'td' | 'th') => {
     const list: Item[] = [];
 
     const find = (element: SugarElement<RowElement | CellElement>, comparator: CompElm) => {
-      return Arr.find(list, (x) => {
+      return ((list).find((x) => {
         return comparator(x.item, element);
-      });
+      }) ?? null);
     };
 
     const makeNew = (element: SugarElement<HTMLTableCellElement>) => {
@@ -180,21 +179,19 @@ const merging = (generators: Generators): GeneratorsMerging => {
   const merge = (cells: SugarElement<HTMLTableCellElement>[]) => {
     const getScopeProperty = () => {
 
-      const stringAttributes = Optionals.cat(
-        Arr.map(cells, getScopeAttribute)
-      );
+      const stringAttributes = ((cells).map(getScopeAttribute)).filter((_x: any) => _x !== null);
 
       if (stringAttributes.length === 0) {
-        return Optional.none<string>();
+        return null;
       } else {
         const baseScope = stringAttributes[0];
         const scopes = [ 'row', 'col' ];
 
-        const isMixed = Arr.exists(stringAttributes, (attribute) => {
-          return attribute !== baseScope && Arr.contains(scopes, attribute);
+        const isMixed = (stringAttributes).some((attribute) => {
+          return attribute !== baseScope && (scopes).includes(attribute);
         });
 
-        return isMixed ? Optional.none<string>() : Optional.from(baseScope);
+        return isMixed ? null : (baseScope ?? null);
       }
     };
 
@@ -205,7 +202,7 @@ const merging = (generators: Generators): GeneratorsMerging => {
       (attribute) => Attribute.set(cells[0], 'scope', attribute + 'group')
     );
 
-    return Fun.constant(cells[0]);
+    return () => cells[0];
   };
 
   return {

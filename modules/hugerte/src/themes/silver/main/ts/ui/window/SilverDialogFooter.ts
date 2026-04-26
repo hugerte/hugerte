@@ -2,7 +2,7 @@ import {
   AlloyComponent, AlloyParts, Behaviour, Container, DomFactory, Memento, MementoRecord, ModalDialog, Reflecting, SimpleSpec, SketchSpec
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderFooterButton } from '../general/Button';
@@ -19,7 +19,7 @@ export interface WindowFooterSpec {
 }
 
 export interface FooterState {
-  readonly lookupByName: (buttonName: string) => Optional<AlloyComponent>;
+  readonly lookupByName: (buttonName: string) => (AlloyComponent) | null;
   readonly footerButtons: DialogMemButton[];
 }
 
@@ -27,20 +27,20 @@ const makeButton = (button: Dialog.DialogFooterButton, backstage: UiFactoryBacks
   renderFooterButton(button, button.type, backstage);
 
 const lookup = (compInSystem: AlloyComponent, footerButtons: DialogMemButton[], buttonName: string) =>
-  Arr.find(footerButtons, (button) => button.name === buttonName)
+  ((footerButtons).find((button) => button.name === buttonName) ?? null)
     .bind((memButton) => memButton.memento.getOpt(compInSystem));
 
-const renderComponents = (_data: WindowFooterSpec, state: Optional<FooterState>): SketchSpec[] => {
+const renderComponents = (_data: WindowFooterSpec, state: (FooterState) | null): SketchSpec[] => {
   // default group is 'end'
-  const footerButtons = state.map((s) => s.footerButtons).getOr([ ]);
-  const buttonGroups = Arr.partition(footerButtons, (button) => button.align === 'start');
+  const footerButtons = state.map((s) => s.footerButtons) ?? ([ ]);
+  const buttonGroups = (footerButtons).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((button) => button.align === 'start')(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
 
   const makeGroup = (edge: string, buttons: DialogMemButton[]): SketchSpec => Container.sketch({
     dom: {
       tag: 'div',
       classes: [ `tox-dialog__footer-${edge}` ]
     },
-    components: Arr.map(buttons, (button) => button.memento.asSpec())
+    components: (buttons).map((button) => button.memento.asSpec())
   });
 
   const startButtons = makeGroup('start', buttonGroups.pass);
@@ -50,7 +50,7 @@ const renderComponents = (_data: WindowFooterSpec, state: Optional<FooterState>)
 
 const renderFooter = (initSpec: WindowFooterSpec, dialogId: string, backstage: UiFactoryBackstage): SimpleSpec => {
   const updateState = (comp: AlloyComponent, data: WindowFooterSpec) => {
-    const footerButtons: DialogMemButton[] = Arr.map(data.buttons, (button) => {
+    const footerButtons: DialogMemButton[] = (data.buttons).map((button) => {
       const memButton = Memento.record(makeButton(button, backstage));
       return {
         name: button.name,

@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { Focus } from '@ephox/sugar';
 
 import { Focusing } from '../../api/behaviour/Focusing';
@@ -15,7 +14,7 @@ const onHover = (item: AlloyComponent): void => {
   // and it has the focus, so as you slightly adjust the mouse, you don't
   // want to lose focus on the widget. Note, that because this isn't API based
   // (i.e. we are manually searching for focus), it may not be that flexible.
-  if (Focus.search(item.element).isNone() || Focusing.isFocused(item)) {
+  if (Focus.search(item.element) === null || Focusing.isFocused(item)) {
     if (!Focusing.isFocused(item)) {
       Focusing.focus(item);
     }
@@ -31,9 +30,9 @@ const onToggled = (item: AlloyComponent, state: boolean): void => {
   AlloyTriggers.emitWith(item, toggledEvent, { item, state });
 };
 
-const hover = Fun.constant(hoverEvent);
-const focus = Fun.constant(focusEvent);
-const toggled = Fun.constant(toggledEvent);
+const hover = () => hoverEvent;
+const focus = () => focusEvent;
+const toggled = () => toggledEvent;
 
 export {
   hover,

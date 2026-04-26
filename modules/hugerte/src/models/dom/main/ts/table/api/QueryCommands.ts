@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 import { TableLookup } from '@ephox/snooker';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -17,13 +16,13 @@ const registerQueryCommands = (editor: Editor, actions: TableActions): void => {
         const targets = TableTargets.forMenu(TableSelection.getCellsFromSelection(editor), table, cell);
         return action(table, targets);
       })
-    ).getOr('');
+    ) ?? ('');
 
-  Obj.each({
+  Object.entries({
     mceTableRowType: () => lookupOnSelection(actions.getTableRowType),
     mceTableCellType: () => lookupOnSelection(actions.getTableCellType),
     mceTableColType: () => lookupOnSelection(actions.getTableColType)
-  }, (func, name) => editor.addQueryValueHandler(name, func));
+  }).forEach(([_k, _v]: [any, any]) => ((func, name) => editor.addQueryValueHandler(name, func))(_v, _k));
 };
 
 export { registerQueryCommands };

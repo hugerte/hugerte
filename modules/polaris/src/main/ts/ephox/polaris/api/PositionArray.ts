@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import * as Generator from '../parray/Generator';
 import * as Query from '../parray/Query';
@@ -6,10 +6,10 @@ import * as Split from '../parray/Split';
 import * as Translate from '../parray/Translate';
 import { PRange } from '../pattern/Types';
 
-type GenerateApi = <T, R extends { finish: number }>(xs: T[], f: (x: T, offset: number) => Optional<R>, start?: number) => R[];
+type GenerateApi = <T, R extends { finish: number }>(xs: T[], f: (x: T, offset: number) => (R) | null, start?: number) => R[];
 const generate: GenerateApi = Generator.make;
 
-type GetApi = <T extends PRange>(parray: T[], offset: number) => Optional<T>;
+type GetApi = <T extends PRange>(parray: T[], offset: number) => (T) | null;
 const get: GetApi = Query.get;
 
 type FindApi = typeof Arr.find;

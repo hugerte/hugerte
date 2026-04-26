@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { Insert, SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -6,11 +5,11 @@ import * as Options from '../api/Options';
 import * as InputEvents from '../events/InputEvents';
 import * as NewLineUtils from './NewLineUtils';
 
-const getTopParentBlock = (editor: Editor, node: Node, root: Element, container: Node): Optional<SugarElement<Node>> => {
+const getTopParentBlock = (editor: Editor, node: Node, root: Element, container: Node): (SugarElement<Node>) | null => {
   const dom = editor.dom;
   const selector = (node: Node) => dom.isBlock(node) && node.parentElement === root;
   const topParentBlock = selector(node) ? node : dom.getParent(container, selector, root);
-  return Optional.from(topParentBlock).map(SugarElement.fromDom);
+  return (topParentBlock ?? null).map(SugarElement.fromDom);
 };
 
 const insert = (editor: Editor, before: boolean): void => {

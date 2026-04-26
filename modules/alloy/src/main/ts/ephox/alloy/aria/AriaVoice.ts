@@ -1,4 +1,3 @@
-import { Fun, Id } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Attribute, Css, Insert, Remove, SugarElement, Traverse } from '@ephox/sugar';
 
@@ -7,7 +6,7 @@ const offscreen = {
   left: '-9999px'
 };
 
-const tokenSelector = Fun.constant('span[id^="ephox-alloy-aria-voice"]');
+const tokenSelector = () => 'span[id^="ephox-alloy-aria-voice"]';
 
 // INVESTIGATE: Aria is special for insertion. Think about it more.
 const create = (doc: SugarElement<Document>, text: string): SugarElement<HTMLSpanElement> => {
@@ -20,7 +19,7 @@ const create = (doc: SugarElement<Document>, text: string): SugarElement<HTMLSpa
 };
 
 const linkToDescription = (item: SugarElement<Element>, token: SugarElement<Element>): void => {
-  const id = Id.generate('ephox-alloy-aria-voice');
+  const id = (('ephox-alloy-aria-voice') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
   Attribute.set(token, 'id', id);
   Attribute.set(item, 'aria-describedby', id);
 };

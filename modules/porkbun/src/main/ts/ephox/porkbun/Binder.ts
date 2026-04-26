@@ -13,7 +13,7 @@ const create = (): Binder => {
   const handlers: EventHandler<any>[] = [];
 
   const bind = <T>(registration: Bindable<T>, handler: EventHandler<T>) => {
-    if (Arr.contains(registrations, registration)) {
+    if ((registrations).includes(registration)) {
       throw new Error('Invalid key, key already exists.');
     } else {
       registrations.push(registration);
@@ -34,7 +34,7 @@ const create = (): Binder => {
   };
 
   const unbindAll = () => {
-    Arr.each(registrations, (registration, i) => {
+    (registrations).forEach((registration, i) => {
       const handler = handlers[i];
       registration.unbind(handler);
     });

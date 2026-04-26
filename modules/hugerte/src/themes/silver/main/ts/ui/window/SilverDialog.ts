@@ -1,6 +1,6 @@
 import { AlloyComponent, Composing, ModalDialog, Reflecting } from '@ephox/alloy';
 import { Dialog, DialogManager } from '@ephox/bridge';
-import { Cell, Fun, Id, Optional, Optionals } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { dialogChannel } from './DialogChannels';
@@ -16,7 +16,7 @@ interface RenderedDialog<T extends Dialog.DialogData> {
 }
 
 const renderDialog = <T extends Dialog.DialogData>(dialogInit: DialogManager.DialogInit<T>, extra: SilverDialogCommon.WindowExtra<T>, backstage: UiFactoryBackstage): RenderedDialog<T> => {
-  const dialogId = Id.generate('dialog');
+  const dialogId = (('dialog') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
   const internalDialog = dialogInit.internalDialog;
   const header = SilverDialogCommon.getHeader(internalDialog.title, dialogId, backstage);
 
@@ -27,7 +27,7 @@ const renderDialog = <T extends Dialog.DialogData>(dialogInit: DialogManager.Dia
   const updateState = (comp: AlloyComponent, incoming: DialogManager.DialogInit<T>) => {
     dialogSize.set(incoming.internalDialog.size);
     SilverDialogCommon.updateDialogSizeClass(incoming.internalDialog.size, comp);
-    return Optional.some(incoming);
+    return incoming;
   };
 
   const body = renderModalBody({
@@ -39,10 +39,7 @@ const renderDialog = <T extends Dialog.DialogData>(dialogInit: DialogManager.Dia
 
   const objOfCells = SilverDialogCommon.extractCellsToObject(storedMenuButtons);
 
-  const footer = Optionals.someIf(
-    storedMenuButtons.length !== 0,
-    renderModalFooter({ buttons: storedMenuButtons }, dialogId, backstage)
-  );
+  const footer = (storedMenuButtons.length !== 0 ? renderModalFooter({ buttons: storedMenuButtons }, dialogId, backstage) : null);
 
   const dialogEvents = SilverDialogEvents.initDialog<T>(
     () => instanceApi,
@@ -71,7 +68,7 @@ const renderDialog = <T extends Dialog.DialogData>(dialogInit: DialogManager.Dia
   const modalAccess = ((): DialogAccess => {
     const getForm = (): AlloyComponent => {
       const outerForm = ModalDialog.getBody(dialog);
-      return Composing.getCurrent(outerForm).getOr(outerForm);
+      return Composing.getCurrent(outerForm) ?? (outerForm);
     };
 
     const toggleFullscreen = (): void => {
@@ -79,8 +76,8 @@ const renderDialog = <T extends Dialog.DialogData>(dialogInit: DialogManager.Dia
     };
 
     return {
-      getId: Fun.constant(dialogId),
-      getRoot: Fun.constant(dialog),
+      getId: () => dialogId,
+      getRoot: () => dialog,
       getBody: () => ModalDialog.getBody(dialog),
       getFooter: () => ModalDialog.getFooter(dialog),
       getFormWrapper: getForm,

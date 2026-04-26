@@ -1,4 +1,4 @@
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { Bounds } from '../../alien/Boxes';
 import { LazySink } from '../../api/component/CommonTypes';
@@ -10,7 +10,7 @@ import { ToolbarSpec } from './ToolbarTypes';
 
 export interface SplitFloatingToolbarDetail extends SplitToolbarBaseDetail {
   lazySink: LazySink;
-  getOverflowBounds: Optional<() => Bounds>;
+  getOverflowBounds: (() =) | null Bounds>;
 
   markers: {
     overflowToggledClass: string;
@@ -24,7 +24,7 @@ export interface SplitFloatingToolbarDetail extends SplitToolbarBaseDetail {
 
 export interface SplitFloatingToolbarApis extends SplitToolbarBaseApis {
   reposition: (toolbar: AlloyComponent) => void;
-  getOverflow: (toolbar: AlloyComponent) => Optional<AlloyComponent>;
+  getOverflow: (toolbar: AlloyComponent) => (AlloyComponent) | null;
 }
 
 export interface SplitFloatingToolbarSpec extends SplitToolbarBaseSpec {

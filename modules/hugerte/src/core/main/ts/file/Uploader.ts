@@ -1,4 +1,3 @@
-import { Fun, Optional, Type } from '@ephox/katamari';
 
 import { BlobInfo } from '../api/file/BlobCache';
 import { NotificationApi } from '../api/NotificationManager';
@@ -86,7 +85,7 @@ export const Uploader = (uploadStatus: UploadStatus, settings: UploaderSettings)
 
         const json = JSON.parse(xhr.responseText);
 
-        if (!json || !Type.isString(json.location)) {
+        if (!json || !typeof (json.location) === 'string') {
           failure('Invalid JSON: ' + xhr.responseText);
           return;
         }
@@ -100,7 +99,7 @@ export const Uploader = (uploadStatus: UploadStatus, settings: UploaderSettings)
       xhr.send(formData);
     });
 
-  const uploadHandler = Type.isFunction(settings.handler) ? settings.handler : defaultHandler;
+  const uploadHandler = typeof (settings.handler) === 'function' ? settings.handler : defaultHandler;
 
   const noUpload = (): Promise<UploadResult[]> =>
     new Promise((resolve) => {
@@ -139,7 +138,7 @@ export const Uploader = (uploadStatus: UploadStatus, settings: UploaderSettings)
         const closeNotification = () => {
           if (notification) {
             notification.close();
-            progress = Fun.noop; // Once it's closed it's closed
+            progress = () => {}; // Once it's closed it's closed
           }
         };
 
@@ -162,8 +161,8 @@ export const Uploader = (uploadStatus: UploadStatus, settings: UploaderSettings)
             return;
           }
 
-          Optional.from(notification)
-            .orThunk(() => Optional.from(openNotification).map(Fun.apply))
+          (notification ?? null)
+            .orThunk(() => (openNotification ?? null).map(((f: () => any) => f())))
             .each((n) => {
               notification = n;
               n.progressBar.value(percent);
@@ -171,7 +170,7 @@ export const Uploader = (uploadStatus: UploadStatus, settings: UploaderSettings)
         };
 
         handler(blobInfo, progress).then(success, (err) => {
-          failure(Type.isString(err) ? { message: err } : err);
+          failure(typeof (err) === 'string' ? { message: err } : err);
         });
       } catch (ex) {
         resolve(handlerFailure(blobInfo, ex as Error));

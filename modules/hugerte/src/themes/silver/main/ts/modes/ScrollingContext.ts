@@ -1,5 +1,4 @@
 import { Bounds, Boxes } from '@ephox/alloy';
-import { Arr, Optional, Strings } from '@ephox/katamari';
 import { Css, PredicateFilter, SugarElement, SugarNode, SugarShadowDom } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -15,7 +14,7 @@ export interface ScrollingContext {
 const nonScrollingOverflows = [ 'visible', 'hidden', 'clip' ];
 
 const isScrollingOverflowValue = (value: string): boolean =>
-  Strings.trim(value).length > 0 && !Arr.contains(nonScrollingOverflows, value);
+  (value).trim().length > 0 && !(nonScrollingOverflows).includes(value);
 
 export const isScroller = (elem: SugarElement<Node> | any): boolean => {
   if (SugarNode.isHTMLElement(elem)) {
@@ -29,16 +28,16 @@ export const isScroller = (elem: SugarElement<Node> | any): boolean => {
 
 // NOTE: Calculating the list of scrolling ancestors each time this function is called might
 // be unnecessary. It will depend on its usage.
-export const detect = (popupSinkElem: SugarElement<HTMLElement>): Optional<ScrollingContext> => {
+export const detect = (popupSinkElem: SugarElement<HTMLElement>): (ScrollingContext) | null => {
   const ancestorsScrollers = PredicateFilter.ancestors(popupSinkElem, isScroller) as SugarElement<HTMLElement>[];
 
   // If there is no scrollable container, we try to see if it's in a shadow root, and try to traverse beyond the host of shadow root to retrieve the scrollable container
   // If it is not within a ShadowRoot, since if there's a scrollable container as the ancestors, then it would not execute the code below, or return an empty array if it's not in a ShadowRoot
   const scrollers = ancestorsScrollers.length === 0
-    ? SugarShadowDom.getShadowRoot(popupSinkElem).map(SugarShadowDom.getShadowHost).map((x) => PredicateFilter.ancestors(x, isScroller)).getOr([]) as SugarElement<HTMLElement>[]
+    ? SugarShadowDom.getShadowRoot(popupSinkElem).map(SugarShadowDom.getShadowHost).map((x) => PredicateFilter.ancestors(x, isScroller)) ?? ([]) as SugarElement<HTMLElement>[]
     : ancestorsScrollers;
 
-  return Arr.head(scrollers)
+  return ((scrollers)[0] ?? null)
     .map(
       (element) => ({
         element,
@@ -49,8 +48,8 @@ export const detect = (popupSinkElem: SugarElement<HTMLElement>): Optional<Scrol
     );
 };
 
-export const detectWhenSplitUiMode = (editor: Editor, popupSinkElem: SugarElement<HTMLElement>): Optional<ScrollingContext> =>
-  Options.isSplitUiMode(editor) ? detect(popupSinkElem) : Optional.none();
+export const detectWhenSplitUiMode = (editor: Editor, popupSinkElem: SugarElement<HTMLElement>): (ScrollingContext) | null =>
+  Options.isSplitUiMode(editor) ? detect(popupSinkElem) : null;
 
 // Using all the scrolling viewports in the ancestry, limit the absolute
 // coordinates of window so that the bounds are limited by all the scrolling
@@ -59,7 +58,7 @@ export const getBoundsFrom = (sc: ScrollingContext): Bounds => {
   const scrollableBoxes = [
     // sc.element is the main scroller, others are *additional* scrollers above that
     // we need to combine all of them to constrain the bounds
-    ...Arr.map(sc.others, Boxes.box),
+    ...(sc.others).map(Boxes.box),
     Boxes.win()
   ];
 

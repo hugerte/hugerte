@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 import { ContentEditable, EventArgs, PredicateFind, Situ, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as KeySelection from '../keyboard/KeySelection';
@@ -20,8 +20,8 @@ export type MouseHandler = MouseSelection;
 export type ExternalHandler = (start: SugarElement<HTMLTableCellElement>, finish: SugarElement<HTMLTableCellElement>) => void;
 
 export interface KeyboardHandler {
-  readonly keydown: (event: EventArgs<KeyboardEvent>, start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number, direction: typeof SelectionKeys.ltr) => Optional<Response>;
-  readonly keyup: (event: EventArgs<KeyboardEvent>, start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number) => Optional<Response>;
+  readonly keydown: (event: EventArgs<KeyboardEvent>, start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number, direction: typeof SelectionKeys.ltr) => (Response) | null;
+  readonly keyup: (event: EventArgs<KeyboardEvent>, start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number) => (Response) | null;
 }
 
 const rc = (rows: number, cols: number): RC => ({ rows, cols });
@@ -47,7 +47,7 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
 
   const clearToNavigate = () => {
     annotations.clear(container);
-    return Optional.none<Response>();
+    return null;
   };
 
   const keydown = (event: EventArgs<KeyboardEvent>, start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number, direction: typeof SelectionKeys.ltr) => {
@@ -65,13 +65,13 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
       if (SelectionKeys.isNavigation(keycode) && shiftKey && !isEditableSelection(start, finish)) {
         return Optional.none;
       } else if (SelectionKeys.isDown(keycode) && shiftKey) {
-        return Fun.curry(VerticalMovement.select, bridge, container, isRoot, KeyDirection.down, finish, start, annotations.selectRange);
+        return ((..._rest: any[]) => (VerticalMovement.select)(bridge, container, isRoot, KeyDirection.down, finish, start, annotations.selectRange, ..._rest));
       } else if (SelectionKeys.isUp(keycode) && shiftKey) { // Shift up should predict the movement and set the selection.
-        return Fun.curry(VerticalMovement.select, bridge, container, isRoot, KeyDirection.up, finish, start, annotations.selectRange);
+        return ((..._rest: any[]) => (VerticalMovement.select)(bridge, container, isRoot, KeyDirection.up, finish, start, annotations.selectRange, ..._rest));
       } else if (SelectionKeys.isDown(keycode)) { // Down should predict the movement and set the cursor
-        return Fun.curry(VerticalMovement.navigate, bridge, isRoot, KeyDirection.down, finish, start, VerticalMovement.lastDownCheck);
+        return ((..._rest: any[]) => (VerticalMovement.navigate)(bridge, isRoot, KeyDirection.down, finish, start, VerticalMovement.lastDownCheck, ..._rest));
       } else if (SelectionKeys.isUp(keycode)) { // Up should predict the movement and set the cursor
-        return Fun.curry(VerticalMovement.navigate, bridge, isRoot, KeyDirection.up, finish, start, VerticalMovement.firstUpCheck);
+        return ((..._rest: any[]) => (VerticalMovement.navigate)(bridge, isRoot, KeyDirection.up, finish, start, VerticalMovement.firstUpCheck, ..._rest));
       } else {
         return Optional.none;
       }
@@ -91,10 +91,10 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
               const relative = SelectionKeys.isDown(keycode) || direction.isForward(keycode) ? Situ.after : Situ.before;
               bridge.setRelativeSelection(Situ.on(edges.first, 0), relative(edges.table));
               annotations.clear(container);
-              return Response.create(Optional.none(), true);
+              return Response.create(null, true);
             });
           }, (_) => {
-            return Optional.some(Response.create(Optional.none(), true));
+            return Response.create(null, true);
           });
         };
       };
@@ -120,17 +120,17 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
   };
 
   const keyup = (event: EventArgs<KeyboardEvent>, start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number) => {
-    return CellSelection.retrieve(container, annotations.selectedSelector).fold<Optional<Response>>(() => {
+    return CellSelection.retrieve(container, annotations.selectedSelector).fold<(Response) | null>(() => {
       const realEvent = event.raw;
       const keycode = realEvent.which;
       const shiftKey = realEvent.shiftKey === true;
       if (!shiftKey) {
-        return Optional.none<Response>();
+        return null;
       }
       if (SelectionKeys.isNavigation(keycode) && isEditableSelection(start, finish)) {
         return KeySelection.sync(container, isRoot, start, soffset, finish, foffset, annotations.selectRange);
       } else {
-        return Optional.none<Response>();
+        return null;
       }
     }, Optional.none);
   };
@@ -147,7 +147,7 @@ const external = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
   return (start: SugarElement<HTMLTableCellElement>, finish: SugarElement<HTMLTableCellElement>) => {
     annotations.clearBeforeUpdate(container);
     CellSelection.identify(start, finish, isRoot).each((cellSel) => {
-      const boxes = cellSel.boxes.getOr([]);
+      const boxes = cellSel.boxes ?? ([]);
       annotations.selectRange(container, boxes, cellSel.start, cellSel.finish);
 
       // stop the browser from creating a big text selection, place the selection at the end of the cell where the cursor is

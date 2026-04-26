@@ -3,7 +3,7 @@ import {
   Tabstopping
 } from '@ephox/alloy';
 import { Dialog, Menu as BridgeMenu } from '@ephox/bridge';
-import { Arr, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
+import { Arr, Obj } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
@@ -21,7 +21,7 @@ const isSingleListItem = (item: Dialog.ListBoxItemSpec): item is Dialog.ListBoxS
 const dataAttribute = 'data-value';
 
 const fetchItems = (dropdownComp: AlloyComponent, name: string, items: Dialog.ListBoxItemSpec[], selectedValue: string): Array<BridgeMenu.ToggleMenuItemSpec | BridgeMenu.NestedMenuItemSpec> =>
-  Arr.map(items, (item) => {
+  (items).map((item) => {
     if (!isSingleListItem(item)) {
       return {
         type: 'nestedmenuitem',
@@ -43,20 +43,20 @@ const fetchItems = (dropdownComp: AlloyComponent, name: string, items: Dialog.Li
     }
   });
 
-const findItemByValue = (items: Dialog.ListBoxItemSpec[], value: string): Optional<Dialog.ListBoxSingleItemSpec> =>
+const findItemByValue = (items: Dialog.ListBoxItemSpec[], value: string): (Dialog.ListBoxSingleItemSpec) | null =>
   Arr.findMap(items, (item) => {
     if (!isSingleListItem(item)) {
       return findItemByValue(item.items, value);
     } else {
-      return Optionals.someIf(item.value === value, item);
+      return (item.value === value ? item : null);
     }
   });
 
-export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, initialData: Optional<string>): SketchSpec => {
+export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, initialData: (string) | null): SketchSpec => {
   const providersBackstage = backstage.shared.providers;
   const initialItem = initialData
     .bind((value) => findItemByValue(spec.items, value))
-    .orThunk(() => Arr.head(spec.items).filter(isSingleListItem));
+    .orThunk(() => ((spec.items)[0] ?? null).filter(isSingleListItem));
 
   const pLabel = spec.label.map((label) => renderLabel(label, providersBackstage));
 
@@ -66,9 +66,9 @@ export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, 
       sketch: (sketchSpec: SketchSpec) => renderCommonDropdown({
         uid: sketchSpec.uid,
         text: initialItem.map((item) => item.text),
-        icon: Optional.none(),
-        tooltip: Optional.none(),
-        role: Optional.none(),
+        icon: null,
+        tooltip: null,
+        role: null,
         ariaLabel: spec.label,
         fetch: (comp, callback) => {
           const items = fetchItems(comp, spec.name, spec.items, Representing.getValue(comp));
@@ -79,13 +79,13 @@ export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, 
               backstage,
               {
                 isHorizontalMenu: false,
-                search: Optional.none()
+                search: null
               }
             )
           );
         },
-        onSetup: Fun.constant(Fun.noop),
-        getApi: Fun.constant({ }),
+        onSetup: () => () => {},
+        getApi: () => { },
         columns: 1,
         presets: 'normal',
         classes: [],
@@ -126,7 +126,7 @@ export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, 
     components: Arr.flatten<AlloySpec>([ pLabel.toArray(), [ listBoxWrap ]]),
     fieldBehaviours: Behaviour.derive([
       Disabling.config({
-        disabled: Fun.constant(!spec.enabled),
+        disabled: () => !spec.enabled,
         onDisabled: (comp) => {
           AlloyFormField.getField(comp).each(Disabling.disable);
         },

@@ -1,5 +1,4 @@
 import { FieldPresence, FieldProcessor, FieldSchema, ValueType } from '@ephox/boulder';
-import { Fun, Id } from '@ephox/katamari';
 
 export const type = FieldSchema.requiredString('type');
 export const name = FieldSchema.requiredString('name');
@@ -12,7 +11,7 @@ export const fetch = FieldSchema.requiredFunction('fetch');
 export const getSubmenuItems = FieldSchema.requiredFunction('getSubmenuItems');
 export const onAction = FieldSchema.requiredFunction('onAction');
 export const onItemAction = FieldSchema.requiredFunction('onItemAction');
-export const onSetup = FieldSchema.defaultedFunction('onSetup', () => Fun.noop);
+export const onSetup = FieldSchema.defaultedFunction('onSetup', () => () => {});
 
 export const optionalName = FieldSchema.optionString('name');
 export const optionalText = FieldSchema.optionString('text');
@@ -28,14 +27,14 @@ export const enabled = FieldSchema.defaultedBoolean('enabled', true);
 export const primary = FieldSchema.defaultedBoolean('primary', false);
 export const defaultedColumns = (num: number | 'auto'): FieldProcessor => FieldSchema.defaulted('columns', num);
 export const defaultedMeta = FieldSchema.defaulted('meta', {});
-export const defaultedOnAction = FieldSchema.defaultedFunction('onAction', Fun.noop);
+export const defaultedOnAction = FieldSchema.defaultedFunction('onAction', () => {});
 export const defaultedType = (type: string): FieldProcessor => FieldSchema.defaultedString('type', type);
 
 export const generatedName = (namePrefix: string): FieldProcessor =>
   FieldSchema.field(
     'name',
     'name',
-    FieldPresence.defaultedThunk(() => Id.generate(`${namePrefix}-name`)),
+    FieldPresence.defaultedThunk(() => ((`${namePrefix}-name`) + '_' + Math.floor(Math.random() * 1e9) + Date.now())),
     ValueType.string
   );
 
@@ -43,6 +42,6 @@ export const generatedValue = (valuePrefix: string): FieldProcessor =>
   FieldSchema.field(
     'value',
     'value',
-    FieldPresence.defaultedThunk(() => Id.generate(`${valuePrefix}-value`)),
+    FieldPresence.defaultedThunk(() => ((`${valuePrefix}-value`) + '_' + Math.floor(Math.random() * 1e9) + Date.now())),
     ValueType.anyValue()
   );

@@ -4,7 +4,6 @@ import {
 } from '@ephox/alloy';
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
 import { View as BridgeView } from '@ephox/bridge';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
 import { Attribute, Css } from '@ephox/sugar';
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -23,12 +22,12 @@ interface SilverViewWrapperDetail extends Sketcher.SingleSketchDetail {
 
 interface SilverViewWrapperApis {
   readonly setViews: (comp: AlloyComponent, viewConfigs: ViewConfig) => void;
-  readonly whichView: (comp: AlloyComponent) => Optional<string>;
+  readonly whichView: (comp: AlloyComponent) => (string) | null;
   readonly toggleView: (comp: AlloyComponent, showMainView: () => void, hideMainView: () => void, name: string) => boolean;
 }
 
 const makeViews = (parts: SlotContainerTypes.SlotContainerParts, viewConfigs: ViewConfig, providers: UiFactoryBackstageProviders) => {
-  return Obj.mapToArray(viewConfigs, (config, name) => {
+  return Object.entries(viewConfigs).map(([_k, _v]: [any, any]) => ((config, name) => {
     const internalViewConfig: BridgeView.View = StructureSchema.getOrDie(BridgeView.createView(config));
 
     return parts.slot(name, View.sketch({
@@ -47,7 +46,7 @@ const makeViews = (parts: SlotContainerTypes.SlotContainerParts, viewConfigs: Vi
         View.parts.pane({})
       ]
     }));
-  });
+  })(_v, _k as any));
 };
 
 const makeSlotContainer = (viewConfigs: ViewConfig, providers: UiFactoryBackstageProviders) => SlotContainer.sketch((parts) => ({
@@ -62,9 +61,8 @@ const makeSlotContainer = (viewConfigs: ViewConfig, providers: UiFactoryBackstag
 }));
 
 const getCurrentName = (slotContainer: AlloyComponent) => {
-  return Arr.find(SlotContainer.getSlotNames(slotContainer), (name) =>
-    SlotContainer.isShowing(slotContainer, name)
-  );
+  return ((SlotContainer.getSlotNames(slotContainer)).find((name) =>
+    SlotContainer.isShowing(slotContainer, name)) ?? null);
 };
 
 const hideContainer = (comp: AlloyComponent) => {
@@ -80,7 +78,7 @@ const showContainer = (comp: AlloyComponent) => {
 };
 
 const makeViewInstanceApi = (slot: HTMLElement): BridgeView.ViewInstanceApi => ({
-  getContainer: Fun.constant(slot)
+  getContainer: () => slot
 });
 
 const runOnPaneWithInstanceApi = (slotContainer: AlloyComponent, name: string, get: (view: AlloyComponent) => (api: BridgeView.ViewInstanceApi) => void) => {
@@ -100,7 +98,7 @@ const factory: UiSketcher.SingleSketchFactory<SilverViewWrapperDetail, SilverVie
     Replacing.set(comp, [ makeSlotContainer(viewConfigs, spec.backstage.shared.providers) ]);
   };
 
-  const whichView = (comp: AlloyComponent): Optional<string> => {
+  const whichView = (comp: AlloyComponent): (string) | null => {
     return Composing.getCurrent(comp).bind(getCurrentName);
   };
 
@@ -108,7 +106,7 @@ const factory: UiSketcher.SingleSketchFactory<SilverViewWrapperDetail, SilverVie
     return Composing.getCurrent(comp).exists((slotContainer) => {
       const optCurrentSlotName = getCurrentName(slotContainer);
       const isTogglingCurrentView = optCurrentSlotName.exists((current) => name === current);
-      const exists = SlotContainer.getSlot(slotContainer, name).isSome();
+      const exists = SlotContainer.getSlot(slotContainer, name) !== null;
 
       if (exists) {
         SlotContainer.hideAllSlots(slotContainer);
@@ -152,7 +150,7 @@ const factory: UiSketcher.SingleSketchFactory<SilverViewWrapperDetail, SilverVie
       Composing.config({
         find: (comp: AlloyComponent) => {
           const children = Replacing.contents(comp);
-          return Arr.head(children);
+          return ((children)[0] ?? null);
         }
       })
     ]),

@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 import * as AlloyParts from '../../parts/AlloyParts';
 import * as CustomListSchema from '../../ui/schema/CustomListSchema';
@@ -30,16 +29,16 @@ const factory: CompositeSketchFactory<CustomListDetail, CustomListSpec> = (detai
 
       const numListsToAdd = numListsRequired - itemComps.length;
       const itemsToAdd = numListsToAdd > 0 ?
-        Arr.range(numListsToAdd, () => detail.makeItem()) : [ ];
+        Array.from({length: numListsToAdd}, (_, _i) => (() => detail.makeItem())(_i)) : [ ];
 
       const itemsToRemove = itemComps.slice(numListsRequired);
 
-      Arr.each(itemsToRemove, (item) => Replacing.remove(container, item));
-      Arr.each(itemsToAdd, (item) => Replacing.append(container, item));
+      (itemsToRemove).forEach((item) => Replacing.remove(container, item));
+      (itemsToAdd).forEach((item) => Replacing.append(container, item));
 
       const builtLists = Replacing.contents(container);
 
-      Arr.each(builtLists, (item, i) => {
+      (builtLists).forEach((item, i) => {
         detail.setupItem(list, item, items[i], i);
       });
     });
@@ -51,7 +50,7 @@ const factory: CompositeSketchFactory<CustomListDetail, CustomListSpec> = (detai
     components: AlloySpec[];
   } = detail.shell ? { behaviours: [ Replacing.config({ }) ], components: [ ] } : { behaviours: [ ], components };
 
-  const getListContainer = (component: AlloyComponent) => detail.shell ? Optional.some(component) : AlloyParts.getPart(component, detail, 'items');
+  const getListContainer = (component: AlloyComponent) => detail.shell ? component : AlloyParts.getPart(component, detail, 'items');
 
   return {
     uid: detail.uid,

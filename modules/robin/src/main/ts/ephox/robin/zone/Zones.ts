@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
 
 import { WordScope } from '../data/WordScope';
 import * as Identify from '../words/Identify';
@@ -16,13 +15,13 @@ export interface Zones<E> {
 }
 
 export const fromWalking = <E, D>(universe: Universe<E, D>, groups: ZoneDetails<E>[]): Zones<E> => {
-  const zones = Arr.map(groups, (group: ZoneDetails<E>) => {
+  const zones = (groups).map((group: ZoneDetails<E>) => {
     const details = group.details;
     const lang = group.lang;
 
-    const line = Arr.map(details, (x) => x.text).join('');
+    const line = (details).map((x) => x.text).join('');
 
-    const elements = Arr.map(details, (x) => x.item);
+    const elements = (details).map((x) => x.item);
 
     const words = Identify.words(line);
 

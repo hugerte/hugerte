@@ -1,4 +1,3 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { DetailExt } from '../api/Structs';
@@ -12,18 +11,17 @@ type ValidCellFn = (cell: SugarElement<HTMLTableCellElement>) => boolean;
  * sizes that are only available through the difference of two
  * spanning columns.
  */
-const columns = (warehouse: Warehouse, isValidCell: ValidCellFn = Fun.always): Optional<SugarElement<HTMLTableCellElement>>[] => {
+const columns = (warehouse: Warehouse, isValidCell: ValidCellFn = (() => true as const)): (SugarElement<HTMLTableCellElement>) | null[] => {
   const grid = warehouse.grid;
-  const cols = Arr.range(grid.columns, Fun.identity);
-  const rowsArr = Arr.range(grid.rows, Fun.identity);
+  const cols = Array.from({length: grid.columns}, (_, _i) => ((x: any) => x)(_i));
+  const rowsArr = Array.from({length: grid.rows}, (_, _i) => ((x: any) => x)(_i));
 
-  return Arr.map(cols, (col) => {
+  return (cols).map((col) => {
     const getBlock = () =>
-      Arr.bind(rowsArr, (r) =>
+      (rowsArr).flatMap((r) =>
         Warehouse.getAt(warehouse, r, col)
           .filter((detail) => detail.column === col)
-          .toArray()
-      );
+          .toArray());
 
     const isValid = (detail: DetailExt) => detail.colspan === 1 && isValidCell(detail.element);
     const getFallback = () => Warehouse.getAt(warehouse, 0, col);
@@ -34,24 +32,23 @@ const columns = (warehouse: Warehouse, isValidCell: ValidCellFn = Fun.always): O
 const decide = (
   getBlock: () => DetailExt[],
   isValid: (detail: DetailExt) => boolean,
-  getFallback: () => Optional<DetailExt>
-): Optional<SugarElement<HTMLTableCellElement>> => {
+  getFallback: () => (DetailExt) | null
+): (SugarElement<HTMLTableCellElement>) | null => {
   const inBlock = getBlock();
-  const validInBlock = Arr.find(inBlock, isValid);
-  const detailOption = validInBlock.orThunk(() => Optional.from(inBlock[0]).orThunk(getFallback));
+  const validInBlock = ((inBlock).find(isValid) ?? null);
+  const detailOption = validInBlock.orThunk(() => (inBlock[0] ?? null).orThunk(getFallback));
   return detailOption.map((detail) => detail.element);
 };
 
-const rows = (warehouse: Warehouse): Optional<SugarElement<HTMLTableCellElement>>[] => {
+const rows = (warehouse: Warehouse): (SugarElement<HTMLTableCellElement>) | null[] => {
   const grid = warehouse.grid;
-  const rowsArr = Arr.range(grid.rows, Fun.identity);
-  const cols = Arr.range(grid.columns, Fun.identity);
+  const rowsArr = Array.from({length: grid.rows}, (_, _i) => ((x: any) => x)(_i));
+  const cols = Array.from({length: grid.columns}, (_, _i) => ((x: any) => x)(_i));
 
-  return Arr.map(rowsArr, (row) => {
-    const getBlock = () => Arr.bind(cols, (c) => Warehouse.getAt(warehouse, row, c)
+  return (rowsArr).map((row) => {
+    const getBlock = () => (cols).flatMap((c) => Warehouse.getAt(warehouse, row, c)
       .filter((detail) => detail.row === row)
-      .fold(Fun.constant([] as DetailExt[]), (detail) => [ detail ])
-    );
+      .fold(() => [] as DetailExt[], (detail) => [ detail ]));
 
     const isSingle = (detail: DetailExt) => detail.rowspan === 1;
     const getFallback = () => Warehouse.getAt(warehouse, row, 0);

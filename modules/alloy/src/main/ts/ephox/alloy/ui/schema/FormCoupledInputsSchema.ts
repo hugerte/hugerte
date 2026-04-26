@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import * as AddEventsBehaviour from '../../api/behaviour/AddEventsBehaviour';
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -19,14 +18,14 @@ import { ButtonSpec } from '../types/ButtonTypes';
 import { FormCoupledInputsDetail } from '../types/FormCoupledInputsTypes';
 import { FormFieldSpec } from '../types/FormFieldTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.defaulted('field1Name', 'field1'),
   FieldSchema.defaulted('field2Name', 'field2'),
   Fields.onStrictHandler('onLockedChange'),
   Fields.markers([ 'lockClass' ]),
   FieldSchema.defaulted('locked', false),
   SketchBehaviours.field('coupledFieldBehaviours', [ Composing, Representing ])
-]);
+];
 
 const getField = (comp: AlloyComponent, detail: FormCoupledInputsDetail, partName: string) => AlloyParts.getPart(comp, detail, partName).bind(Composing.getCurrent);
 
@@ -53,7 +52,7 @@ const coupledPart = (selfName: string, otherName: string) => PartType.required<F
   }
 });
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   coupledPart('field1', 'field2'),
   coupledPart('field2', 'field1'),
 
@@ -77,9 +76,9 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
       };
     }
   })
-]);
+];
 
-const name = Fun.constant('CoupledInputs');
+const name = () => 'CoupledInputs';
 
 export {
   name,

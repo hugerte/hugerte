@@ -1,18 +1,18 @@
-import { Num, Optional } from '@ephox/katamari';
+import { Num } from '@ephox/katamari';
 
 export interface WrapArrNavigationOutcome {
   readonly row: number;
   readonly column: number;
 }
-export type ArrNavigationFunc<A> = (values: A[], index: number, numRows: number, numCols: number) => Optional<A>;
+export type ArrNavigationFunc<A> = (values: A[], index: number, numRows: number, numCols: number) => (A) | null;
 
-const withGrid = <A>(values: A[], index: number, numCols: number, f: (oldRow: number, oldColumn: number) => Optional<WrapArrNavigationOutcome>): Optional<A> => {
+const withGrid = <A>(values: A[], index: number, numCols: number, f: (oldRow: number, oldColumn: number) => (WrapArrNavigationOutcome) | null): (A) | null => {
   const oldRow = Math.floor(index / numCols);
   const oldColumn = index % numCols;
 
   return f(oldRow, oldColumn).bind((address) => {
     const newIndex = address.row * numCols + address.column;
-    return newIndex >= 0 && newIndex < values.length ? Optional.some(values[newIndex]) : Optional.none();
+    return newIndex >= 0 && newIndex < values.length ? values[newIndex] : null;
   });
 };
 
@@ -20,10 +20,10 @@ const cycleHorizontal = <A>(values: A[], index: number, numRows: number, numCols
   const onLastRow = oldRow === numRows - 1;
   const colsInRow = onLastRow ? values.length - (oldRow * numCols) : numCols;
   const newColumn = Num.cycleBy(oldColumn, delta, 0, colsInRow - 1);
-  return Optional.some({
+  return {
     row: oldRow,
     column: newColumn
-  });
+  };
 });
 
 const cycleVertical = <A>(values: A[], index: number, numRows: number, numCols: number, delta: number) => withGrid(values, index, numCols, (oldRow, oldColumn) => {
@@ -31,22 +31,22 @@ const cycleVertical = <A>(values: A[], index: number, numRows: number, numCols: 
   const onLastRow = newRow === numRows - 1;
   const colsInRow = onLastRow ? values.length - (newRow * numCols) : numCols;
   const newCol = Num.clamp(oldColumn, 0, colsInRow - 1);
-  return Optional.some({
+  return {
     row: newRow,
     column: newCol
-  });
+  };
 });
 
-const cycleRight = <A>(values: A[], index: number, numRows: number, numCols: number): Optional<A> =>
+const cycleRight = <A>(values: A[], index: number, numRows: number, numCols: number): (A) | null =>
   cycleHorizontal(values, index, numRows, numCols, +1);
 
-const cycleLeft = <A>(values: A[], index: number, numRows: number, numCols: number): Optional<A> =>
+const cycleLeft = <A>(values: A[], index: number, numRows: number, numCols: number): (A) | null =>
   cycleHorizontal(values, index, numRows, numCols, -1);
 
-const cycleUp = <A>(values: A[], index: number, numRows: number, numCols: number): Optional<A> =>
+const cycleUp = <A>(values: A[], index: number, numRows: number, numCols: number): (A) | null =>
   cycleVertical(values, index, numRows, numCols, -1);
 
-const cycleDown = <A>(values: A[], index: number, numRows: number, numCols: number): Optional<A> =>
+const cycleDown = <A>(values: A[], index: number, numRows: number, numCols: number): (A) | null =>
   cycleVertical(values, index, numRows, numCols, +1);
 
 export {

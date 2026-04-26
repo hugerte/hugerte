@@ -1,4 +1,4 @@
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Css, Width } from '@ephox/sugar';
 
 import * as ComponentStructure from '../alien/ComponentStructure';
@@ -24,7 +24,7 @@ import { CommonDropdownDetail } from '../ui/types/DropdownTypes';
 import { HighlightOnOpen } from '../ui/types/TieredMenuTypes';
 
 type OnOpenSyncFunc = (sandbox: AlloyComponent) => void;
-type MapFetch = (tdata: Optional<TieredData>) => Optional<TieredData>;
+type MapFetch = (tdata: (TieredData) | null) => (TieredData) | null;
 
 export interface SandboxExtras {
   onClose?: (component: AlloyComponent, menu: AlloyComponent) => void;
@@ -35,7 +35,7 @@ const getAnchor = (
   detail: CommonDropdownDetail<TieredData>,
   component: AlloyComponent
 ): HotspotAnchorSpec => {
-  const hotspot = detail.getHotspot(component).getOr(component);
+  const hotspot = detail.getHotspot(component) ?? (component);
   const type = 'hotspot';
   const overrides = detail.getAnchorOverrides();
   return detail.layouts.fold(
@@ -48,7 +48,7 @@ const fetch = (
   detail: CommonDropdownDetail<TieredData>,
   mapFetch: MapFetch,
   component: AlloyComponent
-): Future<Optional<TieredData>> => {
+): Future<(TieredData) | null> => {
   const fetcher = detail.fetch;
   return fetcher(component).map(mapFetch);
 };
@@ -61,13 +61,13 @@ const openF = (
   sandbox: AlloyComponent,
   externals: any,
   highlightOnOpen: HighlightOnOpen
-): Future<Optional<SketchSpec>> => {
-  const futureData: Future<Optional<TieredData>> = fetch(detail, mapFetch, component);
+): Future<(SketchSpec) | null> => {
+  const futureData: Future<(TieredData) | null> = fetch(detail, mapFetch, component);
 
   const getLazySink = getSink(component, detail);
 
   // TODO: Make this potentially a single menu also
-  return futureData.map((tdata) => tdata.bind((data) => Optional.from(TieredMenu.sketch({
+  return futureData.map((tdata) => tdata.bind((data) => (TieredMenu.sketch({
     // Externals are configured by the "menu" part. It's called external because it isn't contained
     // within the DOM descendants of the dropdown. You can configure things like `fakeFocus` here.
     ...externals.menu(),
@@ -97,7 +97,7 @@ const openF = (
     onRepositionMenu: (tmenu, primaryMenu, submenuTriggers) => {
       const sink = getLazySink().getOrDie();
       Positioning.position(sink, primaryMenu, { anchor });
-      Arr.each(submenuTriggers, (st) => {
+      (submenuTriggers).forEach((st) => {
         Positioning.position(sink, st.triggeredMenu, {
           anchor: { type: 'submenu', item: st.triggeringItem }
         });
@@ -108,9 +108,9 @@ const openF = (
       // Focus the triggering component after escaping the menu
       Focusing.focus(component);
       Sandboxing.close(sandbox);
-      return Optional.some(true);
+      return true;
     }
-  }))));
+  }) ?? null)));
 };
 
 // onOpenSync is because some operations need to be applied immediately, not wrapped in a future
@@ -173,7 +173,7 @@ const togglePopup = (
 };
 
 const matchWidth = (hotspot: AlloyComponent, container: AlloyComponent, useMinWidth: boolean): void => {
-  const menu = Composing.getCurrent(container).getOr(container);
+  const menu = Composing.getCurrent(container) ?? (container);
   const buttonWidth = Width.get(hotspot.element);
   if (useMinWidth) {
     Css.set(menu.element, 'min-width', buttonWidth + 'px');
@@ -184,7 +184,7 @@ const matchWidth = (hotspot: AlloyComponent, container: AlloyComponent, useMinWi
 
 interface SinkDetail {
   uid: string;
-  lazySink: Optional<LazySink>;
+  lazySink: (LazySink) | null;
 }
 
 const getSink = (
@@ -230,7 +230,7 @@ const makeSandbox = (
 
   const onClose = (component: AlloyComponent, menu: AlloyComponent) => {
     ariaControls.unlink(hotspot.element);
-    lazySink().getOr(menu).element.dom.dispatchEvent(new window.FocusEvent('focusout'));
+    lazySink() ?? (menu).element.dom.dispatchEvent(new window.FocusEvent('focusout'));
     if (extras !== undefined && extras.onClose !== undefined) {
       extras.onClose(component, menu);
     }
@@ -270,14 +270,14 @@ const makeSandbox = (
         // The Composing of the dropdown here is the the active menu of the TieredMenu
         // inside the sandbox.
         Composing.config({
-          find: (sandbox: AlloyComponent): Optional<AlloyComponent> => {
+          find: (sandbox: AlloyComponent): (AlloyComponent) | null => {
             return Sandboxing.getState(sandbox).bind((menu) => Composing.getCurrent(menu));
           }
         }),
         Receiving.config({
           channels: {
             ...Dismissal.receivingChannel({
-              isExtraPart: Fun.never
+              isExtraPart: (() => false as const)
             }),
             ...Reposition.receivingChannel({
               doReposition: doRepositionMenus

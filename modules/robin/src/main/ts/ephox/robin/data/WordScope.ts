@@ -1,12 +1,11 @@
-import { Optional } from '@ephox/katamari';
 
 export interface WordScope {
   readonly word: string;
-  readonly left: Optional<string>;
-  readonly right: Optional<string>;
+  readonly left: (string) | null;
+  readonly right: (string) | null;
 }
 
-export const WordScope = (word: string, left: Optional<string>, right: Optional<string>): WordScope => ({
+export const WordScope = (word: string, left: (string) | null, right: (string) | null): WordScope => ({
   word,
   left,
   right

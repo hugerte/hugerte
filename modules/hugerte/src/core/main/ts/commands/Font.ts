@@ -1,4 +1,3 @@
-import { Arr, Strings } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -30,8 +29,8 @@ const fromFontSizeNumber = (editor: Editor, value: string): string => {
 
 const normalizeFontNames = (font: string): string => {
   const fonts = font.split(/\s*,\s*/);
-  return Arr.map(fonts, (font) => {
-    if (font.indexOf(' ') !== -1 && !(Strings.startsWith(font, '"') || Strings.startsWith(font, `'`))) {
+  return (fonts).map((font) => {
+    if (font.indexOf(' ') !== -1 && !((font).startsWith('"') || (font).startsWith(`'`))) {
       // TINY-3801: The font has spaces, so need to wrap with quotes as the browser sometimes automatically handles this, but not always
       return `'${font}'`;
     } else {
@@ -48,7 +47,7 @@ export const fontNameAction = (editor: Editor, value: string): void => {
 
 export const fontNameQuery = (editor: Editor): string => mapRange(editor, (elm: SugarElement<Element>) =>
   FontInfo.getFontFamily(editor.getBody(), elm.dom)
-).getOr('');
+) ?? ('');
 
 export const fontSizeAction = (editor: Editor, value: string): void => {
   editor.formatter.toggle('fontsize', { value: fromFontSizeNumber(editor, value) });
@@ -57,4 +56,4 @@ export const fontSizeAction = (editor: Editor, value: string): void => {
 
 export const fontSizeQuery = (editor: Editor): string => mapRange(editor, (elm: SugarElement<Element>) =>
   FontInfo.getFontSize(editor.getBody(), elm.dom)
-).getOr('');
+) ?? ('');

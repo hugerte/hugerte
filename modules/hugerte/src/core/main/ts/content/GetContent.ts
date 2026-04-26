@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as Rtc from '../Rtc';
@@ -17,7 +16,7 @@ const setupArgs = (args: Partial<GetContentArgs>, format: ContentFormat): GetCon
 export const getContent = (editor: Editor, args: Partial<GetContentArgs> = {}): Content => {
   const format = args.format ? args.format : defaultFormat;
   const defaultedArgs = setupArgs(args, format);
-  return preProcessGetContent(editor, defaultedArgs).fold(Fun.identity, (updatedArgs) => {
+  return preProcessGetContent(editor, defaultedArgs).fold((x: any) => x, (updatedArgs) => {
     const content = Rtc.getContent(editor, updatedArgs);
     return postProcessGetContent(editor, content, updatedArgs);
   });

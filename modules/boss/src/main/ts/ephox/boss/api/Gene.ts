@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 
 export interface Gene {
   id: string;
@@ -7,12 +6,12 @@ export interface Gene {
   css: Record<string, string>;
   attrs: Record<string, string>;
   text?: string;
-  parent: Optional<Gene>;
+  parent: (Gene) | null;
   random?: number;
 }
 
 export const Gene = (id: string, name: string, children: Gene[] = [], css: Record<string, string> = {}, attrs: Record<string, string> = {}, text?: string): Gene => {
-  const parent = Optional.none<Gene>();
+  const parent = null;
   return {
     id,
     name,

@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Toolbar } from 'hugerte/core/api/ui/Ui';
@@ -45,7 +44,7 @@ const addButtons = (editor: Editor, selectionTargets: SelectionTargets): void =>
     if (editor.queryCommandSupported(spec.command)) {
       editor.ui.registry.addButton(name, {
         ...spec,
-        onAction: Type.isFunction(spec.onAction) ? spec.onAction : cmd(spec.command)
+        onAction: typeof (spec.onAction) === 'function' ? spec.onAction : cmd(spec.command)
       });
     }
   };
@@ -55,7 +54,7 @@ const addButtons = (editor: Editor, selectionTargets: SelectionTargets): void =>
     if (editor.queryCommandSupported(spec.command)) {
       editor.ui.registry.addToggleButton(name, {
         ...spec,
-        onAction: Type.isFunction(spec.onAction) ? spec.onAction : cmd(spec.command)
+        onAction: typeof (spec.onAction) === 'function' ? spec.onAction : cmd(spec.command)
       });
     }
   };

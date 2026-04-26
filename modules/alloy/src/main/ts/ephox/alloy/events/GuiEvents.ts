@@ -1,4 +1,4 @@
-import { Arr, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { DomEvent, EventArgs, SelectorExists, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -8,7 +8,7 @@ import * as TapEvent from './TapEvent';
 const isDangerous = (event: EventArgs<KeyboardEvent>): boolean => {
   // Will trigger the Back button in the browser
   const keyEv = event.raw;
-  return keyEv.which === Keys.BACKSPACE[0] && !Arr.contains([ 'input', 'textarea' ], SugarNode.name(event.target)) && !SelectorExists.closest(event.target, '[contenteditable="true"]');
+  return keyEv.which === Keys.BACKSPACE[0] && !([ 'input', 'textarea' ]).includes(SugarNode.name(event.target)) && !SelectorExists.closest(event.target, '[contenteditable="true"]');
 };
 
 export interface GuiEventSettings {
@@ -39,8 +39,7 @@ const setup = (container: SugarElement, rawSettings: GuiEventSettings): { unbind
   const tapEvent = TapEvent.monitor(settings);
 
   // These events are just passed through ... no additional processing
-  const simpleEvents = Arr.map(
-    pointerEvents.concat([
+  const simpleEvents = (pointerEvents.concat([
       'selectstart',
       'input',
       'contextmenu',
@@ -56,8 +55,7 @@ const setup = (container: SugarElement, rawSettings: GuiEventSettings): { unbind
       'dragover',
       'drop',
       'keyup'
-    ]),
-    (type) => DomEvent.bind(container, type, (event) => {
+    ])).map((type) => DomEvent.bind(container, type, (event) => {
       tapEvent.fireIfReady(event, type).each((tapStopped) => {
         if (tapStopped) {
           event.kill();
@@ -68,8 +66,7 @@ const setup = (container: SugarElement, rawSettings: GuiEventSettings): { unbind
       if (stopped) {
         event.kill();
       }
-    })
-  );
+    }));
   const pasteTimeout = Singleton.value<number>();
   const onPaste = DomEvent.bind(container, 'paste', (event) => {
     tapEvent.fireIfReady(event, 'paste').each((tapStopped) => {
@@ -120,7 +117,7 @@ const setup = (container: SugarElement, rawSettings: GuiEventSettings): { unbind
   });
 
   const unbind = (): void => {
-    Arr.each(simpleEvents, (e) => {
+    (simpleEvents).forEach((e) => {
       e.unbind();
     });
     onKeydown.unbind();

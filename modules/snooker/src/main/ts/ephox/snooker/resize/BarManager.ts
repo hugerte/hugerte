@@ -1,5 +1,5 @@
 import { Dragger } from '@ephox/dragster';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Bindable, Event, Events } from '@ephox/porkbun';
 import { Attribute, Class, Compare, ContentEditable, Css, DomEvent, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
@@ -53,7 +53,7 @@ export const BarManager = (wire: ResizeWire): BarManager => {
   let hoverTable = Optional.none<SugarElement<HTMLTableElement>>();
 
   const getResizer = (element: SugarElement<Element>, type: string) => {
-    return Optional.from(Attribute.get(element, type));
+    return (Attribute.get(element, type) ?? null);
   };
 
   /* Reposition the bar as the user drags */
@@ -121,7 +121,7 @@ export const BarManager = (wire: ResizeWire): BarManager => {
     return Compare.eq(e, wire.view());
   };
 
-  const findClosestEditableTable = (target: SugarElement<Node>): Optional<SugarElement<HTMLTableElement>> =>
+  const findClosestEditableTable = (target: SugarElement<Node>): (SugarElement<HTMLTableElement>) | null =>
     SelectorFind.closest<HTMLTableElement>(target, 'table', isRoot).filter(ContentEditable.isEditable);
 
   /* mouseover on table: When the mouse moves within the CONTENT AREA (NOT THE TABLE), refresh the bars. */
@@ -139,7 +139,7 @@ export const BarManager = (wire: ResizeWire): BarManager => {
       },
       (table) => {
         if (resizing.isActive()) {
-          hoverTable = Optional.some(table);
+          hoverTable = table;
           Bars.refresh(wire, table);
         }
       }
@@ -168,8 +168,8 @@ export const BarManager = (wire: ResizeWire): BarManager => {
     refresh,
     on: resizing.on,
     off: resizing.off,
-    hideBars: Fun.curry(Bars.hide, wire),
-    showBars: Fun.curry(Bars.show, wire),
+    hideBars: ((..._rest: any[]) => (Bars.hide)(wire, ..._rest)),
+    showBars: ((..._rest: any[]) => (Bars.show)(wire, ..._rest)),
     events: events.registry
   };
 };

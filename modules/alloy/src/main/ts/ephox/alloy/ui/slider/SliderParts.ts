@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { EventArgs, SugarPosition } from '@ephox/sugar';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -70,11 +70,11 @@ const ledgePart = edgePart('left');
 // The thumb part needs to have position absolute to be positioned correctly
 const thumbPart = PartType.required<SliderDetail, { dom: OptionalDomSchema; events: AlloyEvents.AlloyEventRecord }>({
   name: 'thumb',
-  defaults: Fun.constant({
+  defaults: () => {
     dom: {
       styles: { position: 'absolute' }
     }
-  }),
+  },
   overrides: (detail) => {
     return {
       events: AlloyEvents.derive([

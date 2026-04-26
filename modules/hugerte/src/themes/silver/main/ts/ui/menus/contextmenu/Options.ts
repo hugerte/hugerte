@@ -1,10 +1,10 @@
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
 
 const patchPipeConfig = (config: string[] | string): string[] =>
-  Type.isString(config) ? config.split(/[ ,]/) : config;
+  typeof (config) === 'string' ? config.split(/[ ,]/) : config;
 
 const option: {
   <K extends keyof EditorOptions>(name: K): (editor: Editor) => EditorOptions[K] | undefined;
@@ -29,7 +29,7 @@ const register = (editor: Editor): void => {
     processor: (value) => {
       if (value === false) {
         return { value: [], valid: true };
-      } else if (Type.isString(value) || Type.isArrayOf(value, Type.isString)) {
+      } else if (typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isString))) {
         return { value: patchPipeConfig(value), valid: true };
       } else {
         return { valid: false, message: 'Must be false or a string.' };
@@ -53,7 +53,7 @@ const getContextMenu = (editor: Editor): string[] => {
     return contextMenu;
   } else {
     // Filter default context menu items when they are not in the registry (e.g. when the plugin is not loaded)
-    return Arr.filter(contextMenu, (item) => Obj.has(contextMenus, item));
+    return (contextMenu).filter((item) => Object.prototype.hasOwnProperty.call(contextMenus, item));
   }
 };
 

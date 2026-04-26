@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Class, Css, Height, SugarBody, SugarElement, SugarPosition, Width } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -71,27 +71,23 @@ const tryDockingPosition = (modes: DockingMode[], bounds: { win: Boxes.Bounds; b
   const box = bounds.box;
 
   const leftX = getDockedLeftPosition(bounds);
-  return Arr.findMap(modes, (mode): Optional<DockingDecision> => {
+  return Arr.findMap(modes, (mode): (DockingDecision) | null => {
     switch (mode) {
       case 'bottom':
-        return !isBottomCompletelyVisible(box, viewport.bounds) ? Optional.some(
-          forceBottomPosition(winBox, leftX, viewport)
-        ) : Optional.none();
+        return !isBottomCompletelyVisible(box, viewport.bounds) ? forceBottomPosition(winBox, leftX, viewport) : null;
       case 'top':
-        return !isTopCompletelyVisible(box, viewport.bounds) ? Optional.some(
-          forceTopPosition(winBox, leftX, viewport)
-        ) : Optional.none();
+        return !isTopCompletelyVisible(box, viewport.bounds) ? forceTopPosition(winBox, leftX, viewport) : null;
 
       default:
-        return Optional.none();
+        return null;
     }
-  }).getOr({
+  }) ?? ({
     location: 'no-dock'
   });
 };
 
 const isVisibleForModes = (modes: DockingMode[], box: Boxes.Bounds, viewport: DockingViewport): boolean =>
-  Arr.forall(modes, (mode) => {
+  (modes).every((mode) => {
     switch (mode) {
       case 'bottom':
         return isBottomCompletelyVisible(box, viewport.bounds);
@@ -102,7 +98,7 @@ const isVisibleForModes = (modes: DockingMode[], box: Boxes.Bounds, viewport: Do
 
 const getXYForRestoring = (pos: InitialDockingPosition, viewport: DockingViewport): SugarPosition => {
   const priorY = viewport.optScrollEnv.fold(
-    Fun.constant(pos.bounds.y),
+    () => pos.bounds.y,
     (scrollEnv) => scrollEnv.scrollElmTop + (pos.bounds.y - scrollEnv.currentScrollTop)
   );
 
@@ -111,14 +107,14 @@ const getXYForRestoring = (pos: InitialDockingPosition, viewport: DockingViewpor
 
 const getXYForSaving = (box: Boxes.Bounds, viewport: DockingViewport): SugarPosition => {
   const priorY = viewport.optScrollEnv.fold(
-    Fun.constant(box.y),
+    () => box.y,
     (scrollEnv) => box.y + scrollEnv.currentScrollTop - scrollEnv.scrollElmTop
   );
 
   return SugarPosition(box.x, priorY);
 };
 
-const getPrior = (elem: SugarElement<HTMLElement>, viewport: DockingViewport, state: DockingState): Optional<{ box: Boxes.Bounds; location: 'top' | 'bottom' }> =>
+const getPrior = (elem: SugarElement<HTMLElement>, viewport: DockingViewport, state: DockingState): ({ box: Boxes.Bounds; location: 'top' | 'bottom' }) | null =>
   state.getInitialPos().map(
     (pos) => {
       const xy = getXYForRestoring(pos, viewport);
@@ -164,22 +160,22 @@ const storePriorIfNone = (
 ): void => {
   state.getInitialPos().fold(
     () => storePrior(elem, box, viewport, state, decision),
-    () => Fun.noop
+    () => () => {}
   );
 };
 
-const revertToOriginal = (elem: SugarElement<HTMLElement>, box: Boxes.Bounds, state: DockingState): Optional<StaticMorph | AbsoluteMorph> =>
+const revertToOriginal = (elem: SugarElement<HTMLElement>, box: Boxes.Bounds, state: DockingState): (StaticMorph | AbsoluteMorph) | null =>
   state.getInitialPos().bind((position) => {
     state.clearInitialPos();
 
     switch (position.position) {
       case 'static':
-        return Optional.some({
+        return {
           morph: 'static'
-        });
+        };
 
       case 'absolute':
-        const offsetParent = OffsetOrigin.getOffsetParent(elem).getOr(SugarBody.body());
+        const offsetParent = OffsetOrigin.getOffsetParent(elem) ?? (SugarBody.body());
         const offsetBox = Boxes.box(offsetParent);
         // Adding the scrollDelta here may not be the right solution. The basic problem is that the
         // rest of the code isn't considering whether its absolute or not, and where the offset parent
@@ -196,65 +192,65 @@ const revertToOriginal = (elem: SugarElement<HTMLElement>, box: Boxes.Bounds, st
         // have a scrolling environment any more, because the offset parent isn't going to be impacted
         // at all by the scroller
         const scrollDelta = offsetParent.dom.scrollTop ?? 0;
-        return Optional.some({
+        return {
           morph: 'absolute',
           positionCss: NuPositionCss(
             'absolute',
-            Obj.get(position.style, 'left').map((_left) => box.x - offsetBox.x),
-            Obj.get(position.style, 'top').map((_top) => box.y - offsetBox.y + scrollDelta),
-            Obj.get(position.style, 'right').map((_right) => offsetBox.right - box.right),
-            Obj.get(position.style, 'bottom').map((_bottom) => offsetBox.bottom - box.bottom)
+            ((position.style)['left'] ?? null).map((_left) => box.x - offsetBox.x),
+            ((position.style)['top'] ?? null).map((_top) => box.y - offsetBox.y + scrollDelta),
+            ((position.style)['right'] ?? null).map((_right) => offsetBox.right - box.right),
+            ((position.style)['bottom'] ?? null).map((_bottom) => offsetBox.bottom - box.bottom)
           )
-        });
+        };
 
       default:
-        return Optional.none<StaticMorph | AbsoluteMorph>();
+        return null;
     }
   });
 
-const tryMorphToOriginal = (elem: SugarElement<HTMLElement>, viewport: DockingViewport, state: DockingState): Optional<MorphInfo> =>
+const tryMorphToOriginal = (elem: SugarElement<HTMLElement>, viewport: DockingViewport, state: DockingState): (MorphInfo) | null =>
   getPrior(elem, viewport, state)
     .filter(({ box }) => isVisibleForModes(state.getModes(), box, viewport))
     .bind(({ box }) => revertToOriginal(elem, box, state));
 
-const tryDecisionToFixedMorph = (decision: DockingDecision): Optional<FixedMorph> => {
+const tryDecisionToFixedMorph = (decision: DockingDecision): (FixedMorph) | null => {
   switch (decision.location) {
     case 'top': {
       // We store our current position so we can revert to it once it's
       // visible again.
-      return Optional.some({
+      return {
         morph: 'fixed',
         positionCss: NuPositionCss(
           'fixed',
-          Optional.some(decision.leftX),
-          Optional.some(decision.topY),
-          Optional.none(),
-          Optional.none()
+          decision.leftX,
+          decision.topY,
+          null,
+          null
         )
-      });
+      };
     }
 
     case 'bottom': {
       // We store our current position so we can revert to it once it's
       // visible again.
-      return Optional.some({
+      return {
         morph: 'fixed',
         positionCss: NuPositionCss(
           'fixed',
-          Optional.some(decision.leftX),
-          Optional.none(),
-          Optional.none(),
-          Optional.some(decision.bottomY)
+          decision.leftX,
+          null,
+          null,
+          decision.bottomY
         )
-      });
+      };
     }
 
     default:
-      return Optional.none();
+      return null;
   }
 };
 
-const tryMorphToFixed = (elem: SugarElement<HTMLElement>, viewport: DockingViewport, state: DockingState): Optional<FixedMorph> => {
+const tryMorphToFixed = (elem: SugarElement<HTMLElement>, viewport: DockingViewport, state: DockingState): (FixedMorph) | null => {
   const box = Boxes.box(elem);
   const winBox = Boxes.win();
 
@@ -273,7 +269,7 @@ const tryMorphToFixed = (elem: SugarElement<HTMLElement>, viewport: DockingViewp
     storePrior(elem, box, viewport, state, decision);
     return tryDecisionToFixedMorph(decision);
   } else {
-    return Optional.none();
+    return null;
   }
 };
 
@@ -281,7 +277,7 @@ const tryMorphToOriginalOrUpdateFixed = (
   elem: SugarElement<HTMLElement>,
   viewport: DockingViewport,
   state: DockingState
-): Optional<MorphInfo> => {
+): (MorphInfo) | null => {
   // When a "docked" element is docked to the top of a scroll container (due to optScrollEnv in
   // viewport), we need to reposition its fixed if the scroll container has itself moved its top position.
   // This isn't required when the docking is to the top of the window, because the entire window cannot
@@ -314,9 +310,9 @@ const tryMorphToOriginalOrUpdateFixed = (
     });
 };
 
-const tryMorph = (component: AlloyComponent, viewport: DockingViewport, state: DockingState): Optional<MorphInfo> => {
+const tryMorph = (component: AlloyComponent, viewport: DockingViewport, state: DockingState): (MorphInfo) | null => {
   const elem = component.element;
-  const isDocked = Optionals.is(Css.getRaw(elem, 'position'), 'fixed');
+  const isDocked = (Css.getRaw(elem, 'position') !== null && (Css.getRaw(elem, 'position')) === ('fixed'));
   return isDocked
     ? tryMorphToOriginalOrUpdateFixed(elem, viewport, state)
     : tryMorphToFixed(elem, viewport, state);
@@ -325,7 +321,7 @@ const tryMorph = (component: AlloyComponent, viewport: DockingViewport, state: D
 // The difference between the "calculate" functions and the "try" functions is that the "try" functions
 // will first consider whether there is a need to morph, whereas the "calculate" functions will just
 // give you the morph details, bypassing the check to see if it's needed
-const calculateMorphToOriginal = (component: AlloyComponent, viewport: DockingViewport, state: DockingState): Optional<StaticMorph | AbsoluteMorph> => {
+const calculateMorphToOriginal = (component: AlloyComponent, viewport: DockingViewport, state: DockingState): (StaticMorph | AbsoluteMorph) | null => {
   const elem = component.element;
   return getPrior(elem, viewport, state)
     .bind(({ box }) => revertToOriginal(elem, box, state));
@@ -336,7 +332,7 @@ const forceDockWith = (
   viewport: DockingViewport,
   state: DockingState,
   getDecision: (winBox: Boxes.Bounds, leftX: number, v: DockingViewport) => DockingDecision
-): Optional<FixedMorph> => {
+): (FixedMorph) | null => {
   const box = Boxes.box(elem);
   const winBox = Boxes.win();
   const leftX = getDockedLeftPosition({ win: winBox, box });
@@ -347,7 +343,7 @@ const forceDockWith = (
     storePriorIfNone(elem, box, viewport, state, decision);
     return tryDecisionToFixedMorph(decision);
   } else {
-    return Optional.none();
+    return null;
   }
 };
 

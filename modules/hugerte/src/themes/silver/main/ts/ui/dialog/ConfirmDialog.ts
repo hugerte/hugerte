@@ -1,5 +1,4 @@
 import { AlloyEvents, Focusing, GuiFactory, Memento, ModalDialog } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderFooterButton } from '../general/Button';
@@ -25,10 +24,10 @@ export const setup = (backstage: UiFactoryBackstage): ConfirmDialogApi => {
         name: 'yes',
         text: 'Yes',
         primary: true,
-        buttonType: Optional.some('primary'),
+        buttonType: 'primary',
         align: 'end',
         enabled: true,
-        icon: Optional.none()
+        icon: null
       }, 'submit', backstage)
     );
 
@@ -36,10 +35,10 @@ export const setup = (backstage: UiFactoryBackstage): ConfirmDialogApi => {
       name: 'no',
       text: 'No',
       primary: false,
-      buttonType: Optional.some('secondary'),
+      buttonType: 'secondary',
       align: 'end',
       enabled: true,
-      icon: Optional.none()
+      icon: null
     }, 'cancel', backstage);
 
     const titleSpec = Dialogs.pUntitled();
@@ -50,10 +49,10 @@ export const setup = (backstage: UiFactoryBackstage): ConfirmDialogApi => {
         lazySink: () => sharedBackstage.getSink(),
         header: Dialogs.hiddenHeader(titleSpec, closeSpec),
         body: Dialogs.pBodyMessage(message, sharedBackstage.providers),
-        footer: Optional.some(Dialogs.pFooter(Dialogs.pFooterGroup([], [
+        footer: Dialogs.pFooter(Dialogs.pFooterGroup([], [
           footerNo,
           memFooterYes.asSpec()
-        ]))),
+        ])),
         onEscape: () => closeDialog(false),
         extraClasses: [ 'tox-confirm-dialog' ],
         extraBehaviours: [ ],

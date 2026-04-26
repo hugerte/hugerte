@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import {
   Css, Height, Insert, Remove, Scroll, SugarElement, SugarLocation, SugarNode, SugarPosition, SugarText, Traverse, WindowVisualViewport
 } from '@ephox/sugar';
@@ -71,7 +70,7 @@ const createMarker = (element: SugarElement<Node>, offset: number): MarkerInfo =
   return markerInfo(span, () => Remove.remove(span));
 };
 
-const elementMarker = (element: HTMLElement): MarkerInfo => markerInfo(SugarElement.fromDom(element), Fun.noop);
+const elementMarker = (element: HTMLElement): MarkerInfo => markerInfo(SugarElement.fromDom(element), () => {});
 
 const withMarker = (editor: Editor, f: ScrollFunc, rng: Range, alignToTop?: boolean) => {
   preserveWith(editor, (_s, _e) => applyWithMarker(editor, f, rng, alignToTop), rng);

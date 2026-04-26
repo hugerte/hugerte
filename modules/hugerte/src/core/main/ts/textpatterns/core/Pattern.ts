@@ -1,4 +1,4 @@
-import { Arr, Result, Results, Type } from '@ephox/katamari';
+import { Result, Results, Type } from '@ephox/katamari';
 
 import { BlockPattern, DynamicPatternContext, DynamicPatternsLookup, InlineCmdPattern, InlinePattern, Pattern, PatternError, PatternSet, RawDynamicPatternsLookup, RawPattern, BlockPatternTrigger } from './PatternTypes';
 
@@ -16,19 +16,19 @@ const normalizePattern = (pattern: RawPattern): Result<Pattern, PatternError> =>
   const formatOrCmd = <T> (name: string, onFormat: (formats: string[]) => T, onCommand: (cmd: string, value: any) => T): Result<T, PatternError> => {
     if (pattern.format !== undefined) {
       let formats: string[];
-      if (Type.isArray(pattern.format)) {
-        if (!Arr.forall(pattern.format, Type.isString)) {
+      if (Array.isArray(pattern.format)) {
+        if (!(pattern.format).every(Type.isString)) {
           return err(name + ' pattern has non-string items in the `format` array');
         }
         formats = pattern.format as string[];
-      } else if (Type.isString(pattern.format)) {
+      } else if (typeof (pattern.format) === 'string') {
         formats = [ pattern.format ];
       } else {
         return err(name + ' pattern has non-string `format` parameter');
       }
       return Result.value(onFormat(formats));
     } else if (pattern.cmd !== undefined) {
-      if (!Type.isString(pattern.cmd)) {
+      if (!typeof (pattern.cmd) === 'string') {
         return err(name + ' pattern has non-string `cmd` parameter');
       }
       return Result.value(onCommand(pattern.cmd, pattern.value));
@@ -36,15 +36,15 @@ const normalizePattern = (pattern: RawPattern): Result<Pattern, PatternError> =>
       return err(name + ' pattern is missing both `format` and `cmd` parameters');
     }
   };
-  if (!Type.isObject(pattern)) {
+  if (!(typeof (pattern) === 'object' && (pattern) !== null)) {
     return err('Raw pattern is not an object');
   }
-  if (!Type.isString(pattern.start)) {
+  if (!typeof (pattern.start) === 'string') {
     return err('Raw pattern is missing `start` parameter');
   }
   if (pattern.end !== undefined) {
     // inline pattern
-    if (!Type.isString(pattern.end)) {
+    if (!typeof (pattern.end) === 'string') {
       return err('Inline pattern has non-string `end` parameter');
     }
     if (pattern.start.length === 0 && pattern.end.length === 0) {
@@ -62,7 +62,7 @@ const normalizePattern = (pattern: RawPattern): Result<Pattern, PatternError> =>
       (cmd, value) => ({ type: 'inline-command', start, end, cmd, value }));
   } else if (pattern.replacement !== undefined) {
     // replacement pattern
-    if (!Type.isString(pattern.replacement)) {
+    if (!typeof (pattern.replacement) === 'string') {
       return err('Replacement pattern has non-string `replacement` parameter');
     }
     if (pattern.start.length === 0) {
@@ -98,10 +98,10 @@ const normalizePattern = (pattern: RawPattern): Result<Pattern, PatternError> =>
 };
 
 const getBlockPatterns = (patterns: Pattern[]): BlockPattern[] =>
-  Arr.filter(patterns, isBlockPattern);
+  (patterns).filter(isBlockPattern);
 
 const getInlinePatterns = (patterns: Pattern[]): InlinePattern[] =>
-  Arr.filter(patterns, isInlinePattern);
+  (patterns).filter(isInlinePattern);
 
 const createPatternSet = (patterns: Pattern[], dynamicPatternsLookup: DynamicPatternsLookup): PatternSet => ({
   inlinePatterns: getInlinePatterns(patterns),
@@ -112,14 +112,14 @@ const createPatternSet = (patterns: Pattern[], dynamicPatternsLookup: DynamicPat
 const filterByTrigger = (patterns: PatternSet, trigger: BlockPatternTrigger): PatternSet => {
   return {
     ...patterns,
-    blockPatterns: Arr.filter(patterns.blockPatterns, (pattern) => hasBlockTrigger(pattern, trigger))
+    blockPatterns: (patterns.blockPatterns).filter((pattern) => hasBlockTrigger(pattern, trigger))
   };
 };
 
 const fromRawPatterns = (patterns: RawPattern[]): Pattern[] => {
-  const normalized = Results.partition(Arr.map(patterns, normalizePattern));
+  const normalized = Results.partition((patterns).map(normalizePattern));
   // eslint-disable-next-line no-console
-  Arr.each(normalized.errors, (err) => console.error(err.message, err.pattern));
+  (normalized.errors).forEach((err) => console.error(err.message, err.pattern));
   return normalized.values;
 };
 

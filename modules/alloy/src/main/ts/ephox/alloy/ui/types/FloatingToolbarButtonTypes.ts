@@ -1,4 +1,4 @@
-import { Future, Optional } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 
 import { Bounds } from '../../alien/Boxes';
 import { LazySink } from '../../api/component/CommonTypes';
@@ -11,10 +11,10 @@ import { ToolbarSpec } from './ToolbarTypes';
 export interface FloatingToolbarButtonDetail extends CompositeSketchDetail, HasLayoutAnchor {
   lazySink: LazySink;
   fetch: () => Future<AlloySpec[]>;
-  getBounds: Optional<() => Bounds>;
-  fireDismissalEventInstead: Optional<{
+  getBounds: (() =) | null Bounds>;
+  fireDismissalEventInstead: ({
     event: string;
-  }>;
+  }) | null;
 
   markers: {
     toggledClass: string;
@@ -24,11 +24,11 @@ export interface FloatingToolbarButtonDetail extends CompositeSketchDetail, HasL
 }
 
 export interface FloatingToolbarButtonApis {
-  setGroups: (floatingToolbarButton: AlloyComponent, groups: AlloySpec[]) => Optional<AlloyComponent>;
+  setGroups: (floatingToolbarButton: AlloyComponent, groups: AlloySpec[]) => (AlloyComponent) | null;
   reposition: (floatingToolbarButton: AlloyComponent) => void;
   toggle: (floatingToolbarButton: AlloyComponent) => void;
   toggleWithoutFocusing: (floatingToolbarButton: AlloyComponent) => void;
-  getToolbar: (floatingToolbarButton: AlloyComponent) => Optional<AlloyComponent>;
+  getToolbar: (floatingToolbarButton: AlloyComponent) => (AlloyComponent) | null;
   isOpen: (floatingToolbarButton: AlloyComponent) => boolean;
 }
 

@@ -1,5 +1,4 @@
 import { AlloySpec, Behaviour, ItemWidget, Keying, Memento, Menu, MenuTypes, SimpleOrSketchSpec } from '@ephox/alloy';
-import { Id, Optional } from '@ephox/katamari';
 
 import { dom as menuDom } from './MenuParts';
 
@@ -17,7 +16,7 @@ export const renderWidgetMenu = (spec: WidgetMenuSpec): Partial<MenuTypes.MenuSp
         type: 'widget',
         data: {
           // FIX: Widgets.
-          value: Id.generate('widget-id')
+          value: (('widget-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now())
         },
         autofocus: true,
 
@@ -38,7 +37,7 @@ export const renderWidgetMenu = (spec: WidgetMenuSpec): Partial<MenuTypes.MenuSp
                   mode: 'special',
                   focusIn: (comp) => {
                     memWidget.getOpt(comp).each(Keying.focusIn);
-                    return Optional.some(true);
+                    return true;
                   }
                 })
               ])

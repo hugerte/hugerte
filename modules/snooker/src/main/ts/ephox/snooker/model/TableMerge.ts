@@ -1,4 +1,4 @@
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Arr, Result } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { SimpleGenerators } from '../api/Generators';
@@ -11,7 +11,7 @@ import * as GridRow from './GridRow';
 
 const isSpanning = (grid: Structs.RowCells[], row: number, col: number, comparator: CompElm): boolean => {
   const candidate = GridRow.getCell(grid[row], col);
-  const matching = Fun.curry(comparator, candidate.element);
+  const matching = ((..._rest: any[]) => (comparator)(candidate.element, ..._rest));
   const currentRow = grid[row];
 
   // sanity check, 1x1 has no spans
@@ -44,7 +44,7 @@ const mergeTables = (
   const mergeWidth = GridRow.cellLength(gridBRows[0]);
   const endRow = startRow + mergeHeight;
   const endCol = startCol + mergeWidth + lockedColumns.length;
-  const lockedColumnObj = Arr.mapToObject(lockedColumns, Fun.always);
+  const lockedColumnObj = Arr.mapToObject(lockedColumns, (() => true as const));
   // embrace the mutation - I think this is easier to follow? To discuss.
   for (let r = startRow; r < endRow; r++) {
     let skippedCol = 0;
@@ -78,9 +78,9 @@ const getValidStartAddress = (currentStartAddress: Structs.Address, grid: Struct
     To do this, we get the number of `col`s in the destination table and add that to the startAddress row.
   */
   const adjustedRowAddress = GridRow.extractGridDetails(grid).cols.length + currentStartAddress.row;
-  const possibleColAddresses = Arr.range(gridColLength - currentStartAddress.column, (num) => num + currentStartAddress.column);
+  const possibleColAddresses = Array.from({length: gridColLength - currentStartAddress.column}, (_, _i) => ((num) => num + currentStartAddress.column)(_i));
   // Find a starting column address that isn't a locked column
-  const validColAddress = Arr.find(possibleColAddresses, (num) => Arr.forall(lockedColumns, (col) => col !== num)).getOr(gridColLength - 1);
+  const validColAddress = ((possibleColAddresses).find((num) => (lockedColumns).every((col) => col !== num)) ?? null) ?? (gridColLength - 1);
   return {
     row: adjustedRowAddress,
     column: validColAddress
@@ -88,7 +88,7 @@ const getValidStartAddress = (currentStartAddress: Structs.Address, grid: Struct
 };
 
 const getLockedColumnsWithinBounds = (startAddress: Structs.Address, rows: Structs.RowCells<HTMLTableRowElement>[], lockedColumns: number[]) =>
-  Arr.filter(lockedColumns, (colNum) => colNum >= startAddress.column && colNum <= GridRow.cellLength(rows[0]) + startAddress.column);
+  (lockedColumns).filter((colNum) => colNum >= startAddress.column && colNum <= GridRow.cellLength(rows[0]) + startAddress.column);
 
 const merge = (startAddress: Structs.Address, gridA: Structs.RowCells[], gridB: Structs.RowCells[], generator: SimpleGenerators, comparator: CompElm): Result<Structs.RowCells[], string> => {
   const lockedColumns = LockedColumnUtils.getLockedColumnsFromGrid(gridA);
@@ -129,7 +129,7 @@ const insertCols = (index: number, gridA: Structs.RowCells[], gridB: Structs.Row
   const secondDelta = Fitment.measureHeight(gridA, fittedNewGrid);
   const fittedOldGrid = Fitment.tailor(gridA, secondDelta, generator);
 
-  return Arr.map(fittedOldGrid, (gridRow, i) => {
+  return (fittedOldGrid).map((gridRow, i) => {
     return GridRow.addCells(gridRow, index, fittedNewGrid[i].cells);
   });
 };

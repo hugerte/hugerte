@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Optionals, Strings, Type } from '@ephox/katamari';
+import { Strings } from '@ephox/katamari';
 import { Attribute, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -22,7 +22,7 @@ import * as Init from './Init';
 
 interface UrlMeta {
   readonly url: string;
-  readonly name: Optional<string>;
+  readonly name: (string) | null;
 }
 
 const DOM = DOMUtils.DOM;
@@ -34,7 +34,7 @@ const loadLanguage = (scriptLoader: ScriptLoader, editor: Editor) => {
   const languageUrl = Options.getLanguageUrl(editor);
 
   if (!I18n.hasCode(languageCode) && languageCode !== 'en') {
-    const url = Strings.isNotEmpty(languageUrl) ? languageUrl : `${editor.editorManager.baseURL}/langs/${languageCode}.js`;
+    const url = ((languageUrl).length > 0) ? languageUrl : `${editor.editorManager.baseURL}/langs/${languageCode}.js`;
 
     scriptLoader.add(url).catch(() => {
       ErrorReporter.languageLoadError(editor, url, languageCode);
@@ -45,7 +45,7 @@ const loadLanguage = (scriptLoader: ScriptLoader, editor: Editor) => {
 const loadTheme = (editor: Editor, suffix: string): void => {
   const theme = Options.getTheme(editor);
 
-  if (Type.isString(theme) && !hasSkipLoadPrefix(theme) && !Obj.has(ThemeManager.urls, theme)) {
+  if (typeof (theme) === 'string' && !hasSkipLoadPrefix(theme) && !Object.prototype.hasOwnProperty.call(ThemeManager.urls, theme)) {
     const themeUrl = Options.getThemeUrl(editor);
     const url = themeUrl ? editor.documentBaseURI.toAbsolute(themeUrl) : `themes/${theme}/theme${suffix}.js`;
     ThemeManager.load(theme, url).catch(() => {
@@ -58,36 +58,36 @@ const loadModel = (editor: Editor, suffix: string): void => {
   // Special case the 'wait for model' code if a plugin is responsible for it
   // as the plugin will provide the instance instead
   const model = Options.getModel(editor);
-  if (model !== 'plugin' && !Obj.has(ModelManager.urls, model)) {
+  if (model !== 'plugin' && !Object.prototype.hasOwnProperty.call(ModelManager.urls, model)) {
     const modelUrl = Options.getModelUrl(editor);
-    const url = Type.isString(modelUrl) ? editor.documentBaseURI.toAbsolute(modelUrl) : `models/${model}/model${suffix}.js`;
+    const url = typeof (modelUrl) === 'string' ? editor.documentBaseURI.toAbsolute(modelUrl) : `models/${model}/model${suffix}.js`;
     ModelManager.load(model, url).catch(() => {
       ErrorReporter.modelLoadError(editor, url, model);
     });
   }
 };
 
-const getIconsUrlMetaFromUrl = (editor: Editor): Optional<UrlMeta> => Optional.from(Options.getIconsUrl(editor))
+const getIconsUrlMetaFromUrl = (editor: Editor): (UrlMeta) | null => (Options.getIconsUrl(editor) ?? null)
   .filter(Strings.isNotEmpty)
   .map((url) => ({
     url,
-    name: Optional.none()
+    name: null
   }));
 
-const getIconsUrlMetaFromName = (editor: Editor, name: string | undefined, suffix: string): Optional<UrlMeta> => Optional.from(name)
-  .filter((name) => Strings.isNotEmpty(name) && !IconManager.has(name))
+const getIconsUrlMetaFromName = (editor: Editor, name: string | undefined, suffix: string): (UrlMeta) | null => (name ?? null)
+  .filter((name) => ((name).length > 0) && !IconManager.has(name))
   .map((name) => ({
     url: `${editor.editorManager.baseURL}/icons/${name}/icons${suffix}.js`,
-    name: Optional.some(name)
+    name: name
   }));
 
 const loadIcons = (scriptLoader: ScriptLoader, editor: Editor, suffix: string) => {
   const defaultIconsUrl = getIconsUrlMetaFromName(editor, 'default', suffix);
   const customIconsUrl = getIconsUrlMetaFromUrl(editor).orThunk(() => getIconsUrlMetaFromName(editor, Options.getIconPackName(editor), ''));
 
-  Arr.each(Optionals.cat([ defaultIconsUrl, customIconsUrl ]), (urlMeta) => {
+  (([ defaultIconsUrl, customIconsUrl ]).filter((_x: any) => _x !== null)).forEach((urlMeta) => {
     scriptLoader.add(urlMeta.url).catch(() => {
-      ErrorReporter.iconsLoadError(editor, urlMeta.url, urlMeta.name.getOrUndefined());
+      ErrorReporter.iconsLoadError(editor, urlMeta.url, urlMeta.name ?? undefined);
     });
   });
 };
@@ -99,12 +99,12 @@ const loadPlugins = (editor: Editor, suffix: string) => {
     });
   };
 
-  Obj.each(Options.getExternalPlugins(editor), (url, name) => {
+  Object.entries(Options.getExternalPlugins(editor)).forEach(([_k, _v]: [any, any]) => ((url, name) => {
     loadPlugin(name, url);
     editor.options.set('plugins', Options.getPlugins(editor).concat(name));
-  });
+  })(_v, _k));
 
-  Arr.each(Options.getPlugins(editor), (plugin) => {
+  (Options.getPlugins(editor)).forEach((plugin) => {
     plugin = Tools.trim(plugin);
 
     if (plugin && !PluginManager.urls[plugin] && !hasSkipLoadPrefix(plugin)) {
@@ -115,12 +115,12 @@ const loadPlugins = (editor: Editor, suffix: string) => {
 
 const isThemeLoaded = (editor: Editor): boolean => {
   const theme = Options.getTheme(editor);
-  return !Type.isString(theme) || Type.isNonNullable(ThemeManager.get(theme));
+  return !typeof (theme) === 'string' || (ThemeManager.get(theme)) != null;
 };
 
 const isModelLoaded = (editor: Editor): boolean => {
   const model = Options.getModel(editor);
-  return Type.isNonNullable(ModelManager.get(model));
+  return (ModelManager.get(model)) != null;
 };
 
 const loadScripts = (editor: Editor, suffix: string) => {
@@ -174,9 +174,8 @@ const render = (editor: Editor): void => {
   const element = SugarElement.fromDom(editor.getElement());
   const snapshot = Attribute.clone(element);
   editor.on('remove', () => {
-    Arr.eachr(element.dom.attributes, (attr) =>
-      Attribute.remove(element, attr.name)
-    );
+    [...(element.dom.attributes)].reverse().forEach((attr) =>
+      Attribute.remove(element, attr.name));
     Attribute.setAll(element, snapshot);
   });
 

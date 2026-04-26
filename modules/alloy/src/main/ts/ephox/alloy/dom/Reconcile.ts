@@ -1,4 +1,4 @@
-import { Arr, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { Attribute, Classes, Css, Html, SugarElement, Value } from '@ephox/sugar';
 
 import { DomDefinitionDetail } from './DomDefinition';
@@ -10,11 +10,11 @@ interface KeyValueDiff {
 }
 
 const diffKeyValueSet = (newObj: Record<string, string>, oldObj: Record<string, string>): KeyValueDiff => {
-  const newKeys = Obj.keys(newObj);
-  const oldKeys = Obj.keys(oldObj);
-  const toRemove = Arr.difference(oldKeys, newKeys);
+  const newKeys = Object.keys(newObj);
+  const oldKeys = Object.keys(oldObj);
+  const toRemove = (oldKeys).filter((_x: any) => !(newKeys).includes(_x));
   const toSet = Obj.bifilter(newObj, (v, k) => {
-    return !Obj.has(oldObj, k) || v !== oldObj[k];
+    return !Object.prototype.hasOwnProperty.call(oldObj, k) || v !== oldObj[k];
   }).t;
 
   return { toRemove, toSet };
@@ -25,20 +25,20 @@ const reconcileToDom = (definition: DomDefinitionDetail, obsoleted: SugarElement
   const { toSet: attrsToSet, toRemove: attrsToRemove } = diffKeyValueSet(definition.attributes, existingAttributes);
 
   const updateAttrs = () => {
-    Arr.each(attrsToRemove, (a) => Attribute.remove(obsoleted, a));
+    (attrsToRemove).forEach((a) => Attribute.remove(obsoleted, a));
     Attribute.setAll(obsoleted, attrsToSet);
   };
 
   const existingStyles = Css.getAllRaw(obsoleted);
   const { toSet: stylesToSet, toRemove: stylesToRemove } = diffKeyValueSet(definition.styles, existingStyles);
   const updateStyles = () => {
-    Arr.each(stylesToRemove, (s) => Css.remove(obsoleted, s));
+    (stylesToRemove).forEach((s) => Css.remove(obsoleted, s));
     Css.setAll(obsoleted, stylesToSet);
   };
 
   const existingClasses = Classes.get(obsoleted);
-  const classesToRemove = Arr.difference(existingClasses, definition.classes);
-  const classesToAdd = Arr.difference(definition.classes, existingClasses);
+  const classesToRemove = (existingClasses).filter((_x: any) => !(definition.classes).includes(_x));
+  const classesToAdd = (definition.classes).filter((_x: any) => !(existingClasses).includes(_x));
 
   const updateClasses = () => {
     Classes.add(obsoleted, classesToAdd);
@@ -56,7 +56,7 @@ const reconcileToDom = (definition: DomDefinitionDetail, obsoleted: SugarElement
 
   const updateValue = () => {
     const valueElement = obsoleted as SugarElement<HTMLInputElement | HTMLTextAreaElement>;
-    const value = definition.value.getOrUndefined();
+    const value = definition.value ?? undefined;
     if (value !== Value.get(valueElement)) {
       // TINY-8736: Value.set throws an error in case the value is undefined
       Value.set(valueElement, value ?? '');

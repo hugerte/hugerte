@@ -42,11 +42,11 @@ interface TextSeeker {
 const TextSeeker = (dom: DOMUtils, isBoundary?: (node: Node) => boolean): TextSeeker => {
   const isBlockBoundary = isBoundary ? isBoundary : (node: Node) => dom.isBlock(node) || NodeType.isBr(node) || NodeType.isContentEditableFalse(node);
 
-  const walk = (node: Node, offset: number, walker: () => Optional<Spot>, process: TextProcessCallback): Optional<Spot> => {
+  const walk = (node: Node, offset: number, walker: () => (Spot) | null, process: TextProcessCallback): (Spot) | null => {
     if (NodeType.isText(node)) {
       const newOffset = process(node, offset, node.data);
       if (newOffset !== -1) {
-        return Optional.some({ container: node, offset: newOffset });
+        return { container: node, offset: newOffset };
       }
     }
 
@@ -65,7 +65,7 @@ const TextSeeker = (dom: DOMUtils, isBoundary?: (node: Node) => boolean): TextSe
    */
   const backwards = (node: Node, offset: number, process: TextProcessCallback, root?: Node) => {
     const walker = TextWalker(node, root ?? dom.getRoot(), isBlockBoundary);
-    return walk(node, offset, () => walker.prev().map((prev) => ({ container: prev, offset: prev.length })), process).getOrNull();
+    return walk(node, offset, () => walker.prev().map((prev) => ({ container: prev, offset: prev.length })), process) ?? null;
   };
 
   /**
@@ -80,7 +80,7 @@ const TextSeeker = (dom: DOMUtils, isBoundary?: (node: Node) => boolean): TextSe
    */
   const forwards = (node: Node, offset: number, process: TextProcessCallback, root?: Node) => {
     const walker = TextWalker(node, root ?? dom.getRoot(), isBlockBoundary);
-    return walk(node, offset, () => walker.next().map((next) => ({ container: next, offset: 0 })), process).getOrNull();
+    return walk(node, offset, () => walker.next().map((next) => ({ container: next, offset: 0 })), process) ?? null;
   };
 
   return {

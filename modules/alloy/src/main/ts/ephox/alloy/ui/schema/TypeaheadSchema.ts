@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun, Optional } from '@ephox/katamari';
+import { Cell, Optional } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import { Coupling } from '../../api/behaviour/Coupling';
@@ -21,7 +21,7 @@ import { attemptSelectOver, setValueFromItem } from '../typeahead/TypeaheadModel
 import { TieredMenuSpec } from '../types/TieredMenuTypes';
 import { TypeaheadData, TypeaheadDetail } from '../types/TypeaheadTypes';
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.option('lazySink'),
   FieldSchema.required('fetch'),
   FieldSchema.defaulted('minChars', 5),
@@ -29,8 +29,8 @@ const schema = Fun.constant([
   Fields.onHandler('onOpen'),
   // TODO: Remove dupe with Dropdown
   FieldSchema.defaulted('getHotspot', Optional.some),
-  FieldSchema.defaulted('getAnchorOverrides', Fun.constant({ })),
-  FieldSchema.defaulted('layouts', Optional.none()),
+  FieldSchema.defaulted('getAnchorOverrides', () => { }),
+  FieldSchema.defaulted('layouts', null),
   FieldSchema.defaulted('eventOrder', { }),
 
   // Information about what these model settings do can be found in TypeaheadTypes
@@ -63,9 +63,9 @@ const schema = Fun.constant([
   InputBase.schema()
 ).concat(
   SketcherFields.sandboxFields()
-));
+);
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.external<TypeaheadDetail, TieredMenuSpec>({
     schema: [
       Fields.tieredMenuMarkers()
@@ -157,7 +157,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
         // firing so that the typeahead doesn't lose focus. This is the handler
         // for clicking on an item. We need to close the sandbox, update the typeahead
         // to show the item clicked on, and fire an execute.
-        onExecute: (_menu: AlloyComponent, item: AlloyComponent): Optional<boolean> => {
+        onExecute: (_menu: AlloyComponent, item: AlloyComponent): (boolean) | null => {
           // Note: This will only work when the typeahead and menu are in the same system.
           return detail.lazyTypeaheadComp.get().map((typeahead): boolean => {
             AlloyTriggers.emitWith(typeahead, TypeaheadEvents.itemExecute(), { item });
@@ -178,9 +178,9 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
       };
     }
   })
-]);
+];
 
-const name = Fun.constant('Typeahead');
+const name = () => 'Typeahead';
 
 export {
   name,

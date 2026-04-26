@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -51,7 +50,7 @@ const getEmbedHtml = (editor: Editor, data: MediaData): Promise<EmbedResult> => 
 };
 
 const isCached = (url: string): boolean =>
-  Obj.has(cache, url);
+  Object.prototype.hasOwnProperty.call(cache, url);
 
 export {
   getEmbedHtml,

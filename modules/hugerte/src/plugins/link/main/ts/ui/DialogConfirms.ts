@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Delay from 'hugerte/core/api/util/Delay';
@@ -25,26 +25,26 @@ const delayedConfirm = (editor: Editor, message: string, callback: (state: boole
   });
 };
 
-const tryEmailTransform = (data: LinkDialogOutput): Optional<Transformer> => {
+const tryEmailTransform = (data: LinkDialogOutput): (Transformer) | null => {
   const url = data.href;
   const suggestMailTo = url.indexOf('@') > 0 && url.indexOf('/') === -1 && url.indexOf('mailto:') === -1;
-  return suggestMailTo ? Optional.some({
+  return suggestMailTo ? {
     message: 'The URL you entered seems to be an email address. Do you want to add the required mailto: prefix?',
     preprocess: (oldData) => ({ ...oldData, href: 'mailto:' + url })
-  }) : Optional.none();
+  } : null;
 };
 
-const tryProtocolTransform = (assumeExternalTargets: AssumeExternalTargets, defaultLinkProtocol: string) => (data: LinkDialogOutput): Optional<Transformer> => {
+const tryProtocolTransform = (assumeExternalTargets: AssumeExternalTargets, defaultLinkProtocol: string) => (data: LinkDialogOutput): (Transformer) | null => {
   const url = data.href;
   const suggestProtocol = (
     assumeExternalTargets === AssumeExternalTargets.WARN && !Utils.hasProtocol(url) ||
     assumeExternalTargets === AssumeExternalTargets.OFF && /^\s*www(\.|\d\.)/i.test(url)
   );
 
-  return suggestProtocol ? Optional.some({
+  return suggestProtocol ? {
     message: `The URL you entered seems to be an external link. Do you want to add the required ${defaultLinkProtocol}:// prefix?`,
     preprocess: (oldData) => ({ ...oldData, href: defaultLinkProtocol + '://' + url })
-  }) : Optional.none();
+  } : null;
 };
 
 const preprocess = (editor: Editor, data: LinkDialogOutput): Promise<LinkDialogOutput> => Arr.findMap(

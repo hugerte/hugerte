@@ -1,4 +1,3 @@
-import { Arr, Obj } from '@ephox/katamari';
 import { InsertAll, Remove, SugarElement, Traverse } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -28,8 +27,8 @@ const addPostProcessHook = (name: string, hook: Hook): void => {
 };
 
 const postProcess = (name: string, editor: Editor): void => {
-  if (Obj.has(postProcessHooks, name)) {
-    Arr.each(postProcessHooks[name], (hook) => {
+  if (Object.prototype.hasOwnProperty.call(postProcessHooks, name)) {
+    (postProcessHooks[name]).forEach((hook) => {
       hook(editor);
     });
   }
@@ -40,7 +39,7 @@ addPostProcessHook('pre', (editor) => {
 
   const hasPreSibling = (blocks: Element[]) => (pre: HTMLPreElement) => {
     const prev = pre.previousSibling;
-    return isPre(prev) && Arr.contains(blocks, prev);
+    return isPre(prev) && (blocks).includes(prev);
   };
 
   const joinPre = (pre1: HTMLPreElement, pre2: HTMLPreElement) => {
@@ -57,8 +56,8 @@ addPostProcessHook('pre', (editor) => {
   if (!rng.collapsed) {
     const blocks = editor.selection.getSelectedBlocks();
 
-    const preBlocks = Arr.filter(Arr.filter(blocks, isPre), hasPreSibling(blocks));
-    Arr.each(preBlocks, (pre) => {
+    const preBlocks = ((blocks).filter(isPre)).filter(hasPreSibling(blocks));
+    (preBlocks).forEach((pre) => {
       joinPre(pre.previousSibling as HTMLPreElement, pre);
     });
   }

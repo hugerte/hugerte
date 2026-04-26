@@ -3,7 +3,7 @@ import {
   NativeEvents, Representing, SketchSpec, SystemEvents, Tabstopping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Traverse } from '@ephox/sugar';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -18,16 +18,16 @@ export interface TextField {
   readonly name: string;
   readonly classname: string;
   readonly flex: boolean;
-  readonly label: Optional<string>;
-  readonly inputMode: Optional<string>;
-  readonly placeholder: Optional<string>;
+  readonly label: (string) | null;
+  readonly inputMode: (string) | null;
+  readonly placeholder: (string) | null;
   readonly disabled: boolean;
-  readonly validation: Optional<{
+  readonly validation: ({
     readonly validator: Validator;
     readonly validateOnLoad?: boolean;
-  }>;
+  }) | null;
   readonly maximized: boolean;
-  readonly data: Optional<string>;
+  readonly data: (string) | null;
 }
 
 type InputSpec = Omit<Dialog.Input, 'type'>;
@@ -47,7 +47,7 @@ const renderTextField = (spec: TextField, providersBackstage: UiFactoryBackstage
       useControlEnter: spec.multiline === true,
       execute: (comp) => {
         AlloyTriggers.emit(comp, formSubmitEvent);
-        return Optional.some(true);
+        return true;
       }
     }),
     AddEventsBehaviour.config('textfield-change', [
@@ -76,8 +76,8 @@ const renderTextField = (spec: TextField, providersBackstage: UiFactoryBackstage
     }
   })).toArray();
 
-  const placeholder = spec.placeholder.fold( Fun.constant({}), (p) => ({ placeholder: providersBackstage.translate(p) }));
-  const inputMode = spec.inputMode.fold(Fun.constant({}), (mode) => ({ inputmode: mode }));
+  const placeholder = spec.placeholder.fold( () => {}, (p) => ({ placeholder: providersBackstage.translate(p) }));
+  const inputMode = spec.inputMode.fold(() => {}, (mode) => ({ inputmode: mode }));
 
   const inputAttributes = {
     ...placeholder,
@@ -86,14 +86,14 @@ const renderTextField = (spec: TextField, providersBackstage: UiFactoryBackstage
 
   const pField = AlloyFormField.parts.field({
     tag: spec.multiline === true ? 'textarea' : 'input',
-    ...spec.data.map((data) => ({ data })).getOr({}),
+    ...spec.data.map((data) => ({ data })) ?? ({}),
     inputAttributes,
     inputClasses: [ spec.classname ],
     inputBehaviours: Behaviour.derive(
-      Arr.flatten([
+      ([
         baseInputBehaviours,
         validatingBehaviours
-      ])
+      ]).flat()
     ),
     selectOnFocus: false,
     factory: AlloyInput
@@ -127,7 +127,7 @@ const renderTextField = (spec: TextField, providersBackstage: UiFactoryBackstage
   return renderFormFieldWith(pLabel, pTextField, extraClasses2, extraBehaviours);
 };
 
-const renderInput = (spec: InputSpec, providersBackstage: UiFactoryBackstageProviders, initialData: Optional<string>): SketchSpec => renderTextField({
+const renderInput = (spec: InputSpec, providersBackstage: UiFactoryBackstageProviders, initialData: (string) | null): SketchSpec => renderTextField({
   name: spec.name,
   multiline: false,
   label: spec.label,
@@ -136,21 +136,21 @@ const renderInput = (spec: InputSpec, providersBackstage: UiFactoryBackstageProv
   flex: false,
   disabled: !spec.enabled,
   classname: 'tox-textfield',
-  validation: Optional.none(),
+  validation: null,
   maximized: spec.maximized,
   data: initialData
 }, providersBackstage);
 
-const renderTextarea = (spec: TextAreaSpec, providersBackstage: UiFactoryBackstageProviders, initialData: Optional<string>): SketchSpec => renderTextField({
+const renderTextarea = (spec: TextAreaSpec, providersBackstage: UiFactoryBackstageProviders, initialData: (string) | null): SketchSpec => renderTextField({
   name: spec.name,
   multiline: true,
   label: spec.label,
-  inputMode: Optional.none(), // type attribute is not valid for textareas
+  inputMode: null, // type attribute is not valid for textareas
   placeholder: spec.placeholder,
   flex: true,
   disabled: !spec.enabled,
   classname: 'tox-textarea',
-  validation: Optional.none(),
+  validation: null,
   maximized: spec.maximized,
   data: initialData
 }, providersBackstage);

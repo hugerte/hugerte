@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -34,9 +33,9 @@ export interface DragStartingConfig {
   type: string;
   phoneyTypes: string[];
   effectAllowed: DataTransfer['effectAllowed'];
-  getData: Optional<(component: AlloyComponent) => string>;
-  getImageParent: Optional<(component: AlloyComponent) => SugarElement<Element>>;
-  getImage: Optional<(component: AlloyComponent) => DragnDropImageClone>;
+  getData: ((component: AlloyComponent) =) | null string>;
+  getImageParent: ((component: AlloyComponent) =) | null SugarElement<Element>>;
+  getImage: ((component: AlloyComponent) =) | null DragnDropImageClone>;
   canDrag: (component: AlloyComponent, target: SugarElement<Node>) => boolean;
   onDragstart: (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<DragEvent>) => void;
   onDragover: (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<DragEvent>) => void;

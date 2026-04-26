@@ -1,5 +1,4 @@
 import { DomUniverse } from '@ephox/boss';
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Clumps from '../general/Clumps';
@@ -11,7 +10,7 @@ const fractures = (isRoot: (e: SugarElement) => boolean, start: SugarElement, so
   return Clumps.fractures(universe, isRoot, start, soffset, finish, foffset, ceiling);
 };
 
-const fracture = (isRoot: (e: SugarElement) => boolean, start: SugarElement, soffset: number, finish: SugarElement, foffset: number, ceiling?: (e: SugarElement) => SugarElement): Optional<SugarElement[]> => {
+const fracture = (isRoot: (e: SugarElement) => boolean, start: SugarElement, soffset: number, finish: SugarElement, foffset: number, ceiling?: (e: SugarElement) => SugarElement): (SugarElement[]) | null => {
   return Clumps.fracture(universe, isRoot, start, soffset, finish, foffset, ceiling);
 };
 

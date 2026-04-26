@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as RangeNodes from './RangeNodes';
@@ -16,7 +15,7 @@ const getRanges = (selection: Selection | null): Range[] => {
 };
 
 const getSelectedNodes = (ranges: Range[]): SugarElement<Node>[] => {
-  return Arr.bind(ranges, (range) => {
+  return (ranges).flatMap((range) => {
     const node = RangeNodes.getSelectedNode(range);
     return node ? [ SugarElement.fromDom(node) ] : [];
   });

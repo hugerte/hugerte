@@ -1,4 +1,3 @@
-import { Optional, Type } from '@ephox/katamari';
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 import Tools from 'hugerte/core/api/util/Tools';
@@ -8,12 +7,12 @@ import { ListItem, UserListItem } from '../ui/DialogTypes';
 type ListExtractor = (item: UserListItem) => string;
 
 const getValue = (item: UserListItem): string =>
-  Type.isString(item.value) ? item.value : '';
+  typeof (item.value) === 'string' ? item.value : '';
 
 const getText = (item: UserListItem): string => {
-  if (Type.isString(item.text)) {
+  if (typeof (item.text) === 'string') {
     return item.text;
-  } else if (Type.isString(item.title)) {
+  } else if (typeof (item.title) === 'string') {
     return item.title;
   } else {
     return '';
@@ -35,10 +34,10 @@ const sanitizeList = (list: UserListItem[], extractValue: ListExtractor): ListIt
   return out;
 };
 
-const sanitizeWith = (extracter: ListExtractor = getValue) => (list: UserListItem[] | undefined): Optional<ListItem[]> =>
-  Optional.from(list).map((list) => sanitizeList(list, extracter));
+const sanitizeWith = (extracter: ListExtractor = getValue) => (list: UserListItem[] | undefined): (ListItem[]) | null =>
+  (list ?? null).map((list) => sanitizeList(list, extracter));
 
-const sanitize = (list: UserListItem[]): Optional<ListItem[]> =>
+const sanitize = (list: UserListItem[]): (ListItem[]) | null =>
   sanitizeWith(getValue)(list);
 
 // NOTE: May need to care about flattening.

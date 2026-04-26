@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Optionals } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { Attribute, Compare, SugarElement } from '@ephox/sugar';
 
 import { Generators, GeneratorsWrapper, SimpleGenerators } from '../api/Generators';
@@ -21,7 +21,7 @@ export interface OperationBehaviours {
 }
 
 export interface RunOperationOutput {
-  readonly cursor: Optional<SugarElement<HTMLTableCellElement>>;
+  readonly cursor: (SugarElement<HTMLTableCellElement>) | null;
   readonly newRows: SugarElement<HTMLTableRowElement>[];
   readonly newCells: SugarElement<HTMLTableCellElement>[];
 }
@@ -35,11 +35,11 @@ export interface TargetSelection {
 }
 
 export interface TargetMergable {
-  readonly mergable: Optional<ExtractMergable>;
+  readonly mergable: (ExtractMergable) | null;
 }
 
 export interface TargetUnmergable {
-  readonly unmergable: Optional<SugarElement<HTMLTableCellElement>[]>;
+  readonly unmergable: (SugarElement<HTMLTableCellElement>[]) | null;
 }
 
 // combines the above 4 interfaces because this is what data we actually get from HugeRTE
@@ -79,33 +79,33 @@ const fromWarehouse = (warehouse: Warehouse, generators: Generators) =>
 const toDetailList = <R extends RowElement>(grid: Structs.RowCells<R>[]): Structs.RowDetailNew<Structs.DetailNew<RowCell<R>>, R>[] =>
   Transitions.toDetails(grid, Compare.eq);
 
-const findInWarehouse = (warehouse: Warehouse, element: SugarElement<HTMLTableCellElement>): Optional<Structs.DetailExt> => Arr.findMap(warehouse.all, (r) =>
-  Arr.find(r.cells, (e) => Compare.eq(element, e.element))
+const findInWarehouse = (warehouse: Warehouse, element: SugarElement<HTMLTableCellElement>): (Structs.DetailExt) | null => Arr.findMap(warehouse.all, (r) =>
+  ((r.cells).find((e) => Compare.eq(element, e.element)) ?? null)
 );
 
-const extractCells = (warehouse: Warehouse, target: TargetSelection, predicate: (detail: Structs.DetailExt) => boolean): Optional<Structs.DetailExt[]> => {
-  const details = Arr.map(target.selection, (cell) => {
+const extractCells = (warehouse: Warehouse, target: TargetSelection, predicate: (detail: Structs.DetailExt) => boolean): (Structs.DetailExt[]) | null => {
+  const details = (target.selection).map((cell) => {
     return TableLookup.cell(cell)
       .bind((lc) => findInWarehouse(warehouse, lc))
       .filter(predicate);
   });
-  const cells = Optionals.cat(details);
-  return Optionals.someIf(cells.length > 0, cells);
+  const cells = (details).filter((_x: any) => _x !== null);
+  return (cells.length > 0 ? cells : null);
 };
 
 export type Operation<INFO, GW extends GeneratorsWrapper> = (model: Structs.RowCells[], info: INFO, eq: CompElm, w: GW, headers: TableSection) => TableOperationResult;
-export type Extract<RAW, INFO> = (warehouse: Warehouse, target: RAW) => Optional<INFO>;
+export type Extract<RAW, INFO> = (warehouse: Warehouse, target: RAW) => (INFO) | null;
 export type Adjustment<INFO> = <T extends Structs.DetailNew>(table: SugarElement<HTMLTableElement>, grid: Structs.RowDetailNew<T>[], info: INFO, behaviours: Required<OperationBehaviours>) => void;
 export type PostAction = (e: SugarElement<HTMLTableElement>) => void;
 export type GenWrap<GW extends GeneratorsWrapper> = (g: Generators) => GW;
 
-export type OperationCallback<T> = (table: SugarElement<HTMLTableElement>, target: T, generators: Generators, behaviours?: OperationBehaviours) => Optional<RunOperationOutput>;
+export type OperationCallback<T> = (table: SugarElement<HTMLTableElement>, target: T, generators: Generators, behaviours?: OperationBehaviours) => (RunOperationOutput) | null;
 
 const run = <RAW, INFO, GW extends GeneratorsWrapper>
 (operation: Operation<INFO, GW>, extract: Extract<RAW, INFO>, adjustment: Adjustment<INFO>, postAction: PostAction, genWrappers: GenWrap<GW>): OperationCallback<RAW> =>
-  (table: SugarElement<HTMLTableElement>, target: RAW, generators: Generators, behaviours?: OperationBehaviours): Optional<RunOperationOutput> => {
+  (table: SugarElement<HTMLTableElement>, target: RAW, generators: Generators, behaviours?: OperationBehaviours): (RunOperationOutput) | null => {
     const warehouse = Warehouse.fromTable(table);
-    const tableSection = Optional.from(behaviours?.section).getOrThunk(TableSection.fallback);
+    const tableSection = (behaviours?.section ?? null).getOrThunk(TableSection.fallback);
     const output = extract(warehouse, target).map((info) => {
       const model = fromWarehouse(warehouse, generators);
       const result = operation(model, info, Compare.eq, genWrappers(generators), tableSection);
@@ -121,8 +121,8 @@ const run = <RAW, INFO, GW extends GeneratorsWrapper>
 
     return output.bind((out) => {
       const newElements = Redraw.render(table, out.grid);
-      const tableSizing = Optional.from(behaviours?.sizing).getOrThunk(() => TableSize.getTableSize(table));
-      const resizing = Optional.from(behaviours?.resize).getOrThunk(ResizeBehaviour.preserveTable);
+      const tableSizing = (behaviours?.sizing ?? null).getOrThunk(() => TableSize.getTableSize(table));
+      const resizing = (behaviours?.resize ?? null).getOrThunk(ResizeBehaviour.preserveTable);
       adjustment(table, out.grid, out.info, { sizing: tableSizing, resize: resizing, section: tableSection });
       postAction(table);
       // Update locked cols attribute
@@ -130,18 +130,18 @@ const run = <RAW, INFO, GW extends GeneratorsWrapper>
       if (out.lockedColumns.length > 0) {
         Attribute.set(table, LockedColumnUtils.LOCKED_COL_ATTR, out.lockedColumns.join(','));
       }
-      return Optional.some({
+      return {
         cursor: out.cursor,
         newRows: newElements.newRows,
         newCells: newElements.newCells
-      });
+      };
     });
   };
 
-const onCell = (warehouse: Warehouse, target: TargetElement): Optional<Structs.DetailExt> =>
+const onCell = (warehouse: Warehouse, target: TargetElement): (Structs.DetailExt) | null =>
   TableLookup.cell(target.element).bind((cell) => findInWarehouse(warehouse, cell));
 
-const onPaste = (warehouse: Warehouse, target: TargetPaste): Optional<ExtractPaste> =>
+const onPaste = (warehouse: Warehouse, target: TargetPaste): (ExtractPaste) | null =>
   TableLookup.cell(target.element).bind((cell) => findInWarehouse(warehouse, cell).map((details) => {
     const value: ExtractPaste = {
       ...details,
@@ -151,42 +151,42 @@ const onPaste = (warehouse: Warehouse, target: TargetPaste): Optional<ExtractPas
     return value;
   }));
 
-const onPasteByEditor = (warehouse: Warehouse, target: TargetPasteRows): Optional<ExtractPasteRows> =>
-  extractCells(warehouse, target, Fun.always).map((cells) => ({
+const onPasteByEditor = (warehouse: Warehouse, target: TargetPasteRows): (ExtractPasteRows) | null =>
+  extractCells(warehouse, target, (() => true as const)).map((cells) => ({
     cells,
     generators: target.generators,
     clipboard: target.clipboard
   }));
 
-const onMergable = (_warehouse: Warehouse, target: TargetMergable): Optional<ExtractMergable> =>
+const onMergable = (_warehouse: Warehouse, target: TargetMergable): (ExtractMergable) | null =>
   target.mergable;
 
-const onUnmergable = (_warehouse: Warehouse, target: TargetUnmergable): Optional<SugarElement<HTMLTableCellElement>[]> =>
+const onUnmergable = (_warehouse: Warehouse, target: TargetUnmergable): (SugarElement<HTMLTableCellElement>[]) | null =>
   target.unmergable;
 
-const onCells = (warehouse: Warehouse, target: TargetSelection): Optional<Structs.DetailExt[]> =>
-  extractCells(warehouse, target, Fun.always);
+const onCells = (warehouse: Warehouse, target: TargetSelection): (Structs.DetailExt[]) | null =>
+  extractCells(warehouse, target, (() => true as const));
 
 // Custom unlocked extractors
 
-const onUnlockedCell = (warehouse: Warehouse, target: TargetElement): Optional<Structs.DetailExt> =>
+const onUnlockedCell = (warehouse: Warehouse, target: TargetElement): (Structs.DetailExt) | null =>
   onCell(warehouse, target).filter((detail) => !detail.isLocked);
 
-const onUnlockedCells = (warehouse: Warehouse, target: TargetSelection): Optional<Structs.DetailExt[]> =>
+const onUnlockedCells = (warehouse: Warehouse, target: TargetSelection): (Structs.DetailExt[]) | null =>
   extractCells(warehouse, target, (detail) => !detail.isLocked);
 
 const isUnlockedTableCell = (warehouse: Warehouse, cell: SugarElement<HTMLTableCellElement>) =>
   findInWarehouse(warehouse, cell).exists((detail) => !detail.isLocked);
 
 const allUnlocked = (warehouse: Warehouse, cells: SugarElement<HTMLTableCellElement>[]) =>
-  Arr.forall(cells, (cell) => isUnlockedTableCell(warehouse, cell));
+  (cells).every((cell) => isUnlockedTableCell(warehouse, cell));
 
 // If any locked columns are present in the selection, then don't want to be able to merge
-const onUnlockedMergable = (warehouse: Warehouse, target: TargetMergable): Optional<ExtractMergable> =>
+const onUnlockedMergable = (warehouse: Warehouse, target: TargetMergable): (ExtractMergable) | null =>
   onMergable(warehouse, target).filter((mergeable) => allUnlocked(warehouse, mergeable.cells));
 
 // If any locked columns are present in the selection, then don't want to be able to unmerge
-const onUnlockedUnmergable = (warehouse: Warehouse, target: TargetUnmergable): Optional<SugarElement<HTMLTableCellElement>[]> =>
+const onUnlockedUnmergable = (warehouse: Warehouse, target: TargetUnmergable): (SugarElement<HTMLTableCellElement>[]) | null =>
   onUnmergable(warehouse, target).filter((cells) => allUnlocked(warehouse, cells));
 
 export {

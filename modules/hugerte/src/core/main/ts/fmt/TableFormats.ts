@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 const genericBase = {
   remove_similar: true,
@@ -44,7 +43,7 @@ const cellFormats = {
   }
 };
 
-const get = Fun.constant(cellFormats);
+const get = () => cellFormats;
 
 export {
   get

@@ -1,4 +1,3 @@
-import { Unicode } from '@ephox/katamari';
 
 import DomParser from '../api/html/DomParser';
 import AstNode from '../api/html/Node';
@@ -76,7 +75,7 @@ export const addNodeFilter = (settings: DomSerializerSettings, htmlParser: DomPa
 
         if (lastParent === parent) {
           const textNode = new AstNode('#text', 3);
-          textNode.value = Unicode.nbsp;
+          textNode.value = '\u00A0';
           node.replace(textNode);
         }
       }

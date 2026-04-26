@@ -1,4 +1,4 @@
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Compare, EventArgs, Focus, Remove, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import * as Debugging from '../../debugging/Debugging';
@@ -47,7 +47,7 @@ const create = (): GuiSystem => {
 
 const takeover = (root: AlloyComponent): GuiSystem => {
   const isAboveRoot = (el: SugarElement<Node>): boolean => Traverse.parent(root.element).fold(
-    Fun.always,
+    (() => true as const),
     (parent) => Compare.eq(el, parent)
   );
 
@@ -63,7 +63,7 @@ const takeover = (root: AlloyComponent): GuiSystem => {
 
   const systemApi: AlloySystemApi = {
     // This is a real system
-    debugInfo: Fun.constant('real'),
+    debugInfo: () => 'real',
     triggerEvent: (eventName: string, target: SugarElement<Node>, data: any) => {
       Debugging.monitorEvent(eventName, target, (logger: Debugging.DebuggerLogger) =>
         // The return value is not used because this is a fake event.
@@ -81,8 +81,8 @@ const takeover = (root: AlloyComponent): GuiSystem => {
             // originator is used by the default events to ensure that focus doesn't
             // get called infinitely
             originator,
-            kill: Fun.noop,
-            prevent: Fun.noop,
+            kill: () => {},
+            prevent: () => {},
             target
           }, target, logger);
           return false;
@@ -123,21 +123,21 @@ const takeover = (root: AlloyComponent): GuiSystem => {
     broadcastEvent: (eventName: string, event: EventArgs) => {
       broadcastEvent(eventName, event);
     },
-    isConnected: Fun.always
+    isConnected: (() => true as const)
   };
 
   const addToWorld = (component: AlloyComponent) => {
     component.connect(systemApi);
     if (!SugarNode.isText(component.element)) {
       registry.register(component);
-      Arr.each(component.components(), addToWorld);
+      (component.components()).forEach(addToWorld);
       systemApi.triggerEvent(SystemEvents.systemInit(), component.element, { target: component.element });
     }
   };
 
   const removeFromWorld = (component: AlloyComponent) => {
     if (!SugarNode.isText(component.element)) {
-      Arr.each(component.components(), removeFromWorld);
+      (component.components()).forEach(removeFromWorld);
       registry.unregister(component);
     }
     component.disconnect();
@@ -159,7 +159,7 @@ const takeover = (root: AlloyComponent): GuiSystem => {
 
   const broadcastData = (data: ReceivingInternalEvent) => {
     const receivers = registry.filter(SystemEvents.receive());
-    Arr.each(receivers, (receiver) => {
+    (receivers).forEach((receiver) => {
       const descHandler = receiver.descHandler;
       const handler = DescribedHandler.getCurried(descHandler);
       handler(data);
@@ -195,7 +195,7 @@ const takeover = (root: AlloyComponent): GuiSystem => {
   ), Result.value);
 
   const getByDom = (elem: SugarElement<Node>): Result<AlloyComponent, Error> => {
-    const uid = Tagger.read(elem).getOr('not found');
+    const uid = Tagger.read(elem) ?? ('not found');
     return getByUid(uid);
   };
 

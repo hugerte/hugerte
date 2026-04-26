@@ -1,6 +1,6 @@
 import { AlloySpec, AlloyTriggers, Behaviour, Input, Keying, Memento, SketchSpec } from '@ephox/alloy';
 import { InlineContent } from '@ephox/bridge';
-import { Id, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { ToolbarMode } from '../../api/Options';
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -32,11 +32,11 @@ const buildInitGroups = (ctx: InlineContent.ContextForm, providers: UiFactoryBac
           // Maybe this should go in an alloy sketch for Input?
           onLeft: (comp, se) => {
             se.cut();
-            return Optional.none();
+            return null;
           },
           onRight: (comp, se) => {
             se.cut();
-            return Optional.none();
+            return null;
           }
         })
       ])
@@ -47,11 +47,11 @@ const buildInitGroups = (ctx: InlineContent.ContextForm, providers: UiFactoryBac
 
   return [
     {
-      title: Optional.none(),
+      title: null,
       items: [ memInput.asSpec() ]
     },
     {
-      title: Optional.none(),
+      title: null,
       items: commands.asSpecs() as AlloySpec[]
     }
   ];
@@ -60,7 +60,7 @@ const buildInitGroups = (ctx: InlineContent.ContextForm, providers: UiFactoryBac
 const renderContextForm = (toolbarType: ToolbarMode, ctx: InlineContent.ContextForm, providers: UiFactoryBackstageProviders): SketchSpec =>
   renderToolbar({
     type: toolbarType,
-    uid: Id.generate('context-toolbar'),
+    uid: (('context-toolbar') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
     initGroups: buildInitGroups(ctx, providers),
     onEscape: Optional.none,
     cyclicKeying: true,

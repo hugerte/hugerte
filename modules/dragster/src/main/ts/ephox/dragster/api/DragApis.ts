@@ -1,4 +1,4 @@
-import { Contracts, Optional } from '@ephox/katamari';
+import { Contracts } from '@ephox/katamari';
 import { EventArgs, SugarElement, SugarPosition } from '@ephox/sugar';
 
 import { BlockerOptions } from '../detect/Blocker';
@@ -9,7 +9,7 @@ export interface DragMutation {
 
 export interface DragMode<T> {
   compare: (old: SugarPosition, nu: SugarPosition) => SugarPosition;
-  extract: (event: EventArgs<T>) => Optional<SugarPosition>;
+  extract: (event: EventArgs<T>) => (SugarPosition) | null;
   mutate: (mutation: DragMutation, info: SugarPosition) => void;
   sink: (dragApi: DragApi<T>, settings: Partial<BlockerOptions>) => DragSink;
 }

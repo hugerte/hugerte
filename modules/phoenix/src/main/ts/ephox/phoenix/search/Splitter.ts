@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
 import { PositionArray, Strings } from '@ephox/polaris';
 
 import * as Spot from '../api/data/Spot';
@@ -12,7 +11,7 @@ import { SpotRange } from '../api/data/Types';
  */
 const subdivide = <E, D>(universe: Universe<E, D>, item: E, positions: number[]): SpotRange<E>[] => {
   const text = universe.property().getText(item);
-  const pieces = Arr.filter(Strings.splits(text, positions), (section) => {
+  const pieces = (Strings.splits(text, positions)).filter((section) => {
     return section.length > 0;
   });
 
@@ -24,10 +23,10 @@ const subdivide = <E, D>(universe: Universe<E, D>, item: E, positions: number[])
   const others = PositionArray.generate(pieces.slice(1), (a, start) => {
     const nu = universe.create().text(a);
     const result = Spot.range(nu, start, start + a.length);
-    return Optional.some(result);
+    return result;
   }, pieces[0].length);
 
-  const otherElements = Arr.map(others, (a) => {
+  const otherElements = (others).map((a) => {
     return a.element;
   });
   universe.insert().afterAll(item, otherElements);

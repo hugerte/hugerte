@@ -1,4 +1,3 @@
-import { Arr, Fun } from '@ephox/katamari';
 
 import Editor from './api/Editor';
 import * as Options from './api/Options';
@@ -136,7 +135,7 @@ class NodeChange {
     let i: number;
     const editor = this.editor;
 
-    const currentPath = Arr.reverse(editor.dom.getParents(startElm, Fun.always, editor.getBody()));
+    const currentPath = [...(editor.dom.getParents(startElm, (() => true as const), editor.getBody()))].reverse();
     if (currentPath.length === this.lastPath.length) {
       for (i = currentPath.length; i >= 0; i--) {
         if (currentPath[i] !== this.lastPath[i]) {

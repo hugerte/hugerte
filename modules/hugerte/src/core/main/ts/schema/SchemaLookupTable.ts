@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 
 import * as GlobalAttributesSet from './GlobalAttributesSet';
 import * as SchemaElementSets from './SchemaElementSets';
@@ -20,9 +20,9 @@ export const makeSchema = (type: SchemaType): SchemaLookupTable => {
 
   const addElement = (name: string, attributes: string[], children: string[]) => {
     schema[name] = {
-      attributes: Arr.mapToObject(attributes, Fun.constant({})),
+      attributes: Arr.mapToObject(attributes, () => {}),
       attributesOrder: attributes,
-      children: Arr.mapToObject(children, Fun.constant({}))
+      children: Arr.mapToObject(children, () => {})
     };
   };
 
@@ -52,13 +52,13 @@ export const makeSchema = (type: SchemaType): SchemaLookupTable => {
   if (type !== 'html5-strict') {
     const html4PhrasingContent = 'acronym applet basefont big font strike tt';
 
-    Arr.each(SchemaUtils.split(html4PhrasingContent), (name) => {
+    (SchemaUtils.split(html4PhrasingContent)).forEach((name) => {
       add(name, '', phrasingContent);
     });
 
     const html4BlockContent = 'center dir isindex noframes';
 
-    Arr.each(SchemaUtils.split(html4BlockContent), (name) => {
+    (SchemaUtils.split(html4BlockContent)).forEach((name) => {
       add(name, '', flowContent);
     });
   }
@@ -199,7 +199,7 @@ export const makeSchema = (type: SchemaType): SchemaLookupTable => {
   // Special: iframe, ruby, video, audio, label
   if (type !== 'html4') {
     // Video/audio elements cannot have nested children
-    Arr.each([ schema.video, schema.audio ], (item) => {
+    ([ schema.video, schema.audio ]).forEach((item) => {
       delete item.children.audio;
       delete item.children.video;
     });
@@ -207,7 +207,7 @@ export const makeSchema = (type: SchemaType): SchemaLookupTable => {
 
   // Delete children of the same name from it's parent
   // For example: form can't have a child of the name form
-  Arr.each(SchemaUtils.split('a form meter progress dfn'), (name) => {
+  (SchemaUtils.split('a form meter progress dfn')).forEach((name) => {
     if (schema[name]) {
       delete schema[name].children[name];
     }

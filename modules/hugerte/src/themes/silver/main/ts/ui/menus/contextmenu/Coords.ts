@@ -1,5 +1,4 @@
 import { AnchorSpec, MakeshiftAnchorSpec, NodeAnchorSpec, SelectionAnchorSpec } from '@ephox/alloy';
-import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -69,7 +68,7 @@ export const getSelectionAnchor = (editor: Editor): SelectionAnchorSpec => {
 
 export const getNodeAnchor = (editor: Editor): NodeAnchorSpec => ({
   type: 'node',
-  node: Optional.some(SugarElement.fromDom(editor.selection.getNode())),
+  node: SugarElement.fromDom(editor.selection.getNode()),
   root: SugarElement.fromDom(editor.getBody())
 });
 

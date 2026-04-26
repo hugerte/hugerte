@@ -33,13 +33,13 @@ const find = (text: string, pattern: Pattern, start = 0, finish = text.length): 
 
 const extract = (elements: SugarElement<Text>[], matches: Position[]): TextMatch[][] => {
   // Walk over each text node and compare with the matches
-  const nodePositions = Arr.foldl(elements, (acc, element) => {
+  const nodePositions = (elements).reduce((acc, element) => {
     const content = SugarText.get(element);
     const start = acc.last;
     const finish = start + content.length;
 
     // Find positions for any matches in the current text node
-    const positions = Arr.bind(matches, (match, matchIdx) => {
+    const positions = (matches).flatMap((match, matchIdx) => {
       // Check to see if the match overlaps with the text position
       if (match.start < finish && match.finish > start) {
         return [{

@@ -1,4 +1,3 @@
-import { Obj } from '@ephox/katamari';
 
 import { Stateless } from '../../behaviour/common/BehaviourState';
 import * as KeyboardBranches from '../../behaviour/keyboard/KeyboardBranches';
@@ -29,7 +28,7 @@ export type KeyingConfigSpec =
 // TODO: dynamic type, TODO: group these into their KeyingModes
 export type KeyingModes = 'acyclic' | 'cyclic' | 'flow' | 'flatgrid' | 'matrix' | 'execution' | 'menu' | 'special';
 
-const isFlatgridState = (keyState: KeyingState): keyState is FlatgridState => Obj.hasNonNullableKey(keyState as any, 'setGridSize');
+const isFlatgridState = (keyState: KeyingState): keyState is FlatgridState => (Object.prototype.hasOwnProperty.call(keyState as any, 'setGridSize') && (keyState as any)['setGridSize'] != null);
 
 const Keying: KeyingBehaviour<any> = Behaviour.createModes({
   branchKey: 'mode',

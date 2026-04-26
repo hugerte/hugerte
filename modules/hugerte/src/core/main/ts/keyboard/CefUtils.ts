@@ -1,11 +1,10 @@
-import { Optional } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import { firstPositionIn, lastPositionIn } from '../caret/CaretFinder';
 import { CaretPosition } from '../caret/CaretPosition';
 import { isAfterContentEditableFalse, isBeforeContentEditableFalse } from '../caret/CaretPositionPredicates';
 
-const getEdgeCefPosition = (editor: Editor, atStart: boolean): Optional<CaretPosition> => {
+const getEdgeCefPosition = (editor: Editor, atStart: boolean): (CaretPosition) | null => {
   const root = editor.getBody();
   return atStart ? firstPositionIn(root).filter(isBeforeContentEditableFalse) :
     lastPositionIn(root).filter(isAfterContentEditableFalse);

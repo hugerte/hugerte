@@ -1,5 +1,4 @@
 import { FieldProcessor, FieldSchema, ValueType } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import * as Boxes from '../../alien/Boxes';
 import * as Fields from '../../data/Fields';
@@ -18,7 +17,7 @@ export default [
   ]),
   FieldSchema.defaultedFunction('lazyViewport', (): DockingViewport => ({
     bounds: Boxes.win(),
-    optScrollEnv: Optional.none()
+    optScrollEnv: null
   })),
   FieldSchema.defaultedArrayOf('modes', [ 'top', 'bottom' ], ValueType.string),
   Fields.onHandler('onDocked'),

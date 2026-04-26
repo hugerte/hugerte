@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 import { Attribute, InsertAll, Replication, SugarElement } from '@ephox/sugar';
 
 import { onUnlockedCells, TargetSelection } from '../model/RunOperation';
@@ -25,8 +24,8 @@ const isColInRange = (minColRange: number, maxColRange: number) =>
 
 const generateColGroup = (house: Warehouse, minColRange: number, maxColRange: number): SugarElement<HTMLTableColElement>[] => {
   if (Warehouse.hasColumns(house)) {
-    const colsToCopy = Arr.filter(Warehouse.justColumns(house), isColInRange(minColRange, maxColRange));
-    const copiedCols = Arr.map(colsToCopy, (c) => {
+    const colsToCopy = (Warehouse.justColumns(house)).filter(isColInRange(minColRange, maxColRange));
+    const copiedCols = (colsToCopy).map((c) => {
       const clonedCol = Replication.deep(c.element);
       constrainSpan(clonedCol, 'span', maxColRange - minColRange);
       return clonedCol;
@@ -40,9 +39,9 @@ const generateColGroup = (house: Warehouse, minColRange: number, maxColRange: nu
 };
 
 const generateRows = (house: Warehouse, minColRange: number, maxColRange: number): SugarElement<HTMLTableRowElement>[] =>
-  Arr.map(house.all, (row) => {
-    const cellsToCopy = Arr.filter(row.cells, isColInRange(minColRange, maxColRange));
-    const copiedCells = Arr.map(cellsToCopy, (cell) => {
+  (house.all).map((row) => {
+    const cellsToCopy = (row.cells).filter(isColInRange(minColRange, maxColRange));
+    const copiedCells = (cellsToCopy).map((cell) => {
       const clonedCell = Replication.deep(cell.element);
       constrainSpan(clonedCell, 'colspan', maxColRange - minColRange);
       return clonedCell;
@@ -52,7 +51,7 @@ const generateRows = (house: Warehouse, minColRange: number, maxColRange: number
     return fakeTR;
   });
 
-const copyCols = (table: SugarElement<HTMLTableElement>, target: TargetSelection): Optional<SugarElement<HTMLTableRowElement | HTMLTableColElement>[]> => {
+const copyCols = (table: SugarElement<HTMLTableElement>, target: TargetSelection): (SugarElement<HTMLTableRowElement | HTMLTableColElement>[]) | null => {
   const house = Warehouse.fromTable(table);
   const details = onUnlockedCells(house, target);
   return details.map((selectedCells): SugarElement<HTMLTableRowElement | HTMLTableColElement>[] => {

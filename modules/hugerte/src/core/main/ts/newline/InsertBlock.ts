@@ -1,4 +1,3 @@
-import { Arr, Type } from '@ephox/katamari';
 import { ContentEditable, Insert, PredicateFilter, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -18,7 +17,7 @@ import * as InsertLi from './InsertLi';
 import * as NewLineUtils from './NewLineUtils';
 
 const trimZwsp = (fragment: DocumentFragment) => {
-  Arr.each(PredicateFilter.descendants(SugarElement.fromDom(fragment), SugarNode.isText), (text) => {
+  (PredicateFilter.descendants(SugarElement.fromDom(fragment), SugarNode.isText)).forEach((text) => {
     const rawNode = text.dom;
     rawNode.nodeValue = Zwsp.trim(rawNode.data);
   });
@@ -39,7 +38,7 @@ const containerAndSiblingName = (container: Node, nodeName: string) => {
 
 // Returns true if the block can be split into two blocks or not
 const canSplitBlock = (dom: DOMUtils, node: Node | null): node is Element => {
-  return Type.isNonNullable(node) &&
+  return (node) != null &&
     dom.isBlock(node) &&
     !/^(TD|TH|CAPTION|FORM)$/.test(node.nodeName) &&
     !/^(fixed|absolute)/i.test(node.style.position) &&
@@ -180,10 +179,10 @@ const addBrToBlockIfNeeded = (dom: DOMUtils, block: Node) => {
 
 const shouldEndContainer = (editor: Editor, container: Node | null | undefined) => {
   const optionValue = Options.shouldEndContainerOnEmptyBlock(editor);
-  if (Type.isNullable(container)) {
+  if ((container) == null) {
     return false;
-  } else if (Type.isString(optionValue)) {
-    return Arr.contains(Tools.explode(optionValue), container.nodeName.toLowerCase());
+  } else if (typeof (optionValue) === 'string') {
+    return (Tools.explode(optionValue)).includes(container.nodeName.toLowerCase());
   } else {
     return optionValue;
   }
@@ -340,7 +339,7 @@ const insert = (editor: Editor, evt?: EditorEvent<KeyboardEvent>): void => {
 
   // Find parent block and setup empty block paddings
   let parentBlock: HTMLElement = dom.getParent(container, dom.isBlock) || dom.getRoot();
-  containerBlock = Type.isNonNullable(parentBlock?.parentNode) ? dom.getParent(parentBlock.parentNode, dom.isBlock) : null;
+  containerBlock = (parentBlock?.parentNode) != null ? dom.getParent(parentBlock.parentNode, dom.isBlock) : null;
 
   // Setup block names
   parentBlockName = parentBlock ? parentBlock.nodeName.toUpperCase() : ''; // IE < 9 & HTML5

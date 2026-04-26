@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloySpec, Behaviour, Blocking, Composing, DomFactory, Replacing, SketchSpec } from '@ephox/alloy';
-import { Arr, Cell, Optional, Singleton, Type } from '@ephox/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 import { Attribute, Class, Css, Focus, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { EventUtilsEvent } from 'hugerte/core/api/dom/EventUtils';
@@ -35,7 +35,7 @@ const focusBusyComponent = (throbber: AlloyComponent): void =>
 const toggleEditorTabIndex = (editor: Editor, state: boolean) => {
   const tabIndexAttr = 'tabindex';
   const dataTabIndexAttr = `data-mce-${tabIndexAttr}`;
-  Optional.from(editor.iframeElement)
+  (editor.iframeElement ?? null)
     .map(SugarElement.fromDom)
     .each((iframe) => {
       if (state) {
@@ -96,7 +96,7 @@ const renderThrobber = (spec: SketchSpec): AlloySpec => ({
       focus: false
     }),
     Composing.config({
-      find: (comp) => Arr.head(comp.components())
+      find: (comp) => ((comp.components())[0] ?? null)
     })
   ]),
   components: [ ]
@@ -107,7 +107,7 @@ const isFocusEvent = (event: EditorEvent<ExecCommandEvent> | EventUtilsEvent<Foc
 
 const isPasteBinTarget = (event: EditorEvent<ExecCommandEvent> | EventUtilsEvent<FocusEvent>) => {
   if (isFocusEvent(event)) {
-    const node = event.composed ? Arr.head(event.composedPath()) : Optional.from(event.target);
+    const node = event.composed ? ((event.composedPath())[0] ?? null) : (event.target ?? null);
     return node
       .map(SugarElement.fromDom)
       .filter(SugarNode.isElement)
@@ -154,7 +154,7 @@ const setup = (editor: Editor, lazyThrobber: () => AlloyComponent, sharedBacksta
 
   editor.on('ProgressState', (e) => {
     timer.on(clearTimeout);
-    if (Type.isNumber(e.time)) {
+    if (typeof (e.time) === 'number') {
       const timerId = Delay.setEditorTimeout(editor, () => toggle(e.state), e.time);
       timer.set(timerId);
     } else {

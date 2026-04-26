@@ -1,13 +1,12 @@
-import { Optional } from '@ephox/katamari';
 
 import { Situs } from './Situs';
 
 export interface Response {
-  readonly selection: Optional<Situs>;
+  readonly selection: (Situs) | null;
   readonly kill: boolean;
 }
 
-const create = (selection: Optional<Situs>, kill: boolean): Response => ({
+const create = (selection: (Situs) | null, kill: boolean): Response => ({
   selection,
   kill
 });

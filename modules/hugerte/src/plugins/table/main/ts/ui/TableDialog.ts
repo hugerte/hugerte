@@ -1,4 +1,4 @@
-import { Fun, Obj, Strings, Type } from '@ephox/katamari';
+import { Strings } from '@ephox/katamari';
 import { TableLookup } from '@ephox/snooker';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -27,7 +27,7 @@ interface ApplicableCellProperties {
 // Explore the layers of the table till we find the first layer of tds or ths
 const styleTDTH = (dom: DOMUtils, elm: Element, name: string | StyleMap, value?: string | number): void => {
   if (elm.tagName === 'TD' || elm.tagName === 'TH') {
-    if (Type.isString(name) && Type.isNonNullable(value)) {
+    if (typeof (name) === 'string' && (value) != null) {
       dom.setStyle(elm, name, value);
     } else {
       dom.setStyles(elm, name as StyleMap);
@@ -50,7 +50,7 @@ const applyDataToElement = (editor: Editor, tableElm: HTMLTableElement, data: Ta
   const hasAdvancedTableTab = Options.hasAdvancedTableTab(editor);
   const borderIsZero = parseFloat(data.border) === 0;
 
-  if (!Type.isUndefined(data.class) && data.class !== 'mce-no-match') {
+  if (!(data.class) === undefined && data.class !== 'mce-no-match') {
     attrs.class = data.class;
   }
 
@@ -91,7 +91,7 @@ const applyDataToElement = (editor: Editor, tableElm: HTMLTableElement, data: Ta
     if (hasAdvancedTableTab && shouldApplyOnCell.bordercolor) {
       cellStyles['border-color'] = (data as Required<TableData>).bordercolor;
     }
-    if (!Obj.isEmpty(cellStyles)) {
+    if (!(Object.keys(cellStyles).length === 0)) {
       for (let i = 0; i < tableElm.children.length; i++) {
         styleTDTH(dom, tableElm.children[i], cellStyles);
       }
@@ -112,14 +112,14 @@ const applyDataToElement = (editor: Editor, tableElm: HTMLTableElement, data: Ta
 const onSubmitTableForm = (editor: Editor, tableElm: HTMLTableElement | null | undefined, oldData: TableData, api: Dialog.DialogInstanceApi<TableData>): void => {
   const dom = editor.dom;
   const data = api.getData();
-  const modifiedData = Obj.filter(data, (value, key) => oldData[key as keyof TableData] !== value);
+  const modifiedData = Object.fromEntries(Object.entries(data).filter(([_k, _v]: [any, any]) => ((value, key) => oldData[key as keyof TableData] !== value)(_v, _k as any)));
 
   api.close();
 
   editor.undoManager.transact(() => {
     if (!tableElm) {
-      const cols = Strings.toInt(data.cols as string).getOr(1);
-      const rows = Strings.toInt(data.rows as string).getOr(1);
+      const cols = Strings.toInt(data.cols as string) ?? (1);
+      const rows = Strings.toInt(data.rows as string) ?? (1);
       // Cases 1 & 3 - inserting a table
       editor.execCommand('mceInsertTable', false, { rows, columns: cols });
       tableElm = TableSelection.getSelectionCell(Utils.getSelectionStart(editor), Utils.getIsRoot(editor))
@@ -128,11 +128,11 @@ const onSubmitTableForm = (editor: Editor, tableElm: HTMLTableElement | null | u
         .getOrDie();
     }
 
-    if (Obj.size(modifiedData) > 0) {
+    if (Object.keys(modifiedData).length > 0) {
       const applicableCellProperties: ApplicableCellProperties = {
-        border: Obj.has(modifiedData, 'border'),
-        bordercolor: Obj.has(modifiedData, 'bordercolor'),
-        cellpadding: Obj.has(modifiedData, 'cellpadding')
+        border: Object.prototype.hasOwnProperty.call(modifiedData, 'border'),
+        bordercolor: Object.prototype.hasOwnProperty.call(modifiedData, 'bordercolor'),
+        cellpadding: Object.prototype.hasOwnProperty.call(modifiedData, 'cellpadding')
       };
 
       applyDataToElement(editor, tableElm, data, applicableCellProperties);
@@ -150,10 +150,10 @@ const onSubmitTableForm = (editor: Editor, tableElm: HTMLTableElement | null | u
     editor.focus();
     editor.addVisual();
 
-    if (Obj.size(modifiedData) > 0) {
-      const captionModified = Obj.has(modifiedData, 'caption');
+    if (Object.keys(modifiedData).length > 0) {
+      const captionModified = Object.prototype.hasOwnProperty.call(modifiedData, 'caption');
       // style modified if there's at least one other change apart from 'caption'
-      const styleModified = captionModified ? Obj.size(modifiedData) > 1 : true;
+      const styleModified = captionModified ? Object.keys(modifiedData).length > 1 : true;
 
       Events.fireTableModified(editor, tableElm, { structure: captionModified, style: styleModified });
     }
@@ -197,7 +197,7 @@ const open = (editor: Editor, insertNewTable: boolean): void => {
 
   const classes = UiUtils.buildClassList(Options.getTableClassList(editor));
 
-  if (classes.isSome()) {
+  if (classes !== null) {
     if (data.class) {
       data.class = data.class.replace(/\s*mce\-item\-table\s*/g, '');
     }
@@ -206,7 +206,7 @@ const open = (editor: Editor, insertNewTable: boolean): void => {
   const generalPanel: Dialog.GridSpec = {
     type: 'grid',
     columns: 2,
-    items: TableDialogGeneralTab.getItems(editor, classes.getOr([]), insertNewTable)
+    items: TableDialogGeneralTab.getItems(editor, classes ?? ([]), insertNewTable)
   };
 
   const nonAdvancedForm = (): Dialog.PanelSpec => ({
@@ -232,7 +232,7 @@ const open = (editor: Editor, insertNewTable: boolean): void => {
     title: 'Table Properties',
     size: 'normal',
     body: dialogBody,
-    onSubmit: Fun.curry(onSubmitTableForm, editor, tableElm, data),
+    onSubmit: ((..._rest: any[]) => (onSubmitTableForm)(editor, tableElm, data, ..._rest)),
     buttons: [
       {
         type: 'cancel',

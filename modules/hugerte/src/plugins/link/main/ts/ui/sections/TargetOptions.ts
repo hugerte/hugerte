@@ -1,4 +1,3 @@
-import { Optional, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -14,16 +13,16 @@ const fallbacks = [
   { text: 'New window', value: '_blank' }
 ];
 
-const getTargets = (editor: Editor): Optional<ListItem[]> => {
+const getTargets = (editor: Editor): (ListItem[]) | null => {
   const list = Options.getTargetList(editor);
-  if (Type.isArray(list)) {
+  if (Array.isArray(list)) {
     return ListOptions.sanitize(list).orThunk(
-      () => Optional.some(fallbacks)
+      () => fallbacks
     );
   } else if (list === false) {
-    return Optional.none();
+    return null;
   }
-  return Optional.some(fallbacks);
+  return fallbacks;
 };
 
 export const TargetOptions = {

@@ -1,4 +1,4 @@
-import { Arr, Future } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 
 import * as Layout from '../../positioning/layout/Layout';
 import * as SplitToolbarUtils from '../../toolbar/SplitToolbarUtils';
@@ -17,7 +17,7 @@ import * as Sketcher from './Sketcher';
 import { ToolbarGroup } from './ToolbarGroup';
 import { CompositeSketchFactory } from './UiSketcher';
 
-const buildGroups = (comps: AlloyComponent[]): AlloySpec[] => Arr.map(comps, (g) => GuiFactory.premade(g));
+const buildGroups = (comps: AlloyComponent[]): AlloySpec[] => (comps).map((g) => GuiFactory.premade(g));
 
 const refresh = (toolbar: AlloyComponent, memFloatingToolbarButton: Memento.MementoRecord, detail: SplitFloatingToolbarDetail) => {
   SplitToolbarUtils.refresh(toolbar, detail, (overflowGroups) => {
@@ -78,7 +78,7 @@ const factory: CompositeSketchFactory<SplitFloatingToolbarDetail, SplitFloatingT
     ),
     apis: {
       setGroups: (toolbar: AlloyComponent, groups: AlloySpec[]) => {
-        detail.builtGroups.set(Arr.map(groups, toolbar.getSystem().build));
+        detail.builtGroups.set((groups).map(toolbar.getSystem().build));
         refresh(toolbar, memFloatingToolbarButton, detail);
       },
       refresh: (toolbar: AlloyComponent) => refresh(toolbar, memFloatingToolbarButton, detail),
@@ -91,7 +91,7 @@ const factory: CompositeSketchFactory<SplitFloatingToolbarDetail, SplitFloatingT
         memFloatingToolbarButton.getOpt(toolbar).each(FloatingToolbarButton.toggleWithoutFocusing);
       },
       isOpen: (toolbar: AlloyComponent) =>
-        memFloatingToolbarButton.getOpt(toolbar).map(FloatingToolbarButton.isOpen).getOr(false),
+        memFloatingToolbarButton.getOpt(toolbar).map(FloatingToolbarButton.isOpen) ?? (false),
       reposition: (toolbar: AlloyComponent) => {
         memFloatingToolbarButton.getOpt(toolbar).each((floatingToolbarButton) => {
           FloatingToolbarButton.reposition(floatingToolbarButton);

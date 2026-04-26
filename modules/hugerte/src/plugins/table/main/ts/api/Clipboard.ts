@@ -4,7 +4,7 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import FakeClipboard from 'hugerte/core/api/FakeClipboard';
@@ -20,38 +20,38 @@ const setData = (items: Record<string, SugarElement<RowElement>[]>) => {
   FakeClipboard.write([ fakeClipboardItem ]);
 };
 
-const getData = <T>(type: string): Optional<T[]> => {
+const getData = <T>(type: string): (T[]) | null => {
   const items = FakeClipboard.read() ?? [];
-  return Arr.findMap(items, (item) => Optional.from(item.getType<T[]>(type)));
+  return Arr.findMap(items, (item) => (item.getType<T[]>(type) ?? null));
 };
 
 const clearData = (type: string): void => {
-  if (getData(type).isSome()) {
+  if (getData(type) !== null) {
     FakeClipboard.clear();
   }
 };
 
-const setRows = (rowsOpt: Optional<SugarElement<RowElement>[]>): void => {
+const setRows = (rowsOpt: (SugarElement<RowElement>[]) | null): void => {
   rowsOpt.fold(
     clearRows,
     (rows) => setData({ [tableTypeRow]: rows })
   );
 };
 
-const getRows = (): Optional<SugarElement<RowElement>[]> =>
+const getRows = (): (SugarElement<RowElement>[]) | null =>
   getData(tableTypeRow);
 
 const clearRows = (): void =>
   clearData(tableTypeRow);
 
-const setColumns = (columnsOpt: Optional<SugarElement<RowElement>[]>): void => {
+const setColumns = (columnsOpt: (SugarElement<RowElement>[]) | null): void => {
   columnsOpt.fold(
     clearColumns,
     (columns) => setData({ [tableTypeColumn]: columns })
   );
 };
 
-const getColumns = (): Optional<SugarElement<RowElement>[]> =>
+const getColumns = (): (SugarElement<RowElement>[]) | null =>
   getData(tableTypeColumn);
 
 const clearColumns = (): void =>

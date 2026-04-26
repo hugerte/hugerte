@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 import { SelectorFind, SugarElement } from '@ephox/sugar';
 
 import Editor from '../api/Editor';
@@ -11,7 +10,7 @@ import * as CaretContainer from './CaretContainer';
 const findBlockCaretContainer = (editor: Editor): HTMLElement | null =>
   SelectorFind.descendant<HTMLElement>(SugarElement.fromDom(editor.getBody()), '*[data-mce-caret]')
     .map((elm) => elm.dom)
-    .getOrNull();
+     ?? null;
 
 const showBlockCaretContainer = (editor: Editor, blockCaretContainer: HTMLElement): void => {
   if (blockCaretContainer.hasAttribute('data-mce-caret')) {
@@ -42,7 +41,7 @@ const handleBlockContainer = (editor: Editor, e: Event): void => {
 };
 
 const setup = (editor: Editor): void => {
-  editor.on('keyup compositionstart', Fun.curry(handleBlockContainer, editor));
+  editor.on('keyup compositionstart', ((..._rest: any[]) => (handleBlockContainer)(editor, ..._rest)));
 };
 
 export {

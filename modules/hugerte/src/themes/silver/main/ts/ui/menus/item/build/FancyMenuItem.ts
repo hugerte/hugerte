@@ -1,6 +1,5 @@
 import { ItemTypes } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Obj, Optional } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../../../backstage/Backstage';
 import { renderColorSwatchItem } from './ColorSwatchItem';
@@ -11,8 +10,8 @@ const fancyMenuItems: Record<keyof Menu.FancyActionArgsMap, (mi: any, bs: UiFact
   colorswatch: renderColorSwatchItem
 };
 
-const renderFancyMenuItem = (spec: Menu.FancyMenuItem, backstage: UiFactoryBackstage): Optional<ItemTypes.WidgetItemSpec> =>
-  Obj.get(fancyMenuItems, spec.fancytype).map((render) => render(spec, backstage));
+const renderFancyMenuItem = (spec: Menu.FancyMenuItem, backstage: UiFactoryBackstage): (ItemTypes.WidgetItemSpec) | null =>
+  ((fancyMenuItems)[spec.fancytype] ?? null).map((render) => render(spec, backstage));
 
 export {
   renderFancyMenuItem

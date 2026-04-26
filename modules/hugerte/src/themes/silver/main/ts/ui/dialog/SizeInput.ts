@@ -4,7 +4,6 @@ import {
   FormField as AlloyFormField, GuiFactory, Input as AlloyInput, NativeEvents, Representing, SketchSpec, Tabstopping, Tooltipping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Id, Unicode } from '@ephox/katamari';
 
 import { formChangeEvent } from 'hugerte/themes/silver/ui/general/FormEvents';
 
@@ -22,12 +21,12 @@ type SizeInputSpec = Omit<Dialog.SizeInput, 'type'>;
 export const renderSizeInput = (spec: SizeInputSpec, providersBackstage: UiFactoryBackstageProviders): SketchSpec => {
   let converter: SizeConversion = noSizeConversion;
 
-  const ratioEvent = Id.generate('ratio-event');
+  const ratioEvent = (('ratio-event') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
   const makeIcon = (iconName: string) =>
     Icons.render(iconName, { tag: 'span', classes: [ 'tox-icon', 'tox-lock-icon__' + iconName ] }, providersBackstage.icons);
 
-  const label = spec.label.getOr('Constrain proportions');
+  const label = spec.label ?? ('Constrain proportions');
   const translatedLabel = providersBackstage.translate(label);
   const pLock = AlloyFormCoupledInputs.parts.lock({
     dom: {
@@ -119,7 +118,7 @@ export const renderSizeInput = (spec: SizeInputSpec, providersBackstage: UiFacto
           widthField,
           heightField,
           formGroup([
-            getLabel(Unicode.nbsp),
+            getLabel('\u00A0'),
             pLock
           ])
         ]
@@ -159,8 +158,8 @@ export const renderSizeInput = (spec: SizeInputSpec, providersBackstage: UiFacto
           const isField1 = simulatedEvent.event.isField1;
           const optCurrent = isField1 ? AlloyFormCoupledInputs.getField1(component) : AlloyFormCoupledInputs.getField2(component);
           const optOther = isField1 ? AlloyFormCoupledInputs.getField2(component) : AlloyFormCoupledInputs.getField1(component);
-          const value1 = optCurrent.map<string>(Representing.getValue).getOr('');
-          const value2 = optOther.map<string>(Representing.getValue).getOr('');
+          const value1 = optCurrent.map<string>(Representing.getValue) ?? ('');
+          const value2 = optOther.map<string>(Representing.getValue) ?? ('');
           converter = makeRatioConverter(value1, value2);
         })
       ])

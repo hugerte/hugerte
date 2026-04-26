@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Optionals, Singleton, Strings, Type } from '@ephox/katamari';
+import { Arr, Obj, Singleton, Strings } from '@ephox/katamari';
 import { Attribute, Classes, Compare, Css, DomEvent, EventArgs, SugarElement } from '@ephox/sugar';
 
 import * as NativeEvents from '../../api/events/NativeEvents';
@@ -21,7 +21,7 @@ const timerAttr = 'data-alloy-transition-timer';
 const isTransitioning = (element: SugarElement<HTMLElement>, transition: Transition): boolean =>
   Classes.hasAll(element, transition.classes);
 
-const shouldApplyTransitionCss = (transition: Transition, decision: RepositionDecision, lastPlacement: Optional<PlacerResult>): boolean => {
+const shouldApplyTransitionCss = (transition: Transition, decision: RepositionDecision, lastPlacement: (PlacerResult) | null): boolean => {
   // Don't apply transitions if there was no previous placement as it's transitioning from offscreen
   return lastPlacement.exists((placer) => {
     const mode = transition.mode;
@@ -29,28 +29,28 @@ const shouldApplyTransitionCss = (transition: Transition, decision: RepositionDe
   });
 };
 
-const hasChanges = (position: PositionCss, intermediate: Record<TransitionProp, Optional<string>>): boolean => {
+const hasChanges = (position: PositionCss, intermediate: Record<TransitionProp, (string) | null>): boolean => {
   // Round to 3 decimal points
   const round = (value: string) => parseFloat(value).toFixed(3);
 
   return Obj.find(intermediate, (value, key) => {
     const newValue = position[key as TransitionProp].map(round);
     const val = value.map(round);
-    return !Optionals.equals(newValue, val);
-  }).isSome();
+    return !(newValue === null && val === null || (newValue !== null && val !== null && (newValue) === (val)));
+  }) !== null;
 };
 
 const getTransitionDuration = (element: SugarElement<HTMLElement>): number => {
   const get = (name: string) => {
     const style = Css.get(element, name);
     const times = style.split(/\s*,\s*/);
-    return Arr.filter(times, Strings.isNotEmpty);
+    return (times).filter(Strings.isNotEmpty);
   };
 
   const parse = (value: string | undefined) => {
-    if (Type.isString(value) && /^[\d.]+/.test(value)) {
+    if (typeof (value) === 'string' && /^[\d.]+/.test(value)) {
       const num = parseFloat(value);
-      return Strings.endsWith(value, 'ms') ? num : num * 1000;
+      return (value).endsWith('ms') ? num : num * 1000;
     } else {
       return 0;
     }
@@ -58,7 +58,7 @@ const getTransitionDuration = (element: SugarElement<HTMLElement>): number => {
 
   const delay = get('transition-delay');
   const duration = get('transition-duration');
-  return Arr.foldl(duration, (acc, dur, i) => {
+  return (duration).reduce((acc, dur, i) => {
     const time = parse(delay[i]) + parse(dur);
     return Math.max(acc, time);
   }, 0);
@@ -72,18 +72,18 @@ const setupTransitionListeners = (element: SugarElement<HTMLElement>, transition
   const isSourceTransition = (e: EventArgs<TransitionEvent>) => {
     // Ensure the transition event isn't from a pseudo element
     const pseudoElement = e.raw.pseudoElement ?? '';
-    return Compare.eq(e.target, element) && Strings.isEmpty(pseudoElement) && Arr.contains(properties, e.raw.propertyName);
+    return Compare.eq(e.target, element) && ((pseudoElement).length === 0) && (properties).includes(e.raw.propertyName);
   };
 
   const transitionDone = (e?: EventArgs<TransitionEvent>) => {
-    if (Type.isNullable(e) || isSourceTransition(e)) {
+    if ((e) == null || isSourceTransition(e)) {
       transitionEnd.clear();
       transitionCancel.clear();
 
       // Only cleanup the class/timer on transitionend not on a cancel. This is done as cancel
       // means the element has been repositioned and would need to keep transitioning
       const type = e?.raw.type;
-      if (Type.isNullable(type) || type === NativeEvents.transitionend()) {
+      if ((type) == null || type === NativeEvents.transitionend()) {
         clearTimeout(timer);
         Attribute.remove(element, timerAttr);
         Classes.remove(element, transition.classes);
@@ -125,7 +125,7 @@ const applyTransitionCss = (
   position: PositionCss,
   transition: Transition,
   decision: RepositionDecision,
-  lastPlacement: Optional<PlacerResult>
+  lastPlacement: (PlacerResult) | null
 ): void => {
   const shouldTransition = shouldApplyTransitionCss(transition, decision, lastPlacement);
   if (shouldTransition || isTransitioning(element, transition)) {

@@ -1,4 +1,3 @@
-import { Arr, Optional } from '@ephox/katamari';
 
 import { Gene } from '../api/Gene';
 import * as Comparator from './Comparator';
@@ -8,11 +7,11 @@ import * as Up from './Up';
 const unwrap = (item: Gene): void => {
   item.parent.each((parent) => {
     const children = item.children;
-    Arr.each(children, (child) => {
-      child.parent = Optional.some(parent);
+    (children).forEach((child) => {
+      child.parent = parent;
     });
 
-    const index = Arr.findIndex(parent.children, (sibling) => {
+    const index = (parent.children).findIndex((sibling) => {
       return Comparator.eq(sibling, item);
     });
 

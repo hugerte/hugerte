@@ -1,4 +1,3 @@
-import { Type } from '@ephox/katamari';
 
 import Editor from '../Editor';
 
@@ -14,7 +13,7 @@ interface Delay {
  */
 
 const wrappedSetTimeout = (callback: () => void, time?: number) => {
-  if (!Type.isNumber(time)) {
+  if (!typeof (time) === 'number') {
     time = 0;
   }
 
@@ -22,7 +21,7 @@ const wrappedSetTimeout = (callback: () => void, time?: number) => {
 };
 
 const wrappedSetInterval = (callback: Function, time?: number): number => {
-  if (!Type.isNumber(time)) {
+  if (!typeof (time) === 'number') {
     time = 0;
   }
 

@@ -3,12 +3,11 @@ import {
   Keying, Memento, NativeEvents, NativeSimulatedEvent, PremadeSpec, Replacing, SystemEvents, Toggling
 } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Arr, Id } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../../../backstage/Backstage';
 
-const cellOverEvent = Id.generate('cell-over');
-const cellExecuteEvent = Id.generate('cell-execute');
+const cellOverEvent = (('cell-over') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
+const cellExecuteEvent = (('cell-execute') + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 
 interface CellEvent extends CustomEvent {
   readonly col: number;
@@ -73,7 +72,7 @@ const selectCells = (cells: AlloyComponent[][], selectedRow: number, selectedCol
 };
 
 const makeComponents = (cells: AlloyComponent[][]): AlloySpec[] =>
-  Arr.bind(cells, (cellRow) => Arr.map(cellRow, GuiFactory.premade));
+  (cells).flatMap((cellRow) => (cellRow).map(GuiFactory.premade));
 
 const makeLabelText = (row: number, col: number): PremadeSpec =>
   GuiFactory.text(`${col}x${row}`);
@@ -99,7 +98,7 @@ export const renderInsertTableMenuItem = (spec: Menu.InsertTableMenuItem, backst
 
   return {
     type: 'widget',
-    data: { value: Id.generate('widget-id') },
+    data: { value: (('widget-id') + '_' + Math.floor(Math.random() * 1e9) + Date.now()) },
     dom: {
       tag: 'div',
       classes: [ 'tox-fancymenuitem' ]

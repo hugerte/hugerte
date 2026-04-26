@@ -23,7 +23,7 @@ const flatgrid = (): FlatgridState => {
     readState: () => dimensions.get().map((d) => ({
       numRows: String(d.numRows),
       numColumns: String(d.numColumns)
-    })).getOr({
+    })) ?? ({
       numRows: '?',
       numColumns: '?'
     }),

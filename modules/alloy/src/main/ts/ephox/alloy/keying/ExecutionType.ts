@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
 
 import * as EditableFields from '../alien/EditableFields';
 import * as Keys from '../alien/Keys';
@@ -59,5 +58,5 @@ export default KeyingType.typical(
   NoState.init,
   getKeydownRules,
   getKeyupRules,
-  () => Optional.none()
+  () => null
 );

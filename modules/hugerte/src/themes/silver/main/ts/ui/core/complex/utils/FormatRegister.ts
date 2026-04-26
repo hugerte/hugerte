@@ -1,4 +1,3 @@
-import { Arr, Fun, Id, Obj, Optional, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { FormatReference, Separator, StyleFormat } from 'hugerte/core/api/fmt/StyleFormat';
@@ -6,12 +5,12 @@ import { FormatReference, Separator, StyleFormat } from 'hugerte/core/api/fmt/St
 import { FormatItem, FormatterFormatItem, PreviewSpec, SelectedFormat, SubMenuFormatItem } from '../BespokeSelect';
 import { isFormatReference, isNestedFormat, NestedStyleFormat, StyleFormatType } from '../StyleFormat';
 
-export type IsSelectedForType = (format: string) => (currentValue: Optional<SelectedFormat>) => boolean;
-export type GetPreviewForType = (format: string) => () => Optional<PreviewSpec>;
+export type IsSelectedForType = (format: string) => (currentValue: (SelectedFormat) | null) => boolean;
+export type GetPreviewForType = (format: string) => () => (PreviewSpec) | null;
 
 const isSeparator = (format: StyleFormatType): format is Separator => {
-  const keys = Obj.keys(format);
-  return keys.length === 1 && Arr.contains(keys, 'title');
+  const keys = Object.keys(format);
+  return keys.length === 1 && (keys).includes('title');
 };
 
 const processBasic = (item: FormatReference, isSelectedFor: IsSelectedForType, getPreviewFor: GetPreviewForType): FormatterFormatItem => ({
@@ -31,12 +30,12 @@ const register = (editor: Editor, formats: StyleFormatType[], isSelectedFor: IsS
     return {
       ...item,
       type: 'submenu' as const,
-      getStyleItems: Fun.constant(newItems)
+      getStyleItems: () => newItems
     };
   };
 
   const enrichCustom = (item: StyleFormat): FormatterFormatItem => {
-    const formatName = Type.isString(item.name) ? item.name : Id.generate(item.title);
+    const formatName = typeof (item.name) === 'string' ? item.name : ((item.title) + '_' + Math.floor(Math.random() * 1e9) + Date.now());
     const formatNameWithPrefix = `custom-${formatName}`;
 
     const newItem = {
@@ -50,7 +49,7 @@ const register = (editor: Editor, formats: StyleFormatType[], isSelectedFor: IsS
     return newItem;
   };
 
-  const doEnrich = (items: StyleFormatType[]): FormatItem[] => Arr.map(items, (item) => {
+  const doEnrich = (items: StyleFormatType[]): FormatItem[] => (items).map((item) => {
     // If it is a submenu, enrich all the subitems.
     if (isNestedFormat(item)) {
       return enrichMenu(item);

@@ -1,4 +1,4 @@
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 import Editor from 'hugerte/core/api/Editor';
@@ -140,19 +140,10 @@ const setup = (editor: Editor, oldSize: Cell<number>): void => {
       height: 'auto'
     });
 
-    if (Env.browser.isEdge() || Env.browser.isIE()) {
-      dom.setStyles(editor.getBody(), {
-        'paddingLeft': overflowPadding,
-        'paddingRight': overflowPadding,
-        // IE & Edge have a min height of 150px by default on the body, so override that
-        'min-height': 0
-      });
-    } else {
-      dom.setStyles(editor.getBody(), {
-        paddingLeft: overflowPadding,
-        paddingRight: overflowPadding
-      });
-    }
+    dom.setStyles(editor.getBody(), {
+      paddingLeft: overflowPadding,
+      paddingRight: overflowPadding
+    });
 
     resize(editor, oldSize, e, getExtraMarginBottom);
     resizeCounter += 1;
@@ -173,7 +164,7 @@ const setup = (editor: Editor, oldSize: Cell<number>): void => {
         dom.setStyles(doc.documentElement, { 'min-height': 0 });
         dom.setStyles(editor.getBody(), { 'min-height': 'inherit' });
       }
-      getExtraMarginBottom = isLooping ? Fun.constant(0) : getExtraMarginBottom;
+      getExtraMarginBottom = isLooping ? () => 0 : getExtraMarginBottom;
       resizeCounter += 1;
     } else {
       resize(editor, oldSize, e, getExtraMarginBottom);

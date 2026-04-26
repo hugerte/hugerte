@@ -1,4 +1,3 @@
-import { Arr, Obj } from '@ephox/katamari';
 import { SugarPosition } from '@ephox/sugar';
 
 export interface BubbleInstance {
@@ -68,14 +67,14 @@ const nu = (xOffset: number, yOffset: number, classes: BubbleAlignments, insetMo
   const insetXOffset = xOffset * insetModifier;
   const insetYOffset = yOffset * insetModifier;
 
-  const getClasses = (prop: keyof BubbleAlignments): string[] => Obj.get(classes, prop).getOr([ ]);
+  const getClasses = (prop: keyof BubbleAlignments): string[] => ((classes)[prop] ?? null) ?? ([ ]);
 
   const make = (xDelta: number, yDelta: number, alignmentsOn: Array<(keyof BubbleAlignments)>) => {
-    const alignmentsOff = Arr.difference(allAlignments, alignmentsOn);
+    const alignmentsOff = (allAlignments).filter((_x: any) => !(alignmentsOn).includes(_x));
     return {
       offset: SugarPosition(xDelta, yDelta),
-      classesOn: Arr.bind(alignmentsOn, getClasses),
-      classesOff: Arr.bind(alignmentsOff, getClasses)
+      classesOn: (alignmentsOn).flatMap(getClasses),
+      classesOff: (alignmentsOff).flatMap(getClasses)
     };
   };
 

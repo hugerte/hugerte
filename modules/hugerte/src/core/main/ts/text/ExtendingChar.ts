@@ -6,7 +6,6 @@
  * @example
  * const isExtending = ExtendingChar.isExtendingChar('a');
  */
-import { Type } from '@ephox/katamari';
 
 // Generated from: http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt
 // Only includes the characters in that fit into UCS-2 16 bit
@@ -35,7 +34,7 @@ const extendingChars = new RegExp(
 );
 
 const isExtendingChar = (ch: string | undefined): boolean =>
-  Type.isString(ch) && ch.charCodeAt(0) >= 768 && extendingChars.test(ch);
+  typeof (ch) === 'string' && ch.charCodeAt(0) >= 768 && extendingChars.test(ch);
 
 export {
   isExtendingChar

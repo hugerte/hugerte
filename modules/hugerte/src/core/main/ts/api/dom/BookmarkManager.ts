@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 import * as Bookmarks from '../../bookmark/Bookmarks';
 import { Bookmark } from '../../bookmark/BookmarkTypes';
@@ -41,7 +40,7 @@ const BookmarkManager = (selection: EditorSelection): BookmarkManager => {
      * // Restore the selection bookmark
      * hugerte.activeEditor.selection.moveToBookmark(bm);
      */
-    getBookmark: Fun.curry(Bookmarks.getBookmark, selection),
+    getBookmark: ((..._rest: any[]) => (Bookmarks.getBookmark)(selection, ..._rest)),
 
     /**
      * Restores the selection to the specified bookmark.
@@ -57,7 +56,7 @@ const BookmarkManager = (selection: EditorSelection): BookmarkManager => {
      * // Restore the selection bookmark
      * hugerte.activeEditor.selection.moveToBookmark(bm);
      */
-    moveToBookmark: Fun.curry(Bookmarks.moveToBookmark, selection)
+    moveToBookmark: ((..._rest: any[]) => (Bookmarks.moveToBookmark)(selection, ..._rest))
   };
 };
 

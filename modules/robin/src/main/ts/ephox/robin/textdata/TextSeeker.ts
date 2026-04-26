@@ -46,7 +46,7 @@ const phase: {
 ]);
 
 export type TextSeekerPhaseConstructor = typeof phase;
-export type TextSeekerPhaseProcessor<E, D> = (universe: Universe<E, D>, phase: TextSeekerPhaseConstructor, item: E, text: string, offsetOption: Optional<number>) => TextSeekerPhase<E>;
+export type TextSeekerPhaseProcessor<E, D> = (universe: Universe<E, D>, phase: TextSeekerPhaseConstructor, item: E, text: string, offsetOption: (number) | null) => TextSeekerPhase<E>;
 
 const outcome: {
   aborted: <E>() => TextSeekerOutcome<E>;
@@ -62,16 +62,16 @@ const isBoundary = <E, D>(universe: Universe<E, D>, item: E) => {
   return Structure.isEmptyTag(universe, item) || universe.property().isBoundary(item);
 };
 
-const repeat = <E, D>(universe: Universe<E, D>, item: E, mode: Transition, offsetOption: Optional<number>, process: TextSeekerPhaseProcessor<E, D>, walking: Direction, recent: Optional<E>): TextSeekerOutcome<E> => {
+const repeat = <E, D>(universe: Universe<E, D>, item: E, mode: Transition, offsetOption: (number) | null, process: TextSeekerPhaseProcessor<E, D>, walking: Direction, recent: (E) | null): TextSeekerOutcome<E> => {
   const terminate = () => {
     return recent.fold<TextSeekerOutcome<E>>(outcome.aborted, outcome.edge);
   };
 
-  const recurse = (newRecent: Optional<E>) => {
+  const recurse = (newRecent: (E) | null) => {
     return Gather.walk(universe, item, mode, walking).fold(
       terminate,
       (prev) => {
-        return repeat(universe, prev.item, prev.mode, Optional.none(), process, walking, newRecent);
+        return repeat(universe, prev.item, prev.mode, null, process, walking, newRecent);
       }
     );
   };
@@ -85,14 +85,14 @@ const repeat = <E, D>(universe: Universe<E, D>, item: E, mode: Transition, offse
     return process(universe, phase, item, text, offsetOption).fold(
       terminate,
       () => {
-        return recurse(Optional.some(item));
+        return recurse(item);
       },
       outcome.success
     );
   }
 };
 
-const descendToLeft = <E, D>(universe: Universe<E, D>, item: E, offset: number, isRoot: (e: E) => boolean): Optional<SpotPoint<E>> => {
+const descendToLeft = <E, D>(universe: Universe<E, D>, item: E, offset: number, isRoot: (e: E) => boolean): (SpotPoint<E>) | null => {
   const descended = Descent.toLeaf(universe, item, offset);
   if (universe.property().isText(item)) {
     return Optional.none<SpotPoint<E>>();
@@ -103,7 +103,7 @@ const descendToLeft = <E, D>(universe: Universe<E, D>, item: E, offset: number, 
   }
 };
 
-const descendToRight = <E, D>(universe: Universe<E, D>, item: E, offset: number, isRoot: (e: E) => boolean): Optional<SpotPoint<E>> => {
+const descendToRight = <E, D>(universe: Universe<E, D>, item: E, offset: number, isRoot: (e: E) => boolean): (SpotPoint<E>) | null => {
   const descended = Descent.toLeaf(universe, item, offset);
   if (universe.property().isText(item)) {
     return Optional.none<SpotPoint<E>>();
@@ -118,17 +118,17 @@ const findTextNeighbour = <E, D>(universe: Universe<E, D>, item: E, offset: numb
   const stopAt = (item: E) => isBoundary(universe, item);
   return descendToLeft(universe, item, offset, stopAt).orThunk(() => {
     return descendToRight(universe, item, offset, stopAt);
-  }).getOr(Spot.point(item, offset));
+  }) ?? (Spot.point(item, offset));
 };
 
 const repeatLeft = <E, D>(universe: Universe<E, D>, item: E, offset: number, process: TextSeekerPhaseProcessor<E, D>): TextSeekerOutcome<E> => {
   const initial = findTextNeighbour(universe, item, offset);
-  return repeat(universe, initial.element, Gather.sidestep, Optional.some(initial.offset), process, walkLeft, Optional.none());
+  return repeat(universe, initial.element, Gather.sidestep, initial.offset, process, walkLeft, null);
 };
 
 const repeatRight = <E, D>(universe: Universe<E, D>, item: E, offset: number, process: TextSeekerPhaseProcessor<E, D>): TextSeekerOutcome<E> => {
   const initial = findTextNeighbour(universe, item, offset);
-  return repeat(universe, initial.element, Gather.sidestep, Optional.some(initial.offset), process, walkRight, Optional.none());
+  return repeat(universe, initial.element, Gather.sidestep, initial.offset, process, walkRight, null);
 };
 
 export const TextSeeker = {

@@ -1,4 +1,3 @@
-import { Fun } from '@ephox/katamari';
 
 export const enum FieldPresenceTag {
   Required = 'required',
@@ -24,12 +23,12 @@ export type FieldPresence = RequiredData | DefaultedThunkData | OptionData | Def
 
 const required = (): RequiredData => ({ tag: FieldPresenceTag.Required, process: { }});
 const defaultedThunk = (fallbackThunk: Callback): DefaultedThunkData => ({ tag: FieldPresenceTag.DefaultedThunk, process: fallbackThunk });
-const defaulted = <T>(fallback: T): DefaultedThunkData => defaultedThunk(Fun.constant(fallback));
+const defaulted = <T>(fallback: T): DefaultedThunkData => defaultedThunk(() => fallback);
 const asOption = (): OptionData => ({ tag: FieldPresenceTag.Option, process: { }});
 const asDefaultedOptionThunk = (fallbackThunk: Callback): DefaultedOptionThunkData => ({ tag: FieldPresenceTag.DefaultedOptionThunk, process: fallbackThunk });
-const asDefaultedOption = <T>(fallback: T): DefaultedOptionThunkData => asDefaultedOptionThunk(Fun.constant(fallback));
+const asDefaultedOption = <T>(fallback: T): DefaultedOptionThunkData => asDefaultedOptionThunk(() => fallback);
 const mergeWithThunk = (baseThunk: Callback): MergeWithThunkData => ({ tag: FieldPresenceTag.MergeWithThunk, process: baseThunk });
-const mergeWith = (base: {}): MergeWithThunkData => mergeWithThunk(Fun.constant(base));
+const mergeWith = (base: {}): MergeWithThunkData => mergeWithThunk(() => base);
 
 export {
   required,

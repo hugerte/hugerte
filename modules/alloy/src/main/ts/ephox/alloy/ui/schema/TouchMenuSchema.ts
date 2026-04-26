@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 import { Height, SugarLocation, Width } from '@ephox/sugar';
 
 import { Coupling } from '../../api/behaviour/Coupling';
@@ -31,7 +30,7 @@ const anchorAtCentre = (component: AlloyComponent): AnchorSpec => {
 };
 
 // Similar to dropdown.
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.required('dom'),
   FieldSchema.required('fetch'),
   Fields.onHandler('onOpen'),
@@ -55,9 +54,9 @@ const schema = Fun.constant([
   FieldSchema.defaulted('getAnchor', anchorAtCentre)
 ].concat(
   SketcherFields.sandboxFields()
-));
+);
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.external<TouchMenuDetail>({
     schema: [
       Fields.itemMarkers()
@@ -71,9 +70,9 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
   }),
 
   InternalSink.partType()
-]);
+];
 
-const name = Fun.constant('TouchMenu');
+const name = () => 'TouchMenu';
 
 export {
   name,

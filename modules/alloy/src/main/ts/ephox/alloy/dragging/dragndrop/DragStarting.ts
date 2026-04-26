@@ -1,5 +1,4 @@
 import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 import { EventArgs, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -23,7 +22,7 @@ const dragStart = (component: AlloyComponent, target: SugarElement<Node>, config
   config.getImage.each((f) => {
     const image = f(component);
     const parent = config.getImageParent.fold(
-      () => Traverse.parentElement(target).getOr(SugarBody.body()),
+      () => Traverse.parentElement(target) ?? (SugarBody.body()),
       (f) => f(component)
     );
 
@@ -39,10 +38,10 @@ const schema: FieldProcessor[] = [
   FieldSchema.optionFunction('getImageParent'),
   FieldSchema.optionFunction('getImage'),
   // Use this to ensure that drag and dropping only happens when within this selector.
-  FieldSchema.defaultedFunction('canDrag', Fun.always),
-  FieldSchema.defaultedFunction('onDragstart', Fun.identity),
-  FieldSchema.defaultedFunction('onDragover', Fun.identity),
-  FieldSchema.defaultedFunction('onDragend', Fun.identity),
+  FieldSchema.defaultedFunction('canDrag', (() => true as const)),
+  FieldSchema.defaultedFunction('onDragstart', (x: any) => x),
+  FieldSchema.defaultedFunction('onDragover', (x: any) => x),
+  FieldSchema.defaultedFunction('onDragend', (x: any) => x),
   FieldSchema.customField('instance', () => {
     const exhibit = () => DomModification.nu({
       attributes: {

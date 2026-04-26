@@ -1,4 +1,3 @@
-import { Optional } from '@ephox/katamari';
 import { DomGather } from '@ephox/phoenix';
 import { Awareness, Compare, CursorPosition, PredicateExists, SelectorFilter, SelectorFind, SimRange, SugarElement, Traverse } from '@ephox/sugar';
 
@@ -25,11 +24,11 @@ const inSameTable = (elem: SugarElement<Node>, table: SugarElement<HTMLTableElem
 
 // Note: initial is the finishing element, because that's where the cursor starts from
 // Anchor is the starting element, and is only used to work out if we are in the same table
-const simulate = (bridge: WindowBridge, isRoot: (e: SugarElement<Node>) => boolean, direction: KeyDirection, initial: SugarElement<Node>, anchor: SugarElement<Node>): Optional<Simulated> => {
+const simulate = (bridge: WindowBridge, isRoot: (e: SugarElement<Node>) => boolean, direction: KeyDirection, initial: SugarElement<Node>, anchor: SugarElement<Node>): (Simulated) | null => {
   return SelectorFind.closest<HTMLTableCellElement>(initial, 'td,th', isRoot).bind((start) => {
     return SelectorFind.closest<HTMLTableElement>(start, 'table', isRoot).bind((table) => {
       if (!inSameTable(anchor, table)) {
-        return Optional.none<Simulated>();
+        return null;
       }
       return TableKeys.handle(bridge, isRoot, direction).bind((range) => {
         return SelectorFind.closest<HTMLTableCellElement>(range.finish, 'td,th', isRoot).map<Simulated>((finish) => {
@@ -50,55 +49,55 @@ const navigate = (
   direction: KeyDirection,
   initial: SugarElement<Node>,
   anchor: SugarElement<Node>,
-  precheck: (initial: SugarElement<Node>, isRoot: (e: SugarElement<Node>) => boolean) => Optional<Response>
-): Optional<Response> => {
+  precheck: (initial: SugarElement<Node>, isRoot: (e: SugarElement<Node>) => boolean) => (Response) | null
+): (Response) | null => {
   return precheck(initial, isRoot).orThunk(() => {
     return simulate(bridge, isRoot, direction, initial, anchor).map((info) => {
       const range = info.range;
       return Response.create(
-        Optional.some(Util.makeSitus(range.start, range.soffset, range.finish, range.foffset)),
+        Util.makeSitus(range.start, range.soffset, range.finish, range.foffset),
         true
       );
     });
   });
 };
 
-const firstUpCheck = (initial: SugarElement<Node>, isRoot: (e: SugarElement<Node>) => boolean): Optional<Response> => {
+const firstUpCheck = (initial: SugarElement<Node>, isRoot: (e: SugarElement<Node>) => boolean): (Response) | null => {
   return SelectorFind.closest<HTMLTableRowElement>(initial, 'tr', isRoot).bind((startRow) => {
     return SelectorFind.closest<HTMLTableElement>(startRow, 'table', isRoot).bind((table) => {
       const rows = SelectorFilter.descendants(table, 'tr');
       if (Compare.eq(startRow, rows[0])) {
         return DomGather.seekLeft(table, (element) => {
-          return CursorPosition.last(element).isSome();
+          return CursorPosition.last(element) !== null;
         }, isRoot).map((last) => {
           const lastOffset = Awareness.getEnd(last);
           return Response.create(
-            Optional.some(Util.makeSitus(last, lastOffset, last, lastOffset)),
+            Util.makeSitus(last, lastOffset, last, lastOffset),
             true
           );
         });
       } else {
-        return Optional.none<Response>();
+        return null;
       }
     });
   });
 };
 
-const lastDownCheck = (initial: SugarElement<Node>, isRoot: (e: SugarElement<Node>) => boolean): Optional<Response> => {
+const lastDownCheck = (initial: SugarElement<Node>, isRoot: (e: SugarElement<Node>) => boolean): (Response) | null => {
   return SelectorFind.closest<HTMLTableRowElement>(initial, 'tr', isRoot).bind((startRow) => {
     return SelectorFind.closest<HTMLTableElement>(startRow, 'table', isRoot).bind((table) => {
       const rows = SelectorFilter.descendants(table, 'tr');
       if (Compare.eq(startRow, rows[rows.length - 1])) {
         return DomGather.seekRight(table, (element) => {
-          return CursorPosition.first(element).isSome();
+          return CursorPosition.first(element) !== null;
         }, isRoot).map((first) => {
           return Response.create(
-            Optional.some(Util.makeSitus(first, 0, first, 0)),
+            Util.makeSitus(first, 0, first, 0),
             true
           );
         });
       } else {
-        return Optional.none<Response>();
+        return null;
       }
     });
   });
@@ -112,7 +111,7 @@ const select = (
   initial: SugarElement<Node>,
   anchor: SugarElement<Node>,
   selectRange: (container: SugarElement<Node>, boxes: SugarElement<HTMLTableCellElement>[], start: SugarElement<HTMLTableCellElement>, finish: SugarElement<HTMLTableCellElement>) => void
-): Optional<Response> => {
+): (Response) | null => {
   return simulate(bridge, isRoot, direction, initial, anchor).bind((info) => {
     return KeySelection.detect(container, isRoot, info.start, info.finish, selectRange);
   });
