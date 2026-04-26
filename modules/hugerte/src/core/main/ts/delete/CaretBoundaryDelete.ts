@@ -40,7 +40,7 @@ const deleteContentAndShowCaret = (editor: Editor, range: Range, node: Node | un
 // If the caret position is next to a fake caret target element (eg cef/media) after a delete operation, then ensure a caret is added
 // eg. <span cE=false>a|b -> <span cE=false>|bc
 // Note: We also need to handle the actual deletion, as some browsers (eg IE) move the selection to the opposite side of the cef element
-const deleteBoundaryText = (editor: Editor, forward: boolean): (() =) | null void> => {
+const deleteBoundaryText = (editor: Editor, forward: boolean): (() => void) | null => {
   const range = editor.selection.getRng();
   if (!NodeType.isText(range.commonAncestorContainer)) {
     return null;
@@ -72,7 +72,7 @@ const deleteBoundaryText = (editor: Editor, forward: boolean): (() =) | null voi
   return null;
 };
 
-const backspaceDelete = (editor: Editor, forward: boolean): (() =) | null void> =>
+const backspaceDelete = (editor: Editor, forward: boolean): (() => void) | null =>
   deleteBoundaryText(editor, forward);
 
 export {

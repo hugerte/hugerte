@@ -42,7 +42,7 @@ const indentSelectedEntries = (entries: Entry[], indentation: Indentation): void
 const getItemSelection = (editor: Editor): (ItemSelection) | null => {
   const selectedListItems = (Selection.getSelectedListItems(editor)).map(SugarElement.fromDom);
 
-  return (((selectedListItems).find((x: any) => !(hasFirstChildList)(x)) ?? null) !== null && (([...(selectedListItems)].reverse()).find((x: any) => !(hasFirstChildList)(x)) ?? null) !== null ? ((start, end) => ({ start, end }))(((selectedListItems).find((x: any) => !(hasFirstChildList)(x)) ?? null), (([...(selectedListItems)].reverse()).find((x: any) => !(hasFirstChildList)(x)) ?? null)) : null);
+  return (((selectedListItems).find(((x: any) => !(hasFirstChildList)(x))) ?? null) !== null && (([...(selectedListItems)].reverse()).find(((x: any) => !(hasFirstChildList)(x))) ?? null) !== null ? ((start, end) => ({ start, end }))(((selectedListItems).find(((x: any) => !(hasFirstChildList)(x))) ?? null), (([...(selectedListItems)].reverse()).find(((x: any) => !(hasFirstChildList)(x))) ?? null)) : null);
 };
 
 const listIndentation = (editor: Editor, lists: SugarElement<HTMLElement>[], indentation: Indentation): void => {

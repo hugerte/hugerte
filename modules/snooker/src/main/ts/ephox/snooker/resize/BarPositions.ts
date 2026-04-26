@@ -13,7 +13,7 @@ export interface ColInfo {
 export interface BarPositions<T> {
   readonly delta: (delta: number, table: SugarElement<HTMLTableElement>) => number;
   readonly edge: (e: SugarElement<HTMLElement>) => number;
-  readonly positions: (array: (SugarElement<HTMLTableCellElement>) | null[], table: SugarElement<HTMLTableElement>) => (T) | null[];
+  readonly positions: (array: (SugarElement<HTMLTableCellElement> | null)[], table: SugarElement<HTMLTableElement>) => (T | null)[];
 }
 
 const rowInfo = (row: number, y: number): RowInfo => ({
@@ -58,8 +58,8 @@ const getBottomEdge = (index: number, cell: SugarElement<HTMLTableCellElement>):
 const findPositions = <T> (
   getInnerEdge: (idx: number, ele: SugarElement<HTMLTableCellElement>) => T,
   getOuterEdge: (idx: number, ele: SugarElement<HTMLTableCellElement>) => T,
-  array: (SugarElement<HTMLTableCellElement>) | null[]
-): (T) | null[] => {
+  array: (SugarElement<HTMLTableCellElement> | null)[]
+): (T | null)[] => {
   if (array.length === 0 ) {
     return [];
   }
@@ -102,7 +102,7 @@ const detect = Direction.onDirection(ltr, rtl);
 
 const width: BarPositions<ColInfo> = {
   delta: (amount: number, table: SugarElement<HTMLTableElement>) => detect(table).delta(amount, table),
-  positions: (cols: (SugarElement<HTMLTableCellElement>) | null[], table: SugarElement<HTMLTableElement>) => detect(table).positions(cols, table),
+  positions: (cols: (SugarElement<HTMLTableCellElement> | null)[], table: SugarElement<HTMLTableElement>) => detect(table).positions(cols, table),
   edge: (cell: SugarElement<HTMLElement>) => detect(cell).edge(cell)
 };
 

@@ -59,12 +59,11 @@ const outcome = (grid: Structs.RowCells[], cursor: (SugarElement<HTMLTableCellEl
 });
 
 const findEditableCursorPosition = (rows: Structs.RowCells<HTMLTableRowElement>[]) =>
-  Arr.findMap(rows, (row) =>
+  ((rows) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((row) =>
     Arr.findMap(row.cells, (cell) => {
       const elem = cell.element;
       return (isEditable(elem) ? elem : null);
-    })
-  );
+    }))(x), null);
 
 const elementFromGrid = (grid: Structs.RowCells[], row: number, column: number) => {
   const rows = GridRow.extractGridDetails(grid).rows;

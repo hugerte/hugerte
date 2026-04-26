@@ -32,14 +32,14 @@ export interface SliderModelDetailParts {
 }
 
 export interface EdgeActions {
-  'top-left': ((edge: AlloyComponent, detail: SliderDetail) =) | null void>;
-  'top': ((edge: AlloyComponent, detail: SliderDetail) =) | null void>;
-  'top-right': ((edge: AlloyComponent, detail: SliderDetail) =) | null void>;
-  'right': ((edge: AlloyComponent, detail: SliderDetail) =) | null void>;
-  'bottom-right': ((edge: AlloyComponent, detail: SliderDetail) =) | null void>;
-  'bottom': ((edge: AlloyComponent, detail: SliderDetail) =) | null void>;
-  'bottom-left': ((edge: AlloyComponent, detail: SliderDetail) =) | null void>;
-  'left': ((edge: AlloyComponent, detail: SliderDetail) =) | null void>;
+  'top-left': ((edge: AlloyComponent, detail: SliderDetail) => void) | null;
+  'top': ((edge: AlloyComponent, detail: SliderDetail) => void) | null;
+  'top-right': ((edge: AlloyComponent, detail: SliderDetail) => void) | null;
+  'right': ((edge: AlloyComponent, detail: SliderDetail) => void) | null;
+  'bottom-right': ((edge: AlloyComponent, detail: SliderDetail) => void) | null;
+  'bottom': ((edge: AlloyComponent, detail: SliderDetail) => void) | null;
+  'bottom-left': ((edge: AlloyComponent, detail: SliderDetail) => void) | null;
+  'left': ((edge: AlloyComponent, detail: SliderDetail) => void) | null;
 }
 
 export interface Manager {

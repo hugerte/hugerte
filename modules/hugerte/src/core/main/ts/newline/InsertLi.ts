@@ -110,7 +110,7 @@ const insert = (editor: Editor, createNewBlock: (name: string, styles?: Record<s
     const fragment = tmpRng.extractContents();
 
     if (newBlockName === 'LI' && hasFirstChild(fragment, 'LI')) {
-      const previousChildren = ((newBlock.children).map(SugarElement.fromDom)).filter((x: any) => !(SugarNode.isTag('br'))(x));
+      const previousChildren = ((newBlock.children).map(SugarElement.fromDom)).filter(((x: any) => !(SugarNode.isTag('br'))(x)));
 
       newBlock = fragment.firstChild as HTMLLIElement;
       dom.insertAfter(fragment, containerBlock);

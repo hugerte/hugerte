@@ -87,8 +87,8 @@ const fGroupSchema = FieldSchema.customField('schema', () => [
   FieldSchema.option('preprocess')
 ]);
 
-const fDefaults = FieldSchema.defaulted('defaults', () => { });
-const fOverrides = FieldSchema.defaulted('overrides', () => { });
+const fDefaults = FieldSchema.defaulted('defaults', () => ({ }));
+const fOverrides = FieldSchema.defaulted('overrides', () => ({ }));
 
 const requiredSpec = StructureSchema.objOf([
   fFactory, fSchema, fName, fPname, fDefaults, fOverrides

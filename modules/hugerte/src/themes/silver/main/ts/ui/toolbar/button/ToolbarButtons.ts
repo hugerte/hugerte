@@ -56,7 +56,7 @@ interface ChoiceFetcher {
   readonly columns: 'auto' | number;
   readonly presets: Toolbar.PresetTypes;
   readonly onItemAction: (api: Toolbar.ToolbarSplitButtonInstanceApi, value: string) => void;
-  readonly select: ((value: string) =) | null boolean>;
+  readonly select: ((value: string) => boolean) | null;
 }
 
 const getButtonApi = (component: AlloyComponent): Toolbar.ToolbarButtonInstanceApi => ({

@@ -1,4 +1,4 @@
-import { Arr, Cell } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import { FormatEvent } from '../api/EventTypes';
@@ -77,7 +77,7 @@ const matchingNode = (editor: Editor, parents: Element[], format: string, simila
       }
     }
   };
-  return Arr.findUntil(parents, isMatchingNode, isUnableToMatch);
+  return ((_xs: any, _pred: any, _until: any) => { for (let _i = 0; _i < _xs.length; _i++) { const _x = _xs[_i]; if (_pred(_x, _i)) return _x; if (_until(_x, _i)) break; } return null; })(parents, isMatchingNode, isUnableToMatch);
 };
 
 const getParents = (editor: Editor, elm?: Element): Element[] => {

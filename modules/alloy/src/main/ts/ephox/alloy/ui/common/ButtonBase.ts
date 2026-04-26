@@ -25,7 +25,7 @@ const pointerEvents = (): Array<AlloyEvents.AlloyEventKeyAndHandler<EventArgs>> 
   ];
 };
 
-const events = (optAction: ((comp: AlloyComponent) =) | null void>): AlloyEvents.AlloyEventRecord => {
+const events = (optAction: ((comp: AlloyComponent) => void) | null): AlloyEvents.AlloyEventRecord => {
   const executeHandler = (action: ButtonAction) => AlloyEvents.runOnExecute((component, simulatedEvent) => {
     action(component);
     simulatedEvent.stop();

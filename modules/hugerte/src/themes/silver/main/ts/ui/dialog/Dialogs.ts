@@ -175,7 +175,7 @@ const renderDialog = (spec: DialogSpec): SketchSpec => {
           // Note: `runOnSource` here will only listen to the event at the outer component level.
           // Using just `run` instead will cause an infinite loop as `focusIn` would fire a `focusin` which would then get responded to and so forth.
           AlloyEvents.runOnSource(NativeEvents.focusin(), (comp, _se) => {
-            Blocking.isBlocked(comp) ?  : Keying.focusIn(comp);
+            Blocking.isBlocked(comp) ? void 0 : Keying.focusIn(comp);
           }),
           AlloyEvents.run<SystemEvents.AlloyFocusShiftedEvent>(SystemEvents.focusShifted(), (comp, se) => {
             comp.getSystem().broadcastOn([ DialogChannels.dialogFocusShiftedChannel ], {

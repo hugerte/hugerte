@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { Entry, EntryList, isEntryList } from './Entry';
 
@@ -23,8 +22,8 @@ const closestSiblingEntry = (entries: Entry[], start: number): (Entry) | null =>
 
   // Check in reverse to see if there's an entry as the same depth before the current entry
   // but if not, then try to walk forwards as well
-  return Arr.findUntil([...(entries.slice(0, start))].reverse(), matches, until)
-    .orThunk(() => Arr.findUntil(entries.slice(start + 1), matches, until));
+  return ((_xs: any, _pred: any, _until: any) => { for (let _i = 0; _i < _xs.length; _i++) { const _x = _xs[_i]; if (_pred(_x, _i)) return _x; if (_until(_x, _i)) break; } return null; })([...(entries.slice(0, start))].reverse(), matches, until)
+    .orThunk(() => ((_xs: any, _pred: any, _until: any) => { for (let _i = 0; _i < _xs.length; _i++) { const _x = _xs[_i]; if (_pred(_x, _i)) return _x; if (_until(_x, _i)) break; } return null; })(entries.slice(start + 1), matches, until));
 };
 
 const normalizeEntries = (entries: Entry[]): Entry[] => {

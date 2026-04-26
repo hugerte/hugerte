@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Class, Css, Height, Insert, Remove, SelectorFilter, SugarElement, SugarLocation, SugarPosition, Width } from '@ephox/sugar';
 
 import { ResizeWire } from '../api/ResizeWire';
@@ -19,13 +18,13 @@ const resizableRows = (warehouse: Warehouse, isResizable: (elm: SugarElement<Ele
 const resizableColumns = (warehouse: Warehouse, isResizable: (elm: SugarElement<Element>) => boolean): number[] => {
   const resizableCols: number[] = [];
   // Check col elements and see if they are resizable
-  Arr.range(warehouse.grid.columns, (index) => {
+  Array.from({length: warehouse.grid.columns}, (_, _i) => ((index) => {
     // With use of forall, index will be included if col doesn't exist meaning the column cells will be checked below
     const colElmOpt = Warehouse.getColumnAt(warehouse, index).map((col) => col.element);
     if (colElmOpt.forall(isResizable)) {
       resizableCols.push(index);
     }
-  });
+  })(_i));
   // Check cells of the resizable columns and make sure they are resizable
   return (resizableCols).filter((colIndex) => {
     const columnCells = Warehouse.filterItems(warehouse, (cell) => cell.column === colIndex);
@@ -38,7 +37,7 @@ const destroy = (wire: ResizeWire): void => {
   (previous).forEach(Remove.remove);
 };
 
-const drawBar = <T> (wire: ResizeWire, positions: (T) | null[], create: (origin: SugarPosition, info: T) => SugarElement<HTMLDivElement>): void => {
+const drawBar = <T> (wire: ResizeWire, positions: (T | null)[], create: (origin: SugarPosition, info: T) => SugarElement<HTMLDivElement>): void => {
   const origin = wire.origin();
   (positions).forEach((cpOption) => {
     cpOption.each((cp) => {
@@ -49,7 +48,7 @@ const drawBar = <T> (wire: ResizeWire, positions: (T) | null[], create: (origin:
   });
 };
 
-const refreshCol = (wire: ResizeWire, colPositions: (BarPositions.ColInfo) | null[], position: SugarPosition, tableHeight: number): void => {
+const refreshCol = (wire: ResizeWire, colPositions: (BarPositions.ColInfo | null)[], position: SugarPosition, tableHeight: number): void => {
   drawBar(wire, colPositions, (origin, cp) => {
     const colBar = Bar.col(cp.col, cp.x - origin.left, position.top - origin.top, BAR_THICKNESS, tableHeight);
     Class.add(colBar, resizeColBar);
@@ -57,7 +56,7 @@ const refreshCol = (wire: ResizeWire, colPositions: (BarPositions.ColInfo) | nul
   });
 };
 
-const refreshRow = (wire: ResizeWire, rowPositions: (BarPositions.RowInfo) | null[], position: SugarPosition, tableWidth: number): void => {
+const refreshRow = (wire: ResizeWire, rowPositions: (BarPositions.RowInfo | null)[], position: SugarPosition, tableWidth: number): void => {
   drawBar(wire, rowPositions, (origin, cp) => {
     const rowBar = Bar.row(cp.row, position.left - origin.left, cp.y - origin.top, tableWidth, BAR_THICKNESS);
     Class.add(rowBar, resizeRowBar);
@@ -65,7 +64,7 @@ const refreshRow = (wire: ResizeWire, rowPositions: (BarPositions.RowInfo) | nul
   });
 };
 
-const refreshGrid = (warhouse: Warehouse, wire: ResizeWire, table: SugarElement<HTMLTableElement>, rows: (SugarElement<HTMLTableCellElement>) | null[], cols: (SugarElement<HTMLTableCellElement>) | null[]): void => {
+const refreshGrid = (warhouse: Warehouse, wire: ResizeWire, table: SugarElement<HTMLTableElement>, rows: (SugarElement<HTMLTableCellElement> | null)[], cols: (SugarElement<HTMLTableCellElement> | null)[]): void => {
   const position = SugarLocation.absolute(table);
   const isResizable = wire.isResizable;
   const rowPositions = rows.length > 0 ? BarPositions.height.positions(rows, table) : [];

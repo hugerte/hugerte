@@ -1,4 +1,4 @@
-import { Adt, Arr, Num } from '@ephox/katamari';
+import { Adt, Num } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -213,13 +213,10 @@ const attempts = (element: SugarElement<HTMLElement>, candidates: AnchorLayout[]
     });
   };
 
-  const abc = Arr.foldl(
-    candidates,
-    (b, a) => {
+  const abc = (candidates).reduce((b, a) => {
       const bestNext = ((..._rest: any[]) => (attemptBestFit)(a, ..._rest));
       return b.fold(() => b, bestNext);
-    },
-    // fold base case: No candidates, it's never going to be correct, so do whatever
+    }, // fold base case: No candidates, it's never going to be correct, so do whatever
     adt.nofit({
       rect: anchorBox,
       maxHeight: elementBox.height,
@@ -232,8 +229,7 @@ const attempts = (element: SugarElement<HTMLElement>, candidates: AnchorLayout[]
       },
       layout: 'none',
       testY: anchorBox.y
-    }, -1, -1, false)
-  );
+    }, -1, -1, false));
 
   // unwrapping 'reposition' from the adt, for both fit & nofit the first arg is the one we need,
   // so we can cheat and use (x: any) => x

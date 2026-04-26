@@ -1,7 +1,6 @@
 import { ColourPicker } from '@ephox/acid';
 import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Form, Memento, NativeEvents, Representing, SimpleSpec } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
 
 import { Untranslated } from 'hugerte/core/api/util/I18n';
 
@@ -83,7 +82,7 @@ export const renderColorPicker = (_spec: ColorPickerSpec, providerBackstage: UiF
         },
         (comp, newValue) => {
           const pattern = /^#([a-fA-F0-9]{3}(?:[a-fA-F0-9]{3})?)/;
-          const valOpt = (pattern.exec(newValue) ?? null).bind((matches) => Arr.get(matches, 1));
+          const valOpt = (pattern.exec(newValue) ?? null).bind((matches) => ((matches)[1] ?? null));
           const picker = memPicker.get(comp);
           const optRgbForm = Composing.getCurrent(picker);
           optRgbForm.fold(() => {

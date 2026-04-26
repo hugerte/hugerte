@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { SugarElement, SugarNode } from '@ephox/sugar';
 
 const tableCells = [ 'td', 'th' ];
@@ -17,7 +16,7 @@ const wsElements = [ 'pre', 'script', 'textarea', 'style' ];
 const lazyLookup = <T extends Node = HTMLElement>(items: string[]) => {
   let lookup: Record<string, boolean> | undefined;
   return (node: SugarElement<Node>): node is SugarElement<T> => {
-    lookup = lookup ? lookup : Arr.mapToObject(items, (() => true as const));
+    lookup = lookup ? lookup : Object.fromEntries((items).map((_k: any) => [_k, ((() => true as const))(_k)]));
     return Object.prototype.hasOwnProperty.call(lookup, SugarNode.name(node));
   };
 };

@@ -1,4 +1,4 @@
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { SimpleGenerators } from '../api/Generators';
@@ -44,7 +44,7 @@ const mergeTables = (
   const mergeWidth = GridRow.cellLength(gridBRows[0]);
   const endRow = startRow + mergeHeight;
   const endCol = startCol + mergeWidth + lockedColumns.length;
-  const lockedColumnObj = Arr.mapToObject(lockedColumns, (() => true as const));
+  const lockedColumnObj = Object.fromEntries((lockedColumns).map((_k: any) => [_k, ((() => true as const))(_k)]));
   // embrace the mutation - I think this is easier to follow? To discuss.
   for (let r = startRow; r < endRow; r++) {
     let skippedCol = 0;

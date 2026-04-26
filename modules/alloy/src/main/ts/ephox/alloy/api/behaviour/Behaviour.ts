@@ -65,9 +65,9 @@ const createModes = <
 };
 
 const revoke = () => undefined;
-const noActive = () => { };
-const noApis = () => { };
-const noExtra = () => { };
+const noActive = () => ({ });
+const noApis = () => ({ });
+const noExtra = () => ({ });
 
 export {
   derive,

@@ -1,5 +1,4 @@
 import { Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
 
 export interface Group<E> {
   readonly parent: E;
@@ -46,7 +45,7 @@ const inspect = <E, D>(universe: Universe<E, D>, rest: Data<E>, item: E) => {
 const textnodes = <E, D>(universe: Universe<E, D>, items: E[]): Group<E>[] => {
   const init: Data<E> = { groups: [], current: [], parent: null };
 
-  const result = Arr.foldl(items, (rest, item) => {
+  const result = (items).reduce((rest, item) => {
     return universe.property().parent(item).fold(() => {
       // Items without parents don't affect the result.
       return rest;

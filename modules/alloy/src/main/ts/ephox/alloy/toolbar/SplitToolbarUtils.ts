@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Css, Focus, Width } from '@ephox/sugar';
 
 import { Coupling } from '../api/behaviour/Coupling';
@@ -17,7 +16,7 @@ const setGroups = (toolbar: AlloyComponent, storedGroups: AlloyComponent[]): voi
 };
 
 const findFocusedComp = (comps: AlloyComponent[]): (AlloyComponent) | null =>
-  Arr.findMap(comps, (comp) => Focus.search(comp.element).bind((focusedElm) => comp.getSystem().getByDom(focusedElm).toOptional()));
+  ((comps) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((comp) => Focus.search(comp.element).bind((focusedElm) => comp.getSystem().getByDom(focusedElm).toOptional()))(x), null);
 
 const refresh = (toolbar: AlloyComponent, detail: SplitToolbarBaseDetail, setOverflow: (groups: AlloyComponent[]) => void): void => {
   // Ensure we have toolbar groups to render

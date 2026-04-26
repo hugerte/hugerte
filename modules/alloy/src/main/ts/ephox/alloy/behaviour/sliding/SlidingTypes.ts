@@ -34,7 +34,7 @@ export interface SlidingConfig extends Behaviour.BehaviourConfigDetail {
   growingClass: string;
   onStartGrow: (comp: AlloyComponent) => void;
   onStartShrink: (comp: AlloyComponent) => void;
-  getAnimationRoot: ((comp: AlloyComponent) =) | null SugarElement<Element>>;
+  getAnimationRoot: ((comp: AlloyComponent) => SugarElement<Element>) | null;
 
 }
 

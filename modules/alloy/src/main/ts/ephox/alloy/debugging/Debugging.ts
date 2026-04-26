@@ -1,5 +1,5 @@
 import { Objects } from '@ephox/boulder';
-import { Arr, Cell, Global, Optional } from '@ephox/katamari';
+import { Cell, Global, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
@@ -110,7 +110,7 @@ const makeEventLogger = (eventName: string, initialTarget: SugarElement<Node>): 
 const processEvent = (eventName: string, initialTarget: SugarElement<Node>, f: EventProcessor) => {
   const status = ((eventConfig.get())[eventName] ?? null).orThunk(() => {
     const patterns = Object.keys(eventConfig.get());
-    return Arr.findMap(patterns, (p) => eventName.indexOf(p) > -1 ? eventConfig.get()[p] : null);
+    return ((patterns) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((p) => eventName.indexOf(p) > -1 ? eventConfig.get()[p] : null)(x), null);
   }) ?? (EventConfiguration.NORMAL);
 
   switch (status) {
@@ -204,10 +204,10 @@ const getOrInitConnection = (): Inspector => {
       lookup: (uid: string) => {
         const systems = win[CHROME_INSPECTOR_GLOBAL].systems;
         const connections: string[] = Object.keys(systems);
-        return Arr.findMap(connections, (conn) => {
+        return ((connections) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((conn) => {
           const connGui = systems[conn];
           return connGui.getByUid(uid).toOptional().map((comp): LookupInfo => Objects.wrap(AlloyLogger.element(comp.element), inspectorInfo(comp)));
-        }).orThunk(() => Optional.some<LookupInfo>({
+        })(x), null).orThunk(() => Optional.some<LookupInfo>({
           error: 'Systems (' + connections.join(', ') + ') did not contain uid: ' + uid
         }));
       },

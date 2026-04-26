@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Tools from 'hugerte/core/api/util/Tools';
 
@@ -48,7 +47,7 @@ const isGroup = (item: ListItem): item is ListGroup =>
   Object.prototype.hasOwnProperty.call(item as ListGroup, 'items');
 
 const findEntryDelegate = (list: ListItem[], value: string): (ListValue) | null =>
-  Arr.findMap(list, (item) => {
+  ((list) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((item) => {
     if (isGroup(item)) {
       return findEntryDelegate(item.items, value);
     } else if (item.value === value) {
@@ -56,7 +55,7 @@ const findEntryDelegate = (list: ListItem[], value: string): (ListValue) | null 
     } else {
       return null;
     }
-  });
+  })(x), null);
 
 const findEntry = (optList: (ListItem[]) | null, value: string): (ListValue) | null =>
   optList.bind((list) => findEntryDelegate(list, value));

@@ -10,7 +10,7 @@ import { ToolbarSpec } from './ToolbarTypes';
 
 export interface SplitFloatingToolbarDetail extends SplitToolbarBaseDetail {
   lazySink: LazySink;
-  getOverflowBounds: (() =) | null Bounds>;
+  getOverflowBounds: (() => Bounds) | null;
 
   markers: {
     overflowToggledClass: string;

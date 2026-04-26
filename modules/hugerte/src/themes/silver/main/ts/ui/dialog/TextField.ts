@@ -76,8 +76,8 @@ const renderTextField = (spec: TextField, providersBackstage: UiFactoryBackstage
     }
   })).toArray();
 
-  const placeholder = spec.placeholder.fold( () => {}, (p) => ({ placeholder: providersBackstage.translate(p) }));
-  const inputMode = spec.inputMode.fold(() => {}, (mode) => ({ inputmode: mode }));
+  const placeholder = spec.placeholder.fold( () => ({}), (p) => ({ placeholder: providersBackstage.translate(p) }));
+  const inputMode = spec.inputMode.fold(() => ({}), (mode) => ({ inputmode: mode }));
 
   const inputAttributes = {
     ...placeholder,

@@ -1,4 +1,4 @@
-import { Arr, Obj, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Attribute, Class, Classes, SelectorFilter, SelectorFind, SugarBody } from '@ephox/sugar';
 
 import * as EditableFields from '../../alien/EditableFields';
@@ -44,7 +44,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
   // So the way to provide extra configuration for the menus that tiered menus create is just
   // to provide different menu specs when building up the TieredData. The TieredMenu itself
   // does not control it, except to set: markers, fakeFocus, onHighlight, and focusManager
-  const buildMenus = (container: AlloyComponent, primaryName: string, menus: Record<string, PartialMenuSpec>): Record<string, MenuPreparation> => Obj.map(menus, (spec, name) => {
+  const buildMenus = (container: AlloyComponent, primaryName: string, menus: Record<string, PartialMenuSpec>): Record<string, MenuPreparation> => Object.fromEntries(Object.entries(menus).map(([_k, _v]: [any, any]) => [_k, ((spec, name) => {
 
     const makeSketch = () => Menu.sketch({
       ...spec,
@@ -98,7 +98,7 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
       type: 'notbuilt',
       nbMenu: makeSketch
     } as MenuNotBuilt;
-  });
+  })(_v, _k as any)]));
 
   const layeredState: LayeredState = LayeredState.init();
 
@@ -114,13 +114,13 @@ const make: SingleSketchFactory<TieredMenuDetail, TieredMenuSpec> = (detail, _ra
   // Find the first item with value `itemValue` in any of the menus inside this tiered menu structure
   const getItemByValue = (_container: AlloyComponent, menus: AlloyComponent[], itemValue: string): (AlloyComponent) | null =>
     // Can *greatly* improve the performance of this by calculating things up front.
-    Arr.findMap(menus, (menu) => {
+    ((menus) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((menu) => {
       if (!menu.getSystem().isConnected()) {
         return null;
       }
       const candidates = Highlighting.getCandidates(menu);
       return ((candidates).find((c) => getItemValue(c) === itemValue) ?? null);
-    });
+    })(x), null);
 
   const toDirectory = (_container: AlloyComponent): Record<string, string[]> => Object.fromEntries(Object.entries(detail.data.menus).map(([_k, _v]: [any, any]) => [_k, ((data, _menuName) => (data.items).flatMap((item) => item.type === 'separator' ? [ ] : [ item.data.value ]))(_v, _k as any)]));
 

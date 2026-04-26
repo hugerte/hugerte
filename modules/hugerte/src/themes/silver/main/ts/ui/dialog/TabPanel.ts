@@ -62,7 +62,7 @@ export const renderTabPanel = (spec: TabPanelSpec, dialogData: Dialog.DialogData
             formBehaviours: Behaviour.derive([
               Keying.config({
                 mode: 'acyclic',
-                useTabstopAt: (x: any) => !(NavigableObject.isPseudoStop)(x)
+                useTabstopAt: ((x: any) => !(NavigableObject.isPseudoStop)(x))
               }),
 
               AddEventsBehaviour.config('TabView.form.events', [

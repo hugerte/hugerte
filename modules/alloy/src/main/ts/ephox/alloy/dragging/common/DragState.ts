@@ -38,7 +38,7 @@ const init = <T>(): BaseDraggingState<T> => {
 
   const getStartData = (): (DragStartData) | null => startData;
 
-  const readState = () => { };
+  const readState = () => ({ });
 
   return nuState({
     readState,

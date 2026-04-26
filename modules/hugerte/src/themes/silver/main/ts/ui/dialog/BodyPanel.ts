@@ -43,7 +43,7 @@ const renderBodyPanel = (spec: BodyPanelSpec, dialogData: Dialog.DialogData, bac
     behaviours: Behaviour.derive([
       Keying.config({
         mode: 'acyclic',
-        useTabstopAt: (x: any) => !(NavigableObject.isPseudoStop)(x)
+        useTabstopAt: ((x: any) => !(NavigableObject.isPseudoStop)(x))
       }),
       ComposingConfigs.memento(memForm),
       RepresentingConfigs.memento(memForm, {

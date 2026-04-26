@@ -1,5 +1,5 @@
 import { AlloyComponent, Boxes, Channels, Docking, OffsetOrigin, VerticalDir } from '@ephox/alloy';
-import { Cell, Optional, Optionals, Singleton } from '@ephox/katamari';
+import { Cell, Optional, Singleton } from '@ephox/katamari';
 import { Attribute, Compare, Css, Height, Scroll, SugarBody, SugarElement, SugarLocation, Traverse, Width } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -172,11 +172,8 @@ export const InlineHeader = (
 
       const left = getLeft();
 
-      const widthProperties = Optionals.someIf(
-        isOuterContainerWidthRestored,
-        // This width can be used for calculating the "width" when resolving issues with flex-wrapping being triggered at the window width, despite scroll space being available to the right.
-        Math.ceil(mainUi.outerContainer.element.dom.getBoundingClientRect().width)
-      )
+      const widthProperties = (isOuterContainerWidthRestored ? // This width can be used for calculating the "width" when resolving issues with flex-wrapping being triggered at the window width, despite scroll space being available to the right.
+        Math.ceil(mainUi.outerContainer.element.dom.getBoundingClientRect().width) : null)
       // this check is needed because if the toolbar is rendered outside of the `outerContainer` because the toolbar have `position: "fixed"`
       // the calculate width isn't correct
         .filter((w) => w > minimumToolbarWidth).map(

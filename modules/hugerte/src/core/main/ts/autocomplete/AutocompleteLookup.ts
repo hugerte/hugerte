@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as Spot from '../alien/Spot';
 import * as TextDescent from '../alien/TextDescent';
@@ -29,7 +28,7 @@ const isStartOfWord = (dom: DOMUtils) => (rng: Range) => {
   return !isPreviousCharContent(dom, leaf);
 };
 
-const getTriggerContext = (dom: DOMUtils, initRange: Range, database: AutocompleterDatabase): (AutocompleteContext) | null => Arr.findMap(database.triggers, (trigger) => getContext(dom, initRange, trigger));
+const getTriggerContext = (dom: DOMUtils, initRange: Range, database: AutocompleterDatabase): (AutocompleteContext) | null => ((database.triggers) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((trigger) => getContext(dom, initRange, trigger))(x), null);
 
 const lookup = (editor: Editor, getDatabase: () => AutocompleterDatabase): (AutocompleteLookupInfo) | null => {
   const database = getDatabase();

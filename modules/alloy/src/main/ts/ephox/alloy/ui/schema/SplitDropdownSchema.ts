@@ -24,7 +24,7 @@ const schema = () => [
   FieldSchema.required('fetch'),
   Fields.onStrictHandler('onExecute'),
   FieldSchema.defaulted('getHotspot', Optional.some),
-  FieldSchema.defaulted('getAnchorOverrides', () => { }),
+  FieldSchema.defaulted('getAnchorOverrides', () => ({ })),
   AnchorLayouts.schema(),
   Fields.onStrictHandler('onItemExecute'),
   FieldSchema.option('lazySink'),

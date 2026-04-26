@@ -33,9 +33,9 @@ export interface DragStartingConfig {
   type: string;
   phoneyTypes: string[];
   effectAllowed: DataTransfer['effectAllowed'];
-  getData: ((component: AlloyComponent) =) | null string>;
-  getImageParent: ((component: AlloyComponent) =) | null SugarElement<Element>>;
-  getImage: ((component: AlloyComponent) =) | null DragnDropImageClone>;
+  getData: ((component: AlloyComponent) => string) | null;
+  getImageParent: ((component: AlloyComponent) => SugarElement<Element>) | null;
+  getImage: ((component: AlloyComponent) => DragnDropImageClone) | null;
   canDrag: (component: AlloyComponent, target: SugarElement<Node>) => boolean;
   onDragstart: (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<DragEvent>) => void;
   onDragover: (component: AlloyComponent, simulatedEvent: NativeSimulatedEvent<DragEvent>) => void;

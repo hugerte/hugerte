@@ -1,5 +1,5 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { Composing } from '../../api/behaviour/Composing';
 import { Highlighting } from '../../api/behaviour/Highlighting';
@@ -53,7 +53,7 @@ const configureMenu = (detail: MenuDetail, movementInfo: MenuNormalMovement): Me
   focusManager: detail.focusManager
 });
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.group<MenuDetail, ItemSpec>({
     factory: {
       sketch: (spec) => {
@@ -83,9 +83,9 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
       };
     }
   })
-]);
+];
 
-const schema = Fun.constant([
+const schema = () => [
   FieldSchema.required('value'),
   FieldSchema.required('items'),
   FieldSchema.required('dom'),
@@ -125,7 +125,7 @@ const schema = Fun.constant([
   FieldSchema.defaulted('focusManager', FocusManagers.dom()),
   Fields.onHandler('onHighlight'),
   Fields.onHandler('onDehighlight')
-]);
+];
 
 const name = () => 'menu';
 

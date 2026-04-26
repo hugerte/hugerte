@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Compare, PredicateFilter, PredicateFind, Remove, SelectorFilter, SugarElement, SugarElements, SugarNode, Traverse } from '@ephox/sugar';
 
 import AstNode from '../api/html/Node';
@@ -141,7 +140,7 @@ export const updateCaret = (schema: Schema, root: Element, caretParent: Element)
   const parents = Traverse.parents(SugarElement.fromDom(caretParent), isRoot);
   // Check the element just above below the root so in if caretParent is I in this
   // case <body><p><b><i>|</i></b></p></body> it would use the P as the scope
-  Arr.get(parents, parents.length - 2).filter(SugarNode.isElement).fold(
+  ((parents)[parents.length - 2] ?? null).filter(SugarNode.isElement).fold(
     () => updateChildren(schema, root),
     (scope) => updateChildren(schema, scope.dom)
   );

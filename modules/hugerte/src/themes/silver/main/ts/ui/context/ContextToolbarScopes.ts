@@ -1,6 +1,5 @@
 import { StructureSchema } from '@ephox/boulder';
 import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
 
 import { ContextSpecType, ContextType } from './ContextToolbar';
 
@@ -57,7 +56,7 @@ const categorise = (contextToolbars: Record<string, ContextSpecType>, navigate: 
   };
 
   const keys = Object.keys(contextToolbars);
-  Arr.each(keys, (key) => {
+  (keys).forEach((key) => {
     const toolbarApi = contextToolbars[key];
     // TS wouldn't really let me do the ternary I wanted :(
     if (toolbarApi.type === 'contextform') {

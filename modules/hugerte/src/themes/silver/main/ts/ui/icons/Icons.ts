@@ -1,5 +1,4 @@
 import { AddEventsBehaviour, AlloyEvents, Behaviour, SimpleSpec } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
 import { Attribute, SelectorFind } from '@ephox/sugar';
 
 import I18n from 'hugerte/core/api/util/I18n';
@@ -58,7 +57,7 @@ const getOr = (name: string, iconProvider: IconProvider, fallbackIcon: (string) 
 
 const getFirst = (names: string[], iconProvider: IconProvider): string => {
   const icons = iconProvider();
-  return Arr.findMap(names, (name) => lookupIcon(name, icons)).getOrThunk(defaultIcon(icons));
+  return ((names) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((name) => lookupIcon(name, icons))(x), null).getOrThunk(defaultIcon(icons));
 };
 
 const needsRtlTransform = (iconName: string): boolean =>

@@ -1,5 +1,5 @@
 import { Menu } from '@ephox/bridge';
-import { Arr, Merger, Obj } from '@ephox/katamari';
+import { Merger, Obj } from '@ephox/katamari';
 
 import { SingleMenuItemSpec } from './SingleMenuTypes';
 
@@ -27,7 +27,7 @@ const separator: Menu.SeparatorMenuItemSpec = {
 
 const unwrapReferences = (items: Array<string | SingleMenuItemSpec>, menuItems: MenuItemRegistry): SingleMenuItemSpec[] => {
   // Unwrap any string based menu item references
-  const realItems = Arr.foldl(items, (acc, item) => {
+  const realItems = (items).reduce((acc, item) => {
     if (isMenuItemReference(item)) {
       if (item === '') {
         return acc;

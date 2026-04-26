@@ -50,30 +50,30 @@ export const TestUniverse = (raw: Gene): TestUniverse => {
   };
 
   return {
-    up: () => {
+    up: () => ({
       selector: Up.selector,
       closest: Up.closest,
       predicate: Up.predicate,
       all: Up.all,
       top: Up.top
-    },
-    down: () => {
+    }),
+    down: () => ({
       selector: Down.selector,
       predicate: Down.predicate
-    },
-    styles: () => {
+    }),
+    styles: () => ({
       get: Styling.get,
       set: Styling.set,
       getRaw: Styling.getRaw,
       remove: Styling.remove
-    },
-    attrs: () => {
+    }),
+    attrs: () => ({
       get: Attribution.get,
       set: Attribution.set,
       remove: Attribution.remove,
       copyTo: Attribution.copyTo
-    },
-    insert: () => {
+    }),
+    insert: () => ({
       before: Insertion.before,
       after: Insertion.after,
       append: Insertion.append,
@@ -81,23 +81,23 @@ export const TestUniverse = (raw: Gene): TestUniverse => {
       afterAll: Insertion.afterAll,
       prepend: Insertion.prepend,
       wrap
-    },
-    remove: () => {
+    }),
+    remove: () => ({
       unwrap: Removal.unwrap,
       detach: Removal.detach,
       remove: Removal.remove
-    },
-    create: () => {
+    }),
+    create: () => ({
       nu: Creator.nu,
       text: Creator.text,
       clone: Creator.clone
-    },
-    query: () => {
+    }),
+    query: () => ({
       comparePosition: Query.comparePosition,
       nextSibling: Query.nextSibling,
       prevSibling: Query.prevSibling
-    },
-    property: () => {
+    }),
+    property: () => ({
       children: Properties.children,
       name: Properties.name,
       parent: Properties.parent,
@@ -112,7 +112,7 @@ export const TestUniverse = (raw: Gene): TestUniverse => {
       isEmptyTag: Properties.isEmptyTag,
       isBoundary: Properties.isBoundary,
       isNonEditable: Properties.isNonEditable
-    },
+    }),
     eq: Comparator.eq,
     is: Comparator.is,
     find,

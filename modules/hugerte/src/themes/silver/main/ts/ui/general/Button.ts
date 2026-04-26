@@ -35,7 +35,7 @@ export interface IconButtonWrapper extends Omit<ButtonSpec, 'text'> {
 
 export const renderCommonSpec = (
   spec: ButtonSpec | IconButtonWrapper,
-  actionOpt: ((comp: AlloyComponent) =) | null void>,
+  actionOpt: ((comp: AlloyComponent) => void) | null,
   extraBehaviours: Behaviours = [],
   dom: RawDomSchema,
   components: AlloySpec[],
@@ -77,7 +77,7 @@ export const renderCommonSpec = (
 // can have a tooltip. It's only used for the More Drawer button at the moment.
 export const renderIconButtonSpec = (
   spec: IconButtonWrapper,
-  action: ((comp: AlloyComponent) =) | null void>,
+  action: ((comp: AlloyComponent) => void) | null,
   providersBackstage: UiFactoryBackstageProviders,
   extraBehaviours: Behaviours = [],
   btnName: string
@@ -113,7 +113,7 @@ export const calculateClassesFromButtonType = (buttonType: 'primary' | 'secondar
 // we do elsewhere? Not sure.
 const renderButtonSpec = (
   spec: ButtonSpec,
-  action: ((comp: AlloyComponent) =) | null void>,
+  action: ((comp: AlloyComponent) => void) | null,
   providersBackstage: UiFactoryBackstageProviders,
   extraBehaviours: Behaviours = [],
   extraClasses: string[] = []

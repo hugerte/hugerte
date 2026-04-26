@@ -1,11 +1,10 @@
-import { Arr } from '@ephox/katamari';
 import { Attribute, Insert, Remove, SelectorFilter, SugarElement } from '@ephox/sugar';
 
 import * as ElementType from '../dom/ElementType';
 
 export const cleanupBogusElements = (parent: SugarElement<Node>): void => {
   const bogusElements = SelectorFilter.descendants(parent, '[data-mce-bogus]');
-  Arr.each(bogusElements, (elem) => {
+  (bogusElements).forEach((elem) => {
     const bogusValue = Attribute.get(elem, 'data-mce-bogus');
     if (bogusValue === 'all') {
       Remove.remove(elem);

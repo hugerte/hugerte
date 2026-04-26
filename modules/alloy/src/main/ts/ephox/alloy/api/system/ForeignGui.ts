@@ -1,5 +1,4 @@
 import { FieldSchema, StructureSchema } from '@ephox/boulder';
-import { Arr } from '@ephox/katamari';
 import { DomEvent, EventArgs, Insert, SugarElement } from '@ephox/sugar';
 
 import { UncurriedHandler } from '../../events/EventRegistry';
@@ -100,10 +99,10 @@ const supportedEvents = [
 // Find the dispatcher information for the target if available. Note, the
 // dispatcher may also change the target.
 const findDispatcher = (dispatchers: Dispatcher[], target: SugarElement<Node>): (DispatcherMission) | null =>
-  Arr.findMap(dispatchers, (dispatcher: Dispatcher) => dispatcher.getTarget(target).map((newTarget) => ({
+  ((dispatchers) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((dispatcher: Dispatcher) => dispatcher.getTarget(target).map((newTarget) => ({
     target: newTarget,
     dispatcher
-  })));
+  })))(x), null);
 
 const getProxy = <T extends SimulatedEvent.EventFormat>(event: T, target: SugarElement<Node>) => {
   // Setup the component wrapping for the target element

@@ -1,7 +1,7 @@
 import {
   AlloyComponent, Attachment, Behaviour, Boxes, Button, DragCoord, Dragging, DraggingTypes, GuiFactory, Memento, Unselecting
 } from '@ephox/alloy';
-import { Cell, Optional, Singleton } from '@ephox/katamari';
+import { Arr, Cell, Optional, Singleton } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Compare, Css, SugarElement, SugarPosition, Traverse } from '@ephox/sugar';
 
@@ -123,7 +123,7 @@ const setup = (editor: Editor, sink: AlloyComponent): void => {
   const getTopLeftSnaps = () =>
     // const body = SugarBody.body();
     // const debugs = SelectorFilter.descendants(body, '.top-left-snap-debug');
-    // (debugs).forEach((debugArea) => {
+    // Arr.each(debugs, (debugArea) => {
     //   Remove.remove(debugArea);
     // });
     (tlTds.get()).map((td) => getTopLeftSnap(td));
@@ -136,7 +136,7 @@ const setup = (editor: Editor, sink: AlloyComponent): void => {
   const getBottomRightSnaps = () =>
     // const body = SugarBody.body();
     // const debugs = SelectorFilter.descendants(body, '.bottom-right-snap-debug');
-    // (debugs).forEach((debugArea) => {
+    // Arr.each(debugs, (debugArea) => {
     //   Remove.remove(debugArea);
     // });
     (brTds.get()).map((td) => getBottomRightSnap(td));

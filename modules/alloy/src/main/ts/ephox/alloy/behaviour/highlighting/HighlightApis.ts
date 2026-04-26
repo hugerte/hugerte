@@ -1,4 +1,4 @@
-import { Arr, Num, Result } from '@ephox/katamari';
+import { Num, Result } from '@ephox/katamari';
 import { Class, Compare, SelectorFilter, SelectorFind } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -10,7 +10,7 @@ import { HighlightingConfig } from './HighlightingTypes';
 // THIS IS NOT API YET
 const dehighlightAllExcept = (component: AlloyComponent, hConfig: HighlightingConfig, hState: Stateless, skip: AlloyComponent[]): void => {
   const highlighted = SelectorFilter.descendants(component.element, '.' + hConfig.highlightClass);
-  Arr.each(highlighted, (h) => {
+  (highlighted).forEach((h) => {
     // We don't want to dehighlight anything that should be skipped.
     // Generally, this is because we are about to highlight that thing.
     const shouldSkip = (skip).some((skipComp) => Compare.eq(skipComp.element, h));

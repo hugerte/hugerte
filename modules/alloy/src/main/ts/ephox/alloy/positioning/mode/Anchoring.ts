@@ -12,7 +12,7 @@ export type AnchorPlacement = (
   comp: AlloyComponent,
   origin: OriginAdt,
   anchoring: Anchoring,
-  getBounds: (() =) | null Bounds>,
+  getBounds: (() => Bounds) | null,
   placee: AlloyComponent,
   lastPlacement: (PlacerResult) | null,
   transition: (Transition) | null
@@ -38,8 +38,8 @@ export interface AnchorOverrides {
 export interface LayoutsDetail {
   onLtr: (elem: SugarElement<Element>) => AnchorLayout[];
   onRtl: (elem: SugarElement<Element>) => AnchorLayout[];
-  onBottomLtr: ((elem: SugarElement<Element>) =) | null AnchorLayout[]>;
-  onBottomRtl: ((elem: SugarElement<Element>) =) | null AnchorLayout[]>;
+  onBottomLtr: ((elem: SugarElement<Element>) => AnchorLayout[]) | null;
+  onBottomRtl: ((elem: SugarElement<Element>) => AnchorLayout[]) | null;
 }
 
 export interface HasLayoutAnchor {
@@ -72,7 +72,7 @@ export interface SelectionAnchorSpec extends CommonAnchorSpec, HasLayoutAnchorSp
 }
 
 export interface SelectionAnchor extends AnchorDetail<SelectionAnchor>, HasLayoutAnchor {
-  getSelection: (() =) | null (SimRange | SelectionTableCellRange) | null>;
+  getSelection: (() => (SimRange | SelectionTableCellRange) | null) | null;
   root: SugarElement<Node>;
   bubble: (Bubble) | null;
   overrides: AnchorOverrides;

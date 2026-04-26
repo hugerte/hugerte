@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Attribute, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -104,7 +104,7 @@ const getColumnCells = (rows: Structs.RowCells<HTMLTableRowElement>[], columnInd
 
 const getRowCells = (rows: Structs.RowCells<HTMLTableRowElement>[], rowIndex: number, comparator: CompElm) => {
   const targetRow = rows[rowIndex];
-  return Arr.bind(targetRow.cells, (item, i) => {
+  return (targetRow.cells).flatMap((item, i) => {
     // Check that we haven't already added this one.
     return isDuplicatedCell(rows, rowIndex, i, comparator) ? [] : [ item ];
   });

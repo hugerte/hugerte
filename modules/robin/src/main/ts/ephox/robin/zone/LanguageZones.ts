@@ -1,5 +1,5 @@
 import { Universe } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { WordDecisionItem } from '../words/WordDecision';
 
@@ -126,7 +126,7 @@ const calculate = <E, D>(universe: Universe<E, D>, item: E): (string) | null => 
   const props = universe.property();
   return props.getLanguage(item).orThunk(() => {
     const ancestors = universe.up().all(item, (() => false as const));
-    return Arr.findMap(ancestors, props.getLanguage);
+    return ((ancestors) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : (props.getLanguage)(x), null);
   });
 };
 

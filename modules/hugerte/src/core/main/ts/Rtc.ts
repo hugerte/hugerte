@@ -266,11 +266,11 @@ const makeNoopAdaptor = (): RtcAdaptor => {
       apply: () => {},
       remove: () => {},
       toggle: () => {},
-      formatChanged: () => { unbind: () => {} }
+      formatChanged: () => ({ unbind: () => {} })
     },
     editor: {
       getContent: empty,
-      setContent: () => { content: '', html: '' },
+      setContent: () => ({ content: '', html: '' }),
       insertContent: () => '',
       addVisual: () => {}
     },
@@ -289,13 +289,13 @@ const makeNoopAdaptor = (): RtcAdaptor => {
 
 export const isRtc = (editor: Editor): boolean => Object.prototype.hasOwnProperty.call(editor.plugins, 'rtc');
 
-const getRtcSetup = (editor: Editor): (() =) | null Promise<RtcRuntimeApi>> =>
+const getRtcSetup = (editor: Editor): (() => Promise<RtcRuntimeApi>) | null =>
   (((editor.plugins)['rtc'] ?? null) as (RtcPluginApi) | null).bind((rtcPlugin) =>
     // This might not exist if the stub plugin is loaded on cloud
     (rtcPlugin.setup ?? null)
   );
 
-export const setup = (editor: Editor): (() =) | null Promise<boolean>> => {
+export const setup = (editor: Editor): (() => Promise<boolean>) | null => {
   const editorCast = editor as RtcEditor;
   return getRtcSetup(editor).fold(
     () => {

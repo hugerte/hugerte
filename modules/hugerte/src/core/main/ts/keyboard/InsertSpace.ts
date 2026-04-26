@@ -31,7 +31,7 @@ const setSelection = (editor: Editor) => (pos: CaretPosition) => {
 
 const isInsideSummary = (domUtils: DOMUtils, node: Node) => domUtils.isEditable(domUtils.getParent(node, 'summary'));
 
-const insertSpaceOrNbspAtSelection = (editor: Editor): (() =) | null void> => {
+const insertSpaceOrNbspAtSelection = (editor: Editor): (() => void) | null => {
   const pos = CaretPosition.fromRangeStart(editor.selection.getRng());
   const root = SugarElement.fromDom(editor.getBody());
 
@@ -49,7 +49,7 @@ const insertSpaceOrNbspAtSelection = (editor: Editor): (() =) | null void> => {
 };
 
 // TINY-9964: Firefox has a bug where the space key is toggling the open state instead of inserting a space in a summary element
-const insertSpaceInSummaryAtSelectionOnFirefox = (editor: Editor): (() =) | null void> => {
+const insertSpaceInSummaryAtSelectionOnFirefox = (editor: Editor): (() => void) | null => {
   const insertSpaceThunk = () => {
     const root = SugarElement.fromDom(editor.getBody());
 

@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { NodeChangeEvent } from 'hugerte/core/api/EventTypes';
@@ -18,7 +17,7 @@ const isListNode = matchNodeNames<HTMLOListElement | HTMLUListElement | HTMLDLis
 const isTableCellNode = matchNodeNames<HTMLTableHeaderCellElement | HTMLTableCellElement>(/^(TH|TD)$/);
 
 const inList = (editor: Editor, parents: Node[], nodeName: string): boolean =>
-  Arr.findUntil(parents, (parent) => isListNode(parent) && !isCustomList(parent), isTableCellNode)
+  ((_xs: any, _pred: any, _until: any) => { for (let _i = 0; _i < _xs.length; _i++) { const _x = _xs[_i]; if (_pred(_x, _i)) return _x; if (_until(_x, _i)) break; } return null; })(parents, (parent) => isListNode(parent) && !isCustomList(parent), isTableCellNode)
     .exists((list) => list.nodeName === nodeName && isChildOfBody(editor, list));
 
 const getSelectedStyleType = (editor: Editor): (string) | null => {

@@ -1,4 +1,4 @@
-import { Arr, Cell } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import * as BlockBoundaryDelete from './BlockBoundaryDelete';
@@ -14,7 +14,7 @@ import * as Outdent from './Outdent';
 import * as TableDelete from './TableDelete';
 
 const findAction = (editor: Editor, caret: Cell<Text | null>, forward: boolean) =>
-  Arr.findMap([
+  (([
     Outdent.backspaceDelete,
     CefDelete.backspaceDelete,
     CaretBoundaryDelete.backspaceDelete,
@@ -25,7 +25,7 @@ const findAction = (editor: Editor, caret: Cell<Text | null>, forward: boolean) 
     MediaDelete.backspaceDelete,
     BlockRangeDelete.backspaceDelete,
     InlineFormatDelete.backspaceDelete,
-  ], (item) => item(editor, forward))
+  ]) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((item) => item(editor, forward))(x), null)
     .filter((_) => editor.selection.isEditable());
 
 const deleteCommand = (editor: Editor, caret: Cell<Text | null>): void => {

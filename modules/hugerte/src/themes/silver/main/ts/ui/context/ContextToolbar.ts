@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, AnchorSpec, Behaviour, GuiFactory, InlineView, Keying, Positioning
 } from '@ephox/alloy';
 import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Merger, Optional, Singleton, Throttler, Thunk } from '@ephox/katamari';
+import { Merger, Optional, Singleton, Throttler } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Class, Compare, Css, Focus, SugarElement } from '@ephox/sugar';
 
@@ -133,13 +133,13 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
     ])
   });
 
-  const getScopes: () => ScopedToolbars = Thunk.cached(() => ToolbarScopes.categorise(registryContextToolbars, (toolbarApi) => {
+  const getScopes: () => ScopedToolbars = ((() => { let _called = false; let _r: any; return (..._a: any[]) => { if (!_called) { _called = true; _r = (() => ToolbarScopes.categorise(registryContextToolbars, (toolbarApi) => {
     // ASSUMPTION: This should only ever show one context toolbar since it's used for context forms hence [toolbarApi]
     const alloySpec = buildToolbar([ toolbarApi ]);
     AlloyTriggers.emitWith(contextbar, forwardSlideEvent, {
       forwardContents: wrapInPopDialog(alloySpec)
     });
-  }));
+  }))(..._a); } return _r; }; })());
 
   const buildContextToolbarGroups = (allButtons: Record<string, ContextToolbarButtonType>, ctx: InlineContent.ContextToolbarSpec) =>
     identifyButtons(editor, { buttons: allButtons, toolbar: ctx.items, allowToolbarGroups: false }, extras.backstage, [ 'form:' ]);

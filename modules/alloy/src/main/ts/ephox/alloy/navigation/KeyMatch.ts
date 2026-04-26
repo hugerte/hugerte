@@ -24,8 +24,8 @@ const isControl = (event: EventArgs<KeyboardEvent>): boolean => {
   return raw.ctrlKey === true;
 };
 
-const isNotControl: (event: EventArgs<KeyboardEvent>) => boolean = (x: any) => !(isControl)(x);
-const isNotShift: (event: EventArgs<KeyboardEvent>) => boolean = (x: any) => !(isShift)(x);
+const isNotControl: (event: EventArgs<KeyboardEvent>) => boolean = ((x: any) => !(isControl)(x));
+const isNotShift: (event: EventArgs<KeyboardEvent>) => boolean = ((x: any) => !(isShift)(x));
 
 export {
   inSet,

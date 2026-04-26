@@ -9,7 +9,7 @@ export const LOCKED_COL_ATTR = 'data-snooker-locked-cols';
 const getLockedColumnsFromTable = (table: SugarElement<HTMLTableElement>): (Record<string, true>) | null =>
   Attribute.getOpt(table, LOCKED_COL_ATTR)
     .bind((lockedColStr) => (lockedColStr.match(/\d+/g) ?? null))
-    .map((lockedCols) => Arr.mapToObject(lockedCols, (() => true as const)));
+    .map((lockedCols) => Object.fromEntries((lockedCols).map((_k: any) => [_k, ((() => true as const))(_k)])));
 
 // Need to check all of the cells to determine which columns are locked - reasoning is because rowspan and colspan cells where the same cell is used by multiple columns
 const getLockedColumnsFromGrid = (grid: Structs.RowCells[]): number[] => {

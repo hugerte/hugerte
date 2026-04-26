@@ -248,7 +248,7 @@ const handleDeleteActionSafari = (editor: Editor, forward: boolean, granularity:
   }
 };
 
-const backspaceDelete = (editor: Editor, forward: boolean, granularity: 'character' | 'word' | 'line' | 'selection'): (() =) | null void> =>
+const backspaceDelete = (editor: Editor, forward: boolean, granularity: 'character' | 'word' | 'line' | 'selection'): (() => void) | null =>
   shouldPreventDeleteAction(editor, forward, granularity) || isSafari && handleDeleteActionSafari(editor, forward, granularity)
     ? () => {} : null;
 

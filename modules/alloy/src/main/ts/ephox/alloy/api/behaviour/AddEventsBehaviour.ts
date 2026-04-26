@@ -28,7 +28,7 @@ const config = (name: string, eventHandlers: Array<AlloyEventKeyAndHandler<any>>
     value: {
       config: { },
       me,
-      configAsRaw: () => { },
+      configAsRaw: () => ({ }),
       initialConfig: { },
       state: NoState
     }

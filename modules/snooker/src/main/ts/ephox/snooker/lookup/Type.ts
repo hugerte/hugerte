@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -80,10 +79,10 @@ const findCommonRowType = (rows: CommonRowDetails[]): (RowType) | null => {
 };
 
 const findTableRowHeaderType = (warehouse: Warehouse): (RowHeaderType) | null =>
-  Arr.findMap(warehouse.all, (row) => {
+  ((warehouse.all) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((row) => {
     const rowType = getRowType(row);
     return rowType.type === 'header' ? (rowType.subType as RowHeaderType ?? null) : null;
-  });
+  })(x), null);
 
 export {
   findCommonCellType,

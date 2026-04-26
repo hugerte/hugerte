@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -17,7 +16,7 @@ interface TabData {
 
 const parseHelpTabsSetting = (tabsFromSettings: Options.HelpTabsSetting, tabs: TabSpecs): TabData => {
   const newTabs: Record<string, any> = {};
-  const names = Arr.map(tabsFromSettings, (t) => {
+  const names = (tabsFromSettings).map((t) => {
     if (typeof (t) === 'string') {
       // Code below shouldn't care if a tab name doesn't have a spec.
       // If we find it does, we'll need to make this smarter.
@@ -69,7 +68,7 @@ const pParseCustomTabs = async (editor: Editor, customTabs: CustomTabSpecs, plug
 
 const init = (editor: Editor, customTabs: CustomTabSpecs, pluginUrl: string) => (): void => {
   pParseCustomTabs(editor, customTabs, pluginUrl).then(({ tabs, names }) => {
-    const foundTabs: (Dialog.TabSpec) | null[] = (names).map((name) => ((tabs)[name] ?? null));
+    const foundTabs: (Dialog.TabSpec | null)[] = (names).map((name) => ((tabs)[name] ?? null));
     const dialogTabs: Dialog.TabSpec[] = (foundTabs).filter((_x: any) => _x !== null);
 
     const body: Dialog.TabPanelSpec = {

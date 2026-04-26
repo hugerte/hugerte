@@ -1,4 +1,4 @@
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { SimpleGenerators } from '../api/Generators';
@@ -100,7 +100,7 @@ const tailor = (gridA: Structs.RowCells[], delta: Delta, generators: SimpleGener
   const modifiedCols = fillCols(gridA, Math.abs(delta.colDelta), generators, isLastColLocked ? gridWidth - 1 : gridWidth);
   // Need to recalculate locked column positions
   const newLockedColumns = LockedColumnUtils.getLockedColumnsFromGrid(modifiedCols);
-  return fillRows(modifiedCols, Math.abs(delta.rowDelta), generators, Arr.mapToObject(newLockedColumns, (() => true as const)));
+  return fillRows(modifiedCols, Math.abs(delta.rowDelta), generators, Object.fromEntries((newLockedColumns).map((_k: any) => [_k, ((() => true as const))(_k)])));
 };
 
 export { measure, measureWidth, measureHeight, tailor, lockedColFill };

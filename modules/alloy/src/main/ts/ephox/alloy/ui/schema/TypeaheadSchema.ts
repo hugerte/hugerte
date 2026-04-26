@@ -29,7 +29,7 @@ const schema = () => [
   Fields.onHandler('onOpen'),
   // TODO: Remove dupe with Dropdown
   FieldSchema.defaulted('getHotspot', Optional.some),
-  FieldSchema.defaulted('getAnchorOverrides', () => { }),
+  FieldSchema.defaulted('getAnchorOverrides', () => ({ })),
   FieldSchema.defaulted('layouts', null),
   FieldSchema.defaulted('eventOrder', { }),
 

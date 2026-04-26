@@ -1,6 +1,6 @@
 import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, Highlighting, InlineView, ItemTypes, SystemEvents } from '@ephox/alloy';
 import { InlineContent } from '@ephox/bridge';
-import { Arr, Cell, Singleton } from '@ephox/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 import { Attribute, Css, Replication, SelectorFind, SimRange, SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -65,13 +65,13 @@ const register = (editor: Editor, sharedBackstage: UiFactoryBackstageShared): vo
     // The autocompleter menu will be the first child component of the tiered menu.
     // Unfortunately a memento can't be used to do this lookup because the component
     // id is changed while generating the tiered menu.
-    return Arr.get(tmenu.components(), 0);
+    return ((tmenu.components())[0] ?? null);
   });
 
   const cancelIfNecessary = () => editor.execCommand('mceAutocompleterClose');
 
   const getCombinedItems = (matches: AutocompleteLookupData[]): ItemTypes.ItemSpec[] => {
-    const columns = Arr.findMap(matches, (m) => (m.columns ?? null)) ?? (1);
+    const columns = ((matches) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((m) => (m.columns ?? null))(x), null) ?? (1);
 
     return (matches).flatMap((match) => {
       const choices = match.items;
@@ -109,7 +109,7 @@ const register = (editor: Editor, sharedBackstage: UiFactoryBackstageShared): vo
 
   const display = (lookupData: AutocompleteLookupData[], items: ItemTypes.ItemSpec[]) => {
     // Display the autocompleter menu
-    const columns: InlineContent.ColumnTypes = Arr.findMap(lookupData, (ld) => (ld.columns ?? null)) ?? (1);
+    const columns: InlineContent.ColumnTypes = ((lookupData) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((ld) => (ld.columns ?? null))(x), null) ?? (1);
     InlineView.showMenuAt(
       autocompleter,
       {

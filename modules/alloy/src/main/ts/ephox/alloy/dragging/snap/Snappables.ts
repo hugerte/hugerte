@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SugarPosition } from '@ephox/sugar';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
@@ -70,14 +70,14 @@ const stopDrag = <E>(component: AlloyComponent, snapInfo: SnapsConfig<E>): void 
   Presnaps.clear(component, snapInfo);
 };
 
-const findMatchingSnap = <E>(snaps: Array<SnapConfig<E>>, newCoord: DragCoord.CoordAdt, scroll: SugarPosition, origin: SugarPosition): (SnapOutput<E>) | null => Arr.findMap(snaps, (snap) => {
+const findMatchingSnap = <E>(snaps: Array<SnapConfig<E>>, newCoord: DragCoord.CoordAdt, scroll: SugarPosition, origin: SugarPosition): (SnapOutput<E>) | null => ((snaps) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((snap) => {
   const sensor = snap.sensor;
   const inRange = DragCoord.withinRange(newCoord, sensor, snap.range.left, snap.range.top, scroll, origin);
   return inRange ? {
       output: DragCoord.absorb(snap.output, newCoord, scroll, origin),
       extra: snap.extra
     } : null;
-});
+})(x), null);
 
 interface SnapCandidate<E> {
   deltas: (SugarPosition) | null;

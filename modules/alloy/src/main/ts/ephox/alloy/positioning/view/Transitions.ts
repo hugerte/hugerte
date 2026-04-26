@@ -1,4 +1,4 @@
-import { Arr, Obj, Singleton, Strings } from '@ephox/katamari';
+import { Obj, Singleton, Strings } from '@ephox/katamari';
 import { Attribute, Classes, Compare, Css, DomEvent, EventArgs, SugarElement } from '@ephox/sugar';
 
 import * as NativeEvents from '../../api/events/NativeEvents';
@@ -135,7 +135,7 @@ const applyTransitionCss = (
     // Get the computed positions for the current element based on the new position CSS being applied
     const rect = Origins.toBox(origin, element);
     const intermediatePosition = Origins.reposition(origin, { ...decision, rect });
-    const intermediateCssOptions = Arr.mapToObject(properties, (prop) => intermediatePosition[prop]);
+    const intermediateCssOptions = Object.fromEntries((properties).map((_k: any) => [_k, ((prop) => intermediatePosition[prop])(_k)]));
 
     // Apply the intermediate styles and transition classes if something has changed
     if (hasChanges(position, intermediateCssOptions)) {

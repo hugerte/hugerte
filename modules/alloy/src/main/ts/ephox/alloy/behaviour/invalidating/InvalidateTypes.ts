@@ -36,16 +36,16 @@ export interface InvalidatingConfig extends Behaviour.BehaviourConfigDetail {
   invalidClass: string;
   notify: ({
     aria: string;
-    getContainer: (input: AlloyComponent) =) | null (SugarElement<Node>) | null;
+    getContainer: (input: AlloyComponent) => (SugarElement<Node>) | null;
     onValid: (comp: AlloyComponent) => void;
     validHtml: string;
     onInvalid: (comp: AlloyComponent, err: string) => void;
     onValidate: (comp: AlloyComponent) => void;
-  }>;
+  }) | null;
   getRoot: (comp: AlloyComponent) => (SugarElement<Element>) | null;
   validator: ({
-    validate: (input: AlloyComponent) =) | null Future<Result<any, string>>;
+    validate: (input: AlloyComponent) => Future<Result<any, string>>;
     onEvent: string;
     validateOnLoad?: boolean;
-  }>;
+  }) | null;
 }

@@ -81,7 +81,7 @@ const extractField = <T, U>(
     case FieldPresenceTag.DefaultedOptionThunk:
       return optionDefaultedAccess(obj, key, field.process, bundleAsOption);
     case FieldPresenceTag.MergeWithThunk: {
-      return fallbackAccess(obj, key, () => {}, (v) => {
+      return fallbackAccess(obj, key, () => ({}), (v) => {
         const result = Merger.deepMerge(field.process(obj), v);
         return bundle(result);
       });

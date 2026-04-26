@@ -29,7 +29,7 @@ const setSelectionToEnd = (input: AlloyComponent, startOffset: number): void => 
   setSelectionOn(input, (node, value) => node.setSelectionRange(startOffset, value.length));
 };
 
-const attemptSelectOver = (model: TypeaheadModelDetail, input: AlloyComponent, item: AlloyComponent): (() =) | null void> => {
+const attemptSelectOver = (model: TypeaheadModelDetail, input: AlloyComponent, item: AlloyComponent): (() => void) | null => {
   if (!model.selectsOver) {
     return null;
   } else {

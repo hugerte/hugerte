@@ -1,4 +1,4 @@
-import { Arr, Num } from '@ephox/katamari';
+import { Num } from '@ephox/katamari';
 import { SugarPosition } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -37,12 +37,9 @@ const getRestriction = (anchor: AnchorBox, restriction: Restriction) => {
 export const boundsRestriction = (
   anchor: AnchorBox,
   restrictions: Partial<Record<BoundsRestrictionKeys, Restriction>>
-): BoundsRestriction => Arr.mapToObject(
-  [ 'left', 'right', 'top', 'bottom' ],
-  (dir) => ((restrictions)[dir] ?? null).map(
+): BoundsRestriction => Object.fromEntries(([ 'left', 'right', 'top', 'bottom' ]).map((_k: any) => [_k, ((dir) => ((restrictions)[dir] ?? null).map(
     (restriction) => getRestriction(anchor, restriction)
-  )
-);
+  ))(_k)]));
 
 export const adjustBounds = (bounds: Boxes.Bounds, restriction: BoundsRestriction, bubbleOffset: SugarPosition): Boxes.Bounds => {
   const applyRestriction = (dir: BoundsRestrictionKeys, current: number) =>

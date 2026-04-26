@@ -129,7 +129,7 @@ const create = (root: Node, caretPosition: CaretPosition): string => {
 
   path.push(createPathItem(container));
   let parents = parentsUntil(root, container);
-  parents = ArrUtils.filter(parents, (x: any) => !(NodeType.isBogus)(x));
+  parents = ArrUtils.filter(parents, ((x: any) => !(NodeType.isBogus)(x)));
   path = path.concat(ArrUtils.map(parents, (node) => {
     return createPathItem(node);
   }));

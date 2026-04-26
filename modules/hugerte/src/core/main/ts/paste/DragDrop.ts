@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Arr, Cell } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import RangeUtils from '../api/dom/RangeUtils';
@@ -30,7 +30,7 @@ const setFocusedRange = (editor: Editor, rng: Range | undefined): void => {
 };
 
 const hasImage = (dataTransfer: DataTransfer): boolean =>
-  (dataTransfer.files).some((file) => /^image\//.test(file.type));
+  Arr.exists(dataTransfer.files, (file) => /^image\//.test(file.type));
 
 const needsCustomInternalDrop = (dom: DOMUtils, schema: Schema, target: Node, dropContent: Clipboard.ClipboardContents) => {
   const parentTransparent = dom.getParent(target, (node) => TransparentElements.isTransparentBlock(schema, node));

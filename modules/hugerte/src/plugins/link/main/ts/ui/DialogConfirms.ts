@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Delay from 'hugerte/core/api/util/Delay';
@@ -47,10 +46,7 @@ const tryProtocolTransform = (assumeExternalTargets: AssumeExternalTargets, defa
   } : null;
 };
 
-const preprocess = (editor: Editor, data: LinkDialogOutput): Promise<LinkDialogOutput> => Arr.findMap(
-  [ tryEmailTransform, tryProtocolTransform(Options.assumeExternalTargets(editor), Options.getDefaultLinkProtocol(editor)) ],
-  (f) => f(data)
-).fold(
+const preprocess = (editor: Editor, data: LinkDialogOutput): Promise<LinkDialogOutput> => (([ tryEmailTransform, tryProtocolTransform(Options.assumeExternalTargets(editor), Options.getDefaultLinkProtocol(editor)) ]) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((f) => f(data))(x), null).fold(
   () => Promise.resolve(data),
   (transform) => new Promise((callback) => {
     delayedConfirm(editor, transform.message, (state) => {

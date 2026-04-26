@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { Coupling } from '../../api/behaviour/Coupling';
 import { Focusing } from '../../api/behaviour/Focusing';
@@ -19,7 +19,7 @@ const schema = () => [
   Fields.onHandler('onOpen'),
   Fields.onKeyboardHandler('onExecute'),
   FieldSchema.defaulted('getHotspot', Optional.some),
-  FieldSchema.defaulted('getAnchorOverrides', () => { }),
+  FieldSchema.defaulted('getAnchorOverrides', () => ({ })),
   AnchorLayouts.schema(),
   SketchBehaviours.field('dropdownBehaviours', [ Toggling, Coupling, Keying, Focusing ]),
   FieldSchema.required('toggleClass'),
@@ -32,7 +32,7 @@ const schema = () => [
   SketcherFields.sandboxFields()
 );
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.external<DropdownDetail, DropdownSpec>({
     schema: [
       Fields.tieredMenuMarkers(),
@@ -52,7 +52,7 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
   }),
 
   InternalSink.partType()
-]);
+];
 
 const name = () => 'Dropdown';
 

@@ -1,4 +1,4 @@
-import { Arr, Cell, Singleton } from '@ephox/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 
 import { Bookmark } from '../bookmark/BookmarkTypes';
 import * as GetBookmark from '../bookmark/GetBookmark';
@@ -63,7 +63,7 @@ const UndoManager = (editor: Editor): UndoManager => {
       level.bookmark = GetBookmark.getUndoBookmark(editor.selection);
       editor.dispatch('change', {
         level,
-        lastLevel: Arr.get(undoManager.data, index.get()) ?? undefined
+        lastLevel: ((undoManager.data)[index.get()] ?? null) ?? undefined
       });
     },
 

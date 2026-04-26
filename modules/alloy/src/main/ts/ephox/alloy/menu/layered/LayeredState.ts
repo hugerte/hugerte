@@ -1,4 +1,4 @@
-import { Arr, Cell, Obj, Singleton } from '@ephox/katamari';
+import { Cell, Obj, Singleton } from '@ephox/katamari';
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { MenuPreparation } from '../../ui/single/TieredMenuSpec';
@@ -89,13 +89,12 @@ const init = (): LayeredState => {
       // straightforward version when prototyping
       const revPath = [...(extraPath.concat(path))].reverse();
 
-      const triggers: Array<(LayeredItemTrigger) | null> = Arr.bind(revPath, (menuValue, menuIndex) =>
+      const triggers: Array<(LayeredItemTrigger) | null> = (revPath).flatMap((menuValue, menuIndex) =>
         // finding menuValue, it should match the trigger
         getTriggerData(menuValue, getItemByValue, revPath.slice(0, menuIndex + 1)).fold(
           () => (primary.get() !== null && (primary.get()) === (menuValue)) ? [ ] : [ null ],
           (data) => [ data ]
-        )
-      );
+        ));
 
       // Convert List<(X) | null> to (List<X>) | null if ALL are Some
       return ((triggers).every((_x: any) => _x !== null) ? (triggers) as any[] : null);

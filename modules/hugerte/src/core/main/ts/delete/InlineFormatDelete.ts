@@ -54,7 +54,7 @@ const deleteLastPosition = (forward: boolean, editor: Editor, target: SugarEleme
   }
 };
 
-const deleteCaret = (editor: Editor, forward: boolean): (() =) | null void> => {
+const deleteCaret = (editor: Editor, forward: boolean): (() => void) | null => {
   const parentInlines = (getParentInlinesUntilMultichildInline(editor)).filter(hasOnlyOneChild);
   return ((parentInlines).at(-1) ?? null).bind((target) => {
     const fromPos = CaretPosition.fromRangeStart(editor.selection.getRng());
@@ -129,7 +129,7 @@ const requiresDeleteRangeOverride = (editor: Editor): boolean => {
   return rangeStartsAtStartOfTextContainer(rng) && rangeStartParentIsFormatElement(editor, rng) && rangeEndsAtOrAfterEndOfStartContainer(rng);
 };
 
-const deleteRange = (editor: Editor): (() =) | null void> => {
+const deleteRange = (editor: Editor): (() => void) | null => {
   if (requiresDeleteRangeOverride(editor)) {
     const formatNodes = getFormatNodesAtStart(editor);
     return () => {
@@ -141,7 +141,7 @@ const deleteRange = (editor: Editor): (() =) | null void> => {
   }
 };
 
-const backspaceDelete = (editor: Editor, forward: boolean): (() =) | null void> =>
+const backspaceDelete = (editor: Editor, forward: boolean): (() => void) | null =>
   editor.selection.isCollapsed() ? deleteCaret(editor, forward) : deleteRange(editor);
 
 const hasAncestorInlineCaret = (elm: SugarElement<Node>, schema: Schema): boolean =>

@@ -4,7 +4,7 @@ import Editor from '../api/Editor';
 import * as BlockMergeBoundary from './BlockMergeBoundary';
 import * as MergeBlocks from './MergeBlocks';
 
-const backspaceDelete = (editor: Editor, forward: boolean): (() =) | null void> => {
+const backspaceDelete = (editor: Editor, forward: boolean): (() => void) | null => {
   const rootNode = SugarElement.fromDom(editor.getBody());
 
   const position = BlockMergeBoundary.read(editor.schema, rootNode.dom, forward, editor.selection.getRng())

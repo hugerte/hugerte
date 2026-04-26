@@ -29,7 +29,7 @@ const getSelectionStartCell = (editor: Editor): (SugarElement<HTMLTableCellEleme
 const registerCommands = (editor: Editor, actions: TableActions): void => {
   const isRoot = Utils.getIsRoot(editor);
   const eraseTable = () => getSelectionStartCellOrCaption(editor).each((cellOrCaption) => {
-    TableLookup.table(cellOrCaption, isRoot).filter((x: any) => !(isRoot)(x)).each((table) => {
+    TableLookup.table(cellOrCaption, isRoot).filter(((x: any) => !(isRoot)(x))).each((table) => {
       const cursor = SugarElement.fromText('');
       Insert.after(table, cursor);
       Remove.remove(table);

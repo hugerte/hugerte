@@ -5,7 +5,7 @@ import CaretPosition from '../caret/CaretPosition';
 import { isAfterImageBlock, isBeforeImageBlock } from '../caret/CaretPositionPredicates';
 import { getChildNodeAtRelativeOffset } from '../caret/CaretUtils';
 
-const deleteCaret = (editor: Editor, forward: boolean): (() =) | null void> => {
+const deleteCaret = (editor: Editor, forward: boolean): (() => void) | null => {
   const fromPos = CaretPosition.fromRangeStart(editor.selection.getRng());
   return CaretFinder.fromPosition(forward, editor.getBody(), fromPos)
     .filter((pos) => forward ? isBeforeImageBlock(pos) : isAfterImageBlock(pos))
@@ -13,7 +13,7 @@ const deleteCaret = (editor: Editor, forward: boolean): (() =) | null void> => {
     .map((elm) => () => editor.selection.select(elm));
 };
 
-const backspaceDelete = (editor: Editor, forward: boolean): (() =) | null void> =>
+const backspaceDelete = (editor: Editor, forward: boolean): (() => void) | null =>
   editor.selection.isCollapsed() ? deleteCaret(editor, forward) : null;
 
 export {

@@ -8,7 +8,7 @@ import * as PartType from './PartType';
 const suffix = () => 'sink';
 const partType = () => PartType.optional({
   name: suffix(),
-  overrides: () => {
+  overrides: () => ({
     dom: {
       tag: 'div'
     },
@@ -24,7 +24,7 @@ const partType = () => PartType.optional({
       AlloyEvents.cutter(NativeEvents.mousedown()),
       AlloyEvents.cutter(NativeEvents.click())
     ])
-  }
+  })
 });
 
 export {

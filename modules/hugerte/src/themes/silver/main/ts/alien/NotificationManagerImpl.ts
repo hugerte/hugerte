@@ -1,5 +1,5 @@
 import { Boxes, Gui, GuiFactory, InlineView, Layout, MaxHeight, NodeAnchorSpec } from '@ephox/alloy';
-import { Arr, Num } from '@ephox/katamari';
+import { Num } from '@ephox/katamari';
 import { SugarBody, SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -91,7 +91,7 @@ export default (editor: Editor, extras: Extras, uiMothership: Gui.GuiSystem): No
         InlineView.showWithinBounds(notificationWrapper, notificationSpec, { anchor }, getBounds);
       } else {
         // all other notifications go directly below the previous one
-        Arr.indexOf(allNotifications, thisNotification).each((idx) => {
+        ((allNotifications).indexOf(thisNotification) !== -1 ? (allNotifications).indexOf(thisNotification) : null).each((idx) => {
           const previousNotification = allNotifications[idx - 1].getEl();
 
           const nodeAnchor: NodeAnchorSpec = {

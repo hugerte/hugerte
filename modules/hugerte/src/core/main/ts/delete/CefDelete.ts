@@ -29,7 +29,7 @@ const moveToPosition = (editor: Editor) => (pos: CaretPosition): boolean => {
 const getAncestorCe = (editor: Editor, node: Node | null): (Node) | null =>
   (CefUtils.getContentEditableRoot(editor.getBody(), node) ?? null);
 
-const backspaceDeleteCaret = (editor: Editor, forward: boolean): (() =) | null void> => {
+const backspaceDeleteCaret = (editor: Editor, forward: boolean): (() => void) | null => {
   const selectedNode = editor.selection.getNode(); // is the parent node if cursor before/after cef
 
   // Cases:
@@ -56,7 +56,7 @@ const deleteOffscreenSelection = (rootElement: SugarElement<Node>): void => {
   (SelectorFilter.descendants(rootElement, '.mce-offscreen-selection')).forEach(Remove.remove);
 };
 
-const backspaceDeleteRange = (editor: Editor, forward: boolean): (() =) | null void> => {
+const backspaceDeleteRange = (editor: Editor, forward: boolean): (() => void) | null => {
   const selectedNode = editor.selection.getNode(); // is the cef node if cef is selected
 
   // Cases:
@@ -100,7 +100,7 @@ const paddEmptyElement = (editor: Editor): boolean => {
   return true;
 };
 
-const backspaceDelete = (editor: Editor, forward: boolean): (() =) | null void> => {
+const backspaceDelete = (editor: Editor, forward: boolean): (() => void) | null => {
   if (editor.selection.isCollapsed()) {
     return backspaceDeleteCaret(editor, forward);
   } else {

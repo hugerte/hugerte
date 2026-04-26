@@ -52,29 +52,29 @@ export default (): Universe<SugarElement, Document> => {
     SugarNode.isElement(element) ? Attribute.getOpt(element, 'lang') : null;
 
   return {
-    up: () => {
+    up: () => ({
       selector: SelectorFind.ancestor,
       closest: SelectorFind.closest,
       predicate: PredicateFind.ancestor,
       all: Traverse.parents
-    },
-    down: () => {
+    }),
+    down: () => ({
       selector: SelectorFilter.descendants,
       predicate: PredicateFilter.descendants
-    },
-    styles: () => {
+    }),
+    styles: () => ({
       get: Css.get,
       getRaw: Css.getRaw,
       set: Css.set,
       remove: Css.remove
-    },
-    attrs: () => {
+    }),
+    attrs: () => ({
       get: Attribute.get,
       set: Attribute.set,
       remove: Attribute.remove,
       copyTo: copyAttributesTo
-    },
-    insert: () => {
+    }),
+    insert: () => ({
       before: Insert.before,
       after: Insert.after,
       afterAll: InsertAll.after,
@@ -82,22 +82,22 @@ export default (): Universe<SugarElement, Document> => {
       appendAll: InsertAll.append,
       prepend: Insert.prepend,
       wrap: Insert.wrap
-    },
-    remove: () => {
+    }),
+    remove: () => ({
       unwrap: Remove.unwrap,
       remove: Remove.remove
-    },
-    create: () => {
+    }),
+    create: () => ({
       nu: SugarElement.fromTag,
       clone,
       text: SugarElement.fromText
-    },
-    query: () => {
+    }),
+    query: () => ({
       comparePosition,
       prevSibling: Traverse.prevSibling,
       nextSibling: Traverse.nextSibling
-    },
-    property: () => {
+    }),
+    property: () => ({
       children: Traverse.children,
       name: SugarNode.name,
       parent: Traverse.parent,
@@ -112,7 +112,7 @@ export default (): Universe<SugarElement, Document> => {
       isBoundary,
       isEmptyTag,
       isNonEditable
-    },
+    }),
     eq: Compare.eq,
     is: Compare.is
   };

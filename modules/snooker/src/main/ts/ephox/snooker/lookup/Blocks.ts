@@ -11,7 +11,7 @@ type ValidCellFn = (cell: SugarElement<HTMLTableCellElement>) => boolean;
  * sizes that are only available through the difference of two
  * spanning columns.
  */
-const columns = (warehouse: Warehouse, isValidCell: ValidCellFn = (() => true as const)): (SugarElement<HTMLTableCellElement>) | null[] => {
+const columns = (warehouse: Warehouse, isValidCell: ValidCellFn = (() => true as const)): (SugarElement<HTMLTableCellElement> | null)[] => {
   const grid = warehouse.grid;
   const cols = Array.from({length: grid.columns}, (_, _i) => ((x: any) => x)(_i));
   const rowsArr = Array.from({length: grid.rows}, (_, _i) => ((x: any) => x)(_i));
@@ -40,7 +40,7 @@ const decide = (
   return detailOption.map((detail) => detail.element);
 };
 
-const rows = (warehouse: Warehouse): (SugarElement<HTMLTableCellElement>) | null[] => {
+const rows = (warehouse: Warehouse): (SugarElement<HTMLTableCellElement> | null)[] => {
   const grid = warehouse.grid;
   const rowsArr = Array.from({length: grid.rows}, (_, _i) => ((x: any) => x)(_i));
   const cols = Array.from({length: grid.columns}, (_, _i) => ((x: any) => x)(_i));

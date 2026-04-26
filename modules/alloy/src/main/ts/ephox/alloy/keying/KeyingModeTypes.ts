@@ -24,7 +24,7 @@ export interface GeneralKeyingConfigSpec {
 
 export interface GeneralKeyingConfig {
   focusManager: FocusManager;
-  sendFocusIn: <C extends GeneralKeyingConfig, S>(conf: C) => ((comp: AlloyComponent, config: C, state: S, evt?: SimulatedEvent<EventArgs>) =) | null void>;
+  sendFocusIn: <C extends GeneralKeyingConfig, S>(conf: C) => ((comp: AlloyComponent, config: C, state: S, evt?: SimulatedEvent<EventArgs>) => void) | null;
   focusInside: FocusInsideModes;
   handler: {
     toEvents: <C extends GeneralKeyingConfig, S>(keyingConfig: C, keyingState: S) => AlloyEvents.AlloyEventRecord;
@@ -214,5 +214,5 @@ export interface SpecialConfig extends GeneralKeyingConfig {
   onDown: KeyHandlerApi;
   onEscape: KeyHandlerApi;
   stopSpaceKeyup: boolean;
-  focusIn: ((comp: AlloyComponent, info: SpecialConfig, state: Stateless) =) | null void>;
+  focusIn: ((comp: AlloyComponent, info: SpecialConfig, state: Stateless) => void) | null;
 }

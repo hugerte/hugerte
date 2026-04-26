@@ -25,8 +25,8 @@ export interface ReflectingState<S> extends BehaviourState {
 
 export interface ReflectingConfig<I, S> extends Behaviour.BehaviourConfigDetail {
   channel: string;
-  renderComponents: ((data: I, state: (S) | null) =) | null AlloySpec[ ]>;
-  updateState: ((comp: AlloyComponent, data: I) =) | null (S) | null>;
+  renderComponents: ((data: I, state: (S) | null) => AlloySpec[ ]) | null;
+  updateState: ((comp: AlloyComponent, data: I) => (S) | null) | null;
   initialData: (any) | null;
   reuseDom: boolean;
 }

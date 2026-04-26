@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as NodeType from '../dom/NodeType';
 import * as Zwsp from '../text/Zwsp';
@@ -56,7 +55,7 @@ const removeTextAndReposition = (caretContainer: Text, pos: CaretPosition): Care
 
 const removeElementAndReposition = (caretContainer: Node, pos: CaretPosition): CaretPosition => {
   const parentNode = pos.container();
-  const newPosition = Arr.indexOf(Array.from(parentNode.childNodes), caretContainer).map((index) => {
+  const newPosition = ((Array.from(parentNode.childNodes)).indexOf(caretContainer) !== -1 ? (Array.from(parentNode.childNodes)).indexOf(caretContainer) : null).map((index) => {
     return index < pos.offset() ? CaretPosition(parentNode, pos.offset() - 1) : pos;
   }) ?? (pos);
   remove(caretContainer);

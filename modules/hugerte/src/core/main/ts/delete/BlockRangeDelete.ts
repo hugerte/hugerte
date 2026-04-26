@@ -9,7 +9,7 @@ import * as ElementType from '../dom/ElementType';
 import * as DeleteUtils from './DeleteUtils';
 import * as MergeBlocks from './MergeBlocks';
 
-const deleteRangeMergeBlocks = (rootNode: SugarElement<Node>, selection: EditorSelection, schema: Schema): (() =) | null void> => {
+const deleteRangeMergeBlocks = (rootNode: SugarElement<Node>, selection: EditorSelection, schema: Schema): (() => void) | null => {
   const rng = selection.getRng();
 
   return (DeleteUtils.getParentBlock(rootNode, SugarElement.fromDom(rng.startContainer)) !== null && DeleteUtils.getParentBlock(rootNode, SugarElement.fromDom(rng.endContainer)) !== null ? ((block1, block2) => {
@@ -43,20 +43,20 @@ const isEverythingSelected = (root: SugarElement<Node>, rng: Range): boolean => 
   return !isSelectionInTable(root, rng) && noPrevious && noNext;
 };
 
-const emptyEditor = (editor: Editor): (() =) | null void> => {
+const emptyEditor = (editor: Editor): (() => void) | null => {
   return () => {
     editor.setContent('');
     editor.selection.setCursorLocation();
   };
 };
 
-const deleteRange = (editor: Editor): (() =) | null void> => {
+const deleteRange = (editor: Editor): (() => void) | null => {
   const rootNode = SugarElement.fromDom(editor.getBody());
   const rng = editor.selection.getRng();
   return isEverythingSelected(rootNode, rng) ? emptyEditor(editor) : deleteRangeMergeBlocks(rootNode, editor.selection, editor.schema);
 };
 
-const backspaceDelete = (editor: Editor, _forward: boolean): (() =) | null void> =>
+const backspaceDelete = (editor: Editor, _forward: boolean): (() => void) | null =>
   editor.selection.isCollapsed() ? null : deleteRange(editor);
 
 export {

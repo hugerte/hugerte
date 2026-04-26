@@ -35,7 +35,7 @@ const parseCurrentLine = (editor: Editor, offset: number): ParseResult | null =>
   // while also excluding the last full stop from a word like "www.site.com."
   const endSpot = textSeeker.backwards(endContainer, endOffset + offset, (node, offset) => {
     const text = node.data;
-    const idx = findChar(text, offset, (x: any) => !(isBracketOrSpace)(x));
+    const idx = findChar(text, offset, ((x: any) => !(isBracketOrSpace)(x)));
     // Move forward one so the offset is after the found character unless the found char is a punctuation char
     return idx === -1 || isPunctuation(text[idx]) ? idx : idx + 1;
   }, root);

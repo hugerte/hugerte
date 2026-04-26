@@ -392,7 +392,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
           left: (targetWidth * handle[0] + selectedElmX) - (handleElm.offsetWidth / 2),
           top: (targetHeight * handle[1] + selectedElmY) - (handleElm.offsetHeight / 2)
         });
-      });
+      })(_v, _k));
     } else {
       hideResizeRect(false);
     }
@@ -455,7 +455,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     hideResizeRect();
   };
 
-  const unbindResizeHandleEvents = ()(_v, _k)) => {
+  const unbindResizeHandleEvents = () => {
     Object.entries(resizeHandles).forEach(([_k, _v]: [any, any]) => ((handle) => {
       if (handle.elm) {
         dom.unbind(handle.elm);

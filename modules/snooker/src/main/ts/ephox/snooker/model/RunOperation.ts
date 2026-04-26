@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Attribute, Compare, SugarElement } from '@ephox/sugar';
 
 import { Generators, GeneratorsWrapper, SimpleGenerators } from '../api/Generators';
@@ -79,9 +78,8 @@ const fromWarehouse = (warehouse: Warehouse, generators: Generators) =>
 const toDetailList = <R extends RowElement>(grid: Structs.RowCells<R>[]): Structs.RowDetailNew<Structs.DetailNew<RowCell<R>>, R>[] =>
   Transitions.toDetails(grid, Compare.eq);
 
-const findInWarehouse = (warehouse: Warehouse, element: SugarElement<HTMLTableCellElement>): (Structs.DetailExt) | null => Arr.findMap(warehouse.all, (r) =>
-  ((r.cells).find((e) => Compare.eq(element, e.element)) ?? null)
-);
+const findInWarehouse = (warehouse: Warehouse, element: SugarElement<HTMLTableCellElement>): (Structs.DetailExt) | null => ((warehouse.all) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((r) =>
+  ((r.cells).find((e) => Compare.eq(element, e.element)) ?? null))(x), null);
 
 const extractCells = (warehouse: Warehouse, target: TargetSelection, predicate: (detail: Structs.DetailExt) => boolean): (Structs.DetailExt[]) | null => {
   const details = (target.selection).map((cell) => {

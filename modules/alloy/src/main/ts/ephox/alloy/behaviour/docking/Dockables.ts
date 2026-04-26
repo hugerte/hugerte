@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Class, Css, Height, SugarBody, SugarElement, SugarPosition, Width } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -71,7 +70,7 @@ const tryDockingPosition = (modes: DockingMode[], bounds: { win: Boxes.Bounds; b
   const box = bounds.box;
 
   const leftX = getDockedLeftPosition(bounds);
-  return Arr.findMap(modes, (mode): (DockingDecision) | null => {
+  return ((modes) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((mode): (DockingDecision) | null => {
     switch (mode) {
       case 'bottom':
         return !isBottomCompletelyVisible(box, viewport.bounds) ? forceBottomPosition(winBox, leftX, viewport) : null;
@@ -81,7 +80,7 @@ const tryDockingPosition = (modes: DockingMode[], bounds: { win: Boxes.Bounds; b
       default:
         return null;
     }
-  }) ?? ({
+  })(x), null) ?? ({
     location: 'no-dock'
   });
 };

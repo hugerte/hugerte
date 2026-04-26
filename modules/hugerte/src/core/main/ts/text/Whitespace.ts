@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 const whiteSpaceRegExp = /^[ \t\r\n]*$/;
 
@@ -26,7 +25,7 @@ const normalize = (text: string, tabSpaces: number = 4, isStartOfContent: boolea
   const tabSpace = (' ').repeat(tabSpaces);
   const normalizedText = text.replace(/\t/g, tabSpace);
 
-  const result = Arr.foldl(normalizedText, (acc, c) => {
+  const result = (normalizedText).reduce((acc, c) => {
     // Are we dealing with a char other than some collapsible whitespace or nbsp? if so then just use it as is
     if (isCollapsibleWhitespace(c) || c === '\u00A0') {
       // If the previous char is a space, we are at the start or end, or if the next char is a new line char, then we need

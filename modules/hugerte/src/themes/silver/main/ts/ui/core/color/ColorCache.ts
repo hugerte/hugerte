@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { Menu } from 'hugerte/core/api/ui/Ui';
 import LocalStorage from 'hugerte/core/api/util/LocalStorage';
@@ -28,7 +27,7 @@ const ColorCache = (storageId: string, max: number = 10): ColorCache => {
 
   const add = (key: string): void => {
     // Remove duplicates first.
-    Arr.indexOf(cache, key).each(remove);
+    ((cache).indexOf(key) !== -1 ? (cache).indexOf(key) : null).each(remove);
 
     cache.unshift(key);
 

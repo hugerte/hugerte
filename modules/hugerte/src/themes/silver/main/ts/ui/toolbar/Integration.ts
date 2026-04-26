@@ -1,7 +1,7 @@
 import { AlloySpec, VerticalDir } from '@ephox/alloy';
 import { StructureSchema } from '@ephox/boulder';
 import { Toolbar } from '@ephox/bridge';
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -169,7 +169,7 @@ const createToolbar = (toolbarConfig: RenderToolbarConfig): ToolbarGroupOption[]
 
 const lookupButton = (editor: Editor, buttons: Record<string, any>, toolbarItem: string, allowToolbarGroups: boolean, backstage: UiFactoryBackstage, prefixes: (string[]) | null): (AlloySpec) | null =>
   ((buttons)[toolbarItem.toLowerCase()] ?? null)
-    .orThunk(() => prefixes.bind((ps) => Arr.findMap(ps, (prefix) => ((buttons)[prefix + toolbarItem.toLowerCase()] ?? null))))
+    .orThunk(() => prefixes.bind((ps) => ((ps) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((prefix) => ((buttons)[prefix + toolbarItem.toLowerCase()] ?? null))(x), null)))
     .fold(
       () => ((bespokeButtons)[toolbarItem.toLowerCase()] ?? null).map((r) => r(editor, backstage)),
       // TODO: Add back after TINY-3232 is implemented

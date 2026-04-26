@@ -100,7 +100,7 @@ const renderAutocompleteItem = (
   return renderCommonItem({
     data: buildData(spec),
     enabled: spec.enabled,
-    getApi: () => {},
+    getApi: () => ({}),
     onAction: (_api) => onItemValueHandler(spec.value, spec.meta),
     onSetup: () => () => {},
     triggersSubmenu: false,

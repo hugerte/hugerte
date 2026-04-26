@@ -23,12 +23,12 @@ export interface Tree {
   type: 'tree';
   items: TreeItem[];
   defaultExpandedIds: Id[];
-  onLeafAction: ((id: Id) =) | null void>;
+  onLeafAction: ((id: Id) => void) | null;
   onToggleExpand: ((
     expandedIds: Id[],
     { expanded, node }: { expanded: boolean; node: Id }
-  ) =) | null void
-  >;
+  ) => void
+  ) | null;
   defaultSelectedId: (Id) | null;
 }
 

@@ -42,7 +42,7 @@ export interface PositioningConfigSpec extends Behaviour.BehaviourConfigSpec {
 
 export interface PositioningConfig extends Behaviour.BehaviourConfigDetail {
   readonly useFixed: () => boolean;
-  readonly getBounds: (() =) | null Bounds>;
+  readonly getBounds: (() => Bounds) | null;
 }
 
 export interface PositioningState extends BehaviourState {

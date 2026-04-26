@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import * as GlobalAttributesSet from './GlobalAttributesSet';
 import * as SchemaElementSets from './SchemaElementSets';
@@ -20,9 +19,9 @@ export const makeSchema = (type: SchemaType): SchemaLookupTable => {
 
   const addElement = (name: string, attributes: string[], children: string[]) => {
     schema[name] = {
-      attributes: Arr.mapToObject(attributes, () => {}),
+      attributes: Object.fromEntries((attributes).map((_k: any) => [_k, (() => ({}))(_k)])),
       attributesOrder: attributes,
-      children: Arr.mapToObject(children, () => {})
+      children: Object.fromEntries((children).map((_k: any) => [_k, (() => ({}))(_k)]))
     };
   };
 

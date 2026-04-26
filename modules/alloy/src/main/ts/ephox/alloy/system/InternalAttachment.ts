@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Insert, Remove, SugarBody } from '@ephox/sugar';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
@@ -107,7 +106,7 @@ const virtualReplaceChildren = (component: AlloyComponent, newSpecs: AlloySpec[]
   });
 
   // Add all new components
-  Arr.each(newChildren, (childComp) => {
+  (newChildren).forEach((childComp) => {
     // If the component isn't connected, ie is new, then we also need to add it to the world
     if (!isConnected(childComp)) {
       virtualAttach(component, childComp);

@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Attribute, Insert, Remove, Replication, Selectors, SugarElement } from '@ephox/sugar';
 
 import * as DetailsList from '../model/DetailsList';
@@ -103,10 +102,9 @@ const clean = (replica: SugarElement<HTMLTableElement>, stats: StatsStruct, hous
   })(_v, _k));
 
   // can't use :empty selector as that will not include TRs made up of whitespace
-  const emptyRows = Arr.filter(LayerSelector.firstLayer(replica, 'tr'), (row) =>
+  const emptyRows = (LayerSelector.firstLayer(replica, 'tr')).filter((row) =>
     // there is no sugar method for this, and Traverse.children() does too much processing
-    (row.dom as HTMLElement).childElementCount === 0
-  );
+    (row.dom as HTMLElement).childElementCount === 0);
   (emptyRows).forEach(Remove.remove);
 
   // If there is only one column, or only one row, delete all the colspan/rowspan

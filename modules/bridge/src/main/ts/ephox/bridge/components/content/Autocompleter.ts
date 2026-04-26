@@ -50,7 +50,7 @@ export interface Autocompleter {
   trigger: string;
   minChars: number;
   columns: ColumnTypes;
-  matches: ((rng: Range, text: string, pattern: string) =) | null boolean>;
+  matches: ((rng: Range, text: string, pattern: string) => boolean) | null;
   fetch: (pattern: string, maxResults: number, fetchOptions: Record<string, any>) => Promise<AutocompleterContents[]>;
   onAction: (autocompleterApi: AutocompleterInstanceApi, rng: Range, value: string, meta: Record<string, any>) => void;
   maxResults: number;

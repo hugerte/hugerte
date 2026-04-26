@@ -1,6 +1,6 @@
 import { AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, GuiFactory, InlineView, Sandboxing, SystemEvents } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { SelectorExists, SugarElement } from '@ephox/sugar';
 
@@ -77,7 +77,7 @@ const addContextMenuGroup = (xs: Array<MenuItem>, groupItems: Array<MenuItem>) =
 };
 
 const generateContextMenu = (contextMenus: Record<string, Menu.ContextMenuApi>, menuConfig: string[], selectedElement: Element) => {
-  const sections = Arr.foldl(menuConfig, (acc, name) => {
+  const sections = (menuConfig).reduce((acc, name) => {
     // Either read and convert the list of items out of the plugin, or assume it's a standard menu item reference
     return ((contextMenus)[name.toLowerCase()] ?? null).map((menu) => {
       const items = menu.update(selectedElement);

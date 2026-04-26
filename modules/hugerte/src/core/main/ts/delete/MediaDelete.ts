@@ -8,7 +8,7 @@ import * as NodeType from '../dom/NodeType';
 import * as InlineUtils from '../keyboard/InlineUtils';
 import * as DeleteElement from './DeleteElement';
 
-const deleteElement = (editor: Editor, forward: boolean, element: Node | undefined): (() =) | null void> => {
+const deleteElement = (editor: Editor, forward: boolean, element: Node | undefined): (() => void) | null => {
   if ((element) != null) {
     return () => {
       editor._selectionOverrides.hideFakeCaret();
@@ -19,7 +19,7 @@ const deleteElement = (editor: Editor, forward: boolean, element: Node | undefin
   }
 };
 
-const deleteCaret = (editor: Editor, forward: boolean): (() =) | null void> => {
+const deleteCaret = (editor: Editor, forward: boolean): (() => void) | null => {
   const isNearMedia = forward ? isBeforeMedia : isAfterMedia;
   const direction = forward ? HDirection.Forwards : HDirection.Backwards;
   const fromPos = CaretUtils.getNormalizedRangeEndPoint(direction, editor.getBody(), editor.selection.getRng());
@@ -33,12 +33,12 @@ const deleteCaret = (editor: Editor, forward: boolean): (() =) | null void> => {
   }
 };
 
-const deleteRange = (editor: Editor, forward: boolean): (() =) | null void> => {
+const deleteRange = (editor: Editor, forward: boolean): (() => void) | null => {
   const selectedNode = editor.selection.getNode();
   return NodeType.isMedia(selectedNode) ? deleteElement(editor, forward, selectedNode) : null;
 };
 
-const backspaceDelete = (editor: Editor, forward: boolean): (() =) | null void> =>
+const backspaceDelete = (editor: Editor, forward: boolean): (() => void) | null =>
   editor.selection.isCollapsed() ? deleteCaret(editor, forward) : deleteRange(editor, forward);
 
 export {

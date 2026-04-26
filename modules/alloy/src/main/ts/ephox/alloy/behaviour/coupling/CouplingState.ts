@@ -47,7 +47,7 @@ const init = (): CouplingState => {
     });
   };
 
-  const readState = () => { };
+  const readState = () => ({ });
 
   return nuState({
     readState,

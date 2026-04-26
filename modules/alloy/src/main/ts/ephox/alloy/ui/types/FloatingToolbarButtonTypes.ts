@@ -11,7 +11,7 @@ import { ToolbarSpec } from './ToolbarTypes';
 export interface FloatingToolbarButtonDetail extends CompositeSketchDetail, HasLayoutAnchor {
   lazySink: LazySink;
   fetch: () => Future<AlloySpec[]>;
-  getBounds: (() =) | null Bounds>;
+  getBounds: (() => Bounds) | null;
   fireDismissalEventInstead: ({
     event: string;
   }) | null;

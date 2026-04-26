@@ -4,7 +4,6 @@
  Make sure that if making changes to this file, the other files are updated as well
  */
 
-import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import FakeClipboard from 'hugerte/core/api/FakeClipboard';
@@ -22,7 +21,7 @@ const setData = (items: Record<string, SugarElement<RowElement>[]>) => {
 
 const getData = <T>(type: string): (T[]) | null => {
   const items = FakeClipboard.read() ?? [];
-  return Arr.findMap(items, (item) => (item.getType<T[]>(type) ?? null));
+  return ((items) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((item) => (item.getType<T[]>(type) ?? null))(x), null);
 };
 
 const clearData = (type: string): void => {

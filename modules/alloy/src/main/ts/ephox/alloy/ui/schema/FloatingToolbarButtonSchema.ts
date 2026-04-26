@@ -1,5 +1,4 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Focusing } from '../../api/behaviour/Focusing';
@@ -28,7 +27,7 @@ const schema = () => [
   Fields.onHandler('onToggled'),
 ];
 
-const parts: () => PartType.PartTypeAdt[] = Fun.constant([
+const parts: () => PartType.PartTypeAdt[] = () => [
   PartType.external<FloatingToolbarButtonDetail, ButtonSpec>({
     name: 'button',
     overrides: (detail) => ({
@@ -76,6 +75,6 @@ const parts: () => PartType.PartTypeAdt[] = Fun.constant([
       };
     }
   })
-]);
+];
 
 export { schema, parts };

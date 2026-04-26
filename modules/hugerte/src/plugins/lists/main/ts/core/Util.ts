@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { NodeChangeEvent } from 'hugerte/core/api/EventTypes';
@@ -10,7 +9,7 @@ const isCustomList = (list: HTMLElement): boolean =>
   /\btox\-/.test(list.className);
 
 const inList = (parents: Node[], listName: string): boolean =>
-  Arr.findUntil(parents, NodeType.isListNode, NodeType.isTableCellNode)
+  ((_xs: any, _pred: any, _until: any) => { for (let _i = 0; _i < _xs.length; _i++) { const _x = _xs[_i]; if (_pred(_x, _i)) return _x; if (_until(_x, _i)) break; } return null; })(parents, NodeType.isListNode, NodeType.isTableCellNode)
     .exists((list) => list.nodeName === listName && !isCustomList(list));
 
 // Advlist/core/ListUtils.ts - Duplicated in Advlist plugin

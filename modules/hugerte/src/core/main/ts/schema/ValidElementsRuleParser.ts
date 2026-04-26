@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import Tools from '../api/util/Tools';
 import { Attribute, AttributePattern, ElementRule, SchemaElement } from './SchemaTypes';
@@ -15,7 +14,7 @@ const parseValidElementsAttrDataIntoElement = (attrData: string, targetElement: 
   const hasPatternsRegExp = /[*?+]/;
   const { attributes, attributesOrder } = targetElement;
 
-  return Arr.each(SchemaUtils.split(attrData, '|'), (rule) => {
+  return (SchemaUtils.split(attrData, '|')).forEach((rule) => {
     const matches = attrRuleRegExp.exec(rule);
 
     if (matches) {

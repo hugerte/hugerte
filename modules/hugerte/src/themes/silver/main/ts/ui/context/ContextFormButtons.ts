@@ -3,7 +3,6 @@ import {
 } from '@ephox/alloy';
 import { StructureSchema } from '@ephox/boulder';
 import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
 
 import { UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { internalToolbarButtonExecute, InternalToolbarButtonExecuteEvent } from '../toolbar/button/ButtonEvents';
@@ -79,13 +78,13 @@ const generate = (memInput: MementoRecord, buttons: ContextFormButton[], provide
 
   const asSpecs = () => (mementos).map((mem) => mem.asSpec());
 
-  const findPrimary = (compInSystem: AlloyComponent): (AlloyComponent) | null => Arr.findMap(buttons, (button, i) => {
+  const findPrimary = (compInSystem: AlloyComponent): (AlloyComponent) | null => ((buttons) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((button, i) => {
     if (button.primary) {
-      return (mementos[i] ?? null).bind((mem) => mem.getOpt(compInSystem)).filter((x: any) => !(Disabling.isDisabled)(x));
+      return (mementos[i] ?? null).bind((mem) => mem.getOpt(compInSystem)).filter(((x: any) => !(Disabling.isDisabled)(x)));
     } else {
       return null;
     }
-  });
+  })(x), null);
 
   return {
     asSpecs,

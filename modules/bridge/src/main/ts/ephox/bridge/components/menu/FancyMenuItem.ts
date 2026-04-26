@@ -47,7 +47,7 @@ export interface InsertTableMenuItem extends BaseFancyMenuItem<'inserttable'> {
 
 export interface ColorSwatchMenuItem extends BaseFancyMenuItem<'colorswatch'> {
   fancytype: 'colorswatch';
-  select: ((value: string) =) | null boolean>;
+  select: ((value: string) => boolean) | null;
   initData: {
     allowCustomColors: boolean;
     colors: (ChoiceMenuItemSpec[]) | null;

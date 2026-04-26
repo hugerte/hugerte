@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 import { Bindable, EventHandler } from './Event';
 
@@ -23,7 +22,7 @@ const create = (): Binder => {
   };
 
   const unbind = <T>(registration: Bindable<T>) => {
-    const index = Arr.indexOf(registrations, registration);
+    const index = ((registrations).indexOf(registration) !== -1 ? (registrations).indexOf(registration) : null);
     index.fold(() => {
       throw new Error('Invalid key, does not exist.');
     }, (ind) => {

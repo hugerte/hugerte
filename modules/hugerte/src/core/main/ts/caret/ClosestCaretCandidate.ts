@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Compare, SugarElement, Traverse } from '@ephox/sugar';
 
 import { getClientRects, NodeClientRect } from '../dom/Dimensions';
@@ -78,7 +77,7 @@ const closestChildCaretCandidateNodeRect = (children: ChildNode[], clientX: numb
 
   const findClosestCaretCandidateNodeRect = (rects: NodeClientRect[], distance: DistanceFn): (NodeClientRect) | null => {
     const sortedRects = [...(rects)].sort((r1, r2) => distance(r1, clientX, clientY) - distance(r2, clientX, clientY));
-    return Arr.findMap(sortedRects, caretCandidateRect).map((closest) => {
+    return ((sortedRects) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : (caretCandidateRect)(x), null).map((closest) => {
       // If the closest rect is not a text node then lets try to see if the second rect has a text node that is close enough
       if (findCloserTextNode && !NodeType.isText(closest.node) && sortedRects.length > 1) {
         return tryFindSecondBestTextNode(closest, sortedRects[1], distance) ?? (closest);
@@ -99,7 +98,7 @@ const closestChildCaretCandidateNodeRect = (children: ChildNode[], clientX: numb
 const traverseUp = (rootElm: SugarElement<Node>, scope: SugarElement<Element>, clientX: number, clientY: number): (NodeClientRect) | null => {
   const helper = (scope: SugarElement<Element>, prevScope: (SugarElement<Element>) | null): (NodeClientRect) | null => {
     const isDragGhostContainer = (node: ChildNode) => NodeType.isElement(node) && node.classList.contains('mce-drag-container');
-    const childNodesWithoutGhost = (scope.dom.childNodes).filter((x: any) => !(isDragGhostContainer)(x));
+    const childNodesWithoutGhost = (scope.dom.childNodes).filter(((x: any) => !(isDragGhostContainer)(x)));
 
     return prevScope.fold(
       () => closestChildCaretCandidateNodeRect(childNodesWithoutGhost, clientX, clientY, true),

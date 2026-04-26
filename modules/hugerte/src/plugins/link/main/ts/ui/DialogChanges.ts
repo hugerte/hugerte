@@ -1,4 +1,4 @@
-import { Arr, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 
 import { LinkDialogCatalog, LinkDialogData, LinkDialogUrlData, ListGroup, ListItem, ListValue } from './DialogTypes';
 
@@ -15,13 +15,13 @@ const isListGroup = (item: ListItem): item is ListGroup =>
   Obj.hasNonNullableKey(item as Record<string, any>, 'items');
 
 const findTextByValue = (value: string, catalog: ListItem[]): (ListValue) | null =>
-  Arr.findMap(catalog, (item) => {
+  ((catalog) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((item) => {
     if (isListGroup(item)) {
       return findTextByValue(value, item.items);
     } else {
       return (item.value === value ? item : null);
     }
-  });
+  })(x), null);
 
 const getDelta = (persistentText: string, fieldName: 'link' | 'anchor', catalog: ListItem[], data: Partial<LinkDialogData>): (DialogDelta) | null => {
   const value = data[fieldName];

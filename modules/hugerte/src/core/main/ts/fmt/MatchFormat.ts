@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { Compare, SugarElement, TransformFind } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -186,7 +185,7 @@ const closest = (editor: Editor, names: string[]): string | null => {
   const isRoot = (elm: SugarElement<Node>) => Compare.eq(elm, SugarElement.fromDom(editor.getBody()));
   const match = (elm: SugarElement<Node>, name: string): (string) | null => matchNode(editor, elm.dom, name) ? name : null;
   return (editor.selection.getStart(true) ?? null).bind((rawElm) =>
-    TransformFind.closest(SugarElement.fromDom(rawElm), (elm) => Arr.findMap(names, (name) => match(elm, name)), isRoot)
+    TransformFind.closest(SugarElement.fromDom(rawElm), (elm) => ((names) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((name) => match(elm, name))(x), null), isRoot)
   ) ?? null;
 };
 

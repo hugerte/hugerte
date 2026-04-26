@@ -31,7 +31,7 @@ const hasOnlyTwoOrLessPositionsLeft = (elm: Node): boolean =>
       return CaretFinder.nextPosition(elm, normalizedFirstPos).forall((pos) => pos.isEqual(normalizedLastPos));
     })(CaretFinder.firstPositionIn(elm), CaretFinder.lastPositionIn(elm)) : null) ?? (true);
 
-const setCaretLocation = (editor: Editor, caret: Cell<Text | null>) => (location: BoundaryLocation.LocationAdt): (() =) | null void> =>
+const setCaretLocation = (editor: Editor, caret: Cell<Text | null>) => (location: BoundaryLocation.LocationAdt): (() => void) | null =>
   BoundaryCaret.renderCaret(caret, location).map((pos) =>
     () => BoundarySelection.setCaretPosition(editor, pos)
   );
@@ -59,7 +59,7 @@ const rescope = (rootNode: Node, node: Node): Node => {
   return parentBlock ? parentBlock : rootNode;
 };
 
-const backspaceDeleteCollapsed = (editor: Editor, caret: Cell<Text | null>, forward: boolean, from: CaretPosition): (() =) | null void> => {
+const backspaceDeleteCollapsed = (editor: Editor, caret: Cell<Text | null>, forward: boolean, from: CaretPosition): (() => void) | null => {
   const rootNode = rescope(editor.getBody(), from.container());
   const isInlineTarget = ((..._rest: any[]) => (InlineUtils.isInlineTarget)(editor, ..._rest));
   const fromLocation = BoundaryLocation.readLocation(isInlineTarget, rootNode, from);
@@ -82,7 +82,7 @@ const backspaceDeleteCollapsed = (editor: Editor, caret: Cell<Text | null>, forw
   });
 
   return location.map(setCaretLocation(editor, caret))
-    .getOrThunk((): (() =) | null void> => {
+    .getOrThunk((): (() => void) | null => {
       const toPosition = CaretFinder.navigate(forward, rootNode, from);
       const toLocation = toPosition.bind((pos) => BoundaryLocation.readLocation(isInlineTarget, rootNode, pos));
 
@@ -109,7 +109,7 @@ const backspaceDeleteCollapsed = (editor: Editor, caret: Cell<Text | null>, forw
     });
 };
 
-const backspaceDelete = (editor: Editor, caret: Cell<Text | null>, forward: boolean): (() =) | null void> => {
+const backspaceDelete = (editor: Editor, caret: Cell<Text | null>, forward: boolean): (() => void) | null => {
   if (editor.selection.isCollapsed() && Options.isInlineBoundariesEnabled(editor)) {
     const from = CaretPosition.fromRangeStart(editor.selection.getRng());
     return backspaceDeleteCollapsed(editor, caret, forward, from);

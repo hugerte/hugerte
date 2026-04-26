@@ -70,11 +70,11 @@ const ledgePart = edgePart('left');
 // The thumb part needs to have position absolute to be positioned correctly
 const thumbPart = PartType.required<SliderDetail, { dom: OptionalDomSchema; events: AlloyEvents.AlloyEventRecord }>({
   name: 'thumb',
-  defaults: () => {
+  defaults: () => ({
     dom: {
       styles: { position: 'absolute' }
     }
-  },
+  }),
   overrides: (detail) => {
     return {
       events: AlloyEvents.derive([

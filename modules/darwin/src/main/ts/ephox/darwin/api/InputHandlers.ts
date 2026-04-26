@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { ContentEditable, EventArgs, PredicateFind, Situ, SugarElement, SugarNode } from '@ephox/sugar';
 
 import * as KeySelection from '../keyboard/KeySelection';
@@ -79,9 +79,9 @@ const keyboard = (win: Window, container: SugarElement<Node>, isRoot: (e: SugarE
 
       const update = (attempts: RC[]) => {
         return () => {
-          const navigation = Arr.findMap(attempts, (delta) => {
+          const navigation = ((attempts) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((delta) => {
             return KeySelection.update(delta.rows, delta.cols, container, selected, annotations);
-          });
+          })(x), null);
 
           // Shift the selected rows and update the selection.
           return navigation.fold(() => {

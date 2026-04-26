@@ -75,7 +75,7 @@ const collapseAndRestoreCellSelection = (editor: Editor) => {
  * - the start and end of the selection is contained within the same table (called directly from deleteRange)
  * - part of a table and content outside is selected
  */
-const emptySingleTableCells = (editor: Editor, cells: SugarElement<HTMLTableCellElement>[], outsideDetails: (OutsideTableDetails) | null): (() =) | null void> =>
+const emptySingleTableCells = (editor: Editor, cells: SugarElement<HTMLTableCellElement>[], outsideDetails: (OutsideTableDetails) | null): (() => void) | null =>
   () => {
     const editorRng = editor.selection.getRng();
     const cellsToClean = outsideDetails.bind(({ rng, isStartInTable }) => {
@@ -120,7 +120,7 @@ const emptyMultiTableCells = (
   startTableCells: SugarElement<HTMLTableCellElement>[],
   endTableCells: SugarElement<HTMLTableCellElement>[],
   betweenRng: Range
-): (() =) | null void> =>
+): (() => void) | null =>
   () => {
     const rng = editor.selection.getRng();
 
@@ -143,15 +143,15 @@ const emptyMultiTableCells = (
   };
 
 // Delete the contents of a range inside a cell. Runs on tables that are a single cell or partial selections that need to be cleaned up.
-const deleteCellContents = (editor: Editor, rng: Range, cell: SugarElement<HTMLTableCellElement>, moveSelection: boolean = true): (() =) | null void> =>
+const deleteCellContents = (editor: Editor, rng: Range, cell: SugarElement<HTMLTableCellElement>, moveSelection: boolean = true): (() => void) | null =>
   () => {
     deleteRangeContents(editor, rng, cell, moveSelection);
   };
 
-const deleteTableElement = (editor: Editor, table: SugarElement<HTMLTableElement>): (() =) | null void> =>
+const deleteTableElement = (editor: Editor, table: SugarElement<HTMLTableElement>): (() => void) | null =>
   () => DeleteElement.deleteElement(editor, false, table);
 
-const deleteCellRange = (editor: Editor, rootElm: SugarElement<Node>, rng: Range): (() =) | null void> =>
+const deleteCellRange = (editor: Editor, rootElm: SugarElement<Node>, rng: Range): (() => void) | null =>
   TableDeleteAction.getActionFromRange(rootElm, rng)
     .bind((action) => action.fold(
       ((..._rest: any[]) => (deleteCellContents)(editor, ..._rest)),
@@ -160,16 +160,16 @@ const deleteCellRange = (editor: Editor, rootElm: SugarElement<Node>, rng: Range
       ((..._rest: any[]) => (emptyMultiTableCells)(editor, ..._rest))
     ));
 
-const deleteCaptionRange = (editor: Editor, caption: SugarElement<HTMLTableCaptionElement>): (() =) | null void> =>
+const deleteCaptionRange = (editor: Editor, caption: SugarElement<HTMLTableCaptionElement>): (() => void) | null =>
   emptyElement(editor, caption);
 
-const deleteTableRange = (editor: Editor, rootElm: SugarElement<Node>, rng: Range, startElm: SugarElement<Node>): (() =) | null void> =>
+const deleteTableRange = (editor: Editor, rootElm: SugarElement<Node>, rng: Range, startElm: SugarElement<Node>): (() => void) | null =>
   getParentCaption(rootElm, startElm).fold(
     () => deleteCellRange(editor, rootElm, rng),
     (caption) => deleteCaptionRange(editor, caption)
   );
 
-const deleteRange = (editor: Editor, startElm: SugarElement<Node>, selectedCells: SugarElement<HTMLTableCellElement>[]): (() =) | null void> => {
+const deleteRange = (editor: Editor, startElm: SugarElement<Node>, selectedCells: SugarElement<HTMLTableCellElement>[]): (() => void) | null => {
   const rootNode = SugarElement.fromDom(editor.getBody());
   const rng = editor.selection.getRng();
   return selectedCells.length !== 0 ?
@@ -189,7 +189,7 @@ const deleteBetweenCells = (
   forward: boolean,
   fromCell: SugarElement<HTMLTableCellElement>,
   from: CaretPosition
-): (() =) | null void> =>
+): (() => void) | null =>
   // TODO: TINY-8865 - This may not be safe to cast as Node below and alternative solutions need to be looked into
   CaretFinder.navigate(forward, editor.getBody(), from)
     .bind(
@@ -197,7 +197,7 @@ const deleteBetweenCells = (
         .bind((toCell) => Compare.eq(toCell, fromCell) ? null : () => {})
     );
 
-const emptyElement = (editor: Editor, elm: SugarElement<Node>): (() =) | null void> =>
+const emptyElement = (editor: Editor, elm: SugarElement<Node>): (() => void) | null =>
   () => {
     PaddingBr.fillWithPaddingBr(elm);
     editor.selection.setCursorLocation(elm.dom, 0);
@@ -211,10 +211,10 @@ const isDeleteOfLastCharPos = (fromCaption: SugarElement<HTMLTableCaptionElement
         from.isEqual(last) && to.isEqual(first))
   ) ?? (true);
 
-const emptyCaretCaption = (editor: Editor, elm: SugarElement<Node>): (() =) | null void> =>
+const emptyCaretCaption = (editor: Editor, elm: SugarElement<Node>): (() => void) | null =>
   emptyElement(editor, elm);
 
-const validateCaretCaption = (rootElm: SugarElement<Node>, fromCaption: SugarElement<HTMLTableCaptionElement>, to: CaretPosition): (() =) | null void> =>
+const validateCaretCaption = (rootElm: SugarElement<Node>, fromCaption: SugarElement<HTMLTableCaptionElement>, to: CaretPosition): (() => void) | null =>
   // TODO: TINY-8865 - This may not be safe to cast as Node below and alternative solutions need to be looked into
   getParentCaption(rootElm, SugarElement.fromDom(to.getNode() as Node))
     .fold(
@@ -228,7 +228,7 @@ const deleteCaretInsideCaption = (
   forward: boolean,
   fromCaption: SugarElement<HTMLTableCaptionElement>,
   from: CaretPosition
-): (() =) | null void> =>
+): (() => void) | null =>
   CaretFinder.navigate(forward, editor.getBody(), from).fold(
     () => () => {},
     (to) => isDeleteOfLastCharPos(fromCaption, forward, from, to) ?
@@ -236,7 +236,7 @@ const deleteCaretInsideCaption = (
       validateCaretCaption(rootElm, fromCaption, to)
   );
 
-const deleteCaretCells = (editor: Editor, forward: boolean, rootElm: SugarElement<Node>, startElm: SugarElement<Node>): (() =) | null void> => {
+const deleteCaretCells = (editor: Editor, forward: boolean, rootElm: SugarElement<Node>, startElm: SugarElement<Node>): (() => void) | null => {
   const from = CaretPosition.fromRangeStart(editor.selection.getRng());
   return getParentCell(rootElm, startElm).bind(
     (fromCell) => Empty.isEmpty(editor.schema, fromCell, { checkRootAsContent: false }) ?
@@ -250,7 +250,7 @@ const deleteCaretCaption = (
   forward: boolean,
   rootElm: SugarElement<Node>,
   fromCaption: SugarElement<HTMLTableCaptionElement>
-): (() =) | null void> => {
+): (() => void) | null => {
   const from = CaretPosition.fromRangeStart(editor.selection.getRng());
   return Empty.isEmpty(editor.schema, fromCaption) ?
     emptyElement(editor, fromCaption) :
@@ -267,7 +267,7 @@ const isBeforeOrAfterTable = (editor: Editor, forward: boolean): boolean => {
     .exists((pos) => isNearTable(forward, pos));
 };
 
-const deleteCaret = (editor: Editor, forward: boolean, startElm: SugarElement<Node>): (() =) | null void> => {
+const deleteCaret = (editor: Editor, forward: boolean, startElm: SugarElement<Node>): (() => void) | null => {
   const rootElm = SugarElement.fromDom(editor.getBody());
 
   return getParentCaption(rootElm, startElm).fold(
@@ -277,7 +277,7 @@ const deleteCaret = (editor: Editor, forward: boolean, startElm: SugarElement<No
   );
 };
 
-const backspaceDelete = (editor: Editor, forward: boolean): (() =) | null void> => {
+const backspaceDelete = (editor: Editor, forward: boolean): (() => void) | null => {
   const startElm = SugarElement.fromDom(editor.selection.getStart(true));
   const cells = TableCellSelection.getCellsFromEditor(editor);
 

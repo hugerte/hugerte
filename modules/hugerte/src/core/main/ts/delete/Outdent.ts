@@ -5,7 +5,7 @@ import * as BlockBoundary from '../caret/BlockBoundary';
 import CaretPosition from '../caret/CaretPosition';
 import * as IndentOutdent from '../commands/IndentOutdent';
 
-const backspaceDelete = (editor: Editor): (() =) | null void> => {
+const backspaceDelete = (editor: Editor): (() => void) | null => {
   if (editor.selection.isCollapsed() && IndentOutdent.canOutdent(editor)) {
     const dom = editor.dom;
     const rng = editor.selection.getRng();

@@ -20,7 +20,7 @@ const getRawH = (cell: SugarElement<HTMLTableCellElement | HTMLTableRowElement>)
   return Sizes.getRawHeight(cell).getOrThunk(() => Sizes.getHeight(cell) + 'px');
 };
 
-const justCols = (warehouse: Warehouse): (SugarElement<HTMLTableColElement>) | null[] =>
+const justCols = (warehouse: Warehouse): (SugarElement<HTMLTableColElement> | null)[] =>
   (Warehouse.justColumns(warehouse)).map((column) => (column.element ?? null));
 
 // Col elements don't have valid computed widths/positions in all browsers, so treat them as invalid in that case
@@ -33,7 +33,7 @@ const isValidColumn = (cell: SugarElement<HTMLTableCellElement | HTMLTableColEle
 const getDimension = <T extends HTMLElement, U>(
   cellOpt: (SugarElement<T>) | null,
   index: number,
-  backups: (number) | null[],
+  backups: (number | null)[],
   filter: (cell: SugarElement<T>) => boolean,
   getter: (cell: SugarElement<T>) => U,
   fallback: (deduced: (number) | null) => U
@@ -53,13 +53,13 @@ const getWidthFrom = <T>(
   // Only treat a cell as being valid for a column representation if it has a raw width, otherwise we won't be able to calculate the expected width.
   // This is needed as one cell may have a width but others may not, so we need to try and use one with a specified width first.
   const columnCells = Blocks.columns(warehouse);
-  const columns: (SugarElement<HTMLTableCellElement | HTMLTableColElement>) | null[] = Warehouse.hasColumns(warehouse) ? justCols(warehouse) : columnCells;
+  const columns: (SugarElement<HTMLTableCellElement | HTMLTableColElement> | null)[] = Warehouse.hasColumns(warehouse) ? justCols(warehouse) : columnCells;
 
   const backups = [ width.edge(table) ].concat((width.positions(columnCells, table)).map((pos) =>
     pos.map((p) => p.x)));
 
   // Only use the width of cells that have no column span (or colspan 1)
-  const colFilter = (x: any) => !(CellUtils.hasColspan)(x);
+  const colFilter = ((x: any) => !(CellUtils.hasColspan)(x));
 
   return (columns).map((cellOption, c) => {
     return getDimension(cellOption, c, backups, colFilter, (column) => {

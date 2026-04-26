@@ -69,7 +69,7 @@ const initIcons = (editor: Editor) => {
     if (!Object.prototype.hasOwnProperty.call(currentIcons, icon)) {
       editor.ui.registry.addIcon(icon, svgData);
     }
-  });
+  })(_v, _k));
 };
 
 const initTheme = (editor: Editor) => {
@@ -88,7 +88,7 @@ const initTheme = (editor: Editor) => {
   }
 };
 
-const initModel = (editor: Editor)(_v, _k)) => {
+const initModel = (editor: Editor) => {
   const model = Options.getModel(editor);
   const Model = ModelManager.get(model) as AddOnConstructor<Model>;
   editor.model = Model(editor, ModelManager.urls[model]);

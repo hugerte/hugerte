@@ -1,4 +1,4 @@
-import { Arr, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import {
@@ -103,7 +103,7 @@ const registerCustomFormats = (editor: Editor, userFormats: AllowedFormat[]): St
   const result = mapFormats(userFormats);
 
   const registerFormats = (customFormats: Array<{ name: string; format: StyleFormat }>) => {
-    Arr.each(customFormats, (fmt) => {
+    (customFormats).forEach((fmt) => {
       // Only register the custom format with the editor, if it's not already registered
       if (!editor.formatter.has(fmt.name)) {
         editor.formatter.register(fmt.name, fmt.format);

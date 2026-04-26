@@ -44,13 +44,13 @@ const fetchItems = (dropdownComp: AlloyComponent, name: string, items: Dialog.Li
   });
 
 const findItemByValue = (items: Dialog.ListBoxItemSpec[], value: string): (Dialog.ListBoxSingleItemSpec) | null =>
-  Arr.findMap(items, (item) => {
+  ((items) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((item) => {
     if (!isSingleListItem(item)) {
       return findItemByValue(item.items, value);
     } else {
       return (item.value === value ? item : null);
     }
-  });
+  })(x), null);
 
 export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, initialData: (string) | null): SketchSpec => {
   const providersBackstage = backstage.shared.providers;
@@ -85,7 +85,7 @@ export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, 
           );
         },
         onSetup: () => () => {},
-        getApi: () => { },
+        getApi: () => ({ }),
         columns: 1,
         presets: 'normal',
         classes: [],

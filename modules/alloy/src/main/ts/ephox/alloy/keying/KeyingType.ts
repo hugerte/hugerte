@@ -29,7 +29,7 @@ const typical = <C extends GeneralKeyingConfig, S extends BehaviourState>(
   stateInit: (config: C) => BehaviourState,
   getKeydownRules: (comp: AlloyComponent, se: NativeSimulatedEvent, config: C, state: S) => Array<KeyRules.KeyRule<C, S>>,
   getKeyupRules: (comp: AlloyComponent, se: NativeSimulatedEvent, config: C, state: S) => Array<KeyRules.KeyRule<C, S>>,
-  optFocusIn: (config: C) => ((comp: AlloyComponent, config: C, state: S) =) | null void>): KeyingType<C, S> => {
+  optFocusIn: (config: C) => ((comp: AlloyComponent, config: C, state: S) => void) | null): KeyingType<C, S> => {
   const schema = () => infoSchema.concat([
     FieldSchema.defaulted('focusManager', FocusManagers.dom()),
     FieldSchema.defaultedOf('focusInside', 'onFocus', StructureSchema.valueOf((val) => ([ 'onFocus', 'onEnterOrSpace', 'onApi' ]).includes(val) ? Result.value(val) : Result.error('Invalid value for focusInside'))),

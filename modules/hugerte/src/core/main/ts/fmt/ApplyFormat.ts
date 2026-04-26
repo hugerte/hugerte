@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 import { PredicateExists, SugarElement } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -265,7 +264,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
     }
 
     // Cleanup
-    Arr.each(newWrappers, (node) => {
+    (newWrappers).forEach((node) => {
       const getChildCount = (node: Node) => {
         let count = 0;
 

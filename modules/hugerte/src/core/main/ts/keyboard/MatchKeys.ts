@@ -1,4 +1,3 @@
-import { Arr } from '@ephox/katamari';
 
 interface KeyPatternBase {
   shiftKey?: boolean;
@@ -12,7 +11,7 @@ export interface KeyPattern extends KeyPatternBase {
   action: () => boolean;
 }
 export interface KeyPatternDelayed extends KeyPatternBase {
-  action: () => (() =) | null void>;
+  action: () => (() => void) | null;
 }
 
 const baseKeyPattern = {
@@ -54,8 +53,8 @@ const action = <T extends (...args: any[]) => any>(f: T, ...x: Parameters<T>) =>
 const execute = (patterns: KeyPattern[], evt: KeyboardEvent): (Required<KeyPattern>) | null =>
   ((match(patterns, evt)).find((pattern) => pattern.action()) ?? null);
 
-const executeWithDelayedAction = (patterns: KeyPatternDelayed[], evt: KeyboardEvent): (() =) | null void> =>
-  Arr.findMap(matchDelayed(patterns, evt), (pattern) => pattern.action());
+const executeWithDelayedAction = (patterns: KeyPatternDelayed[], evt: KeyboardEvent): (() => void) | null =>
+  ((matchDelayed(patterns, evt)) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((pattern) => pattern.action())(x), null);
 
 export {
   match,
