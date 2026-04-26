@@ -25,7 +25,7 @@ describe('atomic.katamari.api.arr.UniqueTest', () => {
   it('each element is not found in the rest of the array', () => {
     fc.assert(fc.property(fc.array(fc.string()), (arr) => {
       const unique = Unique.stringArray(arr);
-      return Arr.forall(unique, (x, i) => !Arr.contains(unique.slice(i + 1), x));
+      return unique.every((x, i) => !unique.slice(i + 1).includes(x));
     }));
   });
 
@@ -33,7 +33,7 @@ describe('atomic.katamari.api.arr.UniqueTest', () => {
     fc.assert(fc.property(fc.array(fc.string()), (arr) => {
       const once = Unique.stringArray(arr);
       const twice = Unique.stringArray(once);
-      assert.deepEqual(Arr.sort(twice), Arr.sort(once));
+      assert.deepEqual([...twice].sort(), [...once].sort());
     }));
   });
 });

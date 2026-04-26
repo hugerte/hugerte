@@ -10,28 +10,28 @@ const { some, none } = Optional;
 
 describe('atomic.katamari.api.optional.OptionalFilterTest', () => {
   it('Optional.filter', () => {
-    assertNone(none<number>().filter(() => true));
-    assertNone(none<number>().filter(() => false));
+    assertNone(none<number>().filter(Fun.always));
+    assertNone(none<number>().filter(Fun.never));
     assertNone(none<number>().filter(Fun.die('oof')));
     assertNone(none().filter(Fun.die('boom')));
     assertNone(some(5).filter((x) => x === 8));
-    assertNone(some(5).filter(() => false));
+    assertNone(some(5).filter(Fun.never));
     assertNone(none().filter(Fun.die('boom')));
     assertSome(some(6).filter((x) => x === 6), 6);
-    assertSome(some(6).filter(() => true), 6);
-    assertSome(some(5).filter(() => true), 5);
-    assertNone(some(5).filter(() => false));
+    assertSome(some(6).filter(Fun.always), 6);
+    assertSome(some(5).filter(Fun.always), 5);
+    assertNone(some(5).filter(Fun.never));
   });
 
   it('Checking some(x).filter(_ -> false) === none', () => {
     fc.assert(fc.property(arbOptionSome(fc.integer()), (opt) => {
-      assertNone(opt.filter(() => false));
+      assertNone(opt.filter(Fun.never));
     }));
   });
 
   it('Checking some(x).filter(_ -> true) === some(x)', () => {
     fc.assert(fc.property(fc.integer(), (x) => {
-      assertSome(some(x).filter(() => true), x);
+      assertSome(some(x).filter(Fun.always), x);
     }));
   });
 

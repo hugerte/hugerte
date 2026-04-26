@@ -12,22 +12,22 @@ describe('atomic.katamari.api.arr.ArrFindMapTest', () => {
     assertNone(Arr.findMap([], Fun.die('should not be called')));
   });
 
-  it('Arr.findMap of non-empty is first if f is (x) => x', () => {
+  it('Arr.findMap of non-empty is first if f is Optional.some', () => {
     fc.assert(fc.property(
       fc.integer(),
       fc.array(fc.integer()),
       (head, tail) => {
         const arr = [ head, ...tail ];
-        assertSome(Arr.findMap(arr, (x) => x), head);
+        assertSome(Arr.findMap(arr, Optional.some), head);
       }
     ));
   });
 
-  it('Arr.findMap of non-empty is none if f is () => null', () => {
+  it('Arr.findMap of non-empty is none if f is Optional.none', () => {
     fc.assert(fc.property(
       fc.array(fc.integer()),
       (arr) => {
-        assertNone(Arr.findMap(arr, () => null));
+        assertNone(Arr.findMap(arr, Optional.none));
       }
     ));
   });

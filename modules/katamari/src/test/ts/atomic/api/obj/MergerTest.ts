@@ -103,10 +103,10 @@ describe('atomic.katamari.api.obj.MergerTest', () => {
   it('Merge(a, b) contains all the keys of b', () => {
     fc.assert(fc.property(fc.dictionary(fc.asciiString(), fc.json()), fc.dictionary(fc.asciiString(), fc.json()), (a, b) => {
       const output = Merger.merge(a, b);
-      const keys = Obj.keys(b);
-      const oKeys = Obj.keys(output);
-      return Arr.forall(keys, (k) => {
-        return Arr.contains(oKeys, k);
+      const keys = Object.keys(b);
+      const oKeys = Object.keys(output);
+      return keys.every((k) => {
+        return oKeys.includes(k);
       });
     }));
   });
@@ -140,10 +140,10 @@ describe('atomic.katamari.api.obj.MergerTest', () => {
   it('Deep-merge(a, b) contains all the keys of b', () => {
     fc.assert(fc.property(fc.dictionary(fc.asciiString(), fc.json()), fc.dictionary(fc.asciiString(), fc.json()), (a, b) => {
       const output = Merger.deepMerge(a, b);
-      const keys = Obj.keys(b);
-      const oKeys = Obj.keys(output);
-      return Arr.forall(keys, (k) => {
-        return Arr.contains(oKeys, k);
+      const keys = Object.keys(b);
+      const oKeys = Object.keys(output);
+      return keys.every((k) => {
+        return oKeys.includes(k);
       });
     }));
   });

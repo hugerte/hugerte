@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-
+import { Type } from '@ephox/katamari';
 import { SugarElement, SugarNode } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -590,21 +590,21 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     const schemaHtml4 = Schema({ schema: 'html4' });
     const schemaHtml5 = Schema({ schema: 'html5' });
     [ 'caption', 'address', 'dt' ].forEach((parent) => {
-      Object.entries(schemaHtml4.getTextBlockElements()).forEach(([k, v]) => ((_v, child) =>(v, k)) {
+      Object.entries(schemaHtml4.getTextBlockElements()).forEach(([k, v]) => ((_v, child) => {
         assert.isFalse(schemaHtml4.isValidChild(parent, child));
-      });
-      Object.entries(schemaHtml5.getTextBlockElements()).forEach(([k, v]) => ((_v, child) =>(v, k)) {
+      })(v as any, k as any));
+      Object.entries(schemaHtml5.getTextBlockElements()).forEach(([k, v]) => ((_v, child) => {
         assert.isTrue(schemaHtml5.isValidChild(parent, child));
-      });
+      })(v as any, k as any));
 
     });
   });
 
   it('TINY-9805: html4 schema should not allow block children elements for the link element ', () => {
     const schemaHtml4 = Schema({ schema: 'html4' });
-    Object.entries(schemaHtml4.getTextBlockElements()).forEach(([k, v]) => ((_v, child) =>(v, k)) {
+    Object.entries(schemaHtml4.getTextBlockElements()).forEach(([k, v]) => ((_v, child) => {
       assert.isFalse(schemaHtml4.isValidChild('a', child));
-    });
+    })(v as any, k as any));
   });
 
   context('custom elements', () => {
@@ -703,13 +703,13 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     it('TINY-8639: default behaviour', () => {
       const schema = Schema({});
       const rules = Object.entries(schema.getTextInlineElements()).map(([k, v]) => ((_value, name) => getElementRule(schema, name.toLowerCase()))(v as any, k as any));
-      assert.isTrue(rules.length > 0 && rules.every((rule) => rule.paddInEmptyBlock === undefined));
+      assert.isTrue(rules.length > 0 && rules.every((rule) => Type.isUndefined(rule.paddInEmptyBlock)));
     });
 
     it('TINY-8639: padd_empty_block_inline_children: false', () => {
       const schema = Schema({ padd_empty_block_inline_children: false });
       const rules = Object.entries(schema.getTextInlineElements()).map(([k, v]) => ((_value, name) => getElementRule(schema, name.toLowerCase()))(v as any, k as any));
-      assert.isTrue(rules.length > 0 && rules.every((rule) => rule.paddInEmptyBlock === undefined));
+      assert.isTrue(rules.length > 0 && rules.every((rule) => Type.isUndefined(rule.paddInEmptyBlock)));
     });
 
     it('TINY-8639: padd_empty_block_inline_children: true', () => {

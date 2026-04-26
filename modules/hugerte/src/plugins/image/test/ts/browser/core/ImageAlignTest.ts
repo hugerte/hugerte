@@ -112,7 +112,7 @@ describe('browser.hugerte.plugins.image.ImageAlignTest', () => {
       justify: 'Justify'
     };
     const ariaLabel = ariaLabels[alignment];
-    const otherLabels = Object.values(Object.fromEntries(Object.entries(ariaLabels).filter(([k, v]) => ((_, key) =>(v, k))) key !== alignment));
+    const otherLabels = Object.values(Object.fromEntries(Object.entries(ariaLabels).filter(([k, v]) => ((_, key) => key !== alignment)(v as any, k as any))));
     // Justify is the default for figures so it never gets highlighted
     const ariaPressed = isFigure && !isSelectAll && alignment === 'justify' ? 'false' : 'true';
 

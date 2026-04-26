@@ -38,9 +38,9 @@ const unpatch = (proto: any, name?: string): void => {
     proto[name] = originalFuncs[name];
     delete originalFuncs[name];
   } else {
-    Object.entries(originalFuncs).forEach(([k, v]) => ((value, key) =>(v, k)) {
+    Object.entries(originalFuncs).forEach(([k, v]) => ((value, key) => {
       proto[key] = value;
-    });
+    })(v as any, k as any));
 
     delete proto.__originalFuncs;
   }

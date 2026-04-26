@@ -27,9 +27,9 @@ describe('atomic.katamari.api.obj.BiFilterTest', () => {
     fc.assert(fc.property(
       fc.dictionary(fc.asciiString(), fc.string(1, 40)),
       (obj) => {
-        const output = Obj.bifilter(obj, () => false);
-        assert.lengthOf(Obj.keys(output.f), Obj.keys(obj).length);
-        assert.lengthOf(Obj.keys(output.t), 0);
+        const output = Obj.bifilter(obj, Fun.never);
+        assert.lengthOf(Object.keys(output.f), Object.keys(obj).length);
+        assert.lengthOf(Object.keys(output.t), 0);
         return true;
       }
     ));
@@ -39,9 +39,9 @@ describe('atomic.katamari.api.obj.BiFilterTest', () => {
     fc.assert(fc.property(
       fc.dictionary(fc.asciiString(), fc.string(1, 40)),
       (obj) => {
-        const output = Obj.bifilter(obj, () => true);
-        assert.lengthOf(Obj.keys(output.f), 0);
-        assert.lengthOf(Obj.keys(output.t), Obj.keys(obj).length);
+        const output = Obj.bifilter(obj, Fun.always);
+        assert.lengthOf(Object.keys(output.f), 0);
+        assert.lengthOf(Object.keys(output.t), Object.keys(obj).length);
         return true;
       }
     ));
@@ -56,11 +56,11 @@ describe('atomic.katamari.api.obj.BiFilterTest', () => {
 
         const matches = (k: string) => predicate(obj[k]);
 
-        const falseKeys = Obj.keys(output.f);
-        const trueKeys = Obj.keys(output.t);
+        const falseKeys = Object.keys(output.f);
+        const trueKeys = Object.keys(output.t);
 
-        assert.isFalse(Arr.exists(falseKeys, matches));
-        assert.isTrue(Arr.forall(trueKeys, matches));
+        assert.isFalse(falseKeys.some(matches));
+        assert.isTrue(trueKeys.every(matches));
       }
     ));
   });

@@ -74,10 +74,10 @@ describe('atomic.katamari.api.data.ResultsTest', () => {
       (r1, r2) => {
         const comparison = Results.compare(r1, r2);
         return comparison.match({
-          bothErrors: () => true,
-          firstError: () => false,
-          secondError: () => false,
-          bothValues: () => false
+          bothErrors: Fun.always,
+          firstError: Fun.never,
+          secondError: Fun.never,
+          bothValues: Fun.never
         });
       }
     ));
@@ -90,10 +90,10 @@ describe('atomic.katamari.api.data.ResultsTest', () => {
       (r1, r2) => {
         const comparison = Results.compare(r1, r2);
         return comparison.match({
-          bothErrors: () => false,
-          firstError: () => true,
-          secondError: () => false,
-          bothValues: () => false
+          bothErrors: Fun.never,
+          firstError: Fun.always,
+          secondError: Fun.never,
+          bothValues: Fun.never
         });
       }
     ));
@@ -106,10 +106,10 @@ describe('atomic.katamari.api.data.ResultsTest', () => {
       (r1, r2) => {
         const comparison = Results.compare(r1, r2);
         return comparison.match({
-          bothErrors: () => false,
-          firstError: () => false,
-          secondError: () => true,
-          bothValues: () => false
+          bothErrors: Fun.never,
+          firstError: Fun.never,
+          secondError: Fun.always,
+          bothValues: Fun.never
         });
       }
     ));
@@ -122,10 +122,10 @@ describe('atomic.katamari.api.data.ResultsTest', () => {
       (r1, r2) => {
         const comparison = Results.compare(r1, r2);
         return comparison.match({
-          bothErrors: () => false,
-          firstError: () => false,
-          secondError: () => false,
-          bothValues: () => true
+          bothErrors: Fun.never,
+          firstError: Fun.never,
+          secondError: Fun.never,
+          bothValues: Fun.always
         });
       }
     ));

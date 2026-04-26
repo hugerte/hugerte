@@ -40,13 +40,13 @@ UnitTest.test('AttributeTransfer', () => {
       }
     });
 
-    Object.entries(expectedPresent).forEach(([k, v]) => ((v, k) =>(v, k)) {
+    Object.entries(expectedPresent).forEach(([k, v]) => ((v, k) => {
       if (!Attribute.has(destination, k)) {
         Assert.fail('Result should have attribute: ' + k);
       } else {
         Assert.eq('', v, Attribute.get(destination, k));
       }
-    });
+    })(v as any, k as any));
   };
 
   check({

@@ -7,8 +7,8 @@ import * as Arr from 'ephox/katamari/api/Arr';
 describe('atomic.katamari.api.arr.ReverseTest', () => {
   it('unit tests', () => {
     const check = <T>(expected: T[], input: T[]) => {
-      assert.deepEqual(Arr.reverse(input), expected);
-      assert.deepEqual(Arr.reverse(Object.freeze(input.slice())), expected);
+      assert.deepEqual([...input].reverse(), expected);
+      assert.deepEqual([...Object.freeze(input.slice())].reverse(), expected);
     };
 
     check([], []);
@@ -20,33 +20,33 @@ describe('atomic.katamari.api.arr.ReverseTest', () => {
 
   it('Reversing twice is identity', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-      assert.deepEqual(Arr.reverse(Arr.reverse(arr)), arr);
+      assert.deepEqual([...[...arr].reverse()].reverse()[...arr].reverse()), arr);
     }));
   });
 
   it('reversing a one element array is identity', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (a) => {
-      assert.deepEqual(Arr.reverse([ a ]), [ a ]);
+      assert.deepEqual([...[ a ]].reverse(), [ a ]);
     }));
   });
 
   it('reverses 2 elements', () => {
     fc.assert(fc.property(fc.integer(), fc.integer(), (a, b) => {
-      assert.deepEqual(Arr.reverse([ a, b ]), [ b, a ]);
+      assert.deepEqual([...[ a, b ]].reverse(), [ b, a ]);
     }));
   });
 
   it('reverses 3 elements', () => {
     fc.assert(fc.property(fc.integer(), fc.integer(), fc.integer(), (a, b, c) => {
-      assert.deepEqual(Arr.reverse([ a, b, c ]), [ c, b, a ]);
+      assert.deepEqual([...[ a, b, c ]].reverse(), [ c, b, a ]);
     }));
   });
 
   it('every element in the input is in the output, and vice-versa', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (xs) => {
-      const rxs = Arr.reverse(xs);
-      assert.isTrue(Arr.forall(rxs, (x) => Arr.contains(xs, x)));
-      assert.isTrue(Arr.forall(xs, (x) => Arr.contains(rxs, x)));
+      const rxs = [...xs].reverse();
+      assert.isTrue(rxs.every((x) => xs.includes(x)));
+      assert.isTrue(xs.every((x) => rxs.includes(x)));
     }));
   });
 });

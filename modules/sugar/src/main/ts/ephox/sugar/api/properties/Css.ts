@@ -1,4 +1,4 @@
-import { Optionals } from '@ephox/katamari';
+import { Optional, Optionals, Strings, Type } from '@ephox/katamari';
 
 import * as Style from '../../impl/Style';
 import * as SugarBody from '../node/SugarBody';
@@ -10,7 +10,7 @@ const internalSet = (dom: Node, property: string, value: string): void => {
   // This is going to hurt. Apologies.
   // JQuery coerces numbers to pixels for certain property names, and other times lets numbers through.
   // we're going to be explicit; strings only.
-  if (!typeof value === 'string') {
+  if (!Type.isString(value)) {
     // eslint-disable-next-line no-console
     console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value, ':: Element ', dom);
     throw new Error('CSS value must be a string: ' + value);
@@ -42,21 +42,21 @@ const set = (element: SugarElement<Node>, property: string, value: string): void
 const setAll = (element: SugarElement<Node>, css: Record<string, string>): void => {
   const dom = element.dom;
 
-  Object.entries(css).forEach(([k, v]) => ((v, k) =>(v, k)) {
+  Object.entries(css).forEach(([k, v]) => ((v, k) => {
     internalSet(dom, k, v);
-  });
+  })(v as any, k as any));
 };
 
-const setOptions = (element: SugarElement<Node>, css: Record<string, string | null>): void => {
+const setOptions = (element: SugarElement<Node>, css: Record<string, Optional<string>>): void => {
   const dom = element.dom;
 
-  Object.entries(css).forEach(([k, v]) => ((v, k) =>(v, k)) {
+  Object.entries(css).forEach(([k, v]) => ((v, k) => {
     v.fold(() => {
       internalRemove(dom, k);
     }, (value) => {
       internalSet(dom, k, value);
     });
-  });
+  })(v as any, k as any));
 };
 
 /*
@@ -95,11 +95,11 @@ const getUnsafeProperty = (dom: Node, property: string): string =>
  *
  * Returns NONE if the property isn't set, or the value is an empty string.
  */
-const getRaw = (element: SugarElement<Node>, property: string): string | null => {
+const getRaw = (element: SugarElement<Node>, property: string): Optional<string> => {
   const dom = element.dom;
   const raw = getUnsafeProperty(dom, property);
 
-  return raw ?? null.filter((r) => r.length > 0);
+  return Optional.from(raw).filter((r) => r.length > 0);
 };
 
 const getAllRaw = (element: SugarElement<Node>): Record<string, string> => {
@@ -119,7 +119,7 @@ const isValidValue = (tag: string, property: string, value: string): boolean => 
   const element = SugarElement.fromTag(tag);
   set(element, property, value);
   const style = getRaw(element, property);
-  return style !== null;
+  return style.isSome();
 };
 
 const remove = (element: SugarElement<Node>, property: string): void => {
@@ -127,7 +127,7 @@ const remove = (element: SugarElement<Node>, property: string): void => {
 
   internalRemove(dom, property);
 
-  if (Optionals.is(Attribute.getOpt(element as SugarElement<Element>, 'style').map((s: string) => s.trim()), '')) {
+  if (Optionals.is(Attribute.getOpt(element as SugarElement<Element>, 'style').map(Strings.trim), '')) {
     // No more styles left, remove the style attribute as well
     Attribute.remove(element as SugarElement<Element>, 'style');
   }
@@ -162,7 +162,7 @@ const reflow = (e: SugarElement<HTMLElement>): void =>
 const transferOne = (source: SugarElement<Node>, destination: SugarElement<Node>, style: string): void => {
   getRaw(source, style).each((value) => {
     // NOTE: We don't want to clobber any existing inline styles.
-    if (getRaw(destination, style) === null) {
+    if (getRaw(destination, style).isNone()) {
       set(destination, style, value);
     }
   });

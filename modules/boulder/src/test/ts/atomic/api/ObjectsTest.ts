@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Result } from '@ephox/katamari';
+import { Obj, Result } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 import * as fc from 'fast-check';
 
@@ -27,11 +27,11 @@ UnitTest.test('ObjectsTest', () => {
 
     check(narrowGen, (input) => {
       const narrowed = Objects.narrow(input.obj, input.fields);
-      Object.entries(narrowed).forEach(([k, v]) => ((_, k) =>(v, k)) {
+      Object.entries(narrowed).forEach(([k, v]) => ((_, k) => {
         if (!input.fields.includes(k)) {
           throw new Error('Narrowed object contained property: ' + k + ' which was not in fields: [' + input.fields.join(', ') + ']');
         }
-      });
+      })(v as any, k as any));
       return true;
     });
 
@@ -54,12 +54,12 @@ UnitTest.test('ObjectsTest', () => {
 
     check(excludeGen, (input) => {
       const excluded = Objects.exclude(input.obj, input.fields);
-      Object.entries(excluded).forEach(([k, v]) => ((_, k) =>(v, k)) {
+      Object.entries(excluded).forEach(([k, v]) => ((_, k) => {
         if (input.fields.includes(k)) {
           throw new Error('Excluded object contained property: ' + ' which should have been excluded by: [' +
             input.fields.join(', ') + ']');
         }
-      });
+      })(v as any, k as any));
     });
 
     const actual = Objects.exclude({ a: 'a', b: 'b', c: 'c' }, [ 'b' ]);
@@ -70,7 +70,7 @@ UnitTest.test('ObjectsTest', () => {
     // TODO: Think of a good way to property test.
     const subject = { alpha: 'Alpha' };
 
-    KAssert.eqSome('readOptFrom(alpha) => some(Alpha)', 'Alpha', (subject as any)['alpha']);
+    KAssert.eqSome('readOptFrom(alpha) => some(Alpha)', 'Alpha', Obj.get(subject, 'alpha'));
   };
 
   const testConsolidate = () => {

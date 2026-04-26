@@ -123,8 +123,7 @@ export default (): void => {
             innerHtml: 'OK'
           },
           action: (_button) => {
-            console.log('Form values', Object.fromEntries(Object.entries(Representing.getValue(form)).map(([k, v]) => [k, ((v) =>(v, k)])) v ?? 'Not found'
-            ));
+            console.log('Form values', Object.fromEntries(Object.entries(Representing.getValue(form)).map(([k, v]) => [k, ((v) => v.getOr('Not found'))(v as any, k as any)])));
           }
         })
       ],
@@ -226,8 +225,7 @@ export default (): void => {
               {
                 dom: { tag: 'button', innerHtml: 'OK' },
                 action: (_button) => {
-                  console.log('Exp Form values', Object.fromEntries(Object.entries(Representing.getValue(expform)).map(([k, v]) => [k, ((v) =>(v, k)])) v ?? 'Not found'
-                  ));
+                  console.log('Exp Form values', Object.fromEntries(Object.entries(Representing.getValue(expform)).map(([k, v]) => [k, ((v) => v.getOr('Not found'))(v as any, k as any)])));
                 }
               }
             )
@@ -252,9 +250,9 @@ export default (): void => {
       alpha: 'hi'
     });
 
-    console.log('form', Object.fromEntries(Object.entries(Representing.getValue(form)).map(([k, v]) => [k, ((v) =>(v, k)])) v.getOrDie()));
+    console.log('form', Object.fromEntries(Object.entries(Representing.getValue(form)).map(([k, v]) => [k, ((v) => v.getOrDie())(v as any, k as any)])));
 
-    console.log('expform', Object.fromEntries(Object.entries(Representing.getValue(expform)).map(([k, v]) => [k, ((v) =>(v, k)])) v.getOrDie()));
+    console.log('expform', Object.fromEntries(Object.entries(Representing.getValue(expform)).map(([k, v]) => [k, ((v) => v.getOrDie())(v as any, k as any)])));
 
     Representing.setValue(expform, {
       omega: 'hi'

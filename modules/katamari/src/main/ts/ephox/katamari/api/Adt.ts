@@ -25,8 +25,8 @@ const generate = <T = Record<string, (...data: any[]) => Adt>> (cases: { [key: s
 
   // adt is mutated to add the individual cases
   const adt: Record<string, (...data: any[]) => Adt> = {};
-  Arr.each(cases, (acase, count) => {
-    const keys: string[] = Obj.keys(acase);
+  cases.forEach((acase, count) => {
+    const keys: string[] = Object.keys(acase);
 
     // validation
     if (keys.length !== 1) {
@@ -59,13 +59,13 @@ const generate = <T = Record<string, (...data: any[]) => Adt>> (cases: { [key: s
       }
 
       const match = (branches: { [branch: string]: Function }) => {
-        const branchKeys: string[] = Obj.keys(branches);
+        const branchKeys: string[] = Object.keys(branches);
         if (constructors.length !== branchKeys.length) {
           throw new Error('Wrong number of arguments to match. Expected: ' + constructors.join(',') + '\nActual: ' + branchKeys.join(','));
         }
 
-        const allReqd = Arr.forall(constructors, (reqKey) => {
-          return Arr.contains(branchKeys, reqKey);
+        const allReqd = constructors.every((reqKey) => {
+          return branchKeys.includes(reqKey);
         });
 
         if (!allReqd) {

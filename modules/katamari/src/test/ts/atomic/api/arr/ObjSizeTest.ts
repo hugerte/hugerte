@@ -7,7 +7,7 @@ import * as Obj from 'ephox/katamari/api/Obj';
 describe('atomic.katamari.api.arr.ObjSizeTest', () => {
   it('unit tests', () => {
     const check = (expected: number, input: Record<string, string>) => {
-      assert.deepEqual(Obj.size(input), expected);
+      assert.deepEqual(Object.keys(input).length, expected);
     };
 
     check(0, {});
@@ -21,8 +21,8 @@ describe('atomic.katamari.api.arr.ObjSizeTest', () => {
       fc.asciiString(1, 30),
       fc.integer(),
       (obj, k, v) => {
-        const objWithoutK = Obj.filter(obj, (x, i) => i !== k);
-        assert.deepEqual(Obj.size({ [k]: v, ...objWithoutK }), Obj.size(objWithoutK) + 1);
+        const objWithoutK = Object.fromEntries(Object.entries(obj).filter(([k, v]) => ((x, i) => i !== k)(v as any, k as any)));
+        assert.deepEqual(Object.keys({ [k]: v, ...objWithoutK }).length, Object.keys(objWithoutK).length + 1);
       }), {
       numRuns: 5000
     });

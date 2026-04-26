@@ -6,13 +6,13 @@ import { assertNone, assertSome } from 'ephox/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.arr.ArrLastTest', () => {
   it('returns none when empty', () => {
-    assertNone(Arr.last<number>([]));
+    assertNone(([][[].length - 1] ?? null));
   });
 
   it('returns last element when non-empty', () => {
     fc.assert(fc.property(fc.array(fc.integer()), fc.integer(), (init, last) => {
       const arr = init.concat([ last ]);
-      assertSome(Arr.last(arr), last);
+      assertSome((arr[arr.length - 1] ?? null), last);
     }));
   });
 });

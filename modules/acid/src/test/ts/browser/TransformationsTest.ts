@@ -23,10 +23,10 @@ describe('TransformationsTest', () => {
         'rgb(50,205,50)': '32CD32', // Lime green
         'rgba(255, 99, 71, 0.5)': 'FF6347', // Pale tomato
         'rgb(244,164,96)': 'F4A460', // Sandy brown
-      }).forEach(([k, v]) => ((hex, rgb) =>(v, k)) {
+      }).forEach(([k, v]) => ((hex, rgb) => {
         const result = Transformations.anyToHex(rgb);
         assert.equal(result.value, hex);
-      });
+      })(v as any, k as any));
     });
 
     it('TINY-7480: transform named based colors', () => {
@@ -35,10 +35,10 @@ describe('TransformationsTest', () => {
         red: 'FF0000',
         deeppink: 'FF1493',
         silver: 'C0C0C0'
-      }).forEach(([k, v]) => ((hex, rgb) =>(v, k)) {
+      }).forEach(([k, v]) => ((hex, rgb) => {
         const result = Transformations.anyToHex(rgb);
         assert.equal(result.value, hex);
-      });
+      })(v as any, k as any));
     });
 
     it('TINY-7480: transform hsl colors', () => {
@@ -46,10 +46,10 @@ describe('TransformationsTest', () => {
         'hsl(145, 63.2%, 49.0%)': '2ECC70',
         'hsl(25,100%,60%)': 'FF8833',
         'hsl(340,79%,59%)': 'E9447B',
-      }).forEach(([k, v]) => ((hex, rgb) =>(v, k)) {
+      }).forEach(([k, v]) => ((hex, rgb) => {
         const result = Transformations.anyToHex(rgb);
         assert.equal(result.value, hex);
-      });
+      })(v as any, k as any));
     });
 
     it('TINY-7480: falls back to white for unknown colors', () => {

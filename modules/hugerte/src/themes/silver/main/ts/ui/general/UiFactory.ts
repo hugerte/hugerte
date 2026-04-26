@@ -1,6 +1,6 @@
 import { AlloyParts, AlloySpec, FormTypes, SimpleOrSketchSpec } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-
+import { Merger, Obj } from '@ephox/katamari';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderBar } from '../dialog/Bar';
@@ -34,16 +34,16 @@ export type NoFormRenderer<T extends Dialog.BodyComponent, U> = (spec: T, backst
 
 const make = <T extends Dialog.BodyComponent, U = unknown>(render: NoFormRenderer<T, U>): FormPartRenderer<T> => {
   return (parts, spec, dialogData, backstage) =>
-    (spec as Record<string as any)[any>, 'name'].fold(
+    Obj.get(spec as Record<string, any>, 'name').fold(
       () => render(spec, backstage, null),
       (fieldName) => parts.field(fieldName, render(spec, backstage, ((dialogData)[fieldName] ?? null)) as SimpleOrSketchSpec)
     );
 };
 
 const makeIframe = (render: NoFormRenderer<Dialog.Iframe, string>): FormPartRenderer<Dialog.Iframe> => (parts, spec, dialogData, backstage) => {
-  const iframeSpec = ({ ...spec, ...{
+  const iframeSpec = Merger.deepMerge(spec, {
     source: 'dynamic'
-  } });
+  });
   return make(render)(parts, iframeSpec, dialogData, backstage);
 };
 
@@ -82,12 +82,15 @@ const noFormParts: FormTypes.FormParts = {
 
 const interpretInForm = <T extends Dialog.BodyComponent>(parts: FormTypes.FormParts, spec: T, dialogData: Dialog.DialogData, oldBackstage: UiFactoryBackstage): AlloySpec => {
   // Now, we need to update the backstage to use the parts variant.
-  const newBackstage = ({ ...oldBackstage, ...{
+  const newBackstage = Merger.deepMerge(
+    oldBackstage,
+    {
       // Add the interpreter based on the form parts.
       shared: {
         interpreter: (childSpec: T) => interpretParts(parts, childSpec, dialogData, newBackstage)
       }
-    } });
+    }
+  );
 
   return interpretParts(parts, spec, dialogData, newBackstage);
 };

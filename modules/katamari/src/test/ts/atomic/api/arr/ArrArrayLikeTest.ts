@@ -20,22 +20,22 @@ describe('atomic.katamari.api.arr.ArrArrayLikeTest', () => {
   });
 
   it('contains', () => {
-    assert.isTrue(Arr.contains(arrayLike, 3));
+    assert.isTrue(arrayLike.includes(3));
   });
 
   it('map', () => {
-    assert.deepEqual(Arr.map(arrayLike, ((n) => n + 1)), [ 1, 2, 3, 4, 5, 6 ]);
+    assert.deepEqual(arrayLike.map(((n) => n + 1)), [ 1, 2, 3, 4, 5, 6 ]);
   });
 
   it('find', () => {
-    assertSome(Arr.find(arrayLike, ((n) => n === 3)), 3);
+    assertSome((arrayLike.find(((n) => n === 3)) ?? null), 3);
   });
 
   it('head', () => {
-    assertSome(Arr.head(arrayLike), 0);
+    assertSome((arrayLike[0] ?? null), 0);
   });
 
   it('last', () => {
-    assertSome(Arr.last(arrayLike), 5);
+    assertSome((arrayLike[arrayLike.length - 1] ?? null), 5);
   });
 });

@@ -1,4 +1,4 @@
-
+import { Optional, Type } from '@ephox/katamari';
 
 import { SugarElement } from '../node/SugarElement';
 import * as SugarNode from '../node/SugarNode';
@@ -9,7 +9,7 @@ const rawSet = (dom: Element, key: string, value: string | boolean | number): vo
    *
    * We fail on those invalid cases, only allowing numbers and booleans.
    */
-  if (typeof value === 'string' || typeof value === 'boolean' || typeof value === 'number') {
+  if (Type.isString(value) || Type.isBoolean(value) || Type.isNumber(value)) {
     dom.setAttribute(key, value + '');
   } else {
     // eslint-disable-next-line no-console
@@ -24,19 +24,19 @@ const set = (element: SugarElement<Element>, key: string, value: string | boolea
 
 const setAll = (element: SugarElement<Element>, attrs: Record<string, string | boolean | number>): void => {
   const dom = element.dom;
-  Object.entries(attrs).forEach(([k, v]) => ((v, k) =>(v, k)) {
+  Object.entries(attrs).forEach(([k, v]) => ((v, k) => {
     rawSet(dom, k, v);
-  });
+  })(v as any, k as any));
 };
 
-const setOptions = (element: SugarElement<Element>, attrs: Record<string, string | boolean | number | null>): void => {
-  Object.entries(attrs).forEach(([k, v]) => ((v, k) =>(v, k)) {
+const setOptions = (element: SugarElement<Element>, attrs: Record<string, Optional<string | boolean | number>>): void => {
+  Object.entries(attrs).forEach(([k, v]) => ((v, k) => {
     v.fold(() => {
       remove(element, k);
     }, (value) => {
       rawSet(element.dom, k, value);
     });
-  });
+  })(v as any, k as any));
 };
 
 const get = (element: SugarElement<Element>, key: string): undefined | string => {
@@ -46,8 +46,8 @@ const get = (element: SugarElement<Element>, key: string): undefined | string =>
   return v === null ? undefined : v;
 };
 
-const getOpt = (element: SugarElement<Element>, key: string): string | null =>
-  get(element, key) ?? null;
+const getOpt = (element: SugarElement<Element>, key: string): Optional<string> =>
+  Optional.from(get(element, key));
 
 const has = (element: SugarElement<Node>, key: string): boolean => {
   const dom = element.dom;

@@ -181,11 +181,11 @@ export interface Result<T, E> {
   readonly each: (worker: (value: T) => void) => void;
 
   /**
-   * Convert this `Result<T, E>` to an `T | null`. If this object contains a
+   * Convert this `Result<T, E>` to an `Optional<T>`. If this object contains a
    * value, so will the output. If this object contains an error, the error will
    * be discarded and the output will not contain a value.
    */
-  readonly toOptional: () => T | null;
+  readonly toOptional: () => Optional<T>;
 }
 
 /* Debugging information. This is deliberately not included in the exported
@@ -220,8 +220,8 @@ const value = <T, E = never>(value: T): Result<T, E> => {
     inner: value,
     // Actual Result methods
     fold: (_onError, onValue) => onValue(value),
-    isValue: () => true,
-    isError: () => false,
+    isValue: Fun.always,
+    isError: Fun.never,
     map: (mapper) => Result.value(mapper(value)),
     mapError: outputHelper,
     bind: applyHelper,
@@ -236,7 +236,7 @@ const value = <T, E = never>(value: T): Result<T, E> => {
       // Can't write the function inline because we don't want to return something by mistake
       fn(value);
     },
-    toOptional: () => value,
+    toOptional: () => Optional.some(value),
   };
 
   return output;
@@ -255,32 +255,32 @@ const error = <T = never, E = any>(error: E): Result<T, E> => {
     inner: error,
     // Actual Result methods
     fold: (onError, _onValue) => onError(error),
-    isValue: () => false,
-    isError: () => true,
+    isValue: Fun.never,
+    isError: Fun.always,
     map: outputHelper,
     mapError: (mapper) => Result.error(mapper(error)),
     bind: outputHelper,
-    exists: () => false,
-    forall: () => true,
-    getOr: (x: any) => x,
-    or: (x: any) => x,
+    exists: Fun.never,
+    forall: Fun.always,
+    getOr: Fun.identity,
+    or: Fun.identity,
     getOrThunk: Fun.apply,
     orThunk: Fun.apply,
     getOrDie: Fun.die(String(error)),
-    each: () => {},
-    toOptional: () => null,
+    each: Fun.noop,
+    toOptional: Optional.none,
   };
 
   return output;
 };
 
 /**
- * Creates a new `Result<T, E>` from an `T | null` and an `E`. If the
+ * Creates a new `Result<T, E>` from an `Optional<T>` and an `E`. If the
  * `Optional` contains a value, so will the outputted `Result`. If it does not,
  * the outputted `Result` will contain an error (and that error will be the
  * error passed in).
  */
-const fromOption = <T, E>(optional: T | null, err: E): Result<T, E> =>
+const fromOption = <T, E>(optional: Optional<T>, err: E): Result<T, E> =>
   optional.fold(() => error(err), value);
 
 export const Result = {

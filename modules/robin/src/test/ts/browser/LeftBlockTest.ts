@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { DomUniverse, Universe } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 import { Hierarchy, Insert, InsertAll, Remove, Replication, SugarBody, SugarElement } from '@ephox/sugar';
 
 import * as LeftBlock from 'ephox/robin/api/general/LeftBlock';
@@ -37,7 +37,7 @@ UnitTest.test('LeftBlockTest', () => {
 
   setup();
 
-  Arr.each([
+  [
     // I'm only targeting text nodes here ... this is probably a limitation in the current implementation.
     { expected: 'alpha', path: [ 0, 0 ], method: LeftBlock.top },
     { expected: 'alpha', path: [ 0, 0 ], method: LeftBlock.all },
@@ -49,10 +49,10 @@ UnitTest.test('LeftBlockTest', () => {
     { expected: 'alphacathellowordhi', path: [ 0, 2, 2 ], method: LeftBlock.all },
     { expected: 'alpha<span>cat</span><b>hello<i>word</i>hi</b>there', path: [ 0, 3 ], method: LeftBlock.top },
     { expected: 'alphacathellowordhithere', path: [ 0, 3 ], method: LeftBlock.all }
-  ], (item) => {
+  ].forEach((item) => {
     check(item.expected, item.path, item.method);
   });
 
   cleanup();
 
-});
+});)

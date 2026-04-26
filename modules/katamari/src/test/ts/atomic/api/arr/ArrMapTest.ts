@@ -12,8 +12,8 @@ const plus3 = (x: number) => x + 3;
 describe('atomic.katamari.api.arr.ArrMapTest', () => {
   it('unit tests', () => {
     const checkA = <T, U>(expected: U[], input: T[], f: (x: T, i: number) => U) => {
-      assert.deepEqual(Arr.map(input, f), expected);
-      assert.deepEqual(Arr.map(Object.freeze(input.slice()), f), expected);
+      assert.deepEqual(input.map(f), expected);
+      assert.deepEqual(Object.freeze(input.slice()).map(f), expected);
     };
 
     checkA([], [], dbl);
@@ -24,7 +24,7 @@ describe('atomic.katamari.api.arr.ArrMapTest', () => {
   context('functor laws', () => {
     it('obeys identity law', () => {
       fc.assert(fc.property(fc.array(fc.nat()), (xs) =>
-        assert.deepEqual(Arr.map(xs, (x: any) => x), xs)
+        assert.deepEqual(xs.map(Fun.identity), xs)
       ));
     });
 
@@ -33,7 +33,7 @@ describe('atomic.katamari.api.arr.ArrMapTest', () => {
       const g = dbl;
 
       fc.assert(fc.property(fc.array(fc.nat()), (xs) =>
-        assert.deepEqual(Arr.map(Arr.map(xs, g), f), Arr.map(xs, Fun.compose(f, g)))
+        assert.deepEqual(xs.map(g).map(f)xs.map(g), f), xs.map(Fun.compose(f, g)))
       ));
     });
   });

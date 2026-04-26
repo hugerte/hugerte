@@ -63,11 +63,11 @@ describe('atomic.polaris.api.UrlTest', () => {
       'but15characters://foo.com': 'foo.com'
     };
 
-    Object.entries(hostMap).forEach(([k, v]) => ((v, k) =>(v, k)) {
+    Object.entries(hostMap).forEach(([k, v]) => ((v, k) => {
       it(`TINY-10350: Should correctly extract ${v} from ${k}`, () => {
         const host = Url.extractHost(k).getOrDie();
         Assert.eq(`expected host to be ${v} but was ${host}`, v, host);
       });
-    });
+    })(v as any, k as any));
   });
 });

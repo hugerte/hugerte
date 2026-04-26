@@ -8,7 +8,7 @@ export interface LazyValue<T> {
 }
 
 const nu = <T>(baseFn: (completer: (value: T) => void) => void): LazyValue<T> => {
-  let data = null;
+  let data = Optional.none<T>();
   let callbacks: ((value: T) => void)[] = [];
 
   /** map :: this LazyValue a -> (a -> b) -> LazyValue b */
@@ -28,16 +28,16 @@ const nu = <T>(baseFn: (completer: (value: T) => void) => void): LazyValue<T> =>
 
   const set = (x: T) => {
     if (!isReady()) {
-      data = x;
+      data = Optional.some(x);
       run(callbacks);
       callbacks = [];
     }
   };
 
-  const isReady = () => data !== null;
+  const isReady = () => data.isSome();
 
   const run = (cbs: ((value: T) => void)[]) => {
-    Arr.each(cbs, call);
+    cbs.forEach(call);
   };
 
   const call = (cb: (value: T) => void) => {

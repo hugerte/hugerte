@@ -35,7 +35,7 @@ describe('atomic.katamari.api.arr.PartitionTest', () => {
     fc.assert(fc.property(
       fc.array(fc.integer()),
       (arr) => {
-        const output = Arr.partition(arr, () => false);
+        const output = Arr.partition(arr, Fun.never);
         assert.deepEqual(output.pass.length, 0);
         assert.deepEqual(output.fail, arr);
       }
@@ -46,7 +46,7 @@ describe('atomic.katamari.api.arr.PartitionTest', () => {
     fc.assert(fc.property(
       fc.array(fc.integer()),
       (arr) => {
-        const output = Arr.partition(arr, () => true);
+        const output = Arr.partition(arr, Fun.always);
         assert.deepEqual(output.fail.length, 0);
         assert.deepEqual(output.pass, arr);
       }
@@ -59,7 +59,7 @@ describe('atomic.katamari.api.arr.PartitionTest', () => {
       (arr) => {
         const predicate = (x: number) => x % 3 === 0;
         const output = Arr.partition(arr, predicate);
-        return Arr.forall(output.fail, (x) => !predicate(x)) && Arr.forall(output.pass, predicate);
+        return output.fail.every((x) => !predicate(x)) && output.pass.every(predicate);
       }
     ));
   });

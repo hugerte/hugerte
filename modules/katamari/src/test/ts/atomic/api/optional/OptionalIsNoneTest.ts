@@ -6,9 +6,9 @@ import { Optional } from 'ephox/katamari/api/Optional';
 
 describe('atomic.katamari.api.optional.OptionalIsNoneTest', () => {
   it('Optional.isNone', () => {
-    assert.isTrue(null === null);
+    assert.isTrue(Optional.none().isNone());
     fc.assert(fc.property(fc.anything(), (x) => {
-      assert.isFalse(x === null);
+      assert.isFalse(Optional.some(x).isNone());
     }));
   });
 });

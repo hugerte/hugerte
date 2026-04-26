@@ -21,17 +21,17 @@ describe('browser.hugerte.core.options.NormalizeOptionsTest', () => {
 
   it('default tablet settings', () => {
     const defaultSettings = NormalizeOptions.getMobileOverrideOptions({}, false);
-    Object.entries(expectedMobileDefaultSettings).forEach(([k, v]) => ((value, key) =>(v, k)) {
+    Object.entries(expectedMobileDefaultSettings).forEach(([k, v]) => ((value, key) => {
       assert.propertyVal(defaultSettings, key, value, `Should have default ${key} setting`);
-    });
+    })(v as any, k as any));
     assert.notProperty(defaultSettings, 'menubar', 'Should not have menubar setting');
   });
 
   it('default phone settings', () => {
     const defaultSettings = NormalizeOptions.getMobileOverrideOptions({}, true);
-    Object.entries(expectedPhoneDefaultSettings).forEach(([k, v]) => ((value, key) =>(v, k)) {
+    Object.entries(expectedPhoneDefaultSettings).forEach(([k, v]) => ((value, key) => {
       assert.propertyVal(defaultSettings, key, value, `Should have default ${key} setting`);
-    });
+    })(v as any, k as any));
   });
 
   it('desktop settings should not override mobile default settings', () => {
@@ -45,9 +45,9 @@ describe('browser.hugerte.core.options.NormalizeOptionsTest', () => {
     };
 
     const mobileSettings = NormalizeOptions.combineOptions(true, true, {}, {}, settings);
-    Object.entries(expectedPhoneDefaultSettings).forEach(([k, v]) => ((value, key) =>(v, k)) {
+    Object.entries(expectedPhoneDefaultSettings).forEach(([k, v]) => ((value, key) => {
       assert.propertyVal(mobileSettings, key, value, `Should have default ${key} setting`);
-    });
+    })(v as any, k as any));
   });
 
   context('normaliseOptions', () => {

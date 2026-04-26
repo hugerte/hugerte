@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-
+import { Type } from '@ephox/katamari';
 import { Attribute, Css, Html, SelectorFilter, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -49,22 +49,22 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
       '</table>'
     );
 
-    if (cellPaddingAttr != null) {
+    if (Type.isNonNullable(cellPaddingAttr)) {
       Attribute.set(defaultTable, 'cellpadding', cellPaddingAttr);
     }
-    if (cellSpacingAttr != null) {
+    if (Type.isNonNullable(cellSpacingAttr)) {
       Attribute.set(defaultTable, 'cellspacing', cellSpacingAttr);
     }
-    if (borderAttr != null) {
+    if (Type.isNonNullable(borderAttr)) {
       Attribute.set(defaultTable, 'border', borderAttr);
     }
-    if (cellSpacingStyle != null) {
+    if (Type.isNonNullable(cellSpacingStyle)) {
       Css.set(defaultTable, 'border-spacing', cellSpacingStyle);
     }
-    if (cellPaddingStyle != null) {
+    if (Type.isNonNullable(cellPaddingStyle)) {
       SelectorFilter.descendants(defaultTable, 'td,th').forEach((cell) => Css.set(cell, 'padding', cellPaddingStyle));
     }
-    if (cellBorderWidthStyle != null) {
+    if (Type.isNonNullable(cellBorderWidthStyle)) {
       SelectorFilter.descendants(defaultTable, 'td').forEach((cell) => Css.set(cell, 'border-width', cellBorderWidthStyle));
     }
 
@@ -75,8 +75,8 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
   const assertTable = (editor: Editor, spec: TableSpec) => {
     TinyAssertions.assertContentStructure(editor, ApproxStructure.build((s, str, _arr) => {
       const transformMap = (record: Record<string, undefined | string>) => {
-        const definedOnly = Object.fromEntries(Object.entries(record).filter(([k, v]) => ((x: any) => x != null)(v, k))) as Record<string, string>;
-        return Object.fromEntries(Object.entries(definedOnly).map(([k, v]) => [k, ((val) =>(v, k)])) val !== '' ? str.is(val) : str.none());
+        const definedOnly = Object.fromEntries(Object.entries(record).filter(([k, v]) => (Type.isNonNullable)(v as any, k as any))) as Record<string, string>;
+        return Object.fromEntries(Object.entries(definedOnly).map(([k, v]) => [k, ((val) => val !== '' ? str.is(val) : str.none())(v as any, k as any)]));
       };
       const cell = s.element('td', {
         styles: transformMap({

@@ -21,7 +21,7 @@ UnitTest.test('Browser Test: SelectionTest', () => {
     WindowSelection.getExact(window).fold(() => {
       Assert.fail('Selection should be wrapping: ' + Html.getOuter(outer));
     }, (sel) => {
-      Object.entries(expected).forEach(([k, v]) => ((num, tag) =>(v, k)) {
+      Object.entries(expected).forEach(([k, v]) => ((num, tag) => {
         const actual = WindowSelection.findWithin(
           window,
           SimSelection.exact(sel.start, sel.soffset, sel.finish, sel.foffset),
@@ -29,7 +29,7 @@ UnitTest.test('Browser Test: SelectionTest', () => {
         );
         Assert.eq('Incorrect number of ' + tag + ' tags.\n' + 'Expected: ' + num + ', but was: ' + actual.length, num, actual.length);
         Assert.eq('All tags must be: ' + tag, true, actual.every((a) => SugarNode.name(a) === tag));
-      });
+      })(v as any, k as any));
     });
   };
 

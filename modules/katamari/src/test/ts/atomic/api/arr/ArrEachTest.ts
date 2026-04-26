@@ -14,7 +14,7 @@ describe('atomic.katamari.api.arr.ArrEachTest', () => {
     it('unit test', () => {
       const checkLHelper = <T>(expected: TestResult<T>[], input: ArrayLike<T>) => {
         const values: Array<TestResult<T>> = [];
-        Arr.each(input, (x, i) => {
+        input.forEach((x, i) => {
           values.push({ index: i, value: x });
         });
         assert.deepEqual(values, expected);
@@ -36,7 +36,7 @@ describe('atomic.katamari.api.arr.ArrEachTest', () => {
         (arr) => {
           const values: number[] = [];
           // noinspection JSVoidFunctionReturnValueUsed
-          const output = Arr.each(arr, (x, _i) => {
+          const output = arr.forEach((x, _i) => {
             values.push(x);
           });
           assert.deepEqual(output, undefined);
@@ -75,7 +75,7 @@ describe('atomic.katamari.api.arr.ArrEachTest', () => {
             values.push(x);
           });
           assert.deepEqual(output, undefined);
-          assert.deepEqual(values, Arr.reverse(arr));
+          assert.deepEqual(values, [...arr].reverse());
         }
       ));
     });

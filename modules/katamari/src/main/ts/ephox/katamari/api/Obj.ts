@@ -65,7 +65,7 @@ export const filter: {
   <T extends {}>(obj: T, pred: ObjPredicate<T>): Record<string, T[keyof T]>;
 } = <T extends {}>(obj: T, pred: ObjPredicate<T>): Record<string, T[keyof T]> => {
   const t: Record<string, T[keyof T]> = {};
-  internalFilter(obj, pred, objAcc(t), () => {});
+  internalFilter(obj, pred, objAcc(t), Fun.noop);
   return t;
 };
 
@@ -77,28 +77,28 @@ export const mapToArray = <T extends {}, R>(obj: T, f: ObjMorphism<T, R>): R[] =
   return r;
 };
 
-export const find = <T extends {}>(obj: T, pred: (value: T[keyof T], key: ObjKeys<T>, obj: T) => boolean): T[keyof T] | null => {
+export const find = <T extends {}>(obj: T, pred: (value: T[keyof T], key: ObjKeys<T>, obj: T) => boolean): Optional<T[keyof T]> => {
   const props = keys(obj) as Array<ObjKeys<T>>;
   for (let k = 0, len = props.length; k < len; k++) {
     const i = props[k];
     const x = obj[i];
     if (pred(x, i, obj)) {
-      return x;
+      return Optional.some(x);
     }
   }
-  return null;
+  return Optional.none();
 };
 
 export const values = <T extends {}>(obj: T): Array<T[keyof T]> => {
-  return mapToArray(obj, (x: any) => x);
+  return mapToArray(obj, Fun.identity);
 };
 
 export const size = (obj: {}): number => {
   return keys(obj).length;
 };
 
-export const get = <T extends {}, K extends keyof T>(obj: T, key: K): NonNullable<T[K]> | null => {
-  return has(obj, key) ? obj[key] as NonNullable<T[K]> ?? null : null;
+export const get = <T extends {}, K extends keyof T>(obj: T, key: K): Optional<NonNullable<T[K]>> => {
+  return has(obj, key) ? Optional.from(obj[key] as NonNullable<T[K]>) : Optional.none();
 };
 
 export const has = <T extends {}, K extends keyof T>(obj: T, key: K): boolean =>

@@ -9,10 +9,10 @@ describe('atomic.katamari.api.arr.DifferenceTest', () => {
     const check = <T>(expected: T[], a1: T[], a2: T[]) => {
       const readonlyA1 = Object.freeze(a1.slice());
       const readonlyA2 = Object.freeze(a2.slice());
-      assert.deepEqual(Arr.difference(a1, a2), expected);
-      assert.deepEqual(Arr.difference(readonlyA1, a2), expected);
-      assert.deepEqual(Arr.difference(a1, readonlyA2), expected);
-      assert.deepEqual(Arr.difference(readonlyA1, readonlyA2), expected);
+      assert.deepEqual(a1.filter((x) => !a2.includes(x)), expected);
+      assert.deepEqual(readonlyA1.filter((x) => !a2.includes(x)), expected);
+      assert.deepEqual(a1.filter((x) => !readonlyA2.includes(x)), expected);
+      assert.deepEqual(readonlyA1.filter((x) => !readonlyA2.includes(x)), expected);
     };
 
     check([], [], []);
@@ -27,15 +27,15 @@ describe('atomic.katamari.api.arr.DifferenceTest', () => {
 
   it('ys-xs contains no elements from xs', () => {
     fc.assert(fc.property(fc.array(fc.integer()), fc.array(fc.integer()), (xs, ys) => {
-      const diff = Arr.difference(ys, xs);
-      return Arr.forall(xs, (x) => !Arr.contains(diff, x));
+      const diff = ys.filter((x) => !xs.includes(x));
+      return xs.every((x) => !diff.includes(x));
     }));
   });
 
   it('every member of ys-xs is in ys', () => {
     fc.assert(fc.property(fc.array(fc.integer()), fc.array(fc.integer()), (xs, ys) => {
-      const diff = Arr.difference(ys, xs);
-      return Arr.forall(diff, (d) => Arr.contains(ys, d));
+      const diff = ys.filter((x) => !xs.includes(x));
+      return diff.every((d) => ys.includes(d));
     }));
   });
 });

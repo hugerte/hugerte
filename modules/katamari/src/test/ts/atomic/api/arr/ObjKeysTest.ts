@@ -13,7 +13,7 @@ describe('atomic.katamari.api.arr.ObjKeysTest', () => {
         assert.deepEqual(v, expected);
       };
 
-      c(expKeys, Obj.keys(input));
+      c(expKeys, Object.keys(input));
     };
 
     check([], {});
@@ -23,8 +23,8 @@ describe('atomic.katamari.api.arr.ObjKeysTest', () => {
 
   it('only returns elements that are in the input', () => {
     fc.assert(fc.property(fc.dictionary(fc.asciiString(), fc.integer()), (obj) => {
-      const keys = Obj.keys(obj);
-      return Arr.forall(keys, (k) => obj.hasOwnProperty(k));
+      const keys = Object.keys(obj);
+      return keys.every((k) => obj.hasOwnProperty(k));
     }));
   });
 });

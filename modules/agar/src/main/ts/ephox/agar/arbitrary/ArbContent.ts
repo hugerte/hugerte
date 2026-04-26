@@ -1,5 +1,5 @@
 // @ts-nocheck
-
+import { Merger } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
@@ -28,15 +28,15 @@ const makeArbOf = <T extends Node>(component: string, schema: ContentSchema, dep
 
 const createSchema = (factory: Schema, extras: Record<string, Partial<SchemaDetail>>): ContentSchema => {
   const base = ArbSchema;
-  const schema = ({ ...base, ...extras });
-  return Object.fromEntries(Object.entries(schema).map(([k, v]) => [k, ((s, k) =>(v, k)])) {
+  const schema = Merger.deepMerge(base, extras);
+  return Object.fromEntries(Object.entries(schema).map(([k, v]) => [k, ((s, k) => {
     const type: string = s.type;
     if (factory[type] === undefined && base[k] !== undefined) {
       throw new Error('Component: ' + k + ' has invalid type: ' + type);
     } else {
       return factory[type](s);
     }
-  });
+  })(v as any, k as any)]));
 };
 
 const arbOf = <T extends Node>(component: string, extras: Record<string, Partial<SchemaDetail>> = {}): fc.Arbitrary<SugarElement<T>> => {

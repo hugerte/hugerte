@@ -14,8 +14,8 @@ export const pprintResult = <A, E> (pprintA: Pprint<A> = Pprint.pprintAny, pprin
 
 export const eqResult = <A, E> (eqA: Eq<A> = Eq.eqAny, eqE: Eq<E> = Eq.eqAny): Eq<Result<A, E>> =>
   Eq.eq((oa, ob) => oa.fold(
-    (e1) => ob.fold((e2) => eqE.eq(e1, e2), () => false),
-    (a1) => ob.fold(() => false, (a2) => eqA.eq(a1, a2))
+    (e1) => ob.fold((e2) => eqE.eq(e1, e2), Fun.never),
+    (a1) => ob.fold(Fun.never, (a2) => eqA.eq(a1, a2))
   ));
 
 export const tResult = <A, E> (testableA: Testable<A> = Testable.tAny, testableE: Testable<E> = Testable.tAny): Testable<Result<A, E>> =>

@@ -107,7 +107,7 @@ describe('atomic.katamari.api.async.LazyValueTest', () => {
   }));
 
   it('parallel spec', () => fc.assert(fc.asyncProperty(fc.array(fc.integer(), 0, 20), (vals) => new Promise((resolve, reject) => {
-    const lazyVals = Arr.map(vals, LazyValue.pure);
+    const lazyVals = vals.map(LazyValue.pure);
     LazyValues.par(lazyVals).get((actual) => {
       eqAsync('pars', vals, actual, reject);
       resolve();
@@ -128,8 +128,8 @@ describe('atomic.katamari.api.async.LazyValueTest', () => {
     }));
 
   it('TINY-6107: LazyValues.withTimeout never returns', () => new Promise<void>((resolve, reject) => {
-    LazyValues.withTimeout(() => {}, 1).get((actual) => {
-      eqAsync('should time out', null, actual, reject, tOptional());
+    LazyValues.withTimeout(Fun.noop, 1).get((actual) => {
+      eqAsync('should time out', Optional.none(), actual, reject, tOptional());
       resolve();
     });
   }));
@@ -138,7 +138,7 @@ describe('atomic.katamari.api.async.LazyValueTest', () => {
     LazyValues.withTimeout((cb) => {
       setTimeout(() => cb(88), 50);
     }, 1).get((actual) => {
-      eqAsync('should timeout', null, actual, reject, tOptional());
+      eqAsync('should timeout', Optional.none(), actual, reject, tOptional());
       resolve();
     });
   }));
@@ -149,7 +149,7 @@ describe('atomic.katamari.api.async.LazyValueTest', () => {
         cb('cat');
       }, 10);
     }, 100).get((actual) => {
-      eqAsync('should not timeout', 'cat', actual, reject, tOptional());
+      eqAsync('should not timeout', Optional.some('cat'), actual, reject, tOptional());
       resolve();
     });
   }));

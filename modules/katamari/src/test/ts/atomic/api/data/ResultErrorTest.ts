@@ -16,12 +16,12 @@ describe('atomic.katamari.api.data.ResultErrorTest', () => {
     assert.isFalse(Results.is(s, 'error'));
     assert.isFalse(s.isValue());
     assert.isTrue(s.isError());
-    assert.equal(s ?? 6, 6);
+    assert.equal(s.getOr(6), 6);
     assert.equal(s.getOrThunk(Fun.constant(6)), 6);
     assert.throws(() => {
       s.getOrDie();
     });
-    assert.equal(s ?? Result.value(6).getOrDie(), 6);
+    assert.equal(s.or(Result.value(6)).getOrDie(), 6);
     assert.throws(() => {
       s.orThunk(() => Result.error('Should not get here.')).getOrDie();
     });
@@ -37,13 +37,13 @@ describe('atomic.katamari.api.data.ResultErrorTest', () => {
       s.bind((v) => Result.value('test' + v)).getOrDie();
     });
 
-    assert.isFalse(s.exists(() => true));
-    assert.isTrue(s.forall(() => false));
+    assert.isFalse(s.exists(Fun.always));
+    assert.isTrue(s.forall(Fun.never));
 
     assertNone(Result.error(4).toOptional());
   });
 
-  const getErrorOrDie = <T, E>(res: Result<T, E>): E => res.fold((x: any) => x, Fun.die('Was not an error!'));
+  const getErrorOrDie = <T, E>(res: Result<T, E>): E => res.fold(Fun.identity, Fun.die('Was not an error!'));
 
   it('error.is === false', () => {
     fc.assert(fc.property(fc.integer(), fc.string(), (i, s) => {
@@ -63,9 +63,9 @@ describe('atomic.katamari.api.data.ResultErrorTest', () => {
     }));
   });
 
-  it('error ?? v === v', () => {
+  it('error.getOr(v) === v', () => {
     fc.assert(fc.property(arbResultError(fc.integer()), fc.json(), (res, json) => {
-      assert.deepEqual(res ?? json, json);
+      assert.deepEqual(res.getOr(json), json);
     }));
   });
 
@@ -77,9 +77,9 @@ describe('atomic.katamari.api.data.ResultErrorTest', () => {
     }));
   });
 
-  it('error ?? oValue === oValue', () => {
+  it('error.or(oValue) === oValue', () => {
     fc.assert(fc.property(fc.integer(), fc.string(), (i, s) => {
-      assertResult(Result.error<number, string>(s) ?? Result.value(i), Result.value(i));
+      assertResult(Result.error<number, string>(s).or(Result.value(i)), Result.value(i));
     }));
   });
 

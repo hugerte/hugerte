@@ -9,63 +9,63 @@ import { assertNone } from 'ephox/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.optional.OptionalNoneTest', () => {
   it('unit tests', () => {
-    const s = null;
+    const s = Optional.none<number>();
     assert.throws(() => {
       s.getOrDie('Died!');
     });
-    assert.equal(s ?? 6.getOrDie(), 6);
-    assert.equal(s.orThunk(() => 6).getOrDie(), 6);
+    assert.equal(s.or(Optional.some(6)).getOrDie(), 6);
+    assert.equal(s.orThunk(() => Optional.some(6)).getOrDie(), 6);
 
     assertNone(s.map((v) => v * 2));
     assertNone(s.map(Fun.die('boom')));
 
-    assertNone(s.bind((v) => 'test' + v));
+    assertNone(s.bind((v) => Optional.some('test' + v)));
 
-    assertNone(null ?? null);
-    assertNone(undefined ?? null);
+    assertNone(Optional.from(null));
+    assertNone(Optional.from(undefined));
 
-    assert.isTrue(Optionals.equals(null ?? 7, 7));
-    assert.isTrue(Optionals.equals(null ?? null, null));
+    assert.isTrue(Optionals.equals(Optional.none().or(Optional.some(7)), Optional.some(7)));
+    assert.isTrue(Optionals.equals(Optional.none().or(Optional.none()), Optional.none()));
 
-    assert.deepEqual(null.toArray(), []);
+    assert.deepEqual(Optional.none().toArray(), []);
 
-    assert.equal(null.fold(Fun.constant('zz'), Fun.die('boom')), 'zz');
-    assert.deepEqual(null.fold((...args: any[]) => {
+    assert.equal(Optional.none().fold(Fun.constant('zz'), Fun.die('boom')), 'zz');
+    assert.deepEqual(Optional.none().fold((...args: any[]) => {
       return args;
     }, Fun.die('boom')), []);
 
-    assert.equal(null.fold(Fun.constant('b'), Fun.die('boom')), 'b');
-    assertNone(null.bind(Fun.die('boom')));
-    assert.isUndefined(null.each(Fun.die('boom')));
+    assert.equal(Optional.none().fold(Fun.constant('b'), Fun.die('boom')), 'b');
+    assertNone(Optional.none().bind(Fun.die('boom')));
+    assert.isUndefined(Optional.none().each(Fun.die('boom')));
 
-    assert.isTrue(null.forall(Fun.die('boom')));
-    assert.isFalse(null.exists(Fun.die('boom')));
+    assert.isTrue(Optional.none().forall(Fun.die('boom')));
+    assert.isFalse(Optional.none().exists(Fun.die('boom')));
 
-    assert.equal(null.toString(), 'none()');
+    assert.equal(Optional.none().toString(), 'none()');
   });
 
   it('Checking none.fold(_ -> x, die) === x', () => {
     fc.assert(fc.property(fc.integer(), (i) => {
-      const actual = null.fold(Fun.constant(i), Fun.die('Should not be called'));
+      const actual = Optional.none<string>().fold(Fun.constant(i), Fun.die('Should not be called'));
       assert.equal(actual, i);
     }));
   });
 
   it('Checking none.is === false', () => {
     fc.assert(fc.property(fc.integer(), (v) => {
-      assert.isFalse(Optionals.is(null, v));
+      assert.isFalse(Optionals.is(Optional.none(), v));
     }));
   });
 
-  it('Checking none ?? v === v', () => {
+  it('Checking none.getOr(v) === v', () => {
     fc.assert(fc.property(fc.integer(), (i) => {
-      assert.equal(null ?? i, i);
+      assert.equal(Optional.none<number>().getOr(i), i);
     }));
   });
 
   it('Checking none.getOrThunk(_ -> v) === v', () => {
     fc.assert(fc.property(fc.func(fc.integer()), (thunk) => {
-      assert.equal(null.getOrThunk(thunk), thunk());
+      assert.equal(Optional.none<number>().getOrThunk(thunk), thunk());
     }));
   });
 
@@ -73,21 +73,21 @@ describe('atomic.katamari.api.optional.OptionalNoneTest', () => {
   // Require non empty string of msg falsiness gets in the way.
     fc.assert(fc.property(fc.string(1, 40), (s) => {
       assert.throws(() => {
-        null.getOrDie(s);
+        Optional.none().getOrDie(s);
       });
     }));
   });
 
-  it('Checking none ?? oSomeValue === oSomeValue', () => {
+  it('Checking none.or(oSomeValue) === oSomeValue', () => {
     fc.assert(fc.property(fc.integer(), (i) => {
-      const output = null ?? i;
+      const output = Optional.none().or(Optional.some(i));
       assert.isTrue(Optionals.is(output, i));
     }));
   });
 
   it('Checking none.orThunk(_ -> v) === v', () => {
     fc.assert(fc.property(fc.integer(), (i) => {
-      const output = null.orThunk(() => i);
+      const output = Optional.none().orThunk(() => Optional.some(i));
       assert.isTrue(Optionals.is(output, i));
     }));
   });

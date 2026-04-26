@@ -1,13 +1,13 @@
 // @ts-nocheck
-import { Result } from '@ephox/katamari';
+import { Fun, Id, Result } from '@ephox/katamari';
 
 import { DieFn, NextFn } from '../pipe/Pipe';
 import { Chain } from './Chain';
 import { TestLogs } from './TestLogs';
 
-const inputNameId = '_' + Math.random().toString(36).slice(2);
-const outputNameId = '_' + Math.random().toString(36).slice(2);
-const outputUnset = '_' + Math.random().toString(36).slice(2);
+const inputNameId = Id.generate('input-name');
+const outputNameId = Id.generate('output-name');
+const outputUnset = Id.generate('output-unset');
 
 export type NamedData = Record<string, any>;
 export type NamedChain = Chain<NamedData, NamedData>;
@@ -23,8 +23,8 @@ const asChain = <T>(chains: NamedChain[]): Chain<T, any> =>
       const output = data[outputNameId];
       delete data[outputNameId];
       return output === outputUnset ? data : output;
-    }) .flat()
-  ]));
+    }) ]
+  ].flat());
 
 // Write merges in its output into input because it knows that it was
 // given a complete input.
@@ -110,11 +110,11 @@ const pipeline = (namedChains: NamedChain[], onSuccess: NextFn<any>, onFailure: 
   Chain.pipeline([ asChain(namedChains) ], onSuccess, onFailure, initLogs);
 };
 
-const inputName = () => inputNameId;
+const inputName = Fun.constant(inputNameId);
 
 // tests need these values but other users should not
-export const _outputName = () => outputNameId;
-export const _outputUnset = () => outputUnset;
+export const _outputName = Fun.constant(outputNameId);
+export const _outputUnset = Fun.constant(outputUnset);
 
 export const NamedChain = {
   inputName,

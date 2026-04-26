@@ -23,7 +23,7 @@ describe('atomic.katamari.api.str.ToFloatTest', () => {
   it('convert invalid string to float', () => {
     const checkNone = (value: string) => {
       const numOpt = Strings.toFloat(value);
-      assert.isFalse(numOpt !== null);
+      assert.isFalse(numOpt.isSome());
     };
 
     checkNone('abc');

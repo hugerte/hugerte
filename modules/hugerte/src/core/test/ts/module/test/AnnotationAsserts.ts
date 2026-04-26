@@ -45,10 +45,10 @@ const assertGetAll = (editor: Editor, expected: Record<string, number>, name: st
   const keys = Object.keys(annotations);
   const expectedKeys = Object.keys(expected);
   assert.sameMembers(keys, expectedKeys, 'Checking keys of getAll response');
-  Object.entries(annotations).forEach(([k, v]) => ((markers, uid) =>(v, k)) {
+  Object.entries(annotations).forEach(([k, v]) => ((markers, uid) => {
     Assertions.assertEq('Checking number of markers for uid', expected[uid], markers.length);
     assertMarker(editor, { uid, name }, markers);
-  });
+  })(v as any, k as any));
 };
 
 const assertMarkings = (editor: Editor, expectedSpanAnnotations: number, expectedBlockAnnotations: number): void => {

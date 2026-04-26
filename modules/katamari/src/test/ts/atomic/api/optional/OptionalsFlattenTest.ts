@@ -7,14 +7,14 @@ import { assertNone, assertOptional, assertSome } from 'ephox/katamari/test/Asse
 
 describe('atomic.katamari.api.optional.OptionalsFlattenTest', () => {
   it('unit tests', () => {
-    assertNone(Optionals.flatten(null));
-    assertNone(Optionals.flatten(null));
-    assertSome(Optionals.flatten('meow''meow')), 'meow');
+    assertNone(Optionals.flatten(Optional.none<Optional<string>>()));
+    assertNone(Optionals.flatten(Optional.some(Optional.none<string>())));
+    assertSome(Optionals.flatten(Optional.some(Optional.some<string>('meow'))), 'meow');
   });
 
   it('flattens some(some(x)) to some(x)', () => {
     fc.assert(fc.property(fc.integer(), (n) => {
-      assertOptional(Optionals.flatten(nn)), n);
+      assertOptional(Optionals.flatten(Optional.some(Optional.some<number>(n))), Optional.some(n));
     }));
   });
 });

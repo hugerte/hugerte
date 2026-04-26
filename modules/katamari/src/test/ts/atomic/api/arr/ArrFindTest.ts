@@ -9,7 +9,7 @@ import { assertNone, assertSome } from 'ephox/katamari/test/AssertOptional';
 describe('atomic.katamari.api.arr.ArrFindTest', () => {
   it('unit tests', () => {
     const checkNoneHelper = (input: ArrayLike<number>, pred: (n: number, i: number) => boolean): void => {
-      assertNone(Arr.find(input, pred));
+      assertNone((input.find(pred) ?? null));
     };
 
     const checkNone = (input: ArrayLike<number>, pred: (n: number, i: number) => boolean) => {
@@ -18,7 +18,7 @@ describe('atomic.katamari.api.arr.ArrFindTest', () => {
     };
 
     const checkArrHelper = (expected: number, input: ArrayLike<number>, pred: (n: number, i: number) => boolean): void => {
-      const actual = Arr.find(input, pred);
+      const actual = (input.find(pred) ?? null);
       assertSome(actual, expected);
     };
 
@@ -28,7 +28,7 @@ describe('atomic.katamari.api.arr.ArrFindTest', () => {
     };
 
     const checkArrGuard = <T, U extends T>(expected: U, input: ArrayLike<T>, pred: (n: T, i: number) => n is U): void => {
-      const actual: U | null = Arr.find(input, pred);
+      const actual: Optional<U> = (input.find(pred) ?? null);
       assertSome(actual, expected);
     };
 
@@ -51,14 +51,14 @@ describe('atomic.katamari.api.arr.ArrFindTest', () => {
     fc.assert(fc.property(fc.array(fc.integer()), fc.integer(), fc.array(fc.integer()), (prefix, i, suffix) => {
       const arr = prefix.concat([ i ]).concat(suffix);
       const pred = (x: number) => x === i;
-      const result = Arr.find(arr, pred);
+      const result = (arr.find(pred) ?? null);
       assertSome(result, i);
     }));
   });
 
   it('cannot find a nonexistent value', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-      const result = Arr.find(arr, () => false);
+      const result = (arr.find(Fun.never) ?? null);
       assertNone(result);
     }));
   });

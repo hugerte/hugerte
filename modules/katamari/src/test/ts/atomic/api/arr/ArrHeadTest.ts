@@ -7,7 +7,7 @@ import { assertSome } from 'ephox/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.arr.ArrHeadTest', () => {
   it('returns none when empty', () => {
-    assert.isTrue(([][0] ?? null) === null);
+    assert.isTrue(([][0] ?? null).isNone());
   });
 
   it('returns first element when nonEmpty', () => {

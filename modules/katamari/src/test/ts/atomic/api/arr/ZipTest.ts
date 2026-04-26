@@ -10,7 +10,7 @@ import * as Zip from 'ephox/katamari/api/Zip';
 
 describe('atomic.katamari.api.arr.ZipTest', () => {
   it('unit tests', () => {
-    const check1 = (expectedZipToObject: Record<string, string> | null, expectedZipToTuples: Array<{ k: string; v: string }> | null, keys: string[], values: string[]) => {
+    const check1 = (expectedZipToObject: Optional<Record<string, string>>, expectedZipToTuples: Optional<Array<{ k: string; v: string }>>, keys: string[], values: string[]) => {
       const sort = <T>(a: T[], ord: (a: T, b: T) => -1 | 0 | 1) => {
         const c = a.slice();
         c.sort(ord);
@@ -46,45 +46,45 @@ describe('atomic.katamari.api.arr.ZipTest', () => {
     };
 
     check1(
-      { q: 'a', r: 'x' },
-      [{ k: 'q', v: 'a' }, { k: 'r', v: 'x' }],
+      Optional.some({ q: 'a', r: 'x' }),
+      Optional.some([{ k: 'q', v: 'a' }, { k: 'r', v: 'x' }]),
       [ 'q', 'r' ],
       [ 'a', 'x' ]
     );
 
     check1(
-      {},
-      [],
+      Optional.some({}),
+      Optional.some([]),
       [],
       []
     );
     check1(
-      null,
-      null,
+      Optional.none(),
+      Optional.none(),
       [],
       [ 'x' ]
     );
     check1(
-      null,
-      null,
+      Optional.none(),
+      Optional.none(),
       [],
       [ 'x', 'y' ]
     );
     check1(
-      null,
-      null,
+      Optional.none(),
+      Optional.none(),
       [ 'q' ],
       []
     );
     check1(
-      null,
-      null,
+      Optional.none(),
+      Optional.none(),
       [ 'q', 'r' ],
       []
     );
     check1(
-      null,
-      null,
+      Optional.none(),
+      Optional.none(),
       [ 'q', 'r' ],
       [ 'a' ]
     );
@@ -96,14 +96,14 @@ describe('atomic.katamari.api.arr.ZipTest', () => {
       (rawValues: string[]) => {
         const values = Unique.stringArray(rawValues);
 
-        const keys = Arr.map(values, (v, i) => i);
+        const keys = values.map((v, i) => i);
 
         const output = Zip.zipToObject(keys, values);
 
-        const oKeys = Obj.keys(output);
+        const oKeys = Object.keys(output);
         assert.deepEqual(values.length, oKeys.length);
 
-        assert.deepEqual(Arr.forall(oKeys, (oKey) => {
+        assert.deepEqual(oKeys.every((oKey) => {
           const index = parseInt(oKey, 10);
           const expected = values[index];
           return output[oKey] === expected;
@@ -122,7 +122,7 @@ describe('atomic.katamari.api.arr.ZipTest', () => {
         } else {
           const output = Zip.zipToTuples(keys, values);
           assert.equal(output.length, keys.length);
-          assert.isTrue(Arr.forall(output, (x, i) => x.k === keys[i] && x.v === values[i]));
+          assert.isTrue(output.every((x, i) => x.k === keys[i] && x.v === values[i]));
         }
       }
     ));

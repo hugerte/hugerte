@@ -79,7 +79,7 @@ describe('browser.hugerte.core.annotate.AnnotateBlocksTest', () => {
     });
 
   const assertGetAll = (editor: Editor, expected: Record<string, string[]>) => {
-    const actual = Object.fromEntries(Object.entries(editor.annotator.getAll('test-annotation')).map(([k, v]) => [k, ((nodes, _key) =>(v, k)])) nodes.map((node) => node.nodeName.toLowerCase()));
+    const actual = Object.fromEntries(Object.entries(editor.annotator.getAll('test-annotation')).map(([k, v]) => [k, ((nodes, _key) => nodes.map((node) => node.nodeName.toLowerCase()))(v as any, k as any)]));
     assert.deepEqual(actual, expected);
   };
 

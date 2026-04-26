@@ -8,10 +8,10 @@ describe('atomic.katamari.api.obj.HasTest', () => {
     const withoutObjProto = Object.create(null);
     withoutObjProto.a = 1;
 
-    assert.isTrue(Obj.has(withoutObjProto, 'a'));
-    assert.isFalse(Obj.has(withoutObjProto, 'b'));
+    assert.isTrue(Object.prototype.hasOwnProperty.call(withoutObjProto, 'a'));
+    assert.isFalse(Object.prototype.hasOwnProperty.call(withoutObjProto, 'b'));
 
-    assert.isTrue(Obj.has({ a: 1 }, 'a'));
-    assert.isFalse(Obj.has({ a: 1 } as Record<string, number>, 'b'));
+    assert.isTrue(Object.prototype.hasOwnProperty.call({ a: 1 }, 'a'));
+    assert.isFalse(Object.prototype.hasOwnProperty.call({ a: 1 } as Record<string, number>, 'b'));
   });
 });

@@ -12,7 +12,7 @@ export interface DialogChanges {
 }
 
 const isListGroup = (item: ListItem): item is ListGroup =>
-  (item as Record<string)[any>, 'items'] != null;
+  (item as Record<string, any>)['items'] != null;
 
 const findTextByValue = (value: string, catalog: ListItem[]): (ListValue) | null =>
   ((catalog) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((item) => {

@@ -16,13 +16,13 @@ interface Cat extends Animal {
 
 // https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)
 //
-// We need to make sure that T | null and Result<T, E> is, and remains, covariant
+// We need to make sure that Optional<T> and Result<T, E> is, and remains, covariant
 // with respect to T and E.
 describe('atomic.katamari.api.data.CovarianceAssertionTest', () => {
   it('Optional is covariant', () => {
     const cat: Cat = { name: 'Loki', length: 5 };
-    const optCat: Cat | null = cat;
-    const optAnimal: Animal | null = optCat;
+    const optCat: Optional<Cat> = Optional.some(cat);
+    const optAnimal: Optional<Animal> = optCat;
 
     // This assertion is just so that we can avoid the "unused variables" warnings
     // This test is more about making sure that the above code compiles

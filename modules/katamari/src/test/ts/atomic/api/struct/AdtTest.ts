@@ -137,10 +137,10 @@ describe('atomic.katamari.api.struct.AdtTest', () => {
 
   it('Error is thrown if not all arguments are supplied', () => {
     fc.assert(fc.property(arbAdt, fc.array(arbKeys, 1, 40), (subject, exclusions) => {
-      const original = Arr.filter(allKeys, (k) => !Arr.contains(exclusions, k));
+      const original = allKeys.filter((k) => !exclusions.includes(k));
 
       try {
-        const branches = Arr.mapToObject(original, () => (x: any) => x);
+        const branches = Arr.mapToObject(original, () => Fun.identity);
         subject.match(branches);
         return false;
       } catch (err: any) {
@@ -229,9 +229,9 @@ describe('atomic.katamari.api.struct.AdtTest', () => {
     fc.assert(fc.property(arbAdt, (subject) => {
       try {
         subject.match({
-          not: (x: any) => x,
-          the: (x: any) => x,
-          right: (x: any) => x
+          not: Fun.identity,
+          the: Fun.identity,
+          right: Fun.identity
         });
         return false;
       } catch (err: any) {

@@ -10,11 +10,11 @@ import * as ArbDataTypes from 'ephox/katamari/test/arb/ArbDataTypes';
 
 describe('atomic.katamari.api.optional.OptionalsTest', () => {
   it('OptionsTest', () => {
-    const arr1 = [ 1, null, 2, 3, null, null, null, null, 4 ];
+    const arr1 = [ Optional.some(1), Optional.none(), Optional.some(2), Optional.some(3), Optional.none(), Optional.none(), Optional.none(), Optional.none(), Optional.some(4) ];
     assert.deepEqual(Optionals.cat(arr1), [ 1, 2, 3, 4 ]);
 
-    assert.isUndefined(1.each((x: any) => x));
-    assert.isUndefined(null.each((x: any) => x));
+    assert.isUndefined(Optional.some(1).each(Fun.identity));
+    assert.isUndefined(Optional.none().each(Fun.identity));
   });
 
   it('Optionals.cat of only nones should be an empty array', () => {
@@ -37,11 +37,11 @@ describe('atomic.katamari.api.optional.OptionalsTest', () => {
     ));
   });
 
-  it('Optionals.cat of Arr.map(xs, (x) => x) should be xs', () => {
+  it('Optionals.cat of xs.map(Optional.some) should be xs', () => {
     fc.assert(fc.property(
       fc.array(fc.json()),
       (arr) => {
-        const options = Arr.map(arr, (x) => x);
+        const options = arr.map(Optional.some);
         const output = Optionals.cat(options);
         assert.deepEqual(output, arr);
       }
@@ -64,9 +64,9 @@ describe('atomic.katamari.api.optional.OptionalsTest', () => {
       fc.array(fc.json()),
       fc.array(fc.json()),
       (before, on, after) => {
-        const beforeNones: string | null[] = Arr.map(before, () => null);
-        const afterNones = Arr.map(after, () => null);
-        const onSomes = Arr.map(on, (x) => x);
+        const beforeNones: Optional<string>[] = before.map(Optional.none);
+        const afterNones = after.map(Optional.none);
+        const onSomes = on.map(Optional.some);
         const output = Optionals.cat(beforeNones.concat(onSomes).concat(afterNones));
         assert.deepEqual(output, on);
       }

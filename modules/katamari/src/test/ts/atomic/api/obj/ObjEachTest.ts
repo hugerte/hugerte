@@ -8,9 +8,9 @@ describe('atomic.katamari.api.obj.ObjEachTest', () => {
   it('ObjEachTest', () => {
     const check = <T>(expected: Array<{ index: string; value: T }>, input: Record<string, T>) => {
       const values: Array<{ index: string; value: T }> = [];
-      Obj.each(input, (x, i) => {
+      Object.entries(input).forEach(([k, v]) => ((x, i) => {
         values.push({ index: i, value: x });
-      });
+      })(v as any, k as any));
       assert.deepEqual(values, expected);
     };
 
@@ -28,9 +28,9 @@ describe('atomic.katamari.api.obj.ObjEachTest', () => {
       fc.dictionary(fc.asciiString(), fc.json()),
       (obj) => {
         const values: Record<string, string> = {};
-        const output = Obj.each(obj, (x, i) => {
+        const output = Object.entries(obj).forEach(([k, v]) => ((x, i) => {
           values[i] = x;
-        });
+        })(v as any, k as any));
         assert.deepEqual(values, obj);
         assert.isUndefined(output);
       }

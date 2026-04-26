@@ -9,7 +9,7 @@ describe('atomic.katamari.api.arr.GroupByTest', () => {
 
   it('unit tests', () => {
     const check = <T>(input: T[], expected: T[][]) => {
-      const f = (x: any) => x;
+      const f = Fun.identity;
       assert.deepEqual(Arr.groupBy(input, f), expected);
       assert.deepEqual(Arr.groupBy(Object.freeze(input.slice()), f), expected);
     };
@@ -56,24 +56,31 @@ describe('atomic.katamari.api.arr.GroupByTest', () => {
          * 2. Each group must have the same g(..) value
          */
 
-        const hasEmptyGroups = Arr.exists(groups, (g) => g.length === 0);
+        const hasEmptyGroups = groups.some((g) => g.length === 0);
 
         if (hasEmptyGroups) {
           assert.fail('Should not have empty groups');
         }
         // No consecutive groups should have the same result of g.
-        const values = Arr.map(groups, (group) => {
+        const values = groups.map((group) => {
           const first = f(group[0]);
-          const mapped = Arr.map(group, (g) => f(g));
+          const mapped = group.map((g) => f(g));
 
-          const isSame = Arr.forall(mapped, (m) => m === first);
+          const isSame = mapped.every((m) => m === first);
+          if (!isSame) {
+            assert.fail('Not everything in a group has the same g(..) value');
+          }
+          return first;
+        })group.map((g) => f(g));
+
+          const isSame = mapped.every((m) => m === first);
           if (!isSame) {
             assert.fail('Not everything in a group has the same g(..) value');
           }
           return first;
         });
 
-        const hasSameGroup = Arr.exists(values, (v, i) => i > 0 ? values[i - 1] === values[i] : false);
+        const hasSameGroup = values.some((v, i) => i > 0 ? values[i - 1] === values[i] : false);
 
         if (hasSameGroup) {
           assert.fail('A group is next to another group with the same g(..) value');
@@ -90,7 +97,7 @@ describe('atomic.katamari.api.arr.GroupByTest', () => {
       (xs, f) => {
         const groups = Arr.groupBy(xs, (x) => f(x));
 
-        const output = Arr.flatten(groups);
+        const output = groups.flat();
         assert.deepEqual(output, xs);
       }
     ));

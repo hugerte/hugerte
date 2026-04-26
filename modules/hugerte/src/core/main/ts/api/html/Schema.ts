@@ -321,7 +321,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
 
   const addCustomElements = (customElements: string | Record<string, CustomElementSpec> | undefined) => {
     if ((typeof (customElements) === 'object' && (customElements) !== null)) {
-      Object.entries(customElements as Record<string).forEach(([k, v]) => (CustomElementSpec>, (spec, name) =>(v, k)) addCustomElement(name, spec));
+      Object.entries(customElements as Record<string, CustomElementSpec>).forEach(([k, v]) => ((spec, name) => addCustomElement(name, spec))(v as any, k as any));
     } else if (typeof (customElements) === 'string') {
       addCustomElementsFromString(customElements);
     }

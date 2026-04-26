@@ -45,7 +45,7 @@ const baseMerge = (merger: MergeStrategy): (...objs: Array<Record<string, any>>)
     for (let j = 0; j < objects.length; j++) {
       const curObject = objects[j];
       for (const key in curObject) {
-        if (Obj.has(curObject, key)) {
+        if (Object.prototype.hasOwnProperty.call(curObject, key)) {
           ret[key] = merger(ret[key], curObject[key]);
         }
       }

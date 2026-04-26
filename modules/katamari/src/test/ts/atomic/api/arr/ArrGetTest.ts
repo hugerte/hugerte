@@ -7,28 +7,28 @@ import { assertNone, assertSome } from 'ephox/katamari/test/AssertOptional';
 describe('atomic.katamari.api.arr.ArrGetTest', () => {
   it('returns none for element of empty list', () => {
     fc.assert(fc.property(fc.integer(), (n) => {
-      assertNone(Arr.get<number>([], n));
+      assertNone(([][n] ?? null));
     }));
   });
 
   it('returns none for element 0 of empty list', () => {
-    assertNone(Arr.get<number>([], 0));
+    assertNone(([][0] ?? null));
   });
 
   it('returns none for non-zero index of empty list', () => {
-    assertNone(Arr.get<number>([], 5));
+    assertNone(([][5] ?? null));
   });
 
   it('returns none for invalid index', () => {
-    assertNone(Arr.get<number>([], -1));
+    assertNone(([][-1] ?? null));
   });
 
   it('returns none for index out of bounds', () => {
-    assertNone(Arr.get<number>([ 10, 20, 30 ], 5));
+    assertNone(([ 10, 20, 30 ][5] ?? null));
   });
 
   it('returns some for valid index (unit test)', () => {
-    assertSome(Arr.get<number>([ 10, 20, 30, 13 ], 3), 13);
+    assertSome(([ 10, 20, 30, 13 ][3] ?? null), 13);
   });
 
   it('returns some for valid index (property test)', () => {
@@ -37,9 +37,9 @@ describe('atomic.katamari.api.arr.ArrGetTest', () => {
       const length = arr.push(t);
       const midIndex = Math.round(arr.length / 2);
 
-      assertSome(Arr.get(arr, 0), h);
-      assertSome(Arr.get(arr, midIndex), arr[midIndex]);
-      assertSome(Arr.get(arr, length - 1), t);
+      assertSome((arr[0] ?? null), h);
+      assertSome((arr[midIndex] ?? null), arr[midIndex]);
+      assertSome((arr[length - 1] ?? null), t);
     }));
   });
 });

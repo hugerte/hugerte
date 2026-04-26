@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -82,7 +82,7 @@ const generate = (list: Structs.RowDetail<Structs.Detail>[]): Warehouse => {
   const { pass: colgroupRows, fail: rows } = (list).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((rowData) => rowData.section === 'colgroup')(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
 
   // Handle rows first
-  rows as Array<Structs.RowDetail<Structs.Detail<HTMLTableCellElement>.forEach(HTMLTableRowElement>>, (rowData) => {
+  (rows as Array<Structs.RowDetail<Structs.Detail<HTMLTableCellElement>, HTMLTableRowElement>>).forEach((rowData) => {
     const currentRow: Structs.DetailExt[] = [];
     (rowData.cells).forEach((rowCell) => {
       let start = 0;
@@ -116,7 +116,8 @@ const generate = (list: Structs.RowDetail<Structs.Detail>[]): Warehouse => {
 
   // Handle colgroups
   // Note: Currently only a single colgroup is supported so just use the last one
-  const { columns, colgroups } = Arr.last(colgroupRows as Array<Structs.RowDetail<Structs.Detail<HTMLTableColElement>, HTMLTableColElement>>).map((rowData) => {
+  const _lastColgroup = Optional.from((colgroupRows as Array<Structs.RowDetail<Structs.Detail<HTMLTableColElement>, HTMLTableColElement>>).at(-1) ?? null);
+  const { columns, colgroups } = _lastColgroup.map((rowData) => {
     const columns = generateColumns(rowData);
     const colgroup = Structs.colgroup(rowData.element, Object.values(columns));
     return {

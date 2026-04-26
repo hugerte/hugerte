@@ -22,13 +22,13 @@ describe('atomic.katamari.maybe.TraversableTest', () => {
 
       const doesNotExist = Fun.pipe(
         Maybes.just('test'),
-        Maybes.exists(() => false)
+        Maybes.exists(Fun.never)
       );
       assert.isFalse(doesNotExist);
 
       const doesExist = Fun.pipe(
         Maybes.just('test'),
-        Maybes.exists(() => true)
+        Maybes.exists(Fun.always)
       );
       assert.isTrue(doesExist);
     });
@@ -51,13 +51,13 @@ describe('atomic.katamari.maybe.TraversableTest', () => {
 
       const doesNotHoldForAll = Fun.pipe(
         Maybes.just('test'),
-        Maybes.forall(() => false)
+        Maybes.forall(Fun.never)
       );
       assert.isFalse(doesNotHoldForAll);
 
       const holdsForAll = Fun.pipe(
         Maybes.just('test'),
-        Maybes.forall(() => true)
+        Maybes.forall(Fun.always)
       );
       assert.isTrue(holdsForAll);
     });
@@ -84,13 +84,13 @@ describe('atomic.katamari.maybe.TraversableTest', () => {
 
       const nothing = Fun.pipe(
         Maybes.just('test'),
-        Maybes.filter(() => false)
+        Maybes.filter(Fun.never)
       );
       assert.isTrue(Maybes.isNothing(nothing));
 
       const just = Fun.pipe(
         Maybes.just('test'),
-        Maybes.filter(() => true)
+        Maybes.filter(Fun.always)
       );
       if (Maybes.isJust(just)) {
         assert.equal(just.value, 'test');

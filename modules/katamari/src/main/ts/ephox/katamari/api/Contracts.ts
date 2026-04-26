@@ -16,7 +16,7 @@ type HandleFn = (required: string[], keys: string[]) => void;
 // Ensure that the object has all required fields. They must be functions.
 const base = (handleUnsupported: HandleFn, required: string[]) => {
   return baseWith(handleUnsupported, required, {
-    validate: (x: any): x is Function => typeof x === 'function',
+    validate: Type.isFunction,
     label: 'function'
   });
 };
@@ -32,11 +32,11 @@ const baseWith = <V>(handleUnsupported: HandleFn, required: string[], pred: Cont
   BagUtils.checkDupes(required);
 
   return <T extends Record<string, V>>(obj: T) => {
-    const keys: string[] = Obj.keys(obj);
+    const keys: string[] = Object.keys(obj);
 
     // Ensure all required keys are present.
-    const allReqd = Arr.forall(required, (req) => {
-      return Arr.contains(keys, req);
+    const allReqd = required.every((req) => {
+      return keys.includes(req);
     });
 
     if (!allReqd) {
@@ -45,7 +45,7 @@ const baseWith = <V>(handleUnsupported: HandleFn, required: string[], pred: Cont
 
     handleUnsupported(required, keys);
 
-    const invalidKeys = Arr.filter(required, (key) => {
+    const invalidKeys = required.filter((key) => {
       return !pred.validate(obj[key], key);
     });
 
@@ -58,8 +58,8 @@ const baseWith = <V>(handleUnsupported: HandleFn, required: string[], pred: Cont
 };
 
 const handleExact = (required: string[], keys: string[]) => {
-  const unsupported = Arr.filter(keys, (key) => {
-    return !Arr.contains(required, key);
+  const unsupported = keys.filter((key) => {
+    return !required.includes(key);
   });
 
   if (unsupported.length > 0) {
@@ -67,7 +67,7 @@ const handleExact = (required: string[], keys: string[]) => {
   }
 };
 
-const allowExtra = () => {};
+const allowExtra = Fun.noop;
 
 export const exactly = (required: string[]): IdentityFn => base(handleExact, required);
 export const ensure = (required: string[]): IdentityFn => base(allowExtra, required);

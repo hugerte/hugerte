@@ -8,12 +8,12 @@ import { Optional } from 'ephox/katamari/api/Optional';
 describe('atomic.katamari.api.optional.OptionalGetOrTest', () => {
   it('Optional.getOr', () => {
     fc.assert(fc.property(fc.integer(), (x) => {
-      assert.equal(null ?? x, x);
-      assert.equal(null.getOrThunk(() => x), x);
+      assert.equal(Optional.none().getOr(x), x);
+      assert.equal(Optional.none().getOrThunk(() => x), x);
     }));
     fc.assert(fc.property(fc.integer(), fc.integer(), (x, y) => {
-      assert.equal(x ?? y, x);
-      assert.equal(x.getOrThunk(Fun.die('boom')), x);
+      assert.equal(Optional.some(x).getOr(y), x);
+      assert.equal(Optional.some(x).getOrThunk(Fun.die('boom')), x);
     }));
   });
 });

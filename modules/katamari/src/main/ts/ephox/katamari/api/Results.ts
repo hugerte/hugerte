@@ -36,7 +36,7 @@ export const partition = <T, E>(results: Result<T, E>[]): { values: T[]; errors:
   const errors: E[] = [];
   const values: T[] = [];
 
-  Arr.each(results, (result: Result<T, E>) => {
+  results.forEach((result: Result<T, E>) => {
     result.fold(
       (err) => {
         errors.push(err);
@@ -67,7 +67,7 @@ export const compare = <A, B>(result1: Result<A, B>, result2: Result<A, B>): Com
 };
 
 export const unite: <T>(result: Result<T, T>) => T = <T>(result: Result<T, T>): T =>
-  result.fold((x: any) => x, (x: any) => x);
+  result.fold(Fun.identity, Fun.identity);
 
 export const is = <A, B>(result: Result<A, B>, value: A): boolean =>
   result.exists((r) => r === value);

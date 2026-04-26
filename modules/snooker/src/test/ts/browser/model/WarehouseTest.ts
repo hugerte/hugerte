@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-
+import { Type } from '@ephox/katamari';
 import { Attribute, SugarElement, TextContent } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -15,12 +15,12 @@ interface ExpectedWarehouse {
 describe('WarehouseTest', () => {
   const check = (input: Structs.RowDetail<Structs.Detail>[], expectedWarehouse: ExpectedWarehouse) => {
     const actual = Warehouse.generate(input);
-    assert.deepEqual(Object.fromEntries(Object.entries(actual.access).map(([k, v]) => [k, ((x) =>(v, k)])) TextContent.get(x.element)), expectedWarehouse.access);
+    assert.deepEqual(Object.fromEntries(Object.entries(actual.access).map(([k, v]) => [k, ((x) => TextContent.get(x.element))(v as any, k as any)])), expectedWarehouse.access);
     assert.deepEqual(actual.grid, expectedWarehouse.grid);
-    if (expectedWarehouse.columns != null) {
+    if (Type.isNonNullable(expectedWarehouse.columns)) {
       // Expect only 1 colgroup in a colgroup table
       assert.lengthOf(actual.colgroups, 1);
-      assert.deepEqual(Object.fromEntries(Object.entries(actual.columns).map(([k, v]) => [k, ((x) =>(v, k)])) Attribute.get(x.element, 'data-id')), expectedWarehouse.columns);
+      assert.deepEqual(Object.fromEntries(Object.entries(actual.columns).map(([k, v]) => [k, ((x) => Attribute.get(x.element, 'data-id'))(v as any, k as any)])), expectedWarehouse.columns);
       assert.isAtMost(Object.keys(actual.columns).length, actual.grid.columns);
     } else {
       assert.isEmpty(actual.columns);

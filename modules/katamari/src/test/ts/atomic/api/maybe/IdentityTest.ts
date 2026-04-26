@@ -38,7 +38,7 @@ describe('atomic.katamari.maybe.IdentityTest', () => {
     fc.assert(fc.property(fc.anything(), (thing) => {
       Fun.pipe(
         Maybes.just(thing),
-        Maybes.fold(Fun.die('Should call other branch'), () => {})
+        Maybes.fold(Fun.die('Should call other branch'), Fun.noop)
       );
     }));
   });

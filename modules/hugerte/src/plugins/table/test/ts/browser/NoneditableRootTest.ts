@@ -1,6 +1,6 @@
 import { Keys, UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-
+import { Optional } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 import { TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -103,25 +103,25 @@ describe('browser.hugerte.plugins.table.NoneditableRootTest', () => {
 
     const testDisableColPasteButtonOnNoneditable = (title: string) => {
       return () => {
-        FakeClipboard.setColumns([ TableTestUtils.createRow([ 'a' ]) ]);
+        FakeClipboard.setColumns(Optional.some([ TableTestUtils.createRow([ 'a' ]) ]));
         testDisableButtonOnNoneditable(title)();
       };
     };
 
     const testDisableRowPasteButtonOnNoneditable = (title: string) => {
       return () => {
-        FakeClipboard.setRows([ TableTestUtils.createRow([ 'a' ]) ]);
+        FakeClipboard.setRows(Optional.some([ TableTestUtils.createRow([ 'a' ]) ]));
         testDisableButtonOnNoneditable(title)();
       };
     };
 
-    Object.entries(simpleTableButtons).forEach(([k, v]) => ((title, key) =>(v, k)) {
+    Object.entries(simpleTableButtons).forEach(([k, v]) => ((title, key) => {
       it(`TINY-9669: Disable ${key} on noneditable content`, testDisableButtonOnNoneditable(title));
-    });
+    })(v as any, k as any));
 
-    Object.entries(menuButtonTableButtons).forEach(([k, v]) => ((title, key) =>(v, k)) {
+    Object.entries(menuButtonTableButtons).forEach(([k, v]) => ((title, key) => {
       it(`TINY-9669: Disable ${key} button on noneditable content`, () => testDisableButtonOnNoneditable(title, false));
-    });
+    })(v as any, k as any));
 
     it(`TINY-9669: Disable tablepastecolbefore on noneditable content`, testDisableColPasteButtonOnNoneditable('Paste column before'));
     it(`TINY-9669: Disable tablepastecolafter on noneditable content`, testDisableColPasteButtonOnNoneditable('Paste column after'));
@@ -161,21 +161,21 @@ describe('browser.hugerte.plugins.table.NoneditableRootTest', () => {
 
     const testDisableColPasteMenuItemOnNoneditable = (title: string) => {
       return async () => {
-        FakeClipboard.setColumns([ TableTestUtils.createRow([ 'a' ]) ]);
+        FakeClipboard.setColumns(Optional.some([ TableTestUtils.createRow([ 'a' ]) ]));
         await testDisableMenuitemOnNoneditable(title)();
       };
     };
 
     const testDisableRowPasteMenuItemOnNoneditable = (title: string) => {
       return async () => {
-        FakeClipboard.setRows([ TableTestUtils.createRow([ 'a' ]) ]);
+        FakeClipboard.setRows(Optional.some([ TableTestUtils.createRow([ 'a' ]) ]));
         await testDisableMenuitemOnNoneditable(title)();
       };
     };
 
-    Object.entries(simpleTableMenuItems).forEach(([k, v]) => ((title, key) =>(v, k)) {
+    Object.entries(simpleTableMenuItems).forEach(([k, v]) => ((title, key) => {
       it(`TINY-9669: Disable ${key} on noneditable content`, testDisableMenuitemOnNoneditable(title));
-    });
+    })(v as any, k as any));
 
     it(`TINY-9669: Disable tablepastecolumnbefore on noneditable content`, testDisableColPasteMenuItemOnNoneditable('Paste column before'));
     it(`TINY-9669: Disable tablepastecolumnafter on noneditable content`, testDisableColPasteMenuItemOnNoneditable('Paste column after'));

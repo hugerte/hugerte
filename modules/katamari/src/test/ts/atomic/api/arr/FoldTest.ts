@@ -8,13 +8,13 @@ import * as Fun from 'ephox/katamari/api/Fun';
 describe('atomic.katamari.api.arr.FoldTest', () => {
   it('unit tests', () => {
     const checkl = <T, A>(expected: A, input: T[], f: (acc: A, x: T, i: number) => A, acc: A) => {
-      assert.deepEqual(Arr.foldl(input, f, acc), expected);
-      assert.deepEqual(Arr.foldl(Object.freeze(input.slice()), f, acc), expected);
+      assert.deepEqual(input.reduce(f, acc), expected);
+      assert.deepEqual(Object.freeze(input.slice()).reduce(f, acc), expected);
     };
 
     const checkr = <T, A>(expected: A, input: T[], f: (acc: A, x: T, i: number) => A, acc: A) => {
-      assert.deepEqual(Arr.foldr(input, f, acc), expected);
-      assert.deepEqual(Arr.foldr(Object.freeze(input.slice()), f, acc), expected);
+      assert.deepEqual(input.reduceRight(f, acc), expected);
+      assert.deepEqual(Object.freeze(input.slice()).reduceRight(f, acc), expected);
     };
 
     checkl(0, [], Fun.die('should not be called'), 0);
@@ -34,8 +34,8 @@ describe('atomic.katamari.api.arr.FoldTest', () => {
     fc.assert(fc.property(
       fc.array(fc.integer()),
       (arr) => {
-        const output = Arr.foldl(arr, (b: number[], a: number) => [ a ].concat(b), []);
-        assert.deepEqual(output, Arr.reverse(arr));
+        const output = arr.reduce((b: number[], a: number) => [ a ].concat(b), []);
+        assert.deepEqual(output, [...arr].reverse());
       }
     ));
   });
@@ -44,7 +44,7 @@ describe('atomic.katamari.api.arr.FoldTest', () => {
     fc.assert(fc.property(
       fc.array(fc.integer()),
       (arr) => {
-        const output = Arr.foldr(arr, (b: number[], a: number) => [ a ].concat(b), []);
+        const output = arr.reduceRight((b: number[], a: number) => [ a ].concat(b), []);
         assert.deepEqual(output, arr);
       }
     ));
@@ -55,7 +55,7 @@ describe('atomic.katamari.api.arr.FoldTest', () => {
       fc.array(fc.integer()),
       fc.array(fc.integer()),
       (xs, ys) => {
-        const output = Arr.foldr(xs, (b, a) => [ a ].concat(b), ys);
+        const output = xs.reduceRight((b, a) => [ a ].concat(b), ys);
         assert.deepEqual(output, xs.concat(ys));
       }
     ));
@@ -66,8 +66,8 @@ describe('atomic.katamari.api.arr.FoldTest', () => {
       fc.array(fc.integer()),
       fc.array(fc.integer()),
       (xs, ys) => {
-        const output = Arr.foldl(xs, (b, a) => [ a ].concat(b), ys);
-        assert.deepEqual(output, Arr.reverse(xs).concat(ys));
+        const output = xs.reduce((b, a) => [ a ].concat(b), ys);
+        assert.deepEqual(output, [...xs].reverse().concat(ys));
       }
     ));
   });

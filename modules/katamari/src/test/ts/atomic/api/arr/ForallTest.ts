@@ -10,8 +10,8 @@ describe('atomic.katamari.api.arr.ForallTest', () => {
     const isOne = (i: number) => i === 1;
 
     const check = <T>(expected: boolean, input: T[], f: (x: T, i: number) => boolean) => {
-      assert.deepEqual(Arr.forall(input, f), expected);
-      assert.deepEqual(Arr.forall(Object.freeze(input.slice()), f), expected);
+      assert.deepEqual(input.every(f), expected);
+      assert.deepEqual(Object.freeze(input.slice()).every(f), expected);
     };
 
     check(true, [ 1, 1, 1 ], isOne);
@@ -21,14 +21,14 @@ describe('atomic.katamari.api.arr.ForallTest', () => {
   });
 
   it('forall of an empty array is true', () => {
-    assert.isTrue(Arr.forall([], Fun.die('should not be called')));
+    assert.isTrue([].every(Fun.die('should not be called')));
   });
 
   it('forall of a non-empty array with a predicate that always returns false is false', () => {
     fc.assert(fc.property(
       fc.array(fc.integer(), 1, 30),
       (xs) => {
-        assert.isFalse(Arr.forall(xs, () => false));
+        assert.isFalse(xs.every(Fun.never));
       }
     ));
   });
@@ -37,7 +37,7 @@ describe('atomic.katamari.api.arr.ForallTest', () => {
     fc.assert(fc.property(
       fc.array(fc.integer(), 1, 30),
       (xs) => {
-        assert.isTrue(Arr.forall(xs, () => true));
+        assert.isTrue(xs.every(Fun.always));
       }
     ));
   });

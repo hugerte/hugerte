@@ -7,7 +7,7 @@ import * as Arr from 'ephox/katamari/api/Arr';
 describe('atomic.katamari.api.arr.FlattenTest', () => {
   it('unit tests', () => {
     const check = (expected: number[], input: number[][]) => {
-      assert.deepEqual(Arr.flatten(input), expected);
+      assert.deepEqual(input.flat(), expected);
     };
 
     check([], []);
@@ -22,7 +22,7 @@ describe('atomic.katamari.api.arr.FlattenTest', () => {
       fc.integer(1, 5),
       (arr, chunkSize) => {
         const chunks = Arr.chunk(arr, chunkSize);
-        const bound = Arr.flatten(chunks);
+        const bound = chunks.flat();
         assert.deepEqual(bound, arr);
       }
     ));
@@ -30,19 +30,19 @@ describe('atomic.katamari.api.arr.FlattenTest', () => {
 
   it('wrap then flatten array is identity', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-      assert.deepEqual(arr, Arr.flatten(Arr.pure(arr)));
+      assert.deepEqual(arr, [arr].flat());
     }));
   });
 
   it('mapping pure then flattening array is identity', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-      assert.deepEqual(arr, Arr.flatten(Arr.map(arr, Arr.pure)));
+      assert.deepEqual(arr, arr.map(Arr.pure).flat());
     }));
   });
 
   it('flattening two lists === concat', () => {
     fc.assert(fc.property(fc.array(fc.integer()), fc.array(fc.integer()), (xs, ys) => {
-      assert.deepEqual(xs.concat(ys), Arr.flatten([ xs, ys ]));
+      assert.deepEqual(xs.concat(ys), [ xs, ys ].flat());
     }));
   });
 });

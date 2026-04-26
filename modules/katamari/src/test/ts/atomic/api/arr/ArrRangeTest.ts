@@ -9,7 +9,7 @@ describe('atomic.katamari.api.arr.ArrRangeTest', () => {
 
   it('unit tests', () => {
     const check = <R>(expected: R[], input: number, f: (i: number) => R) => {
-      const actual = Arr.range(input, f);
+      const actual = Array.from({ length: input }, f);
       assert.deepEqual(actual, expected);
     };
 
@@ -22,9 +22,9 @@ describe('atomic.katamari.api.arr.ArrRangeTest', () => {
     fc.assert(fc.property(
       fc.nat(30),
       (num) => {
-        const range = Arr.range(num, (x: any) => x);
+        const range = Array.from({ length: num }, Fun.identity);
         assert.deepEqual(num, range.length);
-        assert.isTrue(Arr.forall(range, (x, i) => x === i));
+        assert.isTrue(range.every((x, i) => x === i));
       }));
   });
 });

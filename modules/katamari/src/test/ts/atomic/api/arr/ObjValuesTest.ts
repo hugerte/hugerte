@@ -10,7 +10,7 @@ describe('atomic.katamari.api.arr.ObjValuesTest', () => {
         v.sort();
         assert.deepEqual(v, expected);
       };
-      c(expValues, Obj.values(input));
+      c(expValues, Object.values(input));
     };
 
     check([], {});

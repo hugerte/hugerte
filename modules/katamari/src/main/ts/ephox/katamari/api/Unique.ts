@@ -3,8 +3,8 @@ import * as Obj from './Obj';
 
 export const stringArray = (a: string[]): string[] => {
   const all: Record<string, {}> = {};
-  Arr.each(a, (key) => {
+  a.forEach((key) => {
     all[key] = {};
   });
-  return Obj.keys(all);
+  return Object.keys(all);
 };

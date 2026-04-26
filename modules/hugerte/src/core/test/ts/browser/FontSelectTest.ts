@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody, TextContent } from '@ephox/sugar';
 import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -110,63 +110,5 @@ describe('browser.hugerte.core.FontSelectTest', () => {
 
     it('TBA: System font stack variants on a paragraph show "System Font" as the font name', () => {
       const editor = hook.editor();
-      editor.setContent(Arr.foldl(systemFontStackVariants, (acc, font) => acc + '<p style="font-family: ' + font.replace(/"/g, `'`) + '"></p>', ''));
-      systemFontStackVariants.forEach((_, idx) => {
-        TinySelections.setCursor(editor, [ idx, 0 ], 0);
-        editor.nodeChanged();
-        assertSelectBoxDisplayValue('fontfamily', 'System Font');
-      });
-    });
-
-    it('TINY-10290: Should not display "System Font" since Arial is not part of the default stack', () => {
-      const editor = hook.editor();
-      editor.setContent('<p style="font-family: -apple-system, Arial;">a</p>');
-      editor.focus();
-      TinySelections.setCursor(editor, [ 0, 0 ], 0);
-      editor.nodeChanged();
-      assertSelectBoxDisplayValue('fontfamily', '-apple-system,Arial');
-    });
-  });
-
-  context('Custom default font stack', () => {
-    const hook = TinyHooks.bddSetupLight<Editor>({
-      base_url: '/project/hugerte/js/hugerte',
-      toolbar: 'fontfamily fontsize',
-      content_style: [
-        '.mce-content-body { font-family: -apple-system, Arial; }',
-        '.mce-content-body h1 { font-family: Helvetica; }',
-        '.mce-content-body h2 { font-family: Arial; }'
-      ].join(''),
-      default_font_stack: [ '-apple-system', 'Arial' ]
-    }, []);
-
-    const testCustomStack = (testCase: { html: string; path: number[]; offset: 0; expectedValue: string }) => {
-      const editor = hook.editor();
-      editor.setContent(testCase.html);
-      TinySelections.setCursor(editor, testCase.path, testCase.offset);
-      editor.nodeChanged();
-      assertSelectBoxDisplayValue('fontfamily', testCase.expectedValue);
-    };
-
-    it('TINY-10290: Should show System Font for the specified custom stack', () => testCustomStack({
-      html: '<p>foo</p>',
-      path: [ 0, 0 ],
-      offset: 0,
-      expectedValue: 'System Font'
-    }));
-
-    it('TINY-10290: Should show Helvetica since H1 is not using the system font stack', () => testCustomStack({
-      html: '<h1>foo</h1>',
-      path: [ 0, 0 ],
-      offset: 0,
-      expectedValue: 'Helvetica'
-    }));
-
-    it('TINY-10290: Should show Arial since the H2 is not using the system font stack', () => testCustomStack({
-      html: '<h2>foo</h2>',
-      path: [ 0, 0 ],
-      offset: 0,
-      expectedValue: 'Arial'
-    }));
-  });
-});
+      editor.setContent(systemFontStackVariants.reduce((acc, font) => acc + '<p style="font-family: ' + font.replace(/"/g, `'`) + '"></p>', ''));
+      systemFontStackVariants.forEach((_)

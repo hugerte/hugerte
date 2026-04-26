@@ -13,44 +13,44 @@ const bottom = () => {
 describe('atomic.katamari.api.arr.ExistsTest', () => {
   it('unit test', () => {
     const check = (expected: boolean, input: number[], f: (b: number) => boolean) => {
-      assert.deepEqual(Arr.exists(input, f), expected);
-      assert.deepEqual(Arr.exists(Object.freeze(input.slice()), f), expected);
+      assert.deepEqual(input.some(f), expected);
+      assert.deepEqual(Object.freeze(input.slice()).some(f), expected);
     };
 
     check(true, [ 1, 2, 3 ], eqc(1));
     check(false, [ 2, 3, 4 ], eqc(1));
 
-    assert.isFalse(Arr.exists([], bottom));
-    assert.isFalse(Arr.exists([], always));
+    assert.isFalse([].some(bottom));
+    assert.isFalse([].some(always));
   });
 
   it('Element exists in middle of array', () => {
     fc.assert(fc.property(fc.array(fc.integer()), fc.integer(), fc.array(fc.integer()), (prefix, element, suffix) => {
-      const arr2 = Arr.flatten([ prefix, [ element ], suffix ]);
-      assert.isTrue(Arr.exists(arr2, eqc(element)));
+      const arr2 = [ prefix, [ element ], suffix ].flat();
+      assert.isTrue(arr2.some(eqc(element)));
     }));
   });
 
   it('Element exists in singleton array of itself', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (i) => {
-      assert.isTrue(Arr.exists([ i ], eqc(i)));
+      assert.isTrue([ i ].some(eqc(i)));
     }));
   });
 
   it('Element does not exist in empty array', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (i) => {
-      assert.isFalse(Arr.exists([], eqc(i)));
+      assert.isFalse([].some(eqc(i)));
     }));
   });
 
   it('Element not found when predicate always returns false', () => {
-    fc.assert(fc.property(fc.array(fc.integer()), (arr) => !Arr.exists(arr, never)));
+    fc.assert(fc.property(fc.array(fc.integer()), (arr) => !arr.some(never)));
   });
 
   it('Element exists in non-empty array when predicate always returns true', () => {
     fc.assert(fc.property(fc.array(fc.integer()), fc.integer(), (xs, x) => {
-      const arr = Arr.flatten([ xs, [ x ]]);
-      assert.isTrue(Arr.exists(arr, always));
+      const arr = [ xs, [ x ]].flat();
+      assert.isTrue(arr.some(always));
     }));
   });
 });

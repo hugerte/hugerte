@@ -10,8 +10,8 @@ describe('atomic.katamari.api.arr.ArrBindTest', () => {
     const len = (x: unknown[]): number[] => [ x.length ];
 
     const check = <T, U>(expected: U[], input: T[][], f: (x: T[]) => U[]) => {
-      assert.deepEqual(Arr.bind(input, f), expected);
-      assert.deepEqual(Arr.bind(Object.freeze(input.slice()), f), expected);
+      assert.deepEqual(input.flatMap(f), expected);
+      assert.deepEqual(Object.freeze(input.slice()).flatMap(f), expected);
     };
 
     check([], [], len);
@@ -22,14 +22,14 @@ describe('atomic.katamari.api.arr.ArrBindTest', () => {
 
   it('binding an array of empty arrays with identity equals an empty array', () => {
     fc.assert(fc.property(fc.array(fc.constant<number[]>([])), (arr) => {
-      assert.deepEqual(Arr.bind(arr, (x: any) => x), []);
+      assert.deepEqual(arr.flatMap(Fun.identity), []);
     }));
   });
 
   it('bind (pure .) is map', () => {
     fc.assert(fc.property(fc.array(fc.integer()), fc.integer(), (arr, j) => {
       const f = (x: number) => x + j;
-      assert.deepEqual(Arr.bind(arr, Fun.compose(Arr.pure, f)), Arr.map(arr, f));
+      assert.deepEqual(arr.flatMap(Fun.compose(Arr.pure, f)), arr.map(f));
     }));
   });
 
@@ -37,13 +37,13 @@ describe('atomic.katamari.api.arr.ArrBindTest', () => {
     it('obeys left identity law', () => {
       fc.assert(fc.property(fc.integer(), fc.integer(), (i, j) => {
         const f = (x: number) => [ x, j, x + j ];
-        assert.deepEqual(Arr.bind(Arr.pure(i), f), f(i));
+        assert.deepEqual([i].flatMap(f), f(i));
       }));
     });
 
     it('obeys right identity law', () => {
       fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-        assert.deepEqual(Arr.bind(arr, Arr.pure), arr);
+        assert.deepEqual(arr.flatMap(Arr.pure), arr);
       }));
     });
 
@@ -51,7 +51,7 @@ describe('atomic.katamari.api.arr.ArrBindTest', () => {
       fc.assert(fc.property(fc.array(fc.integer()), fc.integer(), (arr, j) => {
         const f = (x: number) => [ x, j, x + j ];
         const g = (x: number) => [ j, x, x + j ];
-        assert.deepEqual(Arr.bind(Arr.bind(arr, f), g), Arr.bind(arr, (x) => Arr.bind(f(x), g)));
+        assert.deepEqual(arr.flatMap(f).flatMap(g)arr.flatMap(f), g), arr.flatMap((x) => f(x).flatMap(g))f(x).flatMap(g)));
       }));
     });
   });

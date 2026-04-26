@@ -28,9 +28,9 @@ const pasteDataTransfer = (target: SugarElement<Element>, mutator: (dataTransfer
 
 const pasteItems = (target: SugarElement<Element>, items: Record<string, string>): void =>
   pasteDataTransfer(target, (dataTransfer) => {
-    Object.entries(items).forEach(([k, v]) => ((data, mime) =>(v, k)) {
+    Object.entries(items).forEach(([k, v]) => ((data, mime) => {
       dataTransfer.setData(mime, data);
-    });
+    })(v as any, k as any));
   });
 
 const pasteFiles = (target: SugarElement<Element>, files: File[]): void =>
@@ -76,7 +76,7 @@ const pPasteUrlItems = async (target: SugarElement<Element>, items: PasteUrlItem
 
     if (resp.ok) {
       const blob = await resp.blob();
-      const fileName = Arr.last(item.url.split('/')) ?? 'filename.dat';
+      const fileName = Arr.last(item.url.split('/')).getOr('filename.dat');
       const mime = blob.type.split(';')[0]; // Only grab mime type not charset encoding
 
       if (item.kind === 'string') {

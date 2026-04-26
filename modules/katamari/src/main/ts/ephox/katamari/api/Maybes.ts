@@ -28,7 +28,7 @@ import * as Type from './Type';
  Comparison with Optional
  - Optional uses a.method().method(), Maybe uses Fun.pipe(a, method(), method())
  - Optional is invariant, Maybe is covariant (Maybe<Dog> counts as a
- Maybe<Animal> but Dog | null does not count as Animal | null)
+ Maybe<Animal> but Optional<Dog> does not count as Optional<Animal>)
  - Maybe tree-shakes and minifies a lot better
  - Maybe can be `console.log`ed
  - Maybe might perform better because it doesn't need to create messy objects
@@ -303,7 +303,7 @@ export const getOrThunk = <T, U = T>(thunk: () => U) => (self: Maybe<T>): T | U 
 /**
  **Is** the value stored inside this Maybe object equal to `other`?
 */
-export const is = <T>(other: T, comparator: (a: T, b: T) => boolean = (a: any, b: any) => a === b) => (self: Maybe<T>): boolean =>
+export const is = <T>(other: T, comparator: (a: T, b: T) => boolean = Fun.tripleEquals) => (self: Maybe<T>): boolean =>
   isJust(self) && comparator(self.value, other);
 
 /**
@@ -314,7 +314,7 @@ export const is = <T>(other: T, comparator: (a: T, b: T) => boolean = (a: any, b
 export const equals: {
   <T, U>(lhs: Maybe<T>, rhs: Maybe<U>, comparator: (lhs: T, rhs: U) => boolean): boolean;
   <T>(lhs: Maybe<T>, rhs: Maybe<T>, comparator?: (lhs: T, rhs: T) => boolean): boolean;
-} = <T>(lhs: Maybe<T>, rhs: Maybe<T>, comparator: (lhs: T, rhs: T) => boolean = (a: any, b: any) => a === b) => {
+} = <T>(lhs: Maybe<T>, rhs: Maybe<T>, comparator: (lhs: T, rhs: T) => boolean = Fun.tripleEquals) => {
   if (isJust(lhs) && isJust(rhs)) {
     return comparator(lhs.value, rhs.value);
   } else {
@@ -367,20 +367,20 @@ export const toArr = <T>(self: Maybe<T>): T[] =>
 /**
  Convert a Maybe object to an Optional object. Just === Some, and Nothing === None
 */
-export const toOptional = <T>(self: Maybe<T>): T | null =>
-  isJust(self) ? self.value : null;
+export const toOptional = <T>(self: Maybe<T>): Optional<T> =>
+  isJust(self) ? Optional.some(self.value) : Optional.none();
 
 /**
  Convert an Optional object to a Maybe object. Some === Just, and None === Nothing.
 */
-export const fromOptional = <T>(other: T | null): Maybe<T> =>
+export const fromOptional = <T>(other: Optional<T>): Maybe<T> =>
   other.fold(nothing, just);
 
 /**
  This is just like `bind`, but instead of the `binder` returning a `Maybe<U>`,
- it returns an `U | null`. This is just a little bit of sugar so that if
+ it returns an `Optional<U>`. This is just a little bit of sugar so that if
  you have a function which is designed to work with `Optional` return types,
  you don't need to wrap it to use it with bind.
 */
-export const bindO = <T, U>(binder: (value: T) => U | null) => (self: Maybe<T>): Maybe<U> =>
+export const bindO = <T, U>(binder: (value: T) => Optional<U>) => (self: Maybe<T>): Maybe<U> =>
   isJust(self) ? fromOptional(binder(self.value)) : nothing<U>();

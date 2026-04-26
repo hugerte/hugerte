@@ -167,6 +167,12 @@ describe('atomic.polaris.api.RegexesTest', () => {
           });
           Assert.fail('link regex must not capture any groups');
         }
+      })matched.forEach((s, i) => {
+            // eslint-disable-next-line no-console
+            console.log(i, s);
+          });
+          Assert.fail('link regex must not capture any groups');
+        }
       });
     });
 
@@ -213,7 +219,7 @@ describe('atomic.polaris.api.RegexesTest', () => {
       };
 
       it('should match only with path', () => {
-        Object.entries(onlyWithPathLinks).forEach(([k, v]) => ((v, k) =>(v, k)) {
+        Object.entries(onlyWithPathLinks).forEach(([k, v]) => ((v, k) => {
           const match = Regexes.link().exec(k);
           if (match !== null) {
             const url = match[0];
@@ -221,7 +227,7 @@ describe('atomic.polaris.api.RegexesTest', () => {
           } else {
             Assert.fail(`expected ${v} but did not match ${k}`);
           }
-        });
+        })(v as any, k as any));
       });
     });
   });
@@ -301,7 +307,7 @@ describe('atomic.polaris.api.RegexesTest', () => {
 
     it('should match autolinks', () => {
       // remember don't inline the module function execution, JS regexes have state!
-      Object.entries(autolinks).forEach(([k, v]) => ((v, k) =>(v, k)) {
+      Object.entries(autolinks).forEach(([k, v]) => ((v, k) => {
         const match = Regexes.autolink().exec(k);
         if (match !== null) {
           const url = match[1];
@@ -309,7 +315,7 @@ describe('atomic.polaris.api.RegexesTest', () => {
         } else {
           Assert.fail(`expected ${v} but did not match ${k}`);
         }
-      });
+      })(v as any, k as any));
     });
   });
 });

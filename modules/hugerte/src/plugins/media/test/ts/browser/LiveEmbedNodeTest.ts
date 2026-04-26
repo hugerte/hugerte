@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, StructAssert, UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-
+import { Fun, Type } from '@ephox/katamari';
 import { McEditor, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -22,7 +22,7 @@ describe('browser.hugerte.plugins.media.core.LiveEmbedNodeTest', () => {
     classes: string[],
     attrs: Record<string, string | null>,
     styles: Record<string, string>,
-    getChildren: ApproxStructure.Builder<StructAssert[]> = () => []
+    getChildren: ApproxStructure.Builder<StructAssert[]> = Fun.constant([])
   ) => {
     const object = UiFinder.findIn(TinyDom.body(editor), 'span.mce-preview-object').getOrDie();
     Assertions.assertStructure('should have all attributes', ApproxStructure.build((s, str, arr) => s.element('span', {
@@ -31,7 +31,7 @@ describe('browser.hugerte.plugins.media.core.LiveEmbedNodeTest', () => {
         height: str.none('should not have height style'),
         width: str.none('should not have width style'),
         // TINY-7074: The wrapper span should have the same width/height styles
-        ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) =>(v, k)])) str.is(value))
+        ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) => str.is(value))(v as any, k as any)]))
       },
       children: [
         s.element(tag, {
@@ -39,12 +39,12 @@ describe('browser.hugerte.plugins.media.core.LiveEmbedNodeTest', () => {
           attrs: {
             height: str.none('should not have height'),
             width: str.none('should not have width'),
-            ...Object.fromEntries(Object.entries(attrs).map(([k, v]) => [k, ((value) =>(v, k)])) value === null ? str.none() : str.is(value))
+            ...Object.fromEntries(Object.entries(attrs).map(([k, v]) => [k, ((value) => Type.isNull(value) ? str.none() : str.is(value))(v as any, k as any)]))
           },
           styles: {
             height: str.none('should not have height style'),
             width: str.none('should not have width style'),
-            ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) =>(v, k)])) str.is(value))
+            ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) => str.is(value))(v as any, k as any)]))
           },
           children: getChildren(s, str, arr)
         }),

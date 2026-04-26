@@ -54,7 +54,7 @@ describe('atomic.katamari.api.arr.FindIndexTest', () => {
 
   it('returns none if predicate always returns false', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
-      assertNone(arr.findIndex(() => false));
+      assertNone(arr.findIndex(Fun.never));
     }));
   });
 
@@ -68,7 +68,7 @@ describe('atomic.katamari.api.arr.FindIndexTest', () => {
   it('is consistent with exists', () => {
     fc.assert(fc.property(fc.array(fc.integer()), (arr) => {
       const pred = (x: number) => x % 6 === 0;
-      assert.equal(arr.findIndex(pred) !== null, Arr.exists(arr, pred));
+      assert.equal(arr.findIndex(pred).isSome(), arr.some(pred));
     }));
   });
 });

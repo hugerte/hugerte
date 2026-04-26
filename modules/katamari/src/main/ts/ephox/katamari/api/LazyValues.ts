@@ -10,17 +10,17 @@ export const par = <T>(lazyValues: LazyValue<T>[]): LazyValue<T[]> => {
 
 /**
  * Produces a LazyValue that may time out.
- * If it times out, it produces an () => null.
- * If it completes before the timeout, it produces an (x) => x.
+ * If it times out, it produces an Optional.none.
+ * If it completes before the timeout, it produces an Optional.some.
  */
-export const withTimeout = <T>(baseFn: (completer: (value: T) => void) => void, timeout: number): LazyValue<T | null> =>
+export const withTimeout = <T>(baseFn: (completer: (value: T) => void) => void, timeout: number): LazyValue<Optional<T>> =>
   LazyValue.nu((completer) => {
-    const done = (r: T | null) => {
+    const done = (r: Optional<T>) => {
       clearTimeout(timeoutRef);
       completer(r);
     };
     const timeoutRef = setTimeout(() => {
-      done(null);
+      done(Optional.none());
     }, timeout);
-    baseFn(Fun.compose(done, (x) => x));
+    baseFn(Fun.compose(done, Optional.some));
   });

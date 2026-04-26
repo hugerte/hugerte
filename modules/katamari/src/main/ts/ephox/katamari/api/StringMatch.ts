@@ -43,7 +43,7 @@ const caseInsensitive = (val: string): string => {
   return val.toLowerCase();
 };
 
-const caseSensitive: (val: string) => string = (x: any) => x;
+const caseSensitive: (val: string) => string = Fun.identity;
 
 /** matches :: (StringMatch, String) -> Boolean */
 const matches = (subject: StringMatch, str: string): boolean => {
@@ -52,7 +52,7 @@ const matches = (subject: StringMatch, str: string): boolean => {
     (regex, f) => regex.test(f(str)),
     (value, f) => f(str).indexOf(f(value)) >= 0,
     (value, f) => f(str) === f(value),
-    () => true,
+    Fun.always,
     (other) => !matches(other, str)
   );
 };

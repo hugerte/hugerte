@@ -71,10 +71,10 @@ const getSpec = (editor: Editor): SelectSpec => {
     return matchOpt;
   };
 
-  const getPreviewFor = (item: string) => () => {
+  const getPreviewFor = (item: string) => (): PreviewSpec => ({
     tag: 'div',
     styles: item.indexOf('dings') === -1 ? { 'font-family': item } : { }
-  };
+  });
 
   const onAction = (rawItem: FormatterFormatItem) => () => {
     editor.undoManager.transact(() => {

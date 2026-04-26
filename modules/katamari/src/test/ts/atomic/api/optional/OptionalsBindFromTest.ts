@@ -7,19 +7,19 @@ import { assertOptional } from 'ephox/katamari/test/AssertOptional';
 
 describe('atomic.katamari.api.optional.OptionalsBindFromTest', () => {
   it('Optionals.bindFrom', () => {
-    assertOptional(Optionals.bindFrom(3, (x) => x + 1), 4);
-    assertOptional(Optionals.bindFrom(3, (_x) => null), null);
-    assertOptional(Optionals.bindFrom<number, number>(null, Fun.die('boom')), null);
-    assertOptional(Optionals.bindFrom<number, number>(undefined, Fun.die('boom')), null);
+    assertOptional(Optionals.bindFrom(3, (x) => Optional.some(x + 1)), Optional.some(4));
+    assertOptional(Optionals.bindFrom(3, (_x) => Optional.none()), Optional.none());
+    assertOptional(Optionals.bindFrom<number, number>(null, Fun.die('boom')), Optional.none());
+    assertOptional(Optionals.bindFrom<number, number>(undefined, Fun.die('boom')), Optional.none());
   });
 
   it('Optionals.bindFrom === Optionals.bind().from()', () => {
-    const check = (input: number | null | undefined, f: (a: number) => number | null) => {
-      assertOptional(Optionals.bindFrom(input, f), input ?? null.bind(f));
+    const check = (input: number | null | undefined, f: (a: number) => Optional<number>) => {
+      assertOptional(Optionals.bindFrom(input, f), Optional.from(input).bind(f));
     };
 
-    const s = (x: number) => x + 1;
-    const n = (_x: number) => null;
+    const s = (x: number) => Optional.some<number>(x + 1);
+    const n = (_x: number) => Optional.none<number>();
 
     check(3, s);
     check(null, s);

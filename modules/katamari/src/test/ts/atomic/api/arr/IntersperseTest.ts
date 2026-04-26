@@ -48,7 +48,7 @@ describe('atomic.katamari.api.arr.IntersperseTest', () => {
       fc.integer(),
       (arr, delimiter) => {
         const actual = Jam.intersperse(arr, delimiter);
-        return Arr.forall(actual, (x, i) => i % 2 === 1 ? x === delimiter : true);
+        return actual.every((x, i) => i % 2 === 1 ? x === delimiter : true);
       }
     ));
   });
@@ -59,7 +59,7 @@ describe('atomic.katamari.api.arr.IntersperseTest', () => {
       arbNegativeInteger(),
       (arr, delimiter) => {
         const actual = Jam.intersperse(arr, delimiter);
-        const filtered = Arr.filter(actual, (a) => a !== delimiter);
+        const filtered = actual.filter((a) => a !== delimiter);
         assert.deepEqual(filtered, arr);
       }
     ));

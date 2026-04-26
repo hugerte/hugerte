@@ -40,12 +40,21 @@ describe('browser.hugerte.models.dom.table.InsertTableWidthsTest', () => {
         assertTableWidth('Outer table', editor, tables[0], expectedWidth);
         assertTableWidth('Inner table', editor, tables[1], expectedWidth / 3 - 12, 5); // 12px is the cell padding
 
-        Object.entries(styles).forEach(([k, v]) => ((_, name) =>(v, k)) Css.remove(TinyDom.body(editor), name));
+        Object.entries(styles).forEach(([k, v]) => ((_, name) => Css.remove(TinyDom.body(editor), name))(v as any, k as any));
       };
 
       it('TINY-7991: with default styles', testTableSize(mode, 764));
 
       [ 'border-box', 'content-box' ].forEach((boxSizing) => {
+        context(`box-sizing: ${boxSizing}`, () => {
+          it('TINY-7991: with only box-sizing', testTableSize(mode, 764, { 'box-sizing': boxSizing }));
+          it('TINY-7991: with margins', testTableSize(mode, 736, { 'box-sizing': boxSizing, 'margin': '30px' }));
+          it('TINY-7991: with padding', testTableSize(mode, 724, { 'box-sizing': boxSizing, 'padding': '20px' }));
+          it('TINY-7991: with borders', testTableSize(mode, 754, { 'box-sizing': boxSizing, 'border': '5px black solid' }));
+        });
+      });
+    });
+  })[ 'border-box', 'content-box' ].forEach((boxSizing) => {
         context(`box-sizing: ${boxSizing}`, () => {
           it('TINY-7991: with only box-sizing', testTableSize(mode, 764, { 'box-sizing': boxSizing }));
           it('TINY-7991: with margins', testTableSize(mode, 736, { 'box-sizing': boxSizing, 'margin': '30px' }));

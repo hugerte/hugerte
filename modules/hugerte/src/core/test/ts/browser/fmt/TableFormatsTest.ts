@@ -37,7 +37,7 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
 
   const assertTableCellStructure = (editor: Editor, styles: Record<string, string> = {}, selectedCells: SelectedCells = {}) => {
     const { cell1, cell2, cell3, cell4 } = selectedCells;
-    const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((val, _key) =>(v, k)])) str.is(val));
+    const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((val, _key) => str.is(val))(v as any, k as any)]));
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {
       styles: {
         'width': str.is('100%'),

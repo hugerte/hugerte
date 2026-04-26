@@ -1,4 +1,4 @@
-import { Optionals } from '@ephox/katamari';
+import { Fun, Optional, Optionals } from '@ephox/katamari';
 import { Attribute, Css, DomEvent, EventArgs, Insert, InsertAll, Ready, Replication, SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { Generators } from 'ephox/snooker/api/Generators';
@@ -130,7 +130,7 @@ Ready.document(() => {
   InsertAll.append(ephoxUi, [ ltrs, rtls ]);
 
   const lazyTableSize = (table: SugarElement<HTMLTableElement>) => TableSize.getTableSize(table);
-  const isResizable = () => true;
+  const isResizable = Fun.always;
   const ltrManager = TableResize.create(ResizeWire.body(tester, ltrs, isResizable), ResizeBehaviour.preserveTable(), lazyTableSize);
   ltrManager.on();
   const rtlManager = TableResize.create(ResizeWire.body(subject3, rtls, isResizable), ResizeBehaviour.preserveTable(), lazyTableSize);
@@ -187,14 +187,14 @@ Ready.document(() => {
   const makeRowHeader = makeButton('Make row header');
   const makeRowBody = makeButton('Unmake row header');
 
-  const detection = (): SugarElement<Element> | null =>
-    window.getSelection() ?? null.bind((selection) => {
+  const detection = (): Optional<SugarElement<Element>> =>
+    Optional.from(window.getSelection()).bind((selection) => {
       if (selection.rangeCount > 0) {
         const range = selection.getRangeAt(0);
         const firstElement = range.startContainer.nodeType === 3 ? range.startContainer.parentNode : range.startContainer;
         return Optionals.mapFrom(firstElement, SugarElement.fromDom).filter(SugarNode.isElement);
       } else {
-        return null;
+        return Optional.none();
       }
     });
 
@@ -222,11 +222,11 @@ Ready.document(() => {
 
   const replace: Generators['replace'] = (cell, tag, attrs) => {
     const replica = Replication.copy(cell, tag);
-    Object.entries(attrs).forEach(([k, v]) => ((v, k) =>(v, k)) {
+    Object.entries(attrs).forEach(([k, v]) => ((v, k) => {
       if (v !== null) {
         Attribute.set(replica, k, v);
       }
-    });
+    })(v as any, k as any));
     return replica;
   };
 

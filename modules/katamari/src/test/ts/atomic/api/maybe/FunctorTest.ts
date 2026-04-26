@@ -32,7 +32,7 @@ describe('atomic.katamari.maybe.FunctorTest', () => {
   });
 
   it('never turns Just to Nothing (or vice versa)', () => {
-    const mapper = Maybes.map((x: any) => x);
+    const mapper = Maybes.map(Fun.identity);
 
     const nothing = mapper(Maybes.nothing());
     assert.isTrue(Maybes.isNothing(nothing));
