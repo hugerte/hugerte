@@ -1,5 +1,5 @@
 import { Assertions, Chain, Mouse, Step, UiFinder } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement, SugarShadowDom, Visibility } from '@ephox/sugar';
 
 import { Editor } from '../../alien/EditorTypes';
@@ -39,12 +39,12 @@ export const TinyUi = (editor: Editor): TinyUi => {
   const uiRoot = SugarShadowDom.getContentContainer(SugarShadowDom.getRootNode(SugarElement.fromDom(editor.getElement())));
   const editorRoot = SugarElement.fromDom(editor.getBody());
 
-  const clickOnToolbar = Fun.curry(TinyUiActions.clickOnToolbar, editor);
-  const clickOnMenu = Fun.curry(TinyUiActions.clickOnMenu, editor);
-  const clickOnUi = Fun.curry(TinyUiActions.clickOnUi, editor);
-  const submitDialog = Fun.curry(TinyUiActions.submitDialog, editor);
-  const pWaitForUi = Fun.curry(TinyUiActions.pWaitForUi, editor);
-  const pWaitForPopup = Fun.curry(TinyUiActions.pWaitForPopup, editor);
+  const clickOnToolbar = (...__rest: any[]) => (TinyUiActions.clickOnToolbar)(editor, ...__rest);
+  const clickOnMenu = (...__rest: any[]) => (TinyUiActions.clickOnMenu)(editor, ...__rest);
+  const clickOnUi = (...__rest: any[]) => (TinyUiActions.clickOnUi)(editor, ...__rest);
+  const submitDialog = (...__rest: any[]) => (TinyUiActions.submitDialog)(editor, ...__rest);
+  const pWaitForUi = (...__rest: any[]) => (TinyUiActions.pWaitForUi)(editor, ...__rest);
+  const pWaitForPopup = (...__rest: any[]) => (TinyUiActions.pWaitForPopup)(editor, ...__rest);
 
   const cUiRoot = Chain.inject(uiRoot);
   const cEditorRoot = Chain.inject(editorRoot);

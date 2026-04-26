@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import * as Compare from '../dom/Compare';
 import { SugarElement } from '../node/SugarElement';
@@ -46,7 +46,7 @@ const indexInParent = <E extends Node> (element: SugarElement<E>): AddressInPare
   });
 
 const indexOf = (elements: SugarElement<Node>[], element: SugarElement<Node>): number | null =>
-  elements.findIndex(Fun.curry(Compare.eq, element));
+  elements.findIndex((...__rest: any[]) => (Compare.eq)(element, ...__rest));
 
 const selectorsInParent = <E extends Node, S extends Element = Element> (element: SugarElement<E>, selector: string): AddressInParent<Node & ParentNode, S, E> | null =>
   Traverse.parent(element).bind((parent) => {

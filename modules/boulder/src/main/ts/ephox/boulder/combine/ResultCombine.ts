@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Fun, Merger } from '@ephox/katamari';
+import { Arr, Merger } from '@ephox/katamari';
 
 import { SimpleResult } from '../alien/SimpleResult';
 
@@ -8,7 +8,7 @@ const mergeValues = <E, T>(values: T[], base: Record<string, T>): SimpleResult<E
 ) : SimpleResult.svalue(base);
 
 const mergeErrors = <E, T>(errors: E[][]): SimpleResult<E[], T> =>
-  Fun.compose<any, any, any>(SimpleResult.serror, Arr.flatten)(errors);
+  (...__args: any[]) => (SimpleResult.serror)((Arr.flatten)(...__args))(errors);
 
 const consolidateObj = <E, T>(objects: Array<SimpleResult<E[], T>>, base: Record<string, T>): SimpleResult<E[], T> => {
   const partition = SimpleResult.partition(objects);

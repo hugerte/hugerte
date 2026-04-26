@@ -1,6 +1,6 @@
 import { UiControls, UiFinder, Waiter } from '@ephox/agar';
 import { afterEach, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -180,7 +180,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
         scenario.initialItem,
         scenario.finalItem,
         (item: string) => `${scenario.label} ${item}`,
-        Fun.curry(MenuUtils.pOpenMenuWithSelector, scenario.label),
+        (...__rest: any[]) => (MenuUtils.pOpenMenuWithSelector)(scenario.label, ...__rest),
         TinyUiActions.pWaitForUi
       );
 
@@ -191,7 +191,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
         scenario.initialItem,
         scenario.finalItem,
         (item) => `${scenario.label} ${item.toLowerCase()}`,
-        Fun.curry(MenuUtils.pOpenMenuWithSelector, scenario.label),
+        (...__rest: any[]) => (MenuUtils.pOpenMenuWithSelector)(scenario.label, ...__rest),
         TinyUiActions.pWaitForUi
       );
 
@@ -202,7 +202,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
         scenario.initialItem,
         scenario.finalItem,
         (item) => `${scenario.label} ${item}`,
-        Fun.curry(MenuUtils.pOpenMenuWithSelector, scenario.label),
+        (...__rest: any[]) => (MenuUtils.pOpenMenuWithSelector)(scenario.label, ...__rest),
         async (editor) => {
           const submenuSelector = 'div[aria-label="Blocks"]';
           return TinyUiActions.pWaitForUi(editor, submenuSelector).then(() => TinyUiActions.clickOnUi(editor, submenuSelector));

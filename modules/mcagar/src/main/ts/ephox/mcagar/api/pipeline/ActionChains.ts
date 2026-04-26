@@ -1,5 +1,5 @@
 import { Chain, FocusTools, Keyboard, NamedChain } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import { Editor } from '../../alien/EditorTypes';
@@ -32,9 +32,9 @@ const cTriggerKeyEvent = <T>(cTarget: Chain<T, SugarElement<Document>>, evtType:
 };
 
 export const ActionChains: ActionChains = {
-  cContentKeypress: Fun.curry(cTriggerKeyEvent, cIDoc, 'keypress'),
-  cContentKeydown: Fun.curry(cTriggerKeyEvent, cIDoc, 'keydown'),
-  cContentKeystroke: Fun.curry(cTriggerKeyEvent, cIDoc, 'keystroke'),
+  cContentKeypress: (...__rest: any[]) => (cTriggerKeyEvent)(cIDoc, 'keypress', ...__rest),
+  cContentKeydown: (...__rest: any[]) => (cTriggerKeyEvent)(cIDoc, 'keydown', ...__rest),
+  cContentKeystroke: (...__rest: any[]) => (cTriggerKeyEvent)(cIDoc, 'keystroke', ...__rest),
 
-  cUiKeydown: Fun.curry(cTriggerKeyEvent, cUiDoc, 'keydown')
+  cUiKeydown: (...__rest: any[]) => (cTriggerKeyEvent)(cUiDoc, 'keydown', ...__rest)
 };

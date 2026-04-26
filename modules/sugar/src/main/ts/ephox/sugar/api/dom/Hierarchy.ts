@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as Traverse from '../search/Traverse';
@@ -20,7 +20,7 @@ const up = (descendant: SugarElement<Node>, stopper: (e: SugarElement<Node>) => 
 };
 
 const path = (ancestor: SugarElement<Node>, descendant: SugarElement<Node>): number[] | null => {
-  const stopper = Fun.curry(Compare.eq, ancestor);
+  const stopper = (...__rest: any[]) => (Compare.eq)(ancestor, ...__rest);
   return Compare.eq(ancestor, descendant) ? [] : up(descendant, stopper);
 };
 

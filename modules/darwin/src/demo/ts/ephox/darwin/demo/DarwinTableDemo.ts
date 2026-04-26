@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 import {
   Attribute, Compare, Direction, DomEvent, EventArgs, Insert, Replication, SelectorFind, SimSelection, SugarBody, SugarElement, SugarNode, Traverse,
   WindowSelection
@@ -89,8 +89,8 @@ DomEvent.bind(SugarBody.body(), 'mousemove', (event) => {
 });
 
 const annotations = SelectionAnnotation.byClass(Ephemera);
-const mouseHandlers = InputHandlers.mouse(window, ephoxUi, Fun.curry(Compare.eq, table), annotations);
-const keyHandlers = InputHandlers.keyboard(window, ephoxUi, Fun.curry(Compare.eq, table), annotations);
+const mouseHandlers = InputHandlers.mouse(window, ephoxUi, (...__rest: any[]) => (Compare.eq)(table, ...__rest), annotations);
+const keyHandlers = InputHandlers.keyboard(window, ephoxUi, (...__rest: any[]) => (Compare.eq)(table, ...__rest), annotations);
 
 DomEvent.bind(ephoxUi, 'mousedown', mouseHandlers.mousedown);
 DomEvent.bind(ephoxUi, 'mouseover', mouseHandlers.mouseover);

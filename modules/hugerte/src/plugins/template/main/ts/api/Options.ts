@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -40,7 +40,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('templates', {
-    processor: (value) => typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isObject)) || typeof (value) === 'function',
+    processor: (value) => typeof (value) === 'string' || (Array.isArray(value) && (value).every((x: any) => typeof x === 'object' && x !== null)) || typeof (value) === 'function',
     default: []
   });
 

@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as Css from '../properties/Css';
@@ -14,8 +14,8 @@ const visibilityToggler = (element: SugarElement<Element>, property: string, hid
 
   const value = initial === hiddenValue ? visibleValue : hiddenValue;
 
-  const off = Fun.curry(Css.set, element, property, initial);
-  const on = Fun.curry(Css.set, element, property, value);
+  const off = (...__rest: any[]) => (Css.set)(element, property, initial, ...__rest);
+  const on = (...__rest: any[]) => (Css.set)(element, property, value, ...__rest);
   return Toggler(off, on, false);
 };
 

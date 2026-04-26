@@ -1,5 +1,5 @@
 import { Assertions, Chain, Cursors, Step, StructAssert, Waiter } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
+
 
 import { Editor } from '../../alien/EditorTypes';
 import * as Options from '../../alien/Options';
@@ -76,10 +76,10 @@ export const TinyApis = (editor: Editor): TinyApis => {
     editor.nodeChanged();
   };
 
-  const setSelectionFrom = Fun.curry(TinySelections.setSelectionFrom, editor);
-  const setCursor = Fun.curry(TinySelections.setCursor, editor);
-  const setSelection = Fun.curry(TinySelections.setSelection, editor);
-  const select = Fun.curry(TinySelections.select, editor);
+  const setSelectionFrom = (...__rest: any[]) => (TinySelections.setSelectionFrom)(editor, ...__rest);
+  const setCursor = (...__rest: any[]) => (TinySelections.setCursor)(editor, ...__rest);
+  const setSelection = (...__rest: any[]) => (TinySelections.setSelection)(editor, ...__rest);
+  const select = (...__rest: any[]) => (TinySelections.select)(editor, ...__rest);
 
   const setOption = (key: string, value: any): void => {
     Options.set(editor, key, value);
@@ -93,10 +93,10 @@ export const TinyApis = (editor: Editor): TinyApis => {
     editor.execCommand(command, false, value);
   };
 
-  const assertContent = Fun.curry(TinyAssertions.assertContent, editor);
-  const assertContentPresence = Fun.curry(TinyAssertions.assertContentPresence, editor);
-  const assertContentStructure = Fun.curry(TinyAssertions.assertContentStructure, editor);
-  const assertSelection = Fun.curry(TinyAssertions.assertSelection, editor);
+  const assertContent = (...__rest: any[]) => (TinyAssertions.assertContent)(editor, ...__rest);
+  const assertContentPresence = (...__rest: any[]) => (TinyAssertions.assertContentPresence)(editor, ...__rest);
+  const assertContentStructure = (...__rest: any[]) => (TinyAssertions.assertContentStructure)(editor, ...__rest);
+  const assertSelection = (...__rest: any[]) => (TinyAssertions.assertSelection)(editor, ...__rest);
 
   const focus = (): void => {
     editor.focus();

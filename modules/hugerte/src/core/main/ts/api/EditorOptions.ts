@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 
 import Editor from './Editor';
 import { EditorOptions, NormalizedEditorOptions } from './OptionTypes';
@@ -172,15 +172,15 @@ const getBuiltInProcessor = <K extends BuiltInOptionType>(type: K): Processor<Bu
       case 'number':
         return (x: any): x is number => typeof x === 'number';
       case 'object':
-        return Type.isObject;
+        return (x: any) => typeof x === 'object' && x !== null;
       case 'string':
         return (x: any): x is string => typeof x === 'string';
       case 'string[]':
         return stringListProcessor;
       case 'object[]':
-        return (val) => (Array.isArray(val) && (val).every(Type.isObject));
+        return (val) => (Array.isArray(val) && (val).every((x: any) => typeof x === 'object' && x !== null));
       case 'regexp':
-        return (val) => Type.is(val, RegExp);
+        return (val) => val instanceof RegExp;
       default:
         return (() => true as const);
     }

@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import * as Predicate from 'hugerte/core/util/Predicate';
@@ -9,8 +9,8 @@ describe('atomic.hugerte.core.util.PredicateTest', () => {
     return value() > target();
   };
 
-  const isAbove5 = Fun.curry(isAbove, () => 5);
-  const isAbove10 = Fun.curry(isAbove, () => 10);
+  const isAbove5 = (...__rest: any[]) => (isAbove)(() => 5, ...__rest);
+  const isAbove10 = (...__rest: any[]) => (isAbove)(() => 10, ...__rest);
 
   it('Predicate.and', () => {
     assert.isFalse(Predicate.and(isAbove10, isAbove5)(() => 10), 'Should be expected and result');

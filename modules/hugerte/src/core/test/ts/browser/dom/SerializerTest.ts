@@ -41,7 +41,7 @@ describe('browser.hugerte.core.dom.SerializerTest', () => {
     assert.equal(
       ser.serialize(getTestElement(), { getInner: true }),
       '<img title="test" class="test" src="hugerte/ui/img/raster.gif" ' +
-      'alt="test" border="0"><span id="test2">test</span><hr>', 'Global rule'
+      'alt="test" border="0"><span id="test2">test</span><hr>', 'window rule'
     );
 
     ser.setRules('*a[*],em/i[*],strong/b[*i*]');

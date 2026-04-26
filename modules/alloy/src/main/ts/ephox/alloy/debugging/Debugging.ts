@@ -1,5 +1,5 @@
 import { Objects } from '@ephox/boulder';
-import { Cell, Global, Optional } from '@ephox/katamari';
+import { Cell, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { AlloyComponent } from '../api/component/ComponentApi';
@@ -186,7 +186,7 @@ const inspectorInfo = (comp: AlloyComponent) => {
 };
 
 const getOrInitConnection = (): Inspector => {
-  const win: AlloyGlobal = Global;
+  const win: AlloyGlobal = window;
   // The format of the global is going to be:
   // lookup(uid) -> Optional { name => data }
   // systems: Set AlloyRoots

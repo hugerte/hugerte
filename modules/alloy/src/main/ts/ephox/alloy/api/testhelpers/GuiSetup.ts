@@ -1,5 +1,5 @@
 import { Assertions, Pipeline, Step, TestLogs, TestStore } from '@ephox/agar';
-import { Global } from '@ephox/katamari';
+
 import { DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarDocument, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
 
 import { AlloyComponent } from '../component/ComponentApi';
@@ -73,7 +73,7 @@ const bddSetupIn = <T extends RootNode, U = string>(
 
   // Note: Don't use bedrock imports here so as to avoid requiring bedrock as a
   // dependency. It'll still work the same, but we'll be missing the types.
-  Global.before(function (this: any) {
+  window.before(function (this: any) {
     if (skip()) {
       this.skip();
     }
@@ -102,13 +102,13 @@ const bddSetupIn = <T extends RootNode, U = string>(
     };
   });
 
-  Global.afterEach(function (this: any) {
+  window.afterEach(function (this: any) {
     if (this.currentTest?.isFailed() === true) {
       hasFailure = true;
     }
   });
 
-  Global.after(() => {
+  window.after(() => {
     if (!hasFailure) {
       ((state)['gui'] ?? null).each(Attachment.detachSystem);
       teardown();
@@ -257,11 +257,11 @@ const bddAddStyles = (dos: RootNode, styles: string[]): void => {
 
   // Note: Don't use bedrock imports here so as to avoid requiring bedrock as a
   // dependency. It'll still work the same, but we'll be missing the types.
-  Global.before(() => {
+  window.before(() => {
     style = addStyles(dos, styles);
   });
 
-  Global.after(() => {
+  window.after(() => {
     style.each(Remove.remove);
     style = null;
   });

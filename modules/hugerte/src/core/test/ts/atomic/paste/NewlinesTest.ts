@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import * as Newlines from 'hugerte/core/paste/Newlines';
@@ -33,7 +33,7 @@ describe('atomic.hugerte.core.paste.NewlinesTest', () => {
   });
 
   it('only DIV,P,BR and SPAN[style="white-space:pre"] tags are allowed in "plain text" string', () => {
-    Arr.each([
+    [
       {
         label: 'White-space wrapper (Chrome) with additional styles is not plain text',
         content: '<div><span style="white-space: pre; color: red;"> </span>a</div>',
@@ -53,7 +53,7 @@ describe('atomic.hugerte.core.paste.NewlinesTest', () => {
           content
         };
       })
-    ], (c) => {
+    ].forEach((c) => {
       assert.isFalse(Newlines.isPlainText(c.content), c.label);
     });
   });

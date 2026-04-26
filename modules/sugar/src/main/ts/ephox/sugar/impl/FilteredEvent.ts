@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { EventArgs, EventFilter, EventHandler, EventUnbinder } from '../api/events/Types';
 import { SugarElement } from '../api/node/SugarElement';
@@ -53,7 +53,7 @@ const binder = <E extends Event, T extends Node | Window>(element: SugarElement<
   element.dom.addEventListener(event, wrapped as EventListener, useCapture);
 
   return {
-    unbind: Fun.curry(unbind, element, event, wrapped, useCapture)
+    unbind: (...__rest: any[]) => (unbind)(element, event, wrapped, useCapture, ...__rest)
   };
 };
 

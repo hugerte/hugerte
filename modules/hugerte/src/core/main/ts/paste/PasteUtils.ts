@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 
 import DomParser from '../api/html/DomParser';
 import AstNode from '../api/html/Node';
@@ -13,7 +13,7 @@ type RegExpFilter = RegExp | [ RegExp, string ] | [ RegExp, (match: string, ...a
 
 const filter = (content: string, items: RegExpFilter[]): string => {
   Tools.each(items, (v) => {
-    if (Type.is(v, RegExp)) {
+    if (v instanceof RegExp) {
       content = content.replace(v, '');
     } else {
       content = content.replace(v[0], v[1] as any);

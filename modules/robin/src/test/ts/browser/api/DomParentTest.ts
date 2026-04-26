@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from '@ephox/sugar';
 
@@ -82,7 +82,7 @@ UnitTest.test(
 
       const parent = Hierarchy.follow(container, p).getOrDie();
       const child = Hierarchy.follow(container, c).getOrDie();
-      const isTop = Fun.curry(Compare.eq, parent);
+      const isTop = (...__rest: any[]) => (Compare.eq)(parent, ...__rest);
       DomParent.breakPath(child, isTop, DomParent.breakToLeft);
       Assert.eq('eq', expected, Html.get(container));
     };

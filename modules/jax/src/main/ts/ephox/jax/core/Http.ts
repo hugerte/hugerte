@@ -1,4 +1,4 @@
-import { FutureResult, Global, Result, Type } from '@ephox/katamari';
+import { FutureResult, Result, Type } from '@ephox/katamari';
 
 import { DataType } from './DataType';
 import { RequestBody, ResponseBodyDataTypes, ResponseType, ResponseTypeMap, textData } from './HttpData';
@@ -207,7 +207,7 @@ const fallbackDownload = (init: HttpTypes.DownloadHttpRequest): FutureResult<Blo
 };
 
 const download = (init: HttpTypes.DownloadHttpRequest): FutureResult<Blob, HttpError<DataType.Blob>> =>
-  ((Global)['fetch'] ?? null).exists((x: any): x is Function => typeof x === 'function') ?
+  ((window)['fetch'] ?? null).exists((x: any): x is Function => typeof x === 'function') ?
     fetchDownload(init) :
     fallbackDownload(init);
 

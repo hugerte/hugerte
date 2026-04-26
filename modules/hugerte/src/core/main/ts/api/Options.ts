@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Pattern from '../textpatterns/core/Pattern';
@@ -24,7 +24,7 @@ const getHash = (value: string): Record<string, string> => {
   }, {} as Record<string, string>);
 };
 
-const isRegExp = (x: unknown): x is RegExp => Type.is(x, RegExp);
+const isRegExp = (x: unknown): x is RegExp => x instanceof RegExp;
 
 const option = <K extends keyof EditorOptions>(name: K) => (editor: Editor) =>
   editor.options.get(name);
@@ -727,7 +727,7 @@ const register = (editor: Editor): void => {
 
   registerOption('text_patterns', {
     processor: (value) => {
-      if ((Array.isArray(value) && (value).every(Type.isObject)) || value === false) {
+      if ((Array.isArray(value) && (value).every((x: any) => typeof x === 'object' && x !== null)) || value === false) {
         const patterns = value === false ? [] : value;
         return { value: Pattern.fromRawPatterns(patterns), valid: true };
       } else {

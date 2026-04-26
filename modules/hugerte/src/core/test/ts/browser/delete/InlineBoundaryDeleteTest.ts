@@ -1,6 +1,6 @@
 import { ApproxStructure, Keys } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -24,7 +24,7 @@ describe('browser.hugerte.core.delete.InlineBoundaryDeleteTest', () => {
   };
 
   const readLocation = (editor: Editor) => {
-    const isInlineTarget = Fun.curry(InlineUtils.isInlineTarget, editor);
+    const isInlineTarget = (...__rest: any[]) => (InlineUtils.isInlineTarget)(editor, ...__rest);
     return BoundaryLocation
       .readLocation(isInlineTarget, editor.getBody(), CaretPosition.fromRangeStart(editor.selection.getRng()))
       .map(locationName)

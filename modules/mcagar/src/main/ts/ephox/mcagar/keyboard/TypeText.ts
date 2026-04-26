@@ -1,5 +1,5 @@
 import { Keyboard } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 const isText = (node: Node): node is Text => SugarNode.isText(SugarElement.fromDom(node));
@@ -52,7 +52,7 @@ const typeChar = (doc: SugarElement<Document>, chr: string): void => {
 };
 
 const typeContentAtSelection = (doc: SugarElement<Document>, text: string): void => {
-  text.split('').map(Fun.curry(typeChar, doc));
+  text.split('').map((...__rest: any[]) => (typeChar)(doc, ...__rest));
 };
 
 export {

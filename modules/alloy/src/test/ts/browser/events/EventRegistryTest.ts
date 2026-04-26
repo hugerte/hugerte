@@ -1,6 +1,6 @@
 import { Assertions, Chain, GeneralSteps, Logger, NamedChain, Pipeline, Step, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Attribute, Compare, Html, Insert, SelectorFilter, SugarElement, Truncate } from '@ephox/sugar';
 
 import * as DescribedHandler from 'ephox/alloy/events/DescribedHandler';
@@ -36,7 +36,7 @@ UnitTest.asynctest('EventRegistryTest', (success, failure) => {
     Attribute.getOpt(bit, 'data-test-uid').each((testUid) => Tagger.writeOnly(bit, testUid));
   });
 
-  const isRoot = Fun.curry(Compare.eq, page);
+  const isRoot = (...__rest: any[]) => (Compare.eq)(page, ...__rest);
 
   Insert.append(body, page);
 

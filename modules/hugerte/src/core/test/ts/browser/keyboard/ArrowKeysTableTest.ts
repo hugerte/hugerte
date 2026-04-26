@@ -1,6 +1,6 @@
 import { ApproxStructure, Keys, StructAssert } from '@ephox/agar';
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -20,10 +20,10 @@ describe('browser.hugerte.core.keyboard.ArrowKeysTableTest', () => {
     return ApproxStructure.fromHtml(`<div class="mce-visual-caret ${caretClass}" data-mce-bogus="all"></div>`);
   };
 
-  const caretBefore = Fun.curry(caret, 'before');
-  const caretAfter = Fun.curry(caret, 'after');
-  const visualCaretBefore = Fun.curry(visualCaret, true);
-  const visualCaretAfter = Fun.curry(visualCaret, false);
+  const caretBefore = (...__rest: any[]) => (caret)('before', ...__rest);
+  const caretAfter = (...__rest: any[]) => (caret)('after', ...__rest);
+  const visualCaretBefore = (...__rest: any[]) => (visualCaret)(true, ...__rest);
+  const visualCaretAfter = (...__rest: any[]) => (visualCaret)(false, ...__rest);
   const buildBody = (children: StructAssert[]) => ApproxStructure.build((s, _str, _arr) => s.element('body', { children }));
 
   beforeEach(() => {

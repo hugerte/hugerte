@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { SimpleGenerators } from 'ephox/snooker/api/Generators';
@@ -116,10 +116,10 @@ UnitTest.test('FitmentIVTest', () => {
       }
     };
 
-    const test = Fun.curry(measureTest, {
+    const test = (...__rest: any[]) => (measureTest)({
       rowDelta,
       colDelta
-    }, start, gridSpecA.grid, gridSpecB.grid, () => {} );
+    }, start, gridSpecA.grid, gridSpecB.grid, () => {}, ...__rest);
 
     return {
       params: info,
@@ -150,10 +150,10 @@ UnitTest.test('FitmentIVTest', () => {
       }
     };
 
-    const test = Fun.curry(tailorIVTest, {
+    const test = (...__rest: any[]) => (tailorIVTest)({
       rows: expectedRows,
       cols: expectedCols
-    }, start, gridSpecA.grid, delta, generator);
+    }, start, gridSpecA.grid, delta, generator, ...__rest);
 
     return {
       params: info,
@@ -217,7 +217,7 @@ UnitTest.test('FitmentIVTest', () => {
       });
     };
 
-    const test = Fun.curry(mergeIVTest, queryliser2000, start, gridSpecA, gridSpecB, generator, (a, b) => a === b);
+    const test = (...__rest: any[]) => (mergeIVTest)(queryliser2000, start, gridSpecA, gridSpecB, generator, (a, b) => a === b, ...__rest);
 
     return {
       params: info,

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Global } from '@ephox/katamari';
+
 
 import { Editor, HugeRTE } from 'hugerte/core/api/PublicApi';
 import CaretPosition from 'hugerte/core/caret/CaretPosition';
@@ -60,9 +60,9 @@ export default (): void => {
     }
   };
 
-  Global.paintClientRect = paintClientRect;
-  Global.paintClientRects = paintClientRects;
-  Global.logPos = logPos;
+  window.paintClientRect = paintClientRect;
+  window.paintClientRects = paintClientRects;
+  window.logPos = logPos;
 
   hugerte.init({
     selector: 'textarea.hugerte',

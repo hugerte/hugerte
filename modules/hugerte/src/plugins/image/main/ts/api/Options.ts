@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -57,7 +57,7 @@ const register = (editor: Editor): void => {
 
   registerOption('image_list', {
     processor: (value) => {
-      const valid = value === false || typeof (value) === 'string' || (Array.isArray(value) && (value).every(Type.isObject)) || typeof (value) === 'function';
+      const valid = value === false || typeof (value) === 'string' || (Array.isArray(value) && (value).every((x: any) => typeof x === 'object' && x !== null)) || typeof (value) === 'function';
       return valid ? { value, valid } : { valid: false, message: 'Must be false, a string, an array or a function.' };
     },
     default: false

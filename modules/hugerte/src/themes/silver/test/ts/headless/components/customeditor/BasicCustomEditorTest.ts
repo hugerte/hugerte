@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Cell, Global } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
 import Resource from 'hugerte/core/api/Resource';
@@ -18,8 +18,8 @@ describe('headless.hugerte.themes.silver.components.customeditor.BasicCustomEdit
 
   let origTiny: HugeRTE | undefined;
   before(() => {
-    origTiny = Global.hugerte;
-    Global.hugerte = {
+    origTiny = window.hugerte;
+    window.hugerte = {
       Resource
     };
 
@@ -39,7 +39,7 @@ describe('headless.hugerte.themes.silver.components.customeditor.BasicCustomEdit
   });
 
   after(() => {
-    Global.hugerte = origTiny;
+    window.hugerte = origTiny;
     origTiny = undefined;
   });
 

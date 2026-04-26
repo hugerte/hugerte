@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
@@ -121,8 +121,8 @@ describe('browser.hugerte.core.caret.LineReader', () => {
     return predicate(viewBlock.get(), pos);
   };
 
-  const isAtFirstLine = Fun.curry(visualCaretCheck, LineReader.isAtFirstLine);
-  const isAtLastLine = Fun.curry(visualCaretCheck, LineReader.isAtLastLine);
+  const isAtFirstLine = (...__rest: any[]) => (visualCaretCheck)(LineReader.isAtFirstLine, ...__rest);
+  const isAtLastLine = (...__rest: any[]) => (visualCaretCheck)(LineReader.isAtLastLine, ...__rest);
 
   context('getPositionsUntilPreviousLine', () => {
     it('Should be an empty array of positions and no linebreak', () => {

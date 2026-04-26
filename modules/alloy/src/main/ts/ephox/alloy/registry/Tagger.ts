@@ -24,7 +24,11 @@ const read = (elem: SugarElement<Node>): (string) | null => {
   return (id ?? null);
 };
 
-const readOrDie = (elem: SugarElement<Node>): string => read(elem).getOrDie('Could not find alloy uid in: ' + AlloyLogger.element(elem));
+const readOrDie = (elem: SugarElement<Node>): string => {
+  const v = read(elem);
+  if (v === null) throw new Error('Could not find alloy uid in: ' + AlloyLogger.element(elem));
+  return v;
+};
 
 const generate = (prefix: string): string => ((prefix) + '_' + Math.floor(Math.random() * 1e9) + Date.now());
 

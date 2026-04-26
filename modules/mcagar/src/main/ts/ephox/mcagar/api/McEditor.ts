@@ -1,5 +1,5 @@
 import { Chain } from '@ephox/agar';
-import { Global } from '@ephox/katamari';
+
 import { Attribute, Insert, Remove, Selectors, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor as EditorType } from '../alien/EditorTypes';
@@ -23,7 +23,7 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
     }
 
     const run = () => {
-      const hugerte = Global.hugerte;
+      const hugerte = window.hugerte;
       setupHugerteBaseUrl(hugerte, nuSettings);
 
       const targetSettings = SugarShadowDom.isInShadowRoot(element) ? ({ target: element.dom }) : ({ selector: '#' + randomId });
@@ -56,7 +56,7 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
       });
     };
 
-    if (!Global.hugerte) {
+    if (!window.hugerte) {
       // Attempt to load HugeRTE if it's not available
       loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').get((result) => {
         result.fold(() => reject('Failed to find a global hugerte instance'), run);

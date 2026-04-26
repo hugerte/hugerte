@@ -1,5 +1,5 @@
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Global } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import Resource from 'hugerte/core/api/Resource';
@@ -7,16 +7,16 @@ import Resource from 'hugerte/core/api/Resource';
 declare const hugerte: { Resource: Resource };
 
 describe('browser.hugerte.core.ResourceTest', () => {
-  const origTiny = Global.hugerte;
+  const origTiny = window.hugerte;
 
   before(() => {
-    Global.hugerte = {
+    window.hugerte = {
       Resource
     };
   });
 
   after(() => {
-    Global.hugerte = origTiny;
+    window.hugerte = origTiny;
   });
 
   const testScript = (id: string, data: string) => `data:text/javascript,hugerte.Resource.add('${id}', '${data}')`;

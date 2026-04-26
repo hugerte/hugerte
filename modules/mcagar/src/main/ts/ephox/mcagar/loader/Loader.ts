@@ -1,5 +1,5 @@
 import { TestLogs } from '@ephox/agar';
-import { FutureResult, Global, Result } from '@ephox/katamari';
+import { FutureResult, Result } from '@ephox/katamari';
 import { Attribute, DomEvent, Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor } from '../alien/EditorTypes';
@@ -59,7 +59,7 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
   }
 
   const teardown = () => {
-    Global.hugerte.remove();
+    window.hugerte.remove();
     Remove.remove(target);
     removeHugerteElements();
   };
@@ -83,7 +83,7 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
   const settingsSetup = settings.setup !== undefined ? settings.setup : () => {};
 
   const run = () => {
-    const hugerte = Global.hugerte;
+    const hugerte = window.hugerte;
     callbacks.preInit(hugerte, settings);
 
     const targetSettings = SugarShadowDom.isInShadowRoot(target) ? ({ target: target.dom }) : ({ selector: '#' + randomId });
@@ -112,7 +112,7 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
     });
   };
 
-  if (!Global.hugerte) {
+  if (!window.hugerte) {
     // Attempt to load HugeRTE if it's not available
     loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').get((result) => {
       result.fold(() => callbacks.failure('Failed to find a global hugerte instance'), run);

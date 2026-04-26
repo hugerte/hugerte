@@ -1,6 +1,6 @@
 import { Resolve } from '@ephox/katamari';
 
-import * as Global from '../util/Global';
+import * as window from '../util/window';
 
 const getPrototypeOf = Object.getPrototypeOf;
 
@@ -11,7 +11,7 @@ const getPrototypeOf = Object.getPrototypeOf;
  * https://developer.mozilla.org/en/docs/Web/API/HTMLElement
  */
 const sandHTMLElement = (scope: Window | undefined) => {
-  return Global.getOrDie('HTMLElement', scope) as typeof HTMLElement;
+  return (window as any)['HTMLElement', scope] as typeof HTMLElement;
 };
 
 const isPrototypeOf = (x: any): x is HTMLElement => {

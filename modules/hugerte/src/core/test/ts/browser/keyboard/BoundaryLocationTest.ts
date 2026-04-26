@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Hierarchy, SelectorFind, Selectors, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -83,10 +83,10 @@ describe('browser.hugerte.core.keyboard.BoundaryLocationTest', () => {
     assert.isTrue(location === null, 'Should not be a valid location: ' + html);
   };
 
-  const testPrevLocation = Fun.curry(testFindLocation, false);
-  const testNextLocation = Fun.curry(testFindLocation, true);
-  const testPrevLocationInvalid = Fun.curry(testFindLocationInvalid, false);
-  const testNextLocationInvalid = Fun.curry(testFindLocationInvalid, true);
+  const testPrevLocation = (...__rest: any[]) => (testFindLocation)(false, ...__rest);
+  const testNextLocation = (...__rest: any[]) => (testFindLocation)(true, ...__rest);
+  const testPrevLocationInvalid = (...__rest: any[]) => (testFindLocationInvalid)(false, ...__rest);
+  const testNextLocationInvalid = (...__rest: any[]) => (testFindLocationInvalid)(true, ...__rest);
 
   context('Valid locations', () => {
     it('anchor locations', () => {

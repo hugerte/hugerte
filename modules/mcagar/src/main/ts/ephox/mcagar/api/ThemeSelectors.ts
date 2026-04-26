@@ -1,10 +1,10 @@
-import { Global } from '@ephox/katamari';
+
 
 import { Editor } from '../alien/EditorTypes';
 import { get as getOption } from '../alien/Options';
 
 const isSilver = (): boolean => {
-  const hugerte = Global.hugerte;
+  const hugerte = window.hugerte;
   if (!hugerte) {
     throw new Error('Failed to get global hugerte');
   }

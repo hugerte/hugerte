@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -150,7 +150,7 @@ const type = (editor: Editor, chr: string | number | Record<string, number | str
 };
 
 const typeString = (editor: Editor, str: string): void => {
-  str.split('').forEach(Fun.curry(type, editor));
+  str.split('').forEach((...__rest: any[]) => (type)(editor, ...__rest));
 };
 
 export {

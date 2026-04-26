@@ -52,11 +52,11 @@ const click = (settings: Settings) => (element: SugarElement<Node>): void => {
   const dom = element.dom;
   (dom as any as any)['click'].fold(() => event('click', settings)(element), Fun.call);
 };
-const mouseDown = Fun.curry(event, 'mousedown');
-const mouseUp = Fun.curry(event, 'mouseup');
-const mouseMove = Fun.curry(event, 'mousemove');
-const mouseOver = Fun.curry(event, 'mouseover');
-const mouseOut = Fun.curry(event, 'mouseout');
+const mouseDown = (...__rest: any[]) => (event)('mousedown', ...__rest);
+const mouseUp = (...__rest: any[]) => (event)('mouseup', ...__rest);
+const mouseMove = (...__rest: any[]) => (event)('mousemove', ...__rest);
+const mouseOver = (...__rest: any[]) => (event)('mouseover', ...__rest);
+const mouseOut = (...__rest: any[]) => (event)('mouseout', ...__rest);
 const contextMenu = (settings: Settings): (element: SugarElement<Node>) => void =>
   event('contextmenu', { button: rightClickButton, ...settings });
 

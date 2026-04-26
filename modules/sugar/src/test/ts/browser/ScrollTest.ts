@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
@@ -45,8 +45,8 @@ UnitTest.asynctest('ScrollTest', (success, failure) => {
         const iframeDoc = iframeWin.document;
         const html = SugarElement.fromDom(iframeDoc.documentElement);
         const body = SugarElement.fromDom(iframeDoc.body);
-        attrMap.html.each(Fun.curry(Attribute.setAll, html));
-        attrMap.body.each(Fun.curry(Attribute.setAll, body));
+        attrMap.html.each((...__rest: any[]) => (Attribute.setAll)(html, ...__rest));
+        attrMap.body.each((...__rest: any[]) => (Attribute.setAll)(body, ...__rest));
         const doc: TestDocSpec = {
           iframe,
           rawWin: iframeWin,

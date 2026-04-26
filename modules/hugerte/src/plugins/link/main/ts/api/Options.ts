@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -41,7 +41,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('link_list', {
-    processor: (value) => typeof (value) === 'string' || typeof (value) === 'function' || (Array.isArray(value) && (value).every(Type.isObject))
+    processor: (value) => typeof (value) === 'string' || typeof (value) === 'function' || (Array.isArray(value) && (value).every((x: any) => typeof x === 'object' && x !== null))
   });
 
   registerOption('link_default_target', {
@@ -54,7 +54,7 @@ const register = (editor: Editor): void => {
   });
 
   registerOption('link_target_list', {
-    processor: (value) => typeof (value) === 'boolean' || (Array.isArray(value) && (value).every(Type.isObject)),
+    processor: (value) => typeof (value) === 'boolean' || (Array.isArray(value) && (value).every((x: any) => typeof x === 'object' && x !== null)),
     default: true
   });
 
