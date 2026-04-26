@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { DieFn, NextFn } from '../pipe/Pipe';
 import { Chain } from './Chain';
@@ -133,4 +133,4 @@ export const sequenceSame = <T> (Chains: Chain<T, T>[]): Chain<T, T> =>
   sequenceUnsafe(Chains);
 
 export const sequenceUnsafe = (Chains: Chain<any, any>[]): Chain<any, any> =>
-  Chains.length === 0 ? Chain.identity : Arr.foldl(Chains, (acc, Chain) => compose(acc, Chain), Chain.identity);
+  Chains.length === 0 ? Chain.identity : Chains.reduce((acc, Chain) => compose(acc, Chain), Chain.identity);

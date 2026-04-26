@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 
 import * as GeneralSteps from 'ephox/agar/api/GeneralSteps';
 import { Pipeline } from 'ephox/agar/api/Pipeline';
@@ -14,10 +14,10 @@ interface TestData {
 
 describe('atomic.agar.api.TestStoreTest', () => {
   const strings = [ 's', 'short', 'string', 'loooooong' ];
-  const stringsSorted = Arr.sort(strings);
+  const stringsSorted = [...strings].sort();
 
   const numbers = [ 1, 999, 100000, 77 ];
-  const numbersSorted = Arr.sort(numbers);
+  const numbersSorted = [...numbers].sort();
 
   const objects: TestData[] = [
     { name: 'NN', age: 1, isHappy: true },
@@ -25,15 +25,15 @@ describe('atomic.agar.api.TestStoreTest', () => {
     { name: 'MMM', age: 20, isHappy: true }
   ];
 
-  const objectsSortedByName = Arr.sort(objects, (a, b) => a.name.length - b.name.length);
-  const objectsSortedByAge = Arr.sort(objects, (a, b) => a.age - b.age);
-  const objectsSortedByIsHappy = Arr.sort(objects, (a, b) => Number(a.isHappy) - Number(b.isHappy));
+  const objectsSortedByName = [...objects].sort((a, b) =) a.name.length - b.name.length);
+  const objectsSortedByAge = [...objects].sort((a, b) =) a.age - b.age);
+  const objectsSortedByIsHappy = [...objects].sort((a, b) =) Number(a.isHappy) - Number(b.isHappy));
 
   context('Step based', () => {
     it('TINY-9157: TestStore strings', () => {
       const store = TestStore<string>();
       const sAddItemToStore = () => {
-        return Arr.map(strings, (s: string) => {
+        return strings.map((s: string) =) {
           return Step.sync(() => {
             store.add(s);
           });
@@ -48,13 +48,13 @@ describe('atomic.agar.api.TestStoreTest', () => {
           store.sClear,
           store.sAssertEq('Step empty store', [])
         ])
-      ], Fun.noop, Fun.noop);
+      ], () => {}, () => {});
     });
 
     it('TINY-9157: TestStore numbers', () => {
       const store = TestStore<number>();
       const sAddToStore = () => {
-        return Arr.map(numbers, (s: number) => {
+        return numbers.map((s: number) =) {
           return Step.sync(() => {
             store.add(s);
           });
@@ -69,13 +69,13 @@ describe('atomic.agar.api.TestStoreTest', () => {
           store.sClear,
           store.sAssertEq('Step empty store', [])
         ])
-      ], Fun.noop, Fun.noop);
+      ], () => {}, () => {});
     });
 
     it('TINY-9157: TestStore objects', () => {
       const store = TestStore<TestData>();
       const sAddItemToStore = () => {
-        return Arr.map(objects, (s: TestData) => {
+        return objects.map((s: TestData) =) {
           return Step.sync(() => {
             store.add(s);
           });
@@ -94,7 +94,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
           store.sClear,
           store.sAssertEq('Step empty store', []),
         ])
-      ], Fun.noop, Fun.noop);
+      ], () => {}, () => {});
     });
   });
 
@@ -102,7 +102,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
     it('TINY-9157: TestStore strings', () => {
       const store = TestStore<string>();
 
-      Arr.each(strings, (s) => store.adder(s)());
+      strings.forEach((s) =) store.adder(s)());
 
       store.assertEq('String store', strings);
       store.assertSortedEq('String store sorted', stringsSorted);
@@ -113,7 +113,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
 
     it('TINY-9157: TestStore numbers', () => {
       const store = TestStore<number>();
-      Arr.each(numbers, (s) => store.adder(s)());
+      numbers.forEach((s) =) store.adder(s)());
 
       store.assertEq('Number store', numbers);
       store.assertSortedEq('Number store', numbersSorted);
@@ -125,7 +125,7 @@ describe('atomic.agar.api.TestStoreTest', () => {
     it('TINY-9157: TestStore objects', () => {
       const store = TestStore<TestData>();
 
-      Arr.each(objects, (s) => store.adder(s)());
+      objects.forEach((s) =) store.adder(s)());
 
       store.assertEq('Object store', objects);
       store.assertSortedEq('Object store sorted by name', objectsSortedByName, (a, b) => a.name.length - b.name.length);

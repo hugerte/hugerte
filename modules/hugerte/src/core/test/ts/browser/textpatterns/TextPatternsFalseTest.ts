@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -26,7 +26,7 @@ describe('browser.hugerte.core.textpatterns.TextPatternsFalseTest', () => {
       return Utils.bodyStruct([
         s.element('p', {
           children: [
-            s.text(str.is(`*a *${Unicode.nbsp}`), true)
+            s.text(str.is(`*a *${'\u00A0'}`), true)
           ]
         })
       ]);

@@ -1,6 +1,6 @@
 import { Cursors } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional, Optionals } from '@ephox/katamari';
+import { Optionals } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -30,7 +30,7 @@ describe('browser.hugerte.core.delete.DeleteDetailsTest', () => {
 
     editor.setContent(testCase.html);
     TinySelections.setSelection(editor, testCase.selection.startPath, testCase.selection.soffset, testCase.selection.finishPath, testCase.selection.foffset);
-    const prevented = Optionals.equals(DetailsDelete.backspaceDelete(editor, forward, 'character'), Optional.some(Fun.noop));
+    const prevented = Optionals.equals(DetailsDelete.backspaceDelete(editor, forward, 'character'), () = {}));
     assert.equal(prevented, testCase.expectedPrevented);
     TinyAssertions.assertContent(editor, expectedHtml);
     TinyAssertions.assertSelection(editor, testCase.expectedSelection.startPath, testCase.expectedSelection.soffset, testCase.expectedSelection.finishPath, testCase.expectedSelection.foffset);

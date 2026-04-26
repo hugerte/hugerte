@@ -1,4 +1,4 @@
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -48,7 +48,7 @@ export default (): void => {
         })
       ]),
 
-      components: Arr.map([ 'alpha', 'beta', 'gamma' ], (n): AlloySpec => {
+      components: [ 'alpha', 'beta', 'gamma' ].map((n): AlloySpec =) {
         return {
           dom: {
             tag: 'button',

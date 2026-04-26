@@ -1,4 +1,4 @@
-import { Future, Optional } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 import { EventArgs } from '@ephox/sugar';
 
 import * as DropdownUtils from '../../dropdown/DropdownUtils';
@@ -114,7 +114,7 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
 
   const triggerExecute = (comp: AlloyComponent, _se: SimulatedEvent<EventArgs>): (boolean) | null => {
     AlloyTriggers.emitExecute(comp);
-    return Optional.some<boolean>(true);
+    return true;
   };
 
   return {
@@ -152,12 +152,12 @@ const factory: CompositeSketchFactory<DropdownDetail, DropdownSpec> = (detail, c
               Dropdown.open(comp);
             }
 
-            return Optional.some<boolean>(true);
+            return true;
           },
           onEscape: (comp, _se): (boolean) | null => {
             if (Dropdown.isOpen(comp)) {
               Dropdown.close(comp);
-              return Optional.some<boolean>(true);
+              return true;
             } else {
               return null;
             }

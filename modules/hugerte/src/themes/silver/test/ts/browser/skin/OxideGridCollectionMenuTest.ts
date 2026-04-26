@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, TestStore } from '@ephox/agar';
 import { TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -19,7 +19,7 @@ describe('browser.hugerte.themes.silver.skin.OxideGridCollectionMenuTest', () =>
         columns: 'auto',
         fetch: (callback) => {
           callback(
-            Arr.map([ '1', '2', '3', '4', '5', '6', '7', '8' ], (num) => ({
+            [ '1', '2', '3', '4', '5', '6', '7', '8' ].map((num) =) ({
               type: 'choiceitem',
               value: num,
               text: num,
@@ -49,7 +49,7 @@ describe('browser.hugerte.themes.silver.skin.OxideGridCollectionMenuTest', () =>
         children: [
           s.element('div', {
             classes: [ arr.has('tox-collection__group') ],
-            children: Arr.map([ '1', '2', '3', '4', '5', '6', '7', '8' ], (num) => s.element('div', {
+            children: [ '1', '2', '3', '4', '5', '6', '7', '8' ].map((num) =) s.element('div', {
               classes: [ arr.has('tox-collection__item') ],
               attrs: {
                 'aria-label': str.is(num)

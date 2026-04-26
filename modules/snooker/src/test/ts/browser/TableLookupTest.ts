@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Compare, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
 import * as TableLookup from 'ephox/snooker/api/TableLookup';
@@ -124,7 +124,7 @@ UnitTest.test('TableLookupTest - cells', () => {
     if (cells.length === 0) {
       Assert.fail('Could not find any table cell element');
     } else {
-      Arr.each(cells, (cell) => {
+      cells.forEach((cell) =) {
         const result = TableLookup.cell(cell);
         Assert.eq(label + ': Expected the result to find something', true, result.isSome());
         Assert.eq(label + ': The result and the expectation should be the same element', true, Compare.eq(cell, result.getOrDie()));
@@ -143,7 +143,7 @@ UnitTest.test('TableLookupTest - cells', () => {
     if (rows.length === 0) {
       Assert.fail('Could not find any table row elements');
     } else {
-      Arr.each(rows, (row) => {
+      rows.forEach((row) =) {
         const result = TableLookup.cell(row);
         Assert.eq(label + ': Expected the result to find nothing', false, result.isSome());
       });

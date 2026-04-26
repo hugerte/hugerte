@@ -1,4 +1,4 @@
-import { Arr, Id, Optional, Type } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 import { createFileList } from '../file/FileList';
 import { getData } from './DataTransferItem';
@@ -8,7 +8,7 @@ import { isInProtectedMode, isInReadWriteMode, setReadWriteMode } from './Mode';
 type DropEffect = DataTransfer['dropEffect'];
 type EffectAllowed = DataTransfer['effectAllowed'];
 
-const imageId = Id.generate('image');
+const imageId = '_' + Math.random().toString(36).slice(2);
 
 const validDropEffects: DropEffect[] = [ 'none', 'copy', 'link', 'move' ];
 const validEffectAlloweds: EffectAllowed[] = [ 'none', 'copy', 'copyLink', 'copyMove', 'link', 'linkMove', 'move', 'all', 'uninitialized' ];
@@ -26,7 +26,7 @@ const setDragImage = (transfer: DataTransfer, imageData: DragImageData) => {
 
 const getDragImage = (transfer: DataTransfer): Optional<DragImageData> => {
   const dt: any = transfer;
-  return Optional.from(dt[imageId]);
+  return dt[imageId] ?? null;
 };
 
 const normalize = (format: string) => {
@@ -54,7 +54,7 @@ const createDataTransfer = (): DataTransfer => {
       },
 
       set: (effect: DropEffect) => {
-        if (Arr.contains(validDropEffects, effect)) {
+        if (validDropEffects.includes(effect)) {
           dropEffect = effect;
         }
       }
@@ -63,7 +63,7 @@ const createDataTransfer = (): DataTransfer => {
     effectAllowed: {
       get: () => effectAllowed,
       set: (allowed: EffectAllowed) => {
-        if (Arr.contains(validEffectAlloweds, allowed)) {
+        if (validEffectAlloweds.includes(allowed)) {
           effectAllowed = allowed;
         }
       }
@@ -81,10 +81,10 @@ const createDataTransfer = (): DataTransfer => {
           return createFileList([]);
         }
 
-        const files = Arr.bind(Arr.from(items), (item) => {
+        const files = Array.from(items).flatMap((item) =) {
           if (item.kind === 'file') {
             const file = item.getAsFile();
-            return Type.isNull(file) ? [] : [ file ];
+            return file === null ? [] : [ file ];
           } else {
             return [];
           }
@@ -96,8 +96,8 @@ const createDataTransfer = (): DataTransfer => {
 
     types: {
       get: () => {
-        const types = Arr.map(Arr.from(items), (item) => item.type);
-        const hasFiles = Arr.exists(Arr.from(items), (item) => item.kind === 'file');
+        const types = Array.from(items).map((item) =) item.type);
+        const hasFiles = Array.from(items).some((item) =) item.kind === 'file');
         return types.concat(hasFiles ? [ 'Files' ] : []);
       }
     },
@@ -116,7 +116,7 @@ const createDataTransfer = (): DataTransfer => {
           return '';
         }
 
-        return Arr.find(Arr.from(items), (item) => item.type === normalize(format)).bind((item) => getData(item)).getOr('');
+        return Arr.find(Array.from(items), (item) => item.type === normalize(format)).bind((item) => getData(item)).getOr('');
       }
     },
 
@@ -132,9 +132,9 @@ const createDataTransfer = (): DataTransfer => {
     clearData: {
       value: (format?: string) => {
         if (isInReadWriteMode(dataTransfer)) {
-          if (Type.isString(format)) {
+          if (typeof format === 'string') {
             const normalizedFormat = normalize(format);
-            Arr.findIndex(Arr.from(items), (item) => item.type === normalizedFormat).each((idx) => {
+            Arr.findIndex(Array.from(items), (item) => item.type === normalizedFormat).each((idx) => {
               items.remove(idx);
             });
           } else {

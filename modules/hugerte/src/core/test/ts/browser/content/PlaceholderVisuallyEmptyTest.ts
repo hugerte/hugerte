@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -31,14 +31,14 @@ describe('browser.hugerte.core.content.PlaceholderVisuallyEmptyTest', () => {
     testEmpty(editor, '<p></p>');
     testEmpty(editor, '<p><br /></p>');
     testEmpty(editor, '<p><br data-mce-bogus="1" /></p>');
-    testEmpty(editor, '<p>' + Unicode.zeroWidth + '</p>');
+    testEmpty(editor, '<p>' + '\uFEFF' + '</p>');
     testEmpty(editor, '<p><span data-mce-bogus="1" data-mce-type="format-caret"><strong></strong></span><br data-mce-bogus="1" /></p>');
   });
 
   it('TINY-3917: Check content is NOT visually empty', () => {
     const editor = hook.editor();
     testNotEmpty(editor, '<p>Text</p>');
-    testNotEmpty(editor, '<p>' + Unicode.nbsp + '</p>');
+    testNotEmpty(editor, '<p>' + '\u00A0' + '</p>');
     testNotEmpty(editor, '<p><br data-mce-bogus="1" /><br /></p>');
     testNotEmpty(editor, '<ol><li></li></ol>');
     testNotEmpty(editor, '<hr />');
@@ -49,6 +49,6 @@ describe('browser.hugerte.core.content.PlaceholderVisuallyEmptyTest', () => {
     testNotEmpty(editor, '<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==" /></p>');
     testNotEmpty(editor, '<table><tbody><tr><td></td><td></td></tr></tbody></table>');
     testNotEmpty(editor, '<pre class="language-markup"><code>test</code></pre>');
-    testNotEmpty(editor, '<blockquote><p>' + Unicode.nbsp + '</p></blockquote>');
+    testNotEmpty(editor, '<blockquote><p>' + '\u00A0' + '</p></blockquote>');
   });
 });

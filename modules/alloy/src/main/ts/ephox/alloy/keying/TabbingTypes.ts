@@ -1,5 +1,5 @@
 import { FieldProcessor, FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 import { Compare, Height, SelectorFilter, SelectorFind, SugarElement, Traverse } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -66,11 +66,11 @@ const create = (cyclicField: FieldProcessor): KeyingType.KeyingType<TabbingConfi
     cycle(tabstops, stopIndex, (elem) => isTabstop(tabbingConfig, elem))
       .fold(
         // Even if there is only one, still capture the event if cycling
-        () => tabbingConfig.cyclic ? Optional.some<boolean>(true) : null,
+        () => tabbingConfig.cyclic ? true : null,
         (target) => {
           tabbingConfig.focusManager.set(component, target);
           // Kill the event
-          return Optional.some<boolean>(true);
+          return true;
         }
       );
 

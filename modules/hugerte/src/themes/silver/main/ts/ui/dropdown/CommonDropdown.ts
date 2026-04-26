@@ -3,7 +3,7 @@ import {
   Keying, MaxHeight, Memento, NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, TieredData, Tooltipping, Unselecting
 } from '@ephox/alloy';
 import { Toolbar } from '@ephox/bridge';
-import { Cell, Future, Id, Merger } from '@ephox/katamari';
+import { Cell, Future, Id } from '@ephox/katamari';
 import { EventArgs, SugarElement } from '@ephox/sugar';
 
 import { toolbarButtonEventOrder } from 'hugerte/themes/silver/ui/toolbar/button/ButtonEvents';
@@ -194,7 +194,7 @@ const renderCommonDropdown = <T>(
           })
         ])
       ]),
-      eventOrder: Merger.deepMerge(toolbarButtonEventOrder, {
+      eventOrder: ({ ...toolbarButtonEventOrder, ...{
         // INVESTIGATE (TINY-9014): Explain why we need the events in this order.
         // Ideally, have a test that fails when they are in a different order if order
         // is important
@@ -205,7 +205,7 @@ const renderCommonDropdown = <T>(
           customEventsName,
           fixWidthBehaviourName,
         ]
-      }),
+      } }),
 
       sandboxBehaviours: Behaviour.derive([
         Keying.config({

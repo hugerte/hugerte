@@ -1,5 +1,5 @@
 import { afterEach, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -814,8 +814,8 @@ describe('browser.hugerte.core.dom.SerializerTest', () => {
 
   it('addNodeFilter/addAttributeFilter', () => {
     const ser = DomSerializer({ });
-    const nodeFilter = Fun.noop;
-    const attrFilter = Fun.noop;
+    const nodeFilter = () => {};
+    const attrFilter = () => {};
 
     ser.addNodeFilter('some-tag', nodeFilter);
     ser.addAttributeFilter('data-something', attrFilter);
@@ -831,8 +831,8 @@ describe('browser.hugerte.core.dom.SerializerTest', () => {
 
   it('TINY-7847: removeNodeFilter/removeAttributeFilter', () => {
     const ser = DomSerializer({ });
-    const nodeFilter = Fun.noop;
-    const attrFilter = Fun.noop;
+    const nodeFilter = () => {};
+    const attrFilter = () => {};
     const numNodeFilters = ser.getNodeFilters().length;
     const numAttrFilters = ser.getAttributeFilters().length;
 

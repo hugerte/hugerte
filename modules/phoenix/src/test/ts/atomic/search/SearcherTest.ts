@@ -1,6 +1,6 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
+
 
 import * as Searcher from 'ephox/phoenix/search/Searcher';
 import * as Finder from 'ephox/phoenix/test/Finder';
@@ -16,9 +16,9 @@ describe('atomic.polaris.search.SearcherTest', () => {
   const checkWords = (expected: CheckItem[], itemIds: string[], words: string[], input: Gene) => {
     const universe = TestUniverse(input);
     const items = Finder.getAll(universe, itemIds);
-    const actual = Searcher.safeWords(universe, items, words, Fun.never);
+    const actual = Searcher.safeWords(universe, items, words, () => false);
 
-    const processed = Arr.map(actual, (match): CheckItem => {
+    const processed = actual.map((match): CheckItem =) {
       return {
         items: TestRenders.texts(match.elements),
         word: match.word,

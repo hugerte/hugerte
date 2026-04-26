@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Class, EventArgs, SugarElement, Value } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -43,7 +43,7 @@ export default (): void => {
       dom: {
         tag: 'div'
       },
-      lazySink: Fun.constant(Result.value(sink))
+      lazySink: () => Result.value(sink)
     })
   );
 
@@ -100,12 +100,12 @@ export default (): void => {
 
     onEscape: () => {
       console.log('inline.menu.escape');
-      return Optional.some<boolean>(true);
+      return true;
     },
 
     onExecute: () => {
       console.log('inline.menu.execute');
-      return Optional.some<boolean>(true);
+      return true;
     },
 
     onOpenMenu: (_sandbox, _menu) => {
@@ -130,20 +130,20 @@ export default (): void => {
       menus: {
         'dog': DemoRenders.menu({
           value: 'dog',
-          items: Arr.map([
+          items: [
             makeItem('alpha', 'Alpha', 'alpha'),
             makeItem('beta', 'Beta', 'beta'),
             makeItem('gamma', 'Gamma', 'gamma'),
             makeItem('delta', 'Delta', 'delta')
-          ], DemoRenders.item),
+          ].map(DemoRenders.item),
           textkey: 'Dog'
         }),
         'gamma-menu': DemoRenders.menu({
           value: 'gamma-menu',
-          items: Arr.map([
+          items: [
             makeItem('gamma-1', 'Gamma-1', 'gamma-1'),
             makeItem('gamma-2', 'Gamma-2', 'gamma-2')
-          ], DemoRenders.item),
+          ].map(DemoRenders.item),
           textkey: 'gamma-menu'
         })
       },

@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { McEditor, TinyAssertions, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -89,11 +89,11 @@ describe('browser.hugerte.core.annotate.AnnotationPersistenceTest', () => {
   const contentContains = (editor: Editor, patterns: string[], isContained: boolean) => {
     const content = editor.getContent();
     if (isContained) {
-      Arr.each(patterns, (pattern) => {
+      patterns.forEach((pattern) =) {
         assert.include(content, pattern, 'editor.getContent() should contain: ' + pattern);
       });
     } else {
-      Arr.each(patterns, (pattern) => {
+      patterns.forEach((pattern) =) {
         assert.notInclude(content, pattern, 'editor.getContent() should not contain: ' + pattern);
       });
     }

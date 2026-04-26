@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, TestStore, UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -59,12 +59,12 @@ describe('browser.ui.dropdown.MatrixMenuTest', () => {
       (store, _doc, _body) => GuiFactory.build(
         Menu.sketch({
           value: 'test-menu-1',
-          items: Arr.map([
+          items: [
             { type: 'item', data: { value: 'alpha', meta: { }}, hasSubmenu: false },
             { type: 'item', data: { value: 'beta', meta: { }}, hasSubmenu: false },
             { type: 'item', data: { value: 'gamma', meta: { }}, hasSubmenu: false },
             { type: 'item', data: { value: 'delta', meta: { }}, hasSubmenu: false }
-          ], TestDropdownMenu.renderItem),
+          ].map(TestDropdownMenu.renderItem),
           dom: {
             tag: 'ol',
             classes: [ 'test-menu' ]
@@ -76,7 +76,7 @@ describe('browser.ui.dropdown.MatrixMenuTest', () => {
             Menu.parts.items({
               preprocess: (items: AlloySpec[]) => {
                 const chunks = Arr.chunk(items, 2);
-                return Arr.map(chunks, (c) => ({
+                return chunks.map((c) =) ({
                   dom: {
                     tag: 'div',
                     classes: [ 'row-class' ]
@@ -166,7 +166,7 @@ describe('browser.ui.dropdown.MatrixMenuTest', () => {
     const hook = makeGuiHook({
       mode: 'matrix',
       rowSelector: '.row-class',
-      previousSelector: (component) => Optional.some(UiFinder.findIn<HTMLElement>(component.element, 'li[data-value="beta"]').getOrDie())
+      previousSelector: (component) => UiFinder.findIn<HTMLElement>(component.element, 'li[data-value="beta"]').getOrDie()
     });
 
     it('TINY-9283: Position starts as expected', () => {

@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
@@ -15,7 +15,7 @@ describe('browser.hugerte.core.InlineEditorSaveTest', () => {
   const assertBogusNotExist = () => {
     UiFinder.findIn(SugarBody.body(), '[data-mce-bogus]').fold(() => {
       throw new Error('Should be data-mce-bogus tags present');
-    }, Fun.noop);
+    }, () => {});
   };
 
   it('Saving inline editor should not remove data-mce-bogus tags', () => {

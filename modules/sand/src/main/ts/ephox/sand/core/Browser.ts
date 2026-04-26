@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { Version } from '../detect/Version';
 import { UaInfo } from '../info/UaInfo';
@@ -49,10 +49,10 @@ const nu = (info: UaInfo): Browser => {
 export const Browser = {
   unknown,
   nu,
-  edge: Fun.constant(edge),
-  chromium: Fun.constant(chromium),
-  ie: Fun.constant(ie),
-  opera: Fun.constant(opera),
-  firefox: Fun.constant(firefox),
-  safari: Fun.constant(safari)
+  edge: () => edge,
+  chromium: () => chromium,
+  ie: () => ie,
+  opera: () => opera,
+  firefox: () => firefox,
+  safari: () => safari
 };

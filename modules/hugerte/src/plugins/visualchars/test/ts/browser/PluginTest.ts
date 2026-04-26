@@ -1,6 +1,6 @@
 import { ApproxStructure, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyHooks, TinyUiActions, TinySelections, TinyAssertions, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -47,7 +47,7 @@ describe('browser.hugerte.plugins.visualchars.PluginTest', () => {
     TinyUiActions.clickOnToolbar(editor, 'button');
     await Waiter.pTryUntil('wait for visual chars to disappear', () => assertStruct(editor, ApproxStructure.build((s, str) => [
       s.text(str.is('<img src="image.png">')),
-      s.text(str.is(Unicode.nbsp))
+      s.text(str.is('\u00A0'))
     ])));
   });
 
@@ -70,7 +70,7 @@ describe('browser.hugerte.plugins.visualchars.PluginTest', () => {
     TinyUiActions.clickOnToolbar(editor, 'button');
     await Waiter.pTryUntil('wait for visual chars to disappear', () => assertStruct(editor, ApproxStructure.build((s, str) => [
       s.text(str.is('abc\u00a0')),
-      s.text(str.is(Unicode.nbsp))
+      s.text(str.is('\u00A0'))
     ])));
 
     assert.isFalse(editor.selection.isForward(), 'should still be backwards');

@@ -1,7 +1,7 @@
 import { FocusTools, RealMouse } from '@ephox/agar';
 import { TestHelpers } from '@ephox/alloy';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { SugarDocument } from '@ephox/sugar';
 
@@ -51,7 +51,7 @@ describe('webdriver.hugerte.themes.silver.dialogs.DialogFocusTest', () => {
       initialData: {
         input1: 'Dog'
       }
-    }, { }, Fun.noop);
+    }, { }, () => {});
 
     await FocusTools.pTryOnSelector(
       'focus should start on input',

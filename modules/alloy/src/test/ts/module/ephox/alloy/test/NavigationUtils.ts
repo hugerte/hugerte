@@ -1,10 +1,10 @@
 import { FocusTools, GeneralSteps, Keyboard, Step, UiFinder, Waiter } from '@ephox/agar';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement, Traverse } from '@ephox/sugar';
 
 const range = <T, R>(num: number, f: (v: T, i: number) => R[]): R[] => {
   const array = new Array(num);
-  return Arr.bind(array, f);
+  return array.flatMap(f);
 };
 
 const sequence = <T>(doc: SugarElement<Document>, key: number, modifiers: { }, identifiers: Array<{ label: string; selector: string }>): Step<T, T> => {

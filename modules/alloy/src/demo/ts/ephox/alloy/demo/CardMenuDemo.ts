@@ -1,5 +1,5 @@
 import { Objects } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 import { Class, SelectorFind, SugarElement, Width } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -107,11 +107,11 @@ export default (): void => {
 
     onExecute: () => {
       console.log('Executing');
-      return Optional.some<boolean>(true);
+      return true;
     },
     onEscape: () => {
       console.log('Escaping');
-      return Optional.some<boolean>(true);
+      return true;
     },
     onOpenMenu: (container: AlloyComponent, menu: AlloyComponent) => {
       const w = Width.get(container.element);

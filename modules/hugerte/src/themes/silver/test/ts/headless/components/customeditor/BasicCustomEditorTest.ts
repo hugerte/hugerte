@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun, Global, Optional } from '@ephox/katamari';
+import { Cell, Global } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
 import Resource from 'hugerte/core/api/Resource';
@@ -31,7 +31,7 @@ describe('headless.hugerte.themes.silver.components.customeditor.BasicCustomEdit
           resolve({
             setValue: (s: string) => customEditorValue.set(s),
             getValue: () => customEditorValue.get(),
-            destroy: Fun.noop
+            destroy: () => {}
           });
         }
       }, 100);
@@ -51,7 +51,7 @@ describe('headless.hugerte.themes.silver.components.customeditor.BasicCustomEdit
       scriptId: 'BasicCustomEditorTest',
       scriptUrl: '/custom/404', // using the cache
       settings: undefined,
-      onFocus: Optional.none()
+      onFocus: null
     })
   ));
 

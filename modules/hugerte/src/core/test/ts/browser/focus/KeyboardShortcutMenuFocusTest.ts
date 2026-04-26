@@ -1,16 +1,16 @@
 import { FocusTools, Keys } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarDocument } from '@ephox/sugar';
 import { TinyContentActions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 describe('browser.hugerte.core.focus.KeyboardShortcutMenuFocusTest', () => {
 
-  Arr.each([
+  [
     { label: 'classic mode', options: {}},
     { label: 'inline mode', options: { inline: true }},
     { label: 'class bottom', options: { toolbar_location: 'bottom' }}
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(tester.label, () => {
       const hook = TinyHooks.bddSetup({
         statusbar: false,

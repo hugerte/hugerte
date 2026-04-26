@@ -1,6 +1,6 @@
 import { Keys, RealKeys, TestStore, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Type } from '@ephox/katamari';
+
 import { TinyAssertions, TinyContentActions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -32,7 +32,7 @@ describe('webdriver.hugerte.themes.silver.editor.AutocompleteDelayedResponseTest
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           setTimeout(() => {
             resolve(
-              Arr.map([ 'a', 'b', 'c', 'd' ], (letter) => ({
+              [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
                 value: `dollar-${letter}`,
                 text: `dollar-${letter}`,
                 icon: '$'
@@ -65,7 +65,7 @@ describe('webdriver.hugerte.themes.silver.editor.AutocompleteDelayedResponseTest
     );
     // Wait 50ms for the keypress handler to run
     await Waiter.pWait(50);
-    if (Type.isNonNullable(additionalContent)) {
+    if (additionalContent != null) {
       await RealKeys.pSendKeysOn(
         'iframe => body => p',
         [

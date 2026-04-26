@@ -1,4 +1,4 @@
-import { Arr, Future, Obj, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -103,7 +103,7 @@ export default (): void => {
         });
 
         return Future.pure(
-          Optional.some(TieredMenu.singleData('name', wMenu))
+          TieredMenu.singleData('name', wMenu)
         );
       },
       lazySink,
@@ -152,7 +152,7 @@ export default (): void => {
           items: [ wDoubleInput ]
         });
 
-        return Future.pure(menu).map(() => Optional.some(TieredMenu.singleData('demo.2.menu', menu)));
+        return Future.pure(menu).map(() => TieredMenu.singleData('demo.2.menu', menu));
       }
     })
   );
@@ -203,7 +203,7 @@ export default (): void => {
               items: [ wDoubleInput ]
             });
 
-            return Future.pure(menu).map(() => Optional.some(TieredMenu.singleData('demo.2.menu', menu)));
+            return Future.pure(menu).map(() => TieredMenu.singleData('demo.2.menu', menu));
           }
         })
       ]
@@ -234,12 +234,12 @@ export default (): void => {
         }
       },
       fetch: () => {
-        const data = Arr.map([
+        const data = [
           makeItem('alpha', '+Alpha'),
           makeItem('beta', '+Beta'),
           makeItem('gamma', '+Gamma'),
           makeItem('delta', '+Delta')
-        ], DemoRenders.gridItem);
+        ].map(DemoRenders.gridItem);
 
         const future = Future.pure(data);
         return future.map((items) => {
@@ -249,7 +249,7 @@ export default (): void => {
             columns: 2,
             rows: 2
           });
-          return Optional.some(TieredMenu.singleData('grid-list', menu));
+          return TieredMenu.singleData('grid-list', menu);
         });
       },
 
@@ -284,13 +284,13 @@ export default (): void => {
       matchWidth: true,
 
       fetch: () => {
-        const data = Arr.map([
+        const data = [
           makeItem('alpha', 'Alpha', 'class-alpha'),
           makeItem('beta', 'Beta', 'class-beta'),
           { type: 'separator', data: { value: 'text', meta: { text: '-- separator --' }}} as DemoRenders.DemoSeparatorItem,
           makeItem('gamma', 'Gamma', 'class-gamma'),
           makeItem('delta', 'Delta', 'class-delta')
-        ], DemoRenders.item);
+        ].map(DemoRenders.item);
 
         const future = Future.pure(data);
         return future.map((items) => {
@@ -298,7 +298,7 @@ export default (): void => {
             value: 'demo.4.menu',
             items
           });
-          return Optional.some(TieredMenu.singleData('basic-list', menu));
+          return TieredMenu.singleData('basic-list', menu);
         });
       },
       onExecute: (sandbox, item) => {
@@ -337,11 +337,11 @@ export default (): void => {
       fetch: () => {
         const future = Future.pure({
           primary: 'tools-menu',
-          menus: Obj.map({
+          menus: Object.fromEntries(Object.entries({
             'tools-menu': {
               value: 'tools-menu',
               text: 'tools-menu',
-              items: Arr.map([
+              items: [
                 makeItem('packages', 'Packages', ''),
                 makeItem('about', 'About Us', ''),
                 {
@@ -404,39 +404,39 @@ export default (): void => {
                     ])
                   })
                 } as DemoRenders.DemoWidgetItem
-              ], DemoRenders.item)
+              ].map(DemoRenders.item)
             },
             'packages-menu': {
               value: 'packages',
               text: 'packages',
-              items: Arr.map([
+              items: [
                 makeItem('sortby', 'SortBy', '')
-              ], DemoRenders.item)
+              ].map(DemoRenders.item)
             },
             'sortby-menu': {
               value: 'sortby',
               text: 'sortby',
-              items: Arr.map([
+              items: [
                 makeItem('strings', 'Strings', ''),
                 makeItem('numbers', 'Numbers', '')
-              ], DemoRenders.item)
+              ].map(DemoRenders.item)
             },
             'strings-menu': {
               value: 'strings',
               text: 'strings',
-              items: Arr.map([
+              items: [
                 makeItem('version', 'Versions', ''),
                 makeItem('alphabetic', 'Alphabetic', '')
-              ], DemoRenders.item)
+              ].map(DemoRenders.item)
             },
             'numbers-menu': {
               value: 'numbers',
               text: 'numbers',
-              items: Arr.map([
+              items: [
                 makeItem('doubled', 'Double Digits', '')
-              ], DemoRenders.item)
+              ].map(DemoRenders.item)
             }
-          }, DemoRenders.menu),
+          }).map(([k, v]) => [k, (DemoRenders.menu)(v, k)])),
           expansions: {
             packages: 'packages-menu',
             sortby: 'sortby-menu',
@@ -445,7 +445,7 @@ export default (): void => {
           }
         });
 
-        return future.map((f) => Optional.from(TieredMenu.tieredData(f.primary, f.menus, f.expansions)));
+        return future.map((f) => TieredMenu.tieredData(f.primary, f.menus, f.expansions) ?? null);
       }
     })
   );

@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Html } from '@ephox/sugar';
 import { McEditor, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -18,8 +18,8 @@ describe('browser.hugerte.plugins.help.CustomTabsTest', () => {
     editor.execCommand('mceHelp');
     const dialogEl = await TinyUiActions.pWaitForDialog(editor);
     const actualTabs = UiFinder.findAllIn<HTMLDivElement>(dialogEl, 'div.tox-dialog__body-nav-item.tox-tab');
-    const actualNames = Arr.map(actualTabs, (tab) => Html.get(tab));
-    Arr.map(expectedNames, (x, i) => {
+    const actualNames = actualTabs.map((tab) =) Html.get(tab));
+    expectedNames.map((x, i) =) {
       assert.equal(actualNames[i], x, 'Tab names did not match');
     });
   };

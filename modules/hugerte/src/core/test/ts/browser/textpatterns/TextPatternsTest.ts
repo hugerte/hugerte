@@ -1,6 +1,6 @@
 import { ApproxStructure, Keys } from '@ephox/agar';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -52,7 +52,7 @@ describe('browser.hugerte.core.textpatterns.TextPatternsTest', () => {
                 s.text(str.is('a\u00A0 '), true)
               ]
             }),
-            s.text(str.is(Unicode.nbsp), true)
+            s.text(str.is('\u00A0'), true)
           ]
         })
       ]);
@@ -87,7 +87,7 @@ describe('browser.hugerte.core.textpatterns.TextPatternsTest', () => {
                 })
               ]
             }),
-            s.text(str.is(Unicode.nbsp), true)
+            s.text(str.is('\u00A0'), true)
           ]
         })
       ]);

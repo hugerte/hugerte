@@ -1,6 +1,6 @@
 import { SimpleOrSketchSpec } from '@ephox/alloy';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { getAll as getAllOxide } from '@tinymce/oxide-icons-default';
 import { assert } from 'chai';
@@ -75,7 +75,7 @@ describe('browser.hugerte.themes.silver.icons.IconsTest', () => {
     });
 
     it('TINY-7782: should use fallback icon html if provided', () => {
-      const spec = Icons.render('invalid', iconSpec, iconProvider, Optional.some(myCustomIcon));
+      const spec = Icons.render('invalid', iconSpec, iconProvider, myCustomIcon);
       assertIconSpec(spec, myCustomIcon);
     });
 

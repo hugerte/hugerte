@@ -1,5 +1,5 @@
 import { describe, it, before, after } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -109,7 +109,7 @@ describe('browser.hugerte.plugins.link.ListOptionsTest', () => {
       { value: 'just one', text: 'Just One' }
     ]);
 
-    const rels = RelOptions.getRels(editor, Optional.some('initial-target'));
+    const rels = RelOptions.getRels(editor, 'initial-target');
     assert.deepEqual(
       rels.getOr([ ]),
       [

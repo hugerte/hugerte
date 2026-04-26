@@ -40,20 +40,20 @@ UnitTest.test('SelectorTest', () => {
 
   Checkers.checkOpt(Optional.none<SugarElement<Element>>(), Selectors.one('asdf'));
 
-  Checkers.checkOpt(Optional.some(TestPage.p1), SelectorFind.first('p'));
-  Checkers.checkOpt(Optional.some(TestPage.p1), Selectors.one('p'));
+  Checkers.checkOpt(TestPage.p1, SelectorFind.first('p'));
+  Checkers.checkOpt(TestPage.p1, Selectors.one('p'));
   Checkers.checkOpt(Optional.none<SugarElement<Element>>(), SelectorFind.sibling(TestPage.s1, 'p'));
-  Checkers.checkOpt(Optional.some(TestPage.s3), SelectorFind.sibling(TestPage.s4, 'span'));
+  Checkers.checkOpt(TestPage.s3, SelectorFind.sibling(TestPage.s4, 'span'));
   Checkers.checkOpt(Optional.none<SugarElement<Element>>(), SelectorFind.ancestor(TestPage.s1, 'li'));
-  Checkers.checkOpt(Optional.some(TestPage.container), SelectorFind.ancestor(TestPage.s4, 'div'));
-  Checkers.checkOpt(Optional.some(TestPage.s2), SelectorFind.descendant(TestPage.p2, 'span'));
-  Checkers.checkOpt(Optional.some(TestPage.s3), SelectorFind.descendant(TestPage.p2, 'span span'));
+  Checkers.checkOpt(TestPage.container, SelectorFind.ancestor(TestPage.s4, 'div'));
+  Checkers.checkOpt(TestPage.s2, SelectorFind.descendant(TestPage.p2, 'span'));
+  Checkers.checkOpt(TestPage.s3, SelectorFind.descendant(TestPage.p2, 'span span'));
   Checkers.checkOpt(Optional.none<SugarElement<Element>>(), SelectorFind.child(TestPage.p2, 'li'));
-  Checkers.checkOpt(Optional.some(TestPage.s1), SelectorFind.child(TestPage.p1, 'span'));
+  Checkers.checkOpt(TestPage.s1, SelectorFind.child(TestPage.p1, 'span'));
   Checkers.checkOpt(Optional.none<SugarElement<Element>>(), SelectorFind.closest(TestPage.p1, 'span'));
-  Checkers.checkOpt(Optional.some(TestPage.p1), SelectorFind.closest(TestPage.p1, 'p'));
-  Checkers.checkOpt(Optional.some(TestPage.p1), SelectorFind.closest(TestPage.s1, 'p'));
-  Checkers.checkOpt(Optional.some(TestPage.p1), SelectorFind.closest(TestPage.t1, 'p'));
+  Checkers.checkOpt(TestPage.p1, SelectorFind.closest(TestPage.p1, 'p'));
+  Checkers.checkOpt(TestPage.p1, SelectorFind.closest(TestPage.s1, 'p'));
+  Checkers.checkOpt(TestPage.p1, SelectorFind.closest(TestPage.t1, 'p'));
 
   Checkers.checkList([ TestPage.p1, TestPage.p3, TestPage.p2 ], SelectorFilter.all('p'));
   Checkers.checkList([ TestPage.p1, TestPage.p3, TestPage.p2 ], Selectors.all('p'));

@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+
 import { Attribute, Insert, Remove, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import Annotator from '../api/Annotator';
@@ -59,7 +59,7 @@ const appendStyle = (editor: Editor, text: string) => {
 const getRootName = (editor: Editor): string | undefined =>
   editor.inline ? editor.getElement().nodeName.toLowerCase() : undefined;
 
-const removeUndefined = <T>(obj: T): T => Obj.filter(obj as Record<string, unknown>, (v) => (v) === undefined === false) as T;
+const removeUndefined = <T>(obj: T): T => Object.fromEntries(Object.entries(obj as Record<string).filter(([k, v]) => (unknown>, (v) =)(v, k))) (v) === undefined === false) as T;
 
 const mkParserSettings = (editor: Editor): DomParserSettings => {
   const getOption = editor.options.get;

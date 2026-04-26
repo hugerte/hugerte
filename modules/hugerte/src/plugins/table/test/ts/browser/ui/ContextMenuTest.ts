@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -36,7 +36,7 @@ describe('browser.hugerte.plugins.table.ContextMenuTest', () => {
   const pressEnterKey = (editor: Editor) => TinyUiActions.keydown(editor, Keys.enter());
 
   const repeatDownArrowKey = (editor: Editor, index: number) =>
-    Arr.range(index, () => pressDownArrowKey(editor));
+    Array.from({ length: index }, () => pressDownArrowKey(editor));
 
   // 'index' points to the context menuitems while 'subindex' points to the sub menuitems
   const pSelectContextMenu = async (label: string, editor: Editor, selector: string, index: number, subindex: number) => {

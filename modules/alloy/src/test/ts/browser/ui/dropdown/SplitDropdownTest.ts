@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, Touch, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -23,7 +23,7 @@ UnitTest.asynctest('SplitDropdown List', (success, failure) => {
     Container.sketch({
       containerBehaviours: Behaviour.derive([
         Positioning.config({
-          useFixed: Fun.always
+          useFixed: () => true
         })
       ])
     })
@@ -111,9 +111,9 @@ UnitTest.asynctest('SplitDropdown List', (success, failure) => {
           return future.map((f) => {
             const menu = TestDropdownMenu.renderMenu({
               value: 'split-dropdown-test',
-              items: Arr.map(f, TestDropdownMenu.renderItem)
+              items: f.map(TestDropdownMenu.renderItem)
             });
-            return Optional.some(TieredMenu.singleData('test', menu));
+            return TieredMenu.singleData('test', menu);
           });
         }
       })

@@ -49,7 +49,7 @@ const assertInputValue = (label: string, selector: string, expected: string | bo
 
 const assertDialogContents = (expected: Record<string, any>): void => {
   Obj.mapToArray(selectors, (value, key) => {
-    if (Obj.has(expected, key)) {
+    if (Object.prototype.hasOwnProperty.call(expected, key)) {
       assertInputValue(key, value, expected[key]);
     }
   });

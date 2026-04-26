@@ -1,5 +1,5 @@
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Css, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -107,7 +107,7 @@ describe('ResizeTest', () => {
     // percentage width of this table is 100% but pixel maths can lead to rounding errors
     // in order for us to pass this test, we ensure that the difference between what we wanted (50%)
     // and the actual are within a tolerance of 1%
-    Arr.each([ 50, 50 ], (expected, i) => {
+    [ 50, 50 ].forEach((expected, i) =) {
       assert.approximately(widths[i], expected, 1);
     });
 

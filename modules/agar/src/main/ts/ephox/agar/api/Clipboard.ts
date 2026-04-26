@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Obj } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { SugarBody, SugarElement } from '@ephox/sugar';
 
 import { createCopyEvent, createCutEvent, createPasteEvent } from '../clipboard/ClipboardEvents';
@@ -28,14 +28,14 @@ const pasteDataTransfer = (target: SugarElement<Element>, mutator: (dataTransfer
 
 const pasteItems = (target: SugarElement<Element>, items: Record<string, string>): void =>
   pasteDataTransfer(target, (dataTransfer) => {
-    Obj.each(items, (data, mime) => {
+    Object.entries(items).forEach(([k, v]) => ((data, mime) =)(v, k)) {
       dataTransfer.setData(mime, data);
     });
   });
 
 const pasteFiles = (target: SugarElement<Element>, files: File[]): void =>
   pasteDataTransfer(target, (dataTransfer) => {
-    Arr.each(files, (file) => {
+    files.forEach((file) =) {
       dataTransfer.items.add(file);
     });
   });
@@ -71,7 +71,7 @@ const sPasteFiles = <T>(files: File[], selector: string): Step<T, T> =>
   ]));
 
 const pPasteUrlItems = async (target: SugarElement<Element>, items: PasteUrlItem[]): Promise<void> => {
-  const dataItems = await Promise.all(Arr.map(items, async (item) => {
+  const dataItems = await Promise.all(items.map(async (item) =) {
     const resp = await window.fetch(item.url);
 
     if (resp.ok) {
@@ -90,7 +90,7 @@ const pPasteUrlItems = async (target: SugarElement<Element>, items: PasteUrlItem
   }));
 
   pasteDataTransfer(target, (dataTransfer) => {
-    Arr.each(dataItems, (dataItem) => {
+    dataItems.forEach((dataItem) =) {
       if (dataItem.kind === 'string') {
         dataTransfer.items.add(dataItem.text, dataItem.mime);
       } else {

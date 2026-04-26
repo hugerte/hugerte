@@ -46,7 +46,7 @@ UnitTest.test('WalkerPathTest', () => {
   const checkPath = (expected: string[], id: string, direction: Direction) => {
     const start = Finder.get(universe, id);
     let path: string[] = [];
-    let current: Optional<Traverse<Gene>> = Optional.some({ item: start, mode: Walker.advance });
+    let current: Optional<Traverse<Gene>> = { item: start, mode: Walker.advance };
     while (current.isSome()) {
       const c = current.getOrDie();
       path = path.concat(c.item.id);

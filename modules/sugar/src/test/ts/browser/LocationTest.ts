@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
@@ -74,7 +74,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
           rtl: iframeDoc.body.dir === 'rtl',
           dir: Attribute.get(body, 'dir') || 'ltr',
           byId: (str) => {
-            return Optional.from(iframeDoc.getElementById(str))
+            return iframeDoc.getElementById(str) ?? null
               .map(SugarElement.fromDom)
               .getOrDie('cannot find element with id ' + str);
           }
@@ -96,21 +96,21 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
 
   testOne(ifr, { // vanilla iframe
     iframe: { id: 'vanilla', style: 'height:200px; width:500px; border: 1px dashed chartreuse;' },
-    html: Optional.none(),
-    body: Optional.some<AttrMap>({ contenteditable: 'true', style: 'margin: 0; padding: 5px;' })
+    html: null,
+    body: { contenteditable: 'true', style: 'margin: 0; padding: 5px;' }
   },
   () => {
     testOne(ifr, { // rtl iframe
       iframe: { id: 'ifrRtl', style: 'height:200px; width:500px; border: 1px dashed turquoise;' },
-      html: Optional.none(),
-      body: Optional.some<AttrMap>({ dir: 'rtl', contenteditable: 'true', style: 'margin: 0; padding: 5px;' })
+      html: null,
+      body: { dir: 'rtl', contenteditable: 'true', style: 'margin: 0; padding: 5px;' }
     },
     success);
   });
 
   const checks = (doc: TestDocSpec) => {
 
-    Arr.each([
+    [
       baseChecks,
       disconnectedChecks,
       absoluteChecks,
@@ -119,7 +119,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
       tableChecks,
       fixedChecks, // recommend making these last, as they adjust the iframe scroll
       bodyChecks
-    ], (f) => {
+    ].forEach((f) =) {
       f(doc);
     });
   };
@@ -331,7 +331,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
     // Firefox 71 has also started behaving the same as chrome
     if (platform.browser.isChromium() || platform.browser.isFirefox() && platform.browser.version.major >= 71) {
       const chromeDifference = -2;
-      Arr.each(tests, (t) => {
+      tests.forEach((t) =) {
         if (t.id !== 'table-1') {
           // eslint-disable-next-line no-console
           console.log('> Note - fix for Chrome bug - subtracting from relative top and left: ', chromeDifference);
@@ -432,7 +432,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
 
   /* Simple verification logic */
   const runChecks = (doc: TestDocSpec, tests: CheckSpec[]) => {
-    Arr.each(tests, (t) => {
+    tests.forEach((t) =) {
       const div = doc.byId(t.id);
 
       let pos = SugarLocation.absolute(div);

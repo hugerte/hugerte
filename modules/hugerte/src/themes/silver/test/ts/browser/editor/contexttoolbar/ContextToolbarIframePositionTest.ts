@@ -1,6 +1,6 @@
 import { Keys, UiFinder, Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Css, Scroll, SugarBody } from '@ephox/sugar';
 import { TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -40,7 +40,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarIFra
     setup: (ed: Editor) => {
       ed.ui.registry.addButton('alpha', {
         text: 'Alpha',
-        onAction: Fun.noop
+        onAction: () => {}
       });
       ed.ui.registry.addContextToolbar('test-selection-toolbar', {
         predicate: (node) => node.nodeName.toLowerCase() === 'a',
@@ -317,7 +317,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarIFra
     editor.setContent(
       '<table style="width: 100%; border-collapse: collapse;">' +
       '<tbody>' +
-      Arr.range(10, (i) => `<tr><td>Cell ${i + 1}</td></tr>`).join('') +
+      Array.from({ length: 10 }, (i) => `<tr><td>Cell ${i + 1}</td></tr>`).join('') +
       '</tbody>' +
       '</table>'
     );
@@ -350,7 +350,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarIFra
       '<p style="padding-top: 200px"></p>' +
       '<table style="width: 100%; border-collapse: collapse;">' +
       '<tbody>' +
-      Arr.range(10, (i) => `<tr style="height: 22px"><td>Cell ${i + 1}</td></tr>`).join('') +
+      Array.from({ length: 10 }, (i) => `<tr style="height: 22px"><td>Cell ${i + 1}</td></tr>`).join('') +
       '</tbody>' +
       '</table>'
     );

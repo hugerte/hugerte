@@ -1,4 +1,4 @@
-import { Fun, Id } from '@ephox/katamari';
+
 import { Attribute, SugarElement } from '@ephox/sugar';
 
 import * as SeleniumAction from '../server/SeleniumAction';
@@ -41,10 +41,10 @@ const cAction = (action: string) =>
   ]);
 
 const cClick = (): Chain<SugarElement<Element>, SugarElement<Element>> =>
-  Chain.fromParent(Chain.mapper(Fun.identity), [
+  Chain.fromParent(Chain.mapper((x) => x), [
     Chain.fromChains([
       Chain.mapper((elem: SugarElement<Element>) => {
-        const id = Id.generate('');
+        const id = '_' + Math.random().toString(36).slice(2);
         Attribute.set(elem, BedrockIdAttribute, id);
         return `[${BedrockIdAttribute}="${id}"]`;
       }),
@@ -62,7 +62,7 @@ const pRightClickOn = (selector: string): Promise<{}> =>
   pActionOn(selector, 'rightClick');
 
 const pClick = async (elem: SugarElement<Element>): Promise<{}> => {
-  const id = Id.generate('');
+  const id = '_' + Math.random().toString(36).slice(2);
   Attribute.set(elem, BedrockIdAttribute, id);
   const selector = `[${BedrockIdAttribute}="${id}"]`;
   try {

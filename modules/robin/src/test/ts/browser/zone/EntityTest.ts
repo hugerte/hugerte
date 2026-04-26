@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -12,7 +12,7 @@ describe('browser.robin.zone.EntityTest', () => {
     const zones = DomTextZones.single(content, 'en-US', ZoneViewports.anything());
     const rawZones = zones.zones.map((z) => ({ lang: z.lang, words: z.words.map((w) => w.word) }));
     assert.deepEqual(rawZones, [
-      { lang: 'en-US', words: [ 'some', 'plain', 'words', 'and', 'a', `hy${Unicode.softHyphen}phenated`, 'word' ] }
+      { lang: 'en-US', words: [ 'some', 'plain', 'words', 'and', 'a', `hy${'\u00AD'}phenated`, 'word' ] }
     ]);
   });
 
@@ -21,7 +21,7 @@ describe('browser.robin.zone.EntityTest', () => {
     const zones = DomTextZones.single(content, 'en-US', ZoneViewports.anything());
     const rawZones = zones.zones.map((z) => ({ lang: z.lang, words: z.words.map((w) => w.word) }));
     assert.deepEqual(rawZones, [
-      { lang: 'en-US', words: [ 'some', 'plain', 'words', 'with', `some${Unicode.zeroWidth}space` ] }
+      { lang: 'en-US', words: [ 'some', 'plain', 'words', 'with', `some${'\uFEFF'}space` ] }
     ]);
   });
 

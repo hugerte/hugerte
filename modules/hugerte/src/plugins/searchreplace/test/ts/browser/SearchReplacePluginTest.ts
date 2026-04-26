@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyApis, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -200,7 +200,7 @@ describe('browser.hugerte.plugins.searchreplace.SearchReplacePluginTest', () => 
   });
 
   it('TINY-4599: SearchReplace: Excludes zwsp characters', () => {
-    const content = `<p>a${Unicode.zeroWidth} b${Unicode.zeroWidth} a</p>`;
+    const content = `<p>a${'\uFEFF'} b${'\uFEFF'} a</p>`;
     const editor = hook.editor();
     TinyApis(editor).setRawContent(content);
     assert.equal(editor.plugins.searchreplace.find(' '), 2);

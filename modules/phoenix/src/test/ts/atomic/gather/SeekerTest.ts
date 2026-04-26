@@ -63,8 +63,8 @@ UnitTest.test('Seeker Test', () => {
   checkBefore(some('aab'), 'aac');
   checkBefore(some('aaa'), 'aab');
 
-  checkBefore(Optional.none(), 'aaa');
-  checkBefore(Optional.none(), 'aa');
+  checkBefore(null, 'aaa');
+  checkBefore(null, 'aa');
   checkBefore(some('aac'), 'aba');
   checkBefore(some('aba'), 'abb');
   checkBefore(some('abb'), 'ba');
@@ -82,5 +82,5 @@ UnitTest.test('Seeker Test', () => {
   checkAfter(some('cb'), 'caaa');
   checkAfter(some('cca'), 'cb');
   checkAfter(some('d'), 'cca');
-  checkAfter(Optional.none(), 'd');
+  checkAfter(null, 'd');
 });

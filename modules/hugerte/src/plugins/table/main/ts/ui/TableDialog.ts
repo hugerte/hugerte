@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+
 import { TableLookup } from '@ephox/snooker';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -118,8 +118,8 @@ const onSubmitTableForm = (editor: Editor, tableElm: HTMLTableElement | null | u
 
   editor.undoManager.transact(() => {
     if (!tableElm) {
-      const cols = Strings.toInt(data.cols as string) ?? (1);
-      const rows = Strings.toInt(data.rows as string) ?? (1);
+      const cols = parseInt(data.cols as string, 10) ?? (1);
+      const rows = parseInt(data.rows as string, 10) ?? (1);
       // Cases 1 & 3 - inserting a table
       editor.execCommand('mceInsertTable', false, { rows, columns: cols });
       tableElm = TableSelection.getSelectionCell(Utils.getSelectionStart(editor), Utils.getIsRoot(editor))

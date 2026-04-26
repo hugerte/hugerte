@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Compare, Css, Html } from '@ephox/sugar';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
@@ -31,7 +31,7 @@ UnitTest.asynctest('InlineViewTest', (success, failure) => {
         },
 
         getRelated: () => {
-          return Optional.some(related);
+          return related;
         }
         // onEscape: store.adderH('inline.escape')
       })
@@ -219,9 +219,9 @@ UnitTest.asynctest('InlineViewTest', (success, failure) => {
               return future.map((f) => {
                 const menu = TestDropdownMenu.renderMenu({
                   value: 'inline-view-test',
-                  items: Arr.map(f, TestDropdownMenu.renderItem)
+                  items: f.map(TestDropdownMenu.renderItem)
                 });
-                return Optional.some(TieredMenu.singleData('test', menu));
+                return TieredMenu.singleData('test', menu);
               });
             }
           });

@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import * as TableOperations from 'ephox/snooker/api/TableOperations';
 import { TableSection } from 'ephox/snooker/api/TableSection';
@@ -10,7 +10,7 @@ UnitTest.test('HeaderOperationsTest', () => {
   const testSingleRowSection = () => {
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
         '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -26,7 +26,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><th scope="col">' +
         '<table><tbody>' +
@@ -52,7 +52,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -68,7 +68,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><td>' +
         '<table><tbody>' +
@@ -94,7 +94,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><thead>' +
         '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
         '</thead>' +
@@ -114,7 +114,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><thead>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '</thead>' +
@@ -134,7 +134,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><thead>' +
         '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
         '</thead>' +
@@ -154,7 +154,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 1, row: 0, column: 1 }),
+      { section: 1, row: 0, column: 1 },
       '<table><thead>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '</thead>' +
@@ -174,7 +174,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
         '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -190,7 +190,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TINY-6666: Convert body to header (section cells)',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table>' +
       '<thead><tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr></thead>' +
       '<tbody><tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr></tbody>' +
@@ -206,7 +206,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TINY-6666: Convert body to header (section)',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table>' +
       '<thead><tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr></thead>' +
       '<tbody><tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr></tbody>' +
@@ -222,7 +222,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TINY-6666: Convert body to footer (section)',
-      Optional.some({ section: 1, row: 0, column: 1 }),
+      { section: 1, row: 0, column: 1 },
       '<table>' +
       '<tbody><tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr></tbody>' +
       '<tfoot><tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr></tfoot>' +
@@ -238,7 +238,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TINY-6666: Convert header to footer (section cells)',
-      Optional.some({ section: 1, row: 0, column: 1 }),
+      { section: 1, row: 0, column: 1 },
       '<table>' +
       '<tbody><tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr></tbody>' +
       '<tfoot><tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr></tfoot>' +
@@ -254,7 +254,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TINY-7709: Convert single row with colspan to header',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
       '<tr><th colspan="2" scope="colgroup">A1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
       '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -272,7 +272,7 @@ UnitTest.test('HeaderOperationsTest', () => {
   const testMultipleRowSection = () => {
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
         '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -292,7 +292,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><th scope="col">' +
         '<table><tbody>' +
@@ -322,7 +322,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -342,7 +342,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><td>' +
         '<table><tbody>' +
@@ -372,7 +372,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><thead>' +
         '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
         '</thead>' +
@@ -396,7 +396,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><thead>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '</thead>' +
@@ -420,7 +420,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><thead>' +
         '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
         '</thead>' +
@@ -444,7 +444,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 1, row: 0, column: 1 }),
+      { section: 1, row: 0, column: 1 },
       '<table><thead>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '</thead>' +
@@ -468,7 +468,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
         '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
         '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -488,7 +488,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table>' +
         '<thead>' +
           '<tr>' +
@@ -539,7 +539,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table>' +
         '<tbody>' +
           '<tr>' +
@@ -590,7 +590,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-6666: Footer rows to header rows (section cells)',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><thead>' +
       '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
       '<tr><th scope="col">A2</th><th scope="col">B2</th><th scope="col">C2</th><th scope="col">D2</th></tr>' +
@@ -617,7 +617,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-6666: Body rows to footer rows (section)',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tfoot>' +
       '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
       '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -644,7 +644,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-6666: Header rows to footer rows (section cells)',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tfoot>' +
       '<tr><td>A1</td><td>B1</td><td rowspan="2">C1</td><td>D1</td></tr>' +
       '<tr><td>A2</td><td>B2</td><td>D2</td></tr>' +
@@ -673,7 +673,7 @@ UnitTest.test('HeaderOperationsTest', () => {
   const testSingleColumnHeader = () => {
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
       '<table><tbody>' +
         '<tr><th scope="row">A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '<tr><th scope="row">A2</th><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -689,7 +689,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
       '<table><tbody>' +
         '<tr><th scope="row">' +
         '<table><tbody>' +
@@ -715,7 +715,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
       '<table><tbody>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -731,7 +731,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
       '<table><tbody>' +
         '<tr><td>' +
         '<table><tbody>' +
@@ -757,7 +757,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table><thead>' +
         '<tr><th scope="row">A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '</thead>' +
@@ -777,7 +777,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TBA',
-      Optional.some({ section: 1, row: 0, column: 0 }),
+      { section: 1, row: 0, column: 0 },
       '<table><thead>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '</thead>' +
@@ -797,7 +797,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'Check that locked column is not converted to a header column',
-      Optional.none(),
+      null,
       generateTestTable(
         [
           '<tr><td>A1</td><td>B1</td></tr>',
@@ -821,7 +821,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TINY-6765: Check that locked header column is not converted to a normal column',
-      Optional.none(),
+      null,
       generateTestTable(
         [
           '<tr><th scope="row">A1</th><td>B1</td></tr>',
@@ -845,7 +845,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'TINY-7709: Convert single column with rowspan to header',
-      Optional.some({ section: 0, row: 2, column: 0 }),
+      { section: 0, row: 2, column: 0 },
       '<table><tbody>' +
       '<tr><th rowspan="2" scope="rowgroup">A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
       '<tr><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -865,7 +865,7 @@ UnitTest.test('HeaderOperationsTest', () => {
   const testMultipleColumnHeader = () => {
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
       '<table><tbody>' +
         '<tr><th scope="row">A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '<tr><th scope="row">A2</th><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -885,7 +885,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
       '<table><tbody>' +
         '<tr><th scope="row">' +
         '<table><tbody>' +
@@ -915,7 +915,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
       '<table><tbody>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -935,7 +935,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
       '<table><tbody>' +
         '<tr><td>' +
         '<table><tbody>' +
@@ -965,7 +965,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table><thead>' +
         '<tr><th scope="row">A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '</thead>' +
@@ -989,7 +989,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 1, row: 0, column: 0 }),
+      { section: 1, row: 0, column: 0 },
       '<table><thead>' +
         '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
         '</thead>' +
@@ -1013,7 +1013,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 1, row: 0, column: 0 }),
+      { section: 1, row: 0, column: 0 },
       '<table>' +
         '<thead>' +
           '<tr>' +
@@ -1068,7 +1068,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TBA',
-      Optional.some({ section: 1, row: 0, column: 0 }),
+      { section: 1, row: 0, column: 0 },
       '<table>' +
         '<thead>' +
           '<tr>' +
@@ -1123,7 +1123,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-6765: Check that locked columns in the selection are not converted to header columns',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
 
       generateTestTable(
         [
@@ -1154,7 +1154,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-6765: Check that locked header columns are not converted to normal columns',
-      Optional.some({ section: 0, row: 1, column: 0 }),
+      { section: 0, row: 1, column: 0 },
 
       generateTestTable(
         [
@@ -1187,7 +1187,7 @@ UnitTest.test('HeaderOperationsTest', () => {
   const testSingleCellHeader = () => {
     Assertions.checkOld(
       'Convert single regular cell to header cell',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
       '<tr><td>A1</td><th>B1</th><td>C1</td><td>D1</td></tr>' +
       '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -1203,7 +1203,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'Convert single regular cell with colspan to header cell',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
       '<tr><td>A1</td><th colspan="2">B1</th><td>D1</td></tr>' +
       '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -1219,7 +1219,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'Convert single header cell to regular cell',
-      Optional.some({ section: 1, row: 0, column: 1 }),
+      { section: 1, row: 0, column: 1 },
       '<table><thead>' +
       '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
       '</thead>' +
@@ -1239,7 +1239,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOld(
       'Convert single header cell with scope to regular cell',
-      Optional.some({ section: 1, row: 0, column: 1 }),
+      { section: 1, row: 0, column: 1 },
       '<table><thead>' +
       '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
       '</thead>' +
@@ -1261,7 +1261,7 @@ UnitTest.test('HeaderOperationsTest', () => {
   const testMultipleCellHeader = () => {
     Assertions.checkOldMultiple(
       'Convert multiple regular cells to header cells',
-      Optional.some({ section: 0, row: 0, column: 1 }),
+      { section: 0, row: 0, column: 1 },
       '<table><tbody>' +
       '<tr><td>A1</td><th>B1</th><th>C1</th><th>D1</th></tr>' +
       '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -1281,7 +1281,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'Convert multiple header cells to regular cells',
-      Optional.some({ section: 0, row: 0, column: 2 }),
+      { section: 0, row: 0, column: 2 },
       '<table><thead>' +
       '<tr><th>A1</th><th>B1</th><td>C1</td><td>D1</td></tr>' +
       '</thead>' +
@@ -1304,7 +1304,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'Convert multiple header cells with scope to regular cell',
-      Optional.some({ section: 1, row: 0, column: 0 }),
+      { section: 1, row: 0, column: 0 },
       '<table><thead>' +
       '<tr><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
       '</thead>' +
@@ -1329,7 +1329,7 @@ UnitTest.test('HeaderOperationsTest', () => {
   const testMixedHeaders = () => {
     Assertions.checkOldMultiple(
       'TINY-7709: Convert regular column to header column with an existing header row',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table><tbody>' +
       '<tr><th scope="row">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
       '<tr><th scope="row">A2</th><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -1351,7 +1351,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-7709: Convert header column to regular column with an existing header row',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table><tbody>' +
       '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
       '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -1373,7 +1373,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-7709: Convert header column to regular column with an existing thead section header row',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table><thead>' +
       '<tr><td>A1</td><td>B1</td><th>C1</th><th>D1</th></tr>' +
       '</thead><tbody>' +
@@ -1397,7 +1397,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-7709: Convert regular row to header row with an existing header column',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table><tbody>' +
       '<tr><th scope="col">A1</th><th scope="col">B1</th><th scope="col">C1</th><th scope="col">D1</th></tr>' +
       '<tr><td>A2</td><th scope="row">B2</th><td>C2</td><td>D2</td></tr>' +
@@ -1420,7 +1420,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-7709: Convert header row to regular row with an existing header column',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table><tbody>' +
       '<tr><td>A1</td><th scope="row">B1</th><td>C1</td><td>D1</td></tr>' +
       '<tr><td>A2</td><th scope="row">B2</th><td>C2</td><td>D2</td></tr>' +
@@ -1443,7 +1443,7 @@ UnitTest.test('HeaderOperationsTest', () => {
 
     Assertions.checkOldMultiple(
       'TINY-7709: Convert header row with rowspan to regular row with an existing header column',
-      Optional.some({ section: 0, row: 0, column: 0 }),
+      { section: 0, row: 0, column: 0 },
       '<table><tbody>' +
       '<tr><th rowspan="2" scope="rowgroup">A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
       '<tr><td>B2</td><td>C2</td><td>D2</td></tr>' +

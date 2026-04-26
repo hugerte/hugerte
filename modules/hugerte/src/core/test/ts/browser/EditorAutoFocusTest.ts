@@ -1,5 +1,5 @@
 import { context, describe, it, before, afterEach, after } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Insert, Remove, Selectors, SugarBody, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -60,10 +60,10 @@ describe.skip('browser.hugerte.core.EditorAutoFocusTest', () => {
     assert.isTrue(isInViewport(editor));
   };
 
-  Arr.each([
+  [
     { label: 'Iframe Editor', settings: {}},
     { label: 'Inline Editor', settings: { inline: true }},
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(tester.label, () => {
       it('TINY-8785: should autofocus the first editor and skip scrolling', async () => {
         await pTestEditorAutoFocus('mce_0', tester.settings);

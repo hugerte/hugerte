@@ -1,6 +1,6 @@
 import { ApproxStructure, Cursors } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement, SugarNode } from '@ephox/sugar';
 import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -36,14 +36,14 @@ describe('browser.hugerte.models.dom.table.command.CommandsOnLockedColumnsTest',
   const defaultEvents = [ 'tablemodified' ];
   const assertEvents = (expectedEvents: string[] = defaultEvents) => {
     if (events.length > 0) {
-      Arr.each(events, (event) => {
+      events.forEach((event) =) {
         const tableElm = SugarElement.fromDom(event.table);
         assert.isFalse(event.structure, 'Commands do not modify table structure');
         assert.isTrue(event.style, 'Commands modify table style');
         assert.isTrue(SugarNode.isTag('table')(tableElm), 'Expected table in event');
       });
     }
-    assert.deepEqual(Arr.map(events, (event) => event.type), expectedEvents, 'Expected events should have been fired');
+    assert.deepEqual(events.map((event) =) event.type), expectedEvents, 'Expected events should have been fired');
   };
 
   const table = (lockedColumns: number[] = [ 0 ]) =>

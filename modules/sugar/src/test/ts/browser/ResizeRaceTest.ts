@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
 import * as Remove from 'ephox/sugar/api/dom/Remove';
@@ -13,7 +13,7 @@ UnitTest.asynctest('ResizeRaceTest', (success, failure) => {
   const div = SugarElement.fromTag('div');
   Insert.append(SugarBody.body(), div);
 
-  const handler = Fun.noop;
+  const handler = () => {};
   Resize.bind(div, handler);
   Remove.remove(div);
   Resize.unbind(div, handler);

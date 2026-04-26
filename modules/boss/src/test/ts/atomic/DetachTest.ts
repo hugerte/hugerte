@@ -10,13 +10,13 @@ import * as Tracks from 'ephox/boss/mutant/Tracks';
 UnitTest.test('DetachTest', () => {
 
   const check = (expectedRemain: string, expectedDetach: Optional<string>, input: Gene, id: string) => {
-    const family = Tracks.track(input, Optional.none());
+    const family = Tracks.track(input, null);
     const actualDetach = Detach.detach(family, Gene(id, '.'));
     Assert.eq('expectedRemain', expectedRemain, Logger.basic(family));
     KAssert.eqOptional('expectedDetach', expectedDetach, actualDetach.map(Logger.basic));
   };
 
-  check('A(B)', Optional.some('C(D(E),F)'),
+  check('A(B)', 'C(D(E),F)',
     Gene('A', '.', [
       Gene('B', '.', []),
       Gene('C', '.', [
@@ -27,7 +27,7 @@ UnitTest.test('DetachTest', () => {
       ])
     ]), 'C');
 
-  check('A(B,C(D(E)))', Optional.some('F'),
+  check('A(B,C(D(E)))', 'F',
     Gene('A', '.', [
       Gene('B', '.', []),
       Gene('C', '.', [
@@ -38,7 +38,7 @@ UnitTest.test('DetachTest', () => {
       ])
     ]), 'F');
 
-  check('A(B,C(F))', Optional.some('D(E)'),
+  check('A(B,C(F))', 'D(E)',
     Gene('A', '.', [
       Gene('B', '.'),
       Gene('C', '.', [
@@ -49,7 +49,7 @@ UnitTest.test('DetachTest', () => {
       ])
     ]), 'D');
 
-  check('A(B,C(D(E),F))', Optional.none(),
+  check('A(B,C(D(E),F))', null,
     Gene('A', '.', [
       Gene('B', '.'),
       Gene('C', '.', [
@@ -60,7 +60,7 @@ UnitTest.test('DetachTest', () => {
       ])
     ]), 'Z');
 
-  check('A(B,C(D(E)))', Optional.some('F'),
+  check('A(B,C(D(E)))', 'F',
     Gene('A', '.', [
       Gene('B', '.'),
       Gene('C', '.', [

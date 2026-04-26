@@ -1,6 +1,6 @@
 import { Keys, UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SelectorFind } from '@ephox/sugar';
 import { TinyContentActions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 
@@ -170,7 +170,7 @@ describe('browser.hugerte.models.dom.table.UnmergeCellTableResizeTest', () => {
             '</tbody>' +
           '</table>',
 
-    select: Fun.noop
+    select: () => {}
   };
 
   const selectedRow: Scenario = {

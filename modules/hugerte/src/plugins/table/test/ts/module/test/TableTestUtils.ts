@@ -6,7 +6,7 @@
  */
 
 import { ApproxStructure, Assertions, Cursors, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
-import { Arr, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { Attribute, Checked, Class, Insert, SelectorFind, SugarBody, SugarElement, TextContent, Value } from '@ephox/sugar';
 import { TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -123,7 +123,7 @@ const gotoAdvancedTab = (): void => {
 
 const setTabInputValues = (data: Record<string, any>, tabSelectors: Record<string, string>): void => {
   Obj.mapToArray(tabSelectors, (value, key) => {
-    if (Obj.has(data, key)) {
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
       setInputValue(tabSelectors[key], data[key]);
     }
   });
@@ -142,7 +142,7 @@ const setDialogValues = (data: Record<string, any>, hasAdvanced: boolean, genera
 
 const assertTabContents = (data: Record<string, any>, tabSelectors: Record<string, string>): void => {
   Obj.mapToArray(tabSelectors, (value, key) => {
-    if (Obj.has(data, key)) {
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
       assertInputValue(key, value, data[key]);
     }
   });
@@ -232,7 +232,7 @@ const createTableChildren = (s: ApproxStructure.StructApi, str: ApproxStructure.
 
 const createRow = (cellContents: string[]): SugarElement<HTMLTableRowElement> => {
   const tr = SugarElement.fromTag('tr');
-  Arr.each(cellContents, (content) => {
+  cellContents.forEach((content) =) {
     const td = SugarElement.fromTag('td');
     TextContent.set(td, content);
     Insert.append(tr, td);

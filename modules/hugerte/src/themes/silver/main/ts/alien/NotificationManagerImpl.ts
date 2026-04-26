@@ -1,5 +1,5 @@
 import { Boxes, Gui, GuiFactory, InlineView, Layout, MaxHeight, NodeAnchorSpec } from '@ephox/alloy';
-import { Num } from '@ephox/katamari';
+
 import { SugarBody, SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -28,8 +28,8 @@ export default (editor: Editor, extras: Extras, uiMothership: Gui.GuiSystem): No
      */
     const contentArea = Boxes.box(SugarElement.fromDom(editor.getContentAreaContainer()));
     const win = Boxes.win();
-    const x = Num.clamp(win.x, contentArea.x, contentArea.right);
-    const y = Num.clamp(win.y, contentArea.y, contentArea.bottom);
+    const x = Math.min(Math.max(win.x, contentArea.x), contentArea.right);
+    const y = Math.min(Math.max(win.y, contentArea.y), contentArea.bottom);
     const right = Math.max(contentArea.right, win.right);
     const bottom = Math.max(contentArea.bottom, win.bottom);
     return Boxes.bounds(x, y, right - x, bottom - y);

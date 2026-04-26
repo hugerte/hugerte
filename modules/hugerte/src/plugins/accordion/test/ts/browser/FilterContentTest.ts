@@ -1,6 +1,6 @@
 import { ApproxStructure, StructAssert, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type, Unicode } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -36,8 +36,8 @@ describe('browser.hugerte.plugins.accordion.FilterContentTest', () => {
     return s.element('details', {
       exactClasses: [ 'mce-accordion' ],
       exactAttrs: {
-        ...Type.isNullable(open) || open === true ? { open: str.is('open') } : {},
-        ...Type.isNullable(isSelected) || isSelected === true ? { 'data-mce-selected': str.is('1') } : {}
+        ...open == null || open === true ? { open: str.is('open') } : {},
+        ...isSelected == null || isSelected === true ? { 'data-mce-selected': str.is('1') } : {}
       },
       children: [
         s.element('summary', {
@@ -57,9 +57,9 @@ describe('browser.hugerte.plugins.accordion.FilterContentTest', () => {
   const buildContentStructure = (contentStructure: ContentStructure) => {
     const { before, accordion, after } = contentStructure;
     return ApproxStructure.build((s, str, arr) => {
-      const beforeStruct = Type.isNonNullable(before) ? [ before(s, str, arr) ] : [];
+      const beforeStruct = before != null ? [ before(s, str, arr) ] : [];
       const accordionStruct = [ accordion(s, str, arr) ];
-      const afterStruct = Type.isNonNullable(after) ? [ after(s, str, arr) ] : [];
+      const afterStruct = after != null ? [ after(s, str, arr) ] : [];
       return s.element('body', {
         children: [
           ...beforeStruct,
@@ -115,11 +115,11 @@ describe('browser.hugerte.plugins.accordion.FilterContentTest', () => {
       TinyAssertions.assertContentStructure(
         editor,
         buildContentStructure({
-          before: () => ApproxStructure.fromHtml(`<p>blah1${browser.isSafari() ? ' ' : Unicode.nbsp}</p>`),
+          before: () => ApproxStructure.fromHtml(`<p>blah1${browser.isSafari() ? ' ' : '\u00A0'}</p>`),
           accordion: buildAccordionStructure({
             summary: 'Test'
           }),
-          after: () => ApproxStructure.fromHtml(`<p>${browser.isSafari() ? Unicode.nbsp : ' '}blah2</p>`),
+          after: () => ApproxStructure.fromHtml(`<p>${browser.isSafari() ? '\u00A0' : ' '}blah2</p>`),
         })
       );
     });

@@ -1,6 +1,6 @@
 import { ApproxStructure, Keyboard, Keys } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -24,7 +24,7 @@ describe('browser.hugerte.core.delete.CefDeleteNoneditableTest', () => {
             children: [
               s.element('span', {
                 children: [
-                  s.text(str.is(Unicode.nbsp + 'b'))
+                  s.text(str.is('\u00A0' + 'b'))
                 ]
               }),
               s.text(str.is(' c'))
@@ -58,7 +58,7 @@ describe('browser.hugerte.core.delete.CefDeleteNoneditableTest', () => {
                   s.text(str.is('a'))
                 ]
               }),
-              s.text(str.is(Unicode.zeroWidth)),
+              s.text(str.is('\uFEFF')),
               s.text(str.is(' b'))
             ]
           }),
@@ -85,7 +85,7 @@ describe('browser.hugerte.core.delete.CefDeleteNoneditableTest', () => {
         children: [
           s.element('div', {
             children: [
-              s.text(str.is(Unicode.zeroWidth)),
+              s.text(str.is('\uFEFF')),
               s.element('span', {
                 children: [
                   s.text(str.is('a'))

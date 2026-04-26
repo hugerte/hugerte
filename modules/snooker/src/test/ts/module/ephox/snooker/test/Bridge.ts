@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from '@ephox/katamari';
 import { Attribute, Css, Hierarchy, Insert, Replication, SugarElement, SugarNode, TextContent } from '@ephox/sugar';
 
 import { Generators, SimpleGenerators } from 'ephox/snooker/api/Generators';
@@ -8,15 +8,15 @@ import { TargetMergable } from 'ephox/snooker/model/RunOperation';
 // Mock/Stub out helper functions
 
 const targetStub = (selection: Array<{ section: number; row: number; column: number }>, bounds: { startRow: number; startCol: number; finishRow: number; finishCol: number }, table: SugarElement<HTMLTableElement>): TargetMergable => {
-  const cells = Optionals.cat(Arr.map(selection, (path) => {
+  const cells = Optionals.cat(selection.map((path) =) {
     return Hierarchy.follow(table, [ path.section, path.row, path.column ]) as Optional<SugarElement<HTMLTableCellElement>>;
   }));
 
   return {
-    mergable: Optional.some({
+    mergable: {
       cells,
       bounds: Structs.bounds(bounds.startRow, bounds.startCol, bounds.finishRow, bounds.finishCol)
-    })
+    }
   };
 };
 
@@ -37,7 +37,7 @@ const generators: Generators = {
   replace: (cell, tag, attrs) => {
     const replica = Replication.copy(cell, tag);
     // TODO: Snooker passes null to indicate 'remove attribute'
-    Obj.each(attrs, (v, k) => {
+    Object.entries(attrs).forEach(([k, v]) => ((v, k) =)(v, k)) {
       if (v === null) {
         Attribute.remove(replica, k);
       } else {
@@ -62,7 +62,7 @@ const createCell = (): SugarElement<HTMLTableCellElement> => {
   return tag;
 };
 
-const replace = Fun.identity as <T extends HTMLElement>(cell: SugarElement<HTMLTableCellElement>) => SugarElement<T>;
+const replace = (x) => x as <T extends HTMLElement>(cell: SugarElement<HTMLTableCellElement>) => SugarElement<T>;
 
 // This is used for testing pasting as the real paste generator (TableFill.ts) differs from the standard generator
 // e.g. creates a cell that does not rely on the previous cell

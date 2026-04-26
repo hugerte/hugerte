@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -17,7 +17,7 @@ describe('browser.hugerte.core.selection.TableCellSelectionTest', () => {
   };
 
   const getCellsFromRanges = (paths: number[][]) => {
-    const ranges = Arr.map(paths, (path) => {
+    const ranges = paths.map((path) =) {
       const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), path).getOrDie();
       const rng = document.createRange();
       rng.selectNode(container.dom);
@@ -28,7 +28,7 @@ describe('browser.hugerte.core.selection.TableCellSelectionTest', () => {
   };
 
   const assertCellContents = (cells: SugarElement<HTMLTableCellElement>[], expectedContents: string[]) => {
-    const actualContents = Arr.map(cells, Html.get);
+    const actualContents = cells.map(Html.get);
     assert.deepEqual(actualContents, expectedContents, 'Should be expected cell contents');
   };
 

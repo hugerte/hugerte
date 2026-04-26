@@ -1,6 +1,6 @@
 import { Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -247,7 +247,7 @@ describe('browser.hugerte.core.fmt.PreviewTest', () => {
         styles: { color: '#00ff00' },
         attributes: {
           'lang': '%value',
-          'data-mce-lang': Fun.constant(null)
+          'data-mce-lang': () => null
         }
       })), 'Format with variable attribute values');
     });

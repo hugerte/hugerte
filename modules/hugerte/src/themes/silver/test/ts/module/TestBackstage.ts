@@ -1,5 +1,5 @@
 import { AlloyComponent, GuiFactory, HotspotAnchorSpec, TooltippingTypes } from '@ephox/alloy';
-import { Cell, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Cell, Future, Optional, Result } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
@@ -41,7 +41,7 @@ export default (sink?: AlloyComponent): UiFactoryBackstage => {
           },
           getComponents: getTooltipComponents,
         }},
-      interpreter: Fun.identity as any,
+      interpreter: (x) => x as any,
       anchors: {
         inlineDialog: hotspotAnchorFn,
         inlineBottomDialog: hotspotAnchorFn,
@@ -64,23 +64,23 @@ export default (sink?: AlloyComponent): UiFactoryBackstage => {
       getSink: () => sink ? Result.value(sink) : Result.error('No test sink setup')
     },
     urlinput: {
-      getHistory: Fun.constant([]),
-      addToHistory: Fun.noop,
+      getHistory: () => [],
+      addToHistory: () => {},
       getLinkInformation: Optional.none,
       getValidationHandler: Optional.none,
-      getUrlPicker: (_filetype) => Optional.some((entry: ApiUrlData) => Future.pure(entry))
+      getUrlPicker: (_filetype) => (entry: ApiUrlData) = Future.pure(entry))
     },
     styles: {
-      getData: Fun.constant([])
+      getData: () => []
     },
     colorinput: {
-      colorPicker: Fun.noop,
-      hasCustomColors: Fun.never,
-      getColors: Fun.constant([]),
-      getColorCols: Fun.constant(5)
+      colorPicker: () => {},
+      hasCustomColors: () => false,
+      getColors: () => [],
+      getColorCols: () => 5
     },
     dialog: {
-      isDraggableModal: Fun.never
+      isDraggableModal: () => false
     },
     setContextMenuState: contextMenuState.set,
     isContextMenuOpen: contextMenuState.get

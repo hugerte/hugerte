@@ -1,6 +1,6 @@
 import { ApproxStructure, Keys, Mouse, StructAssert, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Type } from '@ephox/katamari';
+
 import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -23,10 +23,10 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteCancelTe
         minChars: 1,
         columns: 'auto',
         fetch: (pattern, _maxResults) => {
-          const filteredItems = Arr.filter([ 'a', 'b', 'c', 'd' ], (item) => item.indexOf(pattern) !== -1);
+          const filteredItems = [ 'a', 'b', 'c', 'd' ].filter((item) =) item.indexOf(pattern) !== -1);
           return new Promise((resolve) => {
             resolve(
-              Arr.map(filteredItems, (item) => ({
+              filteredItems.map((item) =) ({
                 value: `colon-${item}`,
                 text: `${item}`,
                 icon: ':'
@@ -80,7 +80,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteCancelTe
     await setup(editor);
     scenario.action(editor);
     await pWaitForAutocompleteToClose();
-    if (Type.isNonNullable(scenario.postAction)) {
+    if (scenario.postAction != null) {
       scenario.postAction(editor);
     }
     await pAssertContent('Check autocompleter was cancelled', editor, scenario.assertion);

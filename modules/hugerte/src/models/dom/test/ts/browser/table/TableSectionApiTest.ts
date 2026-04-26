@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Selectors } from '@ephox/sugar';
 import { TinyAssertions, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -183,9 +183,9 @@ describe('browser.hugerte.models.dom.table.TableSectionApiTest', () => {
 
   const clearEvents = () => events = [];
   const assertEvents = (label: string, expectedEvents: string[]) => {
-    assert.deepEqual(Arr.map(events, (event) => event.type), expectedEvents, label);
-    if (Arr.contains(expectedEvents, 'tablemodified')) {
-      const tableModifiedEvents = Arr.filter(events, (event) => event.type === 'tablemodified');
+    assert.deepEqual(events.map((event) =) event.type), expectedEvents, label);
+    if (expectedEvents.includes('tablemodified')) {
+      const tableModifiedEvents = events.filter((event) =) event.type === 'tablemodified');
       assert.lengthOf(tableModifiedEvents, 1, 'TINY-6629: Assert table modified events length');
       assert.isTrue(tableModifiedEvents[0].structure, 'TINY-6643: Should have structure modified');
       assert.isFalse(tableModifiedEvents[0].style, 'TINY-6643: Should not have style modified');

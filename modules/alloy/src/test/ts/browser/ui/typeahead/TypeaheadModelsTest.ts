@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, TestStore, UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
 import { Objects } from '@ephox/boulder';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { SelectorFind, SugarDocument, SugarElement, Value } from '@ephox/sugar';
 
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
@@ -36,7 +36,7 @@ describe('browser.alloy.ui.typeahead.TypeaheadModelsTest', () => {
       fetch: (input) => {
         const text = Value.get(input.element).toLowerCase();
 
-        const items = Arr.range(3, (i): TestItem => {
+        const items = Array.from({ length: 3 }, (i): TestItem => {
           return {
             type: 'item',
             data: {
@@ -57,9 +57,9 @@ describe('browser.alloy.ui.typeahead.TypeaheadModelsTest', () => {
 
           const menu = TestDropdownMenu.renderMenu({
             value: 'test-menu-value',
-            items: Arr.map(items, TestDropdownMenu.renderItem)
+            items: items.map(TestDropdownMenu.renderItem)
           });
-          return Optional.some(TieredMenu.singleData('tiered-test-menu-name', menu));
+          return TieredMenu.singleData('tiered-test-menu-name', menu);
         });
       },
 

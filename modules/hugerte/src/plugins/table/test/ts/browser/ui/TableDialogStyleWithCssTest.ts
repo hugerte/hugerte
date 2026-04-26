@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 import { Attribute, Css, Html, SelectorFilter, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -49,23 +49,23 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
       '</table>'
     );
 
-    if (Type.isNonNullable(cellPaddingAttr)) {
+    if (cellPaddingAttr != null) {
       Attribute.set(defaultTable, 'cellpadding', cellPaddingAttr);
     }
-    if (Type.isNonNullable(cellSpacingAttr)) {
+    if (cellSpacingAttr != null) {
       Attribute.set(defaultTable, 'cellspacing', cellSpacingAttr);
     }
-    if (Type.isNonNullable(borderAttr)) {
+    if (borderAttr != null) {
       Attribute.set(defaultTable, 'border', borderAttr);
     }
-    if (Type.isNonNullable(cellSpacingStyle)) {
+    if (cellSpacingStyle != null) {
       Css.set(defaultTable, 'border-spacing', cellSpacingStyle);
     }
-    if (Type.isNonNullable(cellPaddingStyle)) {
-      Arr.each(SelectorFilter.descendants(defaultTable, 'td,th'), (cell) => Css.set(cell, 'padding', cellPaddingStyle));
+    if (cellPaddingStyle != null) {
+      SelectorFilter.descendants(defaultTable, 'td,th').forEach((cell) =) Css.set(cell, 'padding', cellPaddingStyle));
     }
-    if (Type.isNonNullable(cellBorderWidthStyle)) {
-      Arr.each(SelectorFilter.descendants(defaultTable, 'td'), (cell) => Css.set(cell, 'border-width', cellBorderWidthStyle));
+    if (cellBorderWidthStyle != null) {
+      SelectorFilter.descendants(defaultTable, 'td').forEach((cell) =) Css.set(cell, 'border-width', cellBorderWidthStyle));
     }
 
     editor.setContent(Html.getOuter(defaultTable));
@@ -75,8 +75,8 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
   const assertTable = (editor: Editor, spec: TableSpec) => {
     TinyAssertions.assertContentStructure(editor, ApproxStructure.build((s, str, _arr) => {
       const transformMap = (record: Record<string, undefined | string>) => {
-        const definedOnly = Obj.filter(record, Type.isNonNullable) as Record<string, string>;
-        return Obj.map(definedOnly, (val) => val !== '' ? str.is(val) : str.none());
+        const definedOnly = Object.fromEntries(Object.entries(record).filter(([k, v]) => (Type.isNonNullable)(v, k))) as Record<string, string>;
+        return Object.fromEntries(Object.entries(definedOnly).map(([k, v]) => [k, ((val) =)(v, k)])) val !== '' ? str.is(val) : str.none());
       };
       const cell = s.element('td', {
         styles: transformMap({
@@ -106,10 +106,10 @@ describe('browser.hugerte.plugins.table.ui.TableCellDialogStyleWithCssTest', () 
     }));
   };
 
-  Arr.each([
+  [
     { title: 'attributes', style_by_css: false },
     { title: 'styles', style_by_css: true }
-  ], (spec) => {
+  ].forEach((spec) =) {
     context(`Table layout using ${spec.title}`, () => {
       const hook = TinyHooks.bddSetup<Editor>({
         plugins: 'table',

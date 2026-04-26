@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Optional } from '@ephox/katamari';
+import { Obj, Optional } from '@ephox/katamari';
 import * as fc from 'fast-check';
 
 import { DomDefinitionDetail } from 'ephox/alloy/dom/DomDefinition';
@@ -13,7 +13,7 @@ UnitTest.test('DomDefinitionTest', () => {
   // properties
 
   const arbOptionOf = (arb: fc.Arbitrary<string>) => fc.tuple(fc.boolean(), arb).map(
-    (arr: [boolean, string]) => arr[0] ? Optional.some(arr[1]) : Optional.none()
+    (arr: [boolean, string]) => arr[0] ? arr[1] : null
   );
 
   const nestring = fc.string({ minLength: 1 });
@@ -51,12 +51,12 @@ UnitTest.test('DomDefinitionTest', () => {
     Assert.eq(
       () => 'All classes in mod should be in final result: ' + JSON.stringify(result, null, 2) + '. Should be none left over.',
       [ ],
-      Arr.difference(mod.classes, result.classes)
+      mod.classes.filter((x) => !result.classes.includes(x))
     );
     Assert.eq(
       () => 'All classes in defn should be in final result ' + JSON.stringify(result, null, 2) + '.too. Should be none left over.',
       [ ],
-      Arr.difference(defn.classes, result.classes)
+      defn.classes.filter((x) => !result.classes.includes(x))
     );
     Assert.eq(
       () => 'All styles from modification should be in final result' + JSON.stringify(result, null, 2) + '.',
@@ -64,11 +64,11 @@ UnitTest.test('DomDefinitionTest', () => {
       Obj.find(mod.styles, (v, k) => result.styles[k] !== v).isNone()
     );
 
-    Obj.each(defn.styles, (v, k) => {
+    Object.entries(defn.styles).forEach(([k, v]) => ((v, k) =)(v, k)) {
       Assert.eq(
         () => 'Defn Style: ' + k + '=' + v + ' should appear in result: ' + JSON.stringify(result, null, 2) + '., unless modification changed it',
         true,
-        result.styles[k] === v || result.styles[k] === mod.styles[k] && Obj.has(mod.styles, k)
+        result.styles[k] === v || result.styles[k] === mod.styles[k] && Object.prototype.hasOwnProperty.call(mod.styles, k)
       );
     });
 
@@ -78,11 +78,11 @@ UnitTest.test('DomDefinitionTest', () => {
       Obj.find(mod.attributes, (v, k) => result.attributes[k] !== v).isNone()
     );
 
-    Obj.each(defn.attributes, (v, k) => {
+    Object.entries(defn.attributes).forEach(([k, v]) => ((v, k) =)(v, k)) {
       Assert.eq(
         () => 'Defn attribute: ' + k + '=' + v + ' should appear in result: ' + JSON.stringify(result, null, 2) + '., unless modification changed it',
         true,
-        result.attributes[k] === v || result.attributes[k] === mod.attributes[k] && Obj.has(mod.attributes, k)
+        result.attributes[k] === v || result.attributes[k] === mod.attributes[k] && Object.prototype.hasOwnProperty.call(mod.attributes, k)
       );
     });
   }));

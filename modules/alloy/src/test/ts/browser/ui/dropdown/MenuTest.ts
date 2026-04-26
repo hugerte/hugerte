@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, NamedChain, StructAssert, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -20,10 +20,10 @@ UnitTest.asynctest('MenuTest', (success, failure) => {
   GuiSetup.setup((store, _doc, _body) => GuiFactory.build(
     Menu.sketch({
       value: 'test-menu-1',
-      items: Arr.map([
+      items: [
         { type: 'item', data: { value: 'alpha', meta: { text: 'Alpha' }}, hasSubmenu: false },
         { type: 'item', data: { value: 'beta', meta: { text: 'Beta' }}, hasSubmenu: false }
-      ], TestDropdownMenu.renderItem),
+      ].map(TestDropdownMenu.renderItem),
       dom: {
         tag: 'ol',
         classes: [ 'test-menu' ]

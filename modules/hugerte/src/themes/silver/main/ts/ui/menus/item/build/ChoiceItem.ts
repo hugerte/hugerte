@@ -1,6 +1,6 @@
 import { AlloyComponent, Disabling, ItemTypes, Toggling, Tooltipping } from '@ephox/alloy';
 import { Menu, Toolbar } from '@ephox/bridge';
-import { Merger } from '@ephox/katamari';
+
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -53,8 +53,7 @@ const renderChoiceItem = (
       })
     ));
 
-  return Merger.deepMerge(
-    renderCommonItem({
+  return ({ ...renderCommonItem({
       data: buildData(spec),
       enabled: spec.enabled,
       getApi,
@@ -67,16 +66,14 @@ const renderChoiceItem = (
       itemBehaviours: [
         ...optTooltipping.toArray()
       ]
-    }, structure, itemResponse, providersBackstage),
-    {
+    }, structure, itemResponse, providersBackstage), ...{
       toggling: {
         toggleClass: ItemClasses.tickedClass,
         toggleOnExecute: false,
         selected: spec.active,
         exclusive: true
       }
-    }
-  );
+    } });
 };
 
 export { renderChoiceItem };

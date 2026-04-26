@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 const createFileList = (inputFiles: File[]): FileList => {
   const files: FileList = {
@@ -6,7 +6,7 @@ const createFileList = (inputFiles: File[]): FileList => {
     item: (idx: number) => inputFiles[idx]
   };
 
-  Arr.each(inputFiles, (file, idx) => {
+  inputFiles.forEach((file, idx) =) {
     files[idx] = file;
   });
 

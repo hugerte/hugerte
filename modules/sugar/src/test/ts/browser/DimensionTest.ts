@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
 import * as Remove from 'ephox/sugar/api/dom/Remove';
@@ -202,7 +202,7 @@ UnitTest.test('DimensionTest', () => {
   // Aggregator test
   // Dimension.aggregate takes an element and a list of properties that return measurement values.
   // it will accumulative add all the properties and return a cumulative total.
-  const dim = Dimension('internal', Fun.constant(1));
+  const dim = Dimension('internal', () => 1);
   const ctotal = dim.aggregate(container, [ 'padding-top', 'margin-bottom', 'border-top-width', 'border-bottom-width' ]);
   Assert.eq('', (paddingTop + marginBottom + borderWidth + borderWidth), ctotal);
 

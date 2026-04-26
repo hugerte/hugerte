@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as PositionArray from 'ephox/polaris/api/PositionArray';
 
@@ -9,18 +9,18 @@ export interface PArrayTestItem {
 }
 
 const generator = (item: string, start: number): Optional<PArrayTestItem> => {
-  return Optional.some({
+  return {
     start,
     finish: start + item.length,
     item
-  });
+  };
 };
 
 const make = (values: string[]): PArrayTestItem[] =>
   PositionArray.generate(values, generator);
 
 const dump = (parray: PArrayTestItem[]): string[] => {
-  return Arr.map(parray, (unit) => {
+  return parray.map((unit) =) {
     return unit.start + '->' + unit.finish + '@ ' + unit.item;
   });
 };

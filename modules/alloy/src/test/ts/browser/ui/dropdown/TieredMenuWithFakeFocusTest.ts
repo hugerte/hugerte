@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, TestStore } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Focus, SugarElement } from '@ephox/sugar';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
@@ -30,8 +30,8 @@ const makeComponent = () => (_store: TestStore, _doc: SugarElement<Document>, _b
       fakeFocus: true,
       onEscape: Optional.none,
       onExecute: Optional.none,
-      onOpenSubmenu: Fun.noop,
-      onOpenMenu: Fun.noop,
+      onOpenSubmenu: () => {},
+      onOpenMenu: () => {},
       markers: TestDropdownMenu.markers()
     })
   );

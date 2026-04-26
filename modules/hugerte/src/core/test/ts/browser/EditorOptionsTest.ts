@@ -1,5 +1,5 @@
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Fun, Type } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -56,7 +56,7 @@ describe('browser.hugerte.core.EditorOptionsTest', () => {
   it('TINY-8206: should not store invalid initial or default values', () => {
     const options = create({ invalid_option: 1, valid_option: 'valid' });
 
-    options.register('boolean_option', { processor: Fun.never, default: 'boolean' });
+    options.register('boolean_option', { processor: () => false, default: 'boolean' });
     options.register('invalid_option', { processor: 'string' });
     options.register('valid_option', { processor: 'string' });
 
@@ -68,7 +68,7 @@ describe('browser.hugerte.core.EditorOptionsTest', () => {
   it('TINY-8206: set should not store unregistered options or invalid values', () => {
     const options = create({});
 
-    options.register('invalid_option', { processor: Fun.never });
+    options.register('invalid_option', { processor: () => false });
     options.register('valid_option', { processor: 'string' });
 
     assert.isFalse(options.set('unregistered_option', true));
@@ -131,7 +131,7 @@ describe('browser.hugerte.core.EditorOptionsTest', () => {
       number: 1,
       boolTrue: true,
       boolFalse: false,
-      function: Fun.noop,
+      function: () => {},
       object: obj,
       objectArray: objArray,
       regexp
@@ -153,7 +153,7 @@ describe('browser.hugerte.core.EditorOptionsTest', () => {
     assert.equal(options.get('number'), 1);
     assert.isTrue(options.get('boolTrue'));
     assert.isFalse(options.get('boolFalse'));
-    assert.equal(options.get('function'), Fun.noop);
+    assert.equal(options.get('function'), () => {});
     assert.equal(options.get('object'), obj);
     assert.equal(options.get('objectArray'), objArray);
     assert.equal(options.get('regexp'), regexp);
@@ -165,8 +165,8 @@ describe('browser.hugerte.core.EditorOptionsTest', () => {
       boolFalse: false
     });
 
-    options.register('boolTrue', { processor: Fun.always });
-    options.register('boolFalse', { processor: Fun.never });
+    options.register('boolTrue', { processor: () => true });
+    options.register('boolFalse', { processor: () => false });
 
     assert.isTrue(options.get('boolTrue'));
     assert.isUndefined(options.get('boolFalse'));
@@ -179,7 +179,7 @@ describe('browser.hugerte.core.EditorOptionsTest', () => {
 
     options.register('custom', {
       processor: (value) => {
-        const valid = Type.isString(value);
+        const valid = typeof value === 'string';
         if (valid) {
           return ({ value: 'new' + value, valid: true });
         } else {

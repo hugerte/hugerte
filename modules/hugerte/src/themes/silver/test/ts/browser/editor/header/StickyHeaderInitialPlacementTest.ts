@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { McEditor } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -9,11 +9,11 @@ import * as StickyUtils from '../../../module/StickyHeaderUtils';
 
 describe('browser.hugerte.themes.silver.editor.header.StickyHeaderInitialPlacementTest ', () => {
 
-  Arr.each([
+  [
     { location: ToolbarLocation.top, height: 2000, expectDocked: false },
     { location: ToolbarLocation.bottom, height: 200, expectDocked: false },
     { location: ToolbarLocation.bottom, height: 2000, expectDocked: true }
-  ], (test) => {
+  ].forEach((test) =) {
     it(`Test toolbar initial placement with toolbar_location: ${test.location} and height: ${test.height}`, async () => {
       const editor = await McEditor.pFromSettings<Editor>({
         base_url: '/project/hugerte/js/hugerte',

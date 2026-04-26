@@ -1,4 +1,4 @@
-import { Merger, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import Resource from 'hugerte/core/api/Resource';
@@ -87,7 +87,7 @@ const initDatabase = (editor: Editor, databaseUrl: string, databaseId: string): 
   editor.on('init', () => {
     Resource.load(databaseId, databaseUrl).then((emojis) => {
       const userEmojis = getUserDefinedEmoji(editor);
-      processEmojis(Merger.merge(emojis, userEmojis));
+      processEmojis(({ ...emojis, ...userEmojis }));
     }, (err) => {
       // eslint-disable-next-line no-console
       console.log(`Failed to load emojis: ${err}`);

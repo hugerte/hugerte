@@ -1,5 +1,5 @@
 import { UiFinder, Waiter } from '@ephox/agar';
-import { Type } from '@ephox/katamari';
+
 import { SugarBody, SugarElement } from '@ephox/sugar';
 import { TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -12,14 +12,14 @@ const waitUntilIframeLoaded = async (dialogEl: SugarElement<Node>): Promise<void
   await UiFinder.pWaitForState<HTMLIFrameElement>('iframe is loaded', dialogEl, 'iframe', (elm) => {
     // fallback for pre-IE 8 using contentWindow.document
     const iframeDoc = elm.dom.contentDocument || elm.dom.contentWindow?.document;
-    return Type.isNonNullable(iframeDoc?.body.firstChild);
+    return iframeDoc?.body.firstChild != null;
   });
 };
 
 const pUseTemplateDialog = async (editor: Editor, submit: boolean, assertFn?: (elm: SugarElement<Node>) => void): Promise<void> => {
   TinyUiActions.clickOnToolbar(editor, toolbarButtonSelector);
   const dialogEl = await TinyUiActions.pWaitForDialog(editor);
-  if (Type.isFunction(assertFn)) {
+  if (typeof assertFn === 'function') {
     await waitUntilIframeLoaded(dialogEl);
     assertFn(dialogEl);
   }

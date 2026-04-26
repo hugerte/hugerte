@@ -64,16 +64,18 @@ describe.skip('browser.hugerte.plugins.quickbars.ToolbarPositionTest', () => {
 
     const getCellStyle = ` style="${cellWidth}"`;
 
-    const renderedRows = Arr.range(rows, (row) =>
-      '<tr>' + Arr.range(cols, (col) => {
+    const renderedRows = Array.from({ length: rows }, (row) =>
+      '<tr>' + Array.from({ length: cols }, (col) => {
+        const cellNum = (row * cols) + col + 1;
+        return `<td${getCellStyle}>${cellNum}</td>`;
+      }).join('') + '</tr>')Array.from({ length: cols }, (col) => {
         const cellNum = (row * cols) + col + 1;
         return `<td${getCellStyle}>${cellNum}</td>`;
       }).join('') + '</tr>'
     ).join('');
 
-    const renderedColumns = Arr.range(cols, () =>
-      `<col style="${cellWidth}"></col>`
-    ).join('');
+    const renderedColumns = Array.from({ length: cols }, () =>
+      `<col style="${cellWidth}"></col>`).join('');
 
     const colgroups = '<colgroup>' + renderedColumns + '</colgroup>';
 
@@ -85,7 +87,7 @@ describe.skip('browser.hugerte.plugins.quickbars.ToolbarPositionTest', () => {
     // But getBoundingClient on the toolbar would return the values relative to the page, as the sink is placed in the body
     const menuRects = selectedCells.map((x) => Boxes.absolute(SugarElement.fromDom(x)));
 
-    const selectedCellBounds = Arr.foldl(menuRects, (acc, rect) => {
+    const selectedCellBounds = menuRects.reduce((acc, rect) => {
       return {
         x: Math.min(acc.x, rect.x),
         right: Math.max(acc.right, rect.right),
@@ -204,7 +206,7 @@ describe.skip('browser.hugerte.plugins.quickbars.ToolbarPositionTest', () => {
   };
 
   // Test with different tableLayout, as the toolbar is positioned differently, when it has sufficient space to show the toolbar in the middle of the selection
-  Arr.each([ 'fixed', 'relative' ], (tableLayout: TableSizingMode) => {
+  [ 'fixed', 'relative' ].forEach((tableLayout: TableSizingMode) =) {
     context(`Table layout: ${tableLayout}`, () => {
 
       // Traverse row to row, selects 2 cells initially, then it expands the selection to the right and once it has reaches the end, moves the starting position to the next column

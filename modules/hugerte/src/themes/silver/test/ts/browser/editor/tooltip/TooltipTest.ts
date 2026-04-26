@@ -1,6 +1,6 @@
 import { Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { SugarElement, TextContent } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -16,10 +16,10 @@ interface TestScenario {
 
 describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
 
-  Arr.each([
+  [
     { label: 'Mouse', pTriggerTooltip: TooltipUtils.pTriggerTooltipWithMouse },
     { label: 'Keyboard', pTriggerTooltip: TooltipUtils.pTriggerTooltipWithKeyboard },
-  ], (test: TestScenario) => {
+  ].forEach((test: TestScenario) =) {
     context('Basic buttons', () => {
       const hook = TinyHooks.bddSetup<Editor>({
         base_url: '/project/hugerte/js/hugerte',
@@ -28,13 +28,13 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
           ed.ui.registry.addButton('basic-button', {
             text: 'Button',
             tooltip: 'Button',
-            onAction: Fun.noop
+            onAction: () => {}
           });
 
           ed.ui.registry.addToggleButton('toggle-button', {
             text: 'Toggle Button',
             tooltip: 'Toggle Button',
-            onAction: Fun.noop
+            onAction: () => {}
           });
 
           ed.ui.registry.addMenuButton('menu-button', {
@@ -45,7 +45,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
                 {
                   type: 'togglemenuitem',
                   text: 'Toggle menu item',
-                  onAction: Fun.noop,
+                  onAction: () => {},
                   active: true
                 }
               ]);
@@ -63,8 +63,8 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
                 }
               ]);
             },
-            onAction: Fun.noop,
-            onItemAction: Fun.noop
+            onAction: () => {},
+            onItemAction: () => {}
           });
 
           ed.ui.registry.addSplitButton('split-button-with-icon', {
@@ -94,10 +94,10 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
                 }
               ]);
             },
-            onAction: Fun.noop,
-            onItemAction: Fun.noop,
-            select: Fun.always,
-            onSetup: () => Fun.noop
+            onAction: () => {},
+            onItemAction: () => {},
+            select: () => true,
+            onSetup: () => () => {}
           });
         }
       });
@@ -368,12 +368,12 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
 
     context('overflow-button', () => {
       const hook = TinyHooks.bddSetup<Editor>({
-        toolbar: Arr.range(25, Fun.constant('bold | italic | test-button')).join(' '),
+        toolbar: Array.from({ length: 25 }, () => 'bold | italic | test-button').join(' '),
         toolbar_mode: 'floating',
         setup: (ed: Editor) => {
           ed.ui.registry.addButton('test-button', {
             text: 'Test Button for Overflow Button',
-            onAction: Fun.noop
+            onAction: () => {}
           });
         },
         base_url: '/project/hugerte/js/hugerte'
@@ -403,8 +403,8 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
                 }
               ]);
             },
-            onAction: Fun.noop,
-            onItemAction: Fun.noop
+            onAction: () => {},
+            onItemAction: () => {}
           });
         },
         base_url: '/project/hugerte/js/hugerte'
@@ -440,30 +440,30 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
                     type: 'togglebutton' as const,
                     icon: 'fullscreen',
                     tooltip: 'Fullscreen',
-                    onAction: Fun.noop
+                    onAction: () => {}
                   },
                   {
                     type: 'togglebutton',
                     icon: 'copy',
                     text: 'Copy code',
-                    onAction: Fun.noop
+                    onAction: () => {}
                   },
                   {
                     type: 'togglebutton',
                     text: 'Copy code 2',
-                    onAction: Fun.noop
+                    onAction: () => {}
                   },
                   {
                     type: 'togglebutton',
                     icon: 'Bold',
                     tooltip: 'Bold',
-                    onAction: Fun.noop
+                    onAction: () => {}
                   },
                 ]
               }
             ],
-            onShow: Fun.noop,
-            onHide: Fun.noop
+            onShow: () => {},
+            onHide: () => {}
           });
         }
       });

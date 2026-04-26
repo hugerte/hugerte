@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, StructAssert, UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Obj, Type } from '@ephox/katamari';
+
 import { McEditor, TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -22,7 +22,7 @@ describe('browser.hugerte.plugins.media.core.LiveEmbedNodeTest', () => {
     classes: string[],
     attrs: Record<string, string | null>,
     styles: Record<string, string>,
-    getChildren: ApproxStructure.Builder<StructAssert[]> = Fun.constant([])
+    getChildren: ApproxStructure.Builder<StructAssert[]> = () => []
   ) => {
     const object = UiFinder.findIn(TinyDom.body(editor), 'span.mce-preview-object').getOrDie();
     Assertions.assertStructure('should have all attributes', ApproxStructure.build((s, str, arr) => s.element('span', {
@@ -31,20 +31,20 @@ describe('browser.hugerte.plugins.media.core.LiveEmbedNodeTest', () => {
         height: str.none('should not have height style'),
         width: str.none('should not have width style'),
         // TINY-7074: The wrapper span should have the same width/height styles
-        ...Obj.map(styles, (value) => str.is(value))
+        ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) =)(v, k)])) str.is(value))
       },
       children: [
         s.element(tag, {
-          classes: Arr.map(classes, arr.has),
+          classes: classes.map(arr.has),
           attrs: {
             height: str.none('should not have height'),
             width: str.none('should not have width'),
-            ...Obj.map(attrs, (value) => Type.isNull(value) ? str.none() : str.is(value))
+            ...Object.fromEntries(Object.entries(attrs).map(([k, v]) => [k, ((value) =)(v, k)])) value === null ? str.none() : str.is(value))
           },
           styles: {
             height: str.none('should not have height style'),
             width: str.none('should not have width style'),
-            ...Obj.map(styles, (value) => str.is(value))
+            ...Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((value) =)(v, k)])) str.is(value))
           },
           children: getChildren(s, str, arr)
         }),

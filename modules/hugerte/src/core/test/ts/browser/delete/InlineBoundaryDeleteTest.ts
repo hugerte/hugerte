@@ -16,10 +16,10 @@ describe('browser.hugerte.core.delete.InlineBoundaryDeleteTest', () => {
 
   const locationName = (location: BoundaryLocation.LocationAdt) => {
     return location.fold(
-      Fun.constant('before'),
-      Fun.constant('start'),
-      Fun.constant('end'),
-      Fun.constant('after')
+      () => 'before',
+      () => 'start',
+      () => 'end',
+      () => 'after'
     );
   };
 

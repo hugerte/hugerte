@@ -1,4 +1,4 @@
-import { Fun, Merger } from '@ephox/katamari';
+
 import { PredicateFilter, SimRange, SugarElement, SugarNode, SugarText, Traverse } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
@@ -7,7 +7,7 @@ export interface SelectionExclusions {
 }
 
 const defaultExclusions: SelectionExclusions = {
-  containers: Fun.never
+  containers: () => false
   /* Maybe support offsets later if it makes sense to do so */
 };
 
@@ -22,12 +22,12 @@ const gChooseIn = <T extends Node>(target: SugarElement<T>): fc.Arbitrary<{ elem
 
 const gChooseFrom = (root: SugarElement<Node>, exclusions: SelectionExclusions) => {
   const self = exclusions.containers(root) ? [] : [ root ];
-  const everything = PredicateFilter.descendants(root, Fun.not(exclusions.containers)).concat(self);
+  const everything = PredicateFilter.descendants(root, (x) => !(exclusions.containers)(x)).concat(self);
   return fc.constantFrom(...(everything.length > 0 ? everything : [ root ])).chain(gChooseIn);
 };
 
 const selection = (root: SugarElement<Node>, rawExclusions: SelectionExclusions): fc.Arbitrary<SimRange> => {
-  const exclusions: SelectionExclusions = Merger.deepMerge(defaultExclusions, rawExclusions);
+  const exclusions: SelectionExclusions = ({ ...defaultExclusions, ...rawExclusions });
   return gChooseFrom(root, exclusions).chain((start) => gChooseFrom(root, exclusions).map((finish): SimRange => ({
     start: start.element,
     soffset: start.offset,

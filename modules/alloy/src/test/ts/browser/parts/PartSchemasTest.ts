@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { StructureSchema } from '@ephox/boulder';
-import { Fun } from '@ephox/katamari';
+
 import * as fc from 'fast-check';
 
 import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
@@ -17,16 +17,16 @@ UnitTest.test('Atomic Test: parts.SchemasTest', () => {
     schema: [ ],
     name: 'internal',
     pname: '<part.internal>',
-    defaults: Fun.constant({ defaultValue: 10 }),
-    overrides: Fun.constant({ overriddenValue: 10 })
+    defaults: () => { defaultValue: 10 },
+    overrides: () => { overriddenValue: 10 }
   });
 
   const external = PartType.external<any, TestSpec>({
     factory: { sketch: (x) => x + '.external' },
     schema: [ ],
     name: 'external',
-    defaults: Fun.constant({ defaultValue: 10 }),
-    overrides: Fun.constant({ overriddenValue: 15 })
+    defaults: () => { defaultValue: 10 },
+    overrides: () => { overriddenValue: 15 }
   });
 
   const optional = PartType.optional<any, TestSpec>({
@@ -34,8 +34,8 @@ UnitTest.test('Atomic Test: parts.SchemasTest', () => {
     schema: [ ],
     name: 'optional',
     pname: '<part.optional>',
-    defaults: Fun.constant({ defaultValue: 10 }),
-    overrides: Fun.constant({ overriddenValue: 15 })
+    defaults: () => { defaultValue: 10 },
+    overrides: () => { overriddenValue: 15 }
   });
 
   const group = PartType.group<any, TestSpec>({
@@ -44,8 +44,8 @@ UnitTest.test('Atomic Test: parts.SchemasTest', () => {
     name: 'group',
     unit: 'member',
     pname: '<part.group>',
-    defaults: Fun.constant({ defaultValue: 10 }),
-    overrides: Fun.constant({ overriddenValue: 15 })
+    defaults: () => { defaultValue: 10 },
+    overrides: () => { overriddenValue: 15 }
   });
 
   // We split up the checking functions like so:

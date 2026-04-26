@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Chars from 'ephox/polaris/pattern/Chars';
 
@@ -107,7 +107,7 @@ UnitTest.test('CharsTest', () => {
 
   const checkAllKnown = (label: string, str: string) => {
     const chars = str.split('');
-    const breaks = Arr.filter(chars, (c) => {
+    const breaks = chars.filter((c) =) {
       return !regex.test(c);
     });
 
@@ -119,7 +119,7 @@ UnitTest.test('CharsTest', () => {
     );
   };
 
-  Arr.each(supported, (code) => {
+  supported.forEach((code) =) {
     const info = extras[code];
     checkAllKnown(info.label, info.chars);
   });

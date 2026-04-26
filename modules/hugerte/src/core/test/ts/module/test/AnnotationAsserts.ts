@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
-import { Arr, Obj } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { TinyAssertions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -18,14 +18,14 @@ const annotate = (editor: Editor, name: string, uid: string, data: {}): void => 
 const assertHtmlContent = (editor: Editor, children: string[], allowExtras?: boolean): void => {
   TinyAssertions.assertContentStructure(editor,
     ApproxStructure.build((s, _str, _arr) => s.element('body', {
-      children: Arr.map(children, ApproxStructure.fromHtml).concat(allowExtras ? [ s.theRest() ] : [])
+      children: children.map(ApproxStructure.fromHtml).concat(allowExtras ? [ s.theRest() ] : [])
     }))
   );
 };
 
 const assertMarker = (editor: Editor, expected: { uid: string; name: string }, nodes: Element[]): void => {
   const { uid, name } = expected;
-  Arr.each(nodes, (node) => {
+  nodes.forEach((node) =) {
     Assertions.assertEq('Wrapper must be in content', true, editor.getBody().contains(node));
     Assertions.assertStructure(
       'Checking wrapper has correct decoration',
@@ -42,10 +42,10 @@ const assertMarker = (editor: Editor, expected: { uid: string; name: string }, n
 
 const assertGetAll = (editor: Editor, expected: Record<string, number>, name: string): void => {
   const annotations = editor.annotator.getAll(name);
-  const keys = Obj.keys(annotations);
-  const expectedKeys = Obj.keys(expected);
+  const keys = Object.keys(annotations);
+  const expectedKeys = Object.keys(expected);
   assert.sameMembers(keys, expectedKeys, 'Checking keys of getAll response');
-  Obj.each(annotations, (markers, uid) => {
+  Object.entries(annotations).forEach(([k, v]) => ((markers, uid) =)(v, k)) {
     Assertions.assertEq('Checking number of markers for uid', expected[uid], markers.length);
     assertMarker(editor, { uid, name }, markers);
   });

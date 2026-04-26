@@ -1,5 +1,5 @@
 import { AlloyComponent, Disabling, SketchSpec, TieredData, Tooltipping } from '@ephox/alloy';
-import { Cell, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -98,24 +98,24 @@ const generateSelectItems = (backstage: UiFactoryBackstage, spec: SelectSpec) =>
   const generateItem = (rawItem: FormatItem, response: IrrelevantStyleItemResponse, invalid: boolean, value: (SelectedFormat) | null): (Menu.NestedMenuItemContents) | null => {
     const translatedText = backstage.shared.providers.translate(rawItem.title);
     if (rawItem.type === 'separator') {
-      return Optional.some<Menu.SeparatorMenuItemSpec>({
+      return {
         type: 'separator',
         text: translatedText
-      });
+      };
     } else if (rawItem.type === 'submenu') {
       const items = (rawItem.getStyleItems()).flatMap((si) => validate(si, response, value));
       if (response === IrrelevantStyleItemResponse.Hide && items.length <= 0) {
         return null;
       } else {
-        return Optional.some<Menu.NestedMenuItemSpec>({
+        return {
           type: 'nestedmenuitem',
           text: translatedText,
           enabled: items.length > 0,
           getSubmenuItems: () => (rawItem.getStyleItems()).flatMap((si) => validate(si, response, value))
-        });
+        };
       }
     } else {
-      return Optional.some<Menu.ToggleMenuItemSpec>({
+      return {
         // ONLY TOGGLEMENUITEMS HANDLE STYLE META.
         // See ToggleMenuItem and ItemStructure for how it's handled.
         // If this type ever changes, we'll need to change that too
@@ -126,7 +126,7 @@ const generateSelectItems = (backstage: UiFactoryBackstage, spec: SelectSpec) =>
         enabled: !invalid,
         onAction: spec.onAction(rawItem),
         ...rawItem.getStylePreview().fold(() => ({}), (preview) => ({ meta: { style: preview } as any }))
-      });
+      };
     }
   };
 

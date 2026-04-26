@@ -1,5 +1,5 @@
 import { Assertions, Pipeline, Step, TestLogs, TestStore } from '@ephox/agar';
-import { Global, Merger, Optional } from '@ephox/katamari';
+import { Global, Optional } from '@ephox/katamari';
 import { DomEvent, EventUnbinder, Html, Insert, Remove, SugarBody, SugarDocument, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
 
 import { AlloyComponent } from '../component/ComponentApi';
@@ -281,9 +281,9 @@ const mTeardownKeyLogger = <T>(body: SugarElement<Node>, expected: string[]): St
 });
 
 const mAddStyles = <T>(dos: RootNode, styles: string[]): Step<T, T & StyleState> => Step.stateful((value, next, _die) => {
-  next(Merger.deepMerge(value, {
+  next(({ ...value, ...{
     style: addStyles(dos, styles)
-  }));
+  } }));
 });
 
 const mRemoveStyles = Step.stateful((value: StyleState, next, _die) => {

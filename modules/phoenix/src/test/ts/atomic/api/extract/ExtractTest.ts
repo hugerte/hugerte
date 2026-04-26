@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Extract from 'ephox/phoenix/api/general/Extract';
 import * as Finder from 'ephox/phoenix/test/Finder';
@@ -32,7 +32,7 @@ UnitTest.test('api.Extract.(from,all,extract,extractTo)', () => {
   const check = (expected: string[], extract: typeof Extract.from, initial: string) => {
     const start = Finder.get(doc, initial);
     const actual = extract(doc, start);
-    Assert.eq('', expected, Arr.map(actual, TestRenders.typeditem));
+    Assert.eq('', expected, actual.map(TestRenders.typeditem));
   };
 
   const checkFrom = (expected: string[], initial: string) => {
@@ -42,7 +42,7 @@ UnitTest.test('api.Extract.(from,all,extract,extractTo)', () => {
   const checkAll = (expected: string[], initial: string) => {
     const start = Finder.get(doc, initial);
     const actual = Extract.all(doc, start);
-    Assert.eq('', expected, Arr.map(actual, (a) => {
+    Assert.eq('', expected, actual.map((a) =) {
       return a.id;
     }));
   };

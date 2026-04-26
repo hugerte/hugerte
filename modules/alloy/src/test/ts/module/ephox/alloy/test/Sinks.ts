@@ -1,5 +1,5 @@
 import { after, before } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Compare, PredicateExists, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -24,7 +24,7 @@ const fixedSink = (): AlloyComponent => GuiFactory.build(
     uid: 'fixed-sink',
     containerBehaviours: Behaviour.derive([
       Positioning.config({
-        useFixed: Fun.always
+        useFixed: () => true
       })
     ])
   })
@@ -41,7 +41,7 @@ const relativeSink = (): AlloyComponent => GuiFactory.build(
     uid: 'relative-sink',
     containerBehaviours: Behaviour.derive([
       Positioning.config({
-        useFixed: Fun.always
+        useFixed: () => true
       })
     ])
   })
@@ -73,13 +73,13 @@ const bddSetup = (): Sinks => {
   let pop: Optional<AlloyComponent>;
 
   before(() => {
-    fixed = Optional.some(fixedSink());
-    relative = Optional.some(relativeSink());
-    pop = Optional.some(popup());
+    fixed = fixedSink();
+    relative = relativeSink();
+    pop = popup();
   });
 
   after(() => {
-    fixed = relative = pop = Optional.none();
+    fixed = relative = pop = null;
   });
 
   return {

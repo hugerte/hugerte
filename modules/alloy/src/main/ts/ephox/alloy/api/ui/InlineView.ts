@@ -61,11 +61,11 @@ const makeMenu = (detail: InlineViewDetail, menuSandbox: AlloyComponent, placeme
       // Note for the future: this should possibly also call detail.onHide
       Sandboxing.close(menuSandbox);
       detail.onEscape.map((handler) => handler(menuSandbox));
-      return Optional.some<boolean>(true);
+      return true;
     },
 
     onExecute: () => {
-      return Optional.some<boolean>(true);
+      return true;
     },
 
     onOpenMenu: (tmenu, menu) => {

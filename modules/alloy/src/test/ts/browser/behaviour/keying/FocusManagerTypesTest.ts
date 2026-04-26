@@ -1,6 +1,6 @@
 import { Assertions, Chain, FocusTools, GeneralSteps, Logger, Step, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -20,7 +20,7 @@ UnitTest.asynctest('Browser Test: behaviour.keying.FocusManagersTest', (success,
         tag: 'div',
         classes: [ 'container' ]
       },
-      components: Arr.map([ 1, 2, 3 ], (num) => ({
+      components: [ 1, 2, 3 ].map((num) =) ({
         dom: {
           tag: 'div',
           classes: [ 'candidate' ],

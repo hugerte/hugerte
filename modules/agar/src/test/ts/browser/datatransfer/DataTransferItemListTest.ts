@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { createFile } from 'ephox/agar/api/Files';
@@ -12,7 +12,7 @@ UnitTest.test('DataTransferItemListTest', () => {
   const testAdding = () => {
     const items = createDataTransferItemList(createDataTransfer());
 
-    assert.isFalse(Type.isArray(items), 'Should not be an array');
+    assert.isFalse(Array.isArray(items), 'Should not be an array');
 
     items.add(createFile('a.txt', 1234, new Blob([ '123' ], { type: 'text/html' })));
     assert.equal(items[0].kind, 'file', 'Should be expected kind');

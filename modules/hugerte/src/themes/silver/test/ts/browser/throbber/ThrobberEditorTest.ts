@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -12,7 +12,7 @@ describe('browser.hugerte.themes.silver.throbber.ThrobberEditorTest', () => {
     base_url: '/project/hugerte/js/hugerte',
   }, []);
 
-  const pToggleThrobber = async (editor: Editor, action: () => void = Fun.noop) => {
+  const pToggleThrobber = async (editor: Editor, action: () => void = () => {}) => {
     editor.setProgressState(true);
     await UiFinder.pWaitForVisible('Wait for throbber to show', SugarBody.body(), '.tox-throbber');
     action();

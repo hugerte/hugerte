@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Arr, Fun } from '@ephox/katamari';
 
 import * as Monitors from '../../impl/Monitors';
 import * as Compare from '../dom/Compare';
@@ -77,7 +77,7 @@ const visibleUpdate = (el: Monitored) => {
   if (w !== el.lastWidth || h !== el.lastHeight) {
     el.lastWidth = w;
     el.lastHeight = h;
-    Arr.each(el.handlers, Fun.apply);
+    el.handlers.forEach(Fun.apply);
   }
 };
 
@@ -103,7 +103,7 @@ let throttle = false;
 const runHandler = () => {
   throttle = false;
   // cancelAnimationFrame isn't stable yet, so we can't pass events to the callback (they would be out of date)
-  Arr.each(elems, update);
+  elems.forEach(update);
 };
 
 const listener = () => {
@@ -114,15 +114,15 @@ const listener = () => {
   }
 };
 
-let interval = Optional.none<EventUnbinder>();
+let interval = null;
 const start = () => {
-  interval = Optional.some(DomEvent.bind(SugarElement.fromDom(window), 'resize', listener));
+  interval = DomEvent.bind(SugarElement.fromDom(window), 'resize', listener);
 };
 
 const stop = () => {
   interval.each((f) => {
     f.unbind();
-    interval = Optional.none();
+    interval = null;
   });
 };
 

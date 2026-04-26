@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import { Gene } from 'ephox/boss/api/Gene';
 import * as Locator from 'ephox/boss/mutant/Locator';
@@ -21,7 +21,7 @@ UnitTest.test('RemovalTest', () => {
   };
 
   const check = (expected: string, input: Gene, itemId: string) => {
-    const family = Tracks.track(input, Optional.none());
+    const family = Tracks.track(input, null);
     const item = Locator.byId(family, itemId).getOrDie();
     Removal.unwrap(item);
     Assert.eq('', expected, Logger.basic(family));

@@ -1,6 +1,6 @@
 import { Waiter } from '@ephox/agar';
 import { afterEach, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Attribute, Classes, SugarDocument } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -39,7 +39,7 @@ describe.skip('browser.alloy.position.TransitionsTest', () => {
   };
 
   const memButton1 = Memento.record(Button.sketch({
-    action: Fun.noop,
+    action: () => {},
     dom: {
       styles: {
         position: 'absolute',
@@ -53,7 +53,7 @@ describe.skip('browser.alloy.position.TransitionsTest', () => {
   }));
 
   const memButton2 = Memento.record(Button.sketch({
-    action: Fun.noop,
+    action: () => {},
     dom: {
       styles: {
         position: 'absolute',

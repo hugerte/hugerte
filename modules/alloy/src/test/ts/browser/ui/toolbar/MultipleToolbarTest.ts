@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
@@ -112,16 +112,19 @@ UnitTest.asynctest('MultipleToolbarTest', (success, failure) => {
 
       Step.sync(() => {
 
-        const groups = Arr.map([
-          { items: Arr.map([{ text: 'A' }, { text: 'B' }], makeToolbarItem) },
-          { items: Arr.map([{ text: 'C' }, { text: 'D' }], makeToolbarItem) },
-          { items: Arr.map([{ text: 'E' }, { text: 'F' }, { text: 'G' }], makeToolbarItem) }
+        const groups = [
+          { items: [{ text: 'A' }, { text: 'B' }].map(makeToolbarItem) },
+          { items: [{ text: 'C' }, { text: 'D' }].map(makeToolbarItem) },
+          { items: [{ text: 'E' }, { text: 'F' }, { text: 'G' }].map(makeToolbarItem) }
+        ].map(makeToolbarGroup)[{ text: 'A' }, { text: 'B' }].map(makeToolbarItem) },
+          { items: [{ text: 'C' }, { text: 'D' }].map(makeToolbarItem) },
+          { items: [{ text: 'E' }, { text: 'F' }, { text: 'G' }].map(makeToolbarItem) }
         ], makeToolbarGroup);
 
         CustomList.setItems(toolbarList, [
-          Arr.map(groups, ToolbarGroup.sketch),
-          Arr.map(groups, ToolbarGroup.sketch),
-          Arr.map(groups, ToolbarGroup.sketch)
+          groups.map(ToolbarGroup.sketch),
+          groups.map(ToolbarGroup.sketch),
+          groups.map(ToolbarGroup.sketch)
         ]);
       }),
 

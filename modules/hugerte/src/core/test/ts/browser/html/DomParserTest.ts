@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Obj } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
@@ -37,7 +37,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
 
   schema.addValidChildren('+body[style]');
 
-  Arr.each([{
+  [{
     name: 'sanitization enabled (default)',
     isSanitizeEnabled: true,
     settings: { }
@@ -46,7 +46,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
     name: 'TINY-9635: sanitization disabled',
     isSanitizeEnabled: false,
     settings: { sanitize: false }
-  }], (scenario) => {
+  }].forEach((scenario) =) {
     context(scenario.name, () => {
       it('Parse element', () => {
         const parser = DomParser(scenario.settings, schema);
@@ -261,7 +261,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
       it('Parse invalid contents with node filters', () => {
         const parser = DomParser(scenario.settings, schema);
         parser.addNodeFilter('p', (nodes) => {
-          Arr.each(nodes, (node) => {
+          nodes.forEach((node) =) {
             node.attr('class', 'x');
           });
         });
@@ -272,7 +272,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
       it('Parse invalid contents with attribute filters', () => {
         const parser = DomParser(scenario.settings, schema);
         parser.addAttributeFilter('class', (nodes) => {
-          Arr.each(nodes, (node) => {
+          nodes.forEach((node) =) {
             node.attr('class', 'x');
           });
         });
@@ -344,13 +344,13 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           called = true;
         };
         parser.addNodeFilter('th,td', filter);
-        parser.addNodeFilter('th,td', Fun.noop);
+        parser.addNodeFilter('th,td', () => {});
 
         assert.lengthOf(parser.getNodeFilters(), numFilters + 2, 'Before removing filters');
         parser.removeNodeFilter('th', filter);
         assert.lengthOf(parser.getNodeFilters(), numFilters + 2, 'After removing the first th node filter');
         assert.lengthOf(parser.getNodeFilters()[numFilters].callbacks, 1, 'th node callbacks');
-        parser.removeNodeFilter('th', Fun.noop);
+        parser.removeNodeFilter('th', () => {});
         assert.lengthOf(parser.getNodeFilters(), numFilters + 1, 'After removing the second th node filter');
         parser.removeNodeFilter('th,td');
         assert.lengthOf(parser.getNodeFilters(), numFilters, 'After removing all th and td node filters');
@@ -406,7 +406,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
       it('TINY-8888: mutating addNodeFilter -> addAttributeFilter', () => {
         const parser = DomParser(scenario.settings);
         parser.addNodeFilter('img', (nodes) => {
-          Arr.each(nodes, (node) => node.attr('src', null));
+          nodes.forEach((node) =) node.attr('src', null));
         });
         parser.addAttributeFilter('src', () => {
           assert.fail('second src filter should not run, because src was removed');
@@ -417,7 +417,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
       it('TINY-8888: mutating addNodeFilter -> addNodeFilter', () => {
         const parser = DomParser(scenario.settings);
         parser.addNodeFilter('img', (nodes) => {
-          Arr.each(nodes, (node) => node.remove());
+          nodes.forEach((node) =) node.remove());
         });
         parser.addNodeFilter('img', () => {
           assert.fail('second img filter should not run, because img was removed');
@@ -428,7 +428,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
       it('TINY-8888: mutating addAttributeFilter -> addAttributeFilter', () => {
         const parser = DomParser(scenario.settings);
         parser.addAttributeFilter('src', (nodes) => {
-          Arr.each(nodes, (node) => node.attr('src', null));
+          nodes.forEach((node) =) node.attr('src', null));
         });
         parser.addAttributeFilter('src', () => {
           assert.fail('second src filter should not run, because src was removed');
@@ -460,13 +460,13 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           called = true;
         };
         parser.addAttributeFilter('controls,poster', filter);
-        parser.addAttributeFilter('controls,poster', Fun.noop);
+        parser.addAttributeFilter('controls,poster', () => {});
 
         assert.lengthOf(parser.getAttributeFilters(), numFilters + 2, 'Before removing filters');
         parser.removeAttributeFilter('controls', filter);
         assert.lengthOf(parser.getAttributeFilters(), numFilters + 2, 'After removing the first controls attribute filter');
         assert.lengthOf(parser.getAttributeFilters()[numFilters].callbacks, 1, 'controls attribute node callbacks');
-        parser.removeAttributeFilter('controls', Fun.noop);
+        parser.removeAttributeFilter('controls', () => {});
         assert.lengthOf(parser.getAttributeFilters(), numFilters + 1, 'After removing the second controls attribute filter');
         parser.removeAttributeFilter('controls,poster');
         assert.lengthOf(parser.getAttributeFilters(), numFilters, 'After removing all controls and poster attribute filter');
@@ -1397,7 +1397,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
         });
 
         context('Transparent elements', () => {
-          const getTransparentElements = (schema: Schema) => Arr.unique(Arr.map(Obj.keys(schema.getTransparentElements()), (s) => s.toLowerCase()));
+          const getTransparentElements = (schema: Schema) => [...new Set(Object.keys(schema.getTransparentElements()).map((s) =) s.toLowerCase())]);
 
           const testTransparentElementsParsing = (testCase: { input: string; expected: string; domParserSettings?: DomParserSettings }) => {
             const parser = DomParser({ ...scenario.settings, ...testCase.domParserSettings });
@@ -1408,7 +1408,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
 
           it('TINY-9172: inline transparents should not get data-mce-block attribute', () => {
             const parser = DomParser(scenario.settings);
-            const innerHtml = Arr.map(getTransparentElements(parser.schema), (name) => `<${name}>text</${name}>`).join('');
+            const innerHtml = getTransparentElements(parser.schema).map((name) =) `<${name}>text</${name}>`).join('');
             const html = `<p>${innerHtml}</p>`;
             const serializedHtml = serializer.serialize(parser.parse(html));
 
@@ -1417,8 +1417,8 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
 
           it('TINY-9172: root level transparents should not get data-mce-block attribute', () => {
             const parser = DomParser(scenario.settings);
-            const html = Arr.map(getTransparentElements(parser.schema), (name) => `<${name}>text</${name}>`).join('');
-            const expectedHtml = Arr.map(getTransparentElements(parser.schema), (name) => `<${name}>text</${name}>`).join('');
+            const html = getTransparentElements(parser.schema).map((name) =) `<${name}>text</${name}>`).join('');
+            const expectedHtml = getTransparentElements(parser.schema).map((name) =) `<${name}>text</${name}>`).join('');
             const serializedHtml = serializer.serialize(parser.parse(html));
 
             assert.equal(serializedHtml, expectedHtml);
@@ -1426,9 +1426,9 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
 
           it('TINY-9172: transparents wrapping blocks should get data-mce-block attribute', () => {
             const parser = DomParser(scenario.settings);
-            const innerHtml = Arr.map(getTransparentElements(parser.schema), (name) => `<${name}><p>text</p></${name}>`).join('');
+            const innerHtml = getTransparentElements(parser.schema).map((name) =) `<${name}><p>text</p></${name}>`).join('');
             const html = `<div>${innerHtml}</div>`;
-            const expectedInnerHtml = Arr.map(getTransparentElements(parser.schema), (name) => `<${name} data-mce-block="true"><p>text</p></${name}>`).join('');
+            const expectedInnerHtml = getTransparentElements(parser.schema).map((name) =) `<${name} data-mce-block="true"><p>text</p></${name}>`).join('');
             const expectedHtml = `<div>${expectedInnerHtml}</div>`;
             const serializedHtml = serializer.serialize(parser.parse(html));
 
@@ -1608,7 +1608,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
       DomParser({ ...settings, sanitize: false }, schema);
 
     const testDisablingSanitization = (outputs: string[], schemaSettings: SchemaSettings) => {
-      Arr.each([
+      [
         {
           name: 'script tags',
           input: '<script>alert(1)</script>'
@@ -1626,7 +1626,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
           name: 'svg tags',
           input: '<svg><circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow"></circle></svg>'
         }
-      ], (testCase, i) => {
+      ].forEach((testCase, i) =) {
         it(testCase.name, () => {
           const schema = Schema(schemaSettings);
           const serializedHtml = HtmlSerializer({}, schema).serialize(
@@ -1739,8 +1739,8 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
     }));
 
     const excluded = [ 'script', 'style', 'title', 'plaintext', 'textarea' ];
-    const specialElements = Arr.filter(Obj.keys(schema.getSpecialElements()), (name) => !Arr.contains(excluded, name));
-    Arr.each(specialElements, (elementName) => {
+    const specialElements = Object.keys(schema.getSpecialElements()).filter((name) =) !excluded.includes(name));
+    specialElements.forEach((elementName) =) {
       it(`TINY-11019: Should not entity decode text inside ${elementName} elements`, () => testSpecialElement({
         input: `<div><${elementName}>&lt;&gt;&amp;</${elementName}></div>`,
         expected: `<div><${elementName}>&lt;&gt;&amp;</${elementName}></div>`

@@ -1,10 +1,10 @@
-import { Strings } from '@ephox/katamari';
+
 
 import { SugarElement } from '../api/node/SugarElement';
 import * as Css from '../api/properties/Css';
 
 const toNumber = (px: string, fallback: number): number =>
-  Strings.toFloat(px).getOr(fallback);
+  parseFloat(px).getOr(fallback);
 
 const getProp = (element: SugarElement<HTMLElement>, name: string, fallback: number): number =>
   toNumber(Css.get(element, name), fallback);

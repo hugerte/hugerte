@@ -1,5 +1,5 @@
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Attribute, Remove, Truncate } from '@ephox/sugar';
 import { McEditor, TinyDom } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -18,7 +18,7 @@ describe('browser.hugerte.core.EditorCleanupTest', () => {
     assert.equal(links.length > 0, exists, `Should have link with url="${url}"`);
   };
 
-  const testCleanup = (comment: string, settings: RawEditorOptions, html: string = '<div></div>', fn: (editor: Editor) => void = Fun.noop) => {
+  const testCleanup = (comment: string, settings: RawEditorOptions, html: string = '<div></div>', fn: (editor: Editor) => void = () => {}) => {
     it(comment, async () => {
       // spin the editor up and down, getting a reference to its target element in between
       const editor = await McEditor.pFromHtml<Editor>(html, { base_url: '/project/hugerte/js/hugerte', ...settings });

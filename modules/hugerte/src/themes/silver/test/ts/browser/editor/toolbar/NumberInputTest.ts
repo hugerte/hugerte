@@ -1,6 +1,6 @@
 import { FocusTools, Keys, Mouse, UiControls, UiFinder, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Strings } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SugarBody, SugarElement, SugarShadowDom, Value } from '@ephox/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -217,7 +217,7 @@ describe('browser.hugerte.themes.silver.throbber.NumberInputTest', () => {
   it('TINY-9429: arrow up and arrow down should not change caret position in the input', async () => {
     const editor = hook.editor();
     const root = SugarShadowDom.getRootNode(TinyDom.targetElement(editor));
-    const toolbarInput: Optional<HTMLInputElement> = Optional.from(root.dom.querySelector('.tox-input-wrapper input') as HTMLInputElement);
+    const toolbarInput: Optional<HTMLInputElement> = root.dom.querySelector('.tox-input-wrapper input') as HTMLInputElement ?? null;
     editor.setContent('<p style="font-size: 10px;">abc</p>');
     TinySelections.setSelection(editor, [ 0, 0 ], 1, [ 0, 0 ], 2);
 
@@ -437,7 +437,7 @@ describe('browser.hugerte.themes.silver.throbber.NumberInputTest', () => {
     const input = TinyUiActions.clickOnToolbar<HTMLInputElement>(editor, '.tox-number-input input');
     await Waiter.pTryUntilPredicate(`Wait for the new input value is setted`, () => input.dom.value === '20px');
 
-    assert.isTrue(Arr.forall(warnings, (warn) => !Strings.contains(warn, 'The component must be in a context to execute')));
+    assert.isTrue(warnings.every((warn) =) !warn.includes('The component must be in a context to execute')));
 
     // eslint-disable-next-line no-console
     console.warn = storedConsoleWarn;

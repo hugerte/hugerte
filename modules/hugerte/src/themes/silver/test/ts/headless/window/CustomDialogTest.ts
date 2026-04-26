@@ -1,7 +1,7 @@
 import { FocusTools, Keyboard, Keys, Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
 import { TestHelpers } from '@ephox/alloy';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Checked, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -151,7 +151,7 @@ describe('headless.hugerte.themes.silver.window.CustomDialogTest', () => {
       onSubmit: () => {
         store.add('onSubmit');
       }
-    }, {}, Fun.noop);
+    }, {}, () => {});
 
     await FocusTools.pTryOnSelector(
       'Focus should start on first input',
@@ -236,7 +236,7 @@ describe('headless.hugerte.themes.silver.window.CustomDialogTest', () => {
     );
 
     // Now, navigate backwards
-    await Arr.foldl([
+    await [
       { label: 'cancel', selector: selectors.field8 },
       { label: 'nested2', selector: selectors.field7 },
       { label: 'nested1', selector: selectors.field6 },
@@ -246,7 +246,7 @@ describe('headless.hugerte.themes.silver.window.CustomDialogTest', () => {
       { label: 'f3', selector: selectors.field3 },
       { label: 'f2', selector: selectors.field2 },
       { label: 'first input', selector: selectors.field1 }
-    ], (p, dest) => p.then(async () => {
+    ].reduce((p, dest) => p.then(async () => {
       Keyboard.activeKeydown(doc, Keys.tab(), { shiftKey: true });
       await FocusTools.pTryOnSelector(
         'Focus should move to ' + dest.label,

@@ -1,6 +1,6 @@
 import { Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarShadowDom } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -17,11 +17,11 @@ describe('browser.hugerte.plugins.link.ContextMenuTest', () => {
       editor.ui.registry.addMenuItem('contextfiller', {
         icon: 'link',
         text: 'Context Filler',
-        onAction: Fun.noop
+        onAction: () => {}
       });
 
       editor.ui.registry.addContextMenu('contextfiller', {
-        update: Fun.constant('contextfiller')
+        update: () => 'contextfiller'
       });
     },
     contextmenu: 'link contextfiller',

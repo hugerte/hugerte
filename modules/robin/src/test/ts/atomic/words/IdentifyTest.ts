@@ -1,17 +1,17 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from '@ephox/katamari';
 
 import { WordScope } from 'ephox/robin/data/WordScope';
 import * as Identify from 'ephox/robin/words/Identify';
 
 describe('atomic.robin.words.IdentifyTest', () => {
-  const none = Optional.none<string>();
+  const none = null;
   const some = Optional.some;
 
   const check = (expected: WordScope[], input: string) => {
     const actual = Identify.words(input);
     Assert.eq(`Checking length of result for "${input}"`, expected.length, actual.length);
-    Arr.map(expected, (_, i) => {
+    expected.map((_, i) =) {
       Assert.eq(`Checking result of word for "${expected[i].word}"`, expected[i].word, actual[i].word);
       Assert.eq(`Checking result of left for expected: "${expected[i].left.getOr('')}", actual: "${actual[i].left.getOr('')}"`, true, Optionals.equals(expected[i].left, actual[i].left));
       Assert.eq(`Checking result of right for expected:"${expected[i].right.getOr('')}", actual: "${actual[i].right.getOr('')}"`, true, Optionals.equals(expected[i].right, actual[i].right));
@@ -20,7 +20,7 @@ describe('atomic.robin.words.IdentifyTest', () => {
 
   const checkWords = (expected: string[], input: string) => {
     const actual = Identify.words(input);
-    Assert.eq('', expected, Arr.map(actual, (a) => {
+    Assert.eq('', expected, actual.map((a) =) {
       return a.word;
     }));
   };

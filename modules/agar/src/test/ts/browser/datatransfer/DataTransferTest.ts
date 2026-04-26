@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 import { assert } from 'chai';
 
@@ -145,12 +145,12 @@ describe('DataTransfer', () => {
     transfer.items.add(createFile('test.gif', 123, new Blob([ '' ], { type: 'image/gif' })));
 
     assert.equal(transfer.files.length, 1, 'Should be able to access files length');
-    assert.deepEqual(Arr.map(transfer.files, (x) => x.type), [ 'image/gif' ], 'Types');
+    assert.deepEqual(transfer.files.map((x) =) x.type), [ 'image/gif' ], 'Types');
 
     transfer.items.add(createFile('test.jpg', 123, new Blob([ '' ], { type: 'image/jpg' })));
 
-    assert.deepEqual(Arr.map(transfer.files, (x) => x.type), [ 'image/gif', 'image/jpg' ], 'Expected file types');
-    assert.deepEqual(Arr.map(transfer.items, (x) => x.kind), [ 'file', 'file' ], 'Expected file kinds');
+    assert.deepEqual(transfer.files.map((x) =) x.type), [ 'image/gif', 'image/jpg' ], 'Expected file types');
+    assert.deepEqual(transfer.items.map((x) =) x.kind), [ 'file', 'file' ], 'Expected file kinds');
   });
 
   it('TINY-10386: DataTransfer instanceof window.DataTransfer', () => {

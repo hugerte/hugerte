@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { Attribute } from '@ephox/sugar';
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -27,8 +27,8 @@ export const block: BlockFn = (
     // Trap the "Tab" key and don't let it escape.
     Keying.config({
       mode: 'special',
-      onTab: () => Optional.some<boolean>(true),
-      onShiftTab: () => Optional.some<boolean>(true)
+      onTab: () => true,
+      onShiftTab: () => true
     }),
     Focusing.config({ })
   ]);

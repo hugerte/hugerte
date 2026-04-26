@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 import { Compare, SugarElement, SugarText } from '@ephox/sugar';
 
@@ -11,7 +11,7 @@ UnitTest.test('DomExtractTest', () => {
   // IMPORTANT: Otherwise CSS display does not work.
   const page = Page();
 
-  const optimise = Fun.never;
+  const optimise = () => false;
 
   (() => {
     // Test extractTo
@@ -64,10 +64,10 @@ UnitTest.test('DomExtractTest', () => {
     // Test from
     const check = (expected: string, input: SugarElement) => {
       const rawActual = DomExtract.from(input, optimise);
-      const actual = Arr.map(rawActual, (x) => {
+      const actual = rawActual.map((x) =) {
         return x.fold(
-          Fun.constant('\\w'),
-          Fun.constant('-'),
+          () => '\\w',
+          () => '-',
           (t) => SugarText.get(t),
           (t) => SugarText.get(t)
         );

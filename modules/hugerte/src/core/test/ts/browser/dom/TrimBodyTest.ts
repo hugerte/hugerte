@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
@@ -130,7 +130,7 @@ describe('browser.hugerte.core.dom.TrimBodyTest', () => {
       assert.strictEqual(divText.innerHTML, `<p>Test</p><div>Test</div><p>Test</p>`);
     });
 
-    Arr.each(unescapedClosingTextParents, (parent) => {
+    unescapedClosingTextParents.forEach((parent) =) {
       it(`hasUnescapedZwspText with ${parent} parent`, () => {
         const unescapedZwspText = document.createElement('div');
         unescapedZwspText.innerHTML = `<p>Test</p><${parent}>Test\ufeffTest</${parent}><p>Test</p>`;

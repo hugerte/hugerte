@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinySelections, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -12,7 +12,7 @@ describe('browser.hugerte.core.api.dom.RangeExpandTest', () => {
     base_url: '/project/hugerte/js/hugerte'
   }, []);
 
-  const textEntry = 'A B ' + Unicode.nbsp + 'C D';
+  const textEntry = 'A B ' + '\u00A0' + 'C D';
 
   const makeBaseRange = (editor: Editor, startOffset: number, endOffset: number, nodeOffset: number = 0) => {
     const body = editor.getBody();

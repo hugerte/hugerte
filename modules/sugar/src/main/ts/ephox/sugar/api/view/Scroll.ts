@@ -1,4 +1,4 @@
-import { Optional, Type } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Insert from '../dom/Insert';
@@ -60,10 +60,10 @@ const preserve = (doc: SugarElement<Document>, f: () => void): void => {
 
 // capture the current scroll location and provide save and restore methods
 const capture = (doc: SugarElement<Document>): ScrollCapture => {
-  let previous = Optional.none<SugarPosition>();
+  let previous = null;
 
   const save = () => {
-    previous = Optional.some(get(doc));
+    previous = get(doc);
   };
 
   // TODO: this is quite similar to the code in nomad.
@@ -84,7 +84,7 @@ const capture = (doc: SugarElement<Document>): ScrollCapture => {
 const intoView = (element: SugarElement<Element>, alignToTop: boolean): void => {
   const isSafari = PlatformDetection.detect().browser.isSafari();
   // this method isn't in TypeScript
-  if (isSafari && Type.isFunction((element.dom as any).scrollIntoViewIfNeeded)) {
+  if (isSafari && typeof (element.dom as any).scrollIntoViewIfNeeded === 'function') {
     (element.dom as any).scrollIntoViewIfNeeded(false); // false=align to nearest edge
   } else {
     element.dom.scrollIntoView(alignToTop); // true=to top, false=to bottom

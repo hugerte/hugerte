@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Focus, Scroll, SugarBody, SugarElement, SugarLocation, Traverse } from '@ephox/sugar';
 import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -189,10 +189,10 @@ describe('browser.hugerte.themes.silver.editor.NotificationManagerImplTest', () 
     it('TINY-7894: Opening multiple notifications should be able to expand past the bottom of the content area', () => {
       const editor = hook.editor();
 
-      const notifications = Arr.range(9, (i) => openNotification(editor, 'success', `Message ${i + 1}`));
+      const notifications = Array.from({ length: 9 }, (i) => openNotification(editor, 'success', `Message ${i + 1}`));
       assertPosition('Last notification is outside the content area', notifications[notifications.length - 1], 220, 192);
 
-      Arr.each(notifications, (notification) => notification.close());
+      notifications.forEach((notification) =) notification.close());
     });
 
     it('TINY-10286: Notification displays plain text', () => {

@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, UiFinder, Waiter } from '@ephox/agar';
 import { Boxes } from '@ephox/alloy';
 import { after, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Strings } from '@ephox/katamari';
+
 import { Class, Css, Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement, Traverse } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -27,7 +27,7 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.InlineToolbarPositio
     const contentArea = TinyDom.contentAreaContainer(editor);
     return Waiter.pTryUntil('Wait for toolbar to be absolute', () => {
       const left = Css.get(container, 'left');
-      const top = parseInt(Strings.removeTrailing(Css.get(container, 'top'), 'px'), 10);
+      const top = parseInt(Css.get(container, 'top').endsWith('px') ? Css.get(container, 'top').slice(0, -('px').length) : Css.get(container, 'top'), 10);
 
       const containerAreaBounds = Boxes.box(contentArea);
       const topPosition = (offsetParentBody ? containerAreaBounds.y : contentArea.dom.offsetTop) - container.dom.clientHeight;
@@ -44,7 +44,7 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.InlineToolbarPositio
   const pAssertDockedPos = (header: SugarElement<HTMLElement>, position: 'top' | 'bottom') =>
     Waiter.pTryUntil('Wait for toolbar to be docked', () => {
       const left = Css.get(header, 'left');
-      const top = parseInt(Strings.removeTrailing(Css.get(header, position), 'px'), 10);
+      const top = parseInt(Css.get(header, position).endsWith('px') ? Css.get(header, position).slice(0, -('px').length) : Css.get(header, position), 10);
 
       const assertTop = 0;
 
@@ -228,11 +228,11 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.InlineToolbarPositio
 
     beforeEach(() => {
       const editor = hook.editor();
-      editor.setContent('<p>START CONTENT</p>' + Arr.range(98, (i) => i === 49 ? '<p>STOP AND CLICK HERE</p>' : '<p>Some content...</p>').join('\n') + '<p>END CONTENT</p>');
+      editor.setContent('<p>START CONTENT</p>' + Array.from({ length: 98 }, (i) => i === 49 ? '<p>STOP AND CLICK HERE</p>' : '<p>Some content...</p>').join('\n') + '<p>END CONTENT</p>');
     });
   };
 
-  Arr.map([ 'split', 'combined' ], (uiMode: 'split' | 'combined') => {
+  [ 'split', 'combined' ].map((uiMode: 'split' | 'combined') =) {
     context(`ui_mode: ${uiMode}`, () => {
       context('Toolbar position with toolbar_location: "top"', () => {
         const hook = TinyHooks.bddSetup<Editor>({

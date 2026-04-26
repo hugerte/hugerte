@@ -1,5 +1,5 @@
 import { Assert, context, describe, it } from '@ephox/bedrock-client';
-import { Optional, OptionalInstances } from '@ephox/katamari';
+import { OptionalInstances } from '@ephox/katamari';
 import { Css, Insert, InsertAll, Remove, SelectorFind, SugarBody, SugarElement, Width } from '@ephox/sugar';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
@@ -57,13 +57,13 @@ describe('TableSizeTest', () => {
       }));
 
       sizing.adjustTableWidth(-200);
-      Assert.eq('Table raw width after resizing is 200px', Optional.some('200px'), Css.getRaw(table, 'width'), tOptional());
+      Assert.eq('Table raw width after resizing is 200px', '200px', Css.getRaw(table, 'width'), tOptional());
       assert.equal(sizing.width(), 200, 'Table width after resizing is 200px');
       assert.equal(sizing.pixelWidth(), 200, 'Table pixel width after resizing is 200px');
 
       const cell = SelectorFind.descendant<HTMLTableCellElement>(table, 'td').getOrDie();
       sizing.setElementWidth(cell, 50);
-      Assert.eq('Cell width after resizing is 50px', Optional.some('50px'), Css.getRaw(cell, 'width'), tOptional());
+      Assert.eq('Cell width after resizing is 50px', '50px', Css.getRaw(cell, 'width'), tOptional());
 
       Remove.remove(table);
       Remove.remove(style);
@@ -88,13 +88,13 @@ describe('TableSizeTest', () => {
       }));
 
       sizing.adjustTableWidth(-200);
-      Assert.eq('Table raw width after resizing is 200px', Optional.some('200px'), Css.getRaw(table, 'width'), tOptional());
+      Assert.eq('Table raw width after resizing is 200px', '200px', Css.getRaw(table, 'width'), tOptional());
       assert.equal(sizing.width(), 200, 'Table width after resizing is 200px');
       assert.equal(sizing.pixelWidth(), 200, 'Table pixel width after resizing is 200px');
 
       const cell = SelectorFind.descendant<HTMLTableCellElement>(table, 'td').getOrDie();
       sizing.setElementWidth(cell, 50);
-      Assert.eq('Cell width after resizing is 50px', Optional.some('50px'), Css.getRaw(cell, 'width'), tOptional());
+      Assert.eq('Cell width after resizing is 50px', '50px', Css.getRaw(cell, 'width'), tOptional());
 
       Remove.remove(table);
       Remove.remove(style);
@@ -140,13 +140,13 @@ describe('TableSizeTest', () => {
       }));
 
       sizing.adjustTableWidth(-25);
-      Assert.eq('Table raw width after resizing is 25% less of the original 80%', Optional.some('60%'), Css.getRaw(table, 'width'), tOptional());
+      Assert.eq('Table raw width after resizing is 25% less of the original 80%', '60%', Css.getRaw(table, 'width'), tOptional());
       assert.equal(sizing.width(), 60, 'Table width after resizing is 60%');
       assert.equal(sizing.pixelWidth(), 300, 'Table pixel width after resizing is 300px');
 
       const cell = SelectorFind.descendant<HTMLTableCellElement>(table, 'td').getOrDie();
       sizing.setElementWidth(cell, 25);
-      Assert.eq('Cell width after resizing is 25%', Optional.some('25%'), Css.getRaw(cell, 'width'), tOptional());
+      Assert.eq('Cell width after resizing is 25%', '25%', Css.getRaw(cell, 'width'), tOptional());
 
       Remove.remove(container);
     });
@@ -194,13 +194,13 @@ describe('TableSizeTest', () => {
       }));
 
       sizing.adjustTableWidth(-20);
-      Assert.eq('Table raw width after resizing is unchanged', Optional.none<string>(), Css.getRaw(table, 'width'), tOptional());
+      Assert.eq('Table raw width after resizing is unchanged', null, Css.getRaw(table, 'width'), tOptional());
       assert.equal(sizing.width(), width, 'Table width after resizing is unchanged');
       assert.equal(sizing.pixelWidth(), width, 'Table pixel width after resizing is unchanged');
 
       const cell = SelectorFind.descendant<HTMLTableCellElement>(table, 'td').getOrDie();
       sizing.setElementWidth(cell, 20);
-      Assert.eq('Cell width after resizing is unchanged', Optional.none<string>(), Css.getRaw(cell, 'width'), tOptional());
+      Assert.eq('Cell width after resizing is unchanged', null, Css.getRaw(cell, 'width'), tOptional());
 
       Remove.remove(table);
     });

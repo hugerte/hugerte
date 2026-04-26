@@ -1,5 +1,5 @@
 import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import 'hugerte';
@@ -28,12 +28,12 @@ describe('browser.hugerte.core.EditorManagerCommandsTest', () => {
     }, 0);
   });
 
-  Arr.each([
+  [
     { label: 'index', value: 0 },
     { label: 'id', value: 'ed_1' },
     { label: 'object with index', value: { index: 0 }},
     { label: 'object with id', value: { id: 'ed_1' }}
-  ], (test) => {
+  ].forEach((test) =) {
     it(`mceToggleEditor (${test.label})`, (done) => {
       viewBlock.update('<textarea id="ed_1" class="hugerte"></textarea>');
       EditorManager.init({

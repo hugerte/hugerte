@@ -1,4 +1,4 @@
-import { FutureResult, Global, Optional, Result, Type } from '@ephox/katamari';
+import { FutureResult, Global, Result, Type } from '@ephox/katamari';
 
 import { DataType } from './DataType';
 import { RequestBody, ResponseBodyDataTypes, ResponseType, ResponseTypeMap, textData } from './HttpData';
@@ -30,15 +30,15 @@ const getAccept = (responseType: ResponseBodyDataTypes) => {
 const getResponseType = (responseType: ResponseBodyDataTypes): ('blob' | 'text') | null => {
   switch (responseType) {
     case DataType.JSON: return null;
-    case DataType.Blob: return Optional.some<'blob' | 'text'>('blob');
-    case DataType.Text: return Optional.some<'blob' | 'text'>('text');
+    case DataType.Blob: return 'blob';
+    case DataType.Text: return 'text';
     default: return null;
   }
 };
 
 const createOptions = <T extends ResponseType>(init: HttpTypes.HttpRequest<T>) => {
   const contentType = getContentType(init.body);
-  const credentials: (boolean) | null = init.credentials === true ? Optional.some<boolean>(true) : null;
+  const credentials: (boolean) | null = init.credentials === true ? true : null;
   const accept = getAccept(init.responseType) + ', */*; q=0.01';
   const headers = init.headers !== undefined ? init.headers : {};
   const responseType = getResponseType(init.responseType);

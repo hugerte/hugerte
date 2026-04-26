@@ -34,7 +34,7 @@ const f = (container: SugarElement<HTMLElement>, selector: string, current: Suga
 
 const horizontalWithoutCycles = (container: SugarElement<HTMLElement>, selector: string, current: SugarElement<HTMLElement>, delta: number): (SugarElement<HTMLElement>) | null =>
   f(container, selector, current, delta, (prevIndex, v, d, min, max, oldCandidate, onNewIndex) => {
-    const newIndex = Num.clamp(v + d, min, max);
+    const newIndex = Math.min(Math.max(v + d, min), max);
     return newIndex === prevIndex ? (oldCandidate ?? null) : onNewIndex(newIndex);
   });
 

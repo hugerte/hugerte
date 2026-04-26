@@ -19,7 +19,7 @@ UnitTest.test('SugarElement testable/eq', () => {
 });
 
 UnitTest.test('TINY-6151: SugarElement testable/eq - options', () => {
-  const el1: Optional<SugarElement<HTMLDivElement>> = Optional.some(SugarElement.fromTag('div'));
+  const el1: Optional<SugarElement<HTMLDivElement>> = SugarElement.fromTag('div');
   // Before TINY-6151, tElement was a value - a Testable<DomElement> - and statements like below wouldn't compile.
   // We changed it to be a polymorphic function.
   Assert.eq('same', el1, el1, tOptional(tElement()));

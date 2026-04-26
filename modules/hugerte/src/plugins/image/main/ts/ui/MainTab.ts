@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { Dialog } from 'hugerte/core/api/ui/Ui';
 
@@ -70,7 +70,7 @@ const makeItems = (info: ImageDialogInfo): Dialog.BodyComponentSpec[] => {
 
   const getDialogContainerType = (useColumns: boolean) => useColumns ? { type: 'grid', columns: 2 } : { type: 'panel' };
 
-  return Arr.flatten<any>([
+  return [
     [ imageUrl ],
     imageList.toArray(),
     info.hasAccessibilityOptions && info.hasDescription ? [ isDecorative ] : [],
@@ -84,7 +84,7 @@ const makeItems = (info: ImageDialogInfo): Dialog.BodyComponentSpec[] => {
         info.hasImageCaption ? [ caption ] : []
       ]).flat()
     }]
-  ]);
+  ].flat();
 };
 
 const makeTab = (info: ImageDialogInfo): Dialog.TabSpec => ({

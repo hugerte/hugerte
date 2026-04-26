@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, StructAssert, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
@@ -75,7 +75,7 @@ describe('browser.hugerte.plugins.media.core.DataToHtmlTest', () => {
 
   it('TBA: Assert html structure of audio from template callback', async () => {
     const editor = hook.editor();
-    const audioTemplateCallback = Fun.constant('<audio id="template" controls="controls"><source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3"></audio>');
+    const audioTemplateCallback = () => '<audio id="template" controls="controls"><source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3"></audio>';
     editor.options.set('audio_template_callback', audioTemplateCallback);
     const input = {
       source: 'https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3',
@@ -103,7 +103,7 @@ describe('browser.hugerte.plugins.media.core.DataToHtmlTest', () => {
 
   it('TBA: Assert html structure of video from template callback', async () => {
     const editor = hook.editor();
-    const videoTemplateCallback = Fun.constant('<video id="template" controls="controls" width="500" height="300" ><source src="https://i.imgur.com/Tu4e5WX.mp4"></video>');
+    const videoTemplateCallback = () => '<video id="template" controls="controls" width="500" height="300" ><source src="https://i.imgur.com/Tu4e5WX.mp4"></video>';
     editor.options.set('video_template_callback', videoTemplateCallback);
     const input = {
       source: 'https://i.imgur.com/Tu4e5WX.mp4',
@@ -133,7 +133,7 @@ describe('browser.hugerte.plugins.media.core.DataToHtmlTest', () => {
 
   it('TINY-8684: Assert html structure of iframe from template callback', async () => {
     const editor = hook.editor();
-    const iframeTemplateCallback = Fun.constant('<iframe id="template" title="testcallback" src="https://www.youtube.com/embed/IcgmSRJHu_8" width="500" height="300"></iframe>');
+    const iframeTemplateCallback = () => '<iframe id="template" title="testcallback" src="https://www.youtube.com/embed/IcgmSRJHu_8" width="500" height="300"></iframe>';
     editor.options.set('iframe_template_callback', iframeTemplateCallback);
     const input = {
       source: 'https://www.youtube.com/embed/IcgmSRJHu_8',

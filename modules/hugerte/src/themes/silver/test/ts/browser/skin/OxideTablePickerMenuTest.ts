@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -59,7 +59,7 @@ describe('browser.hugerte.themes.silver.skin.OxideTablePickerMenuTest', () => {
       const tableMenuItem: Menu.FancyMenuItemSpec = {
         type: 'fancymenuitem',
         fancytype: 'inserttable',
-        onAction: Fun.noop
+        onAction: () => {}
       };
 
       ed.ui.registry.addMenuButton('table-button', {

@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -110,7 +110,7 @@ const makeDialog = (settings: LinkDialogInfo, onSubmit: (api: Dialog.DialogInsta
 
   const body: Dialog.PanelSpec = {
     type: 'panel',
-    items: Arr.flatten<Dialog.BodyComponentSpec>([
+    items: [
       urlInput,
       displayText,
       titleText,
@@ -121,7 +121,7 @@ const makeDialog = (settings: LinkDialogInfo, onSubmit: (api: Dialog.DialogInsta
         catalogs.link.map(ListOptions.createUi('link', 'Link list')),
         catalogs.classes.map(ListOptions.createUi('linkClass', 'Class'))
       ]).filter((_x: any) => _x !== null)
-    ])
+    ].flat()
   };
   return {
     title: 'Insert/Edit Link',

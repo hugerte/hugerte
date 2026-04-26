@@ -1,6 +1,6 @@
 import { Assertions, Chain, NamedChain, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Attribute, Class, Compare, Truncate } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -52,11 +52,11 @@ UnitTest.asynctest('HighlightingTest', (success, failure) => {
             },
           })
         ]),
-        components: Arr.map([
+        components: [
           'alpha',
           'beta',
           'gamma'
-        ], makeItem)
+        ].map(makeItem)
       })
     );
 
@@ -258,7 +258,7 @@ UnitTest.asynctest('HighlightingTest', (success, failure) => {
             const expected = [ output.alpha, output.beta, output.gamma ];
 
             Assertions.assertEq('Checking length of getCandidates array', expected.length, candidates.length);
-            Arr.each(expected, (exp, i) => {
+            expected.forEach((exp, i) =) {
               const actual = candidates[i];
               Assertions.assertEq(
                 'Checking DOM element at index: ' + i, true,

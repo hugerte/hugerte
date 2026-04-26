@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 import ClosestOrAncestor from '../../impl/ClosestOrAncestor';
 import * as Compare from '../dom/Compare';
@@ -16,14 +16,14 @@ const ancestor: {
   (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean): Optional<SugarElement<Node>>;
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean) => {
   let element = scope.dom;
-  const stop = Type.isFunction(isRoot) ? isRoot : Fun.never;
+  const stop = typeof isRoot === 'function' ? isRoot : () => false;
 
   while (element.parentNode) {
     element = element.parentNode;
     const el = SugarElement.fromDom(element);
 
     if (predicate(el)) {
-      return Optional.some(el);
+      return el;
     } else if (stop(el)) {
       break;
     }
@@ -70,7 +70,7 @@ const descendant: {
     for (let i = 0; i < node.childNodes.length; i++) {
       const child = SugarElement.fromDom(node.childNodes[i]);
       if (predicate(child)) {
-        return Optional.some(child);
+        return child;
       }
 
       const res = descend(node.childNodes[i]);

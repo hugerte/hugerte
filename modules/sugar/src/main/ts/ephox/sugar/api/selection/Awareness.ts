@@ -1,4 +1,4 @@
-import { Arr, Unicode } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as SugarNode from '../node/SugarNode';
@@ -19,7 +19,7 @@ const isStart = (element: SugarElement<Node>, offset: number): boolean => offset
 const isTextNodeWithCursorPosition = (el: SugarElement<Node>) => SugarText.getOption(el).filter((text) =>
   // For the purposes of finding cursor positions only allow text nodes with content,
   // but trim removes &nbsp; and that's allowed
-  text.trim().length !== 0 || text.indexOf(Unicode.nbsp) > -1
+  text.trim().length !== 0 || text.indexOf('\u00A0') > -1
 ).isSome();
 
 const isContentEditableFalse = (elem: SugarElement<Node>) => SugarNode.isHTMLElement(elem) && (Attribute.get(elem, 'contenteditable') === 'false');
@@ -27,7 +27,7 @@ const isContentEditableFalse = (elem: SugarElement<Node>) => SugarNode.isHTMLEle
 const elementsWithCursorPosition = [ 'img', 'br' ];
 const isCursorPosition = (elem: SugarElement<Node>): boolean => {
   const hasCursorPosition = isTextNodeWithCursorPosition(elem);
-  return hasCursorPosition || Arr.contains(elementsWithCursorPosition, SugarNode.name(elem)) || isContentEditableFalse(elem);
+  return hasCursorPosition || elementsWithCursorPosition.includes(SugarNode.name(elem)) || isContentEditableFalse(elem);
 };
 
 export {

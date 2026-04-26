@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Pattern } from '@ephox/polaris';
 import { SugarElement } from '@ephox/sugar';
 
@@ -12,7 +12,7 @@ UnitTest.test('DomSearchingTest', () => {
   const result = DomSearch.run([ root ], [{
     word: 'sometext',
     pattern: Pattern.unsafetoken('sometext')
-  }], Fun.never);
+  }], () => false);
 
   Assert.eq('There should be no matches, because some and text are separated by a list boundary', 0, result.length);
 });

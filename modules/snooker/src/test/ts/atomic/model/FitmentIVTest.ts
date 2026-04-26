@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Fun, Result } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { SimpleGenerators } from 'ephox/snooker/api/Generators';
@@ -41,14 +41,14 @@ UnitTest.test('FitmentIVTest', () => {
 
     return {
       cell,
-      gap: Fun.constant('*'),
-      row: Fun.constant('tr'),
-      replace: Fun.identity
+      gap: () => '*',
+      row: () => 'tr',
+      replace: (x) => x
     } as any;
   };
 
   const grid = (isNew: boolean, rows: number, cols: number, prefix: string = '') =>
-    Arr.map(new Array(rows), (_row, r) => Arr.map(new Array(cols), (_cs, c) =>
+    new Array(rows).map((_row, r) =) new Array(cols).map((_cs, c) =)
       en(prefix + '-' + r + '-' + c, isNew)
     ));
 
@@ -119,7 +119,7 @@ UnitTest.test('FitmentIVTest', () => {
     const test = Fun.curry(measureTest, {
       rowDelta,
       colDelta
-    }, start, gridSpecA.grid, gridSpecB.grid, Fun.noop );
+    }, start, gridSpecA.grid, gridSpecB.grid, () => {} );
 
     return {
       params: info,
@@ -193,8 +193,8 @@ UnitTest.test('FitmentIVTest', () => {
       const gridA = specA.grid;
       const gridB = specB.grid;
 
-      Arr.each(result.getOrDie(), (row, ri) => {
-        Arr.each(row.cells, (cell, ci) => {
+      result.getOrDie().forEach((row, ri) =) {
+        row.cells.forEach((cell, ci) =) {
           const expected = (() => {
             // Assumption: both gridA and gridB are rectangular.
             if (ri >= offsetRow && ri <= offsetRow + gridB.length - 1 &&
@@ -217,7 +217,7 @@ UnitTest.test('FitmentIVTest', () => {
       });
     };
 
-    const test = Fun.curry(mergeIVTest, queryliser2000, start, gridSpecA, gridSpecB, generator, Fun.tripleEquals);
+    const test = Fun.curry(mergeIVTest, queryliser2000, start, gridSpecA, gridSpecB, generator, (a, b) => a === b);
 
     return {
       params: info,

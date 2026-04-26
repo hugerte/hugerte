@@ -1,6 +1,6 @@
 import { TestStore, Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Css, SelectorFind, Selectors, SugarElement, SugarLocation } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -77,10 +77,10 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
             ).getOrDie();
             return {
               bounds: Boxes.box(scroller.element),
-              optScrollEnv: Optional.some({
+              optScrollEnv: {
                 currentScrollTop: scroller.element.dom.scrollTop,
                 scrollElmTop: SugarLocation.absolute(scroller.element).top
-              })
+              }
             };
           }
         })

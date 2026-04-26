@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
@@ -27,7 +27,7 @@ UnitTest.test('Runtime Size Test', () => {
   const getOuterWidth = (elm: SugarElement<HTMLElement>) => Math.round(elm.dom.getBoundingClientRect().width);
 
   const measureCells = (getSize: (e: SugarElement<HTMLElement>) => number, table: SugarElement<HTMLElement>) =>
-    Arr.map(SelectorFilter.descendants<HTMLTableCellElement>(table, 'td'), getSize);
+    SelectorFilter.descendants<HTMLTableCellElement>(table, 'td').map(getSize);
 
   const measureTable = (table: SugarElement<HTMLElement>, getSize: (e: SugarElement<HTMLElement>) => number) => ({
     total: getSize(table),
@@ -39,7 +39,7 @@ UnitTest.test('Runtime Size Test', () => {
 
   const resizeTableBy = (table: SugarElement<HTMLElement>, setSize: (e: SugarElement<HTMLElement>, v: string) => void, tableInfo: { total: number; cells: number[] }, delta: number) => {
     setSize(table, '');
-    Arr.map(SelectorFilter.descendants<HTMLTableCellElement>(table, 'td'), (cell, i) => {
+    SelectorFilter.descendants<HTMLTableCellElement>(table, 'td').map((cell, i) =) {
       setSize(cell, (tableInfo.cells[i] + delta) + 'px');
     });
   };
@@ -50,7 +50,7 @@ UnitTest.test('Runtime Size Test', () => {
 
     assert.equal(s1.total, s2.total, `${message}, expected table size: ${s1.total}, actual: ${s2.total}, table: ${tableHtml}`);
 
-    Arr.each(s1.cells, (cz1, i) => {
+    s1.cells.forEach((cz1, i) =) {
       const cz2 = s2.cells[i];
       assert.equal(cz1, cz2, `${message}, expected cell size: ${cz1}, actual: ${cz2}, table: ${tableHtml}`);
     });
@@ -89,10 +89,39 @@ UnitTest.test('Runtime Size Test', () => {
       'width': randomSize(100, 1000)
     });
 
-    const rowElms = Arr.range(rows, () => {
+    const rowElms = Array.from({ length: rows }, () => {
       const row = SugarElement.fromTag('tr');
 
-      Arr.range(cols, () => {
+      Array.from({ length: cols }, () => {
+        const cell = SugarElement.fromTag('td');
+
+        Css.setAll(cell, {
+          'width': randomSize(1, 100),
+          'height': randomSize(1, 100),
+          'box-sizing': randomValue([ 'content-box', 'border-box' ]),
+          'padding-top': randomSize(0, 5),
+          'padding-left': randomSize(0, 5),
+          'padding-bottom': randomSize(0, 5),
+          'padding-right': randomSize(0, 5),
+          'border-top': randomBorder(0, 5, 'green'),
+          'border-left': randomBorder(0, 5, 'green'),
+          'border-bottom': randomBorder(0, 5, 'green'),
+          'border-right': randomBorder(0, 5, 'green')
+        });
+
+        const content = SugarElement.fromTag('div');
+
+        Css.setAll(content, {
+          width: '10px',
+          height: randomSize(1, 200)
+        });
+
+        Insert.append(cell, content);
+        Insert.append(row, cell);
+      });
+
+      return row;
+    })Array.from({ length: cols }, () => {
         const cell = SugarElement.fromTag('td');
 
         Css.setAll(cell, {
@@ -132,7 +161,7 @@ UnitTest.test('Runtime Size Test', () => {
 
   const resizeModel = (model: TableModel, delta: number, getTotalDelta: (model: TableModel, delta: number) => number) => {
     const deltaTotal = getTotalDelta(model, delta);
-    const cells = Arr.map(model.cells, (cz) => cz + delta);
+    const cells = model.cells.map((cz) =) cz + delta);
 
     return {
       total: model.total + deltaTotal,
@@ -169,7 +198,7 @@ UnitTest.test('Runtime Size Test', () => {
     Remove.remove(table);
   };
 
-  const generateTest = (generator: (n: number) => void, n: number) => Arr.each(Arr.range(n, Fun.identity), generator);
+  const generateTest = (generator: (n: number) => void, n: number) => Array.from({ length: n }, (x) => x).forEach(generator);
 
   generateTest(testTableSize(createTable, getOuterHeight, RuntimeSize.getHeight, setHeight, getHeightDelta), 50);
   generateTest(testTableSize(createTable, getOuterWidth, RuntimeSize.getWidth, setWidth, getWidthDelta), 50);

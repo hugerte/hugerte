@@ -7,12 +7,12 @@ const iframeDoc = (element: SugarElement<HTMLIFrameElement>): Optional<SugarElem
   const dom = element.dom;
   try {
     const idoc = dom.contentWindow ? dom.contentWindow.document : dom.contentDocument;
-    return idoc !== undefined && idoc !== null ? Optional.some(SugarElement.fromDom(idoc)) : Optional.none();
+    return idoc !== undefined && idoc !== null ? SugarElement.fromDom(idoc) : null;
   } catch (err) {
     // ASSUMPTION: Permission errors result in an unusable iframe.
     console.log('Error reading iframe: ', dom);
     console.log('Error was: ' + err);
-    return Optional.none();
+    return null;
   }
 };
 

@@ -1,6 +1,6 @@
 import { AlloyComponent, Disabling, ItemTypes, Toggling } from '@ephox/alloy';
 import { Menu } from '@ephox/bridge';
-import { Merger } from '@ephox/katamari';
+
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -39,8 +39,7 @@ const renderToggleMenuItem = (
     meta: spec.meta
   }, providersBackstage, renderIcons);
 
-  return Merger.deepMerge(
-    renderCommonItem({
+  return ({ ...renderCommonItem({
       data: buildData(spec),
       enabled: spec.enabled,
       getApi,
@@ -48,15 +47,13 @@ const renderToggleMenuItem = (
       onSetup: spec.onSetup,
       triggersSubmenu: false,
       itemBehaviours: []
-    }, structure, itemResponse, providersBackstage),
-    {
+    }, structure, itemResponse, providersBackstage), ...{
       toggling: {
         toggleClass: ItemClasses.tickedClass,
         toggleOnExecute: false,
         selected: spec.active
       }
-    }
-  );
+    } });
 };
 
 export { renderToggleMenuItem };

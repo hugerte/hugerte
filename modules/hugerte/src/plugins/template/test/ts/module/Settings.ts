@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -13,7 +13,7 @@ const Settings = (hook: TinyHooks.Hook<Editor>): Settings => {
 
   const addSettings = (config: Record<string, any>) => {
     const editor = hook.editor();
-    Obj.each(config, (val, key) => {
+    Object.entries(config).forEach(([k, v]) => ((val, key) =)(v, k)) {
       editor.options.set(key, val);
       settings.add(key);
     });

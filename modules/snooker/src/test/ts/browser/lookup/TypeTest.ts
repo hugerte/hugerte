@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Html, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -18,7 +18,7 @@ describe('browser.snooker.lookup.TypeTest', () => {
 
   context('findCommonCellType', () => {
     const assertCommonCellType = (expectedType: string) => assertWithWarehouse((warehouse) => {
-      const cells = Arr.bind(warehouse.all, (row) => row.cells);
+      const cells = warehouse.all.flatMap((row) =) row.cells);
       const cellType = Type.findCommonCellType(cells).getOr('');
       assert.equal(cellType, expectedType);
     });
@@ -69,7 +69,7 @@ describe('browser.snooker.lookup.TypeTest', () => {
     });
 
     const assertRowTypes = (expectedTypes: string[]) => assertWithWarehouse((warehouse) => {
-      const rowTypes = Arr.map(warehouse.all, (row) =>
+      const rowTypes = warehouse.all.map((row) =)
         Type.findCommonRowType([ row ]).getOrDie('Unable to find row type')
       );
       assert.deepEqual(rowTypes, expectedTypes);

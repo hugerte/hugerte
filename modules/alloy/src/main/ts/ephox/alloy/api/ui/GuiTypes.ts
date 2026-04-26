@@ -1,5 +1,5 @@
 import { Objects } from '@ephox/boulder';
-import { Obj } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as FunctionAnnotator from '../../debugging/FunctionAnnotator';
@@ -20,7 +20,7 @@ const isPremade = (element: SugarElement<Node>): boolean =>
   Object.prototype.hasOwnProperty.call(element.dom as any, premadeTag);
 
 const getPremade = (spec: AlloySpec): (AlloyComponent) | null =>
-  Obj.get<any, string>(spec, premadeTag);
+  (spec as any)[premadeTag];
 
 const makeApi = <A, R>(f: (api: A, comp: AlloyComponent, ...rest: any[]) => R): FunctionAnnotator.FunctionWithAnnotation<(comp: AlloyComponent, ...rest: any[]) => R> =>
   FunctionAnnotator.markAsSketchApi(

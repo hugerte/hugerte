@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -59,7 +59,7 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
           fail('unexpected action'),
           fail('unexpected action'),
           (cells, outsideDetails) => ({
-            cells: Arr.map(cells, Html.getOuter).join(''),
+            cells: cells.map(Html.getOuter).join(''),
             otherContent: outsideDetails.map(({ rng }) => rng.extractContents().textContent).getOr(''),
             details: outsideDetails
           }),
@@ -78,8 +78,8 @@ describe('browser.hugerte.core.delete.TableDeleteActionTest', () => {
           fail('unexpected action'),
           fail('unexpected action'),
           (startTableCells, endTableCells, betweenRng) => ({
-            startCells: Arr.map(startTableCells, Html.getOuter).join(''),
-            endCells: Arr.map(endTableCells, Html.getOuter).join(''),
+            startCells: startTableCells.map(Html.getOuter).join(''),
+            endCells: endTableCells.map(Html.getOuter).join(''),
             otherContent: betweenRng.extractContents().textContent
           })
         );

@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder } from '@ephox/agar';
 import { AlloyComponent, GuiFactory, NativeEvents, Representing, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import { renderSizeInput } from 'hugerte/themes/silver/ui/dialog/SizeInput';
 
@@ -15,7 +15,7 @@ describe.skip('headless.hugerte.themes.silver.components.sizeinput.SizeInputTest
   const hook = TestHelpers.GuiSetup.bddSetup((_store, _doc, _body) => GuiFactory.build(
     renderSizeInput({
       name: 'dimensions',
-      label: Optional.some('size'),
+      label: 'size',
       constrain: true,
       enabled: true
     }, backstage.shared.providers)

@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { SugarElement } from '../../api/node/SugarElement';
 import * as SugarNode from '../../api/node/SugarNode';
@@ -13,7 +13,7 @@ const beforeSpecial = (element: SugarElement<Node>, offset: number): Situ => {
   const name = SugarNode.name(element);
   if ('input' === name) {
     return Situ.after(element);
-  } else if (!Arr.contains([ 'br', 'img' ], name)) {
+  } else if (![ 'br', 'img' ].includes(name)) {
     return Situ.on(element, offset);
   } else {
     return offset === 0 ? Situ.before(element) : Situ.after(element);

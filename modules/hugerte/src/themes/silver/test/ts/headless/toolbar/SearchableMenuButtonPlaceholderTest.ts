@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Fun, Id, Optional } from '@ephox/katamari';
+
 import { SugarDocument } from '@ephox/sugar';
 
 import I18n from 'hugerte/core/api/util/I18n';
@@ -28,17 +28,17 @@ describe('headless.hugerte.themes.silver.toolbar.SearchableMenuButtonPlaceholder
   // We use a random output translation to ensure that the translation
   // function is being called.
   const translateInput = 'translation-input';
-  const translateOutput = Id.generate('translation-output');
+  const translateOutput = '_' + Math.random().toString(36).slice(2);
 
   const hook = TestHelpers.GuiSetup.bddSetup(
     (store, _doc, _body) => GuiFactory.build(
       renderMenuButton(
         {
-          text: Optional.some('MailMerge'),
-          icon: Optional.none(),
-          tooltip: Optional.none(),
-          onSetup: Fun.constant(Fun.noop),
-          search: Optional.some({ placeholder: Optional.some(translateInput) }),
+          text: 'MailMerge',
+          icon: null,
+          tooltip: null,
+          onSetup: () => () = {}),
+          search: { placeholder: translateInput }translateInput }),
           fetch: fetchMailMergeData({
             // If a search pattern is present, collapse into one menu
             collapseSearchResults: true
@@ -46,7 +46,7 @@ describe('headless.hugerte.themes.silver.toolbar.SearchableMenuButtonPlaceholder
         },
         'prefix',
         helpers.access().extras.backstages.popup,
-        Optional.none()
+        null
       )
     )
   );
@@ -82,7 +82,7 @@ describe('headless.hugerte.themes.silver.toolbar.SearchableMenuButtonPlaceholder
           children: [
             structMenuWith({ selected: true }, [
               structSearchField(
-                Optional.some(translateOutput)
+                translateOutput
               ),
               // In this test, we only care about the search field.
               s.anything()

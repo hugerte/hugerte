@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
 import { AlloyComponent, Composing, Container, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { describe, context, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { renderIFrame } from 'hugerte/themes/silver/ui/dialog/IFrame';
@@ -17,36 +17,36 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
       components: [
         renderIFrame({
           name: 'frame-a',
-          label: Optional.some('iframe label'),
+          label: 'iframe label',
           border: false,
           sandboxed: true,
           streamContent: false,
           transparent: true
-        }, TestProviders, Optional.none()),
+        }, TestProviders, null),
         renderIFrame({
           name: 'frame-b',
-          label: Optional.some('iframe label'),
+          label: 'iframe label',
           border: false,
           sandboxed: true,
           streamContent: false,
           transparent: false
-        }, TestProviders, Optional.none()),
+        }, TestProviders, null),
         renderIFrame({
           name: 'frame-c',
-          label: Optional.some('iframe label'),
+          label: 'iframe label',
           border: false,
           sandboxed: true,
           streamContent: true,
           transparent: true
-        }, TestProviders, Optional.none()),
+        }, TestProviders, null),
         renderIFrame({
           name: 'frame-d',
-          label: Optional.some('iframe label'),
+          label: 'iframe label',
           border: true,
           sandboxed: true,
           streamContent: false,
           transparent: true
-        }, TestProviders, Optional.none()),
+        }, TestProviders, null),
       ]
     })
   ));
@@ -109,7 +109,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
     assertScrollAtBottom(el, label);
   };
   const assertIframeScroll = (iframe: HTMLIFrameElement, hasDoctype: boolean, assertFn: (scrollingEl: HTMLElement) => void) =>
-    Optional.from(hasDoctype ? iframe.contentDocument?.documentElement : iframe.contentDocument?.body).fold(
+    hasDoctype ? iframe.contentDocument?.documentElement : iframe.contentDocument?.body ?? null.fold(
       () => assert.fail(`Could not find element`),
       (el: HTMLElement) => assertFn(el)
     );
@@ -126,7 +126,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
     const iframe = frame.element.dom as HTMLIFrameElement;
     iframe.onload = () => isIframeLoaded = true;
     Representing.setValue(frame, normalizeContent(content, shouldContentHaveDoctype));
-    return Waiter.pTryUntilPredicate('Wait for iframe to finish loading', () => isIframeLoaded && iframe.contentDocument?.body?.innerHTML !== '').then(() => iframe.onload = Fun.noop);
+    return Waiter.pTryUntilPredicate('Wait for iframe to finish loading', () => isIframeLoaded && iframe.contentDocument?.body?.innerHTML !== '').then(() => iframe.onload = () => {});
   };
 
   const getDoctypeLabel = (hasDoctype: boolean) => hasDoctype ? 'content has doctype' : 'content does not have doctype';
@@ -177,7 +177,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
         assertSandboxIframeSrcdoc(frame, testContent);
       } else {
         await Waiter.pTryUntil('Waiting for iframe body to be set', () =>
-          Optional.from(frame.element.dom.contentDocument?.body).fold(
+          frame.element.dom.contentDocument?.body ?? null.fold(
             () => assert.fail('Could not find iframe body'),
             (body) => assertSandboxedIframeContent(body, testContent)
           ));
@@ -205,10 +205,10 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
       await setContentAndWaitForLoad(frame, initialLongContent, shouldContentHaveDoctype);
 
       const doc = iframe.contentDocument;
-      await Optional.from(iframe.contentWindow).fold(
+      await iframe.contentWindow ?? null.fold(
         () => assert.fail('Could not find iframe window'),
         (win) =>
-          Optional.from(shouldContentHaveDoctype ? doc?.documentElement : doc?.body).fold(
+          shouldContentHaveDoctype ? doc?.documentElement : doc?.body ?? null.fold(
             () => assert.fail(`Could not find iframe ${shouldContentHaveDoctype ? 'documentElement' : 'body'}`),
             async (el) => {
               let initialScroll: number;
@@ -232,7 +232,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
 
               await setContentAndWaitForLoad(frame, newLongContent, shouldContentHaveDoctype);
 
-              Optional.from(shouldContentHaveDoctype ? doc?.documentElement : doc?.body).fold(
+              shouldContentHaveDoctype ? doc?.documentElement : doc?.body ?? null.fold(
                 () => assert.fail(`Could not find updated iframe ${shouldContentHaveDoctype ? 'documentElement' : 'body'}`),
                 (updatedEl) => {
                   if (initialScrollPosition === ScrollPosition.Top) {
@@ -249,7 +249,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
       );
     };
 
-    Arr.each([ true, false ], (shouldContentHaveDoctype) => {
+    [ true, false ].forEach((shouldContentHaveDoctype) =) {
       const doctypeLabel = getDoctypeLabel(shouldContentHaveDoctype);
 
       it(`TINY-10032: Should keep scroll at top when streamContent: true, iframe is at top, and ${doctypeLabel}`,
@@ -282,7 +282,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
     it('TINY-10032: Should not scroll to bottom when stream: false', () => {
       const frame = getFrameFromFrameNumber(0);
       Representing.setValue(frame, newLongContent);
-      Optional.from(frame.element.dom.contentWindow).fold(
+      frame.element.dom.contentWindow ?? null.fold(
         () => assert.fail('Could not find iframe document element'),
         (win) => assert.equal(win.scrollY, 0, 'iframe scroll should be at top')
       );
@@ -316,7 +316,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
       assertIframeScrollAtBottomOverflow(iframe, shouldContentHaveDoctype, 'iframe should be scrolled to bottom');
     };
 
-    Arr.each([ true, false ], (shouldContentHaveDoctype) => {
+    [ true, false ].forEach((shouldContentHaveDoctype) =) {
       const doctypeLabel = getDoctypeLabel(shouldContentHaveDoctype);
       it(`TINY-10078 & TINY-10097: Check for throttled iframe load on Safari and iframe scroll position is at bottom after streaming when ${doctypeLabel}`, async () => {
         const frame = getFrameFromFrameNumber(streamFrameNumber);
@@ -327,7 +327,7 @@ describe('headless.hugerte.themes.silver.components.iframe.IFrameTest', () => {
         await pStreamContentInIframe(frame, interval, maxNumIntervals, shouldContentHaveDoctype);
         assertIframeStateAfterIntervals(iframe, maxNumIntervals, shouldContentHaveDoctype);
 
-        iframe.onload = Fun.noop;
+        iframe.onload = () => {};
       });
 
       it(`TINY-10078, TINY-10097, TINY-10128: When updating rapidly and ${doctypeLabel}, artificial throttles should not impact content completeness and scroll should be kept at bottom`, async () => {

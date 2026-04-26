@@ -1,7 +1,7 @@
 import { FocusTools, RealKeys, RealMouse, UiFinder, Waiter } from '@ephox/agar';
 import { TestHelpers } from '@ephox/alloy';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { Focus, SelectorFind, SugarDocument } from '@ephox/sugar';
 import { assert } from 'chai';
@@ -73,13 +73,13 @@ describe('webdriver.hugerte.themes.silver.dialogs.IFrameDialogTest', () => {
       frame1: '<!doctype html><html><head>' +
           '</head>' +
           '<body><h1>Heading</h1>' +
-          Arr.map([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], (n) => '<p>This is paragraph: ' + n + '</p>').join('\n') +
+          [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].map((n) =) '<p>This is paragraph: ' + n + '</p>').join('\n') +
           '</body>'
     }
   };
 
   it('Keyboard navigate dialog with iframe component', async () => {
-    const dialogInstance = windowManager.open(dialogSpec, {}, Fun.noop);
+    const dialogInstance = windowManager.open(dialogSpec, {}, () => {});
 
     await pWaitUntilIframeLoaded();
     const input = await FocusTools.pTryOnSelector('focus should be on the input initially', SugarDocument.getDocument(), 'input');
@@ -115,7 +115,7 @@ describe('webdriver.hugerte.themes.silver.dialogs.IFrameDialogTest', () => {
   });
 
   it('TINY-10101: Asserting border classes when iframe in dialog has focus', async () => {
-    const dialogInstance = windowManager.open(dialogSpec, {}, Fun.noop);
+    const dialogInstance = windowManager.open(dialogSpec, {}, () => {});
 
     await pWaitUntilIframeLoaded();
     const assertContainerBorderFocus = (hasFocus: boolean) => {

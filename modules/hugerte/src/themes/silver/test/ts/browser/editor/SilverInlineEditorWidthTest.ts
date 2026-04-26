@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, UiFinder } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Type } from '@ephox/katamari';
+
 import { Css, Scroll, SugarBody, SugarElement } from '@ephox/sugar';
 import { McEditor, TinyDom } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -71,13 +71,13 @@ describe.skip('browser.hugerte.themes.silver.editor.SilverInlineEditorWidthTest'
 
     structureTest(editor, uiContainer, expectedWidth);
     assertWidth(uiContainer, expectedWidth, expectedWidth - 100);
-    editor.setContent(Arr.range(100, Fun.constant('<p></p>')).join(''));
+    editor.setContent(Array.from({ length: 100 }, () => '<p></p>').join(''));
     Scroll.to(0, 500);
     await UiFinder.pWaitForVisible('Wait to be docked', SugarBody.body(), '.tox-hugerte--toolbar-sticky-on .tox-editor-header');
     assertWidth(uiContainer, expectedWidth, expectedWidth - 100);
 
     // Run optional additional actions
-    if (Type.isNonNullable(pActions)) {
+    if (pActions != null) {
       await pActions(editor);
     }
 

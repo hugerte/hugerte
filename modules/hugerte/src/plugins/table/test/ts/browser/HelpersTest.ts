@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -29,7 +29,7 @@ describe('browser.hugerte.plugins.table.HelpersTest', () => {
       '</table>'
     );
     const td = UiFinder.findIn<HTMLTableCellElement>(TinyDom.body(editor), 'td.foo').getOrDie();
-    const cellData = Helpers.extractDataFromCellElement(editor, td.dom, true, Optional.none());
+    const cellData = Helpers.extractDataFromCellElement(editor, td.dom, true, null);
     assert.hasAllKeys(cellData, [ 'class', 'scope', 'celltype', 'halign', 'valign', 'width', 'backgroundcolor', 'bordercolor', 'borderstyle', 'borderwidth' ]);
     assert.equal(cellData.class, 'foo', 'Extracts class');
     assert.equal(cellData.scope, 'row', 'Extracts scope');
@@ -60,7 +60,7 @@ describe('browser.hugerte.plugins.table.HelpersTest', () => {
       '</table>'
     );
     const elements = UiFinder.findAllIn(TinyDom.body(editor), '.foo') as [ SugarElement<HTMLTableColElement>, SugarElement<HTMLTableCellElement> ];
-    const cellData = Helpers.extractDataFromCellElement(editor, elements[1].dom, true, Optional.some(elements[0].dom));
+    const cellData = Helpers.extractDataFromCellElement(editor, elements[1].dom, true, elements[0].dom);
     assert.hasAllKeys(cellData, [ 'class', 'scope', 'celltype', 'halign', 'valign', 'width', 'backgroundcolor', 'bordercolor', 'borderstyle', 'borderwidth' ]);
     assert.equal(cellData.class, 'foo', 'Extracts class');
     assert.equal(cellData.scope, 'row', 'Extracts scope');
@@ -88,7 +88,7 @@ describe('browser.hugerte.plugins.table.HelpersTest', () => {
       '</table>'
     );
     const td = UiFinder.findIn<HTMLTableCellElement>(TinyDom.body(editor), 'td.foo').getOrDie();
-    const cellData = Helpers.extractDataFromCellElement(editor, td.dom, true, Optional.none());
+    const cellData = Helpers.extractDataFromCellElement(editor, td.dom, true, null);
     assert.hasAllKeys(cellData, [ 'class', 'scope', 'celltype', 'halign', 'valign', 'width', 'backgroundcolor', 'bordercolor', 'borderstyle', 'borderwidth' ]);
     assert.equal(cellData.width, '20px', 'Extracts width from style');
     assert.equal(cellData.class, 'foo', 'Extracts class');
@@ -119,7 +119,7 @@ describe('browser.hugerte.plugins.table.HelpersTest', () => {
       '</table>'
     );
     const elements = UiFinder.findAllIn(TinyDom.body(editor), '.foo') as [ SugarElement<HTMLTableColElement>, SugarElement<HTMLTableCellElement> ];
-    const cellData = Helpers.extractDataFromCellElement(editor, elements[1].dom, true, Optional.some(elements[0].dom));
+    const cellData = Helpers.extractDataFromCellElement(editor, elements[1].dom, true, elements[0].dom);
     assert.hasAllKeys(cellData, [ 'class', 'scope', 'celltype', 'halign', 'valign', 'width', 'backgroundcolor', 'bordercolor', 'borderstyle', 'borderwidth' ]);
     assert.equal(cellData.width, '20px', 'Extracts width from style');
     assert.equal(cellData.backgroundcolor, '#333333', 'Extracts background-color from rgb');
@@ -145,7 +145,7 @@ describe('browser.hugerte.plugins.table.HelpersTest', () => {
       '</table>'
     );
     const td = UiFinder.findIn<HTMLTableCellElement>(TinyDom.body(editor), 'td.foo').getOrDie();
-    const cellData = Helpers.extractDataFromCellElement(editor, td.dom, true, Optional.none());
+    const cellData = Helpers.extractDataFromCellElement(editor, td.dom, true, null);
     assert.equal(cellData.bordercolor, '#008000', 'Extracts border-color from shorthand');
     assert.equal(cellData.borderstyle, 'dashed', 'Extracts border-style from shorthand');
   });
@@ -165,7 +165,7 @@ describe('browser.hugerte.plugins.table.HelpersTest', () => {
       '</table>'
     );
     const elements = UiFinder.findAllIn(TinyDom.body(editor), '.foo') as [ SugarElement<HTMLTableColElement>, SugarElement<HTMLTableCellElement> ];
-    const cellData = Helpers.extractDataFromCellElement(editor, elements[1].dom, true, Optional.some(elements[0].dom));
+    const cellData = Helpers.extractDataFromCellElement(editor, elements[1].dom, true, elements[0].dom);
     assert.equal(cellData.bordercolor, '#008000', 'Extracts border-color from shorthand');
     assert.equal(cellData.borderstyle, 'dashed', 'Extracts border-style from shorthand');
   });

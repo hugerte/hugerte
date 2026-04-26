@@ -1,5 +1,5 @@
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -100,7 +100,7 @@ describe('browser.hugerte.plugins.media.core.SubmitTest', () => {
     it('TBA: Set audio_template_callback and embed content, submit dialog and assert content', async () => {
       // Audio should be any mp3 link to trigger callback
       const editor = hook.editor();
-      const audioTemplateCallback = Fun.constant('<audio id="template" controls="controls"><source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3"></audio>');
+      const audioTemplateCallback = () => '<audio id="template" controls="controls"><source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3"></audio>';
       const expected = '<p><audio id="template" controls="controls"><source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3"></audio></p>';
       await pTestTemplateCallbackContentSubmit(editor, 'audio_template_callback', audioTemplateCallback, 'https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3', expected);
       await pTestEmbedUnchangedAfterOpenCloseDialog(editor, expected);
@@ -109,7 +109,7 @@ describe('browser.hugerte.plugins.media.core.SubmitTest', () => {
     it('TBA: Set video_template_callback and embed content, submit dialog and assert content', async () => {
       // Video should be any mp4 link to trigger callback
       const editor = hook.editor();
-      const videoTemplateCallback = Fun.constant('<video id="template" controls="controls" width="500" height="300" ><source src="https://i.imgur.com/Tu4e5WX.mp4"></video>');
+      const videoTemplateCallback = () => '<video id="template" controls="controls" width="500" height="300" ><source src="https://i.imgur.com/Tu4e5WX.mp4"></video>';
       const expected = '<p><video id="template" controls="controls" width="500" height="300"><source src="https://i.imgur.com/Tu4e5WX.mp4"></video></p>';
       await pTestTemplateCallbackContentSubmit(editor, 'video_template_callback', videoTemplateCallback, 'https://i.imgur.com/Tu4e5WX.mp4', expected);
       await pTestEmbedUnchangedAfterOpenCloseDialog(editor, expected);
@@ -118,7 +118,7 @@ describe('browser.hugerte.plugins.media.core.SubmitTest', () => {
     it('TINY-8684: Set iframe_template_callback and embed content, submit dialog and assert content', async () => {
       // Any youtube link triggers iframe callback
       const editor = hook.editor();
-      const iframeTemplateCallback = Fun.constant('<iframe id="template" title="testcallback" src="https://www.youtube.com/embed/IcgmSRJHu_8" width="500" height="300"></iframe>');
+      const iframeTemplateCallback = () => '<iframe id="template" title="testcallback" src="https://www.youtube.com/embed/IcgmSRJHu_8" width="500" height="300"></iframe>';
       const expected = '<p><iframe id="template" title="testcallback" src="https://www.youtube.com/embed/IcgmSRJHu_8" width="500" height="300" sandbox=""></iframe></p>';
       await pTestTemplateCallbackContentSubmit(editor, 'iframe_template_callback', iframeTemplateCallback, 'https://www.youtube.com/embed/IcgmSRJHu_8', expected);
       await pTestEmbedUnchangedAfterOpenCloseDialog(editor, expected);
@@ -134,7 +134,7 @@ describe('browser.hugerte.plugins.media.core.SubmitTest', () => {
       setup: (editor: Editor) => {
         editor.on('PreInit', () => {
           const converter = (nodes: AstNode[]): void => {
-            Arr.each(nodes, (node) => {
+            nodes.forEach((node) =) {
               const shimNode = new AstNode('span', 1);
               shimNode.attr('class', 'mce-shim');
 

@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { Browser } from '../core/Browser';
 import { OperatingSystem } from '../core/OperatingSystem';
@@ -27,14 +27,14 @@ export const DeviceType = (os: OperatingSystem, browser: Browser, userAgent: str
   const isDesktop = !isPhone && !isTablet && !iOSwebview;
 
   return {
-    isiPad: Fun.constant(isiPad),
-    isiPhone: Fun.constant(isiPhone),
-    isTablet: Fun.constant(isTablet),
-    isPhone: Fun.constant(isPhone),
-    isTouch: Fun.constant(isTouch),
+    isiPad: () => isiPad,
+    isiPhone: () => isiPhone,
+    isTablet: () => isTablet,
+    isPhone: () => isPhone,
+    isTouch: () => isTouch,
     isAndroid: os.isAndroid,
     isiOS: os.isiOS,
-    isWebView: Fun.constant(iOSwebview),
-    isDesktop: Fun.constant(isDesktop)
+    isWebView: () => iOSwebview,
+    isDesktop: () => isDesktop
   };
 };

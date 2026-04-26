@@ -1,6 +1,6 @@
 import { RealKeys } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -52,22 +52,22 @@ ${listContent}
 </${type1}>
 </div>`;
 
-  const nonEditableList: ListParameters[] = Arr.map(listTypes, (type: string) => ({
+  const nonEditableList: ListParameters[] = listTypes.map((type: string) =) ({
     title: `non-editable ${type} list`,
     content: nonEditableListContents(type),
     startPath: [ 1, 0, 0 ],
     selector: `iframe => body ${type} li`
   }));
 
-  const divNestedNonEditableList: ListParameters[] = Arr.map(listTypes, (type: string) => ({
+  const divNestedNonEditableList: ListParameters[] = listTypes.map((type: string) =) ({
     title: `non-editable div nested ${type} list`,
     content: divNestedNonEditableListContents(type),
     startPath: [ 0, 1, 0 ],
     selector: `iframe => body ${type} li`
   }));
 
-  const nestedNonEditableList: ListParameters[] = Arr.bind(listTypes, (type1: string) =>
-    Arr.map(listTypes, (type2: string) => ({
+  const nestedNonEditableList: ListParameters[] = listTypes.flatMap((type1: string) =)
+    listTypes.map((type2: string) =) ({
       title: `non-editable ${type2} list within editable ${type1} list`,
       content: nestedNonEditableListContents(type1, type2),
       startPath: [ 1, 0, 0, 1, 0, 0 ],
@@ -89,7 +89,7 @@ ${listContent}
     TinyAssertions.assertContent(editor, list.content);
   };
 
-  Arr.each(contentCombinations, (list) =>
+  contentCombinations.forEach((list) =)
     context(list.title, () => {
       it(`TINY-8920: Pressing backspace key to append to previous list item is disabled when in ${list.title}`, () =>
         pressKeyInListAndAssertNoChange(list, [ RealKeys.backspace() ])

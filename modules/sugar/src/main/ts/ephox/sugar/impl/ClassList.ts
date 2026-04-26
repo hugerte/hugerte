@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { SugarElement } from '../api/node/SugarElement';
 import * as AttrList from '../api/properties/AttrList';
@@ -13,7 +13,7 @@ const add = (element: SugarElement<Element>, clazz: string): boolean => AttrList
 const remove = (element: SugarElement<Element>, clazz: string): boolean => AttrList.remove(element, 'class', clazz);
 
 const toggle = (element: SugarElement<Element>, clazz: string): boolean => {
-  if (Arr.contains(get(element), clazz)) {
+  if (get(element).includes(clazz)) {
     return remove(element, clazz);
   } else {
     return add(element, clazz);

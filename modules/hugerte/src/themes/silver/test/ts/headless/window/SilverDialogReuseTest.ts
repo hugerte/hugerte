@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, StructAssert, TestStore, UiFinder } from '@ephox/agar';
 import { afterEach, before, describe, it } from '@ephox/bedrock-client';
 import { Dialog as BridgeSpec } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -21,7 +21,7 @@ describe('headless.hugerte.themes.silver.window.SilverDialogReuseTest', () => {
   });
 
   afterEach(() => {
-    Optional.from(dialogApi).each((api) => api.close());
+    dialogApi ?? null.each((api) => api.close());
   });
 
   const baseDialogActions = {

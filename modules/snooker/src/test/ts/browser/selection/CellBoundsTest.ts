@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement, TextContent } from '@ephox/sugar';
 
 import * as Structs from 'ephox/snooker/api/Structs';
@@ -93,7 +93,7 @@ UnitTest.test('CellBounds.isWithin Test', () => {
     { expected: false, label: 'p', row: 4, column: 4 }
   ];
 
-  Arr.each(cases, (c) => {
+  cases.forEach((c) =) {
     checkInSelection(c.expected, inputC, boundsC, c.row, c.column);
   });
 });

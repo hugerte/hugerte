@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Hierarchy, Html, Insert, SugarElement } from '@ephox/sugar';
 
 import Schema from 'hugerte/core/api/html/Schema';
@@ -25,7 +25,7 @@ describe('browser.hugerte.core.selection.FragmentReaderTest', () => {
   };
 
   const readFragmentCells = (paths: number[][]) => {
-    const ranges = Arr.map(paths, (path) => {
+    const ranges = paths.map((path) =) {
       const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), path).getOrDie();
       const rng = document.createRange();
       rng.selectNode(container.dom);

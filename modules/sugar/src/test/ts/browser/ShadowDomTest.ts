@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
-import { Arr } from '@ephox/katamari';
+
 import fc from 'fast-check';
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
@@ -205,6 +205,6 @@ if (SugarShadowDom.isSupported()) {
     withShadowElement((sr) => {
       roots.push(sr);
     });
-    Assert.eq('open then closed', [ 'open', 'closed' ], Arr.map(roots, (r) => (r.dom as any).mode ));
+    Assert.eq('open then closed', [ 'open', 'closed' ], roots.map((r) =) (r.dom as any).mode ));
   });
 }

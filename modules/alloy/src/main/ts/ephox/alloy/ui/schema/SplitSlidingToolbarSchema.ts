@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import * as Behaviour from '../../api/behaviour/Behaviour';
 import { Focusing } from '../../api/behaviour/Focusing';
@@ -64,7 +64,7 @@ const parts: () => PartType.PartTypeAdt[] = () => [
             mode: 'acyclic',
             onEscape: (comp) => {
               AlloyParts.getPart(comp, detail, 'overflow-button').each(Focusing.focus);
-              return Optional.some<boolean>(true);
+              return true;
             }
           })
         ])

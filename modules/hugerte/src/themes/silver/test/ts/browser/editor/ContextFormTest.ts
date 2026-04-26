@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, StructAssert, TestStore, UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Obj } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -18,9 +18,9 @@ describe('browser.hugerte.themes.silver.editor.ContextFormTest', () => {
           tooltip: 'ABC',
           onSetup: (buttonApi) => {
             const f = (evt: { active?: boolean; disable?: boolean }) => {
-              if (Obj.has(evt, 'disable')) {
+              if (Object.prototype.hasOwnProperty.call(evt, 'disable')) {
                 buttonApi.setEnabled(!evt.disable as boolean);
-              } else if (Obj.has(evt, 'active')) {
+              } else if (Object.prototype.hasOwnProperty.call(evt, 'active')) {
                 buttonApi.setActive(evt.active as boolean);
               }
             };
@@ -41,7 +41,7 @@ describe('browser.hugerte.themes.silver.editor.ContextFormTest', () => {
             tooltip: 'A',
             onSetup: (buttonApi) => {
               const f = (evt: { active?: boolean; disable?: boolean }) => {
-                if (Obj.has(evt, 'disable')) {
+                if (Object.prototype.hasOwnProperty.call(evt, 'disable')) {
                   buttonApi.setEnabled(!evt.disable);
                 }
               };
@@ -67,9 +67,9 @@ describe('browser.hugerte.themes.silver.editor.ContextFormTest', () => {
             tooltip: 'C',
             onSetup: (buttonApi) => {
               const f = (evt: { active?: boolean; disable?: boolean }) => {
-                if (Obj.has(evt, 'disable')) {
+                if (Object.prototype.hasOwnProperty.call(evt, 'disable')) {
                   buttonApi.setEnabled(!evt.disable as boolean);
-                } else if (Obj.has(evt, 'active')) {
+                } else if (Object.prototype.hasOwnProperty.call(evt, 'active')) {
                   buttonApi.setActive(evt.active as boolean);
                 }
               };
@@ -86,7 +86,7 @@ describe('browser.hugerte.themes.silver.editor.ContextFormTest', () => {
       });
 
       ed.ui.registry.addContextToolbar('test-toolbar', {
-        predicate: Fun.never,
+        predicate: () => false,
         items: 'form:test-form'
       });
     }

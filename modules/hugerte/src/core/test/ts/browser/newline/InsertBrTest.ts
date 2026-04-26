@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Height, Scroll, WindowVisualViewport } from '@ephox/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -117,7 +117,7 @@ describe('browser.hugerte.core.newline.InsertBrTest', () => {
   it('Scrolls correctly to inserted br', () => {
     const editor = hook.editor();
     editor.setContent('');
-    Arr.range(100, () => linebreak.insert(editor));
+    Array.from({ length: 100 }, () => linebreak.insert(editor));
     const { top } = Scroll.get(TinyDom.document(editor));
     const offsetHeight = Height.get(TinyDom.body(editor));
     const { height } = WindowVisualViewport.getBounds(editor.getWin());

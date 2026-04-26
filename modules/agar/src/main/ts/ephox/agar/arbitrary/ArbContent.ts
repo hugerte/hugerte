@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Merger, Obj } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
@@ -18,7 +18,7 @@ const makeArbOf = <T extends Node>(component: string, schema: ContentSchema, dep
   if (arbitrary === undefined) {
     const message =
       'Did not understand arbitrary schema element: ' + JSON.stringify(component) +
-      '. Known schema elements were: ' + JSON.stringify(Obj.keys(schema));
+      '. Known schema elements were: ' + JSON.stringify(Object.keys(schema));
     // eslint-disable-next-line no-console
     console.error(message);
     throw new Error(message);
@@ -28,8 +28,8 @@ const makeArbOf = <T extends Node>(component: string, schema: ContentSchema, dep
 
 const createSchema = (factory: Schema, extras: Record<string, Partial<SchemaDetail>>): ContentSchema => {
   const base = ArbSchema;
-  const schema = Merger.deepMerge(base, extras);
-  return Obj.map(schema, (s, k) => {
+  const schema = ({ ...base, ...extras });
+  return Object.fromEntries(Object.entries(schema).map(([k, v]) => [k, ((s, k) =)(v, k)])) {
     const type: string = s.type;
     if (factory[type] === undefined && base[k] !== undefined) {
       throw new Error('Component: ' + k + ' has invalid type: ' + type);

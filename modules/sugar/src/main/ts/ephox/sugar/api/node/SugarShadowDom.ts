@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 import { HTMLElementFullTagNameMap } from '../../alien/DomTypes';
 import * as Traverse from '../search/Traverse';
@@ -15,12 +15,12 @@ export type RootNode = SugarElement<Document | ShadowRoot>;
  * a Document and a ShadowRoot.
  */
 export const isShadowRoot = (dos: SugarElement<Node>): dos is SugarElement<ShadowRoot> =>
-  SugarNode.isDocumentFragment(dos) && Type.isNonNullable((dos.dom as ShadowRoot).host);
+  SugarNode.isDocumentFragment(dos) && (dos.dom as ShadowRoot).host != null;
 
 /* eslint-disable @tinymce/no-implicit-dom-globals, @typescript-eslint/unbound-method */
 const supported: boolean =
-  Type.isFunction(Element.prototype.attachShadow) &&
-  Type.isFunction(Node.prototype.getRootNode);
+  typeof Element.prototype.attachShadow === 'function' &&
+  typeof Node.prototype.getRootNode === 'function';
 /* eslint-enable */
 
 /**
@@ -28,7 +28,7 @@ const supported: boolean =
  *
  * NOTE: Node.getRootNode() and Element.attachShadow don't exist on IE11 and pre-Chromium Edge.
  */
-export const isSupported = Fun.constant(supported);
+export const isSupported = () => supported;
 
 export const getRootNode: (e: SugarElement<Node>) => RootNode =
   supported
@@ -58,7 +58,7 @@ export const isInShadowRoot = (e: SugarElement<Node>): boolean =>
 /** If this element is in a ShadowRoot, return it. */
 export const getShadowRoot = (e: SugarElement<Node>): Optional<SugarElement<ShadowRoot>> => {
   const r = getRootNode(e);
-  return isShadowRoot(r) ? Optional.some(r) : Optional.none();
+  return isShadowRoot(r) ? r : null;
 };
 
 /** Return the host of a ShadowRoot.
@@ -76,7 +76,7 @@ export const getShadowHost = (e: SugarElement<ShadowRoot>): SugarElement<Element
  * See: https://developers.google.com/web/fundamentals/web-components/shadowdom#events
  */
 export const getOriginalEventTarget = (event: Event): Optional<EventTarget> => {
-  if (isSupported() && Type.isNonNullable(event.target)) {
+  if (isSupported() && event.target != null) {
     const el = SugarElement.fromDom(event.target as Node);
     if (SugarNode.isElement(el) && isOpenShadowHost(el)) {
       // When target element is inside Shadow DOM we need to take first element from composedPath
@@ -89,7 +89,7 @@ export const getOriginalEventTarget = (event: Event): Optional<EventTarget> => {
       }
     }
   }
-  return Optional.from(event.target);
+  return event.target ?? null;
 };
 
 export const isOpenShadowRoot = (sr: SugarElement<ShadowRoot>): boolean =>
@@ -102,4 +102,4 @@ export const isClosedShadowRoot = (sr: SugarElement<ShadowRoot>): boolean =>
  *  Return false if the element is a host of a closed shadow root, or if the element is not a host.
  */
 export const isOpenShadowHost = (element: SugarElement<Element>): boolean =>
-  Type.isNonNullable(element.dom.shadowRoot);
+  element.dom.shadowRoot != null;

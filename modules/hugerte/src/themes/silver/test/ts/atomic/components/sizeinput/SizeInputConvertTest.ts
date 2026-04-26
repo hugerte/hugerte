@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from '@ephox/katamari';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
@@ -18,10 +18,10 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConvertTest
   };
 
   it('convert unit between different units', () => {
-    check(Optional.some(12), nuSize(12, 'mm'), 'mm');
-    check(Optional.some(16848), nuSize(234, 'in'), 'pt');
-    check(Optional.some(75.59055118110236), nuSize(2, 'cm'), 'px');
-    check(Optional.none(), nuSize(2, 'cm'), 'ch');
+    check(12, nuSize(12, 'mm'), 'mm');
+    check(16848, nuSize(234, 'in'), 'pt');
+    check(75.59055118110236, nuSize(2, 'cm'), 'px');
+    check(null, nuSize(2, 'cm'), 'ch');
   });
 
   it('All units can convert to themselves', () => {
@@ -48,7 +48,7 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConvertTest
   });
 
   it('All non-convertible units can only convert to themselves', () => {
-    const nonConvertible = Arr.filter(units, (unit) => !Arr.contains(convertibleUnits, unit));
+    const nonConvertible = units.filter((unit) =) !convertibleUnits.includes(unit));
     fc.assert(fc.property(
       fc.integer(0, largeSensible), fc.constantFrom(...nonConvertible), fc.constantFrom(...units),
       (value: number, unit1: SizeUnit, unit2: SizeUnit) => {

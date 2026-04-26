@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Future, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Compare, Focus } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -27,7 +27,7 @@ UnitTest.asynctest('Dropdown List', (success, failure) => {
     Container.sketch({
       containerBehaviours: Behaviour.derive([
         Positioning.config({
-          useFixed: Fun.always
+          useFixed: () => true
         })
       ])
     })
@@ -64,7 +64,7 @@ UnitTest.asynctest('Dropdown List', (success, failure) => {
         toggleClass: 'alloy-selected',
 
         dropdownBehaviours: Behaviour.derive(
-          Arr.map([ '1', '2', '3' ], (num) => AddEventsBehaviour.config(`test-listener-${num}`, [
+          [ '1', '2', '3' ].map((num) =) AddEventsBehaviour.config(`test-listener-${num}`, [
             AlloyEvents.run('test-listener', store.adder(`test.listener.${num}`))
           ]))
         ),
@@ -90,9 +90,9 @@ UnitTest.asynctest('Dropdown List', (success, failure) => {
           return future.map((f) => {
             const menu = TestDropdownMenu.renderMenu({
               value: 'v',
-              items: Arr.map(f, TestDropdownMenu.renderItem)
+              items: f.map(TestDropdownMenu.renderItem)
             });
-            return Optional.some(TieredMenu.singleData('test', menu));
+            return TieredMenu.singleData('test', menu);
           });
         }
       })

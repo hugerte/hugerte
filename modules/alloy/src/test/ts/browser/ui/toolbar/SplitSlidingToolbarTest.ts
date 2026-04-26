@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Step, StructAssert, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Css } from '@ephox/sugar';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
@@ -158,9 +158,9 @@ UnitTest.asynctest('SplitSlidingToolbarTest', (success, failure) => {
 
       Step.sync(() => {
         const groups = TestPartialToolbarGroup.createGroups([
-          { items: Arr.map([{ text: 'A' }, { text: 'B' }], makeButton) },
-          { items: Arr.map([{ text: 'C' }, { text: 'D' }], makeButton) },
-          { items: Arr.map([{ text: 'E' }, { text: 'F' }, { text: 'G' }], makeButton) }
+          { items: [{ text: 'A' }, { text: 'B' }].map(makeButton) },
+          { items: [{ text: 'C' }, { text: 'D' }].map(makeButton) },
+          { items: [{ text: 'E' }, { text: 'F' }, { text: 'G' }].map(makeButton) }
         ]);
         SplitSlidingToolbar.setGroups(component, groups);
         SplitSlidingToolbar.toggle(component);

@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SelectorFind, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -15,7 +15,7 @@ describe('browser.hugerte.core.CaretCandidateTest', () => {
   const setupHtml = viewBlock.update;
 
   it('isCaretCandidate', () => {
-    Arr.each('img input textarea hr table iframe video audio object'.split(' '), (name) => {
+    'img input textarea hr table iframe video audio object'.split(' ').forEach((name) =) {
       assert.isTrue(CaretCandidate.isCaretCandidate(document.createElement(name)));
     });
 
@@ -40,7 +40,7 @@ describe('browser.hugerte.core.CaretCandidateTest', () => {
   });
 
   it('isAtomic', () => {
-    Arr.each([ 'img', 'input', 'textarea', 'hr' ], (name) => {
+    [ 'img', 'input', 'textarea', 'hr' ].forEach((name) =) {
       assert.isTrue(CaretCandidate.isAtomic(document.createElement(name)));
     });
 

@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { Focus, SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinyAssertions, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -247,8 +247,8 @@ describe('browser.hugerte.core.api.EditorCommandsTest', () => {
       const editor = hook.editor();
 
       editor.editorCommands.addCommands({
-        foo1: Fun.noop,
-        bar1: Fun.noop
+        foo1: () => {},
+        bar1: () => {}
       });
 
       assert.isTrue(editor.editorCommands.queryCommandSupported('foo1'));
@@ -259,8 +259,8 @@ describe('browser.hugerte.core.api.EditorCommandsTest', () => {
       const editor = hook.editor();
 
       editor.editorCommands.addCommands({
-        foo2: Fun.noop,
-        bar2: Fun.noop
+        foo2: () => {},
+        bar2: () => {}
       }, 'exec');
 
       assert.isTrue(editor.editorCommands.queryCommandSupported('foo2'));
@@ -271,8 +271,8 @@ describe('browser.hugerte.core.api.EditorCommandsTest', () => {
       const editor = hook.editor();
 
       editor.editorCommands.addCommands({
-        foo3: Fun.always,
-        bar3: Fun.never
+        foo3: () => true,
+        bar3: () => false
       }, 'state');
 
       assert.isTrue(editor.editorCommands.queryCommandState('foo3'));
@@ -283,8 +283,8 @@ describe('browser.hugerte.core.api.EditorCommandsTest', () => {
       const editor = hook.editor();
 
       editor.editorCommands.addCommands({
-        foo3: Fun.constant('foo'),
-        bar3: Fun.constant('bar')
+        foo3: () => 'foo',
+        bar3: () => 'bar'
       }, 'value');
 
       assert.equal(editor.editorCommands.queryCommandValue('foo3'), 'foo');
@@ -295,7 +295,7 @@ describe('browser.hugerte.core.api.EditorCommandsTest', () => {
       const editor = hook.editor();
 
       editor.editorCommands.addCommands({
-        'foo4,bar4': Fun.noop
+        'foo4,bar4': () => {}
       });
 
       assert.isTrue(editor.editorCommands.queryCommandSupported('foo4'), 'Should exists foo4 command');
@@ -315,7 +315,7 @@ describe('browser.hugerte.core.api.EditorCommandsTest', () => {
     it('queryCommandSupported for custom command', () => {
       const editor = hook.editor();
 
-      editor.editorCommands.addCommand('CustomCommand3', Fun.noop);
+      editor.editorCommands.addCommand('CustomCommand3', () => {});
       assert.isTrue(editor.editorCommands.queryCommandSupported('CustomCommand3'), 'Custom command should be supported');
       assert.isTrue(editor.editorCommands.queryCommandSupported('customcommand3'), 'Custom command should be supported with different case');
     });

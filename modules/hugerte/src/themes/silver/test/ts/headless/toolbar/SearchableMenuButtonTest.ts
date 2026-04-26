@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
 import { AlloyTriggers, GuiFactory, NativeEvents, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+
 import { Attribute, SugarDocument, SugarElement } from '@ephox/sugar';
 
 import { renderMenuButton } from 'hugerte/themes/silver/ui/button/MenuButton';
@@ -24,17 +24,17 @@ describe('headless.hugerte.themes.silver.toolbar.SearchableMenuButtonTest', () =
     }`
   ]);
 
-  const structNoPlaceholderSearch = structSearchField(Optional.none());
+  const structNoPlaceholderSearch = structSearchField(null);
 
   const hook = TestHelpers.GuiSetup.bddSetup(
     (store, _doc, _body) => GuiFactory.build(
       renderMenuButton(
         {
-          text: Optional.some('MailMerge'),
-          icon: Optional.none(),
-          tooltip: Optional.none(),
-          onSetup: Fun.constant(Fun.noop),
-          search: Optional.some({ placeholder: Optional.none() }),
+          text: 'MailMerge',
+          icon: null,
+          tooltip: null,
+          onSetup: () => () = {}),
+          search: { placeholder: null },
           fetch: fetchMailMergeData({
             // If a search pattern is present, collapse into one menu
             collapseSearchResults: true
@@ -42,7 +42,7 @@ describe('headless.hugerte.themes.silver.toolbar.SearchableMenuButtonTest', () =
         },
         'prefix',
         extrasHook.access().extras.backstages.popup,
-        Optional.none()
+        null
       )
     )
 

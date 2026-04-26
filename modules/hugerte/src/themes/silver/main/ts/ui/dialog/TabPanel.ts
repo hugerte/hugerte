@@ -4,7 +4,7 @@ import {
 } from '@ephox/alloy';
 import { Objects } from '@ephox/boulder';
 import { Dialog } from '@ephox/bridge';
-import { Cell, Merger } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { toValidValues } from 'hugerte/themes/silver/ui/general/FormValues';
 import { interpretInForm } from 'hugerte/themes/silver/ui/general/UiFactory';
@@ -29,7 +29,7 @@ export const renderTabPanel = (spec: TabPanelSpec, dialogData: Dialog.DialogData
     const formData = Representing.getValue(form);
     const validData = toValidValues(formData) ?? ({ });
     const currentData = storedValue.get();
-    const newData = Merger.deepMerge(currentData, validData);
+    const newData = ({ ...currentData, ...validData });
     storedValue.set(newData);
   };
 

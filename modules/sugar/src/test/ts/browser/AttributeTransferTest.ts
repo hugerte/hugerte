@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+
 
 import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
 import * as Attribute from 'ephox/sugar/api/properties/Attribute';
@@ -34,13 +34,13 @@ UnitTest.test('AttributeTransfer', () => {
 
   const check = (expectedPresent: Record<string, any>, expectedAbsent: string[], source: SugarElement<Element>, destination: SugarElement<Element>, attributes: string[]) => {
     Attribute.transfer(source, destination, attributes);
-    Arr.each(expectedAbsent, (k) => {
+    expectedAbsent.forEach((k) =) {
       if (Attribute.has(destination, k)) {
         Assert.fail('Result should not have attribute: ' + k);
       }
     });
 
-    Obj.each(expectedPresent, (v, k) => {
+    Object.entries(expectedPresent).forEach(([k, v]) => ((v, k) =)(v, k)) {
       if (!Attribute.has(destination, k)) {
         Assert.fail('Result should have attribute: ' + k);
       } else {

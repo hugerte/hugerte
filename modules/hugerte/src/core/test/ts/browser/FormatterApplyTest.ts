@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { Hierarchy } from '@ephox/sugar';
 import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -2178,7 +2178,7 @@ describe('browser.hugerte.core.FormatterApplyTest', () => {
 
   it('Get all formats', () => {
     const editor = hook.editor();
-    Assertions.assertEq('Should have a bunch of formats', true, Obj.keys(editor.formatter.get()).length > 0);
+    Assertions.assertEq('Should have a bunch of formats', true, Object.keys(editor.formatter.get()).length > 0);
   });
 
   it('Apply ceFalseOverride format', () => {

@@ -3,7 +3,7 @@ import { AlloyComponent, Behaviour, GuiFactory, ModalDialog, Positioning, TestHe
 import { before, beforeEach, describe, it } from '@ephox/bedrock-client';
 import { ValueType } from '@ephox/boulder';
 import { DialogManager } from '@ephox/bridge';
-import { Fun, Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 
 import I18n from 'hugerte/core/api/util/I18n';
@@ -39,9 +39,9 @@ describe('headless.hugerte.themes.silver.window.SilverDialogEventTest', () => {
           text: 'Cancel',
           align: 'end',
           primary: false,
-          buttonType: Optional.some('secondary'),
+          buttonType: 'secondary',
           enabled: true,
-          icon: Optional.none()
+          icon: null
         },
         {
           type: 'submit',
@@ -49,15 +49,15 @@ describe('headless.hugerte.themes.silver.window.SilverDialogEventTest', () => {
           text: 'Save',
           align: 'end',
           primary: true,
-          buttonType: Optional.some('primary'),
+          buttonType: 'primary',
           enabled: true,
-          icon: Optional.none()
+          icon: null
         }
       ],
       initialData: {},
-      onChange: Fun.noop,
-      onAction: Fun.noop,
-      onTabChange: Fun.noop,
+      onChange: () => {},
+      onAction: () => {},
+      onTabChange: () => {},
       onSubmit: (api) => {
         store.adder('onSubmit')();
         api.close();
@@ -98,7 +98,7 @@ describe('headless.hugerte.themes.silver.window.SilverDialogEventTest', () => {
             icons: () => ({}),
             menuItems: () => ({}),
             translate: I18n.translate,
-            isDisabled: Fun.never,
+            isDisabled: () => false,
             getOption: (_settingName: string) => undefined,
             tooltips: {
               getConfig: (): TooltippingTypes.TooltippingConfigSpec => {
@@ -113,7 +113,7 @@ describe('headless.hugerte.themes.silver.window.SilverDialogEventTest', () => {
           } as UiFactoryBackstageProviders
         },
         dialog: {
-          isDraggableModal: Fun.never
+          isDraggableModal: () => false
         }
       } as UiFactoryBackstage
     );

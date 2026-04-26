@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, Log, Step, TestStore, UiFinder } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -44,7 +44,7 @@ UnitTest.asyncTest('BlockingTest', (success, failure) => {
 
   GuiSetup.setup(makeComponent, (doc, body, gui, comp, store) => {
     const sBlock = (fn?: (comp: AlloyComponent, behaviour: Behaviour.AlloyBehaviourRecord) => AlloySpec) =>
-      Step.sync(() => Blocking.block(comp, fn === undefined ? Fun.constant({ dom: { tag: 'div' }}) : fn));
+      Step.sync(() => Blocking.block(comp, fn === undefined ? () => { dom: { tag: 'div' }} : fn));
 
     const sUnblock = Step.sync(() => Blocking.unblock(comp));
 

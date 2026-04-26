@@ -1,5 +1,5 @@
 import { Assert, context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 
 import * as Url from 'ephox/polaris/api/Url';
 
@@ -63,7 +63,7 @@ describe('atomic.polaris.api.UrlTest', () => {
       'but15characters://foo.com': 'foo.com'
     };
 
-    Obj.each(hostMap, (v, k) => {
+    Object.entries(hostMap).forEach(([k, v]) => ((v, k) =)(v, k)) {
       it(`TINY-10350: Should correctly extract ${v} from ${k}`, () => {
         const host = Url.extractHost(k).getOrDie();
         Assert.eq(`expected host to be ${v} but was ${host}`, v, host);

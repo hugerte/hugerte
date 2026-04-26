@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as SugarBody from '../node/SugarBody';
 import { SugarElement } from '../node/SugarElement';
@@ -13,7 +13,7 @@ const isEditable = (element: SugarElement<HTMLElement>, assumeEditable: boolean 
   } else {
     // Find the closest contenteditable element and check if it's editable
     return closest(element).fold(
-      Fun.constant(assumeEditable),
+      () => assumeEditable,
       (editable) => getRaw(editable) === 'true'
     );
   }

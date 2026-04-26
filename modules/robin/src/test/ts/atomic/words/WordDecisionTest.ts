@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { WordDecision } from 'ephox/robin/words/WordDecision';
 import { WordWalking } from 'ephox/robin/words/WordWalking';
@@ -25,24 +25,24 @@ UnitTest.test('WordDecisionTest', () => {
   );
 
   const check = (items: string[], abort: boolean, id: string, slicer: (text: string) => Optional<[number, number]>, _currLanguage: Optional<string>) => {
-    const isCustomBoundary = Fun.never;
+    const isCustomBoundary = () => false;
     const actual = WordDecision.decide(universe, universe.find(universe.get(), id).getOrDie(), slicer, isCustomBoundary);
-    Assert.eq('', items, Arr.map(actual.items, (item) => {
+    Assert.eq('', items, actual.items.map((item) =) {
       return item.item.id;
     }));
     Assert.eq('', abort, actual.abort);
   };
 
-  check([], true, 'p1', WordWalking.left.slicer, Optional.none());
-  check([], true, 'p1', WordWalking.right.slicer, Optional.none());
-  check([], true, 'going_', WordWalking.left.slicer, Optional.none());
-  check([ 'going_' ], true, 'going_', WordWalking.right.slicer, Optional.none());
-  check([ 'to' ], false, 'to', WordWalking.left.slicer, Optional.none());
-  check([ 'to' ], false, 'to', WordWalking.right.slicer, Optional.none());
-  check([ '_b' ], true, '_b', WordWalking.left.slicer, Optional.none());
-  check([], true, '_b', WordWalking.right.slicer, Optional.none());
-  check([], true, 'br1', WordWalking.left.slicer, Optional.none());
-  check([], true, 'br1', WordWalking.right.slicer, Optional.none());
+  check([], true, 'p1', WordWalking.left.slicer, null);
+  check([], true, 'p1', WordWalking.right.slicer, null);
+  check([], true, 'going_', WordWalking.left.slicer, null);
+  check([ 'going_' ], true, 'going_', WordWalking.right.slicer, null);
+  check([ 'to' ], false, 'to', WordWalking.left.slicer, null);
+  check([ 'to' ], false, 'to', WordWalking.right.slicer, null);
+  check([ '_b' ], true, '_b', WordWalking.left.slicer, null);
+  check([], true, '_b', WordWalking.right.slicer, null);
+  check([], true, 'br1', WordWalking.left.slicer, null);
+  check([], true, 'br1', WordWalking.right.slicer, null);
 
   // TODO: Add tests around language
 });

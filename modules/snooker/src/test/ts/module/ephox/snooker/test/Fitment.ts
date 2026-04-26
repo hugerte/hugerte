@@ -1,20 +1,20 @@
 import { Assert } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import { SimpleGenerators } from 'ephox/snooker/api/Generators';
 import * as Structs from 'ephox/snooker/api/Structs';
 import * as Fitment from 'ephox/snooker/model/Fitment';
 
 const mapToStructGrid = (grid: Structs.ElementNew[][]): Structs.RowCells[] => {
-  return Arr.map(grid, (row) => {
+  return grid.map((row) =) {
     return Structs.rowcells('tr' as any, row, 'tbody', false);
   });
 };
 
 const assertGrids = (expected: Structs.RowCells[], actual: Structs.RowCells[]): void => {
   Assert.eq('', expected.length, actual.length);
-  Arr.each(expected, (row, i) => {
-    Arr.each(row.cells, (cell, j) => {
+  expected.forEach((row, i) =) {
+    row.cells.forEach((cell, j) =) {
       Assert.eq('', cell.element, actual[i].cells[j].element);
       Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
     });

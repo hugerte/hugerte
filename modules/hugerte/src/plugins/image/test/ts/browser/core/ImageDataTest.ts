@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, StructAssert } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+
 import { SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -20,7 +20,7 @@ describe('browser.hugerte.plugins.image.core.ImageDataTest', () => {
     const css = DOMUtils.DOM.styles.parse(cssText);
     const newCss: Record<string, string> = {};
 
-    Arr.each(Obj.keys(css).sort(), (key) => {
+    Object.keys(css).sort().forEach((key) =) {
       newCss[key] = css[key];
     });
 

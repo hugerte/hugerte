@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, Behaviour, Focusing, SketchSpec, Slider } from '@ephox/alloy';
-import { Fun } from '@ephox/katamari';
+
 import { Attribute } from '@ephox/sugar';
 
 import { sliderUpdate } from '../ColourEvents';
@@ -39,7 +39,7 @@ const sliderFactory = (translate: (key: string) => string, getClass: (key: strin
     rounded: false,
     model: {
       mode: 'y',
-      getInitialValue: Fun.constant(0)
+      getInitialValue: () => 0
     },
     components: [
       spectrum,

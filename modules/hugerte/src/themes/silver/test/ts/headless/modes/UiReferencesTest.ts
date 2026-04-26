@@ -1,6 +1,6 @@
 import { Gui, GuiFactory } from '@ephox/alloy';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Class, Classes } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -26,7 +26,7 @@ describe('headless.modes.UiReferencesTest', () => {
     };
 
     const assertClasses = (expected: string[][], motherships: Gui.GuiSystem[]) => {
-      const actual = Arr.map(motherships, (m) => Classes.get(m.element));
+      const actual = motherships.map((m) =) Classes.get(m.element));
       assert.deepEqual(actual, expected, 'Checking classes of motherships');
     };
 

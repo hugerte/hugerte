@@ -1,6 +1,6 @@
 import { UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as Subset from 'ephox/robin/parent/Subset';
@@ -31,13 +31,13 @@ UnitTest.test('SubsetTest', () => {
     const start = universe.find(universe.get(), startId).getOrDie();
     const finish = universe.find(universe.get(), finishId).getOrDie();
 
-    const actual = Subset.subset(universe, start, finish).map((g) => Arr.map(g, (x) => x.id));
+    const actual = Subset.subset(universe, start, finish).map((g) => g.map((x) =) x.id));
     KAssert.eqOptional('eq', expected, actual);
   };
 
-  check(Optional.some([ 'three-five' ]), 'three-five', 'five');
-  check(Optional.some([ 'three-five' ]), 'five', 'three-five');
-  check(Optional.some([ 'two', 'three-five' ]), 'two', 'five');
-  check(Optional.some([ 'two', 'three-five' ]), 'two', 'four');
-  check(Optional.some([ 'two', 'three-five', 'six', 'seven-nine' ]), 'two', 'eight');
+  check([ 'three-five' ], 'three-five', 'five');
+  check([ 'three-five' ], 'five', 'three-five');
+  check([ 'two', 'three-five' ], 'two', 'five');
+  check([ 'two', 'three-five' ], 'two', 'four');
+  check([ 'two', 'three-five', 'six', 'seven-nine' ], 'two', 'eight');
 });

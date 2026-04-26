@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 import { TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -50,16 +50,18 @@ const generateTable = (mode: SizingMode, width: number | null, rows: number, col
 
   const getCellStyle = useColumns ? '' : ` style="${cellWidth}"`;
 
-  const renderedRows = Arr.range(rows, (row) =>
-    '<tr>' + Arr.range(cols, (col) => {
+  const renderedRows = Array.from({ length: rows }, (row) =>
+    '<tr>' + Array.from({ length: cols }, (col) => {
+      const cellNum = (row * cols) + col + 1;
+      return `<td${getCellStyle}>Cell ${cellNum}</td>`;
+    }).join('') + '</tr>')Array.from({ length: cols }, (col) => {
       const cellNum = (row * cols) + col + 1;
       return `<td${getCellStyle}>Cell ${cellNum}</td>`;
     }).join('') + '</tr>'
   ).join('');
 
-  const renderedColumns = Arr.range(cols, () =>
-    `<col style="${cellWidth}"></col>`
-  ).join('');
+  const renderedColumns = Array.from({ length: cols }, () =>
+    `<col style="${cellWidth}"></col>`).join('');
 
   const getColumns = () =>
     useColumns ? '<colgroup>' + renderedColumns + '</colgroup>' : '';

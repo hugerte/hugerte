@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 
 import * as ResizeBehaviour from 'ephox/snooker/api/ResizeBehaviour';
 import { TableSize } from 'ephox/snooker/api/TableSize';
@@ -16,15 +16,15 @@ UnitTest.test('DeltasTest', () => {
       return [ newNext - width ];
     };
     const tableSize = {
-      minCellWidth: Fun.constant(10),
+      minCellWidth: () => 10,
       singleColumnWidth,
       isRelative: false
     };
     const actual = Deltas.determine(input, column, step, tableSize as TableSize, resizeBehaviour);
-    Assert.eq(`${msg}: expected: ${expected}, actual: ${actual}`, expected, Arr.map(actual, (num) => Math.round(num)));
+    Assert.eq(`${msg}: expected: ${expected}, actual: ${actual}`, expected, actual.map((num) =) Math.round(num)));
   };
 
-  Arr.each([ resizeTable, preserveTable ], (mode) => {
+  [ resizeTable, preserveTable ].forEach((mode) =) {
     const modeName = mode === resizeTable ? 'resizeTable' : 'preserveTable';
     check(`deltas - columnSizing: "${modeName}" - single column (0)`, [ -70 ], [ 80 ], 0, -100, mode);
     check(`deltas - columnSizing: "${modeName}" - single column (1)`, [ -100 ], [ 115 ], 0, -100, mode);

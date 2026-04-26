@@ -1,8 +1,8 @@
-import { Fun, Optional, Type } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { SugarElement } from '../node/SugarElement';
 
-const ensureIsRoot = (isRoot?: (e: SugarElement<Node>) => boolean) => Type.isFunction(isRoot) ? isRoot : Fun.never;
+const ensureIsRoot = (isRoot?: (e: SugarElement<Node>) => boolean) => typeof isRoot === 'function' ? isRoot : () => false;
 
 const ancestor = <A> (scope: SugarElement<Node>, transform: (e: SugarElement<Node>) => Optional<A>, isRoot?: (e: SugarElement<Node>) => boolean): Optional<A> => {
   let element = scope.dom;
@@ -19,13 +19,13 @@ const ancestor = <A> (scope: SugarElement<Node>, transform: (e: SugarElement<Nod
       break;
     }
   }
-  return Optional.none<A>();
+  return null;
 };
 
 const closest = <A> (scope: SugarElement<Node>, transform: (e: SugarElement<Node>) => Optional<A>, isRoot?: (e: SugarElement<Node>) => boolean): Optional<A> => {
   const current = transform(scope);
   const stop = ensureIsRoot(isRoot);
-  return current.orThunk(() => stop(scope) ? Optional.none<A>() : ancestor(scope, transform, stop));
+  return current.orThunk(() => stop(scope) ? null : ancestor(scope, transform, stop));
 };
 
 export { ancestor, closest };

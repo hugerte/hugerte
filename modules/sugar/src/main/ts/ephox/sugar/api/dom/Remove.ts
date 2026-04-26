@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as Traverse from '../search/Traverse';
@@ -12,7 +12,7 @@ const empty = (element: SugarElement<Node>): void => {
   // than removing every child node manually.
   // The following is (probably) safe for performance as 99.9% of the time the trick works and
   // Traverse.children will return an empty array.
-  Arr.each(Traverse.children(element), (rogue) => {
+  Traverse.children(element).forEach((rogue) =) {
     remove(rogue);
   });
 };

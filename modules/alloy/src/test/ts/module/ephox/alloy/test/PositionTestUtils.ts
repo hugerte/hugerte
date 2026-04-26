@@ -1,5 +1,5 @@
 import { Chain, Guard, NamedChain, Waiter } from '@ephox/agar';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Css, Scroll, Traverse } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -22,7 +22,7 @@ const addPopupToSink = (popup: AlloyComponent, placementSpec: PlacementSpec, sin
 };
 
 const addPopupToSinkWithinBounds = (popup: AlloyComponent, placementSpec: PlacementSpec, sink: AlloyComponent, bounds: Bounds) => {
-  const positioner = () => Positioning.positionWithinBounds(sink, popup, placementSpec, Optional.some(bounds));
+  const positioner = () => Positioning.positionWithinBounds(sink, popup, placementSpec, bounds);
   addPopupToSinkCommon(popup, sink, positioner);
 };
 

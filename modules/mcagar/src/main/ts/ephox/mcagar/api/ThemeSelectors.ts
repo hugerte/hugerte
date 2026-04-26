@@ -1,4 +1,4 @@
-import { Arr, Fun, Global, Obj } from '@ephox/katamari';
+import { Global } from '@ephox/katamari';
 
 import { Editor } from '../alien/EditorTypes';
 import { get as getOption } from '../alien/Options';
@@ -8,7 +8,7 @@ const isSilver = (): boolean => {
   if (!hugerte) {
     throw new Error('Failed to get global hugerte');
   }
-  return Obj.has(hugerte.activeEditor, 'ui');
+  return Object.prototype.hasOwnProperty.call(hugerte.activeEditor, 'ui');
 };
 
 const isModern = (): boolean => !isSilver();
@@ -23,7 +23,7 @@ export interface ThemeSelectors {
 }
 
 const ModernThemeSelectors: ThemeSelectors = {
-  toolBarSelector: Fun.constant('.mce-toolbar-grp'),
+  toolBarSelector: () => '.mce-toolbar-grp',
   menuBarSelector: '.mce-menubar',
   dialogSelector: '.mce-window',
   dialogCancelSelector: 'div[role="button"]:contains(Cancel)',
@@ -32,7 +32,7 @@ const ModernThemeSelectors: ThemeSelectors = {
 };
 
 const SilverThemeSelectors: ThemeSelectors = {
-  toolBarSelector: (editor: Editor) => Arr.exists([ getOption(editor, 'toolbar_mode'), getOption(editor, 'toolbar_drawer') ], (s) => s === 'floating' || s === 'sliding') ? '.tox-toolbar-overlord' : '.tox-toolbar',
+  toolBarSelector: (editor: Editor) => [ getOption(editor, 'toolbar_mode'), getOption(editor, 'toolbar_drawer') ].some((s) =) s === 'floating' || s === 'sliding') ? '.tox-toolbar-overlord' : '.tox-toolbar',
   menuBarSelector: '.tox-menubar',
   dialogSelector: 'div[role="dialog"]',
   dialogCancelSelector: '.tox-button:contains("Cancel")',

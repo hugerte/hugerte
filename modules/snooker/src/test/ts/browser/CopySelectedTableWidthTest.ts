@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Css, SugarElement } from '@ephox/sugar';
 
 import * as CopySelected from 'ephox/snooker/api/CopySelected';
@@ -374,6 +374,6 @@ const testCases: TestCase[] = [
   },
 ];
 
-Arr.each(testCases, (testCase) => {
+testCases.forEach((testCase) =) {
   UnitTest.test(testCase.label, assertWidth(testCase));
 });

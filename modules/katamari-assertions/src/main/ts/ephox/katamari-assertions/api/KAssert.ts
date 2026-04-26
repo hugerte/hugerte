@@ -13,10 +13,10 @@ export const eqOptional = <A> (message: TestLabel, expected: Optional<A>, actual
   Assert.eq(message, expected, actual, tOptional(testableA));
 
 export const eqNone = <A> (message: TestLabel, actual: Optional<A>): void =>
-  eqOptional(message, Optional.none<A>(), actual, tAny);
+  eqOptional(message, null, actual, tAny);
 
 export const eqSome = <A> (message: TestLabel, expected: A, actual: Optional<A>, testableA: Testable<A> = tAny): void =>
-  eqOptional(message, Optional.some<A>(expected), actual, testableA);
+  eqOptional(message, expected, actual, testableA);
 
 export const eqResult = <A, E> (message: TestLabel, expected: Result<A, E>, actual: Result<A, E>, testableA: Testable<A> = tAny, testableE: Testable<E> = tAny): void =>
   Assert.eq(message, expected, actual, tResult(testableA, testableE));

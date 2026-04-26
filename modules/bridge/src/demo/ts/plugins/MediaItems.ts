@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { getDemoRegistry } from '../buttons/DemoRegistry';
 
@@ -15,7 +15,7 @@ export const registerMediaItems = (): void => {
         buttonApi.setActive(e);
         // sets active state based on selection
       });
-      return Fun.noop;
+      return () => {};
     },
     onAction: (_buttonApi) => {
       // opens media dialog

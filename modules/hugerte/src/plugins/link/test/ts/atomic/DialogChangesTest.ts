@@ -1,5 +1,5 @@
 import { Assert, describe, context, it } from '@ephox/bedrock-client';
-import { Fun, Optional, OptionalInstances } from '@ephox/katamari';
+import { Optional, OptionalInstances } from '@ephox/katamari';
 import fc from 'fast-check';
 
 import { DialogChanges, DialogDelta } from 'hugerte/plugins/link/ui/DialogChanges';
@@ -21,12 +21,12 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
 
     const assertNone = (previousText: string, catalog: ListItem[], data: Partial<LinkDialogData>) => {
       const actual = DialogChanges.getDelta(previousText, 'anchor', catalog, data);
-      Assert.eq('Should not have found replacement text', Optional.none(), actual, tOptional());
+      Assert.eq('Should not have found replacement text', null, actual, tOptional());
     };
 
     const assertSome = (expected: DialogDelta, previousText: string, catalog: ListItem[], data: Partial<LinkDialogData>) => {
       const actual = DialogChanges.getDelta(previousText, 'anchor', catalog, data);
-      Assert.eq('Checking replacement text', Optional.some(expected), actual, tOptional());
+      Assert.eq('Checking replacement text', expected, actual, tOptional());
     };
 
     it('Current text empty + Has mapping', () => {
@@ -34,7 +34,7 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
         url: {
           value: 'alpha',
           meta: {
-            attach: Fun.noop,
+            attach: () => {},
             text: 'Alpha'
           }
         },
@@ -57,7 +57,7 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
         url: {
           value: 'gamma',
           meta: {
-            attach: Fun.noop,
+            attach: () => {},
             text: 'Gamma'
           }
         },
@@ -74,14 +74,14 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
       const dialogChange = DialogChanges.init({ title: '', text: '' } as LinkDialogData, { } as LinkDialogCatalog);
 
       fc.assert(fc.property(fc.webUrl(), fc.asciiString(), fc.asciiString(), (url, title, text) => {
-        const data = Fun.constant({ url: {
+        const data = () => { url: {
           value: url,
           meta: { title, text }
-        }} as LinkDialogData);
-        const dataNoMeta = Fun.constant({ url: {
+        }} as LinkDialogData;
+        const dataNoMeta = () => { url: {
           value: url,
           meta: { }
-        }} as LinkDialogData);
+        }} as LinkDialogData;
 
         Assert.eq('on url change should include url title and text',
           Optional.some<Partial<LinkDialogData>>({ title, text }),
@@ -103,13 +103,13 @@ describe('browser.hugerte.plugins.link.DialogChangesTest', () => {
       const dialogChangeNoText = DialogChanges.init({ title: 'orig title', text: '' } as LinkDialogData, { } as LinkDialogCatalog);
 
       fc.assert(fc.property(fc.webUrl(), fc.asciiString(), fc.asciiString(), (url, title, text) => {
-        const data = Fun.constant({ url: {
+        const data = () => { url: {
           value: url,
           meta: { title, text }
-        }} as LinkDialogData);
+        }} as LinkDialogData;
 
         Assert.eq('on url change should not try to change title and text',
-          Optional.none(),
+          null,
           dialogChange.onChange(data, { name: 'url' }),
           tOptional()
         );

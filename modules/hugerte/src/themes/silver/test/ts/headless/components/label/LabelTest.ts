@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
 import { AlloyComponent, GuiFactory, Memento, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import { UiFactoryBackstageShared } from 'hugerte/themes/silver/backstage/Backstage';
 import { renderLabel } from 'hugerte/themes/silver/ui/dialog/Label';
@@ -11,7 +11,7 @@ import TestProviders from '../../../module/TestProviders';
 describe('headless.hugerte.themes.silver.components.label.LabelTest', () => {
   const sharedBackstage = {
     providers: TestProviders,
-    interpreter: Fun.identity as any
+    interpreter: (x) => x as any
   } as UiFactoryBackstageShared;
 
   const items = [

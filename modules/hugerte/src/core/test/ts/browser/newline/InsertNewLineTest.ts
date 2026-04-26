@@ -1,6 +1,6 @@
 import { ApproxStructure, Cursors } from '@ephox/agar';
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Type } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -28,7 +28,7 @@ describe('browser.hugerte.core.newline.InsertNewLineTest', () => {
   const setSelectionTo = (editor: Editor, path: number[], offset: number) => {
     const sel = editor.selection.getSel();
 
-    if (Type.isNullable(sel)) {
+    if (sel == null) {
       throw new Error('Sel is unexpectedly missing.');
     }
 
@@ -840,7 +840,7 @@ describe('browser.hugerte.core.newline.InsertNewLineTest', () => {
 
   it('TINY-10560: Press Enter after a `selection.setContent` should create a new line and not throw errors', () => {
     const editor = hook.editor();
-    Arr.each([ 'pre', 'h1', 'div', 'p' ], (tagName) => {
+    [ 'pre', 'h1', 'div', 'p' ].forEach((tagName) =) {
       editor.setContent('abc');
       TinySelections.setSelection(editor, [ 0, 0 ], 0, [ 0, 0 ], 3);
 

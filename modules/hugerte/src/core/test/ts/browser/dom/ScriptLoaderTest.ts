@@ -1,5 +1,5 @@
 import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Global } from '@ephox/katamari';
+import { Global } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import ScriptLoader from 'hugerte/core/api/dom/ScriptLoader';
@@ -19,7 +19,7 @@ describe('browser.hugerte.core.dom.ScriptLoaderTest', () => {
   });
 
   afterEach(() => {
-    Arr.each([ testScript, nestedScript, invalidScript ], (url) => ScriptLoader.ScriptLoader.remove(url));
+    [ testScript, nestedScript, invalidScript ].forEach((url) =) ScriptLoader.ScriptLoader.remove(url));
     loadedCount = 0;
   });
 

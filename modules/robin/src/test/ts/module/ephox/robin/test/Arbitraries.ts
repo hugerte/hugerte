@@ -1,5 +1,5 @@
 import { Gene, TestUniverse } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 import * as fc from 'fast-check';
 
 export interface ArbTextIds {
@@ -19,7 +19,7 @@ export interface ArbRangeIds {
 }
 
 const getIds = (item: Gene, predicate: (g: Gene) => boolean): string[] => {
-  const rest = Arr.bind(item.children || [], (id) => {
+  const rest = item.children || [].flatMap((id) =) {
     return getIds(id, predicate);
   });
   const self = predicate(item) && item.id !== 'root' ? [ item.id ] : [];

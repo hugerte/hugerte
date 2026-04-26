@@ -1,6 +1,6 @@
 import { Keys, UiFinder, Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Attribute, SugarBody } from '@ephox/sugar';
 import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
@@ -56,7 +56,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
     );
     // ensure that the list of options is correct
     const elements = UiFinder.findAllIn(menu, '[role="menuitemcheckbox"]');
-    const actual = Arr.map(elements, (element) => Attribute.get(element, 'aria-label'));
+    const actual = elements.map((element) =) Attribute.get(element, 'aria-label'));
     assert.deepEqual(actual, ideal, 'Correct menu items are displayed');
   };
 
@@ -71,13 +71,13 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
         ...baseSettings
       }, []);
 
-      Arr.each([ menuSpec, toolbarSpec ], (spec) => {
+      [ menuSpec, toolbarSpec ].forEach((spec) =) {
         it(`TINY-4843: ${spec.name} lists correct line heights`, async () => {
           const editor = hook.editor();
           editor.setContent('<p style="line-height: 1.4;">Hello</p>');
           TinySelections.setCursor(editor, [ 0, 0 ], 0);
           await spec.pOpen(editor, 'Line height');
-          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], Optional.some('1.4'));
+          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], '1.4');
           spec.close(editor, 'Line height');
         });
 
@@ -95,7 +95,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           editor.setContent('<p style="line-height: 30px;">Hello</p>');
           TinySelections.setCursor(editor, [ 0, 0 ], 0);
           await spec.pOpen(editor, 'Line height');
-          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], Optional.none());
+          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], null);
           spec.close(editor, 'Line height');
         });
 
@@ -104,9 +104,9 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           editor.setContent('<p style="line-height: 1.4;">Hello</p>');
           TinySelections.setCursor(editor, [ 0, 0 ], 0);
           await spec.pOpen(editor, 'Line height');
-          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], Optional.some('1.4'));
+          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], '1.4');
           editor.execCommand('LineHeight', false, '1.1');
-          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], Optional.some('1.1'));
+          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], '1.1');
           spec.close(editor, 'Line height');
         });
 
@@ -120,9 +120,9 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           TinySelections.setCursor(editor, [ 0 ], 0);
           await spec.pOpen(editor, 'Line height');
           // Our content-css will apply a default line-height of 1.4
-          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], Optional.some('1.4'));
+          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], '1.4');
           editor.execCommand('LineHeight', false, '1.1');
-          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], Optional.some('1.1'));
+          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], '1.1');
           spec.close(editor, 'Line height');
         });
       });
@@ -141,7 +141,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
         // Open line height a second time, to make sure the state has been reset properly
         TinyUiActions.clickOnUi(editor, `[role="menu"] [aria-label="Line height"]`);
 
-        await pAssertOptions(editor, menuSpec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], Optional.some('1.4'));
+        await pAssertOptions(editor, menuSpec.menuSelector, [ '1', '1.1', '1.2', '1.3', '1.4', '1.5', '2' ], '1.4');
         menuSpec.close(editor, 'Line height');
       });
 
@@ -176,11 +176,11 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
         line_height_formats: '1 1.1 1.11 1.111'
       }, []);
 
-      Arr.each([ menuSpec, toolbarSpec ], (spec) => {
+      [ menuSpec, toolbarSpec ].forEach((spec) =) {
         it(`TINY-4843: ${spec.name} lists specified line heights`, async () => {
           const editor = hook.editor();
           await spec.pOpen(editor, 'Line height');
-          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.11', '1.111' ], Optional.none());
+          await pAssertOptions(editor, spec.menuSelector, [ '1', '1.1', '1.11', '1.111' ], null);
           spec.close(editor, 'Line height');
         });
       });
@@ -196,11 +196,11 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
         hook.editor().setContent('');
       });
 
-      Arr.each([ menuSpec, toolbarSpec ], (spec) => {
+      [ menuSpec, toolbarSpec ].forEach((spec) =) {
         it(`TINY-4843: ${spec.name} preserves original line height formats`, async () => {
           const editor = hook.editor();
           await spec.pOpen(editor, 'Line height');
-          await pAssertOptions(editor, spec.menuSelector, [ '1.000', '20px', '22.0px', '1.5e2%' ], Optional.none());
+          await pAssertOptions(editor, spec.menuSelector, [ '1.000', '20px', '22.0px', '1.5e2%' ], null);
           spec.close(editor, 'Line height');
         });
 
@@ -209,7 +209,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           editor.setContent('<p style="line-height: 150%">Hello</p>');
           TinySelections.setCursor(editor, [ 0, 0 ], 0);
           await spec.pOpen(editor, 'Line height');
-          await pAssertOptions(editor, spec.menuSelector, [ '1.000', '20px', '22.0px', '1.5e2%' ], Optional.some('1.5e2%'));
+          await pAssertOptions(editor, spec.menuSelector, [ '1.000', '20px', '22.0px', '1.5e2%' ], '1.5e2%');
           spec.close(editor, 'Line height');
         });
       });
@@ -237,11 +237,11 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
 
       const defaultLanguages = [ 'English', 'Spanish', 'French', 'German', 'Portuguese', 'Chinese' ];
 
-      Arr.each([ menuSpec, toolbarSpec ], (spec) => {
+      [ menuSpec, toolbarSpec ].forEach((spec) =) {
         it(`TINY-6149: ${spec.name} shows the correct default languages`, async () => {
           const editor = hook.editor();
           await spec.pOpen(editor, 'Language');
-          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, Optional.none());
+          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, null);
           spec.close(editor, 'Language');
         });
 
@@ -251,7 +251,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           TinySelections.setCursor(editor, [ 0, 0, 0 ], 0);
 
           await spec.pOpen(editor, 'Language');
-          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, Optional.some('English'));
+          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, 'English');
           spec.close(editor, 'Language');
         });
 
@@ -261,7 +261,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           TinySelections.setCursor(editor, [ 0, 0, 0 ], 0);
 
           await spec.pOpen(editor, 'Language');
-          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, Optional.none());
+          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, null);
           spec.close(editor, 'Language');
         });
 
@@ -271,12 +271,12 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           TinySelections.setCursor(editor, [ 0, 0, 0 ], 0);
 
           await spec.pOpen(editor, 'Language');
-          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, Optional.some('English'));
+          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, 'English');
 
           editor.formatter.apply('lang', { value: 'zh' });
 
           await Waiter.pWait(0);
-          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, Optional.some('Chinese'));
+          await pAssertOptions(editor, spec.menuSelector, defaultLanguages, 'Chinese');
           spec.close(editor, 'Language');
         });
 
@@ -339,7 +339,7 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
     });
 
     context('Advanced settings', () => {
-      Arr.each([ menuSpec, toolbarSpec ], (spec) => {
+      [ menuSpec, toolbarSpec ].forEach((spec) =) {
         it(`TINY-6149: ${spec.name} applies custom language attributes`, async () => {
           const editor = await McEditor.pFromSettings<Editor>({
             ...baseSettings,
@@ -350,13 +350,13 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           TinySelections.setSelection(editor, [ 0, 0 ], 0, [ 0, 0 ], 'Hello world'.length);
 
           await spec.pOpen(editor, 'Language');
-          await pAssertOptions(editor, spec.menuSelector, [ 'Medical English (US)' ], Optional.none());
+          await pAssertOptions(editor, spec.menuSelector, [ 'Medical English (US)' ], null);
           await pSelectItem(editor, spec.menuSelector, 'Medical English (US)');
 
           TinyAssertions.assertContent(editor, '<p><span lang="en_US" data-mce-lang="en_US-medical">Hello world</span></p>');
 
           await spec.pOpen(editor, 'Language');
-          await pAssertOptions(editor, spec.menuSelector, [ 'Medical English (US)' ], Optional.some('Medical English (US)'));
+          await pAssertOptions(editor, spec.menuSelector, [ 'Medical English (US)' ], 'Medical English (US)');
           await pSelectItem(editor, spec.menuSelector, 'Medical English (US)');
 
           TinyAssertions.assertContent(editor, '<p>Hello world</p>');
@@ -378,15 +378,15 @@ describe('browser.hugerte.themes.silver.editor.core.ChoiceControlsTest', () => {
           TinySelections.setSelection(editor, [ 0, 0, 0 ], 0, [ 0, 0, 0 ], 'Hello world'.length);
           await spec.pOpen(editor, 'Language');
 
-          await pAssertOptions(editor, spec.menuSelector, variants, Optional.some('English'));
+          await pAssertOptions(editor, spec.menuSelector, variants, 'English');
 
           editor.formatter.apply('lang', { value: 'en', customValue: 'en-variant' });
           TinyAssertions.assertContent(editor, '<p><span lang="en" data-mce-lang="en-variant">Hello world</span></p>');
-          await pAssertOptions(editor, spec.menuSelector, variants, Optional.some('English (Variant)'));
+          await pAssertOptions(editor, spec.menuSelector, variants, 'English (Variant)');
 
           editor.formatter.apply('lang', { value: 'en', customValue: 'en-variant-2' });
           TinyAssertions.assertContent(editor, '<p><span lang="en" data-mce-lang="en-variant-2">Hello world</span></p>');
-          await pAssertOptions(editor, spec.menuSelector, variants, Optional.some('English (Other variant)'));
+          await pAssertOptions(editor, spec.menuSelector, variants, 'English (Other variant)');
 
           spec.close(editor, 'Language');
           McEditor.remove(editor);

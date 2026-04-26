@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import { renderFooterButton } from 'hugerte/themes/silver/ui/general/Button';
 
@@ -17,9 +17,9 @@ describe('headless.hugerte.themes.silver.components.dialogbutton.DialogFooterBut
         enabled: true,
         primary: false,
         align: 'end',
-        icon: Optional.none(),
-        tooltip: Optional.some('Submit'),
-        buttonType: Optional.some('primary'),
+        icon: null,
+        tooltip: 'Submit',
+        buttonType: 'primary',
       }, 'submit', backstage)
     ));
 
@@ -41,9 +41,9 @@ describe('headless.hugerte.themes.silver.components.dialogbutton.DialogFooterBut
         text: 'Cancel Button',
         enabled: true,
         primary: true,
-        tooltip: Optional.some('Secondary button'),
-        buttonType: Optional.some('secondary'),
-        icon: Optional.none(),
+        tooltip: 'Secondary button',
+        buttonType: 'secondary',
+        icon: null,
         align: 'end',
       }, 'cancel', backstage)
     ));

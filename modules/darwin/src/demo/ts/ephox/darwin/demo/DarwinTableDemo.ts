@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import {
   Attribute, Compare, Direction, DomEvent, EventArgs, Insert, Replication, SelectorFind, SimSelection, SugarBody, SugarElement, SugarNode, Traverse,
   WindowSelection
@@ -85,7 +85,7 @@ Insert.append(SugarBody.body(), cloneDiv);
 
 Insert.append(SugarBody.body(), SugarElement.fromHtml('<span id="coords">(0, 0)</span>'));
 DomEvent.bind(SugarBody.body(), 'mousemove', (event) => {
-  Optional.from(document.querySelector('#coords')).getOrDie('Could not find ID "coords"').innerHTML = '(' + event.raw.clientX + ', ' + event.raw.clientY + ')';
+  document.querySelector('#coords') ?? null.getOrDie('Could not find ID "coords"').innerHTML = '(' + event.raw.clientX + ', ' + event.raw.clientY + ')';
 });
 
 const annotations = SelectionAnnotation.byClass(Ephemera);
@@ -122,7 +122,7 @@ DomEvent.bind(ephoxUi, 'keyup', (event) => {
 DomEvent.bind(ephoxUi, 'keydown', (event) => {
   // This might get expensive.
   WindowSelection.getExact(window).each((sel) => {
-    const target = (SugarNode.isText(sel.start) ? Traverse.parentNode(sel.start) : Optional.some(sel.start)).filter(SugarNode.isElement);
+    const target = (SugarNode.isText(sel.start) ? Traverse.parentNode(sel.start) : sel.start).filter(SugarNode.isElement);
     const direction = target.map(Direction.getDirection).getOr('ltr');
     keyHandlers.keydown(event, sel.start, sel.soffset, sel.finish, sel.foffset, direction === 'ltr' ? SelectionKeys.ltr : SelectionKeys.rtl).each((response) => {
       handleResponse(event, response);

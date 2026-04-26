@@ -1,6 +1,6 @@
 import { UiFinder, Waiter } from '@ephox/agar';
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Class, Compare, Css, SelectorFilter, SugarElement, SugarNode } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -100,8 +100,8 @@ describe('browser.hugerte.core.annotate.AnnotationStylingTest', () => {
         const children = SelectorFilter.children(elm, '*:not(source)'); // Source is a hidden element and Firefox returns empty strings for runtime style properties
         const isFigCaption = SugarNode.isTag('figcaption');
 
-        Arr.each(parents, (e) => assert.deepEqual(getOutline(e), noOutline, 'parent should not have outline'));
-        Arr.each(children, (e) => assert.deepEqual(getOutline(e), isFigCaption(e) ? emptyFigCaptionOutline : noOutline, 'child should not have outline'));
+        parents.forEach((e) =) assert.deepEqual(getOutline(e), noOutline, 'parent should not have outline'));
+        children.forEach((e) =) assert.deepEqual(getOutline(e), isFigCaption(e) ? emptyFigCaptionOutline : noOutline, 'child should not have outline'));
       }
     });
 
@@ -151,7 +151,7 @@ describe('browser.hugerte.core.annotate.AnnotationStylingTest', () => {
     '<iframe src="about:blank" width="350px" height="260px" scrolling="no"></iframe>' +
     '</div>';
 
-  Arr.each([
+  [
     { label: 'image', name: 'img', html: `<p>${imageHtml}</p>` },
     { label: 'audio', name: 'audio', html: `<p>${audioHtml}</p>` },
     { label: 'video', name: 'video', html: `<p>${videoHtml}</p>` },
@@ -165,7 +165,7 @@ describe('browser.hugerte.core.annotate.AnnotationStylingTest', () => {
     { label: 'mediaembed video', name: 'video', outlineSelector: 'div[data-ephox-embed-iri]', html: videoMediaEmbedHtml },
     { label: 'mediaembed audio', name: 'audio', outlineSelector: 'div[data-ephox-embed-iri]', html: audioMediaEmbedHtml },
     { label: 'pageembed website', name: 'iframe', outlineSelector: 'div.tiny-pageembed', html: pageEmbedHtml },
-  ], (scenario) => {
+  ].forEach((scenario) =) {
     const { label, name, outlineSelector, html } = scenario;
     context(label, () => {
       const editorHtml = `<p>Before</p>${html}<p>After</p>`;

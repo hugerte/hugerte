@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { DomUniverse } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { SugarElement, SugarText } from '@ephox/sugar';
 
 import { TypedItem } from 'ephox/phoenix/api/data/TypedItem';
@@ -10,10 +10,10 @@ UnitTest.test('FamilyGroupTest', () => {
   const universe = DomUniverse();
   const toStr = (subject: TypedItem<SugarElement, Document>) => {
     return subject.fold(
-      Fun.constant('|'),
-      Fun.constant('/'),
+      () => '|',
+      () => '/',
       (text) => '"' + SugarText.get(text) + '"',
-      Fun.constant('\\')
+      () => '\\'
     );
   };
 
@@ -21,9 +21,9 @@ UnitTest.test('FamilyGroupTest', () => {
   // is a section that is bounded by blocks.
 
   const check = (expected: string[][], input: SugarElement[]) => {
-    const rawActual = Family.group(universe, input, Fun.never as (e: SugarElement) => boolean);
-    const actual = Arr.map(rawActual, (a) => {
-      return Arr.map(a, toStr);
+    const rawActual = Family.group(universe, input, () => false as (e: SugarElement) => boolean);
+    const actual = rawActual.map((a) =) {
+      return a.map(toStr);
     });
     Assert.eq('', expected, actual);
   };

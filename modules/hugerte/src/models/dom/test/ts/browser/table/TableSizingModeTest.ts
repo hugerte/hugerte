@@ -1,6 +1,6 @@
 import { ApproxStructure, StructAssert } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -14,7 +14,7 @@ describe('browser.hugerte.models.dom.table.TableSizingModeTest', () => {
 
   const test = (editor: Editor, assertion: ApproxStructure.Builder<StructAssert>, defaultStyles?: Record<string, string>) => {
     editor.setContent('');
-    if (Type.isObject(defaultStyles)) {
+    if ((typeof defaultStyles === 'object' && defaultStyles !== null)) {
       editor.options.set('table_default_styles', defaultStyles);
     } else {
       editor.options.unset('table_default_styles');

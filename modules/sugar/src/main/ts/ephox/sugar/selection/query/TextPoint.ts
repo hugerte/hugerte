@@ -27,7 +27,7 @@ const locate = (doc: SugarElement<Document>, node: SugarElement<Text>, x: number
   r.selectNode(node.dom);
   const rects = r.getClientRects();
   const foundRect = Arr.findMap<ClientRect | DOMRect, ClientRect | DOMRect>(rects, (rect) =>
-    Geometry.inRect(rect, x, y) ? Optional.some(rect) : Optional.none());
+    Geometry.inRect(rect, x, y) ? rect : null);
 
   return foundRect.map((rect) => locateOffset(doc, node, x, y, rect));
 };

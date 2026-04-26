@@ -120,8 +120,8 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
           children: [
             s.element('div', {
               classes: [ arr.has('tox-collection__group') ],
-              children: Arr.map([ 'A', 'B', 'C' ], (letter) =>
-                structureItem(Optional.some('text-' + letter), Optional.some('icon-' + letter))(s, str, arr)
+              children: [ 'A', 'B', 'C' ].map((letter) =)
+                structureItem('text-' + letter, 'icon-' + letter)(s, str, arr)
               )
             })
           ]
@@ -148,7 +148,7 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
           children: [
             s.element('div', {
               classes: [ arr.has('tox-collection__group') ],
-              children: Arr.map([ 'D', 'E', 'F' ], (letter) => structureItem(Optional.none(), Optional.some('icon-' + letter))(s, str, arr)
+              children: [ 'D', 'E', 'F' ].map((letter) =) structureItem(null, 'icon-' + letter)(s, str, arr)
               )
             })
           ]
@@ -177,14 +177,14 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
           children: [
             s.element('div', {
               classes: [ arr.has('tox-collection__group') ],
-              children: Arr.map([ 'G', 'H' ], (letter) =>
-                structureItem(Optional.none(), Optional.some('icon-' + letter))(s, str, arr)
+              children: [ 'G', 'H' ].map((letter) =)
+                structureItem(null, 'icon-' + letter)(s, str, arr)
               )
             }),
             s.element('div', {
               classes: [ arr.has('tox-collection__group') ],
-              children: Arr.map([ 'I' ], (letter) =>
-                structureItem(Optional.none(), Optional.some('icon-' + letter))(s, str, arr)
+              children: [ 'I' ].map((letter) =)
+                structureItem(null, 'icon-' + letter)(s, str, arr)
               )
             })
           ]
@@ -270,13 +270,13 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
     const chars = [ 'A', '$', '★', '★' ];
     const icons = [ 'delete', ...chars ];
 
-    const buttonSelectors = Arr.map(icons, (label) => `.tox-collection__item[aria-label="${label}"]`);
+    const buttonSelectors = icons.map((label) =) `.tox-collection__item[aria-label="${label}"]`);
 
     it('TINY-10174: Buttons are rendered', async () => {
       const editor = hook.editor();
       editor.selection.expand();
       const dialog = await openDialog(editor);
-      Arr.each(buttonSelectors, (selector) => UiFinder.findIn(dialog, selector));
+      buttonSelectors.forEach((selector) =) UiFinder.findIn(dialog, selector));
       TinyUiActions.closeDialog(editor);
     });
 
@@ -304,7 +304,7 @@ describe('browser.hugerte.themes.silver.skin.OxideCollectionComponentTest', () =
                     })
                   ]
                 }),
-                ...Arr.map(chars, (char) => s.element('div', {
+                ...chars.map((char) =) s.element('div', {
                   classes: [ arr.has('tox-collection__item') ],
                   children: [
                     s.element('div', {

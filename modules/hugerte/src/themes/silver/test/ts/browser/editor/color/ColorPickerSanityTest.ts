@@ -1,6 +1,6 @@
 import { FocusTools, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Attribute, SelectorFilter, SugarDocument, SugarElement, SugarShadowDom } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -14,10 +14,10 @@ describe('browser.hugerte.themes.silver.editor.color.ColorPickerSanityTest', () 
     forecolorToolbar: '[aria-label^="Text color"] > .tox-tbtn + .tox-split-button__chevron'
   };
 
-  Arr.each([
+  [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(`${tester.label}, Test of different color types`, () => {
       const hook = tester.setup<Editor>({
         base_url: '/project/hugerte/js/hugerte',

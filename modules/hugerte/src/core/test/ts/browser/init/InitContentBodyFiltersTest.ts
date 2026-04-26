@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -10,7 +10,7 @@ describe('browser.hugerte.core.init.InitContentBodyFiltersTest', () => {
     setup: (ed: Editor) => {
       ed.on('init', () => {
         ed.parser.addNodeFilter('p', (nodes) => {
-          Arr.each(nodes, (node) => {
+          nodes.forEach((node) =) {
             // Remove style attributes from node
             node.attr('style', null);
             node.attr('data-mce-style', null);

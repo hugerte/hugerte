@@ -1,5 +1,5 @@
 import { after, Assert, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Attribute, Html, Insert, InsertAll, Remove, SugarElement } from '@ephox/sugar';
 
 import * as DomSearch from 'ephox/phoenix/api/dom/DomSearch';
@@ -31,14 +31,14 @@ describe('browser.phoenix.api.DomSearchTest', () => {
   after(() => Remove.remove(container));
 
   const check = (expected: string, rawTexts: string[], words: string[]) => {
-    const elements = Arr.map(rawTexts, (x) => SugarElement.fromText(x));
+    const elements = rawTexts.map((x) =) SugarElement.fromText(x));
 
     Remove.empty(container);
     InsertAll.append(container, elements);
 
-    const snapshots = DomSearch.safeWords(elements, words, Fun.never);
+    const snapshots = DomSearch.safeWords(elements, words, () => false);
 
-    Arr.each(snapshots, (x) => {
+    snapshots.forEach((x) =) {
       DomWrapping.wrapper(x.elements, () => {
         const span = SugarElement.fromTag('span');
         Attribute.set(span, 'data-word', x.word);

@@ -1,6 +1,6 @@
 import { Attachment, Behaviour, DomFactory, Gui, GuiFactory, Positioning } from '@ephox/alloy';
 import { after, afterEach, before } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Class, SugarBody, SugarElement } from '@ephox/sugar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -35,7 +35,7 @@ export const TestExtras = (): TestExtras => {
     dom: DomFactory.fromHtml('<div class="mce-silver-sink test-dialogs-sink"></div>'),
     behaviours: Behaviour.derive([
       Positioning.config({
-        useFixed: Fun.always
+        useFixed: () => true
       })
     ])
   });
@@ -44,7 +44,7 @@ export const TestExtras = (): TestExtras => {
     dom: DomFactory.fromHtml('<div class="mce-silver-sink test-popups-sink"></div>'),
     behaviours: Behaviour.derive([
       Positioning.config({
-        useFixed: Fun.always
+        useFixed: () => true
       })
     ])
   });
@@ -80,7 +80,7 @@ export const TestExtras = (): TestExtras => {
     getContainer: () => SugarBody.body().dom,
     getContentAreaContainer: () => SugarBody.body().dom,
     ui: {
-      show: Fun.noop
+      show: () => {}
     },
     options: {
       get: (name: string) => options[name]
@@ -99,7 +99,7 @@ export const TestExtras = (): TestExtras => {
 
   const getPopupSink = () => popupSink.element;
   const getDialogSink = () => dialogSink.element;
-  const getPopupMothership = Fun.constant(popupMothership);
+  const getPopupMothership = () => popupMothership;
 
   const destroy = () => {
     dialogMothership.remove(dialogSink);
@@ -119,11 +119,11 @@ export const TestExtras = (): TestExtras => {
 };
 
 export const bddSetup = (): BddTestExtrasHook => {
-  let helpers: Optional<TestExtras> = Optional.none();
+  let helpers: Optional<TestExtras> = null;
   let hasFailure = false;
 
   before(() => {
-    helpers = Optional.some(TestExtras());
+    helpers = TestExtras();
   });
 
   afterEach(function () {
@@ -135,7 +135,7 @@ export const bddSetup = (): BddTestExtrasHook => {
   after(() => {
     if (!hasFailure) {
       helpers.each((h) => h.destroy());
-      helpers = Optional.none();
+      helpers = null;
     }
   });
 

@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
 import { FieldSchema } from '@ephox/boulder';
-import { Cell, Fun, Obj } from '@ephox/katamari';
+import { Cell, Obj } from '@ephox/katamari';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
@@ -28,11 +28,11 @@ UnitTest.asynctest('CustomComponentTest', (success, failure) => {
             classes: [ 'behaviour-a-exhibit' ]
           });
         },
-        events: Fun.constant(
+        events: () => 
           AlloyEvents.derive([
             AlloyEvents.run('alloy.custom.test.event', store.adder('behaviour.a.event'))
           ])
-        )
+        
       },
       apis: {
         behaveA: (_comp) => {
@@ -58,11 +58,11 @@ UnitTest.asynctest('CustomComponentTest', (success, failure) => {
           return DomModification.nu(extra);
         },
 
-        events: Fun.constant(
+        events: () => 
           AlloyEvents.derive([
             AlloyEvents.run('alloy.custom.test.event', store.adder('behaviour.b.event'))
           ])
-        )
+        
       }
     });
 

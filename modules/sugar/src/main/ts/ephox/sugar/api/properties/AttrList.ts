@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as Attribute from './Attribute';
@@ -17,7 +17,7 @@ const add = (element: SugarElement<Element>, attr: string, id: string): boolean 
 };
 
 const remove = (element: SugarElement<Element>, attr: string, id: string): boolean => {
-  const nu = Arr.filter(read(element, attr), (v) => v !== id);
+  const nu = read(element, attr).filter((v) =) v !== id);
   if (nu.length > 0) {
     Attribute.set(element, attr, nu.join(' '));
   } else {

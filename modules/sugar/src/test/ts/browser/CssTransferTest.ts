@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+
 
 import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
 import * as Css from 'ephox/sugar/api/properties/Css';
@@ -34,13 +34,13 @@ UnitTest.test('CssTransfer', () => {
 
   const check = (expectedPresent: Record<string, string>, expectedAbsent: string[], source: SugarElement<Element>, destination: SugarElement<Element>, styles: string[]) => {
     Css.transfer(source, destination, styles);
-    Arr.each(expectedAbsent, (k) => {
+    expectedAbsent.forEach((k) =) {
       if (Css.getRaw(destination, k).isSome()) {
         Assert.fail('Result should not have style: ' + k);
       }
     });
 
-    Obj.each(expectedPresent, (v, k) => {
+    Object.entries(expectedPresent).forEach(([k, v]) => ((v, k) =)(v, k)) {
       const value = Css.getRaw(destination, k).getOrDie('Result should have style: ' + k);
       Assert.eq('', v, value);
     });

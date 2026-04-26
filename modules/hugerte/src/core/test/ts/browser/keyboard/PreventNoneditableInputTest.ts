@@ -1,6 +1,6 @@
 import { Cursors } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -68,13 +68,13 @@ describe('browser.hugerte.core.keyboard.PreventNoneditableInputTest', () => {
     editor.dispatch('beforeinput',
       InputEventUtils.makeInputEvent('beforeinput', {
         inputType: 'deleteContent',
-        getTargetRanges: Fun.constant([ makeRange({ startPath: [ 0, 0 ], soffset: 3, finishPath: [ 1 ], foffset: 1 }) ])
+        getTargetRanges: () => [ makeRange({ startPath: [ 0, 0 ], soffset: 3, finishPath: [ 1 ], foffset: 1 }) ]
       })
     );
     editor.dispatch('beforeinput',
       InputEventUtils.makeInputEvent('beforeinput', {
         inputType: 'deleteContent',
-        getTargetRanges: Fun.constant([ makeRange({ startPath: [ 1 ], soffset: 0, finishPath: [ 2 ], foffset: 0 }) ])
+        getTargetRanges: () => [ makeRange({ startPath: [ 1 ], soffset: 0, finishPath: [ 2 ], foffset: 0 }) ]
       })
     );
     editor.off('beforeinput', collect);

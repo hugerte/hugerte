@@ -2,7 +2,7 @@ import {
   AlloyComponent, AlloySpec, Behaviour, Dropdown as AlloyDropdown, Layouts, RawDomSchema, SketchSpec, Tabstopping, Unselecting
 } from '@ephox/alloy';
 import { Menu, Toolbar } from '@ephox/bridge';
-import { Future, Merger } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 
 import { UiFactoryBackstageShared } from '../../backstage/Backstage';
 import * as ReadOnly from '../../ReadOnly';
@@ -41,8 +41,7 @@ export const renderPanelButton = (spec: SwatchPanelButtonSpec, sharedBackstage: 
 
   lazySink: sharedBackstage.getSink,
   fetch: (comp) => Future.nu((callback) => spec.fetch(callback)).map((items) => (createTieredDataFrom(
-    Merger.deepMerge(
-      createPartialChoiceMenu(
+    ({ ...createPartialChoiceMenu(
         (('menu-value') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
         items,
         (value) => {
@@ -54,11 +53,9 @@ export const renderPanelButton = (spec: SwatchPanelButtonSpec, sharedBackstage: 
         // No colour is ever selected on opening
         (() => false as const),
         sharedBackstage.providers
-      ),
-      {
+      ), ...{
         movement: deriveMenuMovement(spec.columns, spec.presets)
-      }
-    )
+      } })
   ) ?? null)),
 
   parts: {

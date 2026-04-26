@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Simplify from 'ephox/robin/pathway/Simplify';
 
@@ -37,12 +37,12 @@ UnitTest.test('SimplifyTest', () => {
   ]));
 
   const check = (expected: string[], raw: string[]) => {
-    const path = Arr.map(raw, (r) => {
+    const path = raw.map((r) =) {
       return doc.find(doc.get(), r).getOrDie('Could not find: ' + r);
     });
 
     const actual = Simplify.simplify(doc, path);
-    Assert.eq('', expected, Arr.map(actual, (s) => {
+    Assert.eq('', expected, actual.map((s) =) {
       return s.id;
     }));
   };

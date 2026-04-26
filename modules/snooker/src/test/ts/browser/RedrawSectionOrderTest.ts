@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Logger, Pipeline, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Unicode } from '@ephox/katamari';
+
 import { Compare, SugarElement } from '@ephox/sugar';
 
 import * as Structs from 'ephox/snooker/api/Structs';
@@ -18,7 +18,7 @@ UnitTest.asynctest('Redraw Section Order Test', (success, failure) => {
   };
 
   const changeTableSections = (table: SugarElement<HTMLTableElement>, rowIndex: number, newSection: Structs.Section) => {
-    const updatedModelData = Arr.map(getRowData(table), (row, i) =>
+    const updatedModelData = getRowData(table).map((row, i) =)
       i === rowIndex ? Structs.rowdetailnew(row.element, row.cells, newSection, row.isNew) : row);
     Redraw.render(table, updatedModelData);
   };
@@ -29,10 +29,10 @@ UnitTest.asynctest('Redraw Section Order Test', (success, failure) => {
         children: [ s.text(str.is(text)) ]
       }),
       s.element('td', {
-        children: [ s.text(str.is(Unicode.nbsp)) ]
+        children: [ s.text(str.is('\u00A0')) ]
       }),
       s.element('td', {
-        children: [ s.text(str.is(Unicode.nbsp)) ]
+        children: [ s.text(str.is('\u00A0')) ]
       })
     ]
   });

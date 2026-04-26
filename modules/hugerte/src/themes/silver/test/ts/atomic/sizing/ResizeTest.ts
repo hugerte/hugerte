@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarPosition } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -26,7 +26,7 @@ const mockEditor = (containerHeight: number, contentAreaHeight: number): Editor 
 
 describe('atomic.hugerte.themes.silver.sizing.ResizeTest', () => {
   const assertCappedSize = (label: string, originalSize: number, delta: number, minSize: number, maxSize: number, expected: number) => {
-    const actual = Utils.calcCappedSize(originalSize + delta, Optional.some(minSize), Optional.some(maxSize));
+    const actual = Utils.calcCappedSize(originalSize + delta, minSize, maxSize);
     assert.equal(actual, expected, label);
   };
 

@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Fun, Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from '@ephox/katamari';
 
 import { LanguageZones } from 'ephox/robin/zone/LanguageZones';
 
@@ -68,38 +68,38 @@ UnitTest.test('LanguageGetTest', () => {
     ]) // root
   );
 
-  check(doc, 'p1', Optional.none());
-  check(doc, 'p1s1', Optional.none());
-  check(doc, 'p1s2', Optional.none());
-  check(doc, 'p1s3', Optional.some('FR'));
-  check(doc, 'p2', Optional.some('DE'));
-  check(doc, 'p2s1', Optional.some('DE'));
-  check(doc, 'p2s2', Optional.some('DE'));
-  check(doc, 'p2s3', Optional.some('DE'));
-  check(doc, 'p3', Optional.some('DE'));
-  check(doc, 'p3s1', Optional.some('DE'));
-  check(doc, 'p3s2', Optional.some('DE'));
-  check(doc, 'p3s3', Optional.some('FR'));
+  check(doc, 'p1', null);
+  check(doc, 'p1s1', null);
+  check(doc, 'p1s2', null);
+  check(doc, 'p1s3', 'FR');
+  check(doc, 'p2', 'DE');
+  check(doc, 'p2s1', 'DE');
+  check(doc, 'p2s2', 'DE');
+  check(doc, 'p2s3', 'DE');
+  check(doc, 'p3', 'DE');
+  check(doc, 'p3s1', 'DE');
+  check(doc, 'p3s2', 'DE');
+  check(doc, 'p3s3', 'FR');
 
   // Make sure it's using getLanguage, and that getLanguage can be overridden
   const fakeUniverse: TestUniverse = {
     ...doc,
-    property: Fun.constant({
+    property: () => {
       ...doc.property(),
-      getLanguage: (e) => doc.property().getLanguage(e).map((lang) => 'custom:' + lang)
+      getLanguage: (e) => doc.property().getLanguage(e).map((lang) => 'custom:' + lang
     })
   };
 
-  check(fakeUniverse, 'p1', Optional.none());
-  check(fakeUniverse, 'p1s1', Optional.none());
-  check(fakeUniverse, 'p1s2', Optional.none());
-  check(fakeUniverse, 'p1s3', Optional.some('custom:FR'));
-  check(fakeUniverse, 'p2', Optional.some('custom:DE'));
-  check(fakeUniverse, 'p2s1', Optional.some('custom:DE'));
-  check(fakeUniverse, 'p2s2', Optional.some('custom:DE'));
-  check(fakeUniverse, 'p2s3', Optional.some('custom:DE'));
-  check(fakeUniverse, 'p3', Optional.some('custom:DE'));
-  check(fakeUniverse, 'p3s1', Optional.some('custom:DE'));
-  check(fakeUniverse, 'p3s2', Optional.some('custom:DE'));
-  check(fakeUniverse, 'p3s3', Optional.some('custom:FR'));
+  check(fakeUniverse, 'p1', null);
+  check(fakeUniverse, 'p1s1', null);
+  check(fakeUniverse, 'p1s2', null);
+  check(fakeUniverse, 'p1s3', 'custom:FR');
+  check(fakeUniverse, 'p2', 'custom:DE');
+  check(fakeUniverse, 'p2s1', 'custom:DE');
+  check(fakeUniverse, 'p2s2', 'custom:DE');
+  check(fakeUniverse, 'p2s3', 'custom:DE');
+  check(fakeUniverse, 'p3', 'custom:DE');
+  check(fakeUniverse, 'p3s1', 'custom:DE');
+  check(fakeUniverse, 'p3s2', 'custom:DE');
+  check(fakeUniverse, 'p3s3', 'custom:FR');
 });

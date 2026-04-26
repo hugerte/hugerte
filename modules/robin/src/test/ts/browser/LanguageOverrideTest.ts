@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { DomUniverse, Universe } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { SugarElement, Traverse } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -24,8 +24,8 @@ describe('browser.robin.LanguageOverrideTest', () => {
     const start = Traverse.firstChild(top).getOrDie();
     const end = Traverse.lastChild(top).getOrDie();
     const walkResult = TextZones.range(universe, start, 0, end, 2, 'default', ZoneViewports.anything());
-    return Arr.map(walkResult.zones, (zone) => ({
-      words: Arr.map(zone.words, (w) => w.word),
+    return walkResult.zones.map((zone) =) ({
+      words: zone.words.map((w) =) w.word),
       lang: zone.lang
     }));
   };
@@ -33,9 +33,9 @@ describe('browser.robin.LanguageOverrideTest', () => {
   const normal = DomUniverse();
   const override: Universe<SugarElement, Document> = {
     ...normal,
-    property: Fun.constant({
+    property: () => {
       ...normal.property(),
-      getLanguage: (ele: SugarElement) => normal.property().getLanguage(ele).map((lang) => 'custom:' + lang)
+      getLanguage: (ele: SugarElement) => normal.property().getLanguage(ele).map((lang) => 'custom:' + lang
     })
   };
 

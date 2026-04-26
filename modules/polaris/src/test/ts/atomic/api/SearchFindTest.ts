@@ -1,5 +1,5 @@
 import { Assert, it, describe } from '@ephox/bedrock-client';
-import { Arr, Unicode } from '@ephox/katamari';
+
 
 import * as Pattern from 'ephox/polaris/api/Pattern';
 import * as Search from 'ephox/polaris/api/Search';
@@ -10,7 +10,7 @@ describe('atomic.polaris.api.SearchFindTest', () => {
   const checkAll = (expected: [number, number][], input: string, pattern: PRegExp) => {
     const actual = Search.findall(input, pattern);
     Assert.eq(`Checking length of result for "${input}"`, expected.length, actual.length);
-    Arr.each(expected, (exp, i) => {
+    expected.forEach((exp, i) =) {
       Assert.eq(`Checking result of start for "${exp}"`, exp[0], actual[i].start);
       Assert.eq(`Checking result of finish for "${exp}"`, exp[1], actual[i].finish);
     });
@@ -24,7 +24,7 @@ describe('atomic.polaris.api.SearchFindTest', () => {
   const checkMany = (expected: [number, number, string][], text: string, targets: ReturnType<typeof testData>[]) => {
     const actual = Search.findmany(text, targets);
     Assert.eq(`Checking length of result for "${text}"`, expected.length, actual.length);
-    Arr.each(expected, (exp, i) => {
+    expected.forEach((exp, i) =) {
       Assert.eq(`Checking result of start for "${exp}"`, exp[0], actual[i].start);
       Assert.eq(`Checking result of finish for "${exp}"`, exp[1], actual[i].finish);
       Assert.eq(`Checking result of name for "${exp}"`, exp[2], actual[i].name);
@@ -36,7 +36,7 @@ describe('atomic.polaris.api.SearchFindTest', () => {
     checkAll([[ 1, 7 ]], ' cattle', Pattern.unsafetoken('cattle'));
     checkAll([], 'acattle', Pattern.unsafeword('cattle'));
     checkAll([[ 1, 7 ]], ' cattle', Pattern.unsafeword('cattle'));
-    checkAll([], Unicode.zeroWidth + 'dog ', Pattern.safeword('dog'));
+    checkAll([], '\uFEFF' + 'dog ', Pattern.safeword('dog'));
 
     checkAll([[ 3, 7 ], [ 10, 14 ]], `no it's i it's done.`, Pattern.unsafetoken(`it's`));
     checkAll([[ 0, 12 ]], `catastrophe'`, Pattern.unsafetoken(`catastrophe'`));
@@ -51,7 +51,7 @@ describe('atomic.polaris.api.SearchFindTest', () => {
     checkAll([[ 0, 3 ], [ 4, 7 ], [ 8, 11 ]], 'sre sre sre ', Pattern.unsafeword('sre'));
     checkAll([[ 1, 4 ], [ 5, 8 ], [ 9, 12 ]], ' sre sre sre ', Pattern.unsafeword('sre'));
 
-    checkAll([[ 'this '.length, 'this e'.length + Unicode.zeroWidth.length + 'nds'.length ]], 'this e' + Unicode.zeroWidth + 'nds here', Pattern.unsafeword('e' + Unicode.zeroWidth + 'nds'));
+    checkAll([[ 'this '.length, 'this e'.length + '\uFEFF'.length + 'nds'.length ]], 'this e' + '\uFEFF' + 'nds here', Pattern.unsafeword('e' + '\uFEFF' + 'nds'));
 
     checkAll([[ 1, 5 ]], ' [wo] and more', Pattern.unsafetoken(Safe.sanitise('[') + '[^' + Safe.sanitise(']') + ']*' + Safe.sanitise(']')));
   });

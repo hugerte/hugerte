@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
 import { Disabling, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { renderInput } from 'hugerte/themes/silver/ui/dialog/TextField';
@@ -14,12 +14,12 @@ describe('headless.hugerte.themes.silver.components.input.InputTest', () => {
     renderInput({
       name: 'input',
       // Note: The label is intentionally HTML like to ensure the label is rendered as plain text
-      label: Optional.some('Solid<Liquid<Gas'),
-      inputMode: Optional.none(),
-      placeholder: Optional.none(),
+      label: 'Solid<Liquid<Gas',
+      inputMode: null,
+      placeholder: null,
       maximized: false,
       enabled: true,
-    }, TestProviders, Optional.none())
+    }, TestProviders, null)
   ));
 
   it('Check basic structure', () => {

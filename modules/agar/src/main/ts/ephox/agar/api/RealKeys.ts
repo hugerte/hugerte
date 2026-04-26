@@ -1,4 +1,4 @@
-import { Adt, Arr, Optional } from '@ephox/katamari';
+import { Adt, Optional } from '@ephox/katamari';
 
 import { KeyModifiers, MixedKeyModifiers, newModifiers } from '../keyboard/FakeKeys';
 import * as SeleniumAction from '../server/SeleniumAction';
@@ -32,14 +32,14 @@ interface Modifiers {
 }
 
 const modifierList = (obj: KeyModifiers): Modifiers => ({
-  ctrlKey: Optional.from(obj.ctrlKey),
-  metaKey: Optional.from(obj.metaKey),
-  shiftKey: Optional.from(obj.shiftKey),
-  altKey: Optional.from(obj.altKey)
+  ctrlKey: obj.ctrlKey ?? null,
+  metaKey: obj.metaKey ?? null,
+  shiftKey: obj.shiftKey ?? null,
+  altKey: obj.altKey ?? null
 });
 
 const toSimpleFormat = (keys: KeyPressAdt[]) =>
-  Arr.map(keys, (key: KeyPressAdt) => key.fold<any>((modifiers: Modifiers, letter: string) => ({
+  keys.map((key: KeyPressAdt) =) key.fold<any>((modifiers: Modifiers, letter: string) => ({
     combo: {
       ctrlKey: modifiers.ctrlKey.getOr(false),
       shiftKey: modifiers.shiftKey.getOr(false),

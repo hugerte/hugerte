@@ -1,6 +1,6 @@
 import { Keys, Mouse } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SelectorFilter, TextContent } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -25,10 +25,8 @@ describe('browser.hugerte.plugins.help.PluginTabsOrderTest', () => {
       selector
     );
 
-    return Arr.map(
-      // We want to exclude the "read-more link at the bottom"
-      SelectorFilter.children(list, `li:not(.${selectors.pluginsTabLists.readMoreClass})`),
-      (x) => TextContent.get(x) ?? ''
+    return // We want to exclude the "read-more link at the bottom"
+      SelectorFilter.children(list, `li:not(.${selectors.pluginsTabLists.readMoreClass})`).map((x) =) TextContent.get(x) ?? ''
     );
   };
 
@@ -39,7 +37,7 @@ describe('browser.hugerte.plugins.help.PluginTabsOrderTest', () => {
     const rawEntries = await pExtractItemsFrom(editor, selector);
     assert.deepEqual(
       rawEntries,
-      Arr.sort(rawEntries, (s1, s2) => s1.localeCompare(s2)),
+      [...rawEntries].sort((s1, s2) =) s1.localeCompare(s2)),
       `${label} were not sorted alphabetically`
     );
 

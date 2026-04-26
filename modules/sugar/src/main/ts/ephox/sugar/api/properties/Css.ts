@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional, Optionals, Strings, Type } from '@ephox/katamari';
+import { Optional, Optionals, Strings } from '@ephox/katamari';
 
 import * as Style from '../../impl/Style';
 import * as SugarBody from '../node/SugarBody';
@@ -10,7 +10,7 @@ const internalSet = (dom: Node, property: string, value: string): void => {
   // This is going to hurt. Apologies.
   // JQuery coerces numbers to pixels for certain property names, and other times lets numbers through.
   // we're going to be explicit; strings only.
-  if (!Type.isString(value)) {
+  if (!typeof value === 'string') {
     // eslint-disable-next-line no-console
     console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value, ':: Element ', dom);
     throw new Error('CSS value must be a string: ' + value);
@@ -42,7 +42,7 @@ const set = (element: SugarElement<Node>, property: string, value: string): void
 const setAll = (element: SugarElement<Node>, css: Record<string, string>): void => {
   const dom = element.dom;
 
-  Obj.each(css, (v, k) => {
+  Object.entries(css).forEach(([k, v]) => ((v, k) =)(v, k)) {
     internalSet(dom, k, v);
   });
 };
@@ -50,7 +50,7 @@ const setAll = (element: SugarElement<Node>, css: Record<string, string>): void 
 const setOptions = (element: SugarElement<Node>, css: Record<string, Optional<string>>): void => {
   const dom = element.dom;
 
-  Obj.each(css, (v, k) => {
+  Object.entries(css).forEach(([k, v]) => ((v, k) =)(v, k)) {
     v.fold(() => {
       internalRemove(dom, k);
     }, (value) => {
@@ -99,7 +99,7 @@ const getRaw = (element: SugarElement<Node>, property: string): Optional<string>
   const dom = element.dom;
   const raw = getUnsafeProperty(dom, property);
 
-  return Optional.from(raw).filter((r) => r.length > 0);
+  return raw ?? null.filter((r) => r.length > 0);
 };
 
 const getAllRaw = (element: SugarElement<Node>): Record<string, string> => {
@@ -172,7 +172,7 @@ const transfer = (source: SugarElement<Node>, destination: SugarElement<Node>, s
   if (!SugarNode.isElement(source) || !SugarNode.isElement(destination)) {
     return;
   }
-  Arr.each(styles, (style) => {
+  styles.forEach((style) =) {
     transferOne(source, destination, style);
   });
 };

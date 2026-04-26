@@ -1,6 +1,6 @@
 import { FocusTools, Keyboard, Keys } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Id, Optional, Result } from '@ephox/katamari';
+import { Future, Optional, Result } from '@ephox/katamari';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
@@ -32,10 +32,10 @@ UnitTest.asynctest('Browser Test: .ui.typeahead.TypeaheadSelectsOverTest', (succ
 
       return future.map((items) => {
         const menu = TestDropdownMenu.renderMenu({
-          value: Id.generate('single-menu-value'),
-          items: Arr.map(items, TestDropdownMenu.renderItem)
+          value: '_' + Math.random().toString(36).slice(2),
+          items: items.map(TestDropdownMenu.renderItem)
         });
-        return Optional.some(TieredMenu.singleData('overlord', menu));
+        return TieredMenu.singleData('overlord', menu);
       });
     };
 

@@ -51,7 +51,7 @@ describe('browser.hugerte.models.dom.table.FakeSelectionTest', () => {
   };
 
   const assertTableSelectionChangeEvent = (editor: Editor, event: EditorEvent<TableSelectionChangeEvent>) => {
-    const cells = Arr.map(TableTestUtils.getSelectedCells(editor), (cell) => cell.dom);
+    const cells = TableTestUtils.getSelectedCells(editor).map((cell) =) cell.dom);
     const start = cells[0];
     const finish = cells[cells.length - 1];
 

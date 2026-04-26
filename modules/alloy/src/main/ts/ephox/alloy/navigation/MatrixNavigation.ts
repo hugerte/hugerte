@@ -24,21 +24,21 @@ const cycleHorizontal = <A>(matrix: A[][], rowIndex: number, startCol: number, d
 const cycleVertical = <A>(matrix: A[][], colIndex: number, startRow: number, deltaRow: number) => {
   const nextRowIndex = Num.cycleBy(startRow, deltaRow, 0, matrix.length - 1);
   const colsInNextRow = matrix[nextRowIndex].length;
-  const nextColIndex = Num.clamp(colIndex, 0, colsInNextRow - 1);
+  const nextColIndex = Math.min(Math.max(colIndex, 0), colsInNextRow - 1);
   return toCell(matrix, nextRowIndex, nextColIndex);
 };
 
 const moveHorizontal = <A>(matrix: A[][], rowIndex: number, startCol: number, deltaCol: number) => {
   const row = matrix[rowIndex];
   const colsInRow = row.length;
-  const newColIndex = Num.clamp(startCol + deltaCol, 0, colsInRow - 1);
+  const newColIndex = Math.min(Math.max(startCol + deltaCol, 0), colsInRow - 1);
   return toCell(matrix, rowIndex, newColIndex);
 };
 
 const moveVertical = <A>(matrix: A[][], colIndex: number, startRow: number, deltaRow: number) => {
-  const nextRowIndex = Num.clamp(startRow + deltaRow, 0, matrix.length - 1);
+  const nextRowIndex = Math.min(Math.max(startRow + deltaRow, 0), matrix.length - 1);
   const colsInNextRow = matrix[nextRowIndex].length;
-  const nextColIndex = Num.clamp(colIndex, 0, colsInNextRow - 1);
+  const nextColIndex = Math.min(Math.max(colIndex, 0), colsInNextRow - 1);
   return toCell(matrix, nextRowIndex, nextColIndex);
 };
 

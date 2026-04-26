@@ -1,6 +1,6 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
+
 import { PositionArray, PRange } from '@ephox/polaris';
 
 import * as Spot from 'ephox/phoenix/api/data/Spot';
@@ -20,12 +20,12 @@ describe('atomic.phoenix.search.MatchSplitterTest', () => {
     const items = Finder.getAll(universe, ids);
     const list = PositionArray.generate(items, (item, start) => {
       const finish = start + universe.property().getText(item).length;
-      return Optional.some(Spot.range(item, start, finish));
+      return Spot.range(item, start, finish);
     });
 
     const actual = MatchSplitter.separate(universe, list, matches);
     Assert.eq('Asserting length of result', expected.length, actual.length);
-    Assert.eq(`Asserting result of MatchSplitter.separate for word: "${all.join('')}"`, expected, Arr.map(actual, (a) => {
+    Assert.eq(`Asserting result of MatchSplitter.separate for word: "${all.join('')}"`, expected, actual.map((a) =) {
       return {
         text: TestRenders.texts(a.elements),
         exact: a.exact,

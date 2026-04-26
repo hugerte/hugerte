@@ -56,7 +56,7 @@ UnitTest.asynctest('ScrollTest', (success, failure) => {
           rtl: iframeDoc.body.dir === 'rtl',
           dir: Attribute.get(body, 'dir') || 'ltr',
           byId: (str) => {
-            return Optional.from(iframeDoc.getElementById(str))
+            return iframeDoc.getElementById(str) ?? null
               .map(SugarElement.fromDom)
               .getOrDie('cannot find element with id ' + str);
           }
@@ -75,14 +75,14 @@ UnitTest.asynctest('ScrollTest', (success, failure) => {
   const ifr = '<iframe src="/project/@ephox/sugar/src/test/data/scrollTest.html"></iframe>';
   testOne(ifr, { // vanilla iframe
     iframe: { id: 'vanilla', style: 'height:200px; width:500px; border: 7px dotted chartreuse;' },
-    html: Optional.none(),
-    body: Optional.some<AttrMap>({ contenteditable: 'true', style: 'margin: 0; padding: 5px;' })
+    html: null,
+    body: { contenteditable: 'true', style: 'margin: 0; padding: 5px;' }
   },
   () => {
     testOne(ifr, { // rtl iframe
       iframe: { id: 'rtl', style: 'height:200px; width:500px; border: 7px solid blueviolet;' },
-      html: Optional.none(),
-      body: Optional.some<AttrMap>({ dir: 'rtl', contenteditable: 'true', style: 'margin: 0; padding: 5px;' })
+      html: null,
+      body: { dir: 'rtl', contenteditable: 'true', style: 'margin: 0; padding: 5px;' }
     },
     success);
   });

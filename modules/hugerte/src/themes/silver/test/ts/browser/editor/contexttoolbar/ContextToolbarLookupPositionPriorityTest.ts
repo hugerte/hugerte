@@ -1,16 +1,16 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { InlineContent } from '@ephox/bridge';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { ContextType } from 'hugerte/themes/silver/ui/context/ContextToolbar';
 import { filterByPositionForAncestorNode, filterByPositionForStartNode } from 'hugerte/themes/silver/ui/context/ContextToolbarLookup';
 
 describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarLookupPositionPriorityTest', () => {
-  const createToolbars = (positions: InlineContent.ContextPosition[]): ContextType[] => Arr.map(positions, (p) => ({
+  const createToolbars = (positions: InlineContent.ContextPosition[]): ContextType[] => positions.map((p) =) ({
     type: 'contexttoolbar',
     items: 'bold italic',
-    predicate: Fun.always,
+    predicate: () => true,
     position: p,
     scope: 'node'
   }));
@@ -18,7 +18,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarLook
   const assertPositionIsPrioritised = (positions: InlineContent.ContextPosition[], priorities: string[], isStartNode: boolean) => {
     const toolbars = createToolbars(positions);
     const prioritisedToolbars = isStartNode ? filterByPositionForStartNode(toolbars) : filterByPositionForAncestorNode(toolbars);
-    Arr.each(prioritisedToolbars, (t, i) => {
+    prioritisedToolbars.forEach((t, i) =) {
       assert.equal(t.position, priorities[i], `Assert priority is ${priorities[i]}`);
     });
   };

@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Splitter from 'ephox/phoenix/search/Splitter';
 import * as Finder from 'ephox/phoenix/test/Finder';
@@ -20,7 +20,7 @@ UnitTest.test('SplitterTest', () => {
     const item = Finder.get(universe, id);
     const actual = Splitter.subdivide(universe, item, positions);
     Assert.eq('Incorrect size for subdivide test', expected.length, actual.length);
-    Arr.each(expected, (exp, i) => {
+    expected.forEach((exp, i) =) {
       const act = actual[i];
       // TODO: Consider removing an expected id from the test case as it isn't really representing anything meaningful
       Assert.eq('', exp.id, act.element.id);
@@ -29,7 +29,7 @@ UnitTest.test('SplitterTest', () => {
       Assert.eq('', exp.text, act.element.text);
     });
 
-    Assert.eq('', toplevel, Arr.map(universe.get().children, TestRenders.text));
+    Assert.eq('', toplevel, universe.get().children.map(TestRenders.text));
   };
 
   checkSubdivide([ '_', 'abcdefghijklm', 'n', 'opq', 'rstuvwxyz' ], [

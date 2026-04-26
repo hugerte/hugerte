@@ -1,6 +1,6 @@
 import { FocusTools, RealKeys, UiFinder } from '@ephox/agar';
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Insert, Remove, SelectorFind, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
 import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -25,7 +25,7 @@ describe('webdriver.hugerte.themes.silver.throbber.ThrobberTabbingTest', () => {
   });
 
   after(() => {
-    Arr.each([ '#beforeInput', '#afterInput' ], (selector) => {
+    [ '#beforeInput', '#afterInput' ].forEach((selector) =) {
       Remove.remove(SelectorFind.descendant(SugarBody.body(), selector).getOrDie());
     });
   });

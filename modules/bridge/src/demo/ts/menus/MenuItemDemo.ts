@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { getDemoRegistry } from '../buttons/DemoRegistry';
 
@@ -19,7 +19,7 @@ export const registerDemoMenuItems = (): void => {
       // eslint-disable-next-line no-console
       console.log('bold');
       api.setActive(true);
-      return Fun.noop;
+      return () => {};
     },
     onAction: (_api) => {
       // eslint-disable-next-line no-console

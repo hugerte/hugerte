@@ -1,5 +1,5 @@
 import { Objects } from '@ephox/boulder';
-import { Merger, Optional } from '@ephox/katamari';
+
 import { Attribute, EventArgs, Focus, Value } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from '../../api/behaviour/AddEventsBehaviour';
@@ -206,7 +206,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
         // The navigation here will stop the "previewing" mode, because
         // now the menu will get focus (fake focus, but focus nevertheless)
         navigateList(comp, simulatedEvent, Highlighting.highlightFirst);
-        return Optional.some<boolean>(true);
+        return true;
       },
       onEscape: (comp): (boolean) | null => {
         // Escape only has handling if the sandbox is visible. It has no meaning
@@ -214,7 +214,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
         const sandbox = Coupling.getCoupled(comp, 'sandbox');
         if (Sandboxing.isOpen(sandbox)) {
           Sandboxing.close(sandbox);
-          return Optional.some<boolean>(true);
+          return true;
         }
         return null;
       },
@@ -222,7 +222,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
         // The navigation here will stop the "previewing" mode, because
         // now the menu will get focus (fake focus, but focus nevertheless)
         navigateList(comp, simulatedEvent, Highlighting.highlightLast);
-        return Optional.some<boolean>(true);
+        return true;
       },
       onEnter: (comp) => {
         const sandbox = Coupling.getCoupled(comp, 'sandbox');
@@ -260,7 +260,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
           if (sandboxIsOpen) {
             Sandboxing.close(sandbox);
           }
-          return Optional.some<boolean>(true);
+          return true;
         }
       }
     }),
@@ -335,14 +335,14 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
 
   return {
     uid: detail.uid,
-    dom: InputBase.dom(Merger.deepMerge(detail, {
+    dom: InputBase.dom(({ ...detail, ...{
       // TODO: Add aria-activedescendant attribute
       inputAttributes: {
         'role': 'combobox',
         'aria-autocomplete': 'list',
         'aria-haspopup': 'true'
       }
-    })),
+    } })),
     behaviours: {
       ...focusBehaviours,
       ...SketchBehaviours.augment(

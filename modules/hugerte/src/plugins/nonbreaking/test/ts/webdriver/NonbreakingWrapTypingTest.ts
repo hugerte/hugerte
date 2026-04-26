@@ -1,6 +1,6 @@
 import { ApproxStructure, RealKeys } from '@ephox/agar';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -36,10 +36,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth + 'test'))
+            s.text(str.is('\uFEFF' + 'test'))
           ]
         })
       ]
@@ -59,10 +59,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth))
+            s.text(str.is('\uFEFF'))
           ]
         })
       ]
@@ -83,10 +83,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth + 'test'))
+            s.text(str.is('\uFEFF' + 'test'))
           ]
         })
       ]
@@ -104,10 +104,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth + Unicode.nbsp))
+            s.text(str.is('\uFEFF' + '\u00A0'))
           ].concat(isFirefox ? [ s.element('br', {}) ] : [])
         })
       ]
@@ -127,10 +127,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth))
+            s.text(str.is('\uFEFF'))
           ]
         })
       ]
@@ -145,10 +145,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth + 'test' + Unicode.nbsp))
+            s.text(str.is('\uFEFF' + 'test' + '\u00A0'))
           ].concat(isFirefox ? [ s.element('br', {}) ] : [])
         })
       ]
@@ -168,10 +168,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth))
+            s.text(str.is('\uFEFF'))
           ]
         })
       ]
@@ -186,10 +186,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth + 'test' + Unicode.nbsp))
+            s.text(str.is('\uFEFF' + 'test' + '\u00A0'))
           ].concat(isFirefox ? [ s.element('br', {}) ] : [])
         })
       ]
@@ -204,10 +204,10 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingWrapTypingTest', () =
             s.element('span', {
               classes: [ arr.has('mce-nbsp-wrap') ],
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
-            s.text(str.is(Unicode.zeroWidth + 'test test' + Unicode.nbsp))
+            s.text(str.is('\uFEFF' + 'test test' + '\u00A0'))
           ].concat(isFirefox ? [ s.element('br', {}) ] : [])
         })
       ]

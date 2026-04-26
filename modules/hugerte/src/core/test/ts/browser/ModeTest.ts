@@ -1,5 +1,5 @@
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Class } from '@ephox/sugar';
 import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -18,24 +18,24 @@ describe('browser.hugerte.core.ModeTest', () => {
 
   const registerTestModes = (editor: Editor) => {
     editor.mode.register('customDesign', {
-      activate: Fun.noop,
-      deactivate: Fun.noop,
+      activate: () => {},
+      deactivate: () => {},
       editorReadOnly: false
     });
     editor.mode.register('customReadonly', {
-      activate: Fun.noop,
-      deactivate: Fun.noop,
+      activate: () => {},
+      deactivate: () => {},
       editorReadOnly: true
     });
 
     editor.mode.register('failingActivateReadonly', {
-      activate: Fun.die('whoops'),
-      deactivate: Fun.noop,
+      activate: () => { throw new Error('whoops'); },
+      deactivate: () => {},
       editorReadOnly: true
     });
     editor.mode.register('failingDeactivateDesign', {
-      activate: Fun.noop,
-      deactivate: Fun.die('haha'),
+      activate: () => {},
+      deactivate: () => { throw new Error('haha'); },
       editorReadOnly: false
     });
   };
@@ -57,15 +57,15 @@ describe('browser.hugerte.core.ModeTest', () => {
     const editor = hook.editor();
     assert.throws(() => {
       editor.mode.register('design', {
-        activate: Fun.noop,
-        deactivate: Fun.noop,
+        activate: () => {},
+        deactivate: () => {},
         editorReadOnly: false
       });
     }, /Cannot override default mode design/, 'registering a new design mode should fail');
     assert.throws(() => {
       editor.mode.register('readonly', {
-        activate: Fun.noop,
-        deactivate: Fun.noop,
+        activate: () => {},
+        deactivate: () => {},
         editorReadOnly: false
       });
     }, /Cannot override default mode readonly/, 'registering a new readonly mode should fail');

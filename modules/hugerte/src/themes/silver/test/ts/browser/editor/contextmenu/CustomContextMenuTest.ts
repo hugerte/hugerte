@@ -1,6 +1,6 @@
 import { Keyboard, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -27,7 +27,7 @@ describe('browser.hugerte.themes.silver.editor.contextmenu.CustomContextMenuTest
         text: 'Custom Context Menu',
       });
       editor.ui.registry.addContextMenu('customContextMenu', {
-        update: Fun.constant('customMenuItem')
+        update: () => 'customMenuItem'
       });
     });
 
@@ -119,13 +119,13 @@ describe('browser.hugerte.themes.silver.editor.contextmenu.CustomContextMenuTest
     before(() => {
       const editor = hook.editor();
       editor.ui.registry.addContextMenu('one', {
-        update: Fun.constant('')
+        update: () => ''
       });
       editor.ui.registry.addContextMenu('two', {
-        update: Fun.constant('')
+        update: () => ''
       });
       editor.ui.registry.addContextMenu('three', {
-        update: Fun.constant('')
+        update: () => ''
       });
       editor.options.set('contextmenu', 'one two three');
     });

@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -24,10 +24,10 @@ describe('browser.hugerte.plugins.nonbreaking.NonbreakingSanityTest', () => {
               s.element('span', {
                 classes: [ arr.has('mce-nbsp-wrap') ],
                 children: [
-                  s.text(str.is(Unicode.nbsp))
+                  s.text(str.is('\u00A0'))
                 ]
               }),
-              s.text(str.is(Unicode.zeroWidth))
+              s.text(str.is('\uFEFF'))
             ]
           })
         ]

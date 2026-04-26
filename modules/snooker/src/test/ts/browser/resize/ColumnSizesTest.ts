@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Css, Insert, Remove, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
 import { TableSize } from 'ephox/snooker/api/TableSize';
@@ -32,7 +32,7 @@ UnitTest.test('ColumnSizes.getPixelWidths', () => {
     const pixelWidths = ColumnSizes.getPixelWidths(Warehouse.fromTable(table), table, TableSize.getTableSize(table));
 
     // Round to account for precision issues
-    const roundedPixelWidths = Arr.map(pixelWidths, Math.round);
+    const roundedPixelWidths = pixelWidths.map(Math.round);
     Assert.eq(label, getExpectedWidths(cellWidth), roundedPixelWidths);
 
     Remove.remove(container);
@@ -56,7 +56,7 @@ UnitTest.test('ColumnSizes.getPercentageWidths', () => {
     const percentWidths = ColumnSizes.getPercentageWidths(Warehouse.fromTable(table), table, TableSize.getTableSize(table));
 
     // Round to account for precision issues
-    const roundedPercentWidths = Arr.map(percentWidths, (width) => parseFloat(width.toFixed(1)));
+    const roundedPercentWidths = percentWidths.map((width) =) parseFloat(width.toFixed(1)));
     Assert.eq(label, expectedWidths, roundedPercentWidths);
 
     Remove.remove(container);
@@ -79,7 +79,7 @@ UnitTest.test('ColumnSizes.getPixelHeights', () => {
   const pixelHeights = ColumnSizes.getPixelHeights(Warehouse.fromTable(table), table);
 
   // Round to account for precision issues
-  const roundedPixelHeights = Arr.map(pixelHeights, Math.round);
+  const roundedPixelHeights = pixelHeights.map(Math.round);
   Assert.eq('Row heights should be the computed size of the cell', [ rowHeight ], roundedPixelHeights);
 
   Remove.remove(table);

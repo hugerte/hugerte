@@ -1,6 +1,6 @@
 import { Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Type } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyApis, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -63,8 +63,7 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
     assertContentTreeEqualToHtml(editor, expectedContent ?? alteredContent, msg);
   };
 
-  Arr.each(
-    [
+  [
       {
         inline: true
       },
@@ -79,7 +78,7 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
         inline: false,
         xss_sanitization: false
       }
-    ], (options) => {
+    ].forEach((options) =) {
       context(`Test with inline: ${options.inline} and xss_sanitization: ${options.xss_sanitization}`, () => {
         let events: EditorEvent<SetContentEvent | GetContentEvent | BeforeSetContentEvent | BeforeGetContentEvent>[] = [];
         const hook = TinyHooks.bddSetupLight<Editor>({
@@ -93,12 +92,12 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
         }, []);
 
         const assertEventsFiredInOrder = (expectedEvents: string[] = defaultExpectedEvents) => {
-          const names = Arr.map(events, (e) => e.type);
+          const names = events.map((e) =) e.type);
           assert.deepEqual(names, expectedEvents, 'Get content events should have been fired');
         };
 
         const assertEventsContentType = () => {
-          const isExpectedTypes = Arr.forall(events, (e) => e.type === 'beforegetcontent' ? Type.isUndefined(e.content) : Type.isString(e.content));
+          const isExpectedTypes = events.every((e) =) e.type === 'beforegetcontent' ? e.content === undefined : typeof e.content === 'string');
           assert.isTrue(isExpectedTypes);
         };
 
@@ -301,10 +300,10 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
         const initialContent = '<p>initial</p>';
         const newContent = '<p>new content</p>';
         const manipulatedContent = '<p>manipulated</p>';
-        Arr.each([
+        [
           [ 'setContent', manipulatedContent ],
           [ 'insertContent', `${manipulatedContent}\n${initialContent}` ]
-        ] as const, ([ action, result ]) => {
+        ] as const.forEach(([ action, result ]) =) {
           it(`TINY-9143: Can manipulate content in "BeforeSetContent" callback when called from "${action}" function`, () => {
             const editor = hook.editor();
             editor.setContent(initialContent);
@@ -501,10 +500,10 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
     }
   );
 
-  Arr.each([
+  [
     { inline: true },
     { inline: false }
-  ], (options) => {
+  ].forEach((options) =) {
     context('Unsanitized content', () => {
       const unsanitizedHtml = '<p id="action">XSS</p>';
       const htmlText = 'XSS';

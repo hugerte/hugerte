@@ -1,6 +1,6 @@
 import { TestStore, Waiter, FocusTools } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarDocument } from '@ephox/sugar';
 import { McEditor, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -38,12 +38,12 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.ToolbarDrawerToggleT
   };
 
   context(`Using the 'ToggleToolbarDrawer' command should toggle the toolbar if applicable`, () => {
-    Arr.each<{ mode: ToolbarMode; shouldToggle: boolean }>([
+    [
       { mode: 'floating', shouldToggle: true },
       { mode: 'sliding', shouldToggle: true },
       { mode: 'wrap', shouldToggle: false },
       { mode: 'scrolling', shouldToggle: false }
-    ], (test) => {
+    ].forEach((test) => {
       // Test iframe
       it(`TINY-6032: ${test.mode} toolbar`, () =>
         pTestToggle({ toolbar_mode: test.mode }, false)
@@ -99,7 +99,7 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.ToolbarDrawerToggleT
   };
 
   context(`Should emit 'ToogleToolbarDrawer' event when toggled`, () => {
-    Arr.each<ToolbarMode>([ 'floating', 'sliding' ], (toolbarMode) => {
+    [ 'floating', 'sliding' ].forEach((toolbarMode) => {
       it(`TINY-9271: Emits 'ToggleToolbarDrawer' in ${toolbarMode} via execCommand`, async () => {
         await pTestEvent(toolbarMode, (editor) => editor.execCommand('ToggleToolbarDrawer'));
       });
@@ -111,7 +111,7 @@ describe.skip('browser.hugerte.themes.silver.editor.toolbar.ToolbarDrawerToggleT
   });
 
   context(`Should preserve focus if skipFocus: true option was passed`, () => {
-    Arr.each<ToolbarMode>([ 'floating', 'sliding' ], (toolbarMode) => {
+    [ 'floating', 'sliding' ].forEach((toolbarMode) => {
       it(`TINY-9337: Preserves focus in ${toolbarMode} if skipFocus is true`, async () => {
         const editor = await McEditor.pFromSettings<Editor>({
           menubar: false,

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -50,7 +50,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorSettingsTest', () => {
 
     const colors = Options.mapColors(input);
     assert.lengthOf(colors, expected.length, 'Colors length should match');
-    Arr.each(expected, (item, i) => {
+    expected.forEach((item, i) =) {
       const colorItem = colors[i];
       assert.equal(colorItem.type, item.type, 'Color type should match');
       assert.equal(colorItem.text, item.text, 'Color text should match');

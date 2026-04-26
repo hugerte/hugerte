@@ -1,7 +1,7 @@
 import { Assertions, DragnDrop, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { DataTransfer, DataTransferMode, DragImageData } from '@ephox/dragster';
-import { Arr, Fun, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Obj, Optional } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 import { PlatformDetection } from '@ephox/sand';
 import { Html, SelectorFind, SugarBody, SugarElement, SugarLocation, Traverse } from '@ephox/sugar';
@@ -45,10 +45,10 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
     const findEvent = (eventType: string): Optional<DragEvent> => Arr.find(events, ({ type }) => type === eventType);
 
     const getDataTransferFromEvent = (eventType: string): Optional<DataTransfer> =>
-      findEvent(eventType).bind((event) => Optional.from(event.dataTransfer));
+      findEvent(eventType).bind((event) => event.dataTransfer ?? null);
 
     const assertEventsDispatched = (expectedTypes: string[]) => {
-      const eventTypes = Arr.map(events, (e) => e.type);
+      const eventTypes = events.map((e) =) e.type);
 
       assert.deepEqual(eventTypes, expectedTypes);
     };
@@ -58,11 +58,11 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
         assert.strictEqual(files.length, 0, `length property should be 0 since dataTransfer on "${eventType}" event is expected to have no file`);
         assert.isNull(files.item(0), `item(0) should return null since dataTransfer on "${eventType}" event is expected to have no file`);
       } else {
-        Arr.each(expectedFiles, (specFile) => {
+        expectedFiles.forEach((specFile) =) {
           Arr.find(files, (file) => Obj.equal(file as unknown as Record<string, unknown>, specFile as unknown as Record<string, unknown>))
             .fold(
               () => assert.fail(`Expected dataTransfer on "${eventType}" event to have file ${specFile.name}`),
-              Fun.noop
+              () => {}
             );
         });
       }
@@ -82,10 +82,10 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
             DataTransferMode.setReadOnlyMode(dataTransfer);
           }
 
-          Arr.each(spec.data, ({ type, value }) => assert.equal(dataTransfer.getData(type), value, `Expected dataTransfer on "${eventType}" event to have ${type} data`));
+          spec.data.forEach(({ type, value }) =) assert.equal(dataTransfer.getData(type), value, `Expected dataTransfer on "${eventType}" event to have ${type} data`));
           assert.equal(dataTransfer.dropEffect, spec.dropEffect, `Expected dataTransfer on "${eventType}" event to have dropEffect`);
           assert.equal(dataTransfer.effectAllowed, spec.effectAllowed, `Expected dataTransfer on "${eventType}" event to have effectAllowed`);
-          KAssert.eqOptional(`Expected dataTransfer on "${eventType}" event to have dragImage`, Optional.from(spec.dragImage), DataTransfer.getDragImage(dataTransfer));
+          KAssert.eqOptional(`Expected dataTransfer on "${eventType}" event to have dragImage`, spec.dragImage ?? null, DataTransfer.getDragImage(dataTransfer));
 
           assertDataTransferFiles(dataTransfer.files, spec.files, eventType);
 
@@ -100,7 +100,7 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
       const cordKeys = [ 'x', 'y', 'clientX', 'clientY', 'screenX', 'screenY', 'pageX', 'pageY' ] as const;
 
       if (assertMouseCords) {
-        Arr.each(cordKeys, (key) => assert.isAtLeast(event[key], 1));
+        cordKeys.forEach((key) =) assert.isAtLeast(event[key], 1));
       }
 
       assert.equal((event.target as HTMLElement)?.className.trim(), expectedClass, `Expected target on "${expectedType}" event to have class`);
@@ -124,7 +124,7 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
       // eslint-disable-next-line guard-for-in
       for (const key in mouseEvent) {
         const value = mouseEvent[key];
-        if (!Type.isFunction(value)) {
+        if (!typeof value === 'function') {
           clone[key] = value;
         }
       }
@@ -295,7 +295,7 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
 
       const dragstartCallback = (e: DragEvent) => {
         const dataTransfer = e.dataTransfer;
-        if (!Type.isNull(dataTransfer)) {
+        if (!dataTransfer === null) {
           dataTransfer.dropEffect = 'copy';
           dataTransfer.effectAllowed = 'copy';
           dataTransfer.setData('text/html', newHtmlData);
@@ -347,15 +347,15 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
 
       // Do this so that TypeScript does not complain about the dataTransfer objects being null
       let nullDataTransfer = false;
-      if (Type.isNull(dragstartDataTransfer)) {
+      if (dragstartDataTransfer === null) {
         dragstartDataTransfer = DataTransfer.createDataTransfer();
         nullDataTransfer = true;
       }
-      if (Type.isNull(dropDataTransfer)) {
+      if (dropDataTransfer === null) {
         dropDataTransfer = DataTransfer.createDataTransfer();
         nullDataTransfer = true;
       }
-      if (Type.isNull(dragendDataTransfer)) {
+      if (dragendDataTransfer === null) {
         dragendDataTransfer = DataTransfer.createDataTransfer();
         nullDataTransfer = true;
       }
@@ -674,13 +674,12 @@ describe.skip('browser.hugerte.core.DragDropOverridesTest', () => {
       `<div class="${name}" style="margin: 40px; width: 1110px; height: 120px;" contenteditable="false">${name}</div>`;
 
     const getContentWithCefElements = (elementsNames: string[]): string => {
-      if (!Arr.contains(elementsNames, 'toDrag') || !Arr.contains(elementsNames, 'destination')) {
+      if (!elementsNames.includes('toDrag') || !elementsNames.includes('destination')) {
       // eslint-disable-next-line no-throw-literal
         throw new Error('This function require to have an element named toDrag and one destination');
       }
-      return `<div>${Arr.foldl(elementsNames, (acc, elementName) =>
-        acc + getBaseCEFElement(elementName)
-      , '')}</div>`;
+      return `<div>${elementsNames.reduce((acc, elementName) =>
+        acc + getBaseCEFElement(elementName), '')}</div>`;
     };
 
     const hook = TinyHooks.bddSetupLight<Editor>({

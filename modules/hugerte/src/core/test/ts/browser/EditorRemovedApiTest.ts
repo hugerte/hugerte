@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -8,7 +8,7 @@ import Editor from 'hugerte/core/api/Editor';
 describe('browser.hugerte.core.EditorRemovedApiTest', () => {
   const hook = TinyHooks.bddSetupLight<Editor>({
     base_url: '/project/hugerte/js/hugerte',
-    test_callback: Fun.noop
+    test_callback: () => {}
   }, []);
 
   const tryAccess = (name: keyof Editor, expectedValue: any) => {

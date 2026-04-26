@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Failure } from '@ephox/bedrock-common';
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import * as AsyncActions from '../pipe/AsyncActions';
 import * as GeneralActions from '../pipe/GeneralActions';
@@ -40,7 +40,7 @@ const mapper = <T, U>(fx: (value: T) => U): Chain<T, U> =>
     next(fx(input), logs);
   });
 
-const identity = mapper(Fun.identity);
+const identity = mapper((x) => x);
 
 const binder = <T, U, E>(fx: (input: T) => Result<U, E>): Chain<T, U> =>
   on((input: T, next: NextFn<U>, die: DieFn, logs: TestLogs) => {
@@ -75,7 +75,7 @@ const extract = <T, U>(chain: Chain<T, U>): Step<T, U> => ({
 });
 
 const fromChains = <T = any, U = any>(chains: Chain<any, any>[]): Chain<T, U> => {
-  const cs = Arr.map(chains, extract);
+  const cs = chains.map(extract);
 
   return on<T, U>((value, next, die, initLogs) => {
     Pipeline.async(value, cs, (v, newLogs) => next(v, newLogs), die, initLogs);
@@ -88,7 +88,7 @@ const fromChainsWith = <T, U = any, V = any>(initial: T, chains: Chain<any, any>
   );
 
 const fromIsolatedChains = <T = any>(chains: Chain<any, any>[]): Chain<T, T> => {
-  const cs = Arr.map(chains, extract);
+  const cs = chains.map(extract);
 
   return on<T, T>((value, next, die, initLogs) => {
     Pipeline.async(value, cs, (_v, newLogs) => {
@@ -105,7 +105,7 @@ const fromIsolatedChainsWith = <T, U = any>(initial: T, chains: Chain<any, any>[
 
 // Find the first chain which doesn't fail, and use its value. Fails if no chain passes.
 const exists = <T, U>(chains: Chain<T, U>[]): Chain<T, U> => {
-  const cs = Arr.map(chains, extract);
+  const cs = chains.map(extract);
   let index = 0;
 
   const attempt = (value: T, next: NextFn<U>, die: DieFn, initLogs: TestLogs): void => {
@@ -126,7 +126,7 @@ const exists = <T, U>(chains: Chain<T, U>[]): Chain<T, U> => {
 const fromParent = <T, U, V>(parent: Chain<T, U>, chains: Chain<U, V>[]): Chain<T, U> =>
   on((cvalue: T, cnext: NextFn<U>, cdie: DieFn, clogs: TestLogs) => {
     Pipeline.async(cvalue, [ extract(parent) ], (value: U, parentLogs: TestLogs) => {
-      const cs = Arr.map(chains, (c) =>
+      const cs = chains.map((c) =)
         Step.raw((_, next, die, logs) => {
           // Replace _ with value
           c.runChain(value, next, die, logs);
@@ -145,7 +145,7 @@ const fromParent = <T, U, V>(parent: Chain<T, U>, chains: Chain<U, V>[]): Chain<
  */
 const asStep = <T, U>(initial: U, chains: Chain<any, any>[]): Step<T, T> =>
   Step.raw<T, T>((initValue, next, die, logs) => {
-    const cs = Arr.map(chains, extract);
+    const cs = chains.map(extract);
 
     Pipeline.async(
       initial,
@@ -200,7 +200,7 @@ const wait = <T>(amount: number): Chain<T, T> =>
   });
 
 const pipeline = (chains: Chain<any, any>[], onSuccess: NextFn<any>, onFailure: DieFn, initLogs?: TestLogs): void => {
-  Pipeline.async({}, Arr.map(chains, extract), (output, logs) => {
+  Pipeline.async({}, chains.map(extract), (output, logs) => {
     onSuccess(output, logs);
   }, onFailure, TestLogs.getOrInit(initLogs));
 };

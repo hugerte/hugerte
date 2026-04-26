@@ -1,5 +1,5 @@
 import { TooltippingTypes } from '@ephox/alloy';
-import { Fun } from '@ephox/katamari';
+
 
 import I18n from 'hugerte/core/api/util/I18n';
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
@@ -12,7 +12,7 @@ export default {
   icons: (): Record<string, string> => ({}),
   menuItems: (): Record<string, any> => ({}),
   translate: I18n.translate,
-  isDisabled: Fun.never,
+  isDisabled: () => false,
   getOption: <T>(name: string): T | undefined => defaultOptions[name],
   tooltips: {
     getConfig: (): TooltippingTypes.TooltippingConfigSpec => {

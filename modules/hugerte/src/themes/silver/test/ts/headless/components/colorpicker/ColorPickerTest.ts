@@ -2,7 +2,7 @@ import { HsvColour } from '@ephox/acid';
 import { UiControls, UiFinder, Waiter } from '@ephox/agar';
 import { AlloyComponent, GuiFactory, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -14,9 +14,9 @@ import TestProviders from '../../../module/TestProviders';
 describe('headless.hugerte.themes.silver.components.colorpicker.ColorPickerTest', () => {
   const hook = TestHelpers.GuiSetup.bddSetup((_store, _doc, _body) => GuiFactory.build(
     renderColorPicker({
-      label: Optional.some('ColorPicker label'),
+      label: 'ColorPicker label',
       name: 'col1'
-    }, TestProviders, Optional.none())
+    }, TestProviders, null)
   ));
 
   const fireEvent = (elem: SugarElement<Node>, event: string) => {

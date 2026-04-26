@@ -1,4 +1,4 @@
-import { Arr, Future, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { Value } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -127,7 +127,7 @@ const chooserMunger = (spec: { legend: string; choices: Array<{ text: string; va
     chooserBehaviours: Behaviour.derive([
       Tabstopping.config({ })
     ]),
-    choices: Arr.map(spec.choices, DemoRenders.choice)
+    choices: spec.choices.map(DemoRenders.choice)
   });
 };
 
@@ -183,7 +183,7 @@ const typeaheadMunger = (spec: { label: string; lazySink: LazySink; dataset: any
     fetch: (input: AlloyComponent) => {
 
       const text = Value.get(input.element);
-      const matching: DemoRenders.DemoItems[] = Arr.bind(spec.dataset, (d) => {
+      const matching: DemoRenders.DemoItems[] = spec.dataset.flatMap((d) =) {
         const index = d.indexOf(text.toLowerCase());
         if (index > -1) {
           const html = d.substring(0, index) + '<b>' + d.substring(index, index + text.length) + '</b>' +
@@ -202,7 +202,7 @@ const typeaheadMunger = (spec: { label: string; lazySink: LazySink; dataset: any
       return future.map((items) => {
         const menu = DemoRenders.menu({
           value: 'typeahead-menu-blah',
-          items: Arr.map(items, DemoRenders.item)
+          items: items.map(DemoRenders.item)
         });
         return TieredMenu.singleData('blah', menu);
       });

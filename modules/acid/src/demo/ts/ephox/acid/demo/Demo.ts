@@ -1,5 +1,5 @@
 import { Channels, Debugging, Gui, GuiFactory } from '@ephox/alloy';
-import { Fun, Optional, Type } from '@ephox/katamari';
+
 import { Class, DomEvent, Insert, SugarElement } from '@ephox/sugar';
 
 import { Untranslated } from 'ephox/acid/alien/I18n';
@@ -21,8 +21,8 @@ DomEvent.bind(SugarElement.fromDom(document), 'mouseup', (evt) => {
 });
 
 const fakeTranslate = (key: Untranslated): string => {
-  if (Type.isString(key)) {
-    return Optional.from(strings[key]).getOrThunk(() => {
+  if (typeof key === 'string') {
+    return strings[key] ?? null.getOrThunk(() => {
     // eslint-disable-next-line no-console
       console.error('Missing translation for ' + key);
       return key;
@@ -32,7 +32,7 @@ const fakeTranslate = (key: Untranslated): string => {
   }
 };
 
-const colourPickerFactory = ColourPicker.makeFactory(fakeTranslate, Fun.identity);
+const colourPickerFactory = ColourPicker.makeFactory(fakeTranslate, (x) => x);
 
 const colourPicker = GuiFactory.build(colourPickerFactory.sketch({
   dom: {

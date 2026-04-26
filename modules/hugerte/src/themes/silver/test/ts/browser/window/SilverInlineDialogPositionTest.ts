@@ -1,7 +1,7 @@
 import { Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { Boxes } from '@ephox/alloy';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Class, Css, Height, Insert, Remove, Scroll, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -49,10 +49,10 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
   };
 
   context('Top toolbar positioning', () => {
-    Arr.each([
+    [
       { name: 'normal', settings: { ui_mode: 'combined' }},
       { name: 'normal-split-ui-mode', settings: { ui_mode: 'split' }}
-    ], (tester) => {
+    ].forEach((tester) =) {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetup<Editor>({
           base_url: '/project/hugerte/js/hugerte',
@@ -166,10 +166,10 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
   });
 
   context('Bottom toolbar positioning', () => {
-    Arr.each([
+    [
       { name: 'normal', settings: { ui_mode: 'combined' }},
       { name: 'normal-split-ui-mode', settings: { ui_mode: 'split' }}
-    ], (tester) => {
+    ].forEach((tester) =) {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetup<Editor>({
           base_url: '/project/hugerte/js/hugerte',
@@ -221,10 +221,10 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
   });
 
   context('Bottom toolbar with inline editor positioning', () => {
-    Arr.each([
+    [
       { name: 'inline', settings: { ui_mode: 'combined' }, sinkSeparatedByScrollDiv: false },
       { name: 'inline-split-ui-mode', settings: { ui_mode: 'split' }, sinkSeparatedByScrollDiv: true }
-    ], (tester) => {
+    ].forEach((tester) =) {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetupFromElement<Editor>({
           theme: 'silver',
@@ -321,7 +321,7 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
         it('TINY-9888: Test bottom inline dialog position', async () => {
           const editor = hook.editor();
 
-          const content = Arr.range(10, (_) => '<p>test</p>').join('\n');
+          const content = Array.from({ length: 10 }, (_) => '<p>test</p>').join('\n');
           editor.insertContent(content);
 
           const dialog = openDialog(editor, 'bottom');
@@ -381,7 +381,7 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
         });
       });
 
-      Arr.each([ 'inline', 'iframe toolbar sticky' ], (editorType: string) => {
+      [ 'inline', 'iframe toolbar sticky' ].forEach((editorType: string) =) {
         context(editorType, () => {
           const hook = TinyHooks.bddSetup<Editor>({
             base_url: '/project/hugerte/js/hugerte',
@@ -419,7 +419,7 @@ describe.skip('browser.hugerte.themes.silver.window.SilverInlineDialogPositionTe
             assertFn(dialog);
 
             if (editorType === 'inline') {
-              const content = Arr.range(50, (_) => '<p>test</p><p>test</p><p>test</p>').join('\n');
+              const content = Array.from({ length: 50 }, (_) => '<p>test</p><p>test</p><p>test</p>').join('\n');
               editor.insertContent(content);
             }
 

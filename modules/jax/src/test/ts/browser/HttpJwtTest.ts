@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, FutureResult, Result } from '@ephox/katamari';
+import { FutureResult, Result } from '@ephox/katamari';
 
 import { DataType } from 'ephox/jax/core/DataType';
 import { HttpError } from 'ephox/jax/core/HttpError';
@@ -69,7 +69,7 @@ UnitTest.asynctest('HttpTest', (success, failure) => {
     ), [ 'cached' ], validCalls)
   ];
 
-  Arr.foldr(responses, (res, rest) => {
+  responses.reduceRight((res, rest) => {
     return rest.bindFuture(() => {
       return res;
     });

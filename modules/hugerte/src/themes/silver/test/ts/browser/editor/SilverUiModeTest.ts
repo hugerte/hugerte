@@ -1,6 +1,6 @@
 import { Keys, UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Class, Insert, Remove, SelectorFind, Selectors, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -137,10 +137,10 @@ describe('browser.hugerte.themes.silver.editor.SilverUiModeTest', () => {
   };
 
   context('ui_mode: combined', () => {
-    Arr.each([
+    [
       { name: 'inline', settings: { inline: true }},
       { name: 'normal', settings: { inline: false }}
-    ], (tester) => {
+    ].forEach((tester) =) {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetupFromElement<Editor>(
           {
@@ -177,10 +177,10 @@ describe('browser.hugerte.themes.silver.editor.SilverUiModeTest', () => {
   });
 
   context('ui_mode: split', () => {
-    Arr.each([
+    [
       { name: 'inline', settings: { inline: true }},
       { name: 'normal', settings: { inline: false }}
-    ], (tester) => {
+    ].forEach((tester) =) {
       context(tester.name, () => {
         const hook = TinyHooks.bddSetupFromElement<Editor>(
           {

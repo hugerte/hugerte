@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, StructAssert, UiFinder, Waiter } from '@ephox/agar';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Css, Focus, Scroll, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -214,8 +214,8 @@ const pAssertHeaderPosition = async (toolbarLocation: ToolbarLocation, value: nu
 };
 
 const pCloseMenus = (numOpenedMenus: number) => {
-  const menuArray = Arr.range(numOpenedMenus, Fun.identity);
-  return Arr.foldl(menuArray, (p) => p.then(async () => {
+  const menuArray = Array.from({ length: numOpenedMenus }, (x) => x);
+  return menuArray.reduce((p) => p.then(async () => {
     const menuElem = await UiFinder.pWaitForVisible('Wait for selected menu to be visible', SugarBody.body(), '.tox-selected-menu');
     await Waiter.pTryUntil('Wait for menu item to be focused', () => {
       assert.isTrue(Focus.search(menuElem).isSome(), 'Assert menu item is focused');

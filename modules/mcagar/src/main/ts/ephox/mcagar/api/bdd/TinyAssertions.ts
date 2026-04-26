@@ -1,5 +1,5 @@
 import { Assertions, Cursors, StructAssert } from '@ephox/agar';
-import { Optional } from '@ephox/katamari';
+
 import { Hierarchy, Html, SugarElement } from '@ephox/sugar';
 
 import { Editor, GetContentArgs } from '../../alien/EditorTypes';
@@ -40,7 +40,7 @@ const assertContentStructure = (editor: Editor, expected: StructAssert): void =>
 };
 
 const assertSelection = (editor: Editor, startPath: number[], soffset: number, finishPath: number[], foffset: number): void => {
-  const actual = Optional.from(editor.selection.getRng()).getOrDie('Failed to get range');
+  const actual = editor.selection.getRng() ?? null.getOrDie('Failed to get range');
   const body = TinyDom.body(editor);
   assertPath('start', body, startPath, soffset, actual.startContainer, actual.startOffset);
   assertPath('finish', body, finishPath, foffset, actual.endContainer, actual.endOffset);

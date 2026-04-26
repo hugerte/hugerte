@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { afterEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Type } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { Attribute, Classes, Css, Html, SelectorFind, SugarBody, SugarDocument, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
 import { McEditor, TinyContentActions, TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
@@ -53,7 +53,7 @@ describe('browser.hugerte.plugins.fullscreen.FullScreenPluginTest', () => {
     } catch (e) {
       // TODO: Remove this once we figure out why this flakes this adds some extra logging
       if (e instanceof Error) {
-        const hasToxFullscreen = Type.isNonNullable(document.querySelector('.tox-fullscreen'));
+        const hasToxFullscreen = document.querySelector('.tox-fullscreen') != null;
         throw new Error(`${e.message} body-class: "${document.body.className}" html-class: "${document.documentElement.className}" hasToxFullscreen: ${hasToxFullscreen}`);
       } else {
         throw e;
@@ -116,10 +116,10 @@ describe('browser.hugerte.plugins.fullscreen.FullScreenPluginTest', () => {
     TinyContentActions.keystroke(editor, 'F'.charCodeAt(0), modifiers);
   };
 
-  Arr.each([
+  [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(tester.label, () => {
       const hook = tester.setup<Editor>({
         plugins: 'fullscreen link',
@@ -127,7 +127,7 @@ describe('browser.hugerte.plugins.fullscreen.FullScreenPluginTest', () => {
         setup: (editor: Editor) => {
           firedEvents = [];
           editor.on('FullscreenStateChanged ResizeEditor', (e: any) => {
-            if (Type.isBoolean(e.state)) {
+            if (typeof e.state === 'boolean') {
               firedEvents.push(`${e.type}:${e.state}`);
             } else {
               firedEvents.push(e.type);

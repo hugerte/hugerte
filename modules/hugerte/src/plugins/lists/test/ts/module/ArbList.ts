@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 import * as fc from 'fast-check';
 
 interface ArbTextNode {
@@ -92,15 +92,15 @@ const getTextNodes = (list: ArbListElement) => {
 
   const helper = (list: ArbListElement) => {
     const collectTextNodesInElement = (child: ArbElementNode) => {
-      Arr.each(child.children, (child) => {
+      child.children.forEach((child) =) {
         if (isArbTextNode(child)) {
           textNodes.push(child);
         }
       });
     };
 
-    Arr.each(list.children, (li) => {
-      Arr.each(li.children, (child) => {
+    list.children.forEach((li) =) {
+      li.children.forEach((child) =) {
         if (isArbTextNode(child)) {
           textNodes.push(child);
         } else if (isArbListElement(child)) {
@@ -139,7 +139,7 @@ const toDomListElementWithSelection = (arbList: ArbListElementWithSelection) => 
     const toDomElement = (child: ArbElementNode) => {
       const el = document.createElement(child.type);
 
-      Arr.each(child.children, (child) => {
+      child.children.forEach((child) =) {
         if (isArbTextNode(child)) {
           const textNode = document.createTextNode(child.value);
           el.appendChild(textNode);
@@ -153,10 +153,10 @@ const toDomListElementWithSelection = (arbList: ArbListElementWithSelection) => 
       return el;
     };
 
-    Arr.each(list.children, (li) => {
+    list.children.forEach((li) =) {
       const liEl = document.createElement(li.type);
 
-      Arr.each(li.children, (child) => {
+      li.children.forEach((child) =) {
         if (isArbTextNode(child)) {
           const textNode = document.createTextNode(child.value);
           liEl.appendChild(textNode);

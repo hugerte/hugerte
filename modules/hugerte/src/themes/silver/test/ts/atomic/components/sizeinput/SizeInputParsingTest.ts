@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
 
@@ -51,7 +51,7 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputParsingTest
   });
 
   it('check that all units work', () => {
-    Arr.each(units, (unit) => {
+    units.forEach((unit) =) {
       check(Result.error(unit), unit);
       check(Result.value(nuSize(4, unit)), '4' + unit);
     });

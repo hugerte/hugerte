@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
+
 import { TinyDom, TinyHooks } from '@ephox/mcagar';
 import { PredicateFilter, SugarElement, SugarNode, TextContent } from '@ephox/sugar';
 import { assert } from 'chai';
@@ -14,9 +14,9 @@ import * as ArbList from '../module/ArbList';
 
 describe('browser.hugerte.plugins.lists.RetainContentTest', () => {
   const getNodeNameCount = (el: SugarElement<HTMLElement>) => {
-    const names = Arr.map(PredicateFilter.descendants(el, (node) => !Arr.contains([ 'ul', 'ol', 'li' ], SugarNode.name(node))), SugarNode.name);
-    const namesRecord = Arr.foldl(names, (record, name) => {
-      if (Obj.has(record, name)) {
+    const names = PredicateFilter.descendants(el, (node) => ![ 'ul', 'ol', 'li' ].includes(SugarNode.name(node))).map(SugarNode.name);
+    const namesRecord = names.reduce((record, name) => {
+      if (Object.prototype.hasOwnProperty.call(record, name)) {
         record[name] = record[name] + 1;
       } else {
         record[name] = 1;
@@ -41,7 +41,7 @@ describe('browser.hugerte.plugins.lists.RetainContentTest', () => {
     const testListContent = (list: SugarElement<HTMLUListElement | HTMLOListElement>) => {
       const listTextContent = TextContent.get(list);
       const listNameCounts = getNodeNameCount(list);
-      const { entries } = parseLists([ list ], Optional.none())[0];
+      const { entries } = parseLists([ list ], null)[0];
       const composedListEl = composeList(document, entries).getOrDie('Should produce a list element');
       const composedListTextContent = TextContent.get(composedListEl);
       const composedNameCounts = getNodeNameCount(composedListEl);
@@ -141,7 +141,7 @@ describe('browser.hugerte.plugins.lists.RetainContentTest', () => {
     const testEditorCommandOnList = (cmd: string) => testEditorEffectOnList((editor) => editor.execCommand(cmd));
 
     it('TINY-10414: Setting and getting the list back should always retain all content', () =>
-      testEditorEffectOnList(Fun.noop)
+      testEditorEffectOnList(() => {})
     );
 
     it('TINY-10414: Indenting a list should not affect the text content', () =>

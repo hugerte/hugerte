@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Mouse } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import { renderButton } from 'hugerte/themes/silver/ui/general/Button';
 
@@ -15,8 +15,8 @@ describe('headless.hugerte.themes.silver.components.dialogbutton.DialogButtonTes
         text: 'Button<Text',
         enabled: true,
         primary: true,
-        buttonType: Optional.some('primary'),
-        icon: Optional.none(),
+        buttonType: 'primary',
+        icon: null,
         borderless: false
       }, store.adder('button.action'), TestProviders)
     ));
@@ -50,8 +50,8 @@ describe('headless.hugerte.themes.silver.components.dialogbutton.DialogButtonTes
         text: 'ButtonText',
         enabled: true,
         primary: false,
-        buttonType: Optional.some('secondary'),
-        icon: Optional.none(),
+        buttonType: 'secondary',
+        icon: null,
         borderless: false
       }, store.adder('button.action'), TestProviders)
     ));
@@ -77,8 +77,8 @@ describe('headless.hugerte.themes.silver.components.dialogbutton.DialogButtonTes
         text: 'ButtonText',
         enabled: true,
         primary: false,
-        buttonType: Optional.some('toolbar'),
-        icon: Optional.none(),
+        buttonType: 'toolbar',
+        icon: null,
         borderless: false
       }, store.adder('button.action'), TestProviders)
     ));

@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement, SugarNode } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -43,7 +43,7 @@ describe('browser.hugerte.core.keyboard.InlineUtilsTest', () => {
         get: (name: string) => options[name] ?? 'a[href],code,.mce-annotation'
       },
       dom: {
-        isEditable: Fun.always
+        isEditable: () => true
       },
       schema: Schema()
     } as any;

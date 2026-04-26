@@ -1,5 +1,5 @@
 import { Assertions, Keys, Waiter } from '@ephox/agar';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { SugarBody, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -42,10 +42,15 @@ const setEditorContentTableAndSelection = (editor: Editor, rows: number, columns
   editor.setContent(
     '<table>' +
       '<tbody>' +
-        Arr.range(rows, (row) => {
+        Array.from({ length: rows }, (row) => {
           return (
             '<tr>' +
-                Arr.range(columns, (column) => {
+                Array.from({ length: columns }, (column) => {
+                  return `<td data-mce-selected="1" ${getSelectionStartEnd(row, column)}>Filler</td>`;
+                }).join('') +
+            '</tr>'
+          );
+        })Array.from({ length: columns }, (column) => {
                   return `<td data-mce-selected="1" ${getSelectionStartEnd(row, column)}>Filler</td>`;
                 }).join('') +
             '</tr>'
@@ -62,10 +67,13 @@ const assertStructureIsRestoredToDefault = (editor: Editor, rows: number, column
   TinyAssertions.assertContent(editor,
     '<table>' +
       '<tbody>' +
-        Arr.range(rows, () => {
+        Array.from({ length: rows }, () => {
           return (
             '<tr>' +
-                Arr.range(columns, Fun.constant('<td>Filler</td>')).join('') +
+                Array.from({ length: columns }, () => '<td>Filler</td>').join('') +
+            '</tr>'
+          );
+        })Array.from({ length: columns }, () => '<td>Filler</td>').join('') +
             '</tr>'
           );
         }).join('') +
@@ -77,10 +85,15 @@ const assertStructureHasCustomStyle = (editor: Editor, rows: number, columns: nu
   TinyAssertions.assertContent(editor,
     '<table>' +
       '<tbody>' +
-        Arr.range(rows, () => {
+        Array.from({ length: rows }, () => {
           return (
             '<tr>' +
-                Arr.range(columns, () => {
+                Array.from({ length: columns }, () => {
+                  return `<td style="${expectedStyle};">Filler</td>`;
+                }).join('') +
+            '</tr>'
+          );
+        })Array.from({ length: columns }, () => {
                   return `<td style="${expectedStyle};">Filler</td>`;
                 }).join('') +
             '</tr>'
@@ -210,11 +223,11 @@ const makeCell = (
     const attributes: string[] = [ '' ];
 
     if (selectionMode) {
-      if (Arr.contains(selectionStart, selectionMode)) {
+      if (selectionStart.includes(selectionMode)) {
         attributes.push('data-mce-first-selected="1"');
       }
 
-      if (Arr.contains(selectionEnd, selectionMode)) {
+      if (selectionEnd.includes(selectionMode)) {
         attributes.push('data-mce-last-selected="1"');
       }
 

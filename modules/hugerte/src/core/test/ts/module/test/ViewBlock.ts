@@ -1,5 +1,5 @@
 import { after, afterEach, before } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
 
@@ -30,7 +30,7 @@ const ViewBlock = (): ViewBlock => {
     DOMUtils.DOM.setHTML(domElm, html);
   };
 
-  const get = Fun.constant(domElm);
+  const get = () => domElm;
 
   return {
     attach,

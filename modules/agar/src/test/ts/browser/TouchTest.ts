@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { DomEvent, Insert, Remove, SugarElement } from '@ephox/sugar';
 
@@ -23,7 +23,7 @@ UnitTest.asynctest('TouchTest', (success, failure) => {
 
   let repository = [];
 
-  const handlers = Arr.bind([ 'touchstart', 'touchend', 'touchmove', 'focus' ], (evt) => [
+  const handlers = [ 'touchstart', 'touchend', 'touchmove', 'focus' ].flatMap((evt) =) [
     DomEvent.bind(container, evt, () => repository.push('container.' + evt)),
     DomEvent.bind(input, evt, () => repository.push('input.' + evt))
   ]);
@@ -109,13 +109,13 @@ UnitTest.asynctest('TouchTest', (success, failure) => {
     )
 
   ], () => {
-    Arr.each(handlers, (h) => {
+    handlers.forEach((h) =) {
       h.unbind();
     });
     Remove.remove(container);
     success();
   }, (err) => {
-    Arr.each(handlers, (h) => {
+    handlers.forEach((h) =) {
       h.unbind();
     });
     failure(err);

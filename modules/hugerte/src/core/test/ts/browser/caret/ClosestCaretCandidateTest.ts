@@ -1,6 +1,6 @@
 import { Cursors } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { ContentEditable, Css, Html, Insert, Remove, SugarBody, SugarElement, SugarLocation } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -86,7 +86,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'a<span>b</span>',
           targetPath: [ 1 ],
           dx: 50, dy: 5,
-          expected: Optional.some([ 1, 0 ])
+          expected: [ 1, 0 ]
         })
       );
 
@@ -95,7 +95,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'a<img src="about:blank" style="width: 10px; height: 10px">',
           targetPath: [ 1 ],
           dx: 50, dy: 5,
-          expected: Optional.some([ 1 ])
+          expected: [ 1 ]
         })
       );
 
@@ -104,7 +104,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span style="display: inline-block; margin: 10px">a</span><br>',
           targetPath: [ 1 ],
           dx: 50, dy: 10,
-          expected: Optional.some([ 1 ])
+          expected: [ 1 ]
         })
       );
 
@@ -113,7 +113,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'a<span contenteditable="false" style="display: inline-block; width: 10px; height: 10px; background: green"></span>',
           targetPath: [ 1 ],
           dx: 50, dy: 5,
-          expected: Optional.some([ 1 ])
+          expected: [ 1 ]
         })
       );
 
@@ -122,7 +122,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'a<span style="display: inline-block; width: 10px; height: 10px; background: green"></span>',
           targetPath: [ 1 ],
           dx: 50, dy: 5,
-          expected: Optional.some([ 0 ])
+          expected: [ 0 ]
         })
       );
 
@@ -134,7 +134,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 1 ],
           dx: 50, dy: 5,
-          expected: Optional.some([ 0 ])
+          expected: [ 0 ]
         })
       );
 
@@ -143,7 +143,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span style="display: inline-block; width: 10px; height: 10px; background: green"><b></b></span>',
           targetPath: [ 0 ],
           dx: 50, dy: 5,
-          expected: Optional.none()
+          expected: null
         })
       );
 
@@ -155,7 +155,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 1 ],
           dx: 50, dy: 5,
-          expected: Optional.some([ 0, 0, 0 ])
+          expected: [ 0, 0, 0 ]
         })
       );
 
@@ -164,7 +164,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'hello<span contenteditable="false" style="display: inline-block; margin-top: 40px; border-top: 10px solid black; background: green">x</span>',
           targetPath: [ 1 ],
           dx: -15, dy: -25,
-          expected: Optional.some([ 1 ])
+          expected: [ 1 ]
         })
       );
 
@@ -173,7 +173,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="background: green"><tbody><tr><td>a</td></tr></tbody></table>',
           targetPath: [ 0 ],
           dx: -5, dy: 5,
-          expected: Optional.some([ 0 ])
+          expected: [ 0 ]
         })
       );
 
@@ -182,7 +182,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span contenteditable="false" style="display: inline-block; width: 10px; height: 10px; background: green"></span>hello',
           targetPath: [ 0 ],
           dx: 15, dy: 5,
-          expected: Optional.some([ 1 ])
+          expected: [ 1 ]
         })
       );
 
@@ -191,7 +191,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'hello<span contenteditable="false" style="display: inline-block; width: 10px; height: 10px; background: green"></span>',
           targetPath: [ 1 ],
           dx: 0, dy: 5,
-          expected: Optional.some([ 0 ])
+          expected: [ 0 ]
         })
       );
 
@@ -200,7 +200,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span contenteditable="false" style="display: inline-block; width: 10px; height: 10px; background: green"></span>hello',
           targetPath: [ 0 ],
           dx: 10, dy: 5,
-          expected: Optional.some([ 1 ])
+          expected: [ 1 ]
         })
       );
 
@@ -209,7 +209,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span>hello</span><span contenteditable="false" style="display: inline-block; width: 10px; height: 10px; background: green"></span>',
           targetPath: [ 1 ],
           dx: 0, dy: 5,
-          expected: Optional.some([ 0, 0 ])
+          expected: [ 0, 0 ]
         })
       );
 
@@ -218,7 +218,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span contenteditable="false" style="display: inline-block; width: 10px; height: 10px; background: green"></span><span>hello</span>',
           targetPath: [ 0 ],
           dx: 10, dy: 5,
-          expected: Optional.some([ 1, 0 ])
+          expected: [ 1, 0 ]
         })
       );
 
@@ -227,7 +227,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span>hello</span><span contenteditable="false" style="display: inline-block; margin-left: 2px; width: 10px; height: 10px; background: green"></span>',
           targetPath: [ 1 ],
           dx: -1, dy: 5,
-          expected: Optional.some([ 0, 0 ])
+          expected: [ 0, 0 ]
         })
       );
 
@@ -236,7 +236,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span contenteditable="false" style="display: inline-block; margin-right: 2px; width: 10px; height: 10px; background: green"></span><span>hello</span>',
           targetPath: [ 0 ],
           dx: 11, dy: 5,
-          expected: Optional.some([ 1, 0 ])
+          expected: [ 1, 0 ]
         })
       );
 
@@ -245,7 +245,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span>hello</span><span contenteditable="false" style="display: inline-block; margin-left: 5px; width: 10px; height: 10px; background: green"></span>',
           targetPath: [ 1 ],
           dx: -1, dy: 5,
-          expected: Optional.some([ 1 ])
+          expected: [ 1 ]
         })
       );
 
@@ -254,7 +254,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span contenteditable="false" style="display: inline-block; margin-right: 5px; width: 10px; height: 10px; background: green"></span><span>hello</span>',
           targetPath: [ 0 ],
           dx: 11, dy: 5,
-          expected: Optional.some([ 0 ])
+          expected: [ 0 ]
         })
       );
 
@@ -262,7 +262,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
         const el: SugarElement<HTMLElement> = SugarElement.fromHtml('<div style="height: 100px; width: 20px"></div>');
         const depth = 32;
 
-        const innerMost = Arr.foldl(Arr.range(depth, (_) => SugarElement.fromTag('em')), (el, child) => {
+        const innerMost = Array.from({ length: depth }, (_) => SugarElement.fromTag('em')).reduce((el, child) => {
           Insert.append(el, child);
           Insert.append(el, SugarElement.fromTag('b'));
           return child;
@@ -274,7 +274,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: Html.getOuter(el),
           targetPath: [ 0 ],
           dx: 10, dy: 60,
-          expected: Optional.some(Arr.range(depth + 2, Fun.constant(0)))
+          expected: Array.from({ length: depth + 2 }, () => 0)
         });
       });
 
@@ -282,7 +282,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
         const el: SugarElement<HTMLElement> = SugarElement.fromHtml('<div style="height: 100px; width: 20px"></div>');
         const depth = 32;
 
-        const innerMost = Arr.foldl(Arr.range(depth, (_) => SugarElement.fromTag('em')), (el, child) => {
+        const innerMost = Array.from({ length: depth }, (_) => SugarElement.fromTag('em')).reduce((el, child) => {
           Insert.append(el, child);
           Insert.append(el, SugarElement.fromTag('b'));
           return child;
@@ -294,7 +294,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: Html.getOuter(el),
           targetPath: [ 0 ],
           dx: 10, dy: 60,
-          expected: Optional.some(Arr.range(depth + 2, Fun.constant(0)))
+          expected: Array.from({ length: depth + 2 }, () => 0)
         });
       });
     });
@@ -333,7 +333,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'a<span contenteditable="false" style="display: inline-block; margin: 10px; background: green">b</span>c',
           targetPath: [ 1 ],
           dx: -5, dy: 5,
-          expected: Optional.none()
+          expected: null
         })
       );
 
@@ -342,7 +342,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'a<span contenteditable="false" style="display: inline-block; margin: 10px; background: green">b</span>c',
           targetPath: [ 1 ],
           dx: -3, dy: 5,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 1 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -351,7 +351,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'a<span contenteditable="false" style="display: inline-block; margin: 10px; height: 40px; background: green">b</span>c',
           targetPath: [ 1 ],
           dx: 47, dy: 5,
-          expected: Optional.none()
+          expected: null
         })
       );
 
@@ -360,7 +360,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: 'a<span contenteditable="false" style="display: inline-block; margin: 10px; width: 40px; background: green">b</span>c',
           targetPath: [ 1 ],
           dx: 43, dy: 5,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.After })
+          expected: { path: [ 1 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -369,7 +369,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<p>a<span contenteditable="false" style="display: inline-block; margin: 20px; background: green">b</span></p>',
           targetPath: [ 0 ],
           dx: 5, dy: 5,
-          expected: Optional.none()
+          expected: null
         })
       );
 
@@ -378,7 +378,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span style="font-size: 50px;">a</span><span style="margin: 10px; background: green" contenteditable="false">b</span>',
           targetPath: [ 1 ],
           dx: -3, dy: -15,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 1 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -387,7 +387,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<span style="font-size: 50px;">a</span><span style="margin: 10px; display: inline-block; width: 30px; background: green" contenteditable="false">b</span>',
           targetPath: [ 1 ],
           dx: 33, dy: -15,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.After })
+          expected: { path: [ 1 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -399,7 +399,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 1 ],
           dx: -12, dy: 5,
-          expected: Optional.some({ path: [ 0 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -411,7 +411,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 1 ],
           dx: -7, dy: 5,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 1 ], position: FakeCaretPosition.Before }
         })
       );
     });
@@ -427,7 +427,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0, 0 ],
           dx: 35, dy: -7,
-          expected: Optional.some({ path: [ 0, 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 1 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -441,7 +441,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0, 0 ],
           dx: 35, dy: -7,
-          expected: Optional.some({ path: [ 0, 0 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0, 0 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -455,7 +455,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 1 ],
           dx: -7, dy: 5,
-          expected: Optional.some({ path: [ 2 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 2 ], position: FakeCaretPosition.Before }
         });
       });
     });
@@ -466,7 +466,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<div contenteditable="false" style="background: green">a</div>',
           targetPath: [ 0 ],
           dx: -3, dy: -3,
-          expected: Optional.some({ path: [ 0 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -475,7 +475,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<div contenteditable="false" style="width: 40px; background: green">a</div>',
           targetPath: [ 0 ],
           dx: 45, dy: -3,
-          expected: Optional.some({ path: [ 0 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -484,7 +484,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<div contenteditable="false" style="height: 40px; background: green">a</div>',
           targetPath: [ 0 ],
           dx: -3, dy: 43,
-          expected: Optional.some({ path: [ 0 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -493,7 +493,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<div contenteditable="false" style="width: 40px; height: 40px; background: green">a</div>',
           targetPath: [ 0 ],
           dx: 43, dy: 43,
-          expected: Optional.some({ path: [ 0 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -505,7 +505,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 1 ],
           dx: 90, dy: 5,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.After })
+          expected: { path: [ 1 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -514,7 +514,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<div contenteditable="false" style="margin: 10px; background: green">a</div><div contenteditable="false" style="margin: 10px; background: cyan">b</div>',
           targetPath: [ 1 ],
           dx: 10, dy: -7,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 1 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -523,7 +523,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<div contenteditable="false" style="margin: 10px; background: green">a</div><div contenteditable="false" style="margin: 10px; background: cyan">b</div>',
           targetPath: [ 1 ],
           dx: 10, dy: -3,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 1 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -532,7 +532,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<div contenteditable="false" style="margin: 10px; background: green">a</div><div contenteditable="false" style="margin: 10px; width: 40px; background: cyan">b</div>',
           targetPath: [ 1 ],
           dx: 43, dy: -3,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.After })
+          expected: { path: [ 1 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -543,7 +543,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0 ],
           dx: -7, dy: -7,
-          expected: Optional.some({ path: [ 0, 0 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 0 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -554,7 +554,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0 ],
           dx: 107, dy: -7,
-          expected: Optional.some({ path: [ 0, 0 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0, 0 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -565,7 +565,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0 ],
           dx: -7, dy: 107,
-          expected: Optional.some({ path: [ 0, 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 1 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -576,7 +576,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0 ],
           dx: 107, dy: 107,
-          expected: Optional.some({ path: [ 0, 1 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0, 1 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -587,7 +587,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0, 1 ],
           dx: -14, dy: 5,
-          expected: Optional.some({ path: [ 0, 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 1 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -598,7 +598,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0, 1 ],
           dx: 114, dy: 5,
-          expected: Optional.some({ path: [ 0, 1 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0, 1 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -611,7 +611,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 1 ],
           dx: 70, dy: -7,
-          expected: Optional.some({ path: [ 1 ], position: FakeCaretPosition.After })
+          expected: { path: [ 1 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -623,7 +623,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0, 1, 1 ],
           dx: 10, dy: -7,
-          expected: Optional.some({ path: [ 0, 1, 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 1, 1 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -635,7 +635,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           ].join(''),
           targetPath: [ 0, 1, 1 ],
           dx: 10, dy: -3,
-          expected: Optional.some({ path: [ 0, 1, 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 1, 1 ], position: FakeCaretPosition.Before }
         })
       );
     });
@@ -646,7 +646,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="width: 100px"><tbody><tr><td>1</td><td><div contenteditable="false" style="background: green">2</div></td></tr></tbody></table>',
           targetPath: [ 0, 0, 0, 0 ],
           dx: 3, dy: 3,
-          expected: Optional.none()
+          expected: null
         })
       );
 
@@ -655,7 +655,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="width: 100px"><tbody><tr><td>1</td><td><div contenteditable="false" style="margin: 10px; background: green">2</div></td></tr></tbody></table>',
           targetPath: [ 0, 0, 0, 1 ],
           dx: 5, dy: 5,
-          expected: Optional.some({ path: [ 0, 0, 0, 1, 0 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 0, 0, 1, 0 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -664,7 +664,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="width: 100px"><tbody><tr><td>1</td><td><div contenteditable="false" style="margin: 10px; width: 40px; background: green">2</div></td></tr></tbody></table>',
           targetPath: [ 0, 0, 0, 1 ],
           dx: 45, dy: 5,
-          expected: Optional.some({ path: [ 0, 0, 0, 1, 0 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0, 0, 0, 1, 0 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -673,7 +673,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="width: 100px"><tbody><tr><td>1</td><td><div contenteditable="false" style="margin: 10px; height: 40px; background: green">2</div></td></tr></tbody></table>',
           targetPath: [ 0, 0, 0, 1 ],
           dx: 5, dy: 45,
-          expected: Optional.some({ path: [ 0, 0, 0, 1, 0 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 0, 0, 1, 0 ], position: FakeCaretPosition.Before }
         })
       );
 
@@ -682,7 +682,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="width: 100px"><tbody><tr><td>1</td><td><div contenteditable="false" style="margin: 10px; width: 40px; height: 40px; background: green">2</div></td></tr></tbody></table>',
           targetPath: [ 0, 0, 0, 1 ],
           dx: 55, dy: 55,
-          expected: Optional.some({ path: [ 0, 0, 0, 1, 0 ], position: FakeCaretPosition.After })
+          expected: { path: [ 0, 0, 0, 1, 0 ], position: FakeCaretPosition.After }
         })
       );
 
@@ -691,7 +691,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="width: 100px"><tbody><tr><td>1<div contenteditable="false" style="margin: 10px; background: green">2</div></td></tr></tbody></table>',
           targetPath: [ 0, 0, 0, 0 ],
           dx: 5, dy: 5,
-          expected: Optional.none()
+          expected: null
         })
       );
 
@@ -700,7 +700,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="width: 100px"><tbody><tr><td><div contenteditable="false" style="margin: 10px; height: 40px; background: green">1</div>2</td></tr></tbody></table>',
           targetPath: [ 0, 0, 0, 0 ],
           dx: 5, dy: 55,
-          expected: Optional.none()
+          expected: null
         })
       );
 
@@ -709,7 +709,7 @@ describe('browser.hugerte.core.ClosestCaretCandidateTest', () => {
           html: '<table style="width: 100px"><tbody><tr><td>1<div contenteditable="false" style="margin: 10px; background: green">2</div></td></tr></tbody></table>',
           targetPath: [ 0, 0, 0, 0, 1 ],
           dx: 5, dy: -5,
-          expected: Optional.some({ path: [ 0, 0, 0, 0, 1 ], position: FakeCaretPosition.Before })
+          expected: { path: [ 0, 0, 0, 0, 1 ], position: FakeCaretPosition.Before }
         })
       );
     });

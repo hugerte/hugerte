@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import { Gene } from 'ephox/boss/api/Gene';
 import * as Insertion from 'ephox/boss/mutant/Insertion';
@@ -21,7 +21,7 @@ UnitTest.test('InsertionTest', () => {
   };
 
   const check = (expected: string, method: (a: Gene, b: Gene) => void, input: Gene, anchorId: string, itemId: string) => {
-    const family = Tracks.track(input, Optional.none());
+    const family = Tracks.track(input, null);
     const anchor = Locator.byId(family, anchorId).getOrDie();
     const item = Locator.byId(family, itemId).getOrDie();
     method(anchor, item);
@@ -37,7 +37,7 @@ UnitTest.test('InsertionTest', () => {
   };
 
   const checkWrap = (expected: string, input: Gene, anchorId: string, wrapper: Gene) => {
-    const family = Tracks.track(input, Optional.none());
+    const family = Tracks.track(input, null);
     const anchor = Locator.byId(family, anchorId).getOrDie();
     Insertion.wrap(anchor, wrapper);
     Assert.eq('', expected, Logger.basic(family));
@@ -55,9 +55,9 @@ UnitTest.test('InsertionTest', () => {
   checkWrap('A(WRAPPER(B),C(D(E),F))', data(), 'B', Gene('WRAPPER', '.'));
 
   const checkAfterAll = (expected: string, input: Gene, anchorId: string, itemIds: string[]) => {
-    const family = Tracks.track(input, Optional.none());
+    const family = Tracks.track(input, null);
     const anchor = Locator.byId(family, anchorId).getOrDie('Did not find anchor: ' + anchorId);
-    const items = Arr.map(itemIds, (itemId) => {
+    const items = itemIds.map((itemId) =) {
       return Locator.byId(family, itemId).getOrDie('Did not find item: ' + itemId);
     });
     Insertion.afterAll(anchor, items);

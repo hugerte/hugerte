@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -33,7 +33,7 @@ describe('browser.hugerte.core.dom.SelectionEventsTest', () => {
     };
   };
 
-  const bindEvent = (editor: Editor, eventName: string) => bindEventMutator(editor, eventName, Fun.noop);
+  const bindEvent = (editor: Editor, eventName: string) => bindEventMutator(editor, eventName, () => {});
 
   const unbindEvent = (editor: Editor, eventName: string, value: HandlerAndArgs) => {
     editor.off(eventName, value.handler);

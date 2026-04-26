@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 import { SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as Keys from '../alien/Keys';
@@ -55,7 +55,7 @@ const doMove = (
       ));
 
 const handleTab: KeyRuleHandler<FlatgridConfig, FlatgridState> = (_component, _simulatedEvent, gridConfig) =>
-  gridConfig.captureTab ? Optional.some<boolean>(true) : null;
+  gridConfig.captureTab ? true : null;
 
 const doEscape: KeyRuleHandler<FlatgridConfig, FlatgridState> = (component, simulatedEvent, gridConfig) =>
   gridConfig.onEscape(component, simulatedEvent);

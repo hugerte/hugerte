@@ -1,6 +1,6 @@
 import { Chain, Guard, Mouse, NamedChain, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Css, Scroll, SugarPosition } from '@ephox/sugar';
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';
@@ -33,7 +33,7 @@ UnitTest.asynctest('MouseDraggingTest', (success, failure) => {
               Dragging.snap({
                 sensor: DragCoord.fixed(300, 10),
                 range: SugarPosition(1000, 30),
-                output: DragCoord.fixed(Optional.none<number>(), Optional.some(10))
+                output: DragCoord.fixed(null, 10)
               })
             ],
             leftAttr: 'data-snap-left',

@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { McEditor } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -69,7 +69,7 @@ describe('browser.hugerte.core.paste.PasteBin', () => {
 
   const assertCases = (editor: Editor, cases: TestCase[]) => {
     const pasteBin = PasteBin(editor);
-    Arr.each(cases, (c) => {
+    cases.forEach((c) =) {
       editor.getBody().appendChild(editor.dom.createFragment(c.content));
       assert.equal(pasteBin.getHtml(), c.result, c.label);
       pasteBin.remove();

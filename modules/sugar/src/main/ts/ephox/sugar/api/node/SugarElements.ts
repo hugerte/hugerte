@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import * as Traverse from '../search/Traverse';
 import { SugarElement } from './SugarElement';
@@ -13,12 +13,12 @@ const fromHtml = <T extends Node[]> (html: string, scope?: Document | null): Ele
 };
 
 const fromTags = (tags: string[], scope?: Document | null): SugarElement<HTMLElement>[] =>
-  Arr.map(tags, (x) => SugarElement.fromTag(x, scope));
+  tags.map((x) =) SugarElement.fromTag(x, scope));
 
 const fromText = (texts: string[], scope?: Document | null): SugarElement<Text>[] =>
-  Arr.map(texts, (x) => SugarElement.fromText(x, scope));
+  texts.map((x) =) SugarElement.fromText(x, scope));
 
 const fromDom = <T extends (Node | Window)>(nodes: ArrayLike<T>): SugarElement<T>[] =>
-  Arr.map(nodes, SugarElement.fromDom);
+  nodes.map(SugarElement.fromDom);
 
 export { fromHtml, fromTags, fromText, fromDom };

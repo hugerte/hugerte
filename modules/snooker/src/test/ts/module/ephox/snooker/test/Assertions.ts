@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { Assert } from '@ephox/bedrock-client';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from '@ephox/katamari';
 import { Attribute, Css, Hierarchy, Html, Insert, Remove, SelectorFilter, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 
 import * as TableOperations from 'ephox/snooker/api/TableOperations';
@@ -54,7 +54,7 @@ const checkOld = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  Arr.each(all, (elem) => Css.remove(elem, 'width') );
+  all.forEach((elem) =) Css.remove(elem, 'width') );
 
   Assertions.assertHtml(label, expectedHtml, Html.getOuter(table));
   Remove.remove(container);
@@ -76,7 +76,7 @@ const checkOldMultiple = (
   Insert.append(SugarBody.body(), container);
   const result = operation(table,
     {
-      selection: Arr.map(paths, (path) =>
+      selection: paths.map((path) =)
         Hierarchy.follow(table, [ path.section, path.row, path.column, 0 ]).getOrDie(label + ': could not follow path')
       )
     },
@@ -94,7 +94,7 @@ const checkOldMultiple = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  Arr.each(all, (elem) => Css.remove(elem, 'width') );
+  all.forEach((elem) =) Css.remove(elem, 'width') );
   Assertions.assertHtml(label, expectedHtml, Html.getOuter(table));
   Remove.remove(container);
   // Ensure all the resize bars are destroyed before of running the next test.
@@ -194,9 +194,9 @@ const checkStructure = (
 
   // Presence.assertHas(expected, table, 'checking the operation on table: ' + Html.getOuter(table));
   const rows = SelectorFilter.descendants(table, 'tr');
-  const actual = Arr.map(rows, (r) => {
+  const actual = rows.map((r) =) {
     const cells = SelectorFilter.descendants<HTMLTableCellElement>(r, 'td,th');
-    return Arr.map(cells, Html.get);
+    return cells.map(Html.get);
   });
   Assert.eq('', expected, actual);
   Remove.remove(container);
@@ -214,7 +214,7 @@ const checkDelete = (
   const container = makeContainer();
   Insert.append(container, table);
   Insert.append(SugarBody.body(), container);
-  const cellz = Arr.map(cells, (cell) =>
+  const cellz = cells.map((cell) =)
     Hierarchy.follow(table, [ cell.section, cell.row, cell.column, 0 ])
       .getOrDie(label + `: could not find cell: { section: ${cell.section}, row: ${cell.row}, column: ${cell.column} }`)
   );
@@ -234,7 +234,7 @@ const checkDelete = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  Arr.each(all, (elem) => Css.remove(elem, 'width') );
+  all.forEach((elem) =) Css.remove(elem, 'width') );
 
   optExpectedHtml.fold(() => {
     // the result of a delete operation can be by definition the deletion of the table itself.
@@ -272,7 +272,7 @@ const checkMerge = (
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  Arr.each(all, (elem) => Css.remove(elem, 'width') );
+  all.forEach((elem) =) Css.remove(elem, 'width') );
 
   Assert.eq('', '1', Attribute.get(table, 'border'));
   // Get around ordering of attribute differences.
@@ -292,18 +292,18 @@ const checkUnmerge = (
   const container = makeContainer();
   Insert.append(container, table);
   Insert.append(SugarBody.body(), container);
-  const unmergables = Arr.map(unmergablePaths, (path) =>
+  const unmergables = unmergablePaths.map((path) =)
     Hierarchy.follow(table, [ path.section, path.row, path.column ]) as Optional<SugarElement<HTMLTableCellElement>>
   );
 
-  const unmergable = Optional.some(Optionals.cat(unmergables));
+  const unmergable = Optionals.cat(unmergables);
 
   TableOperations.unmergeCells(table, { unmergable }, Bridge.generators);
   // Presence.assertHas(expected, table, 'checking the operation on table: ' + Html.getOuter(table));
 
   // Let's get rid of size information.
   const all = [ table ].concat(SelectorFilter.descendants(table, 'td,th'));
-  Arr.each(all, (elem) => Css.remove(elem, 'width') );
+  all.forEach((elem) =) Css.remove(elem, 'width') );
 
   Assertions.assertEq(label, expected, Html.getOuter(table));
   Remove.remove(container);

@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import * as NodeTypes from 'ephox/sugar/api/node/NodeTypes';
 import { SugarElement } from 'ephox/sugar/api/node/SugarElement';
@@ -48,7 +48,7 @@ UnitTest.test('NodeTest', () => {
   );
 
   const checkIs = (expected: boolean[], predicate: (element: SugarElement<Node>) => boolean, inputs: string[]) => {
-    const actual = Arr.map(inputs, (raw) => {
+    const actual = inputs.map((raw) =) {
       const element = SugarElement.fromHtml(raw);
       const input = Traverse.firstChild(element).getOrDie();
       return predicate(input);

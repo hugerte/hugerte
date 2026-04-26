@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { LegacyUnit } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -29,7 +29,7 @@ describe('browser.hugerte.core.CaretUtilTest', () => {
   };
 
   const replaceWithZwsp = (node: Node) => {
-    Arr.each(node.childNodes, (childNode) => {
+    node.childNodes.forEach((childNode) =) {
       if (childNode.nodeType === 3) {
         childNode.nodeValue = (childNode as Text).data.replace(/__ZWSP__/, ZWSP);
       } else {

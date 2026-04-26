@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder, Waiter } from '@ephox/agar';
 import { Container, Disabling, Focusing, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Future, Optional } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 import { Attribute, SelectorFind, SugarDocument, Value } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -16,15 +16,15 @@ describe('headless.hugerte.themes.silver.components.urlinput.UrlInputTest', () =
 
   const renderUrlInputWithPickerText = (store: TestStore<string>, pickerText?: string) =>
     renderUrlInput({
-      label: Optional.some('UrlInput label'),
-      picker_text: Optional.from(pickerText),
+      label: 'UrlInput label',
+      picker_text: pickerText ?? null,
       name: 'col1',
       filetype: 'file',
       enabled: true
     }, extrasHook.access().extras.backstages.popup, {
       getHistory: (_fileType) => [],
       addToHistory: (_url, _filetype) => store.adder('addToHistory')(),
-      getLinkInformation: () => Optional.some({
+      getLinkInformation: () => {
         targets: [
           {
             type: 'header' as LinkTargetType,
@@ -43,13 +43,13 @@ describe('headless.hugerte.themes.silver.components.urlinput.UrlInputTest', () =
         ],
         anchorTop: '#anchor-top',
         anchorBottom: undefined
-      }),
-      getValidationHandler: () => Optional.none(),
-      getUrlPicker: (_filetype) => Optional.some((entry: ApiUrlData) => {
+      },
+      getValidationHandler: () => null,
+      getUrlPicker: (_filetype) => (entry: ApiUrlData) = {
         store.adder('urlpicker')();
         return Future.pure({ value: 'http://tiny.cloud', meta: { before: entry.value }, fieldname: 'test' });
       })
-    }, Optional.none());
+    }, null);
 
   const hook = TestHelpers.GuiSetup.bddSetup((store, _doc, _body) => GuiFactory.build(
     Container.sketch({

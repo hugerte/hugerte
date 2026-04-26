@@ -1,5 +1,5 @@
 import { Keyboard, Mouse, Touch, UiFinder } from '@ephox/agar';
-import { Type } from '@ephox/katamari';
+
 import { SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor } from '../../alien/EditorTypes';
@@ -59,17 +59,17 @@ const clickDialogButton = (editor: Editor, selector: string, buttonSelector: str
 };
 
 const submitDialog = (editor: Editor, selector?: string): void => {
-  const dialogSelector = Type.isUndefined(selector) ? getThemeSelectors().dialogSelector : selector;
+  const dialogSelector = selector === undefined ? getThemeSelectors().dialogSelector : selector;
   clickDialogButton(editor, dialogSelector, getThemeSelectors().dialogSubmitSelector);
 };
 
 const cancelDialog = (editor: Editor, selector?: string): void => {
-  const dialogSelector = Type.isUndefined(selector) ? getThemeSelectors().dialogSelector : selector;
+  const dialogSelector = selector === undefined ? getThemeSelectors().dialogSelector : selector;
   clickDialogButton(editor, dialogSelector, getThemeSelectors().dialogCancelSelector);
 };
 
 const closeDialog = (editor: Editor, selector?: string): void => {
-  const dialogSelector = Type.isUndefined(selector) ? getThemeSelectors().dialogSelector : selector;
+  const dialogSelector = selector === undefined ? getThemeSelectors().dialogSelector : selector;
   clickDialogButton(editor, dialogSelector, getThemeSelectors().dialogCloseSelector);
 };
 
@@ -80,7 +80,7 @@ const pWaitForPopup = (editor: Editor, selector: string): Promise<SugarElement<H
   UiFinder.pWaitForVisible(`Waiting for a popup matching '${selector}' to be visible`, getUiRoot(editor), selector);
 
 const pWaitForDialog = (editor: Editor, selector?: string): Promise<SugarElement<Element>> => {
-  const dialogSelector = Type.isUndefined(selector) ? getThemeSelectors().dialogSelector : selector;
+  const dialogSelector = selector === undefined ? getThemeSelectors().dialogSelector : selector;
   return UiFinder.pWaitForVisible(`Waiting for a dialog matching '${dialogSelector}' to be visible`, getUiRoot(editor), dialogSelector);
 };
 

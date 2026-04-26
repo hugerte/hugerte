@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -7,10 +7,10 @@ import * as InsertNewLine from 'hugerte/core/newline/InsertNewLine';
 import Plugin from 'hugerte/plugins/lists/Plugin';
 
 describe('browser.hugerte.plugins.lists.StyleTest', () => {
-  Arr.each([
+  [
     { plugins: '', setupModules: [] },
     { plugins: 'lists', setupModules: [ Plugin ] },
-  ], ({ plugins, setupModules }) => {
+  ].forEach(({ plugins, setupModules }) =) {
     const hook = TinyHooks.bddSetup<Editor>({
       plugins,
       toolbar: false,

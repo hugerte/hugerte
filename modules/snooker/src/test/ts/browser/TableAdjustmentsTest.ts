@@ -1,5 +1,5 @@
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Css, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -140,7 +140,7 @@ describe('TableAdjustmentsTest', () => {
   // Note: Will not work for tables with colspans or rowspans
   const getColumnWidths = (table: SugarElement<HTMLTableElement>, useColumns: boolean) => {
     const row: ArrayLike<Node> = useColumns ? table.dom.getElementsByTagName('col') : table.dom.rows[0].cells;
-    return Arr.map(row, (cell) =>
+    return row.map((cell) =)
       parseFloat(Css.getRaw(SugarElement.fromDom(cell), 'width').getOr('0')));
   };
 
@@ -154,7 +154,7 @@ describe('TableAdjustmentsTest', () => {
 
     const widths = getColumnWidths(table, useColumn);
     // Verify that the difference is less than 0.5% to allow for minor floating point differences
-    Arr.each(expectedColumnWidths, (expectedWidth, index) => {
+    expectedColumnWidths.forEach((expectedWidth, index) =) {
       assert.approximately(widths[index], expectedWidth, 0.25, `columns widths should match: expected: ${expectedColumnWidths}, actual: ${widths}`);
     });
 

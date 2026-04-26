@@ -1,4 +1,4 @@
-import { Arr, Type } from '@ephox/katamari';
+
 
 import { SugarElement } from '../api/node/SugarElement';
 import * as Css from '../api/properties/Css';
@@ -14,7 +14,7 @@ export interface Dimension {
 
 export const Dimension = (name: string, getOffset: (e: SugarElement<HTMLElement>) => number): Dimension => {
   const set = (element: SugarElement<Node>, h: number | string) => {
-    if (!Type.isNumber(h) && !h.match(/^[0-9]+$/)) {
+    if (!typeof h === 'number' && !h.match(/^[0-9]+$/)) {
       throw new Error(name + '.set accepts only positive integer values. Value was ' + h);
     }
     const dom = element.dom;
@@ -69,7 +69,7 @@ export const Dimension = (name: string, getOffset: (e: SugarElement<HTMLElement>
   // although these calculations only seem relevant for quirks mode, and edge cases TBIO doesn't rely on
   const getOuter = get;
 
-  const aggregate = (element: SugarElement<Element>, properties: string[]) => Arr.foldl(properties, (acc, property) => {
+  const aggregate = (element: SugarElement<Element>, properties: string[]) => properties.reduce((acc, property) => {
     const val = Css.get(element, property);
     const value = val === undefined ? 0 : parseInt(val, 10);
     return isNaN(value) ? acc : acc + value;

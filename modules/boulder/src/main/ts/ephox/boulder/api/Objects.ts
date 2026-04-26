@@ -19,10 +19,7 @@ const wrapAll = <K extends string | number, T>(keyvalues: Array<{ key: K; value:
 
 const mergeValues = <T>(values: T[], base: T) => {
   return values.length === 0 ? Result.value(base) : Result.value(
-    Merger.deepMerge(
-      base,
-      Merger.merge.apply(undefined, values)
-    )
+    ({ ...base, ...Merger.merge.apply(undefined, values) })
     // Merger.deepMerge.apply(undefined, [ base ].concat(values))
   );
 };

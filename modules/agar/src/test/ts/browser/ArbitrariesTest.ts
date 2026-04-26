@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import {
   Attribute, Compare, Css, Insert, PredicateFilter, Remove, SelectorFilter, SugarBody, SugarElement, SugarNode, SugarText, Traverse, Truncate
 } from '@ephox/sugar';
@@ -16,11 +16,11 @@ UnitTest.test('Arbitraries Test', () => {
 
     const self = SugarNode.isElement(element) ? [ element ] : [];
     const descendants = SelectorFilter.descendants(element, '*').concat(self);
-    const failing = Arr.filter(descendants, assertion);
+    const failing = descendants.filter(assertion);
     Remove.remove(element);
     if (failing.length > 0) {
       throw new Error('These elements did not satisfy property ' + label + ': \n' +
-        Arr.map(failing, Truncate.getHtml).join('\n'));
+        failing.map(Truncate.getHtml).join('\n'));
     }
     return true;
   };
@@ -55,7 +55,7 @@ UnitTest.test('Arbitraries Test', () => {
 
   checkProperty('Zerowidths text nodes should have node type 3 and be uFEFF or u200B', Arbitraries.content<Text>('zerowidths'), (textnode) => {
     Assertions.assertEq('Node type of "zerowidths"', 3, SugarNode.type(textnode));
-    Assertions.assertEq('Zerowidths cursor value: ' + SugarText.get(textnode), true, Arr.contains([ '\uFEFF', '\u200B' ], SugarText.get(textnode)));
+    Assertions.assertEq('Zerowidths cursor value: ' + SugarText.get(textnode), true, [ '\uFEFF', '\u200B' ].includes(SugarText.get(textnode)));
     return true;
   });
 
@@ -143,7 +143,7 @@ UnitTest.test('Arbitraries Test', () => {
   checkProperty('Inline elements should have display: inline', Arbitraries.content('inline'), (element: SugarElement<HTMLElement>) =>
     // console.log('inline.element', Html.getOuter(element));
     assertProperty('(display === inline)', element, (elem) =>
-      SugarNode.isElement(elem) && Css.get(elem, 'display') !== 'inline' || Arr.contains([ 'span-underline', 'span-strikethrough' ], SugarNode.name(elem))
+      SugarNode.isElement(elem) && Css.get(elem, 'display') !== 'inline' || [ 'span-underline', 'span-strikethrough' ].includes(SugarNode.name(elem))
     )
   );
 

@@ -1,5 +1,5 @@
 import { TestLogs } from '@ephox/agar';
-import { Optional } from '@ephox/katamari';
+
 import { Insert, Remove, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import * as Loader from '../../loader/Loader';
@@ -21,7 +21,7 @@ const setupLight = (callback: Loader.RunCallback, settings: Record<string, any>,
     run: callback,
     success,
     failure
-  }, nuSettings, Optional.none());
+  }, nuSettings, null);
 };
 
 const setup = (callback: Loader.RunCallback, settings: Record<string, any>, success: Loader.SuccessCallback, failure: Loader.FailureCallback): void => {
@@ -30,7 +30,7 @@ const setup = (callback: Loader.RunCallback, settings: Record<string, any>, succ
     run: callback,
     success,
     failure
-  }, settings, Optional.none());
+  }, settings, null);
 };
 
 const setupFromElement = (
@@ -45,7 +45,7 @@ const setupFromElement = (
     run: callback,
     success,
     failure
-  }, settings, Optional.some(element));
+  }, settings, element);
 };
 
 const setupInShadowRoot = (

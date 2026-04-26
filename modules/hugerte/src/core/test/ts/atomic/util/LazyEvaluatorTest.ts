@@ -8,13 +8,13 @@ describe('atomic.hugerte.core.util.LazyEvaluatorTest', () => {
   it('evaluateUntil', () => {
     const operations: Array<(a: number, b: string) => Optional<number>> = [
       (a, b) => {
-        return a === 1 && b === 'a' ? Optional.some(1) : Optional.none();
+        return a === 1 && b === 'a' ? 1 : null;
       },
       (a, b) => {
-        return a === 2 && b === 'b' ? Optional.some(2) : Optional.none();
+        return a === 2 && b === 'b' ? 2 : null;
       },
       (a, b) => {
-        return a === 3 && b === 'c' ? Optional.some(3) : Optional.none();
+        return a === 3 && b === 'c' ? 3 : null;
       }
     ];
 

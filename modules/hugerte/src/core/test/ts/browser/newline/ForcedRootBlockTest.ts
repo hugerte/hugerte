@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -87,7 +87,7 @@ describe('browser.hugerte.core.newline.ForcedRootBlockTest', () => {
                 ]
               }),
               s.element(rootBlock, {
-                attrs: Obj.map(rootBlockAttrs, (val) => str.is(val)),
+                attrs: Object.fromEntries(Object.entries(rootBlockAttrs).map(([k, v]) => [k, ((val) =)(v, k)])) str.is(val)),
                 children: [
                   s.element('br', {
                     attrs: {

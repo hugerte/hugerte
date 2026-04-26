@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 
 import { SugarElement } from '../node/SugarElement';
 import * as Selectors from '../search/Selectors';
@@ -10,7 +10,7 @@ const isEqualNode = (e1: SugarElement<Node>, e2: SugarElement<Node>): boolean =>
   e1.dom.isEqualNode(e2.dom);
 
 const member = (element: SugarElement<unknown>, elements: SugarElement<unknown>[]): boolean =>
-  Arr.exists(elements, Fun.curry(eq, element));
+  elements.some(Fun.curry(eq, element));
 
 // Returns: true if node e1 contains e2, otherwise false.
 // (returns false if e1===e2: A node does not contain itself).

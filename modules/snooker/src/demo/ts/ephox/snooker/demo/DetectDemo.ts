@@ -1,4 +1,4 @@
-import { Fun, Obj, Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from '@ephox/katamari';
 import { Attribute, Css, DomEvent, EventArgs, Insert, InsertAll, Ready, Replication, SelectorFind, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { Generators } from 'ephox/snooker/api/Generators';
@@ -130,7 +130,7 @@ Ready.document(() => {
   InsertAll.append(ephoxUi, [ ltrs, rtls ]);
 
   const lazyTableSize = (table: SugarElement<HTMLTableElement>) => TableSize.getTableSize(table);
-  const isResizable = Fun.always;
+  const isResizable = () => true;
   const ltrManager = TableResize.create(ResizeWire.body(tester, ltrs, isResizable), ResizeBehaviour.preserveTable(), lazyTableSize);
   ltrManager.on();
   const rtlManager = TableResize.create(ResizeWire.body(subject3, rtls, isResizable), ResizeBehaviour.preserveTable(), lazyTableSize);
@@ -188,13 +188,13 @@ Ready.document(() => {
   const makeRowBody = makeButton('Unmake row header');
 
   const detection = (): Optional<SugarElement<Element>> =>
-    Optional.from(window.getSelection()).bind((selection) => {
+    window.getSelection() ?? null.bind((selection) => {
       if (selection.rangeCount > 0) {
         const range = selection.getRangeAt(0);
         const firstElement = range.startContainer.nodeType === 3 ? range.startContainer.parentNode : range.startContainer;
         return Optionals.mapFrom(firstElement, SugarElement.fromDom).filter(SugarNode.isElement);
       } else {
-        return Optional.none();
+        return null;
       }
     });
 
@@ -222,7 +222,7 @@ Ready.document(() => {
 
   const replace: Generators['replace'] = (cell, tag, attrs) => {
     const replica = Replication.copy(cell, tag);
-    Obj.each(attrs, (v, k) => {
+    Object.entries(attrs).forEach(([k, v]) => ((v, k) =)(v, k)) {
       if (v !== null) {
         Attribute.set(replica, k, v);
       }

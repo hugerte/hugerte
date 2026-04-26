@@ -1,6 +1,6 @@
 import { ApproxStructure, Keys } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -49,7 +49,7 @@ describe('browser.hugerte.core.delete.CaretBoundaryDeleteTest', () => {
               cefStruct('a'),
               s.text(str.is(Zwsp.ZWSP)),
               cefStruct('b'),
-              s.text(str.is(Unicode.nbsp))
+              s.text(str.is('\u00A0'))
             ]
           })
         ]

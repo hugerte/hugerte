@@ -1,6 +1,6 @@
 import { Cursors, Keys, Mouse, UiFinder } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -15,18 +15,18 @@ interface TestSpec {
 }
 
 describe('browser.hugerte.themes.silver.window.SilverInlineDialogPersistenceTest', () => {
-  Arr.each([
+  [
     { label: 'Inline Mode', inline: true },
     { label: 'Iframe Mode', inline: false }
-  ], (editorMode) => {
-    Arr.each([
+  ].forEach((editorMode) =) {
+    [
       { label: 'Inline dialog (bottom)', location: 'bottom' },
       { label: 'Inline dialog (toolbar)', location: 'toolbar' }
-    ], (dialogLocation: TestSpec) => {
-      Arr.each([
+    ].forEach((dialogLocation: TestSpec) =) {
+      [
         { label: 'Persistent mode: true', persistent: true },
         { label: 'Persistent mode: false', persistent: false }
-      ], (persistentMode) => {
+      ].forEach((persistentMode) =) {
         context(`${editorMode.label} ${dialogLocation.label} - ${persistentMode.label} `, () => {
           const hook = TinyHooks.bddSetup<Editor>({
             base_url: '/project/hugerte/js/hugerte',
@@ -88,7 +88,7 @@ describe('browser.hugerte.themes.silver.window.SilverInlineDialogPersistenceTest
 
           beforeEach(() => {
             const editor = hook.editor();
-            editor.setContent(Arr.range(50, (index) => index === 5 ? '<a href="google.com">Google</a>' : '<p>Some content...</p>').join('\n'));
+            editor.setContent(Array.from({ length: 50 }, (index) => index === 5 ? '<a href="google.com">Google</a>' : '<p>Some content...</p>').join('\n'));
           });
 
           it('TINY-9991: Inline toolbar dialog persistent - clicking on the editor container', async () => {

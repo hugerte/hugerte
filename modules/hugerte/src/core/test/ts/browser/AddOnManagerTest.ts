@@ -1,5 +1,5 @@
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import AddOnManager from 'hugerte/core/api/AddOnManager';
@@ -38,7 +38,7 @@ const unpatch = (proto: any, name?: string): void => {
     proto[name] = originalFuncs[name];
     delete originalFuncs[name];
   } else {
-    Obj.each(originalFuncs, (value, key) => {
+    Object.entries(originalFuncs).forEach(([k, v]) => ((value, key) =)(v, k)) {
       proto[key] = value;
     });
 

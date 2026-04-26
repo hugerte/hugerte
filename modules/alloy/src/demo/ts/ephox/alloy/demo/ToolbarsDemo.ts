@@ -1,4 +1,4 @@
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
 import { LazySink } from 'ephox/alloy/api/component/CommonTypes';
@@ -29,67 +29,126 @@ export default (): void => {
 
   const lazySink: LazySink = (_) => Result.value(sink);
 
-  const groups = () => Arr.map([
+  const groups = () => [
     {
       label: 'group-1',
-      items: Arr.map([
-        { text: '1a', action: Fun.noop },
-        { text: '1b', action: Fun.noop },
-        { text: '1c', action: Fun.noop }
+      items: [
+        { text: '1a', action: () => {} },
+        { text: '1b', action: () => {} },
+        { text: '1c', action: () => {} }
 
-      ], DemoRenders.toolbarItem)
+      ].map(DemoRenders.toolbarItem)
     },
     {
       label: 'group-2',
-      items: Arr.map([
-        { text: '2a', action: Fun.noop },
-        { text: '2b', action: Fun.noop },
-        { text: '2c', action: Fun.noop }
+      items: [
+        { text: '2a', action: () => {} },
+        { text: '2b', action: () => {} },
+        { text: '2c', action: () => {} }
 
-      ], DemoRenders.toolbarItem)
+      ].map(DemoRenders.toolbarItem)
     },
     {
       label: 'group-3',
-      items: Arr.map([
-        { text: '3a', action: Fun.noop },
-        { text: '3b', action: Fun.noop },
-        { text: '3c', action: Fun.noop }
+      items: [
+        { text: '3a', action: () => {} },
+        { text: '3b', action: () => {} },
+        { text: '3c', action: () => {} }
 
-      ], DemoRenders.toolbarItem)
+      ].map(DemoRenders.toolbarItem)
     },
     {
       label: 'group-4',
-      items: Arr.map([
-        { text: '4a', action: Fun.noop },
-        { text: '4b', action: Fun.noop },
-        { text: '4c', action: Fun.noop }
+      items: [
+        { text: '4a', action: () => {} },
+        { text: '4b', action: () => {} },
+        { text: '4c', action: () => {} }
 
-      ], DemoRenders.toolbarItem)
+      ].map(DemoRenders.toolbarItem)
     },
     {
       label: 'group-5',
-      items: Arr.map([
-        { text: '5a', action: Fun.noop },
-        { text: '5b', action: Fun.noop },
-        { text: '5c', action: Fun.noop }
+      items: [
+        { text: '5a', action: () => {} },
+        { text: '5b', action: () => {} },
+        { text: '5c', action: () => {} }
 
-      ], DemoRenders.toolbarItem)
+      ].map(DemoRenders.toolbarItem)
     },
     {
       label: 'group-6',
-      items: Arr.map([
-        { text: '6a', action: Fun.noop },
-        { text: '6b', action: Fun.noop }
+      items: [
+        { text: '6a', action: () => {} },
+        { text: '6b', action: () => {} }
 
-      ], DemoRenders.toolbarItem)
+      ].map(DemoRenders.toolbarItem)
     },
     {
       label: 'group-7',
-      items: Arr.map([
-        { text: '7a', action: Fun.noop },
-        { text: '7b', action: Fun.noop }
+      items: [
+        { text: '7a', action: () => {} },
+        { text: '7b', action: () => {} }
 
-      ], DemoRenders.toolbarItem)
+      ].map(DemoRenders.toolbarItem)
+    }
+  ].map(DemoRenders.toolbarGroup)[
+        { text: '1a', action: () => {} },
+        { text: '1b', action: () => {} },
+        { text: '1c', action: () => {} }
+
+      ].map(DemoRenders.toolbarItem)
+    },
+    {
+      label: 'group-2',
+      items: [
+        { text: '2a', action: () => {} },
+        { text: '2b', action: () => {} },
+        { text: '2c', action: () => {} }
+
+      ].map(DemoRenders.toolbarItem)
+    },
+    {
+      label: 'group-3',
+      items: [
+        { text: '3a', action: () => {} },
+        { text: '3b', action: () => {} },
+        { text: '3c', action: () => {} }
+
+      ].map(DemoRenders.toolbarItem)
+    },
+    {
+      label: 'group-4',
+      items: [
+        { text: '4a', action: () => {} },
+        { text: '4b', action: () => {} },
+        { text: '4c', action: () => {} }
+
+      ].map(DemoRenders.toolbarItem)
+    },
+    {
+      label: 'group-5',
+      items: [
+        { text: '5a', action: () => {} },
+        { text: '5b', action: () => {} },
+        { text: '5c', action: () => {} }
+
+      ].map(DemoRenders.toolbarItem)
+    },
+    {
+      label: 'group-6',
+      items: [
+        { text: '6a', action: () => {} },
+        { text: '6b', action: () => {} }
+
+      ].map(DemoRenders.toolbarItem)
+    },
+    {
+      label: 'group-7',
+      items: [
+        { text: '7a', action: () => {} },
+        { text: '7b', action: () => {} }
+
+      ].map(DemoRenders.toolbarItem)
     }
   ], DemoRenders.toolbarGroup);
 
@@ -119,7 +178,7 @@ export default (): void => {
   );
 
   const toolbar1 = subject.components()[0];
-  const gps = Arr.map(groups(), ToolbarGroup.sketch);
+  const gps = groups().map(ToolbarGroup.sketch);
 
   Toolbar.setGroups(toolbar1, gps);
 
@@ -173,7 +232,7 @@ export default (): void => {
   );
 
   const splitSlidingToolbar = subject2;
-  const gps2 = Arr.map(groups(), ToolbarGroup.sketch);
+  const gps2 = groups().map(ToolbarGroup.sketch);
   console.log('gps2', gps2);
   SplitSlidingToolbar.setGroups(splitSlidingToolbar, gps2);
 
@@ -224,7 +283,7 @@ export default (): void => {
   );
 
   const splitFloatingToolbar = subject3;
-  const gps3 = Arr.map(groups(), ToolbarGroup.sketch);
+  const gps3 = groups().map(ToolbarGroup.sketch);
   console.log('gps3', gps3);
   SplitFloatingToolbar.setGroups(splitFloatingToolbar, gps3);
 
@@ -266,18 +325,18 @@ export default (): void => {
   );
 
   CustomList.setItems(subject4, [
-    Arr.map(groups(), ToolbarGroup.sketch),
-    Arr.map(groups(), ToolbarGroup.sketch),
-    Arr.map(groups(), ToolbarGroup.sketch),
-    Arr.map(groups(), ToolbarGroup.sketch),
-    Arr.map(groups(), ToolbarGroup.sketch)
+    groups().map(ToolbarGroup.sketch),
+    groups().map(ToolbarGroup.sketch),
+    groups().map(ToolbarGroup.sketch),
+    groups().map(ToolbarGroup.sketch),
+    groups().map(ToolbarGroup.sketch)
   ]);
 
   setTimeout(() => {
     CustomList.setItems(subject4, [
-      Arr.map(groups(), ToolbarGroup.sketch),
-      Arr.map(groups(), ToolbarGroup.sketch),
-      Arr.map(groups(), ToolbarGroup.sketch)
+      groups().map(ToolbarGroup.sketch),
+      groups().map(ToolbarGroup.sketch),
+      groups().map(ToolbarGroup.sketch)
     ]);
 
     setTimeout(() => {
@@ -285,16 +344,16 @@ export default (): void => {
 
       setTimeout(() => {
         CustomList.setItems(subject4, [
-          Arr.map(groups(), ToolbarGroup.sketch),
-          Arr.map(groups(), ToolbarGroup.sketch),
-          Arr.map(groups(), ToolbarGroup.sketch)
+          groups().map(ToolbarGroup.sketch),
+          groups().map(ToolbarGroup.sketch),
+          groups().map(ToolbarGroup.sketch)
         ]);
 
         setTimeout(() => {
           CustomList.setItems(subject4, [
-            Arr.map(groups().slice(0, 1), ToolbarGroup.sketch),
-            Arr.map(groups(), ToolbarGroup.sketch),
-            Arr.map(groups(), ToolbarGroup.sketch)
+            groups().slice(0, 1).map(ToolbarGroup.sketch),
+            groups().map(ToolbarGroup.sketch),
+            groups().map(ToolbarGroup.sketch)
           ]);
         }, 2000);
       }, 2000);

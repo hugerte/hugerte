@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as Compare from 'ephox/sugar/api/dom/Compare';
@@ -40,7 +40,7 @@ UnitTest.test('ElementFromPointTest', () => {
     KAssert.eqNone('Should be none', getAt(p, placeX, placeY, testX, testY));
   };
 
-  Arr.each([ bg, a ], (elm) => {
+  [ bg, a ].forEach((elm) =) {
     Insert.append(SugarBody.body(), elm);
   });
 
@@ -55,5 +55,5 @@ UnitTest.test('ElementFromPointTest', () => {
   checkMatch(a, 20, 20, bg, 10, 10);
   checkNone(a, 0, 0, -1000, -1000);
 
-  Arr.each([ bg, a ], Remove.remove);
+  [ bg, a ].forEach(Remove.remove);
 });

@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Strings } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
@@ -36,13 +36,13 @@ describe('LayoutInsetTest', () => {
   context('flip', () => {
     const getExpectedFlippedPlacement = (placement: Placement) => {
       // South -> North
-      if (Strings.startsWith(placement, 'south')) {
+      if (placement.startsWith('south')) {
         return placement.replace('south', 'north');
       // North -> South
-      } else if (Strings.startsWith(placement, 'north')) {
+      } else if (placement.startsWith('north')) {
         return placement.replace('north', 'south');
       // East -> West
-      } else if (Strings.startsWith(placement, 'east')) {
+      } else if (placement.startsWith('east')) {
         return placement.replace('east', 'west');
       // West -> East
       } else {

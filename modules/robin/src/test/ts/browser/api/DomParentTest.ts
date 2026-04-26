@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 import { Attribute, Compare, Hierarchy, Html, SelectorFind, SugarElement } from '@ephox/sugar';
 
@@ -221,16 +221,16 @@ UnitTest.test(
         const child = SelectorFind.descendant(container, '.' + f).getOrDie();
         const subset = DomParent.subset(parent, child);
 
-        const actual = subset.map((ss) => Arr.map(ss, (x) => Attribute.get(x, 'class')));
-        const expected_ = expected.map((ss) => Arr.map<string | undefined>((ss), Fun.identity));
+        const actual = subset.map((ss) => ss.map((x) =) Attribute.get(x, 'class')));
+        const expected_ = expected.map((ss) => (ss).map((x) => x));
 
         KAssert.eqOptional('eq', expected_, actual);
       };
 
-      check(Optional.some([ 'three-five' ]), 'three-five', 'five');
-      check(Optional.some([ 'three-five' ]), 'five', 'three-five');
-      check(Optional.some([ 'two', 'three-five' ]), 'two', 'five');
-      check(Optional.some([ 'two', 'three-five', 'six', 'seven-nine' ]), 'two', 'eight');
+      check([ 'three-five' ], 'three-five', 'five');
+      check([ 'three-five' ], 'five', 'three-five');
+      check([ 'two', 'three-five' ], 'two', 'five');
+      check([ 'two', 'three-five', 'six', 'seven-nine' ], 'two', 'eight');
     })();
   }
 );

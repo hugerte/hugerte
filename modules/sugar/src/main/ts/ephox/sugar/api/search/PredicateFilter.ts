@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import * as SugarBody from '../node/SugarBody';
 import { SugarElement } from '../node/SugarElement';
@@ -16,19 +16,19 @@ const ancestors: {
   <T extends Node = Node>(scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>, isRoot?: (e: SugarElement<Node>) => boolean): SugarElement<T>[];
   (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean): SugarElement<Node>[];
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean, isRoot?: (e: SugarElement<Node>) => boolean) =>
-  Arr.filter(Traverse.parents(scope, isRoot), predicate);
+  Traverse.parents(scope, isRoot).filter(predicate);
 
 const siblings: {
   <T extends Node = Node>(scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): SugarElement<T>[];
   (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): SugarElement<Node>[];
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean) =>
-  Arr.filter(Traverse.siblings(scope), predicate);
+  Traverse.siblings(scope).filter(predicate);
 
 const children: {
   <T extends Node = Node>(scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): SugarElement<T>[];
   (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean): SugarElement<Node>[];
 } = (scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => boolean) =>
-  Arr.filter(Traverse.children(scope), predicate);
+  Traverse.children(scope).filter(predicate);
 
 const descendants: {
   <T extends Node = Node>(scope: SugarElement<Node>, predicate: (e: SugarElement<Node>) => e is SugarElement<T>): SugarElement<T>[];
@@ -37,7 +37,7 @@ const descendants: {
   let result: SugarElement<Node>[] = [];
 
   // Recurse.toArray() might help here
-  Arr.each(Traverse.children(scope), (x) => {
+  Traverse.children(scope).forEach((x) =) {
     if (predicate(x)) {
       result = result.concat([ x ]);
     }

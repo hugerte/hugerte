@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Family from 'ephox/phoenix/api/general/Family';
 import * as Finder from 'ephox/phoenix/test/Finder';
@@ -42,7 +42,7 @@ UnitTest.test('RangeTest', () => {
     const start = Finder.get(doc, startId);
     const finish = Finder.get(doc, finishId);
     const actual = Family.range(doc, start, delta1, finish, delta2);
-    Assert.eq('', expected, Arr.map(actual, (x) => {
+    Assert.eq('', expected, actual.map((x) =) {
       return x.id;
     }));
   };

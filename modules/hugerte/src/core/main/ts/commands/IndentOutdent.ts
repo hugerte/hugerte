@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+
 import { Css, PredicateFind, SugarElement, SugarElements, Traverse } from '@ephox/sugar';
 
 import DOMUtils from '../api/dom/DOMUtils';
@@ -14,7 +14,7 @@ const isEditable = (target: SugarElement<Node>): boolean =>
     .exists((elm) => NodeType.isContentEditableTrue(elm.dom));
 
 const parseIndentValue = (value: string | undefined): number =>
-  Strings.toInt(value ?? '') ?? (0);
+  parseInt(value ?? '', 10) ?? (0);
 
 const getIndentStyleName = (useMargin: boolean, element: SugarElement<HTMLElement>): IndentStyle => {
   const indentStyleName = useMargin || isTable(element) ? 'margin' : 'padding';

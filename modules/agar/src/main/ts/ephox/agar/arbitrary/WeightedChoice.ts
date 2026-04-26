@@ -21,7 +21,7 @@ const weighted = <T extends WeightedItem> (list: (T & AccWeightItem)[], total: n
 });
 
 const choose = <T extends WeightedItem>(candidates: T[]): WeightedList<T> => {
-  const result = Arr.foldl(candidates, (rest, d) => {
+  const result = candidates.reduce((rest, d) => {
     const newTotal = rest.total + d.weight;
     const merged: T & AccWeightItem = {
       ...d,
@@ -43,7 +43,7 @@ const gChoose = <T extends WeightedItem>(weighted: WeightedList<T>): fc.Arbitrar
     );
 
     const keys = raw.map(Obj.keys).getOr([]);
-    return keys.length === [ 'weight', 'accWeight' ].length ? Optional.none() : raw;
+    return keys.length === [ 'weight', 'accWeight' ].length ? null : raw;
   });
 
 const generator = <T extends WeightedItem>(candidates: T[]): fc.Arbitrary<Optional<T & AccWeightItem>> => {

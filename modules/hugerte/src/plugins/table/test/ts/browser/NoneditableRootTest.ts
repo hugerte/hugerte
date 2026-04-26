@@ -1,6 +1,6 @@
 import { Keys, UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Obj, Optional } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -78,9 +78,9 @@ describe('browser.hugerte.plugins.table.NoneditableRootTest', () => {
   const tableMenuItems = { ...simpleTableMenuItems, ...specialTableMenuItems };
   const hook = TinyHooks.bddSetup<Editor>({
     plugins: 'table',
-    toolbar: Obj.keys(tableButtons).join(' '),
+    toolbar: Object.keys(tableButtons).join(' '),
     menu: {
-      table: { title: 'Table', items: Obj.keys(tableMenuItems).join(' ') }
+      table: { title: 'Table', items: Object.keys(tableMenuItems).join(' ') }
     },
     base_url: '/project/hugerte/js/hugerte'
   }, [ Plugin ], true);
@@ -103,23 +103,23 @@ describe('browser.hugerte.plugins.table.NoneditableRootTest', () => {
 
     const testDisableColPasteButtonOnNoneditable = (title: string) => {
       return () => {
-        FakeClipboard.setColumns(Optional.some([ TableTestUtils.createRow([ 'a' ]) ]));
+        FakeClipboard.setColumns([ TableTestUtils.createRow([ 'a' ]) ]);
         testDisableButtonOnNoneditable(title)();
       };
     };
 
     const testDisableRowPasteButtonOnNoneditable = (title: string) => {
       return () => {
-        FakeClipboard.setRows(Optional.some([ TableTestUtils.createRow([ 'a' ]) ]));
+        FakeClipboard.setRows([ TableTestUtils.createRow([ 'a' ]) ]);
         testDisableButtonOnNoneditable(title)();
       };
     };
 
-    Obj.each(simpleTableButtons, (title, key) => {
+    Object.entries(simpleTableButtons).forEach(([k, v]) => ((title, key) =)(v, k)) {
       it(`TINY-9669: Disable ${key} on noneditable content`, testDisableButtonOnNoneditable(title));
     });
 
-    Obj.each(menuButtonTableButtons, (title, key) => {
+    Object.entries(menuButtonTableButtons).forEach(([k, v]) => ((title, key) =)(v, k)) {
       it(`TINY-9669: Disable ${key} button on noneditable content`, () => testDisableButtonOnNoneditable(title, false));
     });
 
@@ -161,19 +161,19 @@ describe('browser.hugerte.plugins.table.NoneditableRootTest', () => {
 
     const testDisableColPasteMenuItemOnNoneditable = (title: string) => {
       return async () => {
-        FakeClipboard.setColumns(Optional.some([ TableTestUtils.createRow([ 'a' ]) ]));
+        FakeClipboard.setColumns([ TableTestUtils.createRow([ 'a' ]) ]);
         await testDisableMenuitemOnNoneditable(title)();
       };
     };
 
     const testDisableRowPasteMenuItemOnNoneditable = (title: string) => {
       return async () => {
-        FakeClipboard.setRows(Optional.some([ TableTestUtils.createRow([ 'a' ]) ]));
+        FakeClipboard.setRows([ TableTestUtils.createRow([ 'a' ]) ]);
         await testDisableMenuitemOnNoneditable(title)();
       };
     };
 
-    Obj.each(simpleTableMenuItems, (title, key) => {
+    Object.entries(simpleTableMenuItems).forEach(([k, v]) => ((title, key) =)(v, k)) {
       it(`TINY-9669: Disable ${key} on noneditable content`, testDisableMenuitemOnNoneditable(title));
     });
 

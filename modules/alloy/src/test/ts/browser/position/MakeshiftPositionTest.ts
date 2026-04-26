@@ -1,6 +1,6 @@
 import { Assertions, Chain, NamedChain } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
@@ -16,7 +16,7 @@ UnitTest.asynctest('MakeshiftPositionTest', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => {
     const button = GuiFactory.build(
       Button.sketch({
-        action: Fun.noop,
+        action: () => {},
         dom: {
           styles: {
             position: 'absolute',

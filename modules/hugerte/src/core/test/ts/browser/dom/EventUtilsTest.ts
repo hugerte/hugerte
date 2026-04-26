@@ -1,5 +1,5 @@
 import { after, afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import EventUtils, { EventUtilsEvent } from 'hugerte/core/api/dom/EventUtils';
@@ -383,8 +383,8 @@ describe('browser.hugerte.core.dom.EventUtilsTest', () => {
   */
 
   it('bind unbind fire clean on null', () => {
-    eventUtils.bind(null, 'click', Fun.noop);
-    eventUtils.unbind(null, 'click', Fun.noop);
+    eventUtils.bind(null, 'click', () => {});
+    eventUtils.unbind(null, 'click', () => {});
     eventUtils.dispatch(null, 'click', {});
     eventUtils.clean(null);
     assert.ok(true, 'No exception');
@@ -486,7 +486,7 @@ describe('browser.hugerte.core.dom.EventUtilsTest', () => {
 
   it('isDefaultPrevented', () => {
     const testObj: any = {};
-    const testCallback = Fun.constant('hello');
+    const testCallback = () => 'hello';
     testObj.isDefaultPrevented = testCallback;
     eventUtils.dispatch(window, 'testEvent', testObj);
 

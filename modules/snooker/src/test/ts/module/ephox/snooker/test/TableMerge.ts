@@ -1,5 +1,5 @@
 import { Assert } from '@ephox/bedrock-client';
-import { Arr, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { SimpleGenerators } from 'ephox/snooker/api/Generators';
@@ -16,15 +16,15 @@ interface Spec {
 type Asserter = (result: Result<Structs.RowCells[], string>, s: Structs.Address, specA: Spec, specB: Spec) => void;
 
 const mapToStructGrid = (grid: Structs.ElementNew[][]): Structs.RowCells[] => {
-  return Arr.map(grid, (row) => {
+  return grid.map((row) =) {
     return Structs.rowcells('tr' as any, row, 'tbody', false);
   });
 };
 
 const assertGrids = (expected: Structs.RowCells[], actual: Structs.RowCells[]): void => {
   Assert.eq('', expected.length, actual.length);
-  Arr.each(expected, (row, i) => {
-    Arr.each(row.cells, (cell, j) => {
+  expected.forEach((row, i) =) {
+    row.cells.forEach((cell, j) =) {
       Assert.eq('', cell.element, actual[i].cells[j].element);
       Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
     });

@@ -1,6 +1,6 @@
 import { TestStore } from '@ephox/agar';
 import { Menu, Toolbar } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+
 
 export const fetchMailMergeData = (settings: { collapseSearchResults: boolean }, store: TestStore): Toolbar.ToolbarMenuButtonSpec['fetch'] => (callback, fetchContext) => {
   const makeMailMerge = (info: { value: string; title?: string }): Menu.MenuItemSpec => ({
@@ -79,7 +79,7 @@ export const fetchMailMergeData = (settings: { collapseSearchResults: boolean },
       personHomeEmail
     ];
 
-    const matches = Arr.filter(allMerges, (m): boolean => {
+    const matches = allMerges.filter((m): boolean =) {
       const valueMatches = m.value.toLowerCase().indexOf(fetchContext.pattern.toLowerCase()) > -1;
       return valueMatches || (
         m.title !== undefined && (m.title.toLowerCase().indexOf(fetchContext.pattern.toLowerCase()) > -1)
@@ -88,7 +88,7 @@ export const fetchMailMergeData = (settings: { collapseSearchResults: boolean },
 
     if (matches.length > 0) {
       callback(
-        Arr.map(matches, makeMailMerge)
+        matches.map(makeMailMerge)
       );
     } else {
       callback([

@@ -1,6 +1,6 @@
 import { Keys, UiFinder, TestStore, Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Throttler, Type } from '@ephox/katamari';
+import { Throttler } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -39,7 +39,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 1,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            Arr.map([ 'aA', 'bB', 'cC', 'dD' ], (letter) => ({
+            [ 'aA', 'bB', 'cC', 'dD' ].map((letter) =) ({
               value: `plus-${letter}`,
               text: `p-${letter}`,
               icon: '+'
@@ -59,7 +59,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 2,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            Arr.map([ 'a' ], (letter) => ({
+            [ 'a' ].map((letter) =) ({
               value: `colon1-${letter}`,
               text: `c1-${letter}`,
               icon: ':'
@@ -78,7 +78,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 2,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            Arr.map([ 'a', 'b' ], (letter) => ({
+            [ 'a', 'b' ].map((letter) =) ({
               value: `colon2-${letter}`,
               text: `c2-${letter}`,
               icon: ':'
@@ -97,7 +97,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 'auto',
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            Arr.map([ 'a', 'b', 'c', 'd' ], (letter) => ({
+            [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
               value: `tilde-${letter}`,
               text: `t-${letter}`,
               icon: '~'
@@ -116,7 +116,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 1,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            Arr.map([ 'a', 'b', 'c', 'd' ], (letter) => ({
+            [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
               value: `exclamation-${letter}`,
               text: `exclamation-${letter}`
             }))
@@ -136,9 +136,9 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
           // Check the '=' is in the middle of a word
           rng.startOffset !== 0 && !/\s/.test(text.charAt(rng.startOffset - 1)),
         fetch: (pattern, _maxResults) => new Promise((resolve) => {
-          const filteredItems = Arr.filter([ 'two', 'three' ], (number) => number.indexOf(pattern) !== -1);
+          const filteredItems = [ 'two', 'three' ].filter((number) =) number.indexOf(pattern) !== -1);
           resolve(
-            Arr.map(filteredItems, (number) => ({
+            filteredItems.map((number) =) ({
               value: `${number}`,
               text: `${number}`,
               icon: '='
@@ -158,7 +158,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 'auto',
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            Arr.map([ 'a', 'b', 'c', 'd' ], (letter) => ({
+            [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
               value: `asterisk-${letter}`,
               text: `asterisk-${letter}`,
               icon: '*'
@@ -178,14 +178,14 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         minChars: 1,
         columns: 1,
         fetch: (pattern, _maxResults) => {
-          const filteredItems = Arr.filter([
+          const filteredItems = [
             { text: 'dollar sign', value: '$' },
             { text: 'equals sign', value: '=' },
             { text: 'some name', value: '`' }
-          ], (item) => item.text.indexOf(pattern) !== -1);
+          ].filter((item) =) item.text.indexOf(pattern) !== -1);
           return new Promise((resolve) => {
             resolve(
-              Arr.map(filteredItems, (item) => ({
+              filteredItems.map((item) =) ({
                 value: `hash-${item.value}`,
                 text: `${item.text}`
               }))
@@ -206,13 +206,13 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 1,
         highlightOn: [ 'my_text_to_highlight' ],
         fetch: (pattern, _maxResults) => {
-          const filteredItems = Arr.filter([
+          const filteredItems = [
             { text: 'equals sign', value: '=' },
             { text: 'plus sign', value: '+' }
-          ], (item) => item.text.indexOf(pattern) !== -1);
+          ].filter((item) =) item.text.indexOf(pattern) !== -1);
           return new Promise((resolve) => {
             resolve(
-              Arr.map(filteredItems, (item) => ({
+              filteredItems.map((item) =) ({
                 value: `euro-${item.value}`,
                 ariaLabel: item.text,
                 type: 'cardmenuitem',
@@ -255,7 +255,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
 
       const dollarsFetch = Throttler.last((resolve) => {
         resolve(
-          Arr.map([ 'a', 'b', 'c', 'd' ], (letter) => ({
+          [ 'a', 'b', 'c', 'd' ].map((letter) =) ({
             value: `dollars-${letter}`,
             text: `d-${letter}`,
             icon: '$'
@@ -281,7 +281,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
         columns: 1,
         fetch: (_pattern, _maxResults) => new Promise((resolve) => {
           resolve(
-            Arr.map([ 'aA', 'bB', 'cC', 'dD' ], (letter) => ({
+            [ 'aA', 'bB', 'cC', 'dD' ].map((letter) =) ({
               value: `multi-${letter}`,
               text: `mu-${letter}`,
               icon: '^'
@@ -306,7 +306,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
     const additionalContent = details.additionalContent;
 
     editor.setContent(`<p>${initialContent}</p>`);
-    if (Type.isNonNullable(details.cursorPos)) {
+    if (details.cursorPos != null) {
       TinySelections.setCursor(editor, details.cursorPos.elementPath, details.cursorPos.offset);
     } else {
       TinySelections.setCursor(editor, [ 0, 0 ], initialContent.length);
@@ -320,7 +320,7 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteTest', (
       await Waiter.pWait(50);
     }
 
-    if (Type.isNonNullable(additionalContent)) {
+    if (additionalContent != null) {
       editor.execCommand('mceInsertContent', false, additionalContent);
       editor.dispatch('input');
     }

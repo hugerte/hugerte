@@ -1,15 +1,15 @@
 import { ApproxStructure, Assertions, Keys } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyContentActions, TinyHooks, TinyDom, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
 
 const applyForDeleteAndBackspace = (fn: (pair: { label: string; key: () => number }) => void) =>
-  Arr.each([
+  [
     { label: 'Delete', key: Keys.delete },
     { label: 'Backspace', key: Keys.backspace }
-  ], fn);
+  ].forEach(fn);
 
 describe('browser.hugerte.core.delete.CefDeleteTest', () => {
   const hook = TinyHooks.bddSetupLight<Editor>({

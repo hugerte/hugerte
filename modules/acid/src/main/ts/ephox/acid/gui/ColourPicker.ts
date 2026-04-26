@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, Behaviour, Composing, Keying, Memento, RawDomSchema, SimulatedEvent, Sketcher, Slider
 } from '@ephox/alloy';
 import { FieldSchema } from '@ephox/boulder';
-import { Arr, Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { Untranslated } from '../alien/I18n';
 import { Hex } from '../api/colour/ColourTypes';
@@ -88,7 +88,7 @@ const makeFactory = (
 
     const runUpdates = (anyInSystem: AlloyComponent, hex: Hex, hue: number, updates: ((anyInSystem: AlloyComponent, hex: Hex, hue: number) => void)[]) => {
       updateState(hex, hue);
-      Arr.each(updates, (update) => {
+      updates.forEach((update) =) {
         update(anyInSystem, hex, hue);
       });
     };
@@ -157,8 +157,8 @@ const makeFactory = (
     name: 'ColourPicker',
     configFields: [
       FieldSchema.required('dom'),
-      FieldSchema.defaulted('onValidHex', Fun.noop),
-      FieldSchema.defaulted('onInvalidHex', Fun.noop)
+      FieldSchema.defaulted('onValidHex', () => {}),
+      FieldSchema.defaulted('onInvalidHex', () => {})
     ],
     factory
   }) as ColourPickerSketcher;

@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { RawEditorOptions } from 'hugerte/core/api/OptionTypes';
@@ -21,7 +21,7 @@ describe('browser.hugerte.core.options.NormalizeOptionsTest', () => {
 
   it('default tablet settings', () => {
     const defaultSettings = NormalizeOptions.getMobileOverrideOptions({}, false);
-    Obj.each(expectedMobileDefaultSettings, (value, key) => {
+    Object.entries(expectedMobileDefaultSettings).forEach(([k, v]) => ((value, key) =)(v, k)) {
       assert.propertyVal(defaultSettings, key, value, `Should have default ${key} setting`);
     });
     assert.notProperty(defaultSettings, 'menubar', 'Should not have menubar setting');
@@ -29,7 +29,7 @@ describe('browser.hugerte.core.options.NormalizeOptionsTest', () => {
 
   it('default phone settings', () => {
     const defaultSettings = NormalizeOptions.getMobileOverrideOptions({}, true);
-    Obj.each(expectedPhoneDefaultSettings, (value, key) => {
+    Object.entries(expectedPhoneDefaultSettings).forEach(([k, v]) => ((value, key) =)(v, k)) {
       assert.propertyVal(defaultSettings, key, value, `Should have default ${key} setting`);
     });
   });
@@ -45,7 +45,7 @@ describe('browser.hugerte.core.options.NormalizeOptionsTest', () => {
     };
 
     const mobileSettings = NormalizeOptions.combineOptions(true, true, {}, {}, settings);
-    Obj.each(expectedPhoneDefaultSettings, (value, key) => {
+    Object.entries(expectedPhoneDefaultSettings).forEach(([k, v]) => ((value, key) =)(v, k)) {
       assert.propertyVal(mobileSettings, key, value, `Should have default ${key} setting`);
     });
   });

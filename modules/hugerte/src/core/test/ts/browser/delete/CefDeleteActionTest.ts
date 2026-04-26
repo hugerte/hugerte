@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -62,9 +62,9 @@ describe('browser.hugerte.core.delete.CefDeleteActionTest', () => {
 
   const actionName = (action: DeleteActionAdt) => {
     return action.fold(
-      Fun.constant('remove'),
-      Fun.constant('moveToElement'),
-      Fun.constant('moveToPosition')
+      () => 'remove',
+      () => 'moveToElement',
+      () => 'moveToPosition'
     );
   };
 
@@ -72,7 +72,7 @@ describe('browser.hugerte.core.delete.CefDeleteActionTest', () => {
     return action.fold<SugarElement<Node> | CaretPosition>(
       SugarElement.fromDom,
       SugarElement.fromDom,
-      Fun.identity
+      (x) => x
     );
   };
 

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder } from '@ephox/agar';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarBody, SugarElement } from '@ephox/sugar';
 
 import { WindowManagerImpl } from 'hugerte/core/api/WindowManager';
@@ -96,8 +96,8 @@ describe('headless.hugerte.themes.silver.window.TabbedDialogTest', () => {
         const target = a.name === 'gotoBasic' ? 'basic' : 'advanced';
         api.showTab(target);
       },
-      onSubmit: Fun.noop
-    }, {}, Fun.noop);
+      onSubmit: () => {}
+    }, {}, () => {});
 
     const dialog = UiFinder.findIn(SugarBody.body(), '[role="dialog"]').getOrDie();
     UiFinder.findIn(dialog, '[role="tab"]:contains("Basic")').getOrDie();

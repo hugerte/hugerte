@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { ApproxStructure, Assertions, Keys, UiFinder } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { SugarBody } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
@@ -71,7 +71,7 @@ describe('browser.hugerte.themes.silver.editor.SilverEditorTest', () => {
 
       ed.ui.registry.addSplitButton('splitbutton1-with-text', {
         text: 'Delta',
-        onItemAction: Fun.noop,
+        onItemAction: () => {},
         fetch: (callback) => {
           callback([
             {
@@ -100,7 +100,7 @@ describe('browser.hugerte.themes.silver.editor.SilverEditorTest', () => {
 
       ed.ui.registry.addSplitButton('splitbutton2-with-icon', {
         icon: 'underline',
-        onItemAction: Fun.noop,
+        onItemAction: () => {},
         fetch: (callback) => {
           callback([
             {

@@ -1,4 +1,4 @@
-import { Merger } from '@ephox/katamari';
+
 
 import { AlloySpec } from '../api/component/SpecTypes';
 import { CompositeSketchDetail, CompositeSketchSpec } from '../api/ui/Sketcher';
@@ -8,12 +8,9 @@ import * as PartType from './PartType';
 
 const combine = <D extends CompositeSketchDetail, S extends CompositeSketchSpec>(detail: D, data: PartType.BasePartDetail<D, S>, partSpec: S, partValidated?: Record<string, any>): S & { uid: string } =>
   // Extremely confusing names and types :(
-  Merger.deepMerge(
-    data.defaults(detail, partSpec, partValidated),
-    partSpec,
+  ({ ...data.defaults(detail, partSpec, partValidated), ...partSpec,
     { uid: detail.partUids[data.name] },
-    data.overrides(detail, partSpec, partValidated)
-  );
+    data.overrides(detail, partSpec, partValidated) });
 
 const subs = <D extends CompositeSketchDetail>(owner: string, detail: D, parts: PartType.PartTypeAdt[]): Substitutions => {
   const internals: Record<string, UiSubstitutes.UiSubstitutesAdt> = { };
@@ -52,11 +49,8 @@ const subs = <D extends CompositeSketchDetail>(owner: string, detail: D, parts: 
           return (units).map((u) =>
             // Group multiples do not take the uid because there is more than one.
             data.factory.sketch(
-              Merger.deepMerge(
-                data.defaults(detail, u, _partValidated),
-                u,
-                data.overrides(detail, u)
-              )
+              ({ ...data.defaults(detail, u, _partValidated), ...u,
+                data.overrides(detail, u) })
             ));
         });
       }

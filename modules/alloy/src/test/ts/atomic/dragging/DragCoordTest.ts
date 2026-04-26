@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarPosition } from '@ephox/sugar';
 import { assert } from 'chai';
 import * as fc from 'fast-check';
@@ -33,9 +33,9 @@ UnitTest.test('DragCoordTest', () => {
     (original, transformations, coord, scroll, origin) => {
       const o = original.nu(coord.left, coord.top);
 
-      const label = [ original.mode ].concat(Arr.map(transformations, (t) => t.mode));
+      const label = [ original.mode ].concat(transformations.map((t) =) t.mode));
 
-      const result = Arr.foldl(transformations, (b, transformation) => {
+      const result = transformations.reduce((b, transformation) => {
         const pt = transformation.asPoint(b, scroll, origin);
         return transformation.nu(pt.left, pt.top);
       }, o);

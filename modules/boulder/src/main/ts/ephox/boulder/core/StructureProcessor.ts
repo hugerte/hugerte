@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Merger, Obj, Optional, Type } from '@ephox/katamari';
+import { Arr, Obj, Optional, Type } from '@ephox/katamari';
 
 import { SimpleResult, SimpleResultType } from '../alien/SimpleResult';
 import { FieldPresence, FieldPresenceTag, required } from '../api/FieldPresence';
@@ -82,7 +82,7 @@ const extractField = <T, U>(
       return optionDefaultedAccess(obj, key, field.process, bundleAsOption);
     case FieldPresenceTag.MergeWithThunk: {
       return fallbackAccess(obj, key, () => ({}), (v) => {
-        const result = Merger.deepMerge(field.process(obj), v);
+        const result = ({ ...field.process(obj), ...v });
         return bundle(result);
       });
     }
@@ -135,10 +135,10 @@ const getSetKeys = (obj: Record<string, unknown>) => Object.keys(Object.fromEntr
 const objOfOnly = (fields: FieldProcessor[]): StructureProcessor => {
   const delegate = objOf(fields);
 
-  const fieldNames = Arr.foldr(fields, (acc, value) => {
+  const fieldNames = fields.reduceRight((acc, value) => {
     return FieldProcessor.fold(
       value,
-      (key) => Merger.deepMerge(acc, { [key]: true }),
+      (key) => ({ ...acc, ...{ [key]: true } }),
       () => acc
     );
   }, {} as Record<string, boolean>);

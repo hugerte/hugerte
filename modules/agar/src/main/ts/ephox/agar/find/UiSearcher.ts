@@ -43,7 +43,7 @@ const derive = (element: SugarElement<Node>, selector: string) => {
 };
 
 const matchesSelf = <T extends Element>(element: SugarElement<Node>, selector: string): Optional<SugarElement<T>> =>
-  SizzleFind.matches<T>(element, selector) ? Optional.some(element) : Optional.none();
+  SizzleFind.matches<T>(element, selector) ? element : null;
 
 const select = <T extends Element>(element: SugarElement<Node>, selector: string): Optional<SugarElement<T>> =>
   derive(element, selector).fold<Optional<SugarElement<T>>>(

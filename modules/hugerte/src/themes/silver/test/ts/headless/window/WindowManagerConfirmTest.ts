@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SelectorFind, SugarBody, SugarDocument } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -35,7 +35,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerConfirmTest', 
   );
 
   it('Check the basic structure of the confirm dialog', async () => {
-    createConfirm('The confirm dialog loads with the basic structure', Fun.noop);
+    createConfirm('The confirm dialog loads with the basic structure', () => {});
     await pWaitForDialog();
     const sink = extrasHook.access().getDialogSink();
     Assertions.assertStructure('A basic confirm dialog should have these components',
@@ -141,7 +141,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerConfirmTest', 
 
   it('Should display a HTML error message', async () => {
     const label = 'should display this <strong>message</strong>';
-    createConfirm(label, Fun.noop);
+    createConfirm(label, () => {});
     const dialogBody = SelectorFind.descendant(SugarDocument.getDocument(), '.tox-dialog__body').getOrDie('Cannot find dialog body element');
     Assertions.assertStructure('A basic confirm dialog should have these components',
       ApproxStructure.build((s, str, arr) => s.element('div', {
@@ -178,13 +178,13 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerConfirmTest', 
   });
 
   it('Should focus on the yes button initially', async () => {
-    createConfirm('initial focus should be on the yes button', Fun.noop);
+    createConfirm('initial focus should be on the yes button', () => {});
     await FocusTools.pTryOnSelector('When the confirm dialog loads, focus should be on the yes button', SugarDocument.getDocument(), 'button:contains(Yes)');
     await pTeardown();
   });
 
   it('Should focus the first button when the dialog is clicked', async () => {
-    createConfirm('Click should focus the yes button', Fun.noop);
+    createConfirm('Click should focus the yes button', () => {});
     await FocusTools.pTryOnSelector('When the confirm dialog loads, focus should be on the yes button', SugarDocument.getDocument(), 'button:contains(Yes)');
     Mouse.trueClickOn(SugarDocument.getDocument(), '.tox-dialog');
     await FocusTools.pTryOnSelector('Focus should be on the first button (no)', SugarDocument.getDocument(), 'button:contains(No)');
@@ -192,13 +192,13 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerConfirmTest', 
   });
 
   it('Check that clicking close in the dialog makes the dialog go away', () => {
-    createConfirm('Showing an confirm', Fun.noop);
+    createConfirm('Showing an confirm', () => {});
     Mouse.clickOn(SugarBody.body(), '.tox-button:contains("Yes")');
     UiFinder.notExists(SugarBody.body(), '[role="dialog"]');
   });
 
   it('TINY-3548: sanitize message', async () => {
-    createConfirm('<a href="javascript:alert(1)">invalid link</a><script>alert(1)</script><a href="http://tiny.cloud">valid link</a>', Fun.noop);
+    createConfirm('<a href="javascript:alert(1)">invalid link</a><script>alert(1)</script><a href="http://tiny.cloud">valid link</a>', () => {});
     const dialogBody = SelectorFind.descendant(SugarDocument.getDocument(), '.tox-dialog__body').getOrDie('Cannot find dialog body element');
     Assertions.assertStructure('A basic alert dialog should have these components',
       ApproxStructure.build((s, str, arr) => s.element('div', {

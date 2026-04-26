@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Strings } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { SugarBody, TextContent } from '@ephox/sugar';
 import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -10,7 +10,7 @@ import Editor from 'hugerte/core/api/Editor';
 describe('browser.hugerte.core.FontSelectTest', () => {
   const assertSelectBoxDisplayValue = (title: string, expectedValue: string) => {
     const selectBox = UiFinder.findIn(SugarBody.body(), `*[data-mce-name^="${title}"]`).getOrDie();
-    const value = Strings.trim(TextContent.get(selectBox) ?? '');
+    const value = TextContent.get(selectBox) ?? ''.trim();
     assert.equal(value, expectedValue, 'Should be the expected display value');
   };
 
@@ -111,7 +111,7 @@ describe('browser.hugerte.core.FontSelectTest', () => {
     it('TBA: System font stack variants on a paragraph show "System Font" as the font name', () => {
       const editor = hook.editor();
       editor.setContent(Arr.foldl(systemFontStackVariants, (acc, font) => acc + '<p style="font-family: ' + font.replace(/"/g, `'`) + '"></p>', ''));
-      Arr.each(systemFontStackVariants, (_, idx) => {
+      systemFontStackVariants.forEach((_, idx) =) {
         TinySelections.setCursor(editor, [ idx, 0 ], 0);
         editor.nodeChanged();
         assertSelectBoxDisplayValue('fontfamily', 'System Font');

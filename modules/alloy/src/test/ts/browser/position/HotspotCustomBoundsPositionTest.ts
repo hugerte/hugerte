@@ -1,6 +1,6 @@
 import { Assertions, Chain, NamedChain } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Css } from '@ephox/sugar';
 
 import * as Boxes from 'ephox/alloy/alien/Boxes';
@@ -19,7 +19,7 @@ UnitTest.asynctest('HotspotPositionTest', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => {
     const hotspot = GuiFactory.build(
       Button.sketch({
-        action: Fun.noop,
+        action: () => {},
         dom: {
           styles: {
             position: 'absolute',
@@ -76,14 +76,14 @@ UnitTest.asynctest('HotspotPositionTest', (success, failure) => {
 
           NamedChain.direct('hotspot', cSetupAnchor, 'anchor'),
 
-          PositionTestUtils.cTestSinkWithinBounds('Relative, not scrolled', 'relative', Fun.constant(win)),
+          PositionTestUtils.cTestSinkWithinBounds('Relative, not scrolled', 'relative', () => win),
           cAssertLayoutDirection('top'),
-          PositionTestUtils.cTestSinkWithinBounds('Fixed, not scrolled', 'fixed', Fun.constant(win)),
+          PositionTestUtils.cTestSinkWithinBounds('Fixed, not scrolled', 'fixed', () => win),
           cAssertLayoutDirection('top'),
 
-          PositionTestUtils.cTestSinkWithinBounds('Relative, bounds 50px from top', 'relative', Fun.constant(bounds100PixelsFromTop)),
+          PositionTestUtils.cTestSinkWithinBounds('Relative, bounds 50px from top', 'relative', () => bounds100PixelsFromTop),
           cAssertLayoutDirection('bottom'),
-          PositionTestUtils.cTestSinkWithinBounds('Fixed, bounds 50px from top', 'fixed', Fun.constant(bounds100PixelsFromTop)),
+          PositionTestUtils.cTestSinkWithinBounds('Fixed, bounds 50px from top', 'fixed', () => bounds100PixelsFromTop),
           cAssertLayoutDirection('bottom')
         ])
       ])

@@ -39,7 +39,7 @@ const locateInElement = (doc: SugarElement<Document>, node: SugarElement<Element
 const locateInEmpty = (doc: SugarElement<Document>, node: SugarElement<Element>, x: number): Optional<Range> => {
   const rect = node.dom.getBoundingClientRect();
   const collapseDirection = getCollapseDirection(rect, x);
-  return Optional.some(createCollapsedNode(doc, node, collapseDirection));
+  return createCollapsedNode(doc, node, collapseDirection);
 };
 
 const search = (doc: SugarElement<Document>, node: SugarElement<Element>, x: number): Optional<Range> => {

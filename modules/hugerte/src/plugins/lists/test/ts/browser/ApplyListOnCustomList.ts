@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Strings } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -18,7 +18,7 @@ describe('browser.hugerte.plugins.lists.ApplyListOnParagraphWithStylesTest', () 
     const editor = hook.editor();
     const multilistContent = ( className: string, listType: 'ul' | 'ol' = 'ul' ) =>
       // eslint-disable-next-line max-len
-      `<${listType}${Strings.isEmpty(className) ? '' : ` class="${className}"`}><li>a<${listType}${Strings.isEmpty(className) ? '' : ` class="${className}"`}><li>a1</li><li>a2</li></${listType}></li><li>b<${listType}${Strings.isEmpty(className) ? '' : ` class="${className}"`}><li>b1</li><li>b2</li></${listType}></li></${listType}>`;
+      `<${listType}${className.length === 0 ? '' : ` class="${className}"`}><li>a<${listType}${className.length === 0 ? '' : ` class="${className}"`}><li>a1</li><li>a2</li></${listType}></li><li>b<${listType}${className.length === 0 ? '' : ` class="${className}"`}><li>b1</li><li>b2</li></${listType}></li></${listType}>`;
     editor.setContent(multilistContent('tox-checklist'));
     editor.execCommand('SelectAll');
     TinyUiActions.clickOnToolbar(editor, 'button[aria-label="Bullet list"]');
@@ -32,7 +32,7 @@ describe('browser.hugerte.plugins.lists.ApplyListOnParagraphWithStylesTest', () 
   it('TINY-9998: Apply list to flat custom list should keep the original list structure', () => {
     const editor = hook.editor();
     const singleListContent = ( className: string, listType: 'ul' | 'ol' = 'ul' ) =>
-      `<${listType}${Strings.isEmpty(className) ? '' : ` class="${className}"`}><li>a</li><li>b</li></${listType}>`;
+      `<${listType}${className.length === 0 ? '' : ` class="${className}"`}><li>a</li><li>b</li></${listType}>`;
     editor.setContent(singleListContent('tox-checklist'));
     editor.execCommand('SelectAll');
     TinyUiActions.clickOnToolbar(editor, 'button[aria-label="Bullet list"]');

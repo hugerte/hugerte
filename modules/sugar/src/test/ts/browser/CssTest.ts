@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 import { PlatformDetection } from '@ephox/sand';
 
@@ -121,12 +121,12 @@ UnitTest.test('CssTest', () => {
     Assert.eq('Font size should have been preserved', true, Css.getRaw(play, 'font-size').isSome());
 
     Css.setOptions(play, {
-      'left': Optional.none(),
-      'right': Optional.none(),
-      'top': Optional.some('0px'),
-      'bottom': Optional.some('0px'),
-      'font-size': Optional.none(),
-      'font-family': Optional.some('Arial')
+      'left': null,
+      'right': null,
+      'top': '0px',
+      'bottom': '0px',
+      'font-size': null,
+      'font-family': 'Arial'
     });
 
     KAssert.eqNone('getRaw left', Css.getRaw(play, 'left'));
@@ -137,7 +137,7 @@ UnitTest.test('CssTest', () => {
     KAssert.eqSome('getRaw font-family', 'Arial', Css.getRaw(play, 'font-family'));
 
     // final cleanup
-    Arr.each([ c, d, play ], Remove.remove);
+    [ c, d, play ].forEach(Remove.remove);
 
   };
 

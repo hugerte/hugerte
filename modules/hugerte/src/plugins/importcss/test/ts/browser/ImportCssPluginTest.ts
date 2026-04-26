@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Mouse, UiFinder } from '@ephox/agar';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 import { McEditor, TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -39,7 +39,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
       children: [
         s.element('div', {
           classes: [ arr.has('tox-collection__group') ],
-          children: Arr.map(expected, (exp) => s.element('div', {
+          children: expected.map((exp) =) s.element('div', {
             classes: [ arr.has('tox-collection__item') ],
             children: [
               s.element('div', exp.submenu ? {
@@ -103,7 +103,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'p', html: 'p.other', submenu: false },
         { tag: 'span', html: 'span.inline', submenu: false }
       ],
-      choice: Optional.some('h1.red')
+      choice: 'h1.red'
     },
     {
       content_css: [ '/project/hugerte/src/plugins/importcss/test/css/basic.css' ],
@@ -120,7 +120,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { html: 'Align', submenu: true }
       ],
       menuHasIcons: false,
-      choice: Optional.none()
+      choice: null
     },
     {
       content_css: [ ],
@@ -140,7 +140,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'span', html: 'span.inline', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.none()
+      choice: null
     },
     {
       content_css: [ '/project/hugerte/src/plugins/importcss/test/css/basic.css' ],
@@ -163,7 +163,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'h4', html: 'h4.advanced', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.none()
+      choice: null
     },
     {
       content_css: [
@@ -183,7 +183,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'span', html: 'span.inline', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.none()
+      choice: null
     },
     {
       content_css: [ '/project/hugerte/src/plugins/importcss/test/css/basic.css' ],
@@ -197,7 +197,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'h1', html: 'h1.red', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.some('h1.red')
+      choice: 'h1.red'
     },
     {
       content_css: [ '/project/hugerte/src/plugins/importcss/test/css/basic.css' ],
@@ -213,7 +213,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'span', html: 'span.inline', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.some('p.other')
+      choice: 'p.other'
     },
     {
       content_css: [ '/project/hugerte/src/plugins/importcss/test/css/basic.css' ],
@@ -228,7 +228,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'span', html: 'span.inline', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.some('span.inline')
+      choice: 'span.inline'
     },
     {
       content_css: [ '/project/hugerte/src/plugins/importcss/test/css/basic.css' ],
@@ -244,7 +244,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'h3', html: 'h3.advanced', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.some('h2.advanced')
+      choice: 'h2.advanced'
     },
     {
       content_css: [
@@ -265,7 +265,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'h4', html: 'h4.advanced', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.some('h2.advanced')
+      choice: 'h2.advanced'
     },
     {
       content_css: [
@@ -286,7 +286,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'h4', html: 'h4.advanced', submenu: false }
       ],
       menuHasIcons: true,
-      choice: Optional.some('h2.advanced')
+      choice: 'h2.advanced'
     },
     {
       content_css: [
@@ -306,7 +306,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { html: 'Advanced', submenu: true }
       ],
       menuHasIcons: false,
-      choice: Optional.none()
+      choice: null
     },
     {
       content_css: [
@@ -329,7 +329,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssTest', () => {
         { tag: 'p', html: 'p.other', submenu: false },
         { tag: 'span', html: 'span.inline', submenu: false }
       ],
-      choice: Optional.some('h1.red')
+      choice: 'h1.red'
     },
     {
       content_css: [

@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement, SugarNode, TextContent } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -31,8 +31,8 @@ UnitTest.test('TransformOperationsTest', () => {
   const enO = en(originalElements);
 
   const mapToStructGrid = (grid: Structs.ElementNew[][]) => {
-    return Arr.map(grid, (row) => {
-      const hasCol = Arr.exists(row, (elementNew) => SugarNode.isTag('col')(elementNew.element));
+    return grid.map((row) =) {
+      const hasCol = row.some((elementNew) =) SugarNode.isTag('col')(elementNew.element));
       if (hasCol) {
         return Structs.rowcells(SugarElement.fromTag('colgroup'), row as Structs.ElementNew<HTMLTableColElement>[], 'colgroup', false);
       } else {
@@ -43,8 +43,8 @@ UnitTest.test('TransformOperationsTest', () => {
 
   const assertGrids = (actual: Structs.RowCells[], expected: Structs.RowCells[]) => {
     assert.lengthOf(actual, expected.length);
-    Arr.each(expected, (row, i) => {
-      Arr.each(row.cells, (cell, j) => {
+    expected.forEach((row, i) =) {
+      row.cells.forEach((cell, j) =) {
         const actualCell = actual[i].cells[j];
         assert.equal(TextContent.get(actualCell.element), TextContent.get(cell.element));
         assert.equal(actualCell.isNew, cell.isNew, `${i}x${j} cell is new`);

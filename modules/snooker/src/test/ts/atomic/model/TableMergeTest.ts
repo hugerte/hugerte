@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as Structs from 'ephox/snooker/api/Structs';
@@ -52,7 +52,7 @@ UnitTest.test('TableMergeTest', () => {
 
   suite(
     'insert at "j" a long table',
-    start(3, 0), gridAphid(), gridBee(), generator, Fun.tripleEquals,
+    start(3, 0), gridAphid(), gridBee(), generator, (a, b) => a === b,
     {
       rowDelta: -4,
       colDelta: 2
@@ -81,7 +81,7 @@ UnitTest.test('TableMergeTest', () => {
 
   suite(
     'insert at "d" a wide table',
-    start(1, 0), gridAphid(), gridcicada(), generator, Fun.tripleEquals,
+    start(1, 0), gridAphid(), gridcicada(), generator, (a, b) => a === b,
     {
       rowDelta: 2,
       colDelta: -5
@@ -102,7 +102,7 @@ UnitTest.test('TableMergeTest', () => {
 
   suite(
     'Unmerging spans - Merge gridSpanB, into gridAdvancedOne, at "D" on gridAdvancedOne',
-    start(1, 0), gridAdvancedOne(), gridSpanB(), generator, Fun.tripleEquals,
+    start(1, 0), gridAdvancedOne(), gridSpanB(), generator, (a, b) => a === b,
     {
       rowDelta: 4,
       colDelta: 2
@@ -129,7 +129,7 @@ UnitTest.test('TableMergeTest', () => {
 
   suite(
     'Unmerging spans - Merge gridSpanB, into gridAdvancedOne, at "M" on gridAdvancedOne',
-    start(6, 3), gridAdvancedOne(), gridSpanB(), generator, Fun.tripleEquals,
+    start(6, 3), gridAdvancedOne(), gridSpanB(), generator, (a, b) => a === b,
     {
       rowDelta: -1,
       colDelta: -1
@@ -158,7 +158,7 @@ UnitTest.test('TableMergeTest', () => {
 
   suite(
     'Unmerging spans - Merge gridSpanB, into gridAdvancedOne, at bottom right "B" on gridAdvancedOne',
-    start(1, 2), gridAdvancedOne(), gridSpanB(), generator, Fun.tripleEquals,
+    start(1, 2), gridAdvancedOne(), gridSpanB(), generator, (a, b) => a === b,
     {
       rowDelta: 4,
       colDelta: 0
@@ -185,7 +185,7 @@ UnitTest.test('TableMergeTest', () => {
 
   suite(
     'Unmerging spans - Merge gridBee, into gridAdvancedOne, at bottom left "F" on gridAdvancedOne',
-    start(4, 0), gridAdvancedOne(), gridBee(), generator, Fun.tripleEquals,
+    start(4, 0), gridAdvancedOne(), gridBee(), generator, (a, b) => a === b,
     {
       rowDelta: -2,
       colDelta: 3
@@ -216,7 +216,7 @@ UnitTest.test('TableMergeTest', () => {
 
   suite(
     'Unmerging spans - Merge gridcicada, into gridAdvancedOne, at bottom left "I" on gridAdvancedOne',
-    start(6, 0), gridAdvancedOne(), gridcicada(), generator, Fun.tripleEquals,
+    start(6, 0), gridAdvancedOne(), gridcicada(), generator, (a, b) => a === b,
     {
       rowDelta: 0,
       colDelta: -4

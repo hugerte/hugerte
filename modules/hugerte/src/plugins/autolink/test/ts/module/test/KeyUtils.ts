@@ -1,4 +1,4 @@
-import { Arr, Fun, Obj, Type, Unicode } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -12,7 +12,7 @@ const charCodeToKeyCode = (charCode: number): number => {
     '.': 190, '/': 191, '\\': 220, '[': 219, ']': 221, '{': 219, '}': 221, '\'': 222, ';': 186, '=': 187, '(': 57, ')': 48
   };
 
-  return Obj.get(lookup, String.fromCharCode(charCode)).getOr(charCode);
+  return (lookup as any)[String.fromCharCode(charCode)].getOr(charCode);
 };
 
 const needsShiftModifier = (charCode: number | undefined): boolean => {
@@ -22,7 +22,7 @@ const needsShiftModifier = (charCode: number | undefined): boolean => {
     '^': true, '&': true, '*': true, '|': true
   };
 
-  return Type.isNumber(charCode) && Obj.has(lookup, String.fromCharCode(charCode));
+  return typeof charCode === 'number' && Object.prototype.hasOwnProperty.call(lookup, String.fromCharCode(charCode));
 };
 
 const needsNbsp = (rng: Range, chr: string): boolean => {
@@ -136,7 +136,7 @@ const type = (editor: Editor, chr: string | number | Record<string, number | str
     const rng = editor.selection.getRng();
 
     if (isText(rng.startContainer) && rng.collapsed) {
-      rng.startContainer.insertData(rng.startOffset, needsNbsp(rng, chr) ? Unicode.nbsp : chr);
+      rng.startContainer.insertData(rng.startOffset, needsNbsp(rng, chr) ? '\u00A0' : chr);
       rng.setStart(rng.startContainer, rng.startOffset + 1);
       rng.collapse(true);
       editor.selection.setRng(rng);
@@ -150,7 +150,7 @@ const type = (editor: Editor, chr: string | number | Record<string, number | str
 };
 
 const typeString = (editor: Editor, str: string): void => {
-  Arr.each(str.split(''), Fun.curry(type, editor));
+  str.split('').forEach(Fun.curry(type, editor));
 };
 
 export {

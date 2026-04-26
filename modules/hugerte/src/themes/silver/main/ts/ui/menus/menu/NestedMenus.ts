@@ -1,6 +1,6 @@
 import { TieredData, TieredMenu } from '@ephox/alloy';
 import { Objects } from '@ephox/boulder';
-import { Merger } from '@ephox/katamari';
+
 
 import { UiFactoryBackstage } from 'hugerte/themes/silver/backstage/Backstage';
 
@@ -71,7 +71,7 @@ const build = (items: string | Array<string | SingleMenuItemSpec>, itemResponse:
       false,
       submenuSearchMode
     ))(_v, _k as any)]));
-  const menus = Merger.deepMerge(submenus, Objects.wrap(primary, mainMenu));
+  const menus = ({ ...submenus, ...Objects.wrap(primary, mainMenu) });
   return (TieredMenu.tieredData(primary, menus, data.expansions) ?? null);
 };
 

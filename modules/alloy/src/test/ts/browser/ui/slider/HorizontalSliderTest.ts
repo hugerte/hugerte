@@ -1,6 +1,6 @@
 import { Chain, FocusTools, Keyboard, Keys, Logger, NamedChain, Step, UiFinder, Waiter } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import { Keying } from 'ephox/alloy/api/behaviour/Keying';
@@ -26,7 +26,7 @@ UnitTest.asynctest('Browser Test: ui.slider.HorizontalSliderTest', (success, fai
       model: {
         mode: 'x',
         minX: 50,
-        getInitialValue: Fun.constant(200),
+        getInitialValue: () => 200,
         maxX: 200
       },
       stepSize: 10,

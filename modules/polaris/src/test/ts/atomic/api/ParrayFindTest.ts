@@ -16,12 +16,12 @@ UnitTest.test('api.PositionArray.find', () => {
     KAssert.eqOptional('eq', expected, actual.map((x) => x.item));
   };
 
-  check(Optional.none(), [], null);
-  check(Optional.some('a'), [ 'a' ], 'a');
-  check(Optional.some('a'), [ 'a' ], 'a');
-  check(Optional.none(), [ 'a' ], 'b');
-  check(Optional.some('cat'), [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'cat');
-  check(Optional.some('tomorrow'), [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'tomorrow');
-  check(Optional.none(), [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'yesterday');
-  check(Optional.some('this'), [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'this');
+  check(null, [], null);
+  check('a', [ 'a' ], 'a');
+  check('a', [ 'a' ], 'a');
+  check(null, [ 'a' ], 'b');
+  check('cat', [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'cat');
+  check('tomorrow', [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'tomorrow');
+  check(null, [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'yesterday');
+  check('this', [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'this');
 });

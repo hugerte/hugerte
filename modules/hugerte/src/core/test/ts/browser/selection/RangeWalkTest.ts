@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -32,7 +32,7 @@ describe('browser.hugerte.core.selection.RangeWalkTest', () => {
 
     const rng = editor.selection.getRng();
     RangeWalk.walk(editor.dom, rng, (nodes) => {
-      nodeNames.push(Arr.map(nodes, (node) => node.nodeName.toLowerCase()));
+      nodeNames.push(nodes.map((node) =) node.nodeName.toLowerCase()));
     });
 
     assert.deepEqual(nodeNames, expected);

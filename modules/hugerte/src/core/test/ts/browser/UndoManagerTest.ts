@@ -1,6 +1,6 @@
 import { Keys } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Type } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Scroll } from '@ephox/sugar';
 import { TinyDom, LegacyUnit, TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyApis } from '@ephox/wrap-mcagar';
@@ -223,7 +223,7 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
     const editor = hook.editor();
     editor.undoManager.add();
 
-    const level = editor.undoManager.transact(Fun.noop);
+    const level = editor.undoManager.transact(() => {});
 
     assert.isNull(level);
   });
@@ -645,7 +645,7 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
       assert.isAtLeast(Scroll.get(doc).top + editorHeight, height, `should scroll to the cursor after ${action}`);
     };
 
-    Arr.each([ 'undo', 'redo' ], checkScroll);
+    [ 'undo', 'redo' ].forEach(checkScroll);
   });
 
   context('Excluded content', () => {
@@ -660,14 +660,14 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
 
       editor.on('AddUndo', () => count++);
       editor.on('BeforeAddUndo', (e) => {
-        if (e.level.content === '' && !Type.isNull(e.level.fragments) && e.level.fragments.length > 0) {
+        if (e.level.content === '' && !e.level.fragments === null && e.level.fragments.length > 0) {
           lastLevelContent = e.level.fragments.join('');
         } else {
           lastLevelContent = e.level.content;
         }
       });
 
-      Arr.each(exclusions, (exclusion, i) => {
+      exclusions.forEach((exclusion, i) =) {
         apis.setRawContent(exclusion.content);
         editor.undoManager.add();
         assert.equal(count, i + 1);
@@ -707,7 +707,7 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
       expected: '<p>test0</p><!----><!-- test2 --><!---->'
     }]));
 
-    Arr.each([ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ], (parent) => {
+    [ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) =) {
       it(`TINY-10305: Unescaped text nodes containing ZWNBSP within ${parent} are emptied`, testContentExclusions([{
         content: `<p>test0</p><${parent}>te\uFEFFst1</${parent}><${parent}>test2</${parent}><${parent}>te\uFEFFst3</${parent}>`,
         expected: `<p>test0</p><${parent}></${parent}><${parent}>test2</${parent}><${parent}></${parent}>`
@@ -751,7 +751,7 @@ describe('browser.hugerte.core.UndoManagerTest', () => {
     it('TINY-10180: Excluding ZWNBSP in comments does not cause mXSS',
       testContentMxssOnRestore(`<!--\uFEFF><iframe onload="window.${xssFnName}();">->`));
 
-    Arr.each([ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ], (parent) => {
+    [ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) =) {
       it(`TINY-10305: Excluding ZWNBSP in ${parent} does not cause mXSS`,
         testContentMxssOnRestore(`<${parent}><\uFEFF/${parent}><\uFEFFiframe onload="window.${xssFnName}();"></${parent}>`));
     });

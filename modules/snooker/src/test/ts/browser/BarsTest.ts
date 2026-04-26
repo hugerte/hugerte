@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Attribute, Insert, Remove, SelectorFilter, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
 import { ResizeWire } from 'ephox/snooker/api/ResizeWire';
@@ -31,7 +31,7 @@ UnitTest.test('Bars.refresh and Bars.destroy with standard table', () => {
   Insert.append(container, colgroupTable);
   Insert.append(SugarBody.body(), container);
 
-  const resizeAlwaysWire = ResizeWire.only(table, Fun.always);
+  const resizeAlwaysWire = ResizeWire.only(table, () => true);
   const resizeCallbackWire = ResizeWire.only(table, isResizable);
 
   // Test with resize allowed
@@ -73,7 +73,7 @@ UnitTest.test('Bars.refresh and Bars.destroy with colgroup table', () => {
   Insert.append(container, table);
   Insert.append(SugarBody.body(), container);
 
-  const resizeAlwaysWire = ResizeWire.only(table, Fun.always);
+  const resizeAlwaysWire = ResizeWire.only(table, () => true);
   const resizeCallbackWire = ResizeWire.only(table, isResizable);
 
   // Test with resize allowed

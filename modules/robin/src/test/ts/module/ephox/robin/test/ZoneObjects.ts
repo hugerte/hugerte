@@ -1,7 +1,7 @@
 import { Logger } from '@ephox/agar';
 import { Assert } from '@ephox/bedrock-client';
 import { Gene, TestUniverse } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 
 import { LanguageZones } from 'ephox/robin/zone/LanguageZones';
 import { Zone } from 'ephox/robin/zone/Zones';
@@ -15,17 +15,17 @@ export interface RawZone {
 const rawOne = (universe: TestUniverse, zone: Zone<Gene>): RawZone => {
   return {
     lang: zone.lang,
-    elements: Arr.map(zone.elements, (elem) => {
+    elements: zone.elements.map((elem) =) {
       return elem.id;
     }),
-    words: Arr.map(zone.words, (w) => {
+    words: zone.words.map((w) =) {
       return w.word;
     })
   };
 };
 
 const raw = (universe: TestUniverse, zones: Zone<Gene>[]): RawZone[] => {
-  return Arr.map(zones, (zone) => {
+  return zones.map((zone) =) {
     return rawOne(universe, zone);
   });
 };
@@ -36,7 +36,7 @@ const assertZones = (label: string, universe: TestUniverse, expected: RawZone[],
 };
 
 const assertProps = (label: string, universe: TestUniverse, zones: Zone<Gene>[]): void => {
-  Arr.each(zones, (zone) => {
+  zones.forEach((zone) =) {
     const elements = zone.elements;
     if (elements.length === 0) {
       return;
@@ -48,7 +48,7 @@ const assertProps = (label: string, universe: TestUniverse, zones: Zone<Gene>[])
       '\nProperty test for zone: ' + JSON.stringify(rawOne(universe, zone), null, 2),
       () => {
         // Check languages all match the zone language
-        Arr.each(elements, (x) => {
+        elements.forEach((x) =) {
           Assert.eq(
             'Checking everything in ' + label + ' has same language. Item: ' + x.id,
             LanguageZones.calculate(universe, x).getOr('none'), zone.lang
@@ -62,7 +62,7 @@ const assertProps = (label: string, universe: TestUniverse, zones: Zone<Gene>[])
 
         // Check block tags match across zones
         const blockParent = universe.up().predicate(first, universe.property().isBoundary).getOrDie('No block parent tag found');
-        Arr.each(elements, (x) => {
+        elements.forEach((x) =) {
           Assert.eq(
             'All block ancestor tags should be the same as the original',
             blockParent,

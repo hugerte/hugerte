@@ -1,6 +1,6 @@
 import { Keys, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -63,7 +63,7 @@ describe('browser.hugerte.plugins.table.LockedColumnDisabledButtonsTest', () => 
     { name: 'tablesplitcells', label: 'Split cell' },
   ];
 
-  const toolbar = Arr.map([ ...tableButtons, ...columnButtons, ...rowButtons, ...cellButtons ], (buttonDetails) => buttonDetails.name).join(' ');
+  const toolbar = [ ...tableButtons, ...columnButtons, ...rowButtons, ...cellButtons ].map((buttonDetails) =) buttonDetails.name).join(' ');
 
   const hook = TinyHooks.bddSetup<Editor>({
     plugins: 'table',
@@ -151,7 +151,7 @@ describe('browser.hugerte.plugins.table.LockedColumnDisabledButtonsTest', () => 
 
   const pSelectContextMenuItem = async (editor: Editor, index: number) => {
     await pOpenContextMenu(editor, 'td');
-    Arr.range(index, () => TinyUiActions.keydown(editor, Keys.down()));
+    Array.from({ length: index }, () => TinyUiActions.keydown(editor, Keys.down()));
     TinyUiActions.keydown(editor, Keys.right());
   };
 

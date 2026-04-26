@@ -1,5 +1,5 @@
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Css, Scroll, SelectorFind } from '@ephox/sugar';
 import { TinyDom, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -51,11 +51,11 @@ describe('browser.hugerte.core.EditorViewTest', () => {
     editor.setContent('<div style="width: 5000px; height: 5000px">X</div>');
   };
 
-  Arr.each([
+  [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup, settings: {}},
     { label: 'Inline Editor', setup: TinyHooks.bddSetup, settings: { inline: true }},
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot, settings: {}}
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(tester.label, () => {
       const hook = tester.setup<Editor>({
         base_url: '/project/hugerte/js/hugerte',

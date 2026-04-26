@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import { Gene } from 'ephox/boss/api/Gene';
@@ -18,7 +18,7 @@ UnitTest.test('LocatorTest', () => {
         Gene('F', '.'),
         Creator.text('cattle')
       ])
-    ]), Optional.none());
+    ]), null);
 
   const getId = (x: Gene) => x.id;
 

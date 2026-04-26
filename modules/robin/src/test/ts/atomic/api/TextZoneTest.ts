@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as TextZone from 'ephox/robin/api/general/TextZone';
 import { ArbIds, arbIds, ArbRangeIds, arbRangeIds } from 'ephox/robin/test/Arbitraries';
@@ -53,7 +53,7 @@ UnitTest.test('TextZoneTest', () => {
     expected.fold(() => {
       actual.fold(
         // Good
-        Fun.noop,
+        () => {},
         (act) => {
           Assert.fail(label + '\nShould not have created zone: ' + JSON.stringify(
             JSON.stringify(rawOne(doc1, act))
@@ -84,58 +84,58 @@ UnitTest.test('TextZoneTest', () => {
 
   checkSingle(
     'Basic zone for one text field',
-    Optional.some({
+    {
       lang: 'en',
       words: [ 'one' ],
       elements: [ 'en-a' ]
-    }),
+    },
     'en-a',
     'en'
   );
 
   checkSingle(
     'Basic zone for isolated span should be none because no text nodes inside',
-    Optional.none(),
+    null,
     'span-isolated',
     'en'
   );
 
   checkSingle(
     'Basic zone for semi isolated span should have the partial words outside it',
-    Optional.some({
+    {
       lang: 'en',
       words: [ 'on' ],
       elements: [ 'en-j', 'en-k' ]
-    }),
+    },
     'span-semi-isolated',
     'en'
   );
 
   checkRange(
     'Basic ranged zone for two adjacent english text nodes should create zone with them',
-    Optional.some({
+    {
       lang: 'en',
       words: [ 'two' ],
       elements: [ 'en-b', 'en-c' ]
-    }),
+    },
     'en-b', 'en-c',
     'en'
   );
 
   checkRange(
     'Basic ranged zone for an english text node next to another one (but not part of the range) should create zone with them',
-    Optional.some({
+    {
       lang: 'en',
       words: [ 'two' ],
       elements: [ 'en-b', 'en-c' ]
-    }),
+    },
     'en-b', 'en-b',
     'en'
   );
 
   checkRange(
     'Basic ranged zone for an english text node to a german text node should create no zone',
-    Optional.none(),
+    null,
     'en-b', 'de-a',
     'en'
   );
@@ -214,7 +214,7 @@ UnitTest.test('TextZoneTest', () => {
 
   PropertyAssertions.check(
     'Check any tag range',
-    arbRangeIds(doc1, Fun.always),
+    arbRangeIds(doc1, () => true),
     checkRangeProp
   );
 });

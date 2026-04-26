@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
 import { TestHelpers } from '@ephox/alloy';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr, Strings } from '@ephox/katamari';
+import { Strings } from '@ephox/katamari';
 import { SugarBody, SugarDocument, Css } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -199,11 +199,11 @@ describe('browser.hugerte.themes.silver.window.SilverInlineDialogTest', () => {
     UiFinder.notExists(SugarBody.body(), '[role="dialog"]');
   });
 
-  Arr.each([
+  [
     { label: 'Modal', params: { }},
     { label: 'Inline toolbar', params: { inline: 'toolbar' as 'toolbar' }},
     { label: 'Inline cursor', params: { inline: 'cursor' as 'cursor' }},
-  ], (test) => {
+  ].forEach((test) =) {
     it('TINY-9520: Modal focus testing for type: ' + test.label, async () => {
       const editor = hook.editor();
       openDialog(editor, test.params);
@@ -240,10 +240,10 @@ describe('browser.hugerte.themes.silver.window.SilverInlineDialogTest', () => {
     });
   });
 
-  Arr.each([
+  [
     { label: 'normal', size: 'normal' as Dialog.DialogSize, selector: '.tox-dialog-inline', body: '.tox-dialog__body', maxWidth: 480 },
     { label: 'medium', size: 'medium' as Dialog.DialogSize, selector: '.tox-dialog--width-md', body: '.tox-dialog__body', maxWidth: 800 },
-  ], (test) => {
+  ].forEach((test) =) {
     it('inline dialog size tests, ' + test.label, async () => {
       const editor = hook.editor();
       openDialog(editor, { inline: 'toolbar' }, createDialogSpec(test.size, true));

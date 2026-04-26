@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, RealKeys, UiFinder } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import { renderSizeInput } from 'hugerte/themes/silver/ui/dialog/SizeInput';
@@ -13,7 +13,7 @@ describe('webdriver.hugerte.themes.silver.dialogs.SizeInputSpaceTest', () => {
   const hook = TestHelpers.GuiSetup.bddSetup((_store, _doc, _body) => GuiFactory.build(
     renderSizeInput({
       name: 'dimensions',
-      label: Optional.some('size'),
+      label: 'size',
       constrain: true,
       enabled: true
     }, extrasHook.access().extras.backstages.popup.shared.providers)

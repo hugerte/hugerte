@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as InsertAll from 'ephox/sugar/api/dom/InsertAll';
@@ -37,7 +37,7 @@ UnitTest.test('TraverseTest', () => {
     KAssert.eqSome('eq', expected, actual);
   };
 
-  Arr.each([ grandparent ], checkNone);
+  [ grandparent ].forEach(checkNone);
   checkIndex(0, uncle);
   checkIndex(1, mother);
   checkIndex(0, youngest);
@@ -50,8 +50,8 @@ UnitTest.test('TraverseTest', () => {
     const getName = (e: SugarElement<Node>) => SugarNode.isElement(e) ? Attribute.get(e, 'name') : '';
 
     Assert.eq('eq',
-      Arr.map(expected, getName),
-      Arr.map(actual, getName)
+      expected.map(getName),
+      actual.map(getName)
     );
   };
 

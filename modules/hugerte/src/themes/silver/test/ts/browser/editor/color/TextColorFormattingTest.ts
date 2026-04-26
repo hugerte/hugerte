@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -63,7 +63,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorFormattingTest', (
                 color: str.is('rgb(53, 152, 219)')
               },
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
             s.text(str.is('world'))
@@ -85,7 +85,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorFormattingTest', (
                 s.text(str.is('Hello'))
               ]
             }),
-            s.text(str.is(Unicode.nbsp + 'world'))
+            s.text(str.is('\u00A0' + 'world'))
           ]
         })
       ]
@@ -102,7 +102,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorFormattingTest', (
                 'background-color': str.is('rgb(53, 152, 219)')
               },
               children: [
-                s.text(str.is(Unicode.nbsp))
+                s.text(str.is('\u00A0'))
               ]
             }),
             s.text(str.is('world'))
@@ -113,7 +113,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorFormattingTest', (
 
   it('TBA: Forecolor on non breaking space', async () => {
     const editor = hook.editor();
-    editor.setContent(`Hello${Unicode.nbsp}world`);
+    editor.setContent(`Hello${'\u00A0'}world`);
     TinySelections.setSelection(editor, [ 0, 0 ], 5, [ 0, 0 ], 6);
     TinyUiActions.clickOnToolbar(editor, selectors.forecolorSplitButton);
     await TinyUiActions.pWaitForUi(editor, '.tox-swatches');
@@ -123,7 +123,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorFormattingTest', (
 
   it('TBA: Backcolor on non breaking space', async () => {
     const editor = hook.editor();
-    editor.setContent(`Hello${Unicode.nbsp}world`);
+    editor.setContent(`Hello${'\u00A0'}world`);
     TinySelections.setSelection(editor, [ 0, 0 ], 5, [ 0, 0 ], 6);
     TinyUiActions.clickOnToolbar(editor, selectors.backcolorSplitButton);
     await TinyUiActions.pWaitForUi(editor, '.tox-swatches');
@@ -153,7 +153,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorFormattingTest', (
 
   it('TINY-4838: Remove forecolor with collapsed selection', async () => {
     const editor = hook.editor();
-    editor.setContent(`Hello${Unicode.nbsp}world`);
+    editor.setContent(`Hello${'\u00A0'}world`);
     TinySelections.setSelection(editor, [ 0, 0 ], 2, [ 0, 0 ], 2);
     TinyUiActions.clickOnToolbar(editor, '[data-mce-name="forecolor"] > .tox-tbtn + .tox-split-button__chevron');
     await TinyUiActions.pWaitForUi(editor, '.tox-swatches');

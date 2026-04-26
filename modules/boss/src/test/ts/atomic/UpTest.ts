@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 
 import { Gene } from 'ephox/boss/api/Gene';
@@ -17,7 +17,7 @@ UnitTest.test('UpTest', () => {
         ]),
         Gene('F', '_F_')
       ])
-    ]), Optional.none());
+    ]), null);
 
   const getId = (x: Gene) => x.id;
 
@@ -52,7 +52,7 @@ UnitTest.test('UpTest', () => {
   const checkAll = (expected: string, start: string) => {
     const actual = Locator.byId(family, start).map((item) => {
       const result = Up.all(item);
-      return Arr.map(result, getId).join(',');
+      return result.map(getId).join(',');
     });
     KAssert.eqSome('eq', expected, actual);
   };

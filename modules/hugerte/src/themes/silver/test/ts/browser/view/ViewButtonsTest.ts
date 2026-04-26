@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Class } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -13,7 +13,7 @@ describe('browser.hugerte.themes.silver.view.ViewButtonsTest', () => {
     const hook = TinyHooks.bddSetup<Editor>({
       base_url: '/project/hugerte/js/hugerte',
       toolbar_mode: 'floating',
-      toolbar: Arr.range(10, Fun.constant('bold | italic ')).join(''),
+      toolbar: Array.from({ length: 10 }, () => 'bold | italic ').join(''),
       width: 500,
       setup: (editor: Editor) => {
         let buttonWithToggle = false;
@@ -39,7 +39,7 @@ describe('browser.hugerte.themes.silver.view.ViewButtonsTest', () => {
               text: 'button-without-toggle',
               tooltip: 'button-without-toggle',
               icon: 'help',
-              onAction: Fun.noop
+              onAction: () => {}
             },
             {
               type: 'group',
@@ -50,7 +50,7 @@ describe('browser.hugerte.themes.silver.view.ViewButtonsTest', () => {
                   active: true,
                   tooltip: 'button-active-true',
                   icon: 'help',
-                  onAction: Fun.noop
+                  onAction: () => {}
                 },
                 {
                   type: 'togglebutton',
@@ -58,14 +58,14 @@ describe('browser.hugerte.themes.silver.view.ViewButtonsTest', () => {
                   active: false,
                   tooltip: 'button-active-false',
                   icon: 'help',
-                  onAction: Fun.noop
+                  onAction: () => {}
                 },
                 {
                   type: 'togglebutton',
                   text: 'button-no-active',
                   tooltip: 'button-no-active',
                   icon: 'help',
-                  onAction: Fun.noop
+                  onAction: () => {}
                 }
               ]
             }
@@ -74,7 +74,7 @@ describe('browser.hugerte.themes.silver.view.ViewButtonsTest', () => {
             api.getContainer().innerHTML = '<button>myview1</button>';
             api.getContainer().querySelector('button')?.focus();
           },
-          onHide: Fun.noop
+          onHide: () => {}
         });
 
         editor.ui.registry.addContextToolbar('test-context', {

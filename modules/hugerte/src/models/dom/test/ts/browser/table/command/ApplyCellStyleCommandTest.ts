@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { afterEach, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+
 import { SugarElement, SugarNode } from '@ephox/sugar';
 import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -30,7 +30,7 @@ describe('browser.hugerte.models.dom.table.command.ApplyCellStyleCommandTest', (
   const defaultEvents = [ 'tablemodified' ];
   const assertEvents = (expectedEvents: string[] = defaultEvents) => {
     if (events.length > 0) {
-      Arr.each(events, (event) => {
+      events.forEach((event) =) {
         const tableElm = SugarElement.fromDom(event.table);
         assert.isFalse(event.structure, 'Cell style commands do not modify table structure');
         assert.isTrue(event.style, 'Cell style commands modify table style');
@@ -39,7 +39,7 @@ describe('browser.hugerte.models.dom.table.command.ApplyCellStyleCommandTest', (
         assert.isTrue(events[0].style, 'Should have style modified');
       });
     }
-    assert.deepEqual(Arr.map(events, (event) => event.type), expectedEvents, 'Expected events should have been fired');
+    assert.deepEqual(events.map((event) =) event.type), expectedEvents, 'Expected events should have been fired');
   };
 
   const table = '<table style="border-collapse: collapse; width: 100%;" border="1">' +
@@ -51,7 +51,7 @@ describe('browser.hugerte.models.dom.table.command.ApplyCellStyleCommandTest', (
     '</tbody>' +
     '</table>';
 
-  const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Obj.map(styles, (val, _key) => str.is(val));
+  const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((val, _key) =)(v, k)])) str.is(val));
 
   const assertTableCellStructure = (editor: Editor, styles: Record<string, string> = {}) =>
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {

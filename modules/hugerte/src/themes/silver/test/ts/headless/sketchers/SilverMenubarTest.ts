@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Strings } from '@ephox/katamari';
+
 import { SelectorFind, Selectors, SugarDocument } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -87,11 +87,11 @@ describe('headless.hugerte.themes.silver.sketchers.SilverMenubar Test', () => {
     Assertions.assertStructure(
       label + '. Checking contents of menu',
       ApproxStructure.build((s, str, arr) => s.element('div', {
-        children: Arr.map(groups, (items) => s.element('div', {
+        children: groups.map((items) =) s.element('div', {
           classes: [ arr.has('tox-collection__group') ],
-          children: Arr.map(items, (itemText) => {
+          children: items.map((itemText) =) {
             // itemText can have a trailing >, which means it has a caret
-            const hasCaret = Strings.endsWith(itemText, '>');
+            const hasCaret = itemText.endsWith('>');
             const caretOrCheckmark = hasCaret || hasCheckmark ? [
               s.element('div', {
                 classes: [ arr.has(hasCaret ? 'tox-collection__item-caret' : 'tox-collection__item-checkmark') ]
@@ -149,7 +149,7 @@ describe('headless.hugerte.themes.silver.sketchers.SilverMenubar Test', () => {
                 // Set twice to check for a bug where two checkmarks appear
                 api.setActive(true);
                 api.setActive(true);
-                return Fun.noop;
+                return () => {};
               }
             }
           ]
@@ -188,7 +188,7 @@ describe('headless.hugerte.themes.silver.sketchers.SilverMenubar Test', () => {
                       type: 'menuitem',
                       icon: 'drop',
                       text: 'Nested menu x 3',
-                      onAction: Fun.noop
+                      onAction: () => {}
                     }
                   ]
                 }

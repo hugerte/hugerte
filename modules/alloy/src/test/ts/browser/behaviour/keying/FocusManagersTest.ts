@@ -1,6 +1,6 @@
 import { Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Step, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, Focus, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -34,17 +34,17 @@ UnitTest.asynctest('Browser Test: behaviour.keying.FocusManagersTest', (success,
     };
   };
 
-  const makeItems = (tag: string, prefix: string, haveTabstop: boolean, firstNum: number) => Arr.map([ firstNum, firstNum + 1, firstNum + 2 ], (num) => ({
+  const makeItems = (tag: string, prefix: string, haveTabstop: boolean, firstNum: number) => [ firstNum, firstNum + 1, firstNum + 2 ].map((num) =) ({
     dom: {
       tag,
       classes: [ prefix + '-' + num ],
       innerHtml: prefix + '-' + num
     },
     behaviours: Behaviour.derive(
-      Arr.flatten<any>([
+      [
         [ Focusing.config({ }) ],
         haveTabstop ? [ Tabstopping.config({ }) ] : [ ]
-      ])
+      ].flat()
     )
   }));
 

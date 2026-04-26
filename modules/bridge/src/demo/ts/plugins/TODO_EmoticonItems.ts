@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { getDemoRegistry } from '../buttons/DemoRegistry';
 
@@ -7,7 +7,7 @@ export const registerEmoticonItems = (): void => {
   getDemoRegistry().addButton('emoticon', {
     type: 'button',
     enabled: true,
-    onSetup: (_buttonApi) => Fun.noop,
+    onSetup: (_buttonApi) => () => {},
     onAction: (_buttonApi) => {
 
     }

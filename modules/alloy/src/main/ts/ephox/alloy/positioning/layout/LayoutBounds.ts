@@ -1,4 +1,4 @@
-import { Num } from '@ephox/katamari';
+
 import { SugarPosition } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -49,7 +49,7 @@ export const adjustBounds = (bounds: Boxes.Bounds, restriction: BoundsRestrictio
       const comparator = dir === 'left' || dir === 'top' ? Math.max : Math.min;
       const newPos = comparator(pos, current) + offset;
       // Ensure the new restricted position is within the current bounds
-      return isVerticalAxis ? Num.clamp(newPos, bounds.y, bounds.bottom) : Num.clamp(newPos, bounds.x, bounds.right);
+      return isVerticalAxis ? Math.min(Math.max(newPos, bounds.y), bounds.bottom) : Math.min(Math.max(newPos, bounds.x), bounds.right);
     }) ?? (current);
 
   const adjustedLeft = applyRestriction('left', bounds.x);

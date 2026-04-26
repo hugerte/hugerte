@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, StructAssert, TestStore, UiFinder } from '@ephox/agar';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -27,10 +27,10 @@ describe('MenuRadioTest', () => {
   const hook = GuiSetup.bddSetup((store, _doc, _body) => GuiFactory.build(
     Menu.sketch({
       value: 'test-menu-1',
-      items: Arr.map([
+      items: [
         { type: 'item', data: { value: 'alpha', meta: { text: 'Alpha' }}, hasSubmenu: false, toggling: togglingConfig(store, 'alpha') },
         { type: 'item', data: { value: 'beta', meta: { text: 'Beta' }}, hasSubmenu: false, toggling: togglingConfig(store, 'beta') }
-      ], TestDropdownMenu.renderItem),
+      ].map(TestDropdownMenu.renderItem),
       dom: {
         tag: 'ol',
         classes: [ 'test-menu' ]

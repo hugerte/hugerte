@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { Gene, SpecialGene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
@@ -28,16 +28,16 @@ describe('atomic.robin.zone.AvoidSpecialTest', () => {
   const root = doc.get();
 
   const idInZone = (id: string, zones: ZoneDetails<Gene>[]) =>
-    Arr.exists(zones, (zone) =>
-      Arr.exists(zone.details, (detail) =>
+    zones.some((zone) =)
+      zone.details.some((detail) =)
         detail.item.id === id
       )
     );
 
   it('skips special and CEF elements while walking the entire document', () => {
     const zones = ZoneWalker.walk(doc, root, root, 'en_us', WordDecision.fromItem, ZoneViewports.anything());
-    Arr.each([ '1.1', '1.2', '3.1' ], (id) => assert.isTrue(idInZone(id, zones), 'Zones contains ' + id));
-    Arr.each([ '2.1', '2.2', '4.1' ], (id) => assert.isFalse(idInZone(id, zones), 'Zone does not contain ' + id));
+    [ '1.1', '1.2', '3.1' ].forEach((id) =) assert.isTrue(idInZone(id, zones), 'Zones contains ' + id));
+    [ '2.1', '2.2', '4.1' ].forEach((id) =) assert.isFalse(idInZone(id, zones), 'Zone does not contain ' + id));
   });
 
   it('skips special elements while walking through special elements', () => {

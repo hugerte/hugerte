@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { Attribute, Class, SugarBody } from '@ephox/sugar';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
@@ -512,7 +512,7 @@ describe('browser.hugerte.core.EditorTest', () => {
     const checkWithManager = (title: string, plugins: string, plugin: string, addToManager: boolean, expected: boolean) => {
       const editor = hook.editor();
       if (addToManager) {
-        PluginManager.add('ParticularPlugin', Fun.noop);
+        PluginManager.add('ParticularPlugin', () => {});
       }
 
       editor.options.set('plugins', plugins.split(/[ ,]/));

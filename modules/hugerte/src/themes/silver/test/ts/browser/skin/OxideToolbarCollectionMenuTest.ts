@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, TestStore } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -18,7 +18,7 @@ describe('browser.hugerte.themes.silver.skin.OxideToolbarCollectionMenuTest', ()
         presets: 'listpreview',
         fetch: (callback) => {
           callback(
-            Arr.map([ 'A', 'B', 'C', 'D', 'E', 'F' ], (letter) => ({
+            [ 'A', 'B', 'C', 'D', 'E', 'F' ].map((letter) =) ({
               type: 'choiceitem',
               value: `${letter}`,
               icon: 'fake-icon-name',

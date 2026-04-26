@@ -1,4 +1,4 @@
-import { Type } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -27,10 +27,10 @@ const type = (editor: Editor, chr: string | number | Record<string, number | str
   };
 
   // Numeric keyCode
-  if (Type.isNumber(chr)) {
+  if (typeof chr === 'number') {
     charCode = chr;
     keyCode = charCodeToKeyCode(charCode);
-  } else if (Type.isString(chr)) {
+  } else if (typeof chr === 'string') {
     // String value
     if (chr === '\b') {
       keyCode = 8;
@@ -90,7 +90,7 @@ const type = (editor: Editor, chr: string | number | Record<string, number | str
       }
 
       editor.getDoc().execCommand('Delete');
-    } else if (Type.isString(chr)) {
+    } else if (typeof chr === 'string') {
       const rng = editor.selection.getRng();
 
       if (isText(rng.startContainer) && rng.collapsed) {

@@ -1,19 +1,19 @@
 // @ts-nocheck
-import { Arr, Fun, Id, Obj, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { DieFn, NextFn } from '../pipe/Pipe';
 import { Chain } from './Chain';
 import { TestLogs } from './TestLogs';
 
-const inputNameId = Id.generate('input-name');
-const outputNameId = Id.generate('output-name');
-const outputUnset = Id.generate('output-unset');
+const inputNameId = '_' + Math.random().toString(36).slice(2);
+const outputNameId = '_' + Math.random().toString(36).slice(2);
+const outputUnset = '_' + Math.random().toString(36).slice(2);
 
 export type NamedData = Record<string, any>;
 export type NamedChain = Chain<NamedData, NamedData>;
 
 const asChain = <T>(chains: NamedChain[]): Chain<T, any> =>
-  Chain.fromChains(Arr.flatten([
+  Chain.fromChains([
     [ Chain.mapper((input: T) => ({
       [inputNameId]: input,
       [outputNameId]: outputUnset
@@ -23,7 +23,7 @@ const asChain = <T>(chains: NamedChain[]): Chain<T, any> =>
       const output = data[outputNameId];
       delete data[outputNameId];
       return output === outputUnset ? data : output;
-    }) ]
+    }) .flat()
   ]));
 
 // Write merges in its output into input because it knows that it was
@@ -62,7 +62,7 @@ const combine = (input: NamedData, name: string, value: any): NamedData => ({ ..
 
 const process = (name: string, chain: Chain<any, any>): Chain<NamedData, NamedData> =>
   Chain.on((input, next, die, initLogs) => {
-    if (Obj.has(input, name)) {
+    if (Object.prototype.hasOwnProperty.call(input, name)) {
       const part = input[name];
       chain.runChain(part, (other, newLogs) => {
         const merged: NamedData = { ...input, ...other };
@@ -92,7 +92,7 @@ const read = (name: string, chain: Chain<any, any>): Chain<NamedData, NamedData>
 const merge = (names: string[], combinedName: string): Chain<NamedData, NamedData> =>
   Chain.mapper((input) => {
     const r: NamedData = {};
-    Arr.each(names, (name) => {
+    names.forEach((name) =) {
       r[name] = input[name];
     });
     return combine(input, combinedName, r);
@@ -110,11 +110,11 @@ const pipeline = (namedChains: NamedChain[], onSuccess: NextFn<any>, onFailure: 
   Chain.pipeline([ asChain(namedChains) ], onSuccess, onFailure, initLogs);
 };
 
-const inputName = Fun.constant(inputNameId);
+const inputName = () => inputNameId;
 
 // tests need these values but other users should not
-export const _outputName = Fun.constant(outputNameId);
-export const _outputUnset = Fun.constant(outputUnset);
+export const _outputName = () => outputNameId;
+export const _outputUnset = () => outputUnset;
 
 export const NamedChain = {
   inputName,

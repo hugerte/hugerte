@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+
 import { Class, SugarElement, Value } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -51,10 +51,10 @@ export default (): void => {
           containerBehaviours: Behaviour.derive([
             Reflecting.config({
               channel: 'reflecting-channel',
-              renderComponents: (data: { items: string [] }) => Arr.map(data.items, (d) => ({
+              renderComponents: (data: { items: string [] }) => data.items.map((d) =) ({
                 dom: { tag: 'li', innerHtml: d }
               })),
-              updateState: (comp, data) => Optional.some<any>(data),
+              updateState: (comp, data) => data,
               initialData: {
                 items: [ 'dog', 'cat', 'elephant' ]
               }

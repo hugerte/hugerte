@@ -12,11 +12,11 @@ UnitTest.test('api.PositionArray.get', () => {
     KAssert.eqOptional('eq', expected, actual.map((x) => x.item));
   };
 
-  check(Optional.none(), [], 0);
-  check(Optional.some('a'), [ 'a' ], 0);
-  check(Optional.some('a'), [ 'a' ], 1);
-  check(Optional.none(), [ 'a' ], 2);
-  check(Optional.some('cat'), [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'thiswasaca'.length);
-  check(Optional.some('tomorrow'), [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'thiswasacattodayandto'.length);
-  check(Optional.none(), [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'thiswasacattodayandtomorrow-'.length);
+  check(null, [], 0);
+  check('a', [ 'a' ], 0);
+  check('a', [ 'a' ], 1);
+  check(null, [ 'a' ], 2);
+  check('cat', [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'thiswasaca'.length);
+  check('tomorrow', [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'thiswasacattodayandto'.length);
+  check(null, [ 'this', 'was', 'a', 'cat', 'today', 'and', 'tomorrow' ], 'thiswasacattodayandtomorrow-'.length);
 });

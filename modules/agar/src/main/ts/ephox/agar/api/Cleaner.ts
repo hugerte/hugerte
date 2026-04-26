@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 type Task = () => void;
 
@@ -16,7 +16,7 @@ export const Cleaner = (): Cleaner => {
   };
 
   const run = () => {
-    Arr.each(tasks, (task) => {
+    tasks.forEach((task) =) {
       try {
         task();
       } catch (e) {

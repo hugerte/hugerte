@@ -1,7 +1,7 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { StructureSchema } from '@ephox/boulder';
 import { Dialog } from '@ephox/bridge';
-import { Fun } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 describe('headless.hugerte.themes.silver.components.customeditor.CustomEditorSchemaTest', () => {
@@ -33,9 +33,9 @@ describe('headless.hugerte.themes.silver.components.customeditor.CustomEditorSch
       scriptUrl: 'scriptUrl',
       init: (_el: HTMLElement) => {
         return {
-          setValue: Fun.noop,
-          getValue: Fun.constant(''),
-          destroy: Fun.noop
+          setValue: () => {},
+          getValue: () => '',
+          destroy: () => {}
         };
       }
     }).isError(), 'Expect combining script and init to not be valid');
@@ -45,7 +45,7 @@ describe('headless.hugerte.themes.silver.components.customeditor.CustomEditorSch
       scriptId: 'scriptId',
       scriptUrl: 'scriptUrl',
       settings: {
-        func: Fun.noop
+        func: () => {}
       }
     }).isError(), 'Expect scriptId + scriptUrl with non structured-cloneable settings to not be valid');
   });
@@ -61,9 +61,9 @@ describe('headless.hugerte.themes.silver.components.customeditor.CustomEditorSch
       ...base,
       init: (_el: HTMLElement) => {
         return {
-          setValue: Fun.noop,
-          getValue: Fun.constant(''),
-          destroy: Fun.noop
+          setValue: () => {},
+          getValue: () => '',
+          destroy: () => {}
         };
       }
     }).isValue(), 'Expect init be valid');

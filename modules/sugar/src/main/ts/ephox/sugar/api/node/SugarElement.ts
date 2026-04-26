@@ -45,7 +45,7 @@ const fromDom = <T extends Node | Window> (node: T): SugarElement<T> => {
 };
 
 const fromPoint = (docElm: SugarElement<Document>, x: number, y: number): Optional<SugarElement<Element>> =>
-  Optional.from(docElm.dom.elementFromPoint(x, y)).map(fromDom);
+  docElm.dom.elementFromPoint(x, y) ?? null.map(fromDom);
 
 // tslint:disable-next-line:variable-name
 const SugarElement = {

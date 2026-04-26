@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyApis, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -37,7 +37,7 @@ describe('browser.hugerte.core.content.EditorGetContentRawTest', () => {
       '<p>test0</p><!-- te\uFEFFst1 --><!-- test2 --><!-- te\uFEFFst3 -->',
       '<p>test0</p><!----><!-- test2 --><!---->'));
 
-  Arr.each([ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ], (parent) => {
+  [ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) =) {
     it(`TINY-10305: getContent raw should empty unescaped text nodes containing ZWNBSP within ${parent}`,
       testGetContentRaw(
         `<p>test0</p><${parent}>te\uFEFFst1</${parent}><${parent}>test2</${parent}><${parent}>te\uFEFFst3</${parent}>`,
@@ -78,7 +78,7 @@ describe('browser.hugerte.core.content.EditorGetContentRawTest', () => {
     it('TINY-10236: Excluding ZWNBSP in comment nodes does not cause mXSS',
       testGetContentRawMxss(`<!--\uFEFF><iframe onload="window.${xssFnName}();">->`));
 
-    Arr.each([ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ], (parent) => {
+    [ 'noscript', 'style', 'script', 'xmp', 'iframe', 'noembed', 'noframes' ].forEach((parent) =) {
       it(`TINY-10305: Excluding ZWNBSP in ${parent} does not cause mXSS`,
         testGetContentRawMxss(`<${parent}><\uFEFF/${parent}><\uFEFFiframe onload="window.${xssFnName}();"></${parent}>`));
     });

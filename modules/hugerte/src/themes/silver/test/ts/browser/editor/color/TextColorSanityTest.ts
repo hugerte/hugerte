@@ -1,6 +1,6 @@
 import { ApproxStructure, UiControls, UiFinder, Waiter } from '@ephox/agar';
 import { Assert, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody, SugarShadowDom } from '@ephox/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -329,7 +329,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorSanityTest', () =>
       '#3598DB', 'Blue',
       '#E67E23', 'Orange'
     ];
-    const thirtySixColors = Arr.flatten([ colorMap, colorMap, colorMap, colorMap, colorMap, colorMap ]);
+    const thirtySixColors = [ colorMap, colorMap, colorMap, colorMap, colorMap, colorMap ].flat();
     const hook = TinyHooks.bddSetupLight<Editor>({
       toolbar: 'forecolor backcolor fontsize',
       base_url: '/project/hugerte/js/hugerte',
@@ -363,8 +363,8 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorSanityTest', () =>
       '#3598DB', 'Blue',
       '#E67E23', 'Orange'
     ];
-    const thirtySixColors = Arr.flatten([ colorMap, colorMap, colorMap, colorMap, colorMap, colorMap ]);
-    const fourtyNineColors = Arr.flatten([ thirtySixColors, colorMap, colorMap, [ '#ffffff', 'White' ]]);
+    const thirtySixColors = [ colorMap, colorMap, colorMap, colorMap, colorMap, colorMap ].flat();
+    const fourtyNineColors = [ thirtySixColors, colorMap, colorMap, [ '#ffffff', 'White' ]].flat();
     const hook = TinyHooks.bddSetupLight<Editor>({
       toolbar: 'forecolor backcolor fontsize',
       base_url: '/project/hugerte/js/hugerte',
@@ -400,7 +400,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorSanityTest', () =>
       '#3598DB', 'Blue',
       '#E67E23', 'Orange'
     ];
-    const thirtySixColors = Arr.flatten([ colorMap, colorMap, colorMap, colorMap, colorMap, colorMap ]);
+    const thirtySixColors = [ colorMap, colorMap, colorMap, colorMap, colorMap, colorMap ].flat();
     const hook = TinyHooks.bddSetupLight<Editor>({
       toolbar: 'forecolor backcolor fontsize',
       base_url: '/project/hugerte/js/hugerte',
@@ -434,7 +434,7 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorSanityTest', () =>
       '#3598DB', 'Blue',
       '#E67E23', 'Orange'
     ];
-    const thirtySixColors = Arr.flatten([ colorMap, colorMap, colorMap, colorMap, colorMap, colorMap ]);
+    const thirtySixColors = [ colorMap, colorMap, colorMap, colorMap, colorMap, colorMap ].flat();
     const hook = TinyHooks.bddSetupLight<Editor>({
       toolbar: 'forecolor backcolor fontsize',
       base_url: '/project/hugerte/js/hugerte',

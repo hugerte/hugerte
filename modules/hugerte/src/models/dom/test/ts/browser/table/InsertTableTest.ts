@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -7,10 +7,10 @@ import Editor from 'hugerte/core/api/Editor';
 import * as TableTestUtils from '../../module/table/TableTestUtils';
 
 describe('browser.hugerte.models.dom.table.InsertTableTest', () => {
-  Arr.each([
+  [
     { label: 'no colgroup', withColgroup: false },
     { label: 'colgroup', withColgroup: true },
-  ], ({ label, withColgroup }) => {
+  ].forEach(({ label, withColgroup }) =) {
     const hook = TinyHooks.bddSetup<Editor>({
       indent: false,
       valid_styles: {

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, FocusTools, Keyboard, Keys, Logger, Mouse, Step, StructAssert, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { SelectorFind } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -44,8 +44,8 @@ UnitTest.asynctest('Tooltipping Behaviour', (success, failure) => {
       containerBehaviours: Behaviour.derive([
         Tooltipping.config({
           lazySink,
-          delayForShow: Fun.constant(10),
-          delayForHide: Fun.constant(10),
+          delayForShow: () => 10,
+          delayForHide: () => 10,
           tooltipDom: {
             tag: 'span'
           },
@@ -113,7 +113,7 @@ UnitTest.asynctest('Tooltipping Behaviour', (success, failure) => {
       ])
     );
 
-    return Arr.flatten([
+    return [
       Logger.ts(
         'Checking initial structure',
         [
@@ -179,7 +179,7 @@ UnitTest.asynctest('Tooltipping Behaviour', (success, failure) => {
           // NOTE: This won't actual fail is this throws an error to the console :( It's
           // disconnected from the event queue.
         ]
-      )
+      .flat()
     ]);
   }, success, failure);
 });

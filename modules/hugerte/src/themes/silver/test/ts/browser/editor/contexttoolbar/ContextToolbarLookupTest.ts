@@ -1,6 +1,6 @@
 import { UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun, Obj } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Focus, SelectorFind, SugarBody } from '@ephox/sugar';
 import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -34,15 +34,15 @@ describe.skip('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolba
       // Register buttons to use in the toolbars
       ed.ui.registry.addButton('node', {
         text: 'Node',
-        onAction: Fun.noop
+        onAction: () => {}
       });
       ed.ui.registry.addButton('parentnode', {
         text: 'Parent',
-        onAction: Fun.noop
+        onAction: () => {}
       });
       ed.ui.registry.addButton('editor', {
         text: 'Editor',
-        onAction: Fun.noop
+        onAction: () => {}
       });
 
       // Register toolbars to test with
@@ -79,12 +79,12 @@ describe.skip('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolba
     const current = predicateNodeNames.get();
     predicateNodeNames.set({
       ...current,
-      [type]: Obj.has(current, type) ? current[type].concat([ nodeName ]) : [ nodeName ]
+      [type]: Object.prototype.hasOwnProperty.call(current, type) ? current[type].concat([ nodeName ]) : [ nodeName ]
     });
   };
   const resetNames = () => predicateNodeNames.set({ });
   const assertTypesNames = (type: string, names: string[]) => {
-    const actualNames = Obj.get(predicateNodeNames.get(), type).getOr([]);
+    const actualNames = (predicateNodeNames.get() as any)[type].getOr([]);
     assert.deepEqual(actualNames, names, `Check ${type} lookup node names`);
   };
 

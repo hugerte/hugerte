@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, StructAssert, TestStore, UiFinder, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Attribute, Css, Html, Scroll, SugarBody, SugarShadowDom } from '@ephox/sugar';
 import { TinyApis, TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -14,7 +14,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
     const hook = TinyHooks.bddSetup<Editor>({
       base_url: '/project/hugerte/js/hugerte',
       toolbar_mode: 'floating',
-      toolbar: Arr.range(10, Fun.constant('bold | italic ')).join(''),
+      toolbar: Array.from({ length: 10 }, () => 'bold | italic ').join(''),
       width: 500,
       setup: (editor: Editor) => {
         const injectAndLog = (name: string, html: string = '') => (api: View.ViewInstanceApi) => {
@@ -128,7 +128,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
       Assertions.assertStructure('Checking structure', ApproxStructure.build((s, str, arr) => {
         const button = (title: string, classes: string[]) =>
           s.element('button', {
-            classes: Arr.map(classes, (cls) => arr.has(cls)),
+            classes: classes.map((cls) =) arr.has(cls)),
             attrs: {
               'type': str.is('button'),
               'tabindex': str.is('-1'),
@@ -353,11 +353,11 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
             {
               type: 'button',
               text: 'Button 1',
-              onAction: Fun.noop
+              onAction: () => {}
             }
           ],
-          onShow: Fun.noop,
-          onHide: Fun.noop
+          onShow: () => {},
+          onHide: () => {}
         });
       }
     }, []);
@@ -375,7 +375,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
     const hook = TinyHooks.bddSetup<Editor>({
       base_url: '/project/hugerte/js/hugerte',
       toolbar_mode: 'sliding',
-      toolbar: Arr.range(10, Fun.constant('bold | italic ')).join(''),
+      toolbar: Array.from({ length: 10 }, () => 'bold | italic ').join(''),
       width: 500,
       setup: (editor: Editor) => {
         editor.ui.registry.addView('myview1', {
@@ -383,19 +383,19 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
             {
               type: 'button',
               text: 'Button 1',
-              onAction: Fun.noop
+              onAction: () => {}
             },
             {
               type: 'button',
               text: 'Button 2',
-              onAction: Fun.noop,
+              onAction: () => {},
               buttonType: 'primary'
             }
           ],
           onShow: (api) => {
             api.getContainer().innerHTML = '<button>myview1</button>';
           },
-          onHide: Fun.noop
+          onHide: () => {}
         });
       }
     }, []);
@@ -433,7 +433,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
   context('Sticky toolbar', () => {
     const hook = TinyHooks.bddSetupLight<Editor>({
       base_url: '/project/hugerte/js/hugerte',
-      toolbar: Arr.range(10, Fun.constant('bold | italic ')).join(''),
+      toolbar: Array.from({ length: 10 }, () => 'bold | italic ').join(''),
       width: 500,
       toolbar_mode: 'sliding',
       plugins: 'autoresize',
@@ -453,7 +453,7 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
           onShow: (api) => {
             api.getContainer().innerHTML = '<button>myview1</button>';
           },
-          onHide: Fun.noop
+          onHide: () => {}
         });
       }
     }, []);
@@ -476,9 +476,9 @@ describe('browser.hugerte.themes.silver.view.ViewTest', () => {
     it('TINY-9814: coming back from a view when the toolbar is scrolled, should preserve the buttons in `tox-toolbar__primary`', async () => {
       const editor = hook.editor();
       editor.setContent(`<p>
-        ${Arr.range(50, Fun.constant('some text')).join('<br>')}
+        ${Array.from({ length: 50 }, () => 'some text').join('<br>')}
         <div class="element_to_scroll_to">element to scroll to</div>
-        ${Arr.range(50, Fun.constant('some text')).join('<br>')}
+        ${Array.from({ length: 50 }, () => 'some text').join('<br>')}
       </p>`);
 
       const elementToScrollTo = UiFinder.findIn(TinyDom.body(editor), '.element_to_scroll_to').getOrDie();

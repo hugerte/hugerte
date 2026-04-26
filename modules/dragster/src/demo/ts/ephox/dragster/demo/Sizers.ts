@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Css, Height, InsertAll, Remove, SelectorFind, SugarElement, SugarLocation, Visibility, Width } from '@ephox/sugar';
 
 interface Box {
@@ -39,7 +39,7 @@ export const Sizers = (): Sizers => {
     const hider = Visibility.displayToggler(r, 'block');
 
     return {
-      element: Fun.constant(r),
+      element: () => r,
       show: hider.off,
       hide: hider.on,
       set,
@@ -76,13 +76,13 @@ export const Sizers = (): Sizers => {
   };
 
   const hide = () => {
-    Arr.each([ northwest, north, northeast, southeast ], (x) => {
+    [ northwest, north, northeast, southeast ].forEach((x) =) {
       x.hide();
     });
   };
 
   const show = () => {
-    Arr.each([ northwest, north, northeast, southeast ], (x) => {
+    [ northwest, north, northeast, southeast ].forEach((x) =) {
       x.show();
     });
   };
@@ -95,8 +95,8 @@ export const Sizers = (): Sizers => {
   };
 
   return {
-    northeast: Fun.constant(northeast),
-    southeast: Fun.constant(southeast),
+    northeast: () => northeast,
+    southeast: () => southeast,
     hide,
     show,
     update,

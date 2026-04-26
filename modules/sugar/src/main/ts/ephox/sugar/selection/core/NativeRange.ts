@@ -89,12 +89,12 @@ const getFirstRect = (rng: Range): Optional<RawRect> => {
   const rects = rng.getClientRects();
   // ASSUMPTION: The first rectangle is the start of the selection
   const rect = rects.length > 0 ? rects[0] : rng.getBoundingClientRect();
-  return rect.width > 0 || rect.height > 0 ? Optional.some(rect).map(toRect) : Optional.none();
+  return rect.width > 0 || rect.height > 0 ? rect.map(toRect) : null;
 };
 
 const getBounds = (rng: Range): Optional<RawRect> => {
   const rect = rng.getBoundingClientRect();
-  return rect.width > 0 || rect.height > 0 ? Optional.some(rect).map(toRect) : Optional.none();
+  return rect.width > 0 || rect.height > 0 ? rect.map(toRect) : null;
 };
 
 const toString = (rng: Range): string => rng.toString();

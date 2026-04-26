@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Strings } from '@ephox/katamari';
+
 import { Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 import { McEditor, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -14,15 +14,15 @@ describe('browser.hugerte.core.init.ShadowDomEditorTest', () => {
     }
   });
 
-  const isSkin = (ss: StyleSheet) => ss.href !== null && Strings.contains(ss.href, 'skin.min.css');
-  const isShadowDomSkin = (ss: StyleSheet) => ss.href !== null && Strings.contains(ss.href, 'skin.shadowdom.min.css');
+  const isSkin = (ss: StyleSheet) => ss.href !== null && ss.href.includes('skin.min.css');
+  const isShadowDomSkin = (ss: StyleSheet) => ss.href !== null && ss.href.includes('skin.shadowdom.min.css');
 
-  Arr.each([
+  [
     { type: 'normal', settings: { }, numSinks: 1 },
     { type: 'inline', settings: { inline: true }, numSinks: 1 },
     { type: 'normal-split-ui-mode', settings: { ui_mode: 'split' }, numSinks: 2 },
     { type: 'inline-split-ui-mode', settings: { ui_mode: 'split', inline: true }, numSinks: 2 }
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(`${tester.type} editor`, () => {
       const hook = TinyHooks.bddSetupInShadowRoot<Editor>({
         toolbar_sticky: false,
@@ -31,8 +31,8 @@ describe('browser.hugerte.core.init.ShadowDomEditorTest', () => {
       }, []);
 
       it('Skin stylesheets should be loaded in ShadowRoot when editor is in ShadowRoot', () => {
-        assert.isTrue(Arr.exists(hook.shadowRoot().dom.styleSheets, isSkin), 'There should be a skin stylesheet in the ShadowRoot');
-        assert.isTrue(Arr.exists(document.styleSheets, isShadowDomSkin), 'There should be a shadowdom specific skin stylesheet in the document');
+        assert.isTrue(hook.shadowRoot().dom.styleSheets.some(isSkin), 'There should be a skin stylesheet in the ShadowRoot');
+        assert.isTrue(document.styleSheets.some(isShadowDomSkin), 'There should be a shadowdom specific skin stylesheet in the document');
       });
 
       it('aux div should be within shadow root', async () => {
@@ -69,7 +69,7 @@ describe('browser.hugerte.core.init.ShadowDomEditorTest', () => {
         const editor2 = await mkEditor(sr);
         const editor3 = await mkEditor(sr);
 
-        assert.lengthOf(Arr.filter(sr.dom.styleSheets, isSkin), 1, 'There should only be 1 skin stylesheet in the ShadowRoot');
+        assert.lengthOf(sr.dom.styleSheets.filter(isSkin), 1, 'There should only be 1 skin stylesheet in the ShadowRoot');
 
         McEditor.remove(editor1);
         McEditor.remove(editor2);

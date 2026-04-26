@@ -1,6 +1,6 @@
 import { Assertions, GeneralSteps, Logger, Step, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Css, SugarElement } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -98,7 +98,7 @@ UnitTest.asynctest('InlineViewRepositionTest', (success, failure) => {
     const anchorSpec: NodeAnchorSpec = {
       type: 'node',
       root: gui.element,
-      node: Optional.some(anchor.element),
+      node: anchor.element,
       layouts: {
         onLtr: () => [ Layout.southeast ],
         onRtl: () => [ Layout.southeast ]

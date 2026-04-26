@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Css, Dimension, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -168,7 +168,7 @@ describe('browser.hugerte.models.dom.table.command.MergeCellCommandTest', () => 
 
     editor.setContent(before);
     const cols = SelectorFilter.descendants(TinyDom.body(editor), 'td[data-mce-selected]');
-    const totalColsWidth = Arr.foldl(cols, (acc, col) => acc + getWidth(col), 0);
+    const totalColsWidth = cols.reduce((acc, col) => acc + getWidth(col), 0);
     editor.selection.select(cols[0].dom, true);
     editor.selection.collapse(true);
     editor.execCommand('mceTableMergeCells');

@@ -1,7 +1,7 @@
 import { FocusTools, Keyboard, Keys, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
 import { Objects } from '@ephox/boulder';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
@@ -67,14 +67,14 @@ UnitTest.asynctest('Flat Grid Keying Test', (success, failure) => {
           })
         ]),
         // 4 x 6 grid size
-        components: Arr.map(squares, (num) => item([ num ]))
+        components: squares.map((num) =) item([ num ]))
       })
     );
 
   }, (doc, body, gui, component, store) => {
 
     const targets: any = Objects.wrapAll(
-      Arr.map(squares, (sq) => ({
+      squares.map((sq) =) ({
         key: sq,
         value: {
           label: sq,

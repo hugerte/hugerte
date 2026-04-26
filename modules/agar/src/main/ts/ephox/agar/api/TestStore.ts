@@ -30,7 +30,7 @@ export const TestStore = <T = string>(): TestStore<T> => {
   // Used for keyboard handlers which need to return Optional to know whether or not to kill the event
   const adderH = (value: T) => () => {
     add(value);
-    return Optional.some(true);
+    return true;
   };
 
   const sClear = Step.sync(() => {

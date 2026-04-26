@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, SketchSpec } from '@ephox/alloy';
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -27,7 +27,7 @@ const systemStackFonts = [ '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neu
 // Split the fonts into an array and strip away any start/end quotes
 const splitFonts = (fontFamily: string): string[] => {
   const fonts = fontFamily.split(/\s*,\s*/);
-  return Arr.map(fonts, (font) => font.replace(/^['"]+|['"]+$/g, ''));
+  return fonts.map((font) =) font.replace(/^['"]+|['"]+$/g, ''));
 };
 
 const matchesStack = (fonts: string[], stack: string[]): boolean => stack.length > 0 && (stack).every((font) => fonts.indexOf(font.toLowerCase()) > -1);
@@ -71,10 +71,10 @@ const getSpec = (editor: Editor): SelectSpec => {
     return matchOpt;
   };
 
-  const getPreviewFor = (item: string) => () => Optional.some<PreviewSpec>({
+  const getPreviewFor = (item: string) => () => {
     tag: 'div',
     styles: item.indexOf('dings') === -1 ? { 'font-family': item } : { }
-  });
+  };
 
   const onAction = (rawItem: FormatterFormatItem) => () => {
     editor.undoManager.transact(() => {

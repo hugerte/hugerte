@@ -1,5 +1,5 @@
 import { Menu } from '@ephox/bridge';
-import { Merger, Obj } from '@ephox/katamari';
+
 
 import { SingleMenuItemSpec } from './SingleMenuTypes';
 
@@ -19,7 +19,7 @@ type MenuItemRegistry = Record<string, Menu.MenuItemSpec | Menu.NestedMenuItemSp
 
 const isMenuItemReference = (item: string | SingleMenuItemSpec): item is string => typeof (item) === 'string';
 const isSeparator = (item: SingleMenuItemSpec): item is Menu.SeparatorMenuItemSpec => item.type === 'separator';
-const isExpandingMenuItem = (item: SingleMenuItemSpec): item is Menu.NestedMenuItemSpec => Obj.has(item as Record<string, any>, 'getSubmenuItems');
+const isExpandingMenuItem = (item: SingleMenuItemSpec): item is Menu.NestedMenuItemSpec => Object.prototype.hasOwnProperty.call(item as Record<string, any>, 'getSubmenuItems');
 
 const separator: Menu.SeparatorMenuItemSpec = {
   type: 'separator'
@@ -58,14 +58,8 @@ const getFromExpandingItem = (item: Menu.NestedMenuItemSpec & { value: string },
   const submenuItems = item.getSubmenuItems();
   const rest = expand(submenuItems, menuItems);
 
-  const newMenus = Merger.deepMerge(
-    rest.menus,
-    { [item.value]: rest.items }
-  );
-  const newExpansions = Merger.deepMerge(
-    rest.expansions,
-    { [item.value]: item.value }
-  );
+  const newMenus = ({ ...rest.menus, ...{ [item.value]: rest.items } });
+  const newExpansions = ({ ...rest.expansions, ...{ [item.value]: item.value } });
 
   return {
     item,
@@ -76,8 +70,8 @@ const getFromExpandingItem = (item: Menu.NestedMenuItemSpec & { value: string },
 
 const generateValueIfRequired = (item: Menu.NestedMenuItemSpec): Menu.NestedMenuItemSpec & { value: string } => {
   // Use the value already in item if it has one.
-  const itemValue = Obj.get<any, string>(item, 'value').getOrThunk(() => (('generated-menu-item') + '_' + Math.floor(Math.random() * 1e9) + Date.now()));
-  return Merger.deepMerge({ value: itemValue }, item);
+  const itemValue = (item as any)['value'].getOrThunk(() => (('generated-menu-item') + '_' + Math.floor(Math.random() * 1e9) + Date.now()));
+  return ({ ...{ value: itemValue }, ...item });
 };
 
 // Takes items, and consolidates them into its return value
@@ -103,11 +97,11 @@ const expand = (items: string | Array<string | SingleMenuItemSpec>, menuItems: M
       return {
         // Combine all of our current submenus and items with the new submenus created by
         // this item with nested subitems
-        menus: Merger.deepMerge(acc.menus, newData.menus),
+        menus: ({ ...acc.menus, ...newData.menus }),
         // Add our parent item into the list of items in the *current menu*.
         items: [ newData.item, ...acc.items ],
         // Merge together our "this item opens this submenu" objects
-        expansions: Merger.deepMerge(acc.expansions, newData.expansions)
+        expansions: ({ ...acc.expansions, ...newData.expansions })
       };
     } else {
       // If we aren't creating any submenus, then all we need to do is add this item

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Merger, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { Attribute, Css, InsertAll, SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
@@ -59,7 +59,7 @@ const isTagsDetail = (detail: TagsDetail | TagDetail): detail is TagsDetail =>
   (detail as TagsDetail).tags !== undefined;
 
 const toTags = (detail: TagsDetail): Tag[] =>
-  Obj.mapToArray(detail.tags, (v, k) => Merger.deepMerge(v, { tag: k }));
+  Obj.mapToArray(detail.tags, (v, k) => ({ ...v, ...{ tag: k } }));
 
 const flattenTag = (tag: string): Record<string, WeightedChoice.WeightedItem & Decorations> => {
   const r = {};
@@ -71,9 +71,9 @@ const conform = (detail: TagsDetail | TagDetail): TagsDetail => {
   if (isTagsDetail(detail)) {
     return detail;
   } else {
-    return Merger.deepMerge(detail, {
+    return ({ ...detail, ...{
       tags: flattenTag(detail.tag)
-    });
+    } });
   }
 };
 

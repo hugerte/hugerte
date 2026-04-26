@@ -207,9 +207,9 @@ const getOrInitConnection = (): Inspector => {
         return ((connections) as any[]).reduce<any>((acc: any, x: any) => acc !== null ? acc : ((conn) => {
           const connGui = systems[conn];
           return connGui.getByUid(uid).toOptional().map((comp): LookupInfo => Objects.wrap(AlloyLogger.element(comp.element), inspectorInfo(comp)));
-        })(x), null).orThunk(() => Optional.some<LookupInfo>({
+        })(x), null).orThunk(() => {
           error: 'Systems (' + connections.join(', ') + ') did not contain uid: ' + uid
-        }));
+        });
       },
 
       events: {

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Assert } from '@ephox/bedrock-client';
 import { Pprint } from '@ephox/dispute';
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 
 import { Chain } from 'ephox/agar/api/Chain';
 import { Pipeline } from 'ephox/agar/api/Pipeline';
@@ -165,10 +165,10 @@ const testChainFail = <T, E>(expected: E, initial: T, chain: Chain<any, any>): S
 const testChainsFail = <T, E>(expected: E, initial: T, chains: Array<Chain<any, any>>): Step<T, any> =>
   Step.raw((initValue, next, die, initLogs) => {
     Chain.pipeline(
-      Arr.flatten([
+      [
         [ Chain.inject(initial) ],
         chains
-      ]),
+      ].flat(),
       (v, newLogs) => {
         const msg = failOnSuccess('testChainsFail', expected, v);
         die(msg, newLogs);
@@ -183,7 +183,7 @@ const testChainsFail = <T, E>(expected: E, initial: T, chains: Array<Chain<any, 
     );
   });
 
-const preserved = Fun.constant(sPreserved);
+const preserved = () => sPreserved;
 
 export {
   failed,

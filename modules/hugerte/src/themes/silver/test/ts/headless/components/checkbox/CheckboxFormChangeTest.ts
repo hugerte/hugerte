@@ -1,7 +1,7 @@
 import { FocusTools, Keyboard, Keys, TestStore } from '@ephox/agar';
 import { AddEventsBehaviour, AlloyEvents, Behaviour, GuiFactory, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import { renderCheckbox } from 'hugerte/themes/silver/ui/general/Checkbox';
 import { FormChangeEvent, formChangeEvent } from 'hugerte/themes/silver/ui/general/FormEvents';
@@ -18,7 +18,7 @@ describe('headless.hugerte.themes.silver.components.checkbox.CheckboxFormChangeT
         label: 'TestCheckbox',
         name: 'test-check-box',
         enabled: true,
-      }, TestProviders, Optional.none())
+      }, TestProviders, null)
     ],
     behaviours: Behaviour.derive([
       AddEventsBehaviour.config('test-checkbox', [

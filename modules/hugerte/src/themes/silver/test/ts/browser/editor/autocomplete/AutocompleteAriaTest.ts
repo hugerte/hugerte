@@ -1,6 +1,6 @@
 import { Keys, UiFinder, Waiter } from '@ephox/agar';
 import { afterEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, SelectorFilter, SugarBody, SugarElement } from '@ephox/sugar';
 import { TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -16,7 +16,7 @@ interface TestScenario {
 }
 
 describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteAriaTest', () => {
-  Arr.each([ 'iframe', 'inline' ], (mode: string) => {
+  [ 'iframe', 'inline' ].forEach((mode: string) =) {
     context(mode, () => {
       afterEach(() => assertAutocompleteClosed());
 
@@ -61,9 +61,9 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteAriaTest
             minChars: 0,
             columns: 1,
             fetch: (pattern, _maxResults) => new Promise((resolve) => {
-              const filteredItems = Arr.filter([ 'aA', 'bB', 'cC', 'dD' ], (letter) => letter.indexOf(pattern) !== -1);
+              const filteredItems = [ 'aA', 'bB', 'cC', 'dD' ].filter((letter) =) letter.indexOf(pattern) !== -1);
               resolve(
-                Arr.map(filteredItems, (letter) => ({
+                filteredItems.map((letter) =) ({
                   value: `plus-${letter}`,
                   text: `p-${letter}`,
                   icon: '+'
@@ -83,13 +83,13 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteAriaTest
             columns: 1,
             highlightOn: [ 'my_text_to_highlight' ],
             fetch: (pattern, _maxResults) => {
-              const filteredItems = Arr.filter([
+              const filteredItems = [
                 { text: 'equals sign', value: '=' },
                 { text: 'plus sign - D', value: '+' }
-              ], (item) => item.text.indexOf(pattern) !== -1);
+              ].filter((item) =) item.text.indexOf(pattern) !== -1);
               return new Promise((resolve) => {
                 resolve(
-                  Arr.map(filteredItems, (item) => ({
+                  filteredItems.map((item) =) ({
                     value: `euro-${item.value}`,
                     ariaLabel: item.text,
                     type: 'cardmenuitem',
@@ -128,10 +128,10 @@ describe('browser.hugerte.themes.silver.editor.autocomplete.AutocompleteAriaTest
         }
       }, [], true);
 
-      Arr.each([
+      [
         { triggerChar: '+', label: 'autocomplete item' },
         { triggerChar: ':', label: 'cardmenu item' }
-      ], (scenario: TestScenario) => {
+      ].forEach((scenario: TestScenario) =) {
         context(scenario.label, () => {
           it('TINY-9393: Attributes of editor body should be updated when autocomplete is shown', async () => {
             const editor = hook.editor();

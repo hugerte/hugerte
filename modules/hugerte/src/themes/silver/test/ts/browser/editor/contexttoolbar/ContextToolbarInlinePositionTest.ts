@@ -1,6 +1,6 @@
 import { UiFinder, Waiter } from '@ephox/agar';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Css, Scroll, SugarBody, SugarLocation } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -30,7 +30,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarInli
     setup: (ed: Editor) => {
       ed.ui.registry.addButton('alpha', {
         text: 'Alpha',
-        onAction: Fun.noop
+        onAction: () => {}
       });
       ed.ui.registry.addContextToolbar('test-toolbar', {
         predicate: (node) => node.nodeName.toLowerCase() === 'a',
@@ -141,7 +141,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarInli
     editor.setContent(
       '<table style="width: 100%; border-collapse: collapse;">' +
       '<tbody>' +
-      Arr.range(100, (i) => `<tr style="height: 22px"><td>Cell ${i + 1}</td></tr>`).join('') +
+      Array.from({ length: 100 }, (i) => `<tr style="height: 22px"><td>Cell ${i + 1}</td></tr>`).join('') +
       '</tbody>' +
       '</table>'
     );

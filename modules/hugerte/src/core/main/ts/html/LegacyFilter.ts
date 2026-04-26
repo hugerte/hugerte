@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+
 
 import DomParser, { DomParserSettings } from '../api/html/DomParser';
 import AstNode from '../api/html/Node';
@@ -29,7 +29,7 @@ const addFontToSpansFilter = (domParser: DomParser, styles: Styles, fontSizes: s
       }
 
       if (size) {
-        Strings.toInt(size).each((num) => {
+        parseInt(size, 10).each((num) => {
           props['font-size'] = fontSizes[num - 1];
         });
       }

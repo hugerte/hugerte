@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, Step, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -46,7 +46,7 @@ UnitTest.asynctest('ReflectingTest', (success, failure) => {
             behaviours: Behaviour.derive([
               Reflecting.config({
                 channel: 'channel-1',
-                updateState: (_, input) => Optional.some({ state: input })
+                updateState: (_, input) => { state: input }
               })
             ])
           },
@@ -59,7 +59,7 @@ UnitTest.asynctest('ReflectingTest', (success, failure) => {
             behaviours: Behaviour.derive([
               Reflecting.config({
                 channel: 'channel-2',
-                renderComponents: (input) => Arr.map(input, makeChild),
+                renderComponents: (input) => input.map(makeChild),
                 initialData: [ '2a-cat', '2a-dog' ]
               })
             ])
@@ -75,7 +75,7 @@ UnitTest.asynctest('ReflectingTest', (success, failure) => {
             behaviours: Behaviour.derive([
               Reflecting.config({
                 channel: 'channel-2',
-                renderComponents: (input) => Arr.map(input, makeChild),
+                renderComponents: (input) => input.map(makeChild),
                 initialData: [ '2b-cat', '2b-dog' ]
               })
             ])
@@ -89,7 +89,7 @@ UnitTest.asynctest('ReflectingTest', (success, failure) => {
             behaviours: Behaviour.derive([
               Reflecting.config({
                 channel: 'channel-2',
-                renderComponents: (input) => Arr.map(input, makeChild)
+                renderComponents: (input) => input.map(makeChild)
               })
             ])
           },
@@ -103,8 +103,8 @@ UnitTest.asynctest('ReflectingTest', (success, failure) => {
             behaviours: Behaviour.derive([
               Reflecting.config({
                 channel: 'channel-3',
-                renderComponents: (_input, state) => Arr.map(state.map((s) => s.state).getOr([ ]), makeChild),
-                updateState: (_c, input) => Optional.some({ state: input })
+                renderComponents: (_input, state) => state.map((s) => s.state).getOr([ ]).map(makeChild),
+                updateState: (_c, input) => { state: input }
               })
             ])
           }

@@ -1,4 +1,4 @@
-import { Optional, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 
 import * as ComponentStructure from '../../alien/ComponentStructure';
 import * as AriaControls from '../../aria/AriaControls';
@@ -101,7 +101,7 @@ const makeSandbox = (button: AlloyComponent, spec: FloatingToolbarButtonSpec, de
           mode: 'special',
           onEscape: (comp) => {
             Sandboxing.close(comp);
-            return Optional.some<boolean>(true);
+            return true;
           }
         }),
         Sandboxing.config({

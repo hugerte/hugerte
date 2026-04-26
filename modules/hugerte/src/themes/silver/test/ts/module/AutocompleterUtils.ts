@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, StructAssert, UiFinder, Waiter } from '@ephox/agar';
-import { Arr, Type } from '@ephox/katamari';
+
 import { SugarBody, SugarElement } from '@ephox/sugar';
 
 interface TitleWithTextItem {
@@ -114,10 +114,10 @@ const pAssertAutocompleterStructure = async (structure: AutocompleterStructure):
                   // TINY-6476: Ensure the menu is positioned not the wrapper
                   position: str.is('absolute')
                 },
-                children: Arr.map<GroupItem[], StructAssert>(structure.groups, (group) => s.element('div', {
+                children: structure.groups.map((group) => s.element('div', {
                   classes: [ arr.has('tox-collection__group') ],
-                  children: Arr.map(group, (d) => {
-                    if (Type.isFunction(d)) {
+                  children: group.map((d) =) {
+                    if (typeof d === 'function') {
                       return d(s, str, arr);
                     } else if (structure.type === 'list') {
                       if (structure.hasIcons) {

@@ -1,7 +1,7 @@
 import { UiFinder } from '@ephox/agar';
 import { TestHelpers } from '@ephox/alloy';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, SugarBody, SugarDocument, SugarElement } from '@ephox/sugar';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
@@ -45,10 +45,10 @@ describe('browser.hugerte.themes.silver.window.SilverDialogAriaLabelTest', () =>
     UiFinder.exists(dialog, `#${labelId}`);
   };
 
-  Arr.each([
+  [
     { label: 'Modal', params: { }},
     { label: 'Inline', params: { inline: 'toolbar' as 'toolbar' }}
-  ], (test) => {
+  ].forEach((test) =) {
     context(test.label, () => {
       it(`Dialog should have "aria-labelledby" for config "${JSON.stringify(test.params)}"`, () => {
         const editor = hook.editor();

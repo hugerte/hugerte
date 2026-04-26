@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SelectorFind, SugarBody, SugarDocument } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -35,7 +35,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerAlertTest', ()
   );
 
   it('Check the basic structure of the alert dialog', async () => {
-    createAlert('The alert dialog loads with the basic structure', Fun.noop);
+    createAlert('The alert dialog loads with the basic structure', () => {});
     await pWaitForDialog();
     const sink = extrasHook.access().getDialogSink();
     Assertions.assertStructure('A basic alert dialog should have these components',
@@ -130,7 +130,7 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerAlertTest', ()
 
   it('Should display a HTML error message', async () => {
     const label = 'should display this <strong>message</strong>';
-    createAlert(label, Fun.noop);
+    createAlert(label, () => {});
     const dialogBody = SelectorFind.descendant(SugarDocument.getDocument(), '.tox-dialog__body').getOrDie('Cannot find dialog body element');
     Assertions.assertStructure('A basic alert dialog should have these components',
       ApproxStructure.build((s, str, arr) => s.element('div', {
@@ -167,13 +167,13 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerAlertTest', ()
   });
 
   it('Should focus on the ok button initially', async () => {
-    createAlert('initial focus should be on ok button', Fun.noop);
+    createAlert('initial focus should be on ok button', () => {});
     FocusTools.sTryOnSelector('When the alert dialog loads, focus should be on the ok button', SugarDocument.getDocument(), 'button:contains(OK)');
     await pTeardown();
   });
 
   it('Should focus the first button when the dialog is clicked', async () => {
-    createAlert('Click should focus ok button', Fun.noop);
+    createAlert('Click should focus ok button', () => {});
     await FocusTools.pTryOnSelector('When the alert dialog loads, focus should be on the ok button', SugarDocument.getDocument(), 'button:contains(OK)');
     Mouse.trueClickOn(SugarDocument.getDocument(), '.tox-dialog');
     await FocusTools.pTryOnSelector('Focus should still be on the ok button', SugarDocument.getDocument(), 'button:contains(OK)');
@@ -181,13 +181,13 @@ describe.skip('headless.hugerte.themes.silver.window.WindowManagerAlertTest', ()
   });
 
   it('Check that clicking ok in the dialog makes the dialog go away', () => {
-    createAlert('Showing an alert', Fun.noop);
+    createAlert('Showing an alert', () => {});
     Mouse.clickOn(SugarBody.body(), '.tox-button:contains("OK")');
     UiFinder.notExists(SugarBody.body(), '[role="dialog"]');
   });
 
   it('TINY-3548: sanitize message', async () => {
-    createAlert('<a href="javascript:alert(1)">invalid link</a><script>alert(1)</script><a href="http://tiny.cloud">valid link</a>', Fun.noop);
+    createAlert('<a href="javascript:alert(1)">invalid link</a><script>alert(1)</script><a href="http://tiny.cloud">valid link</a>', () => {});
     const dialogBody = SelectorFind.descendant(SugarDocument.getDocument(), '.tox-dialog__body').getOrDie('Cannot find dialog body element');
     Assertions.assertStructure('A basic alert dialog should have these components',
       ApproxStructure.build((s, str, arr) => s.element('div', {

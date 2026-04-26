@@ -21,7 +21,7 @@ describe('browser.hugerte.core.html.ParserUtilsTest', () => {
 
       return Arr.head(states).map((first) => {
         const firstNode = generateNode(first);
-        return Arr.foldl(states.slice(1), ([ node, nodes ], type) => {
+        return states.slice(1).reduce(([ node, nodes ], type) => {
           const newNode = generateNode(type);
           return [ node.append(newNode), nodes.concat([ newNode ]) ];
         }, [ firstNode, [ firstNode ]]);

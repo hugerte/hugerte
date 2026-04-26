@@ -2,7 +2,7 @@ import { ApproxStructure, Assertions, Mouse, Waiter } from '@ephox/agar';
 import { AlloyComponent, GuiFactory, TestHelpers } from '@ephox/alloy';
 import { afterEach, describe, it } from '@ephox/bedrock-client';
 import { Menu, Toolbar } from '@ephox/bridge';
-import { Cell, Fun, Optional } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute, Class, SelectorFind } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -30,14 +30,14 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
         components: [
           renderToolbarButton({
             type: 'button',
-            shortcut: Optional.none(),
+            shortcut: null,
             enabled: true,
-            tooltip: Optional.some('tooltip'),
-            icon: Optional.none(),
-            text: Optional.some('button1'),
+            tooltip: 'tooltip',
+            icon: null,
+            text: 'button1',
             onSetup: (_api: Toolbar.ToolbarButtonInstanceApi) => {
               store.adder('onSetup.1')();
-              return Fun.noop;
+              return () => {};
             },
             onAction: (api: Toolbar.ToolbarButtonInstanceApi) => {
               store.adder('onAction.1')();
@@ -55,15 +55,15 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
         components: [
           renderToolbarToggleButton({
             type: 'togglebutton',
-            shortcut: Optional.none(),
+            shortcut: null,
             enabled: true,
             active: false,
-            tooltip: Optional.some('tooltip'),
-            icon: Optional.none(),
-            text: Optional.some('button2'),
+            tooltip: 'tooltip',
+            icon: null,
+            text: 'button2',
             onSetup: (_api: Toolbar.ToolbarToggleButtonInstanceApi) => {
               store.adder('onSetup.2')();
-              return Fun.noop;
+              return () => {};
             },
             onAction: (api: Toolbar.ToolbarToggleButtonInstanceApi) => {
               store.adder('onToggleAction.2')();
@@ -82,12 +82,12 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
         components: [
           renderSplitButton({
             type: 'splitbutton',
-            tooltip: Optional.some('tooltip'),
-            icon: Optional.none(),
-            text: Optional.some('button3'),
+            tooltip: 'tooltip',
+            icon: null,
+            text: 'button3',
             columns: 1,
             presets: 'normal',
-            select: Optional.none(),
+            select: null,
             fetch: (callback) => {
               callback([
                 {
@@ -99,7 +99,7 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
             },
             onSetup: (_api: Toolbar.ToolbarSplitButtonInstanceApi) => {
               store.adder('onSetup.3')();
-              return Fun.noop;
+              return () => {};
             },
             onAction: (api: Toolbar.ToolbarSplitButtonInstanceApi) => {
               store.adder('onToggleAction.3')();
@@ -121,10 +121,10 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
         },
         components: [
           renderMenuButton({
-            tooltip: Optional.some('tooltip'),
-            icon: Optional.none(),
-            text: Optional.some('button4'),
-            search: Optional.none(),
+            tooltip: 'tooltip',
+            icon: null,
+            text: 'button4',
+            search: null,
             fetch: (callback) => {
               callback([
                 {
@@ -138,9 +138,9 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
             },
             onSetup: (_api: Toolbar.ToolbarMenuButtonInstanceApi) => {
               store.adder('onSetup.4')();
-              return Fun.noop;
+              return () => {};
             }
-          }, 'tox-mbtn', extrasHook.access().extras.backstages.popup, Optional.none())
+          }, 'tox-mbtn', extrasHook.access().extras.backstages.popup, null)
         ]
       }
     ]

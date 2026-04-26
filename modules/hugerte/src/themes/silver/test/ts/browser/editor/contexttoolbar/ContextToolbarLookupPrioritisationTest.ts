@@ -1,6 +1,6 @@
 import { describe, it } from '@ephox/bedrock-client';
 import { InlineContent } from '@ephox/bridge';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -11,28 +11,28 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarLook
   const createToolbar = (items: string): InlineContent.ContextToolbar => ({
     type: 'contexttoolbar',
     items,
-    predicate: Fun.always,
+    predicate: () => true,
     position: 'selection',
     scope: 'node'
   });
 
   const createForm = (): InlineContent.ContextForm => ({
     type: 'contextform',
-    initValue: Fun.constant('test'),
-    label: Optional.none(),
-    launch: Optional.none(),
+    initValue: () => 'test',
+    label: null,
+    launch: null,
     commands: [{
-      onAction: Fun.noop,
+      onAction: () => {},
       original: {
-        onAction: Fun.noop
+        onAction: () => {}
       },
       enabled: true,
-      tooltip: Optional.none(),
-      icon: Optional.none(),
-      text: Optional.none(),
-      onSetup: () => Fun.noop
+      tooltip: null,
+      icon: null,
+      text: null,
+      onSetup: () => () => {}
     }],
-    predicate: Fun.always,
+    predicate: () => true,
     position: 'selection',
     scope: 'node'
   });
@@ -40,7 +40,7 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarLook
   const assertMatch = (nodeCandidates: ContextType[], editorCandidates: ContextType[], expectedCandidates: ContextType[]) => {
     const elem = SugarElement.fromHtml<HTMLSpanElement>('<span>test</span>');
     matchStartNode(elem, nodeCandidates, editorCandidates).each((result) => {
-      Arr.each(result.toolbars, (t, i) => {
+      result.toolbars.forEach((t, i) =) {
         assert.equal(t, expectedCandidates[i], 'Assert toolbars are equal');
       });
     });
@@ -71,6 +71,6 @@ describe('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolbarLook
   it('TINY-4495: Assert toolbar lookup concatenates node scoped context TOOLBARS and editor scoped context TOOLBARS', () => {
     const nodeScoped = [ createToolbar('a') ];
     const editorScoped = [ createToolbar('b') ];
-    assertMatch(nodeScoped, editorScoped, Arr.flatten([ nodeScoped, editorScoped ]));
+    assertMatch(nodeScoped, editorScoped, [ nodeScoped, editorScoped ].flat());
   });
 });

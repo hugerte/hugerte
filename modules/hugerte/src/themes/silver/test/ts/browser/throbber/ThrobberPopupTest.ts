@@ -1,6 +1,6 @@
 import { UiFinder, Waiter } from '@ephox/agar';
 import { afterEach, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Class, Focus, Insert, Remove, SugarBody, SugarElement, SugarNode } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -13,10 +13,10 @@ describe('browser.hugerte.themes.silver.throbber.ThrobberPopupTest', () => {
       ed.ui.registry.addMenuItem('test-item', {
         icon: 'nope',
         text: 'do the thing',
-        onAction: Fun.die('please do not click this')
+        onAction: () => { throw new Error('please do not click this'); }
       });
       ed.ui.registry.addContextMenu('test', {
-        update: Fun.constant('test-item')
+        update: () => 'test-item'
       });
       ed.ui.registry.addContextToolbar('test-2', {
         items: 'bold | italic',

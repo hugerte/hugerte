@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+
 import { Attribute, Css } from '@ephox/sugar';
 
 import * as AlloyParts from '../../parts/AlloyParts';
@@ -117,14 +117,14 @@ const make = (detail: SlotContainerDetail, components: AlloySpec[]) => {
 
 // No type safety doing it this way. But removes dupe.
 // We could probably use spread operator to help here.
-const slotApis: SlotContainerApis = Obj.map({
+const slotApis: SlotContainerApis = Object.fromEntries(Object.entries({
   getSlotNames: (apis: SlotContainerApis, c: AlloyComponent) => apis.getSlotNames(c),
   getSlot: (apis: SlotContainerApis, c: AlloyComponent, key: string) => apis.getSlot(c, key),
   isShowing: (apis: SlotContainerApis, c: AlloyComponent, key: string) => apis.isShowing(c, key),
   hideSlot: (apis: SlotContainerApis, c: AlloyComponent, key: string) => apis.hideSlot(c, key),
   hideAllSlots: (apis: SlotContainerApis, c: AlloyComponent) => apis.hideAllSlots(c),
   showSlot: (apis: SlotContainerApis, c: AlloyComponent, key: string) => apis.showSlot(c, key)
-}, (value) => GuiTypes.makeApi<SlotContainerApis, any>(value));
+}).map(([k, v]) => [k, ((value) => GuiTypes.makeApi<SlotContainerApis, any>(value))(v, k)]));
 
 const SlotContainer: SlotContainerSketcher = {
   ...slotApis,

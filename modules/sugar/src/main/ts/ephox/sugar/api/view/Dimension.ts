@@ -1,4 +1,4 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 const units = {
   // we don't really support all of these different ways to express a length
@@ -63,23 +63,23 @@ const pattern: RegExp = (() => {
 })();
 
 const isUnit = <T extends keyof Units>(unit: string, accepted: T[]): unit is Units[T] =>
-  Arr.exists(accepted, (acc: T) =>
-    Arr.exists(units[acc], (check) => unit === check)
+  accepted.some((acc: T) =)
+    units[acc].some((check) =) unit === check)
   );
 
 export const parse = <T extends keyof Units>(input: string, accepted: T[]): Optional<Dimension<T>> => {
-  const match = Optional.from(pattern.exec(input));
+  const match = pattern.exec(input) ?? null;
   return match.bind((array) => {
     const value = Number(array[1]);
     const unitRaw = array[2];
 
     if (isUnit(unitRaw, accepted)) {
-      return Optional.some({
+      return {
         value,
         unit: unitRaw
-      });
+      };
     } else {
-      return Optional.none();
+      return null;
     }
   });
 };

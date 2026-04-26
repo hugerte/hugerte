@@ -1,6 +1,6 @@
 import { Arbitraries, Assertions, Pipeline, Step, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import { Editor } from 'ephox/mcagar/alien/EditorTypes';
@@ -38,7 +38,7 @@ UnitTest.asynctest('Tutorial: Property Testing with HugeRTE', (success, failure)
       }), sAssertion(editor, body), {
         scenario: {
           exclusions: {
-            containers: Fun.never
+            containers: () => false
           }
         },
         property: {

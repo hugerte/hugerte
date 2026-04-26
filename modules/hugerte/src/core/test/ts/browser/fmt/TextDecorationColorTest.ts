@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -169,7 +169,7 @@ describe('browser.hugerte.core.fmt.TextDecorationColorTest', () => {
     });
   };
 
-  Arr.each([
+  [
     {
       label: 'Collapsed selection',
       text: { before: '', selected: 'abc', after: '' },
@@ -187,7 +187,7 @@ describe('browser.hugerte.core.fmt.TextDecorationColorTest', () => {
       text: { before: '', selected: 'abc def', after: '' },
       selection: { startPath: [ 0, 0 ], sOffset: 0, finishPath: [ 0, 0 ], fOffset: 'abc def'.length }
     }
-  ], (test) => {
+  ].forEach((test) =) {
     context(test.label, () => {
       mergeForecolorAndTextDecoration('Underline', 'underline', test.text, test.selection);
       mergeForecolorAndTextDecoration('Strikethrough', 'line-through', test.text, test.selection);

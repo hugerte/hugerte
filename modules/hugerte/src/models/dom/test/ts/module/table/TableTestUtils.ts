@@ -6,7 +6,7 @@
  */
 
 import { ApproxStructure, Assertions, Cursors, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, Html, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyContentActions, TinyDom, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -158,7 +158,7 @@ const getSelectedCells = (editor: Editor): SugarElement<HTMLTableCellElement>[] 
   SelectorFilter.descendants(TinyDom.body(editor), 'td[data-mce-selected],th[data-mce-selected]');
 
 const assertSelectedCells = (editor: Editor, expectedSelectedCells: string[], mapper: (cell: SugarElement<HTMLTableCellElement>) => string | undefined): void => {
-  const selectedCells = Arr.map(getSelectedCells(editor), mapper);
+  const selectedCells = getSelectedCells(editor).map(mapper);
   assert.deepEqual(selectedCells, expectedSelectedCells);
 };
 
@@ -186,7 +186,7 @@ const assertTableStructureWithSizes = (
     const table = editor.dom.select('table')[0];
     assertWidth(editor, table, tableWidth, unit);
     const row = editor.dom.select('colgroup', table)[0];
-    Arr.each(widths[0], (columnWidth, columnIndex) => {
+    widths[0].forEach((columnWidth, columnIndex) =) {
       const column = editor.dom.select('col', row)[columnIndex];
       assertWidth(editor, column, columnWidth, unit);
     });
@@ -195,9 +195,9 @@ const assertTableStructureWithSizes = (
   const tableWithoutColGroup = () => {
     const table = editor.dom.select('table')[0];
     assertWidth(editor, table, tableWidth, unit);
-    Arr.each(widths, (rowWidths, rowIndex) => {
+    widths.forEach((rowWidths, rowIndex) =) {
       const row = editor.dom.select('tr', table)[rowIndex];
-      Arr.each(rowWidths, (cellWidth, cellIndex) => {
+      rowWidths.forEach((cellWidth, cellIndex) =) {
         const cell = editor.dom.select('td,th', row)[cellIndex];
         assertWidth(editor, cell, cellWidth, unit);
       });
@@ -206,9 +206,9 @@ const assertTableStructureWithSizes = (
 
   const structure = () => assertTableStructure(editor, ApproxStructure.build((s, str) => {
     const tbody = s.element('tbody', {
-      children: Arr.range(rows, (rowIndex) =>
+      children: Array.from({ length: rows }, (rowIndex) =>
         s.element('tr', {
-          children: Arr.range(cols, (colIndex) =>
+          children: Array.from({ length: cols }, (colIndex) =>
             s.element(colIndex < options.headerCols || rowIndex < options.headerRows ? 'th' : 'td', {
               children: [
                 s.either([
@@ -216,16 +216,23 @@ const assertTableStructureWithSizes = (
                   s.text(str.contains('Cell'))
                 ])
               ]
-            })
-          )
+            }))
+        }))Array.from({ length: cols }, (colIndex) =>
+            s.element(colIndex < options.headerCols || rowIndex < options.headerRows ? 'th' : 'td', {
+              children: [
+                s.either([
+                  s.element('br', { }),
+                  s.text(str.contains('Cell'))
+                ])
+              ]
+            }))
         })
       )
     });
 
     const colGroup = s.element('colgroup', {
-      children: Arr.range(cols, () =>
-        s.element('col', {})
-      )
+      children: Array.from({ length: cols }, () =>
+        s.element('col', {}))
     });
 
     return s.element('table', {

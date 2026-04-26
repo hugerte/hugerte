@@ -1,5 +1,5 @@
 import { FieldSchema } from '@ephox/boulder';
-import { Optional } from '@ephox/katamari';
+
 
 import * as EditableFields from '../../alien/EditableFields';
 import * as Behaviour from '../../api/behaviour/Behaviour';
@@ -89,7 +89,7 @@ const builder = (detail: WidgetItemDetail) => {
             // let its outer menu handle escape
             if (!Focusing.isFocused(component) && !detail.autofocus) {
               Focusing.focus(component);
-              return Optional.some<boolean>(true);
+              return true;
             } else if (detail.autofocus) {
               simulatedEvent.setSource(component.element);
               return null;

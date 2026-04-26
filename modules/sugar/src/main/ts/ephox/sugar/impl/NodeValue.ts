@@ -17,7 +17,7 @@ export const NodeValue = (is: (e: SugarElement<Node>) => boolean, name: string):
   };
 
   const getOption = (element: SugarElement<Node>): Optional<string> =>
-    is(element) ? Optional.from(element.dom.nodeValue) : Optional.none<string>();
+    is(element) ? element.dom.nodeValue ?? null : null;
 
   const set = (element: SugarElement<Node>, value: string): void => {
     if (!is(element)) {

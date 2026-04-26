@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 import { Class, SugarElement } from '@ephox/sugar';
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
@@ -56,7 +56,7 @@ export default (): void => {
           }
         })
       ],
-      tabs: Arr.map([
+      tabs: [
         {
           value: 'alpha',
           text: 'Alpha',
@@ -71,7 +71,7 @@ export default (): void => {
             GuiFactory.text('Beta panel text')
           ]
         }
-      ], makeTab)
+      ].map(makeTab)
     })
   );
 

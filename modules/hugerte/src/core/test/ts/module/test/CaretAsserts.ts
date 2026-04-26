@@ -1,5 +1,5 @@
 import { Assert } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -35,7 +35,7 @@ const createRange: {
 
   rng.setStart(startContainer, startOffset);
 
-  if (Type.isNonNullable(endContainer) && Type.isNonNullable(endOffset)) {
+  if (endContainer != null && endOffset != null) {
     rng.setEnd(endContainer, endOffset as number);
   }
 

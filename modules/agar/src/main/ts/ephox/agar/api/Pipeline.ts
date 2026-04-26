@@ -1,16 +1,16 @@
 // @ts-nocheck
-import { Arr, Type } from '@ephox/katamari';
+
 
 import { DieFn, NextFn } from '../pipe/Pipe';
 import { Step } from './Step';
 import { TestLogs } from './TestLogs';
 
 const assertSteps = (steps: Step<any, any>[]) => {
-  Arr.each(steps, (s: Step<any, any>, i: number) => {
+  steps.forEach((s: Step<any, any>, i: number) =) {
     let msg: string;
     if (s === undefined) {
       msg = 'step ' + i + ' was undefined. All steps: ' + JSON.stringify(steps) + '\n';
-    } else if (Type.isArray(s)) {
+    } else if (Array.isArray(s)) {
       msg = 'step ' + i + ' was an array';
     }
 

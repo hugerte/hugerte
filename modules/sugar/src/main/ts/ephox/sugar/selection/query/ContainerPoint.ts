@@ -25,7 +25,7 @@ const searchInChildren = (doc: SugarElement<Document>, node: SugarElement<Node>,
     r.selectNode(n.dom);
     return Geometry.inRect(r.getBoundingClientRect(), x, y) ?
       locateNode(doc, n, x, y) :
-      Optional.none<Range>();
+      null;
   });
 };
 

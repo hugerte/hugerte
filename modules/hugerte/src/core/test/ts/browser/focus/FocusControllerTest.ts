@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -9,10 +9,10 @@ import FocusManager from 'hugerte/core/api/FocusManager';
 import * as FocusController from 'hugerte/core/focus/FocusController';
 
 describe('browser.hugerte.core.focus.FocusControllerTest', () => {
-  Arr.each([
+  [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(tester.label, () => {
       const hook = tester.setup<Editor>({
         add_unload_trigger: false,

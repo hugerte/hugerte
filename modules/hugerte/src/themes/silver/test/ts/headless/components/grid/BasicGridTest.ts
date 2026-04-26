@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import { UiFactoryBackstageShared } from 'hugerte/themes/silver/backstage/Backstage';
 import { renderGrid } from 'hugerte/themes/silver/ui/dialog/Grid';
@@ -10,7 +10,7 @@ import TestProviders from '../../../module/TestProviders';
 
 describe('headless.hugerte.themes.silver.components.grid.GridTest', () => {
   const sharedBackstage = {
-    interpreter: Fun.identity as any,
+    interpreter: (x) => x as any,
     providers: TestProviders
   } as UiFactoryBackstageShared;
 

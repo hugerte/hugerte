@@ -1,5 +1,5 @@
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { LegacyUnit, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -61,7 +61,7 @@ describe('browser.hugerte.core.paste.SmartPasteTest', () => {
 
   it('TINY-6306: New images_file_types defaults', () => {
     const editor = hook.editor();
-    Arr.map([
+    [
       'jpeg',
       'jpg',
       'jpe',
@@ -73,7 +73,7 @@ describe('browser.hugerte.core.paste.SmartPasteTest', () => {
       'webp',
       'PNG',
       'WEBP',
-    ], (image_file_type) => assert.isTrue(
+    ].map((image_file_type) =) assert.isTrue(
       SmartPaste.isImageUrl(editor, `https://www.site.com/file.${image_file_type}`),
       `File type "${image_file_type}" is valid`
     ));

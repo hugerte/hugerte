@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as Node from '../node/SugarNode';
@@ -20,7 +20,7 @@ const lookups: Record<string, (element: SugarElement<Element>) => string> = {
 
 const getAlignment = (element: SugarElement<Element>, property: string): string => {
   const raw = Css.get(element, property);
-  return Obj.get(lookups, raw)
+  return (lookups as any)[raw]
     .map((f) => f(element))
     .getOr(raw);
 };

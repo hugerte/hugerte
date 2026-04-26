@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -24,7 +24,7 @@ describe('browser.hugerte.plugins.wordcount.ApiTest', () => {
     const editor = hook.editor();
     const api: WordCountApi = editor.plugins.wordcount as WordCountApi;
     editor.setContent(content);
-    if (Type.isNonNullable(sel)) {
+    if (sel != null) {
       TinySelections.setSelection(editor, sel.startPath, sel.soffset, sel.finishPath, sel.foffset);
     }
     assert.equal(getCount(api), expectedLength);

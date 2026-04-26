@@ -1,4 +1,4 @@
-import { Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
 import * as DomFactory from 'ephox/alloy/api/component/DomFactory';
@@ -133,7 +133,7 @@ export default (): void => {
       lazySink,
       onEscape: () => {
         console.log('escaping');
-        return Optional.some<boolean>(true);
+        return true;
       },
       dragBlockClass: 'blocker-class',
 

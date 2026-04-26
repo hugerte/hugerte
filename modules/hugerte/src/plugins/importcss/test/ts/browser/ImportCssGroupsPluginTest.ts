@@ -1,6 +1,6 @@
 import { Assertions, Keys } from '@ephox/agar';
 import { before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarDocument } from '@ephox/sugar';
 import { McEditor, TinyDom, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -47,7 +47,7 @@ describe('browser.hugerte.plugins.importcss.ImportCssGroupsTest', () => {
     );
     TinyUiActions.clickOnToolbar(editor, 'button');
     await pProcessNavigation(SugarDocument.getDocument(), assertion.navigation);
-    Arr.each(assertion.choice.keysBeforeExecute, (k) => TinyUiActions.keydown(editor, k));
+    assertion.choice.keysBeforeExecute.forEach((k) =) TinyUiActions.keydown(editor, k));
     TinyUiActions.keydown(editor, Keys.enter());
     Assertions.assertPresence(
       `${assertion.choice.presence} should now be present`,

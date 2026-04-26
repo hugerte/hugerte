@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as EditableFields from '../alien/EditableFields';
@@ -37,7 +37,7 @@ const defaultExecute = (
 const stopEventForFirefox: KeyRuleHandler<GeneralKeyingConfig, any> = (
   _component: AlloyComponent,
   _simulatedEvent: NativeSimulatedEvent<KeyboardEvent>
-) => Optional.some<boolean>(true);
+) => true;
 
 export {
   defaultExecute,

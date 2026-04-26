@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -67,13 +67,13 @@ describe('browser.hugerte.core.paste.ProcessFiltersTest', () => {
 
   it('TBA: Paste pre/post process passthough as is', () => {
     const editor = hook.editor();
-    const result = processPrePost(editor, 'a', true, Fun.noop, Fun.noop);
+    const result = processPrePost(editor, 'a', true, () => {}, () => {});
     assert.deepEqual(result, { content: 'a', cancelled: false }, 'Should be unchanged with safe content');
   });
 
   it('TBA: Paste pre/post process passthough unsafe content', () => {
     const editor = hook.editor();
-    const result = processPrePost(editor, `<img src="non-existent.png" onerror="alert('!')">`, true, Fun.noop, Fun.noop);
+    const result = processPrePost(editor, `<img src="non-existent.png" onerror="alert('!')">`, true, () => {}, () => {});
     assert.deepEqual(result, { content: '<img src="non-existent.png">', cancelled: false }, 'Should be changed if dangerous content');
   });
 
@@ -91,13 +91,13 @@ describe('browser.hugerte.core.paste.ProcessFiltersTest', () => {
 
   it('TBA: Paste pre/post process alter on preprocess', () => {
     const editor = hook.editor();
-    const result = processPrePost(editor, 'a', true, preProcessHandler(), Fun.noop);
+    const result = processPrePost(editor, 'a', true, preProcessHandler(), () => {});
     assert.deepEqual(result, { content: 'aX', cancelled: false }, 'Should be preprocessed by adding a X');
   });
 
   it('TBA: Paste pre/post process alter on postprocess', () => {
     const editor = hook.editor();
-    const result = processPrePost(editor, 'a<b>b</b>c', true, Fun.noop, postProcessHandler(editor));
+    const result = processPrePost(editor, 'a<b>b</b>c', true, () => {}, postProcessHandler(editor));
     assert.deepEqual(result, { content: 'abc', cancelled: false }, 'Should have all b elements removed');
   });
 
@@ -122,10 +122,10 @@ describe('browser.hugerte.core.paste.ProcessFiltersTest', () => {
   it('TINY-10351: Unsafe embeds should be converted on preprocess/postprocess', () => {
     const editor = hook.editor();
 
-    const objectRes = processPrePost(editor, '<object data="about:blank"></object>', true, Fun.noop, Fun.noop);
+    const objectRes = processPrePost(editor, '<object data="about:blank"></object>', true, () => {}, () => {});
     assert.deepEqual(objectRes, { content: '<iframe src="about:blank" sandbox=""></iframe>', cancelled: false }, '<object> should be converted');
 
-    const embedRes = processPrePost(editor, '<embed src="about:blank">', true, Fun.noop, Fun.noop);
+    const embedRes = processPrePost(editor, '<embed src="about:blank">', true, () => {}, () => {});
     assert.deepEqual(embedRes, { content: '<iframe src="about:blank" sandbox=""></iframe>', cancelled: false }, '<embed> should be converted');
   });
 
@@ -137,13 +137,13 @@ describe('browser.hugerte.core.paste.ProcessFiltersTest', () => {
 
     it('TINY-10350: iframe should be sandboxed on preprocess/postprocess', () => {
       const editor = hook.editor();
-      const result = processPrePost(editor, '<iframe src="https://example.com"></iframe>', true, Fun.noop, Fun.noop);
+      const result = processPrePost(editor, '<iframe src="https://example.com"></iframe>', true, () => {}, () => {});
       assert.deepEqual(result, { content: '<iframe src="https://example.com" sandbox=""></iframe>', cancelled: false }, 'iframe should be sandboxed');
     });
 
     it('TINY-10350: Excluded iframes should not be sandboxed on preprocess/postprocess', () => {
       const editor = hook.editor();
-      const result = processPrePost(editor, '<iframe src="https://tiny.cloud"></iframe>', true, Fun.noop, Fun.noop);
+      const result = processPrePost(editor, '<iframe src="https://tiny.cloud"></iframe>', true, () => {}, () => {});
       assert.deepEqual(result, { content: '<iframe src="https://tiny.cloud"></iframe>', cancelled: false }, 'Excluded iframe should not be sandboxed');
     });
   });

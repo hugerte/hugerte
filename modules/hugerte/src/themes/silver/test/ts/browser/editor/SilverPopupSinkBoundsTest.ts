@@ -1,7 +1,7 @@
 import { Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
 import { Menu } from '@ephox/bridge';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Class, Css, Insert, Remove, SugarBody, SugarElement, SugarShadowDom, Traverse } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -23,7 +23,7 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
     base_url: '/project/hugerte/js/hugerte',
     setup: (editor: Editor) => {
       // Define lots and lots and lots of menu items
-      Arr.range(numItems, (x) => {
+      Array.from({ length: numItems }, (x) => {
         editor.ui.registry.addMenuItem(
           `menu-item-${x}`,
           {
@@ -37,7 +37,7 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
     menu: {
       custom: {
         title: 'Custom menu',
-        items: Arr.range(numItems, (x) => `menu-item-${x}`).join(' ')
+        items: Array.from({ length: numItems }, (x) => `menu-item-${x}`).join(' ')
       }
     },
   };
@@ -222,13 +222,13 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
         TinyUiActions.clickOnMenu(editor, 'button:contains("Custom menu")');
         await TinyUiActions.pWaitForUi(editor, '[role=menu]');
 
-        Arr.range(nestedLevel, async (x) => {
+        Array.from({ length: nestedLevel }, async (x) => {
           TinyUiActions.clickOnUi(editor, `[role="menu"] div[aria-label="Nested Item ${x}"]`);
           await TinyUiActions.pWaitForUi(editor, `[role="menu"] div[aria-label="Nested Item ${x}"]`);
         });
 
         const shadowHost = UiFinder.findIn(SugarBody.body(), '.test-shadow-root').getOrDie();
-        const menuRects = Arr.from(shadowHost.dom.shadowRoot?.querySelectorAll('[role=menu]') || []).map((x) => x.getBoundingClientRect());
+        const menuRects = Array.from(shadowHost.dom.shadowRoot?.querySelectorAll('[role=menu]') || []).map((x) => x.getBoundingClientRect());
 
         return menuRects;
       };
@@ -260,7 +260,7 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
         },
       ];
 
-      Arr.from([ 'inside', 'outside' ]).map((shadow: string) => {
+      Array.from([ 'inside', 'outside' ]).map((shadow: string) => {
         context('ShadowDOM ' + shadow, () => {
           const hook = TinyHooks.bddSetupFromElement<Editor>(
             {
@@ -278,11 +278,11 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
                 editor.ui.registry.addMenuItem('custom-context-menu', {
                   icon: 'link',
                   text: 'Custom context menu',
-                  onAction: Fun.noop
+                  onAction: () => {}
                 });
 
                 editor.ui.registry.addContextMenu('custom-context-menu', {
-                  update: Fun.constant('custom-context-menu')
+                  update: () => 'custom-context-menu'
                 });
 
                 const generateNestedMenuItems = (depth: number = 1): Menu.MenuItemSpec[] | Menu.NestedMenuItemSpec[] => {
@@ -309,7 +309,7 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
             () => setupSingleScrollerElement(shadow)
           );
 
-          Arr.each(contextMenuScenarios, (scenario) => {
+          contextMenuScenarios.forEach((scenario) =) {
             it(`TINY-9743: Context Menu to be within scrollable container - position: ${scenario.label}`, async () => {
               const editor = hook.editor();
 
@@ -333,7 +333,7 @@ describe('browser.hugerte.themes.silver.editor.SilverPopupSinkBoundsTest', () =>
             const wrapper = SugarShadowDom.getShadowRoot(SugarElement.fromDom(editor.targetElm)).map(SugarShadowDom.getShadowHost).getOrDie();
             const wrapperRect = wrapper.dom.getBoundingClientRect();
 
-            Arr.each(menuRects, (menuRect, index) => {
+            menuRects.forEach((menuRect, index) =) {
               assertMenuWithinWrapperBounds(menuRect, wrapperRect, `Nested Menu Item ${index}`);
             });
           });

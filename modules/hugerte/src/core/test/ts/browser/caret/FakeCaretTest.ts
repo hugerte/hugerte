@@ -1,5 +1,5 @@
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Attribute, ContentEditable, Css, Html, Insert, SelectorFilter, SelectorFind, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -20,11 +20,11 @@ describe('browser.hugerte.core.caret.FakeCaretTest', () => {
   before(() => {
     const mockEditor: any = {
       options: {
-        get: Fun.constant('p')
+        get: () => 'p'
       },
       dom: DOMUtils(document)
     };
-    fakeCaret = FakeCaret(mockEditor, getRoot().dom, isBlock, Fun.always);
+    fakeCaret = FakeCaret(mockEditor, getRoot().dom, isBlock, () => true);
     viewBlock.get().contentEditable = 'true';
   });
 
@@ -124,7 +124,7 @@ describe('browser.hugerte.core.caret.FakeCaretTest', () => {
   });
 
   it('TINY-10314: fakeCaretContainer after/before a block should have caret-color set to `transparent` to avoid double caret in FireFox', () => {
-    Arr.each([ true, false ], (before) => {
+    [ true, false ].forEach((before) =) {
       Html.set(getRoot(), '<div>a</div><div id="nonEditable" contenteditable="false">b</div>');
 
       const rng = fakeCaret.show(before, SelectorFind.descendant(getRoot(), '#nonEditable').getOrDie().dom) as Range;

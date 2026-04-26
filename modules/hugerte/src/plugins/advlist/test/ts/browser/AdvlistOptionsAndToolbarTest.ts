@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, UiFinder, Waiter } from '@ephox/agar';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { McEditor, TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -91,7 +91,7 @@ describe('browser.hugerte.plugins.advlist.AdvlistOptionsAndToolbarTest', () => {
       ListsPlugin();
     });
 
-    Arr.each([
+    [
       {
         label: 'TBA: Test default advlist_number_styles option behaviour',
         options: {},
@@ -222,7 +222,7 @@ describe('browser.hugerte.plugins.advlist.AdvlistOptionsAndToolbarTest', () => {
         expectedContent: '<ol style="list-style-type: upper-roman;">\n<li>a</li>\n</ol>',
         finalExpectedContent: '<p>a</p>',
       },
-    ] as Scenario[], (scenario) => {
+    ] as Scenario[].forEach((scenario) =) {
       const { splitBtns, type } = scenario;
 
       it(scenario.label, async () => {

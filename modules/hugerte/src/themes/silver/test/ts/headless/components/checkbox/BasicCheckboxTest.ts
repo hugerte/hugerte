@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, UiFinder } from '@ephox/agar';
 import { AlloyComponent, Disabling, Form, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { renderCheckbox } from 'hugerte/themes/silver/ui/general/Checkbox';
@@ -22,7 +22,7 @@ describe('headless.hugerte.themes.silver.components.checkbox.Checkbox component 
       label: 'TestCheckbox',
       name: 'test-check-box',
       enabled: true,
-    }, providers, Optional.none())
+    }, providers, null)
   ));
 
   const assertCheckboxState = (label: string, component: AlloyComponent, expChecked: boolean) => {

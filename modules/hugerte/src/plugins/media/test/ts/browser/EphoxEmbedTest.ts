@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, StructAssert, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -69,7 +69,7 @@ describe('browser.hugerte.plugins.media.core.EphoxEmbedTest', () => {
       setup: (editor: Editor) => {
         editor.on('PreInit', () => {
           const converter = (nodes: AstNode[]): void => {
-            Arr.each(nodes, (node) => {
+            nodes.forEach((node) =) {
               const shimNode = new AstNode('span', 1);
               shimNode.attr('class', 'mce-shim');
 

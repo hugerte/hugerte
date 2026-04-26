@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import AstNode from 'hugerte/core/api/html/Node';
@@ -48,10 +48,10 @@ describe('atomic.hugerte.core.html.FilterNode', () => {
 
   it('TINY-6945: traverse should not go in `Maximum call stack size exceeded` if there are a lot of elements', () => {
     const body = new AstNode('body', 11);
-    Arr.range(15000, () => {
+    Array.from({ length: 15000 }, () => {
       body.append(new AstNode('p', 1));
     });
 
-    traverse(body, Fun.noop);
+    traverse(body, () => {});
   });
 });

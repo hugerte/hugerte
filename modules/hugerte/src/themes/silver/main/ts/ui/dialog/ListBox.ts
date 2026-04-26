@@ -3,7 +3,7 @@ import {
   Tabstopping
 } from '@ephox/alloy';
 import { Dialog, Menu as BridgeMenu } from '@ephox/bridge';
-import { Arr, Obj } from '@ephox/katamari';
+
 import { Attribute } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
@@ -16,7 +16,7 @@ import * as NestedMenus from '../menus/menu/NestedMenus';
 
 type ListBoxSpec = Omit<Dialog.ListBox, 'type'>;
 
-const isSingleListItem = (item: Dialog.ListBoxItemSpec): item is Dialog.ListBoxSingleItemSpec => !Obj.has(item as Record<string, any>, 'items');
+const isSingleListItem = (item: Dialog.ListBoxItemSpec): item is Dialog.ListBoxSingleItemSpec => !Object.prototype.hasOwnProperty.call(item as Record<string, any>, 'items');
 
 const dataAttribute = 'data-value';
 
@@ -123,7 +123,7 @@ export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, 
       tag: 'div',
       classes: [ 'tox-form__group' ]
     },
-    components: Arr.flatten<AlloySpec>([ pLabel.toArray(), [ listBoxWrap ]]),
+    components: [ pLabel.toArray(), [ listBoxWrap ]].flat(),
     fieldBehaviours: Behaviour.derive([
       Disabling.config({
         disabled: () => !spec.enabled,

@@ -11,10 +11,10 @@ UnitTest.test('UrlBuilderTest', () => {
     Assert.eq(`${label}.\n  Expected: ${expected} \n  Actual: ${actual}`, expected, actual);
   };
 
-  assertEq('Should remain unchanged', 'http://localhost', buildUrl('http://localhost', Optional.none()));
-  assertEq('Should remain unchanged', 'http://localhost?a=1', buildUrl('http://localhost?a=1', Optional.none()));
-  assertEq('Should remain unchanged', 'http://localhost?a=1&b=2', buildUrl('http://localhost?a=1&b=2', Optional.none()));
-  assertEq('Should remain unchanged', 'http://localhost', buildUrl('http://localhost', Optional.some({})));
+  assertEq('Should remain unchanged', 'http://localhost', buildUrl('http://localhost', null));
+  assertEq('Should remain unchanged', 'http://localhost?a=1', buildUrl('http://localhost?a=1', null));
+  assertEq('Should remain unchanged', 'http://localhost?a=1&b=2', buildUrl('http://localhost?a=1&b=2', null));
+  assertEq('Should remain unchanged', 'http://localhost', buildUrl('http://localhost', {}));
 
   assertEq('Should be expected url with encoding', 'http://localhost?a=1%262', buildUrl('http://localhost', createRecord({ a: '1&2' })));
   assertEq('Should be expected url with encoding', 'http://localhost?a%26b=1', buildUrl('http://localhost', createRecord({ 'a&b': '1' })));

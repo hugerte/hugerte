@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement, SugarNode } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -27,7 +27,7 @@ describe('browser.hugerte.core.dom.ParentsTest', () => {
   };
 
   const assertElementNames = (parents: SugarElement[], expectedNames: string[]) => {
-    const names = Arr.map(parents, SugarNode.name);
+    const names = parents.map(SugarNode.name);
     assert.deepEqual(names, expectedNames, 'Should be expected names');
   };
 

@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement, SugarText, Traverse } from '@ephox/sugar';
 
 import * as DomSplit from 'ephox/phoenix/api/dom/DomSplit';
@@ -19,7 +19,7 @@ UnitTest.test('DomSplitTest', () => {
       throw new Error('Element must have parent for test to work');
     }, (v) => {
       const children = Traverse.children(v) as SugarElement<Text>[];
-      const text = Arr.map(children, SugarText.get);
+      const text = children.map(SugarText.get);
       Assert.eq('', expected, text);
     });
   };

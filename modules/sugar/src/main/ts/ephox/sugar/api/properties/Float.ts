@@ -17,10 +17,10 @@ const isCentered = (element: SugarElement<Node>): boolean => {
 
 const divine = (element: SugarElement<Element>): Optional<string> => {
   if (isCentered(element)) {
-    return Optional.some('center');
+    return 'center';
   } else {
     const val = Css.getRaw(element, 'float').getOrThunk(() => Css.get(element, 'float'));
-    return val !== undefined && val !== null && val.length > 0 ? Optional.some(val) : Optional.none<string>();
+    return val !== undefined && val !== null && val.length > 0 ? val : null;
   }
 };
 

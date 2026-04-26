@@ -1,6 +1,6 @@
 import { Assertions, Cursors, Mouse } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Hierarchy, Html, Remove, Replication, SelectorFilter, SugarElement, Insert, SugarBody, DomEvent } from '@ephox/sugar';
 import { McEditor, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -92,7 +92,7 @@ describe('browser.hugerte.core.bookmark.BookmarksTest', () => {
 
   const assertApproxRawContent = (editor: Editor, expectedHtml: string) => {
     const elm = Replication.deep(TinyDom.body(editor));
-    Arr.each(SelectorFilter.descendants(elm, '*[data-mce-bogus="all"]'), Remove.remove);
+    SelectorFilter.descendants(elm, '*[data-mce-bogus="all"]').forEach(Remove.remove);
     const actualHtml = Html.get(elm);
     Assertions.assertHtmlStructure('Should expected structure', `<body>${expectedHtml}</body>`, `<body>${actualHtml}</body>`);
   };

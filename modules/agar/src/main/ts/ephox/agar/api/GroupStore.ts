@@ -1,4 +1,4 @@
-import { Merger } from '@ephox/katamari';
+
 
 export interface GroupStore<T> {
   readonly record: (prop: string, elem: T) => void;
@@ -14,7 +14,7 @@ export const GroupStore = <T = any>(): GroupStore<T> => {
     data[prop] = d;
   };
 
-  const get = (): Record<string, T[]> => Merger.deepMerge({}, data);
+  const get = (): Record<string, T[]> => ({ ...{}, ...data });
 
   return {
     record,

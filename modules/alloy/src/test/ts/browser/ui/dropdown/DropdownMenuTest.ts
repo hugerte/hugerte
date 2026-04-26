@@ -1,6 +1,6 @@
 import { FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, Touch, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Future, Obj, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
@@ -26,7 +26,7 @@ UnitTest.asynctest('DropdownMenuTest', (success, failure) => {
     Container.sketch({
       containerBehaviours: Behaviour.derive([
         Positioning.config({
-          useFixed: Fun.always
+          useFixed: () => true
         })
       ])
     })
@@ -51,56 +51,56 @@ UnitTest.asynctest('DropdownMenuTest', (success, failure) => {
           selector: 'span'
         })
       ]),
-      components: Arr.map([
+      components: [
         'one',
         'two',
         'three'
-      ], makeFlow)
+      ].map(makeFlow)
     });
 
     const testData = {
       primary: 'tools-menu',
-      menus: Obj.map({
+      menus: Object.fromEntries(Object.entries({
         'tools-menu': {
           value: 'tools-menu-value',
           text: 'Tools Menu',
-          items: Arr.map([
+          items: [
             { type: 'item', data: { value: 'packages', meta: { text: 'Packages' }}, hasSubmenu: true },
             { type: 'item', data: { value: 'about', meta: { text: 'About' }}},
             { type: 'widget', widget, data: { value: 'widget', meta: { }}}
-          ], TestDropdownMenu.renderItem)
+          ].map(TestDropdownMenu.renderItem)
         },
         'packages': { // menu name should be triggering parent item so TieredMenuSpec path works
           value: 'packages-menu-value',
           text: 'Packages Menu',
-          items: Arr.map([
+          items: [
             { type: 'item', data: { value: 'sortby', meta: { text: 'SortBy' }}, hasSubmenu: true }
-          ], TestDropdownMenu.renderItem)
+          ].map(TestDropdownMenu.renderItem)
         },
         'sortby': {
           value: 'sortby-menu-value',
           text: 'Sortby Menu',
-          items: Arr.map([
+          items: [
             { type: 'item', data: { value: 'strings', meta: { text: 'Strings' }}, hasSubmenu: true },
             { type: 'item', data: { value: 'numbers', meta: { text: 'Numbers' }}, hasSubmenu: true }
-          ], TestDropdownMenu.renderItem)
+          ].map(TestDropdownMenu.renderItem)
         },
         'strings': {
           value: 'strings-menu-value',
           text: 'Strings Menu',
-          items: Arr.map([
+          items: [
             { type: 'item', data: { value: 'versions', meta: { text: 'Versions', html: '<b>V</b>ersions' }}},
             { type: 'item', data: { value: 'alphabetic', meta: { text: 'Alphabetic' }}}
-          ], TestDropdownMenu.renderItem)
+          ].map(TestDropdownMenu.renderItem)
         },
         'numbers': {
           value: 'numbers-menu-value',
           text: 'Numbers Menu',
-          items: Arr.map([
+          items: [
             { type: 'item', data: { value: 'doubled', meta: { text: 'Doubled digits' }}, hasSubmenu: false }
-          ], TestDropdownMenu.renderItem)
+          ].map(TestDropdownMenu.renderItem)
         }
-      }, TestDropdownMenu.renderMenu),
+      }).map(([k, v]) => [k, (TestDropdownMenu.renderMenu)(v, k)])),
       expansions: {
         packages: 'packages',
         sortby: 'sortby',
@@ -132,7 +132,7 @@ UnitTest.asynctest('DropdownMenuTest', (success, failure) => {
         },
 
         fetch: () => {
-          return Future.pure(testData).map((d) => Optional.from(TieredMenu.tieredData(d.primary, d.menus, d.expansions)));
+          return Future.pure(testData).map((d) => TieredMenu.tieredData(d.primary, d.menus, d.expansions) ?? null);
         }
       })
     );
@@ -169,18 +169,18 @@ UnitTest.asynctest('DropdownMenuTest', (success, failure) => {
 
     const sTestMenus = (label: string, stored: string[], focused: TestFocusable, active: TestFocusable[], background: TestFocusable[], others: TestFocusable[]) => {
       const sCheckBackground = GeneralSteps.sequence(
-        Arr.bind(background, (bg) => [
+        background.flatMap((bg) =) [
           UiFinder.sExists(gui.element, bg.selector),
           UiFinder.sNotExists(gui.element, bg.selector + '.selected-menu')
         ])
       );
 
       const sCheckActive = GeneralSteps.sequence(
-        Arr.map(active, (o) => UiFinder.sExists(gui.element, o.selector + '.selected-menu'))
+        active.map((o) =) UiFinder.sExists(gui.element, o.selector + '.selected-menu'))
       );
 
       const sCheckOthers = GeneralSteps.sequence(
-        Arr.map(others, (o) => UiFinder.sNotExists(gui.element, o.selector))
+        others.map((o) =) UiFinder.sNotExists(gui.element, o.selector))
       );
 
       return Logger.t(

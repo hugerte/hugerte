@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { HugeRTE } from 'hugerte/core/api/PublicApi';
 
@@ -35,7 +35,7 @@ export default (): void => {
           editor.annotator.annotationChanged('alpha', (state, _name, _obj) => {
             btnApi.setEnabled(!state);
           });
-          return Fun.noop;
+          return () => {};
         }
       });
 
@@ -66,7 +66,7 @@ export default (): void => {
           editor.annotator.annotationChanged('alpha', (state, _name, _obj) => {
             btnApi.setEnabled(state);
           });
-          return Fun.noop;
+          return () => {};
         }
       });
 

@@ -1,6 +1,6 @@
 import { Assertions, FileInput, Files, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { afterEach, describe, it } from '@ephox/bedrock-client';
-import { Strings } from '@ephox/katamari';
+
 import { SugarBody, Value } from '@ephox/sugar';
 import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -56,7 +56,7 @@ describe('browser.hugerte.plugins.image.UploadTabTest', () => {
 
   const pAssertSrcTextValueStartsWith = (expectedValue: string) => Waiter.pTryUntil('Waited for input to change to start with expected value', () => {
     const input = UiFinder.findIn<HTMLInputElement>(SugarBody.body(), 'label.tox-label:contains("Source") + div > div > input.tox-textfield').getOrDie();
-    assert.isTrue(Strings.startsWith(Value.get(input), expectedValue), 'Assert field source value');
+    assert.isTrue(Value.get(input).startsWith(expectedValue), 'Assert field source value');
   }, 10, 10000);
 
   it('TBA: Upload tab should not be present without images_upload_url or images_upload_handler', async () => {

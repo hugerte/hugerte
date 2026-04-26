@@ -1,4 +1,4 @@
-import { Id, Thunk } from '@ephox/katamari';
+import { Thunk } from '@ephox/katamari';
 import { DomEvent, Html, SugarElement, TextContent } from '@ephox/sugar';
 
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
@@ -41,7 +41,7 @@ const section = (gui: GuiSystem, instructions: string, spec: AlloySpec): AlloyCo
     })
   );
 
-  const dumpUid = Id.generate('html-dump');
+  const dumpUid = '_' + Math.random().toString(36).slice(2);
 
   const htmlDump = Html.getOuter(component.element);
   const dump = Container.sketch({

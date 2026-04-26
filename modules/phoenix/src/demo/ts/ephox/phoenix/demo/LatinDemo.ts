@@ -1,4 +1,4 @@
-import { Arr, Obj, Optional } from '@ephox/katamari';
+
 import { Attribute, Css, DomEvent, Insert, SugarElement, SugarText } from '@ephox/sugar';
 
 import { Wrapter } from 'ephox/phoenix/api/data/Types';
@@ -24,13 +24,13 @@ const underline = () => {
 const allWords = (() => {
   const duplicates = SugarText.get(text).split(/\W/);
   const set: Record<string, string> = {};
-  Arr.each(duplicates, (x) => {
+  duplicates.forEach((x) =) {
     if (x.length) {
       set[x] = x;
     }
   });
 
-  return Obj.keys(set);
+  return Object.keys(set);
 })();
 
 DomEvent.bind(button, 'click', (_event) => {
@@ -39,11 +39,11 @@ DomEvent.bind(button, 'click', (_event) => {
 
 const highlight = (words: string[], nu: () => Wrapter<SugarElement>) => {
   const matches = DomSearch.safeWords([ p ], words);
-  Arr.each(matches, (x) => {
+  matches.forEach((x) =) {
     DomWrapping.wrapper(x.elements, nu);
   });
 };
 
-const ephoxUi = SugarElement.fromDom(Optional.from(document.getElementById('ephox-ui')).getOrDie('No element with id "ephox-id"'));
+const ephoxUi = SugarElement.fromDom(document.getElementById('ephox-ui') ?? null.getOrDie('No element with id "ephox-id"'));
 Insert.append(ephoxUi, p);
 Insert.append(ephoxUi, button);

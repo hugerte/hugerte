@@ -44,6 +44,6 @@ UnitTest.test('api.Extract.find', () => {
   };
 
   /* Note, it's hard to know whether something should favour being at the end of the previous or the start of the next */
-  check(Optional.some({ id: '1.1.2', offset: 2 }), 'root', 3);
-  check(Optional.some({ id: '1.2.4.1', offset: 3 }), '1.2', 'This is textinside a spanMore textIns'.length);
+  check({ id: '1.1.2', offset: 2 }, 'root', 3);
+  check({ id: '1.2.4.1', offset: 3 }, '1.2', 'This is textinside a spanMore textIns'.length);
 });

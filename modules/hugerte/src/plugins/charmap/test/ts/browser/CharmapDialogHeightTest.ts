@@ -1,6 +1,6 @@
 import { FocusTools, Keys, UiFinder } from '@ephox/agar';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, Css, SugarElement, SugarShadowDom, Traverse, Value } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -13,10 +13,10 @@ import { fakeEvent } from '../module/Helpers';
 describe('browser.hugerte.plugins.charmap.DialogHeightTest', () => {
   const isChromeEdge = () => navigator.userAgent.includes(' Edg/');
 
-  Arr.each([
+  [
     { label: 'IFrame Editor', setup: TinyHooks.bddSetupLight },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot },
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(tester.label, () => {
       const hook = tester.setup<Editor>({
         plugins: 'charmap',

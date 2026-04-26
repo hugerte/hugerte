@@ -1,4 +1,4 @@
-import { Unicode } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
@@ -175,12 +175,12 @@ const whitespace: ArbitraryDetail<SugarElement<Text>> = {
 
 const zerowidth: ArbitraryDetail<SugarElement<Text>> = {
   type: 'arbitrary',
-  component: ArbNodes.textOfArb(fc.constant(Unicode.zeroWidth))
+  component: ArbNodes.textOfArb(fc.constant('\uFEFF'))
 };
 
 const zerowidths: ArbitraryDetail<SugarElement<Text>> = {
   type: 'arbitrary',
-  component: ArbNodes.textOfArb(fc.constantFrom('\u200B', Unicode.zeroWidth))
+  component: ArbNodes.textOfArb(fc.constantFrom('\u200B', '\uFEFF'))
 };
 
 const comment: ArbitraryDetail<SugarElement<Comment>> = {

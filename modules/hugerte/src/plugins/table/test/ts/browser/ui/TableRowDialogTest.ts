@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { afterEach, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody, SugarElement, SugarNode } from '@ephox/sugar';
 import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -41,12 +41,12 @@ describe('browser.hugerte.plugins.table.TableRowDialogTest', () => {
 
   const defaultEvents = [{ type: 'tablemodified', structure: false, style: true }];
   const assertEvents = (expectedEvents: Array<{ type: string; structure: boolean; style: boolean }> = defaultEvents) => {
-    Arr.each(events, (event) => {
+    events.forEach((event) =) {
       const tableElm = SugarElement.fromDom(event.table);
       assert.isTrue(SugarNode.isTag('table')(tableElm), 'Expected events should have been fired');
     });
 
-    const actualEvents = Arr.map(events, (event) => ({
+    const actualEvents = events.map((event) =) ({
       type: event.type,
       structure: event.structure,
       style: event.style,

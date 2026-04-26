@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Fun, Merger, Obj } from '@ephox/katamari';
+import { Arr, Obj } from '@ephox/katamari';
 import * as fc from 'fast-check';
 
 import * as WeightedChoice from './WeightedChoice';
@@ -31,7 +31,7 @@ const skipChild = '_';
 const toComponents = <T>(detail: Detail<T>): Component<T>[] =>
   Obj.mapToArray(detail.components, (v, k) =>
     // If there is no component, then the choice will be None.
-    k !== skipChild ? Merger.deepMerge(v, { component: k }) : v
+    k !== skipChild ? ({ ...v, ...{ component: k } }) : v
   );
 
 const none = fc.constant([]);
@@ -49,7 +49,7 @@ const composite = <T>(rawDepth: number | undefined, detail: CompositeDetail, con
 
     const repeat = WeightedChoice.generator(components).chain((choice) =>
       choice.fold(
-        Fun.constant(none),
+        () => none,
         (c) => genComponent(c, depth)
       )
     );

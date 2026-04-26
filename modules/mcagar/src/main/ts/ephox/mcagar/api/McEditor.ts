@@ -1,5 +1,5 @@
 import { Chain } from '@ephox/agar';
-import { Global, Id, Type } from '@ephox/katamari';
+import { Global } from '@ephox/katamari';
 import { Attribute, Insert, Remove, Selectors, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor as EditorType } from '../alien/EditorTypes';
@@ -15,7 +15,7 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
       ...settings
     };
 
-    const randomId = Id.generate('tiny-loader');
+    const randomId = '_' + Math.random().toString(36).slice(2);
 
     Attribute.set(element, 'id', randomId);
     if (!SugarBody.inBody(element)) {
@@ -32,7 +32,7 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
         ...nuSettings,
         ...targetSettings,
         setup: (editor: T) => {
-          if (Type.isFunction(nuSettings.setup)) {
+          if (typeof nuSettings.setup === 'function') {
             nuSettings.setup(editor);
           }
           const onRemove = () => {

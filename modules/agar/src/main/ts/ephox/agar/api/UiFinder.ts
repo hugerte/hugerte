@@ -14,13 +14,13 @@ const exists = (container: SugarElement<Node>, selector: string): void => {
     () => {
       throw new Error('Expected ' + selector + ' to exist.');
     },
-    Fun.noop
+    () => {}
   );
 };
 
 const notExists = (container: SugarElement<Node>, selector: string): void => {
   return findIn(container, selector).fold(
-    Fun.noop,
+    () => {},
     () => {
       throw new Error('Expected ' + selector + ' not to exist.');
     }
@@ -28,7 +28,7 @@ const notExists = (container: SugarElement<Node>, selector: string): void => {
 };
 
 const cWaitFor = <T extends Element>(message: string, selector: string): Chain<SugarElement<Node>, SugarElement<T>> =>
-  cWaitForState(message, selector, Fun.always);
+  cWaitForState(message, selector, () => true);
 
 const sWaitFor = <T>(message: string, container: SugarElement<Node>, selector: string): Step<T, T> =>
   Chain.asStep<T, SugarElement<Node>>(container, [ cWaitFor(message, selector) ]);
@@ -38,7 +38,7 @@ const cWaitForVisible = <T extends HTMLElement>(message: string, selector: strin
 
 // TODO: Perhaps create cWaitForNoState rather than Fun.not here?
 const cWaitForHidden = <T extends HTMLElement>(message: string, selector: string): Chain<SugarElement<Node>, SugarElement<T>> =>
-  cWaitForState<T>(message, selector, Fun.not(Visibility.isVisible));
+  cWaitForState<T>(message, selector, (x) => !(Visibility.isVisible)(x));
 
 const sWaitForVisible = <T>(message: string, container: SugarElement<Node>, selector: string): Step<T, T> =>
   Chain.asStep<T, SugarElement<Node>>(container, [ cWaitForVisible(message, selector) ]);

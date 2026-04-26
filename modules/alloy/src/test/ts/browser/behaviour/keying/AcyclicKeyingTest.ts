@@ -1,6 +1,6 @@
 import { FocusTools, Keyboard, Keys, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Focusing } from 'ephox/alloy/api/behaviour/Focusing';
@@ -42,7 +42,7 @@ UnitTest.asynctest('Browser Test: behaviour.keying.AcyclicKeyingTest', (success,
             tag: 'div',
             classes: [ 'acyclic-container' ]
           },
-          components: Arr.map([ 'alpha', 'beta', 'gamma' ], (n) => ({
+          components: [ 'alpha', 'beta', 'gamma' ].map((n) =) ({
             dom: {
               tag: 'div',
               innerHtml: 'inner-' + n,

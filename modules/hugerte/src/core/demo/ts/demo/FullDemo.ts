@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Merger } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import { Editor, RawEditorOptions, HugeRTE } from 'hugerte/core/api/PublicApi';
@@ -173,5 +173,5 @@ export default (): void => {
   };
 
   hugerte.init(settings);
-  hugerte.init(Merger.deepMerge(settings, { inline: true, selector: 'div.hugerte' }));
+  hugerte.init(({ ...settings, ...{ inline: true, selector: 'div.hugerte' } }));
 };

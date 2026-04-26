@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional, OptionalInstances } from '@ephox/katamari';
+import { OptionalInstances } from '@ephox/katamari';
 import { Css, Insert, Remove, SugarBody, SugarElement, Width } from '@ephox/sugar';
 
 import * as TableConversions from 'ephox/snooker/api/TableConversions';
@@ -101,7 +101,7 @@ UnitTest.test('TableConversions.convertToPercentSize', () => {
       Assert.eq('Assert table width', true, Math.abs(delta) <= 2);
       assertApproxCellSizes(expected, readWidth(table), 2);
     } else {
-      Assert.eq('Assert table width', Optional.some(expectedTableWidth), Css.getRaw(table, 'width'), tOptional());
+      Assert.eq('Assert table width', expectedTableWidth, Css.getRaw(table, 'width'), tOptional());
       Assert.eq('Assert cell widths', expected, readWidth(table));
     }
     Remove.remove(table);
@@ -141,7 +141,7 @@ UnitTest.test('TableConversions.convertToNoneSize', () => {
   const check = (expected: (string | null)[][], table: SugarElement<HTMLTableElement>) => {
     Insert.append(container, table);
     TableConversions.convertToNoneSizeWidth(table);
-    Assert.eq('Assert no table width', Optional.none<string>(), Css.getRaw(table, 'width'), tOptional());
+    Assert.eq('Assert no table width', null, Css.getRaw(table, 'width'), tOptional());
     Assert.eq('Assert no cell widths', expected, readWidth(table));
     Remove.remove(table);
   };

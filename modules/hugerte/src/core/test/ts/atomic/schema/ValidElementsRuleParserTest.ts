@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { SchemaElement } from 'hugerte/core/schema/SchemaTypes';
@@ -7,7 +7,7 @@ import * as ValidElementsRuleParser from 'hugerte/core/schema/ValidElementsRuleP
 
 describe('atomic.hugerte.core.schema.ValidElementsRuleParserTest', () => {
   const testValidElementsParser = (testCase: { input: string; globalRule?: SchemaElement; expected: ValidElementsRuleParser.SchemaElementPair[] }) => {
-    const elements = ValidElementsRuleParser.parseValidElementsRules(Optional.from(testCase.globalRule), testCase.input);
+    const elements = ValidElementsRuleParser.parseValidElementsRules(testCase.globalRule ?? null, testCase.input);
     assert.deepEqual(elements, testCase.expected);
   };
 

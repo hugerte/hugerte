@@ -1,4 +1,4 @@
-import { Cell, Obj } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { ItemDataTuple } from '../../ui/types/ItemTypes';
 import { nuState } from '../common/BehaviourState';
@@ -54,7 +54,7 @@ const dataset = (): DatasetRepresentingState => {
 
   // itemString can be matching value or text.
   // TODO: type problem - impossible to correctly return value when type parameter only exists in return type
-  const lookup = <T extends ItemDataTuple>(itemString: string): (T) | null => Obj.get<any, string>(dataByValue.get(), itemString).orThunk(() => Obj.get<any, string>(dataByText.get(), itemString));
+  const lookup = <T extends ItemDataTuple>(itemString: string): (T) | null => (dataByValue.get() as any)[itemString].orThunk(() => (dataByText.get() as any)[itemString]);
 
   const update = <T extends ItemDataTuple>(items: T[]): void => {
     const currentDataByValue = dataByValue.get();
@@ -63,8 +63,8 @@ const dataset = (): DatasetRepresentingState => {
     const newDataByText: Record<string, T> = { };
     (items).forEach((item) => {
       newDataByValue[item.value] = item;
-      Obj.get<any, string>(item, 'meta').each((meta) => {
-        Obj.get<any, string>(meta, 'text').each((text) => {
+      (item as any)['meta'].each((meta) => {
+        (meta as any)['text'].each((text) => {
           newDataByText[text] = item;
         });
       });

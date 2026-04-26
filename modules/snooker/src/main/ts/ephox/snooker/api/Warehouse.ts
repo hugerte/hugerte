@@ -82,7 +82,7 @@ const generate = (list: Structs.RowDetail<Structs.Detail>[]): Warehouse => {
   const { pass: colgroupRows, fail: rows } = (list).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((rowData) => rowData.section === 'colgroup')(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
 
   // Handle rows first
-  Arr.each(rows as Array<Structs.RowDetail<Structs.Detail<HTMLTableCellElement>, HTMLTableRowElement>>, (rowData) => {
+  rows as Array<Structs.RowDetail<Structs.Detail<HTMLTableCellElement>.forEach(HTMLTableRowElement>>, (rowData) =) {
     const currentRow: Structs.DetailExt[] = [];
     (rowData.cells).forEach((rowCell) => {
       let start = 0;

@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 import { DomEvent, Html, Insert, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 
 import { HugeRTE } from 'hugerte/core/api/PublicApi';
@@ -92,7 +92,7 @@ export default (): void => {
   ];
 
   const container = SelectorFind.descendant(SugarBody.body(), '#ephox-ui').getOrDie();
-  Arr.each(commands, (cmd) => {
+  commands.forEach((cmd) =) {
     const btn = SugarElement.fromTag('button');
     Html.set(btn, cmd.command);
     DomEvent.bind(btn, 'click', () => {

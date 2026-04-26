@@ -1,6 +1,6 @@
 import { UiControls, UiFinder, Waiter } from '@ephox/agar';
 import { afterEach, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -67,14 +67,14 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
       TinyUiActions.clickOnUi(editor, 'button[data-mce-name="Save"]');
     };
 
-    Arr.each([
+    [
       { label: 'no translations', buttonColor: 'Black', expectedColor: 'Light Green', setup: () => I18n.setCode('en') },
       { label: 'translations', buttonColor: 'Schwarz', expectedColor: 'Hellgrun',
         setup: () => {
           I18n.add('test', { 'Black': 'Schwarz', 'Light Green': 'Hellgrun' });
           I18n.setCode('test');
         }
-      }], (scenario: ColorTestScenario) => {
+      }].forEach((scenario: ColorTestScenario) => {
 
       context(scenario.label, () => {
         before(() => scenario.setup());

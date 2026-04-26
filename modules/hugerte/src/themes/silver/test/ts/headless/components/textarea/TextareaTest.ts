@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
 import { Disabling, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import { renderTextarea } from 'hugerte/themes/silver/ui/dialog/TextField';
@@ -13,11 +13,11 @@ describe('headless.hugerte.themes.silver.components.textarea.TextareaTest', () =
   const hook = TestHelpers.GuiSetup.bddSetup((_store, _doc, _body) => GuiFactory.build(
     renderTextarea({
       name: 'textarea',
-      label: Optional.some('LabelA'),
-      placeholder: Optional.none(),
+      label: 'LabelA',
+      placeholder: null,
       maximized: false,
       enabled: true
-    }, TestProviders, Optional.none())
+    }, TestProviders, null)
   ));
 
   // TODO: Fix dupe with Input test. Test Ctrl+Enter.

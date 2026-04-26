@@ -107,17 +107,17 @@ const fromStringValues = (red: string, green: string, blue: string, alpha: strin
 
 const fromString = (rgbaString: string): Optional<Rgba> => {
   if (rgbaString === 'transparent') {
-    return Optional.some(rgbaColour(0, 0, 0, 0));
+    return rgbaColour(0, 0, 0, 0);
   }
   const rgbMatch = rgbRegex.exec(rgbaString);
   if (rgbMatch !== null) {
-    return Optional.some(fromStringValues(rgbMatch[1], rgbMatch[2], rgbMatch[3], '1'));
+    return fromStringValues(rgbMatch[1], rgbMatch[2], rgbMatch[3], '1');
   }
   const rgbaMatch = rgbaRegex.exec(rgbaString);
   if (rgbaMatch !== null) {
-    return Optional.some(fromStringValues(rgbaMatch[1], rgbaMatch[2], rgbaMatch[3], rgbaMatch[4]));
+    return fromStringValues(rgbaMatch[1], rgbaMatch[2], rgbaMatch[3], rgbaMatch[4]);
   }
-  return Optional.none();
+  return null;
 };
 
 const toString = (rgba: Rgba): string => `rgba(${rgba.red},${rgba.green},${rgba.blue},${rgba.alpha})`;

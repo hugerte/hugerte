@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { DomEvent, Insert, Remove, SugarElement } from '@ephox/sugar';
 
@@ -25,7 +25,7 @@ UnitTest.asynctest('MouseTest', (success, failure) => {
   let repository = [];
 
   // TODO: Free handlers.
-  const handlers = Arr.bind([ 'mousedown', 'mouseup', 'mouseover', 'click', 'focus', 'contextmenu' ], (evt) =>
+  const handlers = [ 'mousedown', 'mouseup', 'mouseover', 'click', 'focus', 'contextmenu' ].flatMap((evt) =)
     [
       DomEvent.bind(container, evt, () => {
         repository.push('container.' + evt);
@@ -140,13 +140,13 @@ UnitTest.asynctest('MouseTest', (success, failure) => {
     )
 
   ], () => {
-    Arr.each(handlers, (h) => {
+    handlers.forEach((h) =) {
       h.unbind();
     });
     Remove.remove(container);
     success();
   }, (err) => {
-    Arr.each(handlers, (h) => {
+    handlers.forEach((h) =) {
       h.unbind();
     });
     failure(err);

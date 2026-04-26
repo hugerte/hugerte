@@ -1,6 +1,6 @@
 import { FocusTools, Keyboard, Keys } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Future, Optional, Result } from '@ephox/katamari';
+import { Future, Result } from '@ephox/katamari';
 import { SugarNode } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -46,10 +46,10 @@ UnitTest.asynctest('Browser Test: .ui.typeahead.TypeaheadEscEnterBubbleTest', (s
                 { type: 'item', data: { value: '2', meta: { text: '2' }}}
               ];
 
-              return Future.pure(Optional.some(TieredMenu.singleData('blah.overall', TestDropdownMenu.renderMenu({
+              return Future.pure(TieredMenu.singleData('blah.overall', TestDropdownMenu.renderMenu({
                 value: 'blah',
-                items: Arr.map(items, TestDropdownMenu.renderItem)
-              }))));
+                items: items.map(TestDropdownMenu.renderItem)
+              })));
             },
 
             lazySink: (c) => {
@@ -62,7 +62,7 @@ UnitTest.asynctest('Browser Test: .ui.typeahead.TypeaheadEscEnterBubbleTest', (s
             },
             onExecute: store.adder('***onExecute***'),
             onItemExecute: (typeahead, sandbox, item, value) => {
-              store.adder(value.value + '(' + Arr.map([ typeahead.element, sandbox.element, item.element ], SugarNode.name).join('-') + ')')();
+              store.adder(value.value + '(' + [ typeahead.element, sandbox.element, item.element ].map(SugarNode.name).join('-') + ')')();
             }
           })
         ],

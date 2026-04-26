@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Focus, Insert, Remove, SugarElement } from '@ephox/sugar';
 import { LegacyUnit, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -9,10 +9,10 @@ import { BeforeOpenNotificationEvent, OpenNotificationEvent } from 'hugerte/core
 import { NotificationSpec } from 'hugerte/core/api/NotificationManager';
 
 describe('browser.hugerte.core.NotificationManagerTest', () => {
-  Arr.each([
+  [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(tester.label, () => {
       let beforeOpenEvents: BeforeOpenNotificationEvent[] = [];
       let openEvents: OpenNotificationEvent[] = [];
@@ -32,7 +32,7 @@ describe('browser.hugerte.core.NotificationManagerTest', () => {
       const resetNotifications = () => {
         const editor = hook.editor();
         const notifications = [ ...editor.notificationManager.getNotifications() ];
-        Arr.each(notifications, (notification) => notification.close());
+        notifications.forEach((notification) =) notification.close());
         beforeOpenEvents = [];
         openEvents = [];
       };

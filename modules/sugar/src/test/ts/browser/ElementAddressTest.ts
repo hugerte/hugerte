@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as Hierarchy from 'ephox/sugar/api/dom/Hierarchy';
@@ -97,7 +97,7 @@ UnitTest.test('ElementAddressTest', () => {
     const element = Hierarchy.follow(page, startPath).getOrDie('Could not find: ' + startPath);
     const actual = ElementAddress.selectorsInParent(element, selector).getOrDie('None for inParent');
     Assert.eq('eq', expected.parent, toStr(actual.parent));
-    Assert.eq('eq', expected.children, Arr.map(actual.children, toStr));
+    Assert.eq('eq', expected.children, actual.children.map(toStr));
     Assert.eq('eq', expected.element, toStr(actual.element));
     Assert.eq('eq', expected.index, actual.index);
   };
@@ -106,7 +106,7 @@ UnitTest.test('ElementAddressTest', () => {
     const element = Hierarchy.follow(page, startPath).getOrDie('Could not find: ' + startPath);
     const actual = ElementAddress.indexInParent(element).getOrDie('None for inParent');
     Assert.eq('eq', expected.parent, toStr(actual.parent));
-    Assert.eq('eq', expected.children, Arr.map(actual.children, toStr));
+    Assert.eq('eq', expected.children, actual.children.map(toStr));
     Assert.eq('eq', expected.element, toStr(actual.element));
     Assert.eq('eq', expected.index, actual.index);
   };
@@ -165,7 +165,7 @@ UnitTest.test('ElementAddressTest', () => {
     const element = Hierarchy.follow(page, startPath).getOrDie('Could not find: ' + startPath);
     const actual = ElementAddress.descendantsInAncestor(element, ancestorSelector, descendantSelector).getOrDie('None for inAncestor');
     Assert.eq('eq', expected.ancestor, toStr(actual.ancestor));
-    Assert.eq('eq', expected.descendants, Arr.map(actual.descendants, toStr));
+    Assert.eq('eq', expected.descendants, actual.descendants.map(toStr));
     Assert.eq('eq', expected.element, toStr(actual.element));
     Assert.eq('eq', expected.index, actual.index);
   };

@@ -1,6 +1,6 @@
 import { Assertions, GeneralSteps, Logger, Pipeline, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import { Editor } from 'ephox/mcagar/alien/EditorTypes';
 import { TinyApis } from 'ephox/mcagar/api/pipeline/TinyApis';
@@ -26,7 +26,7 @@ UnitTest.asynctest('TinySetAndDeleteSettingTest', (success, failure) => {
 
   TinyLoader.setupLight((editor, loadSuccess, loadFailure) => {
     if (editor.options) {
-      editor.options.register('a', { processor: Fun.always });
+      editor.options.register('a', { processor: () => true });
     }
     const apis = TinyApis(editor);
 
@@ -39,7 +39,7 @@ UnitTest.asynctest('TinySetAndDeleteSettingTest', (success, failure) => {
       ])),
 
       Logger.t('set setting to function', GeneralSteps.sequence([
-        apis.sSetSetting('a', Fun.identity),
+        apis.sSetSetting('a', (x) => x),
         sAssertSettingType(editor, 'a', 'function')
       ])),
 

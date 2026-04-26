@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SelectorFind } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -56,7 +56,7 @@ UnitTest.asynctest('ToolbarGroupTest', (success, failure) => {
             Tabstopping.config({ })
           ]),
 
-          items: Arr.map([{ data: { value: 'a', text: 'A' }}, { data: { value: 'b', text: 'B' }}], mungeItem),
+          items: [{ data: { value: 'a', text: 'A' }}, { data: { value: 'b', text: 'B' }}].map(mungeItem),
           markers: {
             itemSelector: '.toolbar-item'
           }

@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, EventFormat, Focusing, Form, FormField, FormTypes, GuiFactory, Input, Invalidating,
   Memento, Representing, SimulatedEvent, Sketcher, SketchSpec, Tabstopping, UiSketcher
 } from '@ephox/alloy';
-import { Cell, Fun, Future, Id, Merger, Optional, Result } from '@ephox/katamari';
+import { Cell, Future, Optional, Result } from '@ephox/katamari';
 import { Css } from '@ephox/sugar';
 
 import { Hex, Rgba } from '../../api/colour/ColourTypes';
@@ -10,9 +10,9 @@ import * as HexColour from '../../api/colour/HexColour';
 import * as RgbaColour from '../../api/colour/RgbaColour';
 import * as ColourEvents from '../ColourEvents';
 
-const validInput = Id.generate('valid-input');
-const invalidInput = Id.generate('invalid-input');
-const validatingInput = Id.generate('validating-input');
+const validInput = '_' + Math.random().toString(36).slice(2);
+const invalidInput = '_' + Math.random().toString(36).slice(2);
+const validatingInput = '_' + Math.random().toString(36).slice(2);
 
 interface HexInputEvent extends EventFormat {
   readonly type: 'hex';
@@ -113,7 +113,7 @@ const rgbFormFactory = (
       onSetValue: (input: AlloyComponent) => {
         if (Invalidating.isInvalid(input)) {
           const run = Invalidating.run(input);
-          run.get(Fun.noop);
+          run.get(() => {});
         }
       }
     });
@@ -178,10 +178,10 @@ const rgbFormFactory = (
 
   const factory: UiSketcher.SingleSketchFactory<RgbFormDetail, RgbFormSpec> = (): SketchSpec => {
     const state = {
-      red: Cell(Optional.some(255)),
-      green: Cell(Optional.some(255)),
-      blue: Cell(Optional.some(255)),
-      hex: Cell(Optional.some('ffffff'))
+      red: Cell(255),
+      green: Cell(255),
+      blue: Cell(255),
+      hex: Cell('ffffff')
     };
 
     const copyHexToRgb = (form: AlloyComponent, hex: Hex) => {
@@ -207,15 +207,15 @@ const rgbFormFactory = (
     // TODO: Find way to use this for palette and slider updates
     const setValueRgb = (rgb: Rgba): void => {
       const red = rgb.red; const green = rgb.green; const blue = rgb.blue;
-      set('red', Optional.some(red));
-      set('green', Optional.some(green));
-      set('blue', Optional.some(blue));
+      set('red', red);
+      set('green', green);
+      set('blue', blue);
     };
 
     const onInvalidInput = (form: AlloyComponent, simulatedEvent: SimulatedEvent<InputEvent>) => {
       const data = simulatedEvent.event;
       if (data.type !== 'hex') {
-        set(data.type, Optional.none());
+        set(data.type, null);
       } else {
         onInvalidHexx(form);
       }
@@ -224,7 +224,7 @@ const rgbFormFactory = (
     const onValidHex = (form: AlloyComponent, value: string) => {
       onValidHexx(form);
       const hex = HexColour.hexColour(value);
-      set('hex', Optional.some(hex.value));
+      set('hex', hex.value);
 
       const rgb = RgbaColour.fromHex(hex);
       copyRgbToForm(form, rgb);
@@ -239,7 +239,7 @@ const rgbFormFactory = (
 
     const onValidRgb = (form: AlloyComponent, prop: 'red' | 'green' | 'blue', value: string) => {
       const val = parseInt(value, 10);
-      set(prop, Optional.some(val));
+      set(prop, val);
       getValueRgb().each((rgb) => {
         const hex = copyRgbToHex(form, rgb);
         AlloyTriggers.emitWith(form, ColourEvents.fieldsUpdate, {
@@ -271,8 +271,7 @@ const rgbFormFactory = (
     const hexStrings = formPartStrings('hex');
 
     // TODO: Provide a nice way of adding APIs to existing sketchers
-    return Merger.deepMerge(
-      Form.sketch((parts: FormTypes.FormParts) => ({
+    return ({ ...Form.sketch((parts: FormTypes.FormParts) => ({
         dom: {
           tag: 'form',
           classes: [ getClass('rgb-form') ],
@@ -305,8 +304,7 @@ const rgbFormFactory = (
             AlloyEvents.run(validatingInput, onInvalidInput)
           ])
         ])
-      })),
-      {
+      })), ...{
         apis: {
           updateHex: (form: AlloyComponent, hex: Hex) => {
             Representing.setValue(form, {
@@ -316,8 +314,7 @@ const rgbFormFactory = (
             updatePreview(form, hex);
           }
         }
-      }
-    );
+      } });
   };
 
   interface Apis {

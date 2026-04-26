@@ -1,7 +1,7 @@
 import { Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
 import { AlloyComponent, Attachment, Behaviour, Gui, GuiFactory, Positioning, Representing } from '@ephox/alloy';
 import { after, before, context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Classes, SugarBody, Traverse } from '@ephox/sugar';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
@@ -71,7 +71,7 @@ describe('browser.hugerte.themes.silver.editor.backstage.BackstageSinkTest', () 
   const buildAndAddColorInput = (backstage: Backstage.UiFactoryBackstage): AlloyComponent => {
     const colorInputSpec = backstage.shared.interpreter({
       type: 'colorinput',
-      label: Optional.some('color'),
+      label: 'color',
       storageKey: 'test_storage_key',
       name: 'color'
     });
@@ -92,9 +92,9 @@ describe('browser.hugerte.themes.silver.editor.backstage.BackstageSinkTest', () 
 
   context('themeless - init', () => {
     context('testing sinks', () => {
-      let lazyBackstages: () => Backstage.UiFactoryBackstagePair = Fun.die(
+      let lazyBackstages: () => Backstage.UiFactoryBackstagePair = () => { throw new Error(
         'backstages have not yet been setup'
-      );
+      ); };
 
       before(() => {
         const editor = hook.editor();
@@ -104,8 +104,8 @@ describe('browser.hugerte.themes.silver.editor.backstage.BackstageSinkTest', () 
             dialog: () => Result.value(dialogSink)
           },
           editor,
-          Fun.die('No lazy bottom anchor bar in this test'),
-          Fun.die('No lazy anchor bar in this test')
+          () => { throw new Error('No lazy bottom anchor bar in this test'); },
+          () => { throw new Error('No lazy anchor bar in this test'); }
         );
       });
 

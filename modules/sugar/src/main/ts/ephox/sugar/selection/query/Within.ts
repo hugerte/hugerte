@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { SugarElement } from '../../api/node/SugarElement';
 import * as Node from '../../api/node/SugarNode';
@@ -12,7 +12,7 @@ const withinContainer = <T extends Element>(win: Window, ancestor: SugarElement<
   const innerRange = NativeRange.create(win);
   const self = Selectors.is<T>(ancestor, selector) ? [ ancestor ] : [];
   const elements = self.concat(SelectorFilter.descendants<T>(ancestor, selector));
-  return Arr.filter(elements, (elem) => {
+  return elements.filter((elem) =) {
     // Mutate the selection to save creating new ranges each time
     NativeRange.selectNodeContentsUsing(innerRange, elem);
     return NativeRange.isWithin(outerRange, innerRange);

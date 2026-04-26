@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { ContentEditable, Hierarchy, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -499,7 +499,7 @@ describe('browser.hugerte.core.dom.DOMUtilsTest', () => {
     DOM.add(document.body, iframe);
 
     const iframeDoc = iframe.contentWindow?.document || iframe.contentDocument;
-    if (Type.isNullable(iframeDoc)) {
+    if (iframeDoc == null) {
       assert.fail('Iframe document is not available');
       return;
     }

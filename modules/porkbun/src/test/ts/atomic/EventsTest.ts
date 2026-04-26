@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 
 import { Bindable, Event } from 'ephox/porkbun/Event';
 import * as Events from 'ephox/porkbun/Events';
@@ -36,7 +36,7 @@ UnitTest.test('Events', () => {
     events.trigger.myEvent('something');
 
     Assert.eq('', true, called);
-    Assert.eq('', true, Obj.has(calledEvent, 'name'));
+    Assert.eq('', true, Object.prototype.hasOwnProperty.call(calledEvent, 'name'));
     Assert.eq('', 'something', calledEvent.name);
 
     called = false;
@@ -46,7 +46,7 @@ UnitTest.test('Events', () => {
     events.trigger.myEvent('something');
 
     Assert.eq('', false, called);
-    Assert.eq('', false, Obj.has(calledEvent, 'name'));
+    Assert.eq('', false, Object.prototype.hasOwnProperty.call(calledEvent, 'name'));
 
     // This should not throw an error
     events.registry.myEvent.unbind(handler);

@@ -1,4 +1,4 @@
-import { Id, Optional } from '@ephox/katamari';
+
 
 const enum Mode {
   ReadWrite,
@@ -6,7 +6,7 @@ const enum Mode {
   ReadOnly
 }
 
-const modeId: string = Id.generate('mode');
+const modeId: string = '_' + Math.random().toString(36).slice(2);
 
 const setMode = (mode: Mode) => (transfer: DataTransfer): void => {
   const dt: any = transfer;
@@ -15,7 +15,7 @@ const setMode = (mode: Mode) => (transfer: DataTransfer): void => {
 
 const checkMode = (expectedMode: Mode) => (transfer: DataTransfer): boolean => {
   const dt: any = transfer;
-  return Optional.from(dt[modeId]).exists((mode) => mode === expectedMode);
+  return dt[modeId] ?? null.exists((mode) => mode === expectedMode);
 };
 
 const setReadWriteMode = setMode(Mode.ReadWrite);

@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { describe, it, before, after, context } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SugarBody } from '@ephox/sugar';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
@@ -32,7 +32,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
 
   const getStr = (sections: TestSection[]) => {
     const r: Record<string, string> = {};
-    Arr.each(sections, (section) => {
+    sections.forEach((section) =) {
       r[section.option.key] = section.option.value.getOr('{ default }');
     });
     return JSON.stringify(r, null, 2);
@@ -45,7 +45,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
     it('Settings: ' + getStr(sections), async () => {
       const editor = hook.editor();
 
-      Arr.each(sections, ({ option }) => {
+      sections.forEach(({ option }) =) {
         option.value.fold(
           () => {
             editor.options.unset(option.key);
@@ -58,9 +58,7 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
 
       await TestLinkUi.pOpenLinkDialog(editor);
 
-      Arr.each(
-        sections,
-        ({ selector, exists }) => {
+      sections.forEach(({ selector, exists }) =) {
           // eslint-disable-next-line no-console
           console.log('selector', selector, 'exists', exists);
           const existence = exists ? UiFinder.exists : UiFinder.notExists;
@@ -123,37 +121,37 @@ describe('browser.hugerte.plugins.link.DialogSectionsTest', () => {
   };
 
   context('Check Target section', () => {
-    checkTargetSection(false, Optional.some(false));
-    checkTargetSection(true, Optional.some(true));
-    checkTargetSection(true, Optional.none());
+    checkTargetSection(false, false);
+    checkTargetSection(true, true);
+    checkTargetSection(true, null);
   });
 
   context('Check rel section', () => {
-    checkRelSection(true, Optional.some([
+    checkRelSection(true, [
       { title: 'a', value: 'b' },
       { title: 'c', value: 'd' }
-    ]));
-    checkRelSection(false, Optional.none());
+    ]);
+    checkRelSection(false, null);
   });
 
   context('Check Title section', () => {
-    checkTitleSection(false, Optional.some(false));
-    checkTitleSection(true, Optional.none());
+    checkTitleSection(false, false);
+    checkTitleSection(true, null);
   });
 
   context('Check class section', () => {
-    checkClassSection(true, Optional.some([
+    checkClassSection(true, [
       { title: 'a', value: 'b' },
       { title: 'c', value: 'd' }
-    ]));
-    checkClassSection(false, Optional.none());
+    ]);
+    checkClassSection(false, null);
   });
 
   context('Check LinkList section', () => {
-    checkLinkListSection(true, Optional.some([
+    checkLinkListSection(true, [
       { title: 'a', value: 'b' },
       { title: 'c', value: 'd' }
-    ]));
-    checkLinkListSection(false, Optional.none());
+    ]);
+    checkLinkListSection(false, null);
   });
 });

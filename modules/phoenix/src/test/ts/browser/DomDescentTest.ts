@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 
 import { SpotPoint } from 'ephox/phoenix/api/data/Types';
@@ -21,7 +21,7 @@ UnitTest.test('DomDescentTest', () => {
     };
   };
 
-  const refs = Obj.map({
+  const refs = Object.fromEntries(Object.entries({
     div: [],
     p: [ 1 ],
     span: [ 1 ].concat([ 1 ]),
@@ -29,7 +29,7 @@ UnitTest.test('DomDescentTest', () => {
     table: [ 2 ],
     td: [ 2, 1, 1, 1 ],
     tdtext: [ 2, 1, 1, 1, 0 ]
-  }, toRef);
+  }).map(([k, v]) => [k, (toRef)(v, k)]));
 
   interface CheckItem {
     path: number[];

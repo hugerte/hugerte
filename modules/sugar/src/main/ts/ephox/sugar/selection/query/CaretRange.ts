@@ -16,20 +16,20 @@ interface VendorDocument {
 declare const document: VendorDocument;
 
 const caretPositionFromPoint = (doc: SugarElement<Document>, x: number, y: number): Optional<Range> =>
-  Optional.from((doc.dom as VendorDocument).caretPositionFromPoint?.(x, y))
+  (doc.dom as VendorDocument).caretPositionFromPoint?.(x, y) ?? null
     .bind((pos) => {
       // It turns out that Firefox can return null for pos.offsetNode
       if (pos.offsetNode === null) {
-        return Optional.none<Range>();
+        return null;
       }
       const r = doc.dom.createRange();
       r.setStart(pos.offsetNode, pos.offset);
       r.collapse();
-      return Optional.some(r);
+      return r;
     });
 
 const caretRangeFromPoint = (doc: SugarElement<Document>, x: number, y: number): Optional<Range> =>
-  Optional.from((doc.dom as VendorDocument).caretRangeFromPoint?.(x, y));
+  (doc.dom as VendorDocument).caretRangeFromPoint?.(x, y) ?? null;
 
 const availableSearch = (() => {
   if (document.caretPositionFromPoint) {

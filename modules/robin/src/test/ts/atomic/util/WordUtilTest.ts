@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional, Unicode } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as WordUtil from 'ephox/robin/util/WordUtil';
@@ -43,13 +43,13 @@ UnitTest.test('Word Util', () => {
   checkBreak(false, '');
   checkBreak(false, 'applesandoranges');
 
-  checkBreakPosition(Optional.none(), '', WordUtil.leftBreak);
-  checkBreakPosition(Optional.none(), 'word', WordUtil.leftBreak);
-  checkBreakPosition(Optional.some(0), ' ', WordUtil.leftBreak);
-  checkBreakPosition(Optional.some(0), ' word', WordUtil.leftBreak);
-  checkBreakPosition(Optional.some(4), 'word ', WordUtil.leftBreak);
-  checkBreakPosition(Optional.some(4), 'word ' + Unicode.zeroWidth + '', WordUtil.leftBreak);
-  checkBreakPosition(Optional.some(0), ' ' + Unicode.zeroWidth + 'word', WordUtil.leftBreak);
-  checkBreakPosition(Optional.some(0), ' ' + Unicode.zeroWidth + '' + Unicode.zeroWidth + 'word', WordUtil.leftBreak);
-  checkBreakPosition(Optional.some(0), ' ' + Unicode.zeroWidth + 'wo' + Unicode.zeroWidth + 'rd', WordUtil.leftBreak);
+  checkBreakPosition(null, '', WordUtil.leftBreak);
+  checkBreakPosition(null, 'word', WordUtil.leftBreak);
+  checkBreakPosition(0, ' ', WordUtil.leftBreak);
+  checkBreakPosition(0, ' word', WordUtil.leftBreak);
+  checkBreakPosition(4, 'word ', WordUtil.leftBreak);
+  checkBreakPosition(4, 'word ' + '\uFEFF' + '', WordUtil.leftBreak);
+  checkBreakPosition(0, ' ' + '\uFEFF' + 'word', WordUtil.leftBreak);
+  checkBreakPosition(0, ' ' + '\uFEFF' + '' + '\uFEFF' + 'word', WordUtil.leftBreak);
+  checkBreakPosition(0, ' ' + '\uFEFF' + 'wo' + '\uFEFF' + 'rd', WordUtil.leftBreak);
 });

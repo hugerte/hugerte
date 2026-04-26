@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, SugarElement } from '@ephox/sugar';
 
 import * as Structs from '../api/Structs';
@@ -13,7 +13,7 @@ const getLockedColumnsFromTable = (table: SugarElement<HTMLTableElement>): (Reco
 
 // Need to check all of the cells to determine which columns are locked - reasoning is because rowspan and colspan cells where the same cell is used by multiple columns
 const getLockedColumnsFromGrid = (grid: Structs.RowCells[]): number[] => {
-  const locked = Arr.foldl(GridRow.extractGridDetails(grid).rows, (acc, row) => {
+  const locked = GridRow.extractGridDetails(grid).rows.reduce((acc, row) => {
     (row.cells).forEach((cell, idx) => {
       if (cell.isLocked) {
         acc[idx] = true;

@@ -6,7 +6,7 @@ import {
   Unselecting
 } from '@ephox/alloy';
 import { Toolbar } from '@ephox/bridge';
-import { Cell, Future, Merger } from '@ephox/katamari';
+import { Cell, Future } from '@ephox/katamari';
 import { Attribute, EventArgs, SelectorFind } from '@ephox/sugar';
 
 import { ToolbarGroupOption } from '../../../api/Options';
@@ -266,8 +266,7 @@ const fetchChoices = (getApi: (comp: AlloyComponent) => Toolbar.ToolbarSplitButt
   (comp: AlloyComponent): Future<(TieredData) | null> =>
     Future.nu<SingleMenuItemSpec[]>((callback) => spec.fetch(callback))
       .map((items) => (createTieredDataFrom(
-        Merger.deepMerge(
-          createPartialChoiceMenu(
+        ({ ...createPartialChoiceMenu(
             (('menu-value') + '_' + Math.floor(Math.random() * 1e9) + Date.now()),
             items,
             (value) => {
@@ -278,8 +277,7 @@ const fetchChoices = (getApi: (comp: AlloyComponent) => Toolbar.ToolbarSplitButt
             ItemResponse.CLOSE_ON_EXECUTE,
             spec.select ?? ((() => false as const)),
             providersBackstage
-          ),
-          {
+          ), ...{
             movement: deriveMenuMovement(spec.columns, spec.presets),
             menuBehaviours: SimpleBehaviours.unnamedEvents(spec.columns !== 'auto' ? [ ] : [
               AlloyEvents.runOnAttached((comp, _se) => {
@@ -288,8 +286,7 @@ const fetchChoices = (getApi: (comp: AlloyComponent) => Toolbar.ToolbarSplitButt
                 });
               })
             ])
-          } as TieredMenuTypes.PartialMenuSpec
-        )
+          } as TieredMenuTypes.PartialMenuSpec })
       ) ?? null));
 
 // TODO: hookup onSetup and onDestroy

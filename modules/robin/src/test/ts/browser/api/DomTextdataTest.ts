@@ -22,11 +22,11 @@ UnitTest.test('DomTextdataTest', () => {
 
   check({
     text: '',
-    cursor: Optional.some(0)
+    cursor: 0
   }, [ c ], c, 0);
 
   check({
     text: 'alpha beta epsilonfoo',
-    cursor: Optional.some(13)
+    cursor: 13
   }, [ a, b, c, d, e, f ], e, 2);
 });

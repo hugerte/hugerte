@@ -1,4 +1,4 @@
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 
 import * as Recurse from '../../alien/Recurse';
 import * as Compare from '../dom/Compare';
@@ -30,14 +30,14 @@ const defaultView = (element: SugarElement<Node>): SugarElement<Window> =>
   SugarElement.fromDom(documentOrOwner(element).dom.defaultView as Window);
 
 const parent = (element: SugarElement<Node>): Optional<SugarElement<Node & ParentNode>> =>
-  Optional.from(element.dom.parentNode).map(SugarElement.fromDom);
+  element.dom.parentNode ?? null.map(SugarElement.fromDom);
 
 // Cast down to just be SugarElement<Node>
 const parentNode = (element: SugarElement<Node>): Optional<SugarElement<Node>> =>
   parent(element) as any;
 
 const parentElement = (element: SugarElement<Node>): Optional<SugarElement<HTMLElement>> =>
-  Optional.from(element.dom.parentElement).map(SugarElement.fromDom);
+  element.dom.parentElement ?? null.map(SugarElement.fromDom);
 
 const findIndex = (element: SugarElement<Node>): Optional<number> =>
   parent(element).bind((p) => {
@@ -47,7 +47,7 @@ const findIndex = (element: SugarElement<Node>): Optional<number> =>
   });
 
 const parents = (element: SugarElement<Node>, isRoot?: (e: SugarElement<Node>) => boolean): SugarElement<Node>[] => {
-  const stop = Type.isFunction(isRoot) ? isRoot : Fun.never;
+  const stop = typeof isRoot === 'function' ? isRoot : () => false;
 
   // This is used a *lot* so it needs to be performant, not recursive
   let dom: Node = element.dom;
@@ -69,33 +69,33 @@ const parents = (element: SugarElement<Node>, isRoot?: (e: SugarElement<Node>) =
 
 const siblings = (element: SugarElement<Node>): SugarElement<Node>[] => {
   // TODO: Refactor out children so we can just not add self instead of filtering afterwards
-  const filterSelf = <E> (elements: SugarElement<E>[]) => Arr.filter(elements, (x) => !Compare.eq(element, x));
+  const filterSelf = <E> (elements: SugarElement<E>[]) => elements.filter((x) =) !Compare.eq(element, x));
 
   return parent(element).map(children).map(filterSelf).getOr([]);
 };
 
 const offsetParent = (element: SugarElement<HTMLElement>): Optional<SugarElement<HTMLElement>> =>
-  Optional.from(element.dom.offsetParent as HTMLElement).map(SugarElement.fromDom);
+  element.dom.offsetParent as HTMLElement ?? null.map(SugarElement.fromDom);
 
 const prevSibling = (element: SugarElement<Node>): Optional<SugarElement<Node & ChildNode>> =>
-  Optional.from(element.dom.previousSibling).map(SugarElement.fromDom);
+  element.dom.previousSibling ?? null.map(SugarElement.fromDom);
 
 const nextSibling = (element: SugarElement<Node>): Optional<SugarElement<Node & ChildNode>> =>
-  Optional.from(element.dom.nextSibling).map(SugarElement.fromDom);
+  element.dom.nextSibling ?? null.map(SugarElement.fromDom);
 
 // This one needs to be reversed, so they're still in DOM order
 const prevSiblings = (element: SugarElement<Node>): SugarElement<Node & ChildNode>[] =>
-  Arr.reverse(Recurse.toArray(element, prevSibling));
+  [...Recurse.toArray(element, prevSibling)].reverse();
 
 const nextSiblings = (element: SugarElement<Node>): SugarElement<Node & ChildNode>[] =>
   Recurse.toArray(element, nextSibling);
 
 const children = (element: SugarElement<Node>): SugarElement<Node & ChildNode>[] =>
-  Arr.map(element.dom.childNodes, SugarElement.fromDom);
+  element.dom.childNodes.map(SugarElement.fromDom);
 
 const child = (element: SugarElement<Node>, index: number): Optional<SugarElement<Node & ChildNode>> => {
   const cs = element.dom.childNodes;
-  return Optional.from(cs[index]).map(SugarElement.fromDom);
+  return cs[index] ?? null.map(SugarElement.fromDom);
 };
 
 const firstChild = (element: SugarElement<Node>): Optional<SugarElement<Node & ChildNode>> =>

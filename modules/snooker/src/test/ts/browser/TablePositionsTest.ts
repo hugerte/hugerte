@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+
 import { Insert, InsertAll, Remove, SelectorFilter, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as TablePositions from 'ephox/snooker/api/TablePositions';
@@ -74,11 +74,11 @@ UnitTest.test('RectangularTest', () => {
   InsertAll.append(div, [ table, table2 ] );
 
   const check = (tableTarget: SugarElement<HTMLTableElement>, from: string, to: string, expected: boolean) => {
-    Arr.each(tableTarget.dom.querySelectorAll('td'), (td) => {
+    tableTarget.dom.querySelectorAll('td').forEach((td) =) {
       td.style.background = '';
     });
-    Optional.from(document.querySelector(from) as HTMLTableCellElement).getOrDie('Missing element for "from" selector').style.background = '#cadbee';
-    Optional.from(document.querySelector(to) as HTMLTableCellElement).getOrDie('Missing element for "to" selector').style.background = '#5adb33';
+    document.querySelector(from) as HTMLTableCellElement ?? null.getOrDie('Missing element for "from" selector').style.background = '#cadbee';
+    document.querySelector(to) as HTMLTableCellElement ?? null.getOrDie('Missing element for "to" selector').style.background = '#5adb33';
     const start = SelectorFilter.descendants<HTMLTableCellElement>(tableTarget, from)[0];
     const finish = SelectorFilter.descendants<HTMLTableCellElement>(tableTarget, to)[0];
     const c = TablePositions.getBox(tableTarget, start, finish);

@@ -1,5 +1,5 @@
 import { Assert, TestLabel } from '@ephox/bedrock-client';
-import { Arr, Fun, Obj, Optional } from '@ephox/katamari';
+import { Arr, Optional } from '@ephox/katamari';
 import { Attribute, Classes, Css, Html, SugarElement, SugarNode, SugarText, Traverse, Truncate, Value } from '@ephox/sugar';
 
 import * as ApproxComparisons from './ApproxComparisons';
@@ -58,7 +58,7 @@ const elementQueue = (items: SugarElement<Node>[], container: Optional<SugarElem
     const itemInfo = '\nItem[' + i + ']:' + itemHtml;
     return container.fold(
       () => {
-        const structHtml = Arr.map(items, Html.getOuter).join('');
+        const structHtml = items.map(Html.getOuter).join('');
         const structInfo = '\nComplete Structure:\n' + structHtml;
         return itemInfo + structInfo;
       },
@@ -72,9 +72,9 @@ const elementQueue = (items: SugarElement<Node>[], container: Optional<SugarElem
     );
   };
 
-  const current = () => i >= 0 && i < items.length ? Optional.some(items[i]) : Optional.none<SugarElement<Node>>();
+  const current = () => i >= 0 && i < items.length ? items[i] : Optional.none<SugarElement<Node>>();
 
-  const peek = () => i + 1 < items.length ? Optional.some(items[i + 1]) : Optional.none<SugarElement<Node>>();
+  const peek = () => i + 1 < items.length ? items[i + 1] : Optional.none<SugarElement<Node>>();
 
   const take = () => {
     i += 1;
@@ -109,12 +109,12 @@ const element = (tag: string, fields: ElementFields): StructAssert => {
       const attrs = fields.attrs ?? {};
       const classes = fields.classes ?? [];
       const styles = fields.styles ?? {};
-      const optHtml = Optional.from(fields.html);
-      const optValue = Optional.from(fields.value);
-      const optChildren = Optional.from(fields.children);
-      const optExactClasses = Optional.from(fields.exactClasses);
-      const optExactAttrs = Optional.from(fields.exactAttrs);
-      const optExactStyles = Optional.from(fields.exactStyles);
+      const optHtml = fields.html ?? null;
+      const optValue = fields.value ?? null;
+      const optChildren = fields.children ?? null;
+      const optExactClasses = fields.exactClasses ?? null;
+      const optExactAttrs = fields.exactAttrs ?? null;
+      const optExactStyles = fields.exactStyles ?? null;
 
       optExactClasses.fold(
         () => assertClasses(classes, actual),
@@ -236,11 +236,11 @@ const zeroOrMore = repeat(0, true);
 const oneOrMore = repeat(1, true);
 
 const anythingStruct: StructAssert = {
-  doAssert: Fun.noop
+  doAssert: () => {}
 };
 
 const assertAttrs = (expectedAttrs: Record<string, StringAssert>, actual: SugarElement<Element>) => {
-  Obj.each(expectedAttrs, (v, k) => {
+  Object.entries(expectedAttrs).forEach(([k, v]) => ((v, k) =)(v, k)) {
     if (v.strAssert === undefined) {
       throw new Error(JSON.stringify(v) + ' is not a *string assertion*.\nSpecified in *expected* attributes of ' + Truncate.getHtml(actual));
     }
@@ -253,8 +253,8 @@ const assertAttrs = (expectedAttrs: Record<string, StringAssert>, actual: SugarE
 };
 
 const assertExactMatchAttrs = (expectedAttrs: Record<string, StringAssert>, actual: SugarElement<Element>) => {
-  const allDefinedAttrs = Obj.keys(expectedAttrs);
-  const actualDefinedAttrs = Arr.filter(Obj.keys(Attribute.clone(actual)), (attr) => attr !== 'class' && attr !== 'style');
+  const allDefinedAttrs = Object.keys(expectedAttrs);
+  const actualDefinedAttrs = Object.keys(Attribute.clone(actual)).filter((attr) =) attr !== 'class' && attr !== 'style');
 
   const isEqual = assertEqualArray(
     allDefinedAttrs,
@@ -270,7 +270,7 @@ const assertExactMatchAttrs = (expectedAttrs: Record<string, StringAssert>, actu
 
 const assertClasses = (expectedClasses: ArrayAssert[], actual: SugarElement<Element>) => {
   const actualClasses = Classes.get(actual);
-  Arr.each(expectedClasses, (eCls) => {
+  expectedClasses.forEach((eCls) =) {
     if (eCls.arrAssert === undefined) {
       throw new Error(JSON.stringify(eCls) + ' is not an *array assertion*.\nSpecified in *expected* classes of ' + Truncate.getHtml(actual));
     }
@@ -292,7 +292,7 @@ const assertExactMatchClasses = (expectedClasses: string[], actual: SugarElement
 };
 
 const assertStyles = (expectedStyles: Record<string, StringAssert>, actual: SugarElement<Element>) => {
-  Obj.each(expectedStyles, (v, k) => {
+  Object.entries(expectedStyles).forEach(([k, v]) => ((v, k) =)(v, k)) {
     const actualValue = Css.getRaw(actual, k).getOrThunk(ApproxComparisons.missing);
     if (v.strAssert === undefined) {
       throw new Error(JSON.stringify(v) + ' is not a *string assertion*.\nSpecified in *expected* styles of ' + Truncate.getHtml(actual));
@@ -305,8 +305,8 @@ const assertStyles = (expectedStyles: Record<string, StringAssert>, actual: Suga
 };
 
 const assertExactMatchStyles = (expectedStyles: Record<string, StringAssert>, actual: SugarElement<Element>) => {
-  const allDefinedStyles = Obj.keys(expectedStyles);
-  const actualDefinedStyles = Obj.keys(Css.getAllRaw(actual));
+  const allDefinedStyles = Object.keys(expectedStyles);
+  const actualDefinedStyles = Object.keys(Css.getAllRaw(actual));
 
   const isEqual = assertEqualArray(
     allDefinedStyles,
@@ -344,8 +344,8 @@ const assertValue = (expectedValue: Optional<StringAssert>, actual: SugarElement
 
 const assertChildren = (expectedChildren: Optional<StructAssert[]>, actual: SugarElement<Node>) => {
   expectedChildren.each((expected) => {
-    const children = elementQueue(Traverse.children(actual), Optional.some(actual));
-    Arr.each(expected, (structExpectation, i) => {
+    const children = elementQueue(Traverse.children(actual), actual);
+    expected.forEach((structExpectation, i) =) {
       if (structExpectation.doAssert === undefined) {
         throw new Error(JSON.stringify(structExpectation) + ' is not a *structure assertion*.\n' +
           'Specified in *expected* children of ' + Truncate.getHtml(actual));
@@ -366,13 +366,13 @@ const assertChildren = (expectedChildren: Optional<StructAssert[]>, actual: Suga
   });
 };
 
-const anything = Fun.constant(anythingStruct);
+const anything = () => anythingStruct;
 
-const theRest = Fun.constant(zeroOrMore(anythingStruct));
+const theRest = () => zeroOrMore(anythingStruct);
 
 const assertEqualArray = (expected: string[], actual: string[]): boolean => Arr.equal(
-  Arr.sort(expected),
-  Arr.sort(actual)
+  [...expected].sort(),
+  [...actual].sort()
 );
 
 export {

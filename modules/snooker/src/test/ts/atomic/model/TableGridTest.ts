@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -13,7 +13,7 @@ describe('TableGridTest', () => {
   const en = (fakeElement: any, isNew: boolean) => Structs.elementnew(fakeElement as SugarElement<any>, isNew, false);
 
   const check = (expected: { colspan: number; rowspan: number }, row: number, column: number, grid: Structs.RowCells[]) => {
-    const actual = TableGrid.subgrid(grid, row, column, Fun.tripleEquals);
+    const actual = TableGrid.subgrid(grid, row, column, (a, b) => a === b);
     assert.deepEqual(actual, expected);
   };
 

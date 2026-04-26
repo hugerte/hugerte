@@ -1,4 +1,4 @@
-import { Fun, Throttler } from '@ephox/katamari';
+import { Throttler } from '@ephox/katamari';
 
 import { SugarElement } from '../node/SugarElement';
 import * as Traverse from '../search/Traverse';
@@ -35,7 +35,7 @@ const wait = window.MutationObserver !== undefined && window.MutationObserver !=
 const onShow = (element: SugarElement<HTMLElement>, f: () => void): () => void => {
   if (Visibility.isVisible(element)) {
     window.requestAnimationFrame(f);
-    return Fun.noop;
+    return () => {};
   } else {
     // these events might come in thick and fast, so throttle them
     const throttler = Throttler.adaptable(() => {

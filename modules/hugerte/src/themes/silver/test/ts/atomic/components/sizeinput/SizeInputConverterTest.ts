@@ -18,21 +18,21 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConverterTe
 
   it('ratio size conversion (scale: 2)', () => {
     const checkRatio2 = check(ratioSizeConversion(2, 'in'));
-    checkRatio2(Optional.some(nuSize(1, 'in')), nuSize(0.5, 'in'));
-    checkRatio2(Optional.some(nuSize(1, 'in')), nuSize(48, 'px'));
-    checkRatio2(Optional.some(nuSize(1, 'in')), nuSize(6, 'pc'));
-    checkRatio2(Optional.some(nuSize(1, 'in')), nuSize(36, 'pt'));
-    checkRatio2(Optional.some(nuSize(2, 'in')), nuSize(2.54, 'cm'));
-    checkRatio2(Optional.some(nuSize(1, 'in')), nuSize(12.7, 'mm'));
+    checkRatio2(nuSize(1, 'in'), nuSize(0.5, 'in'));
+    checkRatio2(nuSize(1, 'in'), nuSize(48, 'px'));
+    checkRatio2(nuSize(1, 'in'), nuSize(6, 'pc'));
+    checkRatio2(nuSize(1, 'in'), nuSize(36, 'pt'));
+    checkRatio2(nuSize(2, 'in'), nuSize(2.54, 'cm'));
+    checkRatio2(nuSize(1, 'in'), nuSize(12.7, 'mm'));
   });
 
   it('ratio size conversion (scale: 3)', () => {
     const checkRatio3 = check(ratioSizeConversion(3, 'in'));
-    checkRatio3(Optional.some(nuSize(1, 'in')), nuSize(32, 'px'));
-    checkRatio3(Optional.some(nuSize(1, 'in')), nuSize(4, 'pc'));
-    checkRatio3(Optional.some(nuSize(1, 'in')), nuSize(24, 'pt'));
-    checkRatio3(Optional.some(nuSize(3, 'in')), nuSize(2.54, 'cm'));
-    checkRatio3(Optional.some(nuSize(3, 'in')), nuSize(25.4, 'mm'));
+    checkRatio3(nuSize(1, 'in'), nuSize(32, 'px'));
+    checkRatio3(nuSize(1, 'in'), nuSize(4, 'pc'));
+    checkRatio3(nuSize(1, 'in'), nuSize(24, 'pt'));
+    checkRatio3(nuSize(3, 'in'), nuSize(2.54, 'cm'));
+    checkRatio3(nuSize(3, 'in'), nuSize(25.4, 'mm'));
   });
 
   it('ratioSizeConversion is equivalent to multiplying when the units match', () => {
@@ -56,18 +56,18 @@ describe('atomic.hugerte.themes.silver.components.sizeinput.SizeInputConverterTe
 
   it('make ratio converter (2in)', () => {
     const checkRatioConv2 = check(makeRatioConverter('96px', '2in'));
-    checkRatioConv2(Optional.some(nuSize(1, 'in')), nuSize(0.5, 'in'));
-    checkRatioConv2(Optional.some(nuSize(1, 'in')), nuSize(48, 'px'));
-    checkRatioConv2(Optional.some(nuSize(1, 'in')), nuSize(6, 'pc'));
-    checkRatioConv2(Optional.some(nuSize(1, 'in')), nuSize(36, 'pt'));
-    checkRatioConv2(Optional.some(nuSize(2, 'in')), nuSize(2.54, 'cm'));
-    checkRatioConv2(Optional.some(nuSize(1, 'in')), nuSize(12.7, 'mm'));
+    checkRatioConv2(nuSize(1, 'in'), nuSize(0.5, 'in'));
+    checkRatioConv2(nuSize(1, 'in'), nuSize(48, 'px'));
+    checkRatioConv2(nuSize(1, 'in'), nuSize(6, 'pc'));
+    checkRatioConv2(nuSize(1, 'in'), nuSize(36, 'pt'));
+    checkRatioConv2(nuSize(2, 'in'), nuSize(2.54, 'cm'));
+    checkRatioConv2(nuSize(1, 'in'), nuSize(12.7, 'mm'));
   });
 
   it('make ratio converter (1em)', () => {
     const checkNoRatio = check(makeRatioConverter('96px', '1em'));
-    checkNoRatio(Optional.none(), nuSize(1, 'em'));
-    checkNoRatio(Optional.none(), nuSize(50, 'px'));
-    checkNoRatio(Optional.none(), nuSize(2, 'cm'));
+    checkNoRatio(null, nuSize(1, 'em'));
+    checkNoRatio(null, nuSize(50, 'px'));
+    checkNoRatio(null, nuSize(2, 'cm'));
   });
 });

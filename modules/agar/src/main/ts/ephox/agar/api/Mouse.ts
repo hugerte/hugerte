@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Fun } from '@ephox/katamari';
+
 import { Focus, SugarElement } from '@ephox/sugar';
 
 import * as Clicks from '../mouse/Clicks';
@@ -19,13 +19,13 @@ const mouseUpTo = (element: SugarElement<Node>, dx: number, dy: number, settings
   Clicks.mouseUp({ ...settings, dx, dy })(element);
 
 // Custom event creation
-const cClickWith = Fun.compose(Chain.op, Clicks.click);
-const cContextMenuWith = Fun.compose(Chain.op, Clicks.contextMenu);
-const cMouseOverWith = Fun.compose(Chain.op, Clicks.mouseOver);
-const cMouseDownWith = Fun.compose(Chain.op, Clicks.mouseDown);
-const cMouseUpWith = Fun.compose(Chain.op, Clicks.mouseUp);
-const cMouseMoveWith = Fun.compose(Chain.op, Clicks.mouseMove);
-const cMouseOutWith = Fun.compose(Chain.op, Clicks.mouseOut);
+const cClickWith = (...args: any[]) => (Chain.op)((Clicks.click)(...args));
+const cContextMenuWith = (...args: any[]) => (Chain.op)((Clicks.contextMenu)(...args));
+const cMouseOverWith = (...args: any[]) => (Chain.op)((Clicks.mouseOver)(...args));
+const cMouseDownWith = (...args: any[]) => (Chain.op)((Clicks.mouseDown)(...args));
+const cMouseUpWith = (...args: any[]) => (Chain.op)((Clicks.mouseUp)(...args));
+const cMouseMoveWith = (...args: any[]) => (Chain.op)((Clicks.mouseMove)(...args));
+const cMouseOutWith = (...args: any[]) => (Chain.op)((Clicks.mouseOut)(...args));
 
 // With delta position (shifted relative to top-left of component)
 /**

@@ -69,8 +69,8 @@ export const renderCommonSpec = (
     },
     ...action
   };
-  const domFinal = Merger.deepMerge(common, { dom });
-  return Merger.deepMerge(domFinal, { components });
+  const domFinal = ({ ...common, ...{ dom } });
+  return ({ ...domFinal, ...{ components } });
 };
 
 // An IconButton just seems to be a button that *cannot* have text, but

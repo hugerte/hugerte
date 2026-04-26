@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Html, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { Generators } from 'ephox/snooker/api/Generators';
@@ -19,15 +19,15 @@ UnitTest.test('ModificationOperationsTest', () => {
     return Structs.elementnew(elem, isNew, false);
   };
   const mapToStructGrid = (grid: Grid) => {
-    return Arr.map(grid, (row) => {
+    return grid.map((row) =) {
       return Structs.rowcells(re(), row, 'tbody', false);
     });
   };
 
   const assertGrids = (expected: Structs.RowCells[], actual: Structs.RowCells[], checkIsNew: boolean) => {
     Assert.eq('', expected.length, actual.length);
-    Arr.each(expected, (row, i) => {
-      Arr.each(row.cells, (cell, j) => {
+    expected.forEach((row, i) =) {
+      row.cells.forEach((cell, j) =) {
         Assertions.assertHtml('Expected elements to have the same HTML', Html.getOuter(cell.element), Html.getOuter(actual[i].cells[j].element));
         Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
       });
@@ -297,7 +297,7 @@ UnitTest.test('ModificationOperationsTest', () => {
 
   (() => {
     const check = (expected: Structs.RowCells[], grid: Structs.RowCells[], exRow: number, exCol: number, checkIsNew: boolean = true) => {
-      const actual = ModificationOperations.splitCellIntoColumns(grid, exRow, exCol, Fun.tripleEquals, Generators.modification(BrowserTestGenerator()).getOrInit);
+      const actual = ModificationOperations.splitCellIntoColumns(grid, exRow, exCol, (a, b) => a === b, Generators.modification(BrowserTestGenerator()).getOrInit);
       assertGrids(expected, actual, checkIsNew);
     };
 
@@ -494,7 +494,7 @@ UnitTest.test('ModificationOperationsTest', () => {
 
   (() => {
     const check = (expected: Structs.RowCells[], grid: Structs.RowCells[], exRow: number, exCol: number, checkIsNew: boolean = true) => {
-      const actual = ModificationOperations.splitCellIntoRows(grid, exRow, exCol, Fun.tripleEquals, Generators.modification(BrowserTestGenerator()).getOrInit);
+      const actual = ModificationOperations.splitCellIntoRows(grid, exRow, exCol, (a, b) => a === b, Generators.modification(BrowserTestGenerator()).getOrInit);
       assertGrids(expected, actual, checkIsNew);
     };
 

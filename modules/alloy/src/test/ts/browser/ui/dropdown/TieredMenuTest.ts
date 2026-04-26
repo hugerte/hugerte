@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, Step, StructAssert } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
 import { Objects } from '@ephox/boulder';
-import { Arr, Obj } from '@ephox/katamari';
+
 import { Class } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -35,28 +35,28 @@ UnitTest.asynctest('TieredMenuTest', (success, failure) => {
 
       data: {
         primary: 'menu-a',
-        menus: Obj.map({
+        menus: Object.fromEntries(Object.entries({
           'menu-a': {
             value: 'menu-a',
-            items: Arr.map([
+            items: [
               { type: 'item', data: { value: 'a-alpha', meta: { text: 'a-Alpha' }}, hasSubmenu: false },
               { type: 'item', data: { value: 'a-beta', meta: { text: 'a-Beta' }}, hasSubmenu: true },
               { type: 'item', data: { value: 'a-gamma', meta: { text: 'a-Gamma', disabled: true }}, hasSubmenu: true }
-            ], TestDropdownMenu.renderItem)
+            ].map(TestDropdownMenu.renderItem)
           },
           'a-beta': { // menu name should be triggering parent item so TieredMenuSpec path works
             value: 'menu-b',
-            items: Arr.map([
+            items: [
               { type: 'item', data: { value: 'b-alpha', meta: { text: 'b-Alpha' }}, hasSubmenu: false },
-            ], TestDropdownMenu.renderItem)
+            ].map(TestDropdownMenu.renderItem)
           },
           'a-gamma': {
             value: 'menu-c',
-            items: Arr.map([
+            items: [
               { type: 'item', data: { value: 'c-alpha', meta: { text: 'c-Alpha' }}, hasSubmenu: false },
-            ], TestDropdownMenu.renderItem)
+            ].map(TestDropdownMenu.renderItem)
           }
-        }, TestDropdownMenu.renderMenu),
+        }).map(([k, v]) => [k, (TestDropdownMenu.renderMenu)(v, k)])),
         expansions: {
           'a-beta': 'a-beta',
           'a-gamma': 'a-gamma',
@@ -112,7 +112,7 @@ UnitTest.asynctest('TieredMenuTest', (success, failure) => {
   ), (doc, _body, _gui, component, store) => {
     const structureMenu = (selected: boolean, itemSelections: boolean[], hasPopups: boolean[], isExpandeds: boolean[], disabled: boolean[]) => (s: ApproxStructure.StructApi, str: ApproxStructure.StringApi, arr: ApproxStructure.ArrayApi) => s.element('ol', {
       classes: [ arr.has('menu'), (selected ? arr.has : arr.not)('selected-menu') ],
-      children: Arr.map(itemSelections, (sel, i) => s.element('li', {
+      children: itemSelections.map((sel, i) =) s.element('li', {
         classes: [ arr.has('item'), (sel ? arr.has : arr.not)('selected-item') ],
         attrs: {
           'aria-haspopup': str.is(hasPopups[i].toString()),
@@ -128,7 +128,7 @@ UnitTest.asynctest('TieredMenuTest', (success, failure) => {
       label,
       ApproxStructure.build((s, str, arr) => s.element('div', {
         classes: [ arr.has('test-menu') ],
-        children: Arr.map(structureMenus, (sm) => sm(s, str, arr))
+        children: structureMenus.map((sm) =) sm(s, str, arr))
       })),
       component.element
     );

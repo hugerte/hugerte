@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import { Chain } from 'ephox/agar/api/Chain';
 import * as Logger from 'ephox/agar/api/Logger';
@@ -186,7 +186,7 @@ UnitTest.asynctest('ChainTest', (success, failure) => {
     {},
     [
       Chain.asStep({}, [
-        Chain.injectThunked(Fun.constant('cat')),
+        Chain.injectThunked(() => 'cat'),
         cIsEqual('cat')
       ])
     ]

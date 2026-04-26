@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import { fromRawEvent } from '../../impl/FilteredEvent';
@@ -19,9 +19,9 @@ const get = (_win?: Window): Optional<VisualViewport> => {
   const win = _win === undefined ? window : _win;
   if (PlatformDetection.detect().browser.isFirefox()) {
     // TINY-7984: Firefox 91 is returning incorrect values for visualViewport.pageTop, so disable it for now
-    return Optional.none();
+    return null;
   } else {
-    return Optional.from(win.visualViewport);
+    return win.visualViewport ?? null;
   }
 };
 
@@ -64,7 +64,7 @@ const bind = (name: string, callback: EventHandler, _win?: Window): EventUnbinde
       unbind: () => visualViewport.removeEventListener(name, handler)
     };
   }).getOrThunk(() => ({
-    unbind: Fun.noop
+    unbind: () => {}
   }));
 
 export {

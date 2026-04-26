@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Touch, UiFinder, Waiter } from '@ephox/agar';
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
@@ -26,7 +26,7 @@ describe('browser.hugerte.themes.silver.editor.contextmenu.MobileContextMenuTest
     PlatformDetection.override({
       deviceType: {
         ...detection.deviceType,
-        isTouch: Fun.always
+        isTouch: () => true
       }
     });
   });
@@ -101,7 +101,7 @@ describe('browser.hugerte.themes.silver.editor.contextmenu.MobileContextMenuTest
 
   const assertMenuItems = (items: string[]) => {
     const contextMenu = UiFinder.findIn(SugarBody.body(), mobileContextMenuSelector).getOrDie();
-    Arr.each(items, (item) => UiFinder.exists(contextMenu, item));
+    items.forEach((item) =) UiFinder.exists(contextMenu, item));
   };
 
   const mobileContextMenuSelector = 'div.tox-collection--horizontal';

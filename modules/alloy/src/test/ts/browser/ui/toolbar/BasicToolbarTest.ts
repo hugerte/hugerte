@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
@@ -89,7 +89,7 @@ UnitTest.asynctest('BasicToolbarTest', (success, failure) => {
       Step.sync(() => {
         TestPartialToolbarGroup.setGroups(t1, [
           {
-            items: Arr.map([{ text: 'a1' }, { text: 'a2' }], makeButton)
+            items: [{ text: 'a1' }, { text: 'a2' }].map(makeButton)
           }
         ]);
       }),
@@ -132,7 +132,7 @@ UnitTest.asynctest('BasicToolbarTest', (success, failure) => {
       Step.sync(() => {
         TestPartialToolbarGroup.setGroups(t2, [
           {
-            items: Arr.map([{ text: 'b1' }, { text: 'b2' }], makeButton)
+            items: [{ text: 'b1' }, { text: 'b2' }].map(makeButton)
           }
         ]);
       }),

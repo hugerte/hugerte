@@ -1,5 +1,5 @@
 import { ApproxStructure, Keys, StructAssert } from '@ephox/agar';
-import { Thunk, Unicode } from '@ephox/katamari';
+import { Thunk } from '@ephox/katamari';
 import { TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -52,7 +52,7 @@ const inlineStructHelper = (tag: string, content: string): StructAssert => {
               s.text(str.is(content), true)
             ]
           }),
-          s.text(str.is(Unicode.nbsp), true)
+          s.text(str.is('\u00A0'), true)
         ]
       })
     ]);

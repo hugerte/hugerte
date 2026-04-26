@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { getDemoRegistry } from './DemoRegistry';
 
@@ -49,7 +49,7 @@ export const registerDemoButtons = (): void => {
     tooltip: 'Bold',
     onSetup: (api) => {
       api.setActive(false);
-      return Fun.noop;
+      return () => {};
     },
     onAction: (_api) => {
       console.log('bold clicked');

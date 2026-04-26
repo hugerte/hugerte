@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Fun, Optional } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Hierarchy, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
@@ -26,7 +26,7 @@ describe('browser.hugerte.core.caret.LineReader', () => {
   const setHtml = viewBlock.update;
 
   const logPositions = (msg: string, positions: CaretPosition[]) => {
-    Arr.each(positions, (pos) => {
+    positions.forEach((pos) =) {
       // eslint-disable-next-line no-console
       console.log(msg, pos.container(), pos.offset(), pos.getClientRects());
     });
@@ -64,7 +64,7 @@ describe('browser.hugerte.core.caret.LineReader', () => {
 
   const assertPositions = (actualPositions: CaretPosition[], expectedPositions: Path[]) => {
     assert.lengthOf(actualPositions, expectedPositions.length, 'Should be the expected amount of positions');
-    Arr.each(expectedPositions, (p: Path, i) => {
+    expectedPositions.forEach((p: Path, i) =) {
       const container = Hierarchy.follow(SugarElement.fromDom(viewBlock.get()), p.path).getOrDie();
       Assertions.assertDomEq('Should be the expected container', container, SugarElement.fromDom(actualPositions[i].container()));
       assert.equal(actualPositions[i].offset(), p.offset, 'Should be the expected offset');

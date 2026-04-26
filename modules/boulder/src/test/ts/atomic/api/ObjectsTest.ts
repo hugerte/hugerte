@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 import * as fc from 'fast-check';
 
@@ -15,7 +15,7 @@ UnitTest.test('ObjectsTest', () => {
 
   const testNarrow = () => {
     const narrowGen = fc.dictionary(smallSet, smallSet).chain((obj) => {
-      const keys = Obj.keys(obj);
+      const keys = Object.keys(obj);
       return keys.length === 0 ? fc.constant({
         obj,
         fields: []
@@ -27,8 +27,8 @@ UnitTest.test('ObjectsTest', () => {
 
     check(narrowGen, (input) => {
       const narrowed = Objects.narrow(input.obj, input.fields);
-      Obj.each(narrowed, (_, k) => {
-        if (!Arr.contains(input.fields, k)) {
+      Object.entries(narrowed).forEach(([k, v]) => ((_, k) =)(v, k)) {
+        if (!input.fields.includes(k)) {
           throw new Error('Narrowed object contained property: ' + k + ' which was not in fields: [' + input.fields.join(', ') + ']');
         }
       });
@@ -42,7 +42,7 @@ UnitTest.test('ObjectsTest', () => {
 
   const testExclude = () => {
     const excludeGen = fc.dictionary(smallSet, smallSet).chain((obj) => {
-      const keys = Obj.keys(obj);
+      const keys = Object.keys(obj);
       return keys.length === 0 ? fc.constant({
         obj,
         fields: []
@@ -54,8 +54,8 @@ UnitTest.test('ObjectsTest', () => {
 
     check(excludeGen, (input) => {
       const excluded = Objects.exclude(input.obj, input.fields);
-      Obj.each(excluded, (_, k) => {
-        if (Arr.contains(input.fields, k)) {
+      Object.entries(excluded).forEach(([k, v]) => ((_, k) =)(v, k)) {
+        if (input.fields.includes(k)) {
           throw new Error('Excluded object contained property: ' + ' which should have been excluded by: [' +
             input.fields.join(', ') + ']');
         }
@@ -70,7 +70,7 @@ UnitTest.test('ObjectsTest', () => {
     // TODO: Think of a good way to property test.
     const subject = { alpha: 'Alpha' };
 
-    KAssert.eqSome('readOptFrom(alpha) => some(Alpha)', 'Alpha', Obj.get(subject, 'alpha'));
+    KAssert.eqSome('readOptFrom(alpha) => some(Alpha)', 'Alpha', (subject as any)['alpha']);
   };
 
   const testConsolidate = () => {
@@ -173,7 +173,7 @@ UnitTest.test('ObjectsTest', () => {
     check(inputList, (input) => {
       const actual = Objects.consolidate(input.results, input.base);
 
-      const hasError = Arr.exists(input.results, (res) => res.isError());
+      const hasError = input.results.some((res) =) res.isError());
 
       if (hasError) {
         Assert.eq('Error contained in list, so should be error overall', true, actual.isError());
@@ -186,13 +186,13 @@ UnitTest.test('ObjectsTest', () => {
     // Testing consolidate with base
     fc.assert(fc.property(inputList, smallSet, fc.json(), (input, baseKey, baseValue) => {
       const actual = Objects.consolidate(input.results, Objects.wrap(baseKey, baseValue));
-      const hasError = Arr.exists(input.results, (res) => res.isError());
+      const hasError = input.results.some((res) =) res.isError());
 
       if (hasError) {
         Assert.eq('Error contained in list, so should be error overall', true, actual.isError());
       } else {
         Assert.eq('No errors in list, so should be value overall', true, actual.isValue());
-        Assert.eq('Missing base key: ' + baseKey, true, Obj.has(actual.getOrDie(), baseKey));
+        Assert.eq('Missing base key: ' + baseKey, true, Object.prototype.hasOwnProperty.call(actual.getOrDie(), baseKey));
       }
     }));
   };

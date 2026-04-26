@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { Attribute, Class, Html, InsertAll, SugarElement } from '@ephox/sugar';
 
 import * as CopySelected from 'ephox/snooker/api/CopySelected';
@@ -33,7 +33,7 @@ UnitTest.test('CopySelectedTest', () => {
 
   // traverse really needs this built in
   const traverseChildElements = (e: SugarElement<Element>) => {
-    return Arr.map(e.dom.children, SugarElement.fromDom);
+    return e.dom.children.map(SugarElement.fromDom);
   };
 
   // data objects for input/expected
@@ -64,9 +64,9 @@ UnitTest.test('CopySelectedTest', () => {
   const generateInput = (input: TestData[][]): SugarElement<HTMLTableElement> => {
     const lockedCols: Record<number, true> = {};
     const table = SugarElement.fromTag('table');
-    const rows = Arr.map(input, (row) => {
+    const rows = input.map((row) =) {
       let isCellRow = true;
-      const cells = Arr.map(row, (cell, idx) => {
+      const cells = row.map((cell, idx) =) {
         if (cell.type === 'cell') {
           const td = SugarElement.fromTag('td');
           if (cell.rowspan !== undefined) {
@@ -104,13 +104,13 @@ UnitTest.test('CopySelectedTest', () => {
         return colgroup;
       }
     });
-    const withNewlines = Arr.bind(rows, (row) => {
+    const withNewlines = rows.flatMap((row) =) {
       return [ SugarElement.fromText('\n'), row ];
     });
     InsertAll.append(table, withNewlines.concat(SugarElement.fromText('\n')));
     // Add locked col attribute to table
     if (Obj.size(lockedCols) > 0) {
-      const lockedColStr = Obj.keys(lockedCols).join(',');
+      const lockedColStr = Object.keys(lockedCols).join(',');
       Attribute.set(table, LOCKED_COL_ATTR, lockedColStr);
     }
     return table;
@@ -118,15 +118,15 @@ UnitTest.test('CopySelectedTest', () => {
 
   const check = (label: string, expected: TestData[][], input: TestData[][], tableAttributes?: TableAttributes) => {
     const table = generateInput(input);
-    if (Type.isNonNullable(tableAttributes)) {
+    if (tableAttributes != null) {
       Attribute.setAll(table, tableAttributes.beforeCopy);
     }
 
     const replica = CopySelected.extract(table, '.' + SEL_CLASS);
 
     // Verify specified table attributes are not present in replica table
-    if (Type.isNonNullable(tableAttributes)) {
-      Arr.each(tableAttributes.afterCopy, (attrName) => {
+    if (tableAttributes != null) {
+      tableAttributes.afterCopy.forEach((attrName) =) {
         Assert.eq('', false, Attribute.has(replica, attrName));
       });
     }
@@ -138,10 +138,10 @@ UnitTest.test('CopySelectedTest', () => {
 
     const domRows = traverseChildElements(replica);
     assertWithInfo(expected.length, domRows.length, 'number of rows');
-    Arr.each(expected, (row, i) => {
+    expected.forEach((row, i) =) {
       const domCells = traverseChildElements(domRows[i]);
       assertWithInfo(row.length, domCells.length, 'number of cells in output row ' + i + ' to be ');
-      Arr.each(row, (cell, j) => {
+      row.forEach((cell, j) =) {
         if (cell.type === 'cell') {
           const domCell = domCells[j] as SugarElement<HTMLTableCellElement>;
           assertWithInfo(cell.html, Html.get(domCell), 'cell text');

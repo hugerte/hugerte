@@ -1,4 +1,4 @@
-import { Num } from '@ephox/katamari';
+
 
 import * as NodeType from '../dom/NodeType';
 
@@ -16,7 +16,7 @@ const getSelectedNode = (range: Range): Node | null => {
 const getNode = (container: Node, offset: number): Node => {
   if (NodeType.isElement(container) && container.hasChildNodes()) {
     const childNodes = container.childNodes;
-    const safeOffset = Num.clamp(offset, 0, childNodes.length - 1);
+    const safeOffset = Math.min(Math.max(offset, 0), childNodes.length - 1);
     return childNodes[safeOffset];
   } else {
     return container;

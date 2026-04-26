@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, Keys, Mouse, StructAssert, TestStore, UiFinder, Waiter } from '@ephox/agar';
 import { TestHelpers } from '@ephox/alloy';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -21,13 +21,13 @@ describe('browser.hugerte.themes.silver.skin.OxideColorSwatchMenuTest', () => {
         columns: 2,
         tooltip: 'swatch-button',
         fetch: (callback) => {
-          const items = Arr.map([
+          const items = [
             'green',
             'red',
             'blue',
             'black',
             'white'
-          ], (c): Menu.ChoiceMenuItemSpec => ({ type: 'choiceitem', text: c, value: c }));
+          ].map((c): Menu.ChoiceMenuItemSpec =) ({ type: 'choiceitem', text: c, value: c }));
           callback(items.concat([
             {
               type: 'choiceitem',
@@ -74,7 +74,7 @@ describe('browser.hugerte.themes.silver.skin.OxideColorSwatchMenuTest', () => {
     });
 
   const structColors = (values: string[]): ApproxStructure.Builder<StructAssert[]> =>
-    (s, str, arr) => Arr.map(values, (v) => structColor(v)(s, str, arr));
+    (s, str, arr) => values.map((v) =) structColor(v)(s, str, arr));
 
   const assertFocusIsOnColor = (expected: string) => {
     const focused = FocusTools.getFocused(SugarDocument.getDocument()).getOrDie();

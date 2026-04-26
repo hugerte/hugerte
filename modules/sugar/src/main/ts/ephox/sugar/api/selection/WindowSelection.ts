@@ -14,7 +14,7 @@ import { SimRange } from './SimRange';
 import { SimSelection } from './SimSelection';
 import { Situ } from './Situ';
 
-const getNativeSelection = (win: Window) => Optional.from(win.getSelection());
+const getNativeSelection = (win: Window) => win.getSelection() ?? null;
 
 const doSetNativeRange = (win: Window, rng: Range): void => {
   getNativeSelection(win).each((selection) => {
@@ -91,14 +91,14 @@ const readRange = (selection: Selection): Optional<SimRange> => {
     const firstRng = selection.getRangeAt(0);
     const lastRng = selection.getRangeAt(selection.rangeCount - 1);
 
-    return Optional.some(SimRange.create(
+    return SimRange.create(
       SugarElement.fromDom(firstRng.startContainer),
       firstRng.startOffset,
       SugarElement.fromDom(lastRng.endContainer),
       lastRng.endOffset
-    ));
+    );
   } else {
-    return Optional.none<SimRange>();
+    return null;
   }
 };
 
@@ -110,14 +110,14 @@ const doGetExact = (selection: Selection): Optional<SimRange> => {
     const focus = SugarElement.fromDom(selection.focusNode);
 
     // if this returns true anchor is _after_ focus, so we need a custom selection object to maintain the RTL selection
-    return DocumentPosition.after(anchor, selection.anchorOffset, focus, selection.focusOffset) ? Optional.some(
+    return DocumentPosition.after(anchor, selection.anchorOffset, focus, selection.focusOffset) ? 
       SimRange.create(
         anchor,
         selection.anchorOffset,
         focus,
         selection.focusOffset
       )
-    ) : readRange(selection);
+     : readRange(selection);
   }
 };
 

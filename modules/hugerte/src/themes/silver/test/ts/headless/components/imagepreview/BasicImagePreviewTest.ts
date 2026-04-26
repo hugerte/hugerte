@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, UiFinder } from '@ephox/agar';
 import { AlloyComponent, GuiFactory, Memento, Representing, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Ready } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -12,8 +12,8 @@ describe('headless.hugerte.themes.silver.components.imagepreview.BasicImagePrevi
 
   const memImagePreview = Memento.record(renderImagePreview({
     name: 'test-panel',
-    height: Optional.some('200px'),
-  }, Optional.none()));
+    height: '200px',
+  }, null));
 
   const hook = TestHelpers.GuiSetup.bddSetup((_store, _doc, _body) => GuiFactory.build(
     {
@@ -75,9 +75,9 @@ describe('headless.hugerte.themes.silver.components.imagepreview.BasicImagePrevi
     assertImageState('Initial image panel state', component, '');
     setPanelState(component, {
       url: testImageUrl,
-      zoom: Optional.none(),
-      cachedWidth: Optional.none(),
-      cachedHeight: Optional.none(),
+      zoom: null,
+      cachedWidth: null,
+      cachedHeight: null,
     });
     assertImageState('set URL state', component, testImageUrl);
   });
@@ -86,9 +86,9 @@ describe('headless.hugerte.themes.silver.components.imagepreview.BasicImagePrevi
     const component = hook.component();
     setPanelState(component, {
       url: testImageUrl,
-      zoom: Optional.some(1.5),
-      cachedWidth: Optional.none(),
-      cachedHeight: Optional.none(),
+      zoom: 1.5,
+      cachedWidth: null,
+      cachedHeight: null,
     });
     await Ready.image(findImage(component));
     Assertions.assertStructure(

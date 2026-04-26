@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { TestLabel } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import * as ErrorTypes from '../alien/ErrorTypes';
 import { DieFn, NextFn } from '../pipe/Pipe';
@@ -36,7 +36,7 @@ const ts = <T, U>(label: string, fs: Step<T, U>[]): Step<T, U>[] => {
   if (fs.length === 0) {
     return fs;
   }
-  return Arr.map(fs, (f: Step<T, U>, i: number) => t(label + '(' + i + ')', f));
+  return fs.map((f: Step<T, U>, i: number) =) t(label + '(' + i + ')', f));
 };
 
 const spec = (msg: string): void => {

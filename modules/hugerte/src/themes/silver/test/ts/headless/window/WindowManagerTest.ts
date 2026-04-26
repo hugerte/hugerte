@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -23,13 +23,13 @@ describe('headless.hugerte.themes.silver.window.WindowManagerTest', () => {
         popup: {
           ...testExtras.backstages.popup,
           dialog: {
-            isDraggableModal: Fun.always
+            isDraggableModal: () => true
           }
         },
         dialog: {
           ...testExtras.backstages.dialog,
           dialog: {
-            isDraggableModal: Fun.always
+            isDraggableModal: () => true
           }
         }
       }
@@ -38,7 +38,7 @@ describe('headless.hugerte.themes.silver.window.WindowManagerTest', () => {
 
   const assertShouldFail = (conf: any, asserter: (err: Error) => void) => {
     try {
-      windowManagerWithoutDragging.open(conf, {}, Fun.noop);
+      windowManagerWithoutDragging.open(conf, {}, () => {});
       assert.fail('This should throw a configuration error');
     } catch (err: any) {
       asserter(err);
@@ -46,11 +46,11 @@ describe('headless.hugerte.themes.silver.window.WindowManagerTest', () => {
   };
 
   const setupDialogWithoutDragging = (conf: Dialog.DialogSpec<any>, params: WindowParams) => {
-    windowManagerWithoutDragging.open(conf, params, Fun.noop);
+    windowManagerWithoutDragging.open(conf, params, () => {});
   };
 
   const setupDialogWithDragging = (conf: Dialog.DialogSpec<any>, params: WindowParams) => {
-    windowManagerWithDragging.open(conf, params, Fun.noop);
+    windowManagerWithDragging.open(conf, params, () => {});
   };
 
   const pTeardown = async () => {
@@ -140,7 +140,7 @@ describe('headless.hugerte.themes.silver.window.WindowManagerTest', () => {
       }
     };
 
-    const instanceApi = windowManagerWithoutDragging.open(conf, {}, Fun.noop);
+    const instanceApi = windowManagerWithoutDragging.open(conf, {}, () => {});
     const dialogBody = SelectorFind.descendant(SugarBody.body(), '.tox-dialog__body').getOrDie('Cannot find dialog body');
 
     Assertions.assertStructure('It should load with form components in the dom structure',

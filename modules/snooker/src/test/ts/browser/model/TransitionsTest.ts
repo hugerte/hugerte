@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, SugarElement, TextContent } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -43,8 +43,8 @@ describe('TransitionsTest', () => {
     const actual = Transitions.toDetails(input, (a, b) => TextContent.get(a) === TextContent.get(b));
 
     const cleaner = (obj: Structs.RowDetailNew<Structs.DetailNew>[]) => {
-      return Arr.map(obj, (row) => {
-        return Arr.map(row.cells, (cell) => ({
+      return obj.map((row) =) {
+        return row.cells.map((cell) =) ({
           ...cell,
           element: TextContent.get(cell.element) ?? '?'
         }));
@@ -58,8 +58,8 @@ describe('TransitionsTest', () => {
     const actualGrid = tableToGrid(inputTable);
 
     const cleaner = (grid: Structs.RowCells[]) => {
-      return Arr.map(grid, (row) => {
-        const cells = Arr.map(row.cells, (cell) => {
+      return grid.map((row) =) {
+        const cells = row.cells.map((cell) =) {
           const id = row.section === 'colgroup' ? Attribute.get(cell.element, 'data-id') : TextContent.get(cell.element);
           return {
             ...cell,

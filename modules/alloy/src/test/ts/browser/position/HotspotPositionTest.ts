@@ -1,6 +1,6 @@
 import { Chain, NamedChain } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import * as GuiFactory from 'ephox/alloy/api/component/GuiFactory';
 import * as GuiSetup from 'ephox/alloy/api/testhelpers/GuiSetup';
@@ -15,7 +15,7 @@ UnitTest.asynctest('HotspotPositionTest', (success, failure) => {
   GuiSetup.setup((_store, _doc, _body) => {
     const hotspot = GuiFactory.build(
       Button.sketch({
-        action: Fun.noop,
+        action: () => {},
         dom: {
           styles: {
             position: 'absolute',

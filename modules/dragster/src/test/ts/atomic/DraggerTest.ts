@@ -1,12 +1,12 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SugarElement, SugarPosition } from '@ephox/sugar';
 
 import { DragApi, DragMode, DragSink } from 'ephox/dragster/api/DragApis';
 import * as Dragging from 'ephox/dragster/core/Dragging';
 
 UnitTest.test('DraggerTest', () => {
-  let optApi: Optional<DragApi<any>> = Optional.none();
+  let optApi: Optional<DragApi<any>> = null;
 
   const argumentToStart: any = 'start';
   const argumentToMutate: any = 'mutate';
@@ -15,20 +15,20 @@ UnitTest.test('DraggerTest', () => {
 
   const mode = DragMode({
     compare: (old: any, nu: any) => (nu - old) as unknown as SugarPosition,
-    extract: (raw: any) => Optional.from(parseInt(raw, 10) as unknown as SugarPosition),
+    extract: (raw: any) => parseInt(raw, 10) as unknown as SugarPosition ?? null,
     mutate: (mutation, data) => {
       Assert.eq('', argumentToMutate, mutation);
       mutations.push(data as any as number);
     },
     sink: (dragApi, _settings) => {
-      optApi = Optional.some(dragApi);
+      optApi = dragApi;
       return DragSink({
         element: () => 'element' as unknown as SugarElement<HTMLElement>, // fake element
         start: (v) => {
           Assert.eq('', argumentToStart, v);
         },
-        stop: Fun.noop,
-        destroy: Fun.noop
+        stop: () => {},
+        destroy: () => {}
       });
     }
   });

@@ -1,5 +1,5 @@
 import { Assertions, Step } from '@ephox/agar';
-import { Obj, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';
 import { AlloyComponent } from 'ephox/alloy/api/component/ComponentApi';
@@ -16,7 +16,7 @@ const helper = (component: AlloyComponent): TestForm => {
       'Checking form value',
       expected,
 
-      Obj.map(val, (v, k) => v.getOrDie(k + ' field is "None"'))
+      Object.fromEntries(Object.entries(val).map(([k, v]) => [k, ((v, k) =)(v, k)])) v.getOrDie(k + ' field is "None"'))
     );
   });
 

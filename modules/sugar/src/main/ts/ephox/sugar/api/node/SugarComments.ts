@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { SugarElement } from './SugarElement';
 
@@ -11,7 +11,7 @@ const getNodes = <T extends Node> (texas: TreeWalker): SugarElement<T>[] => {
 };
 
 const find = (node: SugarElement<Node>, filterOpt: Optional<(n: string | null) => boolean>): SugarElement<Comment>[] => {
-  const predicate = filterOpt.getOr(Fun.always);
+  const predicate = filterOpt.getOr(() => true);
 
   const texas = document.createTreeWalker(node.dom, NodeFilter.SHOW_COMMENT, {
     acceptNode: (comment) => predicate(comment.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT

@@ -1,5 +1,5 @@
 import { UiControls, UiFinder, Waiter } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { SugarElement } from '@ephox/sugar';
 import { TinyContentActions, TinyUiActions } from '@ephox/wrap-mcagar';
@@ -22,7 +22,7 @@ const pFindInDialog = async <T extends HTMLElement>(editor: Editor, selector: st
 
 const pAssertAlertInDialog = async (editor: Editor): Promise<boolean> => {
   const dialog = await TinyUiActions.pWaitForDialog(editor);
-  return UiFinder.findIn(dialog, '.tox-notification--error').fold(Fun.never, Fun.always);
+  return UiFinder.findIn(dialog, '.tox-notification--error').fold(() => false, () => true);
 };
 
 const pAssertFieldValue = async (editor: Editor, selector: string, value: string): Promise<void> => {

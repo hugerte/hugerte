@@ -1,6 +1,6 @@
 import { Logger } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { KAssert } from '@ephox/katamari-assertions';
 
 import * as FieldPresence from 'ephox/boulder/api/FieldPresence';
@@ -404,7 +404,7 @@ UnitTest.test('StructureSchemaRawTest', () => {
     checkIs('Checking valid boolean', true, true, ValueType.boolean);
     checkErr('Checking invalid boolean', 'Expected type: boolean but got: string', 'a', ValueType.boolean);
 
-    checkIs('Checking valid function', Fun.noop, Fun.noop, ValueType.func);
+    checkIs('Checking valid function', () => {}, () => {}, ValueType.func);
     checkErr('Checking invalid function', 'Expected type: function but got: string', 'a', ValueType.func);
   });
 

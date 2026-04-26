@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -31,8 +31,8 @@ describe('browser.hugerte.plugins.advlist.ContentEditableFalseTest', () => {
   const orderedListStyles = [ 'lower-alpha', 'lower-greek', 'lower-roman', 'upper-alpha', 'upper-roman' ];
   const numberedListStyles = [ 'circle', 'square' ];
 
-  const olListTypes: ListStyle[] = Arr.map(orderedListStyles, (style) => ({ type: 'ol', style }));
-  const ulListTypes: ListStyle[] = Arr.map(numberedListStyles, (style) => ({ type: 'ul', style }));
+  const olListTypes: ListStyle[] = orderedListStyles.map((style) =) ({ type: 'ol', style }));
+  const ulListTypes: ListStyle[] = numberedListStyles.map((style) =) ({ type: 'ul', style }));
   const listTypes = [ ...olListTypes, ...ulListTypes ];
 
   const listContent = `<li contenteditable="true">editable</li>
@@ -53,13 +53,13 @@ ${listContent}
 </${list.type}>
 </div>`;
 
-  const nonEditableList: ListParameters[] = Arr.map(listTypes, (list) => ({
+  const nonEditableList: ListParameters[] = listTypes.map((list) =) ({
     title: `non-editable ${list.type} ${list.style} list`,
     content: nonEditableListContents(list),
     startPath: [ 1, 0 ]
   }));
 
-  const divNestedNonEditableList: ListParameters[] = Arr.map(listTypes, (list) => ({
+  const divNestedNonEditableList: ListParameters[] = listTypes.map((list) =) ({
     title: `non-editable div nested ${list.type} ${list.style} list`,
     content: divNestedNonEditableListContents(list),
     startPath: [ 0, 1, 0 ]
@@ -83,7 +83,7 @@ ${listContent}
     TinyAssertions.assertContent(editor, list.content);
   };
 
-  Arr.each(contentCombinations, (list) =>
+  contentCombinations.forEach((list) =)
     context(list.title, () => {
       it(`TINY-8920: Pressing Numbered list toolbar button is disabled when in ${list.title}`, () =>
         performActionAndAssertNoChange(list, (editor: Editor) => checkToolbarDisabled(editor, 'Numbered list'))

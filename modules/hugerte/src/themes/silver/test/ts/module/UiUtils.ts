@@ -1,5 +1,5 @@
 import { Mouse, UiFinder, Waiter } from '@ephox/agar';
-import { Arr } from '@ephox/katamari';
+
 import { Scroll, SugarBody, SugarElement } from '@ephox/sugar';
 import { TinyDom } from '@ephox/wrap-mcagar';
 
@@ -28,7 +28,7 @@ const resizeToPos = (sx: number, sy: number, dx: number, dy: number, delta: numb
   // Move and release the mouse
   const blocker = UiFinder.findIn(SugarBody.body(), '.tox-blocker').getOrDie();
   Mouse.mouseMoveTo(blocker, sx, sy);
-  Arr.range(numMoves, (count) => {
+  Array.from({ length: numMoves }, (count) => {
     const nx = sx + count * deltaX;
     const ny = sy + count * deltaY;
     return Mouse.mouseMoveTo(blocker, nx, ny);

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, GeneralSteps, Logger, Mouse, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Focus } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -22,7 +22,7 @@ UnitTest.asynctest('DisablingTest', (success, failure) => {
       },
       buttonBehaviours: Behaviour.derive([
         Disabling.config({
-          disabled: Fun.always
+          disabled: () => true
         })
       ])
     })
@@ -36,7 +36,7 @@ UnitTest.asynctest('DisablingTest', (success, failure) => {
       },
       buttonBehaviours: Behaviour.derive([
         Disabling.config({
-          disabled: Fun.never,
+          disabled: () => false,
           disableClass: 'btn-disabled'
         })
       ])

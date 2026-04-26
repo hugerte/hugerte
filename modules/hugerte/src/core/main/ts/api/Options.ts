@@ -1,4 +1,4 @@
-import { Arr, Strings, Type } from '@ephox/katamari';
+import { Strings, Type } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import * as Pattern from '../textpatterns/core/Pattern';
@@ -15,7 +15,7 @@ const DOM = DOMUtils.DOM;
 
 const getHash = (value: string): Record<string, string> => {
   const items = value.indexOf('=') > 0 ? value.split(/[;,](?![^=;,]*(?:[;,]|$))/) : value.split(',');
-  return Arr.foldl(items, (output, item) => {
+  return items.reduce((output, item) => {
     const arr = item.split('=');
     const key = arr[0];
     const val = arr.length > 1 ? arr[1] : key;

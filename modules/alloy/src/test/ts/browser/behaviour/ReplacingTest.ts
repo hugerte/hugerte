@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Logger, Step, UiFinder, Chain, Log } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Compare, SugarBody } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -60,13 +60,13 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
       `${label}: Check replaceAt(${replaceeIndex}, with spec for data: [${inputClasses.join(', ')}]`,
       Step.sync(() => {
         Replacing.set(comp,
-          Arr.map(inputClasses, (ic) => makeTag('div', [ ic ]))
+          inputClasses.map((ic) =) makeTag('div', [ ic ]))
         );
         Replacing.replaceAt(comp, replaceeIndex, replaceSpec);
         Assertions.assertStructure(
           'Asserting structure',
           ApproxStructure.build((s, _str, arr) => s.element('div', {
-            children: Arr.map(expectedClasses, (ec) => s.element('div', { classes: [ arr.has(ec) ] }))
+            children: expectedClasses.map((ec) =) s.element('div', { classes: [ arr.has(ec) ] }))
           })),
           comp.element
         );
@@ -76,10 +76,10 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
     const sCheckReplaceAt = (label: string, comp: AlloyComponent, expectedClasses: string[], inputClasses: string[], replaceeIndex: number, replaceClass: Optional<string>) =>
       sCheckReplaceAtWith(label, comp, expectedClasses, inputClasses, replaceeIndex, replaceClass.map((clazz) => makeTag('div', [ clazz ])));
 
-    return Arr.map([
+    return [
       { comp: withoutReuseComp, label: 'Without reuse' },
       { comp: withReuseComp, label: 'With reuse' },
-    ], (spec) => {
+    ].map((spec) =) {
       return Log.stepsAsStep('TBA', spec.label, [
         Assertions.sAssertStructure(
           'Initially, has a single span',
@@ -390,7 +390,7 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
           [],
           [],
           0,
-          Optional.some('replaceAt-0')
+          'replaceAt-0'
         ),
 
         sCheckReplaceAt(
@@ -399,7 +399,7 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
           [ 'replaceAt-0' ],
           [ 'original' ],
           0,
-          Optional.some('replaceAt-0')
+          'replaceAt-0'
         ),
 
         sCheckReplaceAt(
@@ -408,7 +408,7 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
           [ 'replaceAt-0', 'original2', 'original3' ],
           [ 'original1', 'original2', 'original3' ],
           0,
-          Optional.some('replaceAt-0')
+          'replaceAt-0'
         ),
 
         sCheckReplaceAt(
@@ -417,7 +417,7 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
           [ 'original1', 'original2', 'replaceAt-2' ],
           [ 'original1', 'original2', 'original3' ],
           2,
-          Optional.some('replaceAt-2')
+          'replaceAt-2'
         ),
 
         sCheckReplaceAt(
@@ -426,7 +426,7 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
           [ 'original1', 'original3' ],
           [ 'original1', 'original2', 'original3' ],
           1,
-          Optional.none()
+          null
         ),
 
         sCheckReplaceAtWith(
@@ -435,7 +435,7 @@ UnitTest.asynctest('ReplacingTest', (success, failure) => {
           [ 'original1', 'original2', 'replaceAt-2' ],
           [ 'original1', 'original2', 'original3' ],
           2,
-          Optional.some(GuiFactory.premade(GuiFactory.build(makeTag('div', [ 'replaceAt-2' ]))))
+          GuiFactory.premade(GuiFactory.build(makeTag('div', [ 'replaceAt-2' ])))
         )
       ]);
     }).concat([

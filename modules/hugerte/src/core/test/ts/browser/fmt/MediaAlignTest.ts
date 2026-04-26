@@ -1,6 +1,6 @@
 import { ApproxStructure, StringAssert } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -40,10 +40,10 @@ describe('browser.hugerte.core.fmt.MediaAlignTest', () => {
     }));
   };
 
-  Arr.each([
+  [
     { type: 'video', content: '<p><video controls="controls"><source src="custom/video.mp4"></video></p>' },
     { type: 'audio', content: '<p><audio controls="controls"><source src="custom/audio.mp3"></audio></p>' },
-  ], (test) => {
+  ].forEach((test) =) {
     const { type, content } = test;
 
     context(`${type} media`, () => {

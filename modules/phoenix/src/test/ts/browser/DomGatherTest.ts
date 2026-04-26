@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as DomGather from 'ephox/phoenix/api/dom/DomGather';
@@ -43,6 +43,6 @@ UnitTest.test('DomGatherTest', () => {
   ];
 
   page.connect();
-  Arr.map(cases, check);
+  cases.map(check);
   page.disconnect();
 });

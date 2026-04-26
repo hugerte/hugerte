@@ -1,7 +1,7 @@
 import { Keys, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
 import { InlineContent } from '@ephox/bridge';
-import { Arr, Throttler } from '@ephox/katamari';
+import { Throttler } from '@ephox/katamari';
 import { TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -25,7 +25,7 @@ describe('browser.hugerte.core.keyboard.AutocompleterTest', () => {
       };
 
       const fetch = (ch: string, type: string) => (resolve: (data: InlineContent.AutocompleterContents[]) => void) => {
-        resolve(Arr.map([ 'aa', 'ab' ], (letter) => ({
+        resolve([ 'aa', 'ab' ].map((letter) =) ({
           value: `${type}-${letter}`,
           text: `p-${letter}`,
           icon: ch

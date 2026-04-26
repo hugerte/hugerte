@@ -1,7 +1,7 @@
 import { Mouse, UiFinder } from '@ephox/agar';
 import { Boxes } from '@ephox/alloy';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { McEditor } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -30,7 +30,7 @@ describe('browser.hugerte.themes.silver.editor.ToolbarBottomTest', () => {
       ...scenario.options
     });
 
-    await Arr.foldl(scenario.initial, (p, init) => p.then(async () => {
+    await scenario.initial.reduce((p, init) => p.then(async () => {
       Mouse.clickOn(SugarBody.body(), init.clickOn);
       await UiFinder.pWaitForVisible(`Wait for "${init.waitFor}" to be visible`, SugarBody.body(), init.waitFor);
     }), Promise.resolve());
@@ -60,7 +60,7 @@ describe('browser.hugerte.themes.silver.editor.ToolbarBottomTest', () => {
         setup: (editor) => {
           editor.ui.registry.addSplitButton('splitbutton', {
             text: 'Test SplitButton',
-            onItemAction: Fun.noop,
+            onItemAction: () => {},
             fetch: (callback) => {
               callback([
                 {
@@ -70,7 +70,7 @@ describe('browser.hugerte.themes.silver.editor.ToolbarBottomTest', () => {
                 }
               ]);
             },
-            onAction: Fun.noop
+            onAction: () => {}
           });
         }
       },
@@ -86,7 +86,7 @@ describe('browser.hugerte.themes.silver.editor.ToolbarBottomTest', () => {
       options: {
         width: 500,
         toolbar_mode: 'floating',
-        toolbar: Arr.range(10, Fun.constant('bold | italic ')).join('')
+        toolbar: Array.from({ length: 10 }, () => 'bold | italic ').join('')
       },
       initial: [{
         clickOn: 'button[data-mce-name="overflow-button"]',
@@ -100,7 +100,7 @@ describe('browser.hugerte.themes.silver.editor.ToolbarBottomTest', () => {
       options: {
         width: 500,
         toolbar_mode: 'floating',
-        toolbar: Arr.range(10, Fun.constant('bold | italic ')).join('') + 'align'
+        toolbar: Array.from({ length: 10 }, () => 'bold | italic ').join('') + 'align'
       },
       initial: [
         {
@@ -119,7 +119,7 @@ describe('browser.hugerte.themes.silver.editor.ToolbarBottomTest', () => {
       options: {
         width: 500,
         toolbar_mode: 'floating',
-        toolbar: Arr.range(10, Fun.constant('bold | italic ')).join('') + 'align'
+        toolbar: Array.from({ length: 10 }, () => 'bold | italic ').join('') + 'align'
       },
       initial: [{
         clickOn: 'button:contains("File")',

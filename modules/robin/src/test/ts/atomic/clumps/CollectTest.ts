@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Clumps from 'ephox/robin/clumps/Clumps';
 
@@ -32,7 +32,7 @@ UnitTest.test('ClumpsTest', () => {
     const finish = doc.find(doc.get(), finishId).getOrDie();
     const rawActual = Clumps.collect(doc, isRoot, start, soffset, finish, foffset);
 
-    const actual = Arr.map(rawActual, (a): RawRange => {
+    const actual = rawActual.map((a): RawRange =) {
       return { start: a.start.id, soffset: a.soffset, finish: a.finish.id, foffset: a.foffset };
     });
 

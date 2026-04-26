@@ -1,5 +1,5 @@
 import { ApproxStructure, StructAssert } from '@ephox/agar';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -17,12 +17,12 @@ const assertSpanStruct = (editor: Editor): void => assertStruct(editor, ApproxSt
   s.text(str.is('a')),
   s.element('span', {
     children: [
-      s.text(str.is(Unicode.nbsp))
+      s.text(str.is('\u00A0'))
     ]
   }),
   s.element('span', {
     children: [
-      s.text(str.is(Unicode.nbsp))
+      s.text(str.is('\u00A0'))
     ]
   }),
   s.text(str.is('b'))
@@ -30,8 +30,8 @@ const assertSpanStruct = (editor: Editor): void => assertStruct(editor, ApproxSt
 
 const assertNbspStruct = (editor: Editor): void => assertStruct(editor, ApproxStructure.build((s, str) => [
   s.text(str.is('a')),
-  s.text(str.is(Unicode.nbsp)),
-  s.text(str.is(Unicode.nbsp)),
+  s.text(str.is('\u00A0')),
+  s.text(str.is('\u00A0')),
   s.text(str.is('b'))
 ]));
 

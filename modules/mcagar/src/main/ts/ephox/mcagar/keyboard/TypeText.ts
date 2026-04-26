@@ -1,5 +1,5 @@
 import { Keyboard } from '@ephox/agar';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 const isText = (node: Node): node is Text => SugarNode.isText(SugarElement.fromDom(node));
@@ -31,7 +31,7 @@ const insertCharAtRange = (rng: Range, chr: string, doc: Document): Range => {
 
 const insertCharAtSelection = (doc: SugarElement<Document>, chr: string): void => {
   const win = Traverse.defaultView(doc);
-  const sel = Optional.from(win.dom.getSelection()).getOrDie('No window selection available');
+  const sel = win.dom.getSelection() ?? null.getOrDie('No window selection available');
 
   if (sel.rangeCount >= 1) {
     const rng = sel.getRangeAt(0);
@@ -52,7 +52,7 @@ const typeChar = (doc: SugarElement<Document>, chr: string): void => {
 };
 
 const typeContentAtSelection = (doc: SugarElement<Document>, text: string): void => {
-  Arr.map(text.split(''), Fun.curry(typeChar, doc));
+  text.split('').map(Fun.curry(typeChar, doc));
 };
 
 export {

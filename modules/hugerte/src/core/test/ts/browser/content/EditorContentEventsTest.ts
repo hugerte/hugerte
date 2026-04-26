@@ -1,5 +1,5 @@
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Arr, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -75,13 +75,13 @@ describe('browser.hugerte.core.content.EditorContentEventsTest', () => {
     const editor = hook.editor();
     const formats: ContentFormat[] = [ 'tree', 'text', 'html' ];
 
-    Arr.each(formats, (format) => {
+    formats.forEach((format) =) {
       clearEvents();
       editor.getContent({ format });
       assertEvents([ 'beforegetcontent', 'getcontent' ]);
     });
 
-    Arr.each(formats, (format) => {
+    formats.forEach((format) =) {
       clearEvents();
       editor.selection.getContent({ format });
       assertEvents([ 'beforegetcontent', 'getcontent' ]);
@@ -126,7 +126,7 @@ describe('browser.hugerte.core.content.EditorContentEventsTest', () => {
   });
 
   const data = { hello: 'world', test: 132 };
-  Arr.each([ 'BeforeSetContent', 'SetContent' ], (action) => {
+  [ 'BeforeSetContent', 'SetContent' ].forEach((action) =) {
     it(`TINY-9143: Can pass custom data object to "${action}" event`, () => {
       const editor = hook.editor();
       const lastEventState = Singleton.value<SetContentEvent>();
@@ -138,7 +138,7 @@ describe('browser.hugerte.core.content.EditorContentEventsTest', () => {
       assert.equal(lastEvent.test, data.test);
     });
   });
-  Arr.each([ 'BeforeGetContent', 'GetContent' ], (action) => {
+  [ 'BeforeGetContent', 'GetContent' ].forEach((action) =) {
     it(`TINY-9143: Can pass custom data object to "${action}" event`, () => {
       const editor = hook.editor();
       const lastEventState = Singleton.value<GetContentEvent>();

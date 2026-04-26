@@ -1,6 +1,6 @@
 import { Cursors, Waiter } from '@ephox/agar';
 import { before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -39,7 +39,7 @@ describe('browser.hugerte.core.annotate.AnnotateBlocksTest', () => {
             state,
             uid: data?.uid ?? '',
             rawNodes: data?.nodes ?? [],
-            nodeNames: Arr.map(data?.nodes ?? [], (node) => (node as Node).nodeName.toLowerCase())
+            nodeNames: data?.nodes ?? [].map((node) =) (node as Node).nodeName.toLowerCase())
           });
         });
       });
@@ -70,7 +70,7 @@ describe('browser.hugerte.core.annotate.AnnotateBlocksTest', () => {
   const pAssertAnnotationChangeData = (expected: Omit<AnnotationChangeData, 'rawNodes'>[]) =>
     Waiter.pTryUntil('annotation change data should be correct', () => {
       assert.lengthOf(annotationChangeData, expected.length);
-      Arr.each(annotationChangeData, (data, i) => {
+      annotationChangeData.forEach((data, i) =) {
         const expectedData = expected[i];
         assert.equal(data.state, expectedData.state);
         assert.equal(data.uid, expectedData.uid);
@@ -79,7 +79,7 @@ describe('browser.hugerte.core.annotate.AnnotateBlocksTest', () => {
     });
 
   const assertGetAll = (editor: Editor, expected: Record<string, string[]>) => {
-    const actual = Obj.map(editor.annotator.getAll('test-annotation'), (nodes, _key) => Arr.map(nodes, (node) => node.nodeName.toLowerCase()));
+    const actual = Object.fromEntries(Object.entries(editor.annotator.getAll('test-annotation')).map(([k, v]) => [k, ((nodes, _key) =)(v, k)])) nodes.map((node) =) node.nodeName.toLowerCase()));
     assert.deepEqual(actual, expected);
   };
 
@@ -225,7 +225,7 @@ describe('browser.hugerte.core.annotate.AnnotateBlocksTest', () => {
     '</div>'
   );
 
-  Arr.each([
+  [
     {
       label: 'image',
       name: 'img',
@@ -402,7 +402,7 @@ describe('browser.hugerte.core.annotate.AnnotateBlocksTest', () => {
       expectedDirectSelection: selectionPath([], 1, [], 2),
       blockType: 'root'
     },
-  ], (scenario) => {
+  ].forEach((scenario) =) {
     const { label, name, html } = scenario;
     const selector = scenario.annotationSelector ?? name;
     const isRootBlock = scenario.blockType === 'root';

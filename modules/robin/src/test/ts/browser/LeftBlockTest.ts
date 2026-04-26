@@ -28,7 +28,7 @@ UnitTest.test('LeftBlockTest', () => {
     Assert.eq('Could not find element at path: ' + path, true, ele.isSome());
     ele.each((start) => {
       const group = method(universe, start);
-      const clones = Arr.map(group, Replication.deep);
+      const clones = group.map(Replication.deep);
       const div = SugarElement.fromTag('div');
       InsertAll.append(div, clones);
       Assert.eq('', expected, div.dom.innerHTML);

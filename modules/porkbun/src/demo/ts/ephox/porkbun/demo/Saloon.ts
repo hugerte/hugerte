@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import * as Binder from 'ephox/porkbun/Binder';
 import { Bindable, Event } from 'ephox/porkbun/Event';
@@ -27,7 +27,7 @@ const create = (): Saloon => {
     float: 'left'
   });
 
-  const getElement = Fun.constant(saloon);
+  const getElement = () => saloon;
 
   const events: SaloonEvents = Events.create({
     shooting: Event([ 'shooter', 'target' ])

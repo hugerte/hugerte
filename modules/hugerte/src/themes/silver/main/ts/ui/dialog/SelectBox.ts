@@ -3,7 +3,7 @@ import {
   NativeEvents, SimpleSpec, SketchSpec, Tabstopping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+
 
 import { UiFactoryBackstageProviders } from 'hugerte/themes/silver/backstage/Backstage';
 import { renderLabel } from 'hugerte/themes/silver/ui/alien/FieldLabeller';
@@ -61,7 +61,7 @@ export const renderSelectBox = (spec: SelectBoxSpec, providersBackstage: UiFacto
       tag: 'div',
       classes: [ 'tox-form__group' ]
     },
-    components: Arr.flatten<AlloySpec>([ pLabel.toArray(), [ selectWrap ]]),
+    components: [ pLabel.toArray(), [ selectWrap ]].flat(),
     fieldBehaviours: Behaviour.derive([
       Disabling.config({
         disabled: () => !spec.enabled || providersBackstage.isDisabled(),

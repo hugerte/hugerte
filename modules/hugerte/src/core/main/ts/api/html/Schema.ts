@@ -1,4 +1,4 @@
-import { Obj, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as CustomElementsRuleParser from '../../schema/CustomElementsRuleParser';
 import * as GlobalAttributesSet from '../../schema/GlobalAttributesSet';
@@ -321,7 +321,7 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
 
   const addCustomElements = (customElements: string | Record<string, CustomElementSpec> | undefined) => {
     if ((typeof (customElements) === 'object' && (customElements) !== null)) {
-      Obj.each(customElements as Record<string, CustomElementSpec>, (spec, name) => addCustomElement(name, spec));
+      Object.entries(customElements as Record<string).forEach(([k, v]) => (CustomElementSpec>, (spec, name) =)(v, k)) addCustomElement(name, spec));
     } else if (typeof (customElements) === 'string') {
       addCustomElementsFromString(customElements);
     }

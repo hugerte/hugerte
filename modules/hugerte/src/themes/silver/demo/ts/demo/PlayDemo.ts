@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Fun } from '@ephox/katamari';
+
 
 import { HugeRTE } from 'hugerte/core/api/PublicApi';
 
@@ -126,7 +126,7 @@ export default (): void => {
         },
         onSetup: (api) => {
           console.log(api.element());
-          return Fun.noop;
+          return () => {};
         }
       });
       ed.ui.registry.addContextToolbar('custom', {

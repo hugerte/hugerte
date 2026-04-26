@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
 import { GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import { renderSelectBox } from 'hugerte/themes/silver/ui/dialog/SelectBox';
 
@@ -14,7 +14,7 @@ describe('headless.hugerte.themes.silver.components.selectbox.SelectboxWithSizeT
     renderSelectBox({
       name: 'selector',
       size: 5,
-      label: Optional.some('selector'),
+      label: 'selector',
       enabled: true,
       items: [
         { value: 'one', text: 'One' },
@@ -23,7 +23,7 @@ describe('headless.hugerte.themes.silver.components.selectbox.SelectboxWithSizeT
         { value: 'four', text: 'Four' },
         { value: 'five', text: 'Five' }
       ]
-    }, TestProviders, Optional.none())
+    }, TestProviders, null)
   ));
 
   it('Check basic structure', () => {

@@ -1,5 +1,5 @@
 import { TestLogs } from '@ephox/agar';
-import { Arr, FutureResult, Optional } from '@ephox/katamari';
+import { FutureResult } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Loader from '../../loader/Loader';
@@ -12,7 +12,7 @@ const setupBaseUrl = (hugerte: any, settings: Record<string, any>) => {
 };
 
 const loadScripts = (urls: string[], success: () => void, failure: Loader.FailureCallback) => {
-  const result = Arr.foldl(urls, (acc, url) => acc.bindFuture(() => Loader.loadScript(url)), FutureResult.pure(''));
+  const result = urls.reduce((acc, url) => acc.bindFuture(() => Loader.loadScript(url)), FutureResult.pure(''));
 
   result.get((res) => {
     res.fold((e) => failure(e, TestLogs.init()), success);
@@ -26,7 +26,7 @@ const setup = (callback: Loader.RunCallback, urls: string[], settings: Record<st
       run: callback,
       success,
       failure
-    }, settings, Optional.none());
+    }, settings, null);
   }, failure);
 };
 
@@ -44,7 +44,7 @@ const setupFromElement = (
       run: callback,
       success,
       failure
-    }, settings, Optional.some(element));
+    }, settings, element);
   }, failure);
 };
 

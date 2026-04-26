@@ -1,4 +1,4 @@
-import { Arr, Fun } from '@ephox/katamari';
+
 
 interface TableConfig {
   readonly numCols: number;
@@ -10,7 +10,7 @@ const generateTestTable = (bodyContent: string[], headerContent: string[], foote
   const numCols = config.numCols;
   const theadContent = headerContent.length > 0 ? `<thead><tr>${headerContent.join('')}</tr></thead>` : ``;
   const tfootContent = footerContent.length > 0 ? `<tfoot><tr>${footerContent.join('')}</tr></tfoot>` : ``;
-  const colgroupContent = config.colgroup ? `<colgroup>${Arr.range(numCols, Fun.constant('<col>')).join('')}</colgroup>` : ``;
+  const colgroupContent = config.colgroup ? `<colgroup>${Array.from({ length: numCols }, () => '<col>').join('')}</colgroup>` : ``;
 
   return `<table${config.lockedColumns.length > 0 ? ` data-snooker-locked-cols="${config.lockedColumns.join(',')}"` : ''}>` +
     colgroupContent +
@@ -23,11 +23,10 @@ const generateTestTable = (bodyContent: string[], headerContent: string[], foote
 };
 
 const generateTestTableBody = (rows: number, cols: number, tdContent: (row: number, column: number) => string = (r, c) => `${r}-${c}`): string[] =>
-  Arr.range(
-    rows,
-    (row) =>
+  Array.from({ length: rows }, (row) =>
       '<tr>' +
-      Arr.range(cols, (column) => '<td>' + tdContent(row, column) + '</td>').join('') +
+      Array.from({ length: cols }, (column) => '<td>' + tdContent(row, column) + '</td>').join('') +
+      '</tr>')Array.from({ length: cols }, (column) => '<td>' + tdContent(row, column) + '</td>').join('') +
       '</tr>'
   );
 

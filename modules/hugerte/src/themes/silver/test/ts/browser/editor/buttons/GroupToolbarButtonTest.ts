@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { McEditor } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -135,7 +135,7 @@ describe('browser.hugerte.themes.silver.editor.buttons.GroupToolbarButtonTest', 
           items: 'alignleft aligncenter alignright',
           onSetup: () => {
             hasSetupBeenCalled = true;
-            return Fun.noop;
+            return () => {};
           }
         });
       }

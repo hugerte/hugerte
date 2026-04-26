@@ -1,6 +1,6 @@
 import { Keys, UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Cell } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Css, SugarBody, SugarLocation } from '@ephox/sugar';
 import { McEditor, TinyContentActions, TinyDom, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -21,7 +21,7 @@ describe('browser.hugerte.themes.silver.editor.toolbar.InlineToolbarDrawerFloati
 
   const pressEnterNTimes = (editor: Editor, times: number) => {
     editor.focus();
-    Arr.range(times, () => {
+    Array.from({ length: times }, () => {
       TinyContentActions.keydown(editor, Keys.enter());
     });
   };

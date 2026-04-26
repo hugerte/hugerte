@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement, TextContent } from '@ephox/sugar';
 
 import { SimpleGenerators } from 'ephox/snooker/api/Generators';
@@ -34,9 +34,9 @@ export default (): SimpleGenerators => {
 
   return {
     cell,
-    gap: Fun.constant('*'),
-    row: Fun.constant('tr'),
-    colgroup: Fun.constant('colgroup'),
+    gap: () => '*',
+    row: () => 'tr',
+    colgroup: () => 'colgroup',
     col,
     replace
   } as unknown as SimpleGenerators; // fake generator for atomic tests

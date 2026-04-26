@@ -1,6 +1,6 @@
 import { Assertions, Logger, Pipeline, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+
 import { Attribute, EventArgs, Html, Insert, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import * as Debugging from 'ephox/alloy/debugging/Debugging';
@@ -64,7 +64,7 @@ UnitTest.asynctest('TriggersTest', (success, failure) => {
 
   const lookup = (eventType: string, target: SugarElement<Node>) =>
     Attribute.getOpt(target as SugarElement<Element>, 'data-event-id').bind((targetId) =>
-      Obj.get(domEvents as any, eventType).bind((x) => Obj.get(x, targetId)).map((h: Function) => ({
+      (domEvents as any as any)[eventType].bind((x) => (x as any)[targetId]).map((h: Function) => ({
         descHandler: {
           cHandler: h,
           purpose: 'purpose'
@@ -119,7 +119,7 @@ UnitTest.asynctest('TriggersTest', (success, failure) => {
     { expected: [ 'alpha' ], target: 'alpha', type: 'all.stop' }
   ];
 
-  const steps = Arr.map(cases, (c) => sCheck(
+  const steps = cases.map((c) =) sCheck(
     'fire(' + c.target + ') using event: ' + c.type,
     c.expected,
     c.target,

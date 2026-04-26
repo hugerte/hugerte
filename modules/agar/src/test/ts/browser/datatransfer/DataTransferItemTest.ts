@@ -1,5 +1,5 @@
 import { Assert, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 
 import { createFile } from 'ephox/agar/api/Files';
@@ -12,7 +12,7 @@ describe('atomic.agar.datatransfer.DataTransferItemTest', () => {
 
     Assert.eq('Should be the expected kind', 'file', fileItem.kind);
     // eslint-disable-next-line @typescript-eslint/unbound-method
-    Assert.eq('Should be a noop', Fun.noop, fileItem.getAsString);
+    Assert.eq('Should be a noop', () => {}, fileItem.getAsString);
     Assert.eq('Should be expected file', 'a.txt', fileItem.getAsFile()?.name);
     Assert.eq('Should be expected file', 'text/plain', fileItem.getAsFile()?.type);
     KAssert.eqNone('Should not have any data', getData(fileItem));

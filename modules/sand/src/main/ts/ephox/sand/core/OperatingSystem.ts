@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { Version } from '../detect/Version';
 import { UaInfo } from '../info/UaInfo';
@@ -59,12 +59,12 @@ export const OperatingSystem = {
   unknown,
   nu,
 
-  windows: Fun.constant(windows),
-  ios: Fun.constant(ios),
-  android: Fun.constant(android),
-  linux: Fun.constant(linux),
-  macos: Fun.constant(macos),
-  solaris: Fun.constant(solaris),
-  freebsd: Fun.constant(freebsd),
-  chromeos: Fun.constant(chromeos)
+  windows: () => windows,
+  ios: () => ios,
+  android: () => android,
+  linux: () => linux,
+  macos: () => macos,
+  solaris: () => solaris,
+  freebsd: () => freebsd,
+  chromeos: () => chromeos
 };

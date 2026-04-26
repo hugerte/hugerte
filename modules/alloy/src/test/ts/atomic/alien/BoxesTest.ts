@@ -73,7 +73,7 @@ describe('atomic.alloy.alien.BoxesTest', () => {
 
     context('Properties', () => {
       const sortNumbers = (xs: number[]): number[] => {
-        return Arr.sort(xs, (a, b) => {
+        return [...xs].sort((a, b) =) {
           if (a < b) {
             return -1;
           } else if (b < a) {
@@ -98,10 +98,10 @@ describe('atomic.alloy.alien.BoxesTest', () => {
             const constraints = [ first ].concat(rest);
             const all = [ original ].concat(constraints);
             const actual = Boxes.constrainByMany(original, constraints);
-            const optLargestLeft = Arr.last(sortNumbers(Arr.map(all, (c) => c.x)));
-            const optLargestTop = Arr.last(sortNumbers(Arr.map(all, (c) => c.y)));
-            const optSmallestRight = Arr.head(sortNumbers(Arr.map(all, (c) => c.right)));
-            const optSmallestBottom = Arr.head(sortNumbers(Arr.map(all, (c) => c.bottom)));
+            const optLargestLeft = Arr.last(sortNumbers(all.map((c) =) c.x)));
+            const optLargestTop = Arr.last(sortNumbers(all.map((c) =) c.y)));
+            const optSmallestRight = Arr.head(sortNumbers(all.map((c) =) c.right)));
+            const optSmallestBottom = Arr.head(sortNumbers(all.map((c) =) c.bottom)));
 
             const assertOpt = (label: string, optValue: Optional<number>, actualValue: number): void => {
               optValue.fold(

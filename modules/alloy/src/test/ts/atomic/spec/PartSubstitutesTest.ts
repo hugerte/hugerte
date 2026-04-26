@@ -1,6 +1,6 @@
 import { Logger } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 
 import { AlloySpec } from 'ephox/alloy/api/component/SpecTypes';
 import { subs } from 'ephox/alloy/parts/PartSubstitutes';
@@ -101,7 +101,7 @@ UnitTest.test('PartSubstitutesTest', () => {
                 spec: expected.spec
               }, valueThunk(detail, { }, { }));
             },
-            multiple: Fun.die('Should not be a multiple')
+            multiple: () => { throw new Error('Should not be a multiple'); }
           });
         });
       };
@@ -135,7 +135,7 @@ UnitTest.test('PartSubstitutesTest', () => {
 
       Logger.sync('Checking group.D', () => {
         internals['part:d'].match({
-          single: Fun.die('Should not be a single'),
+          single: () => { throw new Error('Should not be a single'); },
           multiple: (required, valueThunks) => {
             Assert.eq('Checking required status', true, required);
             Assert.eq('Checking result',

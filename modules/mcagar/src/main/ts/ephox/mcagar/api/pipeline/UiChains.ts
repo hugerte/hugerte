@@ -1,5 +1,5 @@
 import { Chain, Guard, Mouse, NamedChain, UiFinder } from '@ephox/agar';
-import { Fun } from '@ephox/katamari';
+
 import { SugarBody, SugarElement, Visibility } from '@ephox/sugar';
 
 import { Editor } from '../../alien/EditorTypes';
@@ -91,7 +91,7 @@ const cWaitForPopup = <T>(label: string, selector: string): Chain<T, T> => {
 };
 
 const cWaitForUi = <T>(label: string, selector: string): Chain<T, T> => {
-  return cWaitForState<T, Element>(Fun.always)(label, selector);
+  return cWaitForState<T, Element>(() => true)(label, selector);
 };
 
 const cTriggerContextMenu = <T>(label: string, target: string, menu: string): Chain<T, T> => {

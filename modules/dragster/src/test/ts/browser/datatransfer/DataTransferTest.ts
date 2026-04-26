@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
@@ -184,7 +184,7 @@ describe('browser.dragster.datatransfer.DataTransferTest', () => {
       addAndAssertFile(transfer, testFile1, 1);
       addAndAssertFile(transfer, testFile2, 2);
 
-      assert.deepEqual(Arr.map(transfer.items, (x) => x.kind), [ 'string', 'string', 'string', 'file', 'file' ], 'Should have expected kinds at the end');
+      assert.deepEqual(transfer.items.map((x) =) x.kind), [ 'string', 'string', 'string', 'file', 'file' ], 'Should have expected kinds at the end');
     });
 
     it('TINY-9601: Files list cannot be modified', () => {

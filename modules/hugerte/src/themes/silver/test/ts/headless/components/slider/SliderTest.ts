@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import { renderSlider } from 'hugerte/themes/silver/ui/dialog/Slider';
 
@@ -14,7 +14,7 @@ describe('headless.hugerte.themes.silver.components.slider.SliderTest', () => {
       label: 'test label',
       min: 0,
       max: 100,
-    }, TestProviders, Optional.none())
+    }, TestProviders, null)
   ));
 
   it('TINY-8304: Check basic structure', () => {

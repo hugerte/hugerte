@@ -1,4 +1,4 @@
-import { Obj } from '@ephox/katamari';
+
 
 import { AlloyComponent } from '../../api/component/ComponentApi';
 import { nuState } from '../common/BehaviourState';
@@ -16,7 +16,7 @@ const init = (): CouplingState => {
     if (available.length === 0) {
       throw new Error('Cannot find any known coupled components');
     } else {
-      return Obj.get<any, string>(coupled, coupledName);
+      return (coupled as any)[coupledName];
     }
   };
 
@@ -25,7 +25,7 @@ const init = (): CouplingState => {
       // TODO: TINY-9014 Likely type error. coupleConfig.others[key] is
       // `() => ((comp: AlloyComponent) => AlloySpec)`,
       // but builder is being treated as a `(comp: AlloyComponent) => AlloySpec`
-      const builder = Obj.get<any, string>(coupleConfig.others, name).getOrDie(
+      const builder = (coupleConfig.others as any)[name].getOrDie(
         'No information found for coupled component: ' + name
       );
       const spec = builder(component);
@@ -38,7 +38,7 @@ const init = (): CouplingState => {
   const getExisting = (component: AlloyComponent, coupleConfig: CouplingConfig, name: string): (AlloyComponent) | null => {
     return lookupCoupled(coupleConfig, name).orThunk(() => {
       // Validate we recognise this coupled component's name.
-      Obj.get<any, string>(coupleConfig.others, name).getOrDie(
+      (coupleConfig.others as any)[name].getOrDie(
         'No information found for coupled component: ' + name
       );
 

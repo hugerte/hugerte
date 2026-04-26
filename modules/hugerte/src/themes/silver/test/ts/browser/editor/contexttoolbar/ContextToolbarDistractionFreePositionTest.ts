@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { before, context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Css, Scroll, SugarBody, SugarLocation } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -31,7 +31,7 @@ describe.skip('browser.hugerte.themes.silver.editor.contexttoolbar.ContextToolba
     setup: (ed: Editor) => {
       ed.ui.registry.addButton('alpha', {
         text: 'Alpha',
-        onAction: Fun.noop
+        onAction: () => {}
       });
       ed.ui.registry.addContextToolbar('test-toolbar', {
         predicate: (node) => node.nodeName.toLowerCase() === 'a',

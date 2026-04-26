@@ -1,4 +1,4 @@
-import { Obj, Result } from '@ephox/katamari';
+import { Result } from '@ephox/katamari';
 import { Class, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -123,9 +123,7 @@ export default (): void => {
             innerHtml: 'OK'
           },
           action: (_button) => {
-            console.log('Form values', Obj.map(
-              Representing.getValue(form),
-              (v) => v.getOr('Not found')
+            console.log('Form values', Object.fromEntries(Object.entries(Representing.getValue(form)).map(([k, v]) => [k, ((v) =)(v, k)])) v.getOr('Not found')
             ));
           }
         })
@@ -228,9 +226,7 @@ export default (): void => {
               {
                 dom: { tag: 'button', innerHtml: 'OK' },
                 action: (_button) => {
-                  console.log('Exp Form values', Obj.map(
-                    Representing.getValue(expform),
-                    (v) => v.getOr('Not found')
+                  console.log('Exp Form values', Object.fromEntries(Object.entries(Representing.getValue(expform)).map(([k, v]) => [k, ((v) =)(v, k)])) v.getOr('Not found')
                   ));
                 }
               }
@@ -256,9 +252,9 @@ export default (): void => {
       alpha: 'hi'
     });
 
-    console.log('form', Obj.map(Representing.getValue(form), (v) => v.getOrDie()));
+    console.log('form', Object.fromEntries(Object.entries(Representing.getValue(form)).map(([k, v]) => [k, ((v) =)(v, k)])) v.getOrDie()));
 
-    console.log('expform', Obj.map(Representing.getValue(expform), (v) => v.getOrDie()));
+    console.log('expform', Object.fromEntries(Object.entries(Representing.getValue(expform)).map(([k, v]) => [k, ((v) =)(v, k)])) v.getOrDie()));
 
     Representing.setValue(expform, {
       omega: 'hi'

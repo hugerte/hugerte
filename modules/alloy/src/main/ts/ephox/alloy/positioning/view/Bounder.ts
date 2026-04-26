@@ -1,4 +1,4 @@
-import { Adt, Num } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Boxes from '../../alien/Boxes';
@@ -90,9 +90,9 @@ const calcReposition = (box: Boxes.Bounds, bounds: Boxes.Bounds): Boxes.Bounds =
   const maxY = Math.max(boundsY, boundsBottom - height);
 
   // Futz with the X value to ensure that we're not off the left or right of the screen
-  const restrictedX = Num.clamp(x, boundsX, maxX);
+  const restrictedX = Math.min(Math.max(x, boundsX), maxX);
   // Futz with the Y value to ensure that we're not off the top or bottom of the screen
-  const restrictedY = Num.clamp(y, boundsY, maxY);
+  const restrictedY = Math.min(Math.max(y, boundsY), maxY);
 
   // Determine the new height and width based on the restricted X/Y to keep the element in bounds
   const restrictedWidth = Math.min(restrictedX + width, boundsRight) - restrictedX;

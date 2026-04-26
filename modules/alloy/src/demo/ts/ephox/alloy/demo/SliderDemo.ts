@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { Class, Css, DomEvent, Insert, SugarElement } from '@ephox/sugar';
 
@@ -31,7 +31,7 @@ export default (): void => {
         mode: 'x',
         minX: 20,
         maxX: 100,
-        getInitialValue: Fun.constant(80)
+        getInitialValue: () => 80
       },
       stepSize: 10,
       snapToGrid: true,
@@ -70,7 +70,7 @@ export default (): void => {
       dom: { tag: 'div', styles: { 'margin-bottom': '40px' }},
       model: {
         mode: 'y',
-        getInitialValue: Fun.constant(35)
+        getInitialValue: () => 35
       },
 
       stepSize: 40,
@@ -153,7 +153,7 @@ export default (): void => {
         maxX: 360,
         minY: 0,
         maxY: 360,
-        getInitialValue: Fun.constant({ x: 120, y: 120 })
+        getInitialValue: () => { x: 120, y: 120 }
       },
       stepSize: 10,
 

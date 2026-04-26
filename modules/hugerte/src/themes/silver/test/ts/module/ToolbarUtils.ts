@@ -1,5 +1,5 @@
 import { Waiter } from '@ephox/agar';
-import { Type } from '@ephox/katamari';
+
 import { Height, SugarElement, SugarLocation, Width } from '@ephox/sugar';
 import { TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -31,7 +31,7 @@ const pAssertFloatingToolbarHeight = async (editor: Editor, expectedHeight: numb
 const pOpenFloatingToolbarAndAssertPosition = async (editor: Editor, getTop: () => number, pActions?: () => Promise<void>): Promise<void> => {
   await pOpenMore(ToolbarMode.floating);
   await pAssertFloatingToolbarPosition(editor, getTop, 105, 531);
-  if (Type.isNonNullable(pActions)) {
+  if (pActions != null) {
     await pActions();
   }
   await pCloseMore(ToolbarMode.floating);

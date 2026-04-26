@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, AnchorSpec, Behaviour, GuiFactory, InlineView, Keying, Positioning
 } from '@ephox/alloy';
 import { InlineContent, Toolbar } from '@ephox/bridge';
-import { Merger, Optional, Singleton, Throttler } from '@ephox/katamari';
+import { Optional, Singleton, Throttler } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Class, Compare, Css, Focus, SugarElement } from '@ephox/sugar';
 
@@ -175,7 +175,7 @@ const register = (editor: Editor, registryContextToolbars: Record<string, Contex
       isReposition: () => (lastTrigger.get() !== null && (lastTrigger.get()) === (TriggerCause.Reposition)),
       getMode: () => Positioning.getMode(sink)
     });
-    return Merger.deepMerge(anchorage, anchorLayout);
+    return ({ ...anchorage, ...anchorLayout });
   };
 
   const launchContext = (toolbarApi: Array<ContextType>, elem: (SugarElement<Element>) | null) => {

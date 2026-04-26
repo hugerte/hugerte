@@ -35,7 +35,7 @@ const fromRawEvent = <E extends Event, T extends Node | Window = Node>(rawEvent:
 
   const prevent = () => rawEvent.preventDefault();
 
-  const kill = Fun.compose(prevent, stop); // more of a sequence than a compose, but same effect
+  const kill = (...args: any[]) => (prevent)((stop)(...args)); // more of a sequence than a compose, but same effect
 
   // FIX: Don't just expose the raw event. Need to identify what needs standardisation.
   return mkEvent(target, (rawEvent as any).clientX, (rawEvent as any).clientY, stop, prevent, kill, rawEvent);

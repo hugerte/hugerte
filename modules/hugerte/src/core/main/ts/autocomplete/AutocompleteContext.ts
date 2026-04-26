@@ -1,4 +1,4 @@
-import { Strings } from '@ephox/katamari';
+
 
 import * as TextSearch from '../alien/TextSearch';
 import DOMUtils from '../api/dom/DOMUtils';
@@ -23,7 +23,7 @@ const findTrigger = (text: string, index: number, trigger: string, includeWhites
       return null;
     }
 
-    if (firstChar === char && Strings.contains(text, trigger, i, index)) {
+    if (firstChar === char && text.includes(trigger, i, index)) {
       break;
     }
   }

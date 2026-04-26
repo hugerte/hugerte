@@ -1,4 +1,4 @@
-import { Merger } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 import { BlobInfo } from 'hugerte/core/api/file/BlobCache';
@@ -158,7 +158,7 @@ const formFillFromMeta = (info: ImageDialogInfo, api: API): void => {
   const data = api.getData();
   const meta = data.src.meta;
   if (meta !== undefined) {
-    const newData = Merger.deepMerge({}, data);
+    const newData = ({ ...{}, ...data });
     formFillFromMeta2(info, newData, meta);
     api.setData(newData);
   }
@@ -295,7 +295,7 @@ const makeDialogBody = (info: ImageDialogInfo): DialogType.TabPanelSpec | Dialog
 };
 
 const submitHandler = (editor: Editor, info: ImageDialogInfo, helpers: Helpers) => (api: API): void => {
-  const data: ImageDialogData = Merger.deepMerge(fromImageData(info.image), api.getData());
+  const data: ImageDialogData = ({ ...fromImageData(info.image), ...api.getData() });
 
   // The data architecture relies on passing everything through the style field for validation.
   // Since the style field was removed that process must be simulated on submit.

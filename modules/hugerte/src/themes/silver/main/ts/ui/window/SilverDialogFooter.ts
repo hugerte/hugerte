@@ -2,7 +2,7 @@ import {
   AlloyComponent, AlloyParts, Behaviour, Container, DomFactory, Memento, MementoRecord, ModalDialog, Reflecting, SimpleSpec, SketchSpec
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Optional } from '@ephox/katamari';
+
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { renderFooterButton } from '../general/Button';
@@ -62,10 +62,10 @@ const renderFooter = (initSpec: WindowFooterSpec, dialogId: string, backstage: U
     const lookupByName = (buttonName: string) =>
       lookup(comp, footerButtons, buttonName);
 
-    return Optional.some<FooterState>({
+    return {
       lookupByName,
       footerButtons
-    });
+    };
   };
 
   return {

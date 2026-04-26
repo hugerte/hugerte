@@ -41,7 +41,7 @@ const filterByPositionForStartNode = (toolbars: ContextType[]): ContextType[] =>
       if (hasNodeToolbars && hasSelectionToolbars) {
         // if there's a mix, change the 'selection' toolbars to 'node' so there's no positioning confusion
         const nodeToolbars = filterToolbarsByPosition('node');
-        const selectionToolbars = Arr.map<ContextType>(filterToolbarsByPosition('selection'), (t) => ({ ...t, position: 'node' }));
+        const selectionToolbars = filterToolbarsByPosition('selection').map((t) => ({ ...t, position: 'node' }));
         return nodeToolbars.concat(selectionToolbars);
       } else {
         return hasSelectionToolbars ? filterToolbarsByPosition('selection') : filterToolbarsByPosition('node');

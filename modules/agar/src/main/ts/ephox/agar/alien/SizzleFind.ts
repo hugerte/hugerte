@@ -5,7 +5,7 @@ import * as Sizzle from 'sizzle';
 type SizzleContext = Element | Document | DocumentFragment;
 
 const toOptionEl = <T extends Element>(output: T[]): Optional<SugarElement<T>> =>
-  output.length === 0 ? Optional.none() : Optional.from(output[0]).map(SugarElement.fromDom);
+  output.length === 0 ? null : output[0] ?? null.map(SugarElement.fromDom);
 
 /* Petrie makes extensive use of :visible, :has() and :contains() which are sizzle extensions */
 const descendant = <T extends Element>(sugarElement: SugarElement<SizzleContext>, selector: string): Optional<SugarElement<T>> => {
@@ -14,7 +14,7 @@ const descendant = <T extends Element>(sugarElement: SugarElement<SizzleContext>
 };
 
 const toArrayEl = <T extends Node | Window>(elements: T[]): SugarElement<T>[] =>
-  Arr.map(elements, SugarElement.fromDom);
+  elements.map(SugarElement.fromDom);
 
 /* Petrie makes extensive use of :visible, :has() and :contains() which are sizzle extensions */
 const descendants = <T extends Element>(sugarElement: SugarElement<SizzleContext>, selector: string): SugarElement<T>[] =>
@@ -30,7 +30,7 @@ const child = <T extends Element>(sugarElement: SugarElement<Node>, selector: st
 
 const children = <T extends Element>(sugarElement: SugarElement<Node>, selector: string): SugarElement<T>[] => {
   const children = Traverse.children(sugarElement);
-  return Arr.filter(children, (child): child is SugarElement<T> => matches(child, selector));
+  return children.filter((child): child is SugarElement<T> =) matches(child, selector));
 };
 
 export {

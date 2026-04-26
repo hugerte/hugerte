@@ -1,7 +1,7 @@
 import { Assertions, Log, Pipeline, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr, Fun } from '@ephox/katamari';
+
 
 import { ZonePosition } from 'ephox/robin/api/general/ZonePosition';
 import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
@@ -58,20 +58,20 @@ UnitTest.asyncTest('atomic.robin.zone.InViewportTest', (success, failure) => {
     const transform = WordDecision.fromItem;
     const zones = ZoneWalker.walk<Gene, undefined>(doc, start, end, 'en', transform, viewport);
     const indexedZones = new Map<string, ZoneDetails<Gene>>();
-    Arr.each(zones, (zone) => Arr.each(zone.details, (detail) => indexedZones.set(detail.item.id, zone)));
+    zones.forEach((zone) =) zone.details.forEach((detail) =) indexedZones.set(detail.item.id, zone)));
 
     let elements: Gene[] = [];
     // TODO: see if there's an existing function for this so we can lose the cheap / nasty DFS
     const visit = (el: Gene) => {
       const children = doc.property().children(el);
       elements = elements.concat(children);
-      Arr.each(children, visit);
+      children.forEach(visit);
     };
     visit(doc.get());
 
-    Arr.each(elements, (el) => {
+    elements.forEach((el) =) {
       const isText = doc.property().isText(el);
-      const withinViewport = viewport.assess(el).fold(Fun.never, Fun.always, Fun.never);
+      const withinViewport = viewport.assess(el).fold(() => false, () => true, () => false);
 
       const equalsOrInside = (g1: Gene, g2Id: string): boolean => {
         if (g1.id === g2Id) {

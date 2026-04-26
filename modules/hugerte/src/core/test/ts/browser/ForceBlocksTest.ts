@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { LegacyUnit, TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -123,7 +123,7 @@ describe('browser.hugerte.core.ForceBlocksTest', () => {
     it('TINY-9172: Do not wrap root level transparent elements if they blocks inside', () => {
       const editor = hook.editor();
       const transparentElements = TransparentElements.elementNames(editor.schema.getTransparentElements());
-      const transparentElementsHtml = Arr.map(transparentElements, (name) => `<${name} data-mce-block="true"><p>text</p></${name}>`).join('');
+      const transparentElementsHtml = transparentElements.map((name) =) `<${name} data-mce-block="true"><p>text</p></${name}>`).join('');
       const innerHtml = 'text' + transparentElementsHtml;
       const expectedInnerHtml = '<p>text</p>' + transparentElementsHtml;
 
@@ -136,7 +136,7 @@ describe('browser.hugerte.core.ForceBlocksTest', () => {
     it('TINY-9172: Wrap root level transparent elements if they do not have blocks inside', () => {
       const editor = hook.editor();
       const transparentElements = TransparentElements.elementNames(editor.schema.getTransparentElements());
-      const transparentElementsHtml = Arr.map(transparentElements, (name) => `<${name}>text</${name}>`).join('');
+      const transparentElementsHtml = transparentElements.map((name) =) `<${name}>text</${name}>`).join('');
       const innerHtml = 'text' + transparentElementsHtml;
       const expectedInnerHtml = `<p>text${transparentElementsHtml}</p>`;
 

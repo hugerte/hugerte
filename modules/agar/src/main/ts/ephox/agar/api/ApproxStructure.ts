@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Arr, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { Attribute, Classes, Css, SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 
 import * as ApproxComparisons from '../assertions/ApproxComparisons';
@@ -47,18 +47,18 @@ const build = <T>(f: Builder<T>): T =>
   f(structApi, strApi, arrApi);
 
 const getAttrsExcept = (node: SugarElement<Element>, exclude: string[]): Record<string, string> =>
-  Obj.bifilter(Attribute.clone(node), (value, key) => !Arr.contains(exclude, key)).t;
+  Obj.bifilter(Attribute.clone(node), (value, key) => !exclude.includes(key)).t;
 
 const toAssertableObj = (obj: Record<string, string>): Record<string, CombinedAssert> =>
-  Obj.map(obj, ApproxComparisons.is);
+  Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, (ApproxComparisons.is)(v, k)]));
 
 const toAssertableArr = (arr: string[]): (StringAssert & ArrayAssert)[] =>
-  Arr.map(arr, ApproxComparisons.has);
+  arr.map(ApproxComparisons.has);
 
 const fromElement = (node: SugarElement<Node>): StructAssert => {
   if (SugarNode.isElement(node)) {
     return ApproxStructures.element(SugarNode.name(node), {
-      children: Arr.map(Traverse.children(node), fromElement),
+      children: Traverse.children(node).map(fromElement),
       attrs: toAssertableObj(getAttrsExcept(node, [ 'style', 'class' ])),
       styles: toAssertableObj(Css.getAllRaw(node)),
       classes: toAssertableArr(Classes.get(node))

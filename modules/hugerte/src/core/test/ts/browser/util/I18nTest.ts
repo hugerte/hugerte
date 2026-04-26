@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import I18n from 'hugerte/core/api/util/I18n';
@@ -33,7 +33,7 @@ describe('browser.hugerte.core.util.I18nTest', () => {
       `Do not strip tokens that weren't replaced.`);
 
     assert.equal(translate([{ }]), '[object Object]');
-    assert.equal(translate(Fun.noop), '[object Function]');
+    assert.equal(translate(() => {}), '[object Function]');
 
     assert.equal(translate(null), '');
     assert.equal(translate(undefined), '');

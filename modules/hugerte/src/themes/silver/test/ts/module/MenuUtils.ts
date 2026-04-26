@@ -1,6 +1,6 @@
 import { Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { Boxes } from '@ephox/alloy';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -48,7 +48,7 @@ const pOpenMenu = (label: string, menuText: string): Promise<void> => {
 };
 
 const pOpenNestedMenus = (menus: OpenNestedMenus[]): Promise<void> =>
-  Arr.foldl(menus, (p, menu) => p.then(async () => {
+  menus.reduce((p, menu) => p.then(async () => {
     await pOpenMenuWithSelector(menu.label, menu.selector);
   }), Promise.resolve());
 

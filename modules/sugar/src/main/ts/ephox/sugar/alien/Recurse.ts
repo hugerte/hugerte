@@ -1,7 +1,7 @@
 import { Optional } from '@ephox/katamari';
 
 /**
- * Applies f repeatedly until it completes (by returning Optional.none()).
+ * Applies f repeatedly until it completes (by returning null).
  *
  * Normally would just use recursion, but JavaScript lacks tail call optimisation.
  *

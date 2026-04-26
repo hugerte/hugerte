@@ -1,6 +1,6 @@
 import { FocusTools, TestStore } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarDocument, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -80,7 +80,7 @@ describe('browser.alloy.behaviour.blocking.BlockingFocusTest', () => {
     it('does not focus if busy component does not have Keying configured', async () => {
       const comp = hook.component();
       Focusing.focus(memFocusDiv.get(comp));
-      Blocking.block(comp, Fun.constant({ dom: { tag: 'div', classes: [ busyComponentClass ] }}));
+      Blocking.block(comp, () => { dom: { tag: 'div', classes: [ busyComponentClass ] }});
       await pAssertBusyComponentFocus(false);
       Blocking.unblock(comp);
     });

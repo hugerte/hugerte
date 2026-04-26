@@ -1,6 +1,6 @@
 import { Assertions, FocusTools, Keys, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Html, Remove, Replication, SelectorFilter, SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyContentActions, TinyDom, TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -47,7 +47,7 @@ describe('browser.hugerte.plugins.table.ContextToolbarTest', () => {
 
   const assertHtmlStructure = (label: string, editor: Editor, expectedHtml: string) => {
     const elm = Replication.deep(TinyDom.body(editor));
-    Arr.each(SelectorFilter.descendants(elm, '*[data-mce-bogus="all"]'), Remove.remove);
+    SelectorFilter.descendants(elm, '*[data-mce-bogus="all"]').forEach(Remove.remove);
     const actualHtml = Html.get(elm);
     Assertions.assertHtmlStructure(label, `<body>${expectedHtml}</body>`, `<body>${actualHtml}</body>`);
   };

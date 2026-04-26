@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Class, SelectorFilter } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -27,11 +27,11 @@ describe('browser.hugerte.plugins.searchreplace.SearchReplaceDialogCyclingTest',
     assert.isTrue(Class.has(elem, 'mce-match-marker-selected'), `Check match ${index} is marked as selected`);
   };
 
-  Arr.each([
+  [
     { label: 'Test cycling using find', scenario: { cycle: Utils.clickFind, dir: Direction.FORWARDS }},
     { label: 'Test cycling using next', scenario: { cycle: Utils.clickNext, dir: Direction.FORWARDS }},
     { label: 'Test cycling using previous', scenario: { cycle: Utils.clickPrev, dir: Direction.BACKWARDS }},
-  ], (testCase) => {
+  ].forEach((testCase) =) {
     context(testCase.label, () => {
       const { dir, cycle } = testCase.scenario;
 

@@ -1,6 +1,6 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, Logger, TestUniverse, TextGene } from '@ephox/boss';
-import { Arr } from '@ephox/katamari';
+
 
 import { breakPath, breakToRight } from 'ephox/robin/parent/Breaker';
 
@@ -49,7 +49,7 @@ UnitTest.test('BreakerTest', () => {
 
   Assert.eq('', 'ol1', result.first.id);
   Assert.eq('', 'clone**<ol1>', result.second.getOrDie().id);
-  Assert.eq('', [ 'li2->clone**<li2>', 'ol1->clone**<ol1>' ], Arr.map(result.splits, (spl) => {
+  Assert.eq('', [ 'li2->clone**<li2>', 'ol1->clone**<ol1>' ], result.splits.map((spl) =) {
     return spl.first.id + '->' + spl.second.id;
   }));
 });

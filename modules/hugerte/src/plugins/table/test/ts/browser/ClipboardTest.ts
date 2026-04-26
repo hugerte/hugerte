@@ -1,6 +1,6 @@
 import { Clipboard } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { SugarElement, SugarNode, Traverse } from '@ephox/sugar';
 import { LegacyUnit, TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -407,10 +407,10 @@ describe('browser.hugerte.plugins.table.ClipboardTest', () => {
     assert.equal(clipboardRows.length, 1);
     assert.isTrue(SugarNode.isTag('tr')(clipboardRows[0]));
 
-    FakeClipboard.setRows(Optional.some(clipboardRows.concat([
+    FakeClipboard.setRows(clipboardRows.concat([
       TableTestUtils.createRow([ 'a', 'b' ]),
       TableTestUtils.createRow([ 'c', 'd' ])
-    ])));
+    ]));
 
     LegacyUnit.setSelection(editor, 'tr:nth-child(2) td', 0);
     editor.execCommand('mceTablePasteRowAfter');
@@ -532,10 +532,10 @@ describe('browser.hugerte.plugins.table.ClipboardTest', () => {
     assert.equal(cells.length, 1);
     assert.isTrue(SugarNode.isTag('td')(cells[0]));
 
-    FakeClipboard.setColumns(Optional.some([
+    FakeClipboard.setColumns([
       TableTestUtils.createRow([ 'a', 'b' ]),
       TableTestUtils.createRow([ 'c', 'd' ])
-    ]));
+    ]);
 
     LegacyUnit.setSelection(editor, 'tr td:nth-child(2)', 0);
     editor.execCommand('mceTablePasteColAfter');

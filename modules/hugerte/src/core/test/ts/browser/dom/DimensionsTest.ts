@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { LegacyUnit } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -27,7 +27,7 @@ describe('browser.hugerte.core.dom.DimensionsTest', () => {
 
   it('getClientRects from array', () => {
     const viewElm = setupHtml('<b>a</b><b>b</b>');
-    const clientRects = Dimensions.getClientRects(Arr.from(viewElm.childNodes));
+    const clientRects = Dimensions.getClientRects(Array.from(viewElm.childNodes));
 
     assert.lengthOf(clientRects, 2);
     LegacyUnit.equalDom(clientRects[0].node, viewElm.childNodes[0]);
@@ -36,7 +36,7 @@ describe('browser.hugerte.core.dom.DimensionsTest', () => {
 
   it('TINY-8532: getClientRects with comment nodes', () => {
     const viewElm = setupHtml('<b>a</b><!--comment--><b>b</b>');
-    const clientRects = Dimensions.getClientRects(Arr.from(viewElm.childNodes));
+    const clientRects = Dimensions.getClientRects(Array.from(viewElm.childNodes));
 
     assert.lengthOf(clientRects, 2);
     LegacyUnit.equalDom(clientRects[0].node, viewElm.childNodes[0]);

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Attribute, SelectorFind } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -90,11 +90,11 @@ UnitTest.asynctest('FieldsTest', (success, failure) => {
         choiceClass: 'test-choice',
         selectedClass: 'test-selected-choice'
       },
-      choices: Arr.map([
+      choices: [
         { value: 'choice1', text: 'Choice1' },
         { value: 'choice2', text: 'Choice2' },
         { value: 'choice3', text: 'Choice3' }
-      ], renderChoice)
+      ].map(renderChoice)
     });
 
     const coupledDText = {
@@ -138,7 +138,7 @@ UnitTest.asynctest('FieldsTest', (success, failure) => {
       dom: {
         tag: 'span'
       },
-      getInitialValue: Fun.constant('data-e-init')
+      getInitialValue: () => 'data-e-init'
     });
 
     return GuiFactory.build(

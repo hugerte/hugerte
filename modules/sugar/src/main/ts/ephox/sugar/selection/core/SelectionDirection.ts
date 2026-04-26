@@ -1,4 +1,4 @@
-import { Adt, Fun, Optional, Thunk } from '@ephox/katamari';
+import { Adt, Optional, Thunk } from '@ephox/katamari';
 
 import { SugarElement } from '../../api/node/SugarElement';
 import { SimSelection } from '../../api/selection/SimSelection';
@@ -39,20 +39,20 @@ const fromRange = (win: Window, type: SelectionDirectionConstructor, range: Rang
 const getRanges = (win: Window, selection: SimSelection): LtrRtlRanges => selection.match<LtrRtlRanges>({
   domRange: (rng) => {
     return {
-      ltr: Fun.constant(rng),
+      ltr: () => rng,
       rtl: Optional.none
     };
   },
   relative: (startSitu, finishSitu) => {
     return {
       ltr: Thunk.cached(() => NativeRange.relativeToNative(win, startSitu, finishSitu)),
-      rtl: Thunk.cached(() => Optional.some(NativeRange.relativeToNative(win, finishSitu, startSitu)))
+      rtl: Thunk.cached(() => NativeRange.relativeToNative(win, finishSitu, startSitu))
     };
   },
   exact: (start: SugarElement<Node>, soffset: number, finish: SugarElement<Node>, foffset: number) => {
     return {
       ltr: Thunk.cached(() => NativeRange.exactToNative(win, start, soffset, finish, foffset)),
-      rtl: Thunk.cached(() => Optional.some(NativeRange.exactToNative(win, finish, foffset, start, soffset)))
+      rtl: Thunk.cached(() => NativeRange.exactToNative(win, finish, foffset, start, soffset))
     };
   }
 });

@@ -1,6 +1,6 @@
 import { DragnDrop as Dnd, Files, GeneralSteps, Logger, TestStore } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { DragnDrop } from 'ephox/alloy/api/behaviour/DragnDrop';
@@ -59,7 +59,7 @@ UnitTest.asynctest('DragnDropTest', (success, failure) => {
       DragnDrop.config({
         mode: 'drop',
         onDrop: (_comp, dropEvent) => {
-          const files = Arr.map(dropEvent.files, ({ name, size, type, lastModified }) => ({ name, size, type, lastModified }));
+          const files = dropEvent.files.map(({ name, size, type, lastModified }) =) ({ name, size, type, lastModified }));
           store.add({ type: 'drop', files, data: dropEvent.data });
         },
         onDrag: (_component, _simulatedEvent) => {

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Cell, Fun, Future, Optional, Result, Strings } from '@ephox/katamari';
+import { Arr, Cell, Future, Result, Strings } from '@ephox/katamari';
 import { Compare, SelectorFind } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -31,7 +31,7 @@ UnitTest.asynctest('DropdownRefetchTest', (success, failure) => {
     Container.sketch({
       containerBehaviours: Behaviour.derive([
         Positioning.config({
-          useFixed: Fun.always
+          useFixed: () => true
         })
       ])
     })
@@ -72,9 +72,9 @@ UnitTest.asynctest('DropdownRefetchTest', (success, failure) => {
           return future.map((f) => {
             const menu = TestDropdownMenu.renderMenu({
               value: 'v',
-              items: Arr.map(f, TestDropdownMenu.renderItem)
+              items: f.map(TestDropdownMenu.renderItem)
             });
-            return Optional.some(TieredMenu.singleData('test', menu));
+            return TieredMenu.singleData('test', menu);
           });
         }
       });

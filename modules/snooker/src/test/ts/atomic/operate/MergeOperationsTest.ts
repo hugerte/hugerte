@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as Structs from 'ephox/snooker/api/Structs';
@@ -14,10 +14,10 @@ UnitTest.test('MergeOperationsTest', () => {
   // Test basic merge.
   (() => {
     const check = (expected: Structs.RowCells[], grid: Structs.RowCells[], bounds: Structs.Bounds, lead: string) => {
-      const actual = MergingOperations.merge(grid, bounds, Fun.tripleEquals, Fun.constant(lead as unknown as SugarElement<any>));
+      const actual = MergingOperations.merge(grid, bounds, (a, b) => a === b, () => lead as unknown as SugarElement<any>);
       Assert.eq('', expected.length, actual.length);
-      Arr.each(expected, (row, i) => {
-        Arr.each(row.cells, (cell, j) => {
+      expected.forEach((row, i) =) {
+        row.cells.forEach((cell, j) =) {
           Assert.eq('', cell.element, actual[i].cells[j].element);
           Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
         });
@@ -108,10 +108,10 @@ UnitTest.test('MergeOperationsTest', () => {
   // Test basic unmerge.
   (() => {
     const check = (expected: Structs.RowCells[], grid: Structs.RowCells[], target: string) => {
-      const actual = MergingOperations.unmerge(grid, target as unknown as SugarElement<any>, Fun.tripleEquals, Fun.constant('?') as any);
+      const actual = MergingOperations.unmerge(grid, target as unknown as SugarElement<any>, (a, b) => a === b, () => '?' as any);
       Assert.eq('', expected.length, actual.length);
-      Arr.each(expected, (row, i) => {
-        Arr.each(row.cells, (cell, j) => {
+      expected.forEach((row, i) =) {
+        row.cells.forEach((cell, j) =) {
           Assert.eq('', cell.element, actual[i].cells[j].element);
           Assert.eq('', cell.isNew, actual[i].cells[j].isNew);
         });

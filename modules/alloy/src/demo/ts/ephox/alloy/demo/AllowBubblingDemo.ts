@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 
 import * as AddEventsBehaviour from 'ephox/alloy/api/behaviour/AddEventsBehaviour';
@@ -36,7 +36,7 @@ export default (): void => {
           overflow: 'scroll'
         }
       },
-      components: Arr.range(15, getItemSpec),
+      components: Array.from({ length: 15 }, getItemSpec),
       containerBehaviours: Behaviour.derive([
         AllowBubbling.config({
           events: [{

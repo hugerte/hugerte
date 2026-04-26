@@ -1,5 +1,5 @@
 import { Gene } from '@ephox/boss';
-import { Arr, Optional } from '@ephox/katamari';
+
 
 import { TypedItem } from 'ephox/phoenix/api/data/TypedItem';
 
@@ -16,11 +16,11 @@ const typeditem = (a: TypedItem<Gene, undefined>): string => {
 };
 
 const typeditems = (items: TypedItem<Gene, undefined>[]): string[] => {
-  return Arr.map(items, typeditem);
+  return items.map(typeditem);
 };
 
 const ids = (items: Gene[]): string[] => {
-  return Arr.map(items, id);
+  return items.map(id);
 };
 
 const id = (item: Gene): string => {
@@ -28,11 +28,11 @@ const id = (item: Gene): string => {
 };
 
 const texts = (items: Gene[]): string[] => {
-  return Arr.map(items, text);
+  return items.map(text);
 };
 
 const text = (item: Gene): string => {
-  return Optional.from(item.text).getOr('');
+  return item.text ?? null.getOr('');
 };
 
 export {

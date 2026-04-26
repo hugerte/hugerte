@@ -1,4 +1,4 @@
-import { Fun } from '@ephox/katamari';
+
 
 import { HugeRTE } from 'hugerte/core/api/PublicApi';
 
@@ -62,7 +62,7 @@ export default (): void => {
           const state = DemoState.get();
           console.log(state);
           api.setActive(state);
-          return Fun.noop;
+          return () => {};
         },
         onAction: (api) => {
           DemoState.toggle();
@@ -108,7 +108,7 @@ export default (): void => {
               const state = DemoState2.get();
               console.log(state);
               api.setActive(state);
-              return Fun.noop;
+              return () => {};
             },
             onAction: (api) => {
               DemoState2.toggle();

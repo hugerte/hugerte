@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions } from '@ephox/agar';
 import { afterEach, before, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, SelectorFilter, SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 import 'hugerte';
@@ -126,7 +126,7 @@ describe('browser.hugerte.core.init.EditorInitializationTest', () => {
   });
 
   const getSkinCssFilenames = (): string[] => {
-    return Arr.bind(SelectorFilter.descendants(SugarElement.fromDom(document), 'link'), (link) => {
+    return SelectorFilter.descendants(SugarElement.fromDom(document), 'link').flatMap((link) =) {
       const href = Attribute.get(link, 'href') ?? '';
       const fileName = href.split('/').slice(-1).join('');
       const isSkin = href.indexOf('oxide/') > -1;
@@ -191,7 +191,7 @@ describe('browser.hugerte.core.init.EditorInitializationTest', () => {
       'Should only be two skin files the skin and the content for inline mode'
     );
 
-    const targets = Arr.map(editors, (editor) => editor.getElement());
+    const targets = editors.map((editor) =) editor.getElement());
     assert.lengthOf(targets, 2, 'Targets should be two since there are two editors');
 
     return targets;
@@ -202,7 +202,7 @@ describe('browser.hugerte.core.init.EditorInitializationTest', () => {
   const assertTargets = (targets: Node[]) => {
     assert.lengthOf(targets, 2, 'Targets should be two since there are two editors');
 
-    Arr.each(targets, (target) => {
+    targets.forEach((target) =) {
       assert.isNotNull(target.parentNode, 'Target parent should not be null');
     });
   };

@@ -1,6 +1,6 @@
 import { Cursors } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -23,7 +23,7 @@ describe('browser.hugerte.core.fmt.ListItemFormatTest', () => {
   const testListFormat = (f: (editor: Editor, format: string, vars: FormatVars | undefined) => void) => (testCase: ListItemFormatCase) => {
     const { format, selection, expected } = testCase;
     const editor = hook.editor();
-    const vars = Type.isString(testCase.value) ? { value: testCase.value } : undefined;
+    const vars = typeof testCase.value === 'string' ? { value: testCase.value } : undefined;
 
     editor.getBody().innerHTML = testCase.rawInput;
     TinySelections.setSelection(editor, selection.startPath, selection.soffset, selection.finishPath, selection.foffset);

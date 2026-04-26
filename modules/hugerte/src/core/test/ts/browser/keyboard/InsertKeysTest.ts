@@ -1,5 +1,5 @@
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { Hierarchy, Insert, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -17,7 +17,7 @@ describe('browser.hugerte.core.keyboard.InsertKeysTest', () => {
 
   const insertEmptyTextNodesAt = (editor: Editor, count: number, path: number[], insert: (marker: SugarElement, element: SugarElement) => void) => {
     const elm = Hierarchy.follow(TinyDom.body(editor), path).getOrDie('Could not follow path');
-    Arr.each(Arr.range(count, Fun.identity), () => {
+    Array.from({ length: count }, (x) => x).forEach(() => {
       insert(elm, SugarElement.fromDom(document.createTextNode('')));
     });
   };

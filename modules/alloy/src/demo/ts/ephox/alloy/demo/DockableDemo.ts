@@ -241,10 +241,10 @@ export default (): void => {
 
     return {
       bounds: Boxes.box(scroller.element),
-      optScrollEnv: Optional.some({
+      optScrollEnv: {
         currentScrollTop: scroller.element.dom.scrollTop,
         scrollElmTop: SugarLocation.absolute(scroller.element).top
-      })
+      }
     };
   };
 
@@ -257,7 +257,7 @@ export default (): void => {
         'margin-top': '1400px'
       },
       extraBarStyles: { left: '150px', top: '2500px', position: 'absolute' },
-      scrollableContainerStyles: Optional.none(),
+      scrollableContainerStyles: null,
       lazyViewport: undefined,
       hideWhenContextGone: true
     });
@@ -279,7 +279,7 @@ export default (): void => {
         'left': '150px',
         'z-index': '100'
       },
-      scrollableContainerStyles: Optional.some({ }),
+      scrollableContainerStyles: { },
       lazyViewport: getCommonLazyViewport(boxId),
       hideWhenContextGone: true
     });
@@ -299,7 +299,7 @@ export default (): void => {
         left: '150px',
         position: 'absolute'
       },
-      scrollableContainerStyles: Optional.some({ position: 'relative' }),
+      scrollableContainerStyles: { position: 'relative' },
       lazyViewport: getCommonLazyViewport(boxId),
       // Because this is a relative scroller, and the top of bar is considerably
       // less than the top of the red panel, we just always show the bar
@@ -321,7 +321,7 @@ export default (): void => {
         top: '800px',
         left: '10px'
       },
-      scrollableContainerStyles: Optional.some({ }),
+      scrollableContainerStyles: { },
       lazyViewport: getCommonLazyViewport(boxId),
       hideWhenContextGone: true
     });

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { SugarBody, SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinySelections, TinyState, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -39,7 +39,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
     const group = UiFinder.findIn(SugarBody.body(), '.tox-selected-menu .tox-collection__group').getOrDie();
     Assertions.assertStructure(label, ApproxStructure.build((s, str, arr) => s.element('div', {
       classes: [ arr.has('tox-collection__group') ],
-      children: Arr.map(expectedTicks, (expected) => s.element('div', {
+      children: expectedTicks.map((expected) =) s.element('div', {
         attrs: {
           'role': str.is('menuitemcheckbox'),
           'aria-checked': str.is(expected ? 'true' : 'false')
@@ -167,7 +167,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'First paragraph after "Andale Mono"',
         editor,
-        [ true ].concat(Arr.range(16, Fun.never)),
+        [ true ].concat(Array.from({ length: 16 }, () => false)),
         'Andale Mono',
         [ 0, 0, 0 ], 'Fi'.length
       );
@@ -175,7 +175,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'Second paragraph with no set font',
         editor,
-        Arr.range<boolean>(14, Fun.never).concat([ true ]).concat(Arr.range(2, Fun.never)),
+        Array.from({ length: 14 }, () => false).concat([ true ]).concat(Array.from({ length: 2 }, () => false)),
         'Verdana',
         [ 1, 0 ], 'Se'.length
       );
@@ -183,7 +183,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'First paragraph with the font set to "Andale Mono" previously',
         editor,
-        [ true ].concat(Arr.range(16, Fun.never)),
+        [ true ].concat(Array.from({ length: 16 }, () => false)),
         'Andale Mono',
         [ 0, 0, 0 ], 'Fi'.length
       );
@@ -206,7 +206,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'First paragraph after "8pt',
         editor,
-        [ true ].concat(Arr.range(6, Fun.never)),
+        [ true ].concat(Array.from({ length: 6 }, () => false)),
         '8pt',
         [ 0, 0, 0 ], 'Fi'.length
       );
@@ -214,7 +214,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'Second paragraph with no set font size',
         editor,
-        Arr.range<boolean>(2, Fun.never).concat([ true ]).concat(Arr.range(4, Fun.never)),
+        Array.from({ length: 2 }, () => false).concat([ true ]).concat(Array.from({ length: 4 }, () => false)),
         '12pt',
         [ 1, 0 ], 'Se'.length
       );
@@ -222,7 +222,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'First paragraph with the font set to "8pt" previously',
         editor,
-        [ true ].concat(Arr.range(6, Fun.never)),
+        [ true ].concat(Array.from({ length: 6 }, () => false)),
         '8pt',
         [ 0, 0, 0 ], 'Fi'.length
       );
@@ -247,7 +247,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'First block after "h1',
         editor,
-        [ false, true ].concat(Arr.range(6, Fun.never)),
+        [ false, true ].concat(Array.from({ length: 6 }, () => false)),
         'Heading 1:first',
         [ 0, 0 ], 'Fi'.length
       );
@@ -255,7 +255,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'Second paragraph with no set format',
         editor,
-        [ true ].concat(Arr.range(7, Fun.never)),
+        [ true ].concat(Array.from({ length: 7 }, () => false)),
         'Paragraph:first',
         [ 1, 0 ], 'Se'.length
       );
@@ -263,7 +263,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckItemsAtLocation(
         'First block with the "h1" set previously',
         editor,
-        [ false, true ].concat(Arr.range(6, Fun.never)),
+        [ false, true ].concat(Array.from({ length: 6 }, () => false)),
         'Heading 1:first',
         [ 0, 0 ], 'Fi'.length
       );
@@ -289,7 +289,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pAssertFocusOnItem('Block');
       TinyUiActions.keydown(editor, Keys.right());
       await pAssertFocusOnItem('Paragraph');
-      assertItemTicks('Checking blocks in menu', [ false, true ].concat(Arr.range(6, Fun.never)));
+      assertItemTicks('Checking blocks in menu', [ false, true ].concat(Array.from({ length: 6 }, () => false)));
       TinyUiActions.keyup(editor, Keys.escape());
       TinyUiActions.keyup(editor, Keys.escape());
     }));
@@ -313,7 +313,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckSubItemsAtLocation('Heading 1')(
         'First block after "h1',
         editor,
-        [ true ].concat(Arr.range(5, Fun.never)),
+        [ true ].concat(Array.from({ length: 5 }, () => false)),
         'Heading 1:last',
         [ 0, 0 ], 'Fi'.length
       );
@@ -321,7 +321,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckSubItemsAtLocation('Heading 1')(
         'Second paragraph with no set format',
         editor,
-        Arr.range(6, Fun.never),
+        Array.from({ length: 6 }, () => false),
         'Paragraph:last',
         [ 1, 0 ], 'Se'.length
       );
@@ -329,7 +329,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pCheckSubItemsAtLocation('Heading 1')(
         'First block with the "h1" set previously',
         editor,
-        [ true ].concat(Arr.range(5, Fun.never)),
+        [ true ].concat(Array.from({ length: 5 }, () => false)),
         'Heading 1:last',
         [ 0, 0 ], 'Fi'.length
       );
@@ -355,7 +355,7 @@ describe('browser.hugerte.themes.silver.editor.bespoke.SilverBespokeButtonsTest'
       await pAssertFocusOnItem('Headings');
       TinyUiActions.keydown(editor, Keys.right());
       await pAssertFocusOnItem('Heading 1');
-      assertItemTicks('Checking headings in menu', [ true ].concat(Arr.range(5, Fun.never)));
+      assertItemTicks('Checking headings in menu', [ true ].concat(Array.from({ length: 5 }, () => false)));
       TinyUiActions.keyup(editor, Keys.escape());
       TinyUiActions.keyup(editor, Keys.escape());
       TinyUiActions.keyup(editor, Keys.escape());

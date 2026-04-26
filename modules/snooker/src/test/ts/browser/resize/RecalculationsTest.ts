@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarElement, TextContent } from '@ephox/sugar';
 
 import * as Structs from 'ephox/snooker/api/Structs';
@@ -36,18 +36,18 @@ UnitTest.test('RecalculationsTest', () => {
     const actualColumnWidth = Recalculations.recalculateWidthForColumns(warehouse, sizes.width);
     const actualCellHeight = Recalculations.recalculateHeightForCells(warehouse, sizes.height);
 
-    Arr.each(expected, (expt) => {
-      Assert.eq('', expt.columns, Arr.map(actualColumnWidth, (cell) => ({
+    expected.forEach((expt) =) {
+      Assert.eq('', expt.columns, actualColumnWidth.map((cell) =) ({
         element: TextContent.get(cell.element),
         width: cell.width
       })));
 
-      Assert.eq('', expt.widths, Arr.map(actualCellWidth, (cell) => ({
+      Assert.eq('', expt.widths, actualCellWidth.map((cell) =) ({
         element: TextContent.get(cell.element),
         width: cell.width
       })));
 
-      Assert.eq('', expt.heights, Arr.map(actualCellHeight, (cell) => ({
+      Assert.eq('', expt.heights, actualCellHeight.map((cell) =) ({
         element: TextContent.get(cell.element),
         height: cell.height
       })));

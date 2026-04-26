@@ -1,6 +1,6 @@
 import { Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { afterEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Cell } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute, Height, Hierarchy, SelectorFind, SugarElement, Width } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -117,8 +117,7 @@ describe('browser.hugerte.models.dom.table.DragResizeTest', () => {
     resetState();
   });
 
-  Arr.each(
-    [
+  [
       {
         title: 'height only on tds',
         content: '<table style="border-collapse: collapse;border: 0;"><tbody><tr><td style="height:45px;">a</td></tr><tr><td style="height:45px;">a</td></tr></tbody></table>',
@@ -135,8 +134,7 @@ describe('browser.hugerte.models.dom.table.DragResizeTest', () => {
         title: 'height only table, trs and tds',
         content: '<table style="border-collapse: collapse;border: 0; height: 100px;"><tbody><tr style="height:45px;"><td style="height:45px;">a</td></tr><tr style="height:45px;"><td style="height:45px;">a</td></tr></tbody></table>',
       },
-    ],
-    (scenario) => {
+    ].forEach((scenario) =) {
       const { title, content } = scenario;
       it(`TBA: resize table height by dragging bottom (${title})`, async () => {
         const editor = hook.editor();
@@ -167,8 +165,7 @@ describe('browser.hugerte.models.dom.table.DragResizeTest', () => {
     assertNoDataStyle(editor, [ 0 ]);
   });
 
-  Arr.each(
-    [
+  [
       {
         title: 'height only on table',
         content: '<table style="border-collapse: collapse; width: 367px; height: 190px;" border="1">' +
@@ -244,8 +241,7 @@ describe('browser.hugerte.models.dom.table.DragResizeTest', () => {
         '</tbody>' +
         '</table>'
       },
-    ],
-    (scenario) => {
+    ].forEach((scenario) =) {
       const { title, content } = scenario;
       context(title, () => {
         it('TBA: Resize table bigger with handle, then resize row height bigger by dragging middle border', async () => {

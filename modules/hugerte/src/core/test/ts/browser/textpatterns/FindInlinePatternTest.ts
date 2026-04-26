@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -27,8 +27,8 @@ describe('browser.hugerte.textpatterns.FindInlinePatternTest', () => {
       const expected = expectedMatches[i];
       const actual = actualMatches[i];
       const pattern = actual.pattern as Record<string, any>;
-      Obj.each(expected.pattern, (value, key) => {
-        if (Obj.has(pattern, key)) {
+      Object.entries(expected.pattern).forEach(([k, v]) => ((value, key) =)(v, k)) {
+        if (Object.prototype.hasOwnProperty.call(pattern, key)) {
           assert.deepEqual(pattern[key], value, 'Pattern ' + (i + 1) + ' property `' + key + '` is not equal');
         } else {
           assert.fail('Pattern ' + (i + 1) + ' property `' + key + '` is missing');

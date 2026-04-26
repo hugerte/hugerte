@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -511,7 +511,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                       })
                     ]
                   }),
-                  ...Arr.map(outerText, (text) => s.text(str.is(text)))
+                  ...outerText.map((text) =) s.text(str.is(text)))
                 ]
               })
             ]
@@ -534,7 +534,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
             children: [
               s.element('p', {
                 children: [
-                  ...Arr.map(firstOuterText, (text) => s.text(str.is(text))),
+                  ...firstOuterText.map((text) =) s.text(str.is(text))),
                   s.element('span', {
                     attrs: {
                       'id': str.is('_mce_caret'),
@@ -560,7 +560,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                       })
                     ]
                   }),
-                  ...Arr.map(secondOuterText, (text) => s.text(str.is(text))),
+                  ...secondOuterText.map((text) =) s.text(str.is(text))),
                 ]
               })
             ]
@@ -626,7 +626,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                 children: [
                   s.element('li', {
                     children: [
-                      ...Arr.map(firstOuterText, (text) => s.text(str.is(text))),
+                      ...firstOuterText.map((text) =) s.text(str.is(text))),
                       s.element('span', {
                         attrs: {
                           'id': str.is('_mce_caret'),
@@ -652,7 +652,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                           })
                         ]
                       }),
-                      ...Arr.map(secondOuterText, (text) => s.text(str.is(text))),
+                      ...secondOuterText.map((text) =) s.text(str.is(text))),
                     ]
                   })
                 ]
@@ -683,7 +683,7 @@ describe('browser.hugerte.core.delete.InlineFormatDelete', () => {
                         children: [
                           s.element('td', {
                             children: [
-                              ...Arr.map(outerText, (text) => s.text(str.is(text))),
+                              ...outerText.map((text) =) s.text(str.is(text))),
                               s.element('span', {
                                 attrs: {
                                   'id': str.is('_mce_caret'),

@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -37,7 +37,7 @@ describe('browser.hugerte.core.table.TableFormatsTest', () => {
 
   const assertTableCellStructure = (editor: Editor, styles: Record<string, string> = {}, selectedCells: SelectedCells = {}) => {
     const { cell1, cell2, cell3, cell4 } = selectedCells;
-    const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Obj.map(styles, (val, _key) => str.is(val));
+    const mapStyles = (styles: Record<string, string>, str: ApproxStructure.StringApi) => Object.fromEntries(Object.entries(styles).map(([k, v]) => [k, ((val, _key) =)(v, k)])) str.is(val));
     TableTestUtils.assertTableStructure(editor, ApproxStructure.build((s, str, _arr) => s.element('table', {
       styles: {
         'width': str.is('100%'),

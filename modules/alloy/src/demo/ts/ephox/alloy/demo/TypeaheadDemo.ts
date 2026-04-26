@@ -1,4 +1,4 @@
-import { Arr, Future, Optional, Result, Strings } from '@ephox/katamari';
+import { Future, Result, Strings } from '@ephox/katamari';
 import { Class, SugarElement, Value } from '@ephox/sugar';
 
 import { Representing } from 'ephox/alloy/api/behaviour/Representing';
@@ -25,7 +25,7 @@ export default (): void => {
 
   gui.add(sink);
 
-  const dataset = Arr.map([
+  const dataset = [
     'ant',
     'bison',
     'cat',
@@ -52,7 +52,7 @@ export default (): void => {
     'x',
     'yak',
     'zebra'
-  ], (s) => ({
+  ].map((s) =) ({
     value: s,
     text: Strings.capitalize(s)
   }));
@@ -86,7 +86,7 @@ export default (): void => {
     fetch: (input) => {
       const inputValue = Value.get(input.element);
       console.log('text', inputValue);
-      const matching: DemoRenders.DemoItems[] = Arr.bind(dataset, (d) => {
+      const matching: DemoRenders.DemoItems[] = dataset.flatMap((d) =) {
         const lText = d.text.toLowerCase();
         const index = lText.indexOf(inputValue.toLowerCase());
         if (index > -1) {
@@ -120,15 +120,15 @@ export default (): void => {
       return future.map((items) => {
         const menu = DemoRenders.menu({
           value: 'blah.value',
-          items: Arr.map(items, DemoRenders.item)
+          items: items.map(DemoRenders.item)
         });
-        return Optional.some(TieredMenu.singleData('blah', menu));
+        return TieredMenu.singleData('blah', menu);
       });
     },
     onExecute: (sandbox, item, _itemValue) => {
       const value = Representing.getValue(item);
       console.log('*** typeahead menu demo execute on: ', value, ' ***');
-      return Optional.some(true);
+      return true;
     }
   });
 

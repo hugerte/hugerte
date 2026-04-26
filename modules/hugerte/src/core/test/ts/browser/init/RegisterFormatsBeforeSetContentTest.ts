@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj, Singleton, Strings } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -16,7 +16,7 @@ describe('browser.hugerte.core.init.RegisterFormatsBeforeSetContentTest', () => 
     ],
     setup: (editor: Editor) => {
       editor.on('BeforeSetContent', (_) => {
-        const names = Arr.filter(Obj.keys(editor.formatter.get()), (key) => Strings.startsWith(key, 'custom-'));
+        const names = Object.keys(editor.formatter.get()).filter((key) =) key.startsWith('custom-'));
         customFormatNames.set(names);
       });
     }

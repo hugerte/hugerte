@@ -1,4 +1,4 @@
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as Compare from '../dom/Compare';
 import { SugarElement } from '../node/SugarElement';
@@ -16,7 +16,7 @@ type AwarenessFn = (element: SugarElement<Node>, offset: number) => boolean;
 
 const isAtEdge = (parent: SugarElement<Node>, current: SugarElement<Node>, currentOffset: number, descent: DescentFn, awareness: AwarenessFn): boolean =>
   descent(parent).fold(
-    Fun.always,
+    () => true,
     (element) => Compare.eq(current, element) && awareness(current, currentOffset)
   );
 

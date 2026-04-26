@@ -1,7 +1,7 @@
 import { RealKeys, UiControls } from '@ephox/agar';
 import { GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Future, Optional } from '@ephox/katamari';
+import { Future } from '@ephox/katamari';
 import { SelectorFind, SugarDocument, Value } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -15,21 +15,21 @@ describe('webdriver.hugerte.themes.silver.components.urlinput.UrlInputTest', () 
 
   const hook = TestHelpers.GuiSetup.bddSetup((store, _doc, _body) => GuiFactory.build(
     renderUrlInput({
-      label: Optional.some('UrlInput label'),
-      picker_text: Optional.some('UrlInput picker text'),
+      label: 'UrlInput label',
+      picker_text: 'UrlInput picker text',
       name: 'col1',
       filetype: 'file',
       enabled: true
     }, extrasHook.access().extras.backstages.popup, {
       getHistory: (_fileType) => [],
       addToHistory: (_url, _filetype) => store.adder('addToHistory')(),
-      getLinkInformation: () => Optional.none(),
-      getValidationHandler: () => Optional.none(),
-      getUrlPicker: (_filetype) => Optional.some((entry: ApiUrlData) => {
+      getLinkInformation: () => null,
+      getValidationHandler: () => null,
+      getUrlPicker: (_filetype) => (entry: ApiUrlData) = {
         store.adder('urlpicker')();
         return Future.pure({ value: 'http://tiny.cloud', meta: { before: entry.value }, fieldname: 'test' });
       })
-    }, Optional.none())
+    }, null)
   ));
 
   TestHelpers.GuiSetup.bddAddStyles(SugarDocument.getDocument(), [

@@ -1,6 +1,6 @@
 import { Mouse } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Cell } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { TableGridSize } from '@ephox/snooker';
 import { Html, Insert, Remove, SelectorExists, SelectorFilter, SugarBody, SugarElement } from '@ephox/sugar';
@@ -109,20 +109,20 @@ describe('browser.hugerte.models.dom.table.ResizeTableTest', () => {
   // NOTE: Just get the widths from the first row (this might not be ideal for colspan/rowspan tables)
   const getCellWidths = (editor: Editor, table: SugarElement<HTMLTableElement>) => {
     const size = TableGridSize.getGridSize(table);
-    return Arr.range(size.columns, (col) => TableTestUtils.getCellWidth(editor, table, 0, col));
+    return Array.from({ length: size.columns }, (col) => TableTestUtils.getCellWidth(editor, table, 0, col));
   };
 
   // NOTE: Just get the heights from the first column (this might not be ideal for colspan/rowspan tables)
   const getCellHeights = (editor: Editor, table: SugarElement<HTMLTableElement>) => {
     const size = TableGridSize.getGridSize(table);
-    return Arr.range(size.rows, (row) => TableTestUtils.getCellHeight(editor, table, row, 0));
+    return Array.from({ length: size.rows }, (row) => TableTestUtils.getCellHeight(editor, table, row, 0));
   };
 
   const getTrHeights = (editor: Editor, table: SugarElement<HTMLTableElement>) =>
-    Arr.map(SelectorFilter.descendants<HTMLTableCellElement>(table, 'tr'), (tr) => TableTestUtils.getHeightData(editor, tr.dom));
+    SelectorFilter.descendants<HTMLTableCellElement>(table, 'tr').map((tr) =) TableTestUtils.getHeightData(editor, tr.dom));
 
   const getColWidths = (editor: Editor, table: SugarElement<HTMLTableElement>) =>
-    Arr.map(SelectorFilter.descendants<HTMLTableColElement>(table, 'col'), (col) => TableTestUtils.getWidthData(editor, col.dom));
+    SelectorFilter.descendants<HTMLTableColElement>(table, 'col').map((col) =) TableTestUtils.getWidthData(editor, col.dom));
 
   const pInsertResizeMeasure = async (editor: Editor, pResize: (editor: Editor) => Promise<void>, insert: (editor: Editor) => SugarElement<HTMLTableElement>): Promise<TableMeasurementsAll> => {
     const unbindEvents = bindResizeEvents(editor);
@@ -171,19 +171,19 @@ describe('browser.hugerte.models.dom.table.ResizeTableTest', () => {
   const assertRawSizes = (type: 'before' | 'after') => (measurements: TableMeasurements, expected: ExpectedValues) => {
     assert.approximately(measurements.tableHeight.raw ?? 0, expected.tableHeight ?? 0, measurements.tableHeight.isPercent ? percentDiffThreshold : pixelDiffThreshold, `table height (${type})`);
     assert.approximately(measurements.tableWidth.raw ?? 0, expected.tableWidth ?? 0, measurements.tableWidth.isPercent ? percentDiffThreshold : pixelDiffThreshold, `table width (${type})`);
-    Arr.each(measurements.colWidths, (data, idx) => {
+    measurements.colWidths.forEach((data, idx) =) {
       const expectedValue = (expected.colWidths ?? [])[idx] || 0;
       assert.approximately(data.raw ?? 0, expectedValue, data.isPercent ? percentDiffThreshold : pixelDiffThreshold, `col width (${idx}) (${type})`);
     });
-    Arr.each(measurements.trHeights, (data, idx) => {
+    measurements.trHeights.forEach((data, idx) =) {
       const expectedValue = (expected.trHeights ?? [])[idx] ?? 0;
       assert.approximately(data.raw ?? 0, expectedValue, data.isPercent ? percentDiffThreshold : pixelDiffThreshold, `tr height (${idx}) (${type})`);
     });
-    Arr.each(measurements.cellWidths, (data, idx) => {
+    measurements.cellWidths.forEach((data, idx) =) {
       const expectedValue = (expected.tdWidths ?? [])[idx] ?? 0;
       assert.approximately(data.raw ?? 0, expectedValue, data.isPercent ? percentDiffThreshold : pixelDiffThreshold, `td width (${idx}) (${type})`);
     });
-    Arr.each(measurements.cellHeights, (data, idx) => {
+    measurements.cellHeights.forEach((data, idx) =) {
       const expectedValue = (expected.tdHeights ?? [])[idx] ?? 0;
       assert.approximately(data.raw ?? 0, expectedValue, data.isPercent ? percentDiffThreshold : pixelDiffThreshold, `td height (${idx}) (${type})`);
     });
@@ -195,16 +195,16 @@ describe('browser.hugerte.models.dom.table.ResizeTableTest', () => {
   const assertUnits = (type: 'before' | 'after') => (measurements: TableMeasurements, expected: ExpectedUnits) => {
     assert.equal(measurements.tableWidth.unit, expected.tableWidth || null, `table width ${type} resizing`);
     assert.equal(measurements.tableHeight.unit, expected.tableHeight || null, `table height ${type} resizing`);
-    Arr.each(measurements.colWidths, (data) => {
+    measurements.colWidths.forEach((data) =) {
       assert.equal(data.unit, expected.colWidth || null, `col width ${type} resizing`);
     });
-    Arr.each(measurements.trHeights, (data) => {
+    measurements.trHeights.forEach((data) =) {
       assert.equal(data.unit, expected.trHeight || null, `tr height ${type} resizing`);
     });
-    Arr.each(measurements.cellWidths, (data) => {
+    measurements.cellWidths.forEach((data) =) {
       assert.equal(data.unit, expected.tdWidth || null, `td width ${type} resizing`);
     });
-    Arr.each(measurements.cellHeights, (data) => {
+    measurements.cellHeights.forEach((data) =) {
       assert.equal(data.unit, expected.tdHeight || null, `td height ${type} resizing`);
     });
   };
@@ -822,13 +822,13 @@ describe('browser.hugerte.models.dom.table.ResizeTableTest', () => {
 
     context('resizing with corner handle', () => {
       context('height on table, trs and tds', () => {
-        Arr.each([
+        [
           { title: 'TINY-10589: resize table larger with se handle and verify only table and trs have heights', corner: 'se', dy: 50 },
           { title: 'TINY-10589: resize table smaller with se handle and verify only table and trs have heights', corner: 'se', dy: -30 },
           { title: 'TINY-10589: resize table larger with sw handle and verify only table and trs have heights', corner: 'sw', dy: 50 },
           { title: 'TINY-10589: resize table smaller with sw handle and verify only table and trs have heights', corner: 'sw', dy: -30 },
 
-        ], (scenario) => {
+        ].forEach((scenario) =) {
           const { title, corner, dy } = scenario;
 
           it(title, async () => {
@@ -865,13 +865,13 @@ describe('browser.hugerte.models.dom.table.ResizeTableTest', () => {
 
     context('reszing with resize bar', () => {
       context('height on table, trs and tds', () => {
-        Arr.each([
+        [
           { title: 'TINY-10589: resize inner row larger and verify only table and trs have heights', row: 0, dy: 50 },
           { title: 'TINY-10589: resize inner row smaller and verify only table and trs have heights', row: 0, dy: -20 },
           { title: 'TINY-10589: resize last row larger and verify only table and trs have heights', row: 1, dy: 50 },
           { title: 'TINY-10589: resize last row smaller and verify only table and trs have heights', row: 1, dy: -20 },
 
-        ], (scenario) => {
+        ].forEach((scenario) =) {
           const { title, row, dy } = scenario;
 
           it(title, async () => {
@@ -906,13 +906,13 @@ describe('browser.hugerte.models.dom.table.ResizeTableTest', () => {
       });
 
       context('no heights', () => {
-        Arr.each([
+        [
           { title: 'TINY-10589: resize inner row larger and verify only table and trs have heights', row: 0, dy: 50 },
           { title: 'TINY-10589: resize inner row smaller and verify only table and trs have heights', row: 0, dy: -20 },
           { title: 'TINY-10589: resize last row larger and verify only table and trs have heights', row: 1, dy: 50 },
           { title: 'TINY-10589: resize last row smaller and verify only table and trs have heights', row: 1, dy: -20 },
 
-        ], (scenario) => {
+        ].forEach((scenario) =) {
           const { title, row, dy } = scenario;
 
           it(title, async () => {
@@ -944,13 +944,13 @@ describe('browser.hugerte.models.dom.table.ResizeTableTest', () => {
       });
 
       context('height only on table', () => {
-        Arr.each([
+        [
           { title: 'TINY-10589: resize inner row larger and verify only table and trs have heights', row: 0, dy: 50 },
           { title: 'TINY-10589: resize inner row smaller and verify only table and trs have heights', row: 0, dy: -20 },
           { title: 'TINY-10589: resize last row larger and verify only table and trs have heights', row: 1, dy: 50 },
           { title: 'TINY-10589: resize last row smaller and verify only table and trs have heights', row: 1, dy: -20 },
 
-        ], (scenario) => {
+        ].forEach((scenario) =) {
           const { title, row, dy } = scenario;
 
           it(title, async () => {
@@ -983,13 +983,13 @@ describe('browser.hugerte.models.dom.table.ResizeTableTest', () => {
       });
 
       context('height only on table and trs', () => {
-        Arr.each([
+        [
           { title: 'TINY-10589: resize inner row larger and verify only table and trs have heights', row: 0, dy: 50 },
           { title: 'TINY-10589: resize inner row smaller and verify only table and trs have heights', row: 0, dy: -20 },
           { title: 'TINY-10589: resize last row larger and verify only table and trs have heights', row: 1, dy: 50 },
           { title: 'TINY-10589: resize last row smaller and verify only table and trs have heights', row: 1, dy: -20 },
 
-        ], (scenario) => {
+        ].forEach((scenario) =) {
           const { title, row, dy } = scenario;
 
           it(title, async () => {

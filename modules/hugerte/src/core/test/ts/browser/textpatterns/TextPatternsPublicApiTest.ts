@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
 // eslint-disable-next-line @tinymce/no-publicapi-module-imports
@@ -62,7 +62,7 @@ describe('browser.hugerte.textpatterns.TextPatternsPublicApiTest', () => {
             // This extracted value is meaningless. It's just testing that we have access to
             // all the types we need to classify the various formats. We do test to see if
             // the values go into the content, though.
-            const information: string[] = Arr.bind(lookups, (l) => {
+            const information: string[] = lookups.flatMap((l) =) {
               // case match on the types of patterns.
               switch (l.type) {
                 case 'block-command': {
@@ -92,7 +92,7 @@ describe('browser.hugerte.textpatterns.TextPatternsPublicApiTest', () => {
             });
 
             editor.setContent(
-              Arr.map(information, (inf) => `<p>${inf}</p>`).join('\n')
+              information.map((inf) =) `<p>${inf}</p>`).join('\n')
             );
           }
         }

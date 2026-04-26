@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, FutureResult, Result } from '@ephox/katamari';
+import { FutureResult, Result } from '@ephox/katamari';
 
 import { readBlobAsText } from 'ephox/jax/core/BlobReader';
 import { DataType } from 'ephox/jax/core/DataType';
@@ -231,7 +231,7 @@ UnitTest.asynctest('HttpTest', (success, failure) => {
     ))
   ];
 
-  Arr.foldr(responses, (res, rest) => rest.bindFuture(() => res), FutureResult.pure({})).get((v) => {
+  responses.reduceRight((res, rest) => rest.bindFuture(() => res), FutureResult.pure({})).get((v) => {
     v.fold((err) => {
       failure(err);
     }, (_) => {

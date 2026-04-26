@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import * as TableOperations from 'ephox/snooker/api/TableOperations';
 import * as Assertions from 'ephox/snooker/test/Assertions';
@@ -13,8 +13,8 @@ UnitTest.test('EraseOperationsTest', () => {
 
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 0 }),
-    Optional.some(deleteExpected1),
+    { section: 0, row: 1, column: 0 },
+    deleteExpected1,
 
     '<table><tbody>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -33,8 +33,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected2),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected2,
 
     '<table><tbody>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -54,8 +54,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 0 }),
-    Optional.some(deleteExpected3),
+    { section: 0, row: 1, column: 0 },
+    deleteExpected3,
 
     '<table><tbody>' +
     '<tr><th>' +
@@ -79,8 +79,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 1 }),
-    Optional.some(deleteExpected4),
+    { section: 0, row: 1, column: 1 },
+    deleteExpected4,
 
     '<table><tbody>' +
     '<tr><th colspan="3">A1</th><td>D1</td></tr>' +
@@ -98,8 +98,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected5),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected5,
 
     '<table><tbody>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -117,8 +117,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected6),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected6,
 
     '<table><tbody>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -138,8 +138,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected7),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected7,
 
     '<table><tbody>' +
     '<tr><th>' +
@@ -163,8 +163,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected8),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected8,
 
     '<table><tbody>' +
     '<tr><th rowspan="3">A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -182,8 +182,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '<tbody><tr><td>G</td><td>H</td><td>I</td></tr></tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected9),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected9,
 
     '<table border="1">' +
     '<tbody><tr><td colspan="2">AB</td><td>C</td></tr>' +
@@ -207,8 +207,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 2 }),
-    Optional.some(deleteExpected10),
+    { section: 0, row: 1, column: 2 },
+    deleteExpected10,
 
     '<table border="1">' +
     '<tbody><tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>' +
@@ -247,8 +247,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 1 }),
-    Optional.some(deleteExpected11),
+    { section: 0, row: 1, column: 1 },
+    deleteExpected11,
 
     '<table border="1">' +
     '<tbody><tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>' +
@@ -286,8 +286,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 3, column: 3 }),
-    Optional.some(deleteExpected12),
+    { section: 0, row: 3, column: 3 },
+    deleteExpected12,
 
     '<table border="1">' +
     '<tbody><tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>' +
@@ -322,8 +322,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 3, column: 3 }),
-    Optional.some(deleteExpected13),
+    { section: 0, row: 3, column: 3 },
+    deleteExpected13,
 
     '<table border="1">' +
     '<tbody><tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>' +
@@ -356,8 +356,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 4, column: 7 }),
-    Optional.some(deleteExpected14),
+    { section: 0, row: 4, column: 7 },
+    deleteExpected14,
 
     '<table border="1">' +
     '<tbody><tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>' +
@@ -388,8 +388,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 1 }),
-    Optional.some(deleteExpected15),
+    { section: 0, row: 0, column: 1 },
+    deleteExpected15,
 
     '<table border="1"><tbody>' +
     '<tr><td rowspan="2">row 0 cell 0 row 1 cell 0 </td><td>row 0 cell 1</td><td rowspan="3">row 0 cell 2 row 1 cell 2 row 2 cell 2 </td></tr>' +
@@ -413,8 +413,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 1 }),
-    Optional.some(deleteExpected16),
+    { section: 0, row: 0, column: 1 },
+    deleteExpected16,
 
     '<table border="1"><tbody>' +
     '<tr><td rowspan="2">row 0 cell 0 row 1 cell 0 </td><td>row 0 cell 1</td><td rowspan="3">row 0 cell 2 row 1 cell 2 row 2 cell 2 </td></tr>' +
@@ -441,8 +441,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 1 }),
-    Optional.some(deleteExpected17),
+    { section: 0, row: 0, column: 1 },
+    deleteExpected17,
 
     '<table border="1"><tbody>' +
     '<tr><td rowspan="2">row 0 cell 0 row 1 cell 0 </td><td>row 0 cell 1</td><td rowspan="3">row 0 cell 2 row 1 cell 2 row 2 cell 2 </td></tr>' +
@@ -469,8 +469,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 2, column: 0 }),
-    Optional.some(deleteExpected18),
+    { section: 0, row: 2, column: 0 },
+    deleteExpected18,
 
     '<table border="1"><tbody>' +
     '<tr><td rowspan="2">row 0 cell 0 row 1 cell 0 </td><td>row 0 cell 1</td><td rowspan="3">row 0 cell 2 row 1 cell 2 row 2 cell 2 </td></tr>' +
@@ -493,8 +493,8 @@ UnitTest.test('EraseOperationsTest', () => {
 
   Assertions.checkDelete(
     'TBA',
-    Optional.none(),
-    Optional.none(),
+    null,
+    null,
 
     '<table border="1"><tbody>' +
     '<tr><td rowspan="2">row 0 cell 0 row 1 cell 0 </td><td>row 0 cell 1</td><td rowspan="3">row 0 cell 2 row 1 cell 2 row 2 cell 2 </td></tr>' +
@@ -517,8 +517,8 @@ UnitTest.test('EraseOperationsTest', () => {
 
   Assertions.checkDelete(
     'TBA',
-    Optional.none(),
-    Optional.none(),
+    null,
+    null,
 
     '<table border="1"><tbody>' +
     '<tr><td rowspan="2">row 0 cell 0 row 1 cell 0 </td><td>row 0 cell 1</td><td rowspan="3">row 0 cell 2 row 1 cell 2 row 2 cell 2 </td></tr>' +
@@ -541,8 +541,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected19),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected19,
 
     '<table><thead>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -562,8 +562,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</thead></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected20),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected20,
 
     '<table><thead>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -580,8 +580,8 @@ UnitTest.test('EraseOperationsTest', () => {
 
   Assertions.checkDelete(
     'TBA',
-    Optional.none(),
-    Optional.none(),
+    null,
+    null,
 
     '<table><thead>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -605,8 +605,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected21),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected21,
 
     '<table><thead>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -629,8 +629,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected22),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected22,
 
     '<table><thead>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -653,8 +653,8 @@ UnitTest.test('EraseOperationsTest', () => {
 
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 0 }),
-    Optional.some(deleteExpected23),
+    { section: 0, row: 1, column: 0 },
+    deleteExpected23,
 
     '<table><tbody>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -672,8 +672,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
-    Optional.some(deleteExpected24),
+    { section: 0, row: 0, column: 0 },
+    deleteExpected24,
 
     '<table><tbody>' +
     '<tr><th>A1</th><td>B1</td><td>C1</td><td>D1</td></tr>' +
@@ -693,8 +693,8 @@ UnitTest.test('EraseOperationsTest', () => {
   );
   Assertions.checkDelete(
     'Check that columns in a colgroup table can be erased',
-    Optional.some({ section: 1, row: 0, column: 0 }),
-    Optional.some(deleteExpected25),
+    { section: 1, row: 0, column: 0 },
+    deleteExpected25,
 
     generateTestTable(
       [ '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' ],
@@ -715,8 +715,8 @@ UnitTest.test('EraseOperationsTest', () => {
   );
   Assertions.checkDelete(
     'Check that rows in a colgroup table can be erased',
-    Optional.some({ section: 1, row: 0, column: 0 }),
-    Optional.some(deleteExpected26),
+    { section: 1, row: 0, column: 0 },
+    deleteExpected26,
 
     generateTestTable(
       [ '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>', '<tr><td>A3</td><td>B3</td><td>C3</td><td>D3</td></tr>' ],
@@ -737,8 +737,8 @@ UnitTest.test('EraseOperationsTest', () => {
   );
   Assertions.checkDelete(
     'TINY-6765: Check that selected locked column cannot be erased',
-    Optional.none(),
-    Optional.some(deleteExpected27),
+    null,
+    deleteExpected27,
 
     generateTestTable(
       [ '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' ],
@@ -759,8 +759,8 @@ UnitTest.test('EraseOperationsTest', () => {
   );
   Assertions.checkDelete(
     'TINY-6765: Check that locked columns does not affect erasing rows',
-    Optional.none(),
-    Optional.some(deleteExpected28),
+    null,
+    deleteExpected28,
 
     generateTestTable(
       [
@@ -784,8 +784,8 @@ UnitTest.test('EraseOperationsTest', () => {
   );
   Assertions.checkDelete(
     'TINY-6765: Check that for a multi-column selection, non-locked columns are erased and locked columns are kept',
-    Optional.none(),
-    Optional.some(deleteExpected29),
+    null,
+    deleteExpected29,
 
     generateTestTable(
       [ '<tr><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' ],
@@ -810,8 +810,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</tbody></table>';
   Assertions.checkDelete(
     'TINY-7695: Deleting the last 2 rows should keep the cursor in the last row',
-    Optional.some({ section: 0, row: 2, column: 1 }),
-    Optional.some(deleteExpected30),
+    { section: 0, row: 2, column: 1 },
+    deleteExpected30,
 
     '<table><tbody>' +
     '<tr><td rowspan="2">row 0 cell 0 row 1 cell 0 </td><td>row 0 cell 1</td><td rowspan="3">row 0 cell 2 row 1 cell 2 row 2 cell 2 </td></tr>' +
@@ -837,8 +837,8 @@ UnitTest.test('EraseOperationsTest', () => {
   '</table>';
   Assertions.checkDelete(
     'TINY-7695: Deleting the last row should not move the selection into a cef element',
-    Optional.some({ section: 0, row: 0, column: 1 }),
-    Optional.some(deleteExpected31),
+    { section: 0, row: 0, column: 1 },
+    deleteExpected31,
 
     '<table>' +
       '<tbody>' +
@@ -862,8 +862,8 @@ UnitTest.test('EraseOperationsTest', () => {
     '</table>';
   Assertions.checkDelete(
     'TINY-7695: Deleting the last column should not move the selection into a cef element',
-    Optional.some({ section: 0, row: 1, column: 0 }),
-    Optional.some(deleteExpected32),
+    { section: 0, row: 1, column: 0 },
+    deleteExpected32,
 
     '<table>' +
     '<tbody>' +
@@ -884,8 +884,8 @@ UnitTest.test('EraseOperationsTest', () => {
   );
   Assertions.checkDelete(
     'TINY-6309: Deleting the last row (row 3) should keep the cursor in the new last row (row 2)',
-    Optional.some({ section: 0, row: 2, column: 1 }),
-    Optional.some(deleteExpected33),
+    { section: 0, row: 2, column: 1 },
+    deleteExpected33,
 
     generateTestTable(
       generateTestTableBody(4, 4), [], [], { numCols: 4, colgroup: false, lockedColumns: [] }
@@ -902,8 +902,8 @@ UnitTest.test('EraseOperationsTest', () => {
   );
   Assertions.checkDelete(
     'TINY-6309: Within a table that has a colgroup element, deleting the last row should keep the cursor in the new last row',
-    Optional.some({ section: 1, row: 2, column: 1 }),
-    Optional.some(deleteExpected34),
+    { section: 1, row: 2, column: 1 },
+    deleteExpected34,
 
     generateTestTable(
       generateTestTableBody(4, 4), [], [], { numCols: 4, colgroup: true, lockedColumns: [] }
@@ -920,8 +920,8 @@ UnitTest.test('EraseOperationsTest', () => {
   );
   Assertions.checkDelete(
     'TINY-6309: Within a table that has a colgroup element, deleting the last two rows should keep the cursor in the new last row',
-    Optional.some({ section: 1, row: 1, column: 1 }),
-    Optional.some(deleteExpected35),
+    { section: 1, row: 1, column: 1 },
+    deleteExpected35,
 
     generateTestTable(
       generateTestTableBody(4, 4), [], [], { numCols: 4, colgroup: true, lockedColumns: [] }
@@ -940,8 +940,8 @@ UnitTest.test('EraseOperationsTest', () => {
   Assertions.checkDelete(
     'TINY-6309: Within a table that has a colgroup element, selecting and deleting the whole last row should keep the ' +
     'cursor in the new last row',
-    Optional.some({ section: 1, row: 2, column: 0 }),
-    Optional.some(deleteExpected36),
+    { section: 1, row: 2, column: 0 },
+    deleteExpected36,
 
     generateTestTable(
       generateTestTableBody(4, 4), [], [], { numCols: 4, colgroup: true, lockedColumns: [] }
@@ -962,8 +962,8 @@ UnitTest.test('EraseOperationsTest', () => {
   Assertions.checkDelete(
     'TINY-6309: Within a table that has a colgroup element, deleting the first row should keep the ' +
     'cursor in the new first row',
-    Optional.some({ section: 1, row: 0, column: 1 }),
-    Optional.some(deleteExpected37),
+    { section: 1, row: 0, column: 1 },
+    deleteExpected37,
 
     generateTestTable(
       generateTestTableBody(4, 4), [], [], { numCols: 4, colgroup: true, lockedColumns: [] }

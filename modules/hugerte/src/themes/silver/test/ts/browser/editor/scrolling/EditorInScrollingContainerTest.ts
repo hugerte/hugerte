@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Class, Css, Html, Insert, InsertAll, Remove, SelectorFind, SugarBody, SugarElement, Traverse } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -283,10 +283,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
       const target = SugarElement.fromTag('div');
       Css.set(target, 'height', '2000px');
       // When the editor is inline, we give it some content to give it height.
-      const paragraphs = Arr.range(
-        18,
-        (x) => `<p>This is paragraph #${x + 1}`
-      ).join('\n');
+      const paragraphs = Array.from({ length: 18 }, (x) => `<p>This is paragraph #${x + 1}`).join('\n');
       Html.set(target, paragraphs);
       return target;
     } else {
@@ -376,7 +373,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
     pWaitUntilTriggersEvent(
       editor,
       'ScrollWindow',
-      Fun.constant(TriggerWaitDecision.Succeed),
+      () => TriggerWaitDecision.Succeed,
       () => {
         window.scrollTo(x, y);
       }
@@ -390,7 +387,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
     // TINY-9425: Add support for ShadowDom where scroller is outside the Shadow Root
   ];
 
-  Arr.each(scenarios, (scenario) => {
+  scenarios.forEach((scenario) =) {
     context(`${scenario.label} editor`, () => {
       context('Single scroller', () => {
         const hook = TinyHooks.bddSetupFromElement<Editor>(
@@ -435,7 +432,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
 
           it('When scrolling the editor itself', async () => {
             const editor = hook.editor();
-            const paragraphs = Arr.range(100, (x) => `<p>This is line #${x}</p>`).join('\n');
+            const paragraphs = Array.from({ length: 100 }, (x) => `<p>This is line #${x}</p>`).join('\n');
             editor.setContent(paragraphs);
             await pRunMenuDisconnectTestWithAdjustment(
               editor,
@@ -468,7 +465,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
               0,
               headerTop + scrollPastHeaderAmount
             );
-            await pWaitUntilDockedAtPosition(header, Optional.some({ location: 'top', value: 0 }));
+            await pWaitUntilDockedAtPosition(header, { location: 'top', value: 0 });
 
             // Scroll back a bit and watch it undock.
             await pWaitUntilScrollWindowFires(
@@ -511,7 +508,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
               0,
               heights.banner + 22
             );
-            await pWaitUntilDockedAtPosition(header, Optional.none());
+            await pWaitUntilDockedAtPosition(header, null);
 
             assertApprox(
               'Top position should be pretty much at scroller top position',
@@ -550,7 +547,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
             // Now, scroll the window down to 130 pixels after the scroller top
             window.scrollTo(0, scrollerTop + 130);
 
-            await pWaitUntilDockedAtPosition(header, Optional.some({ location: 'top', value: 0 }));
+            await pWaitUntilDockedAtPosition(header, { location: 'top', value: 0 });
 
             scroller.dom.scrollTo(0, 0);
             await pWaitUntilUndocked(header);
@@ -573,7 +570,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
 
             // Trigger docking
             adjustments.toDock.action();
-            await pWaitUntilDockedAtPosition(header, Optional.some({ location: 'top', value: adjustments.toDock.topValue }));
+            await pWaitUntilDockedAtPosition(header, { location: 'top', value: adjustments.toDock.topValue });
             await pWaitUntilAppears(header);
 
             // Scroll much further down and check that it disappears
@@ -694,7 +691,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
             await Waiter.pWait(0);
             await adjustments.toDock.action();
 
-            await pWaitUntilDockedAtPosition(elementWithFixed, Optional.some({ location: 'top', value: adjustments.toDock.top }));
+            await pWaitUntilDockedAtPosition(elementWithFixed, { location: 'top', value: adjustments.toDock.top });
 
             await adjustments.toUndock();
             await pWaitUntilUndockedAbsolute(elementWithFixed);
@@ -836,7 +833,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
             0,
             heights.banner * 2 + 22
           );
-          await pWaitUntilDockedAtPosition(header, Optional.none());
+          await pWaitUntilDockedAtPosition(header, null);
 
           assertApprox(
             'Top position should be pretty much at scroller top position',
@@ -943,7 +940,7 @@ describe.skip('browser.hugerte.themes.silver.editor.scrolling.EditorInScrollingC
 
           // Scroll past the orange banner to let the toolbar docked at the top of the scrollable container
           scroller.dom.scrollTo(0, heights.largeBanner + 100);
-          await pWaitUntilDockedAtPosition(header, Optional.none());
+          await pWaitUntilDockedAtPosition(header, null);
 
           // There's additional paragraph margin of 18.5px, so the toolbar should still be visible
           scroller.dom.scrollTo(0, heights.largeBanner + heights.editor);

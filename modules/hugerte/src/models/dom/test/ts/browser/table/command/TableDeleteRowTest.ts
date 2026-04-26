@@ -1,5 +1,5 @@
 import { afterEach, before, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -27,7 +27,7 @@ describe('browser.hugerte.models.dom.table.command.TableDeleteRowTest', () => {
 
   const assertEvents = (count: number) => {
     assert.lengthOf(events, count);
-    Arr.each(events, (event) => {
+    events.forEach((event) =) {
       assert.equal(event.type, 'tablemodified', 'Event name');
       assert.isTrue(event.structure, 'Table modified structure');
       assert.isFalse(event.style, 'Table modified style');
@@ -83,10 +83,10 @@ describe('browser.hugerte.models.dom.table.command.TableDeleteRowTest', () => {
 
   /** Create `rows` number of `tr` elements, with `cols` number of `td` elements inside each.  */
   const tr = (rows: number, cols: number): string[] =>
-    Arr.range(rows, (r) => '<tr>' + Arr.range(cols, (c) => `<td>${r}-${c}</td>`).join('') + '</tr>');
+    Array.from({ length: rows }, (r) => '<tr>' + Array.from({ length: cols }, (c) => `<td>${r}-${c}</td>`).join('') + '</tr>')Array.from({ length: cols }, (c) => `<td>${r}-${c}</td>`).join('') + '</tr>');
   const textOffset = (row: number, col: number) => `${row}-${col}`.length;
 
-  Arr.each([
+  [
     {
       rows: 4,
       cols: 3,
@@ -107,10 +107,10 @@ describe('browser.hugerte.models.dom.table.command.TableDeleteRowTest', () => {
       cols: 20,
       options: { colgroup: true }
     }
-  ], ({ rows, cols, options }) => {
+  ].forEach(({ rows, cols, options }) =) {
     context(`${rows}x${cols} ${options.colgroup ? 'with colgroup' : ''}`, () => {
       const createTable = (tbody: string) => {
-        const colgroup = options.colgroup ? `<colgroup>${Arr.range(cols, Fun.constant('<col>')).join('')}</colgroup>` : '';
+        const colgroup = options.colgroup ? `<colgroup>${Array.from({ length: cols }, () => '<col>').join('')}</colgroup>` : '';
         return `<table>${colgroup}<tbody>${tbody}</tbody></table>`;
       };
       const originalTBody = tr(rows, cols);

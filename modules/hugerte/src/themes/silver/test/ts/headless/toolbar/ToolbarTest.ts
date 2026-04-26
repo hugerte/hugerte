@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, Keyboard, Keys } from '@ephox/agar';
 import { Behaviour, Focusing, GuiFactory, Keying, TestHelpers, Toolbar } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+
 import { SugarDocument } from '@ephox/sugar';
 
 import { ToolbarMode } from 'hugerte/themes/silver/api/Options';
@@ -33,13 +33,13 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarTest', () => {
       providers,
       initGroups: [
         {
-          title: Optional.none(), items: Arr.map([ 'one', 'two', 'three' ], makeButton)
+          title: null, items: [ 'one', 'two', 'three' ].map(makeButton)
         },
         {
-          title: Optional.some('group title'), items: Arr.map([ 'four', 'five' ], makeButton)
+          title: 'group title', items: [ 'four', 'five' ].map(makeButton)
         },
         {
-          title: Optional.some('another group title'), items: Arr.map([ 'six' ], makeButton)
+          title: 'another group title', items: [ 'six' ].map(makeButton)
         }
       ]
     })
@@ -119,12 +119,17 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarTest', () => {
 
     it('Changing the toolbar contents and checking the keyboard navigation', async () => {
       const doc = SugarDocument.getDocument();
-      const groups = Arr.map([
+      const groups = [
         {
-          title: Optional.none<string>(), items: Arr.map([ 'A', 'B' ], makeButton)
+          title: null, items: [ 'A', 'B' ].map(makeButton)
         },
         {
-          title: Optional.none<string>(), items: Arr.map([ 'C' ], makeButton)
+          title: null, items: [ 'C' ].map(makeButton)
+        }
+      ].map(renderToolbarGroup)[ 'A', 'B' ].map(makeButton)
+        },
+        {
+          title: null, items: [ 'C' ].map(makeButton)
         }
       ], renderToolbarGroup);
 

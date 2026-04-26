@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Toolbar } from '@ephox/bridge';
-import { Arr } from '@ephox/katamari';
+
 
 import Editor from 'hugerte/core/api/Editor';
 
@@ -33,7 +33,7 @@ export default {
     //         // TODO: Not going through bridge yet
     //         type: 'input',
     //         name: 'panel-label-1',
-    //         label: Optional.none(),
+    //         label: null,
 
     //       }
     //     ]
@@ -160,7 +160,7 @@ export default {
           personHomeEmail
         ];
 
-        const matches = Arr.filter(allMerges, (m): boolean => {
+        const matches = allMerges.filter((m): boolean =) {
           const valueMatches = m.value.toLowerCase().indexOf(searchPattern.toLowerCase()) > -1;
           return valueMatches || (
             m.title !== undefined && (m.title.toLowerCase().indexOf(searchPattern.toLowerCase()) > -1)
@@ -169,7 +169,7 @@ export default {
 
         if (matches.length > 0) {
           callback(
-            Arr.map(matches, makeMailMerge) as any
+            matches.map(makeMailMerge) as any
           );
         } else {
           callback([

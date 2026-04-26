@@ -1,6 +1,6 @@
 import { Assertions, Keys } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Attribute, Html, Remove, Replication, SelectorFilter, SelectorFind } from '@ephox/sugar';
 import { TinyAssertions, TinyContentActions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -18,8 +18,8 @@ describe('browser.hugerte.core.delete.TableDeleteTest', () => {
     const element = Replication.deep(TinyDom.body(editor));
 
     // Remove internal selection dom items
-    Arr.each(SelectorFilter.descendants(element, '*[data-mce-bogus="all"]'), Remove.remove);
-    Arr.each(SelectorFilter.descendants(element, '*'), (elm) => {
+    SelectorFilter.descendants(element, '*[data-mce-bogus="all"]').forEach(Remove.remove);
+    SelectorFilter.descendants(element, '*').forEach((elm) =) {
       Attribute.remove(elm, 'data-mce-selected');
     });
 

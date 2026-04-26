@@ -1,5 +1,5 @@
 import { AlloyComponent, AlloyTriggers, Behaviour, Composing, Focusing, Sketcher, SketchSpec, Slider, SliderTypes, UiSketcher } from '@ephox/alloy';
-import { Fun, Optional, Type } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import { Untranslated } from '../../alien/I18n';
@@ -81,13 +81,13 @@ const paletteFactory = (translate: (key: Untranslated) => string, getClass: (key
   };
 
   const factory: UiSketcher.SingleSketchFactory<SaturationBrightnessPaletteDetail, SaturationBrightnessPaletteSpec> = (_detail): SketchSpec => {
-    const getInitialValue = Fun.constant({
+    const getInitialValue = () => {
       x: 0,
       y: 0
-    });
+    };
 
     const onChange = (slider: AlloyComponent, _thumb: AlloyComponent, value: number | SliderTypes.SliderValue) => {
-      if (!Type.isNumber(value)) {
+      if (!typeof value === 'number') {
         Attribute.set(slider.element, 'aria-valuetext', translate([ 'Saturation {0}%, Brightness {1}%', Math.floor(value.x), Math.floor(100 - value.y) ]));
       }
       AlloyTriggers.emitWith(slider, ColourEvents.paletteUpdate, {

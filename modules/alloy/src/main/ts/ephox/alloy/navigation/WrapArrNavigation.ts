@@ -30,7 +30,7 @@ const cycleVertical = <A>(values: A[], index: number, numRows: number, numCols: 
   const newRow = Num.cycleBy(oldRow, delta, 0, numRows - 1);
   const onLastRow = newRow === numRows - 1;
   const colsInRow = onLastRow ? values.length - (newRow * numCols) : numCols;
-  const newCol = Num.clamp(oldColumn, 0, colsInRow - 1);
+  const newCol = Math.min(Math.max(oldColumn, 0), colsInRow - 1);
   return {
     row: newRow,
     column: newCol

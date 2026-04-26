@@ -18,14 +18,14 @@ UnitTest.test('CurrentWordTest', () => {
     );
   };
 
-  check({ before: Optional.some(' this is a '.length), after: Optional.some(' this is a test'.length) },
+  check({ before: ' this is a '.length, after: ' this is a test'.length },
     ' this is a test case', ' this is a t'.length);
-  check({ before: Optional.some(' this is a test '.length), after: Optional.none() },
+  check({ before: ' this is a test '.length, after: null },
     ' this is a test case', ' this is a test ca'.length);
 
-  check({ before: Optional.some(' this is a test'.length), after: Optional.some(' this is a test'.length) },
+  check({ before: ' this is a test'.length, after: ' this is a test'.length },
     ' this is a test case', ' this is a test'.length);
-  check({ before: Optional.some(' this is a test '.length), after: Optional.none() },
+  check({ before: ' this is a test '.length, after: null },
     ' this is a test case', ' this is a test case'.length);
-  check({ before: Optional.some(16), after: Optional.none() }, ' this is a test case', ' this is a test ca'.length);
+  check({ before: 16, after: null }, ' this is a test case', ' this is a test ca'.length);
 });

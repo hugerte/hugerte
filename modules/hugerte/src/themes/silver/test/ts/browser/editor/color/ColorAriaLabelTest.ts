@@ -1,6 +1,6 @@
 import { Keys, UiControls, UiFinder, Waiter } from '@ephox/agar';
 import { afterEach, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Strings } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -22,10 +22,10 @@ describe('browser.hugerte.themes.silver.editor.color.ColorAriaLabelTest', () => 
   ];
 
   const selectors = {
-    backcolorSplitButton: (color: string = '') => Strings.isEmpty(color) ? `[aria-label^="Background color"] > .tox-tbtn + .tox-split-button__chevron` : `[aria-label^="Background color ${color}"] > .tox-tbtn + .tox-split-button__chevron`,
-    forecolorSplitButton: (color: string = '') => Strings.isEmpty(color) ? `[aria-label^="Text color"] > .tox-tbtn + .tox-split-button__chevron` : `[aria-label^="Text color ${color}"] > .tox-tbtn + .tox-split-button__chevron`,
-    backcolorMenuItem: (color: string = '') => Strings.isEmpty(color) ? `[role="menu"] div[aria-label^="Background color"]` : `[role="menu"] div[aria-label^="Background color ${color}"]`,
-    forecolorMenuItem: (color: string = '') => Strings.isEmpty(color) ? `[role="menu"] div[aria-label^="Text color"]` : `[role="menu"] div[aria-label^="Text color ${color}"]`,
+    backcolorSplitButton: (color: string = '') => color.length === 0 ? `[aria-label^="Background color"] > .tox-tbtn + .tox-split-button__chevron` : `[aria-label^="Background color ${color}"] > .tox-tbtn + .tox-split-button__chevron`,
+    forecolorSplitButton: (color: string = '') => color.length === 0 ? `[aria-label^="Text color"] > .tox-tbtn + .tox-split-button__chevron` : `[aria-label^="Text color ${color}"] > .tox-tbtn + .tox-split-button__chevron`,
+    backcolorMenuItem: (color: string = '') => color.length === 0 ? `[role="menu"] div[aria-label^="Background color"]` : `[role="menu"] div[aria-label^="Background color ${color}"]`,
+    forecolorMenuItem: (color: string = '') => color.length === 0 ? `[role="menu"] div[aria-label^="Text color"]` : `[role="menu"] div[aria-label^="Text color ${color}"]`,
     forecolorMenu: 'button:contains("forecolor")',
     backcolorMenu: 'button:contains("backcolor")',
     swatchItemColor: (color: string = '') => `[role="menuitemradio"][data-mce-name="${color}"]`
@@ -115,7 +115,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorAriaLabelTest', () => 
     UiFinder.exists(SugarBody.body(), expectedSelector);
   };
 
-  Arr.each([
+  [
     { label: 'no translations - toolbar', buttonColor: 'Black', expectedColor: 'Light Green', setup: () => I18n.setCode('en') },
     { label: 'translations - toolbar', buttonColor: 'Schwarz', expectedColor: 'Hellgrun',
       setup: () => {
@@ -123,7 +123,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorAriaLabelTest', () => 
         I18n.setCode('test');
       }
     },
-  ], (scenario: TestScenario) => {
+  ].forEach((scenario: TestScenario) => {
     context(scenario.label, () => {
       const hook = TinyHooks.bddSetupLight<Editor>({
         toolbar: 'forecolor backcolor',
@@ -188,7 +188,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorAriaLabelTest', () => 
     });
   });
 
-  Arr.each([
+  [
     { label: 'no translations - menu', buttonColor: 'Black', expectedColor: 'Light Green', setup: () => I18n.setCode('en') },
     { label: 'translations - menu', buttonColor: 'Schwarz', expectedColor: 'Hellgrun',
       setup: () => {
@@ -196,7 +196,7 @@ describe('browser.hugerte.themes.silver.editor.color.ColorAriaLabelTest', () => 
         I18n.setCode('test');
       }
     },
-  ], (scenario: TestScenario) => {
+  ].forEach((scenario: TestScenario) => {
     context(scenario.label, () => {
       const hook = TinyHooks.bddSetup<Editor>({
         menu: {

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Step } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
 import { Swapping } from 'ephox/alloy/api/behaviour/Swapping';
@@ -10,8 +10,8 @@ import { Container } from 'ephox/alloy/api/ui/Container';
 
 UnitTest.asynctest('SwappingTest', (success, failure) => {
 
-  const ALPHA_CLS = Fun.constant('i-am-the-alpha');
-  const OMEGA_CLS = Fun.constant('and-the-omega');
+  const ALPHA_CLS = () => 'i-am-the-alpha';
+  const OMEGA_CLS = () => 'and-the-omega';
 
   GuiSetup.setup((_store, _doc, _body) => GuiFactory.build(
     Container.sketch({
@@ -39,7 +39,7 @@ UnitTest.asynctest('SwappingTest', (success, failure) => {
       Assertions.assertStructure(
         'Asserting structure after: ' + label,
         ApproxStructure.build((s, str, arr) => s.element('div', {
-          classes: Arr.map(has, arr.has).concat(Arr.map(not, arr.not)),
+          classes: has.map(arr.has).concat(not.map(arr.not)),
           attrs: {
             'test-uid': str.is('wat-uid')
           }

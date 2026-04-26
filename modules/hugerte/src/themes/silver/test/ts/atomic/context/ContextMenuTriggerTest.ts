@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -11,7 +11,7 @@ describe('atomic.hugerte.themes.silver.context.ContextMenuTriggerTest', () => {
     const node = 'node';
 
     const fakeEditor = {
-      getBody: Fun.constant(body)
+      getBody: () => body
     } as unknown as Editor;
 
     const createFakeEvent = (type: string, button: number, target: any, pointerType?: string) => ({

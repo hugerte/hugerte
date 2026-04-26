@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { DieFn, NextFn } from '../pipe/Pipe';
 import { Step } from './Step';
@@ -133,4 +133,4 @@ export const sequenceSame = <T> (steps: Step<T, T>[]): Step<T, T> =>
   sequenceUnsafe(steps);
 
 export const sequenceUnsafe = (steps: Step<any, any>[]): Step<any, any> =>
-  steps.length === 0 ? Step.pass : Arr.foldl(steps, (acc, step) => compose(acc, step), Step.pass);
+  steps.length === 0 ? Step.pass : steps.reduce((acc, step) => compose(acc, step), Step.pass);

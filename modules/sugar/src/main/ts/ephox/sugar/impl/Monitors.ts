@@ -32,7 +32,7 @@ const begin = (element: SugarElement<Node>, f: () => (() => void)): void => {
 const query = (element: SugarElement<Node>): Optional<Polling> => {
   // Used in tests to determine whether an element is still being monitored
   const index = findPoller(element);
-  return index === -1 ? Optional.none<Polling>() : Optional.some(polls[index]);
+  return index === -1 ? null : polls[index];
 };
 
 const end = (element: SugarElement<Node>): void => {

@@ -1,4 +1,4 @@
-import { Merger, Obj, Strings } from '@ephox/katamari';
+import { Obj, Strings } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 
 import { NormalizedEditorOptions, RawEditorOptions } from '../api/OptionTypes';
@@ -118,7 +118,7 @@ const isOnMobile = (isMobileDevice: boolean, sectionResult: SectionResult) => {
 const combineOptions = (isMobileDevice: boolean, isPhone: boolean, defaultOptions: RawEditorOptions, defaultOverrideOptions: RawEditorOptions, options: RawEditorOptions): NormalizedEditorOptions => {
   // Use mobile mode by default on phones, so patch in the mobile override options
   const deviceOverrideOptions = isMobileDevice ? { mobile: getMobileOverrideOptions(options.mobile ?? {}, isPhone) } : { };
-  const sectionResult = extractSections([ 'mobile' ], Merger.deepMerge(deviceOverrideOptions, options));
+  const sectionResult = extractSections([ 'mobile' ], ({ ...deviceOverrideOptions, ...options }));
 
   const extendedOptions = Tools.extend(
     // Default options

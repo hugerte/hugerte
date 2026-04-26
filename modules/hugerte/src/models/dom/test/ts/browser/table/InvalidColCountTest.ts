@@ -1,6 +1,6 @@
 import { UiFinder } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Optionals } from '@ephox/katamari';
+import { Optional, Optionals } from '@ephox/katamari';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -24,7 +24,7 @@ describe('browser.hugerte.models.dom.table.InvalidColCountTest', () => {
 
   // Note: The goal of these tests is to make sure an exception is not thrown and each table operation works
   // when there are less or more col elements than actual columns
-  Arr.each([
+  [
     {
       label: 'less cols',
       colgroupHtml: '<colgroup><col /></colgroup>',
@@ -51,7 +51,7 @@ describe('browser.hugerte.models.dom.table.InvalidColCountTest', () => {
       label: 'single col with span greater than cells',
       colgroupHtml: '<colgroup><col span="4" /></colgroup>',
     }
-  ], (scenario) => {
+  ].forEach((scenario) =) {
     context(scenario.label, () => {
       const tableHtml = '<table>' +
         scenario.colgroupHtml +

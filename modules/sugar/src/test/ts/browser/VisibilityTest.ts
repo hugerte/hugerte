@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import * as Insert from 'ephox/sugar/api/dom/Insert';
 import * as Remove from 'ephox/sugar/api/dom/Remove';
@@ -33,5 +33,5 @@ UnitTest.test('VisibilityTest', () => {
   Assert.eq('', true, Visibility.isVisible(d));
   Assert.eq('', true, Visibility.isVisible(c));
 
-  Arr.each([ c, d ], Remove.remove);
+  [ c, d ].forEach(Remove.remove);
 });

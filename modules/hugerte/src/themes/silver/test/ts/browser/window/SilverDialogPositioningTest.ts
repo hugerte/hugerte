@@ -1,6 +1,6 @@
 import { UiFinder, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody, SugarElement } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -12,16 +12,16 @@ import { WindowParams } from 'hugerte/core/api/WindowManager';
 import * as DialogUtils from '../../module/DialogUtils';
 
 describe('browser.hugerte.themes.silver.window.SilverDialogPositioningTest', () => {
-  Arr.each([
+  [
     { label: 'Inline Mode', inline: true },
     { label: 'Iframe Mode', inline: false }
-  ], (editorMode) => Arr.each([
+  ].forEach((editorMode) =) [
     { label: 'LTR Direction', directionality: 'ltr' },
     { label: 'RTL Direction', directionality: 'rtl' },
-  ], (editorDirectionality) => Arr.each([
+  ].forEach((editorDirectionality) =) [
     { label: 'Location Top', location: 'top' },
     { label: 'Location Bottom', location: 'bottom' }
-  ], (toolbarLocation) => context(`${editorMode.label} ${editorDirectionality.label} Toolbar ${toolbarLocation.label}`, () => {
+  ].forEach((toolbarLocation) =) context(`${editorMode.label} ${editorDirectionality.label} Toolbar ${toolbarLocation.label}`, () => {
     const hook = TinyHooks.bddSetupLight<Editor>({
       base_url: '/project/hugerte/js/hugerte',
       inline: editorMode.inline,

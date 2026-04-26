@@ -1,7 +1,7 @@
 import { Logger } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { FieldSchema, Objects } from '@ephox/boulder';
-import { Fun, Obj } from '@ephox/katamari';
+
 
 import * as AlloyParts from 'ephox/alloy/parts/AlloyParts';
 import * as PartType from 'ephox/alloy/parts/PartType';
@@ -9,7 +9,7 @@ import * as PartType from 'ephox/alloy/parts/PartType';
 UnitTest.test('Atomic Test: parts.GenerateTest', () => {
   const schema = [
     FieldSchema.required('test-data'),
-    FieldSchema.customField('state', Fun.constant('state'))
+    FieldSchema.customField('state', () => 'state')
   ];
 
   const internal = PartType.required({
@@ -43,7 +43,7 @@ UnitTest.test('Atomic Test: parts.GenerateTest', () => {
       const generated = AlloyParts.generate('owner', parts);
 
       // Check that config and validated match what was passed through
-      Obj.each(generated, (g) => {
+      Object.entries(generated).forEach(([k, v]) => ((g) =)(v, k)) {
         const output = g(data);
         Assert.eq('Checking config', data, output.config);
         Assert.eq('Checking validated', {
@@ -55,7 +55,7 @@ UnitTest.test('Atomic Test: parts.GenerateTest', () => {
       Assert.eq(
         'Checking PartType.generate',
         expected,
-        Obj.map(generated, (g) => {
+        Object.fromEntries(Object.entries(generated).map(([k, v]) => [k, ((g) =)(v, k)])) {
           const output = g(data);
           return Objects.exclude(output, [ 'config', 'validated' ]);
         })
@@ -69,17 +69,17 @@ UnitTest.test('Atomic Test: parts.GenerateTest', () => {
       const generated = AlloyParts.generate('owner', parts);
 
       // Check that config, and ensure that preprocessor is all that is in validated
-      Obj.each(generated, (g) => {
+      Object.entries(generated).forEach(([k, v]) => ((g) =)(v, k)) {
         const output = g(data);
         Assert.eq('Checking config', data, output.config);
         Assert.eq('Checking validated', 'PREPROCESSOR', output.validated.preprocess.getOr('none'));
-        Assert.eq('Should only be one key: preprocess', [ 'preprocess' ], Obj.keys(output.validated));
+        Assert.eq('Should only be one key: preprocess', [ 'preprocess' ], Object.keys(output.validated));
       });
 
       Assert.eq(
         'Checking PartType.generate',
         expected,
-        Obj.map(generated, (g) => {
+        Object.fromEntries(Object.entries(generated).map(([k, v]) => [k, ((g) =)(v, k)])) {
           const output = g(data);
           return Objects.exclude(output, [ 'config', 'validated' ]);
         })

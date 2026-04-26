@@ -1,6 +1,6 @@
 import { Assert, TestError, TestLabel } from '@ephox/bedrock-client';
 import { Testable } from '@ephox/dispute';
-import { Obj, Optional } from '@ephox/katamari';
+
 import { Compare, SugarElement, Truncate } from '@ephox/sugar';
 
 import { elementQueue, StructAssert } from '../assertions/ApproxStructures';
@@ -44,7 +44,7 @@ const assertHtml = (label: TestLabel, expected: string, actual: string): void =>
 const assertStructure = (label: TestLabel, expected: StructAssert, container: SugarElement<Node>): void => {
   Logger.sync(label, () => {
     if (expected.type === 'advanced') {
-      expected.doAssert(elementQueue([ container ], Optional.none()));
+      expected.doAssert(elementQueue([ container ], null));
     } else {
       expected.doAssert(container);
     }
@@ -60,7 +60,7 @@ const assertHtmlStructure2 = (label: TestLabel, expected: string, actual: SugarE
 };
 
 const assertPresence = (label: TestLabel, expected: Record<string, number>, container: SugarElement<Node>): void => {
-  Obj.each(expected, (num: number, selector: string) => {
+  Object.entries(expected).forEach(([k, v]) => ((num: number, selector: string) =)(v, k)) {
     const actual = UiFinder.findAllIn(container, selector).length;
     Assert.eq(TestLabel.concat('Did not find ' + num + ' of ' + selector + ', found: ' + actual + '. Test: ', label), num, actual);
   });

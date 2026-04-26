@@ -1,6 +1,6 @@
 import { Mouse } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Scroll, SugarElement, Traverse } from '@ephox/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections, TinyState } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -278,7 +278,7 @@ describe('browser.hugerte.core.SelectionOverridesTest', () => {
 
   it('set range in short ended element', () => {
     const editor = hook.editor();
-    Arr.each([ 'br', 'img', 'input' ], (elmName) => {
+    [ 'br', 'img', 'input' ].forEach((elmName) =) {
       editor.setContent('<p><' + elmName + '/></p>');
       const paraElem = editor.dom.select('p')[0];
       const elem = editor.dom.select(elmName)[0];

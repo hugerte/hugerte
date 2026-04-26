@@ -1,6 +1,6 @@
 import { Assertions, Chain, GeneralSteps, Logger, NamedChain, Pipeline, Step, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Fun, Result } from '@ephox/katamari';
+import { Fun, Result } from '@ephox/katamari';
 import { Attribute, Compare, Html, Insert, SelectorFilter, SugarElement, Truncate } from '@ephox/sugar';
 
 import * as DescribedHandler from 'ephox/alloy/events/DescribedHandler';
@@ -32,7 +32,7 @@ UnitTest.asynctest('EventRegistryTest', (success, failure) => {
 
   // Add alloy UID tags to match these attributes.
   const pageBits = SelectorFilter.descendants(page, '[data-test-uid]');
-  Arr.each(pageBits, (bit) => {
+  pageBits.forEach((bit) =) {
     Attribute.getOpt(bit, 'data-test-uid').each((testUid) => Tagger.writeOnly(bit, testUid));
   });
 
@@ -62,7 +62,7 @@ UnitTest.asynctest('EventRegistryTest', (success, failure) => {
 
   const sAssertFilterByType = (expected: ExpectedType[], type: string) => Step.sync(() => {
     const filtered = events.filterByType(type);
-    const raw = Arr.map(filtered, (f) => ({
+    const raw = filtered.map((f) =) ({
       // Invoke the handler
       handler: f.descHandler.cHandler(),
       purpose: f.descHandler.purpose,

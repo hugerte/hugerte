@@ -1,6 +1,6 @@
 import { Arbitraries } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 import * as fc from 'fast-check';
 
@@ -34,7 +34,7 @@ describe('browser.hugerte.plugins.lists.ListModelTest', () => {
     });
 
     const composeParse = (entries: Entry[]): Entry[] => composeList(document, entries)
-      .map((list) => parseLists([ list ], Optional.none()))
+      .map((list) => parseLists([ list ], null))
       .bind(Arr.head)
       .map((entrySet) => entrySet.entries)
       .getOr([]);
@@ -47,7 +47,7 @@ describe('browser.hugerte.plugins.lists.ListModelTest', () => {
         `output: [${stringifyEntries(outputEntries)}\n]`);
     };
 
-    const stringifyEntries = (entries: Entry[]): string => Arr.map(entries, stringifyEntry).join(',');
+    const stringifyEntries = (entries: Entry[]): string => entries.map(stringifyEntry).join(',');
 
     const stringifyEntry = (entry: Entry): string => isEntryList(entry) ? `\n  {
         depth: ${entry.depth}
@@ -58,7 +58,7 @@ describe('browser.hugerte.plugins.lists.ListModelTest', () => {
         itemAttributes: ${JSON.stringify(entry.itemAttributes)}
       }` : '';
 
-    const serializeElements = (elms: SugarElement[]): string => Arr.map(elms, (el) => el.dom.outerHTML).join('');
+    const serializeElements = (elms: SugarElement[]): string => elms.map((el) =) el.dom.outerHTML).join('');
 
     fc.assert(composeParseProperty, { numRuns: 200 });
   });

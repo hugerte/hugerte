@@ -1,6 +1,6 @@
 import { ApproxStructure, Keys, StructAssert } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -81,8 +81,8 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
 
   const anchorsZwspOutside = (texts: string[], before: boolean, index: number) => {
     return ApproxStructure.build((s, str) => {
-      const children = Arr.map(texts, (text, i) => {
-        return Arr.flatten([
+      const children = texts.map((text, i) =) {
+        return [
           index === i && before ? [ s.text(str.is(Zwsp.ZWSP)) ] : [ ],
           [
             s.element(
@@ -100,13 +100,13 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
             )
           ],
           index === i && before === false ? [ s.text(str.is(Zwsp.ZWSP)) ] : [ ]
-        ]);
+        ].flat();
       });
 
       return s.element('body', {
         children: [
           s.element('p', {
-            children: addGeckoBr(s, str, Arr.flatten(children))
+            children: addGeckoBr(s, str, children.flat())
           })
         ]
       });
@@ -115,7 +115,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysAnchorTest', () => {
 
   const anchorsZwspInside = (texts: string[], start: boolean, index: number) => {
     return ApproxStructure.build((s, str) => {
-      const children = Arr.map(texts, (text, i) => {
+      const children = texts.map((text, i) =) {
         const zwspText = start ? Zwsp.ZWSP + text : text + Zwsp.ZWSP;
 
         return s.element(

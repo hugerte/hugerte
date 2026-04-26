@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 
@@ -24,7 +24,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
   const shift = os.isMacOS() || os.isiOS() ? '\u21E7' : 'Shift+';
   const alt = os.isMacOS() || os.isiOS() ? '\u2325' : 'Alt+';
 
-  Arr.each([
+  [
     { button: 'bold', expectedTooltip: `Bold (${meta}B)` },
     { button: 'italic', expectedTooltip: `Italic (${meta}I)` },
     { button: 'underline', expectedTooltip: `Underline (${meta}U)` },
@@ -41,7 +41,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
     { button: 'save', expectedTooltip: `Save (${meta}S)` },
     { button: 'searchreplace', expectedTooltip: `Find and replace (${meta}F)` },
     { button: 'fullscreen', expectedTooltip: `Fullscreen (${meta}${shift}F)` },
-  ], (test) => {
+  ].forEach((test) =) {
     it(`TINY-10487: Assert keyboard shortcut present in tooltip for ${test.button}`, async () => {
       const editor = hook.editor();
       const buttonSelector = `button[data-mce-name="${test.button}"]`;

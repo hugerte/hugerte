@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Fun, Obj } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
 import { SugarElement, SugarLocation, SugarNode, SugarPosition, Traverse } from '@ephox/sugar';
 
 // The 'button' field of the mouse event - which button was pressed to create the event. Pick only one value. Not defined for mouseenter,
@@ -50,7 +50,7 @@ const event = (type: EventType, { dx, dy, ...settings }: Settings) => (element: 
 
 const click = (settings: Settings) => (element: SugarElement<Node>): void => {
   const dom = element.dom;
-  Obj.get(dom as any, 'click').fold(() => event('click', settings)(element), Fun.call);
+  (dom as any as any)['click'].fold(() => event('click', settings)(element), Fun.call);
 };
 const mouseDown = Fun.curry(event, 'mousedown');
 const mouseUp = Fun.curry(event, 'mouseup');

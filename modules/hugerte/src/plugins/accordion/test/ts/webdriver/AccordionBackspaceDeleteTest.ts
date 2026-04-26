@@ -1,6 +1,6 @@
 import { RealKeys } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -38,7 +38,7 @@ describe('webdriver.hugerte.plugins.accordion.AccordionBackspaceDeleteTest', () 
   const isWindows = os.isWindows();
 
   const pDoBackspaceDelete = async (key: DeletionKey, modifier?: BackspaceDeleteModifier): Promise<void> => {
-    await RealKeys.pSendKeysOn('iframe => body', [ Type.isUndefined(modifier) ? RealKeys.text(key) : RealKeys.combo(modifier, key) ]);
+    await RealKeys.pSendKeysOn('iframe => body', [ modifier === undefined ? RealKeys.text(key) : RealKeys.combo(modifier, key) ]);
   };
   const pDoBackspace = (modifier?: BackspaceDeleteModifier) => pDoBackspaceDelete('Backspace', modifier);
   const pDoDelete = (modifier?: BackspaceDeleteModifier) => pDoBackspaceDelete('Delete', modifier);

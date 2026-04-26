@@ -1,6 +1,6 @@
 import { Assertions, Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Cell, Obj, Strings } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Attribute, Css, Hierarchy, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -38,7 +38,7 @@ describe('browser.hugerte.core.dom.ControlSelectionTest', () => {
   const resetEventCounter = () => eventCounter.set({});
 
   const assertEventCount = (type: string, count: number) => {
-    assert.equal(Obj.get(eventCounter.get(), type.toLowerCase()).getOr(0), count, `Check ${type} event count is ${count}`);
+    assert.equal((eventCounter.get() as any)[type.toLowerCase()].getOr(0), count, `Check ${type} event count is ${count}`);
   };
 
   const pResizeAndAssertEventCount = async (editor: Editor, resizeSelector: string, delta: number, expectedCount: number) => {
@@ -68,8 +68,8 @@ describe('browser.hugerte.core.dom.ControlSelectionTest', () => {
     UiFinder.pWaitForVisible('Wait for resize handlers to show', container, resizeSelector);
 
   const pResizeAndAssertDimensions = async (editor: Editor, targetSelector: string, resizeSelector: string, deltaX: number, deltaY: number, width: number, height: number) => {
-    const expectedWidth = Strings.endsWith(resizeSelector, 'sw') || Strings.endsWith(resizeSelector, 'nw') ? width - deltaX : width + deltaX;
-    const expectedHeight = Strings.endsWith(resizeSelector, 'nw') || Strings.endsWith(resizeSelector, 'ne') ? height - deltaY : height + deltaY;
+    const expectedWidth = resizeSelector.endsWith('sw') || resizeSelector.endsWith('nw') ? width - deltaX : width + deltaX;
+    const expectedHeight = resizeSelector.endsWith('nw') || resizeSelector.endsWith('ne') ? height - deltaY : height + deltaY;
 
     const editorBody = TinyDom.body(editor);
     const resizeHandle = await UiFinder.pWaitForVisible('Wait for resize handlers to show', editorBody, resizeSelector);

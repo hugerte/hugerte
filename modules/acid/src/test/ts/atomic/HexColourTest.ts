@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { assert } from 'chai';
 
 import * as ColourTypes from 'ephox/acid/api/colour/ColourTypes';
@@ -122,7 +122,7 @@ describe('atomic.acid.HexColourTest', () => {
           expected: 'DE979C',
         },
       ];
-      Arr.each(tests, ({ rgba, expected }) => assertHexFromRgba(rgba, expected));
+      tests.forEach(({ rgba, expected }) =) assertHexFromRgba(rgba, expected));
     });
   });
 

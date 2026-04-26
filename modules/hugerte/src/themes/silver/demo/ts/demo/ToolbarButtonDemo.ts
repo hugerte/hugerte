@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Fun } from '@ephox/katamari';
+
 
 import { Editor, HugeRTE } from 'hugerte/core/api/PublicApi';
 
@@ -81,7 +81,7 @@ export default (): void => {
           const state = DemoState2.get();
           console.log(state);
           api.setActive(state);
-          return Fun.noop;
+          return () => {};
         },
         onAction: (api) => {
           DemoState2.toggle();

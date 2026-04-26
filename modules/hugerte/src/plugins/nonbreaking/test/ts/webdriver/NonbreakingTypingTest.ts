@@ -1,6 +1,6 @@
 import { ApproxStructure, RealKeys } from '@ephox/agar';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -34,7 +34,7 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingTypingTest', () => {
         children: [
           s.element('p', {
             children: [
-              s.text(str.is(Unicode.nbsp + 'test'))
+              s.text(str.is('\u00A0' + 'test'))
             ]
           })
         ]
@@ -52,7 +52,7 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingTypingTest', () => {
         children: [
           s.element('p', {
             children: [
-              s.text(str.is('test' + Unicode.nbsp))
+              s.text(str.is('test' + '\u00A0'))
             ]
           })
         ]
@@ -88,7 +88,7 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingTypingTest', () => {
         children: [
           s.element('p', {
             children: [
-              s.text(str.is(isFirefox ? Unicode.nbsp + ' ' : Unicode.nbsp + Unicode.nbsp))
+              s.text(str.is(isFirefox ? '\u00A0' + ' ' : '\u00A0' + '\u00A0'))
             ].concat(isFirefox ? [ s.element('br', {}) ] : [])
           })
         ]
@@ -107,7 +107,7 @@ describe('webdriver.hugerte.plugins.nonbreaking.NonbreakingTypingTest', () => {
         children: [
           s.element('p', {
             children: [
-              s.text(str.is('test test' + Unicode.nbsp))
+              s.text(str.is('test test' + '\u00A0'))
             ].concat(isFirefox ? [ s.element('br', {}) ] : [])
           })
         ]

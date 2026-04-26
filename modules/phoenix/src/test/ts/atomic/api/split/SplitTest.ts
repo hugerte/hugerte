@@ -44,13 +44,13 @@ UnitTest.test('api.Split.(split,splitByPair)', () => {
     }));
   };
   // probably never happens, but just in case
-  checkSplit(Optional.none(), Optional.some('apple'), 'apple', -1);
+  checkSplit(null, 'apple', 'apple', -1);
 
-  checkSplit(Optional.some('a '), Optional.some('cat'), 'a cat', 2);
-  checkSplit(Optional.none(), Optional.some('apple'), 'apple', 0);
-  checkSplit(Optional.some('car'), Optional.some('t'), 'cart', 3);
-  checkSplit(Optional.some('cart'), Optional.none(), 'cart', 4);
-  checkSplit(Optional.some('cart'), Optional.none(), 'cart', 5);
+  checkSplit('a ', 'cat', 'a cat', 2);
+  checkSplit(null, 'apple', 'apple', 0);
+  checkSplit('car', 't', 'cart', 3);
+  checkSplit('cart', null, 'cart', 4);
+  checkSplit('cart', null, 'cart', 5);
 
   checkPair('root(text("apples"))', 'apples', 'apples', 0, 0);
   checkPair('root(text("apples"))', 'apples', 'apples', 0, 6);

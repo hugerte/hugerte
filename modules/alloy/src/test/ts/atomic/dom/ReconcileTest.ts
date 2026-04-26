@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { SugarElement } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -12,8 +12,8 @@ describe('ReconcileTest', () => {
     attributes: {},
     classes: [],
     styles: {},
-    value: Optional.from(undefined),
-    innerHtml: Optional.from(undefined),
+    value: undefined ?? null,
+    innerHtml: undefined ?? null,
     domChildren: []
   };
 
@@ -22,7 +22,7 @@ describe('ReconcileTest', () => {
     const component = SugarElement.fromHtml<HTMLTextAreaElement>('<textarea></textarea>');
     const definition = {
       ...elementDefinition,
-      value: Optional.from('abc')
+      value: 'abc' ?? null
     };
     const newDom = reconcileToDom(definition, component);
     assert.equal((newDom.dom as HTMLTextAreaElement).value, 'abc');

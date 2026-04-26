@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 
 import { Keying } from '../../api/behaviour/Keying';
 import { Receiving } from '../../api/behaviour/Receiving';
@@ -46,7 +46,7 @@ const sketch: CompositeSketchFactory<SliderDetail, SliderSpec> = (detail: Slider
     setValue(slider, newValue);
     const thumb = getThumb(slider);
     detail.onChange(slider, thumb, newValue);
-    return Optional.some<boolean>(true);
+    return true;
   };
 
   const resetToMin = (slider: AlloyComponent) => {

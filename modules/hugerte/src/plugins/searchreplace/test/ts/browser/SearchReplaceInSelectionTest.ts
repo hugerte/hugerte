@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Obj } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -36,7 +36,7 @@ describe('browser.hugerte.plugins.searchreplace.SearchReplaceInSelectionTest', (
     extended_valid_elements: 'b,i,svg'
   }, [ Plugin ], true);
 
-  const isReplaceScenario = (scenario: FindScenario | ReplaceScenario): scenario is ReplaceScenario => Obj.has(scenario as Record<string, any>, 'replace');
+  const isReplaceScenario = (scenario: FindScenario | ReplaceScenario): scenario is ReplaceScenario => Object.prototype.hasOwnProperty.call(scenario as Record<string, any>, 'replace');
 
   const testReplace = (editor: Editor, scenario: ReplaceScenario) => {
     editor.setEditableRoot(scenario.editableRoot ?? true);

@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj, Type } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { SugarElement, SugarNode } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -310,7 +310,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
 
   it('getSpecialElements', () => {
     const schema = Schema();
-    const keys = Arr.sort(Obj.keys(schema.getSpecialElements()));
+    const keys = [...Object.keys(schema.getSpecialElements())].sort();
     assert.sameMembers(keys, [
       'script',
       'noscript',
@@ -589,11 +589,11 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
   it('TINY-9768: html4 schema should not allow non-inline children for caption, address and dt elements ', () => {
     const schemaHtml4 = Schema({ schema: 'html4' });
     const schemaHtml5 = Schema({ schema: 'html5' });
-    Arr.each([ 'caption', 'address', 'dt' ], (parent) => {
-      Obj.each(schemaHtml4.getTextBlockElements(), (_v, child) => {
+    [ 'caption', 'address', 'dt' ].forEach((parent) =) {
+      Object.entries(schemaHtml4.getTextBlockElements()).forEach(([k, v]) => ((_v, child) =)(v, k)) {
         assert.isFalse(schemaHtml4.isValidChild(parent, child));
       });
-      Obj.each(schemaHtml5.getTextBlockElements(), (_v, child) => {
+      Object.entries(schemaHtml5.getTextBlockElements()).forEach(([k, v]) => ((_v, child) =)(v, k)) {
         assert.isTrue(schemaHtml5.isValidChild(parent, child));
       });
 
@@ -602,7 +602,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
 
   it('TINY-9805: html4 schema should not allow block children elements for the link element ', () => {
     const schemaHtml4 = Schema({ schema: 'html4' });
-    Obj.each(schemaHtml4.getTextBlockElements(), (_v, child) => {
+    Object.entries(schemaHtml4.getTextBlockElements()).forEach(([k, v]) => ((_v, child) =)(v, k)) {
       assert.isFalse(schemaHtml4.isValidChild('a', child));
     });
   });
@@ -687,7 +687,7 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
         { elementName: '#document-fragment', expectedValue: false }
       ];
 
-      Arr.each(cases, (c) => {
+      cases.forEach((c) =) {
         assert.equal(schema.isInline(c.elementName), c.expectedValue, `For schema.isInline should be ${c.expectedValue} for ${c.elementName}`);
         assert.equal(schema.isBlock(c.elementName), c.expectedValue, `For schema.isBlock should be ${c.expectedValue} for ${c.elementName}`);
         assert.equal(schema.isWrapper(c.elementName), c.expectedValue, `For schema.isWrapper should be ${c.expectedValue} for ${c.elementName}`);
@@ -703,19 +703,19 @@ describe('browser.hugerte.core.html.SchemaTest', () => {
     it('TINY-8639: default behaviour', () => {
       const schema = Schema({});
       const rules = Obj.mapToArray(schema.getTextInlineElements(), (_value, name) => getElementRule(schema, name.toLowerCase()));
-      assert.isTrue(rules.length > 0 && Arr.forall(rules, (rule) => Type.isUndefined(rule.paddInEmptyBlock)));
+      assert.isTrue(rules.length > 0 && rules.every((rule) =) rule.paddInEmptyBlock === undefined));
     });
 
     it('TINY-8639: padd_empty_block_inline_children: false', () => {
       const schema = Schema({ padd_empty_block_inline_children: false });
       const rules = Obj.mapToArray(schema.getTextInlineElements(), (_value, name) => getElementRule(schema, name.toLowerCase()));
-      assert.isTrue(rules.length > 0 && Arr.forall(rules, (rule) => Type.isUndefined(rule.paddInEmptyBlock)));
+      assert.isTrue(rules.length > 0 && rules.every((rule) =) rule.paddInEmptyBlock === undefined));
     });
 
     it('TINY-8639: padd_empty_block_inline_children: true', () => {
       const schema = Schema({ padd_empty_block_inline_children: true });
       const rules = Obj.mapToArray(schema.getTextInlineElements(), (_value, name) => getElementRule(schema, name.toLowerCase()));
-      assert.isTrue(rules.length > 0 && Arr.forall(rules, (rule) => rule.paddInEmptyBlock === true));
+      assert.isTrue(rules.length > 0 && rules.every((rule) =) rule.paddInEmptyBlock === true));
     });
   });
 

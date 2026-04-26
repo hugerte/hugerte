@@ -1,7 +1,7 @@
 
 import { FocusTools, Keyboard, Keys, TestStore } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarDocument, SugarElement } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -24,7 +24,7 @@ describe('browser.alloy.behaviour.keying.FlowKeyingTest', () => {
           width: '20px',
           height: '20px',
           margin: '2px',
-          border: '1px solid ' + (Arr.contains(classes, 'stay') ? 'blue' : 'yellow')
+          border: '1px solid ' + (classes.includes('stay') ? 'blue' : 'yellow')
         },
         classes
       },
@@ -73,7 +73,7 @@ describe('browser.alloy.behaviour.keying.FlowKeyingTest', () => {
   ]);
 
   const sequence = async (doc: SugarElement<Document>, key: number, modifiers: { }, identifiers: Array<{ label: string; selector: string }>) => {
-    const cases = Arr.range(identifiers.length, async (i: number) => {
+    const cases = Array.from({ length: identifiers.length }, async (i: number) => {
       Keyboard.activeKeydown(doc, key, modifiers);
       await FocusTools.pTryOnSelector(
         'Focus should move from ' + (i > 0 ? identifiers[i - 1].label : '(start)') + ' to ' + identifiers[i].label,

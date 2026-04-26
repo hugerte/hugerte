@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Unicode } from '@ephox/katamari';
+
 import { Html, SugarElement, SugarNode } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -17,7 +17,7 @@ describe('browser.hugerte.plugins.visualchars.NodesTest', () => {
       Assertions.assertHtml(
         'should return span around shy and nbsp',
         'a<span data-mce-bogus="1" class="mce-nbsp">\u00a0</span>b<span data-mce-bogus="1" class="mce-shy">\u00AD</span>',
-        Nodes.replaceWithSpans('a' + Unicode.nbsp + 'b' + Unicode.softHyphen)
+        Nodes.replaceWithSpans('a' + '\u00A0' + 'b' + '\u00AD')
       );
     });
   });
@@ -29,18 +29,18 @@ describe('browser.hugerte.plugins.visualchars.NodesTest', () => {
       // 2 matches
       div.innerHTML = (
         '<p>a</p>' +
-        '<p>b' + Unicode.nbsp + '</p>' +
+        '<p>b' + '\u00A0' + '</p>' +
         '<p>c</p>' +
-        '<p>d' + Unicode.softHyphen + '</p>'
+        '<p>d' + '\u00AD' + '</p>'
       );
       assert.equal(Nodes.filterEditableDescendants(SugarElement.fromDom(div), Nodes.isMatch, true).length, 2);
 
       // 4 matches
       div.innerHTML = (
-        '<p>a' + Unicode.nbsp + '</p>' +
-        '<p>b' + Unicode.nbsp + '</p>' +
-        '<p>c' + Unicode.nbsp + '</p>' +
-        '<p>d' + Unicode.softHyphen + '</p>'
+        '<p>a' + '\u00A0' + '</p>' +
+        '<p>b' + '\u00A0' + '</p>' +
+        '<p>c' + '\u00A0' + '</p>' +
+        '<p>d' + '\u00AD' + '</p>'
       );
       assert.equal(Nodes.filterEditableDescendants(SugarElement.fromDom(div), Nodes.isMatch, true).length, 4);
     });
@@ -63,7 +63,7 @@ describe('browser.hugerte.plugins.visualchars.NodesTest', () => {
       `;
       const div = SugarElement.fromHtml(`<div>${innerHtml}</div>`);
 
-      assert.deepEqual(Arr.map(Nodes.filterEditableDescendants(div, SugarNode.isElement, true), Html.getOuter), [
+      assert.deepEqual(Nodes.filterEditableDescendants(div, SugarNode.isElement, true).map(Html.getOuter), [
         '<b>editable 1</b>',
         '<b>editable 2</b>',
         '<i>editable 3</i>',
@@ -90,7 +90,7 @@ describe('browser.hugerte.plugins.visualchars.NodesTest', () => {
       `;
       const div = SugarElement.fromHtml(`<div>${innerHtml}</div>`);
 
-      assert.deepEqual(Arr.map(Nodes.filterEditableDescendants(div, SugarNode.isElement, false), Html.getOuter), [
+      assert.deepEqual(Nodes.filterEditableDescendants(div, SugarNode.isElement, false).map(Html.getOuter), [
         '<b>editable 1</b>',
         '<i>editable 2</i>',
         '<b>editable 3</b>'
@@ -112,7 +112,7 @@ describe('browser.hugerte.plugins.visualchars.NodesTest', () => {
       const div = SugarElement.fromHtml(`<div>${innerHtml}</div>`);
       const getHtml = (node: SugarElement<Node>) => SugarNode.isHTMLElement(node) ? Html.get(node) : '';
 
-      assert.deepEqual(Arr.map(Nodes.filterEditableDescendants(div, SugarNode.isElement, true), getHtml), [
+      assert.deepEqual(Nodes.filterEditableDescendants(div, SugarNode.isElement, true).map(getHtml), [
         'nbsp1',
         'nbsp3'
       ]);

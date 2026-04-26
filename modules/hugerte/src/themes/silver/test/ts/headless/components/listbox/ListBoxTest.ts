@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, UiFinder } from '@ephox/agar';
 import { AlloyComponent, Disabling, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import { Attribute } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -16,7 +16,7 @@ describe('headless.hugerte.themes.silver.components.listbox.ListBoxTest', () => 
   const hook = TestHelpers.GuiSetup.bddSetup((_store, _doc, _body) => GuiFactory.build(
     renderListBox({
       name: 'selector',
-      label: Optional.some('selector'),
+      label: 'selector',
       enabled: true,
       items: [
         { value: 'one', text: 'One' },
@@ -25,7 +25,7 @@ describe('headless.hugerte.themes.silver.components.listbox.ListBoxTest', () => 
           { value: 'three', text: 'Three' }
         ] }
       ]
-    }, extrasHook.access().extras.backstages.popup, Optional.none())
+    }, extrasHook.access().extras.backstages.popup, null)
   ));
 
   const assertValue = (component: AlloyComponent, expected: string) => {

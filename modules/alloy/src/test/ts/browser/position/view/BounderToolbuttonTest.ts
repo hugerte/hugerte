@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarElement, SugarPosition } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -79,7 +79,7 @@ describe('BounderToolbuttonTest', () => {
       classesOff: [ ]
     });
 
-    const notImplemented = Fun.die('Not implemented');
+    const notImplemented = () => { throw new Error('Not implemented'); };
 
     return {
       northwest,

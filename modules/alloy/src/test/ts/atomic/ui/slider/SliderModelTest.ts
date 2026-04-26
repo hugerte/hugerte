@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 import * as fc from 'fast-check';
 
 import * as SliderModel from 'ephox/alloy/ui/slider/SliderModel';
@@ -77,7 +77,7 @@ UnitTest.test('Atomic Test: ui.slider.SliderModelTest', () => {
       value: xValue,
       step: data.stepSize,
       snap: true,
-      snapStart: Optional.none<number>(),
+      snapStart: null,
       rounded: data.rounded,
       hasMinEdge: data.hasLedge,
       hasMaxEdge: data.hasRedge,
@@ -100,7 +100,7 @@ UnitTest.test('Atomic Test: ui.slider.SliderModelTest', () => {
       value: xValue,
       step: data.stepSize,
       snap: true,
-      snapStart: Optional.some(snapOffset + data.min),
+      snapStart: snapOffset + data.min,
       rounded: data.rounded,
       hasMinEdge: data.hasLedge,
       hasMaxEdge: data.hasRedge,
@@ -124,7 +124,7 @@ UnitTest.test('Atomic Test: ui.slider.SliderModelTest', () => {
       value: xValue,
       step: data.stepSize,
       snap: data.snapToGrid,
-      snapStart: Optional.none<number>(),
+      snapStart: null,
       rounded: data.rounded,
       hasMinEdge: data.hasLedge,
       hasMaxEdge: data.hasRedge,
@@ -148,14 +148,14 @@ UnitTest.test('Atomic Test: ui.slider.SliderModelTest', () => {
       value: xValue,
       step: data.stepSize,
       snap: data.snapToGrid,
-      snapStart: Optional.some(snapOffset + data.min <= data.max ? snapOffset + data.min : data.max),
+      snapStart: snapOffset + data.min <= data.max ? snapOffset + data.min : data.max),
       rounded: data.rounded,
       hasMinEdge: data.hasLedge,
       hasMaxEdge: data.hasRedge,
       minBound: bounds.left,
       maxBound: bounds.right,
       screenRange: bounds.width
-    };
+    ;
     const newValue = SliderModel.findValueOf(args);
     Assert.eq(
       'Assert within range: ' + newValue, true,

@@ -1,6 +1,6 @@
 import { Assertions, Chain, GeneralSteps, Logger, Step, UiFinder } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarNode } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -32,7 +32,7 @@ UnitTest.asynctest('SandboxingTest', (success, failure) => {
             onOpen: store.adder('onOpen'),
             onClose: store.adder('onClose'),
 
-            isPartOf: Fun.never
+            isPartOf: () => false
           })
         ])
       })

@@ -1,5 +1,5 @@
 import { Mouse, UiControls, UiFinder, Waiter } from '@ephox/agar';
-import { Arr } from '@ephox/katamari';
+
 import { Focus, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -58,7 +58,7 @@ const pSetValueAndTrigger = (selector: string, value: string, events: string[]) 
   const elem = findInDialog(dialog, selector);                  // get the element
   Focus.focus(elem);                                            // fire focusin, required by sizeinput to recalc ratios
   setValueOn(dialog, selector, value);                          // change the value
-  Arr.map(events, (event) => fakeEvent(elem, event)); // fire [change, input etc],
+  events.map((event) =) fakeEvent(elem, event)); // fire [change, input etc],
   await Waiter.pWait(0);                                  // Wait needed as paste event is triggered async
 };
 

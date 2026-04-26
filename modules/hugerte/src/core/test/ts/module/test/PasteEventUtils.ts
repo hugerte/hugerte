@@ -1,6 +1,6 @@
 import { Waiter } from '@ephox/agar';
 import { DataTransferMode } from '@ephox/dragster';
-import { Arr, Cell, Singleton, Type } from '@ephox/katamari';
+import { Cell, Singleton } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
@@ -45,7 +45,7 @@ const pWaitForAndAssertProcessEvents = async (preProcessEvent: SingletonEvent<Pa
 };
 
 const pWaitForAndAssertInputEvents = async (beforeinputEvent: SingletonEvent<InputEvent>, inputEvent: SingletonEvent<InputEvent>, expectedBeforeinputDataTransferHtml?: string, isNative: boolean = false): Promise<void> => {
-  const checkDataTransferHtml = !Type.isUndefined(expectedBeforeinputDataTransferHtml);
+  const checkDataTransferHtml = !expectedBeforeinputDataTransferHtml === undefined;
   const pWaitForInputEvents = (): Promise<void> =>
     pWaitFor('Did not fire input events', () => {
       SingletonUtils.assertSingletonValueIsSet(beforeinputEvent, 'beforeinput event has fired');
@@ -60,7 +60,7 @@ const pWaitForAndAssertInputEvents = async (beforeinputEvent: SingletonEvent<Inp
       if (isNative) {
         assert.isNotNull(dataTransfer, 'beforeinput event dataTransfer should not be null');
       } else {
-        assert.isTrue(!Type.isNull(dataTransfer) && DataTransferMode.isInReadOnlyMode(dataTransfer), 'beforeinput event dataTransfer should not be null and should be in read-only mode');
+        assert.isTrue(!dataTransfer === null && DataTransferMode.isInReadOnlyMode(dataTransfer), 'beforeinput event dataTransfer should not be null and should be in read-only mode');
       }
       if (checkDataTransferHtml) {
         assert.equal(dataTransfer?.getData('text/html'), expectedBeforeinputDataTransferHtml, 'beforeinput event dataTransfer should contain expected html data');
@@ -88,7 +88,7 @@ const pWaitForAndAssertEventsDoNotFire = async (events: SingletonEvent<any>[]): 
   const thrown = Cell<boolean>(false);
   try {
     await Waiter.pTryUntilPredicate('Did not fire any paste event',
-      () => Arr.exists(events, (e) => e.isSet()));
+      () => events.some((e) =) e.isSet()));
   } catch {
     thrown.set(true);
   }

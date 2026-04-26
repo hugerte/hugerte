@@ -1,6 +1,6 @@
 import { Keys, Mouse, TestStore, UiFinder, Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { SugarBody } from '@ephox/sugar';
 import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -82,10 +82,10 @@ describe('browser.hugerte.themes.silver.window.SilverDialogApiAccessTest', () =>
     }
   };
 
-  Arr.each([
+  [
     { label: 'Modal', params: { }},
     { label: 'Inline', params: { inline: 'toolbar' as 'toolbar' }}
-  ], (test) => {
+  ].forEach((test) =) {
     context(test.label, () => {
       it('Open dialog, click a button, close the dialog and assert API data', async () => {
         const editor = hook.editor();

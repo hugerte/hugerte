@@ -1,6 +1,6 @@
 import { UiFinder, Waiter } from '@ephox/agar';
 import { after, before, describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { Focus, Insert, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 import { McEditor, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -34,7 +34,7 @@ describe.skip('browser.hugerte.themes.silver.editor.contexttoolbar.RemoveContext
   const setup = (ed: Editor) => {
     ed.ui.registry.addButton('alpha', {
       text: 'Alpha',
-      onAction: Fun.noop
+      onAction: () => {}
     });
     ed.ui.registry.addContextToolbar('test-toolbar', {
       predicate: (node) => node.nodeName.toLowerCase() === 'a',

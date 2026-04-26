@@ -1,6 +1,6 @@
 import { FocusTools, Keys } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -64,7 +64,7 @@ describe('browser.hugerte.plugins.image.DialogTest', () => {
 
   it('TBA: Insert Image Dialog with all options', async () => {
     const editor = hook.editor();
-    editor.options.set('file_picker_callback', Fun.noop);
+    editor.options.set('file_picker_callback', () => {});
     editor.options.set('image_advtab', true);
     editor.options.set('image_class_list', [{ title: 'sample', value: 'sample' }]);
     editor.options.set('image_list', [{ title: 'sample', value: 'sample' }]);

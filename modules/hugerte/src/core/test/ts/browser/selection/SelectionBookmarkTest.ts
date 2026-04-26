@@ -1,6 +1,6 @@
 import { Assertions } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Hierarchy, Remove, SimRange, SimSelection, SugarElement, Traverse, WindowSelection } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -182,7 +182,7 @@ describe('browser.hugerte.core.selection.SelectionBookmarkTest', () => {
   });
 
   it('readRange with with win without getSelection should return Optional.none', () => {
-    const mockWin = { getSelection: Fun.constant(null) } as Window;
+    const mockWin = { getSelection: () => null } as Window;
     const rngOpt = SelectionBookmark.readRange(mockWin);
     assertNone(rngOpt);
   });

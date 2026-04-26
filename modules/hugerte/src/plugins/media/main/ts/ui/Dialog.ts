@@ -1,4 +1,4 @@
-import { Arr, Cell } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -234,7 +234,7 @@ const showDialog = (editor: Editor): void => {
   const generalTab = {
     title: 'General',
     name: 'general',
-    items: Arr.flatten<Dialog.BodyComponentSpec>([ mediaInput, sizeInput ])
+    items: [ mediaInput, sizeInput ].flat()
   };
 
   const embedTextarea: Dialog.TextAreaSpec = {

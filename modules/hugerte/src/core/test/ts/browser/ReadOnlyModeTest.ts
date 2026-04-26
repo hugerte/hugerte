@@ -252,11 +252,11 @@ describe('browser.hugerte.core.ReadOnlyModeTest', () => {
   it('TINY-6248: getAnchorHrefOpt should return an Optional of the href of the closest anchor tag', () => {
     const editor = hook.editor();
     editor.setContent('<p><a href="https://tiny.cloud">external link</a></p>');
-    assertHrefOpt(editor, 'a', Optional.some('https://tiny.cloud'));
+    assertHrefOpt(editor, 'a', 'https://tiny.cloud');
     editor.setContent('<p><a>external link with no href</a></p>');
-    assertHrefOpt(editor, 'a', Optional.none());
+    assertHrefOpt(editor, 'a', null);
     editor.setContent('<p><a href="https://tiny.cloud"><img src="">nested image </img>inside anchor</a></p>');
-    assertHrefOpt(editor, 'img', Optional.some('https://tiny.cloud'));
+    assertHrefOpt(editor, 'img', 'https://tiny.cloud');
   });
 
   it('TINY-6248: processReadonlyEvents should scroll to bookmark with id', () => {

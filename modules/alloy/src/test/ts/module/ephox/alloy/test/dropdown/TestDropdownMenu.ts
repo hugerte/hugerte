@@ -1,5 +1,5 @@
 import { ApproxStructure, Assertions, Step, StructAssert, TestStore, Waiter } from '@ephox/agar';
-import { Arr, Fun, Merger, Obj } from '@ephox/katamari';
+
 import { SelectorFind } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -129,7 +129,7 @@ const mStoreMenuUid = <T>(component: AlloyComponent): Step<T, T & MenuState> =>
     const menu = SelectorFind.descendant(component.element, '.menu').getOrDie('Could not find menu');
     const uid = Tagger.readOrDie(menu);
     next(
-      Merger.deepMerge(value, { menuUid: uid })
+      ({ ...value, ...{ menuUid: uid } })
     );
   });
 
@@ -171,22 +171,22 @@ const getSampleTieredData = (): TieredData => {
 */
   return {
     primary: 'menu-a',
-    menus: Obj.map({
+    menus: Object.fromEntries(Object.entries({
       'menu-a': {
         value: 'menu-a',
-        items: Arr.map([
+        items: [
           { type: 'item', data: { value: 'a-alpha', meta: { text: 'a-Alpha' }}, hasSubmenu: false },
           { type: 'item', data: { value: 'a-beta', meta: { text: 'a-Beta' }}, hasSubmenu: true },
           { type: 'item', data: { value: 'a-gamma', meta: { text: 'a-Gamma' }}, hasSubmenu: false }
-        ], renderItem)
+        ].map(renderItem)
       },
       'a-beta': { // menu name should be triggering parent item so TieredMenuSpec path works
         value: 'menu-b',
-        items: Arr.map([
+        items: [
           { type: 'item', data: { value: 'b-alpha', meta: { text: 'b-Alpha' }}, hasSubmenu: false }
-        ], renderItem)
+        ].map(renderItem)
       }
-    }, renderMenu),
+    }).map(([k, v]) => [k, (renderMenu)(v, k)])),
     expansions: {
       'a-beta': 'a-beta'
     }
@@ -203,7 +203,7 @@ const structActiveItem = ApproxStructure.build((s, str, arr) => s.element('li', 
   classes: [ arr.has('item'), arr.has('selected-item') ]
 }));
 
-const itemsHaveActiveStates = (states: boolean[]): StructAssert[] => Arr.map(states, (s) => {
+const itemsHaveActiveStates = (states: boolean[]): StructAssert[] => states.map((s) =) {
   return s ? structActiveItem : structNotActiveItem;
 });
 
@@ -215,7 +215,7 @@ const itemMarkers: TieredMenuSpec['markers'] = {
   backgroundMenu: 'background-menu'
 };
 
-const markers = Fun.constant(itemMarkers);
+const markers = () => itemMarkers;
 
 export {
   assertLazySinkArgs,

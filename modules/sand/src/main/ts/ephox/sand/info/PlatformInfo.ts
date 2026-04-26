@@ -1,4 +1,4 @@
-import { Fun, Strings } from '@ephox/katamari';
+
 
 export interface PlatformInfo {
   readonly name: string;
@@ -11,7 +11,7 @@ const normalVersionRegex = /.*?version\/\ ?([0-9]+)\.([0-9]+).*/;
 
 const checkContains = (target: string) => {
   return (uastring: string) => {
-    return Strings.contains(uastring, target);
+    return uastring.includes(target);
   };
 };
 
@@ -21,7 +21,7 @@ const browsers: PlatformInfo[] = [
     name: 'Edge',
     versionRegexes: [ /.*?edge\/ ?([0-9]+)\.([0-9]+)$/ ],
     search: (uastring) => {
-      return Strings.contains(uastring, 'edge/') && Strings.contains(uastring, 'chrome') && Strings.contains(uastring, 'safari') && Strings.contains(uastring, 'applewebkit');
+      return uastring.includes('edge/') && uastring.includes('chrome') && uastring.includes('safari') && uastring.includes('applewebkit');
     }
   },
   // This is Google Chrome and Chromium Edge
@@ -30,14 +30,14 @@ const browsers: PlatformInfo[] = [
     brand: 'Chromium',
     versionRegexes: [ /.*?chrome\/([0-9]+)\.([0-9]+).*/, normalVersionRegex ],
     search: (uastring) => {
-      return Strings.contains(uastring, 'chrome') && !Strings.contains(uastring, 'chromeframe');
+      return uastring.includes('chrome') && !uastring.includes('chromeframe');
     }
   },
   {
     name: 'IE',
     versionRegexes: [ /.*?msie\ ?([0-9]+)\.([0-9]+).*/, /.*?rv:([0-9]+)\.([0-9]+).*/ ],
     search: (uastring) => {
-      return Strings.contains(uastring, 'msie') || Strings.contains(uastring, 'trident');
+      return uastring.includes('msie') || uastring.includes('trident');
     }
   },
   // INVESTIGATE: Is this still the Opera user agent?
@@ -55,7 +55,7 @@ const browsers: PlatformInfo[] = [
     name: 'Safari',
     versionRegexes: [ normalVersionRegex, /.*?cpu os ([0-9]+)_([0-9]+).*/ ],
     search: (uastring) => {
-      return (Strings.contains(uastring, 'safari') || Strings.contains(uastring, 'mobile/')) && Strings.contains(uastring, 'applewebkit');
+      return (uastring.includes('safari') || uastring.includes('mobile/')) && uastring.includes('applewebkit');
     }
   }
 ];
@@ -69,7 +69,7 @@ const oses: PlatformInfo[] = [
   {
     name: 'iOS',
     search: (uastring) => {
-      return Strings.contains(uastring, 'iphone') || Strings.contains(uastring, 'ipad');
+      return uastring.includes('iphone') || uastring.includes('ipad');
     },
     versionRegexes: [ /.*?version\/\ ?([0-9]+)\.([0-9]+).*/, /.*cpu os ([0-9]+)_([0-9]+).*/, /.*cpu iphone os ([0-9]+)_([0-9]+).*/ ]
   },
@@ -105,6 +105,6 @@ const oses: PlatformInfo[] = [
 ];
 
 export const PlatformInfo = {
-  browsers: Fun.constant(browsers),
-  oses: Fun.constant(oses)
+  browsers: () => browsers,
+  oses: () => oses
 };

@@ -1,4 +1,4 @@
-import { Optional } from '@ephox/katamari';
+
 import { PlatformDetection } from '@ephox/sand';
 import { Class, Css, SugarElement, SugarPosition } from '@ephox/sugar';
 
@@ -27,13 +27,13 @@ export default (): void => {
         Dragging.snap({
           sensor: DragCoord.fixed(300, 10),
           range: SugarPosition(1000, 30),
-          output: DragCoord.fixed(Optional.none<number>(), Optional.some(10))
+          output: DragCoord.fixed(null, 10)
         }),
 
         Dragging.snap({
           sensor: DragCoord.offset(300, 500),
           range: SugarPosition(40, 40),
-          output: DragCoord.absolute(Optional.some(300), Optional.some(500))
+          output: DragCoord.absolute(300, 500)
         })
       ];
     },

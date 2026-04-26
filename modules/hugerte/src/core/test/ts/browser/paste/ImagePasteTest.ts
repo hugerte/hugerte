@@ -1,6 +1,6 @@
 import { Clipboard as AgarClipboard, Waiter } from '@ephox/agar';
 import { afterEach, beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Fun, Singleton } from '@ephox/katamari';
+import { Singleton } from '@ephox/katamari';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -67,7 +67,7 @@ describe('browser.hugerte.core.paste.ImagePasteTest', () => {
     const transferName = type === 'drop' ? 'dataTransfer' : 'clipboardData';
     return {
       type,
-      preventDefault: Fun.noop,
+      preventDefault: () => {},
       [transferName]: { files }
     } as any;
   };

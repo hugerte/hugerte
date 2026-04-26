@@ -1,6 +1,6 @@
 import { ApproxStructure } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -112,12 +112,12 @@ describe('browser.hugerte.plugins.image.ImageAlignTest', () => {
       justify: 'Justify'
     };
     const ariaLabel = ariaLabels[alignment];
-    const otherLabels = Obj.values(Obj.filter(ariaLabels, (_, key) => key !== alignment));
+    const otherLabels = Object.values(Object.fromEntries(Object.entries(ariaLabels).filter(([k, v]) => ((_, key) =)(v, k))) key !== alignment));
     // Justify is the default for figures so it never gets highlighted
     const ariaPressed = isFigure && !isSelectAll && alignment === 'justify' ? 'false' : 'true';
 
     await TinyUiActions.pWaitForUi(editor, `button[aria-label="${ariaLabel}"][aria-pressed="${ariaPressed}"]:not(.tox-tbtn--select)`);
-    await Arr.foldl(otherLabels, (p, label) => p.then(async () => {
+    await otherLabels.reduce((p, label) => p.then(async () => {
       await TinyUiActions.pWaitForUi(editor, `button[aria-label="${label}"][aria-pressed="false"]:not(.tox-tbtn--select)`);
     }), Promise.resolve());
   };
@@ -154,7 +154,7 @@ describe('browser.hugerte.plugins.image.ImageAlignTest', () => {
 
   const testConsecutiveAlignments = (label: string, pAlignImage: (editor: Editor, alignment: Alignment) => Promise<void>, alignments: Alignment[]) => {
     context(label, () => {
-      const pAlignmentSteps = (editor: Editor, isFigure: boolean, isSelectAll: boolean) => Arr.foldl(alignments, (p, alignment) => p.then(async () => {
+      const pAlignmentSteps = (editor: Editor, isFigure: boolean, isSelectAll: boolean) => alignments.reduce((p, alignment) => p.then(async () => {
         await pAlignImage(editor, alignment);
         await pCheckToolbarHighlighting(editor, alignment, isFigure, isSelectAll);
         TinyAssertions.assertContentStructure(editor, isFigure ? figureImageApproxStructure(alignment, isSelectAll) : imageApproxStructure(alignment, isSelectAll));
@@ -190,10 +190,10 @@ describe('browser.hugerte.plugins.image.ImageAlignTest', () => {
     });
   };
 
-  Arr.each([
+  [
     { label: 'Testing image alignment using the toolbar', pAlignImage: pApplyAlignmentFromToolbar },
     { label: 'Testing image alignment using the menu', pAlignImage: pApplyAlignmentFromMenu }
-  ], (test) => {
+  ].forEach((test) =) {
     context(test.label, () => {
       testConsecutiveAlignments('Align: left -> center -> left', test.pAlignImage, [ 'left', 'center', 'left' ]);
       testConsecutiveAlignments('Align: left -> right -> left', test.pAlignImage, [ 'left', 'right', 'left' ]);

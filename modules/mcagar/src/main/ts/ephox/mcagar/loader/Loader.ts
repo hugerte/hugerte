@@ -1,5 +1,5 @@
 import { TestLogs } from '@ephox/agar';
-import { Arr, Fun, FutureResult, Global, Id, Optional, Result } from '@ephox/katamari';
+import { FutureResult, Global, Optional, Result } from '@ephox/katamari';
 import { Attribute, DomEvent, Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor } from '../alien/EditorTypes';
@@ -20,14 +20,14 @@ const createTarget = (inline: boolean) => SugarElement.fromTag(inline ? 'div' : 
 
 const removeHugerteElements = () => {
   // NOTE: Don't remove the link/scripts added, as those are part of the global hugerte which we don't clean up
-  const elements = Arr.flatten([
+  const elements = [
     // Some older versions of hugerte leaves elements behind in the dom
     SelectorFilter.all('.mce-notification,.mce-window,#mce-modal-block'),
     // HugeRTE leaves inline editor content_styles in the dom
     SelectorFilter.children(SugarElement.fromDom(document.head), 'style')
-  ]);
+  ].flat();
 
-  Arr.each(elements, Remove.remove);
+  elements.forEach(Remove.remove);
 };
 
 const loadScript = (url: string): FutureResult<string, Error> => FutureResult.nu((resolve) => {
@@ -51,7 +51,7 @@ const loadScript = (url: string): FutureResult<string, Error> => FutureResult.nu
 
 const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: Optional<SugarElement<Element>>): void => {
   const target = elementOpt.getOrThunk(() => createTarget(settings.inline));
-  const randomId = Id.generate('tiny-loader');
+  const randomId = '_' + Math.random().toString(36).slice(2);
   Attribute.set(target, 'id', randomId);
 
   if (!SugarBody.inBody(target)) {
@@ -80,7 +80,7 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
     callbacks.failure(err, logs);
   };
 
-  const settingsSetup = settings.setup !== undefined ? settings.setup : Fun.noop;
+  const settingsSetup = settings.setup !== undefined ? settings.setup : () => {};
 
   const run = () => {
     const hugerte = Global.hugerte;

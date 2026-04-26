@@ -1,6 +1,6 @@
 import { FocusTools, Keys } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun } from '@ephox/katamari';
+
 import { SugarDocument } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 
@@ -27,7 +27,7 @@ describe('browser.hugerte.themes.silver.editor.DialogTreeTest', () => {
               type: 'panel',
               items: [{
                 type: 'tree',
-                onLeafAction: Fun.noop,
+                onLeafAction: () => {},
                 items: [
                   {
                     type: 'directory',
@@ -40,7 +40,7 @@ describe('browser.hugerte.themes.silver.editor.DialogTreeTest', () => {
                         {
                           type: 'menuitem',
                           text: 'menuitem',
-                          onAction: Fun.noop
+                          onAction: () => {}
                         }
                       ])
                     },
@@ -61,7 +61,7 @@ describe('browser.hugerte.themes.silver.editor.DialogTreeTest', () => {
                             {
                               type: 'menuitem',
                               text: 'menuitem',
-                              onAction: Fun.noop
+                              onAction: () => {}
                             }
                           ])
                         }

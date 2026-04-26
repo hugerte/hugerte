@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { Hierarchy, Html, Insert, Remove, SugarBody, SugarElement, SugarNode } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -46,8 +46,8 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
     };
 
     it('TINY-9172: Should add data-mce-block on transparent elements if the contain blocks', () => {
-      const blockLinks = Arr.map(textBlockElements, (name) => `<a href="#"><${name}>link</${name}></a>`).join('');
-      const expectedBlockLinks = Arr.map(textBlockElements, (name) => `<a href="#" data-mce-block="true"><${name}>link</${name}></a>`).join('');
+      const blockLinks = textBlockElements.map((name) =) `<a href="#"><${name}>link</${name}></a>`).join('');
+      const expectedBlockLinks = textBlockElements.map((name) =) `<a href="#" data-mce-block="true"><${name}>link</${name}></a>`).join('');
 
       testUpdateChildren({
         input: `<a href="#">link</a><div>${blockLinks}</div>${blockLinks}<div><a href="#">link</a></div>`,
@@ -125,7 +125,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
 
   context('isTransparentElementName', () => {
     it('TINY-9172: Should return true for any transparent element name', () => {
-      Arr.each(transparentElements, (name) => {
+      transparentElements.forEach((name) =) {
         assert.isTrue(TransparentElements.isTransparentElementName(schema, name));
       });
     });
@@ -138,7 +138,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
 
   context('isTransparentBlock', () => {
     it('TINY-9172: Should return true for any transparent element with data-mce-block', () => {
-      Arr.each(transparentElements, (name) => {
+      transparentElements.forEach((name) =) {
         const elm = document.createElement(name);
         elm.setAttribute('data-mce-block', 'true');
         assert.isTrue(TransparentElements.isTransparentBlock(schema, elm));
@@ -146,7 +146,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
     });
 
     it('TINY-9172: Should return false for any transparent element without data-mce-block', () => {
-      Arr.each(transparentElements, (name) => {
+      transparentElements.forEach((name) =) {
         assert.isFalse(TransparentElements.isTransparentBlock(schema, document.createElement(name)));
       });
     });
@@ -164,7 +164,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
 
   context('isTransparentInline', () => {
     it('TINY-9172: Should return false for any transparent element with data-mce-block', () => {
-      Arr.each(transparentElements, (name) => {
+      transparentElements.forEach((name) =) {
         const elm = document.createElement(name);
         elm.setAttribute('data-mce-block', 'true');
         assert.isFalse(TransparentElements.isTransparentInline(schema, elm));
@@ -172,7 +172,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
     });
 
     it('TINY-9172: Should return true for any transparent element without data-mce-block', () => {
-      Arr.each(transparentElements, (name) => {
+      transparentElements.forEach((name) =) {
         assert.isTrue(TransparentElements.isTransparentInline(schema, document.createElement(name)));
       });
     });
@@ -190,7 +190,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
 
   context('isTransparentAstBlock', () => {
     it('TINY-9172: Should return true for any transparent element with data-mce-block', () => {
-      Arr.each(transparentElements, (name) => {
+      transparentElements.forEach((name) =) {
         const elm = AstNode.create(name);
         elm.attr('data-mce-block', 'true');
         assert.isTrue(TransparentElements.isTransparentAstBlock(schema, elm));
@@ -198,7 +198,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
     });
 
     it('TINY-9172: Should return false for any transparent element without data-mce-block', () => {
-      Arr.each(transparentElements, (name) =>
+      transparentElements.forEach((name) =)
         assert.isFalse(TransparentElements.isTransparentAstBlock(schema, AstNode.create(name)))
       );
     });
@@ -216,7 +216,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
 
   context('isTransparentAstInline', () => {
     it('TINY-9172: Should return false for any transparent element with data-mce-block', () => {
-      Arr.each(transparentElements, (name) => {
+      transparentElements.forEach((name) =) {
         const elm = AstNode.create(name);
         elm.attr('data-mce-block', 'true');
         assert.isFalse(TransparentElements.isTransparentAstInline(schema, elm));
@@ -224,7 +224,7 @@ describe('browser.hugerte.core.content.TransparentElementsTest', () => {
     });
 
     it('TINY-9172: Should return true for any transparent element without data-mce-block', () => {
-      Arr.each(transparentElements, (name) =>
+      transparentElements.forEach((name) =)
         assert.isTrue(TransparentElements.isTransparentAstInline(schema, AstNode.create(name)))
       );
     });

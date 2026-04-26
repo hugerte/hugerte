@@ -1,12 +1,12 @@
 import { describe, context, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinySelections, TinyHooks } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
 import Theme from 'hugerte/themes/silver/Theme';
 
 describe('browser.hugerte.core.EditorPadEmptyWithBrTest', () => {
-  Arr.each([ false, true ], (remove_trailing_brs: boolean) => {
+  [ false, true ].forEach((remove_trailing_brs: boolean) =) {
     context(`remove_trailing_brs: ${remove_trailing_brs}`, () => {
       const hook = TinyHooks.bddSetupLight<Editor>({
         add_unload_trigger: false,

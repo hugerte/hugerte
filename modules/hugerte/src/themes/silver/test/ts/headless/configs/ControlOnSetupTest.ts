@@ -1,6 +1,6 @@
 import { Behaviour, GuiFactory, Replacing, TestHelpers } from '@ephox/alloy';
 import { describe, it } from '@ephox/bedrock-client';
-import { Cell, Fun } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 
 import { SimpleBehaviours } from 'hugerte/themes/silver/ui/alien/SimpleBehaviours';
 import { onControlAttached, onControlDetached } from 'hugerte/themes/silver/ui/controls/Controls';
@@ -26,7 +26,7 @@ describe('headless.hugerte.themes.silver.configs.ControlOnSetup Test', () => {
         store.adder('onSetup.1')();
         return store.adder('onDestroy.1');
       },
-      getApi: Fun.noop
+      getApi: () => {}
     };
 
     const cellWithoutDestroy = Cell(store.adder('fallbackWithoutDestroy'));
@@ -34,7 +34,7 @@ describe('headless.hugerte.themes.silver.configs.ControlOnSetup Test', () => {
       onSetup: () => {
         store.adder('onSetup.2')();
       },
-      getApi: Fun.noop
+      getApi: () => {}
     };
 
     Replacing.set(component, [

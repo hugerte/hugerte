@@ -165,7 +165,7 @@ const initLogsWith = (history: TestLogEntry[]): TestLogs => ({
 });
 
 const concat = (logs1: TestLogs, logs2: TestLogs): TestLogs =>
-  initLogsWith(Arr.flatten([ logs1.history, logs2.history ]));
+  initLogsWith([ logs1.history, logs2.history ].flat());
 
 const single = (message: string): TestLogs =>
   addLogEntry(init(), message);

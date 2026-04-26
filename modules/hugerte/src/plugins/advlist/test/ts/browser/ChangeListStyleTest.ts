@@ -1,5 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 import { TinyAssertions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -7,10 +7,10 @@ import AdvListPlugin from 'hugerte/plugins/advlist/Plugin';
 import ListsPlugin from 'hugerte/plugins/lists/Plugin';
 
 describe('browser.hugerte.plugins.advlist.ChangeListStyleTest', () => {
-  Arr.each([
+  [
     { label: 'Iframe Editor', setup: TinyHooks.bddSetup },
     { label: 'Shadow Dom Editor', setup: TinyHooks.bddSetupInShadowRoot }
-  ], (tester) => {
+  ].forEach((tester) =) {
     context(tester.label, () => {
       const hook = tester.setup<Editor>({
         indent: false,

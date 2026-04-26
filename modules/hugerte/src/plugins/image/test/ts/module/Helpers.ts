@@ -1,5 +1,5 @@
 import { Assertions, Mouse, UiFinder } from '@ephox/agar';
-import { Obj, Optional, Type } from '@ephox/katamari';
+
 import { Attribute, Checked, Class, Focus, SugarBody, SugarElement, Traverse, Value } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -44,7 +44,7 @@ export const advancedTabSelectors = {
 };
 
 const isObjWithValue = (value: ImageDialogData[keyof ImageDialogData]): value is { value: string } =>
-  Type.isObject(value) && Obj.has(value as Record<string, any>, 'value');
+  (typeof value === 'object' && value !== null) && Object.prototype.hasOwnProperty.call(value as Record<string, any>, 'value');
 
 const gotoAdvancedTab = (): void => {
   const tab = UiFinder.findIn(SugarBody.body(), 'div.tox-tab:contains(Advanced)').getOrDie();
@@ -54,7 +54,7 @@ const gotoAdvancedTab = (): void => {
 const setFieldValue = (selector: string, value: string | boolean): SugarElement<HTMLElement> => {
   const element = UiFinder.findIn<HTMLInputElement>(SugarBody.body(), selector).getOrDie();
   Focus.focus(element);
-  if (element.dom.type === 'checkbox' && Type.isBoolean(value)) {
+  if (element.dom.type === 'checkbox' && typeof value === 'boolean') {
     Checked.set(element, value);
   } else if (Class.has(element, 'tox-listbox')) {
     Attribute.set(element, 'data-value', value);
@@ -65,9 +65,9 @@ const setFieldValue = (selector: string, value: string | boolean): SugarElement<
 };
 
 const setTabFieldValues = (data: Partial<ImageDialogData>, tabSelectors: Record<string, string>): void => {
-  Obj.each(tabSelectors, (value, key) => {
-    Obj.get(data, key as keyof Omit<ImageDialogData, 'dimensions'>)
-      .orThunk(() => Obj.has(data, 'dimensions') ? Obj.get(data.dimensions as Record<string, string>, key) : Optional.none())
+  Object.entries(tabSelectors).forEach(([k, v]) => ((value, key) =)(v, k)) {
+    (data as any)[key as keyof Omit<ImageDialogData, 'dimensions'>]
+      .orThunk(() => Object.prototype.hasOwnProperty.call(data, 'dimensions') ? (data.dimensions as Record<string as any)[string>, key] : null)
       .each((obj) => {
         const newValue = isObjWithValue(obj) ? obj.value : obj;
         setFieldValue(tabSelectors[key], newValue);

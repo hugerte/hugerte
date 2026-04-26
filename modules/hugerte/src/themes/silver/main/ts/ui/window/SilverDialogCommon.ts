@@ -3,7 +3,7 @@ import {
   SystemEvents
 } from '@ephox/alloy';
 import { Dialog, DialogManager } from '@ephox/bridge';
-import { Arr, Cell } from '@ephox/katamari';
+import { Cell } from '@ephox/katamari';
 import { Class, Classes, Height, SelectorFind, SugarElement } from '@ephox/sugar';
 
 import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
@@ -139,7 +139,7 @@ const mapMenuButtons = (buttons: Dialog.DialogFooterButton[], menuItemStates: Re
 };
 
 const extractCellsToObject = (buttons: (StoredMenuButton | Dialog.DialogFooterMenuButton | Dialog.DialogFooterNormalButton | Dialog.DialogFooterToggleButton)[]): Record<string, Cell<boolean>> =>
-  Arr.foldl(buttons, (acc, button) => {
+  buttons.reduce((acc, button) => {
     if (button.type === 'menu') {
       const menuButton = button as StoredMenuButton;
       return (menuButton.items).reduce((innerAcc, item) => {

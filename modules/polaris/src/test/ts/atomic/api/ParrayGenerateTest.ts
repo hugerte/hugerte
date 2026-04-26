@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import * as PositionArray from 'ephox/polaris/api/PositionArray';
 
@@ -9,18 +9,18 @@ UnitTest.test('api.PositionArray.generate', () => {
   const generator = (item: string, start: number): Optional<PArrayTestItem> => {
     const firstletter = item[0];
     if (firstletter === 'a') {
-      return Optional.none();
+      return null;
     }
-    return Optional.some({
+    return {
       start,
       finish: start + item.length,
       item
-    });
+    };
   };
 
   const check = (expected: string[], input: string[], start?: number) => {
     const result = PositionArray.generate(input, generator, start);
-    Assert.eq('', expected, Arr.map(result, (item) => {
+    Assert.eq('', expected, result.map((item) =) {
       return item.start + '->' + item.finish + '@ ' + item.item;
     }));
   };

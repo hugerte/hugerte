@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 // TODO: remove this when we are sure it is not referenced anymore
 export const enum PluginType {
@@ -18,7 +18,7 @@ export interface PluginUrl extends PartialPluginUrl {
 }
 
 // These lists are automatically sorted when generating the dialog.
-const urls = Arr.map<PartialPluginUrl, PluginUrl>([
+const urls = [
   { key: 'accordion', name: 'Accordion' },
   { key: 'advlist', name: 'Advanced List' },
   { key: 'anchor', name: 'Anchor' },
@@ -81,7 +81,7 @@ const urls = Arr.map<PartialPluginUrl, PluginUrl>([
   { key: 'advtemplate', name: 'Templates', type: PluginType.Premium, slug: 'advanced-templates' },
   { key: 'tinycomments', name: 'Tiny Comments', type: PluginType.Premium, slug: 'introduction-to-tiny-comments' },
   { key: 'tinydrive', name: 'Tiny Drive', type: PluginType.Premium, slug: 'tinydrive-introduction' }, */
-], (item) => ({
+].map((item) => ({
   ...item,
   // Set the defaults/fallbacks for the plugin urls
   type: item.type || PluginType.OpenSource, // TODO remove

@@ -1,4 +1,4 @@
-import { Adt, Fun } from '@ephox/katamari';
+import { Adt } from '@ephox/katamari';
 
 import { SugarElement } from '../node/SugarElement';
 
@@ -31,7 +31,7 @@ const cata = <U> (subject: Situ, onBefore: (element: SugarElement<Node>) => U, o
   subject.fold(onBefore, onOn, onAfter);
 
 const getStart = (situ: Situ): SugarElement<Node> =>
-  situ.fold(Fun.identity, Fun.identity, Fun.identity);
+  situ.fold((x) => x, (x) => x, (x) => x);
 
 const before = adt.before;
 const on = adt.on;

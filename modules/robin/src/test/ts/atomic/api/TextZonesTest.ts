@@ -1,7 +1,7 @@
 import { Logger } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Gene, TestUniverse, TextGene } from '@ephox/boss';
-import { Fun } from '@ephox/katamari';
+
 
 import * as TextZones from 'ephox/robin/api/general/TextZones';
 import { ZoneViewports } from 'ephox/robin/api/general/ZoneViewports';
@@ -157,7 +157,7 @@ UnitTest.test('TextZonesTest', () => {
 
   PropertyAssertions.check(
     'Check any tag range',
-    arbRangeIds(doc1, Fun.always),
+    arbRangeIds(doc1, () => true),
     checkRange
   );
 });

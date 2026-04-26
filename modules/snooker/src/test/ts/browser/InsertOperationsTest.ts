@@ -1,5 +1,5 @@
 import { UnitTest } from '@ephox/bedrock-client';
-import { Optional } from '@ephox/katamari';
+
 
 import * as TableOperations from 'ephox/snooker/api/TableOperations';
 import * as Assertions from 'ephox/snooker/test/Assertions';
@@ -8,7 +8,7 @@ import { generateTestTable } from 'ephox/snooker/test/CreateTableUtils';
 UnitTest.test('InsertOperationsTest', () => {
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
+    { section: 0, row: 0, column: 0 },
     '<table><tbody>' +
     '<tr><td>?</td><td>?</td></tr>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
@@ -25,7 +25,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 0 }),
+    { section: 0, row: 1, column: 0 },
     '<table><tbody>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
     '<tr><td>?</td><td>?</td></tr>' +
@@ -42,7 +42,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
+    { section: 0, row: 0, column: 0 },
     '<table><tbody>' +
     '<tr><td>?</td><td>?</td></tr>' +
     '<tr><td>' +
@@ -69,7 +69,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 0 }),
+    { section: 0, row: 1, column: 0 },
     '<table><tbody>' +
     '<tr><td>' +
     '<table><tbody>' +
@@ -96,7 +96,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 2, column: 0 }),
+    { section: 0, row: 2, column: 0 },
     '<table><tbody>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
     '<tr><td>A2</td><td>B2</td></tr>' +
@@ -113,7 +113,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 2, column: 0 }),
+    { section: 0, row: 2, column: 0 },
     '<table><tbody>' +
     '<tr><td>' +
     '<table><tbody>' +
@@ -140,7 +140,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
+    { section: 0, row: 0, column: 0 },
     '<table><tbody>' +
     '<tr><td>?</td><td>A1</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
     '<tr><td>?</td><td>A2</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -156,7 +156,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
+    { section: 0, row: 0, column: 0 },
     '<table><tbody>' +
     '<tr><td>?</td><td>' +
     '<table><tbody>' +
@@ -182,7 +182,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 1 }),
+    { section: 0, row: 1, column: 1 },
     '<table><tbody>' +
     '<tr><td>A1</td><td>?</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
     '<tr><td>A2</td><td>?</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -198,7 +198,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 1 }),
+    { section: 0, row: 0, column: 1 },
     '<table><tbody>' +
     '<tr><td>A1</td><td>?</td><td>B1</td><td>C1</td><td>D1</td></tr>' +
     '<tr><td>A2</td><td>?</td><td>B2</td><td>C2</td><td>D2</td></tr>' +
@@ -214,7 +214,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 2 }),
+    { section: 0, row: 0, column: 2 },
     '<table><tbody>' +
     '<tr><td>A1</td><td>B1</td><td>?</td><td>C1</td><td>D1</td></tr>' +
     '<tr><td>A2</td><td>B2</td><td>?</td><td>C2</td><td>D2</td></tr>' +
@@ -230,7 +230,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 1 }),
+    { section: 0, row: 0, column: 1 },
     '<table><tbody>' +
     '<tr><td>' +
     '<table><tbody>' +
@@ -256,7 +256,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 2 }),
+    { section: 0, row: 0, column: 2 },
     '<table><tbody>' +
     '<tr><td>' +
     '<table><tbody>' +
@@ -311,7 +311,7 @@ UnitTest.test('InsertOperationsTest', () => {
   // Irregular tables (inserting row where one row has an irregular cell.
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 2, column: 0 }),
+    { section: 0, row: 2, column: 0 },
     '<table><tbody>' +
     '<tr><td>A1</td><td>B1</td><td>IRREGULAR CELL</td></tr>' +
     '<tr><td>A2</td><td>B2</td><td>?</td></tr>' +
@@ -328,7 +328,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
+    { section: 0, row: 0, column: 0 },
     '<table><thead>' +
     '<tr><td>?</td><td>?</td></tr>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
@@ -349,7 +349,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 1, row: 0, column: 0 }),
+    { section: 1, row: 0, column: 0 },
     '<table><thead>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
     '</thead>' +
@@ -370,7 +370,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 1, column: 0 }),
+    { section: 0, row: 1, column: 0 },
     '<table><thead>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
     '<tr><td>?</td><td>?</td></tr>' +
@@ -391,7 +391,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 1, row: 1, column: 0 }),
+    { section: 1, row: 1, column: 0 },
     '<table><thead>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
     '</thead>' +
@@ -412,7 +412,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 0, row: 0, column: 0 }),
+    { section: 0, row: 0, column: 0 },
     '<table><tbody>' +
     '<tr><td>?</td><td>?</td></tr>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
@@ -429,7 +429,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TBA',
-    Optional.some({ section: 1, row: 1, column: 1 }),
+    { section: 1, row: 1, column: 1 },
     '<table><thead>' +
     '<tr><td>A1</td><td>B1</td></tr>' +
     '</thead>' +
@@ -450,7 +450,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'Check column can be inserted before with colgroup table and a locked column is present but is not selected',
-    Optional.some({ section: 1, row: 0, column: 0 }),
+    { section: 1, row: 0, column: 0 },
 
     generateTestTable(
       [
@@ -475,7 +475,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'Check column can be inserted after with colgroup table and a locked column is present but is not selected',
-    Optional.some({ section: 1, row: 0, column: 2 }),
+    { section: 1, row: 0, column: 2 },
 
     generateTestTable(
       [
@@ -500,7 +500,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'Check row can be inserted before with colgroup table and a locked column is present',
-    Optional.some({ section: 1, row: 0, column: 0 }),
+    { section: 1, row: 0, column: 0 },
 
     generateTestTable(
       [
@@ -526,7 +526,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'Check row can be inserted after with colgroup table and a locked column is present',
-    Optional.some({ section: 1, row: 1, column: 0 }),
+    { section: 1, row: 1, column: 0 },
 
     generateTestTable(
       [
@@ -552,7 +552,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TINY-6765: Check column cannot be inserted before if first column is selected and is locked (collapsed)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -577,7 +577,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOldMultiple(
     'TINY-6765: Check column cannot be inserted before if first column is selected and is locked (multi-col selection)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -606,7 +606,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TINY-6765: Check column can be inserted after if first column is selected and is locked (collapsed)',
-    Optional.some({ section: 1, row: 0, column: 1 }),
+    { section: 1, row: 0, column: 1 },
 
     generateTestTable(
       [
@@ -631,7 +631,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TINY-6765: Check column cannot be inserted after if last column is selected and is locked (collapsed)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -656,7 +656,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOldMultiple(
     'TINY-6765: Check column cannot be inserted after if last column is selected and is locked (multi-col selection)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -685,7 +685,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TINY-6765: Check column cannot be inserted after if colspan column is selected, is locked and would result in a column being inserted at the end of the table (collapsed)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -710,7 +710,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TINY-6765: Check column can be inserted before if last column is selected and is locked (collapsed)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -735,7 +735,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TINY-6765: Check that column can be inserted before if start of selection is a locked column that is not the first column in the table (collapsed)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -760,7 +760,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOld(
     'TINY-6765: Check that column can be inserted after if end of selection is a locked column that is not the last column in the table (collapsed)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -785,7 +785,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOldMultiple(
     'TINY-6765: Check that column can be inserted before if start of selection is a locked column that is not the first column in the table (multi-col selection) (locked column should count towards the number of columns inserted before)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [
@@ -815,7 +815,7 @@ UnitTest.test('InsertOperationsTest', () => {
 
   Assertions.checkOldMultiple(
     'TINY-6765: Check that column can be inserted after if end of selection is a locked column that is not the last column in the table (multi-col selection) (locked columns should count towards the number of columns inserted after)',
-    Optional.none(),
+    null,
 
     generateTestTable(
       [

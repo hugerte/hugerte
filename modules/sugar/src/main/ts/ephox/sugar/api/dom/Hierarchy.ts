@@ -11,7 +11,7 @@ import * as Compare from './Compare';
  */
 const up = (descendant: SugarElement<Node>, stopper: (e: SugarElement<Node>) => boolean): Optional<number[]> => {
   if (stopper(descendant)) {
-    return Optional.some([] as number[]);
+    return [] as number[];
   } else {
     return Traverse.parent(descendant).bind((parent) =>
       Traverse.findIndex(descendant).bind((index) => up(parent, stopper)
@@ -21,12 +21,12 @@ const up = (descendant: SugarElement<Node>, stopper: (e: SugarElement<Node>) => 
 
 const path = (ancestor: SugarElement<Node>, descendant: SugarElement<Node>): Optional<number[]> => {
   const stopper = Fun.curry(Compare.eq, ancestor);
-  return Compare.eq(ancestor, descendant) ? Optional.some<number[]>([]) : up(descendant, stopper);
+  return Compare.eq(ancestor, descendant) ? [] : up(descendant, stopper);
 };
 
 const follow = (ancestor: SugarElement<Node>, descendantPath: number[]): Optional<SugarElement<Node>> => {
   if (descendantPath.length === 0) {
-    return Optional.some(ancestor);
+    return ancestor;
   } else {
     return Traverse.child(ancestor, descendantPath[0]).bind((child) => follow(child, descendantPath.slice(1)));
   }

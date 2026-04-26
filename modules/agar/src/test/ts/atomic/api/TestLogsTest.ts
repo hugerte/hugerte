@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Arr } from '@ephox/katamari';
+
 
 import { addLogEntry, addStackTrace, popLogLevel, pushLogLevel, TestLogEntryState, TestLogs } from 'ephox/agar/api/TestLogs';
 
@@ -16,7 +16,7 @@ UnitTest.test('TestLogsTest', () => {
 
   const addTraceToLog = (trace: { stack: any }) => (logs) => addStackTrace(logs, trace);
 
-  Arr.foldl([
+  [
     addToLog('alpha'),
     addTraceToLog({ stack: 'alpha-first' }),
     assertLog([
@@ -236,7 +236,7 @@ UnitTest.test('TestLogsTest', () => {
       },
       { message: 'gamma', entries: [ ], state: TestLogEntryState.Original, trace: 'gamma-trace!' }
     ])
-  ], (b, a) => {
+  ].reduce((b, a) => {
     const next = a(b);
     return next;
   }, logs);

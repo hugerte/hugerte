@@ -1,6 +1,6 @@
 import { Keys } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Type, Unicode } from '@ephox/katamari';
+
 import { TinyAssertions, TinyContentActions, TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -65,10 +65,10 @@ describe('browser.hugerte.core.fmt.FormatEmptyLineTest', () => {
     config.select(editor);
     config.apply(editor);
     TinyAssertions.assertContentPresence(editor, expectedPresence);
-    if (Type.isNonNullable(expectedHtml)) {
+    if (expectedHtml != null) {
       TinyAssertions.assertContent(editor, expectedHtml);
     }
-    if (Type.isNonNullable(expectedRawHtml)) {
+    if (expectedRawHtml != null) {
       TinyAssertions.assertRawContent(editor, expectedRawHtml);
     }
     config.remove(editor);
@@ -390,7 +390,7 @@ describe('browser.hugerte.core.fmt.FormatEmptyLineTest', () => {
       TinyAssertions.assertRawContent(
         editor,
         '<p>a</p>' +
-        `<p><span id="_mce_caret" data-mce-bogus="1" data-mce-type="format-caret"><strong>${Unicode.zeroWidth}</strong></span><br data-mce-bogus="1"></p>`
+        `<p><span id="_mce_caret" data-mce-bogus="1" data-mce-type="format-caret"><strong>${'\uFEFF'}</strong></span><br data-mce-bogus="1"></p>`
       );
       TinyAssertions.assertContent(editor, '<p>a</p>\n<p><strong>&nbsp;</strong></p>');
     });

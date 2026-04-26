@@ -1,12 +1,12 @@
 import { Log, Pipeline, Step } from '@ephox/agar';
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
+
 import { SelectorFind, SugarDocument, SugarElement } from '@ephox/sugar';
 
 import { cellOperations } from 'ephox/snooker/api/TableFill';
 
 UnitTest.asynctest('modules.snooker.src.test.ts.browser.CopyAttributesTest.ts', (success, failure) => {
-  const operations = cellOperations(Fun.noop, SugarDocument.getDocument(), Optional.none());
+  const operations = cellOperations(() => {}, SugarDocument.getDocument(), null);
 
   const generateCell = (input: string, type: string) => {
     const modifiedInput = '<table><tbody><tr>' + input + '</tr></tbody></table>';

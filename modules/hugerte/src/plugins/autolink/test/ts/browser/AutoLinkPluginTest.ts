@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Type } from '@ephox/katamari';
+
 import { LegacyUnit, TinyAssertions, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 import fc from 'fast-check';
@@ -48,7 +48,7 @@ describe('browser.hugerte.plugins.autolink.AutoLinkPluginTest', () => {
   };
 
   const assertIsLink = (editor: Editor, input: string, link: string, punctuation?: string, text?: string): void => {
-    const dot = Type.isString(punctuation) ? punctuation : '';
+    const dot = typeof punctuation === 'string' ? punctuation : '';
     assert.equal(typeUrl(editor, (input + dot)), `<p><a href="${link}">${text || input}</a>${dot}&nbsp;</p>`, 'Should be convert to link');
   };
 

@@ -1,7 +1,7 @@
 import {
   AlloyComponent, AlloyEvents, AlloyParts, AlloySpec, Behaviour, Boxes, Disabling, Gui, GuiFactory, Keying, Memento, Positioning, SimpleSpec, SystemEvents, VerticalDir
 } from '@ephox/alloy';
-import { Arr, Merger, Result, Singleton } from '@ephox/katamari';
+import { Result, Singleton } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { Compare, Css, SugarBody, SugarElement } from '@ephox/sugar';
 
@@ -228,12 +228,12 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
           .concat(hasAnyContents ? [] : [ 'tox-editor-header--empty' ]),
         ...verticalDirAttributes
       },
-      components: Arr.flatten<AlloySpec>([
+      components: [
         hasMenubar ? [ partMenubar ] : [],
         getPartToolbar(),
         // fixed_toolbar_container anchors to the editable area, else add an anchor bar
         Options.useFixedContainer(editor) ? [ ] : [ memAnchorBar.asSpec() ]
-      ]),
+      ].flat(),
       sticky: Options.isStickyToolbar(editor),
       editor,
       // TINY-9223: If using a sticky toolbar, which sink should it really go in?
@@ -300,7 +300,7 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
       ])
     };
 
-    const sink = GuiFactory.build(Merger.deepMerge(sinkSpec, isGridUiContainer ? reactiveWidthSpec : {}));
+    const sink = GuiFactory.build(({ ...sinkSpec, ...isGridUiContainer ? reactiveWidthSpec : {} }));
     const uiMothership = Gui.takeover(sink);
 
     lazyDialogMothership.set(uiMothership);
@@ -362,19 +362,19 @@ const setup = (editor: Editor, setupForTheme: ThemeRenderSetup): RenderInfo => {
       Options.useStatusBar(editor) && !isInline ? renderStatusbar(editor, backstages.popup.shared.providers) : null;
 
     // We need the statusbar to be separate to everything else so resizing works properly
-    const editorComponents = Arr.flatten<AlloySpec>([
+    const editorComponents = [
       isToolbarBottom ? [ ] : [ partHeader ],
       // Inline mode does not have a socket/sidebar
       isInline ? [ ] : [ sidebarContainer ],
       isToolbarBottom ? [ partHeader ] : [ ]
-    ]);
+    ].flat();
 
     const editorContainer = OuterContainer.parts.editorContainer({
-      components: Arr.flatten<AlloySpec>([
+      components: [
         editorComponents,
         // Inline mode does not have a status bar
         isInline ? [ ] : [ memBottomAnchorBar.asSpec(), ...statusbar.toArray() ]
-      ])
+      ].flat()
     });
 
     // Hide the outer container if using inline mode and there's no menubar or toolbar

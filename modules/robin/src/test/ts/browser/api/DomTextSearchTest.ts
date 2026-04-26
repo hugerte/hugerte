@@ -1,5 +1,5 @@
 import { Assert, UnitTest } from '@ephox/bedrock-client';
-import { Fun, Unicode } from '@ephox/katamari';
+
 import { KAssert } from '@ephox/katamari-assertions';
 import { Spot } from '@ephox/phoenix';
 import { Pattern } from '@ephox/polaris';
@@ -43,7 +43,7 @@ UnitTest.test('DomTextSearchTest', () => {
     });
   };
   const checkAbort = (result: TextSeekerOutcome<SugarElement>) => {
-    result.fold(Fun.noop, () => {
+    result.fold(() => {}, () => {
       Assert.fail('Unexpected edge');
     }, () => {
       Assert.fail('Unexpected info found');
@@ -192,7 +192,7 @@ UnitTest.test('DomTextSearchTest', () => {
     const betaText1 = SugarElement.fromText('be');
     const betaText2 = SugarElement.fromText('ta');
     const gammaText = SugarElement.fromText('');
-    const deltaText = SugarElement.fromText(Unicode.zeroWidth);
+    const deltaText = SugarElement.fromText('\uFEFF');
     const epsilonText = SugarElement.fromText('epsilon');
 
     InsertAll.append(container, [ alphaText, betaSpan, gammaText, deltaText, epsilonText ]);

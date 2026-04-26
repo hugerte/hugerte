@@ -1,5 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Arr, Obj } from '@ephox/katamari';
+import { Obj } from '@ephox/katamari';
 import { TinyHooks, TinySelections, TinyUiActions } from '@ephox/wrap-mcagar';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -29,14 +29,14 @@ describe('Editor Autocompleter Reload test', () => {
         minChars: 1,
         columns: 1,
         fetch: (pattern, maxResults, meta) => {
-          const prefix = Obj.get(meta, 'prefix').getOr('');
+          const prefix = (meta as any)['prefix'].getOr('');
           return new Promise((resolve) => {
-            const items: InlineContent.AutocompleterContents[] = Arr.map([ 'a', 'b', 'c', 'd' ], (item) => ({
+            const items: InlineContent.AutocompleterContents[] = [ 'a', 'b', 'c', 'd' ].map((item) =) ({
               value: `item-${item}`,
               text: `${prefix}${item}`
             }));
 
-            const extras: InlineContent.AutocompleterContents[] = Obj.keys(meta).length === 0 ? [
+            const extras: InlineContent.AutocompleterContents[] = Object.keys(meta).length === 0 ? [
               { type: 'separator' },
               { value: '', text: 'Load more...', meta: { reload: true }}
             ] : [ ];

@@ -1,8 +1,8 @@
-import { Fun, Id, Optional, Type } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { isInProtectedMode } from './Mode';
 
-const dataId = Id.generate('data');
+const dataId = '_' + Math.random().toString(36).slice(2);
 
 const setData = (item: DataTransferItem, data: string): void => {
   const itemObj: any = item;
@@ -11,14 +11,14 @@ const setData = (item: DataTransferItem, data: string): void => {
 
 const getData = (item: DataTransferItem): Optional<string> => {
   const itemObj: any = item;
-  return Optional.from(itemObj[dataId]);
+  return itemObj[dataId] ?? null;
 };
 
 const createDataTransferItemFromFile = (dataTransfer: DataTransfer, file: File): DataTransferItem => {
   const transferItem: DataTransferItem = {
     kind: 'file',
     type: file.type,
-    getAsString: Fun.noop,
+    getAsString: () => {},
     getAsFile: () => {
       if (isInProtectedMode(dataTransfer) === false) {
         return file;
@@ -28,7 +28,7 @@ const createDataTransferItemFromFile = (dataTransfer: DataTransfer, file: File):
     },
 
     // Not supported on all browsers but needed since the TS dom lib type has it
-    webkitGetAsEntry: Fun.constant(null)
+    webkitGetAsEntry: () => null
   };
 
   return transferItem;
@@ -39,14 +39,14 @@ const createDataTransferItemFromString = (dataTransfer: DataTransfer, type: stri
     kind: 'string',
     type,
     getAsString: (callback) => {
-      if (!isInProtectedMode(dataTransfer) && !Type.isNull(callback)) {
+      if (!isInProtectedMode(dataTransfer) && !callback === null) {
         callback(data);
       }
     },
-    getAsFile: Fun.constant(null),
+    getAsFile: () => null,
 
     // Not supported on all browsers but needed since the TS dom lib type has it
-    webkitGetAsEntry: Fun.constant(null)
+    webkitGetAsEntry: () => null
   };
 
   setData(transferItem, data);

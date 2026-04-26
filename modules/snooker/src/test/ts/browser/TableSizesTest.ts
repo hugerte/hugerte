@@ -1,5 +1,5 @@
 import { Assert, after, before, describe, it } from '@ephox/bedrock-client';
-import { Arr, Optional, Type } from '@ephox/katamari';
+
 import { Css, Html, Insert, InsertAll, Remove, SugarBody, SugarElement } from '@ephox/sugar';
 // import { assert } from 'chai';
 
@@ -74,9 +74,9 @@ describe('Table Sizes Test (fusebox)', () => {
     const table = SugarElement.fromTag('table');
     Css.set(table, 'width', totalWidth);
     const tbody = SugarElement.fromTag('tbody');
-    const trows = Arr.map(info, (row, r) => {
+    const trows = info.map((row, r) =) {
       const tr = SugarElement.fromTag('tr');
-      const cells = Arr.map(row, (width, c) => {
+      const cells = row.map((width, c) =) {
         const td = SugarElement.fromTag('td');
         Css.set(td, 'width', width);
         Insert.append(td, SugarElement.fromText(String.fromCharCode('A'.charCodeAt(0) + c) + r));
@@ -96,18 +96,29 @@ describe('Table Sizes Test (fusebox)', () => {
     const tbody = SugarElement.fromTag('tbody');
     const numRows = tdInfo.length || trInfo.length;
     const trows: SugarElement<HTMLTableRowElement>[] = [];
-    Arr.range(numRows, (r) => {
+    Array.from({ length: numRows }, (r) => {
       const tr = SugarElement.fromTag('tr');
       const trHeight = trInfo[r];
-      if (Type.isNonNullable(trHeight)) {
+      if (trHeight != null) {
         Css.set(tr, 'height', trHeight);
       }
       const numCells = tdInfo[r].length || 1;
       const cells: SugarElement<HTMLTableCellElement>[] = [];
-      Arr.range(numCells, (c) => {
+      Array.from({ length: numCells }, (c) => {
         const td = SugarElement.fromTag('td');
         const height = tdInfo[r][c];
-        if (Type.isNonNullable(height)) {
+        if (height != null) {
+          Css.set(td, 'height', height);
+        }
+        Insert.append(td, SugarElement.fromText(String.fromCharCode('A'.charCodeAt(0) + c) + r));
+        cells.push(td);
+      });
+      InsertAll.append(tr, cells);
+      trows.push(tr);
+    })Array.from({ length: numCells }, (c) => {
+        const td = SugarElement.fromTag('td');
+        const height = tdInfo[r][c];
+        if (height != null) {
           Css.set(td, 'height', height);
         }
         Insert.append(td, SugarElement.fromText(String.fromCharCode('A'.charCodeAt(0) + c) + r));
@@ -123,7 +134,7 @@ describe('Table Sizes Test (fusebox)', () => {
 
   const checkWidth = (expected: string[][], table: SugarElement<HTMLTableElement>, newWidth: string) => {
     Insert.append(SugarBody.body(), table);
-    Sizes.redistribute(table, Optional.some(newWidth), Optional.none());
+    Sizes.redistribute(table, newWidth, null);
     Assert.eq('', expected, readWidth(table));
     Remove.remove(table);
   };
@@ -135,7 +146,7 @@ describe('Table Sizes Test (fusebox)', () => {
 
   const checkRowHeight = (expectedRowHeights: string[], table: SugarElement<HTMLTableElement>, newTableHeight: string) => {
     Insert.append(SugarBody.body(), table);
-    Sizes.redistribute(table, Optional.none(), Optional.some(newTableHeight));
+    Sizes.redistribute(table, null, newTableHeight);
     Assert.eq('check height row', expectedRowHeights, readRowHeights(table));
     Remove.remove(table);
   };

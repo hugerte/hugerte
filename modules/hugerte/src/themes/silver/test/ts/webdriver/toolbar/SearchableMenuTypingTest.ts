@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, FocusTools, KeyPressAdt, Mouse, RealKeys, StructAssert, UiFinder } from '@ephox/agar';
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { context, describe, it } from '@ephox/bedrock-client';
-import { Fun, Id, Optional } from '@ephox/katamari';
+
 import { Attribute, Focus, SugarDocument, SugarElement, SugarNode, Value } from '@ephox/sugar';
 
 import { renderMenuButton } from 'hugerte/themes/silver/ui/button/MenuButton';
@@ -30,7 +30,7 @@ describe('webdriver.hugerte.themes.silver.toolbar.SearchableMenuTypingTest', () 
     return Focus.active().fold(
       () => Promise.reject('Could not find the focused element to send events'),
       async (activeElem) => {
-        const tempVal = Id.generate('data-sendkeys-id');
+        const tempVal = '_' + Math.random().toString(36).slice(2);
         Attribute.set(activeElem, 'data-sendkeys', tempVal);
         const selector = `${SugarNode.name(activeElem)}[data-sendkeys=${tempVal}]`;
         await f(activeElem, selector);
@@ -102,11 +102,11 @@ describe('webdriver.hugerte.themes.silver.toolbar.SearchableMenuTypingTest', () 
     (store, _doc, _body) => GuiFactory.build(
       renderMenuButton(
         {
-          text: Optional.some('MailMerge'),
-          icon: Optional.none(),
-          tooltip: Optional.none(),
-          onSetup: Fun.constant(Fun.noop),
-          search: Optional.some({ placeholder: Optional.none() }),
+          text: 'MailMerge',
+          icon: null,
+          tooltip: null,
+          onSetup: () => () = {}),
+          search: { placeholder: null },
           fetch: fetchMailMergeData({
             // To test that <left> and <right> etc. are not being
             // processed by the menu, we need to have menus that can expand / collapse
@@ -116,12 +116,12 @@ describe('webdriver.hugerte.themes.silver.toolbar.SearchableMenuTypingTest', () 
         },
         'prefix',
         extrasHook.access().extras.backstages.popup,
-        Optional.none()
+        null
       )
     )
   );
 
-  const structNoPlaceholderSearch = structSearchField(Optional.none());
+  const structNoPlaceholderSearch = structSearchField(null);
 
   // TINY-9013: The <space> key is missing from KeyEffects in bedrock
   const spaceKey = RealKeys.text('\uE00D');

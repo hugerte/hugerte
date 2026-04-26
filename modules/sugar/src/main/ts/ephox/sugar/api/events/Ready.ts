@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 
 import { SugarElement } from '../node/SugarElement';
 import * as DomEvent from './DomEvent';
@@ -43,7 +43,7 @@ const image = (image: SugarElement<HTMLImageElement>): Promise<SugarElement<HTML
     }),
   ];
 
-  const destroy = () => Arr.each(listeners, (l) => l.unbind());
+  const destroy = () => listeners.forEach((l) =) l.unbind());
 
   if (image.dom.complete) {
     loaded();

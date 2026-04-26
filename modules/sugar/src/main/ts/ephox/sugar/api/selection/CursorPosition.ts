@@ -21,7 +21,7 @@ const descendantRtl: {
     for (let i = children.length - 1; i >= 0; i--) {
       const child = children[i];
       if (predicate(child)) {
-        return Optional.some(child);
+        return child;
       }
       const res = descend(child);
       if (res.isSome()) {

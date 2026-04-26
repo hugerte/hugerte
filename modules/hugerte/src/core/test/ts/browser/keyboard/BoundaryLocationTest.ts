@@ -36,19 +36,19 @@ describe('browser.hugerte.core.keyboard.BoundaryLocationTest', () => {
 
   const locationName = (location: BoundaryLocation.LocationAdt) => {
     return location.fold(
-      Fun.constant('before'),
-      Fun.constant('start'),
-      Fun.constant('end'),
-      Fun.constant('after')
+      () => 'before',
+      () => 'start',
+      () => 'end',
+      () => 'after'
     );
   };
 
   const locationElement = (location: BoundaryLocation.LocationAdt) => {
     return SugarElement.fromDom(location.fold(
-      Fun.identity,
-      Fun.identity,
-      Fun.identity,
-      Fun.identity
+      (x) => x,
+      (x) => x,
+      (x) => x,
+      (x) => x
     ));
   };
 

@@ -1,4 +1,4 @@
-import { Arr } from '@ephox/katamari';
+
 import { Focus, SugarElement, Traverse } from '@ephox/sugar';
 
 import { keyevent, MixedKeyModifiers } from '../keyboard/FakeKeys';
@@ -14,7 +14,7 @@ export type KeyModifiers = MixedKeyModifiers;
 */
 const fakeKeys = (types: string[]) => (value: number, modifiers: KeyModifiers = {}, dispatcher: SugarElement<Node>) => {
   const doc = Traverse.owner(dispatcher);
-  Arr.each(types, (type) => {
+  types.forEach((type) =) {
     keyevent(type, doc, value, modifiers, dispatcher);
   });
 };
