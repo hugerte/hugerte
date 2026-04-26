@@ -91,7 +91,7 @@ describe('browser.hugerte.plugins.advlist.AdvlistOptionsAndToolbarTest', () => {
       ListsPlugin();
     });
 
-    (
+    ([
       {
         label: 'TBA: Test default advlist_number_styles option behaviour',
         options: {},

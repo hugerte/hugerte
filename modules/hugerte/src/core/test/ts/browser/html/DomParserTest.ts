@@ -1397,7 +1397,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
         });
 
         context('Transparent elements', () => {
-          const getTransparentElements = (schema: Schema) => [...new Set(Object.keys(schema.getTransparentElements()).map((s) => s.toLowerCase())];
+          const getTransparentElements = (schema: Schema) => [...new Set(Object.keys(schema.getTransparentElements()).map((s) => s.toLowerCase()))];
 
           const testTransparentElementsParsing = (testCase: { input: string; expected: string; domParserSettings?: DomParserSettings }) => {
             const parser = DomParser({ ...scenario.settings, ...testCase.domParserSettings });

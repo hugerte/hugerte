@@ -24,7 +24,7 @@ describe('headless.hugerte.themes.silver.components.urlinput.UrlInputTest', () =
     }, extrasHook.access().extras.backstages.popup, {
       getHistory: (_fileType) => [],
       addToHistory: (_url, _filetype) => store.adder('addToHistory')(),
-      getLinkInformation: () => {
+      getLinkInformation: () => ({
         targets: [
           {
             type: 'header' as LinkTargetType,
@@ -43,7 +43,7 @@ describe('headless.hugerte.themes.silver.components.urlinput.UrlInputTest', () =
         ],
         anchorTop: '#anchor-top',
         anchorBottom: undefined
-      },
+      }),
       getValidationHandler: () => null,
       getUrlPicker: (_filetype) => (entry: ApiUrlData) => {
         store.adder('urlpicker')();
