@@ -141,11 +141,12 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     } else if (NodeType.isTable(elm)) {
       const tableElm = elm.cloneNode(true) as HTMLTableElement;
       // Get last row, remove all height styles
-      ((dom.select('tr', tableElm)).at(-1) ?? null).each((tr) => {
-        const cells = dom.select('td,th', tr);
-        dom.setStyle(tr, 'height', null);
+      const lastTr = dom.select('tr', tableElm).slice(-1)[0] ?? null;
+      if (lastTr !== null) {
+        const cells = dom.select('td,th', lastTr);
+        dom.setStyle(lastTr, 'height', null);
         (cells).forEach((cell) => dom.setStyle(cell, 'height', null));
-      });
+      }
       return tableElm;
     } else {
       return elm.cloneNode(true) as HTMLElement;
@@ -427,10 +428,9 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     }
 
     const targetElm = e.type === 'mousedown' ? e.target : selection.getNode();
-    const controlElm = SelectorFind.closest<HTMLElement>(SugarElement.fromDom(targetElm), controlElmSelector)
-      .map((e) => e.dom)
-      .filter((e) => dom.isEditable(e.parentElement) || (e.nodeName === 'IMG' && dom.isEditable(e)))
-       ?? undefined;
+    const closestEl = SelectorFind.closest<HTMLElement>(SugarElement.fromDom(targetElm), controlElmSelector);
+    const closestDom = closestEl !== null ? closestEl.dom : null;
+    const controlElm = closestDom !== null && (dom.isEditable(closestDom.parentElement) || (closestDom.nodeName === 'IMG' && dom.isEditable(closestDom))) ? closestDom : undefined;
 
     // Store the original data-mce-selected value or fallback to '1' if not set
     const selectedValue = (controlElm) != null ? dom.getAttrib(controlElm, elementSelectionAttr, '1') : '1';
@@ -461,7 +461,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
         dom.unbind(handle.elm);
         delete handle.elm;
       }
-    })(_v, _k));
+    })(_v));
   };
 
   const disableGeckoResize = () => {

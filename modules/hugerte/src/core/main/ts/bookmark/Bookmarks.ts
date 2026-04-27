@@ -9,9 +9,10 @@ const getBookmark = (selection: EditorSelection, type?: number, normalized?: boo
 };
 
 const moveToBookmark = (selection: EditorSelection, bookmark: Bookmark): void => {
-  ResolveBookmark.resolve(selection, bookmark).each(({ range, forward }) => {
-    selection.setRng(range, forward);
-  });
+  const result = ResolveBookmark.resolve(selection, bookmark);
+  if (result !== null) {
+    selection.setRng(result.range, result.forward);
+  }
 };
 
 const isBookmarkNode = (node: Node | null): boolean => {

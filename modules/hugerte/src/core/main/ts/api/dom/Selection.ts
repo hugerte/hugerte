@@ -232,7 +232,8 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
    * hugerte.activeEditor.selection.select(hugerte.activeEditor.dom.select('p')[0]);
    */
   const select = (node: Node, content?: boolean) => {
-    ElementSelection.select(dom, node, content).each(setRng);
+    const selectedRng = ElementSelection.select(dom, node, content);
+    if (selectedRng !== null) { setRng(selectedRng); }
     return node;
   };
 
@@ -268,7 +269,7 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
     const fakeSelectedElements = editor.getBody().querySelectorAll('[data-mce-selected="1"]');
 
     if (fakeSelectedElements.length > 0) {
-      return (fakeSelectedElements).every((el) => dom.isEditable(el.parentElement));
+      return Array.from(fakeSelectedElements).every((el) => dom.isEditable(el.parentElement));
     } else {
       return EditableRange.isEditableRange(dom, rng);
     }
@@ -325,7 +326,7 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
       const bookmark = SelectionBookmark.getRng(editor);
 
       if (bookmark !== null) {
-        return bookmark.map((r) => EventProcessRanges.processRanges(editor, [ r ])[0]) ?? (doc.createRange());
+        return EventProcessRanges.processRanges(editor, [ bookmark ])[0] ?? doc.createRange();
       }
     }
 
@@ -502,9 +503,9 @@ const EditorSelection = (dom: DOMUtils, win: Window, serializer: DomSerializer, 
     if (!MultiRange.hasMultipleRanges(sel) && hasAnyRanges(editor)) {
       const normRng = NormalizeRange.normalize(dom, rng);
 
-      normRng.each((normRng) => {
+      if (normRng !== null) {
         setRng(normRng, isForward());
-      });
+      }
 
       return normRng ?? (rng);
     }

@@ -55,15 +55,15 @@ const insertZwsp = (node: Node, rng: Range) => {
 
 const isEmpty = (node: Node) => !node.hasChildNodes();
 
-const tryFindRangePosition = (node: Node, rng: Range): boolean =>
-  CaretFinder.lastPositionIn(node).fold(
-    (() => false as const),
-    (pos) => {
-      rng.setStart(pos.container(), pos.offset());
-      rng.setEnd(pos.container(), pos.offset());
-      return true;
-    }
-  );
+const tryFindRangePosition = (node: Node, rng: Range): boolean => {
+  const pos = CaretFinder.lastPositionIn(node);
+  if (pos === null) {
+    return false;
+  }
+  rng.setStart(pos.container(), pos.offset());
+  rng.setEnd(pos.container(), pos.offset());
+  return true;
+};
 
 // Since we trim zwsp from undo levels the caret format containers
 // may be empty if so pad them with a zwsp and move caret there
@@ -223,20 +223,25 @@ const resolvePaths = (dom: DOMUtils, bookmark: PathBookmark): (BookmarkResolveRe
 const resolveId = (dom: DOMUtils, bookmark: IdBookmark): (BookmarkResolveResult) | null => {
   const startPos = restoreEndPoint(dom, 'start', bookmark);
   const endPos = restoreEndPoint(dom, 'end', bookmark);
-
-  return (startPos !== null && endPos.or(startPos) !== null ? ((spos, epos) => {
-      const range = dom.createRng();
-      range.setStart(addBogus(dom, spos.container()), spos.offset());
-      range.setEnd(addBogus(dom, epos.container()), epos.offset());
-      return { range, forward: isForwardBookmark(bookmark) };
-    })(startPos, endPos.or(startPos)) : null);
+  if (startPos === null) {
+    return null;
+  }
+  const effectiveEndPos = endPos !== null ? endPos : startPos;
+  const range = dom.createRng();
+  range.setStart(addBogus(dom, startPos.container()), startPos.offset());
+  range.setEnd(addBogus(dom, effectiveEndPos.container()), effectiveEndPos.offset());
+  return { range, forward: isForwardBookmark(bookmark) };
 };
 
-const resolveIndex = (dom: DOMUtils, bookmark: IndexBookmark): (BookmarkResolveResult) | null => (dom.select(bookmark.name)[bookmark.index] ?? null).map((elm) => {
+const resolveIndex = (dom: DOMUtils, bookmark: IndexBookmark): (BookmarkResolveResult) | null => {
+  const elm = dom.select(bookmark.name)[bookmark.index] ?? null;
+  if (elm === null) {
+    return null;
+  }
   const range = dom.createRng();
   range.selectNode(elm);
   return { range, forward: true };
-});
+};
 
 const resolve = (selection: EditorSelection, bookmark: Bookmark): (BookmarkResolveResult) | null => {
   const dom = selection.dom;

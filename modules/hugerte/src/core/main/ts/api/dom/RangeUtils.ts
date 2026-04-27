@@ -51,14 +51,13 @@ const RangeUtils = (dom: DOMUtils): RangeUtils => {
    * @return {Boolean} True or false if the specified range was normalized or not.
    */
   const normalize = (rng: Range): boolean => {
-    return NormalizeRange.normalize(dom, rng).fold(
-      (() => false as const),
-      (normalizedRng) => {
-        rng.setStart(normalizedRng.startContainer, normalizedRng.startOffset);
-        rng.setEnd(normalizedRng.endContainer, normalizedRng.endOffset);
-        return true;
-      }
-    );
+    const normalizedRng = NormalizeRange.normalize(dom, rng);
+    if (normalizedRng === null) {
+      return false;
+    }
+    rng.setStart(normalizedRng.startContainer, normalizedRng.startOffset);
+    rng.setEnd(normalizedRng.endContainer, normalizedRng.endOffset);
+    return true;
   };
 
   /**

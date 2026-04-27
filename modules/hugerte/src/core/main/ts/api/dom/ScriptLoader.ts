@@ -206,9 +206,10 @@ class ScriptLoader {
 
     const execCallbacks = (name: 'resolve' | 'reject', url: string) => {
       // Execute URL callback functions
-      ((self.scriptLoadedCallbacks)[url] ?? null).each((callbacks) => {
-        (callbacks).forEach((callback) => callback[name](url));
-      });
+      const callbacksForUrl = (self.scriptLoadedCallbacks)[url] ?? null;
+      if (callbacksForUrl !== null) {
+        callbacksForUrl.forEach((callback) => callback[name](url));
+      }
 
       delete self.scriptLoadedCallbacks[url];
     };
@@ -261,7 +262,9 @@ class ScriptLoader {
 
         // Start loading the next queued item
         const nextQueuedItem = self.queueLoadedCallbacks.shift();
-        (nextQueuedItem ?? null).each(((f: () => any) => f()));
+        if (nextQueuedItem !== undefined) {
+          nextQueuedItem();
+        }
 
         return processResults(results);
       });
