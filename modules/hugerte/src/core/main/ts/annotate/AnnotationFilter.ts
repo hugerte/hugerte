@@ -6,16 +6,20 @@ import * as Markings from './Markings';
 
 const setup = (editor: Editor, registry: AnnotationsRegistry): void => {
   const dataAnnotation = Markings.dataAnnotation();
-  const identifyParserNode = (node: AstNode): (AnnotatorSettings) | null =>
-    (node.attr(dataAnnotation) ?? null).bind(registry.lookup);
+  const identifyParserNode = (node: AstNode): (AnnotatorSettings) | null => {
+    const attrVal = node.attr(dataAnnotation);
+    return attrVal != null ? registry.lookup(attrVal) : null;
+  };
 
   const removeDirectAnnotation = (node: AstNode) => {
     node.attr(Markings.dataAnnotationId(), null);
     node.attr(Markings.dataAnnotation(), null);
     node.attr(Markings.dataAnnotationActive(), null);
 
-    const customAttrNames = (node.attr(Markings.dataAnnotationAttributes()) ?? null).map((names) => names.split(',')) ?? ([]);
-    const customClasses = (node.attr(Markings.dataAnnotationClasses()) ?? null).map((names) => names.split(',')) ?? ([]);
+    const attrNamesStr = node.attr(Markings.dataAnnotationAttributes());
+    const customAttrNames = attrNamesStr != null ? attrNamesStr.split(',') : [];
+    const classesStr = node.attr(Markings.dataAnnotationClasses());
+    const customClasses = classesStr != null ? classesStr.split(',') : [];
     (customAttrNames).forEach((name) => node.attr(name, null));
 
     const classList = node.attr('class')?.split(' ') ?? [];
@@ -30,7 +34,8 @@ const setup = (editor: Editor, registry: AnnotationsRegistry): void => {
 
   editor.serializer.addAttributeFilter(dataAnnotation, (nodes) => {
     for (const node of nodes) {
-      identifyParserNode(node).each((settings) => {
+      const settings = identifyParserNode(node);
+      if (settings !== null) {
         if (settings.persistent === false) {
           if (node.name === 'span') {
             node.unwrap();
@@ -38,7 +43,7 @@ const setup = (editor: Editor, registry: AnnotationsRegistry): void => {
             removeDirectAnnotation(node);
           }
         }
-      });
+      }
     }
   });
 };

@@ -1,11 +1,10 @@
 import * as AsyncValues from '../async/AsyncValues';
-import * as Arr from './Arr';
 import { Future } from './Future';
 
-export const par = <T>(futures: ArrayLike<Future<T>>): Future<Array<T>> =>
+export const par = <T>(futures: ReadonlyArray<Future<T>>): Future<Array<T>> =>
   AsyncValues.par<Future<T>, T, Future<Array<T>>>(futures, Future.nu);
 
-export const traverse = <A, B>(array: ArrayLike<A>, fn: (value: A) => Future<B>): Future<B[]> =>
+export const traverse = <A, B>(array: ReadonlyArray<A>, fn: (value: A) => Future<B>): Future<B[]> =>
   par(array.map(fn));
 
 /** Deprecated for rename to traverse */

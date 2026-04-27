@@ -258,17 +258,17 @@ const start = (state: Singleton.Value<State>, editor: Editor) => (e: EditorEvent
 
 const placeCaretAt = (editor: Editor, clientX: number, clientY: number) => {
   editor._selectionOverrides.hideFakeCaret();
-  ClosestCaretCandidate.closestFakeCaretCandidate(editor.getBody(), clientX, clientY).fold(
-    () => editor.selection.placeCaretAt(clientX, clientY),
-    (caretInfo) => {
-      const range = editor._selectionOverrides.showCaret(1, caretInfo.node as HTMLElement, caretInfo.position === ClosestCaretCandidate.FakeCaretPosition.Before, false);
-      if (range) {
-        editor.selection.setRng(range);
-      } else {
-        editor.selection.placeCaretAt(clientX, clientY);
-      }
+  const caretInfo = ClosestCaretCandidate.closestFakeCaretCandidate(editor.getBody(), clientX, clientY);
+  if (caretInfo === null) {
+    editor.selection.placeCaretAt(clientX, clientY);
+  } else {
+    const range = editor._selectionOverrides.showCaret(1, caretInfo.node as HTMLElement, caretInfo.position === ClosestCaretCandidate.FakeCaretPosition.Before, false);
+    if (range) {
+      editor.selection.setRng(range);
+    } else {
+      editor.selection.placeCaretAt(clientX, clientY);
     }
-  );
+  }
 };
 
 const dispatchDragEvent = (editor: Editor, type: DragEvents.DragEventType, target: Element, dataTransfer: DataTransfer, mouseEvent?: EditorEvent<MouseEvent>): EditorEvent<DragEvent> => {
@@ -341,7 +341,8 @@ const drop = (state: Singleton.Value<State>, editor: Editor) => (e: EditorEvent<
             removeElementWithPadding(editor.dom, state.element);
             // TINY-9601: Use dataTransfer property to determine inserted content on drop. This allows users to
             // manipulate drop content by modifying dataTransfer in the dragstart event.
-            DataTransferContent.getHtmlData(state.dataTransfer).each((content) => editor.insertContent(content));
+            const htmlData = DataTransferContent.getHtmlData(state.dataTransfer);
+            if (htmlData !== null) { editor.insertContent(htmlData); }
             editor._selectionOverrides.hideFakeCaret();
           });
         }
@@ -359,10 +360,11 @@ const stopDragging = (state: Singleton.Value<State>, editor: Editor, e: (EditorE
   state.on((state) => {
     state.intervalId.clear();
     if (state.dragging) {
-      e.fold(
-        () => dispatchDragEvent(editor, 'dragend', state.element, state.dataTransfer),
-        (mouseEvent) => dispatchDragEvent(editor, 'dragend', state.element, state.dataTransfer, mouseEvent)
-      );
+      if (e === null) {
+        dispatchDragEvent(editor, 'dragend', state.element, state.dataTransfer);
+      } else {
+        dispatchDragEvent(editor, 'dragend', state.element, state.dataTransfer, e);
+      }
     }
   });
   removeDragState(state);

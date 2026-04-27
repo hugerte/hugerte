@@ -1,5 +1,4 @@
 import { Adt } from './Adt';
-import * as Arr from './Arr';
 import * as Fun from './Fun';
 import { Result } from './Result';
 

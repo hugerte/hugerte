@@ -1,4 +1,3 @@
-import * as Arr from '../api/Arr';
 import * as Type from '../api/Type';
 
 export const sort = <T>(arr: T[]): T[] => {
@@ -30,11 +29,11 @@ export const invalidTypeMessage = (incorrect: string[], type: string): never => 
 
 export const checkDupes = (everything: string[]): void => {
   const sorted = sort(everything);
-  const dupe = (sorted.find((s, i) => {
+  const dupe = sorted.find((s, i) => {
     return i < sorted.length - 1 && s === sorted[i + 1];
-  }) ?? null);
-
-  dupe.each((d) => {
-    throw new Error('The field: ' + d + ' occurs more than once in the combined fields: [' + sorted.join(', ') + '].');
   });
+
+  if (dupe !== undefined) {
+    throw new Error('The field: ' + dupe + ' occurs more than once in the combined fields: [' + sorted.join(', ') + '].');
+  }
 };

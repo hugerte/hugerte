@@ -1,5 +1,3 @@
-import * as Arr from './Arr';
-import * as Obj from './Obj';
 import * as Type from './Type';
 
 export interface Adt {

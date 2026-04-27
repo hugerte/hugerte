@@ -49,7 +49,7 @@ export const findMap = Arr.findMap;
  *  If all results are "some", return Optional.some of the results.
  *  If any result is "none", return Optional.none
  */
-export const traverse = <A, B> (arr: ArrayLike<A>, f: (a: A) => Optional<B>): Optional<Array<B>> =>
+export const traverse = <A, B> (arr: ReadonlyArray<A>, f: (a: A) => Optional<B>): Optional<Array<B>> =>
   sequence(arr.map(f));
 
 /*

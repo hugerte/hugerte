@@ -36,7 +36,7 @@ const setup = (editor: Editor, registry: AnnotationsRegistry): AnnotationChanges
 
   const updateCallbacks = (name: string, f: (inputData: AnnotationListenerData) => AnnotationListenerData) => {
     const callbackMap = changeCallbacks.get();
-    const data = ((callbackMap)[name] ?? null).getOrThunk(initData);
+    const data = (callbackMap)[name] ?? initData();
     const outputData = f(data);
     callbackMap[name] = outputData;
     changeCallbacks.set(callbackMap);
@@ -73,25 +73,24 @@ const setup = (editor: Editor, registry: AnnotationsRegistry): AnnotationChanges
     (annotations).forEach((name) => {
       updateCallbacks(name, (data) => {
         const prev = data.previous.get();
-        Identification.identify(editor, name).fold(
-          () => {
-            prev.each((uid) => {
-              // Changed from something to nothing.
-              fireNoAnnotation(name);
-              data.previous.clear();
-              toggleActiveAttr(uid, false);
-            });
-          },
-          ({ uid, name, elements }) => {
-            // Changed from a different annotation (or nothing)
-            if (!(prev !== null && (prev) === (uid))) {
-              prev.each((uid) => toggleActiveAttr(uid, false));
-              fireCallbacks(name, uid, elements);
-              data.previous.set(uid);
-              toggleActiveAttr(uid, true);
-            }
+        const identified = Identification.identify(editor, name);
+        if (identified === null) {
+          prev.each((uid) => {
+            // Changed from something to nothing.
+            fireNoAnnotation(name);
+            data.previous.clear();
+            toggleActiveAttr(uid, false);
+          });
+        } else {
+          const { uid, elements } = identified;
+          // Changed from a different annotation (or nothing)
+          if (!prev.exists((p) => p === uid)) {
+            prev.each((uid) => toggleActiveAttr(uid, false));
+            fireCallbacks(name, uid, elements);
+            data.previous.set(uid);
+            toggleActiveAttr(uid, true);
           }
-        );
+        }
 
         return {
           previous: data.previous,

@@ -1,11 +1,9 @@
-
 import * as ErrorReporter from '../ErrorReporter';
 import * as FocusController from '../focus/FocusController';
 import AddOnManager from './AddOnManager';
 import DOMUtils from './dom/DOMUtils';
 import { EventUtilsEvent } from './dom/EventUtils';
 import Editor from './Editor';
-import Env from './Env';
 import { EditorManagerEventMap } from './EventTypes';
 import { RawEditorOptions } from './OptionTypes';
 import I18n, { TranslatedString, Untranslated } from './util/I18n';
@@ -354,7 +352,8 @@ const EditorManager: EditorManager = {
       let id = elm.id;
 
       if (!id) {
-        id = ((elm)['name'] ?? null).filter((name) => !DOM.get(name)).getOrThunk(DOM.uniqueId);
+        const name = elm['name'] ?? null;
+        id = name !== null && !DOM.get(name) ? name : DOM.uniqueId();
         elm.setAttribute('id', id);
       }
       return id;

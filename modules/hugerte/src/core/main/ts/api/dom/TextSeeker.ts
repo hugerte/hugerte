@@ -1,5 +1,3 @@
-import { Optional } from '@ephox/katamari';
-
 import * as NodeType from '../../dom/NodeType';
 import { TextWalker } from '../../dom/TextWalker';
 import DOMUtils from './DOMUtils';
@@ -50,7 +48,8 @@ const TextSeeker = (dom: DOMUtils, isBoundary?: (node: Node) => boolean): TextSe
       }
     }
 
-    return walker().bind((next) => walk(next.container, next.offset, walker, process));
+    const next = walker();
+    return next !== null ? walk(next.container, next.offset, walker, process) : null;
   };
 
   /**
@@ -65,7 +64,10 @@ const TextSeeker = (dom: DOMUtils, isBoundary?: (node: Node) => boolean): TextSe
    */
   const backwards = (node: Node, offset: number, process: TextProcessCallback, root?: Node) => {
     const walker = TextWalker(node, root ?? dom.getRoot(), isBlockBoundary);
-    return walk(node, offset, () => walker.prev().map((prev) => ({ container: prev, offset: prev.length })), process) ?? null;
+    return walk(node, offset, () => {
+      const prev = walker.prev();
+      return prev !== null ? { container: prev, offset: prev.length } : null;
+    }, process) ?? null;
   };
 
   /**
@@ -80,7 +82,10 @@ const TextSeeker = (dom: DOMUtils, isBoundary?: (node: Node) => boolean): TextSe
    */
   const forwards = (node: Node, offset: number, process: TextProcessCallback, root?: Node) => {
     const walker = TextWalker(node, root ?? dom.getRoot(), isBlockBoundary);
-    return walk(node, offset, () => walker.next().map((next) => ({ container: next, offset: 0 })), process) ?? null;
+    return walk(node, offset, () => {
+      const next = walker.next();
+      return next !== null ? { container: next, offset: 0 } : null;
+    }, process) ?? null;
   };
 
   return {

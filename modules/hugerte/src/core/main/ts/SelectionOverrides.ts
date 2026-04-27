@@ -92,9 +92,11 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
       const contentEditableRoot = getContentEditableRoot(editor, targetElm);
       if (isContentEditableFalse(contentEditableRoot)) {
         e.preventDefault();
-        FakeCaretUtils.selectNode(editor, contentEditableRoot).each(setElementSelection);
+        const range = FakeCaretUtils.selectNode(editor, contentEditableRoot);
+        if (range !== null) { setElementSelection(range); }
       } else if (isFakeSelectionTargetElement(targetElm)) {
-        FakeCaretUtils.selectNode(editor, targetElm).each(setElementSelection);
+        const range = FakeCaretUtils.selectNode(editor, targetElm);
+        if (range !== null) { setElementSelection(range); }
       }
     }, true);
 
@@ -117,9 +119,11 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
       const closestContentEditable = getContentEditableRoot(editor, targetElm);
       if (isContentEditableFalse(closestContentEditable)) {
         e.preventDefault();
-        FakeCaretUtils.selectNode(editor, closestContentEditable).each(setElementSelection);
+        const range = FakeCaretUtils.selectNode(editor, closestContentEditable);
+        if (range !== null) { setElementSelection(range); }
       } else {
-        ClosestCaretCandidate.closestFakeCaretCandidate(rootNode, e.clientX, e.clientY).each((caretInfo) => {
+        const caretInfo = ClosestCaretCandidate.closestFakeCaretCandidate(rootNode, e.clientX, e.clientY);
+        if (caretInfo !== null) {
           e.preventDefault();
           const range = showCaret(1, caretInfo.node as HTMLElement, caretInfo.position === ClosestCaretCandidate.FakeCaretPosition.Before, false);
           setRange(range);
@@ -130,7 +134,7 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
           } else {
             editor.getBody().focus();
           }
-        });
+        }
       }
     });
 
@@ -234,12 +238,12 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
   const setupOffscreenSelection = (node: Element, targetClone: Node) => {
     const body = SugarElement.fromDom(editor.getBody());
     const doc = editor.getDoc();
-    const realSelectionContainer = SelectorFind.descendant<HTMLElement>(body, '#' + realSelectionId).getOrThunk(() => {
+    const realSelectionContainer = SelectorFind.descendant<HTMLElement>(body, '#' + realSelectionId) ?? (() => {
       const newContainer = SugarElement.fromHtml<HTMLDivElement>('<div data-mce-bogus="all" class="mce-offscreen-selection"></div>', doc);
       Attribute.set(newContainer, 'id', realSelectionId);
       Insert.append(body, newContainer);
       return newContainer;
-    });
+    })();
 
     const newRange = dom.createRng();
     Remove.empty(realSelectionContainer);
@@ -364,7 +368,8 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
     if (selectedElement) {
       selectedElement.removeAttribute(elementSelectionAttr);
     }
-    SelectorFind.descendant(SugarElement.fromDom(editor.getBody()), '#' + realSelectionId).each(Remove.remove);
+    const selElem = SelectorFind.descendant(SugarElement.fromDom(editor.getBody()), '#' + realSelectionId);
+    if (selElem !== null) { Remove.remove(selElem); }
     selectedElement = null;
   };
 

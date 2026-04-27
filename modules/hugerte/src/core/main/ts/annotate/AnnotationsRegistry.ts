@@ -27,8 +27,10 @@ const create = (): AnnotationsRegistry => {
     };
   };
 
-  const lookup = (name: string): (AnnotatorSettings) | null =>
-    ((annotations)[name] ?? null).map((a) => a.settings);
+  const lookup = (name: string): (AnnotatorSettings) | null => {
+    const a = (annotations)[name] ?? null;
+    return a !== null ? a.settings : null;
+  };
 
   const getNames = (): string[] => Object.keys(annotations);
 

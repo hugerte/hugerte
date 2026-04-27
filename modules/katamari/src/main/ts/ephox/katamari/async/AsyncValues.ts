@@ -1,5 +1,3 @@
-import * as Arr from '../api/Arr';
-
 /*
  * NOTE: an `asyncValue` must have a `get` function which gets given a callback and calls
  * that callback with a value once it is ready
@@ -9,7 +7,7 @@ import * as Arr from '../api/Arr';
  *   get: (callback) => { callback(10); }
  * }
  */
-export const par = <A, T, C> (asyncValues: ArrayLike<(A & { get: (callback: (value: T) => void) => void })>, nu: (worker: (callback: (values: T[]) => void) => void) => C): C => {
+export const par = <A, T, C> (asyncValues: ReadonlyArray<(A & { get: (callback: (value: T) => void) => void })>, nu: (worker: (callback: (values: T[]) => void) => void) => C): C => {
   return nu((callback) => {
     const r: T[] = [];
     let count = 0;

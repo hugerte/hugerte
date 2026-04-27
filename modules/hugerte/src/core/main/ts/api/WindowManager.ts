@@ -1,5 +1,3 @@
-import { Optional } from '@ephox/katamari';
-
 import * as SelectionBookmark from '../selection/SelectionBookmark';
 import WindowManagerImpl from '../ui/WindowManagerImpl';
 import Editor from './Editor';
@@ -127,10 +125,11 @@ const WindowManager = (editor: Editor): WindowManager => {
   };
 
   const close = () => {
-    getTopDialog().each((dialog) => {
+    const dialog = getTopDialog();
+    if (dialog !== null) {
       getImplementation().close(dialog);
       closeDialog(dialog);
-    });
+    }
   };
 
   editor.on('remove', () => {

@@ -1,7 +1,5 @@
 import * as BagUtils from '../util/BagUtils';
-import * as Arr from './Arr';
 import * as Fun from './Fun';
-import * as Obj from './Obj';
 import * as Type from './Type';
 
 export interface ContractCondition<T> {

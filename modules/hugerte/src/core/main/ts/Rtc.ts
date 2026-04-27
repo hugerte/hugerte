@@ -289,29 +289,26 @@ const makeNoopAdaptor = (): RtcAdaptor => {
 
 export const isRtc = (editor: Editor): boolean => Object.prototype.hasOwnProperty.call(editor.plugins, 'rtc');
 
-const getRtcSetup = (editor: Editor): (() => Promise<RtcRuntimeApi>) | null =>
-  (((editor.plugins)['rtc'] ?? null) as (RtcPluginApi) | null).bind((rtcPlugin) =>
-    // This might not exist if the stub plugin is loaded on cloud
-    (rtcPlugin.setup ?? null)
-  );
+const getRtcSetup = (editor: Editor): (() => Promise<RtcRuntimeApi>) | null => {
+  const rtcPlugin = ((editor.plugins)['rtc'] ?? null) as (RtcPluginApi) | null;
+  // This might not exist if the stub plugin is loaded on cloud
+  return rtcPlugin !== null ? (rtcPlugin.setup ?? null) : null;
+};
 
 export const setup = (editor: Editor): (() => Promise<boolean>) | null => {
   const editorCast = editor as RtcEditor;
-  return getRtcSetup(editor).fold(
-    () => {
-      editorCast.rtcInstance = makePlainAdaptor(editor);
-      return null;
-    },
-    (setup) => {
-      // We need to provide a noop adaptor while initializing since any call by the theme or plugins to say undoManager.hasUndo would throw errors
-      editorCast.rtcInstance = makeNoopAdaptor();
-
-      return () => setup().then((rtcEditor) => {
-          editorCast.rtcInstance = makeRtcAdaptor(rtcEditor);
-          return rtcEditor.rtc.isRemote;
-        });
-    }
-  );
+  const rtcSetup = getRtcSetup(editor);
+  if (rtcSetup === null) {
+    editorCast.rtcInstance = makePlainAdaptor(editor);
+    return null;
+  } else {
+    // We need to provide a noop adaptor while initializing since any call by the theme or plugins to say undoManager.hasUndo would throw errors
+    editorCast.rtcInstance = makeNoopAdaptor();
+    return () => rtcSetup().then((rtcEditor) => {
+      editorCast.rtcInstance = makeRtcAdaptor(rtcEditor);
+      return rtcEditor.rtc.isRemote;
+    });
+  }
 };
 
 const getRtcInstanceWithFallback = (editor: Editor): RtcAdaptor =>

@@ -22,7 +22,8 @@ const textBefore = (node: Node, offset: number, rootNode: Node): (Spot.SpotPoint
     return Spot.point(node, offset);
   } else {
     const textSeeker = TextSeeker(DOM);
-    return (textSeeker.backwards(node, offset, alwaysNext(node), rootNode) ?? null).map((prev) => Spot.point(prev.container, prev.container.data.length));
+    const prev = textSeeker.backwards(node, offset, alwaysNext(node), rootNode);
+    return prev !== null ? Spot.point(prev.container, prev.container.data.length) : null;
   }
 };
 
@@ -31,7 +32,8 @@ const textAfter = (node: Node, offset: number, rootNode: Node): (Spot.SpotPoint<
     return Spot.point(node, offset);
   } else {
     const textSeeker = TextSeeker(DOM);
-    return (textSeeker.forwards(node, offset, alwaysNext(node), rootNode) ?? null).map((prev) => Spot.point(prev.container, 0));
+    const prev = textSeeker.forwards(node, offset, alwaysNext(node), rootNode);
+    return prev !== null ? Spot.point(prev.container, 0) : null;
   }
 };
 
@@ -44,10 +46,8 @@ const scanLeft = (node: Text, offset: number, rootNode: Node): (Spot.SpotPoint<T
     return Spot.point(node, offset);
   } else {
     const textSeeker = TextSeeker(DOM);
-    return (textSeeker.backwards(node, offset, alwaysNext(node), rootNode) ?? null).bind((prev) => {
-      const prevText = prev.container.data;
-      return scanLeft(prev.container, offset + prevText.length, rootNode);
-    });
+    const prev = textSeeker.backwards(node, offset, alwaysNext(node), rootNode);
+    return prev !== null ? scanLeft(prev.container, offset + prev.container.data.length, rootNode) : null;
   }
 };
 
@@ -60,7 +60,8 @@ const scanRight = (node: Text, offset: number, rootNode: Node): (Spot.SpotPoint<
     return Spot.point(node, offset);
   } else {
     const textSeeker = TextSeeker(DOM);
-    return (textSeeker.forwards(node, offset, alwaysNext(node), rootNode) ?? null).bind((next) => scanRight(next.container, offset - text.length, rootNode));
+    const next = textSeeker.forwards(node, offset, alwaysNext(node), rootNode);
+    return next !== null ? scanRight(next.container, offset - text.length, rootNode) : null;
   }
 };
 

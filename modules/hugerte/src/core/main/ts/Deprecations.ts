@@ -80,18 +80,13 @@ const logRemovedWarnings = (rawOptions: RawEditorOptions, normalizedOptions: Nor
   }
 };
 
-const getPluginDescription = (name: string) =>
-  ((deprecatedPlugins).find((entry) => entry.name === name) ?? null).fold(
-    () => name,
-    (entry) => {
-      if (entry.replacedWith) {
-        return `${name}, replaced by ${entry.replacedWith}`;
-      } else {
-        return name;
-      }
-
-    }
-  );
+const getPluginDescription = (name: string): string => {
+  const entry = (deprecatedPlugins).find((e) => e.name === name) ?? null;
+  if (entry !== null && entry.replacedWith) {
+    return `${name}, replaced by ${entry.replacedWith}`;
+  }
+  return name;
+};
 
 const logDeprecatedWarnings = (rawOptions: RawEditorOptions, normalizedOptions: NormalizedEditorOptions): void => {
   // Note: Ensure we use the original user settings, not the final when logging

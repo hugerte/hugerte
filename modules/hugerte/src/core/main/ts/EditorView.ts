@@ -45,12 +45,13 @@ const isXYInContentArea = (editor: Editor, clientX: number, clientY: number): bo
 };
 
 const fromDomSafe = <T extends Node>(node: T | null): (SugarElement<T>) | null =>
-  (node ?? null).map(SugarElement.fromDom);
+  node !== null ? SugarElement.fromDom(node) : null;
 
 const isEditorAttachedToDom = (editor: Editor): boolean => {
   const rawContainer = editor.inline ? editor.getBody() : editor.getContentAreaContainer();
 
-  return fromDomSafe(rawContainer).map(SugarBody.inBody) ?? (false);
+  const container = fromDomSafe(rawContainer);
+  return container !== null ? SugarBody.inBody(container) : false;
 };
 
 export {

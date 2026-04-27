@@ -14,25 +14,26 @@ const identify = (editor: Editor, annotationName: (string) | null): ({ uid: stri
   const start = SugarElement.fromDom(rng.startContainer);
   const root = SugarElement.fromDom(editor.getBody());
 
-  const selector = annotationName.fold(
-    () => '.' + Markings.annotation(),
-    (an) => `[${Markings.dataAnnotation()}="${an}"]`
-  );
+  const selector = annotationName === null
+    ? '.' + Markings.annotation()
+    : `[${Markings.dataAnnotation()}="${annotationName}"]`;
 
   const newStart = Traverse.child(start, rng.startOffset) ?? (start);
   const closest = SelectorFind.closest(newStart, selector, isRoot(root));
 
-  return closest.bind((c) =>
-    Attribute.getOpt(c, `${Markings.dataAnnotationId()}`).bind((uid) =>
-      Attribute.getOpt(c, `${Markings.dataAnnotation()}`).map((name) => {
-        const elements = findMarkers(editor, uid);
-        return {
-          uid,
-          name,
-          elements
-        };
-      })
-    ));
+  if (closest === null) {
+    return null;
+  }
+  return Attribute.getOpt(closest, `${Markings.dataAnnotationId()}`).bind((uid) =>
+    Attribute.getOpt(closest, `${Markings.dataAnnotation()}`).map((name) => {
+      const elements = findMarkers(editor, uid);
+      return {
+        uid,
+        name,
+        elements
+      };
+    })
+  ).fold(() => null, (x) => x);
 };
 
 const isAnnotation = (elem: any): boolean => SugarNode.isElement(elem) && Class.has(elem, Markings.annotation());

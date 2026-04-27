@@ -35,27 +35,28 @@ const validBlocks = [
 const isZeroWidth = (elem: SugarElement<Node>): boolean =>
   SugarNode.isText(elem) && SugarText.get(elem) === ZWSP;
 
-const context = (editor: Editor, elem: SugarElement<Node>, wrapName: string, nodeName: string): ChildContext => Traverse.parent(elem).fold(
-  () => ChildContext.Skipping,
-
-  (parent) => {
-    // We used to skip these, but given that they might be representing empty paragraphs, it probably
-    // makes sense to treat them just like text nodes
-    if (nodeName === 'br' || isZeroWidth(elem)) {
-      return ChildContext.Valid;
-    } else if (isAnnotation(elem)) {
-      return ChildContext.Existing;
-    } else if (isCaretNode(elem.dom)) {
-      return ChildContext.Caret;
-    } else if ((validBlocks).some((selector) => Selectors.is(elem, selector))) {
-      return ChildContext.ValidBlock;
-    } else if (!FormatUtils.isValid(editor, wrapName, nodeName) || !FormatUtils.isValid(editor, SugarNode.name(parent), wrapName)) {
-      return ChildContext.InvalidChild;
-    } else {
-      return ChildContext.Valid;
-    }
+const context = (editor: Editor, elem: SugarElement<Node>, wrapName: string, nodeName: string): ChildContext => {
+  const parent = Traverse.parent(elem);
+  if (parent === null) {
+    return ChildContext.Skipping;
   }
-);
+
+  // We used to skip these, but given that they might be representing empty paragraphs, it probably
+  // makes sense to treat them just like text nodes
+  if (nodeName === 'br' || isZeroWidth(elem)) {
+    return ChildContext.Valid;
+  } else if (isAnnotation(elem)) {
+    return ChildContext.Existing;
+  } else if (isCaretNode(elem.dom)) {
+    return ChildContext.Caret;
+  } else if ((validBlocks).some((selector) => Selectors.is(elem, selector))) {
+    return ChildContext.ValidBlock;
+  } else if (!FormatUtils.isValid(editor, wrapName, nodeName) || !FormatUtils.isValid(editor, SugarNode.name(parent), wrapName)) {
+    return ChildContext.InvalidChild;
+  } else {
+    return ChildContext.Valid;
+  }
+};
 
 export {
   context

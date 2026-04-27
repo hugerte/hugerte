@@ -76,13 +76,14 @@ const NotificationManager = (editor: Editor): NotificationManager => {
   };
 
   const closeNotification = (notification: NotificationApi) => {
-    (notifications).findIndex((otherNotification) => {
+    const index = (notifications).findIndex((otherNotification) => {
       return otherNotification === notification;
-    }).each((index) => {
+    });
+    if (index !== -1) {
       // Mutate here since third party might have stored away the window array
       // TODO: Consider breaking this api
       notifications.splice(index, 1);
-    });
+    }
   };
 
   const open = (spec: NotificationSpec, fireEvent: boolean = true): NotificationApi => {
@@ -96,38 +97,44 @@ const NotificationManager = (editor: Editor): NotificationManager => {
       editor.dispatch('BeforeOpenNotification', { notification: spec });
     }
 
-    return ((notifications).find((notification) => {
+    const existingNotification = (notifications).find((notification) => {
       return isEqual(getImplementation().getArgs(notification), spec);
-    }) ?? null).getOrThunk(() => {
-      editor.editorManager.setActive(editor);
+    }) ?? null;
+    if (existingNotification !== null) {
+      return existingNotification;
+    }
 
-      const notification = getImplementation().open(spec, () => {
-        closeNotification(notification);
-        reposition();
-        if (EditorFocus.hasEditorOrUiFocus(editor)) {
-          // If the editor has focus move focus to the the next notification or the content if there are no more
-          getTopNotification().fold(
-            () => editor.focus(),
-            (top) => Focus.focus(SugarElement.fromDom(top.getEl()))
-          );
-        }
-      });
+    editor.editorManager.setActive(editor);
 
-      addNotification(notification);
+    const notification = getImplementation().open(spec, () => {
+      closeNotification(notification);
       reposition();
-
-      // Ensure notification is not passed by reference to prevent mutation
-      editor.dispatch('OpenNotification', { notification: { ...notification }});
-      return notification;
+      if (EditorFocus.hasEditorOrUiFocus(editor)) {
+        // If the editor has focus move focus to the the next notification or the content if there are no more
+        const top = getTopNotification();
+        if (top === null) {
+          editor.focus();
+        } else {
+          Focus.focus(SugarElement.fromDom(top.getEl()));
+        }
+      }
     });
+
+    addNotification(notification);
+    reposition();
+
+    // Ensure notification is not passed by reference to prevent mutation
+    editor.dispatch('OpenNotification', { notification: { ...notification }});
+    return notification;
   };
 
   const close = () => {
-    getTopNotification().each((notification) => {
+    const notification = getTopNotification();
+    if (notification !== null) {
       getImplementation().close(notification);
       closeNotification(notification);
       reposition();
-    });
+    }
   };
 
   const getNotifications = () => notifications;

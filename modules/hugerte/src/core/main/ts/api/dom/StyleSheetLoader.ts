@@ -54,16 +54,17 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
 
   const removeStyle = (id: string) => {
     const styleContainer = SugarShadowDom.getStyleContainer(edos);
-    SelectorFind.descendant(styleContainer, '#' + id).each(Remove.remove);
+    const styleElem = SelectorFind.descendant(styleContainer, '#' + id);
+    if (styleElem !== null) { Remove.remove(styleElem); }
   };
 
-  const getOrCreateState = (url: string) =>
-    ((loadedStates)[url] ?? null).getOrThunk((): StyleState => ({
+  const getOrCreateState = (url: string): StyleState =>
+    (loadedStates)[url] ?? {
       id: 'mce-u' + (idCount++),
       passed: [],
       failed: [],
       count: 0
-    }));
+    };
 
   /**
    * Loads the specified CSS file and returns a Promise that will resolve when the stylesheet is loaded successfully or reject if it failed to load.
@@ -185,7 +186,7 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
   const loadAll = (urls: string[]) => {
     const loadedUrls = Promise.allSettled((urls).map((url) => load(url).then(() => url)));
     return loadedUrls.then((results) => {
-      const parts = (results).reduce((acc: { pass: any[], fail: any[] }, x: any, i: number) => { (((r) => r.status === 'fulfilled')(x, i) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
+      const parts = (results).reduce((acc: { pass: any[], fail: any[] }, x: any) => { (((r) => r.status === 'fulfilled')(x) ? acc.pass : acc.fail).push(x); return acc; }, { pass: [], fail: [] });
 
       if (parts.fail.length > 0) {
         return Promise.reject((parts.fail as PromiseRejectedResult[]).map((result) => result.reason));
@@ -203,13 +204,14 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
    */
   const unload = (url: string) => {
     const urlWithSuffix = Tools._addCacheSuffix(url);
-    ((loadedStates)[urlWithSuffix] ?? null).each((state) => {
-      const count = --state.count;
+    const state206 = (loadedStates)[urlWithSuffix] ?? null;
+    if (state206 !== null) {
+      const count = --state206.count;
       if (count === 0) {
         delete loadedStates[urlWithSuffix];
-        removeStyle(state.id);
+        removeStyle(state206.id);
       }
-    });
+    }
   };
 
   /**
@@ -219,13 +221,14 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
    * @param {String} key Key of CSS style resource to unload.
    */
   const unloadRawCss = (key: string) => {
-    ((loadedStates)[key] ?? null).each((state) => {
-      const count = --state.count;
+    const state222 = (loadedStates)[key] ?? null;
+    if (state222 !== null) {
+      const count = --state222.count;
       if (count === 0) {
         delete loadedStates[key];
-        removeStyle(state.id);
+        removeStyle(state222.id);
       }
-    });
+    }
   };
 
   /**

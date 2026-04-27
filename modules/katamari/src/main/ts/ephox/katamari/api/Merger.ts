@@ -1,4 +1,3 @@
-import * as Obj from './Obj';
 import * as Type from './Type';
 
 type MergeStrategy = (old: any, nu: any) => any;

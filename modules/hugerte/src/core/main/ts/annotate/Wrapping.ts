@@ -61,8 +61,8 @@ const removeDirectAnnotation = (elem: SugarElement<Element>): void => {
   Attribute.remove(elem, `${Markings.dataAnnotation()}`);
   Attribute.remove(elem, `${Markings.dataAnnotationActive()}`);
 
-  const customAttrNames = Attribute.getOpt(elem, `${Markings.dataAnnotationAttributes()}`).map((names) => names.split(',')) ?? ([]);
-  const customClasses = Attribute.getOpt(elem, `${Markings.dataAnnotationClasses()}`).map((names) => names.split(',')) ?? ([]);
+  const customAttrNames = Attribute.getOpt(elem, `${Markings.dataAnnotationAttributes()}`).map((names) => names.split(',')).getOrThunk(() => []);
+  const customClasses = Attribute.getOpt(elem, `${Markings.dataAnnotationClasses()}`).map((names) => names.split(',')).getOrThunk(() => []);
   (customAttrNames).forEach((name) => Attribute.remove(elem, name));
   Classes.remove(elem, customClasses);
   Attribute.remove(elem, `${Markings.dataAnnotationClasses()}`);

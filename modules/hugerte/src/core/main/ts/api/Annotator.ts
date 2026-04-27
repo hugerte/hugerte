@@ -66,9 +66,10 @@ const Annotator = (editor: Editor): Annotator => {
      * annotation
      */
     annotate: (name: string, data: { }) => {
-      registry.lookup(name).each((settings) => {
+      const settings = registry.lookup(name);
+      if (settings !== null) {
         annotateWithBookmark(editor, name, settings, data);
-      });
+      }
     },
 
     /**
@@ -91,7 +92,9 @@ const Annotator = (editor: Editor): Annotator => {
      * @param {String} name the name of the annotation to remove
      */
     remove: (name: string): void => {
-      identify(editor, name).each(({ elements }) => {
+      const identified = identify(editor, name);
+      if (identified !== null) {
+        const { elements } = identified;
         /**
          * TINY-9399: It is important to keep the bookmarking in the callback
          * because it adjusts selection in a way that `identify` function
@@ -100,7 +103,7 @@ const Annotator = (editor: Editor): Annotator => {
         const bookmark = editor.selection.getBookmark();
         removeAnnotations(elements);
         editor.selection.moveToBookmark(bookmark);
-      });
+      }
     },
 
     /**
@@ -126,7 +129,7 @@ const Annotator = (editor: Editor): Annotator => {
      */
     getAll: (name: string): Record<string, Element[]> => {
       const directory = findAll(editor, name);
-      return Object.fromEntries(Object.entries(directory).map(([_k, _v]: [any, any]) => [_k, ((elems) => (elems).map((elem) => elem.dom))(_v, _k as any)]));
+      return Object.fromEntries(Object.entries(directory).map(([_k, _v]: [any, any]) => [_k, ((elems: any[]) => (elems).map((elem: any) => elem.dom))(_v)]));
     }
   };
 };

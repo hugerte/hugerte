@@ -41,18 +41,19 @@ export default (dom: DOMUtils, editor: Editor): SelectorChanged => {
 
       // Check for new matching selectors
       Object.entries(selectorChangedData).forEach(([_k, _v]: [any, any]) => ((callbacks, selector) => {
-        findMatchingNode(selector, parents).each((node) => {
+        const matchedNode = findMatchingNode(selector, parents);
+        if (matchedNode !== null) {
           if (!currentSelectors[selector]) {
             // Execute callbacks
-            (callbacks).forEach((callback) => {
-              callback(true, { node, selector, parents });
+            (callbacks as SelectorChangedCallback[]).forEach((callback) => {
+              callback(true, { node: matchedNode, selector, parents });
             });
 
             currentSelectors[selector] = callbacks;
           }
 
           matchedSelectors[selector] = callbacks;
-        });
+        }
       })(_v, _k));
 
       // Check if current selectors still match
@@ -60,7 +61,7 @@ export default (dom: DOMUtils, editor: Editor): SelectorChanged => {
         if (!matchedSelectors[selector]) {
           delete currentSelectors[selector];
 
-          (callbacks).forEach((callback) => {
+          (callbacks as SelectorChangedCallback[]).forEach((callback) => {
             callback(false, { node, selector, parents });
           });
         }
@@ -82,9 +83,9 @@ export default (dom: DOMUtils, editor: Editor): SelectorChanged => {
       selectorChangedData[selector].push(callback);
 
       // Setup the initial state if selected already
-      findMatchingNode(selector, getParents(editor.selection.getStart())).each(() => {
+      if (findMatchingNode(selector, getParents(editor.selection.getStart())) !== null) {
         currentSelectors[selector] = selectorChangedData[selector];
-      });
+      }
 
       return {
         unbind: () => {

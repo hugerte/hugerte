@@ -1,5 +1,3 @@
-import { Optional } from '@ephox/katamari';
-
 import * as CustomElementsRuleParser from '../../schema/CustomElementsRuleParser';
 import * as GlobalAttributesSet from '../../schema/GlobalAttributesSet';
 import * as Presets from '../../schema/Presets';
@@ -254,15 +252,17 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
 
       (spec.attributes).forEach((attrName) => {
         const globalAttrs = GlobalAttributesSet.getGlobalAttributeSet(schemaType);
-        ValidChildrenRuleParser.parseValidChild(attrName).each(({ preset, name }) => {
+        const parsedAttr = ValidChildrenRuleParser.parseValidChild(attrName);
+        if (parsedAttr !== null) {
+          const { preset, name: attrChildName } = parsedAttr;
           if (preset) {
-            if (name === 'global') {
+            if (attrChildName === 'global') {
               (globalAttrs).forEach(processAttrName);
             }
           } else {
-            processAttrName(name);
+            processAttrName(attrChildName);
           }
-        });
+        }
       });
 
       elements[name] = customRule;
@@ -284,19 +284,22 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
       };
 
       const processPreset = (name: string) => {
-        Presets.getElementsPreset(schemaType, name).each((names) => {
-          (names).forEach(processNodeName);
-        });
+        const presetNames = Presets.getElementsPreset(schemaType, name);
+        if (presetNames !== null) {
+          (presetNames).forEach(processNodeName);
+        }
       };
 
       (spec.children).forEach((child) => {
-        ValidChildrenRuleParser.parseValidChild(child).each(({ preset, name }) => {
+        const parsedChild = ValidChildrenRuleParser.parseValidChild(child);
+        if (parsedChild !== null) {
+          const { preset, name: childName } = parsedChild;
           if (preset) {
-            processPreset(name);
+            processPreset(childName);
           } else {
-            processNodeName(name);
+            processNodeName(childName);
           }
-        });
+        }
       });
 
       children[name] = customElementChildren;
@@ -340,9 +343,10 @@ const Schema = (settings: SchemaSettings = {}): Schema => {
       };
 
       const processPreset = (name: string) => {
-        Presets.getElementsPreset(schemaType, name).each((names) => {
-          (names).forEach(processNodeName);
-        });
+        const presetNames = Presets.getElementsPreset(schemaType, name);
+        if (presetNames !== null) {
+          (presetNames).forEach(processNodeName);
+        }
       };
 
       (validChildren).forEach(({ preset, name }) => {
