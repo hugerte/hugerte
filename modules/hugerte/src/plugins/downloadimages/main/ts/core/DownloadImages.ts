@@ -36,7 +36,7 @@ const isExternalUrl = (src: string): boolean =>
 const resolveUrl = (src: string): string =>
   src.startsWith('//') ? window.location.protocol + src : src;
 
-const downloadImage = (blobCache: BlobCache, image: HTMLImageElement): Promise<BlobInfo> =>
+const fetchBlobInfo = (blobCache: BlobCache, image: HTMLImageElement): Promise<BlobInfo> =>
   fetch(resolveUrl(image.src))
     .then((response) => {
       if (!response.ok) {
@@ -46,12 +46,39 @@ const downloadImage = (blobCache: BlobCache, image: HTMLImageElement): Promise<B
     })
     .then((blob) => createBlobInfo(blobCache, image, blob));
 
+const replaceImageSrc = (image: HTMLImageElement, blobInfo: BlobInfo): void => {
+  image.src = blobInfo.blobUri();
+  image.removeAttribute('data-mce-src');
+};
+
+const openErrorNotification = (editor: Editor, reason: unknown): void => {
+  const message = typeof reason === 'string' ? reason :
+    (reason instanceof Error ? reason.message : 'Unknown error');
+  editor.notificationManager.open({ type: 'error', text: editor.translate([ 'Failed to download image: {0}', message ]) });
+};
+
 const findExternalImages = (editor: Editor): HTMLImageElement[] => {
   const images = editor.dom.select<HTMLImageElement>('img');
   return Arr.filter(images, (image) => {
     const src = image.getAttribute('data-mce-src') || image.src;
     return isExternalUrl(src);
   });
+};
+
+const downloadSingleImage = (editor: Editor, image: HTMLImageElement): Promise<void> => {
+  const blobCache = editor.editorUpload.blobCache;
+  return fetchBlobInfo(blobCache, image)
+    .then((blobInfo) => {
+      editor.undoManager.transact(() => {
+        replaceImageSrc(image, blobInfo);
+      });
+      if (editor.options.get('automatic_uploads')) {
+        editor.editorUpload.uploadImages();
+      }
+    })
+    .catch((reason) => {
+      openErrorNotification(editor, reason);
+    });
 };
 
 const downloadAndReplaceImages = (editor: Editor): Promise<void> => {
@@ -63,22 +90,22 @@ const downloadAndReplaceImages = (editor: Editor): Promise<void> => {
   }
 
   const downloadPromises = Arr.map(images, (image) =>
-    downloadImage(blobCache, image).then((blobInfo) => ({ image, blobInfo }))
+    fetchBlobInfo(blobCache, image).then((blobInfo) => ({ image, blobInfo }))
   );
 
   return Promise.allSettled(downloadPromises).then((results) => {
     editor.undoManager.transact(() => {
       Arr.each(results, (result) => {
         if (result.status === 'fulfilled') {
-          const { image, blobInfo } = result.value;
-          image.src = blobInfo.blobUri();
-          image.removeAttribute('data-mce-src');
-        } else {
-          const message = typeof result.reason === 'string' ? result.reason :
-            (result.reason instanceof Error ? result.reason.message : 'Unknown error');
-          editor.notificationManager.open({ type: 'error', text: message });
+          replaceImageSrc(result.value.image, result.value.blobInfo);
         }
       });
+    });
+
+    Arr.each(results, (result) => {
+      if (result.status === 'rejected') {
+        openErrorNotification(editor, result.reason);
+      }
     });
 
     if (editor.options.get('automatic_uploads')) {
@@ -89,5 +116,7 @@ const downloadAndReplaceImages = (editor: Editor): Promise<void> => {
 
 export {
   downloadAndReplaceImages,
-  findExternalImages
+  downloadSingleImage,
+  findExternalImages,
+  isExternalUrl
 };
