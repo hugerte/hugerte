@@ -100,7 +100,7 @@ const setup = (editor: Editor): void => {
     editor.on('init', (e) => {
       // Setup the initial state
       updatePlaceholder(e, true);
-      editor.on('change SetContent ExecCommand', updatePlaceholder);
+      editor.on('change SetContent ExecCommand input', updatePlaceholder);
 
       // TINY-4828: Update the placeholder after pasting content. This needs to use a timeout as
       // the browser doesn't update the dom until after the paste event has fired
