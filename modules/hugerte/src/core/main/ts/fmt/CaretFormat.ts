@@ -216,8 +216,8 @@ const applyCaretFormat = (editor: Editor, name: string, vars?: FormatVars): void
       editor.formatter.apply(name, vars, caretContainer);
     }
 
-    // Move selection to text node
-    selection.setCursorLocation(textNode, offset);
+    // Move selection to text node, clamping offset to valid range
+    selection.setCursorLocation(textNode, Math.min(offset, textNode?.data.length ?? 0));
   }
 };
 
@@ -313,8 +313,8 @@ const disableCaretContainer = (editor: Editor, keyCode: number, moveCaret: boole
     removeCaretContainer(editor, getParentCaretContainer(body, selection.getStart()), true);
   }
 
-  // Remove caret container on keydown and it's left/right arrow keys
-  if (keyCode === 37 || keyCode === 39) {
+  // Remove caret container on keydown for Enter, left/right arrow keys
+  if (keyCode === 13 || keyCode === 37 || keyCode === 39) {
     removeCaretContainer(editor, getParentCaretContainer(body, selection.getStart()), true);
   }
 };
