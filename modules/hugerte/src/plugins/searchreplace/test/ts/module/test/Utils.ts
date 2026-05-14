@@ -46,7 +46,7 @@ const pOpenDialog = async (editor: Editor): Promise<SugarElement<Element>> => {
 };
 
 const pOpenDialogWithKeyboard = async (editor: Editor): Promise<void> => {
-  TinyContentActions.keystroke(editor, 'F'.charCodeAt(0), platform.os.isMacOS() ? { meta: true } : { ctrl: true });
+  TinyContentActions.keystroke(editor, 'F'.charCodeAt(0), platform.os.isMacOS ? { meta: true } : { ctrl: true });
   await TinyUiActions.pWaitForDialog(editor);
 };
 

@@ -1,6 +1,6 @@
 import { ApproxStructure, Assertions, Chain, FocusTools, GeneralSteps, Keyboard, Keys, Logger, Mouse, Step, UiFinder, Waiter } from '@ephox/agar';
 import { UnitTest } from '@ephox/bedrock-client';
-import { Arr, Cell, Fun, Future, Optional, Result, Strings } from '@ephox/katamari';
+import { Arr, Cell, Fun, Optional, Result, Strings } from '@ephox/katamari';
 import { Compare, SelectorFind } from '@ephox/sugar';
 
 import * as Behaviour from 'ephox/alloy/api/behaviour/Behaviour';
@@ -65,11 +65,11 @@ UnitTest.asynctest('DropdownRefetchTest', (success, failure) => {
         fetch: () => {
           // We use a cell here, because when testing fetch, we want to be able
           // to easily change the results.
-          const future = Future.pure<TestItem[]>(
+          const promise = Promise.resolve<TestItem[]>(
             resultsStore.get()
           );
 
-          return future.map((f) => {
+          return promise.then((f) => {
             const menu = TestDropdownMenu.renderMenu({
               value: 'v',
               items: Arr.map(f, TestDropdownMenu.renderItem)
@@ -161,7 +161,7 @@ UnitTest.asynctest('DropdownRefetchTest', (success, failure) => {
     const sTriggerRefetchWith = (dropdown: AlloyComponent, items: TestItem[]): Step<any, any> => Step.async(
       (next) => {
         resultsStore.set(items);
-        Dropdown.refetch(dropdown).get(next);
+        Dropdown.refetch(dropdown).then(next);
       }
     );
 

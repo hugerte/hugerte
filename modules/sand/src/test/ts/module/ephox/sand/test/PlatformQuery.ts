@@ -1,15 +1,15 @@
 import { PlatformDetection } from 'ephox/sand/core/PlatformDetection';
 
 const isEdge = (platform: PlatformDetection): boolean => {
-  return platform.browser.isEdge();
+  return platform.browser.isEdge;
 };
 
 const isChromium = (platform: PlatformDetection): boolean => {
-  return platform.browser.isChromium();
+  return platform.browser.isChromium;
 };
 
 const isFirefox = (platform: PlatformDetection): boolean => {
-  return platform.browser.isFirefox();
+  return platform.browser.isFirefox;
 };
 
 const isIE11 = (platform: PlatformDetection): boolean => {
@@ -17,15 +17,15 @@ const isIE11 = (platform: PlatformDetection): boolean => {
 };
 
 const isIE = (platform: PlatformDetection): boolean => {
-  return platform.browser.isIE();
+  return platform.browser.isIE;
 };
 
 const isSafari = (platform: PlatformDetection): boolean => {
-  return platform.browser.isSafari();
+  return platform.browser.isSafari;
 };
 
 const isOpera = (platform: PlatformDetection): boolean => {
-  return platform.browser.isOpera();
+  return platform.browser.isOpera;
 };
 
 export {

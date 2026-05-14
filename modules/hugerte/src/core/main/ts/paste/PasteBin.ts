@@ -34,7 +34,7 @@ const create = (editor: Editor, lastRngCell: Cell<Range | null>): void => {
   }, pasteBinDefaultContent);
 
   // Move paste bin out of sight since the controlSelection rect gets displayed otherwise on Gecko
-  if (Env.browser.isFirefox()) {
+  if (Env.browser.isFirefox) {
     dom.setStyle(pasteBinElm, 'left', dom.getStyle(body, 'direction', true) === 'rtl' ? 0xFFFF : -0xFFFF);
   }
 

@@ -186,7 +186,7 @@ const moveSelectionToMarker = (editor: Editor, marker: HTMLElement | null): void
   if (parentBlock && dom.isEmpty(parentBlock)) {
     const isCell = isTableCell(parentBlock);
 
-    Remove.empty(SugarElement.fromDom(parentBlock));
+    parentBlock.remove();
 
     rng.setStart(parentBlock, 0);
     rng.setEnd(parentBlock, 0);

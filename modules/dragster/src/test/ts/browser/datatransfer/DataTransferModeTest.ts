@@ -21,7 +21,7 @@ describe('browser.dragster.datatransfer.DataTransferModeTest', () => {
     transfer.items.add(testFile1);
     assert.deepEqual(transfer.files.item(0), testFile1, 'Should be able to add file');
 
-    const initialTypes = browser.isSafari() ? [ 'Files', 'text/plain' ] : [ 'text/plain', 'Files' ];
+    const initialTypes = browser.isSafari ? [ 'Files', 'text/plain' ] : [ 'text/plain', 'Files' ];
     assert.deepEqual(transfer.types, initialTypes, 'Should have expected initial types');
     assert.strictEqual(transfer.types.length, initialTypes.length, 'Should have expected initial number of types');
     assert.strictEqual(transfer.files.length, 1, 'Should have expected initial number of files');

@@ -37,7 +37,7 @@ describe('browser.hugerte.themes.silver.editor.toolbar.ToolbarDrawerFloatingPosi
 
   before(async () => {
     // Firefox requires a small wait, otherwise the initial toolbar position is incorrect
-    if (PlatformDetection.detect().browser.isFirefox()) {
+    if (PlatformDetection.detect().browser.isFirefox) {
       await Waiter.pWait(100);
     }
   });

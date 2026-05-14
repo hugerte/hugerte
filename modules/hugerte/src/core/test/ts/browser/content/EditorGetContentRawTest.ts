@@ -9,7 +9,7 @@ import Editor from 'hugerte/core/api/Editor';
 describe('browser.hugerte.core.content.EditorGetContentRawTest', () => {
   // TINY-10669: Remove this
   const platform = PlatformDetection.detect();
-  const isSafariLessThan17 = platform.browser.isSafari() && platform.browser.version.major < 17;
+  const isSafariLessThan17 = platform.browser.isSafari && platform.browser.version.major < 17;
 
   const hook = TinyHooks.bddSetupLight<Editor>({
     base_url: '/project/hugerte/js/hugerte'

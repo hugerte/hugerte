@@ -1,7 +1,7 @@
 import { ApproxStructure, Assertions, Keyboard, Keys, Mouse, TestStore, UiControls, UiFinder, Waiter } from '@ephox/agar';
 import { Container, Disabling, Focusing, GuiFactory, Representing, TestHelpers } from '@ephox/alloy';
 import { beforeEach, describe, it } from '@ephox/bedrock-client';
-import { Future, Optional } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import { Attribute, SelectorFind, SugarDocument, Value } from '@ephox/sugar';
 import { assert } from 'chai';
 
@@ -47,7 +47,7 @@ describe('headless.hugerte.themes.silver.components.urlinput.UrlInputTest', () =
       getValidationHandler: () => Optional.none(),
       getUrlPicker: (_filetype) => Optional.some((entry: ApiUrlData) => {
         store.adder('urlpicker')();
-        return Future.pure({ value: 'http://tiny.cloud', meta: { before: entry.value }, fieldname: 'test' });
+        return Promise.resolve({ value: 'http://tiny.cloud', meta: { before: entry.value }, fieldname: 'test' });
       })
     }, Optional.none());
 

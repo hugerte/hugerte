@@ -11,7 +11,7 @@ const ancestorPosition = 'position:absolute!important;';
 const ancestorStyles = 'top:0!important;left:0!important;margin:0!important;padding:0!important;width:100%!important;height:100%!important;overflow:visible!important;';
 const bgFallback = 'background-color:rgb(255,255,255)!important;';
 
-const isAndroid = Env.os.isAndroid();
+const isAndroid = Env.os.isAndroid;
 
 const matchColor = (editorBody: SugarElement<Element>): string => {
   // in iOS you can overscroll, sometimes when you overscroll you can reveal the bgcolor of an element beneath,

@@ -1,5 +1,5 @@
 import { TestLogs } from '@ephox/agar';
-import { Arr, FutureResult, Optional } from '@ephox/katamari';
+import { Arr, PromiseResult, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Loader from '../../loader/Loader';
@@ -12,9 +12,9 @@ const setupBaseUrl = (hugerte: any, settings: Record<string, any>) => {
 };
 
 const loadScripts = (urls: string[], success: () => void, failure: Loader.FailureCallback) => {
-  const result = Arr.foldl(urls, (acc, url) => acc.bindFuture(() => Loader.loadScript(url)), FutureResult.pure(''));
+  const result = Arr.foldl(urls, (acc, url) => acc.bindPromise(() => Loader.loadScript(url)), PromiseResult.pure(''));
 
-  result.get((res) => {
+  result.then((res) => {
     res.fold((e) => failure(e, TestLogs.init()), success);
   });
 };

@@ -14,8 +14,8 @@ describe('webdriver.hugerte.core.keyboard.SpaceKeyTest', () => {
   }, []);
 
   const detect = PlatformDetection.detect().browser;
-  const isSafari = detect.isSafari();
-  const isFirefox = detect.isFirefox();
+  const isSafari = detect.isSafari;
+  const isFirefox = detect.isFirefox;
 
   beforeEach(() => {
     hook.editor().focus();

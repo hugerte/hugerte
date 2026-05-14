@@ -3,7 +3,7 @@ import {
   Keying, MaxHeight, Memento, NativeEvents, Replacing, Representing, SimulatedEvent, SketchSpec, SystemEvents, TieredData, Tooltipping, Unselecting
 } from '@ephox/alloy';
 import { Toolbar } from '@ephox/bridge';
-import { Arr, Cell, Fun, Future, Id, Merger, Optional, Type } from '@ephox/katamari';
+import { Arr, Cell, Fun, Id, Merger, Optional, Type } from '@ephox/katamari';
 import { EventArgs, SugarElement } from '@ephox/sugar';
 
 import { toolbarButtonEventOrder } from 'hugerte/themes/silver/ui/toolbar/button/ButtonEvents';
@@ -263,7 +263,7 @@ const renderCommonDropdown = <T>(
         };
       },
 
-      fetch: (comp) => Future.nu(Fun.curry(spec.fetch, comp))
+      fetch: (comp) => new Promise(Fun.curry(spec.fetch, comp))
     })
   );
 

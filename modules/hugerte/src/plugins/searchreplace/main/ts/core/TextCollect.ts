@@ -1,5 +1,4 @@
 import { Arr, Fun, Obj } from '@ephox/katamari';
-import { SandNode } from '@ephox/sand';
 import { SelectorFilter, SugarElement, Traverse } from '@ephox/sugar';
 
 import DOMUtils from 'hugerte/core/api/dom/DOMUtils';
@@ -166,7 +165,8 @@ const collectRangeSections = (dom: DOMUtils, rng: Range): TextSection[] => {
         const ceTrueNode = e.dom;
         return collect(dom, ceTrueNode, ceTrueNode);
       });
-      return Arr.sort(sections, (a, b) => (SandNode.documentPositionPreceding(a.elements[0].dom, b.elements[0].dom)) ? 1 : -1);
+      // eslint-disable-next-line no-bitwise
+      return Arr.sort(sections, (a, b) => ((a.elements[0].dom.compareDocumentPosition(b.elements[0].dom) & Node.DOCUMENT_POSITION_PRECEDING) !== 0) ? 1 : -1);
     }
   }, false);
 };

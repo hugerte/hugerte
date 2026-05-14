@@ -30,9 +30,6 @@
   ],
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
-  "dependencies": {
-    "@ephox/katamari": "^9.1.6"
-  },
   "main": "./lib/main/ts/ephox/sand/api/Main.js",
   "module": "./lib/main/ts/ephox/sand/api/Main.js",
   "types": "./lib/main/ts/ephox/sand/api/Main.d.ts"

@@ -1,37 +1,36 @@
 import { describe, it } from '@ephox/bedrock-client';
-import { Fun, Optional } from '@ephox/katamari';
 import { assert } from 'chai';
 
 import { PlatformDetection } from 'ephox/sand/core/PlatformDetection';
 
 describe('DeviceTypeTest', () => {
   const getPlatform = (userAgent: string) => {
-    return PlatformDetection.detect(userAgent, Optional.none(), Fun.never);
+    return PlatformDetection.detect(userAgent, undefined, () => false);
   };
 
   const checkTablet = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isTablet(), 'Tablet incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isTablet, 'Tablet incorrect: ' + userAgent);
   };
 
   const checkiPad = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isiPad(), 'iPad incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isiPad, 'iPad incorrect: ' + userAgent);
   };
 
   const checkiPhone = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isiPhone(), 'iPhone incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isiPhone, 'iPhone incorrect: ' + userAgent);
   };
 
   const checkIsWebView = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isWebView(), 'WebView incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isWebView, 'WebView incorrect: ' + userAgent);
   };
 
   const checkDesktop = (expected: boolean, userAgent: string) => {
     const platform = getPlatform(userAgent);
-    assert.equal(expected, platform.deviceType.isDesktop(), 'desktop incorrect: ' + userAgent);
+    assert.equal(expected, platform.deviceType.isDesktop, 'desktop incorrect: ' + userAgent);
   };
 
   it('iPad iOS10 wkWebview', () => {

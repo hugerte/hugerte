@@ -90,6 +90,7 @@ const prevSiblings = (element: SugarElement<Node>): SugarElement<Node & ChildNod
 const nextSiblings = (element: SugarElement<Node>): SugarElement<Node & ChildNode>[] =>
   Recurse.toArray(element, nextSibling);
 
+/** @deprecated Use element.dom.childNodes.map(SugarElement.fromDom) instead */
 const children = (element: SugarElement<Node>): SugarElement<Node & ChildNode>[] =>
   Arr.map(element.dom.childNodes, SugarElement.fromDom);
 

@@ -2,7 +2,7 @@ import { ApproxStructure, Assertions, FocusTools, KeyPressAdt, Mouse, RealKeys, 
 import { GuiFactory, TestHelpers } from '@ephox/alloy';
 import { context, describe, it } from '@ephox/bedrock-client';
 import { Fun, Id, Optional } from '@ephox/katamari';
-import { Attribute, Focus, SugarDocument, SugarElement, SugarNode, Value } from '@ephox/sugar';
+import { Attribute, Focus, SugarDocument, SugarElement, SugarNode } from '@ephox/sugar';
 
 import { renderMenuButton } from 'hugerte/themes/silver/ui/button/MenuButton';
 
@@ -62,7 +62,7 @@ describe('webdriver.hugerte.themes.silver.toolbar.SearchableMenuTypingTest', () 
       {
         start: input.dom.selectionStart,
         end: input.dom.selectionEnd,
-        text: Value.get(input)
+        text: input.dom.value
       }
     );
   };
@@ -75,7 +75,7 @@ describe('webdriver.hugerte.themes.silver.toolbar.SearchableMenuTypingTest', () 
       {
         start: input.dom.selectionStart,
         end: input.dom.selectionEnd,
-        text: Value.get(input)
+        text: input.dom.value
       }
     );
   };

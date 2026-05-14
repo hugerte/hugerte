@@ -9,7 +9,7 @@ import Env from 'hugerte/core/api/Env';
 
 describe('browser.hugerte.core.util.QuirksFirefoxTest', () => {
   before(function () {
-    if (!Env.browser.isFirefox()) {
+    if (!Env.browser.isFirefox) {
       this.skip();
     }
   });

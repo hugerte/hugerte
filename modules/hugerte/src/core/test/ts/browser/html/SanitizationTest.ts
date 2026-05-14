@@ -7,7 +7,7 @@ import { getSanitizer, MimeType } from 'hugerte/core/html/Sanitization';
 
 describe('browser.hugerte.core.html.SanitizationTest', () => {
   context('Sanitize html', () => {
-    const isSafari = PlatformDetection.detect().browser.isSafari();
+    const isSafari = PlatformDetection.detect().browser.isSafari;
 
     const testHtmlSanitizer = (testCase: { input: string; expected: string; mimeType: MimeType; sanitize?: boolean }) => {
       const sanitizer = getSanitizer({ sanitize: testCase.sanitize ?? true }, Schema());

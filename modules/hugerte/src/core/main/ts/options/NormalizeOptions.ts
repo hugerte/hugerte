@@ -15,8 +15,8 @@ const sectionResult = (sections: Record<string, Partial<RawEditorOptions>>, sett
 });
 
 const deviceDetection = PlatformDetection.detect().deviceType;
-const isPhone = deviceDetection.isPhone();
-const isTablet = deviceDetection.isTablet();
+const isPhone = deviceDetection.isPhone;
+const isTablet = deviceDetection.isTablet;
 
 const normalizePlugins = (plugins: string | string[] | undefined) => {
   if (Type.isNullable(plugins)) {

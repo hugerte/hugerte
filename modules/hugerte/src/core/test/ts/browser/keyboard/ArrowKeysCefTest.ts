@@ -45,7 +45,7 @@ describe('browser.hugerte.core.keyboard.ArrowKeysCefTest', () => {
   };
 
   // Firefox freezes up if loading media too quickly, so we need a small wait
-  const pMediaWait = () => Env.browser.isFirefox() ? Waiter.pWait(20) : Waiter.pWait(0);
+  const pMediaWait = () => Env.browser.isFirefox ? Waiter.pWait(20) : Waiter.pWait(0);
 
   const exitPreTest = (arrow: number, offset: number, expectedContent: string) => () => {
     const editor = hook.editor();

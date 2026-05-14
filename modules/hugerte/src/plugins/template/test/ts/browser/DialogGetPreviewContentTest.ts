@@ -9,7 +9,7 @@ import { getPreviewContent } from 'hugerte/plugins/template/ui/Dialog';
 
 import { Settings } from '../module/Settings';
 
-const metaKey = Env.os.isMacOS() || Env.os.isiOS() ? 'e.metaKey' : 'e.ctrlKey && !e.altKey';
+const metaKey = Env.os.isMacOS || Env.os.isiOS ? 'e.metaKey' : 'e.ctrlKey && !e.altKey';
 const host = document.location.host;
 
 const noCorsNoStyle = '<!DOCTYPE html><html><head>' +

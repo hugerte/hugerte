@@ -4,7 +4,6 @@ import * as fc from 'fast-check';
 
 import * as Arr from 'ephox/katamari/api/Arr';
 import * as Obj from 'ephox/katamari/api/Obj';
-import * as Unique from 'ephox/katamari/api/Unique';
 
 describe('atomic.katamari.api.arr.ArrMapToObjectTest', () => {
   it('maps to object', () => {
@@ -23,7 +22,7 @@ describe('atomic.katamari.api.arr.ArrMapToObjectTest', () => {
 
     fc.assert(fc.property(fc.array(fc.asciiString()), (keys) => {
       const f = (x: string) => x + '_cat';
-      const inputKeys = Arr.sort(Unique.stringArray(keys));
+      const inputKeys = Arr.sort([...new Set(keys)]);
       const output = Arr.mapToObject(inputKeys, f);
       const outputKeys = Arr.sort(Obj.keys(output));
 

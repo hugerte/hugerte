@@ -8,7 +8,7 @@
 
 A webserver to run demos, npm, webpack is required to run and develop alloy
 
-`alloy` is available as an `npm` package. You can install it via the npm package `@ephox/alloy`
+Like all modules in this monorepo (except for the hugerte module), this module is not considered public API and it may be changed at any time, no matter the corresponding HugeRTE version.
 
 `yarn` install the dependencies
 `webpack` compile the src code

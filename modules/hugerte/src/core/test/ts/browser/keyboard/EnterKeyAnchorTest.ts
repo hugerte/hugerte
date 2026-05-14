@@ -23,7 +23,7 @@ describe('browser.hugerte.core.keyboard.EnterKeyAnchorTest', () => {
   const enterKey = (editor: Editor) => TinyContentActions.keystroke(editor, Keys.enter());
 
   const addGeckoBr = (s: ApproxStructure.StructApi, str: ApproxStructure.StringApi, children: StructAssert[]) => {
-    if (PlatformDetection.detect().browser.isFirefox()) {
+    if (PlatformDetection.detect().browser.isFirefox) {
       return [ ...children, s.element('br', { attrs: { 'data-mce-bogus': str.is('1') }}) ];
     } else {
       return children;

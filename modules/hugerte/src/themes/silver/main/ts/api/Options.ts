@@ -32,8 +32,8 @@ const wrapOptional = <T>(fn: (editor: Editor) => T) => (editor: Editor): Optiona
   Optional.from(fn(editor));
 
 const register = (editor: Editor): void => {
-  const isPhone = Env.deviceType.isPhone();
-  const isMobile = Env.deviceType.isTablet() || isPhone;
+  const isPhone = Env.deviceType.isPhone;
+  const isMobile = Env.deviceType.isTablet || isPhone;
   const registerOption = editor.options.register;
 
   const stringOrFalseProcessor = (value: unknown) => Type.isString(value) || value === false;
@@ -270,7 +270,7 @@ const register = (editor: Editor): void => {
   registerOption('resize', {
     processor: (value) => value === 'both' || Type.isBoolean(value),
     // Editor resize doesn't work on touch devices at this stage
-    default: !Env.deviceType.isTouch()
+    default: !Env.deviceType.isTouch
   });
 
   registerOption('sidebar_show', {

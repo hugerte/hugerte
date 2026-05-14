@@ -10,8 +10,8 @@ import { isInProtectedMode, setProtectedMode } from 'ephox/dragster/datatransfer
 
 describe('browser.dragster.datatransfer.DataTransferTest', () => {
   const browser = PlatformDetection.detect().browser;
-  const isSafari = browser.isSafari();
-  const isFirefox = browser.isFirefox();
+  const isSafari = browser.isSafari;
+  const isFirefox = browser.isFirefox;
 
   const testFile1 = new window.File([ 'Lorem ipsum' ], 'file1.txt', { type: 'text/plain', lastModified: 123 });
   const testFile2 = new window.File([ '<p>Lorem ipsum</p>' ], 'file2.html', { type: 'text/html', lastModified: 456 });

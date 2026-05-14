@@ -12,7 +12,7 @@ import * as MediaNavigation from './MediaNavigation';
 import * as TableNavigation from './TableNavigation';
 
 const executeKeydownOverride = (editor: Editor, caret: Cell<Text | null>, evt: KeyboardEvent) => {
-  const isMac = Env.os.isMacOS() || Env.os.isiOS();
+  const isMac = Env.os.isMacOS || Env.os.isiOS;
 
   MatchKeys.execute([
     { keyCode: VK.RIGHT, action: MatchKeys.action(CefNavigation.moveH, editor, true) },

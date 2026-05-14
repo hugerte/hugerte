@@ -41,20 +41,20 @@ UnitTest.test('Arbitraries Test', () => {
     Assertions.assertEq(
       'Node type of "netext"',
       3,
-      SugarNode.type(textnode)
+      textnode.dom.nodeType
     );
     return true;
   });
 
   checkProperty('Zerowidth text nodes should have node type 3 and be uFEFF', Arbitraries.content<Text>('zerowidth'), (textnode) => {
-    Assertions.assertEq('Node type of "zerowidth"', 3, SugarNode.type(textnode));
-    Assertions.assertEq('Text value of zerowidth', '\uFEFF', SugarText.get(textnode));
+    Assertions.assertEq('Node type of "zerowidth"', 3, textnode.dom.nodeType);
+    Assertions.assertEq('Text value of zerowidth', '\uFEFF', textnode.dom.nodeValue);
     return true;
   });
 
   checkProperty('Zerowidths text nodes should have node type 3 and be uFEFF or u200B', Arbitraries.content<Text>('zerowidths'), (textnode) => {
-    Assertions.assertEq('Node type of "zerowidths"', 3, SugarNode.type(textnode));
-    Assertions.assertEq('Zerowidths cursor value: ' + SugarText.get(textnode), true, Arr.contains([ '\uFEFF', '\u200B' ], SugarText.get(textnode)));
+    Assertions.assertEq('Node type of "zerowidths"', 3, textnode.dom.nodeType);
+    Assertions.assertEq('Zerowidths cursor value: ' + textnode.dom.nodeValue, true, Arr.contains([ '\uFEFF', '\u200B' ], textnode.dom.nodeValue));
     return true;
   });
 

@@ -16,11 +16,11 @@ describe('browser.hugerte.core.undo.UndoKeyboardShortcutTest', () => {
   };
 
   const undoKeystroke = (editor: Editor) => {
-    TinyContentActions.keystroke(editor, 'Z'.charCodeAt(0), platform.os.isMacOS() ? { metaKey: true } : { ctrl: true });
+    TinyContentActions.keystroke(editor, 'Z'.charCodeAt(0), platform.os.isMacOS ? { metaKey: true } : { ctrl: true });
   };
 
   const redoKeystroke = (editor: Editor) => {
-    TinyContentActions.keystroke(editor, 'Y'.charCodeAt(0), platform.os.isMacOS() ? { metaKey: true } : { ctrl: true });
+    TinyContentActions.keystroke(editor, 'Y'.charCodeAt(0), platform.os.isMacOS ? { metaKey: true } : { ctrl: true });
   };
 
   const deleteCommand = (editor: Editor) => {

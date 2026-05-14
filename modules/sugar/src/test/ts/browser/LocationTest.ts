@@ -139,7 +139,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
 
     // TINY-9203: due to Win11 FF adopting native hidden scrollbar behavior and current inability to distinguish between Win10 and Win11
     // (both os.version.major === 10), allow scrollbar to be either hidden or visible when on Win10/11 FF
-    const noVisibleScrollbarBrowser = platform.os.isMacOS() || (platform.browser.isFirefox() && platform.os.isLinux()) || (platform.browser.isFirefox() && platform.os.isWindows() && platform.os.version.major >= 10);
+    const noVisibleScrollbarBrowser = platform.os.isMacOS || (platform.browser.isFirefox && platform.os.isLinux) || (platform.browser.isFirefox && platform.os.isWindows && platform.os.version.major >= 10);
     Assert.eq('scroll bar width, got=' + scrollBarWidth, true, scrollBarWidth > 5 && scrollBarWidth < 50 || (noVisibleScrollbarBrowser && scrollBarWidth === 0));
   };
 
@@ -329,7 +329,7 @@ UnitTest.asynctest('LocationTest', (success, failure) => {
     // the difference between table.getBoundingClientRect() and cell.getBoundingClientRect() is correct.
     // I don't want to make every browser pay for Chrome's mistake in a scenario we don't need for TBIO, so we're living with it.
     // Firefox 71 has also started behaving the same as chrome
-    if (platform.browser.isChromium() || platform.browser.isFirefox() && platform.browser.version.major >= 71) {
+    if (platform.browser.isChromium || platform.browser.isFirefox && platform.browser.version.major >= 71) {
       const chromeDifference = -2;
       Arr.each(tests, (t) => {
         if (t.id !== 'table-1') {

@@ -70,7 +70,7 @@ const makeSandbox = (button: AlloyComponent, spec: FloatingToolbarButtonSpec, de
 
   const onOpen = (sandbox: AlloyComponent, toolbar: AlloyComponent) => {
     const skipFocus = shouldSkipFocus.get().getOr(false);
-    detail.fetch().get((groups) => {
+    detail.fetch().then((groups) => {
       setGroups(button, toolbar, detail, spec.layouts, groups);
       ariaControls.link(button.element);
       if (!skipFocus) {

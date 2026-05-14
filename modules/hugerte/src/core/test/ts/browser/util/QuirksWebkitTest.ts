@@ -7,7 +7,7 @@ import Env from 'hugerte/core/api/Env';
 
 describe('browser.hugerte.core.util.QuirksWebkitTest', () => {
   before(function () {
-    if (!Env.browser.isChromium() && !Env.browser.isSafari()) {
+    if (!Env.browser.isChromium && !Env.browser.isSafari) {
       this.skip();
     }
   });

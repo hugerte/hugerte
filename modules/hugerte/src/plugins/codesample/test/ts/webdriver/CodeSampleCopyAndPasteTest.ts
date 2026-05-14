@@ -25,7 +25,7 @@ describe('webdriver.hugerte.plugins.codesample.CodeSampleCopyAndPasteTest', () =
   };
 
   const pPaste = async (editor: Editor): Promise<void> => {
-    if (browser.isSafari()) {
+    if (browser.isSafari) {
       await pClickEditMenu(editor, 'Paste');
     } else {
       await RealClipboard.pPaste('iframe => body');
@@ -85,7 +85,7 @@ describe('webdriver.hugerte.plugins.codesample.CodeSampleCopyAndPasteTest', () =
   });
 
   // Safari cannot select the CEF in this scenario, so we can't run the test (and there is no bug)
-  if (!browser.isSafari()) {
+  if (!browser.isSafari) {
     it('TINY-8861: copying and pasting a piece of code and a text should leave the cursor on the text after paste', async () => {
       const editor = hook.editor();
       editor.setContent(

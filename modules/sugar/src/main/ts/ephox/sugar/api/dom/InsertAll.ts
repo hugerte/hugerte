@@ -1,36 +1,22 @@
-import { Arr } from '@ephox/katamari';
-
 import { SugarElement } from '../node/SugarElement';
-import * as Insert from './Insert';
 
+/** @deprecated Use `marker.dom.before(elements.map(e => e.dom)) instead. */
 const before = (marker: SugarElement<Node>, elements: SugarElement<Node>[]): void => {
-  Arr.each(elements, (x) => {
-    Insert.before(marker, x);
-  });
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
-const after = (marker: SugarElement<Node>, elements: SugarElement<Node>[]): void => {
-  Arr.each(elements, (x, i) => {
-    const e = i === 0 ? marker : elements[i - 1];
-    Insert.after(e, x);
-  });
+/** @deprecated Use `marker.dom.after(elements.map(e => e.dom)) instead. */
+const after = (marker: SugarElement<Element>, elements: SugarElement<ChildNode>[]): void => {
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
-const prepend = (parent: SugarElement<Node>, elements: SugarElement<Node>[]): void => {
-  Arr.each(elements.slice().reverse(), (x) => {
-    Insert.prepend(parent, x);
-  });
-};
-
+/** @deprecated Use `parent.dom.append(elements.map(e => e.dom)) instead. */
 const append = (parent: SugarElement<Node>, elements: SugarElement<Node>[]): void => {
-  Arr.each(elements, (x) => {
-    Insert.append(parent, x);
-  });
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
 export {
   before,
   after,
-  prepend,
   append
 };

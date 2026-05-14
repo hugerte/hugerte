@@ -223,12 +223,12 @@ describe('webdriver.hugerte.core.paste.CopyAndPasteTest', () => {
     editor.execCommand('mceCodeEditor');
     await TinyUiActions.pWaitForDialog(editor);
     const textareaSelector = 'div[role="dialog"] textarea';
-    await RealKeys.pSendKeysOn(textareaSelector, [ RealKeys.combo(os.isMacOS() ? { meta: true } : { ctrl: true }, 'A') ]);
+    await RealKeys.pSendKeysOn(textareaSelector, [ RealKeys.combo(os.isMacOS ? { meta: true } : { ctrl: true }, 'A') ]);
     await RealClipboard.pCopy(textareaSelector);
     TinyUiActions.cancelDialog(editor);
 
     await RealClipboard.pPaste('iframe => body');
-    await pAssertInputEvents(browser.isSafari() ? '&lt;p&gt;abc&lt;/p&gt;' : '', true);
+    await pAssertInputEvents(browser.isSafari ? '&lt;p&gt;abc&lt;/p&gt;' : '', true);
     TinyAssertions.assertContent(editor, '<p>&lt;p&gt;abc&lt;/p&gt;abc</p>');
   });
 

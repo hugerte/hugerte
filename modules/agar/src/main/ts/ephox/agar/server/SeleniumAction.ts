@@ -1,19 +1,17 @@
-import { DataType, Http } from '@ephox/jax';
-
 import { Chain } from '../api/Chain';
 import { Step } from '../api/Step';
 
 const postInfo = (path: string, info: any, die: (err: any) => void, next: (v: {}) => void): void => {
-  Http.post({
-    url: path,
-    body: {
-      type: DataType.JSON,
-      data: info
+  fetch(path, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
     },
-    responseType: DataType.JSON
-  }).get((res) => {
-    res.fold((e) => die(JSON.stringify(e)), next);
-  });
+    body: JSON.stringify(info)
+  })
+  .then(response => response.json())
+  .then(data => next(data))
+  .catch(error => die(JSON.stringify(error)));
 };
 
 const sPerform = <T> (path: string, info: any): Step<T, T> =>

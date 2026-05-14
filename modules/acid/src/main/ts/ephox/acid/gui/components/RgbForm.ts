@@ -2,7 +2,7 @@ import {
   AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloyTriggers, Behaviour, EventFormat, Focusing, Form, FormField, FormTypes, GuiFactory, Input, Invalidating,
   Memento, Representing, SimulatedEvent, Sketcher, SketchSpec, Tabstopping, UiSketcher
 } from '@ephox/alloy';
-import { Cell, Fun, Future, Id, Merger, Optional, Result } from '@ephox/katamari';
+import { Cell, Id, Merger, Optional, Result } from '@ephox/katamari';
 import { Css } from '@ephox/sugar';
 
 import { Hex, Rgba } from '../../api/colour/ColourTypes';
@@ -74,7 +74,7 @@ const rgbFormFactory = (
       validate: (comp: AlloyComponent) => {
         const value = Representing.getValue(comp);
         const res = isValid(value) ? Result.value(true) : Result.error(translate('aria.input.invalid'));
-        return Future.pure(res);
+        return Promise.resolve(res);
       },
       validateOnLoad: false
     }
@@ -113,7 +113,7 @@ const rgbFormFactory = (
       onSetValue: (input: AlloyComponent) => {
         if (Invalidating.isInvalid(input)) {
           const run = Invalidating.run(input);
-          run.get(Fun.noop);
+          run;
         }
       }
     });

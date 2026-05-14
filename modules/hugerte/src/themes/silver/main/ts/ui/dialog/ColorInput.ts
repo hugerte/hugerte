@@ -3,7 +3,7 @@ import {
   Invalidating, Layout, Memento, Representing, SimpleSpec, Tabstopping
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Fun, Future, Id, Optional, Result } from '@ephox/katamari';
+import { Fun, Id, Optional, Result } from '@ephox/katamari';
 import { Css, SugarElement, Traverse } from '@ephox/sugar';
 
 import { UiFactoryBackstageShared } from '../../backstage/Backstage';
@@ -44,7 +44,7 @@ export const renderColorInput = (
     inputClasses: [ 'tox-textfield' ],
     data: initialData,
 
-    onSetValue: (c: AlloyComponent) => Invalidating.run(c).get(Fun.noop),
+    onSetValue: (c: AlloyComponent) => Invalidating.run(c).then(Fun.noop),
 
     inputBehaviours: Behaviour.derive([
       Disabling.config({
@@ -71,7 +71,7 @@ export const renderColorInput = (
             const inputValue = Representing.getValue(input);
             // Consider empty strings valid colours
             if (inputValue.length === 0) {
-              return Future.pure(Result.value(true));
+              return Promise.resolve(Result.value(true));
             } else {
               const span = SugarElement.fromTag('span');
               Css.set(span, 'background-color', inputValue);
@@ -82,7 +82,7 @@ export const renderColorInput = (
                 (_) => Result.value(inputValue)
               );
 
-              return Future.pure(res);
+              return Promise.resolve(res);
             }
           }
         }

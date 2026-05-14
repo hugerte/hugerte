@@ -1,49 +1,34 @@
 import { SugarElement } from '../node/SugarElement';
-import * as Traverse from '../search/Traverse';
 
+/** @deprecated Use `marker.dom.before(element.dom)` instead. */
 const before = (marker: SugarElement<Node>, element: SugarElement<Node>): void => {
-  const parent = Traverse.parent(marker);
-  parent.each((v) => {
-    v.dom.insertBefore(element.dom, marker.dom);
-  });
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
+/** @deprecated Use `marker.dom.after(element.dom)` instead. */
 const after = (marker: SugarElement<Node>, element: SugarElement<Node>): void => {
-  const sibling = Traverse.nextSibling(marker);
-  sibling.fold(() => {
-    const parent = Traverse.parent(marker);
-    parent.each((v) => {
-      append(v, element);
-    });
-  }, (v) => {
-    before(v, element);
-  });
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
+/** @deprecated Use `parent.dom.prepend(element.dom)` instead. */
 const prepend = (parent: SugarElement<Node>, element: SugarElement<Node>): void => {
-  const firstChild = Traverse.firstChild(parent);
-  firstChild.fold(() => {
-    append(parent, element);
-  }, (v) => {
-    parent.dom.insertBefore(element.dom, v.dom);
-  });
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
+/** @deprecated Use `parent.dom.append(element.dom)` instead. */
 const append = (parent: SugarElement<Node>, element: SugarElement<Node>): void => {
-  parent.dom.appendChild(element.dom);
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
+/** @deprecated Use `parent.dom.insertBefore(element.dom, parent.dom.childNodes[index])` instead or see if you can refactor to make it all smaller. */
 const appendAt = (parent: SugarElement<Node>, element: SugarElement<Node>, index: number): void => {
-  Traverse.child(parent, index).fold(() => {
-    append(parent, element);
-  }, (v) => {
-    before(v, element);
-  });
+  throw new Error('Deprecated function used. Fix before continuing.');
 };
 
-const wrap = (element: SugarElement<Node>, wrapper: SugarElement<Node>): void => {
-  before(element, wrapper);
-  append(wrapper, element);
+/** @todo Do we really need this? */
+const wrap = (element: SugarElement<Element>, wrapper: SugarElement<Element>): void => {
+  element.dom.after(wrapper.dom);
+  wrapper.dom.appendChild(element.dom);
 };
 
 export {

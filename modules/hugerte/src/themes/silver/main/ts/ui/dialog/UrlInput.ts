@@ -3,8 +3,8 @@ import {
   Invalidating, Memento, NativeEvents, Representing, SketchSpec, SimpleSpec, SystemEvents, Tabstopping, Typeahead as AlloyTypeahead
 } from '@ephox/alloy';
 import { Dialog } from '@ephox/bridge';
-import { Arr, Fun, Future, FutureResult, Id, Optional, Result } from '@ephox/katamari';
-import { Attribute, Traverse, Value } from '@ephox/sugar';
+import { Arr, PromiseResult, Id, Optional, Result } from '@ephox/katamari';
+import { Traverse, Value } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
 import { UiFactoryBackstageForUrlInput } from '../../backstage/UrlInputBackstage';
@@ -82,13 +82,13 @@ export const renderUrlInput = (
           search: Optional.none()
         }
       );
-      return Future.pure(tdata);
+      return Promise.resolve(tdata);
     },
 
     getHotspot: (comp) => memUrlBox.getOpt(comp),
     onSetValue: (comp, _newValue) => {
       if (comp.hasConfigured(Invalidating)) {
-        Invalidating.run(comp).get(Fun.noop);
+        Invalidating.run(comp);
       }
     },
 
@@ -100,14 +100,14 @@ export const renderUrlInput = (
           notify: {
             onInvalid: (comp: AlloyComponent, err: string) => {
               memInvalidIcon.getOpt(comp).each((invalidComp) => {
-                Attribute.set(invalidComp.element, 'title', providersBackstage.translate(err));
+                invalidComp.element.dom.setAttribute('title', providersBackstage.translate(err));
               });
             }
           },
           validator: {
             validate: (input) => {
               const urlEntry = Representing.getValue(input);
-              return FutureResult.nu((completer) => {
+              return PromiseResult.nu((completer) => {
                 handler({ type: spec.filetype, url: urlEntry.value }, (validation) => {
                   if (validation.status === 'invalid') {
                     const err = Result.error(validation.message);
@@ -262,7 +262,7 @@ export const renderUrlInput = (
         ...componentData
       };
       optUrlPicker.each((picker) => {
-        picker(urlData).get((chosenData) => {
+        picker(urlData).then((chosenData) => {
           Representing.setValue(field, chosenData);
           AlloyTriggers.emitWith(comp, formChangeEvent, { name: spec.name });
         });

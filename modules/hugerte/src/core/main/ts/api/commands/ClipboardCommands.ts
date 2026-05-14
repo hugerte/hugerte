@@ -27,7 +27,7 @@ export const registerCommands = (editor: Editor): void => {
           'Please use the Ctrl+X/C/V keyboard shortcuts instead.'
         );
 
-        if (Env.os.isMacOS() || Env.os.isiOS()) {
+        if (Env.os.isMacOS || Env.os.isiOS) {
           msg = msg.replace(/Ctrl\+/g, '\u2318+');
         }
 
