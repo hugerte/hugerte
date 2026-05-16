@@ -214,6 +214,10 @@ const get = (editor: Editor): Formats => {
     subscript: { inline: 'sub' },
     superscript: { inline: 'sup' },
     code: { inline: 'code' },
+    uppercase: { inline: 'span', styles: { textTransform: 'uppercase' }, exact: true },
+    lowercase: { inline: 'span', styles: { textTransform: 'lowercase' }, exact: true },
+    capitalize: { inline: 'span', styles: { textTransform: 'capitalize' }, exact: true },
+    capitalizefirstword: { inline: 'span', classes: 'mce-capitalize-first', exact: true },
 
     link: {
       inline: 'a', selector: 'a', remove: 'all', split: true, deep: true,
