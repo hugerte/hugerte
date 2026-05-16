@@ -45,7 +45,11 @@ export const defaultStyleFormats: AllowedFormat[] = [
       { title: 'Strikethrough', format: 'strikethrough' },
       { title: 'Superscript', format: 'superscript' },
       { title: 'Subscript', format: 'subscript' },
-      { title: 'Code', format: 'code' }
+      { title: 'Code', format: 'code' },
+      { title: 'UPPER CASE', format: 'uppercase' },
+      { title: 'lower case', format: 'lowercase' },
+      { title: 'Capitalize Each Word', format: 'capitalize' },
+      { title: 'Capitalize first word', format: 'capitalizefirstword' }
     ]
   },
 
