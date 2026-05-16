@@ -96,6 +96,10 @@ const SelectionOverrides = (editor: Editor): SelectionOverrides => {
         FakeCaretUtils.selectNode(editor, contentEditableRoot).each(setElementSelection);
       } else if (isFakeSelectionTargetElement(targetElm)) {
         FakeCaretUtils.selectNode(editor, targetElm).each(setElementSelection);
+      } else if (NodeType.isImg(targetElm) && dom.isEditable(targetElm)) {
+        e.preventDefault();
+        editor.selection.select(targetElm);
+        editor.nodeChanged();
       }
     }, true);
 

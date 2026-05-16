@@ -171,13 +171,22 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     setSizeProp(ghostElm, 'height', height);
   };
 
-  const resizeGhostElement = (e: MouseEvent) => {
+  const getEventPos = (e: MouseEvent | TouchEvent) => {
+    if ('touches' in e) {
+      const touch = e.touches[0];
+      return { screenX: touch.screenX, screenY: touch.screenY };
+    }
+    return { screenX: e.screenX, screenY: e.screenY };
+  };
+
+  const resizeGhostElement = (e: MouseEvent | TouchEvent) => {
     let deltaX: number, deltaY: number, proportional: boolean;
     let resizeHelperX: number, resizeHelperY: number;
+    const pos = getEventPos(e);
 
     // Calc new width/height
-    deltaX = e.screenX - startX;
-    deltaY = e.screenY - startY;
+    deltaX = pos.screenX - startX;
+    deltaY = pos.screenY - startY;
 
     // Calc new size
     width = deltaX * selectedHandle[2] + startW;
@@ -261,10 +270,14 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
 
     dom.unbind(editableDoc, 'mousemove', resizeGhostElement);
     dom.unbind(editableDoc, 'mouseup', endGhostResize);
+    dom.unbind(editableDoc, 'touchmove', resizeGhostElement);
+    dom.unbind(editableDoc, 'touchend', endGhostResize);
 
     if (rootDocument !== editableDoc) {
       dom.unbind(rootDocument, 'mousemove', resizeGhostElement);
       dom.unbind(rootDocument, 'mouseup', endGhostResize);
+      dom.unbind(rootDocument, 'touchmove', resizeGhostElement);
+      dom.unbind(rootDocument, 'touchend', endGhostResize);
     }
 
     // Remove ghost/helper and update resize handle positions
@@ -304,11 +317,13 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
 
     if (isResizable(targetElm) && !e.isDefaultPrevented()) {
       Obj.each(resizeHandles, (handle, name) => {
-        const startDrag = (e: MouseEvent) => {
+        const startDrag = (e: MouseEvent | TouchEvent) => {
+          e.preventDefault();
+          const pos = getEventPos(e);
           // Note: We're guaranteed to have at least one target here
           const target = getResizeTargets(selectedElm)[0];
-          startX = e.screenX;
-          startY = e.screenY;
+          startX = pos.screenX;
+          startY = pos.screenY;
           startW = target.clientWidth;
           startH = target.clientHeight;
           ratio = startH / startW;
@@ -353,10 +368,14 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
 
           dom.bind(editableDoc, 'mousemove', resizeGhostElement);
           dom.bind(editableDoc, 'mouseup', endGhostResize);
+          dom.bind(editableDoc, 'touchmove', resizeGhostElement);
+          dom.bind(editableDoc, 'touchend', endGhostResize);
 
           if (rootDocument !== editableDoc) {
             dom.bind(rootDocument, 'mousemove', resizeGhostElement);
             dom.bind(rootDocument, 'mouseup', endGhostResize);
+            dom.bind(rootDocument, 'touchmove', resizeGhostElement);
+            dom.bind(rootDocument, 'touchend', endGhostResize);
           }
 
           resizeHelper = dom.add(rootElement, 'div', {
@@ -379,7 +398,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
           style: 'cursor:' + name + '-resize; margin:0; padding:0'
         });
 
-        dom.bind(handleElm, 'mousedown', (e) => {
+        dom.bind(handleElm, 'mousedown touchstart', (e) => {
           e.stopImmediatePropagation();
           e.preventDefault();
           startDrag(e);
