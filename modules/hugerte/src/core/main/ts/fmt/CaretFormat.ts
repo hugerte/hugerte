@@ -165,6 +165,9 @@ const cleanFormatNode = (editor: Editor, caretContainer: Node, formatNode: Eleme
   }
 };
 
+const isSubSupFormat = (name: string): boolean =>
+  name === 'subscript' || name === 'superscript';
+
 const applyCaretFormat = (editor: Editor, name: string, vars?: FormatVars): void => {
   let caretContainer: Node | null;
   const selection = editor.selection;
@@ -218,6 +221,16 @@ const applyCaretFormat = (editor: Editor, name: string, vars?: FormatVars): void
 
     // Move selection to text node, clamping offset to valid range
     selection.setCursorLocation(textNode, Math.min(offset, textNode?.data.length ?? 0));
+
+    // For sub/sup formats, verify cursor landed inside the format node,
+    // as the browser may reposition the caret due to vertical-align changes
+    if (isSubSupFormat(name)) {
+      const selNode = selection.getNode();
+      if (selNode.nodeName.toLowerCase() !== name.slice(0, 3)) {
+        selection.select(caretContainer, true);
+        selection.collapse(true);
+      }
+    }
   }
 };
 

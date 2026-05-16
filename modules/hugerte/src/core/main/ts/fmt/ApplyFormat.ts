@@ -312,7 +312,7 @@ const applyFormatAction = (ed: Editor, name: string, vars?: FormatVars, node?: N
         MergeFormats.mergeWithParents(ed, format, name, vars, node);
         MergeFormats.mergeBackgroundColorAndFontSize(dom, format, vars, node);
         MergeFormats.mergeTextDecorationsAndColor(dom, format, vars, node);
-        MergeFormats.mergeSubSup(dom, format, vars, node);
+        MergeFormats.mergeSubSupWithSelection(ed, format, vars, node);
         MergeFormats.mergeSiblings(ed, format, vars, node);
       }
     });
