@@ -61,8 +61,13 @@ const isVisuallyEmpty = (dom: DOMUtils, rootElm: Element, forcedRootBlock: strin
       return true;
     } else if (dom.getStyle(rootElm.firstElementChild, 'padding-left') || dom.getStyle(rootElm.firstElementChild, 'padding-right')) {
       return false;
+    } else if (forcedRootBlock === firstElement.nodeName.toLowerCase()) {
+      // Even if the root is the forced_root_block, it may contain structural
+      // elements (e.g. a <ul> inside a <div>) that indicate content has been added
+      const child = firstElement.firstElementChild;
+      return child === null || child.nodeName === 'BR';
     } else {
-      return forcedRootBlock === firstElement.nodeName.toLowerCase();
+      return false;
     }
   } else {
     return false;
