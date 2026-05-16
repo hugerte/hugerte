@@ -56,6 +56,15 @@ const mergeSubSup = (dom: DOMUtils, format: ApplyFormat, vars: FormatVars | unde
   }
 };
 
+const mergeSubSupWithSelection = (editor: Editor, format: ApplyFormat, vars: FormatVars | undefined, node: Node): void => {
+  const sel = editor.selection;
+  const bookmark = sel.isCollapsed() ? sel.getBookmark() : undefined;
+  mergeSubSup(editor.dom, format, vars, node);
+  if (bookmark) {
+    sel.moveToBookmark(bookmark);
+  }
+};
+
 const mergeWithChildren = (editor: Editor, formatList: ApplyFormat[], vars: FormatVars | undefined, node: Node): void => {
   // Remove/merge children
   // Note: RemoveFormat.removeFormat will not remove formatting from noneditable nodes
@@ -103,6 +112,7 @@ export {
   mergeTextDecorationsAndColor,
   mergeBackgroundColorAndFontSize,
   mergeSubSup,
+  mergeSubSupWithSelection,
   mergeSiblings,
   mergeWithParents
 };
