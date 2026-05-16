@@ -1,4 +1,4 @@
-import { Cell } from '@ephox/katamari';
+import { Cell, Optional } from '@ephox/katamari';
 
 import Editor from '../api/Editor';
 import Env from '../api/Env';
@@ -22,10 +22,20 @@ const shouldIgnoreCommand = (cmd: string): boolean => {
 
 export const registerEvents = (editor: Editor, undoManager: UndoManager, locks: Locks): void => {
   const isFirstTypedCharacter = Cell(false);
+  const typingDirection = Cell<Optional<'forward' | 'backward'>>(Optional.none());
 
   const addNonTypingUndoLevel = (e?: EditorEvent<any>) => {
+    typingDirection.set(Optional.none());
     setTyping(undoManager, false, locks);
     undoManager.add({}, e);
+  };
+
+  const startTypingSession = (direction: 'forward' | 'backward', e: EditorEvent<KeyboardEvent>) => {
+    undoManager.beforeChange();
+    setTyping(undoManager, true, locks);
+    undoManager.add({} as UndoLevel, e);
+    typingDirection.set(Optional.some(direction));
+    isFirstTypedCharacter.set(true);
   };
 
   // Add initial undo level when the editor is initialized
@@ -105,18 +115,56 @@ export const registerEvents = (editor: Editor, undoManager: UndoManager, locks: 
       if (undoManager.typing) {
         addNonTypingUndoLevel(e);
       }
+      typingDirection.set(Optional.none());
 
       return;
     }
 
+    const isDelete = keyCode === 8 || keyCode === 46;
+
     // If key isn't Ctrl+Alt/AltGr
     const modKey = (e.ctrlKey && !e.altKey) || e.metaKey;
-    if ((keyCode < 16 || keyCode > 20) && keyCode !== 224 && keyCode !== 91 && !undoManager.typing && !modKey) {
-      undoManager.beforeChange();
-      setTyping(undoManager, true, locks);
-      undoManager.add({} as UndoLevel, e);
-      isFirstTypedCharacter.set(true);
+
+    // Direction-aware typing: backspace/delete during forward typing ends the
+    // forward session and starts a backward one, and vice versa. This ensures
+    // undo after backspace reverts only the deletions, not the entire typing session.
+    if (isDelete) {
+      if (undoManager.typing) {
+        typingDirection.get().fold(
+          // No direction set yet (shouldn't happen), treat as backward start
+          () => {
+            addNonTypingUndoLevel(e);
+            startTypingSession('backward', e);
+          },
+          (dir) => {
+            if (dir !== 'backward') {
+              // Switching from forward typing to backward deletion
+              addNonTypingUndoLevel(e);
+              startTypingSession('backward', e);
+            }
+            // If already in backward mode, just continue coalescing
+          }
+        );
+      } else if (!modKey) {
+        // Not currently typing, start a backward session
+        startTypingSession('backward', e);
+      }
       return;
+    }
+
+    if ((keyCode < 16 || keyCode > 20) && keyCode !== 224 && keyCode !== 91 && !undoManager.typing && !modKey) {
+      startTypingSession('forward', e);
+      return;
+    }
+
+    // Switching from backward deletion to forward typing
+    if (undoManager.typing && !isDelete) {
+      typingDirection.get().each((dir) => {
+        if (dir === 'backward') {
+          addNonTypingUndoLevel(e);
+        }
+      });
+      typingDirection.set(Optional.some('forward'));
     }
 
     const hasOnlyMetaOrCtrlModifier = Env.os.isMacOS() ? e.metaKey : e.ctrlKey && !e.altKey;
@@ -129,6 +177,7 @@ export const registerEvents = (editor: Editor, undoManager: UndoManager, locks: 
     if (undoManager.typing) {
       addNonTypingUndoLevel(e);
     }
+    typingDirection.set(Optional.none());
   });
 
   // Special inputType, currently only Chrome implements this: https://www.w3.org/TR/input-events-2/#x5.1.2-attributes
