@@ -163,9 +163,12 @@ export const registerEvents = (editor: Editor, undoManager: UndoManager, locks: 
       typingDirection.get().each((dir) => {
         if (dir === 'backward') {
           addNonTypingUndoLevel(e);
+          startTypingSession('forward', e);
         }
       });
-      typingDirection.set(Optional.some('forward'));
+      if (typingDirection.get().isNone()) {
+        typingDirection.set(Optional.some('forward'));
+      }
     }
 
     const hasOnlyMetaOrCtrlModifier = Env.os.isMacOS() ? e.metaKey : e.ctrlKey && !e.altKey;
