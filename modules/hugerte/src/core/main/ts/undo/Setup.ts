@@ -125,10 +125,11 @@ export const registerEvents = (editor: Editor, undoManager: UndoManager, locks: 
     // If key isn't Ctrl+Alt/AltGr
     const modKey = (e.ctrlKey && !e.altKey) || e.metaKey;
 
-    // Direction-aware typing: backspace/delete during forward typing ends the
+    // Direction-aware typing: plain backspace/delete during forward typing ends the
     // forward session and starts a backward one, and vice versa. This ensures
     // undo after backspace reverts only the deletions, not the entire typing session.
-    if (isDelete) {
+    // Ctrl/Meta+delete (e.g., word deletion) is handled by hasOnlyMetaOrCtrlModifier below.
+    if (isDelete && !modKey) {
       if (undoManager.typing) {
         typingDirection.get().fold(
           // No direction set yet (shouldn't happen), treat as backward start
@@ -145,7 +146,7 @@ export const registerEvents = (editor: Editor, undoManager: UndoManager, locks: 
             // If already in backward mode, just continue coalescing
           }
         );
-      } else if (!modKey) {
+      } else {
         // Not currently typing, start a backward session
         startTypingSession('backward', e);
       }
