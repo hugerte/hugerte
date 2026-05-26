@@ -58,12 +58,17 @@ const getClosestEditingHost = (editor: Editor, elm: Element): HTMLElement => {
   return parentTableCell.length > 0 ? parentTableCell[0] : editor.getBody();
 };
 
-const isListHost = (schema: Schema, node: Node): boolean =>
-  !NodeType.isListNode(node) && !NodeType.isListItemNode(node) && Arr.exists(listNames, (listName) => schema.isValidChild(node.nodeName, listName));
+const isListHost = (schema: Schema, node: Node, forcedRootBlock: string): boolean =>
+  !NodeType.isListNode(node) &&
+  !NodeType.isListItemNode(node) &&
+  (forcedRootBlock === '' || node.nodeName.toLowerCase() !== forcedRootBlock.toLowerCase()) &&
+  Arr.exists(listNames, (listName) => schema.isValidChild(node.nodeName, listName));
 
 const getClosestListHost = (editor: Editor, elm: Node): HTMLElement => {
+  const forcedRootBlock = editor.options.get('forced_root_block');
+  const forcedRootBlockName = Type.isString(forcedRootBlock) ? forcedRootBlock : '';
   const parentBlocks = editor.dom.getParents<HTMLElement>(elm, editor.dom.isBlock);
-  const parentBlock = Arr.find(parentBlocks, (elm) => isListHost(editor.schema, elm));
+  const parentBlock = Arr.find(parentBlocks, (elm) => isListHost(editor.schema, elm, forcedRootBlockName));
 
   return parentBlock.getOr(editor.getBody());
 };

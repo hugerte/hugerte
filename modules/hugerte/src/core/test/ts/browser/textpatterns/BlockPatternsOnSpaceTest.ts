@@ -285,4 +285,36 @@ describe('browser.hugerte.core.textpatterns.BlockPatternsOnSpaceTest', () => {
       TinyAssertions.assertContent(editor, '<p>&nbsp;</p><hr><p>&nbsp;</p><p>&nbsp;</p>');
     });
   });
+
+  context('block textpatterns with forced_root_block: div', () => {
+    const hook = TinyHooks.bddSetupLight<Editor>({
+      plugins: 'lists',
+      base_url: '/project/hugerte/js/hugerte',
+      indent: false,
+      forced_root_block: 'div',
+    }, [ ListsPlugin ]);
+
+    beforeEach(() => {
+      const editor = hook.editor();
+      editor.setContent('');
+    });
+
+    it('#169: should insert unordered list on *', () => {
+      const editor = hook.editor();
+      Utils.setContentAndPressSpaceDown(editor, '*', false, 1, [ 0, 0 ], 'div');
+      TinyAssertions.assertContent(editor, '<ul><li>&nbsp;</li></ul>');
+    });
+
+    it('#169: should insert unordered list on -', () => {
+      const editor = hook.editor();
+      Utils.setContentAndPressSpaceDown(editor, '-', false, 1, [ 0, 0 ], 'div');
+      TinyAssertions.assertContent(editor, '<ul><li>&nbsp;</li></ul>');
+    });
+
+    it('#169: should insert ordered list on 1.', () => {
+      const editor = hook.editor();
+      Utils.setContentAndPressSpaceDown(editor, '1.', false, 2, [ 0, 0 ], 'div');
+      TinyAssertions.assertContent(editor, '<ol><li>&nbsp;</li></ol>');
+    });
+  });
 });
