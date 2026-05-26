@@ -5,6 +5,7 @@ import Editor from 'hugerte/core/api/Editor';
 import Schema from 'hugerte/core/api/html/Schema';
 import Tools from 'hugerte/core/api/util/Tools';
 
+import * as Options from '../api/Options';
 import * as NodeType from './NodeType';
 
 const listNames = [ 'OL', 'UL', 'DL' ];
@@ -65,8 +66,7 @@ const isListHost = (schema: Schema, node: Node, forcedRootBlock: string): boolea
   Arr.exists(listNames, (listName) => schema.isValidChild(node.nodeName, listName));
 
 const getClosestListHost = (editor: Editor, elm: Node): HTMLElement => {
-  const forcedRootBlock = editor.options.get('forced_root_block');
-  const forcedRootBlockName = Type.isString(forcedRootBlock) ? forcedRootBlock : '';
+  const forcedRootBlockName = Options.getForcedRootBlock(editor);
   const parentBlocks = editor.dom.getParents<HTMLElement>(elm, editor.dom.isBlock);
   const parentBlock = Arr.find(parentBlocks, (elm) => isListHost(editor.schema, elm, forcedRootBlockName));
 
