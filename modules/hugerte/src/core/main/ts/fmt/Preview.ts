@@ -287,7 +287,8 @@ const getCssText = (editor: Editor, format: string | ApplyFormat): string => {
 
       // Ignore white since it's the default color, not the nicest fix
       // TODO: Fix this by detecting runtime style
-      if (Transformations.rgbaToHexString(value).toLowerCase() === '#ffffff') {
+      const hex = Transformations.rgbaToHexString(value);
+      if (hex && hex.toLowerCase() === '#ffffff') {
         return;
       }
     }
@@ -295,7 +296,8 @@ const getCssText = (editor: Editor, format: string | ApplyFormat): string => {
     if (name === 'color') {
       // Ignore black since it's the default color, not the nicest fix
       // TODO: Fix this by detecting runtime style
-      if (Transformations.rgbaToHexString(value).toLowerCase() === '#000000') {
+      const hex = Transformations.rgbaToHexString(value);
+      if (hex && hex.toLowerCase() === '#000000') {
         return;
       }
     }
