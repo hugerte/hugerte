@@ -91,7 +91,8 @@ const setupIframeBody = (editor: Editor): void => {
 
   // TINY-8916: Firefox has a bug in its srcdoc implementation that prevents cookies being sent so unfortunately we need
   // to fallback to legacy APIs to load the iframe content. See https://bugzilla.mozilla.org/show_bug.cgi?id=1741489
-  if (Options.shouldUseDocumentWrite(editor) || Env.browser.isFirefox()) {
+  // WebKit2GTK (Safari on Linux) also has a bug where the srcdoc load event never fires.
+  if (Options.shouldUseDocumentWrite(editor) || Env.browser.isFirefox() || (Env.browser.isSafari() && Env.os.isLinux())) {
     const doc = editor.getDoc();
     doc.open();
     doc.write(editor.iframeHTML as string);
