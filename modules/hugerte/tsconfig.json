@@ -16,6 +16,7 @@
       "hugerte/models/dom/*": ["src/models/dom/main/ts/*"],
       "hugerte/plugins/advlist/*": ["src/plugins/advlist/main/ts/*"],
       "hugerte/plugins/accordion/*": ["src/plugins/accordion/main/ts/*"],
+      "hugerte/plugins/downloadimages/*": ["src/plugins/downloadimages/main/ts/*"],
       "hugerte/plugins/anchor/*": ["src/plugins/anchor/main/ts/*"],
       "hugerte/plugins/autolink/*": ["src/plugins/autolink/main/ts/*"],
       "hugerte/plugins/autoresize/*": ["src/plugins/autoresize/main/ts/*"],
