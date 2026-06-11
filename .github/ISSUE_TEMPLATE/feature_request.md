@@ -18,7 +18,7 @@ labels: enhancement
 *Choose from nice-to-have, important or critical.*
 
 ## ❤️ Thank you
-Thank you for taking the time to submit us this feature request! Maybe you have another two minutes for quickly [filling out a survey](https://hugerte.org)? Just in case.
+Thank you for taking the time to submit us this feature request!
 _(Please delete this section.)_
 
 ---

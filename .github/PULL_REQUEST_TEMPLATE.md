@@ -6,8 +6,6 @@ Thank you very much for having taken your time to submit a contribution to HugeR
 
 Then, please remove the three dashes and everything preceding them, including this text.
 
-Finally, although we're grateful for all the time you already spent on this PR, we'd like to ask you if you have another two minutes to quickly [complete a survey](https://hugerte.org). By answering you can help us make the right choices and priorities in the future development of this project. Your feedback is very appreciated.
-
 ---
 
 _Put your description here._

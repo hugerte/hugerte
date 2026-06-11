@@ -27,7 +27,7 @@ Please provide the steps to reproduce and if possible a minimal demo of the prob
 - Worked in version: …
 
 ## ❤️ Thank you
-Thank you for taking the time to submit us this bug report! Maybe you have another two minutes for quickly [filling out a survey](https://hugerte.org)? Just in case.
+Thank you for taking the time to submit us this bug report!
 _(Please delete this section.)_
 
 ---
