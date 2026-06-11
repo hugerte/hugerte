@@ -120,6 +120,7 @@ const mkSerializerSettings = (editor: Editor): DomSerializerSettings => {
       pad_empty_with_br: getOption('pad_empty_with_br'),
       url_converter: getOption('url_converter'),
       url_converter_scope: getOption('url_converter_scope'),
+      protect: Options.getProtect(editor),
 
       // Writer settings
       element_format: getOption('element_format'),
@@ -135,6 +136,15 @@ const mkSerializerSettings = (editor: Editor): DomSerializerSettings => {
 const createParser = (editor: Editor): DomParser => {
   const parser = DomParser(mkParserSettings(editor), editor.schema);
 
+  // Strip any pre-existing data-mce-src, data-mce-href, data-mce-style attributes
+  // that were injected by an attacker. Only the converter below should create these.
+  parser.addAttributeFilter('data-mce-src,data-mce-href,data-mce-style', (nodes, name) => {
+    let i = nodes.length;
+    while (i--) {
+      nodes[i].attr(name, null);
+    }
+  });
+
   // Convert src and href into data-mce-src, data-mce-href and data-mce-style
   parser.addAttributeFilter('src,href,style,tabindex', (nodes, name) => {
     const dom = editor.dom;
@@ -146,7 +156,7 @@ const createParser = (editor: Editor): DomParser => {
       let value: string | null | undefined = node.attr(name);
 
       // Add internal attribute if we need to we don't on a refresh of the document
-      if (value && !node.attr(internalName)) {
+      if (value) {
         // Don't duplicate these since they won't get modified by any browser
         if (value.indexOf('data:') === 0 || value.indexOf('blob:') === 0) {
           continue;

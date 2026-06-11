@@ -1,7 +1,8 @@
-import { Arr, Obj } from '@ephox/katamari';
+import { Arr, Obj, Type } from '@ephox/katamari';
 
 import Editor from 'hugerte/core/api/Editor';
 import AstNode from 'hugerte/core/api/html/Node';
+import HtmlSerializer from 'hugerte/core/api/html/Serializer';
 
 import * as Nodes from './Nodes';
 import * as Sanitize from './Sanitize';
@@ -65,25 +66,61 @@ const setup = (editor: Editor): void => {
           style: node.attr('style')
         });
 
-        // Unprefix all placeholder attributes
+        // Copy all data-mce-p-* attributes onto the real element without filtering.
+        // The element will be run through DOMPurify + schema validation below.
         const attribs = node.attributes ?? [];
         let ai = attribs.length;
         while (ai--) {
           const attrName = attribs[ai].name;
-
           if (attrName.indexOf('data-mce-p-') === 0) {
             realElm.attr(attrName.substr(11), attribs[ai].value);
           }
         }
 
-        // Inject innerhtml
+        // If the element has no inner HTML, add a filler child so the parser's
+        // removeEmpty rule doesn't strip an otherwise-valid empty element.
         const innerHtml = node.attr('data-mce-html');
-        if (innerHtml) {
-          const fragment = Sanitize.parseAndSanitize(editor, realElmName, unescape(innerHtml));
-          Arr.each(fragment.children(), (child) => realElm.append(child));
+        const hadInnerHtml = Type.isString(innerHtml);
+        if (!hadInnerHtml) {
+          const filler = new AstNode('#text', 3);
+          filler.value = '\u00a0';
+          realElm.append(filler);
         }
 
-        node.replace(realElm);
+        // Serialize the reconstructed element and run it through DOMPurify + schema
+        // validation. This lets the editor's existing sanitization infrastructure
+        // decide what's safe, rather than ad-hoc attribute blocklisting.
+        const elementHtml = HtmlSerializer({}, schema).serialize(realElm);
+        let sanitized: AstNode;
+        try {
+          sanitized = Sanitize.parseAndSanitize(editor, 'body', elementHtml);
+        } catch (_e) {
+          // parseAndSanitize may throw for special elements (e.g. <script>) — remove the placeholder
+          node.remove();
+          continue;
+        }
+        const safeChildren = Arr.filter(sanitized.children(), (child) => child.name === realElmName);
+
+        if (safeChildren.length === 0) {
+          // Sanitizer stripped the element due to dangerous attributes — remove the placeholder
+          node.remove();
+          continue;
+        }
+
+        const safeElm = safeChildren[0];
+
+        // Remove the filler child we added
+        if (!hadInnerHtml) {
+          safeElm.empty();
+        }
+
+        // Inject innerhtml (already sanitized through parseAndSanitize)
+        if (hadInnerHtml) {
+          const fragment = Sanitize.parseAndSanitize(editor, realElmName, unescape(innerHtml));
+          Arr.each(fragment.children(), (child) => safeElm.append(child));
+        }
+
+        node.replace(safeElm);
       }
     });
   });

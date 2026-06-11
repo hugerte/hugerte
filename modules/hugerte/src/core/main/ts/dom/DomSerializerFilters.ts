@@ -1,8 +1,9 @@
-import { Arr, Optional } from '@ephox/katamari';
+import { Arr, Optional, Type } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomParser from '../api/html/DomParser';
 import AstNode from '../api/html/Node';
+import URI from '../api/util/URI';
 import * as Zwsp from '../text/Zwsp';
 import { DomSerializerSettings } from './DomSerializerImpl';
 import * as RemoveTrailingBr from './RemoveTrailingBr';
@@ -32,8 +33,27 @@ const register = (htmlParser: DomParser, settings: DomSerializerSettings, dom: D
 
       let value = node.attr(internalName);
       if (value !== undefined) {
+        // Internal attributes bypass parser-level sanitization because they start with
+        // 'data-' which is always allowed. Apply the same validation here that the regular
+        // path would get, plus explicit URI safety checks.
+        if (name === 'style') {
+          value = dom.serializeStyle(dom.parseStyle(value), node.name);
+        } else {
+          // Validate URLs from internal attributes to prevent javascript: injection
+          const safeUriOptions = {
+            allow_script_urls: settings.allow_script_urls,
+            allow_html_data_urls: settings.allow_html_data_urls,
+            allow_svg_data_urls: settings.allow_svg_data_urls
+          };
+          if (Type.isString(value) && !URI.isDomSafe(value, node.name, safeUriOptions)) {
+            // Strip dangerous URLs silently
+            value = undefined;
+          } else if (urlConverter && Type.isString(value)) {
+            value = urlConverter.call(urlConverterScope, value, name, node.name);
+          }
+        }
         // Set external name to internal value and remove internal
-        node.attr(name, value.length > 0 ? value : null);
+        node.attr(name, Type.isString(value) && value.length > 0 ? value : null);
         node.attr(internalName, null);
       } else {
         // No internal attribute found then convert the value we have in the DOM
@@ -130,10 +150,25 @@ const register = (htmlParser: DomParser, settings: DomSerializerSettings, dom: D
         node.type = 4;
         node.value = dom.decode(value.replace(/^\[CDATA\[|\]\]$/g, ''));
       } else if (value?.indexOf('mce:protected ') === 0) {
-        node.name = '#text';
-        node.type = 3;
-        node.raw = true;
-        node.value = unescape(value).substr(14);
+        const decoded = unescape(value).substr(14);
+        const protectPatterns = settings.protect;
+        const isProtected = protectPatterns && protectPatterns.length > 0 &&
+          Arr.exists(protectPatterns, (pattern) => {
+            // The decoded content must exactly match the protect pattern (not just
+            // contain a match). Serializer-wrapped content is the full matched substring
+            // from replace(), so any legitimately protected content is fully consumed.
+            const match = decoded.match(pattern);
+            return match !== null && match[0] === decoded;
+          });
+        if (isProtected) {
+          node.name = '#text';
+          node.type = 3;
+          node.raw = true;
+          node.value = decoded;
+        } else {
+          // Forged protected comment or no protect patterns configured — remove entirely
+          node.remove();
+        }
       }
     }
   });

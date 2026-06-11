@@ -20,6 +20,7 @@ interface DomSerializerSettings extends DomParserSettings, WriterSettings, Schem
   remove_trailing_brs?: boolean;
   url_converter?: URLConverter;
   url_converter_scope?: {};
+  protect?: RegExp[];
 }
 
 interface DomSerializerImpl {
