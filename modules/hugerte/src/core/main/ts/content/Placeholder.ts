@@ -63,8 +63,13 @@ const isVisuallyEmpty = (dom: DOMUtils, rootElm: Element, forcedRootBlock: strin
       return false;
     } else if (forcedRootBlock === firstElement.nodeName.toLowerCase()) {
       // Even if the root is the forced_root_block, it may contain structural
-      // elements (e.g. a <ul> inside a <div>) that indicate content has been added
-      const child = firstElement.firstElementChild;
+      // elements (e.g. a <ul> inside a <div>) that indicate content has been added.
+      // Skip bogus elements (internal editor markers like format-caret spans)
+      // to find the first real content child.
+      let child = firstElement.firstElementChild;
+      while (child && child.hasAttribute('data-mce-bogus')) {
+        child = child.nextElementSibling;
+      }
       return child === null || child.nodeName === 'BR';
     } else {
       return false;
