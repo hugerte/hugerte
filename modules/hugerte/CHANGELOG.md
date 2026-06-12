@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0.11 - 2026-06-11
+
+### Added
+- New text-transform inline formats: uppercase, lowercase, capitalize, and "Capitalize first word" via CSS `::first-letter` class. #GH-111
+
+### Fixed
+- **Security**: Upgraded DOMPurify from 3.2.4 to 3.4.0, fixing CVE-2025-15599 and CVE-2026-0540. #GH-128
+- **Security**: Fixed stored XSS via unsanitized data-mce-href, data-mce-src, and data-mce-style attributes during serialization. (CVE-2026-47759)
+- **Security**: Fixed stored XSS in the media plugin via crafted data-mce-p-* attributes. (CVE-2026-47761)
+- **Security**: Fixed stored XSS via forged mce:protected comments bypassing the protect option. (CVE-2026-47762)
+- Auto-list insertion caused line to disappear when `forced_root_block` is set to `'div'`. #GH-169
+- Undo after consecutive backspace presses reverted the entire typing session instead of only the deletions. #GH-103
+- Placeholder remained visible when inserting a list in an empty editor with `forced_root_block: 'div'`. #GH-140
+- Placeholder was invisible in dark mode content skins. #GH-127
+- Placeholder not hidden when typing Alt+key combinations on macOS (e.g. autocompleter trigger). #GH-129
+- Subscript/superscript cursor positioning bugs. #GH-107
+- importcss plugin caused the format chooser dropdown to not appear when no CSS selectors were found. #GH-24
+- HTML entities (e.g. `&not`) being incorrectly evaluated in pasted URLs. #GH-131
+- List toggle with matching `list-style-type` not correctly removing the list.
+- `TypeError` crash in `Preview.getCssText` when cross-document custom elements are present. #GH-171
+- WebKit2GTK initialization: fall back to `document.write` where `srcdoc` load event never fires.
+
 ## 1.0.10 - 2026-02-16
 
 ### Improved
@@ -127,4 +149,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adding newline after using `selection.setContent` to insert a block element would throw an unhandled exception. #TINY-10560
 - Floating toolbar buttons in inline editor incorrectly wrapped into multiple rows on window resizing or zooming. #TINY-10570
 - When setting table border width and `table_style_by_css` is true, only the border attribute is set to 0 and border-width styling is no longer used #TINY-10308
-
