@@ -131,9 +131,16 @@ const processAttr = (ele: Element, settings: DomParserSettings, schema: Schema, 
   }
 };
 
+const isEventHandlerAttr = (name: string): boolean => /^on[a-z]/i.test(name);
+
 const shouldKeepAttribute = (settings: DomParserSettings, schema: Schema, scope: Namespace.NamespaceType, tagName: string, attrName: string, attrValue: string): boolean => {
-  // All attributes within non HTML namespaces elements are considered valid
+  // All attributes within non-HTML namespaces are considered valid,
+  // but inline event handlers (onclick, onload, onbegin, etc.) are
+  // never legitimate content attributes in any scope.
   if (scope !== 'html' && !Namespace.isNonHtmlElementRootName(tagName)) {
+    if (isEventHandlerAttr(attrName)) {
+      return false;
+    }
     return true;
   }
 
