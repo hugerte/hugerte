@@ -856,7 +856,7 @@ module.exports = function (grunt) {
 
     'bedrock-manual': {
       core: {
-        config: 'tsconfig.json',
+        config: 'tsconfig.bedrock.json',
         projectdir: '.',
         stopOnFailure: true,
         testfiles: [
@@ -867,7 +867,7 @@ module.exports = function (grunt) {
         customRoutes: 'src/core/test/json/routes.json'
       },
       atomic: {
-        config: 'tsconfig.json',
+        config: 'tsconfig.bedrock.json',
         projectdir: '.',
         stopOnFailure: true,
         testfiles: [
@@ -876,7 +876,7 @@ module.exports = function (grunt) {
         customRoutes: 'src/core/test/json/routes.json'
       },
       silver: {
-        config: 'tsconfig.json',
+        config: 'tsconfig.bedrock.json',
         testfiles: ['src/themes/silver/test/ts/phantom/**/*Test.ts', 'src/themes/silver/test/ts/browser/**/*Test.ts'],
         stopOnFailure: true,
         overallTimeout: 600000,
@@ -889,17 +889,18 @@ module.exports = function (grunt) {
     'bedrock-auto': {
       standard: {
         browser: grunt.option('bedrock-browser') !== undefined ? grunt.option('bedrock-browser') : 'chrome-headless',
-        config: 'tsconfig.json',
+        config: 'tsconfig.bedrock.json',
         testfiles: ['src/**/test/ts/**/*Test.ts'],
         overallTimeout: 900000,
         singleTimeout: 30000,
         retries: 3,
+        extraBrowserCapabilities: ' --no-sandbox --disable-dev-shm-usage --user-data-dir=/tmp/bedrock-chrome',
         customRoutes: 'src/core/test/json/routes.json',
         name: grunt.option('bedrock-browser') !== undefined ? grunt.option('bedrock-browser') : 'chrome-headless'
       },
       silver: {
         browser: 'phantomjs',
-        config: 'tsconfig.json',
+        config: 'tsconfig.bedrock.json',
         testfiles: ['src/themes/silver/test/ts/phantom/**/*Test.ts', 'src/themes/silver/test/ts/browser/**/*Test.ts', 'src/themes/silver/test/ts/webdriver/*/*Test.ts'],
         stopOnFailure: true,
         overallTimeout: 600000,
