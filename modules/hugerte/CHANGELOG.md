@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0.12 - 2026-06-29
+
+### Fixed
+- **Security**: Upgraded DOMPurify from 3.4.0 to 3.4.11, fixing CVE-2026-49458, CVE-2026-49459, and CVE-2026-49978. #GH-186
+- **Security**: Fixed the namespace tracker to pop all stale scopes instead of just one, closing an `iframe srcdoc` XSS vector reachable through namespace confusion. (CVE-2026-47760)
+- **Security**: Rewrote the sanitization hook to avoid a DOMPurify 3.4.9+ parentless-guard throw that could abort the sanitize walk when elements were pre-detached by the hook.
+
 ## 1.0.11 - 2026-06-12
 
 ### Added
