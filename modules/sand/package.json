@@ -33,6 +33,9 @@
   "dependencies": {
     "@ephox/katamari": "^9.1.6"
   },
+  "devDependencies": {
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14"
+  },
   "main": "./lib/main/ts/ephox/sand/api/Main.js",
   "module": "./lib/main/ts/ephox/sand/api/Main.js",
   "types": "./lib/main/ts/ephox/sand/api/Main.d.ts"

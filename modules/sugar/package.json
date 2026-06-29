@@ -27,6 +27,7 @@
     "@ephox/sand": "^6.0.10"
   },
   "devDependencies": {
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14",
     "@ephox/katamari-assertions": "^4.0.10"
   },
   "files": [

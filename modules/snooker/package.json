@@ -26,7 +26,8 @@
     "@ephox/sugar": "^9.3.1"
   },
   "devDependencies": {
-    "@ephox/agar": "^8.0.1"
+    "@ephox/agar": "^8.0.1",
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14"
   },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",

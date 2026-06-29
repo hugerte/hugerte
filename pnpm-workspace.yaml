@@ -1,0 +1,18 @@
+packages:
+  - "modules/*"
+
+nodeLinker: hoisted
+linkWorkspacePackages: true
+minimumReleaseAge: 4320
+
+patchedDependencies:
+  '@ephox/oxide-icons-tools@3.1.1': patches/@ephox__oxide-icons-tools@3.1.1.patch
+
+allowBuilds:
+  core-js: false
+  core-js-bundle: false
+  edgedriver: false
+  es5-ext: false
+  fsevents: false
+  geckodriver: false
+  nx: false

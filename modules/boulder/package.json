@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "@ephox/agar": "^8.0.1",
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14",
     "@ephox/katamari-assertions": "^4.0.10"
   },
   "scripts": {

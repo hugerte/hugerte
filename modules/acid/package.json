@@ -13,6 +13,9 @@
     "@ephox/katamari": "^9.1.6",
     "@ephox/sugar": "^9.3.1"
   },
+  "devDependencies": {
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14"
+  },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "files": [

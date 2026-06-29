@@ -5,18 +5,18 @@
     "modules/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
+    "preinstall": "npx only-allow pnpm",
     "hugerte-grunt": "grunt --gruntfile modules/hugerte/Gruntfile.js",
     "hugerte-rollup": "run-s \"hugerte-grunt dev rollup\"",
-    "oxide-icons-build": "yarn -s --cwd modules/oxide-icons-default build",
-    "oxide-icons-ci": "yarn -s --cwd modules/oxide-icons-default ci",
-    "oxide-build": "yarn -s --cwd modules/oxide build",
-    "oxide-start": "yarn -s --cwd modules/oxide start",
-    "oxide-ci": "yarn -s --cwd modules/oxide ci",
+    "oxide-icons-build": "pnpm -C modules/oxide-icons-default build",
+    "oxide-icons-ci": "pnpm -C modules/oxide-icons-default ci",
+    "oxide-build": "pnpm -C modules/oxide build",
+    "oxide-start": "pnpm -C modules/oxide start",
+    "oxide-ci": "pnpm -C modules/oxide ci",
     "tsc": "tsc -b",
     "watch": "tsc -b -w",
     "eslint": "lerna exec --stream --no-bail -- eslint --max-warnings=0 src/**/*.ts",
-    "start": "yarn -s hugerte-grunt start",
+    "start": "pnpm hugerte-grunt start",
     "dev": "npm-run-all oxide-icons-build oxide-build -p tsc \"hugerte-grunt dev\"",
     "ci": "npm-run-all -p oxide-ci oxide-icons-ci -p tsc \"hugerte-grunt dev\"",
     "ci-seq": "run-s oxide-ci oxide-icons-ci tsc \"hugerte-grunt dev\"",
@@ -32,7 +32,7 @@
     "headless-test-firefox": "grunt headless-auto --bedrock-browser=firefox-headless",
     "headless-test-manual": "grunt headless-manual",
     "bedrock": "bedrock --customRoutes modules/hugerte/src/core/test/json/routes.json",
-    "test-one": "yarn tsc && yarn bedrock-auto -b chrome-headless -f"
+    "test-one": "pnpm tsc && pnpm bedrock-auto -b chrome-headless -f"
   },
   "devDependencies": {
     "@ephox/bedrock-client": "^15.0.0",
@@ -67,7 +67,6 @@
     "load-grunt-tasks": "^5.1.0",
     "moxie-zip": "0.0.4",
     "npm-run-all": "^4.1.5",
-    "patch-package": "^8.0.0",
     "resolve": "^1.18.1",
     "rollup": "^4.32.1",
     "rollup-plugin-string": "^3.0.0",
@@ -86,5 +85,5 @@
     "webpack-cli": "^5.1.1",
     "webpack-dev-server": "^5.2.0"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "pnpm@11.6.0"
 }

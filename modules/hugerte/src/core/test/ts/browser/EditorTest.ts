@@ -401,7 +401,7 @@ describe('browser.hugerte.core.EditorTest', () => {
     assert.isFalse(editor.isDirty(), 'setDirty/isDirty');
 
     editor.setDirty(true);
-    assert.equal(lastArgs?.type, 'dirty', 'setDirty/isDirty');
+    assert.equal((lastArgs as EditorEvent<{}> | undefined)?.type, 'dirty', 'setDirty/isDirty');
     assert.isTrue( editor.isDirty(), 'setDirty/isDirty');
 
     lastArgs = undefined;

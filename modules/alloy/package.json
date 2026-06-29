@@ -36,6 +36,9 @@
   "keywords": [
     "ui"
   ],
+  "devDependencies": {
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14"
+  },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "main": "./lib/main/ts/ephox/alloy/api/Main.js",

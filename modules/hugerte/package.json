@@ -34,8 +34,16 @@
     "@ephox/acid": "^6.0.3",
     "@ephox/agar": "^8.0.1",
     "@ephox/alloy": "^14.0.3",
+    "@ephox/boulder": "^7.1.6",
     "@ephox/bridge": "^4.7.1",
     "@ephox/darwin": "^8.2.1",
+    "@ephox/dragster": "^7.3.1",
+    "@ephox/katamari": "^9.1.6",
+    "@ephox/mcagar": "^9.0.1",
+    "@ephox/phoenix": "^8.4.1",
+    "@ephox/polaris": "^6.3.1",
+    "@ephox/robin": "^10.4.1",
+    "@ephox/snooker": "^11.2.1",
     "@tinymce/oxide": "^2.8.2",
     "@tinymce/oxide-icons-default": "^2.6.1"
   }

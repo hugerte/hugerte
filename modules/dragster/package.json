@@ -30,6 +30,11 @@
     "prepublishOnly": "tsc -b",
     "build": "tsc"
   },
+  "devDependencies": {
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14",
+    "@ephox/katamari-assertions": "^4.0.10",
+    "@ephox/sand": "^6.0.10"
+  },
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "main": "./lib/main/ts/ephox/dragster/api/Main.js",

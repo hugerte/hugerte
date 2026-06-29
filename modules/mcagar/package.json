@@ -26,6 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "@ephox/agar": "^8.0.1",
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14",
     "@ephox/katamari": "^9.1.6",
     "@ephox/sand": "^6.0.10",
     "@ephox/sugar": "^9.3.1",

@@ -25,9 +25,11 @@
   "author": "Ephox Corporation DBA Tiny Technologies, Inc",
   "license": "MIT",
   "dependencies": {
-    "@ephox/bedrock-client": "11 || 12 || 13",
-    "@ephox/bedrock-common": "11 || 12 || 13",
+    "@ephox/bedrock-client": "11 || 12 || 13 || 14",
+    "@ephox/bedrock-common": "11 || 12 || 13 || 14",
+    "@ephox/dispute": "^1.0.3",
     "@ephox/jax": "^7.0.10",
+    "@ephox/katamari": "^9.1.6",
     "@ephox/sand": "^6.0.10",
     "@ephox/sugar": "^9.3.1",
     "@types/sizzle": "^2.3.3",
