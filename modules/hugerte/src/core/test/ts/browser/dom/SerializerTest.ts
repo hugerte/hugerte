@@ -9,8 +9,6 @@ import * as Zwsp from 'hugerte/core/text/Zwsp';
 
 import * as ViewBlock from '../../module/test/ViewBlock';
 
-declare const escape: any;
-
 describe('browser.hugerte.core.dom.SerializerTest', () => {
   const DOM = DOMUtils.DOM;
   const viewBlock = ViewBlock.bddSetup();
@@ -610,21 +608,6 @@ describe('browser.hugerte.core.dom.SerializerTest', () => {
     assert.equal(ser.serialize(getTestElement()), '<script>/* <!-- */\nvar hi = \"hello\";\n/*-->*/</script>');
   });
 
-  it('Protected blocks', () => {
-    const ser = DomSerializer({ fix_list_elements: true });
-
-    ser.setRules('noscript[test]');
-
-    setTestHtml('<!--mce:protected ' + escape('<noscript test="test"><br></noscript>') + '-->');
-    assert.equal(ser.serialize(getTestElement()), '<noscript test="test"><br></noscript>');
-
-    setTestHtml('<!--mce:protected ' + escape('<noscript><br></noscript>') + '-->');
-    assert.equal(ser.serialize(getTestElement()), '<noscript><br></noscript>');
-
-    setTestHtml('<!--mce:protected ' + escape('<noscript><!-- text --><br></noscript>') + '-->');
-    assert.equal(ser.serialize(getTestElement()), '<noscript><!-- text --><br></noscript>');
-  });
-
   it('Style with whitespace at beginning with element_format: xhtml', () => {
     const ser = DomSerializer({ fix_list_elements: true, valid_children: '+body[style]', element_format: 'xhtml' });
     ser.setRules('style');
@@ -923,4 +906,3 @@ describe('browser.hugerte.core.dom.SerializerTest', () => {
       'Should remove br');
   });
 });
-

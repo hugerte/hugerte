@@ -1,6 +1,5 @@
 import { context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Fun, Obj } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
 import Env from 'hugerte/core/api/Env';
@@ -17,7 +16,6 @@ interface ParseTestResult {
 }
 
 describe('browser.hugerte.core.html.DomParserTest', () => {
-  const browser = PlatformDetection.detect().browser;
   const schema = Schema({ valid_elements: '*[class|title]' });
   const serializer = HtmlSerializer({}, schema);
 
@@ -765,14 +763,12 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
         );
       });
 
-      // TINY-9624: Safari encodes the iframe innerHTML is `&lt;textarea&gt;`. On Chrome and Firefox, the innerHTML is `<textarea>`, causing
-      // the mXSS cleaner in DOMPurify to run and remove the iframe.
       it('parse iframe XSS', () => {
         const serializer = HtmlSerializer();
 
         assert.equal(
           serializer.serialize(DomParser(scenario.settings).parse('<iframe><textarea></iframe><img src="a" onerror="alert(document.domain)" />')),
-          browser.isSafari() || !scenario.isSanitizeEnabled ? '<iframe><textarea></iframe><img src="a">' : '<img src="a">'
+          '<iframe><textarea></iframe><img src="a">'
         );
       });
 

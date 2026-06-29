@@ -58,4 +58,47 @@ describe('browser.hugerte.core.html.NamespaceTest', () => {
     tracker.reset();
     assert.equal(tracker.current(), 'html');
   });
+
+  // Regression: nested <svg><svg></svg></svg> used to leave the outer SVG on
+  // the tracker stack when an HTML sibling (e.g. <iframe>) was visited, so the
+  // sibling was incorrectly reported as being in SVG scope. The sanitizer then
+  // accepted non-event-handler attributes that HTML scope would have rejected
+  // (notably iframe[srcdoc], which is a code-execution sink). SugarElement.fromHtml
+  // returns the children of the wrapper div, so the div itself is not walked.
+  it('pops all stale scopes so HTML siblings of nested SVGs are not treated as SVG', () => {
+    const tracker = Namespace.createNamespaceTracker();
+    const scope = SugarElement.fromHtml(
+      '<div><svg><svg></svg></svg><iframe></iframe></div>'
+    );
+
+    const walker = document.createTreeWalker(scope.dom, NodeFilter.SHOW_ELEMENT);
+    const states: Array<[ string, Namespace.NamespaceType ]> = [];
+    while (walker.nextNode()) {
+      states.push([ walker.currentNode.nodeName.toLowerCase(), tracker.track(walker.currentNode) ]);
+    }
+    assert.deepEqual(states, [
+      [ 'svg', 'svg' ],
+      [ 'svg', 'svg' ],
+      [ 'iframe', 'html' ], // not 'svg' — the outer SVG was popped
+    ]);
+  });
+
+  it('pops all stale scopes with triple-nested SVGs', () => {
+    const tracker = Namespace.createNamespaceTracker();
+    const scope = SugarElement.fromHtml(
+      '<div><svg><svg><svg></svg></svg></svg><iframe></iframe></div>'
+    );
+
+    const walker = document.createTreeWalker(scope.dom, NodeFilter.SHOW_ELEMENT);
+    const states: Array<[ string, Namespace.NamespaceType ]> = [];
+    while (walker.nextNode()) {
+      states.push([ walker.currentNode.nodeName.toLowerCase(), tracker.track(walker.currentNode) ]);
+    }
+    assert.deepEqual(states, [
+      [ 'svg', 'svg' ],
+      [ 'svg', 'svg' ],
+      [ 'svg', 'svg' ],
+      [ 'iframe', 'html' ], // all three SVGs popped
+    ]);
+  });
 });

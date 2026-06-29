@@ -23,7 +23,6 @@ const internalElementAttr = 'data-mce-type';
 let uid = 0;
 const processNode = (node: Node, settings: DomParserSettings, schema: Schema, scope: Namespace.NamespaceType, evt?: UponSanitizeElementHookEvent): void => {
   const validate = settings.validate;
-  const specialElements = schema.getSpecialElements();
 
   // Pad conditional comments if they aren't allowed
   if (node.nodeType === NodeTypes.COMMENT && !settings.allow_conditional_comments && /^\[if/i.test(node.nodeValue ?? '')) {
@@ -53,7 +52,12 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
   // Cleanup bogus elements
   const bogus = Attribute.get(element, 'data-mce-bogus');
   if (!isInternalElement && Type.isString(bogus)) {
-    if (bogus === 'all') {
+    if (Type.isNonNullable(evt)) {
+      if (bogus === 'all') {
+        Remove.empty(element);
+      }
+      evt.allowedTags[lcTagName] = false;
+    } else if (bogus === 'all') {
       Remove.remove(element);
     } else {
       Remove.unwrap(element);
@@ -64,8 +68,15 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
   // Determine if the schema allows the element and either add it or remove it
   const rule = schema.getElementRule(lcTagName);
   if (validate && !rule) {
+    if (Type.isNonNullable(evt)) {
+      if (Obj.has(schema.getSpecialElements(), lcTagName)) {
+        Remove.empty(element);
+      }
+      evt.allowedTags[lcTagName] = false;
+      return;
+    }
     // If a special element is invalid, then remove the entire element instead of unwrapping
-    if (Obj.has(specialElements, lcTagName)) {
+    if (Obj.has(schema.getSpecialElements(), lcTagName)) {
       Remove.remove(element);
     } else {
       Remove.unwrap(element);
@@ -91,13 +102,21 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
 
     // If none of the required attributes were found then remove
     if (rule.attributesRequired && !Arr.exists(rule.attributesRequired, (attr) => Attribute.has(element, attr))) {
-      Remove.unwrap(element);
+      if (Type.isNonNullable(evt)) {
+        evt.allowedTags[lcTagName] = false;
+      } else {
+        Remove.unwrap(element);
+      }
       return;
     }
 
     // If there are no attributes then remove
     if (rule.removeEmptyAttrs && Attribute.hasNone(element)) {
-      Remove.unwrap(element);
+      if (Type.isNonNullable(evt)) {
+        evt.allowedTags[lcTagName] = false;
+      } else {
+        Remove.unwrap(element);
+      }
       return;
     }
 
@@ -131,8 +150,6 @@ const processAttr = (ele: Element, settings: DomParserSettings, schema: Schema, 
   }
 };
 
-const isEventHandlerAttr = (name: string): boolean => /^on[a-z]/i.test(name);
-
 const shouldKeepAttribute = (settings: DomParserSettings, schema: Schema, scope: Namespace.NamespaceType, tagName: string, attrName: string, attrValue: string): boolean => {
   // All attributes within non-HTML namespaces are considered valid,
   // but inline event handlers (onclick, onload, onbegin, etc.) are
@@ -147,6 +164,8 @@ const shouldKeepAttribute = (settings: DomParserSettings, schema: Schema, scope:
   return !(attrName in filteredUrlAttrs && URI.isInvalidUri(settings, attrValue, tagName)) &&
     (!settings.validate || schema.isValid(tagName, attrName) || Strings.startsWith(attrName, 'data-') || Strings.startsWith(attrName, 'aria-'));
 };
+
+const isEventHandlerAttr = (name: string): boolean => /^on[a-z]/i.test(name);
 
 const isRequiredAttributeOfInternalElement = (ele: Element, attrName: string): boolean =>
   ele.hasAttribute(internalElementAttr) && (attrName === 'id' || attrName === 'class' || attrName === 'style');

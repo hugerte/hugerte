@@ -24,8 +24,15 @@ export const createNamespaceTracker = (): NamespaceTracker => {
       scopes.push(node);
     }
 
+    // Pop every scope that does not contain `node`, not just one. A node may
+    // be a sibling of an inner SVG that itself was a sibling of an outer SVG
+    // (for example <svg><svg></svg></svg><iframe>), in which case two scopes
+    // are stale at once. Popping only one would leave the outer SVG on the
+    // stack and incorrectly report the iframe as being in SVG scope, which
+    // would let the sanitizer accept non-event-handler attributes that the
+    // HTML scope would otherwise reject (notably iframe[srcdoc]).
     let currentScope: Node | undefined = peek();
-    if (currentScope && !currentScope.contains(node)) {
+    while (currentScope && !currentScope.contains(node)) {
       scopes.pop();
       currentScope = peek();
     }
