@@ -74,8 +74,8 @@ describe('browser.hugerte.core.annotate.AnnotationStylingTest', () => {
 
   const getOutline = (elm: SugarElement<Element>): Outline => {
     const color = Css.get(elm, 'outline-color');
-    const width = Css.get(elm, 'outline-width');
     const style = Css.get(elm, 'outline-style');
+    const width = style === 'none' ? '0px' : Css.get(elm, 'outline-width');
     return {
       color,
       width,
