@@ -26,7 +26,6 @@
       "hugerte/plugins/emoticons/*": ["modules/hugerte/src/plugins/emoticons/main/ts/*"],
       "hugerte/plugins/fullscreen/*": ["modules/hugerte/src/plugins/fullscreen/main/ts/*"],
       "hugerte/plugins/help/*": ["modules/hugerte/src/plugins/help/main/ts/*"],
-      "hugerte/plugins/hr/*": ["modules/hugerte/src/plugins/hr/main/ts/*"],
       "hugerte/plugins/image/*": ["modules/hugerte/src/plugins/image/main/ts/*"],
       "hugerte/plugins/importcss/*": ["modules/hugerte/src/plugins/importcss/main/ts/*"],
       "hugerte/plugins/insertdatetime/*": ["modules/hugerte/src/plugins/insertdatetime/main/ts/*"],
