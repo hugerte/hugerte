@@ -292,10 +292,9 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
         });
 
         it('TINY-10088: Preserve attributes with self closed HTML tag', () => {
-          const content = '<div data-some-attribute="title=<br/>">abc</div>';
           const editor = hook.editor();
-          editor.setContent(content);
-          TinyAssertions.assertContent(editor, content, { format: 'raw' });
+          editor.setContent('<div data-some-attribute="title=<br/>">abc</div>');
+          TinyAssertions.assertContent(editor, '<div data-some-attribute="title=&lt;br/&gt;">abc</div>', { format: 'raw' });
         });
 
         const initialContent = '<p>initial</p>';
