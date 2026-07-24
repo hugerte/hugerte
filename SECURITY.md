@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-At HugeRTE, we take security seriously and will try to investigate all potential security risk notifications. However, as we're volunteers, please notice that we may not be as quick to respond to and fix them as you may expect.
+At HugeRTE, we take security seriously and will try to investigate all potential security risk notifications.
 
 To report a potential security vulnerability, contact the organization owner at <security-report@hugerte.org>.
 
