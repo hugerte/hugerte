@@ -21,12 +21,20 @@ const filteredUrlAttrs = Tools.makeMap('src,href,data,background,action,formacti
 const internalElementAttr = 'data-mce-type';
 
 let uid = 0;
-const processNode = (node: Node, settings: DomParserSettings, schema: Schema, scope: Namespace.NamespaceType, evt?: UponSanitizeElementHookEvent): void => {
+const processNode = (node: Node, settings: DomParserSettings, schema: Schema, scope: Namespace.NamespaceType, evt?: UponSanitizeElementHookEvent, savedContent?: WeakMap<Node, string>): void => {
   const validate = settings.validate;
+  const specialElements = schema.getSpecialElements();
 
-  // Pad conditional comments if they aren't allowed
-  if (node.nodeType === NodeTypes.COMMENT && !settings.allow_conditional_comments && /^\[if/i.test(node.nodeValue ?? '')) {
-    node.nodeValue = ' ' + node.nodeValue;
+  if (node.nodeType === NodeTypes.COMMENT) {
+    if (!settings.allow_conditional_comments && /^\[if/i.test(node.nodeValue ?? '')) {
+      node.nodeValue = ' ' + node.nodeValue;
+    }
+
+    if (savedContent && Type.isString(node.nodeValue) && /<[/\w]/g.test(node.nodeValue)) {
+      savedContent.set(node, node.nodeValue);
+      node.nodeValue = '';
+    }
+    return;
   }
 
   const lcTagName = evt?.tagName ?? node.nodeName.toLowerCase();
@@ -69,14 +77,14 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
   const rule = schema.getElementRule(lcTagName);
   if (validate && !rule) {
     if (Type.isNonNullable(evt)) {
-      if (Obj.has(schema.getSpecialElements(), lcTagName)) {
+      if (Obj.has(specialElements, lcTagName)) {
         Remove.empty(element);
       }
       evt.allowedTags[lcTagName] = false;
       return;
     }
     // If a special element is invalid, then remove the entire element instead of unwrapping
-    if (Obj.has(schema.getSpecialElements(), lcTagName)) {
+    if (Obj.has(specialElements, lcTagName)) {
       Remove.remove(element);
     } else {
       Remove.unwrap(element);
@@ -123,6 +131,26 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
     // Change the node name if the schema says to
     if (rule.outputName && rule.outputName !== lcTagName) {
       Replication.mutate(element, rule.outputName as keyof HTMLElementTagNameMap);
+    }
+  }
+
+  if (settings.sanitize && savedContent) {
+    const shouldKeepContent = (lcTagName === 'script' && schema.isValid('script')) || (lcTagName === 'style' && schema.isValid('style')) || (lcTagName === 'noscript' && schema.isValid('noscript'));
+    if (shouldKeepContent) {
+      const textContent = node.textContent;
+      if (textContent) {
+        savedContent.set(node, textContent);
+      }
+      Remove.empty(element);
+    }
+
+    const children = node.childNodes;
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      if (child.nodeType === NodeTypes.CDATA_SECTION && child.nodeValue) {
+        savedContent.set(child, child.nodeValue);
+        child.nodeValue = '';
+      }
     }
   }
 };
@@ -187,15 +215,30 @@ const filterAttributes = (ele: Element, settings: DomParserSettings, schema: Sch
   }
 };
 
+const restoreContent = (node: Node, savedContent: WeakMap<Node, string>): void => {
+  const content = savedContent.get(node);
+  if (content !== undefined) {
+    if (node.nodeType === NodeTypes.COMMENT || node.nodeType === NodeTypes.CDATA_SECTION) {
+      node.nodeValue = content;
+    } else {
+      node.textContent = content;
+    }
+    savedContent.delete(node);
+  }
+};
+
 const setupPurify = (settings: DomParserSettings, schema: Schema, namespaceTracker: Namespace.NamespaceTracker): DOMPurify => {
   const purify = createDompurify();
+  const savedContent = new WeakMap<Node, string>();
 
-  // We use this to add new tags to the allow-list as we parse, if we notice that a tag has been banned but it's still in the schema
   purify.addHook('uponSanitizeElement', (ele, evt) => {
-    processNode(ele, settings, schema, namespaceTracker.track(ele), evt);
+    processNode(ele, settings, schema, namespaceTracker.track(ele), evt, savedContent);
   });
 
-  // Let's do the same thing for attributes
+  purify.addHook('afterSanitizeElements', (ele) => {
+    restoreContent(ele, savedContent);
+  });
+
   purify.addHook('uponSanitizeAttribute', (ele, evt) => {
     processAttr(ele, settings, schema, namespaceTracker.current(), evt);
   });
@@ -204,7 +247,7 @@ const setupPurify = (settings: DomParserSettings, schema: Schema, namespaceTrack
 };
 
 const getPurifyConfig = (settings: DomParserSettings, mimeType: DOMParserSupportedType): Config => {
-  const basePurifyConfig: Config & { SAFE_FOR_XML: boolean } = {
+  const basePurifyConfig: Config = {
     IN_PLACE: true,
     ALLOW_UNKNOWN_PROTOCOLS: true,
     // Deliberately ban all tags and attributes by default, and then un-ban them on demand in hooks
@@ -212,8 +255,6 @@ const getPurifyConfig = (settings: DomParserSettings, mimeType: DOMParserSupport
     // body is also allowed due to the DOMPurify checking the root node before sanitizing
     ALLOWED_TAGS: [ '#comment', '#cdata-section', 'body' ],
     ALLOWED_ATTR: [],
-    // TINY-11331 & TINY-11332: New settings for dompurify 3.1.7
-    SAFE_FOR_XML: false,
   };
   const config = { ...basePurifyConfig };
 

@@ -171,17 +171,17 @@ describe('browser.hugerte.plugins.media.ContentFormatsTest', () => {
       '<p><video width="300" height="150"><noscript></noscript></video></p>'
     );
     testXss(
-      '<p><video><script><svg onload="javascript:alert(1)"></svg></s' + 'cript></video>',
-      '<p><video width="300" height="150"></video></p>'
+      '<p><video><script onerror="javascript:alert(\'Alert!\')"><svg></svg></s' + 'cript></video>',
+      '<p><video width="300" height="150">\n<script><svg></svg></s' + 'cript>\n</video></p>'
     );
     testXss(
       '<p><audio><noscript><svg onload="javascript:alert(1)"></svg></noscript></audio>',
       '<p><audio><noscript></noscript></audio></p>'
     );
     testXss(
-      '<p><audio><script><svg onload="javascript:alert(1)"></svg></s' + 'cript></audio>',
-      '<p><audio></audio></p>'
+      '<p><audio><script onerror="javascript:alert(\'Alert!\')"><svg></svg></s' + 'cript></audio>',
+      '<p><audio>\n<script><svg></svg></s' + 'cript>\n</audio></p>'
     );
-    testXss('<p><audio><script><svg></svg></script></audio>', '<p><audio></audio></p>');
+    testXss('<p><audio><script onerror="javascript:alert(\'Alert!\')"><svg></svg></script></audio>', '<p><audio>\n<script><svg></svg></script>\n</audio></p>');
   });
 });
