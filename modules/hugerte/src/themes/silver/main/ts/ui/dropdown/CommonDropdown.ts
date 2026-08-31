@@ -37,7 +37,7 @@ export interface CommonDropdownSpec<T> {
   readonly icon: Optional<string>;
   readonly disabled?: boolean;
   readonly tooltip: Optional<string>;
-  readonly tooltipString: Cell<string>;
+  readonly tooltipString?: Cell<string>;
   readonly role: Optional<string>;
   readonly fetch: (comp: AlloyComponent, callback: (tdata: Optional<TieredData>) => void) => void;
   readonly onSetup: (itemApi: T) => OnDestroy<T>;
@@ -58,6 +58,11 @@ const renderCommonDropdown = <T>(
   btnName?: string
 ): SketchSpec => {
   const editorOffCell = Cell(Fun.noop);
+
+  // Only some callers (e.g. MenuButton) have a dynamic tooltip that can be updated
+  // via the setTooltip API, so the tooltipString cell is optional. Default it to
+  // the tooltip at render time, mirroring the split button behaviour.
+  const tooltipString = spec.tooltipString ?? Cell(spec.tooltip.getOr(''));
 
   // We need mementos for display text and display icon because on the events
   // updateMenuText and updateMenuIcon respectively, their contents are changed
@@ -169,8 +174,8 @@ const renderCommonDropdown = <T>(
             onShow: (comp) => {
               // If the tooltip has been updated via the `setTooltip` button API, rebuild the
               // hover tooltip with the new tooltip text (mirroring the split button behaviour).
-              if (spec.tooltipString.get() !== t) {
-                const translatedTooltip = sharedBackstage.providers.translate(spec.tooltipString.get());
+              if (tooltipString.get() !== t) {
+                const translatedTooltip = sharedBackstage.providers.translate(tooltipString.get());
                 Tooltipping.setComponents(comp,
                   sharedBackstage.providers.tooltips.getComponents({ tooltipText: translatedTooltip })
                 );

@@ -213,7 +213,6 @@ const createSelectButton = (editor: Editor, backstage: UiFactoryBackstage, spec:
       icon: spec.icon,
       ariaLabel: Optional.some(spec.tooltip),
       tooltip: Optional.none(), // TINY-10474 - Using own tooltip config
-      tooltipString,
       role: Optional.none(),
       fetch: items.getFetch(backstage, getStyleItems),
       onSetup,
