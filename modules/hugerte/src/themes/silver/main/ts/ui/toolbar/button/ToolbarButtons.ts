@@ -41,6 +41,7 @@ interface Specialisation<T> {
   readonly getApi: (comp: AlloyComponent) => T;
   readonly onSetup: (api: T) => OnDestroy<T>;
   readonly tooltipString: Cell<string>;
+  readonly tooltipDirty: Cell<boolean>;
 }
 
 interface GeneralToolbarButton<T> {
@@ -60,7 +61,7 @@ interface ChoiceFetcher {
   readonly select: Optional<(value: string) => boolean>;
 }
 
-const getButtonApi = (component: AlloyComponent, tooltipString: Cell<string>, providersBackstage: UiFactoryBackstageProviders): Toolbar.ToolbarButtonInstanceApi => ({
+const getButtonApi = (component: AlloyComponent, tooltipString: Cell<string>, tooltipDirty: Cell<boolean>, providersBackstage: UiFactoryBackstageProviders): Toolbar.ToolbarButtonInstanceApi => ({
   isEnabled: () => !Disabling.isDisabled(component),
   setEnabled: (state: boolean) => Disabling.set(component, !state),
   setText: (text: string) => AlloyTriggers.emitWith(component, updateMenuText, {
@@ -72,13 +73,19 @@ const getButtonApi = (component: AlloyComponent, tooltipString: Cell<string>, pr
   setTooltip: (tooltip: string) => {
     // Mirror the split button behaviour: translate the tooltip, update the aria-label
     // and store the (untranslated) tooltip so the hover tooltip can be updated on show.
+    // The dirty flag is set so the hover tooltip is rebuilt on the next show. This is
+    // important even when the new tooltip text equals the initial one, because the
+    // initial tooltip text rendered by the config may include a shortcut suffix (e.g.
+    // 'Bold (Ctrl+B)') while the cell holds the raw tooltip ('Bold'); a raw string
+    // comparison would miss that a `setTooltip` call has taken place.
     const translatedTooltip = providersBackstage.translate(tooltip);
     Attribute.set(component.element, 'aria-label', translatedTooltip);
     tooltipString.set(tooltip);
+    tooltipDirty.set(true);
   }
 });
 
-const getToggleApi = (component: AlloyComponent, tooltipString: Cell<string>, providersBackstage: UiFactoryBackstageProviders): Toolbar.ToolbarToggleButtonInstanceApi => ({
+const getToggleApi = (component: AlloyComponent, tooltipString: Cell<string>, tooltipDirty: Cell<boolean>, providersBackstage: UiFactoryBackstageProviders): Toolbar.ToolbarToggleButtonInstanceApi => ({
   setActive: (state) => {
     Toggling.set(component, state);
   },
@@ -95,6 +102,7 @@ const getToggleApi = (component: AlloyComponent, tooltipString: Cell<string>, pr
     const translatedTooltip = providersBackstage.translate(tooltip);
     Attribute.set(component.element, 'aria-label', translatedTooltip);
     tooltipString.set(tooltip);
+    tooltipDirty.set(true);
   }
 });
 
@@ -171,11 +179,13 @@ const renderFloatingToolbarButton = (spec: Toolbar.GroupToolbarButton, backstage
   const sharedBackstage = backstage.shared;
   const editorOffCell = Cell(Fun.noop);
   const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+  const tooltipDirty = Cell(false);
   const specialisation = {
     toolbarButtonBehaviours: [],
-    getApi: (comp: AlloyComponent) => getButtonApi(comp, tooltipString, sharedBackstage.providers),
+    getApi: (comp: AlloyComponent) => getButtonApi(comp, tooltipString, tooltipDirty, sharedBackstage.providers),
     onSetup: spec.onSetup,
-    tooltipString
+    tooltipString,
+    tooltipDirty
   };
   const behaviours: Behaviours = [
     AddEventsBehaviour.config('toolbar-group-button-events', [
@@ -234,7 +244,12 @@ const renderCommonToolbarButton = <T>(spec: GeneralToolbarButton<T>, specialisat
                 onShow: (comp) => {
                   // If the tooltip has been updated via the `setTooltip` button API, rebuild the
                   // hover tooltip with the new tooltip text (mirroring the split button behaviour).
-                  if (specialisation.tooltipString.get() !== t) {
+                  // A dirty flag is used rather than a string comparison: the initial tooltip text
+                  // includes a shortcut suffix (e.g. 'Bold (Ctrl+B)') while the cell holds the raw
+                  // tooltip ('Bold'), so calling setTooltip('Bold') would be missed by a string
+                  // comparison. The dirty flag is intentionally never reset - the popup is rebuilt
+                  // from the static config on every show, so each show must re-apply the update.
+                  if (specialisation.tooltipDirty.get()) {
                     const translatedTooltip = providersBackstage.translate(specialisation.tooltipString.get());
                     Tooltipping.setComponents(comp,
                       providersBackstage.tooltips.getComponents({ tooltipText: translatedTooltip })
@@ -262,14 +277,16 @@ const renderToolbarButton = (spec: Toolbar.ToolbarButton, providersBackstage: Ui
 
 const renderToolbarButtonWith = (spec: Toolbar.ToolbarButton, providersBackstage: UiFactoryBackstageProviders, bonusEvents: AlloyEvents.AlloyEventKeyAndHandler<any>[], btnName?: string): SketchSpec => {
   const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+  const tooltipDirty = Cell(false);
   return renderCommonToolbarButton(spec, {
     toolbarButtonBehaviours: (bonusEvents.length > 0 ? [
       // TODO: May have to pass through eventOrder if events start clashing
       AddEventsBehaviour.config('toolbarButtonWith', bonusEvents)
     ] : [ ]),
-    getApi: (comp: AlloyComponent) => getButtonApi(comp, tooltipString, providersBackstage),
+    getApi: (comp: AlloyComponent) => getButtonApi(comp, tooltipString, tooltipDirty, providersBackstage),
     onSetup: spec.onSetup,
-    tooltipString
+    tooltipString,
+    tooltipDirty
   }, providersBackstage, btnName);
 };
 
@@ -278,6 +295,7 @@ const renderToolbarToggleButton = (spec: Toolbar.ToolbarToggleButton, providersB
 
 const renderToolbarToggleButtonWith = (spec: Toolbar.ToolbarToggleButton, providersBackstage: UiFactoryBackstageProviders, bonusEvents: AlloyEvents.AlloyEventKeyAndHandler<any>[], btnName?: string): SketchSpec => {
   const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+  const tooltipDirty = Cell(false);
   return renderCommonToolbarButton(spec,
     {
       toolbarButtonBehaviours: [
@@ -287,9 +305,10 @@ const renderToolbarToggleButtonWith = (spec: Toolbar.ToolbarToggleButton, provid
         // TODO: May have to pass through eventOrder if events start clashing
         AddEventsBehaviour.config('toolbarToggleButtonWith', bonusEvents)
       ] : [ ]),
-      getApi: (comp: AlloyComponent) => getToggleApi(comp, tooltipString, providersBackstage),
+      getApi: (comp: AlloyComponent) => getToggleApi(comp, tooltipString, tooltipDirty, providersBackstage),
       onSetup: spec.onSetup,
-      tooltipString
+      tooltipString,
+      tooltipDirty
     },
     providersBackstage,
     btnName

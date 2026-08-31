@@ -38,6 +38,7 @@ export interface CommonDropdownSpec<T> {
   readonly disabled?: boolean;
   readonly tooltip: Optional<string>;
   readonly tooltipString?: Cell<string>;
+  readonly tooltipDirty?: Cell<boolean>;
   readonly role: Optional<string>;
   readonly fetch: (comp: AlloyComponent, callback: (tdata: Optional<TieredData>) => void) => void;
   readonly onSetup: (itemApi: T) => OnDestroy<T>;
@@ -63,6 +64,14 @@ const renderCommonDropdown = <T>(
   // via the setTooltip API, so the tooltipString cell is optional. Default it to
   // the tooltip at render time, mirroring the split button behaviour.
   const tooltipString = spec.tooltipString ?? Cell(spec.tooltip.getOr(''));
+
+  // The tooltipDirty cell goes hand-in-hand with tooltipString: callers that support a
+  // dynamic tooltip (e.g. MenuButton via the setTooltip API) set it to true whenever
+  // the tooltip changes so the hover tooltip is rebuilt on the next show. A dirty flag
+  // is used rather than a string comparison so that a same-string setTooltip call is
+  // still applied. It is never reset - the popup is rebuilt from the static config on
+  // every show, so each show must re-apply the update.
+  const tooltipDirty = spec.tooltipDirty ?? Cell(false);
 
   // We need mementos for display text and display icon because on the events
   // updateMenuText and updateMenuIcon respectively, their contents are changed
@@ -174,7 +183,9 @@ const renderCommonDropdown = <T>(
             onShow: (comp) => {
               // If the tooltip has been updated via the `setTooltip` button API, rebuild the
               // hover tooltip with the new tooltip text (mirroring the split button behaviour).
-              if (tooltipString.get() !== t) {
+              // See the tooltipDirty cell above for why a dirty flag is used instead of a
+              // string comparison, and why it is never reset.
+              if (tooltipDirty.get()) {
                 const translatedTooltip = sharedBackstage.providers.translate(tooltipString.get());
                 Tooltipping.setComponents(comp,
                   sharedBackstage.providers.tooltips.getComponents({ tooltipText: translatedTooltip })

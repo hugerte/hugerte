@@ -285,9 +285,10 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
 
     context('setTooltip with shortcut', () => {
       let buttonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
+      let sameStringButtonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
       const hook = TinyHooks.bddSetup<Editor>({
         base_url: '/project/hugerte/js/hugerte',
-        toolbar: 'set-tooltip-shortcut-button',
+        toolbar: 'set-tooltip-shortcut-button set-tooltip-shortcut-same-string-button',
         setup: (ed: Editor) => {
           ed.ui.registry.addButton('set-tooltip-shortcut-button', {
             text: 'Bold',
@@ -295,6 +296,17 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
             shortcut: 'Meta+B',
             onSetup: (api) => {
               buttonApi = api;
+              return Fun.noop;
+            },
+            onAction: Fun.noop
+          });
+
+          ed.ui.registry.addButton('set-tooltip-shortcut-same-string-button', {
+            text: 'Bold',
+            tooltip: 'Bold',
+            shortcut: 'Meta+B',
+            onSetup: (api) => {
+              sameStringButtonApi = api;
               return Fun.noop;
             },
             onAction: Fun.noop
@@ -319,6 +331,20 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
         const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
         assert.equal(Attribute.get(button, 'aria-label'), 'Updated Bold Tooltip');
         await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Updated Bold Tooltip');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+      });
+
+      it(`GH-205: setTooltip with the same string as the initial tooltip should drop the shortcut suffix with ${test.label}`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-shortcut-same-string-button"]';
+        // Sanity check: the initial tooltip includes the shortcut suffix.
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), `Bold (${meta}B)`);
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+        assert.isOk(sameStringButtonApi);
+        sameStringButtonApi?.setTooltip('Bold');
+        const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
+        assert.equal(Attribute.get(button, 'aria-label'), 'Bold');
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Bold');
         await TooltipUtils.pCloseTooltip(editor, buttonSelector);
       });
     });
