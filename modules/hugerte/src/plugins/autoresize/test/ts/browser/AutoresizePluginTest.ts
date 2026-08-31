@@ -119,12 +119,13 @@ describe('browser.hugerte.plugins.autoresize.AutoresizePluginTest', () => {
       // Note: Use a min-height here to account for different browsers rendering broken images differently
       editor.setContent('<div style="min-height: 35px;"><img src="#" /></div><div style="height: 5500px;"></div>');
       await Waiter.pTryUntil('wait for editor content height', () => assertEditorContentApproxHeight(editor, 5585), 10, 3000);
-      // Update the img element to load an image
+      // Update the img element to load an image. The old TinyMCE CDN logo URL no longer exists (404),
+      // so load an inline 100x100 image instead of relying on an external host.
       const image = editor.dom.select('img')[0];
-      editor.dom.setAttrib(image, 'src', 'http://moxiecode.cachefly.net/hugerte/v9/images/logo.png');
-      // Content height + div image height (84px) + bottom margin = 5634
-      await Waiter.pTryUntil('wait for editor content height', () => assertEditorContentApproxHeight(editor, 5634), 10, 3000);
-      await Waiter.pTryUntil('wait for editor height', () => assertEditorHeightAbove(editor, 5634), 10, 3000);
+      editor.dom.setAttrib(image, 'src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAtUlEQVR4nO3QQQkAIADAQFtbwQq2tYIfGcLBAowbc21dNvKDj4IFC1YeLFiw8mDBgpUHCxasPFiwYOXBggUrDxYsWHmwYMHKgwULVh4sWLDyYMGClQcLFqw8WLBg5cGCBSsPFixYebBgwcqDBQtWHixYsPJgwYKVBwsWrDxYsGDlwYIFKw8WLFh5sGDByoMFC1YeLFiw8mDBgpUHCxasPFiwYOXBggUrDxYsWHmwYMHKgwXrTQd0LEUjcQBC0QAAAABJRU5ErkJggg==');
+      // Content height + div image height (100px img + 6px line box) + bottom margin = 5656
+      await Waiter.pTryUntil('wait for editor content height', () => assertEditorContentApproxHeight(editor, 5656), 10, 3000);
+      await Waiter.pTryUntil('wait for editor height', () => assertEditorHeightAbove(editor, 5656), 10, 3000);
     });
 
     it('TBA: Editor size content set to 10 and autoresize_bottom_margin set to 100', async () => {
