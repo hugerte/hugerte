@@ -41,6 +41,23 @@ const getPreviewHtml = (editor: Editor): string => {
   const directionality = editor.getBody().dir;
   const dirAttr = directionality ? ' dir="' + encode(directionality) + '"' : '';
 
+  let content = editor.getContent();
+  const callback = Options.getPreviewContentCallback(editor);
+  if (typeof callback === 'function') {
+    try {
+      const result = callback(content);
+      if (typeof result === 'string') {
+        content = result;
+      } else if (result !== undefined) {
+        // eslint-disable-next-line no-console
+        console.warn('preview_content_callback should return a string, got', typeof result);
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn('preview_content_callback threw an error:', e);
+    }
+  }
+
   const previewHtml = (
     '<!DOCTYPE html>' +
     '<html>' +
@@ -48,7 +65,7 @@ const getPreviewHtml = (editor: Editor): string => {
     headHtml +
     '</head>' +
     '<body id="' + encode(bodyId) + '" class="mce-content-body ' + encode(bodyClass) + '"' + dirAttr + '>' +
-    editor.getContent() +
+    content +
     preventClicksOnLinksScript +
     '</body>' +
     '</html>'
