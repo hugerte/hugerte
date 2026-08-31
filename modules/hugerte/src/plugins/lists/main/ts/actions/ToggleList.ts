@@ -192,6 +192,9 @@ const getSelectedTextBlocks = (editor: Editor, rng: Range, root: Node): HTMLElem
 };
 
 const hasCompatibleStyle = (dom: DOMUtils, sib: Element, detail: ListDetail): boolean => {
+  if (!('list-style-type' in detail)) {
+    return true;
+  }
   const sibStyle = dom.getStyle(sib, 'list-style-type');
   const detailStyle = detail['list-style-type'] ?? '';
   return sibStyle === detailStyle;
