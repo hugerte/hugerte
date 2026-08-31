@@ -28,11 +28,8 @@ describe('browser.hugerte.themes.silver.statusbar.StatusbarTest', () => {
       classes: [ arr.has('tox-statusbar__branding') ],
       children: [
         s.element('a', {
-          attrs: {
-            'aria-label': str.is('Powered by Tiny')
-          },
           children: [
-            s.element('svg', {})
+            s.text(str.is('Powered by HugeRTE'))
           ]
         })
       ]

@@ -16,7 +16,7 @@ describe('browser.hugerte.themes.silver.editor.ForceHexColorTest', () => {
         TinySelections.setSelection(editor, [ 0, 0 ], 0, [ 0, 0 ], 'color me'.length + 1);
         editor.execCommand('mceApplyTextcolor', 'forecolor' as any, appliedColor);
         TinyAssertions.assertContentPresence(editor, { [`span[data-mce-style="color: ${expectedColor};"]`]: 1 });
-        TinyAssertions.assertContent(editor, `<p><span style="color: ${expectedColor};">colour me</span></p>`);
+        TinyAssertions.assertContent(editor, `<p><span style="color: ${expectedColor.toLowerCase()};">colour me</span></p>`);
       },
       /** Apply color using the 'forecolor' part of the toolbar. */
       usingToolbar: async () => {
@@ -25,7 +25,7 @@ describe('browser.hugerte.themes.silver.editor.ForceHexColorTest', () => {
         await TinyUiActions.pWaitForUi(editor, '.tox-swatches');
         TinyUiActions.clickOnUi(editor, `div[data-mce-color="${appliedColor}"]`);
         TinyAssertions.assertContentPresence(editor, { [`span[data-mce-style="color: ${expectedColor};"]`]: 1 });
-        TinyAssertions.assertContent(editor, `<p><span style="color: ${expectedColor};">colour me</span></p>`);
+        TinyAssertions.assertContent(editor, `<p><span style="color: ${expectedColor.toLowerCase()};">colour me</span></p>`);
       },
     };
   };
