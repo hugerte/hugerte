@@ -766,9 +766,13 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
       it('parse iframe XSS', () => {
         const serializer = HtmlSerializer();
 
+        // With sanitization enabled, DOMPurify's SAFE_FOR_XML mXSS tripwire
+        // drops the markup-looking <iframe> fallback text and keeps only the
+        // element shell (see compensateRawTextElement in Sanitization.ts). With
+        // sanitization disabled the raw fallback text is retained as-is.
         assert.equal(
           serializer.serialize(DomParser(scenario.settings).parse('<iframe><textarea></iframe><img src="a" onerror="alert(document.domain)" />')),
-          '<iframe><textarea></iframe><img src="a">'
+          scenario.isSanitizeEnabled ? '<iframe></iframe><img src="a">' : '<iframe><textarea></iframe><img src="a">'
         );
       });
 

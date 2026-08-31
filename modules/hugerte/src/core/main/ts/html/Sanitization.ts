@@ -20,13 +20,137 @@ interface Sanitizer {
 const filteredUrlAttrs = Tools.makeMap('src,href,data,background,action,formaction,poster,xlink:href');
 const internalElementAttr = 'data-mce-type';
 
+// ---------------------------------------------------------------------------
+// mXSS tripwire compensation
+// ---------------------------------------------------------------------------
+// The probes below are the same ones DOMPurify 3.4.x (MPL-2.0 OR Apache-2.0) applies internally
+// when SAFE_FOR_XML is enabled (see node_modules/dompurify/dist/purify.cjs.js,
+// the ELEMENT_MARKUP_PROBE / COMMENT_MARKUP_PROBE constants used by
+// _isUnsafeNode and _sanitizeAttributes). We deliberately leave SAFE_FOR_XML
+// at its default (true) so the tripwires stay active, and compensate below
+// for the *legitimate* content the tripwires would otherwise strip:
+//   1. comments whose data contains markup-like sequences
+//   2. allowlisted <script>/<style> code whose text contains "<"
+//   3. <iframe> fallback text that looks like markup (shell kept, text dropped)
+// Attribute values containing "-->", "] >" or "</script|style|iframe..." are
+// intentionally not compensated - removing them is the desired hardening.
+
+const elementMarkupProbe = /<[/\w!]/g;
+const commentMarkupProbe = /<[/\w]/g;
+
+const probeMatches = (probe: RegExp, value: string): boolean => {
+  // The probes carry the /g flag; reset the sticky lastIndex so repeated
+  // calls behave like DOMPurify's internal regExpTest wrapper
+  probe.lastIndex = 0;
+  return probe.test(value);
+};
+
+// Re-parse sensitive characters: zero-width spaces, format/control characters
+// and unpaired surrogates that content-processing pipelines commonly strip
+// from serialized HTML (HugeRTE itself trims \uFEFF caret markers, see
+// text/Zwsp.ts). A comment that matches the markup probe AND contains such a
+// character is an mXSS vector: '<!--\uFEFF><iframe onload=...>-></body>-->'
+// re-parses as a live iframe once the character is stripped, because
+// '<!--\uFEFF>' becomes '<!-->' (an abruptly closed empty comment). Such
+// comments are never compensated - they are left for the tripwire to remove.
+const reparseSensitiveChar = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F\u00AD\u200B-\u200F\u2028-\u202E\u2060-\u206F\uFEFF\uFFF0-\uFFFB\uD800-\uDFFF]/;
+
+// Elements whose content serialises as raw text (never entity-escaped), so a
+// "<" in their text also appears in their innerHTML and trips the element
+// tripwire (elements like textarea/title are RCDATA and escape on
+// serialisation, so they can never trip the probe).
+// - codeElements: user-allowlisted code, preserved via save/restore
+// - fallbackElements: embedded/fallback content, shell kept, text dropped
+const codeElements = Tools.makeMap('script,style');
+const fallbackElements = Tools.makeMap('iframe,noscript,noembed,noframes,xmp,plaintext');
+
+// Sequences that can terminate a comment or the document when raw text is
+// re-processed downstream. Raw text containing these is characteristic of the
+// ZWNBSP comment-mXSS family (e.g. the '<iframe>-></body>-->' artifact left
+// behind when '<!--\uFEFF><iframe onload=...>-></body>-->' is ZWSP-trimmed),
+// so such fallback elements are NOT shell-preserved - the tripwire removes
+// them.
+const reparseBoundaryProbe = /-->|--!>|<\/body|<\/html/i;
+
+// Original content of nodes that was temporarily neutralised while DOMPurify
+// ran its tripwire; restored by the afterSanitizeElements hook. Weak keys mean
+// a node removed by the tripwire is simply garbage-collected, entry and all.
+const savedNodeContent = new WeakMap<Node, string>();
+
+const getTextContent = (node: Node): string => node.textContent ?? '';
+
+const restoreSavedNodeContent = (node: Node): void => {
+  const saved = savedNodeContent.get(node);
+  if (Type.isString(saved)) {
+    if (NodeType.isComment(node) || NodeType.isCData(node)) {
+      node.nodeValue = saved;
+    } else if (NodeType.isElement(node)) {
+      node.textContent = saved;
+    }
+  }
+};
+
+// DOMPurify removes an element with no element children when both its
+// textContent and its innerHTML look like markup. Compensate for the
+// legitimate cases: allowlisted <script>/<style> code is saved, emptied for
+// the duration of the tripwire check and restored afterwards; <iframe>
+// fallback text is dropped while keeping the element shell. For other
+// elements the markup-like text can only come from a CDATA section (plain
+// text is entity-escaped on serialisation, so it never trips the innerHTML
+// probe) - CDATA is inert raw data, so it is saved, emptied and restored.
+const compensateRawTextElement = (element: Element, tagName: string): void => {
+  const textContent = getTextContent(element);
+  if (element.hasChildNodes() && !Type.isNonNullable(element.firstElementChild)
+      && probeMatches(elementMarkupProbe, textContent)
+      && probeMatches(elementMarkupProbe, element.innerHTML)) {
+    if (Obj.has(codeElements, tagName) && !new RegExp(`</${tagName}`, 'i').test(textContent)) {
+      // Keep the allowlisted code, unless it could prematurely close the
+      // element again on re-serialisation (e.g. '</script>' inside a script
+      // node built programmatically)
+      savedNodeContent.set(element, textContent);
+      Remove.empty(SugarElement.fromDom(element));
+    } else if (Obj.has(fallbackElements, tagName) && !reparseBoundaryProbe.test(textContent)) {
+      // Drop the markup-like fallback text, keep the shell - unless the text
+      // contains comment-boundary/document-closing sequences, in which case
+      // the element is left for the tripwire to remove entirely
+      Remove.empty(SugarElement.fromDom(element));
+    } else {
+      // The markup probe on innerHTML can only be satisfied by CDATA
+      // children in this situation - neutralise them for the tripwire check
+      // and restore their data afterwards (unless re-parse sensitive)
+      for (const child of Array.from(element.childNodes)) {
+        const childValue = child.nodeValue ?? '';
+        if (NodeType.isCData(child) && probeMatches(elementMarkupProbe, childValue) && !reparseSensitiveChar.test(childValue)) {
+          savedNodeContent.set(child, childValue);
+          child.nodeValue = '';
+        }
+      }
+    }
+  }
+};
+
 let uid = 0;
 const processNode = (node: Node, settings: DomParserSettings, schema: Schema, scope: Namespace.NamespaceType, evt?: UponSanitizeElementHookEvent): void => {
   const validate = settings.validate;
 
-  // Pad conditional comments if they aren't allowed
-  if (node.nodeType === NodeTypes.COMMENT && !settings.allow_conditional_comments && /^\[if/i.test(node.nodeValue ?? '')) {
-    node.nodeValue = ' ' + node.nodeValue;
+  if (node.nodeType === NodeTypes.COMMENT) {
+    const commentValue = node.nodeValue ?? '';
+
+    // Pad conditional comments if they aren't allowed
+    if (!settings.allow_conditional_comments && /^\[if/i.test(commentValue)) {
+      node.nodeValue = ' ' + commentValue;
+    }
+
+    // Tripwire compensation: DOMPurify removes any comment whose data matches
+    // the comment markup probe (e.g. '<!-- <div class="note">keep me</div> -->'
+    // or '<!--[if IE]><p>ie only</p><![endif]-->'). Temporarily empty such
+    // comments so they survive the probe, restore their data afterwards. A
+    // comment whose data also contains a re-parse sensitive character is NOT
+    // compensated - that is the ZWNBSP comment-mXSS family and must be removed.
+    if (Type.isNonNullable(evt) && probeMatches(commentMarkupProbe, node.nodeValue ?? '') && !reparseSensitiveChar.test(node.nodeValue ?? '')) {
+      savedNodeContent.set(node, node.nodeValue ?? '');
+      node.nodeValue = '';
+    }
   }
 
   const lcTagName = evt?.tagName ?? node.nodeName.toLowerCase();
@@ -125,6 +249,12 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
       Replication.mutate(element, rule.outputName as keyof HTMLElementTagNameMap);
     }
   }
+
+  // Tripwire compensation for raw-text/cdata content that survived the schema
+  // validation above (only in the DOMPurify-backed sanitize path)
+  if (Type.isNonNullable(evt)) {
+    compensateRawTextElement(node as Element, lcTagName);
+  }
 };
 
 const processAttr = (ele: Element, settings: DomParserSettings, schema: Schema, scope: Namespace.NamespaceType, evt: UponSanitizeAttributeHookEvent) => {
@@ -200,11 +330,18 @@ const setupPurify = (settings: DomParserSettings, schema: Schema, namespaceTrack
     processAttr(ele, settings, schema, namespaceTracker.current(), evt);
   });
 
+  // Restore any content we temporarily neutralised to get it past the
+  // SAFE_FOR_XML mXSS tripwire. This hook only runs for nodes that survived
+  // the tripwire; nodes it removed never reach this point.
+  purify.addHook('afterSanitizeElements', (node) => {
+    restoreSavedNodeContent(node);
+  });
+
   return purify;
 };
 
 const getPurifyConfig = (settings: DomParserSettings, mimeType: DOMParserSupportedType): Config => {
-  const basePurifyConfig: Config & { SAFE_FOR_XML: boolean } = {
+  const basePurifyConfig: Config = {
     IN_PLACE: true,
     ALLOW_UNKNOWN_PROTOCOLS: true,
     // Deliberately ban all tags and attributes by default, and then un-ban them on demand in hooks
@@ -212,8 +349,10 @@ const getPurifyConfig = (settings: DomParserSettings, mimeType: DOMParserSupport
     // body is also allowed due to the DOMPurify checking the root node before sanitizing
     ALLOWED_TAGS: [ '#comment', '#cdata-section', 'body' ],
     ALLOWED_ATTR: [],
-    // TINY-11331 & TINY-11332: New settings for dompurify 3.1.7
-    SAFE_FOR_XML: false,
+    // SAFE_FOR_XML is intentionally left at its DOMPurify default (true): it
+    // powers the mXSS tripwires that strip ZWNBSP-based comment mXSS (see
+    // issue #203). The legitimate content the tripwires would otherwise remove
+    // is compensated for in processNode/restoreSavedNodeContent above.
   };
   const config = { ...basePurifyConfig };
 
