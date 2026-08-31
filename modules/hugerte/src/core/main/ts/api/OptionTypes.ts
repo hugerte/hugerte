@@ -336,6 +336,7 @@ export interface EditorOptions extends NormalizedEditorOptions {
   pad_empty_with_br: boolean;
   paste_as_text: boolean;
   preview_styles: string;
+  preview_content_callback?: (content: string) => string;
   readonly: boolean;
   removed_menuitems: string;
   sandbox_iframes: boolean;
