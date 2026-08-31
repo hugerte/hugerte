@@ -119,8 +119,6 @@ describe('browser.hugerte.plugins.autoresize.AutoresizePluginTest', () => {
       // Note: Use a min-height here to account for different browsers rendering broken images differently
       editor.setContent('<div style="min-height: 35px;"><img src="#" /></div><div style="height: 5500px;"></div>');
       await Waiter.pTryUntil('wait for editor content height', () => assertEditorContentApproxHeight(editor, 5585), 10, 3000);
-      // Update the img element to load an image. The old TinyMCE CDN logo URL no longer exists (404),
-      // so load an inline 100x100 image instead of relying on an external host.
       const image = editor.dom.select('img')[0];
       editor.dom.setAttrib(image, 'src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAtUlEQVR4nO3QQQkAIADAQFtbwQq2tYIfGcLBAowbc21dNvKDj4IFC1YeLFiw8mDBgpUHCxasPFiwYOXBggUrDxYsWHmwYMHKgwULVh4sWLDyYMGClQcLFqw8WLBg5cGCBSsPFixYebBgwcqDBQtWHixYsPJgwYKVBwsWrDxYsGDlwYIFKw8WLFh5sGDByoMFC1YeLFiw8mDBgpUHCxasPFiwYOXBggUrDxYsWHmwYMHKgwXrTQd0LEUjcQBC0QAAAABJRU5ErkJggg==');
       // Content height + div image height (100px img + 6px line box) + bottom margin = 5656
