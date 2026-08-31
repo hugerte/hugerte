@@ -103,13 +103,13 @@ const compensateRawTextElement = (element: Element, tagName: string): void => {
   if (element.hasChildNodes() && !Type.isNonNullable(element.firstElementChild)
       && probeMatches(elementMarkupProbe, textContent)
       && probeMatches(elementMarkupProbe, element.innerHTML)) {
-    if (tagName in codeElements && !new RegExp(`</${tagName}`, 'i').test(textContent)) {
+    if (Obj.has(codeElements, tagName) && !new RegExp(`</${tagName}`, 'i').test(textContent)) {
       // Keep the allowlisted code, unless it could prematurely close the
       // element again on re-serialisation (e.g. '</script>' inside a script
       // node built programmatically)
       savedNodeContent.set(element, textContent);
       Remove.empty(SugarElement.fromDom(element));
-    } else if (tagName in fallbackElements && !reparseBoundaryProbe.test(textContent)) {
+    } else if (Obj.has(fallbackElements, tagName) && !reparseBoundaryProbe.test(textContent)) {
       // Drop the markup-like fallback text, keep the shell - unless the text
       // contains comment-boundary/document-closing sequences, in which case
       // the element is left for the tripwire to remove entirely

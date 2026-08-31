@@ -619,11 +619,7 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
       it('TINY-10305: setContent html should sanitize content that can cause mXSS via ZWNBSP trimming', () => {
         const editor = hook.editor();
         editor.setContent('<p>test</p><!--\ufeff><iframe onload=alert(document.domain)>-></body>-->');
-        // TINY-10669: Remove this check
-        const expected = isSafariLessThan17
-          ? '<p>test</p><!----><p><iframe sandbox="">-&gt;&lt;/body&gt;--&gt;&lt;/body&gt;</iframe></p>'
-          : '<p>test</p><!---->';
-        TinyAssertions.assertRawContent(editor, expected);
+        TinyAssertions.assertRawContent(editor, '<p>test</p><!---->');
       });
 
       it('TINY-10305: setContent tree should sanitize content that can cause mXSS via ZWNBSP trimming', () => {
