@@ -1,7 +1,8 @@
-import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder } from '@ephox/agar';
+import { ApproxStructure, Assertions, Mouse, StructAssert, UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
+import { Toolbar } from '@ephox/bridge';
 import { Fun } from '@ephox/katamari';
-import { SugarBody } from '@ephox/sugar';
+import { Attribute, SugarBody } from '@ephox/sugar';
 import { McEditor } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -142,6 +143,33 @@ describe('browser.hugerte.themes.silver.editor.buttons.GroupToolbarButtonTest', 
     }, () => {
       assert.isTrue(hasSetupBeenCalled);
       return Promise.resolve();
+    });
+  });
+
+  it('GH-205: setTooltip should update the aria-label on a floating group toolbar button without a hover tooltip', () => {
+    let groupButtonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
+    return pTestWithEditor({
+      toolbar: 'alignment',
+      setup: (editor: Editor) => {
+        editor.ui.registry.addGroupToolbarButton('alignment', {
+          icon: 'align-left',
+          tooltip: 'Alignment',
+          onSetup: (api) => {
+            groupButtonApi = api;
+            return Fun.noop;
+          },
+          items: [ { name: 'Alignment', items: [ 'alignleft', 'aligncenter', 'alignright' ] } ]
+        });
+      }
+    }, async () => {
+      assert.isOk(groupButtonApi);
+      groupButtonApi?.setTooltip('Updated Alignment');
+      const button = UiFinder.findIn(SugarBody.body(), 'button[data-mce-name="alignment"]').getOrDie();
+      assert.equal(Attribute.get(button, 'aria-label'), 'Updated Alignment');
+      // Group toolbar buttons only support the aria-label tooltip, so no hover tooltip should be shown
+      Mouse.mouseOver(button);
+      await Waiter.pWait(300);
+      UiFinder.notExists(SugarBody.body(), '.tox-silver-sink .tox-tooltip__body');
     });
   });
 

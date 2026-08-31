@@ -2,11 +2,13 @@ import { Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
 import { Toolbar } from '@ephox/bridge';
 import { Arr, Fun } from '@ephox/katamari';
+import { PlatformDetection } from '@ephox/sand';
 import { Attribute, SugarElement, TextContent } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
+import EditorManager from 'hugerte/core/api/EditorManager';
 
 import * as TooltipUtils from '../../../module/TooltipUtils';
 
@@ -159,16 +161,37 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
       let buttonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
       let toggleButtonApi: Toolbar.ToolbarToggleButtonInstanceApi | undefined;
       let menuButtonApi: Toolbar.ToolbarMenuButtonInstanceApi | undefined;
+      let noTooltipButtonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
+      let persistButtonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
 
       const hook = TinyHooks.bddSetup<Editor>({
         base_url: '/project/hugerte/js/hugerte',
-        toolbar: 'set-tooltip-button set-tooltip-toggle-button set-tooltip-menu-button',
+        toolbar: 'set-tooltip-button set-tooltip-toggle-button set-tooltip-menu-button set-tooltip-no-tooltip-button set-tooltip-persist-button',
         setup: (ed: Editor) => {
           ed.ui.registry.addButton('set-tooltip-button', {
             text: 'Button',
             tooltip: 'Initial Button Tooltip',
             onSetup: (api) => {
               buttonApi = api;
+              return Fun.noop;
+            },
+            onAction: Fun.noop
+          });
+
+          ed.ui.registry.addButton('set-tooltip-no-tooltip-button', {
+            text: 'No Tooltip Button',
+            onSetup: (api) => {
+              noTooltipButtonApi = api;
+              return Fun.noop;
+            },
+            onAction: Fun.noop
+          });
+
+          ed.ui.registry.addButton('set-tooltip-persist-button', {
+            text: 'Persist Button',
+            tooltip: 'Persist Initial Tooltip',
+            onSetup: (api) => {
+              persistButtonApi = api;
               return Fun.noop;
             },
             onAction: Fun.noop
@@ -234,6 +257,104 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
         const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
         assert.equal(Attribute.get(button, 'aria-label'), 'Updated Menu Tooltip');
         await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Updated Menu Tooltip');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+      });
+
+      it(`GH-205: setTooltip should not throw and update the aria-label on a button with no initial tooltip with ${test.label}`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-no-tooltip-button"]';
+        assert.isOk(noTooltipButtonApi);
+        noTooltipButtonApi?.setTooltip('Updated No Tooltip');
+        const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
+        assert.equal(Attribute.get(button, 'aria-label'), 'Updated No Tooltip');
+        await TooltipUtils.pAssertNoTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), '');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+      });
+
+      it(`GH-205: setTooltip should persist across tooltip re-shows with ${test.label} - Toolbar addButton`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-persist-button"]';
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Persist Initial Tooltip');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+        assert.isOk(persistButtonApi);
+        persistButtonApi?.setTooltip('Persist Updated Tooltip');
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Persist Updated Tooltip');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+      });
+    });
+
+    context('setTooltip with shortcut', () => {
+      let buttonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
+      const hook = TinyHooks.bddSetup<Editor>({
+        base_url: '/project/hugerte/js/hugerte',
+        toolbar: 'set-tooltip-shortcut-button',
+        setup: (ed: Editor) => {
+          ed.ui.registry.addButton('set-tooltip-shortcut-button', {
+            text: 'Bold',
+            tooltip: 'Bold',
+            shortcut: 'Meta+B',
+            onSetup: (api) => {
+              buttonApi = api;
+              return Fun.noop;
+            },
+            onAction: Fun.noop
+          });
+        }
+      });
+      const os = PlatformDetection.detect().os;
+      const meta = os.isMacOS() || os.isiOS() ? '\u2318' : 'Ctrl+';
+
+      it(`GH-205: Initial tooltip should include the shortcut suffix with ${test.label}`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-shortcut-button"]';
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), `Bold (${meta}B)`);
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+      });
+
+      it(`GH-205: setTooltip should drop the shortcut suffix from the hover tooltip with ${test.label}`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-shortcut-button"]';
+        assert.isOk(buttonApi);
+        buttonApi?.setTooltip('Updated Bold Tooltip');
+        const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
+        assert.equal(Attribute.get(button, 'aria-label'), 'Updated Bold Tooltip');
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Updated Bold Tooltip');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+      });
+    });
+
+    context('setTooltip translation', () => {
+      let buttonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
+      // Register a test language pack up front so the editor picks it up without loading a file.
+      EditorManager.addI18n('xx', {
+        'set-tooltip-raw': 'set-tooltip-translated',
+        'set-tooltip-translated': 'set-tooltip-translated-again'
+      });
+      const hook = TinyHooks.bddSetup<Editor>({
+        base_url: '/project/hugerte/js/hugerte',
+        toolbar: 'set-tooltip-translate-button',
+        language: 'xx',
+        setup: (ed: Editor) => {
+          ed.ui.registry.addButton('set-tooltip-translate-button', {
+            text: 'Translate Button',
+            tooltip: 'Start',
+            onSetup: (api) => {
+              buttonApi = api;
+              return Fun.noop;
+            },
+            onAction: Fun.noop
+          });
+        }
+      });
+
+      it(`GH-205: setTooltip should translate the raw tooltip for the aria-label and hover tooltip without double translation with ${test.label}`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-translate-button"]';
+        assert.isOk(buttonApi);
+        buttonApi?.setTooltip('set-tooltip-raw');
+        const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
+        assert.equal(Attribute.get(button, 'aria-label'), 'set-tooltip-translated');
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'set-tooltip-translated');
         await TooltipUtils.pCloseTooltip(editor, buttonSelector);
       });
     });
