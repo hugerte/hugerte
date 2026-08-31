@@ -37,6 +37,7 @@ export interface CommonDropdownSpec<T> {
   readonly icon: Optional<string>;
   readonly disabled?: boolean;
   readonly tooltip: Optional<string>;
+  readonly tooltipString: Cell<string>;
   readonly role: Optional<string>;
   readonly fetch: (comp: AlloyComponent, callback: (tdata: Optional<TieredData>) => void) => void;
   readonly onSetup: (itemApi: T) => OnDestroy<T>;
@@ -164,7 +165,17 @@ const renderCommonDropdown = <T>(
 
         ...(spec.tooltip.map((t) => Tooltipping.config(
           sharedBackstage.providers.tooltips.getConfig({
-            tooltipText: sharedBackstage.providers.translate(t)
+            tooltipText: sharedBackstage.providers.translate(t),
+            onShow: (comp) => {
+              // If the tooltip has been updated via the `setTooltip` button API, rebuild the
+              // hover tooltip with the new tooltip text (mirroring the split button behaviour).
+              if (spec.tooltipString.get() !== t) {
+                const translatedTooltip = sharedBackstage.providers.translate(spec.tooltipString.get());
+                Tooltipping.setComponents(comp,
+                  sharedBackstage.providers.tooltips.getComponents({ tooltipText: translatedTooltip })
+                );
+              }
+            }
           })
         ))).toArray(),
 

@@ -40,6 +40,7 @@ interface Specialisation<T> {
   readonly toolbarButtonBehaviours: Behaviours;
   readonly getApi: (comp: AlloyComponent) => T;
   readonly onSetup: (api: T) => OnDestroy<T>;
+  readonly tooltipString: Cell<string>;
 }
 
 interface GeneralToolbarButton<T> {
@@ -59,7 +60,7 @@ interface ChoiceFetcher {
   readonly select: Optional<(value: string) => boolean>;
 }
 
-const getButtonApi = (component: AlloyComponent): Toolbar.ToolbarButtonInstanceApi => ({
+const getButtonApi = (component: AlloyComponent, tooltipString: Cell<string>, providersBackstage: UiFactoryBackstageProviders): Toolbar.ToolbarButtonInstanceApi => ({
   isEnabled: () => !Disabling.isDisabled(component),
   setEnabled: (state: boolean) => Disabling.set(component, !state),
   setText: (text: string) => AlloyTriggers.emitWith(component, updateMenuText, {
@@ -67,10 +68,17 @@ const getButtonApi = (component: AlloyComponent): Toolbar.ToolbarButtonInstanceA
   }),
   setIcon: (icon: string) => AlloyTriggers.emitWith(component, updateMenuIcon, {
     icon
-  })
+  }),
+  setTooltip: (tooltip: string) => {
+    // Mirror the split button behaviour: translate the tooltip, update the aria-label
+    // and store the (untranslated) tooltip so the hover tooltip can be updated on show.
+    const translatedTooltip = providersBackstage.translate(tooltip);
+    Attribute.set(component.element, 'aria-label', translatedTooltip);
+    tooltipString.set(tooltip);
+  }
 });
 
-const getToggleApi = (component: AlloyComponent): Toolbar.ToolbarToggleButtonInstanceApi => ({
+const getToggleApi = (component: AlloyComponent, tooltipString: Cell<string>, providersBackstage: UiFactoryBackstageProviders): Toolbar.ToolbarToggleButtonInstanceApi => ({
   setActive: (state) => {
     Toggling.set(component, state);
   },
@@ -82,7 +90,12 @@ const getToggleApi = (component: AlloyComponent): Toolbar.ToolbarToggleButtonIns
   }),
   setIcon: (icon: string) => AlloyTriggers.emitWith(component, updateMenuIcon, {
     icon
-  })
+  }),
+  setTooltip: (tooltip: string) => {
+    const translatedTooltip = providersBackstage.translate(tooltip);
+    Attribute.set(component.element, 'aria-label', translatedTooltip);
+    tooltipString.set(tooltip);
+  }
 });
 
 const getTooltipAttributes = (tooltip: Optional<string>, providersBackstage: UiFactoryBackstageProviders) => tooltip.map<{}>((tooltip) => ({
@@ -157,10 +170,12 @@ const renderCommonStructure = (
 const renderFloatingToolbarButton = (spec: Toolbar.GroupToolbarButton, backstage: UiFactoryBackstage, identifyButtons: (toolbar: string | ToolbarGroupOption[]) => ToolbarGroup[], attributes: Record<string, string>, btnName?: string): SketchSpec => {
   const sharedBackstage = backstage.shared;
   const editorOffCell = Cell(Fun.noop);
+  const tooltipString = Cell<string>(spec.tooltip.getOr(''));
   const specialisation = {
     toolbarButtonBehaviours: [],
-    getApi: getButtonApi,
-    onSetup: spec.onSetup
+    getApi: (comp: AlloyComponent) => getButtonApi(comp, tooltipString, sharedBackstage.providers),
+    onSetup: spec.onSetup,
+    tooltipString
   };
   const behaviours: Behaviours = [
     AddEventsBehaviour.config('toolbar-group-button-events', [
@@ -212,7 +227,20 @@ const renderCommonToolbarButton = <T>(spec: GeneralToolbarButton<T>, specialisat
           ...(spec.tooltip.map(
             (t) => Tooltipping.config(
               providersBackstage.tooltips.getConfig({
+                // Note: The shortcut suffix is only included in the initial tooltip text. Once
+                // `setTooltip` is called, the tooltip is shown without the shortcut suffix, which
+                // keeps parity with split buttons (which don't render shortcut suffixes).
                 tooltipText: providersBackstage.translate(t) + spec.shortcut.map((shortcut) => ` (${ConvertShortcut.convertText(shortcut)})`).getOr(''),
+                onShow: (comp) => {
+                  // If the tooltip has been updated via the `setTooltip` button API, rebuild the
+                  // hover tooltip with the new tooltip text (mirroring the split button behaviour).
+                  if (specialisation.tooltipString.get() !== t) {
+                    const translatedTooltip = providersBackstage.translate(specialisation.tooltipString.get());
+                    Tooltipping.setComponents(comp,
+                      providersBackstage.tooltips.getComponents({ tooltipText: translatedTooltip })
+                    );
+                  }
+                }
               })
             )
           )).toArray(),
@@ -232,21 +260,25 @@ const renderCommonToolbarButton = <T>(spec: GeneralToolbarButton<T>, specialisat
 const renderToolbarButton = (spec: Toolbar.ToolbarButton, providersBackstage: UiFactoryBackstageProviders, btnName?: string): SketchSpec =>
   renderToolbarButtonWith(spec, providersBackstage, [ ], btnName);
 
-const renderToolbarButtonWith = (spec: Toolbar.ToolbarButton, providersBackstage: UiFactoryBackstageProviders, bonusEvents: AlloyEvents.AlloyEventKeyAndHandler<any>[], btnName?: string): SketchSpec =>
-  renderCommonToolbarButton(spec, {
+const renderToolbarButtonWith = (spec: Toolbar.ToolbarButton, providersBackstage: UiFactoryBackstageProviders, bonusEvents: AlloyEvents.AlloyEventKeyAndHandler<any>[], btnName?: string): SketchSpec => {
+  const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+  return renderCommonToolbarButton(spec, {
     toolbarButtonBehaviours: (bonusEvents.length > 0 ? [
       // TODO: May have to pass through eventOrder if events start clashing
       AddEventsBehaviour.config('toolbarButtonWith', bonusEvents)
     ] : [ ]),
-    getApi: getButtonApi,
-    onSetup: spec.onSetup
+    getApi: (comp: AlloyComponent) => getButtonApi(comp, tooltipString, providersBackstage),
+    onSetup: spec.onSetup,
+    tooltipString
   }, providersBackstage, btnName);
+};
 
 const renderToolbarToggleButton = (spec: Toolbar.ToolbarToggleButton, providersBackstage: UiFactoryBackstageProviders, btnName?: string): SketchSpec =>
   renderToolbarToggleButtonWith(spec, providersBackstage, [ ], btnName);
 
-const renderToolbarToggleButtonWith = (spec: Toolbar.ToolbarToggleButton, providersBackstage: UiFactoryBackstageProviders, bonusEvents: AlloyEvents.AlloyEventKeyAndHandler<any>[], btnName?: string): SketchSpec =>
-  renderCommonToolbarButton(spec,
+const renderToolbarToggleButtonWith = (spec: Toolbar.ToolbarToggleButton, providersBackstage: UiFactoryBackstageProviders, bonusEvents: AlloyEvents.AlloyEventKeyAndHandler<any>[], btnName?: string): SketchSpec => {
+  const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+  return renderCommonToolbarButton(spec,
     {
       toolbarButtonBehaviours: [
         Replacing.config({ }),
@@ -255,12 +287,14 @@ const renderToolbarToggleButtonWith = (spec: Toolbar.ToolbarToggleButton, provid
         // TODO: May have to pass through eventOrder if events start clashing
         AddEventsBehaviour.config('toolbarToggleButtonWith', bonusEvents)
       ] : [ ]),
-      getApi: getToggleApi,
-      onSetup: spec.onSetup
+      getApi: (comp: AlloyComponent) => getToggleApi(comp, tooltipString, providersBackstage),
+      onSetup: spec.onSetup,
+      tooltipString
     },
     providersBackstage,
     btnName
   );
+};
 
 const fetchChoices = (getApi: (comp: AlloyComponent) => Toolbar.ToolbarSplitButtonInstanceApi, spec: ChoiceFetcher, providersBackstage: UiFactoryBackstageProviders) =>
   (comp: AlloyComponent): Future<Optional<TieredData>> =>

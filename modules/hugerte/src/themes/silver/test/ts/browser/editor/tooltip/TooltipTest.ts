@@ -1,7 +1,8 @@
 import { Waiter } from '@ephox/agar';
 import { context, describe, it } from '@ephox/bedrock-client';
+import { Toolbar } from '@ephox/bridge';
 import { Arr, Fun } from '@ephox/katamari';
-import { SugarElement, TextContent } from '@ephox/sugar';
+import { Attribute, SugarElement, TextContent } from '@ephox/sugar';
 import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -151,6 +152,89 @@ describe('browser.hugerte.themes.silver.editor.TooltipTest', () => {
         await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, menuSelector), 'Lower Alpha 1');
         await TooltipUtils.pCloseTooltip(editor, menuSelector);
         await TooltipUtils.pCloseMenu(menuSelector);
+      });
+    });
+
+    context('setTooltip API', () => {
+      let buttonApi: Toolbar.ToolbarButtonInstanceApi | undefined;
+      let toggleButtonApi: Toolbar.ToolbarToggleButtonInstanceApi | undefined;
+      let menuButtonApi: Toolbar.ToolbarMenuButtonInstanceApi | undefined;
+
+      const hook = TinyHooks.bddSetup<Editor>({
+        base_url: '/project/hugerte/js/hugerte',
+        toolbar: 'set-tooltip-button set-tooltip-toggle-button set-tooltip-menu-button',
+        setup: (ed: Editor) => {
+          ed.ui.registry.addButton('set-tooltip-button', {
+            text: 'Button',
+            tooltip: 'Initial Button Tooltip',
+            onSetup: (api) => {
+              buttonApi = api;
+              return Fun.noop;
+            },
+            onAction: Fun.noop
+          });
+
+          ed.ui.registry.addToggleButton('set-tooltip-toggle-button', {
+            text: 'Toggle Button',
+            tooltip: 'Initial Toggle Tooltip',
+            onSetup: (api) => {
+              toggleButtonApi = api;
+              return Fun.noop;
+            },
+            onAction: Fun.noop
+          });
+
+          ed.ui.registry.addMenuButton('set-tooltip-menu-button', {
+            text: 'Menu Button',
+            tooltip: 'Initial Menu Tooltip',
+            onSetup: (api) => {
+              menuButtonApi = api;
+              return Fun.noop;
+            },
+            fetch: (success) => {
+              success([
+                {
+                  type: 'togglemenuitem',
+                  text: 'Toggle menu item',
+                  onAction: Fun.noop
+                }
+              ]);
+            },
+          });
+        }
+      });
+
+      it(`GH-205: setTooltip should update the aria-label and tooltip with ${test.label} - Toolbar addButton`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-button"]';
+        assert.isOk(buttonApi);
+        buttonApi?.setTooltip('Updated Button Tooltip');
+        const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
+        assert.equal(Attribute.get(button, 'aria-label'), 'Updated Button Tooltip');
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Updated Button Tooltip');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+      });
+
+      it(`GH-205: setTooltip should update the aria-label and tooltip with ${test.label} - Toolbar addToggleButton`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-toggle-button"]';
+        assert.isOk(toggleButtonApi);
+        toggleButtonApi?.setTooltip('Updated Toggle Tooltip');
+        const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
+        assert.equal(Attribute.get(button, 'aria-label'), 'Updated Toggle Tooltip');
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Updated Toggle Tooltip');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
+      });
+
+      it(`GH-205: setTooltip should update the aria-label and tooltip with ${test.label} - Toolbar addMenuButton`, async () => {
+        const editor = hook.editor();
+        const buttonSelector = 'button[data-mce-name="set-tooltip-menu-button"]';
+        assert.isOk(menuButtonApi);
+        menuButtonApi?.setTooltip('Updated Menu Tooltip');
+        const button = await TinyUiActions.pWaitForUi(editor, buttonSelector) as SugarElement<HTMLElement>;
+        assert.equal(Attribute.get(button, 'aria-label'), 'Updated Menu Tooltip');
+        await TooltipUtils.pAssertTooltip(editor, () => test.pTriggerTooltip(editor, buttonSelector), 'Updated Menu Tooltip');
+        await TooltipUtils.pCloseTooltip(editor, buttonSelector);
       });
     });
 

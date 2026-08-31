@@ -3,7 +3,7 @@ import {
   Tabstopping
 } from '@ephox/alloy';
 import { Dialog, Menu as BridgeMenu } from '@ephox/bridge';
-import { Arr, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
+import { Arr, Cell, Fun, Obj, Optional, Optionals } from '@ephox/katamari';
 import { Attribute } from '@ephox/sugar';
 
 import { UiFactoryBackstage } from '../../backstage/Backstage';
@@ -68,6 +68,7 @@ export const renderListBox = (spec: ListBoxSpec, backstage: UiFactoryBackstage, 
         text: initialItem.map((item) => item.text),
         icon: Optional.none(),
         tooltip: Optional.none(),
+        tooltipString: Cell(''),
         role: Optional.none(),
         ariaLabel: spec.label,
         fetch: (comp, callback) => {
