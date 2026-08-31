@@ -1,7 +1,6 @@
 import { Waiter } from '@ephox/agar';
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Arr, Type } from '@ephox/katamari';
-import { PlatformDetection } from '@ephox/sand';
 import { TinyApis, TinyAssertions, TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
@@ -19,11 +18,6 @@ const defaultExpectedEvents = [
 ];
 
 describe('browser.hugerte.core.content.EditorContentTest', () => {
-  // TINY-10669: Remove this
-  const platform = PlatformDetection.detect();
-  const isSafari = platform.browser.isSafari();
-  const isSafariLessThan17 = isSafari && platform.browser.version.major < 17;
-
   const toHtml = (node: AstNode): string => HtmlSerializer({}).serialize(node);
 
   const assertContentTreeEqualToHtml = (editor: Editor, html: string, msg: string) => {
@@ -577,12 +571,7 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
         it('getContent html with iframe with child node should get the content as expected and not error', () => {
           const editor = hook.editor();
           editor.setContent('<p><iframe><p>test</p></iframe></p>');
-          const content = editor.getContent();
-          // TINY-10669: Remove this check
-          const expected = isSafariLessThan17
-            ? '<p><iframe sandbox="">&lt;p&gt;test&lt;/p&gt;</iframe></p>'
-            : '<p><iframe sandbox=""><p>test</p></iframe></p>';
-          assert.equal(content, expected, 'getContent should not error when there is iframes with child nodes in content');
+          assert.equal(editor.getContent(), '<p><iframe sandbox=""><p>test</p></iframe></p>', 'getContent should not error when there is iframes with child nodes in content');
         });
 
         it('getContent text with unsanitized content should get text from unsanitized content', () => {

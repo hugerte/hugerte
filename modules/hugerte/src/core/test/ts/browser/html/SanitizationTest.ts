@@ -77,9 +77,9 @@ describe('browser.hugerte.core.html.SanitizationTest', () => {
     it('Preserves allowed style code containing markup-like text', () => {
       const sanitizer = getSanitizer({ sanitize: true, validate: true }, Schema({ extended_valid_elements: 'style[*]' }));
       const body = document.createElement('body');
-      body.innerHTML = '<style>/* a < b */ .x { color: red; }</style>';
+      body.innerHTML = '<style>/* a <div> b */ .x { color: red; }</style>';
       sanitizer.sanitizeHtmlElement(body, 'text/html');
-      assert.equal(body.innerHTML, '<style>/* a < b */ .x { color: red; }</style>');
+      assert.equal(body.innerHTML, '<style>/* a <div> b */ .x { color: red; }</style>');
     });
 
     // Inline event-handler content attributes (`onload`, `onbegin`, `onerror`,
