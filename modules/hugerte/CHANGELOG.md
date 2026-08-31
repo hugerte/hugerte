@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0.13 - 2026-08-31
+
+### Added
+- New `preview_content_callback` option to customize the HTML rendered in the preview plugin, e.g. to fill in template variables, without modifying the editor content. #GH-213
+- New `setTooltip` method on the `button`, `togglebutton` and `menubutton` toolbar instance APIs, allowing tooltip text (and the corresponding `aria-label`) to be updated after the button has been rendered. #GH-205
+
+### Fixed
+- **Security**: Upgraded DOMPurify from 3.4.11 to 3.4.13, fixing CVE-2026-66010. #GH-212
+- **Security**: Re-enabled DOMPurify's mXSS tripwire (`SAFE_FOR_XML`). Legitimate comments, script/style content and iframe fallback text are preserved via an independent save/restore compensation, while content that could re-parse differently (e.g. ZWNBSP-based comment mutation) is removed, closing the comment-based mXSS vector. #GH-203
+- Empty links were left behind when deleting multiple links from a list. #GH-96
+- Toggling a list with a single non-default list style configured only removed the custom style attribute instead of removing the list entirely. #GH-210
+
 ## 1.0.12 - 2026-06-29
 
 ### Fixed
