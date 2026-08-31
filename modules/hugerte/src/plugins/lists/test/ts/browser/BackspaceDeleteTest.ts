@@ -14,7 +14,7 @@ describe('browser.hugerte.plugins.lists.BackspaceDeleteTest', () => {
     entities: 'raw',
     valid_elements:
       'li[style|class|data-custom],ol[style|class|data-custom],' +
-      'ul[style|class|data-custom],dl,dt,dd,em,strong,span,#p,div[contenteditable],br,details,summary',
+      'ul[style|class|data-custom],dl,dt,dd,em,strong,span,#p,div[contenteditable],br,details,summary,a[href|data-mce-href]',
     valid_styles: {
       '*': 'color,font-size,font-family,background-color,font-weight,' +
         'font-style,text-decoration,float,margin,margin-top,margin-right,' +
@@ -999,5 +999,37 @@ describe('browser.hugerte.plugins.lists.BackspaceDeleteTest', () => {
         '<li>item 3</li>' +
       '</ul>'
     );
+  });
+
+  it('GH-96: Backspace deleting multiple links from a list should not leave empty anchors', () => {
+    const editor = hook.editor();
+    editor.setContent(
+      '<ul>' +
+        '<li><a href="http://link1">link1</a></li>' +
+        '<li><a href="http://link2">link2</a></li>' +
+        '<li><a href="http://link3">link3</a></li>' +
+        '<li><a href="http://link4">link4</a></li>' +
+      '</ul>'
+    );
+
+    editor.focus();
+    // Select link 2 and 3 as in the issue reproduction
+    LegacyUnit.setSelection(editor, 'li:nth-child(2) a', 0, 'li:nth-child(3) a', 5);
+
+    // Backspace 3 times as in the issue reproduction
+    editor.plugins.lists.backspaceDelete();
+    editor.plugins.lists.backspaceDelete();
+    editor.plugins.lists.backspaceDelete();
+
+    TinyAssertions.assertContent(editor,
+      '<ul>' +
+        '<li><a href="http://link1">link1</a></li>' +
+        '<li><a href="http://link4">link4</a></li>' +
+      '</ul>'
+    );
+
+    // No empty <a> containers should remain
+    const anchors = editor.dom.select('a', editor.getBody());
+    assert.equal(anchors.length, 2);
   });
 });
