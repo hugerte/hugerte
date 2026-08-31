@@ -5,7 +5,7 @@ import { Attribute, Class, Focus } from '@ephox/sugar';
 
 import { formActionEvent } from 'hugerte/themes/silver/ui/general/FormEvents';
 
-import { UiFactoryBackstage } from '../../backstage/Backstage';
+import { UiFactoryBackstage, UiFactoryBackstageProviders } from '../../backstage/Backstage';
 import { renderCommonDropdown, updateMenuIcon, updateMenuText } from '../dropdown/CommonDropdown';
 import ItemResponse from '../menus/item/ItemResponse';
 import * as NestedMenus from '../menus/menu/NestedMenus';
@@ -24,7 +24,7 @@ interface StoredMenuButton extends Omit<Dialog.DialogFooterMenuButton, 'items'> 
   readonly items: StoredMenuItem[];
 }
 
-const getMenuButtonApi = (component: AlloyComponent): Toolbar.ToolbarMenuButtonInstanceApi => ({
+const getMenuButtonApi = (component: AlloyComponent, tooltipString: Cell<string>, tooltipDirty: Cell<boolean>, providersBackstage: UiFactoryBackstageProviders): Toolbar.ToolbarMenuButtonInstanceApi => ({
   isEnabled: () => !Disabling.isDisabled(component),
   setEnabled: (state: boolean) => Disabling.set(component, !state),
   setActive: (state: boolean) => {
@@ -47,14 +47,28 @@ const getMenuButtonApi = (component: AlloyComponent): Toolbar.ToolbarMenuButtonI
   },
   setIcon: (icon: string) => AlloyTriggers.emitWith(component, updateMenuIcon, {
     icon
-  })
+  }),
+  setTooltip: (tooltip: string) => {
+    // Mirror the split button behaviour: translate the tooltip, update the aria-label
+    // and store the (untranslated) tooltip so the hover tooltip can be updated on show.
+    // The dirty flag is set so the hover tooltip is rebuilt on the next show (see
+    // renderCommonDropdown in CommonDropdown.ts for why a dirty flag is used).
+    const translatedTooltip = providersBackstage.translate(tooltip);
+    Attribute.set(component.element, 'aria-label', translatedTooltip);
+    tooltipString.set(tooltip);
+    tooltipDirty.set(true);
+  }
 });
 
 const renderMenuButton = (spec: MenuButtonSpec, prefix: string, backstage: UiFactoryBackstage, role: Optional<string>, tabstopping = true, btnName?: string): SketchSpec => {
+  const tooltipString = Cell<string>(spec.tooltip.getOr(''));
+  const tooltipDirty = Cell(false);
   return renderCommonDropdown({
     text: spec.text,
     icon: spec.icon,
     tooltip: spec.tooltip,
+    tooltipString,
+    tooltipDirty,
     ariaLabel: spec.tooltip,
     searchable: spec.search.isSome(),
     // https://www.w3.org/TR/wai-aria-practices/examples/menubar/menubar-2/menubar-2.html
@@ -80,11 +94,11 @@ const renderMenuButton = (spec: MenuButtonSpec, prefix: string, backstage: UiFac
           );
         },
         fetchContext,
-        getMenuButtonApi(dropdownComp)
+        getMenuButtonApi(dropdownComp, tooltipString, tooltipDirty, backstage.shared.providers)
       );
     },
     onSetup: spec.onSetup,
-    getApi: getMenuButtonApi,
+    getApi: (comp: AlloyComponent) => getMenuButtonApi(comp, tooltipString, tooltipDirty, backstage.shared.providers),
     columns: 1,
     presets: 'normal',
     classes: [],
