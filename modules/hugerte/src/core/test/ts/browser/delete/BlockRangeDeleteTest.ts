@@ -159,4 +159,58 @@ describe('browser.hugerte.core.delete.BlockRangeDeleteTest', () => {
     TinyAssertions.assertContent(editor, '<table><tbody><tr><td><p>&nbsp;</p></td></tr></tbody></table>');
     TinyAssertions.assertSelection(editor, [ 0, 0, 0, 0, 0 ], 0, [ 0, 0, 0, 0, 0 ], 0);
   });
+
+  it('Backspace range deleting the content of links across blocks should not leave empty anchors', () => {
+    const editor = hook.editor();
+    editor.setContent('<p><a href="http://link1">link1</a></p><p><a href="http://link2">link2</a></p><p><a href="http://link3">link3</a></p>');
+    TinySelections.setSelection(editor, [ 1, 0, 0 ], 0, [ 2, 0, 0 ], 5);
+    doBackspace(editor);
+    TinyAssertions.assertContent(editor, '<p><a href="http://link1">link1</a></p><p>&nbsp;</p>');
+  });
+
+  it('Delete range deleting the content of links across blocks should not leave empty anchors', () => {
+    const editor = hook.editor();
+    editor.setContent('<p><a href="http://link1">link1</a></p><p><a href="http://link2">link2</a></p><p><a href="http://link3">link3</a></p>');
+    TinySelections.setSelection(editor, [ 1, 0, 0 ], 0, [ 2, 0, 0 ], 5);
+    doDelete(editor);
+    TinyAssertions.assertContent(editor, '<p><a href="http://link1">link1</a></p><p>&nbsp;</p>');
+  });
+
+  it('Backspace range deleting links should preserve named anchors', () => {
+    const editor = hook.editor();
+    editor.setContent('<p>0<a name="anchor"></a>1</p><p><a href="http://del">2</a></p>');
+    TinySelections.setSelection(editor, [ 0, 2 ], 0, [ 1, 0, 0 ], 1);
+    doBackspace(editor);
+    // The named anchor must survive while the emptied link container is removed
+    TinyAssertions.assertContent(editor, '<p>0<a name="anchor"></a></p>');
+  });
+
+  it('Backspace range deleting links should preserve links containing images', () => {
+    const editor = hook.editor();
+    editor.setContent('<p>0<a href="http://keep"><img src="x" />1</a></p><p><a href="http://del">2</a></p>');
+    TinySelections.setSelection(editor, [ 0, 1, 1 ], 0, [ 1, 0, 0 ], 1);
+    doBackspace(editor);
+    TinyAssertions.assertContent(editor, '<p>0<a href="http://keep"><img src="x"></a></p>');
+  });
+
+  it('Backspace range deleting links should preserve links containing non-editable widgets', () => {
+    const editor = hook.editor();
+    editor.setContent('<p>0<a href="http://keep"><span contenteditable="false">W</span>1</a></p><p><a href="http://del">2</a></p>');
+    TinySelections.setSelection(editor, [ 0, 1, 1 ], 0, [ 1, 0, 0 ], 1);
+    doBackspace(editor);
+    TinyAssertions.assertContent(editor, '<p>0<a href="http://keep"><span contenteditable="false">W</span></a></p>');
+  });
+
+  it('Backspace range deleting links should preserve ZWSP links', () => {
+    const editor = hook.editor();
+    // ZWSP is stripped from content by the parser/serializer, so seed the DOM directly
+    editor.getBody().innerHTML = '<p>0<a href="http://keep">\uFEFF</a>1</p><p><a href="http://del">2</a></p>';
+    TinySelections.setSelection(editor, [ 0, 2 ], 0, [ 1, 0, 0 ], 1);
+    doBackspace(editor);
+    TinyAssertions.assertContent(editor, '<p>0</p>');
+    const anchors = editor.dom.select('a', editor.getBody());
+    assert.equal(anchors.length, 1, 'Only the ZWSP link should remain');
+    assert.equal(anchors[0].getAttribute('href'), 'http://keep');
+    assert.equal(anchors[0].firstChild?.textContent, '\uFEFF');
+  });
 });
