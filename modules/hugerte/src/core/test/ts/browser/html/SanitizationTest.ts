@@ -2,6 +2,7 @@ import { context, describe, it } from '@ephox/bedrock-client';
 import { PlatformDetection } from '@ephox/sand';
 import { assert } from 'chai';
 
+import { DomParserSettings } from 'hugerte/core/api/html/DomParser';
 import Schema from 'hugerte/core/api/html/Schema';
 import { getSanitizer, MimeType } from 'hugerte/core/html/Sanitization';
 
@@ -9,8 +10,8 @@ describe('browser.hugerte.core.html.SanitizationTest', () => {
   context('Sanitize html', () => {
     const isSafari = PlatformDetection.detect().browser.isSafari();
 
-    const testHtmlSanitizer = (testCase: { input: string; expected: string; mimeType: MimeType; sanitize?: boolean }) => {
-      const sanitizer = getSanitizer({ sanitize: testCase.sanitize ?? true }, Schema());
+    const testHtmlSanitizer = (testCase: { input: string; expected: string; mimeType: MimeType; sanitize?: boolean }, settings: DomParserSettings = {}) => {
+      const sanitizer = getSanitizer({ sanitize: testCase.sanitize ?? true, ...settings }, Schema());
 
       const body = document.createElement('body');
       body.innerHTML = testCase.input;
@@ -21,14 +22,14 @@ describe('browser.hugerte.core.html.SanitizationTest', () => {
 
     it('Sanitize iframe HTML', () => testHtmlSanitizer({
       input: '<iframe src="x"><script>alert(1)</script></iframe><iframe src="javascript:alert(1)"></iframe>',
-      // The HTML parser stores <iframe> child text as a text node, not as a
-      // <script> element, so the sanitizer cannot synthesize a script. The
-      // javascript: URL on the second iframe is stripped by the URL filter,
-      // leaving the empty iframe. On Safari the iframe's text content is
-      // HTML-escaped on serialization.
-      expected: isSafari
-        ? '<iframe src="x">&lt;script&gt;alert(1)&lt;/script&gt;</iframe><iframe></iframe>'
-        : '<iframe src="x"><script>alert(1)</script></iframe><iframe></iframe>',
+      // The HTML parser stores <iframe> child text as a raw text node, not as
+      // a <script> element, so the sanitizer cannot synthesize a script. With
+      // DOMPurify's SAFE_FOR_XML mXSS tripwire active, markup-looking
+      // fallback text is dropped and only the iframe shell is kept (see
+      // compensateRawTextElement in Sanitization.ts). The javascript: URL on
+      // the second iframe is stripped by the URL filter, leaving an empty
+      // iframe.
+      expected: '<iframe src="x"></iframe><iframe></iframe>',
       mimeType: 'text/html'
     }));
 
@@ -39,6 +40,47 @@ describe('browser.hugerte.core.html.SanitizationTest', () => {
       mimeType: 'text/html',
       sanitize: false
     }));
+
+    // Issue #203: a comment whose data contains \uFEFF (ZWNBSP) followed by
+    // markup is an mXSS vector - once downstream code strips the zero-width
+    // space, '<!--\uFEFF><iframe ...>' re-parses as an empty comment followed
+    // by a live iframe. DOMPurify's comment tripwire strips the whole comment.
+    it('#203: strips ZWNBSP comment mXSS', () => testHtmlSanitizer({
+      input: '<!--\uFEFF><iframe onload=alert(1)>-></body>-->',
+      expected: '',
+      mimeType: 'text/html'
+    }));
+
+    // Tripwire compensation: markup-bearing comments are legitimate and are
+    // preserved (see the comment compensation in Sanitization.ts).
+    it('Preserves comments containing markup', () => testHtmlSanitizer({
+      input: '<!-- <div class="note">keep me</div> -->',
+      expected: '<!-- <div class="note">keep me</div> -->',
+      mimeType: 'text/html'
+    }));
+
+    it('Preserves conditional comments with markup when allowed', () => testHtmlSanitizer({
+      input: '<!--[if IE]><p>ie only</p><![endif]-->',
+      expected: '<!--[if IE]><p>ie only</p><![endif]-->',
+      mimeType: 'text/html',
+      sanitize: true
+    }, { allow_conditional_comments: true }));
+
+    it('Preserves allowed script code containing markup-like text', () => {
+      const sanitizer = getSanitizer({ sanitize: true, validate: true }, Schema({ extended_valid_elements: 'script[*]' }));
+      const body = document.createElement('body');
+      body.innerHTML = '<script>if (a<b) alert(1)</script>';
+      sanitizer.sanitizeHtmlElement(body, 'text/html');
+      assert.equal(body.innerHTML, '<script>if (a<b) alert(1)</script>');
+    });
+
+    it('Preserves allowed style code containing markup-like text', () => {
+      const sanitizer = getSanitizer({ sanitize: true, validate: true }, Schema({ extended_valid_elements: 'style[*]' }));
+      const body = document.createElement('body');
+      body.innerHTML = '<style>/* a < b */ .x { color: red; }</style>';
+      sanitizer.sanitizeHtmlElement(body, 'text/html');
+      assert.equal(body.innerHTML, '<style>/* a < b */ .x { color: red; }</style>');
+    });
 
     // Inline event-handler content attributes (`onload`, `onbegin`, `onerror`,
     // ...) on non-root elements inside an SVG must always be stripped. The
