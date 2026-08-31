@@ -144,6 +144,11 @@ const processNode = (node: Node, settings: DomParserSettings, schema: Schema, sc
       Remove.empty(element);
     }
 
+    const shouldClearIframe = lcTagName === 'iframe' && schema.isValid('iframe');
+    if (shouldClearIframe) {
+      Remove.empty(element);
+    }
+
     const children = node.childNodes;
     for (let i = 0; i < children.length; i++) {
       const child = children[i];

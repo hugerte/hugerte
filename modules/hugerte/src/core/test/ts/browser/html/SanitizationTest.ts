@@ -21,14 +21,10 @@ describe('browser.hugerte.core.html.SanitizationTest', () => {
 
     it('Sanitize iframe HTML', () => testHtmlSanitizer({
       input: '<iframe src="x"><script>alert(1)</script></iframe><iframe src="javascript:alert(1)"></iframe>',
-      // The HTML parser stores <iframe> child text as a text node, not as a
-      // <script> element, so the sanitizer cannot synthesize a script. The
-      // javascript: URL on the second iframe is stripped by the URL filter,
-      // leaving the empty iframe. On Safari the iframe's text content is
-      // HTML-escaped on serialization.
-      expected: isSafari
-        ? '<iframe src="x">&lt;script&gt;alert(1)&lt;/script&gt;</iframe><iframe></iframe>'
-        : '<iframe src="x"><script>alert(1)</script></iframe><iframe></iframe>',
+      // Valid iframe fallback text is inert raw text, but with SAFE_FOR_XML:true
+      // the ELEMENT_MARKUP_PROBE would remove the whole iframe. Valid iframes
+      // are emptied before DOMPurify to keep the shell.
+      expected: '<iframe src="x"></iframe><iframe></iframe>',
       mimeType: 'text/html'
     }));
 

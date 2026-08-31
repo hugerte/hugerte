@@ -768,7 +768,7 @@ describe('browser.hugerte.core.html.DomParserTest', () => {
 
         assert.equal(
           serializer.serialize(DomParser(scenario.settings).parse('<iframe><textarea></iframe><img src="a" onerror="alert(document.domain)" />')),
-          '<iframe><textarea></iframe><img src="a">'
+          '<iframe></iframe><img src="a">'
         );
       });
 
