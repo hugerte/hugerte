@@ -18,7 +18,7 @@
     "eslint": "lerna exec --stream --no-bail -- eslint --max-warnings=0 src/**/*.ts",
     "start": "yarn -s hugerte-grunt start",
     "dev": "npm-run-all oxide-icons-build oxide-build -p tsc \"hugerte-grunt dev\"",
-    "ci": "npm-run-all -p oxide-ci oxide-icons-ci -p tsc \"hugerte-grunt dev\"",
+    "ci": "run-s oxide-ci oxide-icons-ci tsc \"hugerte-grunt dev\" \"hugerte-grunt rollup\"",
     "ci-seq": "run-s oxide-ci oxide-icons-ci tsc \"hugerte-grunt dev\"",
     "ci-all": "npm-run-all -p eslint ci -s hugerte-rollup",
     "ci-all-seq": "npm-run-all -p eslint ci-seq -s hugerte-rollup",
