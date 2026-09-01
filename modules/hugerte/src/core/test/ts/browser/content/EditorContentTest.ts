@@ -708,7 +708,9 @@ describe('browser.hugerte.core.content.EditorContentTest', () => {
       delete editorWinGlobal.xss;
 
       assert.isFalse(state, 'xss function should not have been called');
-      TinyAssertions.assertContent(editor, '<noscript>&lt;/noscript&gt;&lt;style onload=xss()&gt;&lt;/style&gt;</noscript>');
+      // DOMPurify 3.4.14 drops a noscript whose text contains markup-like content
+      // (possible bypass fix when risky tags are allow-listed), so nothing remains
+      TinyAssertions.assertContent(editor, '');
     });
 
     it('TINY-11019: Should not double decode noscript contents', () => {
