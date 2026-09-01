@@ -65,10 +65,16 @@ const isVisuallyEmpty = (dom: DOMUtils, rootElm: Element, forcedRootBlock: strin
       // Even if the root is the forced_root_block, it may contain structural
       // elements (e.g. a <ul> inside a <div>) that indicate content has been added.
       // Skip bogus elements (internal editor markers like format-caret spans)
-      // to find the first real content child.
+      // to find the first real content child. A list block (ul/ol) is always
+      // considered content, even when empty, so the placeholder must hide when
+      // e.g. InsertOrderedList is run on an empty editor before the padding BR
+      // has been appended to the list item (avoids transient re-show).
       let child = firstElement.firstElementChild;
       while (child && child.hasAttribute('data-mce-bogus')) {
         child = child.nextElementSibling;
+      }
+      if (child && (child.nodeName === 'UL' || child.nodeName === 'OL')) {
+        return false;
       }
       return child === null || child.nodeName === 'BR';
     } else {
