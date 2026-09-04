@@ -13118,3 +13118,5 @@ dompurify@3.4.14:
   version "3.4.14"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.14.tgz#a789edb2c7bcdb69a93713a34edb7e0a5245d8c9"
   integrity sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==
+  optionalDependencies:
+    "@types/trusted-types" "^2.0.7"
