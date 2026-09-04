@@ -4836,6 +4836,13 @@ domhandler@^4.2.0, domhandler@^4.3.1:
   dependencies:
     domelementtype "^2.2.0"
 
+dompurify@3.4.14:
+  version "3.4.14"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.14.tgz#a789edb2c7bcdb69a93713a34edb7e0a5245d8c9"
+  integrity sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==
+  optionalDependencies:
+    "@types/trusted-types" "^2.0.7"
+
 domutils@^1.5.1:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.7.0.tgz#56ea341e834e06e6748af7a1cb25da67ea9f8c2a"
@@ -6687,13 +6694,13 @@ grunt-legacy-util@~2.0.1:
     underscore.string "~3.3.5"
     which "~2.0.2"
 
-grunt-nuget-pack@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/grunt-nuget-pack/-/grunt-nuget-pack-0.0.6.tgz#a547a2bd6a502bc24be4df5b76486e07c00cb163"
-  integrity sha512-Aj+/jIZDhT4EvwUidsnAy60vClWnjC+ghoO2+S7NRSziKceElPc65PIZxRduGsLHn924J+OVmUWJfCUkrAO4Kg==
+grunt-nuget-pack@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/grunt-nuget-pack/-/grunt-nuget-pack-1.0.1.tgz#84a52977c8371a83591d4888dc7e5e70dd6de757"
+  integrity sha512-BC8d6kbJZv4r8WprBHYzn0ZOHCMDs4p5I2kavh1tta2L5FRgTos2T5IgVowBgfAob5MTSclqALQkudmiXEPnRw==
   dependencies:
     moxie-zip "~0.0.3"
-    xml-writer "~1.4.2"
+    xml-writer "~1.7.0"
 
 grunt-shell@^4.0.0:
   version "4.0.0"
@@ -12990,15 +12997,10 @@ ws@^8.13.0, ws@^8.18.0, ws@^8.8.0:
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.18.0.tgz#0d7505a6eafe2b0e712d232b42279f53bc289bbc"
   integrity sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==
 
-xml-writer@^1.6.0:
+xml-writer@^1.6.0, xml-writer@~1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/xml-writer/-/xml-writer-1.7.0.tgz#b76f1d591c16a2634ebdb703c7bdbd0fd6819065"
   integrity sha512-elFVMRiV5jb59fbc87zzVa0C01QLBEWP909mRuWqFqrYC5wNTH5QW4AaKMNv7d6zAsuOulkD7wnztZNLQW0Nfg==
-
-xml-writer@~1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/xml-writer/-/xml-writer-1.4.2.tgz#effc296065e2e53dbb5a4491eb42d5e3554fe36c"
-  integrity sha512-7icuC+B1UQ5i4RSp5QXQciwsdM5C8BlZxWG0onYtkUcjmUTGk/8iveNRRaa8htUQ9FWchxRHxw5hijL0yU20xQ==
 
 xtend@~4.0.1:
   version "4.0.2"
@@ -13105,10 +13107,3 @@ zwitch@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/zwitch/-/zwitch-1.0.5.tgz#d11d7381ffed16b742f6af7b3f223d5cd9fe9920"
   integrity sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==
-
-dompurify@3.4.14:
-  version "3.4.14"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.14.tgz#a789edb2c7bcdb69a93713a34edb7e0a5245d8c9"
-  integrity sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==
-  optionalDependencies:
-    "@types/trusted-types" "^2.0.7"
