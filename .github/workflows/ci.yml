@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    types: [ opened, synchronize, reopened, labeled ]
   workflow_dispatch:
     inputs:
       run_tests:
@@ -18,6 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    # On label events only run when the change is relevant (adding/removing the
+    # run-headless label), otherwise skip to avoid burning a build on e.g. a
+    # dependabot label.
+    if: >
+      github.event_name != 'pull_request' ||
+      github.event.action != 'labeled' ||
+      contains(github.event.pull_request.labels.*.name, 'run-headless')
 
     steps:
       - name: Checkout
