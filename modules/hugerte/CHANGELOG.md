@@ -8,8 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - **Security**: Upgraded DOMPurify from 3.4.13 to 3.4.14, fixing possible bypasses when risky tags are allow-listed (noscript elements containing markup-like text are now removed).
-- CI now runs the rollup bundler, so the distributed plugin/model/theme bundles are actually built and served during tests. This fixes headless tests that load plugins from disk (e.g. the `lists` plugin) silently failing when the bundles were missing.
-- Headless tests can now be triggered on any pull request by adding the `run-headless` label, and adding the label to an already-open PR starts them.
 
 ## 1.0.13 - 2026-08-31
 
