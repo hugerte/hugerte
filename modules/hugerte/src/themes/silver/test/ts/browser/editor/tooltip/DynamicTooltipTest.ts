@@ -81,20 +81,20 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
         beforeEach(async () => {
           LocalStorage.clear();
           const editor = hook.editor();
-          await pResetColorToDefault(editor, 'div[data-mce-name="forecolor"]');
-          await pResetColorToDefault(editor, 'div[data-mce-name="backcolor"]');
+          await pResetColorToDefault(editor, '[data-mce-name="forecolor-chevron"]');
+          await pResetColorToDefault(editor, '[data-mce-name="backcolor-chevron"]');
         });
 
         it(`TINY-10474: Tooltip text is the default color - forecolor - ${scenario.label}`, async () => {
           const editor = hook.editor();
-          const toolbarButtonSelector = `div[data-mce-name="forecolor"]`;
+          const toolbarButtonSelector = `[data-mce-name="forecolor-chevron"]`;
           await TooltipUtils.pAssertTooltip(editor, () => TooltipUtils.pTriggerTooltipWithMouse(editor, toolbarButtonSelector), `Text color ${scenario.buttonColor}`);
           await TooltipUtils.pCloseTooltip(editor, toolbarButtonSelector);
         });
 
         it(`TINY-10474: Tooltip text is the changed color - forecolor - ${scenario.label}`, async () => {
           const editor = hook.editor();
-          const toolbarButtonSelector = `div[data-mce-name="forecolor"]`;
+          const toolbarButtonSelector = `[data-mce-name="forecolor-chevron"]`;
           TinyUiActions.clickOnToolbar(editor, toolbarButtonSelector);
           await pSelectSwatchColor(editor, '#BFEDD2');
           await TooltipUtils.pAssertTooltip(editor, () => TooltipUtils.pTriggerTooltipWithMouse(editor, toolbarButtonSelector), `Text color ${scenario.expectedColor}`);
@@ -103,7 +103,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
 
         it(`TINY-10474: Tooltip text is the changed custom color - forecolor - ${scenario.label}`, async () => {
           const editor = hook.editor();
-          const toolbarButtonSelector = `div[data-mce-name="forecolor"]`;
+          const toolbarButtonSelector = `[data-mce-name="forecolor-chevron"]`;
           await pSelectCustomColor(editor, toolbarButtonSelector);
           await TooltipUtils.pAssertTooltip(editor, () => TooltipUtils.pTriggerTooltipWithMouse(editor, toolbarButtonSelector), 'Text color #123123');
           await TooltipUtils.pCloseTooltip(editor, toolbarButtonSelector);
@@ -111,14 +111,14 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
 
         it(`TINY-10474: Tooltip text is the default color - backcolor - ${scenario.label}`, async () => {
           const editor = hook.editor();
-          const toolbarButtonSelector = `div[data-mce-name="backcolor"]`;
+          const toolbarButtonSelector = `[data-mce-name="backcolor-chevron"]`;
           await TooltipUtils.pAssertTooltip(editor, () => TooltipUtils.pTriggerTooltipWithMouse(editor, toolbarButtonSelector), `Background color ${scenario.buttonColor}`);
           await TooltipUtils.pCloseTooltip(editor, toolbarButtonSelector);
         });
 
         it(`TINY-10474: Tooltip text is the changed color - backcolor - ${scenario.label}`, async () => {
           const editor = hook.editor();
-          const toolbarButtonSelector = `div[data-mce-name="backcolor"]`;
+          const toolbarButtonSelector = `[data-mce-name="backcolor-chevron"]`;
           TinyUiActions.clickOnToolbar(editor, toolbarButtonSelector);
           await pSelectSwatchColor(editor, '#BFEDD2');
           await TooltipUtils.pAssertTooltip(editor, () => TooltipUtils.pTriggerTooltipWithMouse(editor, toolbarButtonSelector), `Background color ${scenario.expectedColor}`);
@@ -127,7 +127,7 @@ describe('browser.hugerte.themes.silver.editor.TooltipShortcutTest', () => {
 
         it(`TINY-10474: Tooltip text is the changed custom color - backcolor - ${scenario.label}`, async () => {
           const editor = hook.editor();
-          const toolbarButtonSelector = `div[data-mce-name="backcolor"]`;
+          const toolbarButtonSelector = `[data-mce-name="backcolor-chevron"]`;
           await pSelectCustomColor(editor, toolbarButtonSelector);
           await TooltipUtils.pAssertTooltip(editor, () => TooltipUtils.pTriggerTooltipWithMouse(editor, toolbarButtonSelector), 'Background color #123123');
           await TooltipUtils.pCloseTooltip(editor, toolbarButtonSelector);
