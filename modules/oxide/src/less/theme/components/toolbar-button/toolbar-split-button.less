@@ -87,3 +87,28 @@
     opacity: @toolbar-split-color-preview-opacity;
   }
 }
+
+// RTL
+// In RTL the chevron is painted to the left of the main button, so the seam must be flush on
+// the chevron's right instead of its left, and the outer radii need mirroring. Keep this as an
+// explicit `[dir=rtl]` override so the LTR output stays byte-for-byte identical.
+.tox[dir=rtl] {
+  .tox-split-button__main {
+    border-radius: 0 @toolbar-button-border-radius @toolbar-button-border-radius 0;
+    margin-left: 0;
+    margin-right: @toolbar-button-spacing-x;
+
+    &:focus::after {
+      border-radius: 0 @toolbar-button-border-radius @toolbar-button-border-radius 0;
+    }
+  }
+
+  .tox-split-button__chevron {
+    border-radius: @toolbar-button-border-radius 0 0 @toolbar-button-border-radius;
+    margin-right: 0;
+
+    &:focus::after {
+      border-radius: @toolbar-button-border-radius 0 0 @toolbar-button-border-radius;
+    }
+  }
+}
