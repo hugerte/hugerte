@@ -258,6 +258,7 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
     store.clear();
 
     const button3 = getButton('.button3-container .tox-split-button__main');
+    const chevron3 = getButton('.button3-container .tox-split-button__chevron');
     Assertions.assertStructure(
       'Checking initial structure of main button',
       ApproxStructure.build((s, str, arr) => s.element('button', {
@@ -276,6 +277,22 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
       button3.element
     );
 
+    // The chevron is a separate control, so it must have its own accessible name (derived from
+    // the main button's tooltip) rather than duplicating the main button's label.
+    Assertions.assertStructure(
+      'Checking initial structure of chevron button',
+      ApproxStructure.build((s, str, arr) => s.element('button', {
+        classes: [ arr.has('tox-tbtn'), arr.has('tox-split-button__chevron') ],
+        attrs: {
+          type: str.is('button'),
+          'aria-label': str.is('tooltip menu'),
+          'aria-haspopup': str.is('true'),
+          'aria-expanded': str.is('false')
+        }
+      })),
+      chevron3.element
+    );
+
     // Toggle button
     Mouse.clickOn(component.element, '.button3-container .tox-split-button__main');
     store.assertEq('Store should have action3', [ 'onToggleAction.3' ]);
@@ -285,8 +302,14 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
 
     // Menu item selected
     Mouse.clickOn(component.element, '.button3-container .tox-split-button__chevron');
+    await Waiter.pTryUntil('Wait for the chevron to report the menu as expanded', () =>
+      assert.equal(Attribute.get(chevron3.element, 'aria-expanded'), 'true')
+    );
     await Waiter.pTryUntil('Wait for split button menu item to show',
       () => Mouse.clickOn(body, '.tox-collection .tox-collection__item')
+    );
+    await Waiter.pTryUntil('Wait for the chevron to report the menu as collapsed', () =>
+      assert.equal(Attribute.get(chevron3.element, 'aria-expanded'), 'false')
     );
     store.assertEq('Store should have item action3', [ 'onItemAction.3' ]);
     store.clear();
@@ -312,6 +335,8 @@ describe('headless.hugerte.themes.silver.toolbar.ToolbarButtonsTest', () => {
     store.assertEq('Store should now have action3', [ 'onToggleAction.3' ]);
     store.clear();
     assertSplitButtonDisabledState('Disabled', true, button3);
+    // setEnabled(false) must disable the chevron as well as the main button.
+    assertSplitButtonDisabledState('Disabled chevron', true, chevron3);
     assertSplitButtonActiveState('Off still', false, button3);
 
     // TINY-9504: The button is disabled now. Clicking on it should not call onAction callback.

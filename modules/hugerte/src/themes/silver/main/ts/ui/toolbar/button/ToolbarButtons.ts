@@ -109,6 +109,11 @@ const getTooltipAttributes = (tooltip: Optional<string>, providersBackstage: UiF
   'aria-label': providersBackstage.translate(tooltip),
 })).getOr({});
 
+// The chevron of a split button is a separate control, so it needs a distinct accessible
+// name. Mirror TinyMCE 8 by deriving it from the main button's label (e.g. "Text color menu").
+const getChevronTooltip = (providersBackstage: UiFactoryBackstageProviders, tooltip: string): string =>
+  providersBackstage.translate([ '{0} menu', providersBackstage.translate(tooltip) ]);
+
 const focusButtonEvent = Id.generate('focus-button');
 
 const renderCommonStructure = (
@@ -352,8 +357,14 @@ const makeSplitButtonApi = (tooltipString: Cell<string>, sharedBackstage: UiFact
 
     const getComponents = () => {
       const isChevron = Class.has(element, ToolbarButtonClasses.SplitButtonChevron);
+      // Harden the sibling lookup: only treat a preceding sibling as the main button if it is
+      // actually the split button's main part. This keeps resolution predictable if the DOM
+      // structure ever changes (e.g. an extra wrapper), falling back to no main button rather
+      // than silently operating on an unrelated sibling.
       const mainOpt = isChevron
-        ? Traverse.prevSibling(element).bind((el) => system.getByDom(el).toOptional())
+        ? Traverse.prevSibling(element)
+          .bind((el) => system.getByDom(el).toOptional())
+          .filter((comp) => Class.has(comp.element, ToolbarButtonClasses.SplitButtonMain))
         : Optional.some(component);
       const chevronOpt = isChevron
         ? Optional.some(component)
@@ -397,9 +408,10 @@ const makeSplitButtonApi = (tooltipString: Cell<string>, sharedBackstage: UiFact
       setTooltip: (tooltip: string) => {
         tooltipString.set(tooltip);
         const { mainOpt, chevronOpt } = getComponents();
-        const translatedTooltip = sharedBackstage.providers.translate(tooltip);
-        mainOpt.each((c) => Attribute.set(c.element, 'aria-label', translatedTooltip));
-        chevronOpt.each((c) => Attribute.set(c.element, 'aria-label', translatedTooltip));
+        mainOpt.each((c) => Attribute.set(c.element, 'aria-label', sharedBackstage.providers.translate(tooltip)));
+        // The main button keeps the plain tooltip while the chevron gets the "menu" suffix,
+        // so the two adjacent controls don't share an identical accessible name.
+        chevronOpt.each((c) => Attribute.set(c.element, 'aria-label', getChevronTooltip(sharedBackstage.providers, tooltip)));
       }
     };
   };
@@ -409,17 +421,28 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
   const tooltipString = Cell<string>(spec.tooltip.getOr(''));
   const getApi = makeSplitButtonApi(tooltipString, sharedBackstage);
 
+  const getMainButtonLabel = (): Optional<string> =>
+    spec.tooltip.map((tooltip) => sharedBackstage.providers.translate(tooltip));
+
+  const getChevronLabel = (): Optional<string> =>
+    spec.tooltip.map((tooltip) => getChevronTooltip(sharedBackstage.providers, tooltip));
+
   const structure = renderCommonStructure(spec.icon, spec.text, Optional.none(), Optional.some([
-    Toggling.config({ toggleClass: ToolbarButtonClasses.Ticked, aria: { mode: 'pressed' }, toggleOnExecute: false }),
+    Toggling.config({
+      toggleClass: ToolbarButtonClasses.Ticked,
+      // Color split buttons open a palette rather than toggling, so they must not be announced
+      // as pressed toggles (this matches TinyMCE 8).
+      aria: spec.presets === 'color' ? { mode: 'none' } : { mode: 'pressed' },
+      toggleOnExecute: false
+    }),
     ...(spec.tooltip.isSome() ? [
       Tooltipping.config(
         sharedBackstage.providers.tooltips.getConfig({
-          tooltipText: sharedBackstage.providers.translate(spec.tooltip.getOr('')),
+          tooltipText: getMainButtonLabel().getOr(''),
           onShow: (comp) => {
             if (tooltipString.get() !== spec.tooltip.getOr('')) {
-              const translatedTooltip = sharedBackstage.providers.translate(tooltipString.get());
               Tooltipping.setComponents(comp,
-                sharedBackstage.providers.tooltips.getComponents({ tooltipText: translatedTooltip })
+                sharedBackstage.providers.tooltips.getComponents({ tooltipText: sharedBackstage.providers.translate(tooltipString.get()) })
               );
             }
           }
@@ -436,7 +459,7 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
         ToolbarButtonClasses.SplitButtonMain
       ].concat(spec.text.isSome() ? [ ToolbarButtonClasses.MatchWidth ] : []),
       attributes: {
-        ...spec.tooltip.map((t) => ({ 'aria-label': sharedBackstage.providers.translate(t) })).getOr({}),
+        ...getMainButtonLabel().map((label) => ({ 'aria-label': label })).getOr({}),
         ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {})
       }
     },
@@ -457,7 +480,7 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
       classes: [ ToolbarButtonClasses.Button, ToolbarButtonClasses.SplitButtonChevron ],
       innerHtml: Icons.get('chevron-down', sharedBackstage.providers.icons),
       attributes: {
-        ...spec.tooltip.map((t) => ({ 'aria-label': sharedBackstage.providers.translate(t) })).getOr({}),
+        ...getChevronLabel().map((label) => ({ 'aria-label': label })).getOr({}),
         ...(Type.isNonNullable(btnName) ? { 'data-mce-name': `${btnName}-chevron` } : {})
       }
     },
@@ -476,12 +499,11 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
       ...(spec.tooltip.isSome() ? [
         Tooltipping.config(
           sharedBackstage.providers.tooltips.getConfig({
-            tooltipText: sharedBackstage.providers.translate(spec.tooltip.getOr('')),
+            tooltipText: getChevronLabel().getOr(''),
             onShow: (comp) => {
               if (tooltipString.get() !== spec.tooltip.getOr('')) {
-                const translatedTooltip = sharedBackstage.providers.translate(tooltipString.get());
                 Tooltipping.setComponents(comp,
-                  sharedBackstage.providers.tooltips.getComponents({ tooltipText: translatedTooltip })
+                  sharedBackstage.providers.tooltips.getComponents({ tooltipText: getChevronTooltip(sharedBackstage.providers, tooltipString.get()) })
                 );
               }
             }
@@ -495,7 +517,14 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
     },
     lazySink: sharedBackstage.getSink,
     fetch: fetchChoices(getApi, spec, sharedBackstage.providers),
-    getHotspot: (comp) => Traverse.prevSibling(comp.element).bind((el) => comp.getSystem().getByDom(el).toOptional()),
+    // The dropdown anchors to (and highlights) the main button rather than the chevron. Only
+    // accept the sibling when it really is the main part; otherwise degrade to anchoring on the
+    // chevron itself so the menu still opens in a predictable place.
+    getHotspot: (comp) =>
+      Traverse.prevSibling(comp.element)
+        .bind((el) => comp.getSystem().getByDom(el).toOptional())
+        .filter((main) => Class.has(main.element, ToolbarButtonClasses.SplitButtonMain))
+        .orThunk(() => Optional.some(comp)),
     onOpen: (_anchor, _comp, menu) => {
       Highlighting.highlightBy(menu, (item) => Class.has(item.element, 'tox-collection__item--active'));
       Highlighting.getHighlighted(menu).each(Keying.focusIn);
