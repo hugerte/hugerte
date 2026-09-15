@@ -193,13 +193,55 @@ const normalizeNbsps = (root: SugarElement<Node>, pos: CaretPosition, schema: Sc
   }
 };
 
+// Only convert existing nbsps into spaces within a text node, never create new placeholder nbsps,
+// since new placeholders should only ever be created at the caret position itself.
+const normalizeNbspsInTextNode = (root: SugarElement<Node>, node: Text, schema: Schema): boolean => {
+  if (Strings.contains(node.data, Unicode.nbsp)) {
+    return normalizeNbspAtStart(root, node, false, schema) || normalizeNbspInMiddleOfTextNode(node) || normalizeNbspAtEnd(root, node, false, schema);
+  } else {
+    return false;
+  }
+};
+
+// Walk every editable text node in the block and normalize the nbsps within it. This handles the case
+// where typed text ends up in a different text node than the placeholder nbsp (e.g. Firefox inserts new
+// text into a separate text node placed after a trailing nbsp that has been wrapped in a span by the
+// visualchars plugin), so the nbsp is converted to a regular space as soon as it stops being a placeholder.
+const normalizeNbspsInBlock = (root: SugarElement<Node>, block: SugarElement<Node>, schema: Schema): void => {
+  const walk = (node: Node): void => {
+    if (NodeType.isText(node)) {
+      normalizeNbspsInTextNode(root, node, schema);
+    } else if (!NodeType.isContentEditableFalse(node)) {
+      const children = node.childNodes;
+      for (let i = 0; i < children.length; i++) {
+        walk(children[i]);
+      }
+    }
+  };
+
+  const children = block.dom.childNodes;
+  for (let i = 0; i < children.length; i++) {
+    walk(children[i]);
+  }
+};
+
 const normalizeNbspsInEditor = (editor: Editor): void => {
   const root = SugarElement.fromDom(editor.getBody());
 
   if (editor.selection.isCollapsed()) {
-    normalizeNbsps(root, CaretPosition.fromRangeStart(editor.selection.getRng()), editor.schema).each((pos) => {
-      editor.selection.setRng(pos.toRange());
+    const pos = CaretPosition.fromRangeStart(editor.selection.getRng());
+
+    normalizeNbsps(root, pos, editor.schema).each((newPos) => {
+      editor.selection.setRng(newPos.toRange());
     });
+
+    // Some browsers (e.g. Firefox) insert typed text into a new text node placed after a trailing
+    // placeholder nbsp that has been wrapped in its own element (such as the span created by the
+    // visualchars plugin), so the caret container never contains the nbsp and the caret based
+    // normalization above does not see it. Normalize the nbsps in the rest of the caret's block as
+    // well so a placeholder nbsp is converted into a regular space once it is no longer at a line
+    // boundary, matching Chromium behaviour.
+    normalizeNbspsInBlock(root, getClosestBlock(root, pos, editor.schema), editor.schema);
   }
 };
 

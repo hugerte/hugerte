@@ -1,5 +1,5 @@
 import { beforeEach, context, describe, it } from '@ephox/bedrock-client';
-import { Arr, Fun } from '@ephox/katamari';
+import { Arr, Fun, Unicode } from '@ephox/katamari';
 import { Hierarchy, Insert, SugarElement } from '@ephox/sugar';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
 
@@ -325,6 +325,66 @@ describe('browser.hugerte.core.keyboard.InsertKeysTest', () => {
         fireInsert(editor);
         TinyAssertions.assertSelection(editor, [ 0, 1, 0 ], 2, [ 0, 1, 0 ], 2);
         TinyAssertions.assertContent(editor, '<div><p>b</p><em>&nbsp;a</em></div>');
+      });
+    });
+
+    context('Nbsp wrapped in a span', () => {
+      // TINY-232: The visualchars plugin wraps a placeholder nbsp in a bogus span. Some browsers
+      // (e.g. Firefox) insert typed text into a new text node after that span, so the caret
+      // container never contains the nbsp. Once content exists on both sides of the nbsp it is
+      // no longer a placeholder and should be converted to a regular space.
+      const wrapNbspInSpan = (editor: Editor, path: number[]): void => {
+        const elm = Hierarchy.follow(TinyDom.body(editor), path).getOrDie('Could not follow path');
+        const textNode = elm.dom as Text;
+        const nbspIndex = textNode.data.indexOf(Unicode.nbsp);
+        const before = textNode.data.slice(0, nbspIndex);
+        const after = textNode.data.slice(nbspIndex + 1);
+        textNode.data = before;
+        const span = SugarElement.fromHtml<HTMLSpanElement>('<span data-mce-bogus="1" class="mce-nbsp">' + Unicode.nbsp + '</span>');
+        Insert.after(elm, span);
+        if (after !== '') {
+          Insert.after(span, SugarElement.fromText(after));
+        }
+      };
+
+      it('Insert after a wrapped trailing nbsp in a separate text node should convert the nbsp to a space', () => {
+        const editor = hook.editor();
+        editor.setContent('<p>word&nbsp;word2</p>');
+        wrapNbspInSpan(editor, [ 0, 0 ]);
+        TinySelections.setCursor(editor, [ 0, 2 ], 5);
+        fireInsert(editor);
+        TinyAssertions.assertSelection(editor, [ 0, 2 ], 5, [ 0, 2 ], 5);
+        TinyAssertions.assertContent(editor, '<p>word word2</p>');
+      });
+
+      it('Insert before a wrapped leading nbsp in a separate text node should convert the nbsp to a space', () => {
+        const editor = hook.editor();
+        editor.setContent('<p>word2&nbsp;word</p>');
+        wrapNbspInSpan(editor, [ 0, 0 ]);
+        TinySelections.setCursor(editor, [ 0, 0 ], 5);
+        fireInsert(editor);
+        TinyAssertions.assertSelection(editor, [ 0, 0 ], 5, [ 0, 0 ], 5);
+        TinyAssertions.assertContent(editor, '<p>word2 word</p>');
+      });
+
+      it('Insert after a wrapped trailing nbsp at the end of a block should retain the nbsp', () => {
+        const editor = hook.editor();
+        editor.setContent('<p>word&nbsp;</p>');
+        wrapNbspInSpan(editor, [ 0, 0 ]);
+        TinySelections.setCursor(editor, [ 0 ], 2);
+        fireInsert(editor);
+        TinyAssertions.assertSelection(editor, [ 0 ], 2, [ 0 ], 2);
+        TinyAssertions.assertContent(editor, '<p>word&nbsp;</p>');
+      });
+
+      it('Insert before a wrapped leading nbsp at the start of a block should retain the nbsp', () => {
+        const editor = hook.editor();
+        editor.setContent('<p>&nbsp;word</p>');
+        wrapNbspInSpan(editor, [ 0, 0 ]);
+        TinySelections.setCursor(editor, [ 0 ], 0);
+        fireInsert(editor);
+        TinyAssertions.assertSelection(editor, [ 0 ], 0, [ 0 ], 0);
+        TinyAssertions.assertContent(editor, '<p>&nbsp;word</p>');
       });
     });
   });
