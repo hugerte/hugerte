@@ -12,6 +12,7 @@ import * as ChainUtils from 'ephox/alloy/test/ChainUtils';
 import * as Sinks from 'ephox/alloy/test/Sinks';
 
 const addPopupToSinkCommon = (popup: AlloyComponent, sink: AlloyComponent, positioner: () => void) => {
+  Css.set(popup.element, 'position', 'fixed');
   Attachment.attach(sink, popup);
   positioner();
 };
@@ -85,14 +86,18 @@ const cTestPopupInViewport = (sinkName: string): NamedChain => Chain.control(
     const bounds = data.popup.element.dom.getBoundingClientRect();
     const inside = bounds.top >= 0 && bounds.left >= 0 && bounds.top <= window.innerHeight && bounds.left <= window.innerWidth;
     return inside ? Result.value(data) : Result.error(
-      new Error('The popup does not appear within window viewport for the ' + sinkName + ' sink')
+      new Error('The popup does not appear within window viewport for the ' + sinkName + ' sink' +
+        ' (top=' + bounds.top + ', left=' + bounds.left +
+        ', viewport=' + window.innerWidth + 'x' + window.innerHeight +
+        ', scroll=' + window.scrollY + ')')
     );
   }),
   Guard.tryUntil('Ensuring that the popup is inside window viewport for the ' + sinkName + ' sink')
 );
 
 const cScrollTo = Chain.mapper((component: AlloyComponent) => {
-  component.element.dom.scrollIntoView();
+  const bcr = component.element.dom.getBoundingClientRect();
+  window.scrollTo(0, window.scrollY + bcr.top);
   const doc = Traverse.owner(component.element);
   return Scroll.get(doc);
 });
@@ -130,10 +135,16 @@ const cScrollDown = (componentName: string, amount: string): NamedChain => Chain
   ]
 );
 
+const ensureScrollableArea = (): void => {
+  document.body.style.paddingBottom = '2000px';
+  document.documentElement.style.overflowAnchor = 'none';
+};
+
 export {
   cTestSink,
   cTestSinkWithinBounds,
   cScrollDown,
+  ensureScrollableArea,
   pTestSink,
   pTestSinkWithinBounds
 };

@@ -18,6 +18,7 @@ import * as Frames from '../../../../demo/ts/ephox/alloy/demo/frames/Frames';
 UnitTest.asynctest('SelectionInFramePositionTest', (success, failure) => {
 
   const frame = SugarElement.fromTag('iframe');
+  Css.set(frame, 'height', '300px');
 
   GuiSetup.setup((_store, _doc, _body) => {
     let content = '';
@@ -51,6 +52,8 @@ UnitTest.asynctest('SelectionInFramePositionTest', (success, failure) => {
     );
 
   }, (_doc, _body, gui, _component, _store) => {
+    PositionTestUtils.ensureScrollableArea();
+
     const cSetupAnchor = Chain.mapper((data: any) => ({
       type: 'selection',
       root: SugarElement.fromDom(data.classic.element.dom.contentWindow.document.body)
