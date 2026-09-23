@@ -86,3 +86,21 @@
     opacity: @toolbar-split-color-preview-opacity;
   }
 }
+
+// In RTL the two halves are painted in the opposite order, so mirror the rounded
+// outer corners (the inner seam stays square in both directions).
+.tox[dir=rtl] {
+  .tox-split-button > *:nth-child(1) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: @toolbar-button-border-radius;
+    border-top-left-radius: 0;
+    border-top-right-radius: @toolbar-button-border-radius;
+  }
+
+  .tox-split-button > *:nth-child(2) {
+    border-bottom-left-radius: @toolbar-button-border-radius;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: @toolbar-button-border-radius;
+    border-top-right-radius: 0;
+  }
+}

@@ -420,6 +420,9 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
   const tooltipDirty = Cell(false);
   const getApi = makeSplitButtonApi(tooltipString, tooltipDirty, sharedBackstage);
 
+  // Color presets are not toggles, so don't announce them as pressed buttons.
+  const togglingAriaMode = spec.presets === 'color' ? 'none' : 'pressed';
+
   // The main action button is rendered through the common toolbar button pipeline so that
   // it keeps the standard disabling, tooltip, control (onSetup/onDestroy) and
   // update text/icon behaviours. The only extra behaviour is the toggling used to
@@ -433,7 +436,7 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
     enabled: true
   }, {
     toolbarButtonBehaviours: [
-      Toggling.config({ toggleClass: ToolbarButtonClasses.Ticked, aria: { mode: 'pressed' }, toggleOnExecute: false })
+      Toggling.config({ toggleClass: ToolbarButtonClasses.Ticked, aria: { mode: togglingAriaMode }, toggleOnExecute: false })
     ],
     getApi,
     onSetup: spec.onSetup,
