@@ -79,7 +79,10 @@ jobs:
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Run headless tests
+      - name: Run headless tests (libraries)
+        run: yarn headless-test
+
+      - name: Run HugeRTE tests (core, plugins, themes)
         run: yarn hugerte-grunt bedrock-auto:standard
 
       - name: Upload test results
