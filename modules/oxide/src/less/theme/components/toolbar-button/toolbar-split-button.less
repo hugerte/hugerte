@@ -45,6 +45,27 @@
     }
   }
 
+  // RTL mirrors the LTR presentation: the primary action button is the right-most
+  // part and the chevron is the left-most part, so the rounded outer corners swap
+  // sides and the edge where the two parts meet stays square.
+  &[dir=rtl] {
+    .tox-split-button > * {
+      &:nth-child(1) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: @toolbar-button-border-radius;
+        border-top-left-radius: 0;
+        border-top-right-radius: @toolbar-button-border-radius;
+      }
+
+      &:nth-child(2) {
+        border-bottom-left-radius: @toolbar-button-border-radius;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: @toolbar-button-border-radius;
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
   .tox-split-button__chevron {
     width: @toolbar-button-chevron-width;
   }
