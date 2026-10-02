@@ -100,13 +100,18 @@ const fetchLernaProjects = (log, runAllTests) => {
   // This has to be sync because grunt can't do async config
   var exec = require('child_process').execSync;
 
-  // if JSON parse fails, well, grunt will just fail /shrug
   const parseLernaList = (cmd) => {
+    const isChanged = cmd === 'changed --no-ignore-changes';
+    // Lerna 8 exits 1 without JSON when nothing changed. Its info diagnostic
+    // distinguishes that outcome from real failures, which can also exit 1.
+    const loglevel = isChanged ? 'info' : 'warn';
     try {
-      return JSON.parse(exec(`yarn -s lerna ${cmd} -a --json --loglevel warn 2>&1`));
+      // Keep stderr diagnostics separate from stdout JSON.
+      return JSON.parse(exec(`yarn -s lerna ${cmd} -a --json --loglevel ${loglevel}`, { stdio: 'pipe' }));
     } catch (e) {
-      // If no changes are found, then lerna returns an exit code of 1, so deal with that gracefully
-      if (e.status === 1) {
+      const stderr = e.stderr ? e.stderr.toString() : '';
+      if (isChanged && e.status === 1 && e.stdout && e.stdout.toString().trim() === '' &&
+          /^lerna info No changed packages found\r?$/m.test(stderr) && !/^lerna ERR!/m.test(stderr)) {
         return [];
       } else {
         throw e;
