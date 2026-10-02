@@ -21,9 +21,9 @@ UnitTest.asynctest('Browser Test: events.BroadcastingEventsTest', (success, fail
       dom: {
         styles: {
           'overflow-x': 'hidden',
-          'background': 'blue',
+          background: 'blue',
           'max-width': '300px',
-          'height': '20px'
+          height: '20px'
         }
       },
       events: AlloyEvents.derive([

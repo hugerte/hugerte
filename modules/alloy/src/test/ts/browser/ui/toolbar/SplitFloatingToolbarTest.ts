@@ -64,7 +64,7 @@ UnitTest.asynctest('SplitFloatingToolbarTest', (success, failure) => {
               innerHtml: '+'
             }
           },
-          'overflow': {
+          overflow: {
             dom: {
               tag: 'div',
               classes: [ 'test-toolbar-overflow' ]

@@ -192,7 +192,7 @@ UnitTest.test('DimensionTest', () => {
     'margin-bottom': marginBottom + 'px',
     'padding-left': paddingLeft + 'px',
     'padding-right': paddingRight + 'px',
-    'border': borderWidth + 'px solid lime'
+    border: borderWidth + 'px solid lime'
   });
 
   Insert.append(container, inner);

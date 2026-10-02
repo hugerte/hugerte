@@ -31,7 +31,7 @@ const section = (gui: GuiSystem, instructions: string, spec: AlloySpec): AlloyCo
           'padding-left': '100px',
           'padding-top': '20px',
           'padding-right': '100px',
-          'border': '1px dashed green'
+          border: '1px dashed green'
         }
       },
       components: [

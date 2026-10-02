@@ -52,7 +52,7 @@ export default (): void => {
     data: {
       value: v,
       meta: {
-        'text': t,
+        text: t,
         'item-class': c
       }
     },
@@ -128,7 +128,7 @@ export default (): void => {
         gamma: 'gamma-menu'
       },
       menus: {
-        'dog': DemoRenders.menu({
+        dog: DemoRenders.menu({
           value: 'dog',
           items: Arr.map([
             makeItem('alpha', 'Alpha', 'alpha'),
@@ -194,7 +194,7 @@ export default (): void => {
       ]),
       components: [
         Input.sketch({
-          inputStyles: { 'display': 'block', 'margin-bottom': '50px' }
+          inputStyles: { display: 'block', 'margin-bottom': '50px' }
         }),
         Input.sketch({
           inputStyles: { display: 'block' },

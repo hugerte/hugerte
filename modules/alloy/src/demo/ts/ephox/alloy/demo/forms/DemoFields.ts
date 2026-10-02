@@ -188,7 +188,7 @@ const typeaheadMunger = (spec: { label: string; lazySink: LazySink; dataset: any
         if (index > -1) {
           const html = d.substring(0, index) + '<b>' + d.substring(index, index + text.length) + '</b>' +
             d.substring(index + text.length);
-          return [{ 'type': 'item', 'data': { value: d, text: d, html }, 'item-class': 'class-' + d }];
+          return [{ type: 'item', data: { value: d, text: d, html }, 'item-class': 'class-' + d }];
         } else {
           return [ ];
         }

@@ -19,9 +19,9 @@ UnitTest.asynctest('MouseDraggingTest', (success, failure) => {
       dom: {
         styles: {
           'box-sizing': 'border-box',
-          'width': '100px',
-          'height': '100px',
-          'border': '1px solid green'
+          width: '100px',
+          height: '100px',
+          border: '1px solid green'
         }
       },
       containerBehaviours: Behaviour.derive([

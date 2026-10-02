@@ -9,18 +9,18 @@ import * as Sketcher from './Sketcher';
 import { CompositeSketchFactory } from './UiSketcher';
 
 const factory: CompositeSketchFactory<TabbarDetail, TabbarSpec> = (detail, components, _spec, _externals) => ({
-  'uid': detail.uid,
-  'dom': detail.dom,
+  uid: detail.uid,
+  dom: detail.dom,
   components,
   'debug.sketcher': 'Tabbar',
 
-  'domModification': {
+  domModification: {
     attributes: {
       role: 'tablist'
     }
   },
 
-  'behaviours': SketchBehaviours.augment(
+  behaviours: SketchBehaviours.augment(
     detail.tabbarBehaviours,
     [
       Highlighting.config({
