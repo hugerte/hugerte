@@ -46,6 +46,8 @@ const modifierNames = Tools.makeMap('alt,ctrl,shift,meta,access') as ModifierMap
 
 interface Shortcut {
   id: string;
+  pattern: string;
+  command?: string;
   access: boolean;
   ctrl: boolean;
   shift: boolean;
@@ -175,9 +177,16 @@ class Shortcuts {
 
     each(explode(Tools.trim(pattern)), (pattern) => {
       const shortcut = self.createShortcut(pattern, desc, func, scope);
+      shortcut.pattern = pattern;
+      if (typeof cmdFunc === 'string') {
+        shortcut.command = cmdFunc;
+      } else if (Tools.isArray(cmdFunc)) {
+        shortcut.command = cmdFunc[0];
+      }
       self.shortcuts[shortcut.id] = shortcut;
     });
 
+    self.editor.dispatch('ShortcutsChanged');
     return true;
   }
 
@@ -193,10 +202,23 @@ class Shortcuts {
 
     if (this.shortcuts[shortcut.id]) {
       delete this.shortcuts[shortcut.id];
+      this.editor.dispatch('ShortcutsChanged');
       return true;
     }
 
     return false;
+  }
+
+  /**
+   * Returns a registered shortcut pattern for a command, if any.
+   *
+   * @method getShortcut
+   * @param {String} command Command name.
+   * @return {String} Shortcut pattern, or undefined if the command has no shortcut.
+   */
+  public getShortcut(command: string): string | undefined {
+    const shortcut = Object.values(this.shortcuts).find((shortcut) => shortcut.command?.toLowerCase() === command.toLowerCase());
+    return shortcut?.pattern;
   }
 
   private normalizeCommandFunc(cmdFunc: CommandFunc): () => void {

@@ -1,3 +1,5 @@
+import { Type } from '@ephox/katamari';
+
 import Editor from 'hugerte/core/api/Editor';
 import { EditorOptions } from 'hugerte/core/api/OptionTypes';
 import { Dialog } from 'hugerte/core/api/ui/Ui';
@@ -13,16 +15,23 @@ const option: {
 const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
+  registerOption('help_shortcut', {
+    processor: (value) => Type.isString(value) || value === false,
+    default: 'Alt+0'
+  });
+
   registerOption('help_tabs', {
     processor: 'array'
   });
 };
 
+const getHelpShortcut = option<string | false>('help_shortcut');
 const getHelpTabs = option<HelpTabsSetting | undefined>('help_tabs');
 const getForcedPlugins = option('forced_plugins');
 
 export {
   register,
   getHelpTabs,
+  getHelpShortcut,
   getForcedPlugins
 };
