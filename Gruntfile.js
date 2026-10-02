@@ -3,7 +3,7 @@ const runsHeadless = [
   '@ephox/alloy',
   '@ephox/mcagar',
   '@ephox/katamari',
-  '@ephox/katamari-test',
+  '@ephox/katamari-assertions',
   '@ephox/jax'
 ];
 

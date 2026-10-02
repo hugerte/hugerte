@@ -132,6 +132,16 @@ test('ignore-lerna-changed lists all projects and still propagates list failures
   assert.throws(() => configure([error], { 'ignore-lerna-changed': true }), (actual) => actual === error);
 });
 
+test('the actual Katamari assertions package is included in headless tests', () => {
+  const { name } = JSON.parse(readFileSync(path.join(__dirname, '../modules/katamari-assertions/package.json'), 'utf8'));
+  const location = '/modules/katamari-assertions';
+  const result = configure([JSON.stringify([{ name, location }])]);
+  assert.ok(result.config['bedrock-auto'].headless);
+  assert.equal(result.config['bedrock-auto'].browser, undefined);
+  assert.ok(result.config['bedrock-auto'].headless.testfiles.includes(`${location}/src/test/ts/atomic/**/*Test.ts`));
+  assert.ok(Array.isArray(result.tasks['headless-auto']));
+});
+
 test('stderr warnings do not contaminate successful changed or list JSON', () => {
   const output = { stdout: JSON.stringify(projects), stderr: 'lerna WARN deprecated option\n' };
   assertTestsConfigured(configure([output]));
