@@ -4,7 +4,7 @@ import fc from 'fast-check';
 
 import * as Id from 'ephox/katamari/api/Id';
 
-describe('atomic.katamari.api.data.IdTest', () => () => {
+describe('atomic.katamari.api.data.IdTest', () => {
   it('Unit Tests', () => {
     const one = Id.generate('test');
     const two = Id.generate('test');
