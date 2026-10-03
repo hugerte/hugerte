@@ -10,7 +10,7 @@ UnitTest.asynctest('RenderTest', (success, failure) => {
 
       Assertions.assertStructure('Should be a table with default styles/attributes', ApproxStructure.build((s, str, _arr) => s.element('table', {
         styles: {
-          'width': str.is('100%'),
+          width: str.is('100%'),
           'border-collapse': str.is('collapse')
         },
         children: [
@@ -126,7 +126,7 @@ UnitTest.asynctest('RenderTest', (success, failure) => {
 
       Assertions.assertStructure('Should be a table with styles', ApproxStructure.build((s, str, _arr) => s.element('table', {
         styles: {
-          'width': str.none('Should not have width'),
+          width: str.none('Should not have width'),
           'border-collapse': str.none('Should not have border-collapse')
         },
         attrs: {
@@ -180,7 +180,7 @@ UnitTest.asynctest('RenderTest', (success, failure) => {
 
       Assertions.assertStructure('Should be a table with styles', ApproxStructure.build((s, str, _arr) => s.element('table', {
         styles: {
-          'width': str.none('Should not have width'),
+          width: str.none('Should not have width'),
           'border-collapse': str.none('Should not have border-collapse')
         },
         attrs: {
@@ -220,7 +220,7 @@ UnitTest.asynctest('RenderTest', (success, failure) => {
 
       Assertions.assertStructure('Should be a table with default styles/attributes', ApproxStructure.build((s, str, _arr) => s.element('table', {
         styles: {
-          'width': str.none('Should not have width'),
+          width: str.none('Should not have width'),
           'border-collapse': str.none('Should not have border-collapse')
         },
         children: [
@@ -270,7 +270,7 @@ UnitTest.asynctest('RenderTest', (success, failure) => {
 
       Assertions.assertStructure('Should be a table with default styles/attributes', ApproxStructure.build((s, str, _arr) => s.element('table', {
         styles: {
-          'width': str.none('Should not have width'),
+          width: str.none('Should not have width'),
           'border-collapse': str.none('Should not have border-collapse')
         },
         children: [

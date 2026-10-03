@@ -107,7 +107,7 @@ export default (): void => {
             styles: {
               'overflow-x': 'auto',
               'max-width': '200px',
-              'display': 'flex'
+              display: 'flex'
             }
           },
           components: [
@@ -155,7 +155,7 @@ export default (): void => {
           dom: {
             tag: 'div',
             styles: {
-              'display': 'flex',
+              display: 'flex',
               'flex-wrap': 'wrap'
             }
           }
@@ -196,11 +196,11 @@ export default (): void => {
             innerHtml: 'More'
           }
         },
-        'overflow': {
+        overflow: {
           dom: {
             tag: 'div',
             styles: {
-              'display': 'flex',
+              display: 'flex',
               'flex-wrap': 'wrap'
             }
           }

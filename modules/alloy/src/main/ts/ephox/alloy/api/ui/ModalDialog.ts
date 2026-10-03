@@ -94,7 +94,7 @@ const factory: CompositeSketchFactory<ModalDialogDetail, ModalDialogSpec> = (det
     eventOrder,
     domModification: {
       attributes: {
-        'role': 'dialog',
+        role: 'dialog',
         'aria-modal': 'true'
       }
     },

@@ -25,9 +25,9 @@ UnitTest.asynctest('InputTest', (success, failure) => {
         'Checking initial structure of input',
         ApproxStructure.build((s, str, arr) => s.element('input', {
           attrs: {
-            'type': str.is('text'),
+            type: str.is('text'),
             'data-alloy-id': str.none(),
-            'placeholder': str.is('placeholder-text')
+            placeholder: str.is('placeholder-text')
           },
           classes: [
             arr.has('extra-class')
@@ -77,9 +77,9 @@ UnitTest.asynctest('InputTest', (success, failure) => {
           'Checking new structure of input',
           ApproxStructure.build((s, str, _arr) => s.element('input', {
             attrs: {
-              'type': str.is('text'),
+              type: str.is('text'),
               'data-alloy-id': str.none(),
-              'placeholder': str.is('placeholder-text')
+              placeholder: str.is('placeholder-text')
             },
             value: str.is('v')
           })),

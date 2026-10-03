@@ -250,7 +250,7 @@ const orb = (spec: DemoItem): ItemSpec => {
     dom: {
       tag: 'div',
       styles: {
-        'display': 'flex',
+        display: 'flex',
         'justify-content': 'center'
       }
     },
