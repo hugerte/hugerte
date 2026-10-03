@@ -20,9 +20,12 @@ export default (): void => {
 
     Options.register(editor);
     const dialogOpener = Dialog.init(editor, customTabs, pluginUrl);
-    Buttons.register(editor, dialogOpener);
     Commands.register(editor, dialogOpener);
-    editor.shortcuts.add('Alt+0', 'Open help dialog', 'mceHelp');
+    const shortcut = Options.getHelpShortcut(editor);
+    if (shortcut) {
+      editor.shortcuts.add(shortcut, 'Open help dialog', 'mceHelp');
+    }
+    Buttons.register(editor, dialogOpener);
     KeyboardNavTabI18n.initI18nLoad(editor, pluginUrl);
 
     return api;

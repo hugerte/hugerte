@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+- New `help_shortcut` option to change the Help shortcut (for example, `Access+0`) or disable it with `false`. The default remains `Alt+0`. #GH-192
+- New `editor.shortcuts.getShortcut(command)` lookup and `ShortcutsChanged` event for keeping shortcut labels in sync with registered commands. #GH-192
+
+### Fixed
+- Help shortcut labels now reflect the registered shortcut, including toolbar tooltip updates after a shortcut is removed or replaced. #GH-192
+
 ## 1.0.14 - 2026-09-05
 
 ### Fixed
