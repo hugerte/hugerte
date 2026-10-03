@@ -386,6 +386,28 @@ describe('browser.hugerte.core.fmt.CaretFormatTest', () => {
     TinyAssertions.assertSelection(editor, [ 0, 0, 0 ], 2, [ 0, 1 ], 2);
   });
 
+  it('Issue #93: Apply italic after removing bold and inserting a line break', () => {
+    const editor = hook.editor();
+    editor.setContent('');
+    TinySelections.setCursor(editor, [ 0 ], 0);
+    editor.execCommand('Bold');
+    TinyContentActions.type(editor, 'a');
+    editor.execCommand('Bold');
+    editor.execCommand('InsertLineBreak');
+    editor.execCommand('Italic');
+    TinyContentActions.type(editor, 'x');
+    TinyAssertions.assertContent(editor, '<p><strong>a</strong><br><em>x</em></p>');
+  });
+
+  it('Issue #93: Apply italic at an element offset after a line break in a caret container', () => {
+    const editor = hook.editor();
+    editor.getBody().innerHTML = `<p><span id="_mce_caret" data-mce-bogus="1" data-mce-type="format-caret">${Zwsp.ZWSP}<br></span><br data-mce-bogus="1"></p>`;
+    TinySelections.setCursor(editor, [ 0, 0 ], 2);
+    editor.execCommand('Italic');
+    TinyContentActions.type(editor, 'x');
+    TinyAssertions.assertContent(editor, '<p><br><em>x</em></p>');
+  });
+
   it('isCaretNode', () => {
     const editor = hook.editor();
     assert.isFalse(isCaretNode(editor.dom.create('b')), 'Should be false since it is not a caret node');

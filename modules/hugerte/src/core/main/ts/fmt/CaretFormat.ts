@@ -206,7 +206,8 @@ const applyCaretFormat = (editor: Editor, name: string, vars?: FormatVars): void
   } else {
     let textNode = caretContainer ? findFirstTextNode(caretContainer) : null;
 
-    if (!caretContainer || textNode?.data !== ZWSP) {
+    // Reuse the placeholder only when the selection offset belongs to that text node.
+    if (!caretContainer || textNode?.data !== ZWSP || container !== textNode) {
       // Need to import the node into the document on IE or we get a lovely WrongDocument exception
       caretContainer = importNode(editor.getDoc(), createCaretContainer(true).dom);
       textNode = caretContainer.firstChild as Text;
