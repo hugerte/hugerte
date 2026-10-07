@@ -52,7 +52,7 @@ gulp.task('copyHugerte', function(done) {
       .pipe(gulp.dest('./build'));
   } else {
     console.log(chalk.red('Local HugeRTE does not exist. Using CDN version instead'));
-    console.log(chalk.yellow('Run yarn build in the repository root to build a local version of HugeRTE'));
+    console.log(chalk.yellow('Run pnpm run build in the repository root to build a local version of HugeRTE'));
     const url = 'https://cdn.jsdelivr.net/npm/hugerte@1/hugerte.min.js';
     const html = fs.readFileSync('./build/index.html', 'utf8');
     fs.writeFileSync('./build/index.html', html.replace('/hugerte/hugerte.min.js', url));

@@ -8,7 +8,7 @@ import Editor from 'hugerte/core/api/Editor';
  * Regression test for the root cause behind the flaky webdriver
  * `PlaceholderTest - TINY-3917: Check placeholder hides when inserting list via command`.
  *
- * When the distribution bundles are missing from the build (a `yarn ci` run that does
+ * When the distribution bundles are missing from the build (a `pnpm run ci` run that does
  * not execute the rollup task), `js/hugerte/plugins/lists/plugin.js` is not produced.
  * The editor then fails to load the lists plugin via the script-tag path, the load
  * error is swallowed by the add-on loader, and the plugin never registers. Commands
