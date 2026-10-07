@@ -1,7 +1,7 @@
-diff --git a/node_modules/@ephox/oxide-icons-tools/lib/main/ts/templates/IconProvider.js b/node_modules/@ephox/oxide-icons-tools/lib/main/ts/templates/IconProvider.js
+diff --git a/lib/main/ts/templates/IconProvider.js b/lib/main/ts/templates/IconProvider.js
 index 52d2a0d..6f35af9 100644
---- a/node_modules/@ephox/oxide-icons-tools/lib/main/ts/templates/IconProvider.js
-+++ b/node_modules/@ephox/oxide-icons-tools/lib/main/ts/templates/IconProvider.js
+--- a/lib/main/ts/templates/IconProvider.js
++++ b/lib/main/ts/templates/IconProvider.js
 @@ -1,7 +1,7 @@
  "use strict";
  Object.defineProperty(exports, "__esModule", { value: true });
@@ -11,10 +11,10 @@ index 52d2a0d..6f35af9 100644
    icons: {
  /* inject */  }
  });`;
-diff --git a/node_modules/@ephox/oxide-icons-tools/lib/test/ts/PluginTest.js b/node_modules/@ephox/oxide-icons-tools/lib/test/ts/PluginTest.js
+diff --git a/lib/test/ts/PluginTest.js b/lib/test/ts/PluginTest.js
 index 8d22646..ccad684 100644
---- a/node_modules/@ephox/oxide-icons-tools/lib/test/ts/PluginTest.js
-+++ b/node_modules/@ephox/oxide-icons-tools/lib/test/ts/PluginTest.js
+--- a/lib/test/ts/PluginTest.js
++++ b/lib/test/ts/PluginTest.js
 @@ -62,9 +62,9 @@ const runPlugin = (options, svgs) => new Promise((resolve) => {
          chai_1.assert.isFunction(exprt.getAll, 'Should have named export "getAll"');
          validateIcons(exprt.getAll());

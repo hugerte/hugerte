@@ -29,22 +29,20 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up pnpm and Node.js, install dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
-          node-version: "20"
-          cache: "yarn"
-
-      - name: Install dependencies
-        run: yarn install
+          runtime: node@22
+          cache: true
+          require-lockfile: true
 
       - name: Build (TypeScript + oxide + hugerte JS)
-        run: yarn ci
+        run: pnpm run ci
 
       - name: Lint
-        run: yarn hugerte-grunt eslint
+        run: pnpm hugerte-grunt eslint
 
   headless-tests:
     name: Headless Tests
@@ -62,31 +60,29 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up pnpm and Node.js, install dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
-          node-version: "20"
-          cache: "yarn"
-
-      - name: Install dependencies
-        run: yarn install
+          runtime: node@22
+          cache: true
+          require-lockfile: true
 
       - name: Build
-        run: yarn ci
+        run: pnpm run ci
 
       - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@48ad923757ca74d66703209fe939badbdf80f2f4 # v2.2.0
 
       - name: Run headless tests (libraries)
-        run: yarn headless-test
+        run: pnpm run headless-test
 
       - name: Run HugeRTE tests (core, plugins, themes)
-        run: yarn hugerte-grunt bedrock-auto:standard
+        run: pnpm hugerte-grunt bedrock-auto:standard
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
           name: test-results
