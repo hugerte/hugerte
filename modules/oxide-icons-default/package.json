@@ -10,7 +10,7 @@
   "main": "dist/js/icons.js",
   "scripts": {
     "build": "gulp",
-    "prepublishOnly": "yarn ci",
+    "prepublishOnly": "pnpm run ci",
     "ci": "gulp --no-color"
   },
   "keywords": [

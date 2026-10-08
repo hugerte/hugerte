@@ -103,7 +103,7 @@ const fetchLernaProjects = (log, runAllTests) => {
   // if JSON parse fails, well, grunt will just fail /shrug
   const parseLernaList = (cmd) => {
     try {
-      return JSON.parse(exec(`yarn -s lerna ${cmd} -a --json --loglevel warn 2>&1`));
+      return JSON.parse(exec(`pnpm lerna ${cmd} -a --json --loglevel warn 2>&1`));
     } catch (e) {
       // If no changes are found, then lerna returns an exit code of 1, so deal with that gracefully
       if (e.status === 1) {
@@ -154,10 +154,10 @@ module.exports = function (grunt) {
   const opts = bedrockOpts(grunt, ['name', 'username', 'accesskey', 'sishDomain', 'devicefarmArn', 'devicefarmRegion', 'platformName', 'browserVersion']);
   const gruntConfig = {
     shell: {
-      tsc: { command: 'yarn -s tsc' },
-      legacy: { command: 'yarn build' },
-      yarn: { command: 'yarn' },
-      'yarn-dev': { command: 'yarn -s dev' }
+      tsc: { command: 'pnpm tsc' },
+      legacy: { command: 'pnpm run build' },
+      install: { command: 'pnpm install' },
+      dev: { command: 'pnpm run dev' }
     },
     'bedrock-auto': {
       ...bedrockHeadless(headlessTests, headlessBrowser, true),
@@ -209,7 +209,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('legacy-warn', () => grunt.log.warn(`
 *******
-Top-level grunt has been replaced by 'yarn build', and the output has moved from project root to modules/hugerte
+Top-level grunt has been replaced by 'pnpm run build', and the output has moved from project root to modules/hugerte
 *******
 `));
 

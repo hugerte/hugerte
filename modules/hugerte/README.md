@@ -5,9 +5,9 @@ Building HugeRTE
 -----------------
 See the monorepo root readme file for installation instructions.
 
-Now, build HugeRTE by using `grunt`. If you don't have `grunt-cli` installed globally, prefix with `yarn` to execute the local grunt.
+Now, build HugeRTE by using `grunt`. If you don't have `grunt-cli` installed globally, prefix with `pnpm` to execute the local grunt.
 ```
-$ yarn grunt
+$ pnpm grunt
 ```
 
 Build tasks

@@ -5,18 +5,17 @@
     "modules/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "hugerte-grunt": "grunt --gruntfile modules/hugerte/Gruntfile.js",
     "hugerte-rollup": "run-s \"hugerte-grunt dev rollup\"",
-    "oxide-icons-build": "yarn -s --cwd modules/oxide-icons-default build",
-    "oxide-icons-ci": "yarn -s --cwd modules/oxide-icons-default ci",
-    "oxide-build": "yarn -s --cwd modules/oxide build",
-    "oxide-start": "yarn -s --cwd modules/oxide start",
-    "oxide-ci": "yarn -s --cwd modules/oxide ci",
+    "oxide-icons-build": "pnpm -C modules/oxide-icons-default build",
+    "oxide-icons-ci": "pnpm -C modules/oxide-icons-default run ci",
+    "oxide-build": "pnpm -C modules/oxide build",
+    "oxide-start": "pnpm -C modules/oxide start",
+    "oxide-ci": "pnpm -C modules/oxide run ci",
     "tsc": "tsc -b",
     "watch": "tsc -b -w",
     "eslint": "lerna exec --stream --no-bail -- eslint --max-warnings=0 src/**/*.ts",
-    "start": "yarn -s hugerte-grunt start",
+    "start": "pnpm hugerte-grunt start",
     "dev": "npm-run-all oxide-icons-build oxide-build -p tsc \"hugerte-grunt dev\"",
     "ci": "run-s oxide-ci oxide-icons-ci tsc \"hugerte-grunt dev\" \"hugerte-grunt rollup\"",
     "ci-seq": "run-s oxide-ci oxide-icons-ci tsc \"hugerte-grunt dev\"",
@@ -32,7 +31,7 @@
     "headless-test-firefox": "grunt headless-auto --bedrock-browser=firefox-headless",
     "headless-test-manual": "grunt headless-manual",
     "bedrock": "bedrock --customRoutes modules/hugerte/src/core/test/json/routes.json",
-    "test-one": "yarn tsc && yarn bedrock-auto -b chrome-headless -f"
+    "test-one": "pnpm tsc && pnpm bedrock-auto -b chrome-headless -f"
   },
   "devDependencies": {
     "@ephox/bedrock-client": "^15.0.0",
@@ -67,7 +66,6 @@
     "load-grunt-tasks": "^5.1.0",
     "moxie-zip": "0.0.4",
     "npm-run-all": "^4.1.5",
-    "patch-package": "^8.0.0",
     "resolve": "^1.18.1",
     "rollup": "^4.59.0",
     "rollup-plugin-string": "^3.0.0",
@@ -79,12 +77,12 @@
     "terser": "^5.17.4",
     "ts-loader": "^9.2.6",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
-    "tslib": "^2.0.0",
+    "tslib": "2.6.2",
     "twemoji": "^14.0.2",
     "typescript": "^4.8.3",
     "webpack": "^5.74.0",
     "webpack-cli": "^7.2.3",
     "webpack-dev-server": "^5.2.0"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "pnpm@11.28.3+sha512.d49760a13b1755948775a5d4cb1bc4ba871ff2dc941adf851630d044ed722f9b5be8be57bef93166098c80c706bd612c282d05526dd1d0ae660188c086820f35"
 }

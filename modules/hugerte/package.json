@@ -28,7 +28,7 @@
   "dependencies": {
     "dompurify": "3.4.16",
     "prismjs": "^1.27.0",
-    "tslib": "^2.0.0"
+    "tslib": "2.6.2"
   },
   "devDependencies": {
     "@ephox/acid": "^6.0.3",
