@@ -10768,7 +10768,7 @@ rollup@^2.77.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-rollup@4.59.0:
+rollup@^4.59.0:
   version "4.59.0"
   resolved "https://registry.npmjs.org/rollup/-/rollup-4.59.0.tgz"
   integrity sha512-2oMpl67a3zCH9H79LeMcbDhXW/UmWG/y2zuqnF2jQq5uq9TbM9TVyXvA4+t+ne2IIkBdrLpAaRQAvo7YI/Yyeg==
