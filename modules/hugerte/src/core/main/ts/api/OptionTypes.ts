@@ -128,6 +128,7 @@ interface BaseEditorOptions {
   format_noneditable_selector?: string;
   height?: number | string;
   help_accessibility?: boolean;
+  help_shortcut?: string | false;
   hidden_input?: boolean;
   highlight_on_focus?: boolean;
   icons?: string;
