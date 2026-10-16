@@ -16,7 +16,15 @@ const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
   registerOption('help_shortcut', {
-    processor: (value) => Type.isString(value) || value === false,
+    processor: (value) => {
+      if (value === false) {
+        return { valid: true as const, value };
+      } else if (Type.isString(value) && !/[<>&"']/.test(value)) {
+        return { valid: true as const, value };
+      } else {
+        return { valid: false as const, message: 'Must be a keyboard shortcut pattern string (for example "Alt+0") or false.' };
+      }
+    },
     default: 'Alt+0'
   });
 

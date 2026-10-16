@@ -77,9 +77,12 @@ describe('browser.hugerte.core.ShortcutsTest', () => {
 
   it('Command lookup tracks aliases, removal and replacement without exposing callbacks', () => {
     const shortcuts = hook.editor().shortcuts;
+    // A previous test registers F1, which would sort ahead of Alt+0 in an unordered
+    // lookup; clear it so this asserts registration order deterministically.
+    shortcuts.remove('f1');
     assert.isUndefined(shortcuts.getShortcut('testCommand'));
     shortcuts.add('Alt+0, F1', '', 'testCommand');
-    assert.include([ 'Alt+0', 'F1' ], shortcuts.getShortcut('TESTCOMMAND'));
+    assert.equal(shortcuts.getShortcut('TESTCOMMAND'), 'Alt+0');
     shortcuts.remove('alt+0');
     assert.equal(shortcuts.getShortcut('testCommand'), 'F1');
     shortcuts.add('F1', '', Fun.noop);

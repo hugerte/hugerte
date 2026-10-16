@@ -130,6 +130,9 @@ const parseShortcut = (pattern: string): Shortcut => {
 class Shortcuts {
   private readonly editor: Editor;
   private readonly shortcuts: Record<string, Shortcut> = {};
+  // Maintains registration order so `getShortcut` is deterministic. Shortcut ids are
+  // keyCode-based, so integer-like ids (e.g. F1) would otherwise enumerate first.
+  private readonly order: string[] = [];
   private pendingPatterns: Shortcut[] = [];
 
   public constructor(editor: Editor) {
@@ -174,6 +177,7 @@ class Shortcuts {
   public add(pattern: string, desc: string | null, cmdFunc: CommandFunc, scope?: any): boolean {
     const self = this;
     const func = self.normalizeCommandFunc(cmdFunc);
+    let changed = false;
 
     each(explode(Tools.trim(pattern)), (pattern) => {
       const shortcut = self.createShortcut(pattern, desc, func, scope);
@@ -183,10 +187,21 @@ class Shortcuts {
       } else if (Tools.isArray(cmdFunc)) {
         shortcut.command = cmdFunc[0];
       }
+
+      const existing = self.shortcuts[shortcut.id];
+      if (!existing) {
+        self.order.push(shortcut.id);
+        changed = true;
+      } else if (existing.pattern !== shortcut.pattern || existing.command !== shortcut.command) {
+        changed = true;
+      }
+
       self.shortcuts[shortcut.id] = shortcut;
     });
 
-    self.editor.dispatch('ShortcutsChanged');
+    if (changed) {
+      self.editor.dispatch('ShortcutsChanged');
+    }
     return true;
   }
 
@@ -202,6 +217,10 @@ class Shortcuts {
 
     if (this.shortcuts[shortcut.id]) {
       delete this.shortcuts[shortcut.id];
+      const index = this.order.indexOf(shortcut.id);
+      if (index !== -1) {
+        this.order.splice(index, 1);
+      }
       this.editor.dispatch('ShortcutsChanged');
       return true;
     }
@@ -214,11 +233,12 @@ class Shortcuts {
    *
    * @method getShortcut
    * @param {String} command Command name.
-   * @return {String} Shortcut pattern, or undefined if the command has no shortcut.
+   * @return {String} The first registered shortcut pattern for the command, or undefined if the command has no shortcut.
    */
   public getShortcut(command: string): string | undefined {
-    const shortcut = Object.values(this.shortcuts).find((shortcut) => shortcut.command?.toLowerCase() === command.toLowerCase());
-    return shortcut?.pattern;
+    const commandName = command.toLowerCase();
+    const id = this.order.find((id) => this.shortcuts[id]?.command?.toLowerCase() === commandName);
+    return id !== undefined ? this.shortcuts[id].pattern : undefined;
   }
 
   private normalizeCommandFunc(cmdFunc: CommandFunc): () => void {
