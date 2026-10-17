@@ -40,7 +40,7 @@ const renderStatusbar = (editor: Editor, providersBackstage: UiFactoryBackstageP
   };
 
   const renderHelpAccessibility = (): SimpleSpec => {
-    const shortcutText = ConvertShortcut.convertText('Alt+0');
+    const shortcutText = ConvertShortcut.convertText(editor.shortcuts.getShortcut('mceHelp') ?? '');
     const text = `Press {0} for help`;
     return {
       dom: {
@@ -75,7 +75,7 @@ const renderStatusbar = (editor: Editor, providersBackstage: UiFactoryBackstageP
 
   const getTextComponents = (): SimpleSpec[] => {
     const components: SimpleSpec[] = [];
-    const shouldRenderHelp = Options.useHelpAccessibility(editor);
+    const shouldRenderHelp = Options.useHelpAccessibility(editor) && editor.shortcuts.getShortcut('mceHelp') !== undefined;
     const shouldRenderElementPath = Options.useElementPath(editor);
     const shouldRenderRightContainer = Options.useBranding(editor) || editor.hasPlugin('wordcount');
 

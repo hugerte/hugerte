@@ -1,6 +1,8 @@
 import Editor from 'hugerte/core/api/Editor';
+import { Toolbar } from 'hugerte/core/api/ui/Ui';
 import Tools from 'hugerte/core/api/util/Tools';
 
+import * as ConvertShortcut from '../alien/ConvertShortcut';
 import { onActionExecCommand, onSetupEditableToggle, onSetupStateToggle } from './ControlUtils';
 
 const onActionToggleFormat = (editor: Editor, fmt: string) => (): void => {
@@ -38,10 +40,19 @@ const registerFormatButtons = (editor: Editor): void => {
   }
 };
 
+const onSetupHelpShortcut = (editor: Editor) => (api: Toolbar.ToolbarButtonInstanceApi): () => void => {
+  const updateTooltip = () => {
+    const shortcut = editor.shortcuts.getShortcut('mceHelp');
+    api.setTooltip(editor.translate('Help') + (shortcut ? ` (${ConvertShortcut.convertText(shortcut)})` : ''));
+  };
+  editor.on('ShortcutsChanged', updateTooltip);
+  return () => editor.off('ShortcutsChanged', updateTooltip);
+};
+
 const registerCommandButtons = (editor: Editor): void => {
   Tools.each([
     { name: 'copy', text: 'Copy', action: 'Copy', icon: 'copy' },
-    { name: 'help', text: 'Help', action: 'mceHelp', icon: 'help', shortcut: 'Alt+0' },
+    { name: 'help', text: 'Help', action: 'mceHelp', icon: 'help', shortcut: editor.shortcuts.getShortcut('mceHelp') },
     { name: 'selectall', text: 'Select all', action: 'SelectAll', icon: 'select-all', shortcut: 'Meta+A' },
     { name: 'newdocument', text: 'New document', action: 'mceNewDocument', icon: 'new-document' },
     { name: 'print', text: 'Print', action: 'mcePrint', icon: 'print', shortcut: 'Meta+P' },
@@ -50,6 +61,7 @@ const registerCommandButtons = (editor: Editor): void => {
       tooltip: btn.text,
       icon: btn.icon,
       onAction: onActionExecCommand(editor, btn.action),
+      onSetup: btn.name === 'help' ? onSetupHelpShortcut(editor) : undefined,
       shortcut: btn.shortcut
     });
   });

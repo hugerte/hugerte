@@ -35,6 +35,25 @@ const createIframeElement = (id: string, title: TranslatedString, customAttrs: {
   return iframe;
 };
 
+// Escapes a value for use inside a double-quoted HTML attribute.
+const escapeAttribute = (value: string): string =>
+  value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+const getIframeAriaText = (editor: Editor): string => {
+  const ariaText = editor.translate(Options.getIframeAriaText(editor));
+
+  // When the user hasn't overridden the aria text, keep the help hint in sync with the
+  // registered help shortcut (which the help_shortcut option may have changed or disabled).
+  if (editor.options.isSet('iframe_aria_text')) {
+    return ariaText;
+  }
+
+  const helpShortcut = editor.shortcuts.getShortcut('mceHelp');
+  return helpShortcut !== undefined
+    ? `${ariaText}. ${editor.translate([ 'Press {0} for help', helpShortcut ])}`
+    : ariaText;
+};
+
 const getIframeHtml = (editor: Editor) => {
   let iframeHTML = Options.getDocType(editor) + '<html><head>';
 
@@ -48,14 +67,14 @@ const getIframeHtml = (editor: Editor) => {
 
   const bodyId = Options.getBodyId(editor);
   const bodyClass = Options.getBodyClass(editor);
-  const translatedAriaText = editor.translate(Options.getIframeAriaText(editor));
+  const translatedAriaText = getIframeAriaText(editor);
 
   if (Options.getContentSecurityPolicy(editor)) {
     iframeHTML += '<meta http-equiv="Content-Security-Policy" content="' + Options.getContentSecurityPolicy(editor) + '" />';
   }
 
   iframeHTML += '</head>' +
-    `<body id="${bodyId}" class="mce-content-body ${bodyClass}" data-id="${editor.id}" aria-label="${translatedAriaText}">` +
+    `<body id="${bodyId}" class="mce-content-body ${bodyClass}" data-id="${editor.id}" aria-label="${escapeAttribute(translatedAriaText)}">` +
     '<br>' +
     '</body></html>';
 

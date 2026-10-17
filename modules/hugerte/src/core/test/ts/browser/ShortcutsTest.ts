@@ -1,4 +1,5 @@
 import { describe, it } from '@ephox/bedrock-client';
+import { Fun } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { TinyHooks } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
@@ -72,6 +73,38 @@ describe('browser.hugerte.core.ShortcutsTest', () => {
     assertShortcut('f10', { keyCode: 121 }, true);
     assertShortcut('f11', { keyCode: 122 }, true);
     assertShortcut('f12', { keyCode: 123 }, true);
+  });
+
+  it('Command lookup tracks aliases, removal and replacement without exposing callbacks', () => {
+    const shortcuts = hook.editor().shortcuts;
+    // A previous test registers F1, which would sort ahead of Alt+0 in an unordered
+    // lookup; clear it so this asserts registration order deterministically.
+    shortcuts.remove('f1');
+    assert.isUndefined(shortcuts.getShortcut('testCommand'));
+    shortcuts.add('Alt+0, F1', '', 'testCommand');
+    assert.deepEqual(shortcuts.getShortcuts('TESTCOMMAND'), [ 'Alt+0', 'F1' ]);
+    assert.equal(shortcuts.getShortcut('TESTCOMMAND'), 'Alt+0');
+    shortcuts.remove('alt+0');
+    assert.deepEqual(shortcuts.getShortcuts('testCommand'), [ 'F1' ]);
+    assert.equal(shortcuts.getShortcut('testCommand'), 'F1');
+    shortcuts.add('F1', '', Fun.noop);
+    assert.isUndefined(shortcuts.getShortcut('testCommand'));
+    shortcuts.add('F1', '', [ 'testCommand', false, null ]);
+    assert.equal(shortcuts.getShortcut('testCommand'), 'F1');
+    shortcuts.remove('f1');
+    assert.isUndefined(shortcuts.getShortcut('testCommand'));
+  });
+
+  it('ShortcutsChanged fires on add and successful removal', () => {
+    const editor = hook.editor();
+    let changes = 0;
+    const onChange = () => changes++;
+    editor.on('ShortcutsChanged', onChange);
+    editor.shortcuts.add('Alt+0', '', 'testCommand');
+    editor.shortcuts.remove('alt+0');
+    editor.shortcuts.remove('alt+0');
+    assert.equal(changes, 2);
+    editor.off('ShortcutsChanged', onChange);
   });
 
   it('Remove', () => {

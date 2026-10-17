@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import Editor from 'hugerte/core/api/Editor';
 
 describe('browser.hugerte.core.init.InitIframeAriaTextTest', () => {
-  const defaultIframeTitle = 'Rich Text Area. Press ALT-0 for help.';
+  const defaultIframeTitle = 'Rich Text Area';
   const customIframeTitle = 'Cupidatat magna aliquip.';
 
   it('TINY-1264: Should use the default iframe title when iframe_aria_text is not set', async () => {
@@ -29,6 +29,17 @@ describe('browser.hugerte.core.init.InitIframeAriaTextTest', () => {
     const iframeBody = TinyDom.body(editor);
     assert.equal(Attribute.get(iframe, 'title'), 'Rich Text Area');
     assert.equal(Attribute.get(iframeBody, 'aria-label'), customIframeTitle);
+    McEditor.remove(editor);
+  });
+
+  it('Should escape characters in iframe_aria_text so the attribute value is preserved', async () => {
+    const ariaText = 'Quote " and ampersand & and <tag>';
+    const editor = await McEditor.pFromSettings<Editor>({
+      base_url: '/project/hugerte/js/hugerte',
+      iframe_aria_text: ariaText
+    });
+    const iframeBody = TinyDom.body(editor);
+    assert.equal(Attribute.get(iframeBody, 'aria-label'), ariaText);
     McEditor.remove(editor);
   });
 });

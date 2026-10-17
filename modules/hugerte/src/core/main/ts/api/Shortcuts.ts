@@ -46,6 +46,8 @@ const modifierNames = Tools.makeMap('alt,ctrl,shift,meta,access') as ModifierMap
 
 interface Shortcut {
   id: string;
+  pattern: string;
+  command?: string;
   access: boolean;
   ctrl: boolean;
   shift: boolean;
@@ -128,6 +130,9 @@ const parseShortcut = (pattern: string): Shortcut => {
 class Shortcuts {
   private readonly editor: Editor;
   private readonly shortcuts: Record<string, Shortcut> = {};
+  // Maintains registration order so `getShortcut` is deterministic. Shortcut ids are
+  // keyCode-based, so integer-like ids (e.g. F1) would otherwise enumerate first.
+  private readonly order: string[] = [];
   private pendingPatterns: Shortcut[] = [];
 
   public constructor(editor: Editor) {
@@ -172,12 +177,31 @@ class Shortcuts {
   public add(pattern: string, desc: string | null, cmdFunc: CommandFunc, scope?: any): boolean {
     const self = this;
     const func = self.normalizeCommandFunc(cmdFunc);
+    let changed = false;
 
     each(explode(Tools.trim(pattern)), (pattern) => {
       const shortcut = self.createShortcut(pattern, desc, func, scope);
+      shortcut.pattern = pattern;
+      if (typeof cmdFunc === 'string') {
+        shortcut.command = cmdFunc;
+      } else if (Tools.isArray(cmdFunc)) {
+        shortcut.command = cmdFunc[0];
+      }
+
+      const existing = self.shortcuts[shortcut.id];
+      if (!existing) {
+        self.order.push(shortcut.id);
+        changed = true;
+      } else if (existing.pattern !== shortcut.pattern || existing.command !== shortcut.command) {
+        changed = true;
+      }
+
       self.shortcuts[shortcut.id] = shortcut;
     });
 
+    if (changed) {
+      self.editor.dispatch('ShortcutsChanged');
+    }
     return true;
   }
 
@@ -193,10 +217,40 @@ class Shortcuts {
 
     if (this.shortcuts[shortcut.id]) {
       delete this.shortcuts[shortcut.id];
+      const index = this.order.indexOf(shortcut.id);
+      if (index !== -1) {
+        this.order.splice(index, 1);
+      }
+      this.editor.dispatch('ShortcutsChanged');
       return true;
     }
 
     return false;
+  }
+
+  /**
+   * Returns all registered shortcut patterns for a command, in registration order.
+   *
+   * @method getShortcuts
+   * @param {String} command Command name.
+   * @return {String[]} The registered shortcut patterns, or an empty array if the command has none.
+   */
+  public getShortcuts(command: string): string[] {
+    const commandName = command.toLowerCase();
+    return this.order
+      .filter((id) => this.shortcuts[id]?.command?.toLowerCase() === commandName)
+      .map((id) => this.shortcuts[id].pattern);
+  }
+
+  /**
+   * Returns the first registered shortcut pattern for a command, if any.
+   *
+   * @method getShortcut
+   * @param {String} command Command name.
+   * @return {String} The first registered shortcut pattern for the command, or undefined if the command has no shortcut.
+   */
+  public getShortcut(command: string): string | undefined {
+    return this.getShortcuts(command)[0];
   }
 
   private normalizeCommandFunc(cmdFunc: CommandFunc): () => void {

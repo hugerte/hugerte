@@ -221,6 +221,7 @@ export interface EditorEventMap extends Omit<NativeEventMap, 'blur' | 'focus'> {
   PreviewFormats: { };
   AfterPreviewFormats: { };
   ScriptsLoaded: { };
+  ShortcutsChanged: { };
   PreInit: { };
   PostRender: { };
   NewBlock: NewBlockEvent;
