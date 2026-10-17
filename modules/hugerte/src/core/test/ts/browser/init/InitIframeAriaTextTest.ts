@@ -31,4 +31,15 @@ describe('browser.hugerte.core.init.InitIframeAriaTextTest', () => {
     assert.equal(Attribute.get(iframeBody, 'aria-label'), customIframeTitle);
     McEditor.remove(editor);
   });
+
+  it('Should escape characters in iframe_aria_text so the attribute value is preserved', async () => {
+    const ariaText = 'Quote " and ampersand & and <tag>';
+    const editor = await McEditor.pFromSettings<Editor>({
+      base_url: '/project/hugerte/js/hugerte',
+      iframe_aria_text: ariaText
+    });
+    const iframeBody = TinyDom.body(editor);
+    assert.equal(Attribute.get(iframeBody, 'aria-label'), ariaText);
+    McEditor.remove(editor);
+  });
 });

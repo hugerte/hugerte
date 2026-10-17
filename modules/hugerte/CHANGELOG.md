@@ -8,7 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - New `help_shortcut` option to change the Help shortcut (for example, `Access+0`) or disable it with `false`. The default remains `Alt+0`. #GH-192
-- New `editor.shortcuts.getShortcut(command)` lookup and `ShortcutsChanged` event for keeping shortcut labels in sync with registered commands. #GH-192
+- New `editor.shortcuts.getShortcuts(command)` (all registered patterns, in order) and `editor.shortcuts.getShortcut(command)` (the first) lookups, plus a `ShortcutsChanged` event for keeping shortcut labels in sync with registered commands. #GH-192
+
+### Changed
+- The default value of the `iframe_aria_text` option is now `Rich Text Area` (previously `Rich Text Area. Press ALT-0 for help.`). The "Press ... for help" hint is appended automatically when a help shortcut is registered and no explicit `iframe_aria_text` is set.
 
 ### Fixed
 - Help shortcut labels now reflect the registered shortcut, including toolbar tooltip updates after a shortcut is removed or replaced. #GH-192

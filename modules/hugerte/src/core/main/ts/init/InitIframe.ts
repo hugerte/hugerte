@@ -35,6 +35,10 @@ const createIframeElement = (id: string, title: TranslatedString, customAttrs: {
   return iframe;
 };
 
+// Escapes a value for use inside a double-quoted HTML attribute.
+const escapeAttribute = (value: string): string =>
+  value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
 const getIframeAriaText = (editor: Editor): string => {
   const ariaText = editor.translate(Options.getIframeAriaText(editor));
 
@@ -70,7 +74,7 @@ const getIframeHtml = (editor: Editor) => {
   }
 
   iframeHTML += '</head>' +
-    `<body id="${bodyId}" class="mce-content-body ${bodyClass}" data-id="${editor.id}" aria-label="${translatedAriaText}">` +
+    `<body id="${bodyId}" class="mce-content-body ${bodyClass}" data-id="${editor.id}" aria-label="${escapeAttribute(translatedAriaText)}">` +
     '<br>' +
     '</body></html>';
 

@@ -99,4 +99,29 @@ describe('browser.hugerte.plugins.help.HelpShortcutTest', () => {
       TinyUiActions.closeDialog(editor);
     });
   });
+
+  describe('explicit aria text', () => {
+    const hook = TinyHooks.bddSetupLight<Editor>({
+      plugins: 'help', toolbar: 'help', iframe_aria_text: 'Custom editor label',
+      base_url: '/project/hugerte/js/hugerte'
+    }, [ Plugin ]);
+
+    it('#192: keeps an explicit iframe_aria_text and does not append the help hint', () => {
+      const editor = hook.editor();
+      assert.equal(Attribute.get(TinyDom.body(editor), 'aria-label'), 'Custom editor label');
+    });
+  });
+
+  describe('rejected shortcut', () => {
+    const hook = TinyHooks.bddSetupLight<Editor>({
+      plugins: 'help', toolbar: 'help', help_shortcut: '<img src=x onerror=alert(1)>',
+      base_url: '/project/hugerte/js/hugerte'
+    }, [ Plugin ]);
+
+    it('#192: falls back to the default shortcut when help_shortcut contains markup', () => {
+      const editor = hook.editor();
+      assert.equal(editor.shortcuts.getShortcut('mceHelp'), 'Alt+0');
+      assert.equal(Attribute.get(TinyDom.body(editor), 'aria-label'), 'Rich Text Area. Press Alt+0 for help');
+    });
+  });
 });

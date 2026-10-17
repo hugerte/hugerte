@@ -229,16 +229,28 @@ class Shortcuts {
   }
 
   /**
-   * Returns a registered shortcut pattern for a command, if any.
+   * Returns all registered shortcut patterns for a command, in registration order.
+   *
+   * @method getShortcuts
+   * @param {String} command Command name.
+   * @return {String[]} The registered shortcut patterns, or an empty array if the command has none.
+   */
+  public getShortcuts(command: string): string[] {
+    const commandName = command.toLowerCase();
+    return this.order
+      .filter((id) => this.shortcuts[id]?.command?.toLowerCase() === commandName)
+      .map((id) => this.shortcuts[id].pattern);
+  }
+
+  /**
+   * Returns the first registered shortcut pattern for a command, if any.
    *
    * @method getShortcut
    * @param {String} command Command name.
    * @return {String} The first registered shortcut pattern for the command, or undefined if the command has no shortcut.
    */
   public getShortcut(command: string): string | undefined {
-    const commandName = command.toLowerCase();
-    const id = this.order.find((id) => this.shortcuts[id]?.command?.toLowerCase() === commandName);
-    return id !== undefined ? this.shortcuts[id].pattern : undefined;
+    return this.getShortcuts(command)[0];
   }
 
   private normalizeCommandFunc(cmdFunc: CommandFunc): () => void {

@@ -18,7 +18,9 @@ const register = (editor: Editor): void => {
   registerOption('help_shortcut', {
     // Reject anything that could be rendered as HTML in the help dialog or is not a shortcut/false.
     processor: (value) => value === false || (Type.isString(value) && !/[<>&"']/.test(value)),
-    default: 'Alt+0'
+    default: 'Alt+0',
+    // The shortcut is registered once when the plugin initialises, so changing it later has no effect.
+    immutable: true
   });
 
   registerOption('help_tabs', {

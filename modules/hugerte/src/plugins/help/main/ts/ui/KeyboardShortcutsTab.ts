@@ -12,10 +12,10 @@ export interface ShortcutActionPairType {
 }
 
 const tab = (editor: Editor): Dialog.TabSpec & { name: string } => {
-  const helpShortcut = editor.shortcuts.getShortcut('mceHelp');
+  const helpShortcuts = editor.shortcuts.getShortcuts('mceHelp');
   const shortcuts = Arr.bind(KeyboardShortcuts.shortcuts, (shortcut) => {
     if (shortcut.action === 'Open help dialog') {
-      return helpShortcut ? [{ shortcuts: [ helpShortcut ], action: shortcut.action }] : [];
+      return helpShortcuts.length > 0 ? [{ shortcuts: helpShortcuts, action: shortcut.action }] : [];
     }
     return [ shortcut ];
   });

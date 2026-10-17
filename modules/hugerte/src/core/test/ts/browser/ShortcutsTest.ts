@@ -82,8 +82,10 @@ describe('browser.hugerte.core.ShortcutsTest', () => {
     shortcuts.remove('f1');
     assert.isUndefined(shortcuts.getShortcut('testCommand'));
     shortcuts.add('Alt+0, F1', '', 'testCommand');
+    assert.deepEqual(shortcuts.getShortcuts('TESTCOMMAND'), [ 'Alt+0', 'F1' ]);
     assert.equal(shortcuts.getShortcut('TESTCOMMAND'), 'Alt+0');
     shortcuts.remove('alt+0');
+    assert.deepEqual(shortcuts.getShortcuts('testCommand'), [ 'F1' ]);
     assert.equal(shortcuts.getShortcut('testCommand'), 'F1');
     shortcuts.add('F1', '', Fun.noop);
     assert.isUndefined(shortcuts.getShortcut('testCommand'));
