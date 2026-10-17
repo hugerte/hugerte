@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import Editor from 'hugerte/core/api/Editor';
 
 describe('browser.hugerte.core.init.InitIframeAriaTextTest', () => {
-  const defaultIframeTitle = 'Rich Text Area. Press ALT-0 for help.';
+  const defaultIframeTitle = 'Rich Text Area';
   const customIframeTitle = 'Cupidatat magna aliquip.';
 
   it('TINY-1264: Should use the default iframe title when iframe_aria_text is not set', async () => {

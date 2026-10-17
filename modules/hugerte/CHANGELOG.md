@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Help shortcut labels now reflect the registered shortcut, including toolbar tooltip updates after a shortcut is removed or replaced. #GH-192
+- The editor iframe's accessible label no longer announces a help shortcut that is not registered, and follows `help_shortcut` when it is changed or disabled. #GH-192
 
 ## 1.0.14 - 2026-09-05
 

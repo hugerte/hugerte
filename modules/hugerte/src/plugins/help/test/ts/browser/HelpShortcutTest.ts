@@ -2,8 +2,8 @@ import { Mouse, UiFinder, Waiter } from '@ephox/agar';
 import { describe, it } from '@ephox/bedrock-client';
 import { Fun } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
-import { SugarBody, TextContent } from '@ephox/sugar';
-import { TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
+import { Attribute, SugarBody, TextContent } from '@ephox/sugar';
+import { TinyDom, TinyHooks, TinyUiActions } from '@ephox/wrap-mcagar';
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -35,6 +35,7 @@ describe('browser.hugerte.plugins.help.HelpShortcutTest', () => {
 
     it('#192: preserves Alt+0 by default and updates tooltip after removal and remapping', async () => {
       const editor = hook.editor();
+      assert.equal(Attribute.get(TinyDom.body(editor), 'aria-label'), 'Rich Text Area. Press Alt+0 for help');
       assert.equal(editor.shortcuts.getShortcut('mceHelp'), 'Alt+0');
       assert.isTrue(altZero(editor));
       await TinyUiActions.pWaitForDialog(editor);
@@ -59,6 +60,7 @@ describe('browser.hugerte.plugins.help.HelpShortcutTest', () => {
 
     it('#192: does not consume the AZERTY @ keydown and keeps the help button usable', async () => {
       const editor = hook.editor();
+      assert.equal(Attribute.get(TinyDom.body(editor), 'aria-label'), 'Rich Text Area');
       assert.isFalse(altZero(editor));
       assert.isUndefined((editor.ui.registry.getAll().buttons.help as Toolbar.ToolbarButtonSpec).shortcut);
       assert.isUndefined(editor.ui.registry.getAll().menuItems.help.shortcut);
@@ -78,6 +80,7 @@ describe('browser.hugerte.plugins.help.HelpShortcutTest', () => {
 
     it('#192: custom shortcut replaces Alt+0 in the keyboard handler and UI', async () => {
       const editor = hook.editor();
+      assert.equal(Attribute.get(TinyDom.body(editor), 'aria-label'), 'Rich Text Area. Press Access+0 for help');
       assert.isFalse(altZero(editor));
       assert.equal((editor.ui.registry.getAll().buttons.help as Toolbar.ToolbarButtonSpec).shortcut, 'Access+0');
       assert.equal(editor.ui.registry.getAll().menuItems.help.shortcut, 'Access+0');
