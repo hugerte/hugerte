@@ -16,15 +16,8 @@ const register = (editor: Editor): void => {
   const registerOption = editor.options.register;
 
   registerOption('help_shortcut', {
-    processor: (value) => {
-      if (value === false) {
-        return { valid: true as const, value };
-      } else if (Type.isString(value) && !/[<>&"']/.test(value)) {
-        return { valid: true as const, value };
-      } else {
-        return { valid: false as const, message: 'Must be a keyboard shortcut pattern string (for example "Alt+0") or false.' };
-      }
-    },
+    // Reject anything that could be rendered as HTML in the help dialog or is not a shortcut/false.
+    processor: (value) => value === false || (Type.isString(value) && !/[<>&"']/.test(value)),
     default: 'Alt+0'
   });
 
