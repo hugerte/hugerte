@@ -43,12 +43,11 @@ const readRange = (win: Window): Optional<SimRange> => {
   return rng.map(nativeRangeToSelectionRange);
 };
 
-const getBookmark = (root: SugarElement<Node>): Optional<SimRange> => {
-  const win = Traverse.defaultView(root);
-
-  return readRange(win.dom)
+// The document of a detached iframe has no window, e.g. when the editor is removed after its iframe was taken out of the page
+const getBookmark = (root: SugarElement<Node>): Optional<SimRange> =>
+  Optional.from(Traverse.documentOrOwner(root).dom.defaultView)
+    .bind(readRange)
     .filter(isRngInRoot(root));
-};
 
 const validate = (root: SugarElement<Node>, bookmark: SimRange): Optional<SimRange> =>
   Optional.from(bookmark)

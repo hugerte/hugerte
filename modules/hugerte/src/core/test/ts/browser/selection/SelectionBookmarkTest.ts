@@ -186,4 +186,12 @@ describe('browser.hugerte.core.selection.SelectionBookmarkTest', () => {
     const rngOpt = SelectionBookmark.readRange(mockWin);
     assertNone(rngOpt);
   });
+
+  it('getBookmark with a root in a document without a window should return Optional.none', () => {
+    // Like the document of a detached iframe, a document created this way has no defaultView
+    const doc = document.implementation.createHTMLDocument('');
+    doc.body.innerHTML = '<p>hello</p>';
+    const bookmark = SelectionBookmark.getBookmark(SugarElement.fromDom(doc.body));
+    assertNone(bookmark);
+  });
 });

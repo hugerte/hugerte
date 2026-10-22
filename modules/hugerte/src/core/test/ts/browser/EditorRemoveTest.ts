@@ -70,6 +70,18 @@ describe('browser.hugerte.core.EditorRemoveTest', () => {
     McEditor.remove(editor);
   });
 
+  it('remove editor with unsaved changes after its iframe has been detached', async () => {
+    const editor = await McEditor.pFromHtml<Editor>('<textarea></textarea>', settings);
+    // Change the content without an undo level, so that saving it on remove adds one and triggers a node change
+    editor.getBody().innerHTML = '<p>changed</p>';
+    const container = editor.getContainer();
+    container.parentNode?.removeChild(container);
+    editor.remove();
+    assert.isTrue(editor.removed, 'editor should be removed');
+    assert.equal((editor.getElement() as HTMLTextAreaElement).value, '<p>changed</p>', 'content should be saved');
+    McEditor.remove(editor);
+  });
+
   it('init editor with no display style', async () => {
     const editor = await McEditor.pFromHtml<Editor>('<textarea id="hugerte"></textarea>', settings);
     testRemoveStyles(editor, '');
