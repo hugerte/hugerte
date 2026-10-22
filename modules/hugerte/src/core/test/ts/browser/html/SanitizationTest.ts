@@ -168,4 +168,43 @@ describe('browser.hugerte.core.html.SanitizationTest', () => {
       sanitize: false
     }));
   });
+
+  context('Trusted Types', () => {
+    // Under a trusted-types CSP every extra policy creation is a violation, and HugeRTE never uses the TrustedHTML DOMPurify returns
+    const countPolicyCreations = (action: () => void): number => {
+      const factory = (window as any).trustedTypes;
+      const original = factory.createPolicy;
+      let count = 0;
+      factory.createPolicy = function (this: unknown, ...args: unknown[]) {
+        count++;
+        return original.apply(this, args);
+      };
+      try {
+        action();
+      } finally {
+        factory.createPolicy = original;
+      }
+      return count;
+    };
+
+    const hasTrustedTypes = typeof (window as any).trustedTypes?.createPolicy === 'function';
+    const testIfSupported = hasTrustedTypes ? it : it.skip;
+
+    testIfSupported('Sanitizing HTML does not create a Trusted Types policy', () => {
+      const count = countPolicyCreations(() => {
+        const body = document.createElement('body');
+        body.innerHTML = '<p>hello</p>';
+        getSanitizer({ sanitize: true }, Schema()).sanitizeHtmlElement(body, 'text/html');
+      });
+      assert.equal(count, 0);
+    });
+
+    testIfSupported('Sanitizing a namespace element does not create a Trusted Types policy', () => {
+      const count = countPolicyCreations(() => {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        getSanitizer({ sanitize: true }, Schema()).sanitizeNamespaceElement(svg);
+      });
+      assert.equal(count, 0);
+    });
+  });
 });
