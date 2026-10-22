@@ -349,6 +349,9 @@ const getPurifyConfig = (settings: DomParserSettings, mimeType: DOMParserSupport
     // body is also allowed due to the DOMPurify checking the root node before sanitizing
     ALLOWED_TAGS: [ '#comment', '#cdata-section', 'body' ],
     ALLOWED_ATTR: [],
+    // We sanitize in place and never read the returned TrustedHTML, so don't let every
+    // DOMPurify instance try to register its own "dompurify" Trusted Types policy
+    TRUSTED_TYPES_POLICY: null,
     // SAFE_FOR_XML is intentionally left at its DOMPurify default (true): it
     // powers the mXSS tripwires that strip ZWNBSP-based comment mXSS (see
     // issue #203). The legitimate content the tripwires would otherwise remove
@@ -380,7 +383,8 @@ const sanitizeNamespaceElement = (ele: Element) => {
       svg: true,
       svgFilters: true
     },
-    ALLOWED_ATTR: xlinkAttrs
+    ALLOWED_ATTR: xlinkAttrs,
+    TRUSTED_TYPES_POLICY: null
   };
 
   createDompurify().sanitize(ele, config);
