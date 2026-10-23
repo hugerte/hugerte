@@ -66,12 +66,12 @@ export default (): void => {
         tag: 'div',
         classes: [ `button-container-${boxId}` ],
         styles: {
-          'position': 'fixed',
-          'bottom': '0px',
-          'left': `${(boxId - 1) * 350}px`,
-          'padding': '1em',
+          position: 'fixed',
+          bottom: '0px',
+          left: `${(boxId - 1) * 350}px`,
+          padding: '1em',
           'background-color': 'black',
-          'color': 'white',
+          color: 'white',
           'z-index': '150'
         }
       },
@@ -95,17 +95,17 @@ export default (): void => {
   };
 
   const barStyles = {
-    'background': '#cadbee',
-    'width': '400px',
-    'height': '50px',
-    'border': '2px solid black',
+    background: '#cadbee',
+    width: '400px',
+    height: '50px',
+    border: '2px solid black',
     'z-index': '100'
   };
 
   const redPanelStyles = {
-    'background': 'red',
-    'width': '500px',
-    'height': '3600px',
+    background: 'red',
+    width: '500px',
+    height: '3600px',
     'z-index': '50'
   };
 
@@ -271,12 +271,12 @@ export default (): void => {
       extraRedPanelStyles: {
         'margin-top': '1000px',
         'margin-bottom': '200px',
-        'position': 'relative'
+        position: 'relative'
       },
       extraBarStyles: {
-        'position': 'absolute',
-        'top': '200px',
-        'left': '150px',
+        position: 'absolute',
+        top: '200px',
+        left: '150px',
         'z-index': '100'
       },
       scrollableContainerStyles: Optional.some({ }),

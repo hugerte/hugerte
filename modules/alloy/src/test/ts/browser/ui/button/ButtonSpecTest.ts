@@ -32,7 +32,7 @@ UnitTest.asynctest('ButtonSpecTest', (success, failure) => {
             arr.has('test-button')
           ],
           attrs: {
-            'type': str.is('button'),
+            type: str.is('button'),
             'data-alloy-id': str.none()
           },
           html: str.is('ButtonSpecTest.button')

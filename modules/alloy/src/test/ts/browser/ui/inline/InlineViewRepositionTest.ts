@@ -24,12 +24,12 @@ UnitTest.asynctest('InlineViewRepositionTest', (success, failure) => {
       dom: {
         tag: 'div',
         styles: {
-          'height': '10px',
-          'width': '10px',
+          height: '10px',
+          width: '10px',
           'background-color': 'red',
-          'position': 'fixed',
-          'top': '200px',
-          'left': '200px'
+          position: 'fixed',
+          top: '200px',
+          left: '200px'
         }
       }
     });

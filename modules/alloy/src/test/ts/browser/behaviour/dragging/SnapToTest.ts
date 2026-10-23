@@ -25,11 +25,11 @@ UnitTest.asynctest('SnapToTest', (success, failure) => {
       dom: {
         styles: {
           'box-sizing': 'border-box',
-          'width': '100px',
-          'height': '100px',
-          'border': '1px solid green',
-          'left': '100px',
-          'top': '100px'
+          width: '100px',
+          height: '100px',
+          border: '1px solid green',
+          left: '100px',
+          top: '100px'
         }
       },
       containerBehaviours: Behaviour.derive([

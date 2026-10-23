@@ -338,7 +338,7 @@ const make: CompositeSketchFactory<TypeaheadDetail, TypeaheadSpec> = (detail, co
     dom: InputBase.dom(Merger.deepMerge(detail, {
       // TODO: Add aria-activedescendant attribute
       inputAttributes: {
-        'role': 'combobox',
+        role: 'combobox',
         'aria-autocomplete': 'list',
         'aria-haspopup': 'true'
       }

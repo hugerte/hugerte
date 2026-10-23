@@ -43,9 +43,9 @@ const TabButton: TabButtonSketcher = Sketcher.single({
     FieldSchema.required('value'),
     FieldSchema.field('dom', 'dom', FieldPresence.mergeWithThunk(() => ({
       attributes: {
-        'role': 'tab',
+        role: 'tab',
         // NOTE: This is used in TabSection to connect "labelledby"
-        'id': Id.generate('aria'),
+        id: Id.generate('aria'),
         'aria-selected': 'false'
       }
     })), ValueType.anyValue()),

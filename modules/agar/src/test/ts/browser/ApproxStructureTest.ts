@@ -28,8 +28,8 @@ describe('browser.agar.ApproxStructureTest', () => {
     check(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
-          'car': str.none('no car attribute'),
+          selected: str.is('double'),
+          car: str.none('no car attribute'),
           'data-key': str.contains('test')
         },
         classes: [
@@ -156,7 +156,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     check(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         exactClasses: [
@@ -195,7 +195,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         exactAttrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test'),
           'extra-attribute': str.startsWith('ex'),
           'non-existent-attribute': str.is('non'),
@@ -217,7 +217,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, _arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         exactClasses: [
@@ -236,7 +236,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         classes: [
@@ -257,7 +257,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         exactAttrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test'),
           'extra-attribute': str.startsWith('ex'),
         },
@@ -278,7 +278,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, _arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         exactClasses: [
@@ -297,7 +297,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         classes: [
@@ -319,7 +319,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test'),
           'extra-attribute': str.startsWith('ex'),
           'extra-attribute2': str.is('extra2'),
@@ -334,8 +334,8 @@ describe('browser.agar.ApproxStructureTest', () => {
         children: [
           s.element('div', {
             exactAttrs: {
-              'selected': str.is('true'),
-              'attr': str.is('hello'),
+              selected: str.is('true'),
+              attr: str.is('hello'),
               'extra-attribute': str.is('extra')
             },
           })
@@ -352,7 +352,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         classes: [
@@ -385,7 +385,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         classes: [
@@ -419,7 +419,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test'),
           'extra-attribute': str.startsWith('ex'),
           'extra-attribute2': str.is('extra2'),
@@ -450,7 +450,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         classes: [
@@ -483,7 +483,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         classes: [
@@ -519,7 +519,7 @@ describe('browser.agar.ApproxStructureTest', () => {
           selected: str.is('double')
         },
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         classes: [
@@ -552,7 +552,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         exactClasses: [
@@ -588,7 +588,7 @@ describe('browser.agar.ApproxStructureTest', () => {
     checkThrowError(ApproxStructure.build((s, str, arr) =>
       s.element('div', {
         attrs: {
-          'selected': str.is('double'),
+          selected: str.is('double'),
           'data-key': str.contains('test')
         },
         classes: [

@@ -10,7 +10,7 @@ export interface RenderOptions {
 const DefaultRenderOptions: RenderOptions = {
   styles: {
     'border-collapse': 'collapse',
-    'width': '100%'
+    width: '100%'
   },
   attributes: {
     border: '1'

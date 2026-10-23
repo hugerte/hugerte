@@ -70,14 +70,14 @@ UnitTest.asynctest('DropdownMenuTest', (success, failure) => {
             { type: 'widget', widget, data: { value: 'widget', meta: { }}}
           ], TestDropdownMenu.renderItem)
         },
-        'packages': { // menu name should be triggering parent item so TieredMenuSpec path works
+        packages: { // menu name should be triggering parent item so TieredMenuSpec path works
           value: 'packages-menu-value',
           text: 'Packages Menu',
           items: Arr.map([
             { type: 'item', data: { value: 'sortby', meta: { text: 'SortBy' }}, hasSubmenu: true }
           ], TestDropdownMenu.renderItem)
         },
-        'sortby': {
+        sortby: {
           value: 'sortby-menu-value',
           text: 'Sortby Menu',
           items: Arr.map([
@@ -85,7 +85,7 @@ UnitTest.asynctest('DropdownMenuTest', (success, failure) => {
             { type: 'item', data: { value: 'numbers', meta: { text: 'Numbers' }}, hasSubmenu: true }
           ], TestDropdownMenu.renderItem)
         },
-        'strings': {
+        strings: {
           value: 'strings-menu-value',
           text: 'Strings Menu',
           items: Arr.map([
@@ -93,7 +93,7 @@ UnitTest.asynctest('DropdownMenuTest', (success, failure) => {
             { type: 'item', data: { value: 'alphabetic', meta: { text: 'Alphabetic' }}}
           ], TestDropdownMenu.renderItem)
         },
-        'numbers': {
+        numbers: {
           value: 'numbers-menu-value',
           text: 'Numbers Menu',
           items: Arr.map([

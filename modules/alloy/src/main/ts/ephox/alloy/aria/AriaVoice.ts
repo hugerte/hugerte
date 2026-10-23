@@ -73,7 +73,7 @@ const getShoutAttrs = (_text: string) => ({
   // Don't put aria-label in alerts. It will read it twice on JAWS+Firefox.
   'aria-live': 'assertive',
   'aria-atomic': 'true',
-  'role': 'alert'
+  role: 'alert'
 });
 
 const speak = (parent: SugarElement<Element>, text: string): void => base(getSpeakAttrs, parent, text);

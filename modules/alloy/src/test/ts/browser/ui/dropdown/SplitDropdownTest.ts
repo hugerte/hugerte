@@ -131,10 +131,10 @@ UnitTest.asynctest('SplitDropdown List', (success, failure) => {
         'Check basic initial structure',
         ApproxStructure.build((s, str, _arr) => s.element('span', {
           attrs: {
-            'role': str.is('button'),
+            role: str.is('button'),
             'aria-expanded': str.is('false'),
             'aria-haspopup': str.is('true'),
-            'tabindex': str.is('-1')
+            tabindex: str.is('-1')
           },
 
           children: [
@@ -173,7 +173,7 @@ UnitTest.asynctest('SplitDropdown List', (success, failure) => {
         'Check menu opened structure',
         ApproxStructure.build((s, str, arr) => s.element('span', {
           attrs: {
-            'role': str.is('button'),
+            role: str.is('button'),
             'aria-expanded': str.is('true'),
             'aria-haspopup': str.is('true'),
             'aria-controls': str.contains('aria-controls')

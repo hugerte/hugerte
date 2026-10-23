@@ -13,11 +13,11 @@ const createGhostClone = (image: DragnDropImageClone): SugarElement<HTMLElement>
 
   // Firefox will scale down non ghost images to 175px so lets limit the size to 175px in general
   Css.setAll(ghost, {
-    'position': 'absolute',
-    'top': '-300px',
+    position: 'absolute',
+    top: '-300px',
     'max-width': '175px',
     'max-height': '175px',
-    'overflow': 'hidden'
+    overflow: 'hidden'
   });
 
   return ghost;

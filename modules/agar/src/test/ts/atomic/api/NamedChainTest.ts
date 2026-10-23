@@ -53,13 +53,13 @@ UnitTest.asynctest('NamedChainTest', (success, failure) => {
 
           NamedChain.bundle((input) => {
             Assert.eq('Checking bundled chain output', {
-              'x': 5 * 2,
-              'y': 8,
+              x: 5 * 2,
+              y: 8,
               '10y': 80,
-              'z': 10,
-              'description': 'Q1. What are the answers',
-              'shouting': 'Q1. What are the answers!',
-              'xyz': {
+              z: 10,
+              description: 'Q1. What are the answers',
+              shouting: 'Q1. What are the answers!',
+              xyz: {
                 x: 10,
                 y: 8,
                 z: 10

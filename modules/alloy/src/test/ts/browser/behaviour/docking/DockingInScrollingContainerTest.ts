@@ -26,7 +26,7 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
     dom: {
       tag: 'div',
       styles: {
-        'height': `${height}px`,
+        height: `${height}px`,
         'background-color': color
       }
     }
@@ -184,8 +184,8 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
                 tag: 'div',
                 classes: [ scrollerClass ],
                 styles: {
-                  'height': '600px',
-                  'overflow': 'auto',
+                  height: '600px',
+                  overflow: 'auto',
                   'margin-bottom': '1000px',
                 }
               },
@@ -294,8 +294,8 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
               dom: {
                 tag: 'div',
                 styles: {
-                  'height': '600px',
-                  'overflow': 'auto',
+                  height: '600px',
+                  overflow: 'auto',
                   'margin-bottom': '1000px',
                 }
               },
@@ -306,10 +306,10 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
                     tag: 'div',
                     classes: [ scrollerClass ],
                     styles: {
-                      'height': '500px',
-                      'overflow': 'auto',
+                      height: '500px',
+                      overflow: 'auto',
                       'margin-bottom': '1000px',
-                      'outline': '10px solid magenta'
+                      outline: '10px solid magenta'
                     }
                   },
                   components: [
@@ -412,10 +412,10 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
                 tag: 'div',
                 classes: [ scrollerClass ],
                 styles: {
-                  'height': '600px',
-                  'overflow': 'auto',
+                  height: '600px',
+                  overflow: 'auto',
                   'margin-bottom': '1000px',
-                  'position': 'relative'
+                  position: 'relative'
                 }
               },
               components: [
@@ -487,10 +487,10 @@ describe('browser.alloy.behaviour.docking.DockingInScrollingContainerTest', () =
                 tag: 'div',
                 classes: [ scrollerClass ],
                 styles: {
-                  'height': '600px',
-                  'overflow': 'auto',
+                  height: '600px',
+                  overflow: 'auto',
                   'margin-bottom': '1000px',
-                  'position': 'relative'
+                  position: 'relative'
                 }
               },
               components: [

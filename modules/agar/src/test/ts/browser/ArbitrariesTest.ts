@@ -107,7 +107,7 @@ UnitTest.test('Arbitraries Test', () => {
       tag: 'span',
       attributes: Generators.enforce({
         'data-custom': 'enforced-hi',
-        'contenteditable': 'false'
+        contenteditable: 'false'
       }),
       styles: Generators.enforce({
         color: 'blue',
@@ -202,9 +202,9 @@ UnitTest.test('Arbitraries Test', () => {
   }), (element: SugarElement<HTMLTableElement>) => {
     Assertions.assertEq('Table must be <table>', 'table', SugarNode.name(element));
     Assertions.assertPresence('Checking table generator', {
-      'thead': 1,
-      'tbody': 1,
-      'tfoot': 1,
+      thead: 1,
+      tbody: 1,
+      tfoot: 1,
       'root>thead': 1,
       'root>tbody': 1,
       'root>tfoot': 1

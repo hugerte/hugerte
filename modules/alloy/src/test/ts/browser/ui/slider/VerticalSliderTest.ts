@@ -18,9 +18,9 @@ UnitTest.asynctest('Browser Test: ui.slider.VerticalSliderTest', (success, failu
         tag: 'div',
         classes: [ 'vertical-slider-test' ],
         styles: {
-          'border': '1px solid black',
-          'width': '20px',
-          'display': 'flex',
+          border: '1px solid black',
+          width: '20px',
+          display: 'flex',
           'flex-direction': 'column'
         }
       },

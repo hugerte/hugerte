@@ -177,9 +177,9 @@ const inspectorInfo = (comp: AlloyComponent) => {
       '(components)': Arr.map(c.components(), go),
       '(bound.events)': Obj.mapToArray(c.events, (_v, k) => [ k ]).join(', '),
       '(behaviours)': cSpec.behaviours !== undefined ? Obj.map(cSpec.behaviours, (v, k) => v === undefined ? '--revoked--' : {
-        'config': v.configAsRaw(),
+        config: v.configAsRaw(),
         'original-config': v.initialConfig,
-        'state': c.readState(k)
+        state: c.readState(k)
       }) : 'none'
     };
   };
