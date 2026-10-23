@@ -61,7 +61,7 @@
     "grunt-nuget-pack": "^1.0.1",
     "grunt-shell": "^4.0.0",
     "grunt-terser": "^2.0.0",
-    "grunt-webpack": "^5.0.0",
+    "grunt-webpack": "^8.0.0",
     "lerna": "^8.1.2",
     "less-plugin-autoprefix": "^2.0.0",
     "load-grunt-tasks": "^5.1.0",
