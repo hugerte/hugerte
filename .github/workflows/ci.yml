@@ -37,6 +37,9 @@ jobs:
           node-version: "20"
           cache: "yarn"
 
+      - name: Test library discovery
+        run: node --test bin/test-discovery.test.cjs
+
       - name: Install dependencies
         run: yarn install
 
