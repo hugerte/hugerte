@@ -75,7 +75,7 @@
     "string-replace-loader": "^3.0.3",
     "stylelint": "^13.2.1",
     "stylelint-config-standard": "^22.0.0",
-    "stylelint-order": "^5.0.0",
+    "stylelint-order": "^8.1.2",
     "terser": "^5.17.4",
     "ts-loader": "^9.2.6",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
