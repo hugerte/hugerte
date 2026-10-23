@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Fixed
-- DOMPurify instances no longer try to register their own `dompurify` Trusted Types policy, which failed with a duplicate-policy error under a `trusted-types` CSP. #GH-261
+- DOMPurify no longer tries to register its own `dompurify` Trusted Types policy, which caused a CSP violation for every sanitizer instance (including notification and dialog content) under a `trusted-types` CSP. #GH-261
 
 ## 1.0.14 - 2026-09-05
 
