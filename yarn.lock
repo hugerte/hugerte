@@ -643,13 +643,13 @@
     "@ephox/bedrock-common" "^14.1.1"
     "@ephox/dispute" "^1.0.3"
 
-"@ephox/bedrock-client@^15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@ephox/bedrock-client/-/bedrock-client-15.0.0.tgz#a2ae8ec5be2b1ff7a4843c32da4879590514d0ed"
-  integrity sha512-jO1REPlAokzLScK4m9Wcykw6SC5+Bv9pBk3LAjEvNgfxydSlgl2ReYTSsL0ZvQRJguzzpE1T7XD3kOfvtRX0FQ==
+"@ephox/bedrock-client@^17.0.0":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@ephox/bedrock-client/-/bedrock-client-17.0.0.tgz#1e5b78c8ba10777a14d459f93c55d092cb0e3c5e"
+  integrity sha512-WQ8pMkalxTuihBmxs+veJBZWbWoQtiBvjiVLgBReCzAyMqES16U3bZbkosC5S1DJmDunVQguPXVItCOYyAmdLg==
   dependencies:
-    "@ephox/bedrock-common" "^15.0.0"
-    "@ephox/dispute" "^1.0.3"
+    "@ephox/bedrock-common" "^17.0.0"
+    "@ephox/dispute" "^1.0.16"
 
 "@ephox/bedrock-common@11 || 12 || 13", "@ephox/bedrock-common@^13.0.0":
   version "13.0.0"
@@ -665,12 +665,12 @@
   dependencies:
     diff "^5.0.0"
 
-"@ephox/bedrock-common@^15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@ephox/bedrock-common/-/bedrock-common-15.0.0.tgz#988020addd4c11922e906dfef26547ec72384797"
-  integrity sha512-uGR1Oaksv9d9gDEJra2HB/HUCAdcBTiBfKYWEVvu7XofU4lHpoUFlX+7bnDi9h6N0CZ67bEAeqWhTwrN/2dFKw==
+"@ephox/bedrock-common@^17.0.0":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@ephox/bedrock-common/-/bedrock-common-17.0.0.tgz#ad0f2d80b10c6f74c6f70443c7446a7e57cc76c1"
+  integrity sha512-nXvWvZLu9yv7QjmqMMPzGg40qKX5skcHx+Rybw6P4dDczvsjgRnYEVKroNWun3NWt1ObsRqusLozxkEyEndLzA==
   dependencies:
-    diff "^5.0.0"
+    diff "^9.0.0"
 
 "@ephox/bedrock-runner@^14.1.1":
   version "14.1.1"
@@ -727,7 +727,7 @@
     which "^2.0.0"
     xml-writer "^1.6.0"
 
-"@ephox/dispute@^1.0.3":
+"@ephox/dispute@^1.0.16", "@ephox/dispute@^1.0.3":
   version "1.0.16"
   resolved "https://registry.yarnpkg.com/@ephox/dispute/-/dispute-1.0.16.tgz#feae65b14651c18326a6ca7fd3f537ee411361b2"
   integrity sha512-qHy0c+TX4FZx6xI2EBoBqOjGlbtGqQlvK7uWMNCVkfXveJ/dWhjFKfxRR2fsIN/xOYDQ7uJ/GcD+oDpryxl1dA==
@@ -4776,6 +4776,11 @@ diff@^5.0.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-5.1.0.tgz#bc52d298c5ea8df9194800224445ed43ffc87e40"
   integrity sha512-D+mk+qE8VC/PAUrlAU34N+VfXev0ghe5ywmpqrawphmVZc1bEfn56uo9qpyGp1p4xpzOHkSW4ztBd6L7Xx4ACw==
+
+diff@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-9.0.0.tgz#297c31cd7c280f13dfe335791ec2063bd4a73a6f"
+  integrity sha512-svtcdpS8CgJyqAjEQIXdb3OjhFVVYjzGAPO8WGCmRbrml64SPw/jJD4GoE98aR7r25A0XcgrK3F02yw9R/vhQw==
 
 dir-glob@^3.0.1:
   version "3.0.1"
@@ -10775,32 +10780,32 @@ rollup@^4.59.0:
   dependencies:
     "@types/estree" "1.0.8"
   optionalDependencies:
-    fsevents "~2.3.2"
-    "@rollup/rollup-darwin-x64" "4.59.0"
-    "@rollup/rollup-freebsd-x64" "4.59.0"
-    "@rollup/rollup-openbsd-x64" "4.59.0"
-    "@rollup/rollup-darwin-arm64" "4.59.0"
-    "@rollup/rollup-android-arm64" "4.59.0"
-    "@rollup/rollup-freebsd-arm64" "4.59.0"
-    "@rollup/rollup-linux-x64-gnu" "4.59.0"
-    "@rollup/rollup-win32-x64-gnu" "4.59.0"
-    "@rollup/rollup-linux-x64-musl" "4.59.0"
-    "@rollup/rollup-win32-x64-msvc" "4.59.0"
-    "@rollup/rollup-linux-arm64-gnu" "4.59.0"
-    "@rollup/rollup-linux-ppc64-gnu" "4.59.0"
-    "@rollup/rollup-linux-s390x-gnu" "4.59.0"
-    "@rollup/rollup-win32-ia32-msvc" "4.59.0"
     "@rollup/rollup-android-arm-eabi" "4.59.0"
-    "@rollup/rollup-linux-arm64-musl" "4.59.0"
-    "@rollup/rollup-linux-ppc64-musl" "4.59.0"
-    "@rollup/rollup-win32-arm64-msvc" "4.59.0"
-    "@rollup/rollup-linux-loong64-gnu" "4.59.0"
-    "@rollup/rollup-linux-riscv64-gnu" "4.59.0"
-    "@rollup/rollup-openharmony-arm64" "4.59.0"
-    "@rollup/rollup-linux-loong64-musl" "4.59.0"
-    "@rollup/rollup-linux-riscv64-musl" "4.59.0"
+    "@rollup/rollup-android-arm64" "4.59.0"
+    "@rollup/rollup-darwin-arm64" "4.59.0"
+    "@rollup/rollup-darwin-x64" "4.59.0"
+    "@rollup/rollup-freebsd-arm64" "4.59.0"
+    "@rollup/rollup-freebsd-x64" "4.59.0"
     "@rollup/rollup-linux-arm-gnueabihf" "4.59.0"
     "@rollup/rollup-linux-arm-musleabihf" "4.59.0"
+    "@rollup/rollup-linux-arm64-gnu" "4.59.0"
+    "@rollup/rollup-linux-arm64-musl" "4.59.0"
+    "@rollup/rollup-linux-loong64-gnu" "4.59.0"
+    "@rollup/rollup-linux-loong64-musl" "4.59.0"
+    "@rollup/rollup-linux-ppc64-gnu" "4.59.0"
+    "@rollup/rollup-linux-ppc64-musl" "4.59.0"
+    "@rollup/rollup-linux-riscv64-gnu" "4.59.0"
+    "@rollup/rollup-linux-riscv64-musl" "4.59.0"
+    "@rollup/rollup-linux-s390x-gnu" "4.59.0"
+    "@rollup/rollup-linux-x64-gnu" "4.59.0"
+    "@rollup/rollup-linux-x64-musl" "4.59.0"
+    "@rollup/rollup-openbsd-x64" "4.59.0"
+    "@rollup/rollup-openharmony-arm64" "4.59.0"
+    "@rollup/rollup-win32-arm64-msvc" "4.59.0"
+    "@rollup/rollup-win32-ia32-msvc" "4.59.0"
+    "@rollup/rollup-win32-x64-gnu" "4.59.0"
+    "@rollup/rollup-win32-x64-msvc" "4.59.0"
+    fsevents "~2.3.2"
 
 run-applescript@^7.0.0:
   version "7.0.0"
