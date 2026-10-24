@@ -524,15 +524,16 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
   });
 
   // The container is only used to keep the split button styling (flex layout, shared
-  // rounded corners and margins). It is deliberately not focusable and has no click
-  // handling so the two buttons inside it remain independent controls.
+  // rounded corners and margins). It is not focusable and has no click handling; the two
+  // buttons inside it are the real controls and own their labels and data-mce-name. The
+  // container is a labelled group so its aria-label is valid.
   return {
     dom: {
       tag: 'div',
       classes: [ ToolbarButtonClasses.SplitButton ],
       attributes: {
-        ...getTooltipAttributes(spec.tooltip, sharedBackstage.providers),
-        ...(Type.isNonNullable(btnName) ? { 'data-mce-name': btnName } : {})
+        role: 'group',
+        ...getTooltipAttributes(spec.tooltip, sharedBackstage.providers)
       }
     },
     components: [ mainButtonWithClass, chevron ]

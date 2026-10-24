@@ -155,11 +155,11 @@ describe('browser.hugerte.themes.silver.editor.color.TextColorFormattingTest', (
     const editor = hook.editor();
     editor.setContent(`Hello${Unicode.nbsp}world`);
     TinySelections.setSelection(editor, [ 0, 0 ], 2, [ 0, 0 ], 2);
-    TinyUiActions.clickOnToolbar(editor, '[data-mce-name="forecolor"] > .tox-tbtn + .tox-split-button__chevron');
+    TinyUiActions.clickOnToolbar(editor, 'button[data-mce-name="forecolor-chevron"]');
     await TinyUiActions.pWaitForUi(editor, '.tox-swatches');
     TinyUiActions.clickOnUi(editor, 'div[data-mce-color="#3598DB"]');
     TinyAssertions.assertContentStructure(editor, forecolorTextStruct);
-    TinyUiActions.clickOnToolbar(editor, '[data-mce-name="forecolor"] > .tox-tbtn + .tox-split-button__chevron');
+    TinyUiActions.clickOnToolbar(editor, 'button[data-mce-name="forecolor-chevron"]');
     await TinyUiActions.pWaitForUi(editor, '.tox-swatches');
     TinyUiActions.clickOnUi(editor, 'div[data-mce-name="Remove color"]');
     TinyAssertions.assertContent(editor, '<p>Hello&nbsp;world</p>');

@@ -49,4 +49,17 @@ describe('browser.hugerte.themes.silver.editor.color.ColorSplitButtonAriaTest', 
     assert.equal(Attribute.get(getButton('button[data-mce-name="custom-split"]'), 'aria-pressed'), 'false', 'custom split should still expose a pressed state');
     assert.isFalse(Attribute.has(getButton('button[data-mce-name="custom-split-chevron"]'), 'aria-pressed'), 'custom split chevron should not be pressed');
   });
+
+  it('TINY-10453: The split button container is a labelled group and names are not duplicated', () => {
+    hook.editor();
+
+    const primary = getButton('button[data-mce-name="forecolor"]').dom;
+    const container = primary.closest('.tox-split-button');
+    assert.isNotNull(container, 'forecolor split container should exist');
+    const containerEl = SugarElement.fromDom(container as HTMLElement);
+    assert.equal(Attribute.get(containerEl, 'role'), 'group', 'container should be a group');
+    assert.isFalse(Attribute.has(containerEl, 'data-mce-name'), 'container should not have data-mce-name');
+    assert.equal(SugarBody.body().dom.querySelectorAll('[data-mce-name="forecolor"]').length, 1, 'only the primary button should carry the name');
+    assert.equal(SugarBody.body().dom.querySelectorAll('[data-mce-name="forecolor-chevron"]').length, 1, 'the chevron should have a unique name');
+  });
 });
