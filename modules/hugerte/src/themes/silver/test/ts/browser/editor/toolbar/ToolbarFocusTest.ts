@@ -10,7 +10,7 @@ describe('browser.hugerte.themes.silver.editor.toolbar.ToolbarFocusTest', () => 
 
   const pTestFocus = async (options: RawEditorOptions) => {
     const editor = await McEditor.pFromSettings<Editor>({
-      toolbar: 'undo redo | bold italic',
+      toolbar: 'bold italic | undo redo',
       menubar: false,
       statusbar: false,
       ...options,
@@ -43,7 +43,7 @@ describe('browser.hugerte.themes.silver.editor.toolbar.ToolbarFocusTest', () => 
     );
 
     it('TINY-6230: Multiple toolbars', () =>
-      pTestFocus({ toolbar: [ 'undo redo', 'bold italic' ] })
+      pTestFocus({ toolbar: [ 'bold italic', 'undo redo' ] })
     );
   });
 });

@@ -47,27 +47,43 @@ describe('browser.hugerte.plugins.advlist.AdvlistOptionsAndToolbarTest', () => {
     const toolbarGroup = UiFinder.findIn(SugarBody.body(), '.tox-editor-header .tox-toolbar .tox-toolbar__group').getOrDie();
     await Waiter.pTryUntil('Wait for toolbar', () => Assertions.assertStructure(
       'Check lists toolbar button structures',
-      ApproxStructure.build((s, str, arr) => s.element('div', {
-        classes: [ arr.has('tox-toolbar__group') ],
-        children: [
-          s.element(splitBtns.number ? 'div' : 'button', {
-            classes: splitBtns.number ?
-              [ arr.not('tox-tbtn'), arr.has('tox-split-button') ] :
-              [ arr.has('tox-tbtn'), arr.not('tox-split-button') ],
+      ApproxStructure.build((s, str, arr) => {
+        const listButton = (name: string, isSplit: boolean) => isSplit
+          ? s.element('div', {
+            classes: [ arr.not('tox-tbtn'), arr.has('tox-split-button') ],
             attrs: {
-              'data-mce-name': str.is('numlist'),
-            }
-          }),
-          s.element(splitBtns.bullet ? 'div' : 'button', {
-            classes: splitBtns.bullet ?
-              [ arr.not('tox-tbtn'), arr.has('tox-split-button') ] :
-              [ arr.has('tox-tbtn'), arr.not('tox-split-button') ],
-            attrs: {
-              'data-mce-name': str.is('bullist'),
-            }
+              role: str.is('group')
+            },
+            children: [
+              s.element('button', {
+                classes: [ arr.has('tox-tbtn'), arr.has('tox-split-button__main') ],
+                attrs: {
+                  'data-mce-name': str.is(name)
+                }
+              }),
+              s.element('button', {
+                classes: [ arr.has('tox-tbtn'), arr.has('tox-split-button__chevron') ],
+                attrs: {
+                  'data-mce-name': str.is(`${name}-chevron`)
+                }
+              })
+            ]
           })
-        ]
-      })),
+          : s.element('button', {
+            classes: [ arr.has('tox-tbtn'), arr.not('tox-split-button') ],
+            attrs: {
+              'data-mce-name': str.is(name)
+            }
+          });
+
+        return s.element('div', {
+          classes: [ arr.has('tox-toolbar__group') ],
+          children: [
+            listButton('numlist', splitBtns.number),
+            listButton('bullist', splitBtns.bullet)
+          ]
+        });
+      }),
       toolbarGroup
     ));
   };
