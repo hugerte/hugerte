@@ -11,7 +11,7 @@
     "test": "echo 'No tests'",
     "build": "gulp build",
     "start": "gulp watch",
-    "prepublishOnly": "yarn ci",
+    "prepublishOnly": "pnpm run ci",
     "ci": "gulp build --no-color"
   },
   "keywords": [

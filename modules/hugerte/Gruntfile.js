@@ -507,14 +507,15 @@ module.exports = function (grunt) {
               'modules/hugerte/tools',
               'bin',
               'patches',
-              '.yarnrc',
+              '.npmrc',
               'LICENSE.TXT',
               'README.md',
               'lerna.json',
               'package.json',
+              'pnpm-workspace.yaml',
               'tsconfig*.json',
               '.eslint*.json',
-              'yarn.lock'
+              'pnpm-lock.yaml'
             ]
           },
           {
@@ -963,7 +964,7 @@ module.exports = function (grunt) {
     'emoji',
     'html-i18n',
     // TODO: Make webpack use the oxide CSS directly
-    // as well as making development easier, then we can update 'yarn dev' to run 'oxide-build' in parallel with 'hugerte-grunt dev'
+    // as well as making development easier, then we can update 'pnpm run dev' to run 'oxide-build' in parallel with 'hugerte-grunt dev'
     // that will save 2-3 seconds on incremental builds
     'copy:ui-skins',
     'copy:content-skins',
