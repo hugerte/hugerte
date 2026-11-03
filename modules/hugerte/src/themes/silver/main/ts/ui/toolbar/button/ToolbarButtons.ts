@@ -144,7 +144,8 @@ const renderCommonStructure = (
         'alloy.base.behaviour',
         commonButtonDisplayEvent
       ],
-      [SystemEvents.attachedToDom()]: [ commonButtonDisplayEvent, 'toolbar-group-button-events' ]
+      [SystemEvents.attachedToDom()]: [ commonButtonDisplayEvent, 'toolbar-group-button-events' ],
+      [SystemEvents.detachedFromDom()]: [ 'toolbar-group-button-events', 'tooltipping' ]
     },
 
     buttonBehaviours: Behaviour.derive(
@@ -188,7 +189,19 @@ const renderFloatingToolbarButton = (spec: Toolbar.GroupToolbarButton, backstage
     AddEventsBehaviour.config('toolbar-group-button-events', [
       onControlAttached(specialisation, editorOffCell),
       onControlDetached(specialisation, editorOffCell)
-    ])
+    ]),
+    ...(spec.tooltip.map((tooltip) => Tooltipping.config(
+      sharedBackstage.providers.tooltips.getConfig({
+        tooltipText: sharedBackstage.providers.translate(tooltip),
+        onShow: (comp) => {
+          if (tooltipDirty.get()) {
+            Tooltipping.setComponents(comp,
+              sharedBackstage.providers.tooltips.getComponents({ tooltipText: sharedBackstage.providers.translate(tooltipString.get()) })
+            );
+          }
+        }
+      })
+    )).toArray())
   ];
 
   return FloatingToolbarButton.sketch({
