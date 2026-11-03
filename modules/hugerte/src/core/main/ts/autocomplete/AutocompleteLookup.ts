@@ -5,6 +5,7 @@ import * as TextDescent from '../alien/TextDescent';
 import * as TextSearch from '../alien/TextSearch';
 import DOMUtils from '../api/dom/DOMUtils';
 import Editor from '../api/Editor';
+import * as Zwsp from '../text/Zwsp';
 import { AutocompleteContext, getContext } from './AutocompleteContext';
 import { AutocompleterDatabase } from './Autocompleters';
 import { AutocompleteLookupData } from './AutocompleteTypes';
@@ -18,7 +19,15 @@ export interface AutocompleteLookupInfo {
 const isPreviousCharContent = (dom: DOMUtils, leaf: Spot.SpotPoint<Node>) => {
   // If at the start of the range, then we need to look backwards one more place. Otherwise we just need to look at the current text
   const root = dom.getParent(leaf.container, dom.isBlock) ?? dom.getRoot();
-  return TextSearch.repeatLeft(dom, leaf.container, leaf.offset, (_element, offset) => offset === 0 ? -1 : offset, root).filter((spot) => {
+  // Zero width characters (e.g. of the caret container left by toggling a format without a selection) are no content
+  const skipZwsp = (element: Text, offset: number) => {
+    let start = offset;
+    while (start > 0 && Zwsp.isZwsp(element.data.charAt(start - 1))) {
+      start--;
+    }
+    return start === 0 ? -1 : start;
+  };
+  return TextSearch.repeatLeft(dom, leaf.container, leaf.offset, skipZwsp, root).filter((spot) => {
     const char = spot.container.data.charAt(spot.offset - 1);
     return !isWhitespace(char);
   }).isSome();
