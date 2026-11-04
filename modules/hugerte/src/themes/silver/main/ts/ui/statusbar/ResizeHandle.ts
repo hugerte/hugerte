@@ -41,6 +41,9 @@ export const renderResizeHandler = (editor: Editor, providersBackstage: UiFactor
     tag: 'div',
     classes: [ 'tox-statusbar__resize-handle' ],
     attributes: {
+      // Scope application semantics to this custom arrow-key control. A button would
+      // imply activation, while a separator cannot describe resizing on both axes.
+      role: 'application',
       'aria-label': providersBackstage.translate(resizeLabel),
       'data-mce-name': 'resize-handle'
     },
