@@ -120,7 +120,9 @@ describe('browser.hugerte.plugins.autoresize.AutoresizePluginTest', () => {
       editor.setContent('<div style="min-height: 35px;"><img src="#" /></div><div style="height: 5500px;"></div>');
       await Waiter.pTryUntil('wait for editor content height', () => assertEditorContentApproxHeight(editor, 5585), 10, 3000);
       const image = editor.dom.select('img')[0];
-      editor.dom.setAttrib(image, 'src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAtUlEQVR4nO3QQQkAIADAQFtbwQq2tYIfGcLBAowbc21dNvKDj4IFC1YeLFiw8mDBgpUHCxasPFiwYOXBggUrDxYsWHmwYMHKgwULVh4sWLDyYMGClQcLFqw8WLBg5cGCBSsPFixYebBgwcqDBQtWHixYsPJgwYKVBwsWrDxYsGDlwYIFKw8WLFh5sGDByoMFC1YeLFiw8mDBgpUHCxasPFiwYOXBggUrDxYsWHmwYMHKgwXrTQd0LEUjcQBC0QAAAABJRU5ErkJggg==');
+      editor.dom.setAttrib(image, 'src', 'data:image/png;base64,' +
+        'iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAtUlEQVR4nO3QQQkAIADAQFtbwQq2tYIfGcLBAowbc21dNvKDj4IFC1YeLFiw8mDBgpUHCxasPFiwYOXBggUrDxYsWHmwYMHKgwULVh4sWLDyYMGClQcLFqw8WLBg5cGCBSsPFixYebBgwcqDBQtWHixYsPJgwYKVBwsWrDxYsGDlwYIFKw8WLFh5sGDByoMFC1Ye' +
+        'LFiw8mDBgpUHCxasPFiwYOXBggUrDxYsWHmwYMHKgwXrTQd0LEUjcQBC0QAAAABJRU5ErkJggg==');
       // Content height + div image height (100px img + 6px line box) + bottom margin = 5656
       await Waiter.pTryUntil('wait for editor content height', () => assertEditorContentApproxHeight(editor, 5656), 10, 3000);
       await Waiter.pTryUntil('wait for editor height', () => assertEditorHeightAbove(editor, 5656), 10, 3000);

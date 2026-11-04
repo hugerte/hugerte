@@ -49,11 +49,11 @@ const createComponent = (component: AlloyComponent, blockerClass: string, blocke
       dom: {
         // Probably consider doing with classes?
         styles: {
-          'left': '0px',
-          'top': '0px',
-          'width': '100%',
-          'height': '100%',
-          'position': 'fixed',
+          left: '0px',
+          top: '0px',
+          width: '100%',
+          height: '100%',
+          position: 'fixed',
           'z-index': '1000000000000000'
         },
         classes: [ blockerClass ]

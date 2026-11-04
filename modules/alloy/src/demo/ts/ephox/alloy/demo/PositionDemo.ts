@@ -132,11 +132,11 @@ export default (): void => {
               contenteditable: 'true'
             },
             styles: {
-              'border': '1px solid green',
-              'width': '300px',
-              'height': '200px',
+              border: '1px solid green',
+              width: '300px',
+              height: '200px',
               'overflow-y': 'scroll',
-              'display': 'inline-block'
+              display: 'inline-block'
             },
             innerHtml: DemoContent.generate(20)
           },

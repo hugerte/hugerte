@@ -111,7 +111,7 @@ UnitTest.asynctest('TabSection Test', (success, failure) => {
           s.element('div', {
             attrs: {
               'data-alloy-tabstop': str.is('true'),
-              'role': str.is('tablist')
+              role: str.is('tablist')
             },
             children: [
               s.element('button', {

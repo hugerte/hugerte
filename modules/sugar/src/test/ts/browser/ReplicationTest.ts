@@ -46,7 +46,7 @@ UnitTest.test('ReplicationTest', () => {
   const exp = {
     name: 'span',
     attrs: {
-      'href': 'http://www.google.com',
+      href: 'http://www.google.com',
       'data-color': 'red'
     },
     styles: {

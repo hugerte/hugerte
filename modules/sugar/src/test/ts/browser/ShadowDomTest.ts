@@ -145,7 +145,7 @@ const checkOriginalEventTarget = (mode: 'open' | 'closed', success: UnitTest.Suc
 
   const input = (desc: string, parent: SugarElement<Element>) => {
     const i = SugarElement.fromTag('input');
-    Attribute.setAll(i, { 'type': 'text', 'data-description': desc });
+    Attribute.setAll(i, { type: 'text', 'data-description': desc });
     Insert.append(parent, i);
     return i;
   };

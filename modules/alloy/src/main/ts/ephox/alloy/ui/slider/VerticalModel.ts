@@ -131,13 +131,13 @@ const onDown = handleMovement(1);
 // Edge Click Actions
 const edgeActions = {
   'top-left': Optional.none(),
-  'top': Optional.some(EdgeActions.setToTEdge),
+  top: Optional.some(EdgeActions.setToTEdge),
   'top-right': Optional.none(),
-  'right': Optional.none(),
+  right: Optional.none(),
   'bottom-right': Optional.none(),
-  'bottom': Optional.some(EdgeActions.setToBEdge),
+  bottom: Optional.some(EdgeActions.setToBEdge),
   'bottom-left': Optional.none(),
-  'left': Optional.none()
+  left: Optional.none()
 };
 
 export {

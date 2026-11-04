@@ -131,7 +131,7 @@ UnitTest.asynctest('Dropdown List', (success, failure) => {
           attrs: {
             'aria-expanded': str.is('false'),
             'aria-haspopup': str.is('true'),
-            'type': str.is('button')
+            type: str.is('button')
           }
         })),
         component.element

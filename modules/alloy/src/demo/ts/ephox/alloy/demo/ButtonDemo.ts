@@ -61,8 +61,8 @@ export default (): void => {
         styles: {
           'background-color': 'black',
           'background-image': 'url(http://yamaha/textbox/icons/Transforms13.png)',
-          'width': '20px',
-          'height': '20px'
+          width: '20px',
+          height: '20px'
         }
       },
       action: () => {

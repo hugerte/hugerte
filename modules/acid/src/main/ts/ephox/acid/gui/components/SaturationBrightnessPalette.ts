@@ -111,7 +111,7 @@ const paletteFactory = (translate: (key: Untranslated) => string, getClass: (key
       dom: {
         tag: 'div',
         attributes: {
-          'role': 'slider',
+          role: 'slider',
           'aria-valuetext': translate([ 'Saturation {0}%, Brightness {1}%', 0, 0 ])
         },
         classes: [ getClass('sv-palette') ]

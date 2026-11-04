@@ -75,7 +75,7 @@ UnitTest.test('CssTest', () => {
 
     // getAllRaw
     const bulkStyles = {
-      'display': 'inline-block',
+      display: 'inline-block',
       'font-size': '12px',
       'background-color': 'rgb(12, 213, 12)'
     };
@@ -109,8 +109,8 @@ UnitTest.test('CssTest', () => {
     }
 
     Css.setAll(play, {
-      'left': '0px',
-      'right': '0px',
+      left: '0px',
+      right: '0px',
       'font-size': '12px'
     });
     Assert.eq('getRaw', true, Css.getRaw(play, 'font-size').isSome());
@@ -121,10 +121,10 @@ UnitTest.test('CssTest', () => {
     Assert.eq('Font size should have been preserved', true, Css.getRaw(play, 'font-size').isSome());
 
     Css.setOptions(play, {
-      'left': Optional.none(),
-      'right': Optional.none(),
-      'top': Optional.some('0px'),
-      'bottom': Optional.some('0px'),
+      left: Optional.none(),
+      right: Optional.none(),
+      top: Optional.some('0px'),
+      bottom: Optional.some('0px'),
       'font-size': Optional.none(),
       'font-family': Optional.some('Arial')
     });

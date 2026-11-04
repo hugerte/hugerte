@@ -1,8 +1,8 @@
+import { Clipboard as AgarClipboard, Waiter } from '@ephox/agar';
 import { afterEach, before, beforeEach, context, describe, it } from '@ephox/bedrock-client';
 import { Singleton } from '@ephox/katamari';
 import { PlatformDetection } from '@ephox/sand';
 import { TinyAssertions, TinyDom, TinyHooks, TinySelections } from '@ephox/wrap-mcagar';
-import { Clipboard as AgarClipboard, Waiter } from '@ephox/agar';
 import { assert } from 'chai';
 
 import Editor from 'hugerte/core/api/Editor';
@@ -363,7 +363,7 @@ describe('browser.hugerte.core.paste.PasteTest', () => {
         dataTransfer.setData('text/plain', 'http://example.com?foo=bar&notes');
       });
 
-      await Waiter.pTryUntilPredicate(`Wait for content to be pasted`, () => editor.getContent().includes("example.com"));
+      await Waiter.pTryUntilPredicate(`Wait for content to be pasted`, () => editor.getContent().includes('example.com'));
 
       TinyAssertions.assertContent(editor, '<p>http://example.com?foo=bar&amp;notes</p>');
     });

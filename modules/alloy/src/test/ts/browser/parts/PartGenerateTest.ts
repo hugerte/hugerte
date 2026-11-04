@@ -48,7 +48,7 @@ UnitTest.test('Atomic Test: parts.GenerateTest', () => {
         Assert.eq('Checking config', data, output.config);
         Assert.eq('Checking validated', {
           'test-data': data['test-data'],
-          'state': 'state'
+          state: 'state'
         }, output.validated);
       });
 

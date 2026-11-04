@@ -18,10 +18,10 @@ UnitTest.asynctest('HighlightingTest', (success, failure) => {
       dom: {
         tag: 'span',
         styles: {
-          'display': 'inline-block',
-          'width': '100px',
-          'height': '30px',
-          'border': '1px solid red',
+          display: 'inline-block',
+          width: '100px',
+          height: '30px',
+          border: '1px solid red',
           'text-align': 'center',
           'vertical-align': 'middle'
         },
@@ -111,7 +111,7 @@ UnitTest.asynctest('HighlightingTest', (success, failure) => {
       try {
         Highlighting.highlightAt(component, index);
         return Result.error('Expected to get an error because there should be no item with index ' + index);
-      } catch (e) { /* */ }
+      } catch (_e) { /* */ }
       return Result.value(v);
     });
 

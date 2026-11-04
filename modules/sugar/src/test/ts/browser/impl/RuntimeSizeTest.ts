@@ -85,8 +85,8 @@ UnitTest.test('Runtime Size Test', () => {
       'border-left': randomBorder(0, 5, 'red'),
       'border-bottom': randomBorder(0, 5, 'red'),
       'border-right': randomBorder(0, 5, 'red'),
-      'height': randomSize(100, 1000),
-      'width': randomSize(100, 1000)
+      height: randomSize(100, 1000),
+      width: randomSize(100, 1000)
     });
 
     const rowElms = Arr.range(rows, () => {
@@ -96,8 +96,8 @@ UnitTest.test('Runtime Size Test', () => {
         const cell = SugarElement.fromTag('td');
 
         Css.setAll(cell, {
-          'width': randomSize(1, 100),
-          'height': randomSize(1, 100),
+          width: randomSize(1, 100),
+          height: randomSize(1, 100),
           'box-sizing': randomValue([ 'content-box', 'border-box' ]),
           'padding-top': randomSize(0, 5),
           'padding-left': randomSize(0, 5),

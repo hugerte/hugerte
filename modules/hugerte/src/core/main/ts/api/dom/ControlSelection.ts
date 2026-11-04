@@ -459,6 +459,7 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
     Obj.each(resizeHandles, (handle) => {
       if (handle.elm) {
         dom.unbind(handle.elm);
+        // eslint-disable-next-line @typescript-eslint/no-array-delete -- elm is expando metadata, not a tuple index.
         delete handle.elm;
       }
     });

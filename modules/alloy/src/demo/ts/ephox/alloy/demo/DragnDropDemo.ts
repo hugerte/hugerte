@@ -22,10 +22,10 @@ export default (): void => {
       tag: 'div',
       innerHtml: `Drop zone that accepts <b>${dropEffect}</b> also accepts files`,
       styles: {
-        'margin': '10px 10px 20px 10px',
-        'padding': '20px',
-        'height': '40px',
-        'border': '3px dashed black',
+        margin: '10px 10px 20px 10px',
+        padding: '20px',
+        height: '40px',
+        border: '3px dashed black',
         'text-align': 'center'
       }
     },
