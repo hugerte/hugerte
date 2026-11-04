@@ -13,19 +13,25 @@ on:
         type: boolean
         default: false
 
+# Superseded commits on the same PR do not need to finish expensive builds/tests.
+# Keep label/manual events separate so they cannot cancel a commit's validation.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.action }}-${{ github.event.label.name }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-lint:
     name: Build & Lint
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    # On label events only run when the change is relevant (adding/removing the
-    # run-headless label), otherwise skip to avoid burning a build on e.g. a
-    # dependabot label.
+    # Only adding run-headless should trigger a label-driven build. Checking the
+    # event label avoids rerunning tests when an unrelated label is added later.
     if: >
       github.event_name != 'pull_request' ||
       github.event.action != 'labeled' ||
-      contains(github.event.pull_request.labels.*.name, 'run-headless')
+      github.event.label.name == 'run-headless'
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -38,7 +44,7 @@ jobs:
           cache: "yarn"
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build (TypeScript + oxide + hugerte JS)
         run: yarn ci
@@ -71,7 +77,7 @@ jobs:
           cache: "yarn"
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn ci
@@ -80,7 +86,8 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: Run headless tests (libraries)
-        run: yarn headless-test
+        # CI validates the entire library suite, not Lerna's changed-package set.
+        run: yarn headless-test --ignore-lerna-changed
 
       - name: Run HugeRTE tests (core, plugins, themes)
         run: yarn hugerte-grunt bedrock-auto:standard
