@@ -82,6 +82,18 @@ describe('browser.hugerte.core.EditorRemoveTest', () => {
     McEditor.remove(editor);
   });
 
+  it('remove editor with unsaved changes and a floating toolbar after its iframe has been detached', async () => {
+    // The floating and sliding toolbars read the iframe window's width on ResizeContent, which a node change can dispatch
+    const editor = await McEditor.pFromHtml<Editor>('<textarea></textarea>', { ...settings, toolbar_mode: 'floating' });
+    editor.getBody().innerHTML = '<p>changed</p>';
+    const container = editor.getContainer();
+    container.parentNode?.removeChild(container);
+    editor.remove();
+    assert.isTrue(editor.removed, 'editor should be removed');
+    assert.equal((editor.getElement() as HTMLTextAreaElement).value, '<p>changed</p>', 'content should be saved');
+    McEditor.remove(editor);
+  });
+
   it('init editor with no display style', async () => {
     const editor = await McEditor.pFromHtml<Editor>('<textarea id="hugerte"></textarea>', settings);
     testRemoveStyles(editor, '');
