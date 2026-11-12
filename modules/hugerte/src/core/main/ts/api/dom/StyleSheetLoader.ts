@@ -163,6 +163,10 @@ const StyleSheetLoader = (documentOrShadowRoot: Document | ShadowRoot, settings:
     loadedStates[key] = state;
     state.count++;
 
+    if (state.count > 1) {
+      return;
+    }
+
     // Start loading
     const styleElem = SugarElement.fromTag('style', doc.dom);
     Attribute.setAll(styleElem, {
