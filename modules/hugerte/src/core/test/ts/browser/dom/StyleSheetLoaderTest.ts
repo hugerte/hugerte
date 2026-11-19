@@ -8,6 +8,8 @@ import StyleSheetLoader from 'hugerte/core/api/dom/StyleSheetLoader';
 describe('browser.hugerte.core.dom.StyleSheetLoaderTest', () => {
   const contentCss = '/project/hugerte/js/hugerte/skins/content/default/content.css';
   const skinCss = '/project/hugerte/js/hugerte/skins/ui/oxide/skin.css';
+  const rawCssKey = 'ui/default/skin.css';
+  const rawCss = '.raw-css-test { color: red; }';
   let loader: StyleSheetLoader;
 
   const baseLinkExists = (url: string, head: SugarElement<HTMLHeadElement>) => {
@@ -21,6 +23,13 @@ describe('browser.hugerte.core.dom.StyleSheetLoaderTest', () => {
 
   const linkNotExists = (url: string) => UiFinder.notExists(SugarHead.head(), `link[href="${url}"]`);
 
+  const getStyles = (css: string) =>
+    SelectorFilter.descendants<HTMLStyleElement>(SugarHead.head(), 'style').filter((style) => style.dom.innerHTML === css);
+
+  const styleExists = (css: string) => assert.lengthOf(getStyles(css), 1, 'Should have one style loaded');
+
+  const styleNotExists = (css: string) => assert.lengthOf(getStyles(css), 0, 'Should have no style loaded');
+
   const pLoadUrl = (url: string): Promise<void> =>
     loader.load(url);
 
@@ -30,6 +39,10 @@ describe('browser.hugerte.core.dom.StyleSheetLoaderTest', () => {
   const unloadUrl = (url: string) => loader.unload(url);
 
   const unloadAllUrls = (urls: string[]) => loader.unloadAll(urls);
+
+  const loadRawCss = (key: string, css: string) => loader.loadRawCss(key, css);
+
+  const unloadRawCss = (key: string) => loader.unloadRawCss(key);
 
   before(() => {
     loader = StyleSheetLoader(document, {
@@ -66,5 +79,18 @@ describe('browser.hugerte.core.dom.StyleSheetLoaderTest', () => {
     // Unload a second time should remove since the stylesheet was loaded twice
     unloadUrl(contentCss);
     linkNotExists(contentCss);
+  });
+
+  it('Unload removes loaded raw css, but only on last reference', () => {
+    // Load 2 styles and ensure only one style is loaded
+    loadRawCss(rawCssKey, rawCss);
+    loadRawCss(rawCssKey, rawCss);
+    styleExists(rawCss);
+    // Unload once shouldn't remove the style
+    unloadRawCss(rawCssKey);
+    styleExists(rawCss);
+    // Unload a second time should remove since the style was loaded twice
+    unloadRawCss(rawCssKey);
+    styleNotExists(rawCss);
   });
 });
