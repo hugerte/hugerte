@@ -5,6 +5,7 @@ import { assert } from 'chai';
 
 import CaretPosition from 'hugerte/core/caret/CaretPosition';
 import * as CaretUtils from 'hugerte/core/caret/CaretUtils';
+import { HDirection } from 'hugerte/core/caret/CaretWalker';
 import * as Zwsp from 'hugerte/core/text/Zwsp';
 
 import * as CaretAsserts from '../../module/test/CaretAsserts';
@@ -41,19 +42,19 @@ describe('browser.hugerte.core.CaretUtilTest', () => {
   const findElm = (selector: string) => getRoot().querySelector(selector);
 
   it('isForwards', () => {
-    assert.isTrue(CaretUtils.isForwards(1));
-    assert.isTrue(CaretUtils.isForwards(10));
-    assert.isFalse(CaretUtils.isForwards(0));
-    assert.isFalse(CaretUtils.isForwards(-1));
-    assert.isFalse(CaretUtils.isForwards(-10));
+    assert.isTrue(CaretUtils.isForwards(1 as HDirection));
+    assert.isTrue(CaretUtils.isForwards(10 as HDirection));
+    assert.isFalse(CaretUtils.isForwards(0 as HDirection));
+    assert.isFalse(CaretUtils.isForwards(-1 as HDirection));
+    assert.isFalse(CaretUtils.isForwards(-10 as HDirection));
   });
 
   it('isBackwards', () => {
-    assert.isFalse(CaretUtils.isBackwards(1));
-    assert.isFalse(CaretUtils.isBackwards(10));
-    assert.isFalse(CaretUtils.isBackwards(0));
-    assert.isTrue(CaretUtils.isBackwards(-1));
-    assert.isTrue(CaretUtils.isBackwards(-10));
+    assert.isFalse(CaretUtils.isBackwards(1 as HDirection));
+    assert.isFalse(CaretUtils.isBackwards(10 as HDirection));
+    assert.isFalse(CaretUtils.isBackwards(0 as HDirection));
+    assert.isTrue(CaretUtils.isBackwards(-1 as HDirection));
+    assert.isTrue(CaretUtils.isBackwards(-10 as HDirection));
   });
 
   it('findNode', () => {
