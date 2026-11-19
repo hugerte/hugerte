@@ -63,6 +63,8 @@ const makeDndEvent = (type: DragEventType, target: Element, dataTransfer: DataTr
     detail: 0,
     view: null,
     which: 0,
+    layerX: 0,
+    layerY: 0,
     initUIEvent: fail,
     initMouseEvent: fail,
     getModifierState: fail,
