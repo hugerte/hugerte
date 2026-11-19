@@ -1,5 +1,5 @@
 import {
-  AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, Button as AlloyButton, Disabling, Dropdown as AlloyDropdown, FloatingToolbarButton,
+  AddEventsBehaviour, AlloyComponent, AlloyEvents, AlloySpec, AlloyTriggers, Behaviour, Button as AlloyButton, Disabling, Dropdown as AlloyDropdown, FloatingToolbarButton, Focusing,
   GuiFactory, Highlighting,
   Keying, Memento, NativeEvents, Replacing, SketchSpec, SystemEvents, TieredData, TieredMenuTypes, Toggling,
   Tooltipping,
@@ -490,8 +490,13 @@ const renderSplitButton = (spec: Toolbar.ToolbarSplitButton, sharedBackstage: Ui
       // opened with the mouse, which the color buttons rely on when they detect the
       // current color.
       AddEventsBehaviour.config('split-chevron-events', [
-        AlloyEvents.run<EventArgs<MouseEvent>>(NativeEvents.mousedown(), (_comp, se) => {
+        AlloyEvents.run<EventArgs<MouseEvent>>(NativeEvents.mousedown(), (comp, se) => {
           se.event.prevent();
+          // The open menu holds the focus. Closing it via this click removes the focused item,
+          // so move the focus back to the chevron first, as it would otherwise fall back to the body.
+          if (AlloyDropdown.isOpen(comp)) {
+            Focusing.focus(comp);
+          }
         })
       ]),
       ...(spec.tooltip.map((tooltip) => Tooltipping.config(
