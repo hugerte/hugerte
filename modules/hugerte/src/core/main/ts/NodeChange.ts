@@ -97,7 +97,9 @@ class NodeChange {
     let node: Element | undefined;
 
     // Fix for bug #1896577 it seems that this can not be fired while the editor is loading
-    if (this.editor.initialized && selection && !Options.shouldDisableNodeChange(this.editor) && !this.editor.mode.isReadOnly()) {
+    // The document of a detached iframe has no window, e.g. when the editor is removed after its iframe was taken out of the page:
+    // there is nothing to refresh, and NodeChange handlers reading the window (like the floating toolbar's) would throw on Firefox
+    if (this.editor.initialized && selection && !Options.shouldDisableNodeChange(this.editor) && !this.editor.mode.isReadOnly() && this.editor.getDoc()?.defaultView) {
       // Get start node
       const root = this.editor.getBody();
       node = selection.getStart(true) || root;
