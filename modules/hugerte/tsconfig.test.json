@@ -1,0 +1,17 @@
+// Compiles the tests run by bedrock. The tsconfig.json used for the build can't be reused
+// as-is: bedrock generates its entry point in `scratch/compiled/`, outside the build's
+// `rootDir` of `src`. Since ts-loader 9.6 a generated entry point outside `rootDir` fails
+// the compilation with TS6059, so the tests get their own root of the project directory.
+// Nothing is emitted from here, so the build output is unaffected.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "incremental": true,
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "tsBuildInfoFile": "scratch/tsconfig.test.tsbuildinfo"
+  }
+}
