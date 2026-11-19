@@ -286,8 +286,8 @@ const ControlSelection = (selection: EditorSelection, editor: Editor): ControlSe
 
     // Get position and size of target
     const position = dom.getPos(targetElm, rootElement);
-    const selectedElmX = position.x;
-    const selectedElmY = position.y;
+    selectedElmX = position.x;
+    selectedElmY = position.y;
     const rect = targetElm.getBoundingClientRect(); // Fix for Gecko offsetHeight for table with caption
     const targetWidth = rect.width || (rect.right - rect.left);
     const targetHeight = rect.height || (rect.bottom - rect.top);
