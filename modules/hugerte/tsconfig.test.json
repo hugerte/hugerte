@@ -1,0 +1,28 @@
+// Compiles the tests run by bedrock. The tsconfig.json used for the build can't be reused
+// as-is: bedrock generates its entry point in `scratch/compiled/`, outside the build's
+// `rootDir` of `src`. Since ts-loader 9.6 a generated entry point outside `rootDir` fails
+// the compilation with TS6059, so the tests get their own root of the project directory.
+//
+// The build output is untouched: bedrock runs the checker with `build: true`, which overrides
+// `noEmit`/`declaration` here, and its filesystem shim writes only the `.tsbuildinfo` below to
+// disk, keeping emitted js/d.ts/maps in memory. `noEmit` matters only when running
+// `tsc -p tsconfig.test.json` by hand.
+//
+// `extends` does not inherit `references`, so unlike tsconfig.json this config has none: the
+// test run type-checks against whatever `modules/*/lib` is on disk rather than rebuilding the
+// sibling modules. Run `yarn tsc` first (CI does, via `yarn ci`), or sibling edits will be
+// checked against stale declarations.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "incremental": true,
+    // paired with declaration/declarationMap=false: composite implies both, and TS6304
+    // rejects disabling them on a composite project.
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "tsBuildInfoFile": "scratch/tsconfig.test.tsbuildinfo"
+  }
+}
