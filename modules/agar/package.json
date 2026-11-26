@@ -10,8 +10,8 @@
   "scripts": {
     "prepublishOnly": "tsc -b",
     "build": "tsc",
-    "test": "bedrock-auto -b chrome-headless -d src/test/ts",
-    "test-manual": "bedrock --testdirs src/test/ts/browser src/test/ts/atomic",
+    "test": "bedrock-auto -c tsconfig.test.json -b chrome-headless -d src/test/ts",
+    "test-manual": "bedrock -c tsconfig.test.json --testdirs src/test/ts/browser src/test/ts/atomic",
     "lint": "eslint --config ../../.eslintrc.json src/**/*.ts"
   },
   "keywords": [
