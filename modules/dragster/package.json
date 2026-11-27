@@ -24,8 +24,8 @@
     "@ephox/sugar": "^9.3.1"
   },
   "scripts": {
-    "test": "bedrock-auto -b chrome-headless -d src/test",
-    "test-manual": "bedrock -d src/test",
+    "test": "bedrock-auto -c tsconfig.test.json -b chrome-headless -d src/test",
+    "test-manual": "bedrock -c tsconfig.test.json -d src/test",
     "lint": "eslint --config ../../.eslintrc.json src/**/*.ts",
     "prepublishOnly": "tsc -b",
     "build": "tsc"

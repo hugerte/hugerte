@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "incremental": true,
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "tsBuildInfoFile": "scratch/tsconfig.test.tsbuildinfo"
+  }
+}
