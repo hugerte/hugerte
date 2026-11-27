@@ -44,7 +44,7 @@ jobs:
         run: yarn ci
 
       - name: Lint
-        run: yarn hugerte-grunt eslint
+        run: yarn eslint
 
   headless-tests:
     name: Headless Tests

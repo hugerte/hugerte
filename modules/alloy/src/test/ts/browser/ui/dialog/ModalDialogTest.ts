@@ -53,8 +53,8 @@ describe('browser.alloy.ui.dialog.ModalDialogTest', () => {
         classes: [ 'test-dialog-close' ],
         innerHtml: 'X',
         attributes: {
-          'type': 'button',
-          'title': 'Close',
+          type: 'button',
+          title: 'Close',
           'aria-label': 'Close'
         }
       },
@@ -152,7 +152,7 @@ describe('browser.alloy.ui.dialog.ModalDialogTest', () => {
               tag: 'div',
               styles: {
                 'z-index': '1000000000',
-                'background': 'rgba(0, 0, 100, 0.5)'
+                background: 'rgba(0, 0, 100, 0.5)'
               },
               classes: [ 'test-dialog-blocker' ]
             }
@@ -225,7 +225,7 @@ describe('browser.alloy.ui.dialog.ModalDialogTest', () => {
     checkDialogStructure('After showing', ApproxStructure.build((s, str, arr) => s.element('div', {
       attrs: {
         'aria-modal': str.is('true'),
-        'role': str.is('dialog')
+        role: str.is('dialog')
       },
       classes: [ arr.has('test-dialog') ],
       children: [
@@ -329,7 +329,7 @@ describe('browser.alloy.ui.dialog.ModalDialogTest', () => {
     checkDialogStructure('Checking initial structure after showing (not busy)', ApproxStructure.build((s, str, arr) => s.element('div', {
       attrs: {
         'aria-modal': str.is('true'),
-        'role': str.is('dialog')
+        role: str.is('dialog')
       },
       classes: [ arr.has('test-dialog') ],
       children: [

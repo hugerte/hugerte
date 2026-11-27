@@ -51,10 +51,10 @@ export default (): void => {
           dom: {
             tag: 'div',
             styles: {
-              'height': '30px',
-              'width': '10px',
-              'top': '0px',
-              'background': 'black',
+              height: '30px',
+              width: '10px',
+              top: '0px',
+              background: 'black',
               'padding-top': '-5px'
             }
           }
@@ -108,11 +108,11 @@ export default (): void => {
             tag: 'div',
             styles: {
               'border-radius': '20px',
-              'width': '25px',
-              'height': '25px',
-              'border': '1px solid green',
-              'background': 'transparent',
-              'display': 'flex', 'align-items': 'center', 'justify-content': 'center'
+              width: '25px',
+              height: '25px',
+              border: '1px solid green',
+              background: 'transparent',
+              display: 'flex', 'align-items': 'center', 'justify-content': 'center'
             }
           },
           behaviours: Behaviour.derive([
@@ -213,13 +213,13 @@ export default (): void => {
             tag: 'div',
             classes: [ 'demo-sliding-thumb' ],
             styles: {
-              'height': '30px',
-              'width': '10px',
-              'top': '0px',
-              'background': 'black',
+              height: '30px',
+              width: '10px',
+              top: '0px',
+              background: 'black',
               'padding-top': '-5px',
-              'border': '1px solid black',
-              'outline': '1px solid white'
+              border: '1px solid black',
+              outline: '1px solid white'
             }
           }
         })

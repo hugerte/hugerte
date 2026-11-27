@@ -97,7 +97,7 @@ const renderItem = (spec: TestItem): ItemSpec => {
             'data-value': spec.data.value,
             'data-test-id': 'item-' + spec.data.value,
             'aria-disabled': spec.data.meta.disabled === true ? true : false,
-            'id': spec.data.value
+            id: spec.data.value
           },
           classes: [ ],
           innerHtml: spec.data.meta.text

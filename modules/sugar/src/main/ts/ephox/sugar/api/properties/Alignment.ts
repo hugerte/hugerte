@@ -11,10 +11,10 @@ const normal = (value: Alignment) => (_element: SugarElement<Element>): Alignmen
   value;
 
 const lookups: Record<string, (element: SugarElement<Element>) => string> = {
-  'start': Direction.onDirection<Alignment>('left', 'right'),
-  'end': Direction.onDirection<Alignment>('right', 'left'),
-  'justify': normal('justify'),
-  'center': normal('center'),
+  start: Direction.onDirection<Alignment>('left', 'right'),
+  end: Direction.onDirection<Alignment>('right', 'left'),
+  justify: normal('justify'),
+  center: normal('center'),
   'match-parent': normal('match-parent')
 };
 

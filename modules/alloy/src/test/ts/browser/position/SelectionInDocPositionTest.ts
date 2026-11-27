@@ -32,9 +32,9 @@ UnitTest.asynctest('SelectionInDocPositionTest', (success, failure) => {
 
     Css.setAll(inlineEditor.element, {
       'margin-top': '300px',
-      'height': '200px',
-      'overflow': 'scroll',
-      'border': '1px solid red'
+      height: '200px',
+      overflow: 'scroll',
+      border: '1px solid red'
     });
 
     return GuiFactory.build(

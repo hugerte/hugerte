@@ -17,7 +17,7 @@ export interface SliderValueXY {
   readonly y: number;
 }
 
-export type SliderValue = SliderValueX | SliderValueY | SliderValueXY;
+export type SliderValue = SliderValueX | SliderValueXY;
 
 export interface SliderUpdateEvent extends CustomEvent {
   value: SliderValue;
@@ -33,13 +33,13 @@ export interface SliderModelDetailParts {
 
 export interface EdgeActions {
   'top-left': Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
-  'top': Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
+  top: Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
   'top-right': Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
-  'right': Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
+  right: Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
   'bottom-right': Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
-  'bottom': Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
+  bottom: Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
   'bottom-left': Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
-  'left': Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
+  left: Optional<(edge: AlloyComponent, detail: SliderDetail) => void>;
 }
 
 export interface Manager {

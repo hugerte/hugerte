@@ -14,20 +14,20 @@ UnitTest.test('PartSubstitutesTest', () => {
     'Testing subs',
     () => {
       const detail = {
-        'uid': '1',
-        'dom': {
+        uid: '1',
+        dom: {
           tag: 'div'
         },
-        'components': [ ] as AlloySpec[],
-        'originalSpec': { },
+        components: [ ] as AlloySpec[],
+        originalSpec: { },
         'debug.sketcher': { },
-        'partUids': ({
+        partUids: ({
           'required.A': 'a-uid',
           'optional.B': 'b-uid',
           'external.C': 'c-uid',
           'group.D': 'd-uid'
         }),
-        'parts': ({
+        parts: ({
           'required.A': ({ }),
           'optional.B': ({ }),
           'external.C': ({

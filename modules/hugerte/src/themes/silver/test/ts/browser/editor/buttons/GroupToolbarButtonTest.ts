@@ -158,7 +158,7 @@ describe('browser.hugerte.themes.silver.editor.buttons.GroupToolbarButtonTest', 
             groupButtonApi = api;
             return Fun.noop;
           },
-          items: [ { name: 'Alignment', items: [ 'alignleft', 'aligncenter', 'alignright' ] } ]
+          items: [{ name: 'Alignment', items: [ 'alignleft', 'aligncenter', 'alignright' ] }]
         });
       }
     }, async () => {

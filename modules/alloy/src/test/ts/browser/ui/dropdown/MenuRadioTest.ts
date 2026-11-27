@@ -68,7 +68,7 @@ describe('MenuRadioTest', () => {
       ],
       attrs: {
         'aria-checked': str.is(String(expected.checked)),
-        'role': str.is('menuitemradio')
+        role: str.is('menuitemradio')
       }
     });
 

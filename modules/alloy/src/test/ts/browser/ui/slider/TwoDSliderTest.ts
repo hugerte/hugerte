@@ -18,9 +18,9 @@ UnitTest.asynctest('Browser Test: ui.slider.TwoDSliderTest', (success, failure) 
         tag: 'div',
         classes: [ 'twod-slider-test' ],
         styles: {
-          'height': '200px',
-          'width': '200px',
-          'display': 'flex',
+          height: '200px',
+          width: '200px',
+          display: 'flex',
           'flex-wrap': 'wrap'
         }
       },

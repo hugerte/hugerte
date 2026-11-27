@@ -99,7 +99,7 @@ export default (): void => {
               data: {
                 value: d.value,
                 meta: {
-                  'text': d.text,
+                  text: d.text,
                   html,
                   'meta-demo-content': 'caterpillar',
                   'item-class': 'class-' + d.value

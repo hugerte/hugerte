@@ -44,7 +44,7 @@ const builder = (detail: NormalItemDetail): AlloySpec => ({
     // INVESTIGATE: If more efficient, destructure attributes out
     ...detail.domModification,
     attributes: {
-      'role': getItemRole(detail),
+      role: getItemRole(detail),
       ...detail.domModification.attributes,
       'aria-haspopup': detail.hasSubmenu,
       ...(detail.hasSubmenu ? { 'aria-expanded': false } : {})

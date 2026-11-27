@@ -25,7 +25,7 @@ const updateExpanded = (component: AlloyComponent, ariaInfo: AriaTogglingConfig,
 
 // INVESTIGATE: What other things can we derive?
 const tagAttributes: Record<string, string[]> = {
-  'button': [ 'aria-pressed' ],
+  button: [ 'aria-pressed' ],
   'input:checkbox': [ 'aria-checked' ]
 };
 

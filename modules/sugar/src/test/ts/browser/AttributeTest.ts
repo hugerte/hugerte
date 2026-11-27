@@ -15,7 +15,7 @@ UnitTest.test('AttributeTest', () => {
   const checkErr = <K, V>(f: AttrFn<K, V>, element: SugarElement<Node>, k: K, v?: InvalidValue<V>) => {
     try {
       f(element as SugarElement<HTMLElement>, k, v as V);
-    } catch (e) {
+    } catch (_e) {
       // expected
       return;
     }
@@ -78,7 +78,7 @@ UnitTest.test('AttributeTest', () => {
   Assert.eq('hasNone', false, Attribute.hasNone(SugarElement.fromHtml<HTMLDivElement>('<div style="display: block;"><span id="cat"></span></div>')));
 
   Assert.eq('clone', { id: 'cat' }, Attribute.clone(SugarElement.fromHtml<HTMLSpanElement>('<span id="cat"></span>')));
-  Assert.eq('clone', { 'name': 'foo', 'data-ephox-foo': 'bar' }, Attribute.clone(SugarElement.fromHtml<HTMLSpanElement>('<span name="foo" data-ephox-foo="bar"></span>')));
+  Assert.eq('clone', { name: 'foo', 'data-ephox-foo': 'bar' }, Attribute.clone(SugarElement.fromHtml<HTMLSpanElement>('<span name="foo" data-ephox-foo="bar"></span>')));
 
   Attribute.set(c, 'tabindex', -1);
   Assert.eq('get', '-1', Attribute.get(c, 'tabindex'));
