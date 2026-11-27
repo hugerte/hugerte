@@ -6,12 +6,22 @@ const prettyPrint = (obj) => JSON.stringify(obj, null, 2);
 const generateContent = (json, extraAttribution) => {
   const content = `window.hugerte.Resource.add('hugerte.plugins.emoticons', ${json});`;
   const attribution = `/**
- * Emoji data from npm package: emojilib (MIT License)
+ * This file bundles emoji data from emojilib by Mu-An Chiou.
+ *
  * Copyright (c) 2014 Mu-An Chiou
- * https://github.com/muan/emojilib/blob/main/LICENSE
+ * @license MIT <https://opensource.org/licenses/MIT>
+ * @see https://github.com/muan/emojilib/blob/main/LICENSE
  */`
   return attribution + '\n' + (extraAttribution ? extraAttribution + '\n' : '') + content;
 };
+
+const twemojiAttribution = `/**
+ * Emoji artwork: Twemoji. Referenced at runtime via emoticons_images_url, not bundled here.
+ *
+ * Copyright 2019 Twitter, Inc and other contributors
+ * @license CC-BY 4.0 <https://creativecommons.org/licenses/by/4.0/>
+ * @see https://github.com/twitter/twemoji
+ */`;
 
 const getTwemojiOptions = (grunt, options) => {
   const twemojiOptions = options.twemoji || { base: '', ext: '.png' };
@@ -47,6 +57,6 @@ module.exports = function (grunt) {
     });
 
     grunt.file.write('src/plugins/emoticons/main/js/emojis.js', generateContent(emojiJson));
-    grunt.file.write('src/plugins/emoticons/main/js/emojiimages.js', generateContent(prettyPrint(emojiImageDatabase), '\n// Images provided by twemoji: https://github.com/twitter/twemoji'));
+    grunt.file.write('src/plugins/emoticons/main/js/emojiimages.js', generateContent(prettyPrint(emojiImageDatabase), twemojiAttribution));
   });
 };

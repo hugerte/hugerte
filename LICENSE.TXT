@@ -20,3 +20,34 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+## Third-party notices
+
+This distribution includes or displays the following third-party works.
+
+### emojilib
+
+https://github.com/muan/emojilib
+
+Copyright (c) 2014 Mu-An Chiou. Licensed under the MIT License (see the link above).
+
+The emoticons plugin's keyword data
+(`src/plugins/emoticons/main/js/emojis.js`) is generated from this package.
+
+### Twemoji
+
+https://github.com/twitter/twemoji
+
+Copyright 2019 Twitter, Inc and other contributors.
+
+Code licensed under the MIT License: http://opensource.org/licenses/MIT
+
+Graphics licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/
+
+The emoticons plugin displays Twemoji graphics by default. They are not bundled with this
+distribution: the plugin loads them from the URL configured by the `emoticons_images_url`
+option, which defaults to the Twemoji CDN, and the image database
+(`src/plugins/emoticons/main/js/emojiimages.js`) only holds the file names. If you host or
+redistribute the graphics yourself, the CC-BY 4.0 terms above apply to that.
